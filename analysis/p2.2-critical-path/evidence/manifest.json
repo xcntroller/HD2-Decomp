@@ -6,8 +6,8 @@
   },
   "initial_checkout_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
   "initial_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
-  "latest_inspected_master_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
-  "latest_origin_master_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
+  "latest_inspected_master_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_origin_master_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
   "source_inputs": [
     {
       "path": "AGENTS.md",
@@ -713,7 +713,7 @@
     }
   ],
   "execution": "No original EXE/DLL/Proton/Windows fixture executed. Ghidra readOnly/noanalysis. No game builds needed for research-only files.",
-  "prior_audit_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "prior_audit_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
   "refresh_source_inputs": [
     {
       "path": "HANDOFF.md",
@@ -995,5 +995,1116 @@
       "bytes": 48374,
       "changed": true
     }
-  ]
+  ],
+  "overnight_source_inputs": [
+    {
+      "path": "HANDOFF.md",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "01ed26da5fb9c54f3cb7d2ff37e4c4c6b3cf017f594ccba65fafcdcc57a476df",
+      "bytes": 5588,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "72d5071e299d609d7a3a838450848004b691935acd19acba46687574f3c19c94",
+      "bytes": 4503,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "8832e4a5e0894017237b4716cd2d81608c443adc85c9088e58b11d8e5b8523de",
+      "bytes": 4949,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "4ffa5c1b20a90f43912cbbc927c45bda8ad0494a90f264912c9ae0ae8b19a970",
+      "bytes": 13180,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-contact-player-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "9eb9bc5a396ade93b7ba8b4999ba2e134d3f65737c167eb4ce5e9a1f9e11e7f0",
+      "bytes": 15408,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ground-bindings-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "9240e2815f1cfa526ae521210ea7cc90932e64ea14b1a5b575a8d3448ef0bdb1",
+      "bytes": 7528,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ground-collision-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "4157551b82fc92cdf6628174a3e00c0af741f8984af56821feab2881eafa6154",
+      "bytes": 17527,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ground-direction-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "0637d5e1219062829ec4a64382153124b93413a39c48bff3634435a604f3043c",
+      "bytes": 7101,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ground-frame-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "4af6b888b7a4ea25a2848647d235c532348ba9def07db4e208ca18f2a13ae3d4",
+      "bytes": 7908,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "3a330e340eed19f94884ff892cca46b703c2605fd855a311cce62c99b9246d97",
+      "bytes": 6775,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-look-posture-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "92af83290fc3682d657c1db933f769e424abf96e13e1d95ffc04ce5674196cb9",
+      "bytes": 13309,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-motion-velocity-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "72bc3f55085b5b2414438c5aa251157dff93cf54865b2d46f3b5b06c915f294f",
+      "bytes": 4216,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d1642caa6b8e12f67c8f21ede6a3eb3e9d466b5ddb3a56c765854c8f416da28b",
+      "bytes": 8404,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "eb6ffeced34447701d4c57daca8c8d6bc30bb0a094ae5274cf68870589d285ec",
+      "bytes": 4167,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "352a797ff6b67bf04a16a1f45a5ad67a27bc8db21eec3b71226afcf4dfe6aaf3",
+      "bytes": 3157,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "105909d5096e439c6fbd94b775e7fe17d90229970344e94cf68519ed8ae5bf9a",
+      "bytes": 4871,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "feb81e09ce4925a697457ebf4f67472efd6b0b43abd543e52b665d0b5a5bd7da",
+      "bytes": 4487,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "1200e7fa81ebf77910757979da759f6f59ac6f462682687304e2c2592a94df91",
+      "bytes": 3047,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/frame-render-source.md",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "7b43cecbfd374339e2763bbb915584bc7211fe2cbbd525628acb04da0ca4dfba",
+      "bytes": 8932,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/human-frame-source.md",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "7c9cef5f49bd8d2f7fce6522859f13529cc987595a3a1c91e02d1932147e83b9",
+      "bytes": 64703,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/human-scene-movement.md",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "6aa292bf82c7469757aa0f236c74a6389c531dce246832550b16217560a70cda",
+      "bytes": 3557,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/mission-world-loading.md",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "328069890eda98e274336a54ab8d007ca211f834d3954e15a02a47b92ce1c0d8",
+      "bytes": 21031,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "analysis/phase2-delivery-plan.md",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "877bf40e40d8e75a1a56bc692e2f8ca77986ff11accdb871e1a30a97e55282bc",
+      "bytes": 19984,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "plan.md",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "b5528b01cc9b06854a66372c3415be4a9b555cbad336cb2bf4bddb34304194c5",
+      "bytes": 23554,
+      "scope": "contract or receipt"
+    },
+    {
+      "path": "recovered/frontend/control_frame.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d569948d221f9714a9de848c17a9ef87ae861d66aef410876f69c70f3ee7b53c",
+      "bytes": 6584,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/collision_motion.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "6ad16e40970ab468aff1246273c5acc5ada57444a6b800e602aa7339a5607dd6",
+      "bytes": 14827,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/collision_water_queries.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "0389ddd31a39adce3c314ed73c30d622f9d87a2dcec2162aaabf45b20b347a10",
+      "bytes": 8611,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/effects_loading_process.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "c2c9265fb512df2b743a436fb820a05dc5bfca367b343519190a035837ac7054",
+      "bytes": 1243,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/effects_loading_update.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "f2dcf2b0f18ef7723ca982b30fae97b3043adf675a10d7e1dc30f96439e23e25",
+      "bytes": 2621,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/effects_module_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "549c46f6887fcdba42499dba2bd653f6fa1cbece423d1c814d5de9e213ba7c2a",
+      "bytes": 8215,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/first_person_view_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "96d90a392be79e6590d7a8649364ecbba8ebd018bbce1c25ed2c84ad22ef7d27",
+      "bytes": 13962,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/geometry_scene_actors.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "860f4f94c31fc8fe17f288d14d2d46efe58731959c8148aa7610bd7f64e17a3f",
+      "bytes": 31431,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_action_control.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "06dee5496c812edc3232d5ecc37aea33aa8f695b46313ed2461ed7df88156eba",
+      "bytes": 3073,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "c9c8345045156fde379e43211998a018482021158376f231b4c358895f9d4f9a",
+      "bytes": 14254,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_actor_contact.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "c9bb8bd495bd4bfd71b90a467317f76ac68137c0dc2c16b488800db1d10f9684",
+      "bytes": 1514,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_action_pool.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "12903bbf3b7efaff679b4c79ab90de687bab1eb5a2535d9c6150f6777f9f1de1",
+      "bytes": 5918,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_direction.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "5169e7e5ea8817ede6ac5d7a74f89be0acb2f4fa20e1fe6e08485072daacd4e2",
+      "bytes": 5490,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_frame_metrics.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "dfddd8eee9bcb4be34ce354f6ebce38272636848390c7c04db2ca08fe2350a1a",
+      "bytes": 8150,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_frame_output.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d305d0dbdcea292afed960078889e6388424fe88ae9877fdbd74f8d03eb706a2",
+      "bytes": 8209,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_frame_query.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "594f1e54907e010567978f8d1ad396edfc7930cd0f98c65dffd1fa17ccd9945a",
+      "bytes": 6863,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_ground_projection.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d94f3d768b86729816514f718cbc84cfaff5afb7888e0197c4d69faa82800e84",
+      "bytes": 2239,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_navigation_frame.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "b162d57f89510712e5c3e12953d4d360ea03fefd679e9618a2311ebccb7d766f",
+      "bytes": 9935,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_navigation_jobs.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "985b71fda55d27b6984b4cd1b0b054eed17e8f6776cf9af128c5ef18979b0e25",
+      "bytes": 2116,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_navigation_path.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "b797747c0ecb545561fc5b464d3371116c2d19b7e9ff69f685c956d4de3790f6",
+      "bytes": 14327,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_resources.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "c785cff2555c577b53dfc7c58f164e769bb8d466a227203570865000911e8821",
+      "bytes": 11519,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_scene_steering.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d4ad4310ac6fc054bebbc139090695ad43cd0088fd142c84fd7639a1414f6588",
+      "bytes": 6519,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_shot_direction.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "30148ef5d58ab5436ca57e14f010b3dd09add78951df0893ebccf3c8d688b349",
+      "bytes": 5875,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ai_state_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "f8913c9b66697c9ddcd55f6a654077884a3c5b9707ec58ec7f33417016269450",
+      "bytes": 32937,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_animation_state.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d569bd1052f275957cba623d4008731d7bbcbb80cffde408a248bd29afb9b6ed",
+      "bytes": 14924,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_animation_tracks.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "1eb2f647f00f52a79c55ddf72a32a27aa9964f8e1b987aca342f22451df4b606",
+      "bytes": 32694,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_area_ai_state_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "7ad10c59976cd35f5821debeedded8e220ebe54387460dd4951060f70dc37d6b",
+      "bytes": 11264,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_collision_markers.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "6233ff6ef26540c46746b525167c1038a6a45b20bb4e5dd848f39ac942bf8ad8",
+      "bytes": 3188,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_control_action_queue.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "03535b6776d9cb59d3108ecec7341aec1928f7a3963e725221b0ed099112a997",
+      "bytes": 4268,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "c0123c742f2868b2ed6fd512f1ed36a18465592e6c5c068e5b6792c3370e3244",
+      "bytes": 44541,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_direction_replay.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "323223e24290d05f1bd3d917f5f56647873eceb00eeea8436b2a1cbefdf0f9b1",
+      "bytes": 10980,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_equipment_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "7b859fb668d9a09db804c7e4df7169f37517f6a9f3003441e1387bf16033f650",
+      "bytes": 5922,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_equipment_services.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "3c3736f1ea4ea6c8b5af480b533ea2fa744518707cc7fbad893d94f91913e569",
+      "bytes": 5108,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_face_control.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "9af809987688c59e37c671be02a0ebed6679914745ab1d54d23077a92119c833",
+      "bytes": 13887,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_frame_commands.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "c4e342cb8211ea942524bd165a975f0d6e729c7cc623693fba280bb024afb5f1",
+      "bytes": 1980,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_frame_stats.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d51b50381d14383154039957a3d1d3f312406893ae33a2f2f95afe1183aa8ce8",
+      "bytes": 4481,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ground_collision.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "7b289bd7570329463e53b832531f444a48ad4c62dedd076cb377d660b6a40381",
+      "bytes": 4257,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ground_geometry.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "a70c50d5bfb22e7d650b9220bd71666d429b55ad1cd774076bab4d26b6e0355d",
+      "bytes": 6455,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ground_motion.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "31620b9d20c824d9b52568f576ddda56479f0f5258d49a0166edca946ade7495",
+      "bytes": 36570,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_guard_ai_state_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "eec65aaee365d8f81eb2426696fe5c50fa6a1bb9d4335690a70aaa32d388d3c0",
+      "bytes": 37025,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_inline_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d294d97d56b6fc1ae633b18c8218255331f3e73b7d54453a1a34ea635edb2dfa",
+      "bytes": 10969,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_ladder_control.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "9352c60df6c1e7607808efde8530abd855f31dbb62ddbdfe2c4c0bcb49382f16",
+      "bytes": 22985,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_lateral_stride.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "684cb9b6953abfaac4e028a723906e8dc33d70105b914c21d4d3d578f2c7cdcb",
+      "bytes": 3848,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_loading_activation.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "e06ff339aa3cbc043e89b075dfbd3216efc555c3327c113a56dc4e1e1726bfb6",
+      "bytes": 10280,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_loading_state_factory.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "1882d7456ec74211dbb79944ce03400f10693f153377e62991897ced39152888",
+      "bytes": 11287,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_loading_state_view.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "0df038f2467bf0936d11c0f39b4713c6b1f247811131cb12e9a31a9ed55a2315",
+      "bytes": 2268,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_look_control.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "a2bcc5ed3400644cb8885a190fffa5c85112e996a16e7975430646a7d4ec2722",
+      "bytes": 17034,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_look_frame.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "9147f0cb4d8a91740fd074a3596195093b46cac47fa4d306f1a307c70fbc596c",
+      "bytes": 11151,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_model_geometry.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "ff1ed52ee4fae51b1b9099560df463e5b75d17da012ed60fece2661a40b8efe5",
+      "bytes": 14179,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_motion_tables.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "8adbabaf7fefb58ab721d76eaf8a0bc19f453f816564f40326a64ce8892f3ae2",
+      "bytes": 3674,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_motion_velocity.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "1f915519f483f6b93db2cf2890679c93c988fb1e1dff90c2a4296bc56c62a9ef",
+      "bytes": 9459,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_movement_control.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "c2658d2502483fdada717ffbd57e3425de55eca31f8d96396eb2b5e7b5c7e520",
+      "bytes": 12122,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_opacity_control.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "5334a8dfa2c685fe8b4a4b87bbb91445a346b108f1ae670b28de937a9925f5ec",
+      "bytes": 3466,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_passive_states_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "8f8c329e4740adf998cfdd3e67a6e72c6c37d1c3feaafad16683c008cd5138c3",
+      "bytes": 3311,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_physics_globals.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "08cd4a6a4912902fb80ec7eefcca2e55122c0c9a52ebfcb4dbe289f261387d2e",
+      "bytes": 666,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_physics_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "a4456adee35644646b4a90553bc189b4220293a9a6cb6c16dd16387ef930c1d1",
+      "bytes": 26975,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_player_item_frame.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "fe986882b6ae41a468e3b53fec48c58a829db4dcc0c73999a72d9165f82a2028",
+      "bytes": 5203,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_player_state_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "57774228ac2de473b58d5661104d70ca3a0baba39b7889a9e51fcadca115cad8",
+      "bytes": 18129,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_player_weapon_control.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "4ae3397a0b18cf82f03e012aee1717fc40021ee077c3d1d11e1e02cd165d2b1b",
+      "bytes": 6377,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_posture_room.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "7ba661e5365c857d4b3b39b2d82c0d9b03a889fd7efc5e211b42acdd789d654d",
+      "bytes": 11088,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_posture_transition.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "74763776cbc837783d98da144c1762c766213209e4121758e639ec91fab9ab08",
+      "bytes": 4065,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_presentation_shared.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "483c306a361fad04f4259497c21022072249dc6375138f991ca81d3c76041558",
+      "bytes": 4221,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_scene_actor.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "0a007763e2190d85e1d04add08064e16a98751b8a5d9235fbb384b8b907a6af1",
+      "bytes": 8285,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_scene_frame.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "656971d95276170be2699a3ab4d04a7795946e2d3bb642659637182e7736582c",
+      "bytes": 4692,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_scene_movement.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d51c08c309e00dfb390f9b03832cda0ff141680eecf26455445fc0bf87349a5d",
+      "bytes": 23961,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_scene_movement_detour.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "a75d9c514679f0f0ecae4b9896a0ae7fa38ee1e8bff233d583539f2e219bcb61",
+      "bytes": 9748,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_scene_movement_geometry.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "a0334fcae40c5f596fee29993a63592392ad851b7e652376f5ed808da32c9ce2",
+      "bytes": 23632,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "b90a515938be0fcf64f76768e014ff9b93dfa30be02e8635a1cb08f25d27c4a7",
+      "bytes": 13816,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_script_context_services.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "2093bff2e0ad0006a716c2fa6f001efc2ab637757098a857e09b42811fa3f981",
+      "bytes": 4166,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_sound_pool.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "b8ecf0fbd5ca7de2ebdc18c2a9fdd1965b9de971596fd51dc2ec17f3bdb5fbc2",
+      "bytes": 8470,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_state_action_completion.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "aa1df73d60d731af26cf6829f85b309d73d4b40c63e35855a8b3d1d26851c5c1",
+      "bytes": 3107,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_state_base_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "21b6200f18dc6d922da59278e3faebe642c8cd4755f28e9281f8ea32d8db3987",
+      "bytes": 12262,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_weapon_binding.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "86a33e7aeb997b24e6853ec4e9e1fb493a362925975adfb66836aad7570ca25a",
+      "bytes": 8877,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_weapon_reload.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "0f8c0e318b7708d5d5c5848b726b6bb6f7278a2632d72beb0a7bc5b7edb479db",
+      "bytes": 3721,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "798fe8e11ed26c3e86c045f1ae232db3d3835c7aaa85e4248421a1eadadc5fe1",
+      "bytes": 45723,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/mission_integrity_tables.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d96e009c053c64e880337a207e6834bc99dacc771b59e087746931286c7663b9",
+      "bytes": 2901,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/mission_navigation.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "11734775b10f29e9a93cb4081add1ecdedfe21029dd3789ceadf0718e682168b",
+      "bytes": 25424,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/mission_scene_activation.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "03ed0f30b069b080c30e2b270ddf91ed99041ccc616ef9811799d8b61410b31a",
+      "bytes": 4518,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/mission_script_world_link.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "6eff6869f2b73af45646e70a9f8cd01031ba826ed4febde374bc417fb3488496",
+      "bytes": 2543,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/runtime_item.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "44f9745cc3a818ef2677bebb75582acd29ce69e8f28dd3977ae287739847b089",
+      "bytes": 12871,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/runtime_item_services.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "34de4c8ca5b47c091137d5be28141cd0539da9390fdb50d3d498accaf98cd892",
+      "bytes": 3652,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/scene_actor_registry.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "11a70223212da178e833777c24699ac778fa253e1f35667b9e444f3297ad92cb",
+      "bytes": 14087,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/scene_callback.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "ec9c3ec2f27cf89e22d528029ba4052df1d3926dc206cc18efaf7b3437b09fe3",
+      "bytes": 1973,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/session_broadcast_packets.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "12934ed49e1933276f54f121a42ffda5ae10554a57cbf4794e079cd95bc139fa",
+      "bytes": 1419,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/session_frame_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "10b33d8d308c13c0581f05894d35caa4c52f52565f021434541d486828a066bc",
+      "bytes": 5595,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/session_local_packets.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "40b080f6f60b8dd932e1f8f6786888290628e4abc90bc3d369a79a4b056532cc",
+      "bytes": 6862,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/session_render.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "ebf8ffdd0cf66ba621d0f1e56fef2d12feccab95fb52409fdd6a87ee01e60ddb",
+      "bytes": 555,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/sight_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "3396e8488d149389aeec9263e19a5ce9602db47df716aebc140935f450ceb65b",
+      "bytes": 29192,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/simple_scene_actors.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "fea80895a26649db6d95b28d0e51cfa91cdbcdba415751af24aa99992017b841",
+      "bytes": 17025,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/game/volumetric_lights.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "11f52f13d8ee4115429a96e0ec82f525ad573270769118a2b2050fcf9e351cc5",
+      "bytes": 16243,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "e7d300e906e18f046b365b8d81574a25835fd770a0928ea7d40f3efbf72d9ee4",
+      "bytes": 77175,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "0e3ae83e2eb729e799b8efc7f2bc81443c54cf37918738d13c38a23b2d480c6e",
+      "bytes": 12918,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/game_mission_module_frames.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "1d050f03bfbd98c9d694a52f8f63c7ea456a215ddcfdf8745d41e16905c7bc8e",
+      "bytes": 2204,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/game_owner.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "20ed781fb00b75b4c437fff9b23ebf753aba1a0268aef0050a55c8643406bf08",
+      "bytes": 15538,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/game_scene_actor_frames.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "dcc6f3f6f77165444322a02b9965e22de83ef155315c39ca73d9a6cb6783d1f0",
+      "bytes": 9007,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/game_scene_actors.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "2a750bf4d9cb710a74b81a3c97856d7ec9ebd42379a3a6cd36d12a2badbde0ec",
+      "bytes": 16093,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/game_session_activation.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "d95285d6d524edbf6bfe325ac2ad5e59e084d72ea3962dc2d6599cc20150f0a6",
+      "bytes": 8988,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "78cd23610f7db825667b6f0dc35b6247dbe52321bc33936b6a2597b73d80417f",
+      "bytes": 19586,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "0c366755bd09f884d1c10339baaa5718e2272e1609a37b869a1600ed57c6edd8",
+      "bytes": 26128,
+      "scope": "changed input fingerprint and targeted source review"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "sha256": "38d24bb0bea99be40fc2981eeaf45c8b8d399d226b2b3559d94267546c51f0b7",
+      "bytes": 49055,
+      "scope": "changed input fingerprint and targeted source review"
+    }
+  ],
+  "overnight_original_evidence": [
+    {
+      "path": "analysis/work/p22-critical-path/overnight/p22-overnight-original.txt",
+      "sha256": "4504d1b7bcfb5a6170c5da03721b0b97cd9ee5a172d0162380ac710237bf9cd3",
+      "bytes": 9095,
+      "scope": "new read-only original reference/CFG evidence or query script"
+    },
+    {
+      "path": "analysis/work/p22-critical-path/overnight/p22-startup-flow.txt",
+      "sha256": "9b985075540bfa8d2d9a3b23d5757c442a0922c4a70f4e5718090b7bffc2cc9d",
+      "bytes": 654,
+      "scope": "new read-only original reference/CFG evidence or query script"
+    },
+    {
+      "path": "analysis/work/p22-critical-path/overnight/P22Overnight.java",
+      "sha256": "5f86f5c3b33f60b42f95230870cd29c19e6e3bb5dbdff5f6617cde981ef004a1",
+      "bytes": 1363,
+      "scope": "new read-only original reference/CFG evidence or query script"
+    },
+    {
+      "path": "analysis/work/p22-critical-path/overnight/P22StartupFlow.java",
+      "sha256": "62d518cf3833abaa7a8ab633f8d1d5160b73fbea4d5dd62a5ca6011ae3267569",
+      "bytes": 2419,
+      "scope": "new read-only original reference/CFG evidence or query script"
+    },
+    {
+      "path": "mission-boundary/006db0f0.c",
+      "storage": "shared ignored analysis/work",
+      "sha256": "2cf4a057e5bb33b048afbc9afdeb76354236d8a66876468a037d67efecca4f7a",
+      "bytes": 2839,
+      "scope": "reused original export"
+    },
+    {
+      "path": "mission-boundary/006db0f0.json",
+      "storage": "shared ignored analysis/work",
+      "sha256": "cc18dfe3c56f87b04f6dddb789c07c4d52d11c27f4c4aefb9cfb8e9526d7cc52",
+      "bytes": 13628,
+      "scope": "reused original export"
+    },
+    {
+      "path": "mission-world-20261103/script-objective-guard-producer/006e9ea0.c",
+      "storage": "shared ignored analysis/work",
+      "sha256": "6f5ae194d73ccea52770a150b155edfe17c0a817089b67b7895552d6b4f6d742",
+      "bytes": 1229,
+      "scope": "reused original export"
+    },
+    {
+      "path": "mission-world-20261103/script-objective-guard-producer/006e9ea0.json",
+      "storage": "shared ignored analysis/work",
+      "sha256": "00510f2e30e568a97c57818b4a620ae8456b136d1df57bb34dfaff1e2a2d4181",
+      "bytes": 6080,
+      "scope": "reused original export"
+    },
+    {
+      "path": "mission-world-20261103/script-initial-suspend-objective-dependencies/0069ba60.c",
+      "storage": "shared ignored analysis/work",
+      "sha256": "5cb13e74c295595b9ae79eb834c74feb4635ea6738a4261bea1687068324b541",
+      "bytes": 2222,
+      "scope": "reused original export"
+    }
+  ],
+  "overnight_commits": [
+    {
+      "sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "title": "Recover Look frame posture collision and held-model receivers"
+    },
+    {
+      "sha": "edc1d9457af17bb2a9dd392075886f5c3b29496e",
+      "title": "Bind Human ground projection and shared geometry state"
+    },
+    {
+      "sha": "3e6b0cdfa6d46b9309e65728e0562d0b971667e3",
+      "title": "Recover Player input weapon and breath frame coordination"
+    },
+    {
+      "sha": "7588e38433c7c4e8694a56cdc405ceb1660eca87",
+      "title": "Recover Human contacts and Player offline command frames"
+    },
+    {
+      "sha": "edd3ace14beba4b5deb54544bc3a9eedfc89b812",
+      "title": "Recover Human ground collision and water fall coordination"
+    },
+    {
+      "sha": "2b285018ee4d54a1e1b3aa9b12e039e734087b12",
+      "title": "Recover Human ground geometry and direction replay"
+    },
+    {
+      "sha": "b0cf587b811472bfa26c6f119122dacb56643946",
+      "title": "Recover Human animation-driven velocity selection"
+    },
+    {
+      "sha": "b7efe9cd3fcceada535376ccfd7f96e84ceafa05",
+      "title": "Recover Human Ladder setup and movement coordination"
+    },
+    {
+      "sha": "92a8d76af374529e8ad4c6e3887f733ce4cd4de8",
+      "title": "Recover Human ground frame coordination and motion audio"
+    },
+    {
+      "sha": "a654f8fe2449f833c2a27e562981899acfb47fcf",
+      "title": "Recover Human queued actions and model frame dispatch"
+    },
+    {
+      "sha": "ac65c399c3ed1fa20a1033fa4a6ecf469b06a9d2",
+      "title": "Recover Human presentation face and pooled audio frames"
+    },
+    {
+      "sha": "7909094a665651869a1849a44265b20f6e03855b",
+      "title": "Recover Script AI and Human control frame coordination"
+    },
+    {
+      "sha": "39af3ab174a1203af64b595d1fc8a51a03fcd630",
+      "title": "Recover Human action and reload frame services"
+    },
+    {
+      "sha": "01adb447f900f7c3eeeba6e4a90e0e5edf0706c4",
+      "title": "Recover pooled Scene2 movement detours"
+    },
+    {
+      "sha": "dbe5e60dc1f40c60786b0e1ea78fc05618315c30",
+      "title": "Recover shared Scene2 Human movement solver"
+    },
+    {
+      "sha": "40215074c61a96fed1052b80bc376a8b16bbea0a",
+      "title": "Recover Guard and Area authority frame dispatch"
+    },
+    {
+      "sha": "55b3ee6ffe51be8f92c1348451b8269dc7cf4dc8",
+      "title": "Recover Human AI navigation routes and traversal"
+    },
+    {
+      "sha": "4f1db33fd0a584cb46bbb555d844d5bdd787dac7",
+      "title": "Merge pull request #14 from xcntroller/research/p22"
+    },
+    {
+      "sha": "52b4f2716559825a0e5779ec1e9cb93947553185",
+      "title": "Refresh P2.2 critical path after Human AI checkpoint"
+    },
+    {
+      "sha": "1276d5ca4dfab5dc59896b23aaba0f0714af91ca",
+      "title": "Map P2.2 reverse critical path and identify integrity startup producers"
+    }
+  ],
+  "initial_master_sha_this_reassessment": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "life_targeted_review": {
+    "source_sha": "f9d5f03183900044ce191530a13f34690b7e8059",
+    "implementation_commit": "16b34973149266d587e8c10300635bb0d83b3050",
+    "source_inputs": [
+      {
+        "path": "recovered/host/game_session_lifecycle.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "f588f97628e5e64c5c1ea73c3528b627b44dc8782d56309eca0ee9605024d5fd",
+        "bytes": 6515
+      },
+      {
+        "path": "recovered/game/session_lifecycle.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "b63d64e4cf6fc9dd7c14e0bfb7ca5684078e1b9b78e57bb73dd452afff2f9396",
+        "bytes": 2261
+      },
+      {
+        "path": "recovered/game/session_lifetime_progress.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "9a65aea2d6a655e0e0d1cb1b0d3fcba6ee134feb2d022cef1ffde0beeb285919",
+        "bytes": 1868
+      },
+      {
+        "path": "recovered/game/session_file_retirement.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "2e4c0b78439754f12262d83211561954f2cbc7a2409ddd65a0027c0f2072146e",
+        "bytes": 2144
+      },
+      {
+        "path": "recovered/game/session_finish.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "abdcc4be938d681c74eb7a096d815ea593dc34b0158ecf43093b42248ea7b933",
+        "bytes": 4975
+      },
+      {
+        "path": "recovered/game/session_activation.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "64a408e0db83434d126bea50fe6caf07c7263d7b61b71eeb12f7949e4d5cd172",
+        "bytes": 8625
+      },
+      {
+        "path": "recovered/host/game_mission_loading.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "14ae6ecbd8c1e1b542683ad2530e37442d18d555dc09141aae9eda6141c7e045",
+        "bytes": 11952
+      },
+      {
+        "path": "recovered/host/game_session_activation.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "ed04961310972f43ebc055a00741b51471f684194b7d814e2be4556a57f4142a",
+        "bytes": 9673
+      },
+      {
+        "path": "recovered/host/game_scene.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "7982aa0bd7e5567056f70c9c435a037166f08fdfb1a47693aa8d4d141f55e857",
+        "bytes": 13161
+      },
+      {
+        "path": "recovered/game/mission_script_module_loading.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "5b3ade0cd6563ae60e90cd78e9daef99a55e00ee19bcca9327098e7bf42a53b2",
+        "bytes": 6908
+      },
+      {
+        "path": "recovered/host/game_world_actors.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "85821d1189fb51d21f717e4b4780ef10c6bb507fc124ed5eedc443619040ede4",
+        "bytes": 20588
+      },
+      {
+        "path": "recovered/host/game_owner.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "0f628ff205477dd98cb32a8505e2cc168f9a12d6e97ba55be81a4660c275da10",
+        "bytes": 15764
+      },
+      {
+        "path": "analysis/checkpoints/p22-life-20261111.json",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "0a0542a4a1987376aa0b179110d858dfe6e25e81176a9d68d41f161859666a92",
+        "bytes": 14016
+      },
+      {
+        "path": "analysis/p22-life-implementation.md",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "939e8410c369f8d6e79378bc4dd629be991d22d9641db4e3bc46362be4b1c73b",
+        "bytes": 12322
+      },
+      {
+        "path": "analysis/p22-life-plan.md",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "49db6c87d0600221b904d0ccc98505139c7322185b503bbb78e055d6993dcdac",
+        "bytes": 2036
+      }
+    ],
+    "scope": "Only P22-LIFE and its outgoing prerequisite satisfaction updated."
+  }
 }
