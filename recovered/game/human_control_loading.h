@@ -301,7 +301,7 @@ public:
         }
         if(state.template get<std::uint8_t>(0x18c))synchronize_presentation_direction(look,runtime);
         animation_.present_position(elapsed); //007587F0→007585C0.
-        runtime.advance_human_presentation_effects(*this,elapsed); //00758830.
+        present_control_effects(look,elapsed,runtime);
         if(human_frame_signed_word(word(0x950))>0){
             const auto remaining=word(0x950)-elapsed;
             state.set(0x950,human_frame_signed_word(remaining)<0?0u:remaining);
@@ -314,6 +314,51 @@ public:
         runtime.present_human_control_geometry(*this,elapsed); //007A7470.
     }
 private:
+    template<class Look,class Runtime>void present_control_effects(const Look& look,std::uint32_t elapsed,Runtime& runtime){ //00758830.
+        auto& equipment_owner=services_.human_presentation_equipment(*human_);
+        auto& state=physical_.control_frame_words();
+        const auto mode=animation_.present_scene_effects(elapsed,human_is_player(),
+            [&](std::int32_t event){ //00758D20.
+                switch(event){
+                case 1:equipment_owner.transfers().event(1);return true;
+                case 2:{
+                    const auto command=look.state().template get<std::uint32_t>(0x54);
+                    if(geometry_.equipped_weapon().model()&&(geometry_.movement().field62d8&0xfu)==1&&command&&command!=2)
+                        equipment_owner.transfers().event(0);
+                    return true;
+                }
+                case 3:return true; //00758D20 has no receiver for this event ID.
+                case 10:equipment_owner.set_frame_weapon_pose(false,true);return true;
+                case 0x0b:case 0x0c:
+                    if(event==0x0c||!animation_.equipment_frame_timer_active())equipment_owner.set_frame_weapon_pose(false,true);
+                    animation_.clear_equipment_frame_timer();
+                    return true;
+                case 0x15:state.set(0x9c8,std::uint8_t{1});return true;
+                default:return runtime.apply_human_track_event(*this,look,event);
+                }
+            },
+            [&](Frame previous,Frame next){
+                if(!(mode_flags()&2u))return;
+                const auto root=frames_.camera_root_sector();
+                if((!previous||!next||previous==root||next==root)&&services_.current_human_frame_player()==human_)
+                    runtime.reset_human_presentation_camera(*this); //Actual game Camera virtual40(0).
+            });
+        if(state.template get<std::int32_t>(0xa30)>0)
+            runtime.present_human_control_attachment(*this,elapsed,mode); //00793490 and attached opacity.
+        if(animation_.advance_equipment_frame_timer(elapsed))
+            equipment_owner.set_frame_weapon_pose(true,false); //00791AC0(1,1,0).
+        const auto secondary=state.template get<std::uint32_t>(0x1e8);
+        const auto equipment=look.state().template get<std::uint32_t>(0x54);
+        const auto weapon_flags=geometry_.movement().field62d8;
+        if(secondary>=0x1e&&secondary<=0x20&&state.template get<std::uint32_t>(0x20c)==0x5b&&
+           state.template get<std::uint32_t>(0x1f4)==0x4b&&state.template get<std::uint32_t>(0x218)==0x4b&&
+           geometry_.equipped_weapon().model()&&(weapon_flags&0xfu)==1&&equipment&&equipment!=2&&
+           tracks_.transition_progress(1)>=1&&!(equipment_owner.state().words().template get<std::uint32_t>(0x50)&1u)&&
+           !(weapon_flags&0x80000000u))
+            equipment_owner.transfers().event(0); //007913D0(0).
+        face_.present(elapsed,mode_flags(),(state.template get<std::uint32_t>(0x22c)&0x10u)!=0,
+            human_is_player(),services_.current_human_frame_player()==human_,services_.human_control_animation_scale(),pool_->pool());
+    }
     template<class Look>void prepare_control_projection(const Look& look){ //00770100.
         auto& state=physical_.control_frame_words();
         auto flags=state.template get<std::uint32_t>(0x22c);

@@ -197,6 +197,16 @@ public:
             words_.set((group*2+static_cast<unsigned>(lane))*0x24+0xd0,0.f);words_.set(base+0x14,value);
         }
     }
+    long double transition_progress(unsigned group){ //00775480.
+        if(group>=4)throw std::out_of_range("Human animation transition group");
+        words_.set(0x228,0.f);
+        const auto lane=integer(group*0x2c+0xc);
+        if(lane==-1)return 0;
+        if(lane<0||lane>1)throw std::runtime_error("Invalid Human animation lane");
+        const auto meta=(group*2+static_cast<unsigned>(lane))*0x24;
+        const float elapsed=real(meta+0xc4),duration=real(meta+0xc0);
+        return elapsed<0||duration<=elapsed?1.L:blend_ratio(elapsed,0,duration);
+    }
     void fade_fourth(std::int32_t duration) { //00775970.
         const auto lane=integer(0x90);if(lane==-1)return;
         if(lane<0||lane>1)throw std::runtime_error("Invalid fourth Human animation lane");

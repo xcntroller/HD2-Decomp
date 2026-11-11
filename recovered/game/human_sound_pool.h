@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_SOUND_POOL_H
 
 #include "game/human_sound_definitions.h"
+#include <algorithm>
 #include <cstring>
 #include <limits>
 #include <memory>
@@ -32,15 +33,28 @@ public:
     }
     bool initialized() const {return initialized_;}
     const auto& orders() const {return orders_;}
+    template<class Random>std::uint32_t next(std::size_t group,Random& random){ //00785290, shared variant window.
+        if(!count(group,random))throw std::logic_error("Human sound group has no native variants");
+        auto& order=orders_[group];
+        auto& first=window_[group];
+        const auto selected=order.front();
+        order.erase(order.begin());
+        first=first?first-1:order.size();
+        const auto draw=random();
+        if(draw>0x7fffu)throw std::runtime_error("Human sound selection requires shared CRT random");
+        const auto offset=first?first+draw%(order.size()-first+2):draw%(order.size()+1)+1;
+        order.insert(order.begin()+static_cast<std::ptrdiff_t>(std::min(offset,order.size())),selected);
+        return selected;
+    }
 private:
     std::array<std::vector<std::uint32_t>,20> orders_;
+    std::array<std::size_t,20> window_{};
     bool initialized_=false;
 };
 
 //00784B70/00784F60/00784ED0 actual kind4 sound-frame pool. Each variant has two
-//native cache slots; construction takes one real frame and stops/caches it.
-//take() transfers its retained owner to the actual Human audio consumer. Return
-//producers/selection/playback remain separate until recovered.
+//native cache slots. Construction takes one real frame and stops/caches it.
+//take() and play() transfer the retained owner to the actual Human consumer.
 template<class Frames,class Random>
 class HumanSoundPool {
 public:
@@ -88,6 +102,11 @@ public:
         frames_.human_sound_parameter94(sound.get(),0);
         frames_.human_sound_enabled(sound.get(),true);
         frames_.human_sound_tag(sound.get(),std::uint32_t(group<<8)|std::uint32_t(index));
+        return sound;
+    }
+    Owner play(std::size_t group,Frame parent,const std::array<float,3>& position){ //00785290.
+        auto sound=take(group,variants_.next(group,random_));
+        if(sound&&parent)frames_.human_sound_attach(sound.get(),parent,position);
         return sound;
     }
     void give(Owner sound) { //00785400; caller's0075EA30 already holds this shared pool.

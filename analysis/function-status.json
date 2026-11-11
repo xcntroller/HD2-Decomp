@@ -30503,6 +30503,102 @@
         "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
         "recovered/game/human_control_loading.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00758830",
+      "status": "partial",
+      "coverage": "Actual animation event/track ordering, sector sampling, ambient and opacity, equipment timer and face frame; positive attachment, camera and event effects remain required.",
+      "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+        "recovered/game/human_control_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00775480",
+      "status": "partial",
+      "coverage": "Read active track transition progress and preserve the native track228 reset.",
+      "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+        "recovered/game/human_animation_tracks.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007816b0",
+      "status": "partial",
+      "coverage": "Actual blink, mouth, expression and eye frame transitions, morph gate, breathing call and timer retirement.",
+      "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+        "recovered/game/human_face_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00781ba0",
+      "status": "partial",
+      "coverage": "Acquire, replace, modulate and retire retained breathing sounds through actual face state and shared SOUND pool.",
+      "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+        "recovered/game/human_face_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00785290",
+      "status": "partial",
+      "coverage": "Rotate the actual process variant window with shared CRT draws, acquire its sound frame and attach with original marker/XYZ.",
+      "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+        "recovered/game/human_sound_pool.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00791ac0",
+      "status": "partial",
+      "coverage": "Actual equipment weapon pose toggle/selection, frame position/update, face commands and 230 byte4C publication.",
+      "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+        "recovered/game/human_equipment_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a62a0",
+      "status": "partial",
+      "coverage": "Read actual Human EC/14C/F4 for face stamina percentage with original integer truncation low word.",
+      "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+        "recovered/game/human_face_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00758d20",
+      "status": "partial",
+      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies.",
+      "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+        "recovered/game/human_control_loading.h"
+      ]
     }
   ]
 }

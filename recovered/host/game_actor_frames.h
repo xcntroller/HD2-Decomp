@@ -662,6 +662,12 @@ public:
     void human_sound_enabled(Frame sound,bool enabled) {call<void>(sound,0x30,std::uint32_t(enabled));}
     void human_sound_parameter7c(Frame sound,std::uint32_t value) {call<void>(sound,0x7c,value);}
     void human_sound_volume(Frame sound,float value) {call<void>(sound,0x8c,value);}
+    float human_sound_volume(Frame sound)const{return field<float>(sound,0x16c);}
+    std::int32_t human_sound_duration(Frame sound){return call<std::int32_t>(sound,0xa8);}
+    void human_sound_attach(Frame sound,Frame parent,const std::array<float,3>& position){ //00785290.
+        call<void>(sound,0x38,parent,std::uint32_t{0});
+        object_position(sound,position);
+    }
     void human_sound_range(Frame sound,float near_range,float far_range,float first,float second) {call<void>(sound,0x80,near_range,far_range,first,second);}
     void human_sound_parameter90(Frame sound,std::uint32_t value) {call<void>(sound,0x90,value);}
     void human_sound_parameter94(Frame sound,std::uint32_t value) {call<void>(sound,0x94,value);}

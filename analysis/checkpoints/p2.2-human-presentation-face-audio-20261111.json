@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "previous_checkpoint": "eef8836",
+  "added_entries": [
+    "00758830",
+    "00775480",
+    "007816b0",
+    "00781ba0",
+    "00785290",
+    "00791ac0",
+    "005a62a0",
+    "00758d20"
+  ],
+  "ledger_added_partial_client": 8,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2282,
+  "checks": {
+    "native": "PASS (ASan/UBSan/LSan, actual face state seeded and frame/audio doubles)",
+    "actual_host_i386": "PASS (strict compile with required runtime gaps declaration-only)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-positive-presentation-native.cpp": {
+      "sha256": "8e5c13bfe927e0c91c1009abf8775434a84d26ff7de4a139ec9f081f07b729b9",
+      "bytes": 4844,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-positive-presentation-native": {
+      "sha256": "08705ed2b06aca3438223aa7da9308061b51913498bdb01f5d57f992d487435d",
+      "bytes": 840824,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-positive-presentation-i386.cpp": {
+      "sha256": "0f79b3c269ea38790662522677379fc288a4f0bdcfa1519b99dd2e4b96c2cb96",
+      "bytes": 4057,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-positive-presentation-i386.o": {
+      "sha256": "da4c387aca6970a787f37f6e59d40370fc49ff47c9d575ebc19b3c259ef1dbe5",
+      "bytes": 11963369,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-positive-presentation-native.log": {
+      "sha256": "4e78b1d05ace2d77ef9075ca158e1e4ef3338297abe9c94e48bd03e196d0ff67",
+      "bytes": 155,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-positive-presentation-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-positive-presentation-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-positive-presentation-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-dd0-bound-workers/00758830.c": {
+      "sha256": "65142850ddf0c5f72a483cfe02131cbb744a98af1f83ca38cd98f3b2a5d6d93f",
+      "bytes": 3728,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-presentation-effects/00758d20.c": {
+      "sha256": "5e2edcfd1aec38384dc16c6bd9d4888c3d261804ae8616ff91d1d77e25a41005",
+      "bytes": 15119,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-presentation-effects/00775480.c": {
+      "sha256": "657f8621c64bd1d2b8cf50bf4922ce58c0df84ca56916b5f9c347e1d1f2acb6a",
+      "bytes": 732,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-presentation-effects/00791ac0.c": {
+      "sha256": "a22d001713253f0010785b8152f1fd9911b47dd8767de263548ff97c39454f38",
+      "bytes": 1255,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-dd0-animation-workers/007816b0.c": {
+      "sha256": "8290a6df62004e2c1b42685e7fdf971b4fc002f3e19fc6ac2785289cc8ac2b94",
+      "bytes": 5144,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-presentation-effects/00781ba0.c": {
+      "sha256": "efcea70c395c121855c4cb67f98eb29c28eead307591c412c24f90a6e27a2ecc",
+      "bytes": 3617,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-breathing-audio/00785290.c": {
+      "sha256": "74bc73f2cba97cf5d3d8244ea17ebf8c510c9cc29865be7727749231ade6ad0d",
+      "bytes": 2128,
+      "retained": true
+    }
+  }
+}

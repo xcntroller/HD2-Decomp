@@ -9,23 +9,24 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Script AI and DD0 frame coordination](analysis/human-frame-source.md#script-ai-and-dd0-frame-coordination)
-and [verification receipt](analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json).
-Kind 5 now dispatches both passes and uses the real VM navigation completion.
-00787270/00787D50/007881D0 use actual E0/DD0/230 state, camera projection,
-unpadded activation bounds, audio retirement and CD0 pose interpolation.
-Positive motion, effects and geometry workers remain required. Native
-sanitizers, strict actual-host i386 and launcher link passed. The tally is
-34 complete and 2,274 partial entries (2,269 client and five engine) across
-18,783 frozen functions. Both P2.2 checkboxes remain open. Application loading
-still declines and no mission desktop test has occurred.
+[Positive presentation, face and pooled audio](analysis/human-frame-source.md#positive-presentation-face-and-pooled-audio)
+and [verification receipt](analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json).
+00758830 now reaches actual track, sector, opacity, equipment and face owners.
+007816B0/00781BA0 supply face timers and breathing through shared variant
+selection/pool 00785290. Positive animation events and geometry remain required.
+Native face/audio sanitizers, strict actual-host i386 and launcher link passed.
+The tally is 34 complete and 2,282 partial entries (2,277 client and five engine)
+across 18,783 frozen functions. Both P2.2 checkboxes remain open. Application
+loading still declines and no mission desktop test has occurred.
 
 ## Continue P2.2
 
 - Continue positive DD0 007637D0 ground, 0077DE30 look apply,
   0075F230 action queue, 00779B30/00755500 motion, 00758830 effects and
-  007A7470 geometry. WORK `frame-human-dd0-bound-workers`,
-  `frame-human-dd0-animation-workers` and `frame-human-shot-and-control-workers`
+  007A7470 geometry. Presentation track events4..9/13..20/22..24 still need
+  positive workers, as do the camera reset and attached230 branch. WORK `frame-human-dd0-bound-workers`,
+  `frame-human-dd0-animation-workers`, `frame-human-presentation-effects`,
+  `frame-human-breathing-audio` and `frame-human-shot-and-control-workers`
   preserve the exact bodies. Continue other B0 families, positive 00584E30
   effects and queued 00577B30. Guard cover/door, 0057CC50/007861A0,
   floor-list 00581E30 and 0058BAF0 kind9 release remain required. For item

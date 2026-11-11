@@ -459,3 +459,40 @@ both actual World module passes with declaration-only runtime gaps. The
 launcher linked. Static evidence is under WORK `frame-human-state-updates`,
 `frame-human-script-and-active-workers`, `frame-human-control-updates`,
 `frame-human-dd0-bound-workers` and `frame-human-dd0-animation-workers`.
+
+## Positive presentation, face and pooled audio
+
+00758830 now runs the actual CD0 presentation effects. It dispatches the
+three retained animation event queues before the existing track advance,
+samples the live scene sector at the native interval, binds its ambient light,
+and calls the same opacity owner. The current-player Camera reset remains a
+required positive callback. Equipment events 1/2/10/11/12 and the delayed pose
+timer now reach the actual 230 transfers or 00791AC0. Event 21 publishes the
+real DD0+9C8 byte. The remaining positive event IDs still require their
+original effects. 00775480 reads the active track lane and original blend
+ratio. Its reset of track+228 is preserved.
+
+00791AC0 uses the same selected equipment model, retained weapon pose,
+Frame position/update, face commands and 230+4C byte. 007816B0 advances the
+actual blink, mouth, expression and eye transitions before morph publication
+and ordered timer retirement. Durations 128/178/21428/300/514 come from the
+original 007808B0/007808E0/00780910/00780940/00780970 static initializers.
+The stamina limit uses 005A62A0's live Human14C and original F4 statistic.
+
+00781BA0 now holds and returns the real breathing sound through the existing
+SOUND pool. 00785290 rotates the persistent process variant window using one
+shared CRT draw before taking the selected frame. The real frame is linked
+to the face marker and receives its native local XYZ offset. Breathing
+preserves duration, stored base volume, current-player/focus gates, silent
+initial acquisition, expiry replacement and pool return. Motion producers
+must still publish the actual running/recovery state. No running condition
+was fabricated for the application.
+
+[Verification receipt](checkpoints/p2.2-human-presentation-face-audio-20261111.json).
+The native sanitizer fixture used frame/audio doubles and seeded the real
+face scalar owner to exercise positive breathing acquisition, replacement
+and return. It also covered variant draws, blink and equipment expression
+expiry. It used an absent morph visual. Existing morph arithmetic remains
+unchanged. The strict i386 fixture compiled both containing World module
+passes with declarations for remaining runtime leaves. No original program,
+Windows fixture or desktop game was executed.

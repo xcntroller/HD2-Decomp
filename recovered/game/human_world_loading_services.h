@@ -87,6 +87,11 @@ public:
             throw std::runtime_error("Human visibility requires the SAME DD0 shadow and230 owners");
         control.equipment()->refresh(human.base().frame());
     }
+    template<class Human>auto& human_presentation_equipment(Human& human){
+        auto* equipment=composition(human).control().equipment();
+        if(!equipment)throw std::logic_error("Human presentation requires actual equipment");
+        return *equipment;
+    }
     template<class Human>bool human_is_player(const Human& human)const{return human_camera_is_player(human,mode_flags(),human_current_player_id());} //005A0890, AL.
     template<class Human>bool human_is_view_actor(const Human& human)const{return human_is_player(human);}
     bool human_view_offset_enabled(){auto& view=dependencies().first_person.view();return view.enabled()||view.secondary_enabled();} //0069A4B0, actual58 OR59.

@@ -40,6 +40,20 @@ public:
     auto& state(){return state_;}const auto& state()const{return state_;}
     auto& attachments(){return attachments_;}
     auto& transfers(){return transfers_;}
+    void set_frame_weapon_pose(bool ready,bool toggle){ //00791AC0.
+        auto& words=state_.words();
+        const bool previous=words.template get<std::uint8_t>(0x4c)!=0;
+        if(toggle)ready=!previous;
+        const auto model=state_.model(0);
+        if(ready==previous||!model)return;
+        if(previous)transfers_.event(1);
+        services_.pose_equipment_weapon(toggle?2u:static_cast<unsigned>(ready));
+        if(!previous)frames_.object_position(model,{{0,0,0}});
+        frames_.update_scene_object(model);
+        if(previous){services_.equipment_primary_face(0);services_.equipment_secondary_face(2);}
+        else{services_.equipment_secondary_face(0);services_.equipment_primary_face(2);}
+        words.set(0x4c,static_cast<std::uint8_t>(!previous));
+    }
     void advance_frame(std::uint32_t elapsed){advance_human_equipment_frame(frames_,state_,services_,attachments_,transfers_,activation_.light(),catalogue_,elapsed);} //00792CE0.
 private:
     Frames& frames_;const frontend::PreMissionItemCatalogue& catalogue_;

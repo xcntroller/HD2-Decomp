@@ -166,10 +166,59 @@ public:
         const long double z=static_cast<long double>(target[2])-current[2];
         if((x*x+y*y)+z*z>1.e-7f)frames_.human_control_set_position(model_,target);
     }
+    template<class Events,class SectorChanged>unsigned present_scene_effects(std::uint32_t elapsed,bool player,
+            Events&& events,SectorChanged&& sector_changed){ //00758830 through 00789CD0.
+        require_model();
+        words_.set(0xcc,words_.template get<std::uint32_t>(0xcc)+elapsed);
+        const auto motion=state(0x1ac);
+        if(motion>6||motion==1){
+            dispatch_track_events(events);
+            tracks_.update(human_frame_signed_word(elapsed),false);
+        }
+        unsigned opacity_mode=0;
+        std::int32_t sector_period=300;
+        if(!player){
+            if(state(0x22c)&0x140)sector_period=900;
+            const auto stance=control_.animation_look_stance();
+            opacity_mode=stance==0||stance==3||stance==4?5u:stance==2||stance==5?0u:4u;
+        }
+        if(state(0x228)>1999&&state(0xa44)<1){
+            opacity_mode=3;sector_period=30000;
+        }
+        const auto accumulated=human_frame_signed_word(words_.template get<std::uint32_t>(0x18)+elapsed);
+        words_.set(0x18,accumulated);
+        if(accumulated>sector_period){
+            words_.set(0x18,accumulated%sector_period);
+            auto probe=world_position();probe[1]+=.5f;
+            const auto previous=sector_;
+            sector_=frames_.human_scene_sector(probe);
+            if(previous!=sector_){
+                sector_changed(previous,sector_);
+                opacity_.bind_sector(frames_,sector_);
+            }
+        }
+        opacity_.update(model_,human_frame_signed_word(elapsed),opacity_mode,control_);
+        return opacity_mode;
+    }
+    bool advance_equipment_frame_timer(std::uint32_t elapsed){ //00758830, CD0+1C.
+        const auto current=words_.template get<std::uint32_t>(0x1c);
+        if(human_frame_signed_word(current)<=0)return false;
+        const auto remaining=current-elapsed;
+        words_.set(0x1c,remaining);
+        return human_frame_signed_word(remaining)<1;
+    }
+    bool equipment_frame_timer_active()const{return words_.template get<std::int32_t>(0x1c)>0;}
+    void clear_equipment_frame_timer(){words_.set(0x1c,std::int32_t{-1});}
     const auto& words() const{return words_;}
     Frame sector() const{return sector_;}
     bool active() const{return words_.template get<std::uint8_t>(0x10)!=0;}
 private:
+    template<class Events>void dispatch_track_events(Events& events){ //00758D20's native early return still allows the caller to advance.
+        for(unsigned group=0;group!=3;++group){
+            const auto count=tracks_.event_count(group);
+            for(unsigned index=0;index!=count;++index)if(!events(tracks_.event(group,index)))return;
+        }
+    }
     void require_model() const {if(!started_||!model_)throw std::logic_error("Human CD0 has no model");}
     std::int32_t state(unsigned offset) const {
         const auto bits=control_.animation_state_word(offset);std::int32_t value;std::memcpy(&value,&bits,4);return value;
