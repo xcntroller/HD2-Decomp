@@ -2009,5 +2009,102 @@
       "title": "Map P2.2 reverse critical path and identify integrity startup producers"
     }
   ],
-  "initial_master_sha_this_reassessment": "799a79305c70bc8de1860ac7e438bba25a71a8ac"
+  "initial_master_sha_this_reassessment": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "life_targeted_review": {
+    "source_sha": "f9d5f03183900044ce191530a13f34690b7e8059",
+    "implementation_commit": "16b34973149266d587e8c10300635bb0d83b3050",
+    "source_inputs": [
+      {
+        "path": "recovered/host/game_session_lifecycle.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "f588f97628e5e64c5c1ea73c3528b627b44dc8782d56309eca0ee9605024d5fd",
+        "bytes": 6515
+      },
+      {
+        "path": "recovered/game/session_lifecycle.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "b63d64e4cf6fc9dd7c14e0bfb7ca5684078e1b9b78e57bb73dd452afff2f9396",
+        "bytes": 2261
+      },
+      {
+        "path": "recovered/game/session_lifetime_progress.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "9a65aea2d6a655e0e0d1cb1b0d3fcba6ee134feb2d022cef1ffde0beeb285919",
+        "bytes": 1868
+      },
+      {
+        "path": "recovered/game/session_file_retirement.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "2e4c0b78439754f12262d83211561954f2cbc7a2409ddd65a0027c0f2072146e",
+        "bytes": 2144
+      },
+      {
+        "path": "recovered/game/session_finish.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "abdcc4be938d681c74eb7a096d815ea593dc34b0158ecf43093b42248ea7b933",
+        "bytes": 4975
+      },
+      {
+        "path": "recovered/game/session_activation.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "64a408e0db83434d126bea50fe6caf07c7263d7b61b71eeb12f7949e4d5cd172",
+        "bytes": 8625
+      },
+      {
+        "path": "recovered/host/game_mission_loading.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "14ae6ecbd8c1e1b542683ad2530e37442d18d555dc09141aae9eda6141c7e045",
+        "bytes": 11952
+      },
+      {
+        "path": "recovered/host/game_session_activation.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "ed04961310972f43ebc055a00741b51471f684194b7d814e2be4556a57f4142a",
+        "bytes": 9673
+      },
+      {
+        "path": "recovered/host/game_scene.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "7982aa0bd7e5567056f70c9c435a037166f08fdfb1a47693aa8d4d141f55e857",
+        "bytes": 13161
+      },
+      {
+        "path": "recovered/game/mission_script_module_loading.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "5b3ade0cd6563ae60e90cd78e9daef99a55e00ee19bcca9327098e7bf42a53b2",
+        "bytes": 6908
+      },
+      {
+        "path": "recovered/host/game_world_actors.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "85821d1189fb51d21f717e4b4780ef10c6bb507fc124ed5eedc443619040ede4",
+        "bytes": 20588
+      },
+      {
+        "path": "recovered/host/game_owner.h",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "0f628ff205477dd98cb32a8505e2cc168f9a12d6e97ba55be81a4660c275da10",
+        "bytes": 15764
+      },
+      {
+        "path": "analysis/checkpoints/p22-life-20261111.json",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "0a0542a4a1987376aa0b179110d858dfe6e25e81176a9d68d41f161859666a92",
+        "bytes": 14016
+      },
+      {
+        "path": "analysis/p22-life-implementation.md",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "939e8410c369f8d6e79378bc4dd629be991d22d9641db4e3bc46362be4b1c73b",
+        "bytes": 12322
+      },
+      {
+        "path": "analysis/p22-life-plan.md",
+        "revision": "f9d5f03183900044ce191530a13f34690b7e8059",
+        "sha256": "49db6c87d0600221b904d0ccc98505139c7322185b503bbb78e055d6993dcdac",
+        "bytes": 2036
+      }
+    ],
+    "scope": "Only P22-LIFE and its outgoing prerequisite satisfaction updated."
+  }
 }

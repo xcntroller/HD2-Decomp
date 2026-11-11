@@ -1,0 +1,105 @@
+{
+  "result": "PASS",
+  "date_utc": "2026-11-11T14:45:37.515397+00:00",
+  "source_sha": "f9d5f03183900044ce191530a13f34690b7e8059",
+  "implementation_commit": "16b34973149266d587e8c10300635bb0d83b3050",
+  "merge": "PR15",
+  "classification": "resolved_source",
+  "application_integrated": false,
+  "desktop_verified": false,
+  "artifacts": [
+    {
+      "path": "analysis/work/p22-life-20261111/application-build.log",
+      "sha256": "41d1740e1efee26be8109431208cca48370ed6826ad4cd89ad0cd8e017f2e65f",
+      "bytes": 603
+    },
+    {
+      "path": "analysis/work/p22-life-20261111/destruction.asm",
+      "sha256": "f43d45f33971904a98af47d57714e2c206288a4aa5df07e04037404cff03f9d0",
+      "bytes": 9964
+    },
+    {
+      "path": "analysis/work/p22-life-20261111/host-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-life-20261111/native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-life-20261111/native-link.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-life-20261111/native-run.log",
+      "sha256": "82758fe6f8aa0ea3a2742df31a61b839638a49a4d348f496c284370affa4ae74",
+      "bytes": 206
+    },
+    {
+      "path": "analysis/work/p22-life-20261111/tracker-check.log",
+      "sha256": "4eb872597c74076ec9aa8a8ebd291716bcba928f405068d17a51618fe77cd332",
+      "bytes": 437
+    },
+    {
+      "path": "analysis/work/p22-life-20261111/tracker-render.log",
+      "sha256": "2834fa7be688a2ac5228b4c813e4544b830f30d73a4135efb1e6aeb05488521f",
+      "bytes": 380
+    },
+    {
+      "path": "analysis/work/p22-life-20261111/tracker-tests.log",
+      "sha256": "32123c06afaa22405df0ae455b2a9957a73a7a30732623e89bdb1eee75d7e097",
+      "bytes": 126
+    },
+    {
+      "path": "recovered/build/application_launch.exe",
+      "sha256": "1796cb267e43b10871e6f18179d7a7fa1a4d9efc8917b69d47a8fa13b774f310",
+      "bytes": 3821568
+    }
+  ],
+  "reported_native": {
+    "status": "PASS ASan/UBSan/LSan, explicit endpoint doubles, no original code execution",
+    "cycles": 100,
+    "real_source_owners": [
+      "SessionLifecycleBoundary",
+      "load_mission and activate_offline_session",
+      "finish_offline_session_prefix and retire_session_files",
+      "SessionOwner acquired-prefix constructor/destructor",
+      "MissionLightVisibility",
+      "ActorFrameDataStore",
+      "DynamicCollisionBuckets",
+      "FrameTextOverlay/PageOwner",
+      "BlastWaveProcess positive create/advance/clear with raw hit actor already retired and retained node frame",
+      "MissionScriptModuleLoading with actual contexts/compiler/EC/retained frames"
+    ],
+    "cases": [
+      "every distinct observed load/activation throwing endpoint",
+      "animation/Scene2 false returns and required cold module tail",
+      "scratch release before loading tail",
+      "partial failures before tree and after loaded14/status5 publication",
+      "reverse finish and ascending file unload plus final loaded14 publication",
+      "mandatory cleanup failure/retry and missing module receiver retains dependent graph",
+      "snapshot failure preserved and snapshot not repeated after Human removal",
+      "retained status1 finish before file loaded guard",
+      "constructor factory failure, null factory, every allocation failure including post-publication COW",
+      "100 real partial Script module cycles: one bound compiled context then second prepare binding throws before native loaded10; finish removes EC/frame users",
+      "graphics setup throw and primary load error plus secondary restoration failure",
+      "callback/page retirement, same state/live squad identity, frameEC and dynamic bucket detach before grid destruction"
+    ],
+    "limits": "Native composition uses engine/archive/graphics/clock/module/actor endpoints as explicit doubles; actual Windows host World/controller/lifecycle is compiled and linked, not run. Actual Scene2 actor-prefix, camera/FPV/HUD and registered module implementations have strict host validation and existing focused baseline audits, not native whole-engine execution."
+  },
+  "reported_i386": {
+    "status": "PASS strict compile/link of complete GameSessionLifecycle using actual LaunchOwners::Controller from application_launch.cpp, SAME real World/request/session/owners, positive GameBlastWaves create/update/clear, UI callback/page binding, activate/finish/unload/close. Never executed.",
+    "flags": "-std=c++17 -Wall -Wextra -Wpedantic -Werror -static -municode"
+  },
+  "audits_rerun": false,
+  "checks": [
+    "Feature tip is ancestor of remote master.",
+    "Concrete lifecycle and loader/finish bindings inspected.",
+    "Retained original destructor instructions and build/native logs match receipt hashes.",
+    "Application still declines loading and has no lifecycle caller.",
+    "Other blocker observations retain their previous source pins."
+  ]
+}
