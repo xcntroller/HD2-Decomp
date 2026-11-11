@@ -561,6 +561,9 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int widt
         startup.prepare_steam_process_observations();
         if (!loading_capture.empty()) {
             LoadingCaptureOutput output(loading_capture);
+            const auto context=std::string("evidence\tresolver-bytes-before-game-construction\nmode\t")+std::to_string(startup.application_flags())+
+                "\nlanguage\t"+io::data_manifest_text(startup.language())+"\nconfiguration.flag170\t"+std::to_string(startup.game_configuration().flag170)+"\nwide-characters\t"+std::to_string(startup.wide_characters())+"\nselection\tTutorial/ALPS1 diagnostic candidates; no game request constructed\n";
+            output.write("context.tsv",context.data(),context.size());
             host::capture_loading_inputs(startup.pre_mission_files(), output, startup.model_resource_directories());
             std::puts("Loading-input capture completed; controller/game not started");
             frontend::close_launch_owners(owners, errors);

@@ -88,13 +88,14 @@ public:
     bool initialize_actor(Actor actor,Frame frame) {
         if(!actor)return false;
         try {
-            if(actor->initialize(frame))return true;
+            if(actor->initialize(frame)){observe_data("loaded-owner","actor initialized","Scene2 type",actor->base().type());return true;}
         } catch(...) {actors_.remove(actor);throw;}
         actors_.remove(actor);return false;
     }
     void read_actor_properties(Actor actor,game::SerializedBytes& bytes) {
         if(!actor)throw std::logic_error("Actor property read requires an owner");
         actor->load(bytes);
+        observe_data("loaded-owner","actor properties decoded","Scene2 type",actor->base().type());
     }
     void clear_scene_frame_data(){ //006E9B50/006E9B70, scene44 maskFFFF, userdata0.
         enumerate_activation_scene(false,0xffff,[this](Frame frame){erase_actor_frame_data(frame);});
@@ -106,7 +107,15 @@ public:
     std::size_t scene_actor_identity_count()const{return actors_.identity_count();}
     Instance* scene_actor_command_identity(std::int32_t id)const{return actors_.command_identity(id);} //00475D50.
     template<class Services>void tick_scene_actors(bool authority,std::uint32_t elapsed,Services& services){
+        observe_data("execution","Scene2 frame entered",authority?"authority":"presentation");
         game::tick_scene_actor_registry(actors_,authority,elapsed,services);
+        observe_data("execution","Scene2 frame completed",authority?"authority":"presentation");
+    }
+    void observe_scene_population()const noexcept {
+        observe_data("population","Scene2 snapshot","identity slots",actors_.identity_count());
+        for(std::size_t n=0;n<actors_.identity_count();++n)if(auto* actor=actors_.identity(n))
+            observe_data("population","Scene2 actor","type",actor->base().type());
+        observe_data("population","Scene2 snapshot end");
     }
     std::uint32_t available_human_count()const{return actors_.available_human_count();}
     std::uint32_t selected_human_count()const{return actors_.selected_human_count();}

@@ -14,8 +14,9 @@ public:
     struct Binding {std::string frame,script;};
     const std::vector<Binding>& values() const {return bindings_;}
     void clear() noexcept {bindings_.clear();} //00428A70, forward pair destruction.
-    template<class Frames>void read(SerializedBytes bytes,Frames& frames) {
-        clear();
+    //Decode exact serialized pairs before the original frame-existence filter.
+    //Inspection can report declared dependencies without manufacturing frames.
+    template<class Visit>static void read_records(SerializedBytes bytes,Visit&& visit) {
         auto root=next_mission_chunk(bytes);
         if(!root)throw std::runtime_error("Mission script bindings have no root");
         //The original enters the first root without testing its ID, and
@@ -25,9 +26,15 @@ public:
             auto script=next_mission_chunk(root->bytes);
             if(!script)throw std::runtime_error("Mission script binding has no script name");
             Binding binding{std::move(frame),text(script->bytes)};
+            visit(std::move(binding));
+        }
+    }
+    template<class Frames>void read(SerializedBytes bytes,Frames& frames) {
+        clear();
+        read_records(bytes,[&](Binding binding){
             //Original driver+88 only: no scene+7C fallback for this filter.
             if(frames.resolve_scene_path(binding.frame))bindings_.push_back(std::move(binding));
-        }
+        });
     }
     template<class Files,class Frames>
     bool load(Files& files,Frames& frames,const std::string& resource,bool multiplayer) {

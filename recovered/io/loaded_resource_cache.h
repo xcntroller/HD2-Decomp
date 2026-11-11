@@ -2,6 +2,7 @@
 #define HD2_IO_LOADED_RESOURCE_CACHE_H
 
 #include "io/resource_directories.h"
+#include "io/resource_observations.h"
 #include <functional>
 #include <cstring>
 #include <map>
@@ -60,7 +61,7 @@ public:
             }
         }
         const auto key = directory_c_string(name);
-        if (auto* hit = lookup_[key]) { backend_.copy(destination, hit); return 0; }
+        if (auto* hit = lookup_[key]) { observe_bound_data(backend_,"execution","cache hit",key.c_str()); backend_.copy(destination, hit); return 0; }
         const auto status = search(destination, key, flags | 0x10u | (callback_present ? 4u : 0u));
         if (status >= 0) {
             evict_one();
@@ -78,7 +79,7 @@ public:
             const std::function<void(const std::string&)>& failed = {}) {
         output.reset();
         const auto key = directory_c_string(name);
-        if (auto* hit = lookup_[key]) { output = backend_.retain(hit); return 0; }
+        if (auto* hit = lookup_[key]) { observe_bound_data(backend_,"execution","cache hit",key.c_str()); output = backend_.retain(hit); return 0; }
         if (!current_) current_ = backend_.create();
         if (!current_) throw std::runtime_error("Cache scratch factory returned null");
         const auto status = search(current_.get(), key, failed ? 4u : 0u);
@@ -119,7 +120,9 @@ private:
         // directory state. Preserve registered order, spelling and duplicates.
         for (std::size_t index = 0; index < directories_.paths().size(); ++index) {
             const auto path = directories_.paths()[index] + key;
+            observe_bound_data(backend_,"execution","engine cache open attempted",path.c_str(),flags);
             status = backend_.open(object, path, flags);
+            observe_bound_data(backend_,"execution","engine cache open returned",path.c_str(),static_cast<std::uint32_t>(status));
             if (terminal(status)) return status;
             if (status == signed_status(0x80000013u) || status == signed_status(0x80000014u))
                 backend_.diagnostic(path, status);

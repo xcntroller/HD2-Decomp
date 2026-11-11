@@ -2,6 +2,7 @@
 #define HD2_HOST_GAME_LOADING_MODULES_H
 
 #include "frontend/module_registration.h"
+#include "io/data_operation.h"
 #include "game/mission_module_dispatch.h"
 #include "game/offline_spawn_presentation.h"
 #include <cstring>
@@ -23,7 +24,9 @@ public:
         struct Pass {
             GameLoadingModules& owner;FrameServices& frames;
             void tick_mission_module(frontend::ClientModuleRegistration& module,bool authority,std::uint32_t elapsed){
-                owner.tick_mission_module(module,authority,elapsed,frames);
+                const auto store=owner.d_.scene.frames().resource_observations();
+                if(store)store->event("execution",authority?"authority module":"presentation module","original module kind",owner.checked_kind(module));
+                io::observe_data_operation(store,"module frame receiver",[&]{owner.tick_mission_module(module,authority,elapsed,frames);});
             }
         } pass{*this,frames};
         game::tick_mission_module_pass(module_registry(),pass,authority,elapsed);
