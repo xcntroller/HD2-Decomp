@@ -7,6 +7,23 @@ The denominator remains18,783. Seven implemented scalar/predicate rows are added
 as partial and006E9EA0 is extended; totals34 complete/2,507 partial. No whole-body
 completion promotion. GUARD is **not source-closed**.
 
+## Reference provenance clarification
+
+The user confirms the supplied installation is an UNMODIFIED Steam release.
+Nothing found establishes local tampering, corruption or a defective download.
+Intentional removal/skipping of obsolete retail protection in the distribution
+is a plausible explanation for the retained code and sparse private data, but
+is not vendor-confirmed here. The recorded jump proves executed control flow,
+not its historical reason. References below to an intact/pre-bypass payload mean
+an earlier/different protection-bearing build, not a repaired copy of this one.
+
+Steam-executed behavior and dormant retail-protection reconstruction must remain
+separate. The initial task explicitly forbids bypasses/equality substitutes;
+that constraint has not been silently replaced with Steam's skip behavior.
+Consequently, retained private code alone does not establish that its producers
+are required for ordinary execution of this distribution. The former claim of
+unconditional original validation is superseded by the actual Steam bytes.
+
 ## Implemented initialization
 
 The client SHA256 is8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
@@ -134,8 +151,7 @@ unresolved GUARD function is an external subsystem. Dormant code recovery has
 continued independently; matching, blocked bits, decoding and initializer are
 implemented. Full source closure and positive concrete producer/publication
 verification remain blocked on that intact reference evidence. No broader
-source closure or application success is claimed. No source checkpoint commit
-has been made; the larger GUARD subsystem checkpoint remains unfinished.
+source closure or application success is claimed. Scalar checkpoint f74816a is committed; the larger GUARD subsystem remains unfinished.
 
 ## Resumed scalar checkpoint
 
@@ -236,3 +252,72 @@ private validation path, even though it still contains many recoverable bodies.
 The exact remaining reference need is still intact original private constants/
 imports/startup population. GUARD unknowns remain GUARD work; no missing external
 simulation, UI or lifecycle owner is blamed for them.
+
+## Process thread and decoder checkpoint
+
+StartupSession now owns ONE IntegrityThreads beside its existing process tables.
+The device seed wrapper acquires its actual GetCurrentThreadId slot before the
+actual GetTickCount, then returns the raw seed without publishing observations.
+Identity permutations still precede seed acquisition, and the SAME CRT consumes
+896 draws. Device retry rejects active continuations before touching tables;
+this is a source guard for ordered startup, not a concurrent CRT transaction.
+No mission reset/reseed or second expected/observed store was introduced.
+
+Original009968AB..00996909 scans64 first-empty/matching slots at00B4FE80,
+stores the caller at00B4C0C0 and retains thread IDs.009977FE loads the slot's
+00B4C7C0 override/caller;00997837 XORs actual API EAX. The process owner preserves
+that lookup/storage lifetime. Actual GetCurrentThreadId identity is confirmed
+by inline name bytes at00996A44 and assignment A3B8EDB400 at00996A5E.
+
+C++ adaptations are explicit: a mutex serializes slots; RAII loans clear call
+state on completion/exception while retaining IDs; a shared retired state lets
+outstanding loans reject actions after process-owner replacement. Native nested
+calls overwrite the outer caller and slot64 falls outside native arrays; source
+instead rejects nested calls and capacity exhaustion. Cross-thread completion,
+duplicate decisions, missing fallback after rejection and completion after a
+receiver exception also reject. These guards are not claimed native branches.
+Caller tokens are uintptr_t (DWORD on i386), not executable C++ continuations.
+No register/stack/SEH return ABI equivalence is claimed. Owner retirement precedes
+StartupSession table destruction. World/frame borrower retirement remains LIFE's
+existing responsibility; this checkpoint does not install mission activation.
+
+Action62 publishes before the underlying API; an API exception does not undo
+that prior native-order write. Actions02/03 retain distinct override/XOR values
+and do not substitute raw results for observations. Failed receivers poison the
+loan until retirement. The actual private validation inputs remain mandatory;
+production does not install a true validator or seeded private observations.
+
+GameLoadingQueries exposes its actual window argument and argument-taking API
+overloads, preserving existing no-argument behavior. Original GetIGraph/virtual48
+runs BEFORE validation/actions, and original8CAC30 receives that HWND before
+being overwritten by the raw API return. The strict i386 composition exercises
+this ordering through SAME Startup tables, actual query owner and real thread
+acquisition. Validation is an explicit fixture input: this is not a production
+private producer/validation/publication closure.
+
+009FFAF0's record decoder is implemented separately: little-endian DWORD count,
+1024-byte zeroed scratch, descending adjacent XOR and min(count+1, signed
+capacity) copy, preserving overlap and zero-count behavior. Explicit source and
+destination sizes reject native overflow/invalid accesses. A full1024-byte copy
+need not have a terminator. Actual encoded records and009FFBB0's shared scratch
+binding remain missing; no registry names or configuration values are fabricated.
+
+Focused native ASan/UBSan/LSan passed: allocation failure;1000 same-thread calls;
+64 retained IDs/capacity exhaustion;64 simultaneous threads with100 calls each;
+override0, raw/override/XOR distinction; duplicate, nested and cross-thread
+rejection; fallback/receiver/API exceptions;100 process-owner replacement
+lifetimes; actual table/predicate/action fixture paths; seed acquisition failure
+and100896-draw retries. IDs, clocks, RNG, API results and private input records
+in these native audits are identified doubles, not original execution. Decoder
+checks cover zero/one/full records, truncation, aliases and invalid bounds.
+Strict i386 concrete owner/query composition and actual application link pass;
+Windows fixtures were not executed. Temporary audits are hashed and removed.
+
+Only009967E0's inventoried registration interval009968AB..00996909 and009FFAF0
+receive new partial rows. Absent009977FE/00997837 receive no credit. Frozen18,783;
+34 complete/2,509 partial. Full GUARD remains open.
+
+User confirmed on2026-11-11 that no additional original installation/backup is
+available. Remaining exact private constants/import/startup population cannot
+be supplied from another local reference. The documented bypass/data conflict
+still blocks faithful positive producers and concrete validation/publication.

@@ -74,3 +74,16 @@ relationships. Required ordinary loading includes validation2; process startup
 feeding Human stage41 includes20. Actual private imports/registry/configuration
 and file-mode records remain unbound; no guessed API keys or successful defaults.
 No full GUARD/World composition or source-closure promotion.
+
+Thread/decoder checkpoint: process64-slot owner is Startup-bound, including raw
+seed registration, loan cleanup and explicit source guards. Window argument/API
+phases are separated in the existing query owner. String record decoding is
+implemented. Full checkboxes remain open because actual private producers,
+validation2, constants/imports and concrete publication remain missing.
+User confirms no other original installation/backup is available (2026-11-11).
+
+Provenance correction: user confirms an unmodified Steam release. Missing private
+records/validation skips do not imply a damaged or modified installation.
+Obsolete-DRM removal is plausible, unconfirmed distribution history. Keep actual
+Steam reachability separate from dormant protection code and the original task's
+explicit no-bypass constraint; no scope substitution has been made.

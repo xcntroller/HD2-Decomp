@@ -30,6 +30,7 @@
 #include "game/human_morph_tables.h"
 #include "game/human_physics_globals.h"
 #include "game/mission_integrity_tables.h"
+#include "game/integrity_threads.h"
 #include "game/mission_script_variables.h"
 #include "game/mission_effects_loading.h"
 #include "game/shot_manager_loading.h"
@@ -118,13 +119,20 @@ public:
     //Call for each device attempt, including retries; never from mission load.
     void begin_device_attempt() {
         if (phase_ != Phase::control_ready) throw std::logic_error("Integrity device-startup order mismatch");
+        if(mission_integrity_threads_.active_calls())
+            throw std::logic_error("Integrity device retry still has active continuations");
         struct SharedRandom {
             StartupSession& startup;
             void seed(std::uint32_t value){startup.seed_random(value);}
             std::uint32_t operator()(){return startup.random_word();}
         } random{*this};
         //006E9EBC -> return006E9EC2 -> table00A59120 -> IAT0080F1B4.
-        mission_integrity_tables_.initialize_from_seed([]{return GetTickCount();},random);
+        mission_integrity_tables_.initialize_from_seed([&]{
+            //The seed has no deliberate descriptor tag, but its wrapper still
+            //registers the current process thread before the actual API.
+            auto call=begin_integrity_call(0x6e9ec2);
+            return call.complete(GetTickCount()).value;
+        },random);
     }
     // Called only after real graphics, sound and I3D initialization. The caller
     // retains device ownership; close_consumers must run before device close.
@@ -239,6 +247,10 @@ public:
     void application_input_enabled(bool value) { application_input_enabled_ = value; } // 006DCAD0
     std::uint32_t random_word() { return settings_backend_.sound_random_word(); }
     void seed_random(std::uint32_t seed){std::srand(seed);} //006E9EA0 uses the SAME CRT stream as sound/AI.
+    game::IntegrityThreads::Call begin_integrity_call(std::uintptr_t caller){
+        //00996A3F..00996A5E resolves00B4EDB8 to actual GetCurrentThreadId.
+        return mission_integrity_threads_.acquire(GetCurrentThreadId(),caller);
+    }
     bool& script_advance_override(){return script_advance_override_;} //008692D0;00424900 reset scope owns its writes.
     game::MissionIntegrityTables& mission_integrity_tables(){return mission_integrity_tables_;} //SAME process owner; no invented initialized/healthy state.
     game::MissionScriptVariables& mission_script_variables(){return mission_script_variables_;} //Module4 survives world finish/reconstruction;004270D0 applies actual selection kind afterward.
@@ -751,6 +763,9 @@ private:
     const float human_animation_time_scale_=0x1.666666p+0f;
     game::HumanPhysicsGlobals human_physics_globals_;
     game::MissionIntegrityTables mission_integrity_tables_;
+    //Destroyed/retired BEFORE tables, so callback-held loans cannot publish
+    //through a replaced StartupSession's former process table lifetime.
+    game::IntegrityThreads mission_integrity_threads_;
     game::MissionScriptVariables mission_script_variables_;
     game::MissionEffectsProcess<EngineFrame*> mission_effects_process_;
     game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;

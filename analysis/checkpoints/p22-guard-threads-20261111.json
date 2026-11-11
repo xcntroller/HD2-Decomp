@@ -1,0 +1,66 @@
+{
+  "status": "source_checkpoint_not_guard_closed",
+  "parent_commit": "f74816a",
+  "base_sha": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "native_sanitizers": "PASS ASan/UBSan/LSan; explicit ID/clock/CRT/API/private-record doubles",
+  "i386": "PASS actual Startup/table/thread/query composition; validation fixture input, not production closure; not executed",
+  "application_link": "PASS",
+  "additional_reference_available": false,
+  "source_files": {
+    "recovered/game/integrity_threads.h": "cf15dc740b0e0b174f05c4a0138d8110b425dcd61efbec66fa6d9e179bde9fb9",
+    "recovered/game/integrity_string_record.h": "a2cada09be18df7d369bb913f4547d6d896ebbba23d51acfd2be3290d8d2ac12",
+    "recovered/host/startup_session.h": "539be54ee471b825e5ac157167e7eabf44c12c181db29f7701cea8adb8b6817b",
+    "recovered/host/game_loading_queries.h": "47305ca507b177c5732162bdadb24966264bcf5190f324cad5dbda82fc4b259c"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/p22-guard-threads.cpp",
+      "sha256": "9ac7a475d1a9e5fc9e3f286b6ba573a27f920ed94abd366c194b8427b4a9b72f",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-threads",
+      "sha256": "2cf882dd47f75558557be486637e65984e61d054f655d0a1242ee5b9a4feae1b",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-strings.cpp",
+      "sha256": "dbac1c10d56364ef15d8a9f32aebc01458031fa98306608410cc63081b12328e",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-strings",
+      "sha256": "cc02bd518db923b21fd2ad40c3988917c7fb62726ce5d27f86a0e8a21bb53847",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-threads-i386.cpp",
+      "sha256": "f37193292a77b169f56ebd0238c324c159c802e85949c7119c712664505083dc",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-threads-i386.exe",
+      "sha256": "9b39bca048902b6bc15a2ce0e3ef02149da4f26ebab347a18de054827f7be16c",
+      "removed": true
+    }
+  ],
+  "credited_registration_interval": [
+    "009968ab",
+    "00996909"
+  ],
+  "new_partial": [
+    "009967e0",
+    "009ffaf0"
+  ],
+  "absent_return_helpers_credited": false,
+  "full_guard_composition": false,
+  "desktop": false,
+  "provenance": {
+    "user_confirmed": "unmodified Steam release",
+    "local_tampering_or_corruption_established": false,
+    "obsolete_drm_skip_explanation": "plausible inference, not vendor-confirmed",
+    "initial_no_bypass_constraint_preserved": true
+  },
+  "tracker": "PASS frozen18783;34 complete/2509 partial;27 tests"
+}

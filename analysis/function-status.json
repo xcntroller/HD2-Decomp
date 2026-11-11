@@ -33460,11 +33460,41 @@
       "entry": "00996330",
       "status": "partial",
       "coverage": "Recovered scalar actions0/1/2/3/60/61/62/63 gated by validated/unblocked input, distinct destination publication and return override/XOR state. Other action receivers explicitly remain unavailable.",
-      "limitations": "Source-only portable scalar bodies/predicates; original register/stack/caller ABI and private startup/import/configuration producers remain unbound. Validation predicates omit containing clock/debug side effects; actions omit non-scalar receivers and actual process-thread continuation ownership. Native endpoint-double ASan/UBSan/LSan and strict i386 compile/link verify only the recorded scalar boundary. No positive production GUARD composition, original-engine execution, desktop delivery or whole-function completion is claimed.",
+      "limitations": "Source-only portable scalar bodies/predicates; original register/stack/caller ABI and private startup/import/configuration producers remain unbound. Validation predicates omit containing clock/debug side effects; actions omit non-scalar receivers and native continuation ABI. The C++ process thread owner is now Startup-bound; actual private validation/publication remains unbound. Native endpoint-double ASan/UBSan/LSan and strict i386 compile/link verify only the recorded scalar boundary. No positive production GUARD composition, original-engine execution, desktop delivery or whole-function completion is claimed.",
       "evidence": [
         "recovered/game/integrity_observation_actions.h",
         "analysis/p22-guard-implementation.md",
         "analysis/checkpoints/p22-guard-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "009967e0",
+      "status": "partial",
+      "coverage": "Inventoried64-slot first-empty/matching thread-ID registration and saved caller interval009968AB..00996909. SAME Startup-owned process context, retained IDs, actual GetCurrentThreadId seed-call binding; explicit C++ loan/retirement guards.",
+      "limitations": "Source-only C++ owners/spans replace original register/stack/object/SEH ABI. Mutex/shared retirement, exception cleanup, bounds/capacity/re-entry guards are explicit source adaptations. Actual private records/producers, full validation and containing positive application execution remain unbound. Native endpoint doubles and strict i386 compilation do not establish production closure or desktop acceptance. Absent continuation helpers receive no credit.",
+      "evidence": [
+        "recovered/game/integrity_threads.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-threads-20261111.json"
+      ],
+      "intervals": [
+        [
+          "009968ab",
+          "00996909"
+        ]
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "009ffaf0",
+      "status": "partial",
+      "coverage": "DWORD-count1024-byte scratch decoder, descending adjacent XOR, bounded count+1 copy and returned destination; overlapping input/output and zero/full-count behavior preserved with source bounds guards.",
+      "limitations": "Source-only C++ owners/spans replace original register/stack/object/SEH ABI. Mutex/shared retirement, exception cleanup, bounds/capacity/re-entry guards are explicit source adaptations. Actual private records/producers, full validation and containing positive application execution remain unbound. Native endpoint doubles and strict i386 compilation do not establish production closure or desktop acceptance. Absent continuation helpers receive no credit.",
+      "evidence": [
+        "recovered/game/integrity_string_record.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-threads-20261111.json"
       ]
     }
   ]

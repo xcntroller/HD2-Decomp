@@ -237,7 +237,7 @@ preparation, not a standalone audit-only milestone.
 
 ## 2. Load an original mission to its first world frame
 
-[P22-GUARD source plan](analysis/p22-guard-plan.md): device initializer is source-bound; private producers, validation/actions and concrete publication remain open.
+[P22-GUARD source plan](analysis/p22-guard-plan.md): process initializer/thread owner are source-bound; private producers and concrete publication remain open. Steam reachability and dormant retail protection are distinguished in the contract.
 
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
