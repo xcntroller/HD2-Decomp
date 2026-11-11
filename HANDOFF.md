@@ -6,8 +6,9 @@ Initial fetched origin/master and actual implementation base:
 Shared remote/FETCH_HEAD later advanced independently to `0ce2694`; no import,
 merge or push. Other worktrees remain untouched.
 
-Independent DATA source work is implemented. **P22-DATA live evidence remains
-OPEN.** [Plan](analysis/p22-data-plan.md),
+**P22-DATA is COMPLETE for its implementation scope.** Per the user's scope
+clarification, remaining integration belongs to OWN/FRAME/RENDER, and later live
+observations/desktop acceptance remain with integration and acceptance workstreams. [Plan](analysis/p22-data-plan.md),
 [implementation/API/evidence limits](analysis/p22-data-implementation.md),
 [checkpoint receipt](analysis/checkpoints/p22-data-20261111.json).
 

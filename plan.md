@@ -237,7 +237,7 @@ preparation, not a standalone audit-only milestone.
 
 ## 2. Load an original mission to its first world frame
 
-[P22-DATA](analysis/p22-data-plan.md): resolver/cache provenance, verified selected-byte validation and concrete observation bindings implemented source-only; live runtime census and desktop acceptance remain open.
+[P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 
 [P22-GUARD source plan](analysis/p22-guard-plan.md): Steam descriptor/actions and concrete process publication are source-bound to startup and existing offline consumers; focused sanitizers, actual i386 composition and application link pass (34 complete/2,510 partial). Dormant retail protection is excluded by the explicitly selected Steam target; application execution remains separate.
 

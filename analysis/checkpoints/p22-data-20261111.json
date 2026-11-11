@@ -11,7 +11,6 @@
     "feature/p22-ui": "66889df20212c62adee7f6be8a448d792817b49e"
   },
   "source_boundary_complete": true,
-  "p22_data_live_closed": false,
   "application_loading_enabled": false,
   "engine_execution": false,
   "desktop_verified": false,
@@ -293,11 +292,6 @@
     "missing_evidence": "analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm",
     "ledger_or_denominator_bypass": false
   },
-  "remaining": [
-    "OWN installs existing lifecycle/loading/activation; FRAME supplies actual Runtime/session scheduling; RENDER supplies positive visibility/procedural/camera-history services.",
-    "Fresh user-operated resolver capture plus actual loaded populations and reached runtime positives/fault guards; selected configuration/route eligibility remain authoritative.",
-    "User desktop failure/return/repeat and second eligible original mission; no universal inactivity/absence inferred."
-  ],
   "source_fingerprints": [
     {
       "path": "recovered/game/human_world_loading_services.h",
@@ -575,5 +569,21 @@
     "path": "recovered/build/application_launch.exe",
     "bytes": 3889152,
     "sha256": "c07cace9e587b6512a533b3f83289d4ad079d9666a62288725ae3a00a565b6b1"
-  }
+  },
+  "p22_data_complete": true,
+  "completion_scope": "DATA-owned implementation; user clarified external integration and acceptance do not keep this component open",
+  "live_observations_complete": false,
+  "external_follow_up": [
+    "OWN installs existing lifecycle/loading/activation; FRAME supplies actual Runtime/session scheduling; RENDER supplies positive visibility/procedural/camera-history services.",
+    "Fresh user-operated resolver capture plus actual loaded populations and reached runtime positives/fault guards; selected configuration/route eligibility remain authoritative.",
+    "User desktop failure/return/repeat and second eligible original mission; no universal inactivity/absence inferred."
+  ],
+  "external_follow_up_owners": [
+    "P22-OWN",
+    "P22-FRAME",
+    "P22-RENDER",
+    "P22-VIS",
+    "P22-REPEAT",
+    "P22-SECOND"
+  ]
 }

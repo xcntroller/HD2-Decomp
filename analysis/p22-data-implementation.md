@@ -1,4 +1,4 @@
-# P22-DATA implementation
+# P22-DATA implementation — COMPLETE
 
 Source-only DATA boundary on `feature/p22-data`, base and fetched origin/master
 `30b681c1f3cb9135d0916335920aa4d0b39569cb`. No merge, push, application loading
@@ -165,8 +165,9 @@ of future inactivity. Source bindings were compiled, not engine-executed here.
 
 ## Remaining external boundary
 
-Independent DATA source work is implemented; P22-DATA as a live evidence blocker
-remains OPEN. OWN must install the existing lifecycle/loading/activation graph;
+P22-DATA is complete for its implementation scope, per the user's scope
+clarification. Remaining integration and live evidence belong to the external
+components below and do not keep DATA open. OWN must install the existing lifecycle/loading/activation graph;
 FRAME must supply its actual Runtime and containing session scheduling; RENDER
 must supply positive visibility/procedural rendering and camera/history owners.
 The current GameApplicationState still deliberately rejects loaded activation.
@@ -192,7 +193,7 @@ camera/history have no claimed successful runtime observation here. The existing
 cold source alone cannot establish that they remain inactive. Fresh active
 resolver inputs and engine-backed actor/B0/DD0/contact/command/allocation/render
 observations remain unknown. User desktop failure/return/repeat and eligible
-ALPS1 coverage are later acceptance. Native endpoint cycles test observation and
+ALPS1 coverage belong to P22-VIS/P22-REPEAT/P22-SECOND acceptance. Native endpoint cycles test observation and
 source wrappers; they are not actual Windows World unbind/rebind execution.
 
 ## Verified historical static results

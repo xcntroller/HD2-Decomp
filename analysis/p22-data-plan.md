@@ -1,4 +1,4 @@
-# P22-DATA plan
+# P22-DATA plan — COMPLETE
 
 Implementation base and fetched origin/master: `30b681c1f3cb9135d0916335920aa4d0b39569cb`.
 [Implementation](p22-data-implementation.md) · [Receipt](checkpoints/p22-data-20261111.json).
@@ -29,20 +29,19 @@ consulted through Git; its older blocker claims are not current source evidence.
   Tracker check cannot complete because pre-existing ignored assembly evidence is
   absent in this worktree; ledger and denominator remain unchanged.
 
-## External dependencies
+## External follow-up — outside completed DATA scope
 
-- [x] PACK/UI contracts inspected read-only; consume current interfaces only; their unmerged source is not
-  available here. Human damage/contact/scoring already improved at this base.
-- [ ] **External / blocked for live observation:** OWN/FRAME/RENDER: application still declines mission loading. DATA must not
-  enable it or manufacture successful consumers to obtain a runtime census.
+PACK/UI contracts were inspected read-only; their unmerged source was not used.
+The remaining integration and acceptance work belongs to these components:
 
-## Engine observation and acceptance
+| Owner | Remaining work |
+| --- | --- |
+| P22-OWN | Install the existing lifecycle/loading/activation graph and collect fresh resolver context through the DATA bindings. |
+| P22-FRAME | Supply actual Runtime/session scheduling and collect loaded-state, contact, command and allocation observations. |
+| P22-RENDER | Supply positive visibility/procedural and camera/history services and collect render observations. |
+| P22-VIS / P22-REPEAT / P22-SECOND | User desktop first-frame, failure/repeat and eligible second-mission acceptance. |
 
-- [ ] Fresh initialized-resolver capture with selected mode/language/configuration.
-- [ ] Real loaded actor/B0/DD0, contacts/materials, command/allocation and render
-  camera/history observations through concrete executing owners.
-- [ ] User desktop failure/repeat and second-mission acceptance. Historical bytes,
-  static requirements, loaded populations and executed branches remain distinct.
-
-Independent DATA source checkboxes are complete. Live closure remains blocked
-by the external integration and observation boundaries above; no desktop claim.
+**P22-DATA is complete for its implementation scope**, per the user's scope
+clarification. These external tasks do not keep DATA open. Historical bytes,
+static requirements, loaded populations and executed branches remain distinct;
+live engine observations and desktop acceptance are still pending.
