@@ -26,6 +26,15 @@ public:
     const auto& barrels()const{return barrels_;}Entry weapon_item()const{return item_;}
     bool failed()const{return failed_;}
     bool occupied()const{return control_occupant_!=nullptr;}
+    void clear_occupant()override{ //004C6DD0(NULL), actual null-only caller reached by reaction seat release.
+        control_occupant_=nullptr;view(false);
+        //Both native120/124 are null in this loading boundary. Their positive
+        //producer still fails at authored movement-sound loading, before use.
+        if(control_.field14c&0x400u){
+            if(control_.field120||control_.field124)throw std::runtime_error("Mounted release requires its actual retained movement SOUND frames");
+            control_.field14c&=~0x400u;
+        }
+    }
     void fire_marker()override{throw std::runtime_error("Mounted weapon S marker requires actual004C5080 firing receiver");}
     std::array<float,4> limits()const override{return {{control_.field128,control_.field12c,control_.field130,control_.field134}};}
     void view(bool visible)override{ //004C6D90, actual retained F4 frame.
@@ -46,7 +55,7 @@ public:
         if(control_.flag104)throw std::logic_error("Retire actual StaticWeapon control before reinitializing");
         if(!model||!pivot)return false;
         model_=model;control_.flag104=true;failed_=false;control_occupant_=nullptr;
-        auto& c=control_;c.fieldc8=index;c.field13c=c.field140=c.field144=0;
+        auto& c=control_;c.fieldc8=index;c.field13c=c.field140=c.field144=c.field14c=0;
         root_=frames_.actor_parent(pivot);
         if(!root_||frames_.actor_short_name(root_).compare(0,6,indexed("HORT%02u",index))!=0)root_=pivot;
         view_=frames_.actor_find(model,indexed("VIEW%02u",index).c_str(),0x10001);

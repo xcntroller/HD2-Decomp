@@ -26,7 +26,9 @@ struct EffectEmitterDefinition {
     std::uint32_t field44=0;
     std::array<std::uint32_t,3> vector50{},vector60{};
     std::array<std::uint32_t,8> fields70{{0x3f800000,0,0x3f800000,0,0x3f800000,0,0,0}};
-    std::array<std::uint32_t,2> colour_fields{{0,100}}; //00444880 subowner at+0C.
+    //Historical names: native00444880 subowner+0C is the sprite UV table,
+    //with reset-frame/duration at1C/20. These are not colour samples.
+    std::array<std::uint32_t,2> colour_fields{{0,100}};
     std::vector<std::array<std::uint32_t,4>> colour_keys;
     std::vector<EffectControlPoint> points;
 };

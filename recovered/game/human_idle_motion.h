@@ -9,7 +9,7 @@ namespace hd2::game {
 
 template<class Control,class Look,class Human,class Services,class Frames,class Runtime>
 void advance_human_idle_motion(HumanMotionState& motion,Control& control,Look& look,Human& human,
-        Services& services,Frames& frames,Runtime& runtime,std::uint32_t elapsed,bool winter){ //007507A0, actual CB0.
+        Services& services,Frames& frames,Runtime&,std::uint32_t elapsed,bool winter){ //007507A0, actual CB0.
     auto& words=control.physical().control_frame_words();
     const auto& movement=control.movement().state();
     const auto& request=look.state();
@@ -70,7 +70,7 @@ void advance_human_idle_motion(HumanMotionState& motion,Control& control,Look& l
     position[1]=static_cast<float>(position[1]+static_cast<long double>(direction[1])*.15f);
     const float z_offset=static_cast<float>(static_cast<long double>(direction[2])*.15f); //750CA2/750EE7 spill Z before addition.
     position[2]+=z_offset;
-    runtime.emit_human_breath_particle(moving?76u:17u,position,direction,moving?bone:typename Frames::Frame{},1u,1u); //00445150→004451B0, required actual particle instance lifetime.
+    services.emit_human_particle(moving?76u:17u,position,direction,moving?bone:typename Frames::Frame{},true,true); //SAME module17/process00445150→004451B0.
 }
 
 } //namespace hd2::game

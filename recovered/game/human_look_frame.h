@@ -147,7 +147,7 @@ void apply_human_look_frame(Control& control,Look& look,Human& human,World& worl
     if(control.human_is_player())control.prepare_direction_replay(look,request.template get<HumanVector>(0x20),elapsed);
     if(!interaction(wanted(0x44))){
         if(current(0x1ac)!=1||interaction(current(0x1d8))){finish();return;}
-    }else if(runtime.retire_human_interaction_clip(control)) { //0074D510, actual queued descriptor.
+    }else if(control.retire_interaction_clip(look)) { //0074D510, SAME AA0 action owner and queued descriptor.
         request.set(0x44,current(0x1fc));finish();return;
     }
     const auto sensitive=[](std::int32_t id){return id==0x2b||id==0x2c||id==0x36||id==0x3e||id==0x41;};

@@ -220,13 +220,130 @@ public:
         }
         for(auto* child:body.children)if(child)publish_body_bones(*child,factor,model);
     }
-    void snapshot_body_endpoints(Body& body){ //007C80E0 capture=true, rebuild=false branch used by007B0910.
+    void snapshot_body_endpoints(Body& body,bool capture=true,bool rebuild=false,const std::array<Point*,16>* points=nullptr){ //007C80E0.
         if(!body.points[0]||!body.points[1])throw std::runtime_error("Human joint snapshot requires actual endpoint points");
-        body.set(0x160,body.points[0]->template get<Vector>(0x30));
-        body.set(0x170,body.points[1]->template get<Vector>(0x30));
-        body.set(0x188,body.template get<std::uint32_t>(0x270));
-        body.set(0x210,body.template get<Vector>(0x200));
-        for(auto* child:body.children)if(child)snapshot_body_endpoints(*child);
+        if(rebuild){
+            if(!points)throw std::logic_error("Human joint rebuild requires its actual point array");
+            rebuild_body_frame(body,*points);
+        }
+        if(capture){
+            body.set(0x160,body.points[0]->template get<Vector>(0x30));
+            body.set(0x170,body.points[1]->template get<Vector>(0x30));
+            body.set(0x188,body.template get<std::uint32_t>(0x270));
+            body.set(0x210,body.template get<Vector>(0x200));
+        }
+        for(auto* child:body.children)if(child)snapshot_body_endpoints(*child,capture,rebuild,points);
+    }
+    static void correct_body_length(const Body& body,Vector& first,Vector& last){ //007CA390, untouched outputs inside tolerance.
+        const auto length=body.template get<float>(0x270),rest=body.template get<float>(0x184);
+        const auto difference=static_cast<long double>(length)-rest;
+        if(!(std::abs(difference)>=.0010000000474974513))return;
+        for(unsigned axis=0;axis!=3;++axis){
+            const auto direction=body.template get<float>(0x200+axis*4);
+            first[axis]=static_cast<float>(difference*.5f*direction);
+            last[axis]=static_cast<float>((static_cast<long double>(rest)-length)*.5f*direction);
+        }
+    }
+    void correct_body_angle(Body& body,Vector& first,Vector& last){ //007CA470, ordered Z/X/Y minimum/maximum bounds.
+        if(!body.parent)return;
+        const auto parent=body.parent->template get<Matrix>(0x60);
+        const auto axis=body.template get<Vector>(0x200);
+        Vector direction=axis;
+        for(unsigned row=0;row!=3;++row){
+            const float projection=static_cast<float>((static_cast<long double>(axis[2])*parent[row*4+2]+
+                static_cast<long double>(axis[1])*parent[row*4+1])+static_cast<long double>(axis[0])*parent[row*4]);
+            direction[row]=std::clamp(projection,-1.f,1.f);
+        }
+        struct Bound {unsigned axis,other,zero,offset;std::uint8_t flag;bool maximum;};
+        constexpr std::array<Bound,6> bounds{{
+            {2,0,1,0x1b8,0x40,false},{2,0,1,0x1d8,0x80,true},
+            {0,1,2,0x1b0,4,false},{0,1,2,0x1d0,8,true},
+            {1,0,2,0x1b4,0x10,false},{1,0,2,0x1d4,0x20,true}
+        }};
+        std::uint8_t flags=0;
+        for(const auto& bound:bounds){
+            const auto bits=body.template get<std::uint32_t>(bound.offset);
+            if(bits==0x7fc00000u||bits==0xffc00000u)continue;
+            const auto limit=body.template get<float>(bound.offset);
+            if(!(bound.maximum?direction[bound.axis]>limit:direction[bound.axis]<limit))continue;
+            const auto denominator=std::sqrt(1.L-static_cast<long double>(direction[bound.axis])*direction[bound.axis]);
+            const auto transverse=body.template get<float>(bound.offset+0x10);
+            if(denominator>9.99999993922529e-09f){
+                const auto scale=transverse/denominator;
+                direction[bound.other]=static_cast<float>(direction[bound.other]*scale);
+                direction[bound.zero]=static_cast<float>(direction[bound.zero]*scale);
+            }else{
+                direction[bound.other]=transverse;direction[bound.zero]=0;
+            }
+            direction[bound.axis]=limit;flags|=bound.flag;
+        }
+        //The original still evaluates the rotation/difference with no active bound.
+        const auto world=frames_.collision_sweep_rotate(direction,parent);
+        const auto length=body.template get<float>(0x270),rest=body.template get<float>(0x184);
+        Vector correction=world;
+        for(unsigned component=0;component!=3;++component){
+            const float current=length*axis[component],desired=rest*world[component];
+            correction[component]=desired-current;
+        }
+        if(!flags)return;
+        for(unsigned component=0;component!=3;++component)last[component]=correction[component]*.800000011920929f;
+        for(unsigned component=0;component!=3;++component)first[component]=correction[component]*-.20000000298023224f;
+        if(!body.points[1])throw std::runtime_error("Human angular correction requires its actual endpoint point");
+        body.points[1]->set(0x158,static_cast<std::uint8_t>(body.points[1]->template get<std::uint8_t>(0x158)|flags));
+    }
+    static void correct_body_overlap(Body& body,const Vector& first,const Vector& last,Vector& first_correction,Vector& last_correction){ //007CB510.
+        auto* parent=body.parent;
+        if(!parent)return;
+        const std::array<Body*,4> neighbours{{parent->parent,parent->children[0],parent->children[1],parent->children[2]}};
+        for(auto* neighbour:neighbours)if(neighbour&&neighbour!=&body)
+            correct_sibling_overlap(*neighbour,parent,body,first,last,first_correction,last_correction);
+    }
+    static void correct_sibling_overlap(Body& other,Body* previous,Body& body,const Vector& first,const Vector& last,
+            Vector& first_correction,Vector& last_correction){ //007CB5D0, parent then three children.
+        if(!other.points[0]||!other.points[1])throw std::runtime_error("Human body overlap requires actual endpoint points");
+        const auto origin=other.points[0]->template get<Vector>(0x30);
+        const auto end=other.points[1]->template get<Vector>(0x30);
+        Vector direction=end,body_direction=last,closest=origin,body_closest=first;
+        for(unsigned axis=0;axis!=3;++axis){direction[axis]-=origin[axis];body_direction[axis]-=first[axis];}
+        float parameter=0,body_parameter=0;
+        const auto distance=human_joint_segment_distance(origin,direction,first,body_direction,closest,body_closest,parameter,body_parameter);
+        if(!human_joint_unwritten(distance)){
+            const float radius=static_cast<float>((static_cast<long double>(other.template get<float>(0x18c))+
+                body.template get<float>(0x18c))*.5f);
+            if(distance<radius&&distance>9.99999993922529e-09f){
+                const auto scale=static_cast<long double>(radius)/distance;
+                Vector correction=end;
+                for(unsigned axis=0;axis!=3;++axis){
+                    auto difference=static_cast<long double>(body_closest[axis])-closest[axis];
+                    if(axis==1)difference=static_cast<float>(difference);
+                    correction[axis]=static_cast<float>(difference*scale);
+                }
+                for(auto* output:{&first_correction,&last_correction}){
+                    if(human_joint_unwritten((*output)[0]))*output=correction;
+                    else{
+                        //Native X halves remain extended, previous Y and both Z halves spill.
+                        (*output)[0]=static_cast<float>(static_cast<long double>((*output)[0])*.5f+static_cast<long double>(correction[0])*.5f);
+                        const float previous_y=(*output)[1]*.5f;
+                        (*output)[1]=static_cast<float>(previous_y+static_cast<long double>(correction[1])*.5f);
+                        const float previous_z=(*output)[2]*.5f,current_z=correction[2]*.5f;
+                        (*output)[2]=previous_z+current_z;
+                    }
+                }
+                const auto inverse=1.L/radius;
+                for(auto* point:body.points){
+                    if(!point)throw std::runtime_error("Human body overlap requires its actual contact point");
+                    const auto flags=point->template get<std::uint8_t>(0x158);
+                    if(flags&2u)continue;
+                    point->set(0x158,static_cast<std::uint8_t>(flags|2u));
+                    auto normal=correction;
+                    for(unsigned axis=0;axis!=3;++axis)normal[axis]=static_cast<float>(correction[axis]*inverse);
+                    point->set(0x120,normal);
+                }
+            }
+        }
+        const std::array<Body*,4> neighbours{{other.parent,other.children[0],other.children[1],other.children[2]}};
+        for(auto* neighbour:neighbours)if(neighbour&&neighbour!=previous)
+            correct_sibling_overlap(*neighbour,&other,body,first,last,first_correction,last_correction);
     }
     void destroy_body(Body* body) noexcept { //007C51A0, child order8/C/10.
         if(!body)return;
@@ -250,6 +367,87 @@ public:
     std::size_t body_count() const {return bodies_.size();}
     std::size_t point_count() const {return points_.size();}
 private:
+    void rebuild_body_frame(Body& body,const std::array<Point*,16>& points){ //007C80E0 rebuild=true.
+        constexpr float epsilon=9.99999993922529e-09f;
+        const auto first=body.points[0]->template get<Vector>(0x30);
+        const auto last=body.points[1]->template get<Vector>(0x30);
+        auto axis=body.template get<Vector>(0x200);
+        for(unsigned component=0;component!=3;++component)axis[component]=last[component]-first[component];
+        body.set(0x200,axis);
+        const float square=static_cast<float>((static_cast<long double>(axis[0])*axis[0]+
+            static_cast<long double>(axis[1])*axis[1])+static_cast<long double>(axis[2])*axis[2]);
+        std::int32_t bits;std::memcpy(&bits,&square,sizeof bits);
+        const auto length=bits<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1)<epsilon?1.L:std::sqrt(static_cast<long double>(square));
+        body.set(0x270,static_cast<float>(length));
+        if(length>epsilon){
+            const auto inverse=1.L/length;
+            for(unsigned component=0;component!=3;++component)axis[component]=static_cast<float>(axis[component]*inverse);
+            body.set(0x200,axis);
+        }
+        const auto index=body.template get<std::uint32_t>(0);
+        Matrix world;
+        if(body.parent){
+            const auto parent=body.parent->template get<Matrix>(0x60);
+            Vector direction=axis;
+            for(unsigned row=0;row!=3;++row)direction[row]=static_cast<float>((static_cast<long double>(axis[0])*parent[row*4]+
+                static_cast<long double>(axis[1])*parent[row*4+1])+static_cast<long double>(axis[2])*parent[row*4+2]);
+            float angle=body.template get<float>(0x180);
+            if(index==7||index==9)angle+=3.1415927410125732421875f;
+            const bool lateral=index==4||index==6||index==7||index==8||index==9||index==10;
+            const auto basis=lateral?human_lateral_basis(direction):human_vertical_basis(direction);
+            world=frames_.rigid_matrix_product(frames_.human_z_rotation(angle),basis);
+            body.set(0x60,world);
+            world=frames_.rigid_matrix_product(world,parent);
+        }else{
+            world=body.template get<Matrix>(0x60);
+            const Vector forward{{world[8],world[9],world[10],world[11]}};
+            Matrix alignment{};human_align_vectors(forward,axis,alignment);alignment[15]=1;
+            world=frames_.rigid_matrix_product(world,alignment); //007A2ED0.
+            orthonormalize_human_bone_matrix(world);
+        }
+        for(unsigned component=0;component!=3;++component)world[12+component]=first[component];
+        world[15]=1;body.set(0x60,world);
+        if(index>1)return;
+        const std::array<unsigned,2> endpoints=index==0?std::array<unsigned,2>{{10,13}}:std::array<unsigned,2>{{4,7}};
+        std::array<Vector,2> offsets{};
+        for(unsigned endpoint=0;endpoint!=2;++endpoint){
+            const auto* point=points[endpoints[endpoint]];
+            if(!point)throw std::runtime_error("Human joint orientation requires its actual cross-axis points");
+            for(unsigned component=0;component!=3;++component)
+                offsets[endpoint][component]=point->template get<float>(0x30+component*4)-first[component];
+            const auto projection=(static_cast<long double>(offsets[endpoint][2])*axis[2]+
+                static_cast<long double>(offsets[endpoint][1])*axis[1])+static_cast<long double>(offsets[endpoint][0])*axis[0];
+            for(unsigned component=0;component!=3;++component){
+                auto product=projection*axis[component];
+                if(endpoint||component)product=static_cast<float>(product);
+                offsets[endpoint][component]=static_cast<float>(offsets[endpoint][component]-product);
+            }
+        }
+        Vector cross{};
+        for(unsigned component=0;component!=3;++component)cross[component]=offsets[1][component]-offsets[0][component];
+        const float cross_square=static_cast<float>(index==0?
+            (static_cast<long double>(cross[0])*cross[0]+static_cast<long double>(cross[1])*cross[1])+static_cast<long double>(cross[2])*cross[2]:
+            (static_cast<long double>(cross[0])*cross[0]+static_cast<long double>(cross[2])*cross[2])+static_cast<long double>(cross[1])*cross[1]);
+        std::memcpy(&bits,&cross_square,sizeof bits);
+        if(bits<=0x322bcc76)return;
+        const auto cross_length=std::abs(static_cast<long double>(cross_square)-1)<epsilon?1.L:std::sqrt(static_cast<long double>(cross_square));
+        if(cross_length<=epsilon)return;
+        const auto inverse=1.L/cross_length;
+        for(unsigned component=0;component!=3;++component)cross[component]=static_cast<float>(cross[component]*inverse);
+        Vector local=cross;
+        for(unsigned row=0;row!=3;++row){
+            const auto middle=index==0?1u:2u,last_axis=index==0?2u:1u;
+            local[row]=static_cast<float>((static_cast<long double>(cross[0])*world[row*4]+
+                static_cast<long double>(cross[middle])*world[row*4+middle])+static_cast<long double>(cross[last_axis])*world[row*4+last_axis]);
+        }
+        const auto aligned=frames_.collision_sweep_rotate(local,body.template get<Matrix>(0x230));
+        const auto right=frames_.collision_sweep_rotate(aligned,world);
+        for(unsigned component=0;component!=3;++component)world[component]=right[component];
+        world[4]=static_cast<float>(static_cast<long double>(world[2])*world[9]-static_cast<long double>(world[10])*world[1]);
+        world[5]=static_cast<float>(static_cast<long double>(world[10])*world[0]-static_cast<long double>(world[2])*world[8]);
+        world[6]=static_cast<float>(static_cast<long double>(world[8])*world[1]-static_cast<long double>(world[0])*world[9]);
+        world[3]=world[7]=world[11]=0;body.set(0x60,world);
+    }
     Frame bone_frame(int index) const {
         if(index<0||index>=23||!skeleton_.bones()[std::size_t(index)].frame)throw std::runtime_error("Required Human joint bone is absent");
         return skeleton_.bones()[std::size_t(index)].frame;

@@ -48,6 +48,7 @@ public:
         if(!human||!human->loading_state)throw std::runtime_error("Script signal requires its actual Human/B0 owner");
         return human->loading_state->words().template get<std::uint32_t>(0x48)==5;
     }
+    void fail_human_mission(){dependencies_.objectives.fail_all(false);} //005A0220→0045E790→0069BED0.
     void script_return_end(Context& context){dependencies_.lifecycle.return_end_human(context,script_authority());}
     void script_loading_finish(){dependencies_.effects.fade().configure(0,false,nullptr);} //00427B80→GEffects8C/00486B30.
     bool human_remote_ai_enabled(){return dependencies_.world.human_remote_ai_enabled();}

@@ -10750,13 +10750,12 @@
       "program": "client",
       "entry": "00445af0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00445af0: Effect definition record parsing, typed nested owners, mission file loading and cleanup; live effects remain separate.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Actual separate placed-effect instances through same EMTR/definition/point owners.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
       "evidence": [
-        "recovered/game/effect_definitions.h",
-        "analysis/mission-world-loading.md",
-        "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "recovered/game/particle_module_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
       ]
     },
     {
@@ -32367,12 +32366,13 @@
       "program": "client",
       "entry": "007507a0",
       "status": "partial",
-      "coverage": "Actual CB0 idle/breath timers, shared CRT/posture selection and descriptor/timing transforms. Positive breath particle instance emission remains required.",
+      "coverage": "Actual CB0 idle/breath timers, shared CRT/posture selection and descriptor/timing transforms; positive breath uses SAME real module17 particle producer.",
       "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
       "evidence": [
         "recovered/game/human_idle_motion.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
       ]
     },
     {
@@ -33381,6 +33381,343 @@
         "recovered/game/mounted_weapon_control_loading.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043f520",
+      "status": "partial",
+      "coverage": "Point initialization, ordered random draws, actual phase selection and elapsed preadvance.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_point.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043f730",
+      "status": "partial",
+      "coverage": "Phase lifetime, gravity, direction, acceleration, colour/size/alpha rates and exhaustion.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_point.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043fb40",
+      "status": "partial",
+      "coverage": "Lifetime-clamped point motion, gravity, angular/size/alpha changes and strict sprite advance.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_point.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004437c0",
+      "status": "partial",
+      "coverage": "Actual shared point pool refills1024 aligned points and reuses them in native LIFO order.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_point_pool.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00440530",
+      "status": "partial",
+      "coverage": "Actual EMTR visual ownership and known instance construction state.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004406a0",
+      "status": "partial",
+      "coverage": "Detach, parent release, reverse point return, visual release and timer/vector cleanup.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00440800",
+      "status": "partial",
+      "coverage": "Scene/definition/parent binding, actual texture/mode setup, emitter clocks and initial bursts.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00440b20",
+      "status": "partial",
+      "coverage": "Cached instance reuse preserves texture/definition and resets actual emitter/parent state.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00440d80",
+      "status": "partial",
+      "coverage": "Unlink actual visual, release retained parent and hide in original order.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00440dc0",
+      "status": "partial",
+      "coverage": "Acquire from SAME point pool, initialize and retain or return failed point.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00440fe0",
+      "status": "partial",
+      "coverage": "Ordered signed burst counts and actual point production.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004410b0",
+      "status": "partial",
+      "coverage": "Native timed emission gates, rate/repeat/wait/accumulator state and point preadvance order.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004412d0",
+      "status": "partial",
+      "coverage": "Stable expired-point removal returns leases to SAME shared pool.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00441390",
+      "status": "partial",
+      "coverage": "Captured point count, actual phase motion and exhausted-phase advance.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00441460",
+      "status": "partial",
+      "coverage": "Actual point bounds, scene camera depth, unsigned depth keys and shared publication scratch.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00441a00",
+      "status": "partial",
+      "coverage": "Actual24-byte EMTR vertices, HSV/light packed colour, reversed sorted order and UV/billboard publication.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004427a0",
+      "status": "partial",
+      "coverage": "Ordinary update through point/emitter/bounds/epoch/publication/retirement order.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00442860",
+      "status": "partial",
+      "coverage": "Paused bounds/publication without advancing particle lifetimes or emission clocks.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_instance.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e9c10",
+      "status": "partial",
+      "coverage": "RGB to native degree-based HSV worker.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_publication.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e9d30",
+      "status": "partial",
+      "coverage": "Degree-based HSV back to RGB with native float hue multiplier.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_publication.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004451b0",
+      "status": "partial",
+      "coverage": "SAME actual module17 active instances, per-definition cached visual reuse, scene/light and identity publication.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/particle_module_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004455b0",
+      "status": "partial",
+      "coverage": "Placed/active update, per-row pause reread,2C/2D exceptions and stable retirement into SAME256 pools.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/particle_module_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00445150",
+      "status": "partial",
+      "coverage": "Identity/SetDir3/XYZ transform forwards original parent/orientation/record flag to actual module17.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_emission.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00451c00",
+      "status": "partial",
+      "coverage": "Ordered real Camera68/64 query, strict view gate and actual material3C particle production.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_particle_emission.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044f4f0",
+      "status": "partial",
+      "coverage": "Shared CRT selects texture50/54/58 BEFORE quality/texture gates of actual ShotMgr0044F520.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075d210",
+      "status": "partial",
+      "coverage": "Actual foot/ground query, material sound/scuff timing, smoke and retained surface-position footprint production.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_footstep.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0078a4b0",
+      "status": "partial",
+      "coverage": "Acquire actual shared projection payload with retained-frame pool identity.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_projection_models.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0078aa10",
+      "status": "partial",
+      "coverage": "Footprint texture, time/count, scene transform/projection and ordered append to SAME primary list.",
+      "limitations": "Source-only typed ownership/STL/RAII and bounded native adaptation. Engine/CRT calls remain delegated; stable unsigned sorting supplies the native ordering without a reconstructed006E4910 radix body. Unwritten padding/negative-count native UB use explicit guards. Required containing mission frame, network/death dependencies, application integration and desktop acceptance remain open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_projection_models.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-particle-surface-20261111.json"
       ]
     },
     {

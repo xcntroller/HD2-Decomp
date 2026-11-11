@@ -56,6 +56,7 @@ public:
     virtual void car_actor_hit58(Actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame)=0;
     virtual void car_actor_hit5c(Actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame,Actor)=0;
     virtual void human_car_contact(Actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame)=0;
+    virtual void human_ragdoll_car_impulse(Actor,const Vector&,const Vector&)=0;
     virtual void car_human_impact(Actor,int,float,const Vector&,const Vector&,Actor,int)=0;
     virtual void submit_car_human_damage(Actor,const CarHumanDamageEvent&)=0;
     virtual void apply_car_wheel_damage(Actor,const CarWheelDamageEvent&)=0;

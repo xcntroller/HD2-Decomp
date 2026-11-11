@@ -13,6 +13,11 @@
 #include "game/human_look_pose.h"
 #include "game/human_attachment_pose.h"
 #include "game/human_prone_pose.h"
+#include "game/human_physics_globals.h"
+#include "game/human_retained_clip_motion.h"
+#include "frontend/spatial_sound.h"
+#include "frontend/cleanup.h"
+#include <functional>
 #include <limits>
 #include <exception>
 #include <optional>
@@ -31,10 +36,16 @@ public:
     using Owner=decltype(std::declval<Frames&>().retain_actor_frame(std::declval<Frame>()));
     using Matrix=HumanMatrix;
     using Vector=HumanVector;
+    using JointPoint=typename HumanLoadingJoints<Frames>::Point;
+    using JointBody=typename HumanLoadingJoints<Frames>::Body;
     using OfflineFaces=HumanFaceResources<Frames>;
     struct OfflineBinding {bool player;std::optional<float> clothing;};
     HumanModelGeometry(Frames& frames,Random& random)
         :frames_(frames),random_(random),joints_(frames,skeleton_) {reset_loading();}
+    template<class Audio>HumanModelGeometry(Frames& frames,Random& random,Audio& audio)
+        :HumanModelGeometry(frames,random){stop_voice_=[&audio](std::int32_t& handle){audio.stop_voice(handle);};}
+    template<class Audio>HumanModelGeometry(Frames& frames,Random& random,Audio& audio,HumanPhysicsGlobals& globals)
+        :HumanModelGeometry(frames,random,audio){physics_globals_=&globals;}
     ~HumanModelGeometry(){clear();}
     HumanModelGeometry(const HumanModelGeometry&)=delete;
     HumanModelGeometry& operator=(const HumanModelGeometry&)=delete;
@@ -69,9 +80,16 @@ public:
         attachment_pose_.clear();
         skeleton_.clear();
         equipped_weapon_.clear();
+        geometry_effect_.reset(); //0079BAC0 retires6840 before face/camera owners.
         face_model_.reset(); //0079BAC0 retires62B0 before retained camera frames62F8/FC.
         camera3rd_.reset();camera_fpv_.reset();model_=Frame{};human_=control_=nullptr;
         weapon1_=weapon2_=marker_z_=Frame{};feet_={};
+        //0079BAC0 retires6914/6918 after both camera references. The audio
+        //adapter borrows the SAME control audio lifetime and process SOUND owner.
+        if(joints_.field6914!=-1)stop_contact_voice(joints_.field6914);
+        joints_.field6914=-1;
+        if(joints_.field6918>=0)stop_contact_voice(joints_.field6918);
+        joints_.field6918=-1;
     }
     const auto& skeleton() const {return skeleton_;}
     const auto& joints() const {return joints_;}
@@ -85,12 +103,485 @@ public:
     std::uint32_t frame_elapsed()const{return frame_elapsed_;}
     bool geometry_detail_enabled()const{return geometry_detail_;}
     struct GeometryEffect {
-        std::uint16_t reason;
-        const void* source;
+        std::uint16_t reason=0;
+        const void* source=nullptr;
         Frame clip{};
-        Vector root_position{},camera_position{};
+        Vector root_position{},velocity{},camera_position{};
+        std::uint32_t clip_time=0;
+        std::array<std::uint32_t,23> position_cursors{},rotation_cursors{};
+        std::array<Matrix,23> saved_local{},saved_world{}; //Native bone13C/17C.
+        std::vector<Vector> contact_positions; //Actual6840 allocation, three or seven entries.
     };
     const auto& geometry_effect()const{return geometry_effect_;}
+    template<class Human,class Control,class Services>void present_retained_clip(Human& human,Control& control,Services& services){
+        if(!geometry_effect_)throw std::logic_error("Human retained clip requires its actual effect entry");
+        present_human_retained_clip(frames_,skeleton_,model_,*geometry_effect_,movement_,seed_,frame_elapsed_,
+            attachment_pose_.actor(),rest_surface_emitted_,human,control,services);
+    }
+    template<class Human,class Control,class Services>void present_ragdoll_frame(Human& human,Control& control,Services& services){ //007A7470's actual6304&200 branch.
+        if(!geometry_effect_)throw std::logic_error("Human ragdoll frame requires its actual reaction entry");
+        if(geometry_effect_->clip){
+            present_retained_clip(human,control,services);
+            const auto root=human_retained_clip::position(frames_,skeleton_.bones()[9].frame);
+            const auto delta=human_retained_clip::subtract(geometry_effect_->root_position,root);
+            const auto square=human_retained_clip::dot(delta,delta);
+            if(square>1.e-6)frames_.refresh_dynamic_human_model(model_);
+            const bool moved=square>1;
+            if(moved)geometry_effect_->root_position=human_retained_clip::position(frames_,skeleton_.bones()[9].frame);
+            control.refresh_ragdoll_geometry(true,moved);
+            return;
+        }
+        if(!(joints_.field68d0>9.99999993922529e-09f)){
+            if(joints_.field690c)joints_.update_contact_frames(frame_elapsed_,static_cast<std::uint8_t>(control.mode_flags()));
+            if(joints_.field6914!=-1)retire_contact_sound(false,services);
+            if(joints_.field6918>=0){services.stop_human_contact_voice(joints_.field6918);joints_.field6918=-2;}
+            return;
+        }
+        auto& owner=services.human_inline(human);
+        auto* source=static_cast<Human*>(const_cast<void*>(geometry_effect_->source));
+        bool source_entered=false;
+        const auto restore=[&]{
+            frontend::CleanupErrors errors;errors.attempt([&]{owner.restore_query(false);});
+            if(source_entered)errors.attempt([&]{services.human_inline(*source).restore_query(false);});
+            errors.rethrow();
+        };
+        try{
+            owner.exclude_query(false);
+            if(source){source_entered=true;services.human_inline(*source).exclude_query(false);}
+            joints_.field68e8-=frame_elapsed_;
+            if(human_frame_signed_word(joints_.field68e8)<1){
+                joints_.field68e8+=100u;
+                joints_.snapshot_body_interpolation();joints_.update_contact_frames(100,static_cast<std::uint8_t>(control.mode_flags()));
+                auto surface=[&]{emit_rest_surface(control);};
+                advance_joint_physics(100,control.animation_state_word(0x22c),services,surface);
+                joints_.capture_body_pose();
+                if(!joints_.points()[0])throw std::logic_error("Human ragdoll frame requires its actual root point");
+                const auto root=joints_.points()[0]->template get<Vector>(0x30);
+                const auto delta=human_retained_clip::subtract(geometry_effect_->root_position,root);
+                const bool moved=human_retained_clip::dot(delta,delta)>1;
+                if(moved)geometry_effect_->root_position=root;
+                control.refresh_ragdoll_geometry(true,moved);
+            }
+            const float influence=static_cast<float>(1.L-static_cast<long double>(human_frame_signed_word(joints_.field68e8))*.009999999776482582f);
+            joints_.interpolate_body_pose(influence);
+            const auto previous=human_retained_clip::position(frames_,model_);
+            const auto current=joints_.publish_body_pose(model_);
+            human.base().world_position(current); //007C58B0's final actual Human30 publication.
+            const auto delta=human_retained_clip::subtract(previous,current);
+            if(human_retained_clip::dot(delta,delta)>1.e-6)frames_.refresh_dynamic_human_model(model_);
+            if(control.human_is_player()&&services.human_geometry_camera_target()==camera_fpv()){
+                if(!joints_.points()[3])throw std::logic_error("Human ragdoll camera requires its actual point3");
+                const auto target=joints_.points()[3]->template get<Vector>(0x30);
+                auto& position=geometry_effect_->camera_position;
+                const auto hit=services.human_geometry_sweep().sweep(position,human_retained_clip::subtract(target,position),
+                    .17000000178813934f,0xc8002u,0x230000u);
+                position=hit?hit->position:target;frames_.car_suspension_position(camera_fpv(),position);
+            }
+        }catch(...){
+            const auto primary=std::current_exception();
+            try{restore();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
+            std::rethrow_exception(primary);
+        }
+        restore();
+    }
+    template<class Services>void begin_contact_sound(bool secondary,Services& services){ //007CDE00, native Point argument is unused.
+        auto& handle=secondary?joints_.field6918:joints_.field6914;
+        if(handle!=-1)return;
+        if(secondary&&(seed_&1u)){handle=-2;return;}
+        if(!stop_voice_)throw std::logic_error("Human contact sound requires its actual audio retirement binding");
+        const auto marker=skeleton_.bones()[secondary?4u:22u].frame;
+        if(!marker||!human_)throw std::logic_error("Human contact sound requires its actual relative bone and Human");
+        frontend::SpatialSoundRequest request;
+        request.flags=5;request.relative=reinterpret_cast<void*>(marker);request.source=const_cast<void*>(human_);
+        request.group=secondary?1:0;request.entry=secondary?55:44;request.voice_group=4;
+        handle=services.emit_human_equipment_sound(request);
+    }
+    template<class Services>void retire_contact_sound(bool secondary,Services& services){ //007CDF10.
+        auto& handle=secondary?joints_.field6918:joints_.field6914;
+        if(secondary?handle<0:handle==-1)return;
+        const auto active=services.human_contact_voice_active(handle);
+        if(!active||*active)return;
+        services.stop_human_contact_voice(handle);
+        handle=secondary?-2:-1;
+    }
+    template<class Services>void solve_point_contact(JointPoint& point,Vector& correction,Services& services){ //007CBF90.
+        float radius=0;
+        for(auto* body:point.bodies)if(body&&(body->points[0]==&point||body->points[1]==&point)){
+            const auto candidate=body->template get<float>(0x18c);
+            if(radius<candidate)radius=candidate;
+        }
+        radius*=.5f;
+        auto start=point.template get<Vector>(0x100);
+        const auto position=point.template get<Vector>(0x30),motion=point.template get<Vector>(0x70);
+        Vector displacement=position;
+        for(unsigned axis=0;axis!=3;++axis)displacement[axis]-=start[axis];
+        const auto index=point.template get<std::uint32_t>(0);
+        auto hit=services.human_geometry_sweep().sweep(start,displacement,radius,0xcc002u,index==0?0x220000u:0x230000u);
+        if(index==0){
+            if(!hit)return;
+            if(services.human_geometry_flags(*hit)&0x10000u){
+                const float projection=static_cast<float>((static_cast<long double>(hit->normal[0])*motion[0]+
+                    static_cast<long double>(hit->normal[2])*motion[2])+static_cast<long double>(hit->normal[1])*motion[1]);
+                joints_.flag6912=std::signbit(projection);
+                joints_.gravity[0]=joints_.gravity[2]=0;joints_.gravity[1]=joints_.flag6912?-2.25f:-9.f;
+                start=hit->position;
+                for(unsigned axis=0;axis!=3;++axis)displacement[axis]=position[axis]-start[axis];
+                hit=services.human_geometry_sweep().sweep(start,displacement,radius,0xcc002u,0x230000u);
+            }
+        }
+        if(!hit)return;
+        const auto flags=services.human_geometry_flags(*hit);
+        if(!(flags&0x40u)){
+            if(point.contact_frame){frames_.release_item_frame(point.contact_frame);point.contact_frame=Frame{};}
+        }else{
+            if(!hit->dynamic_identity||!hit->dynamic_identity->frame)
+                throw std::runtime_error("Human ragdoll dynamic contact requires its actual frame");
+            const auto frame=hit->dynamic_identity->frame;
+            if(frame!=point.contact_frame){
+                if(point.contact_frame){frames_.release_item_frame(point.contact_frame);point.contact_frame=Frame{};}
+                auto* actor=services.human_ragdoll_contact_actor(*hit);
+                if((movement_.field6304&0x10u)&&actor==attachment_pose_.actor())return;
+                point.contact_frame=frames_.retain_actor_frame(frame).release();
+                const auto world=frames_.actor_world_matrix(point.contact_frame);
+                point.set(0x140,Vector{{world[12],world[13],world[14],world[15]}});
+                if(actor&&actor->base().type()==4&&services.human_ragdoll_car_authority(*actor)){
+                    auto impulse=motion;
+                    for(unsigned axis=0;axis!=3;++axis)impulse[axis]*=100.f;
+                    const float square=static_cast<float>((static_cast<long double>(impulse[1])*impulse[1]+
+                        static_cast<long double>(impulse[2])*impulse[2])+static_cast<long double>(impulse[0])*impulse[0]);
+                    if(square>640000.f){
+                        const auto scale=human_joint_inverse_root(square)*800.f;
+                        for(unsigned axis=0;axis!=3;++axis)impulse[axis]=static_cast<float>(impulse[axis]*scale);
+                    }
+                    services.human_ragdoll_car_impulse(*actor,impulse,hit->position);
+                }
+            }
+        }
+        auto contact=hit->position;
+        const auto normal=hit->normal;
+        for(unsigned axis=0;axis!=3;++axis){
+            const float offset=normal[axis]*.0010000000474974513f;
+            contact[axis]+=offset;
+        }
+        switch(index){
+        case 2:case 3:case 4:case 5:case 6:case 7:case 8:case 9:case 11:case 12:case 14:case 15:
+            if(!point.parent)throw std::runtime_error("Human ragdoll contact requires its actual parent point");
+            if(point.parent->template get<float>(0x34)<position[1]){
+                auto direction=position;
+                for(unsigned axis=0;axis!=3;++axis)direction[axis]=point.parent->template get<float>(0x30+axis*4)-position[axis];
+                const float square=static_cast<float>((static_cast<long double>(direction[1])*direction[1]+
+                    static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[0])*direction[0]);
+                if(square>9.99999993922529e-09f){
+                    const auto inverse=human_joint_inverse_root(square);
+                    const auto alignment=(static_cast<long double>(direction[2])*inverse*normal[2]+
+                        static_cast<long double>(direction[1])*inverse*normal[1])+static_cast<long double>(direction[0])*inverse*normal[0];
+                    if(alignment<-.7070000171661377f){
+                        const auto projection=(static_cast<long double>(direction[2])*normal[2]+
+                            static_cast<long double>(direction[1])*normal[1])+static_cast<long double>(direction[0])*normal[0];
+                        for(unsigned axis=0;axis!=3;++axis){
+                            auto product=projection*normal[axis];
+                            if(axis)product=static_cast<float>(product);
+                            direction[axis]=static_cast<float>((direction[axis]-product)*.75f);
+                        }
+                        const float lateral=static_cast<float>((static_cast<long double>(direction[1])*direction[1]+
+                            static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[0])*direction[0]);
+                        if(static_cast<long double>(radius)*radius*.9980000257492065f<lateral){
+                            const auto scale=human_joint_inverse_root(lateral)*radius*.9990000128746033f;
+                            for(unsigned axis=0;axis!=3;++axis)direction[axis]=static_cast<float>(direction[axis]*scale);
+                        }
+                        for(unsigned axis=0;axis!=3;++axis)contact[axis]+=direction[axis];
+                    }
+                }
+            }
+            break;
+        default:break;
+        }
+        point.set(0x158,static_cast<std::uint8_t>(point.template get<std::uint8_t>(0x158)|1u));
+        auto stored_normal=point.template get<Vector>(0x120);
+        for(unsigned axis=0;axis!=3;++axis)stored_normal[axis]=normal[axis];
+        point.set(0x120,stored_normal);point.set(0x154,flags>>24);
+        for(unsigned axis=0;axis!=3;++axis)correction[axis]=contact[axis]-position[axis];
+        switch(index){
+        case 0:case 1:case 2:case 3:case 4:case 7:case 10:case 13:
+            if(joints_.field6914==-1&&
+                (static_cast<long double>(motion[2])*motion[2]+static_cast<long double>(motion[1])*motion[1])+
+                    static_cast<long double>(motion[0])*motion[0]>7.2900004386901855f){
+                begin_contact_sound(false,services);begin_contact_sound(true,services);
+            }
+            break;
+        default:break;
+        }
+    }
+    template<class Services>void solve_body_contact(JointBody& body,Vector& first_correction,Vector& last_correction,Services& services){ //007CC740.
+        auto* first=body.points[0];auto* last=body.points[1];
+        if(!first||!last)throw std::runtime_error("Human body contact requires its actual endpoint points");
+        constexpr float epsilon=9.99999993922529e-09f;
+        const auto first_previous=first->template get<Vector>(0x100),last_previous=last->template get<Vector>(0x100);
+        const auto first_position=first->template get<Vector>(0x30),last_position=last->template get<Vector>(0x30);
+        Vector previous{},position{},displacement{};
+        for(unsigned axis=0;axis!=3;++axis){
+            previous[axis]=static_cast<float>((static_cast<long double>(last_previous[axis])+first_previous[axis])*.5f);
+            position[axis]=static_cast<float>((static_cast<long double>(last_position[axis])+first_position[axis])*.5f);
+            displacement[axis]=position[axis]-previous[axis];
+        }
+        const float radius=static_cast<float>((static_cast<long double>(body.template get<float>(0x270))+body.template get<float>(0x18c))*.5f);
+        const auto hit=services.human_geometry_sweep().sweep(previous,displacement,radius,0xcc002u,0x230000u);
+        if(!hit)return;
+        const auto normal=hit->normal;
+        auto surface=hit->position;
+        Vector movement{},segment{};
+        for(unsigned axis=0;axis!=3;++axis){
+            const float offset=normal[axis]*radius;
+            surface[axis]-=offset;
+            movement[axis]=first_position[axis]-first_previous[axis];
+            segment[axis]=last_previous[axis]-first_previous[axis];
+        }
+        std::array<long double,3> plane{{
+            static_cast<long double>(segment[1])*movement[2]-static_cast<long double>(segment[2])*movement[1],
+            static_cast<long double>(segment[2])*movement[0]-static_cast<long double>(segment[0])*movement[2],
+            static_cast<long double>(segment[0])*movement[1]-static_cast<long double>(segment[1])*movement[0]
+        }};
+        //Native Y/Z cross products spill before normalization. X and normalized
+        //Y remain extended through the plane-distance test.
+        plane[1]=static_cast<float>(plane[1]);plane[2]=static_cast<float>(plane[2]);
+        const auto plane_square=(plane[1]*plane[1]+plane[2]*plane[2])+plane[0]*plane[0];
+        if(std::abs(plane_square-1)>=epsilon){
+            const float stored=static_cast<float>(plane_square);
+            if(stored>=epsilon){
+                const auto inverse=1.L/std::sqrt(static_cast<long double>(stored));
+                plane[0]*=inverse;plane[1]*=inverse;plane[2]=static_cast<float>(plane[2]*inverse);
+            }else{
+                const auto axis=plane[0]!=0?0u:plane[2]!=0?2u:1u;
+                plane[axis]=plane[axis]<0?-1.L:1.L;
+            }
+        }
+        const auto plane_distance=std::abs(((static_cast<long double>(surface[0])-first_previous[0])*plane[0]+
+            (static_cast<long double>(surface[2])-first_previous[2])*plane[2])+
+            (static_cast<long double>(surface[1])-first_previous[1])*plane[1]);
+        if(!(plane_distance<static_cast<long double>(body.template get<float>(0x18c))*.5f))return;
+        Vector contact_motion=surface;
+        for(unsigned axis=0;axis!=3;++axis)contact_motion[axis]-=previous[axis];
+        const float projection=static_cast<float>((static_cast<long double>(contact_motion[0])*displacement[0]+
+            static_cast<long double>(contact_motion[2])*displacement[2])+static_cast<long double>(contact_motion[1])*displacement[1]);
+        if(std::signbit(projection))return;
+        const float square=static_cast<float>((static_cast<long double>(displacement[2])*displacement[2]+
+            static_cast<long double>(displacement[1])*displacement[1])+static_cast<long double>(displacement[0])*displacement[0]);
+        std::int32_t bits;std::memcpy(&bits,&square,sizeof bits);
+        if(bits<=0x322bcc76)return;
+        const auto length=std::abs(static_cast<long double>(square)-1)<epsilon?1.L:std::sqrt(static_cast<long double>(square));
+        if(length<=epsilon)return;
+        const auto inverse=1.L/static_cast<float>(length); //007CCBEF reloads the stored FLOAT length.
+        for(unsigned axis=0;axis!=3;++axis)displacement[axis]=static_cast<float>(displacement[axis]*inverse);
+        const auto fraction=((static_cast<long double>(displacement[1])*contact_motion[1]+
+            static_cast<long double>(displacement[2])*contact_motion[2])+static_cast<long double>(contact_motion[0])*displacement[0])/
+            (static_cast<long double>(body.template get<float>(0x18c))*.5f+static_cast<float>(length));
+        const float factor=static_cast<float>(fraction);
+        if(!(fraction<1))return; //Native compares extended fraction after storing the interpolation FLOAT.
+        const auto flags=services.human_geometry_flags(*hit);
+        using ActorPointer=decltype(services.human_ragdoll_contact_actor(*hit));
+        ActorPointer actor=nullptr;
+        if(!(flags&0x40u)){
+            if(first->contact_frame){frames_.release_item_frame(first->contact_frame);first->contact_frame=Frame{};}
+            if(last->contact_frame){frames_.release_item_frame(last->contact_frame);last->contact_frame=Frame{};}
+        }else{
+            if(!hit->dynamic_identity||!hit->dynamic_identity->frame)
+                throw std::runtime_error("Human body contact requires its actual dynamic frame");
+            const auto frame=hit->dynamic_identity->frame;
+            if(frame!=first->contact_frame||frame!=last->contact_frame){
+                if(first->contact_frame){frames_.release_item_frame(first->contact_frame);first->contact_frame=Frame{};}
+                if(last->contact_frame){frames_.release_item_frame(last->contact_frame);last->contact_frame=Frame{};}
+                actor=services.human_ragdoll_contact_actor(*hit);
+                if((movement_.field6304&0x10u)&&actor==attachment_pose_.actor())return;
+                last->contact_frame=frames_.retain_actor_frame(frame).release();
+                first->contact_frame=frames_.retain_actor_frame(frame).release();
+                const auto world=frames_.actor_world_matrix(first->contact_frame);
+                const Vector origin{{world[12],world[13],world[14],world[15]}};
+                last->set(0x140,origin);first->set(0x140,origin);
+            }
+        }
+        const float complement=1.f-factor;
+        const std::array<JointPoint*,2> endpoints{{first,last}};
+        const std::array<Vector,2> previous_positions{{first_previous,last_previous}},positions{{first_position,last_position}};
+        const std::array<Vector*,2> corrections{{&first_correction,&last_correction}};
+        for(unsigned endpoint=0;endpoint!=2;++endpoint){
+            auto* point=endpoints[endpoint];
+            auto target=positions[endpoint];
+            for(unsigned axis=0;axis!=3;++axis){
+                const float old=complement*previous_positions[endpoint][axis],current=factor*positions[endpoint][axis];
+                target[axis]=old+current;
+            }
+            point->set(0x158,static_cast<std::uint8_t>(point->template get<std::uint8_t>(0x158)|1u));
+            auto stored_normal=point->template get<Vector>(0x120);
+            for(unsigned axis=0;axis!=3;++axis)stored_normal[axis]=normal[axis];
+            point->set(0x120,stored_normal);point->set(0x154,flags>>24);
+            for(unsigned axis=0;axis!=3;++axis)(*corrections[endpoint])[axis]=target[axis]-positions[endpoint][axis];
+        }
+        if(actor&&actor->base().type()==4&&services.human_ragdoll_car_authority(*actor)){
+            const auto first_motion=first->template get<Vector>(0x70),last_motion=last->template get<Vector>(0x70);
+            const float first_square=static_cast<float>((static_cast<long double>(first_motion[2])*first_motion[2]+
+                static_cast<long double>(first_motion[1])*first_motion[1])+static_cast<long double>(first_motion[0])*first_motion[0]);
+            const float last_square=static_cast<float>((static_cast<long double>(last_motion[2])*last_motion[2]+
+                static_cast<long double>(last_motion[1])*last_motion[1])+static_cast<long double>(last_motion[0])*last_motion[0]);
+            const float maximum=static_cast<float>(first_square>last_square?first_square:last_square);
+            auto impulse=first_square<=last_square?last_motion:first_motion;
+            for(unsigned axis=0;axis!=3;++axis)impulse[axis]*=100.f;
+            const float scaled_square=maximum*10000.f;
+            if(scaled_square>640000.f){
+                const auto scale=human_joint_inverse_root(scaled_square)*800.f;
+                for(unsigned axis=0;axis!=3;++axis)impulse[axis]=static_cast<float>(impulse[axis]*scale);
+            }
+            services.human_ragdoll_car_impulse(*actor,impulse,surface);
+        }
+    }
+    template<class Services>void solve_joint_contacts(float seconds,Services& services){ //007CBD50, all points before all bodies.
+        for(auto* point:joints_.points())if(point)
+            point->set(0x158,static_cast<std::uint8_t>(point->template get<std::uint8_t>(0x158)&0xfeu));
+        for(auto* point:joints_.points())if(point){
+            Vector correction{};
+            solve_point_contact(*point,correction,services);
+            for(unsigned axis=0;axis!=3;++axis)point->set(0x30+axis*4,point->template get<float>(0x30+axis*4)+correction[axis]);
+        }
+        for(auto* body:joints_.bodies())if(body){
+            Vector first{},last{};
+            solve_body_contact(*body,first,last,services);
+            for(unsigned endpoint=0;endpoint!=2;++endpoint){
+                auto* point=body->points[endpoint];
+                if(!point)throw std::runtime_error("Human contact publication requires actual body endpoints");
+                const auto& correction=endpoint?last:first;
+                for(unsigned axis=0;axis!=3;++axis)point->set(0x30+axis*4,point->template get<float>(0x30+axis*4)+correction[axis]);
+            }
+        }
+        for(auto* point:joints_.points())if(point){
+            const auto position=point->template get<Vector>(0x30),previous=point->template get<Vector>(0x40);
+            point->set(0x100,position);
+            const float inverse=static_cast<float>(1.L/seconds);
+            auto motion=point->template get<Vector>(0xe0);
+            for(unsigned axis=0;axis!=3;++axis){
+                auto difference=static_cast<long double>(position[axis])-previous[axis];
+                if(axis==2)difference=static_cast<float>(difference);
+                auto velocity=difference*inverse;
+                if(axis==0)velocity=static_cast<float>(velocity);
+                auto sum=velocity+motion[axis];
+                if(axis<2)sum=static_cast<float>(sum);
+                motion[axis]=static_cast<float>(sum*.5f);
+            }
+            point->set(0xe0,motion);
+        }
+    }
+    template<class RestSurface>void advance_joint_sleep(JointPoint& point,RestSurface& rest_surface){ //007CD230.
+        if(!physics_globals_)throw std::logic_error("Human ragdoll sleep requires its actual process physics globals");
+        auto& globals=*physics_globals_;
+        const bool root=point.parent==nullptr;
+        if(root){
+            joints_.field68d8=joints_.field68d4=0;joints_.flag6910=0;joints_.field690c=0;
+            globals.ragdoll_contact_normal=0;globals.ragdoll_contacts=0;
+        }
+        float vertical=0;
+        if(std::signbit(joints_.field68ec)){
+            vertical=point.template get<float>(0xe4);
+            if(!(std::abs(static_cast<long double>(vertical))<.47999998927116394)){
+                const auto amount=static_cast<long double>(point.template get<float>(0x24))+.009999999776482582f;
+                point.set(0x24,amount>1?1.f:static_cast<float>(amount));
+            }else{
+                const auto motion=point.template get<Vector>(0x70);
+                const auto square=(static_cast<long double>(motion[0])*motion[0]+static_cast<long double>(motion[1])*motion[1])+
+                    static_cast<long double>(motion[2])*motion[2];
+                if((point.template get<std::uint8_t>(0x158)&3u)&&square>9.99999993922529e-09f){
+                    const auto inverse=human_joint_inverse_root(square);
+                    const auto normal=point.template get<Vector>(0x120);
+                    const auto projection=(inverse*motion[2]*normal[2]+inverse*motion[1]*normal[1])+inverse*motion[0]*normal[0];
+                    const auto squared=projection*projection;
+                    auto amount=point.template get<float>(0x24)-squared*squared*.009999999776482582f;
+                    point.set(0x24,static_cast<float>(amount));
+                    if(joints_.flag6912){amount-=.009999999776482582f;point.set(0x24,static_cast<float>(amount));}
+                }
+                if(std::signbit(point.template get<float>(0x24)))point.set(0x24,0.f);
+            }
+        }
+        if(point.template get<std::uint8_t>(0x158)&3u){
+            const auto up=point.template get<float>(0x124);
+            globals.ragdoll_contact_normal+=up;++globals.ragdoll_contacts;
+            if(up>.5f)++joints_.flag6910;
+        }
+        if(point.contact_frame)++joints_.field690c;
+        joints_.field68d8+=point.template get<float>(0x24);joints_.field68d4+=1;
+        for(auto* child:point.children)if(child)advance_joint_sleep(*child,rest_surface);
+        if(!root)return;
+        if(!std::signbit(joints_.field68ec)){
+            joints_.field68ec-=joints_.field68f8;return;
+        }
+        if(vertical<-400.f)joints_.field68d0=0;
+        const auto average=static_cast<long double>(joints_.field68d8)/joints_.field68d4;
+        joints_.field68d4=static_cast<float>(average);
+        const auto decay=[&]{
+            if(!globals.ragdoll_contacts)return static_cast<long double>(.019999999552965164f);
+            auto amount=static_cast<long double>(globals.ragdoll_contact_normal)/globals.ragdoll_contacts;
+            globals.ragdoll_contact_normal=static_cast<float>(amount);
+            if(std::signbit(globals.ragdoll_contact_normal))amount=0;
+            globals.ragdoll_contact_normal=static_cast<float>(amount*amount);
+            return static_cast<long double>(globals.ragdoll_contact_normal)*.019999999552965164f+.0010000000474974513f;
+        };
+        if(!(average<.8500000238418579f)){
+            const auto amount=static_cast<long double>(joints_.field68d0)+.009999999776482582f;
+            joints_.field68d0=amount>1?1.f:static_cast<float>(amount);
+        }else{
+            const auto amount=joints_.field68d0-decay();
+            joints_.field68d0=amount<9.99999993922529e-09f?0.f:static_cast<float>(amount);
+            if(!rest_surface_emitted_)rest_surface(); //007B37C0 publishes6740 only after its actual surface request.
+        }
+        if(joints_.flag6910){
+            joints_.field68f0-=joints_.field68f8;
+            if(std::signbit(joints_.field68f0)){
+                const auto amount=joints_.field68d0-decay();
+                joints_.field68d0=amount<9.99999993922529e-09f?0.f:static_cast<float>(amount);
+                if(!rest_surface_emitted_)rest_surface();
+            }
+        }
+    }
+    template<class Services,class RestSurface>void advance_joint_physics(std::uint32_t elapsed,std::uint32_t frame_flags,Services& services,RestSurface& rest_surface){
+        auto contacts=[&](float seconds){solve_joint_contacts(seconds,services);};
+        auto sleep=[&](JointPoint& point){advance_joint_sleep(point,rest_surface);};
+        joints_.advance_physics(elapsed,frame_flags,contacts,sleep); //007C77E0, SAME geometry collision/sleep receivers.
+    }
+    template<class Control>void emit_rest_surface(Control& control){ //007B37C0, native6740.
+        if(rest_surface_emitted_)return;
+        const auto& points=joints_.points();const auto& bodies=joints_.bodies();
+        if(!points[0]||!points[1]||!points[2]||!bodies[0]||!bodies[1])
+            throw std::logic_error("Human rest surface requires its actual torso points and radii");
+        const auto root=points[0]->template get<Vector>(0x30),middle=points[1]->template get<Vector>(0x30),end=points[2]->template get<Vector>(0x30);
+        auto direction=end;
+        for(unsigned axis=0;axis!=3;++axis)direction[axis]-=root[axis];
+        const auto square=(static_cast<long double>(direction[1])*direction[1]+static_cast<long double>(direction[0])*direction[0])+
+            static_cast<long double>(direction[2])*direction[2];
+        normalize_human_ai_shot(direction,square);
+        if(!(direction[1]<.5f))return;
+        Vector normal{{0,1,0,0}};
+        for(auto index:{1u,0u,2u})if(points[index]->template get<std::uint8_t>(0x158)&1u){normal=points[index]->template get<Vector>(0x120);break;}
+        const float projection=static_cast<float>((static_cast<long double>(normal[1])*direction[1]+
+            static_cast<long double>(direction[0])*normal[0])+static_cast<long double>(direction[2])*normal[2]);
+        for(unsigned axis=0;axis!=3;++axis){
+            const float amount=direction[axis]*projection;normal[axis]-=amount;
+        }
+        const auto normal_square=(static_cast<long double>(normal[2])*normal[2]+static_cast<long double>(normal[0])*normal[0])+
+            static_cast<long double>(normal[1])*normal[1];
+        normalize_human_ai_shot(normal,normal_square);
+        const float draw=static_cast<float>(static_cast<long double>(random_())*3.0518509447574615e-05f);
+        const float squared=draw*draw;
+        const float end_weight=static_cast<float>((1.L-(static_cast<long double>(draw)+draw))+squared);
+        const float middle_weight=static_cast<float>((static_cast<long double>(draw)+draw)-(static_cast<long double>(squared)+squared));
+        Vector position{};
+        for(unsigned axis=0;axis!=3;++axis){
+            const float a=end_weight*end[axis],b=middle_weight*middle[axis];
+            auto product=static_cast<long double>(squared)*root[axis];
+            if(axis<2)product=static_cast<float>(product);
+            position[axis]=static_cast<float>((product+b)+a);
+        }
+        const auto first=bodies[0]->template get<float>(0x18c),second=bodies[1]->template get<float>(0x18c);
+        const float radius=(first<=second?second:first)*.5f;
+        for(unsigned axis=0;axis!=3;++axis)position[axis]-=radius*normal[axis]; //004CE5C0 is vector -=, ECX=position.
+        control.request_geometry_surface(position,normal);
+        rest_surface_emitted_=true; //Publish only after the real DD0 surface chain returns.
+    }
     void select_secondary_pose(Frame animation,std::uint32_t mode){ //007AE320, borrowed6630 and actual23-bone scratch.
         if(!(mode&2u))return;
         secondary_pose_=animation;
@@ -508,14 +999,100 @@ public:
     }
     template<class Human,class Control,class Services>
     void begin_mounted_effect(Human& human,Control& control,Human& source,Services& services){
-        //007B0910(flags8,zero,null,reason4,source). Other reasons and the
-        //source-null impulse/clip branches remain separate required receivers.
+        begin_geometry_effect(human,control,8,Vector{},Frame{},4,&source,services);
+    }
+    template<class Human,class Control,class Services>
+    void begin_geometry_effect(Human& human,Control& control,std::uint32_t flags,const Vector& impulse,
+            Frame clip,std::uint16_t reason,Human* source,Services& services){ //007B0910.
         if(!(control.mode_flags()&2u)){joints_.field68d0=0;return;}
         if(human_!=&human||control_!=&control||!model_)
             throw std::logic_error("Human geometry effect requires its SAME bound DD0 and model");
-        geometry_effect_.emplace(GeometryEffect{4,&source});
-        if((control.mode_flags()&7u)==7u)(void)services.human_geometry_effect_quality();
-        if(services.human_unavailable(human)){
+        geometry_effect_.emplace();
+        auto& effect=*geometry_effect_;
+        effect.reason=reason;effect.source=source;
+        bool full_joints=reason==4;
+        if((control.mode_flags()&7u)==7u){
+            const bool quality=services.human_geometry_effect_quality();
+            if(quality&&!full_joints){
+                const auto camera=frames_.active_game_camera();
+                if(!camera)throw std::runtime_error("Human reaction requires its actual active scene camera");
+                const auto camera_world=frames_.actor_world_matrix(camera);
+                const auto root=frames_.actor_world_matrix(skeleton_.bones()[9].frame);
+                Vector displacement{};
+                for(unsigned axis=0;axis!=3;++axis)displacement[axis]=root[12+axis]-camera_world[12+axis];
+                const auto direction_world=frames_.actor_world_matrix(frames_.active_game_camera());
+                long double x=direction_world[8],y=direction_world[9];float z=direction_world[10];
+                const auto square=(y*y+static_cast<long double>(z)*z)+x*x;
+                if(std::abs(square-1)>=9.99999993922529e-09f){
+                    const float stored=static_cast<float>(square);
+                    if(stored>=9.99999993922529e-09f){
+                        const auto inverse=1.L/std::sqrt(static_cast<long double>(stored));
+                        x*=inverse;y*=inverse;z=static_cast<float>(z*inverse);
+                    }else if(x!=0)x=x<0?-1.L:1.L;
+                    else if(z!=0)z=z<0?-1.f:1.f;
+                    else y=y<0?-1.L:1.L;
+                }
+                const float projection=static_cast<float>((static_cast<long double>(z)*displacement[2]+
+                    y*displacement[1])+x*displacement[0]);
+                const auto distance=(static_cast<long double>(displacement[2])*displacement[2]+
+                    static_cast<long double>(displacement[1])*displacement[1])+static_cast<long double>(displacement[0])*displacement[0];
+                full_joints=!std::signbit(projection)&&distance<100.f&&reason!=1&&reason!=2&&reason!=3;
+            }
+        }
+        const auto animation=control.animation_state_word(0x22c)&0xff0u;
+        if(!full_joints&&reason!=1&&reason!=2&&reason!=3&&!(animation&0x380u)&&
+           !(movement_.field6304&0x68u))full_joints=services.human_geometry_effect_quality();
+        if(!full_joints){
+            effect.clip=clip;
+            if(clip){
+                for(unsigned bone=0;bone!=skeleton_.bones().size();++bone){
+                    const auto frame=skeleton_.bones()[bone].frame;
+                    effect.saved_local[bone]=frames_.car_local_matrix(frame);
+                    effect.saved_world[bone]=frames_.actor_world_matrix(frame);
+                }
+                const auto root=frames_.actor_world_matrix(skeleton_.bones()[9].frame);
+                effect.root_position={{root[12],root[13],root[14],root[15]}};
+                if(reason==3){
+                    effect.contact_positions.resize(7);
+                    constexpr std::array<unsigned,7> bones{{6,4,8,13,9,2,3}};
+                    for(unsigned index=0;index!=bones.size();++index){
+                        const auto world=frames_.actor_world_matrix(skeleton_.bones()[bones[index]].frame);
+                        effect.contact_positions[index]={{world[12],world[13],world[14],world[15]}};
+                    }
+                }else if(reason!=2){
+                    effect.contact_positions.resize(3);
+                    const auto up_world=frames_.actor_world_matrix(model_);
+                    Vector up{{up_world[4],up_world[5],up_world[6],up_world[7]}};
+                    Vector offset=up;
+                    for(unsigned axis=0;axis!=3;++axis)offset[axis]*=.25f;
+                    for(unsigned index=0;index!=3;++index){
+                        const auto origin=frames_.actor_world_matrix(model_);
+                        Vector position{};
+                        if(index<2){
+                            const auto world=frames_.actor_world_matrix(skeleton_.bones()[index?22:4].frame);
+                            for(unsigned axis=0;axis!=3;++axis)position[axis]=world[12+axis]-origin[12+axis];
+                        }else{
+                            const auto right=frames_.actor_world_matrix(skeleton_.bones()[3].frame);
+                            const auto left=frames_.actor_world_matrix(skeleton_.bones()[2].frame);
+                            for(unsigned axis=0;axis!=3;++axis)
+                                position[axis]=static_cast<float>((static_cast<long double>(right[12+axis])+left[12+axis])*.5f-origin[12+axis]);
+                        }
+                        const auto current=frames_.actor_world_matrix(model_);
+                        const auto dot=(static_cast<long double>(position[2])*up[2]+
+                            static_cast<long double>(position[1])*up[1])+static_cast<long double>(position[0])*up[0];
+                        for(unsigned axis=0;axis!=3;++axis){
+                            const auto projected=up[axis]*dot;
+                            const auto flat=axis?position[axis]-static_cast<float>(projected):position[axis]-projected;
+                            effect.contact_positions[index][axis]=static_cast<float>(flat+current[12+axis]+offset[axis]);
+                        }
+                    }
+                }
+                movement_.field6304|=0x200u;
+                capture_effect_camera();
+                return;
+            }
+        }
+        if(services.human_unavailable(human)&&source){
             joints_.build(false);
             for(unsigned index=0;index!=saved_body_angles_.size();++index)
                 if(auto* body=joints_.bodies()[index])body->set(0x180,saved_body_angles_[index]);
@@ -524,6 +1101,7 @@ public:
         joints_.field68d0=1;
         for(auto* point:joints_.points())if(point)point->set(0x24,1.f);
         joints_.field6900=6;joints_.field68e8=0;joints_.field68ec=1;joints_.field68f0=4;
+        effect.clip=Frame{};
         if(joints_.field690c)joints_.retire_contact_frames();
         joints_.flag6912=false;
         constexpr std::array<unsigned,9> bones{{9,12,13,7,15,14,4,5,6}};
@@ -538,32 +1116,46 @@ public:
         if(!root)throw std::runtime_error("Human geometry effect requires its actual pose root");
         frames_.update_scene_object(root);
         joints_.rebind_effect_bodies([&]{return services.human_unavailable(human);});
-        //The original calculates a local velocity without external calls, then
-        //overwrites all XYZ with zero for this nonnull-source invocation.
-        joints_.gravity[0]=0;joints_.gravity[1]=-9.81f;joints_.gravity[2]=0;
-        joints_.initialize_mounted_effect_points();
-        (void)services.human_unavailable(human); //Source is nonnull, so native arm-removal condition is false.
+        auto velocity=movement_.field63d0;velocity[1]=0;
+        const float square=static_cast<float>(static_cast<long double>(velocity[0])*velocity[0]+
+            static_cast<long double>(velocity[2])*velocity[2]);
+        if(square>25.f){
+            const auto scale=human_joint_inverse_root(square)*5.f;
+            for(unsigned axis=0;axis!=3;++axis)velocity[axis]=static_cast<float>(velocity[axis]*scale);
+        }
+        const auto interval=static_cast<long double>(human_frame_signed_word(frame_elapsed_))*.0005500000552274287f;
+        for(unsigned axis=0;axis!=3;++axis)velocity[axis]=static_cast<float>(velocity[axis]*interval);
+        if((flags&0x1000u)||source){
+            joints_.gravity[0]=0;joints_.gravity[1]=-9.81f;joints_.gravity[2]=0;
+            if(source)velocity[0]=velocity[1]=velocity[2]=0;
+        }else if(flags&0x8400u){
+            joints_.gravity[0]=0;joints_.gravity[1]=-2.25f;joints_.gravity[2]=0;joints_.flag6912=true;
+        }
+        joints_.initialize_effect_points(velocity);
+        if(services.human_unavailable(human)&&!source)joints_.retire_unavailable_effect_limbs();
         joints_.capture_body_pose();joints_.snapshot_body_endpoints();
         auto* point=joints_.points()[0];
         if(!point)throw std::runtime_error("Human geometry effect requires its actual point root");
         joints_.reset_point(point,point->template get<Vector>(0x30),false);
         frames_.detach_human_effect_model(model_);
-        geometry_effect_->root_position=point->template get<Vector>(0x30);
+        effect.root_position=point->template get<Vector>(0x30);
         frames_.register_human_effect_model(model_,marker_z_,skeleton_.bones()[1].frame);
         frames_.refresh_dynamic_human_model(model_);
+        if(!skeleton_.bones()[1].frame&&!source)initialize_effect_impulse(flags,impulse,services);
         movement_.field6304|=0x200u;
-        const auto camera=camera_fpv();
-        if(!camera)throw std::runtime_error("Human geometry effect requires its actual FPV camera");
-        const auto camera_matrix=frames_.actor_world_matrix(camera);
-        geometry_effect_->camera_position={{camera_matrix[12],camera_matrix[13],camera_matrix[14],camera_matrix[15]}};
+        capture_effect_camera();
         auto& inline_owner=services.human_inline(human);
-        inline_owner.exclude_query(false);
         try{
+            inline_owner.exclude_query(false);
             for(auto* joint:joints_.points())if(joint){
                 auto* actor=services.human_geometry_containing_actor(joint->template get<Vector>(0x30),0xd8102u);
                 if(actor){attachment_pose_.actor(actor);movement_.field6304|=0x10u;break;}
             }
-        }catch(...){inline_owner.restore_query(false);throw;}
+        }catch(...){
+            const auto primary=std::current_exception();
+            try{inline_owner.restore_query(false);}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
+            std::rethrow_exception(primary);
+        }
         inline_owner.restore_query(false);
     }
     void command_look(std::uint32_t flags,const Vector* target) {
@@ -703,7 +1295,7 @@ public:
         }
         geometry_detail_=(control.animation_state_word(0x22c)&0x380u)==0; //Native62C9.
         if(movement_.field6304&0x200u){
-            runtime.present_human_ragdoll_geometry(*this,control,human,elapsed);
+            control.present_ragdoll_geometry();
             return;
         }
         if(human_frame_signed_word(human.properties.stats_ec[0])<1)return;
@@ -740,6 +1332,75 @@ public:
         if(runtime.human_model_debug_enabled())runtime.present_human_model_debug(*this);
     }
 private:
+    void capture_effect_camera(){ //007B0910's6830 publication in both retained-clip and joint branches.
+        const auto camera=camera_fpv();
+        if(!camera)throw std::runtime_error("Human geometry effect requires its actual FPV camera");
+        const auto world=frames_.actor_world_matrix(camera);
+        geometry_effect_->camera_position={{world[12],world[13],world[14],world[15]}};
+    }
+    template<class Services>void initialize_effect_impulse(std::uint32_t flags,Vector impulse,Services& services){
+        if(flags&0x4000u){ //007B2B8A, explosion branch omitted by older alias-damaged exports.
+            const auto square=(static_cast<long double>(impulse[0])*impulse[0]+
+                static_cast<long double>(impulse[1])*impulse[1])+static_cast<long double>(impulse[2])*impulse[2];
+            const auto length=std::sqrt(square),inverse=1.L/length;
+            for(unsigned axis=0;axis!=3;++axis)impulse[axis]=static_cast<float>(impulse[axis]*inverse);
+            float amount=static_cast<float>(length*.2f);if(amount>450.f)amount=450.f;
+            for(unsigned axis=0;axis!=3;++axis)impulse[axis]*=amount;
+            impulse[1]=static_cast<float>(static_cast<long double>(amount)*.3333333432674408f+impulse[1]);
+            apply_hit_impulse(flags,impulse,200);
+            return;
+        }
+        const auto world=frames_.actor_world_matrix(model_);
+        const float projection=static_cast<float>((static_cast<long double>(impulse[1])*world[9]+
+            static_cast<long double>(impulse[2])*world[10])+static_cast<long double>(impulse[0])*world[8]);
+        if(std::signbit(projection)){
+            const auto forward=frames_.actor_world_matrix(model_);
+            Vector offset{};
+            for(unsigned axis=0;axis!=3;++axis)offset[axis]=forward[8+axis]*.65f;
+            const auto root=frames_.actor_world_matrix(skeleton_.bones()[9].frame);
+            Vector origin{};
+            for(unsigned axis=0;axis!=3;++axis)origin[axis]=offset[axis]+root[12+axis];
+            if(!services.human_geometry_ray(origin,Vector{{0,-3,0,0}},0xffffffffu,0,false)){
+                const auto first=frames_.actor_world_matrix(model_);
+                const auto second=frames_.actor_world_matrix(model_);
+                const auto dot=(static_cast<long double>(impulse[1])*second[5]+
+                    static_cast<long double>(impulse[2])*second[6])+static_cast<long double>(impulse[0])*second[4];
+                for(unsigned axis=0;axis!=3;++axis){
+                    const auto product=dot*first[4+axis];
+                    impulse[axis]=-static_cast<float>(axis?impulse[axis]-static_cast<float>(product):impulse[axis]-product);
+                }
+            }
+        }
+        const auto square=(static_cast<long double>(impulse[0])*impulse[0]+
+            static_cast<long double>(impulse[1])*impulse[1])+static_cast<long double>(impulse[2])*impulse[2];
+        float amount=1;
+        long double x=impulse[0];
+        if(!(square<9.99999993922529e-09f)){
+            const auto length=std::sqrt(square),inverse=1.L/length;
+            x*=inverse;impulse[1]=static_cast<float>(impulse[1]*inverse);impulse[2]=static_cast<float>(impulse[2]*inverse);
+            amount=static_cast<float>(length*.2222222238779068f);if(amount>150.f)amount=150.f;
+        }
+        impulse[0]=static_cast<float>(x*amount);impulse[1]*=amount;impulse[2]*=amount;
+        const auto combined_x=static_cast<long double>(impulse[0])+movement_.field63d0[0];
+        const auto combined_y=static_cast<long double>(impulse[1])+movement_.field63d0[1];
+        const auto combined_z=static_cast<long double>(impulse[2])+movement_.field63d0[2];
+        if((combined_z*combined_z+combined_y*combined_y)+combined_x*combined_x<225.f){
+            for(unsigned index:{12u,15u})if(auto* point=joints_.points()[index])
+                joints_.queue_secondary_impulse(point,point->template get<Vector>(0x30),300);
+            const auto inverse=1.L/amount;amount=30.f;
+            impulse[0]=static_cast<float>(static_cast<long double>(impulse[0])*inverse*30.f);
+            impulse[1]=static_cast<float>(impulse[1]*inverse);impulse[2]=static_cast<float>(impulse[2]*inverse);
+            impulse[1]*=30.f;impulse[2]*=30.f;
+        }
+        impulse[1]=static_cast<float>(static_cast<long double>(amount)*.3333333432674408f+impulse[1]);
+        apply_hit_impulse(flags,impulse,250);
+    }
+    void stop_contact_voice(std::int32_t& handle)noexcept{
+        try{
+            if(!stop_voice_)throw std::logic_error("Human contact voice lost its actual audio retirement binding");
+            stop_voice_(handle);
+        }catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
+    }
     void advance_aim_direction(){ //007B9CB0, actual62C0 countdown and retained angle/sine.
         if(!movement_.time62c0)return;
         movement_.time62c0-=frame_elapsed_;
@@ -1004,6 +1665,7 @@ private:
         prone_pose_.reset();
         saved_body_angles_.fill(0); //0079C18B..0079C1A1 clears eleven words at691C.
         geometry_effect_.reset();
+        rest_surface_emitted_=false; //0079BD30 clears native6740.
         attachment_pose_.clear();
         secondary_pose_=Frame{}; //0079BD30 clears6630, scratch6638/6694 is reset by007AE320.
     }
@@ -1038,6 +1700,9 @@ private:
     Frame weapon1_{},weapon2_{},marker_z_{};
     std::array<Frame,2> feet_{};
     std::uint32_t seed_=0,frame_elapsed_=0;
+    std::function<void(std::int32_t&)> stop_voice_; //Borrowed control audio receiver, retained across bind/clear/repeated entry.
+    HumanPhysicsGlobals* physics_globals_=nullptr; //Borrowed SAME startup/process owner as DD0 physical state.
+    bool rest_surface_emitted_=false;
     bool geometry_detail_=true;
     Movement movement_;
     HumanWeaponBinding<Frames,Movement> equipped_weapon_{frames_,movement_};

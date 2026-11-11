@@ -45,6 +45,7 @@ public:
     HumanScriptContextServices(Frames& frames,Contexts& contexts,Runtime& runtime,Random& random,Lookup& lookup)
         :frames_(frames),contexts_(contexts),runtime_(runtime),random_(random),lookup_(lookup){}
     Context* human_script_context(Human& human){return contexts_.context_for_frame(human.base().frame());}
+    void human_script_death(Human& human){if(auto* context=human_script_context(human))context->death(runtime_);} //0041D920, SAME module/runtime/context.
     std::int32_t human_script_status(const Context& context)const{return context.program().events.at(4);}
     void interrupt_human_script_context(Context& context){context.alarm(runtime_.script_authority());} //0041DA20.
     void finish_human_script_alarm(Context& context){(void)context.alarm_done(runtime_.script_authority());} //0041DA80.

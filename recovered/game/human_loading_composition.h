@@ -61,6 +61,9 @@ public:
         activation_.deactivate(authority);retired_|=authority?2u:1u;
         if(retired_==3u)started_=false;
     }
+    void damage(std::uint32_t kind,float amount,const HumanVector& point,const HumanVector& impulse,void* source,std::uint32_t hit_kind)override{
+        activation_.damage(kind,amount,point,impulse,source,hit_kind);
+    }
     Inline& control(){return control_;}States& states(){return states_;}Inventory& inventory(){return inventory_;}
     StateFactory& state_factory(){return state_factory_;}
 private:

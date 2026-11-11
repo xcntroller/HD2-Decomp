@@ -25,6 +25,7 @@ public:
     virtual void sight_enemy_acquired(Human&)=0;
     virtual void sight_enemy_lost(Human&)=0;
     virtual void sight_dead_acquired(Human&)=0;
+    virtual void sight_enemy_killed(Human&)=0;
     virtual bool suppress_hostile_selection()const{return false;} //00524DB0 returns AL=0.
     virtual bool aims_at_human(const Human&)const{return false;} //Typed view of AI D0.
     virtual bool selected_hostile_is(const Human&)const{return false;} //Base virtualA4 005831A0.

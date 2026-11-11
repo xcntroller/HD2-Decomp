@@ -61,6 +61,24 @@ public:
     }
     void fire_marker()override{control_.fire_marker();}
     std::array<float,4> aim_direction()override{return control_.aim_direction();}
+    void remove_reaction_seat(std::int32_t index)override{ //00604630, absent frozen inventory.
+        if(index<0||static_cast<std::size_t>(index)>=seats_.size())return;
+        auto& seat=seats_[static_cast<std::size_t>(index)];
+        if(seat.occupant)frames_.human_reaction_link(static_cast<SceneActor<Frames>*>(seat.occupant)->base().frame(),frames_.camera_root_sector());
+        seat.occupant=nullptr;seat.flag=false;control_.clear_occupant();
+        if(actor_.flag150){ //00604E90 updates the SAME registered descriptor.
+            frames_.update_scene_object(actor_.base().frame());initialize_collision();collisions_.move(descriptor_);
+        }
+    }
+    std::uint32_t reaction_seat_flags(std::int32_t index)const override{ //00604A10, first case-sensitive SEAT substring.
+        if(index<0||static_cast<std::size_t>(index)>=seats_.size())return 0;
+        const auto text=frames_.actor_user_data(seats_[static_cast<std::size_t>(index)].frame);const auto at=text.find("SEAT");
+        if(at==std::string::npos)return 0;
+        std::uint32_t flags=0;
+        for(auto offset=at+4;offset<text.size()&&text[offset]!=','&&text[offset]!=' ';++offset)
+            flags|=1u<<((static_cast<unsigned char>(text[offset])-0x30u)&31u);
+        return flags;
+    }
 
 private:
     static std::string indexed(const char* format,unsigned first,unsigned second=0) {

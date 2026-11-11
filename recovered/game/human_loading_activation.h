@@ -62,6 +62,9 @@ public:
         fields.vector1c0=fields.vector1b0;
         if(human_.scene_movement)human_.scene_movement->reset_loading(human_); //0059F2C0, Human+2C4.
     }
+    void damage(std::uint32_t kind,float amount,const HumanVector& point,const HumanVector& impulse,void* source,std::uint32_t hit_kind)override{
+        services_.apply_human_damage(human_,kind,amount,point,impulse,static_cast<Human*>(source),hit_kind);
+    }
     void deactivate(bool authority)override {
         const auto mode=services_.mode_flags();frontend::CleanupErrors errors;
         if(human_.flag90||local_started_) {

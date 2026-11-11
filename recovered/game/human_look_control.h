@@ -30,7 +30,7 @@ public:
     void reset(std::uint32_t property) { //0077DDC0 calls0077FD40 before its own writes.
         reset_human_look_words(state_);
         action_model_=Frame{}; //Native04 is a typed borrowed frame, never a host pointer DWORD.
-        interaction_actor_=nullptr;interaction_frame_=Frame{}; //Native08 and typed94 frame alternative.
+        death_source_=nullptr;interaction_actor_=nullptr;interaction_frame_=Frame{}; //Native00/08 and typed94 frame alternative.
         state_.set(0xbc,std::int32_t{-10000});state_.set(0xa0,property);state_.set(0xb0,std::uint8_t{0});
         for(auto offset:{0xb8u,0xc0u,0xd4u,0xd0u,0x40u,0xc8u,0xccu,0xb4u,0xd8u})state_.set(offset,std::uint32_t{0});
     }
@@ -69,6 +69,8 @@ public:
         state_.set(0x40,state_.template get<std::uint32_t>(0x40)|mask);
     }
     Actor* interaction_actor()const{return interaction_actor_;}
+    void death_source(Actor* actor){death_source_=actor;} //0077FBA0, independent of DD0 links A4/A8.
+    Actor* death_source()const{return death_source_;}
     Frame interaction_frame_argument()const{return interaction_frame_;}
     void frame_item_action(std::int32_t command){ //0077F380.
         if(locked(0x200u)){defer(0x200u);return;}
@@ -319,7 +321,7 @@ private:
     void defer(std::uint32_t mask){state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|mask);}
     HumanJointWords<0xe0> state_; //Only the stores above are behaviorally reconstructed.
     Control* control_=nullptr;Control* second_control_=nullptr;Frame action_model_{},interaction_frame_{};
-    Actor* interaction_actor_=nullptr;
+    Actor* interaction_actor_=nullptr;Actor* death_source_=nullptr;
     decltype(std::declval<Control&>().human_slot_address()) human_slot_=nullptr;
 };
 } //namespace hd2::game

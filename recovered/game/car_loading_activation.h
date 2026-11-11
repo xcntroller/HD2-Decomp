@@ -115,6 +115,23 @@ public:
     CarActorColdState<Frames>& cold_state()override{if(!view_)throw std::logic_error("Car callback requires initialized source state");return *view_;}
     CarSteeringState& steering_state()override{if(!initial_)throw std::logic_error("Car steering requires initialized source state");return initial_->steering;}
     auto& seats(){return seats_;}
+    std::uint32_t reaction_seat_flags(std::int32_t index)const override{ //004D9FC0.
+        return index<0||static_cast<std::size_t>(index)>=seats_.seats().size()?0u:seats_.seats()[static_cast<std::size_t>(index)].flags;
+    }
+    void remove_reaction_seat(std::int32_t index)override{ //004D9A40, native signed bounds precede every mutation.
+        if(index<0||static_cast<std::size_t>(index)>=actor_.occupants.size())return;
+        require_mode();if(!initial_)throw std::logic_error("Car seat release requires actual initialized physics");
+        remove_seat(static_cast<std::size_t>(index));
+    }
+    void dead_human_controls()override{ //005A0220, actual core controls, before reaction removes the occupied seat.
+        if(!initial_||!ready_)throw std::logic_error("Dead Human Car controls require initialized runtime");
+        auto& state=*initial_;const auto& fields=actor_.geometry->physics().scalars();
+        request_car_drive_pedal(state.control_requests,state.drive,fields,state.solver.substeps,0.f,true);
+        request_car_steering(state.steering,0.f);
+        request_car_brake_pedal(state.control_requests,state.drive,fields,state.solver.substeps,1.f);
+        request_car_emergency_brake(fields,state.solver.substeps,state.brake_ramp,state.brake_amount,state.brake_latch,true,true);
+        request_car_clutch_pedal(state.control_requests,fields,state.controller().desired_clutch,0.f);
+    }
 private:
     void require_mode()const{if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Car loading requires actual non7 network/input owners");}
     void require_geometry()const{if(!actor_.geometry||!actor_.ancillary||!actor_.callbacks)throw std::logic_error("Car activation requires its actual geometry/DM/callback owners");}
@@ -133,17 +150,25 @@ private:
         return finalize_car_cold(context,initial_->finalizer,elapsed,services_.car_game_kind());
     }
     void refresh_navigation(){navigation_.load(actor_.geometry->model(),actor_.geometry->body(),services_.mode_flags(),initial_->solver.speed,initial_->body().motion().velocity);}
-    void remove_seat(std::size_t index){ //004D9A40, actual unoccupied path.
-        if(actor_.occupants.at(index))throw std::runtime_error("Car seat removal requires its actual occupied Human detach receiver");
+    void remove_seat(std::size_t index){ //004D9A40, SAME occupied/camera/mass/control owners.
+        if(auto* occupant=actor_.occupants.at(index)){
+            frames_.human_reaction_link(occupant->base().frame(),frames_.camera_root_sector());
+            if(actor_.callback_services().car_human_controlled(occupant))seats_.view(index,false);
+        }
         initial_->mass.seat(index,0,initial_->solver.mass_changed);actor_.occupants[index]=nullptr;
         seats_.restore_camera(index);
-        if(index==0){actor_.driver24ac=nullptr;initial_->engine_timeout=5000;initial_->health.destroyed=false;
-            initial_->drive.engine_speed=0;initial_->drive.running=false;initial_->finalizer.engine_sound_pending=false;initial_->sounds.stop_all(); //004F2530(0,1).
+        if(index==0){actor_.driver24ac=nullptr;
+            if(!destroyed_){ //004F2530(0,!234F), forced shutdown mutates22A0 only in this branch.
+                initial_->engine_timeout=5000;initial_->health.destroyed=false;
+                initial_->drive.engine_speed=0;initial_->drive.running=false;initial_->finalizer.engine_sound_pending=false;initial_->sounds.stop_all();
+            }else if(initial_->drive.running)throw std::runtime_error("Destroyed Car seat release requires actual00518710 engine transition");
             const auto speed=actor_.geometry->physics().scalars().get(0x6f0);initial_->drive.governor=speed>0?speed+.5f:speed; //004F2630.
             initial_->brake_ramp=initial_->brake_amount=0;initial_->brake_latch=false; //004F26A0(0,0).
         }
+        if(auto& control=actor_.fields24b4.at(index))control->loading->clear_occupant();
         seats_.seats().at(index).flags&=~0x400u;frames_.update_scene_object(actor_.geometry->model());
-        initial_->drive.body_flags|=0x20000000u; //Every actual seat is empty in this loading lifetime.
+        bool empty=true;for(auto occupant:actor_.occupants)if(occupant){empty=false;break;}
+        if(empty)initial_->drive.body_flags|=0x20000000u;else initial_->drive.body_flags&=~0x20000000u;
     }
     void retire_runtime(){
         actor_.flag24a1=false;ready_=false;

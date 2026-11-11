@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
 #define HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
+#include "game/human_state_damage.h"
 
 #include "game/human_active_ai_state_loading.h"
 #include "game/human_guard_ai_state_loading.h"
@@ -156,6 +157,41 @@ public:
         if(!script||state.words().template get<std::uint32_t>(0x48)!=5)
             throw std::logic_error("Script binding notification requires the actual current state5");
         script->script_context(context);
+    }
+    void retire_dead_state(Base& state){ //Virtual84:005836E0, with Player0053BD00 tail.
+        retire_human_dead_state(state,services_,frames_);
+        if(state.words().template get<std::uint32_t>(0x48)==1){
+            auto& player=static_cast<Player&>(state);
+            services_.retire_dead_player_models(player);
+            presentation_.set_player_mode(player,*state.human(),0,services_.mode_flags());
+            if((services_.mode_flags()&7u)!=7u&&player.player_words().template get<std::uint8_t>(0x550))
+                services_.retire_dead_player_objective(player);
+        }
+    }
+    void notify_nearby_player_damage(Base& state){
+        if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Nearby Player damage requires actual Active AI state");
+        static_cast<Active&>(state).notify_nearby_player_damage();
+    }
+    void notify_dead_formation(Base& state){ //00595710 calls005380C0 only for actual Active AI state3.
+        if(state.words().template get<std::uint32_t>(0x48)!=3)return;
+        static_cast<Active&>(state).retire_formation_leader();
+    }
+    void reset_item_player_mode(Base& state){
+        if(state.words().template get<std::uint32_t>(0x48)!=1)throw std::logic_error("Player item mode reset requires actual Player B0");
+        presentation_.set_player_mode(static_cast<Player&>(state),*state.human(),0,services_.mode_flags());
+    }
+    void notify_damage(Base& state,std::uint32_t kind,std::uint32_t hit_kind,std::int32_t health,Human* source,
+            const HumanVector& point,const HumanVector& direction){
+        const auto type=state.words().template get<std::uint32_t>(0x48);
+        if(type==3||type==7)return; //005A43B0/00583200, genuine RET24, absent frozen.
+        if(type==1){notify_human_ai_damage(static_cast<Player&>(state),kind,hit_kind,health,source,point,direction,services_,frames_);return;}
+        if(type!=4&&type!=5&&type!=6&&type!=8)throw std::logic_error("Human damage has no actual B0 family");
+        notify_human_ai_damage(static_cast<AI&>(state),kind,hit_kind,health,source,point,direction,services_,frames_);
+        if(type==5&&(kind==1||kind==2||kind==3)&&source&&human_frame_signed_word(state.human()->properties.stats_ec[0])>0&&
+                !(state.words().template get<std::uint32_t>(0x50)&0x80000000u)){
+            auto& script=static_cast<Script&>(state);
+            if(!(script.state().template get<std::uint32_t>(0x1b8)&0x40u))script.damage_interrupt(*source); //00590400→0041DA20.
+        }
     }
 private:
     Frames& frames_;Inputs& inputs_;MissionTableSet& second_;MissionNavigation* navigation_;

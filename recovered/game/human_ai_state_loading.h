@@ -287,6 +287,15 @@ public:
         if(kind!=4&&kind!=5&&kind!=8)throw std::runtime_error("Human sight loss requires its actual derived B0 receiver");
         emit_sight(actor,1); //00574130, inherited by5 as well as4/8.
     }
+    void sight_enemy_killed(Human& actor)override{ //00573FB0, SAME actual first command event queue.
+        auto* command=this->command();if(!command)throw std::logic_error("Human kill notification requires its actual command owner");
+        const auto world=this->state_frames().actor_world_matrix(actor.base().frame());
+        auto& queue=command->first.events;auto event=queue.pool().acquire();
+        event->words[0]=0x10000003u;event->words[1]=10000;event->words[2]=0;
+        event->words[3]=0xffffffffu;event->words[4]=static_cast<std::uint32_t>(actor.base().id10());event->words[12]=0;
+        const HumanVector point{{world[12],world[13],world[14],world[15]}};
+        std::memcpy(event->words.data()+8,point.data(),16);queue.push(std::move(event));
+    }
     void sight_dead_acquired(Human& actor) override {
         const auto kind=this->words().template get<std::uint32_t>(0x48);
         if(kind!=4&&kind!=6&&kind!=8)throw std::runtime_error("Human dead-sight requires its actual derived B0 receiver");

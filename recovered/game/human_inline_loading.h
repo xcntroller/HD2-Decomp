@@ -48,6 +48,7 @@ public:
     Human* human()const{return human_;}Look* look()const{return look_.get();}
     Control* control()const{return control_.get();}Equipment* equipment()const{return equipment_.get();}
     bool initialized()const{return initialized_;}
+    template<class Publish>void damage_limb_limit(Publish& publish){flag14_=true;required_look().frame_movement_mode(3,publish);} //005AC370.
     void frame_position(const HumanVector& value){required_look().position_command(value);} //005AC080.
     void frame_current_direction(const HumanVector& value){required_look().current_direction(value);} //005AC0A0.
     void frame_target_direction(const HumanVector& value){required_look().target_direction(value);} //005AC0C0.

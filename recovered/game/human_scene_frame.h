@@ -40,7 +40,7 @@ void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed
         }
         if(human.base().id14()<0)return; //004D0E80 virtual64, separate from runtime byte1C.
         human.activation.flag178=false;refresh();
-        auto drops=[&](const HumanVector& position,const HumanVector& direction){runtime.spawn_human_blood(position,direction);};
+        auto drops=[&](const HumanVector& position,const HumanVector& direction){world.spawn_human_blood(position,direction);};
         world.advance_human_bleeding(human,elapsed,drops); //005A0480.
         world.advance_human_state(human,false,elapsed,runtime); //Actual B0 virtual24.
         directions();world.human_inline(human).advance_presentation_frame(elapsed,runtime);

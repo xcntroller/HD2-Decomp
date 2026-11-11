@@ -13,6 +13,7 @@ namespace hd2::game {
 template<class Frames,class Human,class Inputs,class Services>
 class HumanActiveAIStateLoading : public HumanAIStateLoading<Frames,Human,Inputs> {
 public:
+    void sight_enemy_killed(Human&)override{} //005A4350, genuine RET4 Active AI, absent frozen.
     using AI=HumanAIStateLoading<Frames,Human,Inputs>;using Base=typename AI::Base;
     HumanActiveAIStateLoading(Frames& frames,Inputs& inputs,MissionTableSet& second,
             HumanInputCallbacks& callbacks,HumanAIAction1Pool& actions,Services& services)
@@ -119,6 +120,15 @@ public:
         const auto action=*action_mode_==0?12u+unsigned(alternate):*action_mode_==1?16u+unsigned(alternate):
             *action_mode_==2?14u+unsigned(alternate):12u; //005385F0, virtual148.
         return {state_.template get<std::uint32_t>(0x174),alternate||state_.template get<std::uint8_t>(0x188)!=0,action}; //00524E00/005385D0.
+    }
+    void notify_nearby_player_damage(){ //0045F110, only prior14/15 modes change.
+        const auto action=player_handover().action;
+        if(action==14)set_action_mode(16);else if(action==15)set_action_mode(17);
+    }
+    void retire_formation_leader(){ //00595710 uses the actual005385F0 action selector, then005380C0.
+        const auto action=player_handover().action;
+        if(action==12||action==14)set_action_mode(16);
+        else if(action==13||action==15)set_action_mode(17);
     }
     auto& state(){return state_;}const auto& state()const{return state_;}
     std::int32_t hud_first_mode()const override { //00538590, virtual13C: pending1CC unless-1, else current1C8.

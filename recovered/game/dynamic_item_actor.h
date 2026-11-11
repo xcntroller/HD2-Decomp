@@ -84,6 +84,7 @@ public:
     }
     Entry entry() const {return entry_;}
     Body& body() {return body_;}
+    void thrown_lifetime(std::int32_t value){require_bound();field6ac_=value;} //00478EE0's nonoffline kind20 branch.
     std::int32_t lifetime() const {require_bound();return field6a0_;}
     std::int32_t sound_cooldown() const {require_bound();return field6a4_;}
 private:

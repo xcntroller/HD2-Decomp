@@ -77,7 +77,9 @@ public:
     }
     template<class Human>bool remove_human(Human* human,std::int32_t index){return panels_.remove_human(human,index);}
     template<class Human>void select_human(Human* human,bool selected,std::uint32_t mode,std::uint32_t difficulty){panels_.select_human(human,selected,mode,difficulty);}
+    template<class Human>void retire_dead_human_marker(Human* human){panels_.compass().remove_human(human);} //0049B960, no flags gate.
     void inventory_changed(){panels_.inventory_changed();}
+    template<class Random>void show_human_damage(Random& random){panels_.show_human_damage(random);}
     void set_hint(bool enabled,std::uint32_t identity){panels_.set_hint(enabled,identity);} //SAME inline small-panel owner.
     void set_hint(std::int32_t identity){set_hint(identity>=0,static_cast<std::uint32_t>(identity));} //0049DE30, signed ID gate; no flags gate.
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){panels_.hud_sound_direction(direction,kind);} //0049DE80 has no flags gate.

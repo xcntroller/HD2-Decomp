@@ -77,8 +77,16 @@ public:
     void human_car_contact(Actor actor,Actor source,const Vector& point,const Vector& impulse,const Vector& normal,float mass,Frame contact_frame)override{
         car_actor_hit5c(actor,source,point,impulse,normal,mass,contact_frame,nullptr); //0059C2D0 preserves sixth frame argument and appends null seventh.
     }
-    void car_human_impact(Actor,int,float,const Vector&,const Vector&,Actor,int)override{
-        throw std::runtime_error("Car Human damage requires actual005A1C90 victim/state/packet receivers");
+    void human_ragdoll_car_impulse(Actor actor,const Vector& impulse,const Vector& point)override{
+        if((car_mode_flags()&7u)!=7u)
+            throw std::runtime_error("Human ragdoll Car impulse requires actual nonoffline004DE800 ownership");
+        auto& state=car_state(actor);
+        game::apply_car_direct_impulse(frames_,state,impulse,point,0,Vector{{1,1,1,0}},[]{}); //Actual cold6A4 is null.
+    }
+    void car_human_impact(Actor actor,int kind,float amount,const Vector& point,const Vector& impulse,Actor source,int hit_kind)override{
+        auto& human=human_actor(actor);auto* cause=source?&human_actor(source):nullptr;
+        if(!human.loading_lifetime)throw std::logic_error("Car Human damage requires the actual containing Human lifetime");
+        human.loading_lifetime->damage(static_cast<std::uint32_t>(kind),amount,point,impulse,cause,static_cast<std::uint32_t>(hit_kind));
     }
     void submit_car_human_damage(Actor,const game::CarHumanDamageEvent&)override{
         throw std::runtime_error("Car Human damage publication requires actual004DB2E0 event serialization");

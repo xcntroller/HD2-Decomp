@@ -258,7 +258,9 @@ public:
          versions_(registry(),registration(7),d_.scene.frames(),d_.scene.buckets(),d_.startup.application_flags_owner()),
          lightmaps_(registry(),registration(8),d_.scene.frames()),shifts_(registry(),registration(10)),
          shots_(registry(),registration(14),d_.scene.frames(),d_.startup.shot_manager_process(),d_.startup.application_flags_owner()),
-         heavy_fire_(registry(),registration(16),d_.startup.heavy_fire_process()),particles_(registry(),registration(17),mission_effects_),
+         heavy_fire_(registry(),registration(16),d_.startup.heavy_fire_process()),particles_(registry(),registration(17),mission_effects_,
+             [this]{return d_.session.words.template get<std::uint8_t>(0x64)!=0;},
+             [&owners](const game::HumanVector& position){return static_cast<float>(owners.human_services().human_scene_light(position,Frames::Frame{},true));}),
          dependencies_{d_.startup,d_.request,d_.scene,d_.world_actors,d_.session,owners.human_services(),d_.presentation_shared,owners.scripts(),d_.sight,d_.players,d_.camera,
              tracks_,effects_,versions_,lightmaps_,shifts_,vertices,shots_,heavy_fire_,particles_},dispatch_(dependencies_){}
     ModuleOwners(const ModuleOwners&)=delete;ModuleOwners& operator=(const ModuleOwners&)=delete;

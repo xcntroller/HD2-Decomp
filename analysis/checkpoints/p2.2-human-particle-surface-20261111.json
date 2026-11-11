@@ -1,0 +1,453 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "p22_hum_complete": false,
+  "selected_checkbox": "reactions/damage/ragdoll",
+  "selected_checkbox_complete": false,
+  "dependency_checkpoint": "Reached damage/breath particles, bleeding and rest-position footprint consumption",
+  "added_entries": [
+    "0043f520",
+    "0043f730",
+    "0043fb40",
+    "004437c0",
+    "00440530",
+    "004406a0",
+    "00440800",
+    "00440b20",
+    "00440d80",
+    "00440dc0",
+    "00440fe0",
+    "004410b0",
+    "004412d0",
+    "00441390",
+    "00441460",
+    "00441a00",
+    "004427a0",
+    "00442860",
+    "006e9c10",
+    "006e9d30",
+    "004451b0",
+    "004455b0",
+    "00445150",
+    "00451c00",
+    "0044f4f0",
+    "0075d210",
+    "0078a4b0",
+    "0078aa10"
+  ],
+  "extended_entries": [
+    "00445af0",
+    "007507a0"
+  ],
+  "ledger_added_partial_client": 28,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2528,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan for point, instance, process/module, footprint and shared blood audits with explicit engine/query doubles",
+    "actual_world_i386": "PASS strict actual World/Control/particle/damage/footstep instantiation; compile only",
+    "launcher_i386": "PASS human-particle-footstep-application-i386.log compile/link; Windows output not run",
+    "diff": "PASS",
+    "original_execution": false
+  },
+  "excluded_credit": [
+    "Absent frozen00443F30/00443FE0/0075D1A0",
+    "Delegated engine math/CRT and unsigned radix006E4910 body",
+    "Pending reaction/damage bodies in this accumulated source checkpoint receive no new ledger entries yet",
+    "00761690/00784310 persistence is unreconstructed and remains P2.6"
+  ],
+  "research": [
+    "human-particle-core-abi-v3",
+    "human-particle-global-contract.json",
+    "human-surface-producer-references.json",
+    "human-footstep.asm",
+    "human-footprint-publication.asm",
+    "human-damage-material-particle.asm"
+  ],
+  "source_files": {
+    "recovered/game/car_callback_services.h": {
+      "sha256": "13ae8da0e20155674e3aade3314fb2c202408493529493542b1ce262a9946cd4",
+      "bytes": 5673
+    },
+    "recovered/game/car_cold_initialization.h": {
+      "sha256": "da63aa2eddf5f83f432795913e0187616fd2b405ce66f704d36e8d80a7b3900e",
+      "bytes": 9176
+    },
+    "recovered/game/car_control_requests.h": {
+      "sha256": "fb175f46a7376e2231486db40153d9bac1d1eb96dbf87f99f29233143f0251b5",
+      "bytes": 3264
+    },
+    "recovered/game/car_external_impulses.h": {
+      "sha256": "24ae29ece6931d2ae37833ba9465491313b22ca37d206468af365d3d6e5fa182",
+      "bytes": 7629
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "bb28d56256a1f99f5bb675ead17e0a3383a0e3a6b451439354873a6f246bb5c6",
+      "bytes": 16321
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "13503d9ce82356c3a4bafbbe8ea30c1b46158530e975f6f682c1babaaf875db4",
+      "bytes": 1670
+    },
+    "recovered/game/dynamic_item_actor.h": {
+      "sha256": "2c500415f118dea3c2470bda0f7d9a885bd13fbaf0e1c2ca7ad54ed813cf831a",
+      "bytes": 5356
+    },
+    "recovered/game/effect_definitions.h": {
+      "sha256": "75825ffb847acdd2c7067edbaa1598171c6b2730b9f55cd72f77391b0c64ae2b",
+      "bytes": 7267
+    },
+    "recovered/game/hud_injury_movies_loading.h": {
+      "sha256": "75aadb65030c0f56434c03b2b026541223fe4d64e0dc1508212309f411cea826",
+      "bytes": 4230
+    },
+    "recovered/game/hud_panels_loading.h": {
+      "sha256": "baac8669037cfce7bbcbb556667159e71304c1dde1002b87f67ec1343cb3f06e",
+      "bytes": 10163
+    },
+    "recovered/game/hud_scene_loading.h": {
+      "sha256": "81db265fad99299e2d523c8886b3acd45a93618ab7784ff09e0856030f53e2d9",
+      "bytes": 9616
+    },
+    "recovered/game/human_action_control.h": {
+      "sha256": "b70a8497deeaf5e851e9d519e9fd6b6935b27b554754e74ffcc8b3794003a744",
+      "bytes": 3327
+    },
+    "recovered/game/human_active_ai_state_loading.h": {
+      "sha256": "9ff490fa77233b1453aeec4414a5cef3ad0feccb5f75c225bec7b23bcdc804dd",
+      "bytes": 14848
+    },
+    "recovered/game/human_actor_contact.h": {
+      "sha256": "b2fb65749f9921ccec5eb90e8ab505feba70d30bdda8aa1e13c8e134b6d0a956",
+      "bytes": 1481
+    },
+    "recovered/game/human_ai_state_loading.h": {
+      "sha256": "87077fe0357c9ba33627f04de5babe0dd427e1ad3b2fa6e5a858e057211a78dd",
+      "bytes": 33925
+    },
+    "recovered/game/human_animation_state.h": {
+      "sha256": "ec629f2389e692a67e5d6343a24560d895840fcf3650944b96c670137ccaa1fe",
+      "bytes": 15887
+    },
+    "recovered/game/human_animation_tracks.h": {
+      "sha256": "09d8438f5a71ce4829888acad3f3049ce42324a542ed3e973bb79c92a0906ef7",
+      "bytes": 44740
+    },
+    "recovered/game/human_clip_pose.h": {
+      "sha256": "8c87fea14bb092d2070f6a04263b5b1c61a2b8b9283338f4b3e00b5a5d91c622",
+      "bytes": 7734
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "047bf6af3b04ab39caf80df04cbfed01b3f628ce60cafaedfc3a4b5685ec9e3c",
+      "bytes": 59394
+    },
+    "recovered/game/human_damage.h": {
+      "sha256": "d5ef88f6e0c5497773fd3d694e9a72385425d5eba6dc27bb28ec3b43b5d53a11",
+      "bytes": 6638
+    },
+    "recovered/game/human_footstep.h": {
+      "sha256": "b727afe9bfd1d52dc628d8bb0d23cbed2b973d61ee408efb334698141a49b607",
+      "bytes": 7232
+    },
+    "recovered/game/human_frame_commands.h": {
+      "sha256": "8ab62a1679f0697cb70b191661336d3cb42d75285af01a1ea33928338b0a9673",
+      "bytes": 3336
+    },
+    "recovered/game/human_ground_motion.h": {
+      "sha256": "2394d77f38be628327dca41f63e958f445816dd16a986ce7aaee42b804b01b30",
+      "bytes": 36869
+    },
+    "recovered/game/human_idle_motion.h": {
+      "sha256": "567d095fbdbf084ad532526dd5de6be2c613d51f2b816616185002ab0183935a",
+      "bytes": 4802
+    },
+    "recovered/game/human_inline_loading.h": {
+      "sha256": "dd719e8129ea0294747757a4494d1989bfa14e3d792b90be59361dbfbf7ad3fd",
+      "bytes": 11111
+    },
+    "recovered/game/human_inventory_lookup.h": {
+      "sha256": "e1a0c368405982369a64354e6543b7db7bfc9768623afe3e8583e8e9d7bd0547",
+      "bytes": 4582
+    },
+    "recovered/game/human_inventory_retirement.h": {
+      "sha256": "1d45182c531d4a47e760aba2ec12e4aa26522a5895bc1e4a37d39bf300b83fde",
+      "bytes": 4685
+    },
+    "recovered/game/human_joint_math.h": {
+      "sha256": "e1f5caae4040bdd4687b16d0ec7cb3bed87189b5d11aac948a1c908d9ec1ce51",
+      "bytes": 15000
+    },
+    "recovered/game/human_joint_owners.h": {
+      "sha256": "1488815adcac1fbdd6c8842b67a319ca2a85f08b976061653faaec922c95c01f",
+      "bytes": 31172
+    },
+    "recovered/game/human_loading_activation.h": {
+      "sha256": "a92789a641118852cf634d57f9c7587fa49843b91f9b8372d252b40d51cf3f30",
+      "bytes": 10541
+    },
+    "recovered/game/human_loading_composition.h": {
+      "sha256": "dfb30128261bb74ace16db821cc72b5c37c0251b98f75d2f5fa020fa259176d1",
+      "bytes": 4823
+    },
+    "recovered/game/human_loading_joints.h": {
+      "sha256": "ad811bc644eea094911584485255d01770ac6dcc97cc0a0b85524d62985c6365",
+      "bytes": 46281
+    },
+    "recovered/game/human_loading_lifetime.h": {
+      "sha256": "a81648e1d8dc8f95cd0075aad42c71fa132a1347580b685d50c062b9a08c59bc",
+      "bytes": 651
+    },
+    "recovered/game/human_loading_state_factory.h": {
+      "sha256": "d45a33e9008d68d800a5e0d24abdeb67ce7f950cc3c2c5ea6831eecdd1bea753",
+      "bytes": 13847
+    },
+    "recovered/game/human_loading_state_view.h": {
+      "sha256": "b2f59a0edd844226f237e97fe3901a8f383ae8a9ee02d345ee1a0bd67a5bfd33",
+      "bytes": 2460
+    },
+    "recovered/game/human_look_control.h": {
+      "sha256": "e9845acad877d2f16984110d8b8f9cbcc1762b316d2e5191148fd15795e8fc56",
+      "bytes": 20044
+    },
+    "recovered/game/human_look_frame.h": {
+      "sha256": "466cf944c06cb7fb303a41307fe534227314331547eb5c79249cd32f53166897",
+      "bytes": 12835
+    },
+    "recovered/game/human_model_geometry.h": {
+      "sha256": "ae6d450f78769018fdb6954a4d08002fbdde0abdf230be5fd8f6d477060da6ce",
+      "bytes": 111631
+    },
+    "recovered/game/human_movement_control.h": {
+      "sha256": "ca006966275ba4492f33a7a4b3bbf5fb5d69c50f8d107726e44596bf4962d2ce",
+      "bytes": 12287
+    },
+    "recovered/game/human_obstruction_motion.h": {
+      "sha256": "52258af2d679bc797a12983e485932fbd9daab081bda5aee48e0068c8c2e7c02",
+      "bytes": 1923
+    },
+    "recovered/game/human_physics_globals.h": {
+      "sha256": "9fb94cc112118b7b1603b9f4506add3332877735165595eafa1e2e7c959589ea",
+      "bytes": 997
+    },
+    "recovered/game/human_physics_loading.h": {
+      "sha256": "2dbc3d672b1f78633dee0c0d9a98209212610b65df013bb265218d121db01dd5",
+      "bytes": 34363
+    },
+    "recovered/game/human_player_state_loading.h": {
+      "sha256": "e8b63818127fded1139db96799495bbc2d879dc2585d616d007b70c9ac3cee32",
+      "bytes": 18574
+    },
+    "recovered/game/human_presentation_shared.h": {
+      "sha256": "c21ab35f9981a227b24f5720e9e82de693694ab824d7bed919641d3f22872473",
+      "bytes": 4352
+    },
+    "recovered/game/human_projection_models.h": {
+      "sha256": "59ffeea921ec28d96e4acd2554eda6ddb7464c9c140e8fc11ae7d854363c0699",
+      "bytes": 8091
+    },
+    "recovered/game/human_projection_process.h": {
+      "sha256": "f55709f6d7c36a7a53e799b8a54f8cc482bba0373ee9a39672379379785862ca",
+      "bytes": 7817
+    },
+    "recovered/game/human_reaction_selection.h": {
+      "sha256": "dba909d2bdbf643cdbce322d13d9145b0980bed476e8f3a102bfb8b3ece71b86",
+      "bytes": 5425
+    },
+    "recovered/game/human_reaction_shape.h": {
+      "sha256": "aa9b6748a877799cddb1f4ec34d7f2cbd4c3fbb64761a40fcc94f5361d55b77a",
+      "bytes": 4886
+    },
+    "recovered/game/human_retained_clip_motion.h": {
+      "sha256": "f41d6790eb4f8b13610def410b5dfd70b581e4ca1e655c24e0139470a1d30491",
+      "bytes": 15239
+    },
+    "recovered/game/human_scene_frame.h": {
+      "sha256": "64170b1f3a3fdba8db1afc4382777f3d352580a42812f5c934fca7c84e27f3bb",
+      "bytes": 4690
+    },
+    "recovered/game/human_script_ai_state_loading.h": {
+      "sha256": "6737b4f3184f811a3daa22a0e7cb99310585504972c9a49d162e2db3a6ad8409",
+      "bytes": 13929
+    },
+    "recovered/game/human_script_context_services.h": {
+      "sha256": "446dd702688abd6d8f7a6e3d71df8be52d817bbbad5368a7e7e7b1c7bc906eaf",
+      "bytes": 4321
+    },
+    "recovered/game/human_state_action_completion.h": {
+      "sha256": "1b05923525b7c9d39993f76a59fcbc67c81fd50bb7957bd3ee0a841ba6a4b700",
+      "bytes": 3534
+    },
+    "recovered/game/human_state_base_loading.h": {
+      "sha256": "8da098c1709a017af018f2c754b00b3f097a300ac1ec7ea4c4b835bcd49edd6f",
+      "bytes": 13642
+    },
+    "recovered/game/human_state_damage.h": {
+      "sha256": "b7b21f5c0cfcce0da5e0c91cc1566e4170b3589c0bbec891781adbd3ac4dba99",
+      "bytes": 7734
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "f70807d56740be86e7dbd61d3386f07e5105d0a0bb1bcf6aa6cf26c9bbf64582",
+      "bytes": 78042
+    },
+    "recovered/game/mission_effects_loading.h": {
+      "sha256": "b6459b806377f46710905b9ee6d610ca1a36626ab957d9c10777906159dba318",
+      "bytes": 5514
+    },
+    "recovered/game/mission_particle_emission.h": {
+      "sha256": "41170cc3da5ccaebdd5974ac7273465716a760c1eb2b8be65e794b466da64227",
+      "bytes": 2019
+    },
+    "recovered/game/mission_particle_instance.h": {
+      "sha256": "9708e41baa3115a1714cfdbe3a463542db1ce0043df561247f543d0039b4a01f",
+      "bytes": 15196
+    },
+    "recovered/game/mission_particle_point.h": {
+      "sha256": "572295f75371d5e147e4fed6868a370b36695411d12a82bfc42b65b5d8731fcc",
+      "bytes": 9221
+    },
+    "recovered/game/mission_particle_point_pool.h": {
+      "sha256": "e25870ff088fcc3d78872a436419ea06f133710f99650b3d5bd3023d43bd47d0",
+      "bytes": 2050
+    },
+    "recovered/game/mission_particle_publication.h": {
+      "sha256": "006b6e19e66d5085942528f67bd51c828aeedcc10b94f93bc0e6f679e6347738",
+      "bytes": 2993
+    },
+    "recovered/game/mission_script_loading_runtime.h": {
+      "sha256": "1fbde11f9e2f99ff76cfeb0f904a241ecce78283bb4f462f945ca0f920859e94",
+      "bytes": 8316
+    },
+    "recovered/game/mission_script_world_link.h": {
+      "sha256": "0825721cb72469dfe0fdc748fdad9d921ab9899de068270356753aae98f8392b",
+      "bytes": 3006
+    },
+    "recovered/game/mounted_weapon_control.h": {
+      "sha256": "3a77d320e799deab8de9ef795c2c54f93f95b730dd27e5e31f10eb697e3925a5",
+      "bytes": 1319
+    },
+    "recovered/game/mounted_weapon_control_loading.h": {
+      "sha256": "5945ac07a9a4283938184625333c6d07e6eb8a186deaeb8142cb6ca4629b03e2",
+      "bytes": 9449
+    },
+    "recovered/game/particle_module_loading.h": {
+      "sha256": "3e8edcb234f84b1d1f53f0b167b077cb9f03aaa1c42ea1c0e733d2cd84108d17",
+      "bytes": 8122
+    },
+    "recovered/game/shot_blood_marks.h": {
+      "sha256": "25619122d2ac98fdc9c3731cc8a78fc694f6bf2513351adc9125a3caa0b0e121",
+      "bytes": 7316
+    },
+    "recovered/game/shot_manager_loading.h": {
+      "sha256": "7dc476a95ed51604023e24907a79b65014f28b424810b46b0452b3c353b5f313",
+      "bytes": 11324
+    },
+    "recovered/game/shot_surface_marks.h": {
+      "sha256": "9efd9b810d725edd4e9a9b4e1358d843c525e71e891bdda99fbb110ad8acbf38",
+      "bytes": 5573
+    },
+    "recovered/game/static_weapon_loading.h": {
+      "sha256": "983218764ff2bf6ae8d6c03943e5dfe2974ca9ff1d43de169e1c72d921e92223",
+      "bytes": 9312
+    },
+    "recovered/game/static_weapon_loading_lifetime.h": {
+      "sha256": "edec1cb3e66db2615995f069fffe4f72a7e55238813d36314b66cd7757cbe733",
+      "bytes": 643
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "2f3dbc2ce247676c61dde722a1309892b3873ae9cf515ee958f5208a59d96454",
+      "bytes": 94859
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "0224bcd8d01b3d7d2745fb0c837206af6260e3b2631e0ee1365dd99b9fa2c23a",
+      "bytes": 9682
+    },
+    "recovered/host/game_mesh_movie.h": {
+      "sha256": "a2808722309050451d33ba706156094f2a4882b2aed6961c2408e27f14af60d1",
+      "bytes": 5393
+    },
+    "recovered/host/game_world_loading.h": {
+      "sha256": "83bcc8b697ebd7c4cfcc71fa2a9d19c9f35d016e5db6f48947f929c94982f4ca",
+      "bytes": 26647
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "241faa7d0cf28cbe7cc810a097ba2a348ebc504b6468ca15ec48a6fbcbf2e299",
+      "bytes": 51240
+    }
+  },
+  "temporary_audits": {
+    "human-particle-point-native": {
+      ".cpp": {
+        "sha256": "45441530992d061e0ad836e8cd0526d6b1323d1065fdc36c9f36e2125daa504e",
+        "bytes": 2993
+      },
+      ".log": {
+        "sha256": "41aab962f00476d74e9818a21ba92b3e5a82405fd27fe1f1789417e96066eaae",
+        "bytes": 151
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "human-particle-instance-native": {
+      ".cpp": {
+        "sha256": "b299e5b9f9a35779d66d775ec2686b82466be2fa4c0fe8087d3fa6516393981b",
+        "bytes": 7112
+      },
+      ".log": {
+        "sha256": "2cfd61e391f2a5a0455d361b241af2f3b213e08410d7b9618a68886aa21353b6",
+        "bytes": 147
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "human-particle-module-native": {
+      ".cpp": {
+        "sha256": "cb641d1aa75ce96dc85fa3e887de802c400f5a801f9468770575bbfdf2cc9277",
+        "bytes": 9218
+      },
+      ".log": {
+        "sha256": "9e026a08c0ef906829dd879eab384fffe5dc96ee229e06768a6e1c7c76d97860",
+        "bytes": 142
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "human-footstep-native": {
+      ".cpp": {
+        "sha256": "134b0eba9bb9c1d5a1857713c7040914554922ebd9419a8f7806476b95311413",
+        "bytes": 7783
+      },
+      ".log": {
+        "sha256": "edbfed1d9f5b5378a07ea47d9d2f7af1ac0e4c58e763ea876e4fc516e3219bc3",
+        "bytes": 138
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "human-blood-native": {
+      ".cpp": {
+        "sha256": "1ac102c520fcdf986800215a71694e22074853aeff851f916385b3a830ff551d",
+        "bytes": 4979
+      },
+      ".log": {
+        "sha256": "5cb762ddaa5112237dd7a12de9cd141e2d0fa387dcf0f4d50a62fce23e3642a6",
+        "bytes": 109
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  }
+}

@@ -7,6 +7,8 @@
 #include <list>
 #include <iterator>
 #include <stdexcept>
+#include <vector>
+#include <cmath>
 
 namespace hd2::game {
 template<class Frames>class HumanProjectionModels;
@@ -17,11 +19,25 @@ template<class Frames>class HumanProjectionModels;
 //pool retains already-detached frame references until Items shutdown0078A980.
 template<class Owner>class HumanProjectionProcess {
 public:
-    struct Record {std::uint32_t time=0;std::int32_t human_id=-1;Owner frame{nullptr,nullptr};};
+    struct Record {std::uint32_t time=0;std::int32_t human_id=-1;Owner frame{nullptr,nullptr};std::uint32_t texture_index=0;bool left=false;};
     using Records=std::list<Record>;
     HumanProjectionProcess()=default;
     HumanProjectionProcess(const HumanProjectionProcess&)=delete;
     HumanProjectionProcess& operator=(const HumanProjectionProcess&)=delete;
+    void retain_surface_position(const std::array<float,4>& position,std::uint32_t mode){ //0078AC30, SAME0098AD18/1C/20/24.
+        if(!(mode&2u))return;
+        if(surface_positions_.size()==surface_positions_.capacity())surface_positions_.reserve(surface_positions_.capacity()+8u);
+        surface_positions_.push_back(position);
+    }
+    bool near_surface_position(const std::array<float,4>& position,std::uint32_t mode)const{ //0078AD00, AL only;0075D210 consumer.
+        if(!(mode&2u))return false;
+        for(const auto& prior:surface_positions_)
+            if(std::abs(static_cast<long double>(position[0])-prior[0])<.41999998688697815&&
+               std::abs(static_cast<long double>(position[1])-prior[1])<.20000000298023224&&
+               std::abs(static_cast<long double>(position[2])-prior[2])<.41999998688697815)return true;
+        return false;
+    }
+    void clear_surface_positions(){std::vector<std::array<float,4>>{}.swap(surface_positions_);} //0078A5F0/0078A7D0 free allocation, reset count/capacity.
     void shutdown(std::uint32_t mode){ //0078A980 releases frame BEFORE record, in LIFO free-pool order.
         if(!(mode&2u))return;
         if(world||!primary.empty()||!fading.empty())throw std::logic_error("Retire actual Human projection world before Items process shutdown");
@@ -32,6 +48,7 @@ private:
     template<class State,class Services>friend void update_human_projection_process(State&,std::uint32_t,Services&);
     template<class State,class Services>friend void tick_item_projection_process(State&,bool,std::uint32_t,Services&);
     Records primary,fading,pool;
+    std::vector<std::array<float,4>> surface_positions_;
     std::array<std::uint32_t,400> per_human{}; //0098A6D8, reset only at actual shared retirement.
     std::uint32_t scan_timer=0,fade_timer=0,presentation_timer=0; //0098AD64/68/0098B874, process BSS; not last-user resets.
     std::uint32_t enabled=0,maximum_per_human=40,lifetime_seconds=40; //0098AD60,0084F5A4/A8.

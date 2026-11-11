@@ -12,6 +12,7 @@
 #include <mmsystem.h>
 #include <cstdlib>
 
+namespace hd2::game {struct MissionParticleVertex;}
 namespace hd2::host {
 
 //Shared real frame endpoints for actor initialization. Entry registries,
@@ -578,6 +579,19 @@ public:
     }
     void refresh_dynamic_human_model(Frame model){call<void>(scene_.frame(),0x144,model);} //007646F0/00755500, original scene receiver.
     void detach_human_effect_model(Frame model){(void)call<std::int32_t>(model,0x38,Frame{},std::uint32_t{5});} //007B0910 ignores native LinkTo return.
+    void human_reaction_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{1});} //0074D510/occupied seat removal ignore LinkTo status.
+    Frame human_visual_bone(Frame visual,unsigned index){ //005A3CC0, actual borrowed skeletal frame table214.
+        if(!visual)throw std::logic_error("Human damage point requires its actual skeletal visual");
+        const auto* bones=field<const Frame*>(visual,0x214);
+        if(!bones||index>=25)throw std::logic_error("Human damage point has no actual bone table entry");
+        return bones[index];
+    }
+    void shot_blood_scale(Frame frame,float size,float lane){
+        put(frame,0xd0,size);put(frame,0xd4,size);put(frame,0xd8,.05000000074505806f);put(frame,0xdc,lane);
+        car_rotation(frame);put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+    }
+    void human_reaction_model_direction(Frame model,const Vector& direction){call<void>(model,0xc,&direction,0.f);}
+    void place_human_reaction_model(Frame model){const auto world=actor_world_matrix(model);const Vector position{{world[12],world[13],world[14],world[15]}};call<void>(scene_.frame(),0xec,model,&position);}
     void register_human_effect_model(Frame model,Frame z,Frame q){call<void>(scene_.frame(),0x138,model,z,q);} //007B2B3D..007B2B4C, actual retained markers.
     void unregister_human_model(Frame model) {call<void>(scene_.frame(),0x13c,model);}
     void flag_human_model(Frame model) {put(model,0xe0,field<std::uint32_t>(model,0xe0)|0x400000u);}
@@ -620,6 +634,10 @@ public:
         (void)call<std::int32_t>(model,0x38,parent,std::uint32_t{1}); //Original ignores the LinkTo result.
         call<void>(model,0x24);
     }
+    void human_loose_item_pose(Frame model,const Vector& position,const Vector& direction){ //00478EE0, frame14 differs from direction0C.
+        call<void>(model,0x14,position.data(),direction.data(),static_cast<const void*>(nullptr));
+        call<void>(model,0x24);
+    }
     std::int32_t load_human_holster_model(Frame model,const char* key) {return resources_.load_model(model,key,0x10);}
     void remove_human_holster_frame(Frame model,Frame frame) {call<void>(model,0x80,frame);}
     void human_equipment_opacity(Frame frame,float opacity) {call<void>(frame,0xa4,opacity);}
@@ -635,6 +653,10 @@ public:
     void human_projection_blend(Frame frame,unsigned value){call<void>(frame,0xb4,value);}
     float human_projection_alpha(Frame frame)const{return field<float>(frame,0x1e8);}
     void human_projection_alpha(Frame frame,float value){call<void>(frame,0xa8,value);}
+    void human_footprint_colour(Frame frame,float value){const Vector colour{{value,value,value,0}};call<void>(frame,0xb0,colour.data());}
+    void human_footprint_add(Frame frame){call<void>(scene_.frame(),0x80,frame);}
+    void human_footprint_range(Frame frame,float value){put(frame,0x1e4,value);}
+    void human_footprint_project(Frame frame){call<void>(frame,0xbc,std::uint32_t{0},std::uint32_t{0});}
     MenuDriver::Owner human_shadow_template(const std::string& key) {
         MenuDriver::Owner result{nullptr,nullptr};
         if(resources_.cache(4).get(key,result)!=0)result.reset(); //004894E0 requires exact zero after a cache miss.
@@ -694,6 +716,25 @@ public:
     std::uint32_t human_frame_epoch(Frame frame) const {return vertex_frame_epoch(frame);}
     std::uint32_t human_scene_epoch() const {return vertex_scene_epoch();}
     bool human_control_visible(Frame frame)const{return (field<std::uint8_t>(frame,0xe0)&1u)!=0;}
+    Vector human_footstep_local_direction(Frame frame){ //0075D88D, normalize only an already cached local matrix.
+        const bool cached=(field<std::uint32_t>(frame,0xe0)&0x10u)!=0;
+        if(!cached){
+            put(frame,0xe0,field<std::uint32_t>(frame,0xe0)|0x10u);
+            using Normalize=void(WINAPI*)(void*);exported<Normalize>("?Normalize@S_quat@@QAGXXZ",0x30540)(address(frame,0xc0));
+            using Set=void(WINAPI*)(void*,const void*);exported<Set>("?SetRot3@S_matrix@@QAGXABUS_quat@@@Z",0x2d450)(address(frame,0x80),address(frame,0xc0));
+        }
+        Vector direction=field<Vector>(frame,0xa0);
+        if(cached){
+            const auto square=(static_cast<long double>(direction[1])*direction[1]+static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[0])*direction[0];
+            constexpr float epsilon=9.99999993922529e-09f;
+            if(!(std::abs(square-1.L)<epsilon)){
+                const float stored=static_cast<float>(square);
+                if(!(stored<epsilon)){const auto inverse=1.L/std::sqrt(static_cast<long double>(stored));for(unsigned axis=0;axis!=3;++axis)direction[axis]=static_cast<float>(direction[axis]*inverse);}
+                else{const auto axis=direction[0]!=0?0u:direction[2]!=0?2u:1u;direction[axis]=direction[axis]<0?-1.f:1.f;}
+            }
+        }
+        return direction;
+    }
     void human_control_set_position(Frame frame,const Vector& position){ //007599F0.
         call<void>(frame,0x08,position.data());
         call<void>(scene_.frame(),0x144,frame);
@@ -709,9 +750,56 @@ public:
         exported<Rotate>("?RotateByMatrix@S_vector@@QBG?AU1@ABUS_matrix@@@Z",0x2ec80)(value.data(),result.data(),matrix.data());
         return result;
     }
+    void particle_point_direction(Matrix& matrix,const Vector& direction){ //0043F730/0043FB40, SetDir3 preserves translation.
+        using Set=void(WINAPI*)(void*,const void*);
+        exported<Set>("?SetDir3@S_matrix@@QAGXABUS_vector@@@Z",0x2c7d0)(matrix.data(),direction.data());
+    }
+    auto create_mission_particle_visual(){ //00440530, SAME driver EMTR factory and matching frame release.
+        auto visual=create_car_particle_frame();if(!visual)throw std::runtime_error("Mission particle EMTR factory returned null");
+        put(visual.get(),0x1e1,std::uint8_t{1});car_particle_name(visual.get(),"MR_Particle");return visual;
+    }
+    void mission_particle_texture(Frame visual,const std::string& name){ //00440800, GetIGraph+3C(name,NULL,2,out), bind9C then release.
+        Frame texture=nullptr;const auto result=graphics_.methods->load_texture(&graphics_,name.c_str(),nullptr,2,&texture);
+        ResourceOwner owner(texture,ResourceRelease{module_});
+        if(result==0){if(!owner)throw std::runtime_error("Particle texture loader returned null success");car_particle_texture(visual,owner.get());}
+    }
+    void mission_particle_initial_mode(Frame visual,std::uint32_t kind,const std::array<std::uint32_t,2>& special){
+        car_particle_property(visual,0x13,kind==3?0x80u:1u<<(kind&31u));
+        if(kind==3){call<void>(visual,0xb0,special[0]);call<void>(visual,0xb8,special[1]);}
+    }
+    void mission_particle_world(Frame visual,const Matrix& matrix){
+        put(visual,0x11c,0xffffffffu);put(visual,0x40,matrix);put(visual,0xe0,field<std::uint32_t>(visual,0xe0)|0x20u);
+    }
+    void mission_particle_place(Frame scene,Frame visual){const auto world=actor_world_matrix(visual);
+        const Vector position{{world[12],world[13],world[14],world[15]}};call<void>(scene,0xec,visual,position.data());}
+    void mission_particle_epoch(Frame visual,std::uint32_t epoch){put(visual,0x11c,epoch);}
+    std::uint32_t mission_particle_scene_epoch(Frame scene)const{return field<std::uint32_t>(scene,0x11c);}
+    Matrix mission_particle_inverse(Frame visual){ //00441460 caches the actual EMTR inverse130 under native1D0 bit100000.
+        const auto flags=field<std::uint32_t>(visual,0x1d0);if(flags&0x40u)return game::human_identity();
+        if(!(flags&0x100000u)){put(visual,0x1d0,flags|0x100000u);(void)actor_world_matrix(visual);
+            using Inverse=std::uint8_t(WINAPI*)(void*,const void*);
+            (void)exported<Inverse>("?Inverse@S_matrix@@QAG_NABU1@@Z",0x2c620)(address(visual,0x130),address(visual,0x40));}
+        return field<Matrix>(visual,0x130);
+    }
+    float mission_particle_depth(Frame scene,const Vector& position){ //00441670 uses actual camera158/168/178/188, not a substitute camera matrix.
+        const auto camera=field<Frame>(scene,0x15c);if(!camera)throw std::logic_error("Particle depth requires actual scene camera");
+        return static_cast<float>(((static_cast<long double>(position[1])*field<float>(camera,0x168)+
+            static_cast<long double>(position[2])*field<float>(camera,0x178))+static_cast<long double>(position[0])*field<float>(camera,0x158))+field<float>(camera,0x188));
+    }
+    void mission_particle_bounds(Frame visual,const std::array<float,12>& bounds){call<void>(visual,0x74,bounds.data());}
+    Matrix mission_particle_camera_matrix(Frame scene){const auto camera=field<Frame>(scene,0x15c);
+        if(!camera)throw std::logic_error("Particle publication requires actual scene camera");return actor_world_matrix(camera);}
+    Matrix mission_particle_rotate_matrix(const Matrix& first,const Matrix& second){Matrix result{};using Rotate=Matrix*(WINAPI*)(const void*,void*,const void*);
+        exported<Rotate>("?RotateByMatrix@S_matrix@@QBG?AU1@ABU1@@Z",0x2d9b0)(first.data(),result.data(),second.data());return result;}
+    game::MissionParticleVertex* mission_particle_vertices(Frame visual,std::uint32_t count,float depth){return call<game::MissionParticleVertex*>(visual,0xd4,count,depth);}
     Matrix human_y_rotation(float angle){ //007694F0, actual LS3DF RotateYMatrix.
         Matrix result{};using Rotate=Matrix*(WINAPI*)(void*,float);
         exported<Rotate>("?RotateYMatrix@@YG?AUS_matrix@@M@Z",0x2c4d0)(result.data(),angle);
+        return result;
+    }
+    Matrix human_z_rotation(float angle){ //007A32C0/007A3500, actual LS3DF RotateZMatrix.
+        Matrix result{};using Rotate=Matrix*(WINAPI*)(void*,float);
+        exported<Rotate>("?RotateZMatrix@@YG?AUS_matrix@@M@Z",0x2c530)(result.data(),angle);
         return result;
     }
     void mark_human_air_shadow(Frame frame){put(frame,0xe0,field<std::uint32_t>(frame,0xe0)|0x80u);} //00769920.
@@ -807,6 +895,11 @@ public:
     void human_sound_detach(Frame sound) {call<void>(sound,0x38,Frame{},std::uint32_t{0});}
     void human_sound_missing(const char* name,std::int32_t) {std::fprintf(stderr,"AESound :%s : not found\n",name);}
     void hud_injury_prepare(Frame visual) {call<void>(visual,0xa0);}
+    void hud_injury_movie_texture(Frame visual,Frame texture){ //004AD380: ONE LOD0 lookup, then first-group material.
+        const auto material=hud_first_material_from_lod(first_person_material_lod(visual));
+        if(!material)throw std::logic_error("HUD injury visual requires its actual material");
+        call<void>(material,0x1c,texture);
+    }
     void hud_position(Frame frame,const std::array<float,3>& position) {call<void>(frame,8,position.data());}
     void hud_group18(Frame visual) { //004AB230 calls first LOD0 group's actual+18; no material substitution.
         const auto lod=first_person_material_lod(visual);
@@ -866,6 +959,21 @@ public:
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}
     MenuDriver::Owner create_hud_info_model(){return driver_.create(9);}
     MenuDriver::Owner create_shot_model(){return driver_.create(9);}
+    MenuDriver::Owner create_shot_surface(){return driver_.create(0x4a4f5250u);} //004546E0, PROJ driver extension.
+    void shot_surface_texture(Frame frame,Frame texture){call<void>(frame,0x9c,texture);}
+    void shot_surface_scale(Frame frame,float x,float y,float z){
+        put(frame,0xd0,x);put(frame,0xd4,y);put(frame,0xd8,z); //Native DC is unwritten; retain its known prior lane.
+        (void)car_rotation(frame);
+        put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+    }
+    void shot_surface_direction(Frame frame,const Vector& direction,float roll){call<void>(frame,0xc,direction.data(),roll);}
+    void shot_surface_enabled(Frame frame,bool value){call<void>(frame,0xb4,std::uint32_t(value));}
+    void shot_surface_link(Frame frame,Frame sector){call<void>(frame,0x38,sector,std::uint32_t{1});}
+    void shot_surface_mode(Frame frame,std::uint32_t value){call<void>(frame,0xb8,value);}
+    void shot_surface_colour(Frame frame,float amount){
+        const Vector colour{{amount*field<float>(frame,0x1f0),amount*field<float>(frame,0x1f4),amount*field<float>(frame,0x1f8),0}};
+        call<void>(frame,0xb0,colour.data());
+    }
     std::int32_t load_shot_model(Frame model,const char* name){return resources_.load_model(model,name,0);} //004290A0 verbatim resource keys.
     Frame shot_hidden_sector()const{return field<Frame>(scene_.frame(),0x200);}
     void shot_query_performance_clock(){LARGE_INTEGER frequency{},counter{};(void)QueryPerformanceFrequency(&frequency);(void)QueryPerformanceCounter(&counter);} //0044DDE0 discards both results.

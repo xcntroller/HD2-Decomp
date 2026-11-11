@@ -254,7 +254,7 @@ public:
     bool& script_advance_override(){return script_advance_override_;} //008692D0;00424900 reset scope owns its writes.
     game::MissionIntegrityTables& mission_integrity_tables(){return mission_integrity_tables_;} //SAME process owner; no invented initialized/healthy state.
     game::MissionScriptVariables& mission_script_variables(){return mission_script_variables_;} //Module4 survives world finish/reconstruction;004270D0 applies actual selection kind afterward.
-    game::MissionEffectsProcess<EngineFrame*>& mission_effects_process(){return mission_effects_process_;}
+    game::MissionEffectsProcess<GameActorServices>& mission_effects_process(){return mission_effects_process_;}
     game::ShotManagerLoadingState<GameActorServices>& shot_manager_process(){return shot_manager_process_;}
     game::HeavyFireLoadingState& heavy_fire_process(){return heavy_fire_process_;}
     auto& effects_loading_process(){return effects_loading_process_;}
@@ -325,6 +325,11 @@ public:
     bool game_sound_voice_live(std::int32_t handle)const{ //004374A0.
         return frontend::sound_voice_frame(sound_data_.runtime,handle)!=nullptr;
     }
+    std::optional<bool> game_sound_voice_active(std::int32_t handle)const{ //007CDF10 distinguishes an absent frame from an inactive frame.
+        auto* frame=frontend::sound_voice_frame(sound_data_.runtime,handle);
+        if(!frame)return std::nullopt;
+        return sound_backend_.sound_active(frame,0);
+    }
     void resume_game_sound_voice(std::int32_t handle) { //SOUND+78/004374A0→actual frame+30(1), used by Door00601F90.
         set_game_sound_voice_enabled(handle,true);
     }
@@ -354,6 +359,8 @@ public:
     const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
     void initialize_game_dubbing(){dubbing_sound_.initialize_loading();}
     void synchronize_game_dubbing(){dubbing_sound_.synchronize_attachments();}
+    void stop_game_dubbing(EngineFrame* frame){dubbing_sound_.stop_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();} //0071E460.
+    bool playing_game_dubbing(EngineFrame* frame)const{return dubbing_sound_.playing(frame);} //0071ECC0.
     void update_game_dubbing(std::uint32_t elapsed){dubbing_sound_.update(elapsed);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void retire_game_dubbing(EngineFrame* frame){dubbing_sound_.retire_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void finish_game_dubbing(){dubbing_sound_.clear(false);sound_backend_.rethrow_dubbing_cleanup_failure();} //0071DE60: no morph neutral on native mission finish.
@@ -627,6 +634,10 @@ public:
     }
     struct CreditsMusic { std::int32_t request; std::uint32_t position; };
     std::int32_t game_music_request()const{return sound_data_.selection.requested;} //SOUND+70, SAME primary owner.
+    void select_game_secondary_music(std::int32_t track){ //SOUND+68=00436F60; this is NOT a voice-group stop.
+        frontend::select_secondary_sound_movie(sound_catalog_,sound_data_.settings,sound_data_.fade,
+            sound_data_.secondary,sound_data_.selection,gate_,track,sound_backend_);
+    }
     void queue_game_music(std::int32_t track,std::int32_t fade,std::uint32_t position){ //SOUND+6C.
         frontend::queue_primary_sound_movie(sound_data_.settings,sound_data_.fade,
             sound_data_.secondary,sound_data_.selection,track,fade,position);
@@ -767,7 +778,7 @@ private:
     //through a replaced StartupSession's former process table lifetime.
     game::IntegrityThreads mission_integrity_threads_;
     game::MissionScriptVariables mission_script_variables_;
-    game::MissionEffectsProcess<EngineFrame*> mission_effects_process_;
+    game::MissionEffectsProcess<GameActorServices> mission_effects_process_;
     game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;
     game::HeavyFireLoadingState heavy_fire_process_;
     game::EffectsLoadingProcess<EngineFrame*> effects_loading_process_;

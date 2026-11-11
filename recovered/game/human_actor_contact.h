@@ -10,7 +10,7 @@ namespace hd2::game {
 //remain with their callers and earn no additional reconstruction credit.
 template<class Human,class Actor,class Services,class Runtime>
 bool receive_human_actor_contact(Human& human,Actor& source,const HumanVector& point,
-        Services& services,Runtime& runtime){
+        Services& services,Runtime&){
     if(!human.loading_state)return false;
     const auto mode=services.mode_flags();
     if((mode&1u)&&source.base().type()==4&&services.human_collision_car_speed(source)>2.f){
@@ -21,7 +21,7 @@ bool receive_human_actor_contact(Human& human,Actor& source,const HumanVector& p
                 if(occupant)services.human_collision_alignment(*occupant,-30.f);
             }
         }
-        runtime.damage_human_car_contact(human,point,human.base().world_direction(),services.human_collision_car_driver(source)); //Actual virtualD4(13,-1,point,direction,driver).
+        services.apply_human_damage(human,13,-1.f,point,human.base().world_direction(),services.human_collision_car_driver(source),0); //Actual virtualD4.
     }
     auto* state=human.loading_state;
     if(!state)throw std::runtime_error("Human contact lost its actual B0 receiver after damage");

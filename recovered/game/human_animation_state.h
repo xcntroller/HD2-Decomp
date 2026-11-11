@@ -210,9 +210,23 @@ public:
     }
     bool equipment_frame_timer_active()const{return words_.template get<std::int32_t>(0x1c)>0;}
     void clear_equipment_frame_timer(){words_.set(0x1c,std::int32_t{-1});}
+    std::uint32_t footstep_sound_timer()const{return words_.template get<std::uint32_t>(0xcc);}
+    void reset_footstep_sound_timer(){words_.set(0xcc,0u);}
     void force_sector_refresh(){words_.set(0x18,10000u);} //Actual CE8 writer in007646F0/00755500.
     const auto& words() const{return words_;}
     Frame sector() const{return sector_;}
+    template<class Changed>void refresh_ragdoll_sector(bool player,Changed&& changed){ //00786E50, SAME native CE4/CE8 as ordinary presentation.
+        require_model();
+        const std::uint32_t period=!player&&(state(0x22c)&0x140u)?900u:300u;
+        const auto accumulated=words_.template get<std::uint32_t>(0x18)+100u;
+        words_.set(0x18,accumulated);
+        if(human_frame_signed_word(accumulated)>static_cast<std::int32_t>(period)){
+            words_.set(0x18,accumulated-period); //ONE subtraction, not the ordinary presentation modulo.
+            auto probe=world_position();probe[1]+=.5f;
+            const auto previous=sector_;sector_=frames_.human_scene_sector(probe);
+            if(previous!=sector_){changed(previous,sector_);opacity_.bind_sector(frames_,sector_);}
+        }
+    }
     bool active() const{return words_.template get<std::uint8_t>(0x10)!=0;}
 private:
     template<class Events>void dispatch_track_events(Events& events){ //00758D20's native early return still allows the caller to advance.

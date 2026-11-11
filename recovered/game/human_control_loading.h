@@ -33,6 +33,8 @@
 #include "game/effects_shadow_models.h"
 #include "game/human_camera_amount.h"
 #include "game/human_ai_shot_direction.h"
+#include "game/human_reaction_selection.h"
+#include "game/human_footstep.h"
 #include <cmath>
 #include <optional>
 
@@ -65,8 +67,8 @@ public:
             DynamicCollisionExclusions<typename Physical::Descriptor>& exclusions,
             const HumanMorphTables& morph,HumanPhysicsGlobals& physics_globals,Audio& audio,Random& random,
             Callbacks& callbacks,Effects& effects,Presentation& presentation,Services& services)
-        :frames_(frames),audio_(audio),random_(random),effects_(effects),presentation_(presentation),services_(services),
-         geometry_(frames,random),face_(frames,morph,random),physical_(frames,collisions,exclusions,face_,audio,physics_globals,[this]{return shadow_.frame();}),
+        :frames_(frames),audio_(audio),random_(random),effects_(effects),presentation_(presentation),services_(services),physics_globals_(physics_globals),
+         geometry_(frames,random,audio,physics_globals),face_(frames,morph,random),physical_(frames,collisions,exclusions,face_,audio,physics_globals,[this]{return shadow_.frame();}),
          tracks_(frames,callbacks),shadow_(frames,effects),animation_(frames,tracks_,shadow_,*this,opacity_,random) {
         physical_.bind_animation_tracks(tracks_.frame_words());
         pool_.emplace(audio_.acquire_pool()); //Geometry constructor precedes007855C0's shared pool lease.
@@ -427,6 +429,129 @@ public:
         refine_human_lateral_stride(*this,look,*human_,frames_,services_.human_geometry_sweep());
     }
     void begin_mounted_geometry_effect(Human& source){geometry_.begin_mounted_effect(*human_,*this,source,services_);}
+    void begin_geometry_effect(std::uint32_t flags,const HumanVector& impulse,Frame clip,
+            std::uint16_t reason,Human* source){
+        geometry_.begin_geometry_effect(*human_,*this,flags,impulse,clip,reason,source,services_);
+    }
+    void present_ragdoll_geometry(){geometry_.present_ragdoll_frame(*human_,*this,services_);}
+    template<class Look>void present_footstep(const Look& look,bool left){present_human_footstep(*this,look,*human_,services_,frames_,left);}
+    void request_geometry_surface(const HumanVector& position,const HumanVector& normal){ //00787110, receiver is DD0, NOT Human.
+        if(!(mode_flags()&2u))return;
+        const auto kind=physical_.control_frame_words().template get<std::uint32_t>(0x184);
+        const auto draw=static_cast<std::int32_t>(random_());
+        const float limit=static_cast<float>(static_cast<long double>(draw%150)*.0013+(kind==0?.3499999940395355:.25));
+        const auto emit=[&](const auto& point,const auto& up){
+            services_.emit_human_surface_mark(point,up,limit); //Quality rejection still precedes native position retention.
+            services_.retain_human_surface_position(point);
+        };
+        if(kind!=5){
+            const auto frame=physical_.surface_reference_frame();
+            if(!frame)throw std::runtime_error("Human surface request requires its actual retained188 marker");
+            const auto world=frames_.actor_world_matrix(frame);
+            const HumanVector start{{world[12],world[13],world[14],world[15]}};
+            auto& owner=services_.human_inline(*human_);
+            const auto hit=[&]{try{
+                owner.exclude_query(false);
+                const auto hit=services_.human_geometry_ray(start,{{0,-.2f,0,0}},0x48002u,0u,true);
+                owner.restore_query(false);
+                return hit;
+            }catch(...){
+                const auto primary=std::current_exception();
+                try{owner.restore_query(false);}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
+                std::rethrow_exception(primary);
+            }}();
+            if(hit){emit(hit->position,hit->normal);return;}
+        }
+        emit(position,normal);
+    }
+    void refresh_ragdoll_geometry(bool shots,bool light){ //00786E50.
+        auto& state=physical_.control_frame_words();
+        if(shots&&state.template get<std::int32_t>(0x69c)>0){physical_.refresh_shot_geometry();physical_.publish_ragdoll_shots();}
+        if(!light||!(mode_flags()&2u))return;
+        const bool player=human_is_player();
+        animation_.refresh_ragdoll_sector(player,[&](Frame,Frame){
+            if(services_.current_human_frame_player()==human_)services_.refresh_human_presentation_camera();
+        });
+        try{
+            physical_.exclude_query(false);
+            auto* target=physical_.control_interaction_target();
+            if(state.template get<std::int32_t>(0xa44)<1||state.template get<std::int32_t>(0xa44)>7||!target||
+               target->base().type()!=4||!services_.human_action_car_disabled(*target)){
+                const auto bone=physical_.bones().at(16);
+                if(!bone)throw std::logic_error("Human ragdoll light requires its actual cached bone16");
+                const auto world=frames_.actor_world_matrix(bone);
+                opacity_.observe(frames_,services_,animation_.sector(),human_->base().frame(),
+                    HumanVector{{world[12],world[13],world[14],world[15]}},false,
+                    [&](auto model,float value){human_opacity_changed(model,value);});
+                opacity_.update(human_->base().frame(),100,player?0u:1u,*this);
+            }
+        }catch(...){
+            const auto primary=std::current_exception();
+            try{physical_.restore_query(false);}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
+            std::rethrow_exception(primary);
+        }
+        physical_.restore_query(false);
+    }
+    template<class Look>bool retire_interaction_clip(Look& look){
+        return select_human_reaction(*this,look,*human_,services_,frames_,random_,physics_globals_);
+    }
+    template<class Look>void finish_reaction_selection(Look& look,std::uint16_t reason){ //0074D510, after shared selection counter advances.
+        auto& state=physical_.control_frame_words();
+        const auto word=[&](unsigned offset){return state.template get<std::int32_t>(offset);};
+        const auto queue=[&](std::uint32_t id){state.set(0x1fc,id);normalize_human_primary_animation(state,0x1fc);};
+        physical_.retire_step_secondary();state.set(0x984,0u);state.set(0x980,0u);
+        const auto attachment=word(0xa44),active=word(0x1d8),seat=word(0xa40);
+        auto* target=physical_.control_interaction_target();
+        if(attachment>=6&&attachment<=8&&active!=0x9f){
+            services_.remove_human_reaction_seat(target,seat);
+            human_->field160=nullptr;human_->field164=-1;state.set(0x1cc,1.f);state.set(0x1d0,1.f);
+        }else if(attachment==4&&active>0x36&&active<0x3f&&target&&(services_.human_reaction_seat_flags(target,seat)&0x200u)){
+            const auto world=frames_.actor_world_matrix(human_->base().frame());
+            const auto forward=human_retained_clip::normalize(HumanVector{{world[8],world[9],world[10],world[11]}});
+            frames_.human_reaction_model_direction(human_->base().frame(),HumanVector{{-forward[0],forward[1],-forward[2],forward[3]}});
+            if(random_()%3)queue(physics_globals_.reaction_sequence%3+0x83);
+            if(word(0x1fc)==physics_globals_.last_mounted_reaction&&random_()%3)queue(physics_globals_.reaction_sequence%3+0x83);
+            if((seat==3&&word(0x1fc)==0x84)||(seat==2&&word(0x1fc)==0x83))queue(0x8a);
+            physics_globals_.last_mounted_reaction=word(0x1fc);
+        }
+        physical_.stop_frame_voice();state.set(0x1b0,word(0x1ac));
+        if(word(0x1ac)!=1)state.set(0x18c,std::uint8_t{1});
+        if(!word(0x1ac))face_.activate_air_pose();
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        for(unsigned kind=0;kind!=5;++kind)look.control_movement_mode(kind,false,publish);
+        auto& commands=look.frame_words();commands.set(0xd4,0u);commands.set(0xd0,0x8e57u);commands.set(0xc0,0u);
+        auto& equipment_owner=services_.human_presentation_equipment(*human_);
+        equipment_owner.state().words().set(0xcc,2u); //Human+A8 is inline98's230 equipment borrower.
+        action_.retire_reaction_commands();tracks_.fade_pair(1,350);tracks_.fade_pair(2,350);
+        const HumanVector zero{};
+        if(word(0x1ac)==4||word(0x1ac)==6){
+            tracks_.motion_impulse(zero,0);tracks_.secondary_motion_impulse(zero,0);tracks_.motion_deceleration(zero,0);
+        }
+        state.set(0x1e8,0x5cu);
+        equipment_owner.transfers().event(2);equipment_owner.toggle_frame_action(false);
+        face_.frame_running(false,true,services_.human_control_animation_scale());
+        movement_.retire_motion_audio(frames_,pool_->pool());
+        if(physical_.control_action_actor())services_.human_ladder(physical_.control_action_actor()).remove_occupant(*human_);
+        physical_.publish_reaction_descriptors();
+        auto velocity=state.template get<HumanVector>(0x9d0);
+        if(human_retained_clip::dot(velocity,velocity)>=1.0000000168623835e-16f){
+            if(word(0x1ac)==3)velocity=human_retained_clip::scale(velocity,4.f);
+            tracks_.motion_deceleration(velocity,1000);
+        }
+        tracks_.fade_fourth(1);tracks_.update(100,false,nullptr); //Empty0077CE10 branch, then007724E0.
+        if(!word(0xa30)||word(0xa30)==-10000){equipment_owner.toggle_frame_action(false);equipment_owner.transfers().event(10);}
+        else retire_look_mount(look,equipment_owner.state().selected_model(9));
+        state.set(0x9d0,-10000.f); //Native writes only X after consuming the vector.
+        Frame clip{};const auto property=look.state().template get<std::int32_t>(0xa0);
+        if(property==1||property==2)clip=services_.human_animation_resource(static_cast<unsigned>(property-1),
+            static_cast<unsigned>(word(0x1fc)*3+look.state().template get<std::int32_t>(0x4c)));
+        const auto model=human_->base().frame();
+        if(word(0x1ac)<7){
+            if(!attachment||(attachment>=6&&attachment<=8&&active!=0x9f))frames_.human_reaction_link(model,Frame{});
+            frames_.place_human_reaction_model(model);frames_.refresh_dynamic_human_model(model);
+        }else{state.set(0x1ac,0u);state.set(0x18c,std::uint8_t{1});face_.activate_air_pose();reason=2;}
+        begin_geometry_effect(look.state().template get<std::uint32_t>(0x60),look.state().template get<HumanVector>(0x70),clip,reason,nullptr);
+    }
     template<class Look,class Runtime>bool prepare_step_motion(Look& look,Runtime& runtime){
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
         return prepare_human_step_motion(*this,look,*human_,services_,frames_,runtime,publish);
@@ -503,7 +628,7 @@ public:
             if(look_word(0xb8)==5&&physical_word(0x764)==0x46)runtime.advance_human_motion_event(*this,0x46,elapsed);
             else if(!state.template get<std::uint8_t>(0x760))runtime.advance_human_motion_event(*this,physical_word(0x75c),elapsed);
             if(human_->base().world_position()[1]<static_cast<long double>(services_.human_control_world_floor())-5.f)
-                runtime.apply_human_floor_damage(*human_);
+                services_.apply_human_damage(*human_,6,1000.f,HumanVector{},HumanVector{},static_cast<Human*>(nullptr),0);
         }
         publish_control_frame_task(elapsed,runtime);
         constexpr std::array<unsigned,4> periods{{200,300,400,600}};
@@ -593,6 +718,19 @@ public:
         geometry_.present_frame(*human_,*this,elapsed,runtime);
     }
 private:
+    template<class Look>void present_footstep_track_sound(const Look&){ //00758D20 cases4/5/6, AFTER0075D210 even when that worker returned.
+        if(!(mode_flags()&2u)||services_.current_human_frame_player()!=human_||human_frame_signed_word(animation_.footstep_sound_timer())<=329)return;
+        animation_.reset_footstep_sound_timer();const auto& state=physical_.control_frame_words();
+        const auto posture=state.template get<std::int32_t>(0x1dc),variant=state.template get<std::int32_t>(0x1e0);
+        const auto chance=[&]{const auto skill=human_frame_signed_word(human_->properties.stats_ec[6]);
+            if(!skill)throw std::runtime_error("Footstep sound reached original zero skill remainder");
+            return (static_cast<std::int32_t>(random_())%skill)/5==0;};
+        if(posture==0){if(variant==2||variant==5)play_presentation_track_sound(9);
+            else if(variant==1||variant==3||variant==4||(variant==0&&chance()))play_presentation_track_sound(8);}
+        else if(posture==1){if(variant==2||variant==5){const auto active=state.template get<std::int32_t>(0x1d8);play_presentation_track_sound(active>=162&&active<=165?7u:8u);}
+            else if(variant==1||variant==3||variant==4||(variant==0&&chance()))play_presentation_track_sound(8);}
+        else if(posture==2&&(variant==2||variant==5||variant==1||variant==3||variant==4||(variant==0&&chance())))play_presentation_track_sound(7);
+    }
     template<class Look,class Runtime>void present_control_effects(const Look& look,std::uint32_t elapsed,Runtime& runtime){ //00758830.
         auto& equipment_owner=services_.human_presentation_equipment(*human_);
         auto& state=physical_.control_frame_words();
@@ -607,6 +745,10 @@ private:
                     return true;
                 }
                 case 3:return true; //00758D20 has no receiver for this event ID.
+                case 4:case 5:case 6:
+                    present_footstep(look,event==5);
+                    present_footstep_track_sound(look);
+                    return true;
                 case 10:equipment_owner.set_frame_weapon_pose(false,true);return true;
                 case 0x0b:case 0x0c:
                     if(event==0x0c||!animation_.equipment_frame_timer_active())equipment_owner.set_frame_weapon_pose(false,true);
@@ -730,6 +872,7 @@ private:
         try{work();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
     }
     Frames& frames_;Audio& audio_;Random& random_;Effects& effects_;Presentation& presentation_;Services& services_;
+    HumanPhysicsGlobals& physics_globals_;
     std::optional<PoolLease> pool_;Geometry geometry_;Face face_;Physical physical_;Movement movement_;
     Links links_;Action action_;HumanMotionState motion_;HumanOpacityControl opacity_;
     Tracks tracks_;Shadow shadow_;Animation animation_;Human* human_=nullptr;

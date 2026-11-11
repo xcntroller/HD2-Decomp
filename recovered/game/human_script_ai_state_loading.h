@@ -87,6 +87,7 @@ public:
         this->process_second_frame_commands();
     }
     void sight_enemy_acquired(Human& actor)override{this->emit_sight(actor,0);interrupt(actor,0x20);} //00590060.
+    void damage_interrupt(Human& actor){interrupt(actor,0x40);} //00590400, after the shared AI damage receiver.
     void sight_dead_acquired(Human& actor)override{this->emit_sight(actor,2);interrupt(actor,0x200);} //0058FFE0.
     using AI::sight_enemy_lost;
     Context* context()const{return context_;}

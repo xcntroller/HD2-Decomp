@@ -8,8 +8,8 @@
 namespace hd2::game {
 
 //Shared first/last Human portion of00785BE0/00786030 and0078A4F0/0078A5F0.
-//Loading starts with empty mark/model queues. Their runtime producers remain
-//absent; this owner exposes no method that fabricates marks or rendering.
+//Loading starts with empty queues. Footprint producers borrow these SAME
+//textures and process records through the containing World services.
 template<class Frames,class Services>
 class HumanPresentationShared {
 public:
@@ -38,12 +38,13 @@ public:
     void release() noexcept {
         if(!users_)return;
         //Last-user0078A5F0 clears queues/400 words/textures before the remaining
-        //Human unregister/deactivation. Loading has no runtime mark producer.
+        //Human unregister/deactivation, including any acquired runtime marks.
         if(!--users_){projections_.clear();textures_.clear();}
     }
     void clear() noexcept {users_=0;projections_.clear();textures_.clear();}
     void tick_item_projections(bool authority,std::uint32_t elapsed){projections_.tick(authority,elapsed,services_);}
     auto& projection_models(){return projections_;}
+    auto footprint_texture(unsigned index,bool left)const{return textures_.textures().at(index).at(left?0u:1u).get();} //Native44C=L,450=R.
     unsigned users() const{return users_;}
     const Settings& settings() const{return settings_;}
     bool alternate_motion_sound()const{return flag_a6ac_;} //0098A6AC, SAME first/last Human state.

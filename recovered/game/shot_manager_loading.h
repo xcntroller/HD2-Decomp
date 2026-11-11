@@ -4,6 +4,9 @@
 #include "frontend/module_registration.h"
 #include "frontend/cleanup.h"
 #include "game/human_joint_owners.h"
+#include "game/shot_surface_marks.h"
+#include "game/shot_blood_marks.h"
+#include "frontend/spatial_sound.h"
 #include <array>
 #include <list>
 #include <cstring>
@@ -45,7 +48,11 @@ template<class Frames>struct ShotManagerLoadingState {
     using TextureOwner=typename Frames::ResourceOwner;
     ShotColdPool<ShotColdMark> marks;ShotColdPool<ShotColdDecal> decals;
     struct RuntimeRecord; //Actual active projectile/decal producers are not exposed by loading.
-    std::array<std::vector<RuntimeRecord*>,4> render; //Native80/90/A0/B0.
+    std::array<std::vector<RuntimeRecord*>,2> render; //Native80/B0; those positive producers remain required.
+    using BloodMark=ShotBloodMark<Frames>;
+    std::vector<std::unique_ptr<BloodMark>> blood_marks; //Native90/94/98, SAME ShotMgr owner.
+    using SurfaceMark=ShotSurfaceMark<Frames>;
+    std::vector<std::unique_ptr<SurfaceMark>> surfaces; //Native A0/A4/A8, SAME actual ShotMgr pool.
     std::array<std::vector<RuntimeRecord*>,3> transient; //114/124/134.
     std::optional<ModelOwner> hit_zones,odds;
     std::array<Frame,10> hit_frames{}; //BSS cold zero;00455520 deliberately does not clear these borrowers.
@@ -56,6 +63,8 @@ template<class Frames>struct ShotManagerLoadingState {
     std::optional<TextureOwner> explosion_texture;
     std::array<std::optional<TextureOwner>,6> blood_textures;
     std::uint32_t maximum148=0,maximum14c=0,maximum150=0,field140=0;
+    frontend::SpatialSoundRequest hit_sound; //Actual reusable D0 request, initialized by004374D0.
+    HumanVector hit_sound_position{}; //Native full D0..DC copy, W unused by SOUND.
     const void* world=nullptr; //Source borrower guard, not an original scalar or readiness field.
 };
 
@@ -73,6 +82,8 @@ public:
         for(const auto& texture:state_.decal_textures)if(texture)throw std::logic_error("Retire prior ShotMgr decal textures");
         for(const auto& texture:state_.blood_textures)if(texture)throw std::logic_error("Retire prior ShotMgr blood textures");
         for(const auto& rows:state_.render)require_empty(rows);
+        require_empty(state_.surfaces);
+        require_empty(state_.blood_marks);
         for(const auto& rows:state_.transient)require_empty(rows);
         state_.world=this;
     }
@@ -89,7 +100,9 @@ public:
         }
         require_empty(state_.transient[0]); //Projectile visual virtual0C pass, no retirement in this pass.
         require_empty(state_.transient[2]);
-        require_empty(state_.render[3]);require_empty(state_.render[2]);require_empty(state_.render[1]);
+        require_empty(state_.render[1]); //Native B0 pass precedes A0, then90.
+        for(auto& mark:state_.surfaces)(void)mark->tick(frames_,elapsed);
+        for(auto& mark:state_.blood_marks)(void)mark->tick(frames_,elapsed);
         //Native render80 vector is not updated here. Actual populated queue
         //producers/records remain unavailable; never dispatch an opaque pointer.
     }
@@ -115,17 +128,20 @@ public:
         if(frames_.load_shot_model(model,"WeaponOdds")>=0){ //Distinct from humanzones' exact-zero test.
             state_.trace=frames_.actor_find(model,"trace",1);state_.shell_third=frames_.actor_find(model,"shell3rd",1);state_.shell_first=frames_.actor_find(model,"shellFPV",1);
         }
-        for(unsigned n=0;n!=3;++n){
-            require_empty(state_.render[n]);
-            state_.render[n].reserve(n==0?state_.maximum148:n==1?state_.maximum14c:state_.maximum150);
-        }
+        require_empty(state_.render[0]);state_.render[0].reserve(state_.maximum148);
+        require_empty(state_.blood_marks);state_.blood_marks.reserve(state_.maximum14c);
+        require_empty(state_.surfaces);state_.surfaces.reserve(state_.maximum150);
         load_textures();state_.field140=0;
     }
     void finish(bool authority){
         require_open();
         if(authority){state_.hit_zones.reset();authority_started_=false;} //00455520 leaves borrowed marker entries intact.
         else{
-            require_empty(state_.transient[2]);for(const auto& rows:state_.render)require_empty(rows);
+            require_empty(state_.transient[2]);require_empty(state_.render[0]);
+            while(!state_.blood_marks.empty()){state_.blood_marks.back()->clear();state_.blood_marks.pop_back();}
+            //0044E110 retires A0 in reverse before B0, BEFORE texture60 and Scene retirement.
+            while(!state_.surfaces.empty()){state_.surfaces.back()->clear();state_.surfaces.pop_back();}
+            require_empty(state_.render[1]);
             require_empty(state_.transient[1]);state_.decals.clear();
             for(auto& texture:state_.decal_textures)texture.reset();
             state_.explosion_texture.reset();for(auto& texture:state_.blood_textures)texture.reset();

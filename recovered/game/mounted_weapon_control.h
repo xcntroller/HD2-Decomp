@@ -14,7 +14,7 @@ struct StaticWeaponControl {
     std::array<std::uint32_t,24> fields60{};
     std::vector<std::uint32_t> field10c;
     std::uint32_t fieldc8=0xffffffffu,fieldcc=0,fieldd0=0,field120=0,field124=0,
-        field13c=0,field140=0,field144=0,field148=0,field158=0,field16c=0,field170=0;
+        field13c=0,field140=0,field144=0,field148=0,field14c=0,field158=0,field16c=0,field170=0;
     float field128=-1,field12c=-1,field130=-1,field134=-1;
     std::uint32_t fieldd8=0,field160=0x3ec90fdb,field164=0x3ec90fdb;
     bool flagd4=false,flagdc=false,flag104=false,flag168=false;
@@ -27,6 +27,7 @@ public:
     virtual std::array<float,4> aim_direction()=0;
     virtual std::array<float,4> limits()const=0;
     virtual void view(bool visible)=0;
+    virtual void clear_occupant()=0;
     virtual void retire()=0;
 };
 

@@ -25,21 +25,26 @@ public:
         std::function<void(Context&,std::int32_t)> navigation=[&module](Context& context,std::int32_t pc){
             if(context.pc()==pc)context.advance(module.runtime()); //00416D50→00416CF0, actual game28/override.
         };
-        contexts_=std::move(contexts);authority_=std::move(authority);navigation_=std::move(navigation);module_=&module;
+        std::function<void(Context&)> end=[&module](Context& context){module.runtime().script_return_end(context);};
+        std::function<void()> fail=[&module]{module.runtime().fail_human_mission();};
+        fail_=std::move(fail);contexts_=std::move(contexts);authority_=std::move(authority);navigation_=std::move(navigation);end_=std::move(end);module_=&module;
     }
     template<class Module>void unbind(Module& module)noexcept{
         if(module_!=&module)return;
-        module_=nullptr;contexts_={};authority_={};navigation_={};
+        module_=nullptr;contexts_={};authority_={};navigation_={};end_={};fail_={};
     }
     Context* context_for_frame(Frame frame){require_bound();return contexts_(frame);}
     bool script_authority()const{require_bound();return authority_();}
     void complete_human_navigation(Context& context,std::int32_t pc){require_bound();navigation_(context,pc);}
+    void script_return_end(Context& context){require_bound();end_(context);}
+    void fail_human_mission(){require_bound();fail_();}
     bool bound()const noexcept{return module_!=nullptr;}
 private:
     void require_bound()const{if(!module_)throw std::logic_error("Script world link has no actual containing module");}
     Frames& frames_;const void* module_=nullptr;
     std::function<Context*(Frame)> contexts_;std::function<bool()> authority_;
     std::function<void(Context&,std::int32_t)> navigation_;
+    std::function<void(Context&)> end_;std::function<void()> fail_;
 };
 } //namespace hd2::game
 #endif

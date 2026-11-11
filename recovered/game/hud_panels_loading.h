@@ -94,6 +94,7 @@ public:
         if(!frames_.hud_frame_visible(root))return;
         throw std::runtime_error("Visible inventory refresh requires actual004A49F0/004A26D0 actor/slot consumers");
     }
+    template<class Random>void show_human_damage(Random& random){movies_.show(true,random);} //0049F0B0, no flags gate.
     bool hide_cold_soldiers(){return hide_hud_loading_humans(frames_,hud_,soldiers_,compass_);} //0049B900 also retires populated marker amounts.
     void discard_borrowers()noexcept {
         inventory_.retire_inline_scrolls();inventory_.discard_borrowers();cursor_.clear();dialogs_.discard_borrowers();

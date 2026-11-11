@@ -23,7 +23,7 @@ public:
     void bind(Frame scene) {
         if(started_)throw std::logic_error("HUD injury movies rebound before teardown");
         if(!scene)throw std::runtime_error("HUD injury movies require actual HUD scene");
-        started_=true;field04_=0;
+        started_=true;active_=Frame{};
         try {
             for(unsigned index=0;index!=movies_.size();++index) {
                 auto owner=services_.create_mesh_movie();
@@ -46,14 +46,30 @@ public:
             errors.attempt([&]{services_.stop_mesh_movie(movie->get());});
             errors.attempt([&]{services_.close_mesh_movie_stream(movie->get());});movie.reset();
         }
-        started_=false;errors.rethrow();
+        active_=Frame{};started_=false;errors.rethrow();
+    }
+    template<class Random>void show(bool enabled,Random& random){ //004AD380 and004AD350, raw ABI reads the stack bool.
+        if(!visual_)throw std::logic_error("HUD injury playback requires actual artwork");
+        services_.object_visible(visual_,enabled);
+        if(!enabled){
+            if(active_)services_.stop_mesh_movie(active_);
+            active_=Frame{};services_.object_visible(visual_,false);services_.update_scene_object(visual_);return;
+        }
+        if(active_)services_.stop_mesh_movie(active_);
+        const auto draw=random();if(draw>0x7fffu)throw std::logic_error("HUD injury selection requires actual CRT random");
+        active_=movie(draw%7u);
+        if(!active_)return; //Failed-open movie slot is genuine; initial visibility remains enabled.
+        services_.object_visible(visual_,true);
+        services_.hud_injury_movie_texture(visual_,services_.mesh_movie_texture(active_));
+        services_.loop_mesh_movie(active_,false);services_.play_mesh_movie(active_);
+        services_.update_scene_object(visual_);playing_=true;time24_=time28_=0;
     }
     Frame movie(unsigned index)const {const auto& owner=movies_.at(index);return owner?owner->get():Frame{};}
-    Frame visual()const{return visual_;}std::uint32_t field04()const{return field04_;}
+    Frame visual()const{return visual_;}Frame field04()const{return active_;}
     void discard_borrower()noexcept{visual_=Frame{};} //Before HUD scene release; no native frame release here.
 private:
     Services& services_;std::array<std::optional<MovieOwner>,7> movies_{};
-    Frame visual_{};std::uint32_t field04_=0;bool started_=false;
+    Frame visual_{},active_{};std::uint32_t time24_=0,time28_=0;bool playing_=false,started_=false;
 };
 } //namespace hd2::game
 #endif

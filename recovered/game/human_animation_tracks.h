@@ -422,6 +422,9 @@ public:
     void motion_impulse(const HumanVector& displacement,std::int32_t duration){ //00773A90.
         words_.set(0x280,displacement);words_.set(0x290,0u);words_.set(0x294,duration);
     }
+    void motion_position_hold(const HumanVector& position,float amount,std::int32_t duration){ //00773AD0.
+        words_.set(0x298,amount);words_.set(0x2a0,position);words_.set(0x2b0,0u);words_.set(0x2b4,duration);
+    }
     void clear_motion_displacement(){for(unsigned axis=0;axis!=3;++axis)words_.set(0x270+4*axis,0.f);} //0074B4F0, XYZ only.
     void secondary_motion_impulse(const HumanVector& displacement,std::int32_t duration){ //00773B20.
         words_.set(0x2e0,displacement);words_.set(0x2f0,0u);words_.set(0x2f4,duration);

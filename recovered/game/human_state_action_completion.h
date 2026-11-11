@@ -9,7 +9,7 @@ namespace hd2::game {
 //00584E30, shared B0 virtual0C. Complete against the existing Human, E0,
 //runtime actor and inventory owners. Required positive effects run before the
 //action slots are cleared. The stored timer is the caller's responsibility.
-template<class State,class World,class Runtime>void complete_human_state_action(State& state,bool success,
+template<bool may_succeed=true,class State,class World,class Runtime>void complete_human_state_action(State& state,bool success,
         World& world,Runtime& runtime){
     auto* human=state.human();
     if(!human)throw std::logic_error("Human action completion requires its bound B0");
@@ -20,19 +20,21 @@ template<class State,class World,class Runtime>void complete_human_state_action(
     auto& words=state.words();
     auto* target=state.action_target();
     const bool authority_success=success&&(world.mode_flags()&1u);
+    (void)authority_success;(void)runtime; //Death cancellation instantiates only the native failure path.
+    if constexpr(!may_succeed)if(success)throw std::logic_error("Human cancellation cannot complete a successful action");
     const auto command=[&](std::uint32_t subtype,typename State::ActionTarget* actor){
         world.human_action_completion_command(*human,subtype,actor);
     };
     switch(words.template get<std::uint32_t>(0x60)){
     case 2:
         command(0x15,target);
-        if(authority_success&&target)runtime.finish_human_runtime_pickup(*target);
+        if constexpr(may_succeed)if(authority_success&&target)runtime.finish_human_runtime_pickup(*target);
         break;
     case 3:
-        if(success&&target&&target->base().type()==15)runtime.finish_human_timed_type15(*target,*human);
+        if constexpr(may_succeed)if(success&&target&&target->base().type()==15)runtime.finish_human_timed_type15(*target,*human);
         break;
     case 4:
-        if(authority_success){
+        if constexpr(may_succeed)if(authority_success){
             if(!target)throw std::logic_error("Human explosive placement requires the actual target");
             runtime.finish_human_explosive_placement(*target,*human);
         }
@@ -44,14 +46,14 @@ template<class State,class World,class Runtime>void complete_human_state_action(
         break;
     case 0x0f:
         command(0x0f,target);command(0x11,human);
-        if(authority_success&&target)runtime.finish_human_treatment(state,target->base().id10(),-1);
+        if constexpr(may_succeed)if(authority_success&&target)runtime.finish_human_treatment(state,target->base().id10(),-1);
         break;
     case 0x10:
         command(0x1d,target);
-        if(authority_success&&target)runtime.finish_human_actor_motion(*target,state);
+        if constexpr(may_succeed)if(authority_success&&target)runtime.finish_human_actor_motion(*target,state);
         break;
     case 0x11:
-        if(authority_success&&state.item())runtime.finish_human_action_drop(state,*human);
+        if constexpr(may_succeed)if(authority_success&&state.item())runtime.finish_human_action_drop(state,*human);
         command(0x17,target);state.refresh_item();
         break;
     case 0x13:
@@ -61,7 +63,7 @@ template<class State,class World,class Runtime>void complete_human_state_action(
         break;
     case 0x23:
         command(0x25,human);
-        if(authority_success&&target)runtime.finish_human_treatment(state,human->base().id10(),
+        if constexpr(may_succeed)if(authority_success&&target)runtime.finish_human_treatment(state,human->base().id10(),
             words.template get<std::int32_t>(0x6c));
         break;
     case 0x24:

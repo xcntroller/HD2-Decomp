@@ -47,6 +47,9 @@ public:
         if(human_frame_signed_word(timer)>0)state_.set(0x58,timer-elapsed);
     }
     void reset_equipment_command(){state_.set(0x38,std::int32_t{-10000});state_.set(0x3c,std::uint32_t{0});}
+    void retire_reaction_commands(){
+        for(auto offset:{0x20u,0x38u,0x4cu}){state_.set(offset,std::int32_t{-10000});state_.set(offset+4,0u);}
+    }
     void finish_special_motion_command(){state_.set(0x20,0u);} //00768170, SAME C00 linked at AC0+4C.
     void lateral_stride_limit(float amount){state_.set(0xa0,amount);} //0074A290, SAME C00+A0.
 private:

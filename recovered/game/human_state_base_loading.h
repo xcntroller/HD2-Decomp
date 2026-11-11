@@ -8,6 +8,7 @@
 #include "game/human_frame_inputs.h"
 #include "game/human_frame_commands.h"
 #include <functional>
+#include <optional>
 
 namespace hd2::game {
 template<class Backend>class SceneActor;
@@ -39,10 +40,12 @@ public:
     //Typed source handover views, not a native ABI or new function credit.
     HumanVector current_direction()const override{return words_.template get<HumanVector>(0x20);} //005830F0.
     HumanVector target_direction()const override{return words_.template get<HumanVector>(0x10);} //00584B50.
+    void set_target_direction(const HumanVector& value){words_.set(0x10,value);} //00583120, all four words; absent frozen.
     std::uint32_t derived_loading_word(unsigned)const override{throw std::runtime_error("Human state has no recovered derived handover word");}
     PlayerHandover player_handover()const override{throw std::runtime_error("Human state has no recovered player handover");}
     void sight_enemy_acquired(Human&)override{} //00583170, genuine RET4 base receiver.
     void sight_enemy_lost(Human&)override{} //00583180.
+    void sight_enemy_killed(Human&)override{} //00583160, genuine RET4 base/Remote, absent frozen.
     void sight_dead_acquired(Human&)override{} //00583190.
     void bind_special_music_reference(std::function<void(bool)> receiver){
         if(human_)throw std::logic_error("Cannot replace a bound Human state's music receiver");
@@ -89,10 +92,13 @@ public:
     //not implicitly release the shared input; the registry owns its lifetime.
     void close(std::uint32_t mode) { //00583690; derived states decide whether to call it.
         if((mode&7u)!=7u&&input_){inputs_.remove(input_);input_=nullptr;}
+        retire_special_music_reference();
+        human_=nullptr;
+    }
+    void retire_special_music_reference(){ //005836E0/00583690, byte reset follows the actual music call.
         if(words_.template get<std::uint8_t>(0xb5)){
             require_music_reference();special_music_reference_(false);words_.set(0xb5,std::uint8_t{0});
         }
-        human_=nullptr;
     }
     void refresh_item() { //00584830.
         if(!human_)throw std::logic_error("Human B0 item binding has no Human");
@@ -130,8 +136,25 @@ public:
             if(command&group)flags=(flags&~group)|(command&group);
         words_.set(0x50,flags);
     }
-    struct FrameCommand {std::uint32_t kind;std::int32_t actor_identity;};
+    struct DamageCommand {std::uint32_t kind=0,hit_kind=0,health=0;std::int32_t source=-1;HumanVector point{},direction{};};
+    struct DropCommand {std::int32_t item=-1,actor=-1;HumanVector direction{};float speed=0;};
+    struct FrameCommand {
+        std::uint32_t kind;std::int32_t actor_identity;std::optional<DamageCommand> damage;std::optional<DropCommand> drop;
+        FrameCommand(std::uint32_t type,std::int32_t actor):kind(type),actor_identity(actor){}
+    };
+    void queue_damage_command(std::uint32_t kind,std::uint32_t hit_kind,std::int32_t health,Human* source,
+            const HumanVector& point,const HumanVector& direction){ //0053DB90/00574560 construct kind1, then00547460 appends to SECOND90.
+        if(!human_)throw std::logic_error("Human damage command requires the actual B0 Human");
+        auto relative=point;const auto origin=human_->base().world_position();
+        for(unsigned axis=0;axis!=3;++axis)relative[axis]-=origin[axis];
+        FrameCommand command(1,-1);command.damage=DamageCommand{kind,hit_kind,static_cast<std::uint32_t>(health),source?source->base().id10():-1,relative,direction};
+        second_.push_back(std::move(command));
+    }
     const auto& first_frame_commands()const{return first_;}
+    const auto& second_frame_commands()const{return second_;}
+    void queue_drop_command(std::int32_t actor,std::int32_t item,const HumanVector& direction,float speed){ //00588EF0, actual SECOND90.
+        FrameCommand command(10,-1);command.drop=DropCommand{item,actor,direction,speed};second_.push_back(std::move(command));
+    }
     bool project_ground_position(HumanVector&)override{return false;} //00583140, genuine AL0/RET4, absent frozen.
     bool frame_actor_contact(std::uint32_t,std::int32_t,std::uint32_t)override{return true;} //00583230, genuine AL1/RET28, absent frozen.
     template<class Services>void bind_frame_command_packets(Services& services){

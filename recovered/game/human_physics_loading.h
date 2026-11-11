@@ -196,6 +196,8 @@ public:
     }
     const auto& state() const{return frame_words_;}
     auto& frame_globals(){return globals_;}
+    Frame surface_reference_frame()const{return surface_reference_;} //Native188, borrowed marker selected by0075D1A0/00761690.
+    void surface_reference(std::uint32_t kind,Frame frame){state_.set(0x184,kind);surface_reference_=frame;} //0075D1A0, absent frozen; no new credit.
     template<class Look>void capture_look_frame(const Look& look){ //0077DE30's retained A0-byte770 snapshot.
         for(unsigned offset=0;offset!=0xa0;offset+=4)
             if(offset!=4&&offset!=8)state_.set(0x770+offset,look.state().template get<std::uint32_t>(offset));
@@ -287,6 +289,12 @@ public:
         }
     }
     void refresh_ground_geometry(){markers_.snapshot();shot_spheres();} //0075C4F0→0075C070/0075B870.
+    void prepare_reaction_posture(bool crouched){markers_.snapshot();rebind_posture(crouched?1u:0u);} //0075C070→0075BC80.
+    void publish_reaction_descriptors(){ //0074D510 changes all allocated primary/shot flags in native order.
+        for(int n=0;n!=4;++n){auto& descriptor=required(primary_,n);descriptor.flags=0x42;descriptor.mask=1;}
+        shot_spheres();
+        for(int n=0;n!=2;++n){auto& descriptor=required(shot_,n);descriptor.flags=0x42;descriptor.mask=0x10002;}
+    }
     std::array<Vector,4> prone_pose_spheres(){ //007A8520→0075C160→0075BFF0(2).
         markers_.snapshot(true);
         std::array<Vector,4> spheres{};
@@ -294,6 +302,13 @@ public:
         return spheres;
     }
     void refresh_shot_geometry(){shot_spheres();} //0075B870, SAME actual shot marker snapshots.
+    void publish_ragdoll_shots(){ //00786E50, preserves descriptor flags while replacing native mask08.
+        for(int index=0;index<state_.template get<std::int32_t>(0x69c);++index){
+            auto& descriptor=required(shot_,index);descriptor.position=shots_.at(static_cast<std::size_t>(index));
+            descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(index?0x1d0:0x1cc))*descriptor.position[3]);
+            descriptor.mask=0x10002u;collisions_.move(descriptor);
+        }
+    }
     void publish_air_shots(){ //00769920, scaled positions/radii without changing the native descriptor flags.
         const auto count=state_.template get<std::int32_t>(0x69c);
         for(int index=0;index<count;++index){
@@ -424,7 +439,7 @@ private:
             0x250u,0x254u,0x9d0u,0x9d4u,0x9d8u,0xa18u,0x758u,0xa24u,
             0xa20u,0x188u,0xa34u,0xa40u,0xa44u,0xa94u,
             0x190u,0x234u,0x1a4u,0x1a8u,0x944u,0x940u,0x948u})state_.set(offset,std::uint32_t{0});
-        ground_contact_.reset();interaction_actor_=nullptr;interaction_target_=nullptr;action_frame_=Frame{}; //Native754/990/A3C/A40 retain typed identity borrowers.
+        ground_contact_.reset();interaction_actor_=nullptr;interaction_target_=nullptr;action_frame_=Frame{};surface_reference_=Frame{}; //Native188/754/990/A3C/A40 retain typed identity borrowers.
         for(auto offset:{0x988u,0x998u,0x9b8u,0x9bcu,0x9c0u,0x9c4u,0x9ccu,0x9acu,0x9b0u,
             0xa2cu,0xa30u,0xa1cu,0xa0cu,0xa38u,0x99cu,0x9a0u,0x9b4u})state_.set(offset,std::int32_t{-10000});
         for(auto offset:{0x98cu,0xa90u,0x1b4u,0x760u,0x761u,0x762u,0x96cu,0x1d4u,0x9c8u,0x9c9u})state_.set(offset,std::uint8_t{0});
@@ -491,6 +506,7 @@ private:
     Frame action_frame_{};
     SceneActor<Frames>* interaction_target_=nullptr; //A3C, SAME action target published by00751480.
     std::optional<GroundContact> ground_contact_;
+    Frame surface_reference_{};
     bool active_=false,initializing_=false;
 };
 } //namespace hd2::game

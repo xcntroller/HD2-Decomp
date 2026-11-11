@@ -7,7 +7,7 @@ namespace hd2::game {
 
 template<class Control,class Look,class Human,class Services,class Runtime,class Random>
 void advance_human_obstruction(Control& control,Look& look,Human& human,Services& services,
-        Runtime& runtime,Random& random,std::uint32_t elapsed,bool obstructed){ //0075EBE0.
+        Runtime&,Random& random,std::uint32_t elapsed,bool obstructed){ //0075EBE0.
     auto& words=control.physical().control_frame_words();
     const auto timer=[&](unsigned offset){return words.template get<std::int32_t>(offset);};
     if(!obstructed){
@@ -26,7 +26,7 @@ void advance_human_obstruction(Control& control,Look& look,Human& human,Services
         if(control.mode_flags()&1u){
             const auto excess=human_frame_signed_word(accumulated)-30000;
             const auto amount=static_cast<float>(static_cast<long double>(excess)*.07999999821186066f);
-            runtime.damage_human_obstruction(human,amount); //Actual Human virtualD4(10,amount,zero,zero,NULL,0).
+            services.apply_human_damage(human,10,amount,HumanVector{},HumanVector{},static_cast<Human*>(nullptr),0); //Actual Human virtualD4.
         }
         if(control.human_is_player()&&(timer(0x1a8)<1||human_frame_signed_word(human.properties.stats_ec[0])<1)){
             words.set(0x1a8,static_cast<std::uint32_t>(random()%1900u)+2000u);

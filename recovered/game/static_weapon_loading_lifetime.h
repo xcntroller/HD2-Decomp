@@ -11,6 +11,8 @@ public:
     virtual void update(bool authority,std::uint32_t elapsed)=0;
     virtual void fire_marker()=0;
     virtual std::array<float,4> aim_direction()=0;
+    virtual void remove_reaction_seat(std::int32_t index)=0;
+    virtual std::uint32_t reaction_seat_flags(std::int32_t index)const=0;
 };
 }
 #endif

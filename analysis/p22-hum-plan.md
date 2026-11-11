@@ -1,6 +1,6 @@
 # P22-HUM implementation plan
 
-Updated 2026-11-11 for the Human model-presentation source checkpoint. P22-HUM remains OPEN.
+Updated 2026-11-11 for the Human particle/surface source checkpoint. P22-HUM remains OPEN.
 Both P2.2 checkboxes in `plan.md` remain OPEN. Mission loading still declines,
 and no mission desktop acceptance has occurred.
 
@@ -52,8 +52,9 @@ frozen client partials, with no complete-function promotions.
 - [ ] Finish Player Human item behavior. Complete held-item00542E20,
   shot00545140/005454D0, reached command/FOV/dry-fire/melee/repair/transport
   receivers and their actual item, animation and physical-state mutations.
-- [ ] Finish reached breath/blood particles. Supply actual particle instances
-  through00445150→004451B0 and their existing process/resource lifetime.
+- [x] Finish reached breath/blood particle source through the SAME process and
+  module17 lifetime, including damage effects and rest-position footprints.
+  [Source checkpoint](checkpoints/p2.2-human-particle-surface-20261111.json).
 - [ ] Verify the full required Human frame path. Exercise actual containing
   World/control dispatch, positive branches, partial failure, repeated entry and
   ordered teardown. Run a consolidated targeted native sanitizer, strict i386
@@ -67,9 +68,13 @@ workstreams.
 
 ## Current next work
 
-Continue reactions, damage and ragdoll behavior at0074D510 and remaining007B0910
-branches. The model-presentation checkbox has source verification, with actual
-World i386 and launcher compile/link checks. Its original00755500 interaction
-callers continue in the later positive-action checkbox. Shared mounted-control
-movement sounds, occupied updates and firing remain required in their containing
-Car/StaticWeapon/action paths. P22-HUM and both P2.2 checkboxes remain open.
+Continue reactions/damage/ragdoll. Joint/clip collision, rest-surface records,
+reaction selection0074D510 and containing damage-controller source are present.
+B0 damage/death, actual item drops, Car control requests and Player/HUD injury
+source are now present. Close positive particle and remaining surface/network
+dependencies next; details,
+source checks and required failures are in [the active contract](human-ragdoll-source.md).
+No credit or commit has been added for this unfinished checkbox. Shared mounted
+movement sounds, occupied simulation and firing remain required where reached.
+P22-HUM and both P2.2 checkboxes remain open; application/desktop acceptance is
+still pending.
