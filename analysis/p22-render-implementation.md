@@ -62,8 +62,9 @@ with the inspected instructions at the following boundaries:
 process0089B63C independently of the per-world C4 volumes and224 clock. GEffects
 virtualB8 (vtable008101F0+ B8=00485B50) now has a concrete configure_procedural
 receiver. Original references contain no direct CALL00485B50; its one absolute
-reference is vtable008102A8. The live virtual caller/configuration producer is
-not yet bound by the reconstructed VM/application. No enable call is invented.
+reference is vtable008102A8. The actual opcodeAD virtual caller is now source-bound through the existing
+VM/runtime and containing module loan (see continuation below). Application
+mission execution remains disabled; no enable call is invented.
 
 00483E50 first clears, then loads clouder.tga/clouder2.tga through SAME graphics
 load_texture(primary,NULL,502,out), retaining actual out pointers even if returned
@@ -147,15 +148,20 @@ boundary. No constructor/read/refresh producer is established. Existing source
 rejects a reached read. A native fixture with known seeded history is only a
 bounded source audit, never actual initialization or mission reachability.
 
-UI base GameUiPresentation::command_before_scene rejects004B6720. UI19f049b
+UI base GameUiPresentation::command_before_scene rejects004B6720. UI74220d4
 contains later command geometry/full HUD dispatch; inspected through Git only,
 still unmerged. Its GameUiRenderStages seam is unchanged. UI's remaining Human
 order, occupied actor/FPV and console producers remain its own contracts. No UI
 code copied, receivers suppressed or successful replacements installed.
+The exact base failure is stage2→render_hud→HudSceneLoading::render→hud_render:
+after ordinary HUD/camera/no-GI gates, HUD.flags4 plus offline7 and visible command
+panel require GameUiPresentation::command_before_scene/004B6720, which throws in
+this implementation base. Stage1's concrete pre-scene service is independent.
+Latest UI's positive replacement uses the same consumer; it is not imported here.
 
 OWN must install/activate the lifecycle and caller; FRAME owns render-before-
-update scheduling/camera simulation. VM/configuration must supply actual virtual
-GEffectsB8 calls when reached. Empty current textures do not prove that future
+update scheduling/camera simulation. The actual VM/configuration path now supplies virtual
+GEffectsB8 behavior when opcodeAD is reached. Empty current textures do not prove that future
 procedural branches are inactive. Live resource bytes/populations/branches and
 user-operated desktop acceptance remain unobserved. No push or merge.
 
@@ -187,3 +193,125 @@ behavior, so no new initialization policy is installed. Actual render operation,
 camera and reached light/history state diagnostics are bound to the existing DATA
 store with primary-error preservation. This is not additional function credit,
 full containing closure, original engine execution or desktop delivery.
+
+
+## Configuration, special-frame and Scene continuation
+
+Latest receipt: [bindings checkpoint](checkpoints/p22-render-bindings-20261111.json).
+The previous configuration-caller exclusion is closed. The remaining RENDER-owned
+body boundary is still the original residual3C/40 read, not a UI dependency.
+
+### Actual procedural producer and lifetime
+
+Original00416E10 dispatch byte53 corresponds to **opcodeAD**, not opcode53:
+0041CDBC[AD-1]=53 and0041CBE0[53]=0041CAE6.0041CAF1 resolves the operand,
+0041CAFF reads the full DWORD integer pool,0041CB0A tests it and SETNE AL feeds
+GEffects virtualB8 before00416CF0's advance gate. The existing compiler already
+recognizes CSC_RunCLouder with one integer. The actual context/runtime now
+routes this command to the SAME effects façade, whose fixed borrowed service
+is published by EffectsModuleLoading only after identity validation. It invokes
+Startup's single process configure; no resource owner/cache/clock is duplicated.
+An unbound/retired service rejects explicitly. Constructor failure or a competing
+module cannot steal/clear the original loan. Close retracts it before retiring
+resources, including configuration before activation; C4 clear occurs while the
+module still owns process.world. Retry binds the same service again.
+
+### Special2E0 service required by current UI
+
+UI87d92dc first exposed the requirement; latest inspected UI74220d4 retains
+GameUiCommandModalSource::retire_command_special_model(World&). Its native
+operation is GEffects44/004870A0(false,0,true). The source now provides the full
+positive receiver, not only a null-state success. The historical label “special
+model” refers here to a **kind2 light frame**; MP_Lightning is the timed lookup.
+Existing engine light creation (driver kind2) and original CMP WORD[F8],2 agree.
+
+004870A0 (thiscall,ret0C) retains WORD-E4, saves raw160 mode, sets virtual94(11),
+shows/updates, then reads168 power, clears2EC and stores2F0=-1. Active/non-null
+input cannot replace an existing frame. Deferred false marks2EC; immediate false
+restores94(mode),88(power), hides30(0), releases0 then clears2E0. Source partial-
+initialization/cleanup guards restore only acquired state, attempt all retirement
+operations and preserve the primary exception. These guards are not engine SEH.
+The existing GEffects façade owns this state alongside its existing fade queues;
+World/module close retracts it before frame/Scene destruction.
+
+004871A0 (ret4,frozen148 bytes) resolves MP_Lightning/FFFF, checks kind2, uses the
+same initialization and stores exact duration bits. Missing frame legitimately
+returns. The native repeated/wrong-kind pointer-overwrite prefixes are unsafe;
+source rejects explicitly instead of leaking/releasing an unacquired reference.
+This limitation keeps the entry partial. No live weather/network caller is claimed.
+
+00487416..004874BF runs before fade/time224. One SAME engine RandFloat call is
+multiplied by saved power in x87. FSTS stores FLOAT for88 but the comparison uses
+the extended product against actual FLOAT.5. Product>.5 enables if hidden, calls
+88(stored amount), then24. Low/unordered products hide/update only when visible.
+Deferred retirement follows flicker. Signed-positive2F0 subtracts wrapping elapsed;
+expiry sets2EC for the NEXT update, which still consumes its random draw before
+restoring. Remaining2F0 subtraction also occurs after same-pass retirement.
+RandFloat1002C450's FILD*FLOAT return is extended ST0. The existing frame endpoint
+now captures ST0 as long double; i386 cdecl uses ST0 for both result forms. This
+removes an artificial FLOAT spill before0048134E/00487429, adds no random draw
+and keeps existing explicit FLOAT consumers' boundaries.
+
+Original opcodeBB/THUNDERSTORM_SetOn is dispatch5F→00418576. It resolves the full
+integer and retained frame slot, converts non-kind2 to null, invokes44(enabled,
+frame,false), then advances. The existing runtime now supplies this concrete
+producer. The unmerged UI modal integration can forward directly to
+world.scene().effects().configure_special_model(false,nullptr,true); no UI
+implementation was copied or successful placeholder receiver installed.
+004888C0 finish restores2E0 after lensflare visibility and before sun/reset.
+Source cold-close and WorldScene fallback also consume its frame loan.
+DATA snapshots/events retain actual presence, mode/power bits, flicker operations
+and timer/deferred state without additional engine samples. Historical resolver
+bytes, static MP_Lightning requirements, actual populations and executed branches
+remain separate. Native fixture populations are not actual mission reachability.
+
+### Actual Scene callback guards
+
+Native execution of the actual GameScene header found three source exception
+bugs: registration failure stranded active_; failed renewal erased a prior
+borrower; an endpoint exception after a latched C-callback exception masked the
+primary and poisoned the next operation. The bridge now retracts failed initial
+publication, restores a previous borrower on failed renewal, and consumes the
+latched callback failure before propagating a secondary endpoint failure. Render,
+advance, refresh, reset and mission-open use the same rule. Loading Reset RAII
+and actual Scene78(scene,0) remain unchanged. Checked engine10046820 only stores
+callback120/flags124 and has no positive failure/callee; these source guards do
+not invent original engine behavior. No original entry receives credit for them.
+
+### Verification and stop condition
+
+Native ASan/UBSan/LSan passes actual compiler/context opcodeAD→actual module's
+configuration loan→real procedural resource owner,100 module lifetimes, partial
+texture retry, wrong process/competing constructor rejection, cold close, renewal
+and post-retirement rejection. Separate procedural audit executes both generated
+batches; it never seeds a fixture cloud collection. Special-frame audit executes
+100 compiler/context opcodeBB lifetimes, visible/hidden/NaN/extended-versus-FLOAT
+comparisons, exact random counts, deferred/timed/wrapped expiry, every reached
+initialization/restoration/positive-update failure prefix and retry. Only engine/
+resource/camera endpoints are explicit native doubles.
+
+Actual GameScene native audit uses platform/checked-engine doubles and actual
+GameScene/scene_callback/session_render source:100 lifetimes, nine-stage ordering,
+offline/config/status/suppression/full-viewport gates, raw NaN/negative-zero near/
+far payloads, competing scenes, replacement/retirement, six endpoint families,
+primary callback versus secondary engine error and400 constructor failure/retry
+prefixes. The initial failing assertions exposed the three defects above; final
+runs pass. Native64 checks do not claim original32-bit ABI or engine execution.
+
+Strict i386 compile+link instantiates full actual World construction/destruction,
+module publication, VM commands, special/procedural services, DATA snapshot,
+owned GameUiSceneCallbacks/GameRenderStages and lifecycle→Scene78. It is not
+linking only declarations. The existing application compile/link also passes.
+Windows outputs and original binaries were never executed. Temporary audit
+sources/binaries are fingerprinted then deleted; concise logs/static instructions
+are retained in ignored WORK. Ledger adds one **partial** frozen004871A0 entry
+and expands existing00416E10/00487240 coverage. Absent004870A0/004888C0, borrowed
+engine calls and diagnostic/exception guards receive no new function credit.
+
+No other independently actionable RENDER item remains in this required call
+graph. P22-RENDER is **blocked, source incomplete** at the original per-volume
+unwritten3C/40 first read. This is a retained RENDER boundary; it is not reassigned
+to UI/FRAME/OWN. UI's unmerged consumers, FRAME scheduling/camera/effects order,
+OWN activation and later runtime/desktop evidence remain external. The user's
+strict original-behavior decision rules out synthetic history. Continue the newly
+authorized P22-FRAME work separately; do not enable application mission loading.

@@ -22424,7 +22424,7 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Adds original opcodeAD CSC_RunCLouder through SAME module/process0089B63C configuration loan, and opcodeBB THUNDERSTORM_SetOn integer/frame-kind2 filtering to SAME GEffects2E0 deferred service, before the original advance gate.",
       "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations. Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate. Source runtime/objective/look update verified separately; containing world remains unintegrated.",
       "evidence": [
         "analysis/mission-script-loading.md",
@@ -22438,7 +22438,9 @@
         "analysis/mission-script-initial-controls.md",
         "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/mission_script_loading_runtime.h"
+        "recovered/game/mission_script_loading_runtime.h",
+        "recovered/game/mission_script_render_commands.h",
+        "analysis/checkpoints/p22-render-bindings-20261111.json"
       ]
     },
     {
@@ -23120,7 +23122,7 @@
       "program": "client",
       "entry": "00487240",
       "status": "partial",
-      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded. Also source Human228 pass: reverse borrowed-Human updates, signed elapsed/FLOAT stores, native completion/NaN and ordered erase after actual model call; other passes remain excluded. Actual bounded loading update now composes same fade/time224, frame200/Human228 queues, current-camera sun, shared borrowed-Bird motion, profile4/empty-decoration gates and mesh movie update, in native order. Positive water/game64 weather/rain/grass/colour and unproduced pose304/special2E0/fade-in210 remain excluded. Fade uses signed FILD elapsed, FLOAT .001 and extended post-FSTS overshoot/sentinel semantics.",
+      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded. Also source Human228 pass: reverse borrowed-Human updates, signed elapsed/FLOAT stores, native completion/NaN and ordered erase after actual model call; other passes remain excluded. Actual bounded loading update now composes same fade/time224, frame200/Human228 queues, current-camera sun, shared borrowed-Bird motion, profile4/empty-decoration gates and mesh movie update, in native order. Positive water/game64 weather/rain/grass/colour and unproduced pose304/fade-in210 remain excluded. Fade uses signed FILD elapsed, FLOAT .001 and extended post-FSTS overshoot/sentinel semantics. Adds actual special2E0 pass before fade/time224: SAME extended RandFloat result, stored FLOAT power, native visible/update gates, deferred restoration and signed wrapping timer expiry for next update.",
       "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
       "evidence": [
         "recovered/game/effects_frame_fades.h",
@@ -23130,7 +23132,9 @@
         "recovered/game/effects_loading_update.h",
         "recovered/game/effects_fade.h",
         "analysis/mission-loading-integration.md",
-        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json",
+        "recovered/game/effects_special_model.h",
+        "analysis/checkpoints/p22-render-bindings-20261111.json"
       ]
     },
     {
@@ -34624,6 +34628,19 @@
         "recovered/game/render_debug_skeleton.h",
         "analysis/p22-render-implementation.md",
         "analysis/checkpoints/p22-render-services-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004871a0",
+      "status": "partial",
+      "coverage": "Resolve actual MP_Lightning with maskFFFF and kind2, retain WORD-E4 frame through SAME GEffects special2E0 owner, save raw mode160/power168 after native mode11/show/update, clear deferred2EC and store exact signed timer2F0 bits. Shared00487240 special pass handles actual flicker, next-update expiry and restore/release.",
+      "limitations": "Source-only typed C++ frame owner and checked engine endpoints replace original object/allocator/SEH ABI. Explicit source guards reject repeated timed replacement and wrong-kind retained pointer prefixes rather than reproduce native unsafe overwrite/leak. Missing frame legitimately returns. No live weather/network caller, engine execution, original memory layout or desktop acceptance claim. Original004870A0/004888C0 entries absent from frozen inventory receive no new credit.",
+      "evidence": [
+        "recovered/game/effects_special_model.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/p22-render-implementation.md",
+        "analysis/checkpoints/p22-render-bindings-20261111.json"
       ]
     }
   ]

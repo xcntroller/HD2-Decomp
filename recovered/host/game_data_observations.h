@@ -30,6 +30,10 @@ inline void observe_world_data(world_loading::World& world){
     frames.observe_data("population","process0089B63C","texture0 present",clouds.has_texture(0));
     frames.observe_data("population","process0089B63C","texture4 present",clouds.has_texture(1));
     frames.observe_data("population","GEffects","clock224",d.startup.effects_loading_process().field224);
+    const auto& special=d.scene.effects().special_model();
+    frames.observe_data("population","GEffects special2E0","frame present",special.frame()!=nullptr);
+    frames.observe_data("population","GEffects special2E0","deferred2EC",special.pending());
+    frames.observe_data("population","GEffects special2E0","timer2F0 bits",static_cast<std::uint32_t>(special.remaining()));
     frames.observe_data("population","World snapshot end");
 }
 }

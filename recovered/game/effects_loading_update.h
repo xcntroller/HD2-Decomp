@@ -10,8 +10,8 @@ namespace hd2::game {
 template<class Frames,class Process,class Effects,class Birds,class Movie,class Session,class Players,class Startup>
 void update_loading_effects(std::uint32_t elapsed,Frames& frames,Process& process,Effects& effects,Birds& birds,Movie& movie,
                             Session& session,Players& players,Startup& startup){
-        //304 pose,2E0 special model and210 fade-in have no source producer;
-        //their original loops are genuinely empty in this loading composition.
+        //304 pose and210 fade-in producers remain separate.
+        effects.special_model().update(elapsed); //00487416 BEFORE fade/time224.
         process.fade.update(elapsed);process.field224+=elapsed;
         if((session.status==1||session.status==5||session.status==6)&&process.water.enabled()&&players.current_player())
             throw std::runtime_error("GEffects water camera update requires actual00487240 retained-camera transitions");

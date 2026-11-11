@@ -1,77 +1,74 @@
 # P22-RENDER implementation plan
 
-Base and freshly fetched origin/master: `447e073ed90f9fc6fb0fdd305fe6d725115d1786`.
-Existing clean feature/p22-render worktree preserved; no reset, merge or master advance.
-Source-only work. Application loading remains disabled.
+Fetched/actual implementation base:447e073ed90f9fc6fb0fdd305fe6d725115d1786.
+Existing feature/p22-render worktree preserved. No reset, master advance, merge or
+push. Subsequent master/UI advances were inspected read-only, not imported.
+Source-only; application mission loading remains disabled.
 
-## Preserve completed source
+## Existing rendering to preserve
 
-- [x] Inspect existing session policy,006C9260 stages, actual Scene78 adapter,
-  same GEffects+C4 volumes/224 clock, draw leaves, fades and overlay owners.
-  Preserve frame-render-source.md and its20261110 checkpoint; no new credit for
-  absent0069B870/00486BF0 or original RET00724CB0.
-- [x] Inspect UI branch19f049b read-only: full HUD dispatch and command UI have
-  advanced; do not repeat the stale claim that all HUD updates are absent.
+- [x] Preserve session0069B870 mode/config policy,006C9260 stages, actual Scene78,
+  existing volume leaves, fades, text/font/overlay, graphics/camera and lifetimes.
+  Absent0069B870/00486BF0 and actual RET00724CB0 receive no invented credit.
+- [x] Inspect research/p22 through Git; verify source/evidence and SAME C4 volume
+  owner versus224 clock. Scene15C render camera differs from Sight's128.
+- [x] Inspect latest UI74220d4 through Git; full HUD/command/modal consumers have
+  advanced. Record its exact unmerged receivers and special-model requirement.
 
-## RENDER implementation
+## RENDER-owned implementation
 
-- [ ] Complete00482260 containing visibility, actual Scene15C camera, horizontal
-  hemisphere/distance, native pairwise far-first swaps and retained history;
-  bind00486BF0 to SAME volume owner/clock and actual frame/graphics endpoints.
-- [x] Recover/implement positive00482E50 and00483E50/00483DE0 process textures,
-  buffers, initialization, cleanup and retry; expose actual GEffectsB8 receiver.
-- [x] Implement concrete render stages and callable Scene/callback composition;
-  recover0079B760 positive debug geometry and retire callback borrowers.
-- [x] Focused temporary sanitizers, strict actual i386 World composition and
-  application link; fingerprint/remove temporary fixtures, record checkpoint.
+- [ ] **BLOCKED:** complete00482260's original per-volume3C/40 first read. Actual
+  allocator-residual bytes have no provenance; constructor/read/refresh do not
+  initialize them. User requires original behavior: no invented first sample.
+  All containing camera/visibility/hemisphere/distance/history-update/order/draw/
+  restoration source around this read is implemented. Keep this whole item OPEN.
+- [x] Bind00486BF0 over SAME GEffects C4/224 and actual frame/graphics endpoints.
+- [x] Implement positive00482E50 and00483E50/00483DE0 process resources, geometry,
+  graphics calls, absence/failure gates, ordered retirement and retry.
+- [x] Implement concrete GameUiRenderStages, actual Scene adapter, lifecycle-owned
+  callback installation/retirement and positive0079B760/0079AC40 debug geometry.
+- [x] Implement actual CSC_RunCLouder opcodeAD producer through existing compiler/
+  context/runtime and SAME module→effects façade→Startup process loan. Retire
+  callback and cold-configured resources before closing the owning module.
+- [x] Implement GEffects44/004870A0 special2E0 enable/deferred/immediate restore,
+ 004871A0 timed producer,00487240 flicker/expiry and004888C0 retirement. Bind actual
+  opcodeBB THUNDERSTORM_SetOn and SAME effects/frame/random owners. The current
+  UI modal interface can call this concrete service after its owning integration.
+- [x] Correct native Scene exception guards: failed registration retry, failed
+  re-registration retaining its borrower, latched callback primary over later
+  endpoint failure. Native guards remain distinct from original engine behavior.
+- [x] Preserve DATA APIs and four evidence levels; record actual resource/camera/
+  volume/history/procedural/special-frame operations without added engine reads
+  or randomness. Empty snapshots are not branch-inactivity proof.
+- [x] Native ASan/UBSan/LSan: positive geometry/resources, actual module/VM loans,
+  special-frame behavior, Scene gates/order/failures/retirement. Strict concrete
+  i386 World construction/render/VM/callback link and application link. Fingerprint
+  and remove temporary sources/binaries; retain logs and checkpoint receipts.
+- [x] Reconcile remaining scope: no other independently actionable RENDER item
+  found in the inspected required call graph. RENDER remains source-INCOMPLETE
+  only at the confirmed residual-history boundary above; do not relabel it UI.
 
-## Current continuation
+## External integration and later acceptance
 
-- [x] Finish original allocator-to-first-history-read proof and bind reached
-  render operation/camera/volume/history diagnostics through existing DATA APIs.
-  User chose strict original behavior; retain the guard without an invented initializer.
-  Diagnostic hooks alone receive no function credit.
+- [ ] UI owns importing/binding its unmerged GameUiPresentation consumers.
+  Base command_before_scene rejects004B6720; latest UI implements it. Current
+  GameUiCommandModalSource::retire_command_special_model(World&) must forward
+  to world.scene().effects().configure_special_model(false,nullptr,true).
+  Human/Player/camera/Sight/input/console sources remain their actual owners.
+- [ ] FRAME supplies original render-before-update scheduling, camera updates and
+  effects/module update order. Timed lightning's live weather/network caller is
+  outside this RENDER receiver implementation; no positive caller is fabricated.
+- [ ] OWN/LIFE install/activate the callable lifecycle and preserve borrower
+  retirement before Scene/World/camera/texture teardown. RENDER does not activate.
+- [ ] Observe real selected resources, loaded populations and positive branches
+  in the authorized engine workflow; user-operated desktop acceptance is separate.
 
-## Exact external dependencies
+[Implementation/evidence](p22-render-implementation.md),
+[strict history proof](p22-render-history.md),
+[latest checkpoint](checkpoints/p22-render-bindings-20261111.json).
 
-- [ ] UI: base GameUiPresentation::command_before_scene rejects004B6720;
-  UI branch provides newer command UI but remains unmerged. Inspect bindings
-  before importing anything; no suppression or successful missing receivers.
-- [ ] Resolve original per-volume3C/40 initial history:00481320/read/refresh
-  do not initialize it. Keep unknown state explicit, never invent initial angles.
-- [ ] FRAME supplies session scheduling and camera updates; OWN installs callable
-  composition/lifecycle before actual mission activation. Do not enable loading.
-- [x] Use DATA observation APIs already merged in this base; separate historical
-  bytes/static requirements/loaded populations/executed branches.
-
-## Later acceptance
-
-- [ ] Actual engine execution, fresh selected resources and positive runtime
-  branches; UI/FRAME/OWN integration and user-operated desktop acceptance.
-
-## Latest source checkpoint
-
-Positive procedural geometry/resources, debug skeleton rendering and concrete
-owned callback stages are implemented, not placeholders. Strict i386 composition
-includes actual World/Scene/UI/RENDER/lifecycle and DATA; native audits use only
-explicit engine/Human doubles and original procedural generation.
-[Contracts and limits](p22-render-implementation.md).
-
-The containing00482260 checkbox remains OPEN only at the original volume3C/40
-first-read boundary.00481320 never initializes them; source rejects that actual
-read rather than manufacturing angles. This prevents claiming completed RENDER
-scope or a successful first composed mission frame. Other independent RENDER
-bodies listed above are now implemented and source-verified.
-
-External live producers remain: GEffects virtualB8's configuration caller (source
-method exists; no forced enable or fabricated loaded textures), UI's unmerged
-positive receivers, FRAME camera/scheduling and OWN activation/install. Runtime
-resource selection/populations and desktop acceptance remain separate.
-
-## Strict-history decision
-
-[Allocator-to-read proof and diagnostics](p22-render-history.md) narrow the
-remaining boundary to unwritten allocator-residual3C/40, not a missing constructor
-constant. The user explicitly chose original behavior: no first-visible rule.
-The actual prior bytes remain unknown, so the reached guard remains and the
-containing checkbox is OPEN. Do not repeat the same confirmed investigation.
+Current stop condition: independently implementable RENDER work is done; further
+RENDER closure is genuinely blocked by missing original-state provenance for the
+first3C/40 read. Do not rerun the confirmed allocator investigation without new
+evidence or relax the user's original-behavior decision. Continue P22-FRAME in
+its separately authorized worktree after this verified checkpoint.

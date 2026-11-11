@@ -13,7 +13,7 @@ namespace hd2::game {
 
 //GEffects1 loading/activation/finish over the actual shared process state,
 //scene/frame store, files, shadow/fade queues, camera, FPV/profile and CRT random.
-//Cold304 pose records,210 positive fades,2E0 special model and water-camera1AC
+//Cold304 pose records,210 positive fades and water-camera1AC
 //have no source producer; no successful positive runtime/render handler exists.
 template<class Frames,class Files,class Random,class Camera,class View,class Effects,class Startup>
 class EffectsModuleLoading {
@@ -26,15 +26,22 @@ public:
          birds_(frames,random,far_clip),volumes_(frames,[this]{if(process_.world==this)startup_.procedural_clouds().clear();}),movie_(frames),camera_(camera),view_(view),startup_(startup),mode_(mode),resource_(std::move(resource)){
         if(process_.world||process_.water_camera1ac)throw std::logic_error("Retire actual GEffects world/camera borrowers first");
         if(&effects_.frames()!=static_cast<typename Effects::Services*>(&frames_)||&effects_.fade()!=&process_.fade||
-           &effects_.environment()!=&process_.environment||&startup_.effects_loading_process()!=&process_)
+           &effects_.environment()!=&process_.environment||&startup_.effects_loading_process()!=&process_||
+           effects_.procedural_owner()!=nullptr)
             throw std::logic_error("GEffects requires its SAME frame registry/process environment/fade owners");
+        //Publish the required fixed-slot configuration loan only after all
+        //identity checks. Binding does not invoke it; publication of world is
+        //nonthrowing, so constructor failure cannot strand a callback to this.
+        effects_.bind_procedural_configuration(this,&startup_.procedural_clouds(),[this](bool enabled){
+            require_open();startup_.procedural_clouds().configure(enabled,frames_);
+        });
         process_.world=this;
     }
     ~EffectsModuleLoading(){close();}
     EffectsModuleLoading(const EffectsModuleLoading&)=delete;EffectsModuleLoading& operator=(const EffectsModuleLoading&)=delete;
     auto& registration(){return registration_.get();}auto& birds(){return birds_;}auto& volumes(){return volumes_;}auto& movie(){return movie_;}
     template<class Draw>void render_after_scene(Draw& draw){require_open();render_loading_effects_fade(process_,draw);} //00486C10.
-    void configure_procedural(bool enabled){require_open();startup_.procedural_clouds().configure(enabled,frames_);} //GEffects B8/00485B50.
+    void configure_procedural(bool enabled){require_open();effects_.configure_procedural(enabled);} //GEffects B8/00485B50.
     void render_before_scene(){
         require_open();
         struct ProcessRenderer{
@@ -83,9 +90,10 @@ public:
     void finish(bool authority){ //004888C0; detached disable precedes the authority gate.
         require_open();camera_.detached().disable_for_loading();if(authority)return;
         frontend::CleanupErrors errors;
-        //304 pose vector and special-frame2E0 are cold empty/null; native still
-        //shows the actual lensflare. No positive camera/model receiver is supplied.
+        //304 pose vector retirement precedes these services in the original;
+        //its producer remains separate. Restore2E0 after showing the lensflare.
         errors.attempt([&]{effects_.lensflare_visible(true);});
+        errors.attempt([&]{effects_.configure_special_model(false,Frame{},true);});
         if(process_.sun1b0){
             errors.attempt([&]{const auto& p=process_.sun_position10;frames_.object_position(process_.sun1b0,{{p[0],p[1],p[2]}});});
             errors.attempt([&]{frames_.update_scene_object(process_.sun1b0);});
@@ -108,8 +116,15 @@ public:
         update_loading_effects(elapsed,frames_,process_,effects_,birds_,movie_,session,players,startup_);
     }
     void close()noexcept{
+        effects_.retire_procedural_configuration(this); //Retract only this loan, even after a process-owner replacement.
         if(process_.world!=this)return;
         frontend::CleanupErrors errors;if(!finished_)errors.attempt([&]{finish(false);});if(!unloaded_)errors.attempt([&]{unload(false);});
+        //Source lifetime guard also covers a special-frame producer reached
+        //without activation. Consume the frame loan before World retirement.
+        errors.attempt([&]{effects_.configure_special_model(false,Frame{},true);});
+        //C4 destruction also clears process0089B63C. Do it while this module
+        //still owns process.world, including configuration before activation.
+        volumes_.clear();
         process_.sun1b0=Frame{};process_.water_frames238.fill(Frame{});process_.world=nullptr;
         try{errors.rethrow();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
     }

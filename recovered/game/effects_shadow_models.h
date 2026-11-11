@@ -5,8 +5,11 @@
 #include "game/effects_fade.h"
 #include "game/effects_frame_fades.h"
 #include "game/effects_human_fades.h"
+#include "game/effects_special_model.h"
 #include "frontend/cleanup.h"
 #include <cmath>
+#include <functional>
+#include <utility>
 #include <string>
 #include <vector>
 
@@ -20,7 +23,22 @@ class EffectsShadowModels {
 public:
     using Services=Frames;
     using Frame=typename Frames::Frame;
-    EffectsShadowModels(Frames& frames,const EffectsEnvironment& environment,EffectsFade& fade):frames_(frames),environment_(environment),fade_(fade),frame_fades_(frames),human_fades_(frames) {}
+    EffectsShadowModels(Frames& frames,const EffectsEnvironment& environment,EffectsFade& fade):frames_(frames),environment_(environment),fade_(fade),frame_fades_(frames),human_fades_(frames),special_model_(frames) {}
+    auto& special_model(){return special_model_;}
+    void configure_special_model(bool enabled,Frame frame,bool immediate){special_model_.configure(enabled,frame,immediate);} //GEffects44.
+    void bind_procedural_configuration(const void* module,const void* process,std::function<void(bool)> configure){
+        if(procedural_||!module||!process||!configure)throw std::logic_error("GEffectsB8 requires one actual module/process binding");
+        procedural_=std::move(configure);procedural_module_=module;procedural_owner_=process;
+    }
+    const void* procedural_owner()const noexcept{return procedural_owner_;}
+    void configure_procedural(bool enabled){ //GEffectsB8/00485B50 through the containing module's SAME process.
+        if(!procedural_)throw std::runtime_error("GEffectsB8 requires its actual procedural process binding");
+        procedural_(enabled);
+    }
+    void retire_procedural_configuration(const void* module)noexcept{
+        if(procedural_module_!=module)return;
+        procedural_={};procedural_module_=procedural_owner_=nullptr;
+    }
     auto& fade(){return fade_;}const auto& fade()const{return fade_;}
     auto& frame_fades(){return frame_fades_;}
     auto& human_fades(){return human_fades_;}
@@ -139,6 +157,8 @@ private:
     }
     Frames& frames_;const EffectsEnvironment& environment_;EffectsFade& fade_;EffectsFrameFades<Frames> frame_fades_;
     EffectsHumanFades<Frames> human_fades_;
+    EffectsSpecialModel<Frames> special_model_;
+    std::function<void(bool)> procedural_;const void* procedural_module_=nullptr;const void* procedural_owner_=nullptr; //Single borrowed service, no resource ownership.
 };
 
 //CD0's00758BF0/00758C60 shadow lifetime, native DD0+A9C. The shadow module
