@@ -47,21 +47,24 @@ indices3/5. Player writes54 before stats/publication; Remote must use its old ra
 
 ## Immediate next work
 
-1. Reuse existing `feature/p22-pack` source rather than duplicating its23 codecs,
-   discard grammars, actual command/packet owners and callback lifetime checks.
-   Read its plan/implementation through Git. Local commits2316b73/287c6fc/31b8786
-   are NOT merged into master; do not overwrite their work. Their damage/drop/
-   rank effect gaps can now bind these actual Human bodies. Preserve distinct
-   Player/Remote ordering and copied display values before callbacks retire owners.
-2. Continue Player0053BD00 byte550 objective tail: actual nonoffline objectives
-   are **GameData kind12**, with native28 selector and18 side. Current shared
-   GameDataNode lacks that metadata producer. Reuse P2.8 metadata research before
-   implementing; do not reinterpret offline kind4 fields or invent successful
-   objective transport. Exact first-objective side quirk is in WORK export.
-3. Actual peer removal0072F2F0 reaches application11/0072A0B0 transport; nonrender
-   messages reach0069F1E0/00744870 console window/process (NOT networking).
-   These reached branches still require real owners. Continue through full
-   containing frame/damage failure, repeated entry and ordered retirement.
+1. Shared PACK effect integration now reuses pinned31b8786 codecs/grammars and
+   callback lifetime checks in main. [Receipt](analysis/checkpoints/p2.2-human-packet-effects-20261111.json).
+   B0 uses ONE packet-command value type; actual damage/drop/rank effects are
+   bound, including Remote's old-rank order and command17 zero point/impulse.
+   PACK worktree remains untouched; broader imported bodies get no new credit
+   here. Keep actual nonoffline authority forwarding required.
+2. Finish reaction-specific mounted movement SOUND producer/release004C6E50/
+   004C6DD0. Then Player0053BD00 byte550 objective: actual nonoffline descriptors
+   are GameData kind12, native28 selector/18 side; metadata/transport still required.
+3. Continue actual peer removal0072F2F0 application11/0072A0B0 and nonrender
+   console0069F1E0/00744870 owners, then full containing frame/failure/re-entry/
+   retirement. Do not invent successful missing positive dependencies.
+
+**PACK discrepancy:** its zero-multiplier drop-writer claim is wrong. At20A7
+[S+08]=mask15; PUSH20AB makesESP=S-4; FIMUL[ESP+0C] reads[S+08],15. Original
+writer therefore remains `(speed-1)*.25*15`. Keep the ignored stack-proof JSON.
+Reader005B1F10 retains x87 until its final FLOAT store.005A8320 fallback is full
+name0C, not short10. Both source corrections are in the integration contract.
 
 Existing007B3C80 clip collision/transitions,007A7470 containing ragdoll, actual
 rest007B37C0→DD000787110→ShotMgr A0, actual0074D510 DD0+AA0 selection and damage
@@ -80,8 +83,8 @@ disabled, no resource-loading equivalence. Temporary audit files are ignored,
 fingerprinted in receipt and retained only for this ongoing full-checkbox work;
 remove them at full completion. No permanent tests.
 
-Strict actual World i386: `human-damage-score-presentation-host-i386.log` PASS.
-Latest main launcher compile/link: `human-damage-score-main-application-i386.log`
+Strict actual World i386: `human-damage-pack-host-i386.log` PASS.
+Latest main launcher compile/link: `human-damage-pack-application-i386.log`
 PASS. Outputs were NOT executed. Tracker render/check and diff checks required
 at checkpoint. Do not repeatedly audit unchanged verified solver/particle source.
 

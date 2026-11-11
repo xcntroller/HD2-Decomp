@@ -44,6 +44,10 @@ public:
     }
     void close(std::uint32_t mode){Base::close(mode);bound_=false;} //Removes input, unlike state6.
     const auto& first()const{return first_;}const auto& second()const{return second_;}
+    void receive_packet_inputs(const HumanPacketCommand& command){ //00592FE0 case0, SAME C0/1C0 arrays.
+        for(unsigned n=0;n<64;++n){first_[n]=command.inputs[0].template get<std::uint32_t>(n*4);second_[n]=command.inputs[1].template get<std::uint32_t>(n*4);}
+    }
+    void clear_packet_action_suppression()noexcept{flag2c1_=false;} //00592FE0 command23.
     bool bound()const{return bound_;}
     bool suppress_hostile_selection()const override{return flag2c1_;} //005A4410.
 private:

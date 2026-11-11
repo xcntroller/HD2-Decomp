@@ -72,7 +72,7 @@ Continue reactions/damage/ragdoll in main `H&D2 Decomp 4`. Clip/rest/selection,
 actual authority/received damage, inventory drops, death, policy, localized messages,
 shared session scoring/ranks and auxiliary death selection have source checkpoints.
 [Latest evidence](checkpoints/p2.2-human-damage-presentation-20261111.json).
-Integrate existing PACK grammar/lifetime work with these actual effects, then close
+Shared PACK grammar/lifetime work is now bound to these actual effects. Close
 Player objective, reached session/console/peer dependencies and containing failure,
 re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
 The full selected checkbox, P22-HUM and P2.2 remain open; no application or desktop

@@ -1,6 +1,6 @@
 #ifndef HD2_GAME_HUMAN_DAMAGE_PRESENTATION_H
 #define HD2_GAME_HUMAN_DAMAGE_PRESENTATION_H
-#include "game/human_frame_commands.h"
+#include "game/human_damage_commands.h"
 #include "game/human_ai_shot_direction.h"
 #include "game/human_state_frame_timers.h"
 

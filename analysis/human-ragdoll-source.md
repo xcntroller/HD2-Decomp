@@ -532,3 +532,60 @@ damage/drop/rank effects; retain Remote-specific ordering. Continue Player550
 objective/kind12 metadata and actual nonoffline session/console/peer dependencies,
 then containing frame/failure/re-entry/retirement. Reactions/damage/ragdoll and
 P2.2 remain OPEN. Application loading and user desktop acceptance remain pending.
+
+
+**PACK integration discrepancy — exact drop writer:** PACK's zero-multiplier
+claim is incorrect. Let S be ESP before005B20AB.005B2099 writes[S+0C]=0;
+005B20A7 writes[S+08]=mask[4]=15. PUSH at005B20AB makes ESP=S-4, so005B20B2
+FIMUL[ESP+0C] reads[S+08], **15**. The current `(speed-1)*.25*15` writer matches
+the original.008119A0 is DOUBLE8, making its calculated width4; the actual mask
+at00816398 is15. Keep this corrected behavior when importing PACK source.
+Evidence: `human-drop-command-write.asm`, `human-drop-writer-stack-check.json`.
+No new export, absent-function credit or original execution was needed.
+
+
+### Shared PACK effect integration — 2026-11-11
+
+Reused pinned `feature/p22-pack`31b8786 source for23 value codecs, exact
+Player/Remote/discard grammars, Scene2/B0 re-resolution, actual input/inventory
+queue producers, late inventory/equipment snapshots and notification14. Its
+worktree/history remain untouched. This is a source dependency import, not a
+merge of PACK's plan/ledger or a claim that its missing positive effects are done.
+
+B0 FIRST80/SECOND90 now own ONE HumanPacketCommand value type. Existing actual
+kind1 damage,10 drop and16 rank producers fill that same type; the former optional
+parallel payload fields are retired. The containing HumanWorld services bind
+actual005A15D0/005A3490/005A3750/005A1C90 and rank effects. Original command17
+supplies kind/amount/source/hit with zero point/impulse. Authority still rejects
+unimplemented nonoffline forwarding. Nonoffline presentation supports these real
+effects; other reached mode-specific gaps retain required failures. Remote16
+uses its previous rank for stats before final publication, while Player writes54
+first. Module13 routes through the same checked grammar, rechecking Scene2/B0
+between every command. Owned decoded values never retain a Human/B0 borrower.
+
+Two original-instruction details supersede the initial checkpoint/source notes:
+005B1F10 keeps division/multiply/add in x87 through its final20 FLOAT store; no
+intermediate FLOAT division store exists.005A8320's empty user-name14 falls back
+to full-name0C, not short-name10. Current source corrects both. The PACK writer's
+zero-multiplier claim is rejected by the exact stack proof immediately above.
+The shared writer retains the original15 multiplier. No unsupported success or
+absent-function credit is introduced by these fidelity corrections.
+
+Focused `human-damage-pack-native.log` passes ASan/UBSan/LSan over production
+packet serializer/receiver→actual received-damage body, independent1/10/16 wire
+checks, all16 drop codes, native quantizer values, actual Human destruction at
+the final callback, thrown callback followed by a later packet, and100 repeated
+entries. Human/State/Scene/engine endpoints are explicit doubles; this is not a
+full FIFO/application run. Actual World/B0/module i386 compile passes in
+`human-damage-pack-host-i386.log`; launcher compile/link passes in
+`human-damage-pack-application-i386.log`. No output was executed. Receipt:
+[shared packet effects](checkpoints/p2.2-human-packet-effects-20261111.json).
+
+Broader imported codecs receive no NEW ledger entries in this integration
+checkpoint; their existing PACK branch claims await explicit reconciliation.
+Existing damage entries now point to the shared codec. Full selected checkbox,
+application integration and user acceptance remain open. Next reaction-specific
+gaps: actual mounted movement SOUND producer/release, Player550 objective/
+kind12 metadata and nonoffline peer/console owners, then containing frame and
+retirement checks. Other PACK clothing/control/item/special-animation effects
+remain required and belong to the following Human action/item boundaries.

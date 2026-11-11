@@ -93,7 +93,7 @@ public:
             (void)request(state,category,delay,1,false);
         }else (void)request(state,category,delay,1,true);
     }
-private:
+public:
     template<class State>void offline(State& state,std::int32_t category,bool quiet){ //00588170.
         auto& human=*state.human();auto random=[&]{return services_.speech_random();};
         const auto phrase=play_speech_phrase(*human.speech_definition,category,random);
@@ -108,6 +108,7 @@ private:
         if(!(static_cast<long double>(distance)*distance<square))
             services_.play_human_speech(human,speech_sample_identity(phrase),static_cast<float>(speech_near_range(phrase)),static_cast<float>(distance),false);
     }
+private:
     Frames& frames_;Services& services_;
 };
 } //namespace hd2::game

@@ -33892,7 +33892,9 @@
       "evidence": [
         "recovered/game/human_state_base_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_packet_commands.h",
+        "analysis/checkpoints/p2.2-human-packet-effects-20261111.json"
       ]
     },
     {
@@ -33904,7 +33906,9 @@
       "evidence": [
         "recovered/game/human_frame_commands.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_packet_commands.h",
+        "analysis/checkpoints/p2.2-human-packet-effects-20261111.json"
       ]
     },
     {
@@ -33916,7 +33920,9 @@
       "evidence": [
         "recovered/game/human_frame_commands.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_packet_commands.h",
+        "analysis/checkpoints/p2.2-human-packet-effects-20261111.json"
       ]
     },
     {
@@ -33928,7 +33934,9 @@
       "evidence": [
         "recovered/game/human_world_loading_services.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_packet_commands.h",
+        "analysis/checkpoints/p2.2-human-packet-effects-20261111.json"
       ]
     },
     {
@@ -33952,7 +33960,9 @@
       "evidence": [
         "recovered/game/human_damage_presentation.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_packet_commands.h",
+        "analysis/checkpoints/p2.2-human-packet-effects-20261111.json"
       ]
     },
     {
@@ -34060,7 +34070,9 @@
       "evidence": [
         "recovered/game/human_state_base_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_packet_commands.h",
+        "analysis/checkpoints/p2.2-human-packet-effects-20261111.json"
       ]
     },
     {
@@ -34072,7 +34084,9 @@
       "evidence": [
         "recovered/game/human_frame_commands.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_packet_commands.h",
+        "analysis/checkpoints/p2.2-human-packet-effects-20261111.json"
       ]
     },
     {
@@ -34084,7 +34098,9 @@
       "evidence": [
         "recovered/game/human_frame_commands.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_packet_commands.h",
+        "analysis/checkpoints/p2.2-human-packet-effects-20261111.json"
       ]
     },
     {
@@ -34204,7 +34220,9 @@
       "evidence": [
         "recovered/game/human_world_loading_services.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_packet_commands.h",
+        "analysis/checkpoints/p2.2-human-packet-effects-20261111.json"
       ]
     },
     {

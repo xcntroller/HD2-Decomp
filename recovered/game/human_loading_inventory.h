@@ -87,8 +87,8 @@ bool equip_human_loading_holster(Human& human,Items& items,Commands& commands,st
 }
 
 //005A2B40→00587BF0→005A2D50 offline loading call composition. Only the actual
-//same-Human/empty-hand1/2/6→3 loading boundary is supported. Player1/remote7
-//must use their genuine queued native84 commands; reject those before mutation.
+//same-Human/empty-hand1/2/6→3 immediate loading boundary and actual Player/Remote
+//queued84 producers are supported. A queued result does not complete its effect.
 template<class Frames,class Human,class Items,class States,class Inline,class Players,class Presentation,class World>
 class HumanLoadingInventoryCommands final : public HumanLoadingInventoryReceiver<Frames> {
 public:
@@ -106,7 +106,11 @@ public:
     bool move(Entry entry,Human& source,std::int32_t source_slot,std::int32_t destination_slot,std::int32_t index) {
         auto* state=states_.get();if(!state)throw std::runtime_error("Inventory command requires actual published Human B0");
         const auto kind=state->words().template get<std::uint32_t>(0x48),mode=world_.mode_flags();
-        if(kind==1||kind==7)throw std::runtime_error("Player/remote inventory command requires its actual queued packet consumer");
+        if(kind==1||kind==7){
+            if((mode&7u)!=7u)throw std::runtime_error("Queued inventory publication requires actual nonoffline transport");
+            if(!entry)throw std::runtime_error("Human inventory request is missing its actual item entry");
+            return state->queue_inventory_move(items_.runtime_item(entry).identity,&source==&human_?-1:source.base().id10(),source_slot,destination_slot,index);
+        }
         if(kind!=3&&kind!=4&&kind!=5&&kind!=6&&kind!=8)throw std::runtime_error("Unrecovered inventory command state");
         if((mode&7u)!=7u)throw std::runtime_error("AI inventory command requires its actual outgoing packet owner outside offline7");
         if(&source!=&human_||destination_slot!=3||index!=0||(source_slot!=1&&source_slot!=2&&source_slot!=6))
@@ -135,7 +139,13 @@ public:
     bool swap(Entry current,std::int32_t current_slot,Human& source,Entry selected,std::int32_t selected_slot) { //005A2BB0→00587E00→005A2E90.
         auto* state=states_.get();if(!state)throw std::runtime_error("Weapon swap requires actual Human B0");
         const auto kind=state->words().template get<std::uint32_t>(0x48),mode=world_.mode_flags();
-        if((mode&7u)!=7u||kind==1||kind==7)throw std::runtime_error("Weapon swap requires actual queued/nonoffline packet owner");
+        if(kind==1||kind==7){
+            if((mode&7u)!=7u)throw std::runtime_error("Queued weapon swap requires actual nonoffline transport");
+            if(selected_slot==4)throw std::runtime_error("Clothing swap requires actual005A2BB0 Human alignment/eligibility gates");
+            if(!current||!selected)throw std::runtime_error("Weapon swap request is missing actual entries");
+            return state->queue_inventory_swap(items_.runtime_item(current).identity,current_slot,&source==&human_?-1:source.base().id10(),items_.runtime_item(selected).identity,selected_slot);
+        }
+        if((mode&7u)!=7u)throw std::runtime_error("Weapon swap requires actual nonoffline packet owner");
         if(kind!=3&&kind!=4&&kind!=5&&kind!=6&&kind!=8)throw std::runtime_error("Unrecovered weapon swap state");
         if(&source!=&human_||current_slot!=3||(selected_slot!=1&&selected_slot!=2&&selected_slot!=6))
             throw std::runtime_error("Weapon swap is outside actual loading weapon slots");
