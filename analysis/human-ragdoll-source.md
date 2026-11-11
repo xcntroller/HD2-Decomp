@@ -449,3 +449,86 @@ Next work continues the SAME reactions/damage/ragdoll checkbox:
    No successful missing transport, configuration, score or text substitutes.
 
 Application mission integration and user desktop acceptance remain open.
+
+
+### Damage presentation and scoring checkpoint — 2026-11-11
+
+Continuation now runs in `/home/control/Documents/Projects/H&D2 Decomp 4`, at the
+user's explicit request. All22 pending Human files were transferred byte-for-byte
+from the temporary continuation; main's newer GUARD changes were retained.
+Before/after hashes and copies are in ignored WORK
+`human-return-main-20261111`. The temporary checkout is an inactive backup.
+
+005A2FE0 now traverses the SAME real hand3, shoulder2, pack6 and holsters1 in
+native order, preserving ammunition and four engine draws per item. Its loaded
+ammunition argument is FLOAT (raw005A3160), not the old C export's int alias.
+Actual drops publish00588EF0 kind10 to B0 SECOND90 after runtime transfer;
+005B1F10/005B2020 preserve signed identities, direction, optional actor and4-bit
+speed grammar. Client005A3750 reuses inventory/model and SAME type11 runtime;
+it does not produce a second authority drop or authority-only lifetime tail.
+
+005A15D0 is now the real received-damage path, separate from005A1C90 authority.
+Packet-relative hit points remain relative while cosmetic effects add model XYZ.
+Presentation uses virtual88, not authority84: seven real B0 tables target00583940
+and Player targets0053BE10. Presented death flags/cancels action without authority
+inventory/music retirement. Player clears actual Car pedal, FPV/Human state and
+uses actual respawn/config/session fields for injury text. The four voices in
+00518710(false) are observed before its early return, then real81-slot stop,
+selected stop voice, four seek calls and native scalar publication. Destroyed
+Car seat removal now uses this path. Start/running Car simulation remains separate.
+
+Nonoffline005A1C90 policy now uses actual configuration224,244,250,254 and source
+team before victim team; signed protection time and reflection order are retained.
+005A0DA0 now selects real zone/hit/death captions and colours using SOURCE's
+local-player predicate. Names use actual HumanStore/model or session record name,
+never a copied display roster. The original unknown-zone literal is
+`Unknow damage zone !!!!` at0083C718. Damage text retains both formatter passes;
+undefined varargs, overflow and missing native owners reject explicitly.
+Nonrendered0069BF70 reaches a **console window/process**, not packet transport;
+actual0069F1E0/00744870 ownership is still required on that branch.
+
+0072EE60 now mutates SAME process player40..60 and three team464 records under
+418; team FLOAT scores44C are separate. These fields lie past the original .data
+raw extent and are loader-zero-filled.0072E7E0 resets nine player words and7C
+under lock, then teams unlocked; it does NOT reset B8.0072FD60 uses actual10..80
+thresholds at00844F94 and appends005470B0 kind16 before publishing record54.
+Friendly-kill peer removal happens after unlock. Actual application11/0072A0B0
+transport remains required when a real peer must be removed. The native remote-AI
+source==record-count bug is rejected before an out-of-bounds access.
+
+ControlStartupRecord now carries its native3C Human as a borrowed typed source
+pointer, cleared by the existing initializer/destructor path. There is no DWORD
+pointer fabrication or second owner. **The ordinary nonoffline00612A60 peer-slot
+writeback producer remains open**; peer slot and Scene2 actor identity are distinct.
+Rank command005B0E50/005B0EC0 reads4 bits; serializer005B0E70 is absent frozen.
+Player command16 writes actual54 before006A1CB0 stats and0072FAC0 text; the resulting
+equal-rank green message is original behavior.005A96A0 copies only indices2,1,4,6,7,8
+in native order to current/max arrays.00725B00 uses actual holder4/definition44
+when style0 and real3C exists. Remote's different old-rank path is not supplied
+by this Player receiver. Independent PACK source already implements broader
+wire/discard/Remote notification contracts; reuse it at the next integration.
+
+0045FE10 releases the actual auxiliary member's reverse hostile list. Native
+auxiliary+28/+2C records are the SAME selection record shape used by0045E410/
+0045E540, proven by005A0220/0045FE10 instruction receivers. The previous opaque
+raw vector is replaced by that actual owner, including its shared counters;
+post-loading preserves the roster, reset clears it, and both retire selections.
+No parallel auxiliary selection or fabricated producer is introduced.
+
+New focused native ASan/UBSan/LSan logs PASS: `human-death-inventory-native.log`,
+`human-damage-presentation-native.log`, `human-damage-policy-native.log`,
+`human-damage-messages-native.log`, `human-damage-score-native.log`,
+`human-score-presentation-native.log`, `human-auxiliary-selection-native.log`,
+`human-car-engine-stop-native.log`; actual state/damage audit also passes.
+Engine/Scene/queries/platform endpoints remain explicit doubles. The Car stop
+fixture seeds actual sound slots with access-control disabled; it does not prove
+resource loading. Strict actual World i386 passes in
+`human-damage-score-presentation-host-i386.log`; main launcher compile/link passes
+in `human-damage-score-main-application-i386.log`. Windows outputs were not run.
+[Checkpoint receipt](checkpoints/p2.2-human-damage-presentation-20261111.json).
+
+Next: integrate existing PACK codecs/receiver lifetime checks and bind these real
+damage/drop/rank effects; retain Remote-specific ordering. Continue Player550
+objective/kind12 metadata and actual nonoffline session/console/peer dependencies,
+then containing frame/failure/re-entry/retirement. Reactions/damage/ragdoll and
+P2.2 remain OPEN. Application loading and user desktop acceptance remain pending.

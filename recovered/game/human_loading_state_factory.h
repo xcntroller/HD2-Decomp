@@ -168,6 +168,17 @@ public:
                 services_.retire_dead_player_objective(player);
         }
     }
+    void retire_presented_dead_state(Base& state){ //Virtual88, distinct from authority84.
+        const auto type=state.words().template get<std::uint32_t>(0x48);
+        if(type!=1&&(type<3||type>8))throw std::runtime_error("Presented death has no actual B0 family"); //All eight proven vtables use00583940, except Player0053BE10.
+        auto& words=state.words();words.set(0x50,words.template get<std::uint32_t>(0x50)|0x800u); //00583940.
+        if(words.template get<std::int32_t>(0x64)>=0)services_.abort_human_dead_action(state);
+        if(type==1){ //0053BE10, AFTER base cancellation.
+            auto& player=static_cast<Player&>(state);services_.retire_presented_dead_player(player);
+            presentation_.set_player_mode(player,*state.human(),0,services_.mode_flags());
+            services_.retire_presented_dead_player_tail(player);
+        }
+    }
     void notify_nearby_player_damage(Base& state){
         if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Nearby Player damage requires actual Active AI state");
         static_cast<Active&>(state).notify_nearby_player_damage();

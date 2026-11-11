@@ -132,6 +132,10 @@ public:
         request_car_emergency_brake(fields,state.solver.substeps,state.brake_ramp,state.brake_amount,state.brake_latch,true,true);
         request_car_clutch_pedal(state.control_requests,fields,state.controller().desired_clutch,0.f);
     }
+    void release_presented_driver_pedal()override{ //0053BE10 invokes only004F2100(0,1).
+        if(!initial_||!ready_)throw std::logic_error("Presented dead driver requires actual initialized Car controls");
+        auto& state=*initial_;request_car_drive_pedal(state.control_requests,state.drive,actor_.geometry->physics().scalars(),state.solver.substeps,0.f,true);
+    }
 private:
     void require_mode()const{if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Car loading requires actual non7 network/input owners");}
     void require_geometry()const{if(!actor_.geometry||!actor_.ancillary||!actor_.callbacks)throw std::logic_error("Car activation requires its actual geometry/DM/callback owners");}
@@ -160,8 +164,11 @@ private:
         if(index==0){actor_.driver24ac=nullptr;
             if(!destroyed_){ //004F2530(0,!234F), forced shutdown mutates22A0 only in this branch.
                 initial_->engine_timeout=5000;initial_->health.destroyed=false;
-                initial_->drive.engine_speed=0;initial_->drive.running=false;initial_->finalizer.engine_sound_pending=false;initial_->sounds.stop_all();
-            }else if(initial_->drive.running)throw std::runtime_error("Destroyed Car seat release requires actual00518710 engine transition");
+                initial_->drive.engine_speed=0;initial_->drive.running=false;initial_->finalizer.engine_transition=false;initial_->sounds.stop_all();
+            }else if(initial_->drive.running){
+                initial_->audio.stop_engine_transition(initial_->drive,initial_->finalizer.inside,initial_->finalizer.engine_transition,initial_->health.destroyed);
+                if(!initial_->drive.running){initial_->control_requests.first=initial_->control_requests.second=0;initial_->health.destroyed=false;} //004F2530 tail.
+            }
             const auto speed=actor_.geometry->physics().scalars().get(0x6f0);initial_->drive.governor=speed>0?speed+.5f:speed; //004F2630.
             initial_->brake_ramp=initial_->brake_amount=0;initial_->brake_latch=false; //004F26A0(0,0).
         }

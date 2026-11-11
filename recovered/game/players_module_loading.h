@@ -18,9 +18,9 @@ public:
     virtual void destroy(bool)=0;
 };
 
-//Actual module+E8/0045FB90, separate roster and raw owned record buffer2C.
-//The populated remote-AI record producer and its format remain separate. There
-//is deliberately no allocator/append API for an invented record shape.
+//Actual module+E8/0045FB90, separate roster and selection28/buffer2C.
+//0045FE10 passes THIS+28 to the same0045E540 selection body as control38;
+//005A0220 also invokes0045E410 on this actual auxiliary subobject.
 template<class Human>class PlayersAuxiliaryLoading {
 public:
     PlayersAuxiliaryLoading(){reset();}
@@ -28,16 +28,16 @@ public:
     void reset(){roster_.clear();clear_records();} //0045FC80.
     void post_loading(){clear_records();} //0045FD80, unlike reset it preserves roster.
     auto& human_roster(){return roster_;}const auto& human_roster()const{return roster_;}
-    auto& words(){return words_;}const auto& words()const{return words_;}
-private:
-    struct Record; //Actual allocation released by007E1CC0 without a destructor.
-    struct Release {void operator()(Record* record)const noexcept{::operator delete(record);}};
-    void clear_records() {
-        while(!records_.empty())records_.pop_back(); //Reverse release; retain vector allocation.
-        words_.set(0x40,std::uint32_t{0});words_.set(0x3c,std::uint32_t{0});
-        words_.set(0x44,std::uint8_t{0});words_.set(0x48,std::uint32_t{0});
+    auto& selection(){return selection_;}const auto& selection()const{return selection_;}
+    auto words()const{ //Read the actual selection counters; no second scalar copy.
+        HumanJointWords<0x50> result;result.set(0x3c,static_cast<std::uint32_t>(selection_.active_count()));
+        result.set(0x40,static_cast<std::uint32_t>(selection_.inactive_count()));result.set(0x44,std::uint8_t(selection_.notification_flag()));result.set(0x48,field48_);return result;
     }
-    HumanRoster<Human> roster_;std::vector<std::unique_ptr<Record,Release>> records_;HumanJointWords<0x50> words_;
+private:
+    void clear_records() {
+        selection_.clear();field48_=0; //Reverse release; retain allocation and changed28.
+    }
+    HumanRoster<Human> roster_;HumanSelectionRecords<Human> selection_;std::uint32_t field48_=0;
 };
 
 //00461430/004614E0: module11 registration, vector10, control1C, auxiliaryE8.

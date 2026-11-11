@@ -19,6 +19,7 @@ public:
     void bind_dependencies(Dependencies& dependencies){dependencies_.bind(dependencies);}
     void unbind_dependencies(Dependencies& dependencies)noexcept{dependencies_.unbind(dependencies);}
     bool dependencies_bound()const noexcept{return dependencies_.bound();}
+    WorldServices& world_services(){return world_;} //Borrow the SAME containing receiver, never a second factory/world.
     HumanLoadingOwnerFactory(Dependencies& dependencies,WorldServices& world)
         :dependencies_(dependencies),world_(world){}
     template<class Frames,class Actors,class Human>

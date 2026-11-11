@@ -1,0 +1,317 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "50f919348b3a3daec32b111153f2b4c129963801",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "selected_checkbox": "reactions/damage/ragdoll",
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "dependency_checkpoint": "Actual received damage/death/drop, policy/messages, shared session scoring/rank and auxiliary/Car retirement",
+  "added_entries": [
+    "005a2fe0",
+    "00588ef0",
+    "005b1f10",
+    "005b1510",
+    "005a3750",
+    "004790c0",
+    "005a15d0",
+    "005a03e0",
+    "00583940",
+    "0053be10",
+    "005a0da0",
+    "005a4600",
+    "0069bf70",
+    "0072ee60",
+    "0072fd60",
+    "005470b0",
+    "005b0e50",
+    "005b0ec0",
+    "0072fac0",
+    "00725b00",
+    "0072f4c0",
+    "006a1cb0",
+    "005a96a0",
+    "0045fe10",
+    "00518710",
+    "00730530",
+    "007304b0",
+    "005a8320",
+    "0072ebd0",
+    "0049de50",
+    "0072e7e0",
+    "005a1c90"
+  ],
+  "extended_entries": [
+    "005a8820",
+    "0045fb90",
+    "0045fc80",
+    "0045fd80"
+  ],
+  "ledger_added_partial_client": 32,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2570,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": {
+    "recovered/frontend/control_startup.h": {
+      "sha256": "4708fb966877761620b6c7ba7e38dfddd809d841d0f626de2ca2b71aa295bc7c",
+      "bytes": 6410
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "1d9092d94715b2c24f8b616b13d193b9c4355d3a47bc409e5b917abc7d684c15",
+      "bytes": 16941
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "c9d9cfdfc7fd061eb05b7e41f2378c6f9c01a2035b7cfc1ec1b06ef107a0568f",
+      "bytes": 1723
+    },
+    "recovered/game/car_sound_updates.h": {
+      "sha256": "b961840bc5f1c1a610b37814e3ddd2b7be7e3db13f76332142ef999ddf0fa0f0",
+      "bytes": 10121
+    },
+    "recovered/game/hud_panels_loading.h": {
+      "sha256": "aff70f49a7f5455317606c776ef345600c9794c8f5bac0719e75f42990459944",
+      "bytes": 10299
+    },
+    "recovered/game/hud_scene_loading.h": {
+      "sha256": "773c67bf1e24034463029491abdcb61190387e0347fa3dcf762a8cc3f92ab444",
+      "bytes": 9762
+    },
+    "recovered/game/human_damage.h": {
+      "sha256": "d5ef88f6e0c5497773fd3d694e9a72385425d5eba6dc27bb28ec3b43b5d53a11",
+      "bytes": 6638
+    },
+    "recovered/game/human_damage_messages.h": {
+      "sha256": "db72ae68aaf0e18d4cc9b5de51df136ebf753fb9a81594d2478311106400a58e",
+      "bytes": 5317
+    },
+    "recovered/game/human_damage_policy.h": {
+      "sha256": "9a62f52d8017f5c19a3782956ef85928c6bca57966995153528605db0a5809e2",
+      "bytes": 1214
+    },
+    "recovered/game/human_damage_presentation.h": {
+      "sha256": "2a4d2acef6ede57bd8e873d431d04a636245ec26a5ad5dd386ed53395bb5e191",
+      "bytes": 3889
+    },
+    "recovered/game/human_damage_score.h": {
+      "sha256": "1d66174c0e15e3b38c601b15176a8212e1895ce768a30af6ea50d166ee2d496d",
+      "bytes": 4800
+    },
+    "recovered/game/human_death_inventory.h": {
+      "sha256": "03a0f4b301d66ec0be5a7d17561aa0b2ad3e287b1abbb338cf54046690e089ca",
+      "bytes": 2880
+    },
+    "recovered/game/human_frame_commands.h": {
+      "sha256": "059dea02e4434c2526b03ccf39c36c272c6d03e6957d19a0a5f5db6da868f5b4",
+      "bytes": 6504
+    },
+    "recovered/game/human_loading_owner_factory.h": {
+      "sha256": "0702f2b7990d1c38ac86d6d7c2687a4df4a93a44afa227c7a2cac812ab24552c",
+      "bytes": 2564
+    },
+    "recovered/game/human_loading_state_factory.h": {
+      "sha256": "5c0e5a25b4a7f86c01b6a43c6207d63cf498466602710eeff818d615fb3ef114",
+      "bytes": 14716
+    },
+    "recovered/game/human_player_roster.h": {
+      "sha256": "811e8511f26ff043554a0f78d45fe177a62df8e73f6df11b833c5cea1291e0fb",
+      "bytes": 7519
+    },
+    "recovered/game/human_score_presentation.h": {
+      "sha256": "6865dc788a2ece42b2746e1a2395a65859628fbab09c228920ad0bd48d9d9818",
+      "bytes": 2749
+    },
+    "recovered/game/human_squad_snapshot.h": {
+      "sha256": "82846b540a462142aedbfc1b18765dcb8f1f9d7a7961bdb164117f3095f66f73",
+      "bytes": 8296
+    },
+    "recovered/game/human_state_base_loading.h": {
+      "sha256": "6408bdb4524b32e33512fba83af32630d8813699ba43c68edb05b46be064b916",
+      "bytes": 14128
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "0d63e184664e619325a8872cfc1aefa47e20dd48a22c97c7893ae5b0bccc5dff",
+      "bytes": 92616
+    },
+    "recovered/game/players_module_loading.h": {
+      "sha256": "7e511ac2b87955712417db8954597f20a0aeb482bd5d166e3c719a0bb398133f",
+      "bytes": 6105
+    },
+    "recovered/game/world_actor_loading_consumers.h": {
+      "sha256": "5274fb8f9e72a2dc7bf045bf95681e1f69e248869f018d28e70b5a499513e73d",
+      "bytes": 7074
+    },
+    "recovered/host/game_loading_modules.h": {
+      "sha256": "0a641380b6255ac92bc43cd26b97af40dbc6ecccded30f199b8083c0c7fdc4bb",
+      "bytes": 12896
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "b3c882d285e4373492a4f176fa327f6dda353ef3237e5f0276415b9a75688d79",
+      "bytes": 21235
+    }
+  },
+  "temporary_audits": {
+    "human-death-inventory-native": {
+      "source": {
+        "sha256": "80bff86373d6e4910fdf63101c21ba5cc930b18f2c43e3d6228d08024e32d0ac",
+        "bytes": 4473
+      },
+      "binary": {
+        "sha256": "d82d82acf674b7cd9ebc5ffb47717b2b7bb2735ed15d274c16f8701656ebb34d",
+        "bytes": 1531360
+      },
+      "log": {
+        "sha256": "59e57dbdadb61f6b82e0cb7b1e12147420709c46ba51ae0d8cab9949ae0b98ce",
+        "bytes": 143
+      },
+      "removed": false
+    },
+    "human-damage-presentation-native": {
+      "source": {
+        "sha256": "95db66478f83e01046ed504a30d9b2f4e270f52782309720ecd996aec25f55e5",
+        "bytes": 4395
+      },
+      "binary": {
+        "sha256": "e5f7778a09a35b53e0a85a545e5093bb40ac93cd8f2bb38ae5d99ef0f08572c2",
+        "bytes": 1036448
+      },
+      "log": {
+        "sha256": "6f4bf61987067b4d55ffce5993429242cb085e076c9e25a27bf10b6430659493",
+        "bytes": 168
+      },
+      "removed": false
+    },
+    "human-damage-policy-native": {
+      "source": {
+        "sha256": "ea95c0c281c9c6e1e2a1a3a9d2457bef3aab3157e0e26904ea29a9d51e63ba75",
+        "bytes": 1859
+      },
+      "binary": {
+        "sha256": "be51ae8bd6004ee9c57be0c5c5e3600586615db34390dd28d33d73a3692d10b8",
+        "bytes": 502936
+      },
+      "log": {
+        "sha256": "bd0ab6d0550ff3434be2aa79c505be2bf4d7735fea0a25c6e27a5696d453cf54",
+        "bytes": 144
+      },
+      "removed": false
+    },
+    "human-damage-messages-native": {
+      "source": {
+        "sha256": "dd2556cb2f95c9d7fd23da2d499866e52ba930af43d4cd5d2ff91d3741c2d222",
+        "bytes": 3220
+      },
+      "binary": {
+        "sha256": "c10ae3b1645b793bfb23ab123abe468e95879d40bb15d364588e5df20a8b02b8",
+        "bytes": 440768
+      },
+      "log": {
+        "sha256": "a7196186115d172354199d753cfa3b3ad86ffbe5531527dfa7723159a98701f8",
+        "bytes": 148
+      },
+      "removed": false
+    },
+    "human-damage-score-native": {
+      "source": {
+        "sha256": "587c6cab5fa1a48ae47f78793040dc7b925026acd22024d2769fc1b7bba5fae9",
+        "bytes": 3980
+      },
+      "binary": {
+        "sha256": "433d53cdbae4111517f6764775dbaaf9781e31e71ed2e7fb9c90c85491950bf2",
+        "bytes": 462848
+      },
+      "log": {
+        "sha256": "900ec1804329038ed6b9b455524407cfb2cb7f8c1509e592913cb03bb01cd550",
+        "bytes": 128
+      },
+      "removed": false
+    },
+    "human-score-presentation-native": {
+      "source": {
+        "sha256": "701ea42b6a3d5da76dec686d53fef7fab737b75fcb092b00814a3c897afbd83f",
+        "bytes": 3341
+      },
+      "binary": {
+        "sha256": "afc47bd2ac967cc936955db9a82a16f68266b5edf3c4581aade2513d15705beb",
+        "bytes": 1134824
+      },
+      "log": {
+        "sha256": "b0fdf1aff71497c02ee0e3ed2b4544388fcb35449318ce0d19863b2189c0291a",
+        "bytes": 139
+      },
+      "removed": false
+    },
+    "human-auxiliary-selection-native": {
+      "source": {
+        "sha256": "0618f94d9329f4b69563ab6a4a4bd1b4c1a53b41488ddda100fe3f7c4503ce44",
+        "bytes": 1583
+      },
+      "binary": {
+        "sha256": "f5c65eae4e974911625e701c50bf347d6eb39f4ec763f4939c1434cb05c97d2a",
+        "bytes": 550536
+      },
+      "log": {
+        "sha256": "8c186129e28e4edf9c3365a059e244dfa4728cb016dc5cb2e7e8bf5a6fd8286b",
+        "bytes": 126
+      },
+      "removed": false
+    },
+    "human-car-engine-stop-native": {
+      "source": {
+        "sha256": "77ca51be65d8e30b26ff220ad5bd13c4919d84d8c6b4f655adf80e5f828fb944",
+        "bytes": 2603
+      },
+      "binary": {
+        "sha256": "3fe1f6b1257257bf698eac34447619004ad3f7d5ac4ae103f499d611fe719a44",
+        "bytes": 809392
+      },
+      "log": {
+        "sha256": "b9fd274b4efe3fe35dbd4842d1ac09b850b238493e25402c236801fdcd9c1582",
+        "bytes": 132
+      },
+      "removed": false
+    },
+    "human-state-damage-native": {
+      "source": {
+        "sha256": "f6617eb6affa1d903c2add4689f4bef41920faed61da94063cc40641aefa9127",
+        "bytes": 8166
+      },
+      "binary": {
+        "sha256": "292602936511351676d7829960e6e3d238185c599d7f58381525c135b397b6d8",
+        "bytes": 1471736
+      },
+      "log": {
+        "sha256": "5a68293cd53d959c1535b88e3fe0d324f6b3ad865c18d5831e33be97849b7614",
+        "bytes": 128
+      },
+      "removed": false
+    }
+  },
+  "checks": {
+    "native": "PASS focused ASan/UBSan/LSan with explicit engine/Scene/platform doubles; earlier unchanged solver/particle audits not repeated",
+    "actual_world_i386": "PASS human-damage-score-presentation-host-i386.log strict actual World/Control/Player source instantiation; compile only",
+    "launcher_i386": "PASS human-damage-score-main-application-i386.log compile/link in requested main checkout; not executed",
+    "diff": "PASS",
+    "original_execution": false
+  },
+  "excluded_credit": [
+    "Absent frozen005B2020/005B0E70/005B16E0/0053BD00/005A9980",
+    "Delegated engine/CRT and actual unavailable transport/console bodies",
+    "Earlier accumulated ragdoll/clip/selection bodies retain their prior uncredited status",
+    "Future broader PACK grammar and Remote effects are not credited here"
+  ],
+  "research": [
+    "human-damage-network-inventory-abi",
+    "human-damage-presentation-abi-v3",
+    "human-damage-policy-abi-v3",
+    "human-damage-messages-abi-v2",
+    "human-score-abi",
+    "human-rank-presentation-abi",
+    "human-rank-command.asm",
+    "human-rank-stat-conversion.asm",
+    "human-rank-name.asm",
+    "human-presented-death-vtable88.json",
+    "human-control-score-region.asm"
+  ]
+}

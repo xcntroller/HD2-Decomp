@@ -30,6 +30,11 @@
 #include "game/human_inventory_retirement.h"
 #include "game/mission_particle_emission.h"
 #include "game/human_death_inventory.h"
+#include "game/human_damage_presentation.h"
+#include "game/human_damage_policy.h"
+#include "game/human_damage_messages.h"
+#include "game/human_damage_score.h"
+#include "game/human_score_presentation.h"
 #include <algorithm>
 #include <stdexcept>
 
@@ -102,9 +107,89 @@ public:
         auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Human damage speech requires actual B0");
         HumanSpeechLoading speech(dependencies().scene.frames(),*this);(void)speech.request(*state,static_cast<std::int32_t>(category),delay,flags,false);
     }
-    template<class Human>bool human_damage_network_policy(Human&,std::uint32_t,Human*,std::int32_t&){throw std::runtime_error("Human damage requires actual nonoffline friendly-fire/spawn-protection configuration");}
-    template<class Human>void human_damage_death_packet(Human&,Human*){throw std::runtime_error("Human damage death requires actual0072EE60 publication");}
-    template<class Human>void human_damage_packet(Human&,std::uint32_t,std::uint32_t,Human&){throw std::runtime_error("Human damage requires actual005A0DA0 packet producer");}
+    template<class Human>std::uint32_t human_specialization(Human& human,bool alternate=false){ //005A8820→00730530.
+        const bool offline=(mode_flags()&7u)==7u;const auto kind=human.properties.field19c;
+        if(offline||human_remote_ai_enabled()){
+            if(kind==2||(!offline&&kind==5))return 0u;
+            if(kind==1||kind==4)return 1u;
+            return 2u;
+        }
+        const auto identity=static_cast<std::uint32_t>(human.base().id10());const auto& records=dependencies().startup.game_control_records().records;
+        return identity<records.size()?records[identity].word(alternate?0x68:0x64):2u;
+    }
+    std::uint32_t human_local_specialization(){ //007304B0 has no native bounds fallback; source requires its actual produced record.
+        const auto identity=static_cast<std::uint32_t>(human_current_player_id());const auto& records=dependencies().startup.game_control_records().records;
+        if(identity>=records.size())throw std::logic_error("Local Human specialization requires actual session player record");
+        return records[identity].word(0x64);
+    }
+    template<class Human>bool human_damage_network_policy(Human& human,std::uint32_t kind,Human* source,std::int32_t& reflected){
+        auto team=[&](Human& actor){return human_specialization(actor);};
+        return allow_human_network_damage(human,kind,source,reflected,dependencies().startup.game_configuration(),team);
+    }
+    void enter_control_lock(unsigned index){dependencies().startup.enter_control_lock(index);}
+    void leave_control_lock(unsigned index)noexcept{dependencies().startup.leave_control_lock(index);}
+    std::uint32_t human_score_style(){return static_cast<std::uint32_t>(dependencies().startup.game_configuration().style224);}
+    std::uint32_t human_score_victim_kind(std::uint32_t id){auto* human=dependencies().scene.frames().scene_human_identity(human_frame_signed_word(id));return human?human->properties.field19c:0;}
+    auto& human_score_actor(void* actor){
+        using Human=typename Dependencies::Composition::Human;auto* human=static_cast<Human*>(actor);
+        if(!human||dependencies().scene.frames().scene_human_identity(human->base().id10())!=human)
+            throw std::logic_error("Score record lost its actual Scene2 Human borrower");
+        return *human;
+    }
+    std::uint32_t human_score_state_kind(void* actor){auto& human=human_score_actor(actor);if(!human.loading_state)throw std::logic_error("Scoring requires actual source B0");return human.loading_state->words().template get<std::uint32_t>(0x48);}
+    bool queue_human_score_rank(void* actor,std::uint32_t rank){
+        auto& human=human_score_actor(actor);auto* state=human_state_owner(human).get();if(!state)return false;state->queue_score_rank(rank);return true;
+    }
+    void remove_human_score_peer(std::uint32_t identity,std::uint32_t reason){
+        if(!dependencies().startup.game_control_records().records.at(identity).word(0))return; //0072F2F0 genuine absent transport guard.
+        (void)reason;throw std::runtime_error("Friendly-kill removal requires actual0072F2F0 application11/0072A0B0 peer transport receiver");
+    }
+    template<class Human>void human_damage_score(Human& human,std::int32_t source){score_human_death(dependencies().startup.game_control_records(),static_cast<std::uint32_t>(human.base().id10()),static_cast<std::uint32_t>(source),*this);}
+    std::string human_score_rank_label(frontend::ControlStartupRecord& record){ //00725B00, SAME holder4 and definition44.
+        auto side=record.word(0x64);
+        if(human_score_style()==0)if(auto* actor=record.human_actor()){
+            auto& human=human_score_actor(actor);auto* storage=human.base().storage();auto* holder=storage?storage->holder(4):nullptr;
+            if(!holder)throw std::logic_error("Rank label requires actual Human holder4");
+            const auto item=holder->entry();side=item&&dependencies().world_actors.items().runtime_item(item).definition().fields38[3]==0?1u:0u;
+        }
+        return human_damage_localize((side==1?0x2792u:0x279cu)+record.word(0x54));
+    }
+    void emit_human_rank_text(const std::string& message,const std::array<float,3>& colour){
+        if(!(mode_flags()&2u))throw std::runtime_error("Nonrendered rank text requires actual0069F1E0/00744870 console window/process owner");
+        dependencies().hud.append_message(message.c_str(),colour);
+    }
+    template<class Human>void receive_human_score_rank(Human& human,std::uint32_t rank){ //005406C0 case16.
+        auto& records=dependencies().startup.game_control_records();const auto identity=static_cast<std::uint32_t>(human.base().id10());
+        if(identity>=records.records.size())throw std::out_of_range("Rank decoder requires actual peer record");
+        records.records[identity].word(0x54,rank); //0072F4C0 returns the actual40..60 subobject, unlocked here.
+        const auto* profile=dependencies().profiles.record(human_frame_signed_word(human.properties.field170));
+        publish_human_rank_statistics(human,human_rank_statistics(profile,records.records[identity].word(0x54)));
+        present_human_score_rank(records,rank,identity,*this);
+    }
+    template<class Human>void human_damage_death_packet(Human& human,Human* source){human_damage_score(human,source?source->base().id10():-1);}
+    template<class Human>void human_damage_message(Human& human,std::uint32_t kind,std::uint32_t hit,std::int32_t source){present_human_damage_message(human,kind,hit,source,*this);}
+    bool human_damage_team_style(){return dependencies().startup.game_configuration().style224!=0;}
+    std::string human_damage_localize(std::uint32_t id){return frontend::lookup_localized_text(dependencies().startup.text(),static_cast<std::int32_t>(id));}
+    auto human_damage_source(std::int32_t id){return dependencies().scene.frames().scene_human_identity(id);} //00475E00, actual Scene2/EC.
+    template<class Human>std::string human_damage_display_name(Human& human){ //005A9980/005A8320, Actor80 remains the SAME name owner.
+        const auto kind=human.properties.field19c;std::string value;
+        if(kind==1||kind==4||kind==5){
+            if((mode_flags()&7u)!=7u&&kind==1){const auto id=static_cast<std::uint32_t>(human.base().id10());const auto& records=dependencies().startup.game_control_records().records;
+                if(id<records.size())value=records[id].name();} //0072EBD0: invalid identity genuinely returns NULL/empty COW.
+            else if(human.profile_record)value=human.profile_record->user_name.empty()?human.profile_record->short_name:human.profile_record->user_name;
+            else value=dependencies().scene.frames().frame_name(human.base().frame());
+        }else if(human.properties.field1a8!=0xffffffffu)value=human_damage_localize(human.properties.field1a8);
+        else if(kind==2)value=human_damage_localize(0x1bef);
+        else if(kind==3)value=human_damage_localize(0x1bfd);
+        else return human.base().name();
+        human.base().name(value);return value;
+    }
+    void emit_human_damage_text(std::uint32_t id,const std::array<float,3>& colour,const std::array<std::string,2>& arguments){ //005A4600→0069BF70.
+        const auto message=format_human_damage_text(human_damage_localize(id),arguments);
+        if(!(mode_flags()&2u))throw std::runtime_error("Nonrendered damage text requires actual0069F1E0/00744870 console window/process owner");
+        dependencies().hud.append_message(message.c_str(),colour);
+    }
+    template<class Human>void human_damage_packet(Human& human,std::uint32_t kind,std::uint32_t hit,Human& source){human_damage_message(human,kind,hit,source.base().id10());}
     template<class Human>void human_damage_impact_sound(Human& human,std::uint32_t material,const HumanVector& point,bool network){ //00451B00, actual SOUND request, not blood particles.
         auto& d=dependencies();const auto& materials=d.car_definitions.materials();
         if(!(mode_flags()&2u)||material==0xffffffffu||material>=materials.size())return;
@@ -173,6 +258,46 @@ public:
         if(target>=0){sight.human_sight_changed(&source,true,static_cast<std::uint32_t>(target));sight.human_sight_changed(&source,false,static_cast<std::uint32_t>(target));}
     }
     template<class Human>void human_damage_script_death(Human& human){dependencies().contexts.human_script_death(human);}
+    template<class Human>HumanVector human_damage_head_position(Human& human){
+        if(!human.head_marker)throw std::logic_error("Initial dead hit requires actual Human260 head marker");
+        const auto matrix=dependencies().scene.frames().actor_world_matrix(human.head_marker);return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    }
+    template<class Human>void human_damage_presentation_cleanup(Human& human){ //005A03E0, not the larger authority005A0220.
+        auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Presentation death requires actual B0");
+        human_state_factory(human).retire_presented_dead_state(*state);if(mode_flags()&1u)return;
+        human_damage_stop_speech(human);human.activation.field154=0;human.field204=0;
+        auto& look=human_look_control(human);look.force_frame_commands(true);auto publish=[&](std::uint32_t flags){state->publish_frame_command_flags(flags);};
+        try{look.frame_movement_animation(0x71,publish,true);}catch(...){look.force_frame_commands(false);throw;}
+        look.force_frame_commands(false);
+    }
+    template<class Human>void human_damage_presentation_player(Human& human,std::uint32_t kind){
+        if(!human_is_player(human))return;
+        auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Presented Player damage requires actual B0");
+        human_player_damage_feedback(*state,kind,static_cast<Human*>(nullptr));
+    }
+    template<class Player>void retire_presented_dead_player(Player& player){ //0053BE10 prefix, SAME actual Car/FPV/Human owners.
+        auto* human=player.human();if(!human)throw std::logic_error("Presented Player death requires actual Human");
+        if((mode_flags()&7u)!=7u&&human->field160&&human->field160->base().type()==4){
+            auto& car=human_pose_car(human->field160);if(!car.occupants.empty()&&car.occupants[0]==human){
+                if(!car.loading)throw std::logic_error("Presented Player death lost actual Car control owner");car.loading->release_presented_driver_pedal();
+            }
+        }
+        player.player_words().set(0x4d4,std::uint8_t{0});player.player_words().set(0x4d8,0u);
+        human->activation.field17c=human->activation.field180=human->activation.field184=0;
+        if(human_is_player(*human))dependencies().first_person.models().bind_weapon(mode_flags(),typename Dependencies::ActorFrames::Frame{},typename Dependencies::ActorFrames::Frame{},-1);
+    }
+    template<class Player>void retire_presented_dead_player_tail(Player& player){
+        if((mode_flags()&7u)==7u||player.human()->base().id10()!=human_current_player_id())return;
+        auto& d=dependencies();if(!human_remote_ai_enabled()){d.hud.set_injury_message(0x4f58,5000);return;}
+        const auto& configuration=d.startup.game_configuration();const auto limit=configuration.rules228[18]; //Native270.
+        if(!configuration.rules228[21]){ //Native27C, lock0072EC70 remains held across the actual HUD call.
+            d.startup.enter_control_lock(0);
+            struct Unlock{decltype(d.startup)& startup;~Unlock(){startup.leave_control_lock(0);}}unlock{d.startup};
+            const auto& records=d.startup.game_control_records().records;const auto identity=static_cast<std::uint32_t>(human_current_player_id());
+            if(identity>=records.size())throw std::logic_error("Presented Player death requires actual local respawn record");
+            if(limit<=human_frame_signed_word(records[identity].word(0xb0)))d.hud.set_injury_message(0x4f56,5000);
+        }else if(limit<=d.session.words.template get<std::int32_t>(0x84))d.hud.set_injury_message(0x4f56,5000);
+    }
     template<class Human>void human_damage_death_cleanup(Human& human){ //005A0220; the Human and B0 remain live throughout.
         auto& d=dependencies();human.activation.field154=0;human.field204=0;
         auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Human death requires actual B0");
@@ -185,8 +310,8 @@ public:
         if(offline||human_remote_ai_enabled()){
             (void)d.proximity.speed_kind(human.field188,1);
             if(human.properties.field19c==2){
-                if(!offline)throw std::runtime_error("Human death requires actual auxiliary Players selection receiver");
-                player_add_enemy(&human);
+                if(offline)player_add_enemy(&human);
+                else d.players.auxiliary().selection().acquire(human,mode_flags(),*this);
             }
             if(human.field258!=0xffffffffu){
                 d.sight.source().observer_enabled(human_frame_signed_word(human.field258),false);
@@ -231,7 +356,13 @@ public:
         }
         if((mode_flags()&7u)==7u)d.script_link.fail_human_mission(); //0069BED0(false), SAME objective owner and HUD hint.
     }
-    template<class Human>void notify_dead_auxiliary_human(Human&){throw std::runtime_error("Human death requires actual0045FE10 auxiliary selection retirement");}
+    template<class Human>void notify_dead_auxiliary_human(Human& human){ //0045FE10, no roster removal/HUD marker retirement.
+        auto& auxiliary=dependencies().players.auxiliary();if(!auxiliary.human_roster().contains(&human))return;
+        const auto& enemies=human.perception.lists()[0];
+        for(auto n=enemies.size();n;){auto* enemy=enemies.at(--n);if(!enemy)throw std::logic_error("Auxiliary death lost its actual enemy borrower");
+            auxiliary.selection().release(selection_human(*enemy),mode_flags(),*this);
+        }
+    }
     void human_pose_dead_car_controls(void* actor){
         auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Human death requires actual Car controls owner");
         car.loading->dead_human_controls();
@@ -307,6 +438,22 @@ public:
             std::int32_t bits;std::memcpy(&bits,&square,4);const float speed=bits<0x322bcc77?0.f:std::abs(static_cast<long double>(square)-1.L)<9.99999993922529e-09f?1.f:static_cast<float>(std::sqrt(static_cast<long double>(square)));
             state->queue_drop_command(actor->base().id10(),identity,direction,speed);
         }
+        human.activation.flag178=true;
+    }
+    template<class Human>void present_human_dropped_item(Human& human,const HumanDropCommand& command){ //005A3750→004790C0, existing owner case.
+        if(mode_flags()&1u)return;
+        auto& d=dependencies();auto& items=d.world_actors.items();auto& frames=d.scene.frames();
+        const auto marker=frames.actor_find(human.base().frame(),"j",0x400);if(!marker)throw std::logic_error("Presented Human drop requires its actual j marker");
+        const auto matrix=frames.actor_world_matrix(marker);const HumanVector position{{matrix[12],matrix[13],matrix[14],matrix[15]}};
+        const auto entry=find_human_inventory_item_entry(human,items,command.item);
+        if(!entry){human.activation.flag178=true;return;} //004790C0's diagnostic returns NULL;005A3750 still flags178.
+        const auto model=items.runtime_item(entry).model();remove_human_inventory_item(human,items,command.item,false,*this);
+        if(!model){human.activation.flag178=true;return;} //Native missing model returns NULL after inventory retirement.
+        HumanVector velocity=command.direction;for(unsigned axis=0;axis!=3;++axis)velocity[axis]*=command.speed;
+        auto direction=velocity;normalize_human_ai_shot(direction,(static_cast<long double>(direction[0])*direction[0]+static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[1])*direction[1]);
+        frames.human_loose_item_pose(model,position,direction);
+        auto& runtime=d.world_actors.runtime();auto* actor=runtime.create_loose_item(model,command.actor);
+        try{actor->bind_item(entry,velocity);}catch(...){runtime.remove(actor);throw;}
         human.activation.flag178=true;
     }
     template<class State,class Human>void human_player_damage_feedback(State& state,std::uint32_t kind,Human* source){ //0053DB90 after its command/drop producers.
@@ -815,6 +962,16 @@ public:
     void publish_human_frame_commands(std::int32_t identity,bool second,const Commands& commands){
         write_human_frame_commands(dependencies().broadcast_packets,mode_flags(),identity,second,commands);
     }
+    template<class Actor>void receive_human_presentation_packet(Actor* actor,SessionPacketStream& packet,bool reserved){ //005A5FB0→005406C0/005418E0.
+        using Human=typename Dependencies::Composition::Human;auto* human=dynamic_cast<Human*>(actor);
+        const auto type=human&&human->loading_state?human->loading_state->words().template get<std::uint32_t>(0x48):0u;
+        const bool discard=reserved&&type!=1&&type!=7;
+        if(!discard&&type!=1)throw std::runtime_error("Human presentation requires actual derived B0 virtualC0 receiver");
+        receive_human_presentation_commands(packet,
+            [&](const HumanDamageCommand& damage){if(!discard)present_human_damage(*human,damage,*this,dependencies().scene.frames());},
+            [&](const HumanDropCommand& drop){if(!discard)present_human_dropped_item(*human,drop);},
+            [&](std::uint32_t rank){if(!discard)receive_human_score_rank(*human,rank);});
+    }
     template<class Actor>
     void receive_human_authority_packet(Actor* actor,SessionPacketStream& packet,bool reserved){
         if((mode_flags()&7u)!=7u)
@@ -984,7 +1141,7 @@ public:
     //The normal offline, freshly unattached loading path never invokes them.
     std::int32_t human_respawn_delay_seconds(){throw std::runtime_error("Human respawn requires its actual nonoffline configuration consumer");}
     void hud_human_respawn(std::uint32_t,std::uint32_t){throw std::runtime_error("Human respawn requires its actual live HUD message consumer");}
-    template<class Human>void human_initial_dead_notification(Human&){throw std::runtime_error("Nonoffline dead Human requires actual005A15D0 event dispatch");}
+    template<class Human>void human_initial_dead_notification(Human& human){HumanDamageCommand command;command.kind=14;present_human_damage(human,command,*this,dependencies().scene.frames());}
     template<class Actor>void detach_human_attachment(Actor&,std::int32_t){throw std::runtime_error("Occupied Human attachment requires its actual actor virtual80 receiver");}
 private:
     template<class Actor>auto& selection_human(Actor& actor){

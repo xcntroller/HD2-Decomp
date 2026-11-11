@@ -20,6 +20,15 @@ public:
         if(!enabled&&drive.audible)sounds_.stop_all();
         drive.audible=enabled;
     }
+    void stop_engine_transition(CarDrivetrainState& drive,bool inside,bool& transition,bool& destroyed){ //00518710(false), native22A2/22BF/22A0.
+        //These four observations precede even the stop branch's early return.
+        if(drive.audible)for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset))(void)frames_.car_sound_state(sound);
+        if(!transition)return;
+        sounds_.stop_all();
+        if(auto sound=sounds_.sound(inside?0x980:0xc4c);sound&&drive.audible){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);}
+        for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset))frames_.human_sound_parameter94(sound,0);
+        drive.engine_speed=0;drive.running=false;transition=false;destroyed=false;
+    }
     void suspension(float volume,bool audible,bool inside){ //0051B560.
         if(!audible)return;
         const auto sound=sounds_.sound(inside?0x9e8:0xcb8);if(!sound)return;

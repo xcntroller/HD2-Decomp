@@ -1,6 +1,6 @@
 # P22-HUM implementation plan
 
-Updated 2026-11-11 for the Human particle/surface source checkpoint. P22-HUM remains OPEN.
+Updated 2026-11-11 for the Human damage-presentation/scoring source checkpoint. P22-HUM remains OPEN.
 Both P2.2 checkboxes in `plan.md` remain OPEN. Mission loading still declines,
 and no mission desktop acceptance has occurred.
 
@@ -68,13 +68,12 @@ workstreams.
 
 ## Current next work
 
-Continue reactions/damage/ragdoll. Joint/clip collision, rest-surface records,
-reaction selection0074D510 and containing damage-controller source are present.
-B0 damage/death, actual item drops, Car control requests and Player/HUD injury
-source are now present. Close positive particle and remaining surface/network
-dependencies next; details,
-source checks and required failures are in [the active contract](human-ragdoll-source.md).
-No credit or commit has been added for this unfinished checkbox. Shared mounted
-movement sounds, occupied simulation and firing remain required where reached.
-P22-HUM and both P2.2 checkboxes remain open; application/desktop acceptance is
-still pending.
+Continue reactions/damage/ragdoll in main `H&D2 Decomp 4`. Clip/rest/selection,
+actual authority/received damage, inventory drops, death, policy, localized messages,
+shared session scoring/ranks and auxiliary death selection have source checkpoints.
+[Latest evidence](checkpoints/p2.2-human-damage-presentation-20261111.json).
+Integrate existing PACK grammar/lifetime work with these actual effects, then close
+Player objective, reached session/console/peer dependencies and containing failure,
+re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
+The full selected checkbox, P22-HUM and P2.2 remain open; no application or desktop
+acceptance is claimed.

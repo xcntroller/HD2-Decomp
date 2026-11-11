@@ -168,8 +168,8 @@ public:
         }
         throw std::runtime_error("Required actual authority/presentation module packet receiver is unavailable");
     }
-    template<class Actor>void receive_player_packet(Actor*,game::SessionPacketStream&){
-        throw std::runtime_error("Reserved Scene2 packet requires actual005A5FB0/005418E0 player-state receiver");
+    template<class Actor>void receive_player_packet(Actor* actor,game::SessionPacketStream& packet){
+        d_.human_services.receive_human_presentation_packet(actor,packet,true);
     }
 private:
     static std::int32_t signed_elapsed(std::uint32_t elapsed){std::int32_t value;std::memcpy(&value,&elapsed,4);return value;}

@@ -224,7 +224,8 @@ public:
     void rethrow_fowl_sound_failure(){fowl_sound_.rethrow_callback_failure();}
     void receive_actor_packet(typename Runtime::Instance& actor,game::SessionPacketStream& packet) {
         require_open();
-        if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
+        if(actor.base().type()==3)consumers_.receive_human_presentation_packet(&actor,packet);
+        else if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
         else if(actor.base().type()==10)consumers_.spawn_packet_decoder().receive(static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor),&packet);
         else if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
         else if(actor.base().type()==29){auto& fowl=static_cast<Fowl&>(actor);if(!fowl.loading)throw std::runtime_error("Fowl packet requires its actual generated-bird owner");fowl.loading->launch(false,0);}

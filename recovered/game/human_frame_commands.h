@@ -5,15 +5,43 @@
 #include "game/human_loading_stats.h"
 
 namespace hd2::game {
+struct HumanDropCommand {std::int32_t item=-1,actor=-1;HumanVector direction{};float speed=0;};
+struct HumanDamageCommand {std::uint32_t kind=0,hit_kind=0,health=0;std::int32_t source=-1;HumanVector point{},direction{};};
+template<class Packet>HumanDamageCommand read_human_damage_command(Packet& packet){ //005B1510→005B16E0.
+    HumanDamageCommand command;command.health=packet.read(10);command.kind=packet.read(4);command.hit_kind=packet.read(4);
+    command.source=static_cast<std::int16_t>(packet.read(16));
+    if(!packet.read(1)){command.direction={{1,0,0,0}};return command;}
+    command.point=packet.read_vector(packet.primary_quantizer(2),7);command.direction=packet.read_direction(3);
+    const auto scale=static_cast<float>(packet.read(8));for(unsigned axis=0;axis!=3;++axis)command.direction[axis]*=scale;
+    return command;
+}
+template<class Packet>HumanDropCommand read_human_drop_command(Packet& packet){ //005B1F10.
+    HumanDropCommand command;command.item=static_cast<std::int16_t>(packet.read(16));command.direction=packet.read_direction(-1);
+    const auto encoded=packet.read(4);const float fraction=static_cast<float>(encoded)/15.f;
+    command.speed=static_cast<float>(static_cast<long double>(fraction)*4.f+1.f);
+    if(command.speed<1.f)command.speed=1.f;else if(command.speed>5.f)command.speed=5.f;
+    command.actor=packet.read(1)?static_cast<std::int16_t>(packet.read(16)):-1;return command;
+}
+template<class Packet,class Damage,class Drop,class Rank>void receive_human_presentation_commands(Packet& packet,Damage&& damage,Drop&& drop,Rank&& rank){ //005406C0/005418E0 reached damage/drop/rank grammar.
+    for(;;){const auto kind=packet.read(5);if(kind==24)return;
+        if(kind==1)damage(read_human_damage_command(packet));
+        else if(kind==10)drop(read_human_drop_command(packet));
+        else if(kind==16)rank(packet.read(4)); //005B0E50→005B0EC0.
+        else throw std::runtime_error("Human presentation packet requires its actual command payload receiver");
+    }
+}
+template<class Packet,class Damage,class Drop>void receive_human_presentation_commands(Packet& packet,Damage&& damage,Drop&& drop){
+    receive_human_presentation_commands(packet,std::forward<Damage>(damage),std::forward<Drop>(drop),[](std::uint32_t){throw std::runtime_error("Rank packet requires its actual presentation receiver");});
+}
 
-//00577B30/Player0053F370's actual kind6/005B0F90 and damage1/005B1540 serializers. Remaining command
+//00577B30/Player0053F370's actual kind6, damage1 and drop10 serializers. Remaining command
 //payload families require their own recovered producers and serializers.
 template<class Commands>
 void write_human_frame_commands(SessionBroadcastPackets& streams,std::uint32_t mode,std::int32_t identity,
         bool second,const Commands& commands){
     if(commands.empty())return;
     for(const auto& command:commands){
-        if(command.kind!=6&&command.kind!=1&&command.kind!=10)throw std::runtime_error("Human frame command requires its actual payload serializer");
+        if(command.kind!=6&&command.kind!=1&&command.kind!=10&&command.kind!=16)throw std::runtime_error("Human frame command requires its actual payload serializer");
         if(command.kind==1&&!command.damage)throw std::logic_error("Human damage frame command lost its actual payload");
         if(command.kind==10&&!command.drop)throw std::logic_error("Human drop frame command lost its actual payload");
     }
@@ -26,6 +54,7 @@ void write_human_frame_commands(SessionBroadcastPackets& streams,std::uint32_t m
         for(const auto& command:commands){
             stream.write(command.kind,5); //Trunc(log2(25)+1), original command family width.
             if(command.kind==6){stream.write(static_cast<std::uint32_t>(command.actor_identity),10);continue;}
+            if(command.kind==16){stream.write(static_cast<std::uint32_t>(command.actor_identity),4);continue;} //005B0E70, actual rank payload.
             if(command.kind==10){ //005B2020, absent frozen; serializer does not clamp the original speed.
                 const auto& drop=*command.drop;stream.write(static_cast<std::uint32_t>(drop.item),16);stream.write_direction(drop.direction,-1);
                 stream.write(human_loading_stat_word((static_cast<long double>(drop.speed)-1.f)*.25f*15),4);

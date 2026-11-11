@@ -136,8 +136,8 @@ public:
             if(command&group)flags=(flags&~group)|(command&group);
         words_.set(0x50,flags);
     }
-    struct DamageCommand {std::uint32_t kind=0,hit_kind=0,health=0;std::int32_t source=-1;HumanVector point{},direction{};};
-    struct DropCommand {std::int32_t item=-1,actor=-1;HumanVector direction{};float speed=0;};
+    using DamageCommand=HumanDamageCommand;
+    using DropCommand=HumanDropCommand;
     struct FrameCommand {
         std::uint32_t kind;std::int32_t actor_identity;std::optional<DamageCommand> damage;std::optional<DropCommand> drop;
         FrameCommand(std::uint32_t type,std::int32_t actor):kind(type),actor_identity(actor){}
@@ -155,6 +155,7 @@ public:
     void queue_drop_command(std::int32_t actor,std::int32_t item,const HumanVector& direction,float speed){ //00588EF0, actual SECOND90.
         FrameCommand command(10,-1);command.drop=DropCommand{item,actor,direction,speed};second_.push_back(std::move(command));
     }
+    void queue_score_rank(std::uint32_t rank){second_.emplace_back(16,human_frame_signed_word(rank));} //005470B0, SAME SECOND90; not presentation stat mutation.
     bool project_ground_position(HumanVector&)override{return false;} //00583140, genuine AL0/RET4, absent frozen.
     bool frame_actor_contact(std::uint32_t,std::int32_t,std::uint32_t)override{return true;} //00583230, genuine AL1/RET28, absent frozen.
     template<class Services>void bind_frame_command_packets(Services& services){

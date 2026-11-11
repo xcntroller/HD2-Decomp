@@ -1,109 +1,103 @@
 # P22-HUM handoff — 2026-11-11
 
-FULL P2.2 continues with P22-HUM, **second checkbox: reactions/damage/ragdoll**.
-It remains OPEN. Read `AGENTS.md`, section2 of `plan.md`,
-[Human checklist](analysis/p22-hum-plan.md) and
-[contracts / exact next work](analysis/human-ragdoll-source.md).
-Continue dependencies until the full selected checkbox completes or genuinely blocks.
+FULL P2.2 / **second Human checkbox: reactions/damage/ragdoll** remains OPEN.
+Read `AGENTS.md`, section2 of `plan.md`, [Human plan](analysis/p22-hum-plan.md)
+and [original contracts/current gaps](analysis/human-ragdoll-source.md).
+Continue through dependencies until the full selected checkbox completes or blocks.
 
-## Checkout and delivery
+## Active checkout
 
-Active main checkout: `/home/control/Documents/Projects/H&D2 Decomp 4`.
-Checkpoint base HEAD was `494cbee40566248084aaf9c8f01e7f75724d13c5`; inspect current
-HEAD/status before acting. The initial cwd `/home/control/Documents/Projects/HD2-Decomp-p22-life`
-is a DIFFERENT LIFE checkout and must not be edited for this Human task.
-Preserve all source and other workstreams. No original EXE/DLL/Proton/Windows
-fixture execution; compile/link only. No push. Commit completed source checkpoints.
-Mission loading still declines; actual application and user desktop acceptance
-remain FULL P2.2 requirements. Both P2.2 boxes stay open.
+**Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** The user
+explicitly requested returning here. Transfer base was50f9193; inspect current
+HEAD/status before acting.22 pending Human files were verified and transferred
+from `/tmp/hd2-p22-hum-continue`. Four older Human changes were already present in
+683cb7b; the newer versions include those changes. Newer GUARD source/docs remain
+intact. Ignored WORK `human-return-main-20261111` retains before/after files,
+hashes and HEAD. Temporary checkout is an inactive backup, not the working root.
+Do not edit the separate LIFE/UI/PACK worktrees or discard their changes.
+
+No original EXE/DLL/Proton or Windows fixture execution. Compile/link only.
+Heavy compilation and Ghidra must run **sequentially** for memory. No push.
+Source-only subsystem checkpoints may be committed; interactive acceptance still
+requires the user. Application mission loading remains disabled. Both P2.2 boxes
+and P22-HUM remain open; no mission desktop verification has occurred.
 
 ## Latest source checkpoint
 
-The [particle/surface receipt](analysis/checkpoints/p2.2-human-particle-surface-20261111.json)
-records28 added frozen client partials, two extensions, no complete promotions.
-Totals:34 complete/2528 partial of18783. Reached breath/blood particle source
-checkbox is now checked; reactions/damage/ragdoll is still unchecked.
-Accumulated reaction/damage source is preserved but has no new ledger credit yet.
+[Damage/scoring receipt](analysis/checkpoints/p2.2-human-damage-presentation-20261111.json)
+adds32 frozen client partials and extends four existing partials, preserving GUARD
+credit. Totals:34 complete/2570 partial of18783; no complete promotions.
+Earlier accumulated joint/clip/selection source retains its uncredited status.
+[Particle/surface receipt](analysis/checkpoints/p2.2-human-particle-surface-20261111.json)
+is the previous dependency checkpoint. Full contracts are in the source note.
 
-Joint/body impulses, constraints, actual contacts/Car external force, sleep and
-substeps remain in the same owners.007B0910 reaction entry/007B7410 sampler,
-007B3C80 clip collision/transitions,007A7470 containing presentation, rest surfaces,
-0074D510 selection, actual damage controller and reached inventory/death/Player
-feedback now have substantial source and focused verification. Exact ownership,
-addresses, precision corrections and remaining gaps are in the contracts above.
+Actual authority/received damage, death/drop inventory, kind1/10/16 packets,
+Player B088 death/respawn HUD, configuration policy, localized hit/death messages,
+SAME process player/team scores/rank and auxiliary death selection are now in
+source.0072EE60 is scoring, not packet publication.005A0DA0 uses SOURCE's local
+player predicate. Presentation uses88 (00583940/0053BE10), authority uses84.
+00518710(false) closes the reached destroyed-Car stop transition; broader Car
+start/running/occupied simulation remains separate. No successful missing owner.
 
-NEW: actual positive particle module17/process owns EMTR instances, placed/active
-records,256 cached visual buckets, shared1024-point refill pool and publication
-scratch. Actual update/pause/finish/partial-load cleanup and frame/texture/vertex
-ABI endpoints are present. Damage00451C00 and breath007507A0 use this SAME owner;
-bleeding0044F4F0 draws texture50/54/58 before shared ShotMgr90 quality gates.
-Rest-position queue0078AC30/0078AD00 now feeds actual0075D210 and0078AA10 through
-track events4/5/6, existing13 texture pairs and SAME projection pool/list.
-
-Correction:00761690 restores saved DD0 state through00784310→005AB7A0; it is not
-an evidenced normal authored loader. Focused references found no calls to
-0075D1A0. Normal184=5/188=NULL comes from reset. Complete nested Human persistence
-remains P2.6; do not invent a loader or claim that whole parser from two branches.
-
-## Verification
-
-NEW native ASan/UBSan/LSan PASS logs in ignored WORK:
-`human-particle-point-native.log`, `human-particle-instance-native.log`,
-`human-particle-module-native.log`, `human-footstep-native.log`, rebuilt
-`human-blood-native.log`. Engine/query boundaries are explicit doubles.
-Earlier focused joint/retained/reaction/surface/damage/state/inventory/death/Player
-logs remain PASS as detailed in the contracts; no broad unchanged audit repeated.
-Strict actual World/control/particle/footstep i386 instantiation passes in
-`human-ragdoll-host-i386.log`. Latest launcher compile/link PASS:
-`human-particle-footstep-application-i386.log`. Windows outputs were NOT run.
-Function-progress render/check and git diff --check PASS. Temporary native audits
-remain ignored for this ongoing full-checkbox continuation; checkpoint receipt
-records their hashes. Remove temporary audits at completion, no permanent tests.
+ControlStartupRecord3C is a typed borrower, not a DWORD cast or another Human
+map. **Its ordinary nonoffline00612A60 writeback producer remains open**. Peer
+slot and Scene2 actor identity differ.0072E7E0 resets7C, not B8; team44C/464 fields
+are loader-zero-filled in the original .data tail. Rank stats preserve health and
+indices3/5. Player writes54 before stats/publication; Remote must use its old rank.
 
 ## Immediate next work
 
-1. Finish005A2FE0 nonoffline inventory drop and00588EF0 actual kind10 SECOND90
-   command/serializer/receiver. New repaired exports:
-   `human-damage-network-inventory-abi`. It also contains0072EE60/005A0DA0.
-2. Correct earlier stub labels:0072EE60 is session player/team scoring plus update
-   publication, and005A0DA0 is localized hit/death message selection. Finish their
-   actual session/HUD owners, nonoffline damage policy, auxiliary Players death/
-   selection and Player objective tail. Keep required failures honest.
-3. Continue through containing frame/damage failure/re-entry/teardown until the
-   full selected checkbox is complete or genuinely blocked. Consolidate next
-   ledger/receipt/tally/doc updates at the next completed source checkpoint.
+1. Reuse existing `feature/p22-pack` source rather than duplicating its23 codecs,
+   discard grammars, actual command/packet owners and callback lifetime checks.
+   Read its plan/implementation through Git. Local commits2316b73/287c6fc/31b8786
+   are NOT merged into master; do not overwrite their work. Their damage/drop/
+   rank effect gaps can now bind these actual Human bodies. Preserve distinct
+   Player/Remote ordering and copied display values before callbacks retire owners.
+2. Continue Player0053BD00 byte550 objective tail: actual nonoffline objectives
+   are **GameData kind12**, with native28 selector and18 side. Current shared
+   GameDataNode lacks that metadata producer. Reuse P2.8 metadata research before
+   implementing; do not reinterpret offline kind4 fields or invent successful
+   objective transport. Exact first-objective side quirk is in WORK export.
+3. Actual peer removal0072F2F0 reaches application11/0072A0B0 transport; nonrender
+   messages reach0069F1E0/00744870 console window/process (NOT networking).
+   These reached branches still require real owners. Continue through full
+   containing frame/damage failure, repeated entry and ordered retirement.
 
-## Research and commands
+Existing007B3C80 clip collision/transitions,007A7470 containing ragdoll, actual
+rest007B37C0→DD000787110→ShotMgr A0, actual0074D510 DD0+AA0 selection and damage
+controller remain preserved and verified as described in the contracts.
+Normal184=5/188=NULL is reset, not a missing authored loader:00761690 is saved
+DD0 restore via00784310/005AB7A0. Full persistence remains P2.6.
 
-Use research index BEFORE new exports:
-`python3 -B tools/research_index.py find ADDRESS...`.
-`neighbors ADDRESS` has no `--count`. Indexed mentions are candidates, not proof.
-WORK=`analysis/work/mission-world-20261103`.
+## Verification and research
+
+WORK=`analysis/work/mission-world-20261103`. Focused native ASan/UBSan/LSan logs
+PASS: death-inventory, damage-presentation, damage-policy, damage-messages,
+damage-score, score-presentation, auxiliary-selection, car-engine-stop and
+state-damage (all prefixed `human-`, suffixed `-native.log`). Explicit engine/
+Scene/query/platform doubles; Car stop audit seeds real slots with access control
+disabled, no resource-loading equivalence. Temporary audit files are ignored,
+fingerprinted in receipt and retained only for this ongoing full-checkbox work;
+remove them at full completion. No permanent tests.
+
+Strict actual World i386: `human-damage-score-presentation-host-i386.log` PASS.
+Latest main launcher compile/link: `human-damage-score-main-application-i386.log`
+PASS. Outputs were NOT executed. Tracker render/check and diff checks required
+at checkpoint. Do not repeatedly audit unchanged verified solver/particle source.
+
+Before new exports use `python3 -B tools/research_index.py find ADDRESS...`.
+`neighbors ADDRESS` has no `--count`. Candidates are not equivalence proof.
 Client=`analysis/work/hd2.unpacked.exe`, SHA256
 `8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307`.
-Frozen inventory=`analysis/work/function-progress/client.json`.
-Heavy native compilation, i386/application compilation and Ghidra MUST run
-sequentially due memory limits. No agents requested. No heavy process is pending
-at this checkpoint. Compiler:
-`.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
-Native runtime=`.tools/hd2-sanitizer-runtime/usr/lib64`.
+Frozen=`analysis/work/function-progress/client.json`.
+Latest repaired exports: damage-presentation ABI-v3, damage-policy ABI-v3,
+damage-messages ABI-v2, score ABI and rank-presentation ABI. Raw rank FTOL
+instructions remain authoritative where C loses x87 arguments. Logs retain hashes.
 
-```sh
-make -C recovered -j1 application-launch WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++
-```
-
-Ghidra JAVA_HOME=`/home/control/.sdkman/candidates/java/25.0.0.0-oracle`;
-project `/home/control/Documents/Projects/HD2ResearchProject` /`HD2Research`,
-`-process hd2.unpacked.exe -readOnly -noanalysis`, rollback ABI scripts and ONE
-script path. Inspect ERROR in logs despite exit0. Latest particle ABI is v3
-(`human-particle-core-abi-v3`); earlier variants contain phantom registers and
-incorrect443880 prototype. Latest damage-network export completed successfully;
-logs `/tmp/hd2-human-damage-network*.log`. Original research outputs are ignored.
-
-## Other workstreams
-
-Preserve P22-LIFE/P22-UI. LIFE source closure and external boundaries are in
-[its plan](analysis/p22-life-plan.md), [implementation](analysis/p22-life-implementation.md)
-and [receipt](analysis/checkpoints/p22-life-20261111.json). Actual application
-loading, FRAME/RENDER, integrity producers, failure/repeat handling and desktop
-acceptance remain distinct from source reconstruction.
+Compiler `.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`;
+native runtime `.tools/hd2-sanitizer-runtime/usr/lib64`.
+`make -C recovered -j1 application-launch WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
+Ghidra JAVA_HOME=`/home/control/.sdkman/candidates/java/25.0.0.0-oracle`, project
+`/home/control/Documents/Projects/HD2ResearchProject` /HD2Research,
+`-process hd2.unpacked.exe -readOnly -noanalysis`, rollback scripts, ONE scriptPath.
+Inspect ERROR even on exit0. Never overlap it with heavy compilation.

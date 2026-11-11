@@ -20830,12 +20830,14 @@
       "program": "client",
       "entry": "0045fb90",
       "status": "partial",
-      "coverage": "Construct separate auxiliary Human roster and owned raw-record vector and reset known scalar fields.",
+      "coverage": "Construct separate auxiliary Human roster and owned raw-record vector and reset known scalar fields. Auxiliary28/2C is now the actual shared selection record owner used by death/acquisition, rather than an opaque parallel record format.",
       "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
       "evidence": [
         "recovered/game/players_module_loading.h",
         "analysis/human-state-loading.md",
-        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
       ]
     },
     {
@@ -20854,24 +20856,28 @@
       "program": "client",
       "entry": "0045fc80",
       "status": "partial",
-      "coverage": "Clear auxiliary roster, reverse-free actual raw record allocations, retain vector capacity and zero four original fields.",
+      "coverage": "Clear auxiliary roster, reverse-free actual raw record allocations, retain vector capacity and zero four original fields. Reset now retires actual auxiliary selection records/counters in native order and clears the SAME roster.",
       "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
       "evidence": [
         "recovered/game/players_module_loading.h",
         "analysis/human-state-loading.md",
-        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "0045fd80",
       "status": "partial",
-      "coverage": "Reverse-free auxiliary records and reset known fields without clearing its roster.",
+      "coverage": "Reverse-free auxiliary records and reset known fields without clearing its roster. Post-load now retires actual auxiliary selection records/counters while preserving the SAME roster.",
       "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
       "evidence": [
         "recovered/game/players_module_loading.h",
         "analysis/human-state-loading.md",
-        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
       ]
     },
     {
@@ -26617,12 +26623,15 @@
       "program": "client",
       "entry": "005a8820",
       "status": "partial",
-      "coverage": "Actual offline kind-to-specialization mapping consumed by live squad extraction; nonoffline transport branches excluded.",
+      "coverage": "Actual offline kind-to-specialization mapping consumed by live squad extraction; nonoffline transport branches excluded. Reached damage/message nonoffline/remote-AI gates now use SAME process records and preserve native current/alternate specialization and invalid identity fallback.",
       "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
       "evidence": [
         "recovered/game/human_squad_snapshot.h",
         "analysis/session-activation-integration.md",
-        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
       ]
     },
     {
@@ -33860,6 +33869,390 @@
         "recovered/game/integrity_threads.h",
         "analysis/p22-guard-implementation.md",
         "analysis/checkpoints/p22-guard-steam-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a2fe0",
+      "status": "partial",
+      "coverage": "Actual hand/shoulder/pack/holster death drops, FLOAT ammunition preservation, native reverse stack/item traversal and ordered four-draw velocity.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_death_inventory.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00588ef0",
+      "status": "partial",
+      "coverage": "Append actual kind10 drop payload to SAME B0 SECOND90 queue after runtime transfer.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_state_base_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1f10",
+      "status": "partial",
+      "coverage": "Read actual signed16 item/optional actor, direction and4-bit clamped speed payload.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_frame_commands.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1510",
+      "status": "partial",
+      "coverage": "Read real damage payload health/kind/hit/source and detailed point/direction/length or native default direction.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_frame_commands.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a3750",
+      "status": "partial",
+      "coverage": "Received drop uses actual marker, inventory retirement, model and runtime type11 existing-owner creation; preserves original missing-item flag tail.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004790c0",
+      "status": "partial",
+      "coverage": "Existing-Human inventory/model branch of received loose-item creation through SAME Items/runtime registry; new-definition branch excluded.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a15d0",
+      "status": "partial",
+      "coverage": "Received damage health/corpse/hit/effect/death/Player/message sequence, including kind14 and authority presentation gates.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_damage_presentation.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a03e0",
+      "status": "partial",
+      "coverage": "Actual presented-death B088 dispatch, authority return, speech/154/204 clearing and forced Look71 with failure restoration.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00583940",
+      "status": "partial",
+      "coverage": "Actual base presented-death flag800 and negative-action-gated failure cancellation, without authority inventory/music tail.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_loading_state_factory.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0053be10",
+      "status": "partial",
+      "coverage": "Actual Player presented-death prefix, Car pedal/FPV/Human clearing, mode0 and configuration/session respawn injury-message tail.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a0da0",
+      "status": "partial",
+      "coverage": "Original zone/hit/death localized message selection, SOURCE local-player predicate, name evaluation and colors.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_damage_messages.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a4600",
+      "status": "partial",
+      "coverage": "Bounded first damage localization/format pass using its actual two string arguments and native message sink.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_damage_messages.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069bf70",
+      "status": "partial",
+      "coverage": "Reached damage second formatting pass and rank fixed string formatting followed by actual rendered HUD message insertion; nonrender console still required.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072ee60",
+      "status": "partial",
+      "coverage": "Actual shared process player/team scores under418, remote-AI and friendly/self deaths, wrapping counters/ranks and unlock-before-peer-removal ordering.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_damage_score.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072fd60",
+      "status": "partial",
+      "coverage": "Authority mode, named/non-null Human gates and actual10..80 rank threshold selection; append actual B0 command before record54 write.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_damage_score.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005470b0",
+      "status": "partial",
+      "coverage": "Append original kind16 rank payload to the SAME B0 SECOND90 command owner.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_state_base_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0e50",
+      "status": "partial",
+      "coverage": "Read original command16 four-bit rank through the shared presentation grammar.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_frame_commands.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0ec0",
+      "status": "partial",
+      "coverage": "Original four-bit rank field decoding, with actual packet truncation checks.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_frame_commands.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072fac0",
+      "status": "partial",
+      "coverage": "Actual process418 lock through rank write, local/remote downgrade/promotion captions, colors and HUD publication.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_score_presentation.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00725b00",
+      "status": "partial",
+      "coverage": "Actual process record64/54 rank-family label and style0 typed Human holder4/definition44 observation.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072f4c0",
+      "status": "partial",
+      "coverage": "Actual40..60 peer-stat view used by Player rank decoder; source bounds guard native unchecked identity.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a1cb0",
+      "status": "partial",
+      "coverage": "Actual profile FLOAT rank scaling, retained x87 factor, FTOL low DWORD, upper100 clamp and missing-profile defaults.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_score_presentation.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a96a0",
+      "status": "partial",
+      "coverage": "Original selective indices2,1,4,6,7,8 publication into SAME Human current/max stats.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_score_presentation.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045fe10",
+      "status": "partial",
+      "coverage": "Auxiliary roster membership then reverse hostile-list release through SAME auxiliary selection28 owner.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00518710",
+      "status": "partial",
+      "coverage": "Reached false/stop branch over SAME Car sound slots: pre-return observations,81-slot stop, selected voice, four seeks and native scalar publication. Start branch excluded.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00730530",
+      "status": "partial",
+      "coverage": "Actual process peer64/68 side selection with original invalid identity fallback2.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007304b0",
+      "status": "partial",
+      "coverage": "Actual local process record64 access; source bounds rejection at native unchecked boundary.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a8320",
+      "status": "partial",
+      "coverage": "Player/profile/model display-name branches over SAME actual HumanStore/session/frame values, preserving invalid peer empty result.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072ebd0",
+      "status": "partial",
+      "coverage": "Original invalid signed/bounds peer-name result and actual record8 name, consumed by Human display-name path.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049de50",
+      "status": "partial",
+      "coverage": "Actual injury-message helper into existing HUD small-text owner with native text/duration and no new message queue.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/hud_scene_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072e7e0",
+      "status": "partial",
+      "coverage": "Reset actual nine player stat words and7C under418, then three team stat/FLOAT score records unlocked; no round coordinator integration claim.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_damage_score.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a1c90",
+      "status": "partial",
+      "coverage": "Actual authority damage controller, hit/difficulty/death/state/effect/retaliation sequence and nonoffline configuration policy through SAME Human/World owners; required external effects remain explicit.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_damage.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
       ]
     }
   ]

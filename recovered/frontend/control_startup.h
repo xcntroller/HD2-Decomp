@@ -25,16 +25,23 @@ public:
     }
     void word(std::size_t offset, std::uint32_t value) {
         if (offset > size - 4) throw std::out_of_range("Original control record word");
+        if(offset==0x3c){
+            if(value)throw std::logic_error("Control Human borrower cannot be manufactured from a DWORD");
+            human3c_=nullptr;
+        }
         for (unsigned i = 0; i != 4; ++i) byte(offset + i, static_cast<std::uint8_t>(value >> (i * 8)));
     }
     std::uint32_t word(std::size_t offset)const {
         if(offset>size-4)throw std::out_of_range("Original control record word");
+        if(offset==0x3c&&human3c_)throw std::logic_error("Control Human borrower requires its typed access");
         std::uint32_t value=0;
         for(unsigned n=0;n!=4;++n){const auto v=byte(offset+n);
             if(!v)throw std::runtime_error("Control record word has no original producer");
             value|=std::uint32_t{*v}<<(8*n);}
         return value;
     }
+    void* human_actor()const{(void)byte(0x3c).value();return human3c_;}
+    void human_actor(void* actor){word(0x3c,0);human3c_=actor;} //00612A60 borrows;0059E3E0/reset clears, never owns.
     std::string name()const {
         std::string value;
         for(std::size_t n=8;n!=size;++n){const auto c=byte(n);
@@ -46,6 +53,7 @@ public:
 private:
     std::array<std::uint8_t, size> bytes_{};
     std::bitset<size> defined_;
+    void* human3c_=nullptr;
 };
 
 // 00725A50 via00725A40: only these bytes are written; reset preserves the rest.
@@ -78,6 +86,10 @@ struct ControlStartupState {
     std::vector<ControlStartupRecord> records; // +1DC, elements at+1E0
     std::optional<ControlStartupCallback> callback414;
     std::uint32_t word448 = 0, word4e4 = 0;
+    //0097D070+44C/464 lie beyond .data's raw extent in the original image:
+    //the loader zero-fills them. These are the SAME three process team records.
+    std::array<float,3> team_scores44c{};
+    std::array<std::array<std::uint32_t,9>,3> team_statistics464{};
     std::int32_t handle4d3c = 0;
     std::uint8_t byte4df8 = 0;
     void* object4ee0 = nullptr;

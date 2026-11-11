@@ -32,6 +32,7 @@ public:
     virtual void remove_reaction_seat(std::int32_t index)=0;
     virtual std::uint32_t reaction_seat_flags(std::int32_t index)const=0;
     virtual void dead_human_controls()=0;
+    virtual void release_presented_driver_pedal()=0;
 };
 
 } //namespace hd2::game

@@ -3,6 +3,7 @@
 
 #include "game/world_loading_dependency_link.h"
 #include "game/car_scene_actor.h"
+#include "game/session_packet_stream.h"
 #include "frontend/localized_text.h"
 #include "frontend/spatial_sound.h"
 #include <limits>
@@ -48,6 +49,7 @@ public:
     std::uint32_t session_mission_ordinal()const{return d().session.words.template get<std::uint32_t>(0x3c);}
     auto& session_broadcast_packets(){return d().broadcast_packets;}
     auto& spawn_packet_decoder(){return d().spawn_decoder;}
+    template<class Actor>void receive_human_presentation_packet(Actor* actor,SessionPacketStream& packet){d().human_factory.world_services().receive_human_presentation_packet(actor,packet,false);}
     auto& actor_proximity(){return d().proximity;}
     void clear_retired_actor_record(std::int32_t identity){d().startup.clear_retired_actor_record(identity);}
     void clear_human_player_slot(std::uint32_t identity){d().startup.clear_human_player_slot(identity);}

@@ -65,6 +65,7 @@ public:
     }
     std::int32_t active_count()const{return active_count_;}std::int32_t inactive_count()const{return inactive_count_;}
     bool changed()const{return changed_;}bool& notification_flag(){return notify_;} //Native control54, reset by0045D3A0.
+    bool notification_flag()const{return notify_;}
     template<class Feedback>void acquire(Human& human,std::uint32_t mode,Feedback& feedback){ //0045E410.
         if(mode&2u)feedback.hud_selected(human,true); //Before any record lookup/allocation.
         if(notify_&&feedback.human_hidden(human))feedback.show_human(human,200);
