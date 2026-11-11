@@ -181,3 +181,10 @@ and extends existing006C20F0. Current total559 partial (554client/five engine),
 zero complete /18,783 frozen. Native/strict-build verification is not desktop or
 live-network acceptance. No new credit for absent callbacks, engine delegates,
 unimplemented Connect/Host, auxiliary services or the Phase2 game receiver.
+
+## P22-UI presentation checkpoint — 2026-11-11
+
+[Source implementation](p22-ui-implementation.md) adds four verified frozen
+client partials (004AF980,004AFDB0,004B01E0,00491E30), with no complete promotions
+or denominator changes. Totals:34 complete,2,371 partial (2,366 client/five engine).
+P22-UI remains open; full HUD/FPV processing and command geometry are still required.

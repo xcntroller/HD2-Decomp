@@ -62,6 +62,17 @@ public:
         if(camera_)show(camera_,enabled);
         if(enabled){camera_time_=2000;camera_flag_=true;}
     }
+    void update_injury_message(std::uint32_t elapsed) { //004B01E0, signed wrapped countdown, -1 is indefinite.
+        if(injury_.time==0xffffffffu||injury_.time==0)return;
+        injury_.time-=elapsed;
+        if(signed_word(injury_.time)<1){injury_.time=0;injury_.enabled=false;}
+    }
+    void update_carnage(std::uint32_t count) { //004AFDB0, caller supplies SAME Scene2 summary50.
+        if(!carnage_.visual)throw std::logic_error("HUD carnage update before artwork binding");
+        if(!frames_.hud_frame_visible(carnage_.visual))return;
+        required(carnage_.text).text.set(std::make_shared<const std::string>(std::to_string(count)),0x49,0);
+    }
+    void update_voting()noexcept {} //004AF470 is a genuine RET, not a missing positive receiver.
     //004AD640/004AF450/004AFDA0/004AFFC0/004B0180/004AAD10 release text
     //owners. Nulling stale native fields is a defined ownership guard.
     void close_hint()noexcept{hint_.text.reset();}
@@ -87,6 +98,7 @@ public:
     const auto& injury_message()const{return injury_;}const auto& status()const{return status_;}
     Frame camera()const{return camera_;}std::uint32_t camera_time()const{return camera_time_;}bool camera_flag()const{return camera_flag_;}
 private:
+    static std::int32_t signed_word(std::uint32_t word){std::int32_t value;std::memcpy(&value,&word,4);return value;}
     static void require_scene(Frame scene){if(!scene)throw std::runtime_error("HUD panel requires actual artwork scene");}
     static void cold(const std::unique_ptr<Text>& owner){if(owner)throw std::logic_error("HUD panel rebound without actual teardown");}
     static Text& required(std::unique_ptr<Text>& owner){if(!owner)throw std::logic_error("HUD panel text is not initialized");return *owner;}

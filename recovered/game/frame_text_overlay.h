@@ -27,6 +27,23 @@ public:
     explicit FrameTextOverlay(Backend& backend):backend_(backend),texture_(backend.empty_overlay_texture()){}
     ~FrameTextOverlay(){close();}
     FrameTextOverlay(const FrameTextOverlay&)=delete;FrameTextOverlay& operator=(const FrameTextOverlay&)=delete;
+    //Owning source pages use this wrapper so006E83B0 runs BEFORE page rows
+    //die. The registry still borrows the page exactly as the original does.
+    //If process shutdown retires the registry first, close() has already cleared
+    //and removed all wrappers; the weak lifetime guard prevents a stale callback.
+    class PageOwner {
+    public:
+        PageOwner(FrameTextOverlay& registry,std::uint32_t flags,std::optional<std::string> name)
+            :registry_(registry),lifetime_(registry.lifetime_){registry_.register_page(page_,flags,std::move(name));}
+        ~PageOwner(){if(!lifetime_.expired())registry_.unregister_page(page_);}
+        PageOwner(const PageOwner&)=delete;PageOwner& operator=(const PageOwner&)=delete;
+        FrameTextPage& page(){return page_;}
+    private:
+        FrameTextPage page_;FrameTextOverlay& registry_;std::weak_ptr<unsigned char> lifetime_;
+    };
+    std::unique_ptr<PageOwner> make_page(std::uint32_t flags,std::optional<std::string> name={}){
+        return std::make_unique<PageOwner>(*this,flags,std::move(name));
+    }
     //006E8590/006E8530. A failed optional font leaves the old glyph matrix;
     //successful font loading zeros the table before the possibly short read.
     template<class Files>void initialize(Files& files){
@@ -112,6 +129,7 @@ private:
         }
         flush();
     }
+    std::shared_ptr<unsigned char> lifetime_=std::make_shared<unsigned char>(0);
     Backend& backend_;Texture texture_;std::array<FrameTextGlyph,256> glyphs_{};
     std::vector<Entry> entries_;std::array<EffectsFadeVertex,1000> vertices_{};std::size_t count_=0;bool initialized_=false;
 };

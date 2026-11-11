@@ -189,6 +189,7 @@ public:
     Scripts& scripts(){require_open();return *scripts_;}
     auto& spawn_records(){require_open();return spawn_records_;}
     auto& input_profiles(){require_open();return input_profiles_;}
+    auto& hud_panels(){require_open();return hud_.panels();} //SAME inline panel owners; no second HUD.
     void close()noexcept {
         if(closed_)return;closed_=true;
         //The ordered loader must first run native module finish passes and VM

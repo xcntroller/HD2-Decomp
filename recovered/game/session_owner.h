@@ -81,6 +81,7 @@ public:
     SessionOwner& operator=(const SessionOwner&) = delete;
     SessionOwner(SessionOwner&&) = delete; // Registry/callback identity must stay stable.
     SessionOwner& operator=(SessionOwner&&) = delete;
+    Backend& backend()const{return backend_;} //Borrow SAME original factory/services for presentation composition.
     const MissionRequest& request() const { return request_; }
     LiveSquad& live_squad(){
         if(closed_)throw std::logic_error("Live squad access after session retirement");

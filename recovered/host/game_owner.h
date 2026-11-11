@@ -131,6 +131,8 @@ public:
     GameOwnerBackend(StartupSession& startup, MenuDriver& driver, HMODULE module,
                      Graphics& graphics, GameSceneCallbacks& callbacks)
         : startup_(startup), driver_(driver), module_(module), graphics_(graphics), callbacks_(callbacks) {}
+    Graphics& presentation_graphics()const{return graphics_;}
+    StartupSession& presentation_startup()const{return startup_;}
     std::shared_ptr<GameFonts> make_hud_fonts() {
         auto fonts=fonts_.lock();
         if(!fonts){fonts=std::make_shared<GameFonts>(startup_.pre_mission_files(),&graphics_,module_);fonts_=fonts;}
@@ -256,9 +258,9 @@ public:
     }
     std::uint32_t mode_flags()const{return startup_.application_flags();} //SAME process00982100; offline single-player7.
     std::uint32_t game_status() const { return status(); }
-    bool suppress_hud() const { return false; } //0086922D initial byte; no loaded HUD mutation yet.
-    bool full_viewport() const { return false; } //0086922C initial byte.
-    bool debug_enabled() const { return false; } //0098AF98 initial byte.
+    bool suppress_hud() const { return startup_.scene_presentation_flags().suppress_hud; } //Actual process0086922D.
+    bool full_viewport() const { return startup_.scene_presentation_flags().full_viewport; } //Actual process0086922C.
+    bool debug_enabled() const { return startup_.scene_presentation_flags().debug; } //Actual process0098AF98.
     bool hud_enabled() const {
         if (!owner_ || !owner_->hud()) throw std::logic_error("HUD owner is not available");
         return owner_->hud()->enabled();

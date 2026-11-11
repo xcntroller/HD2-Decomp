@@ -546,6 +546,7 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int widt
         owners.sound.emplace(module, graphics.window());
         auto& driver = owners.driver.emplace(module);
         startup.setup_devices();
+        startup.initialize_frame_text_overlay(driver,*graphics.graphics()); //006DBFC0 final006E8590, even with no registered pages.
         if (!loading_capture.empty()) {
             LoadingCaptureOutput output(loading_capture);
             host::capture_loading_inputs(startup.pre_mission_files(), output, startup.model_resource_directories());

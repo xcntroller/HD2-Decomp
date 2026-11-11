@@ -28,6 +28,11 @@ public:
         if(!state||human.loading_state!=state)throw std::runtime_error("First-person player lost its actual published Human B0");
         return *state;
     }
+    float opacity(Human& human){ //005AC360→00789C80, actual checked DD0 owner.
+        auto* control=inline_control(human).control();
+        if(!control)throw std::logic_error("First-person opacity requires the actual Human DD0");
+        return control->opacity().opacity();
+    }
     std::uint32_t player_mode(Human& human,std::uint32_t mode){return human_camera_action(human,mode,local_player_);} //005A8170.
     std::uint32_t game_phase()const{return session_.words.template get<std::uint32_t>(0xb8);}
     std::optional<Frame> control_sector(Human& human){

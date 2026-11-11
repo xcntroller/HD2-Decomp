@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-11",
+  "branch": "feature/p22-ui",
+  "baseline_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_origin_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "research_branch": "ca3b314",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "external_blocker_claimed": false,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "original_execution": false,
+  "commit_created": false,
+  "added_entries": [
+    "004af980",
+    "004afdb0",
+    "004b01e0",
+    "00491e30"
+  ],
+  "ledger_added_partial_client": 4,
+  "complete_promotions": 0,
+  "checks": {
+    "native_ui": "PASS ASan/UBSan/LSan, 100 repeated actual source lifetimes with explicit endpoint doubles",
+    "actual_host_i386": "PASS -std=c++17 -Wall -Wextra -Werror -Wno-unused-parameter, all concrete UI methods and scene dispatch instantiated",
+    "application_launch": "PASS i386 compile/link, never executed",
+    "function_tracker": "PASS render/check, unchanged frozen denominator and27 existing tests"
+  },
+  "remaining_ui_owned": [
+    "0049BD50 full ordinary HUD processing and reached panel workers",
+    "00491660 FPV camera/model state update and00491C60 animation completion",
+    "004B6720 command geometry",
+    "reached input and editing workers"
+  ],
+  "external_dependencies": {
+    "P22-HUM": "actual Human/Player/weapon producers; not duplicated",
+    "P22-FRAME": "schedule completed UI frame endpoints in original session order",
+    "P22-RENDER": "GameUiRenderStages actual pre-scene volume/procedural/debug services",
+    "P22-OWN": "application activation/callback forwarding/rollback"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-audit.cpp": {
+      "sha256": "30058f2a7c4d304555dcfcb6ebfa10288f129613173876d6df49c58114e74a29",
+      "bytes": 9952,
+      "retained": false
+    },
+    "/tmp/p22-ui-audit": {
+      "sha256": "6aae608bc6059fb3a40c7b4bdf22a6c27038418aa2eeb11bb58f024c3f83aef8",
+      "bytes": 3951872,
+      "retained": false
+    },
+    "/tmp/p22-ui-compile.cpp": {
+      "sha256": "9d188fccc0326629ea706b111912114a5b9fc8556efc9f206b00cb2ab98d492d",
+      "bytes": 706,
+      "retained": false
+    }
+  },
+  "evidence_directory": "analysis/work/p22-ui-20261111",
+  "limitations": [
+    "Concrete adapters borrow the real owners and are callable; complete UI frame service is not supplied.",
+    "Native engine/font/graphics endpoints are doubles, not desktop rendering.",
+    "No source closure claim, no commit, no push or merge.",
+    "Ghidra rejected absent006E7B80/006E8160; logs retained, no function credit."
+  ],
+  "ledger_complete": 34,
+  "ledger_partial": 2371
+}

@@ -5,6 +5,9 @@
 
 namespace hd2::game {
 
+//Actual process BSS0086922D/2C and0098AF98, shared by UI/frame/render consumers.
+struct ScenePresentationFlags {bool suppress_hud=false,full_viewport=false,debug=false;};
+
 //006C9260. All service operations are required; there are no successful default
 // renderers. This is the client dispatch body, not implementations of its HUD,
 // control/debug/network/effects callees. The engine ABI is stdcall(stage,word,word)

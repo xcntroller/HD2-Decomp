@@ -31739,6 +31739,54 @@
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "004af980",
+      "status": "partial",
+      "coverage": "Collect actual state1 positive countdowns, stable ascending byte-key timer order, ten caption/visibility publications and full-viewport suppression; host checks Scene2 membership before dereferencing borrowers.",
+      "limitations": "Source-only typed native ownership and engine bridge. Focused native sanitizer coverage and strict actual host i386 compilation; complete HUD/FPV frame, application invocation and desktop rendering remain pending.",
+      "evidence": [
+        "recovered/game/hud_explosive_timers_loading.h",
+        "analysis/p22-ui-implementation.md",
+        "analysis/checkpoints/p22-ui-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004afdb0",
+      "status": "partial",
+      "coverage": "Refresh visible carnage caption from the same current Scene2 selected-Human count.",
+      "limitations": "Source-only typed native ownership and engine bridge. Focused native sanitizer coverage and strict actual host i386 compilation; complete HUD/FPV frame, application invocation and desktop rendering remain pending.",
+      "evidence": [
+        "recovered/game/hud_small_panels_loading.h",
+        "analysis/p22-ui-implementation.md",
+        "analysis/checkpoints/p22-ui-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004b01e0",
+      "status": "partial",
+      "coverage": "Advance signed wrapping injury-message countdown; preserve zero and indefinite -1, clear enabled and time at expiration.",
+      "limitations": "Source-only typed native ownership and engine bridge. Focused native sanitizer coverage and strict actual host i386 compilation; complete HUD/FPV frame, application invocation and desktop rendering remain pending.",
+      "evidence": [
+        "recovered/game/hud_small_panels_loading.h",
+        "analysis/p22-ui-implementation.md",
+        "analysis/checkpoints/p22-ui-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00491e30",
+      "status": "partial",
+      "coverage": "Preserve presentation/activation/player/model gates, read actual checked Human DD0 opacity, cache changed value and publish through the same GEffects model-opacity receiver.",
+      "limitations": "Source-only typed native ownership and engine bridge. Focused native sanitizer coverage and strict actual host i386 compilation; complete HUD/FPV frame, application invocation and desktop rendering remain pending.",
+      "evidence": [
+        "recovered/game/first_person_view_loading.h",
+        "analysis/p22-ui-implementation.md",
+        "analysis/checkpoints/p22-ui-presentation-20261111.json"
+      ]
     }
   ]
 }

@@ -94,6 +94,14 @@ public:
             frontend::CleanupErrors errors(std::current_exception());errors.attempt([&]{models_.close(mode);});errors.rethrow();
         }
     }
+    void update_opacity(std::uint32_t mode) { //00491E30, separate from camera/model simulation.
+        if(!(mode&2u)||!view_.byte3c||!player()||!models_.model())return;
+        //The per-Human lifetime map validates this borrower before inline access.
+        const auto opacity=players_.opacity(*player()); //005AC360→00789C80.
+        if(opacity==scale6c_)return;
+        scale6c_=opacity;
+        (void)effects_.model_opacity(mode,models_.model(),scale6c_); //00486510 virtual54, SAME GEffects owner.
+    }
     void bind_player(std::uint32_t mode) { //004922A0.
         if(!(mode&2u)||!view_.byte3c)return;
         set_state(mode,0);

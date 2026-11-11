@@ -21,6 +21,7 @@
 #include "frontend/sound_listeners.h"
 #include "frontend/pre_mission_flow.h"
 #include "host/game_animations.h"
+#include "host/game_frame_text_overlay.h"
 #include "host/game_scene_actors.h"
 #include "host/game_spatial_sound.h"
 #include "host/dubbing_sound_services.h"
@@ -48,6 +49,7 @@
 #include "game/human_input_records.h"
 #include "game/world_views.h"
 #include "game/hud_scene_loading.h"
+#include "game/scene_callback.h"
 #include "game/hud_signal_tables.h"
 #include "game/hud_compass_loading.h"
 #include "game/console_variables.h"
@@ -194,11 +196,26 @@ public:
         multiplayer_request_.reset();
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
         errors.attempt([&] { modules_.shutdown(gate_,human_projection_process_); }); //0048DA80, after data; actual Items3 pool retirement.
+        frame_text_overlay_.reset(); //006E85A0, after module retirement and before driver/device shutdown.
         item_hand_models_.clear();
         game_animations_.close();
         std::printf("Shutdown: input/sound/data/module cleanup completed=%u\n",
                     errors.failed() ? 0u : 1u);
         errors.rethrow();
+    }
+    void initialize_frame_text_overlay(MenuDriver& driver,Graphics& graphics){
+        if(phase_!=Phase::resources_ready&&phase_!=Phase::data_ready&&phase_!=Phase::ready)
+            throw std::logic_error("Process overlay requires live initialized devices/resources");
+        if(static_cast<void*>(&graphics)!=static_cast<void*>(this->graphics()))
+            throw std::logic_error("Process overlay requires Startup same graphics device");
+        if(frame_text_overlay_)throw std::logic_error("Process text overlay already owned");
+        frame_text_overlay_=std::make_unique<GameFrameTextOverlayProcess>(driver,graphics,engine_,files_);
+    }
+    auto& scene_presentation_flags(){return scene_presentation_flags_;}
+    const auto& scene_presentation_flags()const{return scene_presentation_flags_;}
+    auto& frame_text_overlay(){
+        if(!frame_text_overlay_)throw std::logic_error("Process text overlay has not been initialized");
+        return frame_text_overlay_->registry();
     }
     void close_archives() { archives_.close(); }
     EngineFrame* graphics() const { return static_cast<EngineFrame*>(input_setup_.graphics()); }
@@ -678,6 +695,8 @@ public:
 private:
     HMODULE engine() const { return engine_; }
     enum class Phase { constructed, control_ready, loading, resources_ready, data_ready, ready, closed };
+    game::ScenePresentationFlags scene_presentation_flags_;
+    std::unique_ptr<GameFrameTextOverlayProcess> frame_text_overlay_;
     HMODULE engine_;
     std::unique_ptr<PreMission> pre_mission_;
     std::optional<frontend::MultiplayerLaunchRequest> multiplayer_request_;
