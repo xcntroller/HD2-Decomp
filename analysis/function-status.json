@@ -25121,22 +25121,24 @@
       "program": "client",
       "entry": "0069ba60",
       "status": "partial",
-      "coverage": "Offline7 objective stage13 expected/observed comparison, conditional shared rand failure trial, latch-aware reverse positive-health Players experience awards and actual status application.",
-      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "coverage": "Offline7 objective stage13 expected/observed comparison, conditional shared rand failure trial, latch-aware reverse positive-health Players experience awards and actual status application. Non7 style2/status1 uses actual kind12 score/side, then status/HUD, then the process-owned scalar application command10 queue; no offline latch suppression.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
       "evidence": [
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/mission_objective_status.h"
+        "recovered/game/mission_objective_status.h",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "0069bc40",
       "status": "partial",
-      "coverage": "Actual objective store, status3 failure, status4 immediate return, empty/all4/pending0 completion gates and real session result/clock/HUD hint publication.",
-      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "coverage": "Actual objective store, status3 failure, status4 immediate return, empty/all4/pending0 completion gates and real session result/clock/HUD hint publication. Non7 skips mission completion/result scanning and conditionally selects SAME objective HUD icon using native side/opposite helper.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
       "evidence": [
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/mission_objective_status.h"
+        "recovered/game/mission_objective_status.h",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
       ]
     },
     {
@@ -25476,11 +25478,13 @@
       "program": "client",
       "entry": "005a63f0",
       "status": "partial",
-      "coverage": "Actual AL-only offline7/missing-B0/nonplayer-property false gate, supported nonoffline player1 virtual64/byte70 suppression; other required states explicitly reject.",
+      "coverage": "Actual AL-only offline7/missing-B0/nonplayer-property false gate; every reached state B064 reads SAME byte70 per original vtables, with no kind1-only rejection.",
       "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
       "evidence": [
         "analysis/hud-player-presentation-loading.md",
-        "recovered/game/human_loading_presentation.h"
+        "recovered/game/human_loading_presentation.h",
+        "recovered/game/human_loading_state_view.h",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
       ]
     },
     {
@@ -34316,6 +34320,114 @@
         "recovered/game/mounted_weapon_control_loading.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-mounted-sounds-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069b900",
+      "status": "partial",
+      "coverage": "Award objective team score before locking, then ascending named/live/nonsuppressed matching-side actual peer Humans with nested player score/rank calls.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "evidence": [
+        "recovered/game/human_damage_score.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00730650",
+      "status": "partial",
+      "coverage": "Authority-bit gated addition to SAME process team44C FLOAT; caller rounds signed integer reward to FLOAT before addition.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "evidence": [
+        "recovered/game/human_damage_score.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072edd0",
+      "status": "partial",
+      "coverage": "Recursive418 lock, genuine invalid-slot no-op, wrapping4C/60 score addition and authority-gated actual B0 rank publication.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "evidence": [
+        "recovered/game/human_damage_score.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00724ea0",
+      "status": "partial",
+      "coverage": "Register-argument signed (side+1)%2 helper for failed objective icon, preserving DWORD addition wrap.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "evidence": [
+        "recovered/game/mission_objective_status.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049f0c0",
+      "status": "partial",
+      "coverage": "Any-nonzero actual HUD-flags gate and SAME inline objective artwork selection.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "evidence": [
+        "recovered/game/hud_scene_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072a0b0",
+      "status": "partial",
+      "coverage": "Process-lifetime scalar FIFO kinds10/17, distinct application2C enqueue lock only in non7, separate explicit drain, flush1000 before each native envelope and unlink after finalization. Offline false appends without draining.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "evidence": [
+        "recovered/game/session_application_commands.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072bde0",
+      "status": "partial",
+      "coverage": "Forward local=true application envelope into SAME target0 priority0 stream, preserving five-bit20/32-bit command.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "evidence": [
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072be00",
+      "status": "partial",
+      "coverage": "Local target0 application envelope20/32-bit command and actual active/priority/target/inverse-local/module fields in SAME broadcast owner.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "evidence": [
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b8700",
+      "status": "partial",
+      "coverage": "One-objective producer slice only: actual kind12/status4 and all six selected-map words mapped to18/1C/20/24/28/2C.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "evidence": [
+        "recovered/game/human_death_objective.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
       ]
     }
   ]

@@ -634,3 +634,71 @@ composition and launcher checks are `human-mounted-sound-host-i386.log` and
 client partials and extends two, with no complete promotion. Totals34/2573 partial.
 Continue Player550 objective/kind12 metadata and actual peer/console dependencies,
 then the full containing frame/retirement boundary. Selected checkbox remains OPEN.
+
+### Player death objective and application scalar FIFO — 2026-11-11
+
+0053BD00's positive550 tail now reaches the SAME script runtime/objective owner
+through MissionScriptWorldLink. Ascending selection finds the first kind12
+objective28==1, but compares the FIRST objective's18 side to0069E070's selected
+team. Preserve that original first-row quirk. Team selection uses actual game71,
+selected78, existing Scene actor and process record64/default2, not00982104 or
+the offline specialization mapping. Values are copied before the final callback;
+no mission borrower survives it.0053BD00 is absent frozen and gets no credit.
+
+006B8700's one-row producer initializes kind12/status4 and maps selected-map
+row4→18,1→1C,0→20,2→24,3→28,5→2C. These are explicit optional network fields,
+separate from offline byte18/text24/text28. **Full selected-map parsing, normal
+application inline descriptor publication and non7 admission remain required.**
+This helper is only a credited producer slice, not a substitute for those bodies.
+
+0069BA60 non7 style2/status1 calls0069B900 BEFORE status application; unlike
+offline it does not suppress repeated awards with flag15.00730650 adds to SAME
+process team44C only under authority bit1, with signed reward rounded to FLOAT
+before addition. Then0069B900 takes418 and traverses named, actual3C Humans with
+health>0, B064 false and005A8820 side matching.0072EDD0 takes418 recursively,
+adds wrapping4C/60 and conditionally publishes actual B0 rank commands. An
+interrupted rank allocation retains the earlier team/player score mutations.
+All eight vtables' B064 targets005A4240/005A4400/00524D40 read byte70; the former
+non7 kind1-only presentation rejection is removed. All three leaves are absent
+frozen and earn no new credit.
+
+0069BC40 keeps status store/flag15 and3/4 early exits, but its completion/result/
+clock scan is **offline only**. Non7 bit2 selects the SAME HUD objective icons.
+Success uses18; other statuses use00724EA0, a register-argument signed
+`(side+1)%2` with wrapping addition, not a local-team getter.0049F0C0 gates on
+any nonzero actual HUD flags, then calls the existing16×3 icon owner.
+
+After score/status/HUD,0069BA60 appends application kind10 with scalar ID/status.
+0072A0B0's process FIFO now owns reached kinds10/17; no Human/mission/caller-buffer
+borrower is retained. Non7 append takes the DISTINCT application2C Win32 lock,
+not control418/430 or peerB4. Offline false **also only appends**: the drain is
+the separate ELSE in the original, not a fallthrough. Explicit drain flushes
+1000 before EACH envelope0072BDE0→0072BE00, writes20/32-bit command into SAME
+priority0 broadcast stream, then10's5/4-bit values or17's32/32-bit values and
+0072BF90 before retiring the node. The actual application fixed-frame finalizer
+now invokes that process owner. Other owning command families and targeted
+scratch reject; nonoffline flush remains required and throws BEFORE envelope
+production, retaining the scalar node. A later serializer/finalizer exception
+also retains it; no native partial-wire rollback/retry guarantee is asserted.
+
+Research index preceded static reads and reuse of existing006B8700/0072A0B0 C
+from the research checkout. MAIN WORK `human-objective-reused-originals` copies
+and hashes that evidence without modifying the research worktree. Original
+instructions/vtables are in `human-objective-score-leaves.asm`,
+`human-objective-containing-leaves.asm`, `human-objective-state-vtable64.json`.
+No new Ghidra export or original execution was needed for this checkpoint.
+
+`human-death-objective-native.log` and `human-objective-session-native.log` pass
+focused ASan/UBSan/LSan: actual descriptors, Player selection quirk, callback
+destruction, shared score/status/FIFO/bitstream source, recursive418, rank/HUD/
+queue/flush/finalization failures, offline completion regression and100 process
+lifetimes. Human/HUD/transport/OS locks are explicit doubles. Strict actual
+World and launcher compile/link pass in `human-objective-session-host-i386.log`
+and `human-objective-session-application-i386.log`; Windows output was not run.
+[Receipt](checkpoints/p2.2-human-death-objective-session-20261111.json) adds nine
+client partials, extends three; totals34 complete/2582 partial, no promotions.
+
+Next: reached0072F2F0 scalar publication and actual006C4B40/0069F1E0/00744870
+console/application lifetime, then containing reaction/frame/failure/re-entry/
+retirement. Ordinary non7 metadata/peer3C/transport remain required. The full
+selected checkbox, P22-HUM, application integration and desktop acceptance remain OPEN.

@@ -57,13 +57,23 @@ indices3/5. Player writes54 before stats/publication; Remote must use its old ra
    004C7630 retirement are now source-closed through SAME StaticWeapon/Car gun
    control owner. [Receipt](analysis/checkpoints/p2.2-human-mounted-sounds-20261111.json)
    adds three client partials, extends two; totals34 complete/2573 partial.
-3. Continue Player0053BD00 byte550 objective: actual nonoffline descriptors are
-   GameData kind12, native28 selector/18 side. Metadata/score/transport remain
-   required. Existing original006B8700 C is in the research worktree ignored
-   `analysis/work/future-dependencies/p28-entry-handoff`; inspect/reuse before
-   exporting again. Actual0072A0B0 C is there under `p28-peer-send`.
-4. Continue peer/console and full containing frame/failure/re-entry/retirement.
+3. Player0053BD00 byte550 selection now reaches actual objective status/score/
+   HUD and the process scalar application FIFO. [Receipt](analysis/checkpoints/p2.2-human-death-objective-session-20261111.json)
+   adds nine client partials/extends three; totals34 complete/2582 partial.
+   Kind12 metadata is explicit; only006B8700's one-row producer is reconstructed.
+   Normal selected-map admission/publication, peer3C and transport remain required.
+   Reused original006B8700/0072A0B0 C and provenance are MAIN WORK
+   `human-objective-reused-originals`; no need to re-export these unchanged bodies.
+4. Continue reached0072F2F0 peer publication and actual006C4B40/0069F1E0/00744870
+   console/application owners, then full containing frame/failure/re-entry/retirement.
    Do not invent successful missing positive dependencies.
+
+Objective ordering:0069BA60 score→status/HUD→kind10 scalar enqueue.0069BC40
+completion/result scan is offline only.00724EA0 is signed(side+1)%2, not local
+team. All B064 states read70. Application queue uses DISTINCT application2C lock;
+non7 and offline false only append, true drains. Fixed-frame source now drains
+this SAME process owner; each node first flushes1000. Non7 transport still throws
+before envelope writing and retains pending node. No successful transport claim.
 
 **PACK discrepancy:** its zero-multiplier drop-writer claim is wrong. At20A7
 [S+08]=mask15; PUSH20AB makesESP=S-4; FIMUL[ESP+0C] reads[S+08],15. Original
@@ -88,8 +98,12 @@ disabled, no resource-loading equivalence. Temporary audit files are ignored,
 fingerprinted in receipt and retained only for this ongoing full-checkbox work;
 remove them at full completion. No permanent tests.
 
-Strict actual World i386: `human-mounted-sound-host-i386.log` PASS.
-Latest main launcher compile/link: `human-mounted-sound-application-i386.log`
+Latest focused objective/session native sanitizers also PASS:
+`human-death-objective-native.log`, `human-objective-session-native.log`.
+Explicit Human/HUD/transport/OS-lock doubles, actual descriptors/status/scores/
+scalar FIFO/bitstream;100 lifetimes and ordered failures. No full frame claim.
+Strict actual World i386: `human-objective-session-host-i386.log` PASS.
+Latest main launcher compile/link: `human-objective-session-application-i386.log`
 PASS. Outputs were NOT executed. Tracker render/check and diff checks required
 at checkpoint. Do not repeatedly audit unchanged verified solver/particle source.
 

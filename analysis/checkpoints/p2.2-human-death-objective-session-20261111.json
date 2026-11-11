@@ -1,0 +1,150 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "0ce2694aba97efd0f4c99efd13f4d5ebf8d9825e",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "added_entries": [
+    "0069b900",
+    "00730650",
+    "0072edd0",
+    "00724ea0",
+    "0049f0c0",
+    "0072a0b0",
+    "0072bde0",
+    "0072be00",
+    "006b8700"
+  ],
+  "extended_entries": [
+    "0069ba60",
+    "0069bc40",
+    "005a63f0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2582,
+  "source_files": {
+    "recovered/frontend/game_data.h": {
+      "sha256": "2b518d5dde4349de6454c11efbdefedce402f954884296998580fdf67b39ed8a",
+      "bytes": 12447
+    },
+    "recovered/game/hud_panels_loading.h": {
+      "sha256": "1bb242841ad10076d5e7f63c01509e176d28d1f460463328be7f8e7094b2d038",
+      "bytes": 10392
+    },
+    "recovered/game/hud_scene_loading.h": {
+      "sha256": "81d2688f5b14e87e42dc81dcee2ba5ae271e0d2dffdbc9f6a1c97e0572d6135e",
+      "bytes": 9906
+    },
+    "recovered/game/human_damage_score.h": {
+      "sha256": "51c79f02c5cd138dcec27398dc91f6e52540f80ce72e9dd5cc91496b8bd0f35c",
+      "bytes": 6835
+    },
+    "recovered/game/human_loading_presentation.h": {
+      "sha256": "a33086e1f777fe15a7487fa2a13a5144a6625eb03ee064995bc4aa929e78dd39",
+      "bytes": 3984
+    },
+    "recovered/game/human_loading_state_view.h": {
+      "sha256": "cf548796f12dfd54bfe87afc95f6d019432798bb1fb4d58f54395d384cf719ee",
+      "bytes": 2605
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "399264ef26825b8ab8c36d15623bd90c9480d0fd2af12aae1fddd2cd2f3463e3",
+      "bytes": 103736
+    },
+    "recovered/game/mission_objective_status.h": {
+      "sha256": "cbf63215debc91b8096ba851f1404fc450fa40542817930daa0a6bbd6c8807b3",
+      "bytes": 6616
+    },
+    "recovered/game/mission_script_loading_runtime.h": {
+      "sha256": "02d850d2dd144bb1360636e7f1689c22ee00e0e8ebe016b413ca2d190831c151",
+      "bytes": 8485
+    },
+    "recovered/game/mission_script_world_link.h": {
+      "sha256": "0603fff47056dba894f3d4d6e1d91429835fe10dede6ed6e150f0f67f4a3fbb7",
+      "bytes": 3422
+    },
+    "recovered/game/mission_script_world_loading.h": {
+      "sha256": "87ca69a7f72438efb9ee5e4588e7a480a90a5fa35522406c394308f9fc2ae084",
+      "bytes": 5098
+    },
+    "recovered/host/application_launch.cpp": {
+      "sha256": "f64434fdb636984aab3229d0582b22511c0e96be39486d27f2903770255cf8ca",
+      "bytes": 36379
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "8f1f30b78ced17d00dee88ff687f256ad91d956ca2a950b01a5424b47daba0b3",
+      "bytes": 58040
+    },
+    "recovered/game/human_death_objective.h": {
+      "sha256": "a85c7916e4b4777c3823fb39c0ba971a870b03fcb1f9e5baaa537507242af22b",
+      "bytes": 1986
+    },
+    "recovered/game/session_application_commands.h": {
+      "sha256": "b7fefb747706b73c832fa667127fc9bf69612a942a26a0316c92c9a4f937cb30",
+      "bytes": 2340
+    },
+    "recovered/host/application_command_lock.h": {
+      "sha256": "266e7ac89cf8f2df2b5f911b1a9cae9632c3fd4aeb0f74997267b3b105e89135",
+      "bytes": 746
+    }
+  },
+  "temporary_audits": {
+    "human-death-objective-native": {
+      ".cpp": {
+        "sha256": "89a47c54562697f9839d817f1b54b1ac38ac8915f60f5576cf1192688831681e",
+        "bytes": 2505
+      },
+      "": {
+        "sha256": "b0bbd0ccb176b24f48ccbb29b239de9b9f85af6d86d7dbb9973bc586a00f44cf",
+        "bytes": 417760
+      },
+      ".log": {
+        "sha256": "775f4183cd0ba96d18d6ba55045c0dd4f4ec3967f4bdac65efdda7f636ebf516",
+        "bytes": 161
+      },
+      "removed": false
+    },
+    "human-objective-session-native": {
+      ".cpp": {
+        "sha256": "78262331ae04e6c309f96160b7d32c5476f40c2abada14c2e5d7fcf23a8d172b",
+        "bytes": 8762
+      },
+      "": {
+        "sha256": "3a201843160458ade19afadbcc5a61926cd755abd5c8ca45cbab8945cf8b9724",
+        "bytes": 1545896
+      },
+      ".log": {
+        "sha256": "4d046c26e553b53b146b227d94530817555b1c25024f1b75cd517f3d4aa7c0e6",
+        "bytes": 199
+      },
+      "removed": false
+    }
+  },
+  "checks": {
+    "native": "PASS human-objective-session-native.log ASan/UBSan/LSan actual status/score/FIFO/bitstream source; Human, HUD, transport and OS locks are explicit doubles;100 process lifetimes",
+    "player_tail": "PASS human-death-objective-native.log including first-row quirk and callback destruction",
+    "actual_i386": "PASS human-objective-session-host-i386.log compile only",
+    "launcher": "PASS human-objective-session-application-i386.log compile/link only",
+    "original_or_windows_execution": false
+  },
+  "research": [
+    "human-objective-score-leaves.asm",
+    "human-objective-containing-leaves.asm",
+    "human-objective-state-vtable64.json",
+    "human-objective-reused-originals/provenance.json"
+  ],
+  "remaining": [
+    "Actual selected-map metadata parsing/publication, ordinary non7 peer3C spawn writeback",
+    "Nonoffline transport/targeted scratch and other application-command payload families",
+    "Actual application/console owner and reached peer-removal log",
+    "Full containing Human reaction failure/re-entry/retirement and application integration/user desktop acceptance"
+  ],
+  "excluded_credit": [
+    "0053BD00 and the three B064 getters are absent frozen; zero credit",
+    "Delegated engine calls, no complete promotions",
+    "006B8700 selected-map lookup/clear/full metadata/vector finalization not reconstructed by this one-row helper"
+  ]
+}

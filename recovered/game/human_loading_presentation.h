@@ -31,9 +31,7 @@ public:
     }
     template<class Human>bool human_selected_suppressed(Human& human){ //005A63F0; native AL only.
         if((dependencies().mode&7u)==7u||!human.loading_state||human.properties.field19c!=1)return false;
-        if(human.loading_state->words().template get<std::uint32_t>(0x48)!=1)
-            throw std::runtime_error("Selected nonoffline Human requires its actual state virtual64 receiver");
-        return human.loading_state->words().template get<std::uint8_t>(0x70)!=0; //005A4240 Player virtual64.
+        return human.loading_state->selection_suppressed();
     }
     void reset_player_camera(std::uint32_t){ //0046C370 virtual40; ordinary argument0 has no producer side effect.
         auto& view=dependencies().fpv.view();

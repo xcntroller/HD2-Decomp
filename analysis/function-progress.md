@@ -32,11 +32,12 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are34 complete client functions and2,573 partial entries
-(2,568 client and five engine). The [Human damage/scoring checkpoint](checkpoints/p2.2-human-damage-presentation-20261111.json)
+The current totals are34 complete client functions and2,582 partial entries
+(2,577 client and five engine). The [Human damage/scoring checkpoint](checkpoints/p2.2-human-damage-presentation-20261111.json)
 adds32 frozen client partials and extends four existing partials, preserving the
 preceding GUARD additions. The mounted SOUND checkpoint adds three client
-partials and extends two existing entries. No complete count or denominator changes. The full
+partials and extends two existing entries. The [Player objective/session checkpoint](checkpoints/p2.2-human-death-objective-session-20261111.json)
+adds nine client partials and extends three. No complete count or denominator changes. The full
 reactions/damage/ragdoll checkbox, P22-HUM and application/desktop acceptance
 remain open. The [ledger](function-status.json) and generated README are authoritative.
 

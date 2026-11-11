@@ -39,6 +39,7 @@
 #include "game/human_script_loading_controls.h"
 #include "game/human_squad_snapshot.h"
 #include "game/human_score_presentation.h"
+#include "game/human_death_objective.h"
 #include <algorithm>
 #include <stdexcept>
 
@@ -133,6 +134,16 @@ public:
     void enter_control_lock(unsigned index){dependencies().startup.enter_control_lock(index);}
     void leave_control_lock(unsigned index)noexcept{dependencies().startup.leave_control_lock(index);}
     std::uint32_t human_score_style(){return static_cast<std::uint32_t>(dependencies().startup.game_configuration().style224);}
+    std::int32_t human_objective_score_health(void* actor){return human_frame_signed_word(human_score_actor(actor).properties.stats_ec[0]);}
+    bool human_objective_score_suppressed(void* actor){
+        auto& human=human_score_actor(actor);if(!human.loading_state)throw std::logic_error("Objective scoring requires actual Human B0");
+        return human.loading_state->selection_suppressed();
+    }
+    std::uint32_t human_objective_score_side(void* actor){return human_specialization(human_score_actor(actor));}
+    void award_human_objective_score(std::uint32_t amount,std::uint32_t side){award_human_objective_points(dependencies().startup.game_control_records(),amount,side,*this);}
+    void queue_human_objective_status(std::int32_t identity,std::int32_t status){
+        dependencies().startup.queue_application_command(10,0,static_cast<std::uint32_t>(identity),static_cast<std::uint32_t>(status));
+    }
     std::uint32_t human_score_victim_kind(std::uint32_t id){auto* human=dependencies().scene.frames().scene_human_identity(human_frame_signed_word(id));return human?human->properties.field19c:0;}
     auto& human_score_actor(void* actor){
         using Human=typename Dependencies::Composition::Human;auto* human=static_cast<Human*>(actor);
@@ -346,7 +357,17 @@ public:
         if((mode_flags()&7u)==7u&&human_is_player(*state.human()))
             dependencies().first_person.models().bind_weapon(mode_flags(),typename Dependencies::ActorFrames::Frame{},typename Dependencies::ActorFrames::Frame{},-1);
     }
-    template<class Player>void retire_dead_player_objective(Player&){throw std::runtime_error("Human Player death requires actual0053BD00 nonoffline objective selection");}
+    std::uint32_t human_player_objective_team(){ //0069E070 then00730530; this is game78, NOT local peer00982104.
+        auto& d=dependencies();std::uint32_t identity=0xffffffffu;
+        if(d.session.words.template get<std::uint8_t>(0x71)){
+            const auto selected=d.session.words.template get<std::int32_t>(0x78);
+            if(selected!=-1&&d.scene.frames().scene_actor_identity(selected))identity=static_cast<std::uint32_t>(selected);
+        }
+        const auto& records=d.startup.game_control_records().records;
+        return identity<records.size()?records[identity].word(0x64):2u;
+    }
+    void human_player_objective_status(std::int32_t identity,std::int32_t status){dependencies().script_link.set_human_objective_status(identity,status);}
+    template<class Player>void retire_dead_player_objective(Player&){finish_human_player_death_objective(dependencies().session.mission,*this);}
     template<class Human>void notify_dead_roster_human(Human& human){ //0045E790, no roster removal or Human deletion.
         auto& d=dependencies();auto& players=d.players.control();if(!players.human_roster().contains(&human))return;
         const auto& enemies=human.perception.lists()[0];

@@ -28,7 +28,7 @@ public:
     using Lifecycle=MissionScriptActorLifecycle<Frames,Human,Controls,typename Players::Control>;
     using Views=MissionScriptViewCommands<Frames,Human,Camera,View,Effects>;
     using Predicates=MissionScriptPlayerPredicates<Frames,Players>;
-    using Objectives=MissionObjectiveStatus<Random,typename Players::Control,HumanObjectiveExperience,Hint>;
+    using Objectives=MissionObjectiveStatus<Random,typename Players::Control,HumanObjectiveExperience,Hint,Lookup>;
     using Animation=AnimationActorVisibility<Frames,Collisions>;
     using Models=MissionScriptModelVisibility<Frames,Human,Effects,Lookup,Animation,Players,View>;
     struct Dependencies{
@@ -49,7 +49,7 @@ public:
         :frames_(frames),link_(link),bindings_(frames,lookup,players.control()),
          controls_(frames,lookup,sight,hearing,first_players,view,lookup),
          lifecycle_(frames,controls_,players.control()),views_(frames,camera,view,effects,session,mode),
-         predicates_(frames,players),experience_(mode),objectives_(session,mode,guard,random,players.control(),experience_,hint),
+         predicates_(frames,players),experience_(mode),objectives_(session,mode,guard,random,players.control(),experience_,hint,lookup),
          animation_(frames,collisions),models_(frames,effects,lookup,animation_,players,view,mode),
          script_(registry,frames,files,models_,packets,mode,std::move(resource),variables,
              Dependencies{mode,advance_override,session,clock,bindings_,views_,objectives_,lifecycle_,controls_,predicates_,lookup,effects},registration){

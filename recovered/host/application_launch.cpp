@@ -436,8 +436,9 @@ public:
     void finish_frame(std::uint32_t, std::uint32_t, std::uint32_t, std::uint32_t) {
         throw std::logic_error("Network frame finalizer is outside standalone launch mode");
     }
-    void finish_fixed_frame(std::uint32_t, std::uint32_t, std::uint32_t, std::uint32_t, std::uint32_t) {
-        throw std::logic_error("Network fixed-frame finalizer is outside standalone launch mode");
+    void finish_fixed_frame(std::uint32_t kind, std::uint32_t target, std::uint32_t first, std::uint32_t second, std::uint32_t drain) {
+        if(drain)startup_.drain_application_commands();
+        else startup_.queue_application_command(kind,target,first,second);
     }
     void sample_frame_input() { startup_.sample_frame_input(); }
     void tick_driver(std::uint32_t milliseconds) {

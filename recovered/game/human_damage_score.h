@@ -24,6 +24,35 @@ template<class Services>void update_human_score_rank(frontend::ControlStartupSta
     while(rank<7&&static_cast<std::int32_t>((rank+1)*10)<=score)++rank;
     if(rank!=record.word(0x54)&&services.queue_human_score_rank(record.human_actor(),rank))record.word(0x54,rank);
 }
+//0072EDD0 takes418 recursively when called from0069B900's record traversal.
+template<class Services>void add_human_score_points(frontend::ControlStartupState& state,std::uint32_t identity,std::uint32_t amount,Services& services){
+    services.enter_control_lock(0);
+    struct Unlock{Services& services;~Unlock(){services.leave_control_lock(0);}}lock{services};
+    if(identity>=state.records.size())return; //Native bounds test is a genuine no-op.
+    auto& record=state.records[identity];
+    record.word(0x4c,record.word(0x4c)+amount);record.word(0x60,record.word(0x60)+amount);
+    if(services.mode_flags()&1u)update_human_score_rank(state,identity,services);
+}
+//0069B900→00730650 then418 traversal. Team FLOAT addition precedes locking;
+//signed integer reward is rounded to FLOAT BEFORE adding, as the FILD/FSTP shows.
+template<class Services>void award_human_objective_points(frontend::ControlStartupState& state,std::uint32_t amount,std::uint32_t side,Services& services){
+    if(services.mode_flags()&1u){
+        if(side>=state.team_scores44c.size())throw std::out_of_range("Objective reward requires actual team0..2");
+        const auto value=static_cast<float>(human_frame_signed_word(amount));
+        state.team_scores44c[side]=static_cast<float>(static_cast<long double>(value)+state.team_scores44c[side]);
+    }
+    services.enter_control_lock(0);
+    struct Unlock{Services& services;~Unlock(){services.leave_control_lock(0);}}lock{services};
+    for(std::size_t n=0;n<state.records.size();++n){
+        const auto named=state.records[n].byte(8);
+        if(!named)throw std::logic_error("Objective score record name has no original producer");
+        if(!*named)continue;
+        auto* actor=state.records[n].human_actor();
+        if(!actor||services.human_objective_score_health(actor)<=0||services.human_objective_score_suppressed(actor)||
+                services.human_objective_score_side(actor)!=side)continue;
+        add_human_score_points(state,static_cast<std::uint32_t>(n),amount,services);
+    }
+}
 //0072EE60, not a network-packet leaf. Mutates the process records in native
 //order. The friendly-kill removal occurs AFTER releasing418. Source bounds
 //reject the native remote-AI source==count off-by-one instead of indexing OOB.
