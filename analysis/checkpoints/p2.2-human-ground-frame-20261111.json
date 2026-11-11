@@ -1,0 +1,193 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "previous_checkpoint": "25f64cd",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "007861a0",
+    "007637d0",
+    "00772a00",
+    "00770770",
+    "007705e0",
+    "0076fbc0",
+    "00773850",
+    "00773a90",
+    "00773b20",
+    "00773b60",
+    "00768170"
+  ],
+  "ledger_added_partial_client": 11,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2296,
+  "checks": {
+    "native": "PASS (ASan/UBSan/LSan, actual track and movement owners with frame/audio doubles, positive sound return failure/retry)",
+    "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining positive runtime leaves declaration-only)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-ground-frame-native.cpp": {
+      "sha256": "d254ff3d221db6de406d69c9493af3ce2702ffd9bbfaf45874676cf885fc68a2",
+      "bytes": 6590,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-frame-native": {
+      "sha256": "8fd13a01b27c46f65a85624f34b57b6e0f1e06e3c9b56027cfa4cbe6b1a5066e",
+      "bytes": 625936,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-frame-i386.cpp": {
+      "sha256": "feb71307546570f5d659b787a4f2df70b8d1f4630f9d67fe0748a2dbbfc6c87b",
+      "bytes": 4752,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-frame-i386.o": {
+      "sha256": "5d242aa8496ac8762fc0bef8f9843b8ee8061160e02e4cde4db02b62077c969d",
+      "bytes": 12175714,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-frame-native.log": {
+      "sha256": "0d718eef8b76e9d34e296ea859c34e03cbd07ecc1aa33c72a8de82c5b7ba1e58",
+      "bytes": 118,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-frame-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-frame-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-frame-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/0076fbc0.asm": {
+      "sha256": "267e76e105a12baf9d8b64dd199318372b8ad9d06f38b94c5b9f57b59e76ebf9",
+      "bytes": 37493,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers.log": {
+      "sha256": "6a0619c2ccd26282657f73d5c7613bddf8e58dbefd78faeb785ff6fb18980d21",
+      "bytes": 4902,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/007646f0.c": {
+      "sha256": "a5f86933b29369cdfb89973297561957c6657c5b0c9efb06a7f47e25b6403978",
+      "bytes": 30299,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/00767d40.c": {
+      "sha256": "2bc9a654e004ef2805e4138ba5616bbae9a74b42aed2f7def4946bdb2e0607f0",
+      "bytes": 5303,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/00768170.c": {
+      "sha256": "9b45b0f8f924df99c094a2c7ead2717a297fb3aa3fa6b59b15c1edc0a3232591",
+      "bytes": 698,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/00768230.c": {
+      "sha256": "3a89ef7db0501ebf1913c985fca4595005b255f1e1b43771fc47903aa7bcaa73",
+      "bytes": 12113,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/00768e50.c": {
+      "sha256": "c92559c6843587f8eaa53f00b6b3929cb6089884d7912a4775aff2e00de6c422",
+      "bytes": 7987,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/00769920.c": {
+      "sha256": "ecb8ed46218a15eeea87e4d9c63c0234429cf488ff138c840f84a9258e856a7e",
+      "bytes": 6728,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/0076b670.c": {
+      "sha256": "c8819131c4c6c1a604d8861d8b86ce91a66ea46a980fd1f1e1fa4f8334b32c1a",
+      "bytes": 21816,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/0076ce30.c": {
+      "sha256": "545c6a62d97d51f65b7c6ba7f0ab65e0a657c825d1f5b0756fdc32143368bdd5",
+      "bytes": 167,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/0076cfe0.c": {
+      "sha256": "0bf6f2d6b53a9436fe11f0d12b09ff9c0b6a964218db3c0ea905d4aca01565f4",
+      "bytes": 12217,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/0076fbc0.c": {
+      "sha256": "626e3817220f14ddb861c4c737701f73b7ad838b0c7675b71b1650cfc7bcdc73",
+      "bytes": 5408,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/00770770.c": {
+      "sha256": "5eca9acc83dce01138ea015f693701a23b6dd9e206676ddd7e72aefb96522e58",
+      "bytes": 3109,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-audio/007705e0.c": {
+      "sha256": "5b6b9b56df4746ec6dde45e3823b62fadc54024c9d58e3abacc0fb102f8edda5",
+      "bytes": 1372,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-audio/007706f0.c": {
+      "sha256": "e738753ba29703e698218cf6a83707e19fe7b8a58d0cf1ee170e72242189bdfb",
+      "bytes": 679,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/0074bbe0.c": {
+      "sha256": "95e89a3559e5686eada23dd4670b377f6c17bcb5889e7b22ccdca2186a025569",
+      "bytes": 5351,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/0074c1e0.c": {
+      "sha256": "51b51d8091d10e0a2e14de45499fb70a357d4996ebabded457ce0f36514ed487",
+      "bytes": 4139,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/00773850.c": {
+      "sha256": "dd5ad0728c570957c36e07d2b00fc9ee559abd3e5e9e3390ecaba3c347e83f5d",
+      "bytes": 1552,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/00773a90.c": {
+      "sha256": "72f02e8236127f4906c59aac506ade3e9f2afd0aef60e2036c7f61f308a9dc2e",
+      "bytes": 418,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/00773b20.c": {
+      "sha256": "1a2ed3e1a89231458b949cc601beede4c30051716468319ce5931932e3e67bbf",
+      "bytes": 418,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/00773b60.c": {
+      "sha256": "3a67699732b30f8c56954dd383cab8046b6bbe9b2dc8eb8508dbeede50b37951",
+      "bytes": 2372,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-climb-action/0074b4f0.c": {
+      "sha256": "0e45e769297dd3d17317bde16bec9c42ef555a8e1bf2c3410d32589b00325288",
+      "bytes": 5982,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-climb-action/007865e0.c": {
+      "sha256": "03effd99d5e330cdf7fba174ff7c4de13e034845afa2ed782c79d22201cf0a5b",
+      "bytes": 193,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-frame-tracker.log": {
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e",
+      "bytes": 126,
+      "retained": true
+    }
+  }
+}

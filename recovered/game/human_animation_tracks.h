@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_ANIMATION_TRACKS_H
 
 #include "game/human_joint_owners.h"
+#include "game/human_ai_shot_direction.h"
 #include <cmath>
 #include <limits>
 
@@ -207,6 +208,127 @@ public:
         const float elapsed=real(meta+0xc4),duration=real(meta+0xc0);
         return elapsed<0||duration<=elapsed?1.L:blend_ratio(elapsed,0,duration);
     }
+    void motion_velocity(const HumanVector& direction,float speed,float maximum,HumanVector& output){ //00773850.
+        for(unsigned axis=0;axis!=4;++axis)words_.set(0x230+4*axis,word(0x250+4*axis));
+        words_.set(0x240,word(0x260));
+        words_.set(0x250,direction);words_.set(0x260,speed);
+        const auto source=real(0x240)<speed?0x250u:0x230u;
+        const auto amount=source==0x250u?speed:real(0x240);
+        for(unsigned axis=0;axis!=3;++axis)output[axis]=real(source+4*axis)*amount;
+        words_.set(0x264,maximum);
+    }
+    void motion_impulse(const HumanVector& displacement,std::int32_t duration){ //00773A90.
+        words_.set(0x280,displacement);words_.set(0x290,0u);words_.set(0x294,duration);
+    }
+    void secondary_motion_impulse(const HumanVector& displacement,std::int32_t duration){ //00773B20.
+        words_.set(0x2e0,displacement);words_.set(0x2f0,0u);words_.set(0x2f4,duration);
+    }
+    void motion_deceleration(const HumanVector& velocity,std::int32_t duration){ //00773B60.
+        words_.set(0x320,0u);words_.set(0x300,velocity);words_.set(0x324,0u);words_.set(0x328,duration);
+        auto decrement=velocity;
+        const auto square=(static_cast<long double>(velocity[0])*velocity[0]+
+            static_cast<long double>(velocity[1])*velocity[1])+static_cast<long double>(velocity[2])*velocity[2];
+        normalize_human_ai_shot(decrement,square);
+        const auto stored=static_cast<float>(square);
+        const auto length=stored<1.e-8f?0.L:std::abs(static_cast<long double>(stored)-1)<1.e-8f?1.L:std::sqrt(static_cast<long double>(stored));
+        const auto amount=length/(static_cast<long double>(duration)/80.f); //Native preserves zero-duration IEEE results.
+        for(unsigned axis=0;axis!=3;++axis)decrement[axis]=static_cast<float>(amount*decrement[axis]);
+        words_.set(0x310,decrement);
+    }
+    void advance_motion(std::int32_t elapsed,bool player){ //00772A00, SAME DD0+260 scalar owner.
+        require_model();
+        const float seconds=static_cast<float>(static_cast<long double>(elapsed)*.001f);
+        auto effective=real(0x260);
+        const auto lane=integer(0xc);
+        const bool ordinary=!player||real(0x228)<=0||real(0x228)>=1;
+        HumanVector velocity{};
+        for(unsigned axis=0;axis!=3;++axis)velocity[axis]=real(0x250+4*axis)*real(0x260);
+        if(ordinary){
+            words_.set(0x240,0u);
+            const auto maximum=real(0x264);
+            if(maximum>0){
+                const auto speed=motion_length(velocity);
+                if(maximum<speed){
+                    const auto inverse=1.L/speed;
+                    effective=speed<=static_cast<long double>(maximum)+maximum?maximum:speed*.5f;
+                    for(unsigned axis=0;axis!=3;++axis)
+                        velocity[axis]=static_cast<float>(velocity[axis]*inverse*effective);
+                }
+            }
+        }
+        for(unsigned axis=0;axis!=3;++axis)words_.set(0x270+4*axis,velocity[axis]*seconds);
+        if(lane==-1)return;
+        if(lane<0||lane>1)throw std::runtime_error("Human motion has an invalid primary animation lane");
+        if(player)effective=real(0x32c);
+        else{
+            if(real(0x260)==0||effective==0){
+                const auto x=static_cast<long double>(real(0x250))*real(0x250);
+                const auto y=static_cast<long double>(real(0x254))*real(0x254);
+                const auto z=static_cast<long double>(real(0x258))*real(0x258);
+                effective=(z+y)+x>=1.e-16f?1.f:.3f;
+            }else{
+                effective=static_cast<float>(static_cast<long double>(effective)/real(0x260));
+                if(effective>1)effective=1;
+                else if(effective<.4f)effective=.4f;
+            }
+            effective*=real(0x32c);
+        }
+        words_.set((lane==0?1u:0u)*0x24+0xd4,integer(0x1dc)<190?1.f:effective);
+        words_.set(static_cast<unsigned>(lane)*0x24+0xd4,integer(0x200)<190?1.f:effective);
+        advance_timed_displacement(0x280,0x290,0x294,elapsed);
+        if(integer(0x2b4)!=-10000){
+            const auto matrix=frames_.actor_world_matrix(model_);
+            HumanVector delta{{real(0x2a0)-matrix[12],real(0x2a4)-matrix[13],real(0x2a8)-matrix[14],0}};
+            const auto distance=motion_length(delta);
+            const auto timer=wrap(integer(0x2b0),elapsed);
+            words_.set(0x2b0,timer);
+            if(integer(0x2b4)<timer)words_.set(0x2b4,std::int32_t{-10000});
+            const auto speed=real(0x298);
+            if((speed<distance&&distance!=0)||static_cast<long double>(seconds)*speed<distance)
+                for(unsigned axis=0;axis!=3;++axis)delta[axis]=static_cast<float>(delta[axis]*(1.L/distance)*speed);
+            for(unsigned axis=0;axis!=3;++axis)
+                words_.set(0x270+4*axis,static_cast<float>(static_cast<long double>(delta[axis])*seconds+real(0x270+4*axis)));
+        }
+        advance_timed_displacement(0x2e0,0x2f0,0x2f4,elapsed);
+        if(integer(0x328)!=-10000){
+            auto step=elapsed;
+            if(integer(0x328)<=wrap(integer(0x324),elapsed)){
+                step=wrap(integer(0x328),-static_cast<std::int64_t>(integer(0x324)));
+                words_.set(0x328,std::int32_t{-10000});
+            }
+            words_.set(0x324,wrap(integer(0x324),step));
+            auto remaining=step;
+            while(remaining>0){
+                const auto accumulated=wrap(integer(0x320),remaining);
+                if(static_cast<float>(accumulated)<=80.f){
+                    words_.set(0x320,accumulated);
+                    break;
+                }
+                for(unsigned axis=0;axis!=3;++axis)
+                    words_.set(0x300+4*axis,real(0x300+4*axis)-real(0x310+4*axis));
+                remaining=ftol(static_cast<long double>(accumulated)-80.f);
+                words_.set(0x320,0u);
+            }
+            const float dt=static_cast<float>(static_cast<long double>(step)*.001f);
+            for(unsigned axis=0;axis!=3;++axis)
+                words_.set(0x270+4*axis,static_cast<float>(static_cast<long double>(dt)*real(0x300+4*axis)+real(0x270+4*axis)));
+        }
+        const auto x=static_cast<long double>(real(0x2c0))*real(0x2c0);
+        const auto y=static_cast<long double>(real(0x2c4))*real(0x2c4);
+        const auto z=static_cast<long double>(real(0x2c8))*real(0x2c8);
+        if((z+y)+x>=1.e-16f){
+            const auto timer=wrap(integer(0x2d0),elapsed);
+            words_.set(0x2d0,timer);
+            auto step=static_cast<float>(elapsed);
+            if(integer(0x2d4)<timer){
+                step=static_cast<float>(wrap(integer(0x2d4),-static_cast<std::int64_t>(timer)+elapsed));
+                for(unsigned axis=0;axis!=3;++axis)words_.set(0x2c0+4*axis,0.f); //Native clears BEFORE adding this last portion.
+            }
+            const float fraction=static_cast<float>(static_cast<long double>(ftol(step))/integer(0x2d4));
+            for(unsigned axis=0;axis!=3;++axis)
+                words_.set(0x270+4*axis,static_cast<float>(static_cast<long double>(fraction)*real(0x2c0+4*axis)+real(0x270+4*axis)));
+        }
+    }
     void fade_fourth(std::int32_t duration) { //00775970.
         const auto lane=integer(0x90);if(lane==-1)return;
         if(lane<0||lane>1)throw std::runtime_error("Invalid fourth Human animation lane");
@@ -281,6 +403,28 @@ public:
     Frame model() const{return model_;}
     Frame parent_marker() const{return parent_marker_;}
 private:
+    static float motion_length(const HumanVector& vector){
+        const float square=static_cast<float>((static_cast<long double>(vector[1])*vector[1]+
+            static_cast<long double>(vector[2])*vector[2])+static_cast<long double>(vector[0])*vector[0]);
+        if(square<1.e-8f)return 0;
+        return std::abs(static_cast<long double>(square)-1)<1.e-8f?1.f:static_cast<float>(std::sqrt(static_cast<long double>(square)));
+    }
+    void advance_timed_displacement(unsigned vector,unsigned timer,unsigned duration,std::int32_t elapsed){
+        const auto limit=integer(duration);
+        if(limit==-10000)return;
+        const auto accumulated=wrap(integer(timer),elapsed);
+        words_.set(timer,accumulated);
+        auto step=static_cast<float>(elapsed);
+        if(limit<accumulated){
+            words_.set(duration,std::int32_t{-10000});
+            step=static_cast<float>(wrap(limit,-static_cast<std::int64_t>(accumulated)+elapsed));
+        }
+        if(limit>0){
+            const float fraction=static_cast<float>(static_cast<long double>(ftol(step))/limit);
+            for(unsigned axis=0;axis!=3;++axis)
+                words_.set(0x270+4*axis,static_cast<float>(static_cast<long double>(fraction)*real(vector+4*axis)+real(0x270+4*axis)));
+        }
+    }
     void append_event(unsigned group,std::int32_t value,unsigned index=0xffffffffu) {
         const auto count=event_count(group);if(index==0xffffffffu)index=count;
         if(count>=5||index>=5)throw std::runtime_error("Human animation event append exceeds native capacity");

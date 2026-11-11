@@ -167,6 +167,7 @@ public:
     const auto& state() const{return state_;}
     auto& control_frame_words(){return state_;} //DD0 physical scalar writes in the actual frame bodies.
     auto& control_action_queue(){return queue_;} //DD0+A4C, SAME deque retired by0075B6C0.
+    void rebind_frame_posture(std::uint32_t posture){rebind_posture(posture);} //0075BC80.
     float control_projection_height(float model_height)const{ //00770100, unscaled marker DD0+6E0.
         const auto count=primary_count();
         if(count<1)return model_height;
@@ -193,6 +194,8 @@ public:
         const auto animation=state_.template get<std::int32_t>(0x1d8);
         return (animation>=106&&animation<=108)||animation==8||animation==14?interaction_actor_:nullptr;
     }
+    auto* control_action_actor()const{return interaction_actor_;}
+    void control_action_actor(void* actor){interaction_actor_=actor;}
     void animation_loading_word(unsigned offset,std::uint32_t value) {
         if(offset!=0x750)throw std::out_of_range("Human animation loading scalar");
         state_.set(offset,value);

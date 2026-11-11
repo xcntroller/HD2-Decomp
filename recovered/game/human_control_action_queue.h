@@ -38,7 +38,7 @@ void advance_human_control_action_queue(Control& control,Look& look,Queue& queue
         }
     }else if(command==3){
         if(!waiting){
-            if(runtime.advance_human_climb_action(control)>0)satisfied(); //007861A0, actual DD0+990.
+            if(control.request_frame_ladder(static_cast<typename Control::SceneInstance*>(control.physical().control_action_actor()),look,runtime)>0)satisfied();
             else if(remaining<=-4000)queue.pop_front();
             else animation(0x6a);
         }

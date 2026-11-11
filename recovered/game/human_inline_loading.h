@@ -80,15 +80,8 @@ public:
     }
     template<class Frames>bool query_obstruction_height(Frames& frames,bool& valid,float& height)const { //007860B0, actual DD0/Look.
         if(!control_||!look_)throw std::logic_error("Camera height query requires actual DD0 and Look owners");
-        valid=false;
-        const auto word=control_->animation_state_word(0xbd4);float value;std::memcpy(&value,&word,4);
-        if(value==-10000.099609375f)return false; //00816C6C; output remains untouched.
-        const auto head=control_->physical().bones().at(4); //Native810+4*12=840, actual f1 bone.
-        if(!head)throw std::runtime_error("Camera height query has no actual f1 bone");
-        const auto world=frames.actor_world_matrix(head);
-        const auto threshold=static_cast<long double>(world[13])+.20000000298023224f;
-        height=value;valid=threshold<=value;
-        return frame_navigation_floor();
+        (void)frames;
+        return control_->query_model_obstruction(valid,height);
     }
     bool frame_navigation_floor()const{ //005AC310, actual E0 mode.
         if(!look_)throw std::logic_error("Human navigation requires actual live E0");

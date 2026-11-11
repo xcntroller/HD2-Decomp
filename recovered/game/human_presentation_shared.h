@@ -46,6 +46,7 @@ public:
     auto& projection_models(){return projections_;}
     unsigned users() const{return users_;}
     const Settings& settings() const{return settings_;}
+    bool alternate_motion_sound()const{return flag_a6ac_;} //0098A6AC, SAME first/last Human state.
     static Settings mission_settings(const std::string& name) {
         Settings result;
         for(const char* prefix:{"Arcti","Norwa","Prole","Arden","Co_Ar"})if(starts(name,prefix))result.winter=true;

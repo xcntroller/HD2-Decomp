@@ -9,23 +9,25 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[DD0 queued actions and model geometry](analysis/human-frame-source.md#dd0-queued-actions-and-model-geometry)
-and [verification receipt](analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json).
-0075F230 now consumes the actual action deque. 00791C60 supplies actual equipment
-hide/restore. 007A7470 now dispatches model geometry and weapon fade/stow timers
-and reaches the actual Camera target collision sweep. Camera refresh borrows
-the existing FirstPlayers/FPV owners. Positive geometry workers remain required.
-Native queue/weapon sanitizers, strict actual-host i386 and launcher link passed.
-The tally is 34 complete and 2,285 partial entries (2,280 client and five engine)
-across 18,783 frozen functions. Both P2.2 checkboxes remain open. Application
-loading still declines and no mission desktop test has occurred.
+[Ground frame, displacement and motion audio](analysis/human-frame-source.md#ground-frame-displacement-and-motion-audio)
+and [verification receipt](analysis/checkpoints/p2.2-human-ground-frame-20261111.json).
+007637D0 now coordinates the actual DD0/AC0/E0 ground frame. 00772A00 and its
+four motion producers share the actual animation displacement state.
+0076FBC0 supplies ground/Ladder direction alignment. 00770770/007705E0/007706F0
+supply actual pooled motion audio and retry-safe return. 007861A0 consumes
+queued climb requests, with positive0074B4F0 still required. Native sanitizers,
+strict actual-host i386 and launcher link passed. The tally is 34 complete
+and 2,296 partial entries (2,291 client and five engine) across 18,783 frozen
+functions. Both P2.2 checkboxes remain open. Application loading still declines
+and no mission desktop test has occurred.
 
 ## Continue P2.2
 
-- Continue positive DD0 007637D0 ground, 0077DE30 look apply,
+- Continue positive DD0 ground collision/replay/air workers, 0077DE30 look apply,
   00779B30/00755500 track/motion and remaining 007A7470 geometry workers.
   WORK `frame-human-live-model-geometry` contains foot, hand, look and
-  mount/attachment originals. 007861A0 climb is the queue's remaining leaf. Presentation track events4..9/13..20/22..24 still need
+  mount/attachment originals. 0074B4F0 remains the climb setup leaf. WORK `frame-human-ground-motion` and
+  `frame-human-motion-producers` preserve the ground and climb originals. Presentation track events4..9/13..20/22..24 still need
   positive workers, as do the camera reset and attached230 branch. WORK `frame-human-dd0-bound-workers`,
   `frame-human-dd0-animation-workers`, `frame-human-presentation-effects`,
   `frame-human-breathing-audio` and `frame-human-shot-and-control-workers`

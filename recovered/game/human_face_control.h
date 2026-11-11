@@ -44,7 +44,10 @@ public:
     void equipment_primary_command(std::uint32_t value){state_.set(0x78,value);} //00781300.
     void equipment_secondary_command(std::uint32_t value){state_.set(0x64,value);} //007812F0.
     template<class Pool>void close_sound(Pool& pool) { //00780AB0, typed native7C owner.
-        if(sound_){pool.give(std::move(*sound_));sound_.reset();}
+        if(sound_){
+            auto previous=std::move(*sound_);sound_.reset();
+            pool.give(std::move(previous));
+        }
     }
     template<class Pool>void present(std::uint32_t elapsed,std::uint32_t mode,bool visible_detail,
             bool player,bool current_player,float animation_scale,Pool& pool){ //007816B0.

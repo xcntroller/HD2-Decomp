@@ -99,7 +99,7 @@ public:
         attempt([&]{physical_.close_audio(mode_flags(),pool_->pool());});
         attempt([&]{face_.close_sound(pool_->pool());});
         physical_.clear_descriptors(); //0075B6C0's descriptor/queue portion.
-        animation_.deactivate();attempt([&]{movement_.close_loading();});
+        animation_.deactivate();attempt([&]{movement_.close_loading(frames_,pool_->pool());});
         for(auto& bone:bones_)bone.reset();
         active_=started_=false;
     }
@@ -119,6 +119,29 @@ public:
         return entry&&entry->definition_identifier()==0xe7u;
     }
     void frame_climb_direction(bool backward){movement_.frame_climb_direction(backward);}
+    template<class Look,class Runtime>std::int32_t request_frame_ladder(SceneInstance* target,Look& look,Runtime& runtime){ //007861A0.
+        auto& state=physical_.control_frame_words();
+        const auto word=[&](unsigned offset){return state.template get<std::int32_t>(offset);};
+        const auto climb=[](std::int32_t animation){return (animation>=106&&animation<=108)||animation==8||animation==14;}; //007865E0 and queued gate.
+        if(climb(word(0x1d8))||climb(word(0x1fc)))return 1;
+        const auto posture=[&]{return look.state().template get<std::int32_t>(0x4c);};
+        if(!target||posture()==2)return -1;
+        physical_.control_action_actor(target);
+        const bool remote=(mode_flags()&7u)!=7u&&!human_is_player()&&!animation_authority_actor();
+        if(!posture()&&(remote||(!word(0x1dc)&&word(0x9ac)==-10000)))
+            return runtime.begin_human_ladder(*this,*target,look); //0074B4F0, actual AA0 links.
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        look.frame_posture(0,publish);
+        if(word(0x9ac)==-10000&&!posture()&&word(0x1dc))state.set(0x7bc,word(0x1dc));
+        auto& queue=physical_.control_action_queue();
+        if(queue.empty()){
+            const auto duration=2500.L/services_.human_control_animation_scale(); //00810B64/0084E80C.
+            const auto bits=std::isfinite(duration)&&duration>=-0x1p63L&&duration<0x1p63L?
+                static_cast<std::uint32_t>(static_cast<std::int64_t>(duration)):0u;
+            queue.push_back({{bits,3u,0u}});
+        }
+        return 0;
+    }
     void resolve_model_geometry_camera(){ //007A7470 tail, actual Camera virtual6C.
         const auto camera=services_.human_geometry_camera_target();
         Frame bone{};
@@ -136,6 +159,139 @@ public:
         const HumanVector delta{{target[12]-source[12],target[13]-source[13],target[14]-source[14],0}};
         if(const auto hit=services_.human_geometry_sweep().sweep(origin,delta,.15f,0xc8002u,0x230000u))
             frames_.car_camera_position(camera,hit->position);
+    }
+    bool query_model_obstruction(bool& below,float& height)const{ //007860B0.
+        below=false;
+        const auto value=movement_.state().template get<float>(0x114);
+        if(value==-10000.099609375f)return false;
+        const auto head=physical_.bones().at(4);
+        if(!head)throw std::runtime_error("Human obstruction query requires its actual head bone");
+        below=static_cast<long double>(frames_.actor_world_matrix(head)[13])+.2f<=value;
+        height=value;
+        return services_.human_look_control(*human_).state().template get<std::uint32_t>(0xb8)==5;
+    }
+    template<class Runtime>void advance_special_ground_motion(std::int32_t elapsed,Runtime& runtime){ //00768170.
+        auto& movement=movement_.frame_words();
+        movement.set(0x100,movement.template get<std::uint32_t>(0x100)+static_cast<std::uint32_t>(elapsed));
+        if(runtime.advance_human_walk_motion(*this,elapsed)&& //007646F0, native boolean result.
+                movement.template get<std::int32_t>(0x100)>((mode_flags()&7u)==7u?1:80)){
+            tracks_.motion_impulse({{0,0,0,0}},0);
+            tracks_.motion_deceleration({{0,0,0,0}},0);
+            action_.finish_special_motion_command();
+        }
+    }
+    template<class Look,class Runtime>void advance_ground_frame(Look& look,std::uint32_t elapsed,Runtime& runtime){ //007637D0.
+        auto& state=physical_.control_frame_words();
+        auto& movement=movement_.frame_words();
+        const auto word=[&](unsigned offset){return state.template get<std::uint32_t>(offset);};
+        const auto signed_word=[&](unsigned offset){return human_frame_signed_word(word(offset));};
+        const auto move_signed=[&](unsigned offset){return movement.template get<std::int32_t>(offset);};
+        const auto look_word=[&](unsigned offset){return look.state().template get<std::uint32_t>(offset);};
+        movement.set(0xf0,0u);
+        if(signed_word(0x99c)>=-1)for(unsigned offset:{0x99cu,0x9a0u})if(signed_word(offset)>=0){
+            const auto remaining=word(offset)-elapsed;
+            state.set(offset,human_frame_signed_word(remaining)<0?0u:remaining);
+        }
+        if(signed_word(0x9b4)>=0){
+            const auto remaining=word(0x9b4)-elapsed;
+            state.set(0x9b4,remaining);
+            if(human_frame_signed_word(remaining)<1){
+                state.set(0x9b4,std::int32_t{-10000});geometry_.clear_ground_geometry_flag();
+            }
+        }
+        for(unsigned offset:{0xecu,0xd8u})if(move_signed(offset)>0)
+            movement.set(offset,movement.template get<std::uint32_t>(offset)-elapsed);
+        if(move_signed(0x130)!=-10000){
+            if(move_signed(0x130)<1)movement.set(0x130,std::int32_t{-10000});
+            else movement.set(0x130,movement.template get<std::uint32_t>(0x130)-elapsed);
+        }
+        const auto posture=move_signed(0xd0)==-10000?look_word(0x4c):movement.template get<std::uint32_t>(0xd4);
+        physical_.rebind_frame_posture(posture);
+        bool contact=movement.template get<std::uint8_t>(0x88)!=0;
+        if(human_is_player()){
+            const auto animation=signed_word(0x1d8);
+            contact=!((animation>8&&animation<15)||animation==18||
+                movement.template get<float>(0x20)<=-10000.099609375f);
+            if(!contact)movement.set(0x88,std::uint8_t{0});
+            else{
+                movement.set(0xe4,std::uint8_t{0});
+                if(signed_word(0x998)!=-10000){
+                    const auto remaining=word(0x998)-elapsed;
+                    state.set(0x998,human_frame_signed_word(remaining)<1?static_cast<std::uint32_t>(-10000):remaining);
+                }
+                const bool player=human_is_player();
+                movement.set(0x8c,player?.006f:.008f); //0084E8EC/0084E8F0.
+                if(runtime.advance_human_control_replay(*this,elapsed,!player||signed_word(0x998)!=-10000))
+                    movement.set(0x20,-10000.099609375f); //0076CFE0.
+            }
+        }
+        if(contact)runtime.advance_human_floor_contacts(*this,true); //0076B670.
+        tracks_.advance_motion(human_frame_signed_word(elapsed),human_is_player()); //00772A00.
+        if(signed_word(0xa1c)!=-10000&&signed_word(0xa1c)>0){
+            const auto remaining=word(0xa1c)-elapsed;
+            state.set(0xa1c,remaining);
+            if(human_frame_signed_word(remaining)<1){
+                if(word(0xa20)==1)state.set(0xa20,0u);
+                else if(word(0xa20)==2)state.set(0xa20,3u);
+            }
+        }
+        if(posture!=2&&word(0x1ac)==1&&look_word(0xb8)!=5){
+            HumanVector delta{};const HumanVector* ladder_delta=nullptr;
+            if(word(0x1d8)>=106&&word(0x1d8)<=108&&physical_.control_action_actor()){
+                const auto& ladder=services_.human_ladder_geometry(physical_.control_action_actor());
+                for(unsigned axis=0;axis!=3;++axis)delta[axis]=ladder.up_position()[axis]-ladder.down_position()[axis];
+                ladder_delta=&delta;
+            }
+            movement_.align_ground_direction(frames_,*human_,state,human_frame_signed_word(elapsed),ladder_delta);
+        }
+        if(mode_flags()&2u){
+            bool below=false;float height=0;
+            const bool floor=query_model_obstruction(below,height);
+            movement_.advance_motion_audio(frames_,pool_->pool(),elapsed,floor,below,
+                services_.current_human_frame_player()==human_,services_.human_alternate_motion_sound(),
+                physical_.bones().at(4),physical_.bones().at(7));
+        }
+        if(word(0x1ac)!=1)runtime.advance_human_air_motion(*this,elapsed); //00769920.
+        else{
+            const auto mode=look_word(0xb8),animation=word(0x1d8);
+            const auto attachment=word(0xa34);
+            const bool constrained=(attachment!=0&&attachment!=1)||mode==2||mode==3||
+                animation==0x9f||animation==0x9e||animation==0x9b||animation==0x6f||animation==0x22||
+                signed_word(0xa44)>0||human_frame_signed_word(elapsed)<=0;
+            if(constrained){
+                if((mode_flags()&7u)==7u||human_is_player()||animation_authority_actor()||word(0x1ac)!=1){
+                    const auto world=frames_.actor_world_matrix(human_->base().frame());
+                    human_->base().world_position({{world[12],world[13],world[14],world[15]}});
+                }
+            }else{
+                const auto rounded=static_cast<float>(human_frame_signed_word(elapsed));
+                const auto step=human_frame_signed_word(static_cast<std::uint32_t>(static_cast<std::int64_t>(rounded)));
+                const bool interaction=animation>=8&&animation<=14;
+                const bool special=animation==18||animation==23||animation==24;
+                if(mode==5||interaction||special||signed_word(0x988)!=-10000){
+                    state.set(0x750,std::int32_t{-1});
+                    if(!interaction)state.set(0x754,0u);
+                    state.set(0x758,0u);state.set(0x75c,std::int32_t{-1});
+                    state.set(0x761,std::uint8_t{0});state.set(0x762,std::uint8_t{0});
+                    if(mode==5)runtime.advance_human_floor_motion(*this,step); //00768E50.
+                    else if(interaction)runtime.advance_human_interaction_motion(*this,step); //00767D40.
+                    else if(special)advance_special_ground_motion(step,runtime); //00768170.
+                    else runtime.advance_human_navigation_motion(*this,step); //00768230.
+                }else runtime.advance_human_walk_motion(*this,step); //007646F0.
+            }
+        }
+        if(move_signed(0x68)>=0)movement.set(0x68,movement.template get<std::uint32_t>(0x68)-elapsed);
+        if(movement.template get<std::uint8_t>(0x50)){
+            auto direction=human_->base().world_direction();
+            const auto square=(static_cast<long double>(direction[0])*direction[0]+
+                static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[1])*direction[1];
+            normalize_human_ai_shot(direction,square);
+            human_->base().world_direction(direction);
+        }
+        if(!movement.template get<std::uint8_t>(0x51))
+            for(unsigned axis=0;axis!=3;++axis)movement.set(0x10+4*axis,0.f);
+        if(signed_word(0x1ac)>=7||word(0x1ac)==1)runtime.refresh_prone_human_control(*this,false); //00763EC0.
+        movement.set(0x50,std::uint8_t{0});movement.set(0x51,std::uint8_t{0});
     }
     bool active() const{return active_;}
     bool collision_disabled()const{return flag_dc4_;} //No loading producer changes this DD0 byte.
@@ -227,7 +383,7 @@ public:
             const auto remaining=physical_word(0xa28)-elapsed;
             state.set(0xa28,human_frame_signed_word(remaining)<0?0u:remaining);
         }
-        if(physical_word(0x1ac)==1)runtime.advance_human_ground_frame(*this,elapsed); //007637D0.
+        if(physical_word(0x1ac)==1)advance_ground_frame(look,elapsed,runtime);
         runtime.advance_human_control_transitions(*this,elapsed); //007507A0.
         runtime.advance_human_attachment_control(*this); //00779B30.
         if(mode_flags()&2u)runtime.refresh_human_control_sector(*this); //0075C960/00789DB0/0075CAC0.
@@ -300,8 +456,8 @@ public:
         }
         const auto finish_clock=[&]{if(!forced)state.set(0x1c4,word(0x1c4)+services_.human_control_microseconds());};
         if(word(0x1ac)!=1){
-            runtime.prepare_human_presentation_motion(*this,elapsed); //00772A00.
-            runtime.advance_human_ground_frame(*this,elapsed); //007637D0.
+            tracks_.advance_motion(human_frame_signed_word(elapsed),human_is_player()); //00772A00.
+            advance_ground_frame(look,elapsed,runtime);
         }
         if(word(0x22c)&8u){
             finish_clock();
@@ -440,7 +596,7 @@ private:
            (state.template get<float>(0x254)==roll&&static_cast<long double>(z)+y+x<.002f))return;
         state.set(0x254,roll);
         frames_.human_control_set_direction(model,target,roll);
-        if(look.state().template get<std::uint32_t>(0x4c)==2)runtime.refresh_prone_human_control(*this); //00763EC0(1).
+        if(look.state().template get<std::uint32_t>(0x4c)==2)runtime.refresh_prone_human_control(*this,true); //00763EC0(1).
     }
     void publish_control_frame_command(std::uint32_t command){ //005A5C90.
         if(auto* state=services_.human_state_owner(*human_).get())state->publish_frame_command_flags(command);

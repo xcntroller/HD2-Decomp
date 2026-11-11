@@ -534,3 +534,53 @@ frame doubles. Actual equipment hide, geometry dispatch and both containing
 World module passes were strict i386 compile-verified. The remaining runtime
 leaves in that fixture are declarations. The source launcher linked.
 Application loading and user desktop verification remain pending.
+
+## Ground frame, displacement and motion audio
+
+007637D0 now coordinates the actual AC0 movement, DD0 physical state, E0
+posture and animation tracks. It advances posture/equipment timers, rebinds
+the real collision descriptors, preserves the player replay/contact ordering,
+and selects the original ground, interaction, special, navigation or air
+worker. These positive collision and replay workers remain required. The
+ordinary direction receiver 0076FBC0 now levels ActorBase+40 and DD0+250.
+Its climb branch reads the actual Ladder up/down markers and delegates
+AngleTo to the existing engine export. It preserves the distinct native
+ladder return, normalization and AC0+50 publication boundaries.
+
+00772A00 now derives DD0+4D0 displacement from the same track owner. It
+preserves the capped base velocity, animation-rate adjustment, timed
+impulses, point pull and 80ms deceleration steps. The final short impulse
+clears its vector before adding the clipped last portion, matching the
+original order. Its producers 00773850, 00773A90, 00773B20 and 00773B60
+write that same owner. The zero-duration deceleration producer retains
+the original IEEE division result. 00768170 now reads the actual boolean
+walk result before resetting both impulses and the linked C00 command.
+The walk solver itself remains required.
+
+00770770 and 007705E0 now acquire motion audio from the shared SOUND pool,
+using the existing process alternate flag and actual current-player identity.
+The initial sound attaches to head bone4. Expiry replacement attaches to
+body bone7. 007706F0 preserves the 500ms fade direction and actual immediate
+return. Missing floor evidence takes the native fade request branch, which
+does not advance a negative fade timer. Typed sound ownership is cleared
+before a potentially failing pool return so cleanup retry cannot submit a
+moved-from sound. The reached face-sound return uses the same retry rule.
+007860B0 now has one shared implementation for ground audio and the existing
+camera-height caller.
+
+007861A0 now routes the existing queued climb command through the actual
+DD0+990 actor borrower. It preserves current/queued climb recognition,
+posture rejection, E0 posture publication and the native 2500/animation-scale
+queue delay. Positive climb setup 0074B4F0 and its collision checks remain
+required. The separate AI navigation consumer 0057CC50 remains required.
+
+[Verification receipt](checkpoints/p2.2-human-ground-frame-20261111.json).
+Native ASan/UBSan/LSan exercised track displacement and producers, clipped
+impulses, deceleration, direction alignment, sound acquisition/replacement,
+fade boundaries and failed-return retry using explicit frame/audio doubles.
+Strict i386 compiled both actual containing World module passes. Remaining
+runtime receivers in the fixture have declarations only. The source launcher
+linked. Application loading still declines and desktop acceptance is pending.
+Original exports are in WORK `frame-human-ground-motion`,
+`frame-human-ground-audio`, `frame-human-motion-producers`,
+`frame-human-dd0-bound-workers` and `frame-human-climb-action`.

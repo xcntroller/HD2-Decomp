@@ -16176,13 +16176,15 @@
       "program": "client",
       "entry": "007706f0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007706f0: Actual movement loading/reset, descriptor exclusion traversal and proven empty/loading close branches; runtime movement producer excluded.",
+      "coverage": "Actual typed SOUND return and native immediate/faded close, preserving countdown negation and retry-safe ownership.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_movement_control.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
       ]
     },
     {
@@ -21600,12 +21602,15 @@
       "program": "client",
       "entry": "007860b0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007860b0: SAME DD0 query exclusion/restoration wrappers and actual movement BD4/f1-bone/LookB8 height query; sentinel preserves output, valid compares extended boneY+.2 against stored height.",
+      "coverage": "Shared actual movement height/head-bone/E0 floor-mode query for camera and ground audio, preserving sentinel output behavior.",
       "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_inline_loading.h",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "recovered/game/human_control_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
       ]
     },
     {
@@ -30634,6 +30639,138 @@
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
         "recovered/game/human_model_geometry.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007861a0",
+      "status": "partial",
+      "coverage": "Current and queued climb gates, actual actor borrower, E0 posture and animation-scaled queue delay. Positive0074B4F0 climb setup remains required.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_control_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007637d0",
+      "status": "partial",
+      "coverage": "Actual DD0/AC0/E0 ground coordination, timers, descriptor posture rebind, track displacement and native motion routing. Positive collision, replay and air workers remain required.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_control_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00772a00",
+      "status": "partial",
+      "coverage": "Actual shared track displacement, capped velocity, animation rates, timed impulses, target pull, 80ms deceleration and clipped final-vector clearing.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00770770",
+      "status": "partial",
+      "coverage": "Actual ground audio eligibility, native fade/lifetime ordering, SOUND pool replacement, body-bone attachment and final volume.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_movement_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007705e0",
+      "status": "partial",
+      "coverage": "Actual current-player/process-flag eligibility, head-bone SOUND acquisition, native duration, zero initial volume and fade reversal.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_movement_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076fbc0",
+      "status": "partial",
+      "coverage": "Actual ActorBase direction leveling, DD0 scalar decay and Ladder marker/engine AngleTo alignment with distinct normalization/publication gates.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_movement_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00773850",
+      "status": "partial",
+      "coverage": "Actual previous/current velocity copy, speed comparison, XYZ output and maximum speed publication in shared track owner.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00773a90",
+      "status": "partial",
+      "coverage": "Actual primary motion impulse vector, zero elapsed timer and supplied duration in shared track owner.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00773b20",
+      "status": "partial",
+      "coverage": "Actual secondary motion impulse vector, zero elapsed timer and supplied duration in shared track owner.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00773b60",
+      "status": "partial",
+      "coverage": "Actual decelerating velocity, timer reset, native normalization and duration/80 decrement including original zero-duration IEEE result.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00768170",
+      "status": "partial",
+      "coverage": "Actual accumulated special-motion timer, native boolean walk gate, offline/nonoffline deadline and shared impulse/C00 reset. Walk solver remains required.",
+      "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_control_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
       ]
     }
   ]
