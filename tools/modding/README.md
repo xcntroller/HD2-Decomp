@@ -151,6 +151,15 @@ python3 tools/modding/spatial_inspect.py /path/to/game tutorial \
   --output /path/outside-game/tutorial.spatial.json
 ```
 
+For **spatial scripting**, select an actual soldier/frame and choose **Script
+relationships** beneath the viewport. Browse bindings, events/Whenever records,
+commands and incoming/outgoing references; select a row to see its original
+source without leaving the world context. Enable **Static links** for bounded,
+selectable candidate lines; **Selected only** reduces clutter. Source/target
+navigation and **Back to context** preserve the anchor camera. Unknown runtime
+assignments and ambiguous/nonspatial targets stay in the panel. See
+[exact classifications, controls and verification](SPATIAL-SCRIPTS.md).
+
 Choose **Model inspector…** to open the integrated model browser and viewport.
 Use **Open installation…**, search an exact model resource, and double-click it.
 Local .4ds files also open independently, with explicit fallback materials when
@@ -192,6 +201,7 @@ describe exact coverage and limits.
 
 - [Spatial composition, interactive mission viewing and current verification](SPATIAL.md)
 - [4DS models, OpenGL viewer and current verification](MODEL4DS.md)
+- [Spatial script intelligence and static relationship coverage](SPATIAL-SCRIPTS.md)
 - [Mission fidelity, coverage and editing readiness](FIDELITY.md)
 - [Structured scripts, includes, schema and earlier verification](SCRIPT-ANALYSIS.md)
 - [Mission format/model coverage](FORMATS.md)
