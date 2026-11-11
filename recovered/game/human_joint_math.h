@@ -10,6 +10,87 @@ inline HumanMatrix human_identity() {HumanMatrix m{};m[0]=m[5]=m[10]=m[15]=1;ret
 inline HumanMatrix human_transpose(const HumanMatrix& m) { //007A2190.
     HumanMatrix result{};for(unsigned row=0;row!=4;++row)for(unsigned column=0;column!=4;++column)result[row*4+column]=m[column*4+row];return result;
 }
+//007A23F0 accepts an existing basis. X remains extended through projection
+//and cross products while Y/Z and the projected-axis inverse are stored FLOATs.
+inline HumanMatrix human_bone_direction_basis(const HumanMatrix& basis,const HumanVector& direction){
+    using Axis=std::array<long double,3>;
+    const auto normalize=[](Axis& value,long double square,bool stored_inverse){
+        constexpr float epsilon=9.99999993922529e-09f;
+        if(std::abs(square-1)<epsilon)return;
+        const float stored=static_cast<float>(square);
+        if(!(stored<epsilon)){
+            auto inverse=1.L/std::sqrt(static_cast<long double>(stored));
+            if(stored_inverse)inverse=static_cast<float>(inverse);
+            value[0]*=inverse;
+            value[1]=static_cast<float>(value[1]*inverse);
+            value[2]=static_cast<float>(value[2]*inverse);
+        }else{
+            const auto index=value[0]!=0?0u:value[2]!=0?2u:1u;
+            value[index]=value[index]<0?-1.L:1.L;
+        }
+    };
+    Axis z{{direction[0],direction[1],direction[2]}};
+    normalize(z,(z[0]*z[0]+z[2]*z[2])+z[1]*z[1],false);
+    const auto project=[&](unsigned row,long double dot){
+        Axis value;
+        value[0]=static_cast<float>(basis[row]-z[0]*dot);
+        const float y=static_cast<float>(z[1]*dot),other_z=static_cast<float>(z[2]*dot);
+        value[1]=basis[row+1]-y;value[2]=basis[row+2]-other_z;
+        return value;
+    };
+    auto x=project(0,(z[1]*basis[1]+z[0]*basis[0])+z[2]*basis[2]);
+    const auto square=(x[2]*x[2]+x[1]*x[1])+x[0]*x[0];
+    Axis y;
+    if(square<1.0000000195414814e-16f){
+        y=project(4,(z[2]*basis[6]+z[1]*basis[5])+z[0]*basis[4]);
+        normalize(y,(y[2]*y[2]+y[1]*y[1])+y[0]*y[0],true);
+        x={{y[1]*z[2]-z[1]*y[2],z[0]*y[2]-z[2]*y[0],z[1]*y[0]-z[0]*y[1]}};
+    }else{
+        normalize(x,square,true);
+        y={{z[1]*x[2]-z[2]*x[1],z[2]*x[0]-z[0]*x[2],z[0]*x[1]-z[1]*x[0]}};
+    }
+    HumanMatrix result{};
+    for(unsigned axis=0;axis!=3;++axis){
+        result[axis]=static_cast<float>(x[axis]);result[4+axis]=static_cast<float>(y[axis]);result[8+axis]=static_cast<float>(z[axis]);
+    }
+    result[15]=1;return result;
+}
+inline void orthonormalize_human_bone_matrix(HumanMatrix& matrix){ //007A2310, native unchecked normalization.
+    HumanVector z{};
+    z[0]=static_cast<float>(static_cast<long double>(matrix[1])*matrix[6]-static_cast<long double>(matrix[5])*matrix[2]);
+    z[1]=static_cast<float>(static_cast<long double>(matrix[4])*matrix[2]-static_cast<long double>(matrix[0])*matrix[6]);
+    z[2]=static_cast<float>(static_cast<long double>(matrix[5])*matrix[0]-static_cast<long double>(matrix[4])*matrix[1]);
+    const auto x_square=(static_cast<long double>(matrix[0])*matrix[0]+
+        static_cast<long double>(matrix[2])*matrix[2])+static_cast<long double>(matrix[1])*matrix[1];
+    const auto x_inverse=1.L/std::sqrt(x_square);
+    for(unsigned axis=0;axis!=3;++axis)matrix[axis]=static_cast<float>(matrix[axis]*x_inverse);
+    const auto z_square=(static_cast<long double>(z[0])*z[0]+static_cast<long double>(z[1])*z[1])+
+        static_cast<long double>(z[2])*z[2];
+    const auto z_inverse=1.L/std::sqrt(z_square);
+    const std::array<long double,3> normal{{z[0]*z_inverse,z[1]*z_inverse,z[2]*z_inverse}};
+    matrix[4]=static_cast<float>(normal[1]*matrix[2]-normal[2]*matrix[1]);
+    matrix[5]=static_cast<float>(normal[2]*matrix[0]-normal[0]*matrix[2]);
+    matrix[6]=static_cast<float>(normal[0]*matrix[1]-normal[1]*matrix[0]);
+    for(unsigned axis=0;axis!=3;++axis)matrix[8+axis]=static_cast<float>(normal[axis]);
+}
+inline HumanVector interpolate_human_directions(const HumanVector& first,const HumanVector& last,float influence){ //007A4140.
+    const auto dot=(static_cast<long double>(first[1])*last[1]+static_cast<long double>(first[0])*last[0])+
+        static_cast<long double>(first[2])*last[2];
+    float stored=static_cast<float>(dot);
+    if(dot>1)stored=1;else if(stored<-1)stored=-1;
+    const auto angle=std::acos(static_cast<long double>(stored));
+    const float stored_angle=static_cast<float>(angle);
+    constexpr float epsilon=9.99999993922529e-09f;
+    if(!(angle>epsilon)||!(3.1415927410125732421875L-stored_angle>epsilon))return last;
+    const auto inverse=1.L/std::sin(static_cast<long double>(stored_angle));
+    const auto start=std::sin((1.L-influence)*stored_angle)*inverse;
+    const auto finish=std::sin(static_cast<long double>(stored_angle)*influence)*inverse;
+    auto result=last; //Native interpolated W is unwritten. Retain the known last lane.
+    result[0]=static_cast<float>(static_cast<float>(start*first[0])+finish*last[0]);
+    result[1]=static_cast<float>(finish*last[1])+static_cast<float>(start*first[1]);
+    result[2]=static_cast<float>(static_cast<float>(finish*last[2])+start*first[2]);
+    return result;
+}
 inline HumanMatrix human_vertical_basis(const HumanVector& z) { //007A2E10.
     auto result=human_identity();
     if(z[0]==0&&z[2]==0){result[0]=1;result[1]=result[2]=0;}

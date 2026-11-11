@@ -17,8 +17,15 @@ public:
     using Point=typename Owners::Point;
     using Matrix=HumanMatrix;
     using Vector=HumanVector;
+    struct alignas(16) Impulse {
+        Point* point=nullptr;
+        alignas(16) Vector value{};
+        float duration=0,remaining=0;
+    };
+    static_assert(sizeof(Impulse)==0x30&&offsetof(Impulse,value)==0x10);
     HumanLoadingJoints(Frames& frames,const HumanSkeleton<Frame>& skeleton)
         :frames_(frames),skeleton_(skeleton),owners_(frames,skeleton) {}
+    ~HumanLoadingJoints(){clear();}
     void build(bool preserve=false) {
         if(preserve)return; //Original007C0D90 returns immediately.
         clear();
@@ -103,13 +110,155 @@ public:
                 saved_local_[index]=frames_.car_local_matrix(frame);
             }
             work_matrices_={};work_vectors_={};
+            impulses_=std::make_unique<std::array<Impulse,8>>(); //007C0D90's aligned180, zeroed after pose snapshots.
+            secondary_impulses_=std::make_unique<std::array<Impulse,2>>(); //Native aligned60.
         } catch(...) {clear();throw;}
     }
-    void clear() noexcept {owners_.clear();bodies_.fill(nullptr);points_.fill(nullptr);}
+    void clear() noexcept {
+        if(field690c)retire_contact_frames(); //0079BAC0 releases retained150 frames BEFORE either tree.
+        owners_.clear();bodies_.fill(nullptr);points_.fill(nullptr);
+        impulses_.reset();secondary_impulses_.reset();
+    }
     const auto& bodies() const {return bodies_;}
     const auto& points() const {return points_;}
+    const auto* impulses()const{return impulses_.get();}
+    const auto* secondary_impulses()const{return secondary_impulses_.get();}
     const auto& saved_local() const {return saved_local_;}
     const auto& owners() const {return owners_;}
+    void retire_contact_frames(){ //007CDA40, ascending actual6874 array and release-before-clear.
+        for(auto* point:points_)if(point&&point->contact_frame){
+            frames_.release_item_frame(point->contact_frame);
+            point->contact_frame=Frame{};
+        }
+        field690c=0;
+    }
+    template<class Unavailable>void rebind_effect_bodies(Unavailable unavailable){ //007B0910's full-joint branch.
+        for(unsigned index=0;index!=bodies_.size();++index){
+            owners_.bind_body(bodies_[index],-1,-1,false,false,false);
+            switch(index){
+            case 2:case 8:case 10:break;
+            case 4:case 6:if(unavailable())continue;break;
+            default:continue;
+            }
+            auto* body=bodies_[index];
+            if(!body)throw std::runtime_error("Human geometry effect requires its actual endpoint body");
+            const auto bone=body->template get<std::int32_t>(0x194);
+            const auto frame=skeleton_.bones().at(std::size_t(bone)).frame;
+            if(!frame)throw std::runtime_error("Human geometry effect requires its actual endpoint bone");
+            const auto forward=frames_.actor_world_matrix(frame);
+            const auto up=frames_.actor_world_matrix(frame);
+            const auto right=frames_.actor_world_matrix(frame);
+            const float partial_z=right[2]+up[6];
+            const float x=static_cast<float>((static_cast<long double>(right[0])+up[4])+forward[8]);
+            const auto y=(static_cast<long double>(right[1])+up[5])+forward[9];
+            const auto z=static_cast<long double>(partial_z)+forward[10];
+            if((z*z+y*y)+static_cast<long double>(x)*x<9.99999993922529e-09f){
+                //These five native branches retire leaf bodies and leaf points.
+                constexpr std::array<unsigned,11> endpoint{{1,2,3,5,6,8,9,11,12,14,15}};
+                const auto point=endpoint[index];
+                owners_.destroy_body(body);bodies_[index]=nullptr;
+                owners_.destroy_point(points_[point]);points_[point]=nullptr;
+            }
+        }
+    }
+    void initialize_mounted_effect_points(){ //007B0910, source Human nonnull makes prior velocity zero.
+        constexpr std::array<unsigned,16> body_index{{0,1,1,2,3,3,4,5,5,6,7,7,8,9,9,10}};
+        constexpr std::array<bool,16> end{{false,false,true,true,false,true,true,false,true,true,false,true,true,false,true,true}};
+        for(unsigned index=0;index!=points_.size();++index){
+            auto* point=points_[index];
+            if(!point){
+                if(index==3||index==5||index==6||index==8||index==9||index==12||index==15)continue;
+                throw std::runtime_error("Human geometry effect lost a required joint point");
+            }
+            const auto* body=bodies_[body_index[index]];
+            if(!body)throw std::runtime_error("Human geometry effect point lost its actual body");
+            auto position=body->template get<Vector>(0x90);
+            if(end[index]){
+                const auto length=body->template get<float>(0x184);
+                //Native Y/Z products spill to float before adding the origin.
+                const float y=length*body->template get<float>(0x84);
+                const float z=length*body->template get<float>(0x88);
+                position[0]=static_cast<float>(static_cast<long double>(length)*body->template get<float>(0x80)+position[0]);
+                position[1]=y+position[1];position[2]=z+position[2];
+                position[3]=point->template get<float>(0x3c); //Native scratch lane is unwritten padding.
+            }
+            point->set(0x30,position);
+            position[3]=point->template get<float>(0x4c);
+            point->set(0x40,position);
+        }
+    }
+    void reset_point(Point* point,const Vector& position,bool previous){ //007C6100, null selects actual68B8 root.
+        if(!point)point=points_[0];
+        field68f0=4;field68d0=field68ec=1;
+        if(!point)throw std::runtime_error("Human joint reset requires its actual root point");
+        owners_.reset_point_tree(*point,position,previous);
+    }
+    void queue_point_impulse(Point* point,const Vector& value,std::int32_t duration){ //007CD610, first free of eight.
+        if(!point)return;
+        if(!impulses_)throw std::logic_error("Human impulse requires its actual initialized joint queue");
+        for(auto& impulse:*impulses_)if(!impulse.point){
+            impulse.point=point;impulse.value=value;
+            impulse.duration=static_cast<float>(static_cast<long double>(duration)*.0010000000474974513f);
+            impulse.remaining=impulse.duration;
+            field68d0=1;
+            for(auto* current:points_)if(current)current->set(0x24,1.f);
+            return;
+        }
+    }
+    void queue_secondary_impulse(Point* point,const Vector& value,std::int32_t duration){ //007CD6C0.
+        if(!point)return;
+        if(!impulses_||!secondary_impulses_)throw std::logic_error("Human secondary impulse requires its actual initialized queues");
+        for(unsigned index=0;index!=secondary_impulses_->size();++index){
+            auto& impulse=(*secondary_impulses_)[index];
+            if(impulse.point)continue;
+            impulse.point=point;impulse.value=value;
+            //Native7CD71E reloads68E0 and writes its duration, leaving68E4+20 untouched.
+            (*impulses_)[index].duration=static_cast<float>(static_cast<long double>(duration)*.0010000000474974513f);
+            return;
+        }
+    }
+    template<class Random>void distribute_impulse(Random& random,std::uint32_t mask,const Vector& value,std::int32_t duration){ //007B3270.
+        const auto first=random()+1u;
+        const auto second=random()+1u;
+        const auto third=random()+1u; //All three draws precede the mask and missing-point gates.
+        const auto scaled=[&](long double fraction){
+            auto part=value; //Native temporary W is unwritten. Retain the known input padding.
+            for(unsigned axis=0;axis!=3;++axis)part[axis]=static_cast<float>(fraction*value[axis]);
+            return part;
+        };
+        unsigned first_index,second_index;
+        switch(mask&0x3fu){
+        case 1:first_index=3;second_index=2;break;
+        case 2:first_index=5;second_index=6;break;
+        case 4:first_index=8;second_index=9;break;
+        case 8:{
+            const float total=static_cast<float>(first+second+third);
+            queue_point_impulse(points_[0],scaled(static_cast<long double>(first)/total),duration);
+            queue_point_impulse(points_[1],scaled(static_cast<float>(static_cast<long double>(second)/total)),duration);
+            queue_point_impulse(points_[2],scaled(static_cast<float>(static_cast<long double>(third)/total)),duration);
+            return;
+        }
+        case 16:first_index=11;second_index=12;break;
+        case 32:first_index=14;second_index=15;break;
+        default:queue_point_impulse(points_[1],value,duration);return;
+        }
+        const auto optional_index=(mask&0x3fu)==1?first_index:second_index;
+        if(!points_[optional_index]){
+            const auto retained=(mask&0x3fu)==1?second_index:first_index;
+            queue_point_impulse(points_[retained],value,duration);return;
+        }
+        const float total=static_cast<float>(first+second);
+        queue_point_impulse(points_[first_index],scaled(static_cast<long double>(first)/total),duration);
+        queue_point_impulse(points_[second_index],scaled(static_cast<float>(static_cast<long double>(second)/total)),duration);
+    }
+    void capture_body_pose(){
+        if(!bodies_[0])throw std::runtime_error("Human joint pose capture requires its actual root body");
+        owners_.capture_body_pose(*bodies_[0]);
+    }
+    void snapshot_body_endpoints(){
+        if(!bodies_[0])throw std::runtime_error("Human joint endpoint snapshot requires its actual root body");
+        owners_.snapshot_body_endpoints(*bodies_[0]);
+    }
     Vector gravity{{0,-9,0,0}};float field68d0=1,field68e8=0,field68ec=1,field68f0=4,field68f4=0;
     std::uint32_t field6900=6,field690c=0;
     bool flag6910=false,flag6911=false,flag6912=false;
@@ -146,6 +295,8 @@ private:
     alignas(16)std::array<Matrix,14> saved_local_{};
     alignas(16)std::array<Matrix,6> work_matrices_{};
     alignas(16)std::array<Vector,6> work_vectors_{};
+    std::unique_ptr<std::array<Impulse,8>> impulses_;
+    std::unique_ptr<std::array<Impulse,2>> secondary_impulses_;
 };
 } //namespace hd2::game
 #endif

@@ -49,6 +49,7 @@ public:
         Point* parent=nullptr;
         std::array<Point*,3> children{};
         std::array<Body*,4> bodies{};
+        Frame contact_frame{}; //Native150 retains an engine frame, produced by007CC262/007CCD48.
     };
     explicit HumanJointOwners(Frames& frames,const HumanSkeleton<Frame>& skeleton):frames_(frames),skeleton_(skeleton) {}
     ~HumanJointOwners(){clear();}
@@ -129,6 +130,48 @@ public:
         if(first)first->points[0]=result;
         if(second)second->points[1]=result;
         return result;
+    }
+    void reset_point_tree(Point& point,const Vector& position,bool previous){ //007C6100's actual recursive point/body writes.
+        const auto old=point.template get<Vector>(0x30);
+        Vector delta{};
+        for(unsigned axis=0;axis!=3;++axis)delta[axis]=position[axis]-old[axis];
+        point.set(0x30,position);
+        if(previous)point.set(0x40,position);
+        point.set(0x100,position);
+        for(unsigned offset:{0x50u,0x60u,0x70u,0xe0u,0x80u})
+            for(unsigned axis=0;axis!=3;++axis)point.set(offset+axis*4,0.f);
+        point.set(0x24,1.f);point.set(0x158,std::uint8_t{0});
+        for(auto* body:point.bodies)if(body&&body->points[0]==&point)body->set(0x90,position);
+        for(auto* child:point.children)if(child){
+            auto target=child->template get<Vector>(0x30);
+            for(unsigned axis=0;axis!=3;++axis)target[axis]=delta[axis]+target[axis];
+            //Native child scratch writes XYZ only before passing a four-word
+            //vector. Retain the child's existing padding lane on that boundary.
+            reset_point_tree(*child,target,previous);
+        }
+    }
+    void capture_body_pose(Body& body){ //007CDB70, original parent-relative B0/130/154 capture.
+        auto local=body.template get<Matrix>(0x60);
+        if(body.parent){
+            auto inverse=human_transpose(body.parent->template get<Matrix>(0x60));
+            inverse[3]=inverse[7]=inverse[11]=0;
+            for(unsigned axis=0;axis!=3;++axis)local[12+axis]-=body.parent->template get<float>(0x90+axis*4);
+            local[15]=1;
+            body.set(0xb0,local); //Native stores the translated matrix before the engine multiply.
+            local=frames_.rigid_matrix_product(local,inverse);
+        }
+        body.set(0xb0,local);
+        body.set(0x130,frames_.human_matrix_rotation(local));
+        body.set(0x154,body.template get<std::uint32_t>(0x270));
+        for(auto* child:body.children)if(child)capture_body_pose(*child);
+    }
+    void snapshot_body_endpoints(Body& body){ //007C80E0 capture=true, rebuild=false branch used by007B0910.
+        if(!body.points[0]||!body.points[1])throw std::runtime_error("Human joint snapshot requires actual endpoint points");
+        body.set(0x160,body.points[0]->template get<Vector>(0x30));
+        body.set(0x170,body.points[1]->template get<Vector>(0x30));
+        body.set(0x188,body.template get<std::uint32_t>(0x270));
+        body.set(0x210,body.template get<Vector>(0x200));
+        for(auto* child:body.children)if(child)snapshot_body_endpoints(*child);
     }
     void destroy_body(Body* body) noexcept { //007C51A0, child order8/C/10.
         if(!body)return;

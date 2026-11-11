@@ -1,7 +1,7 @@
 #ifndef HD2_GAME_HUMAN_SKELETON_H
 #define HD2_GAME_HUMAN_SKELETON_H
 
-#include "game/actor_activation_math.h"
+#include "game/human_joint_math.h"
 #include <array>
 #include <cstdint>
 #include <cstring>
@@ -114,38 +114,14 @@ public:
         if(std::abs(static_cast<long double>(square)-1)<9.99999993922529e-09f)return 1;
         return static_cast<float>(std::sqrt(static_cast<long double>(square)));
     }
-    //007A23F0 with the identity matrix supplied by0079C320. Project X onto
-    //the normal plane; use Y when X is parallel. Cross-product order matters.
-    static Matrix basis(Vector direction) {
-        const auto z=normalize(direction);
-        const auto dot=static_cast<long double>(z[0]);
-        Vector x{{static_cast<float>(1-dot*z[0]),static_cast<float>(-dot*z[1]),static_cast<float>(-dot*z[2]),0}};
-        const auto square=(static_cast<long double>(x[0])*x[0]+static_cast<long double>(x[1])*x[1])+static_cast<long double>(x[2])*x[2];
-        Matrix result{};Vector y{};
-        if(square<1.0000000195414814e-16f) { //0080F948.
-            const auto projection=static_cast<long double>(z[1]);
-            y=normalize(Vector{{static_cast<float>(-projection*z[0]),static_cast<float>(1-projection*z[1]),static_cast<float>(-projection*z[2]),0}});
-            x=cross(y,z);
-        } else {x=normalize(x);y=cross(z,x);}
-        for(unsigned axis=0;axis!=3;++axis){result[axis]=x[axis];result[4+axis]=y[axis];result[8+axis]=z[axis];}
-        result[15]=1;return result;
+    //007A23F0 with the identity matrix supplied by0079C320. The shared
+    //worker also serves live model IK, preserving native stored/extended lanes.
+    static Matrix basis(const Vector& direction) {
+        for(unsigned axis=0;axis!=3;++axis)
+            if(!std::isfinite(direction[axis]))throw std::runtime_error("Non-finite Human bone direction");
+        return human_bone_direction_basis(human_identity(),direction);
     }
 private:
-    static Vector normalize(Vector v) { //007A23F0: X*X+Y*Y+Z*Z order.
-        const auto square=(static_cast<long double>(v[0])*v[0]+static_cast<long double>(v[1])*v[1])+static_cast<long double>(v[2])*v[2];
-        if(!std::isfinite(square))throw std::runtime_error("Non-finite Human bone direction");
-        constexpr float epsilon=9.99999993922529e-09f;
-        if(std::abs(square-1)>=epsilon) {
-            if(square>=epsilon) {const auto scale=1/std::sqrt(square);for(unsigned axis=0;axis!=3;++axis)v[axis]=static_cast<float>(scale*v[axis]);}
-            else {const auto axis=v[0]!=0?0u:v[2]!=0?2u:1u;v[axis]=v[axis]<0?-1.f:1.f;}
-        }
-        return v;
-    }
-    static Vector cross(const Vector& a,const Vector& b) {
-        return {{static_cast<float>(static_cast<long double>(a[1])*b[2]-static_cast<long double>(a[2])*b[1]),
-            static_cast<float>(static_cast<long double>(a[2])*b[0]-static_cast<long double>(a[0])*b[2]),
-            static_cast<float>(static_cast<long double>(a[0])*b[1]-static_cast<long double>(a[1])*b[0]),0}};
-    }
     std::array<Bone,23> bones_;
     int root_=-1;
     std::uint32_t count_=0;

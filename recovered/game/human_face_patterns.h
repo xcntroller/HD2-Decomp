@@ -218,6 +218,9 @@ inline constexpr std::uint32_t stamp10_runs[]{
     0x00030000u,0x00022100u,0x00014200u,0x00015200u,0x00012100u,0x00140000u,
 };
 inline constexpr auto stamp10=decode<256>(stamp10_runs);
+inline constexpr std::array<const std::array<std::uint16_t,256>*,11> stamps{{
+    &stamp0,&stamp1,&stamp2,&stamp3,&stamp4,&stamp5,&stamp6,&stamp7,&stamp8,&stamp9,&stamp10
+}}; //00796430 installs this order at0098AF2C.
 //Native00851540, 4096 words, SHA256 df2b9cf76b1f5d93c504d66df9abc805222b5168f5ba02bc615d78690bba6377.
 inline constexpr std::uint32_t overlay0_runs[]{
     0x03000000u,0x00c0a000u,0x00c09000u,0x00808000u,0x00807000u,0x00806000u,0x00805000u,0x00c04000u,0x00803000u,0x00802000u,
