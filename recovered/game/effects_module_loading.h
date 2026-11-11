@@ -23,7 +23,7 @@ public:
             Frames& frames,Files& files,Effects& effects,Process& process,Random& random,Camera& camera,View& view,Startup& startup,
             const std::uint32_t& mode,std::string resource,const float& far_clip)
         :registration_(registry,registration,1,"GEffects"),frames_(frames),files_(files),effects_(effects),process_(process),
-         birds_(frames,random,far_clip),volumes_(frames),movie_(frames),camera_(camera),view_(view),startup_(startup),mode_(mode),resource_(std::move(resource)){
+         birds_(frames,random,far_clip),volumes_(frames,[this]{if(process_.world==this)startup_.procedural_clouds().clear();}),movie_(frames),camera_(camera),view_(view),startup_(startup),mode_(mode),resource_(std::move(resource)){
         if(process_.world||process_.water_camera1ac)throw std::logic_error("Retire actual GEffects world/camera borrowers first");
         if(&effects_.frames()!=static_cast<typename Effects::Services*>(&frames_)||&effects_.fade()!=&process_.fade||
            &effects_.environment()!=&process_.environment||&startup_.effects_loading_process()!=&process_)
@@ -34,6 +34,15 @@ public:
     EffectsModuleLoading(const EffectsModuleLoading&)=delete;EffectsModuleLoading& operator=(const EffectsModuleLoading&)=delete;
     auto& registration(){return registration_.get();}auto& birds(){return birds_;}auto& volumes(){return volumes_;}auto& movie(){return movie_;}
     template<class Draw>void render_after_scene(Draw& draw){require_open();render_loading_effects_fade(process_,draw);} //00486C10.
+    void configure_procedural(bool enabled){require_open();startup_.procedural_clouds().configure(enabled,frames_);} //GEffects B8/00485B50.
+    void render_before_scene(){
+        require_open();
+        struct ProcessRenderer{
+            Startup& startup;Frames& frames;
+            void render(std::int32_t time){startup.procedural_clouds().render(time,frames);}
+        } procedural{startup_,frames_};
+        render_before_scene(frames_,procedural);
+    }
     template<class Draw,class Procedural>void render_before_scene(Draw& draw,Procedural& procedural){
         require_open();std::int32_t time;std::memcpy(&time,&process_.field224,4);
         volumes_.render(time,draw,procedural); //00486BF0: C4 owner,224 clock.

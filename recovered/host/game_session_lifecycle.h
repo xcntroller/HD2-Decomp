@@ -3,6 +3,7 @@
 
 #include "host/game_blast_waves.h"
 #include "host/game_ui_presentation.h"
+#include "host/game_render_stages.h"
 #include "game/session_lifecycle.h"
 #include "game/session_render.h"
 #include <cstdio>
@@ -65,6 +66,10 @@ public:
         loading_->loader().unbind_finish(*this);
         ui_.reset();blast_.reset();activation_.reset();loading_.reset();
     }
+    void bind_presentation(){
+        require_open();auto render=std::make_unique<GameRenderStages>(loading_->world());
+        bind_presentation(*render);render_stages_=std::move(render);
+    }
     void bind_presentation(GameUiRenderStages& render){
         require_open();if(callbacks_)throw std::logic_error("Session presentation is already bound");
         if(boundary_.activation_progress().finished)throw std::logic_error("Cannot bind presentation to a retired session prefix");
@@ -109,13 +114,14 @@ private:
     void retire_presentation(){
         parent_.scene()->suspend_callback(); //Engine can no longer call UI or application during retirement/reset.
         if(callbacks_){parent_.scene()->unbind_callbacks(*callbacks_);callbacks_.reset();}
+        render_stages_.reset(); //Retire concrete World borrower AFTER its dispatcher.
         pages_.clear(); //Actual unregister006E83B0 before page/row storage dies.
     }
     Parent& parent_;StartupSession& startup_;
     game::SessionLifecycleBoundary<GameSessionLifecycle> boundary_;
     std::unique_ptr<GameMissionLoadingSession> loading_;
     std::unique_ptr<Activation> activation_;std::unique_ptr<GameBlastWaves> blast_;
-    std::unique_ptr<GameUiPresentation> ui_;std::unique_ptr<GameUiSceneCallbacks> callbacks_;
+    std::unique_ptr<GameUiPresentation> ui_;std::unique_ptr<GameRenderStages> render_stages_;std::unique_ptr<GameUiSceneCallbacks> callbacks_;
     std::vector<std::unique_ptr<typename Overlay::PageOwner>> pages_;
 };
 } //namespace hd2::host

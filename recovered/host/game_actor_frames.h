@@ -942,10 +942,29 @@ public:
         (void)car_rotation(frame);
         put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
     }
+    void debug_skeleton_lines(const void* vertices,std::uint32_t count,const std::uint16_t* indices,
+            const std::array<float,3>& rgb,std::uint32_t alpha){
+        using Draw=void(WINAPI*)(Frame,const void*,std::uint32_t,const std::uint16_t*,std::uint32_t,const float*,std::uint32_t,std::uint32_t);
+        checked_engine_method<Draw>(driver_.frame(),module_,0x30)(driver_.frame(),vertices,count,indices,count,rgb.data(),0x10,alpha);
+        observe_data("execution","0079B760 debug lines drawn","vertices",count);
+    }
+    Matrix procedural_cloud_matrix(const Vector& direction,const Vector& up){
+        Matrix matrix{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
+        using Set=void(WINAPI*)(void*,const void*,const void*);
+        exported<Set>("?SetDir@S_matrix@@QAGXABUS_vector@@0@Z",0x2ced0)(matrix.data(),direction.data(),up.data());
+        return matrix;
+    }
+    ResourceOwner load_procedural_cloud_texture(const char* name){
+        Frame texture=nullptr;
+        const auto result=graphics_.methods->load_texture(&graphics_,name,nullptr,0x502,&texture);
+        observe_data("resource","00483E50 procedural texture",name,texture?1:0);
+        observe_data("resource","00483E50 load status",name,static_cast<std::uint32_t>(result));
+        return ResourceOwner(texture,ResourceRelease{module_}); //Original ignores status; retain actual out pointer.
+    }
     Frame volume_render_camera(){
         const auto camera=field<Frame>(scene_.frame(),0x15c);
         if(!camera)throw std::runtime_error("Volumetrics require actual Scene15C render camera");
-        observe_data("execution","00482260 selected Scene15C render camera","flagsE0",field<std::uint32_t>(camera,0xe0));
+        observe_data("execution","selected Scene15C render camera","flagsE0",field<std::uint32_t>(camera,0xe0));
         return camera;
     }
     Frame volume_visibility_relation(Frame light)const{

@@ -25,6 +25,9 @@ inline void observe_world_data(world_loading::World& world){
         frames.observe_data("population","Volume field2C","float bits",bits);
         frames.observe_data("population","Volume particles","count",volume->particles.size());
     }
+    const auto& clouds=d.startup.procedural_clouds();
+    frames.observe_data("population","process0089B63C","texture0 present",clouds.has_texture(0));
+    frames.observe_data("population","process0089B63C","texture4 present",clouds.has_texture(1));
     frames.observe_data("population","GEffects","clock224",d.startup.effects_loading_process().field224);
     frames.observe_data("population","World snapshot end");
 }

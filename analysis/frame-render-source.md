@@ -1,5 +1,10 @@
 # Session frame and render source — 2026-11-10
 
+2026-11-11 RENDER continuation: [positive procedural/debug services and concrete
+callback binding](p22-render-implementation.md) supersede the missing-service
+status below. Original volume3C/40 initial-history boundary remains OPEN; no
+composed engine/desktop frame is claimed.
+
 Source continuation of the FULL first P2.2 checkbox. Application activation still
 returns failure; both P2.2 checkboxes remain open. These bodies do not establish
 an integrated first world frame or desktop acceptance.

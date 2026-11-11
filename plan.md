@@ -336,4 +336,4 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
 
-P22-RENDER: [isolated implementation plan](analysis/p22-render-plan.md); source work in progress, desktop acceptance separate.
+P22-RENDER: [isolated implementation plan](analysis/p22-render-plan.md); procedural/debug/concrete callback services source-verified; original volume3C/40 initialization remains open, live integration/desktop acceptance separate.

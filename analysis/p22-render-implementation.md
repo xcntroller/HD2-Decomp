@@ -18,11 +18,11 @@ Stage2 retains HUD/full physical viewport (including old near/far), mission text
 RET00724CB0, gated session fade, GEffects post fade and process text overlay.
 Existing text/font/fade/texture/camera owners and graphics device are preserved.
 
-GEffects::render_before_scene now invokes its SAME C4 VolumetricLights with signed
-bits of process224.00482260 receives a REQUIRED separate procedural process
-receiver, invokes it before driver3=1/camera/traversal even for an empty population.
-This is callable composition, **not a supplied positive procedural receiver**.
-There is no empty successful implementation or forced texture/enable flag.
+GEffects::render_before_scene invokes SAME C4 VolumetricLights with signed bits
+of process224 and its concrete Startup-owned process0089B63C renderer.00482260
+calls it before driver3=1/camera/traversal even with no volumes. This receiver now
+has positive procedural geometry and real graphics resources; missing texture0
+is the original legitimate early return, not an installed empty service.
 
 ## Implemented containing behavior and original evidence
 
@@ -56,50 +56,124 @@ with the inspected instructions at the following boundaries:
  successful first-frame behavior. Audit-only known history is not a production
  producer. Do not infer initialization from allocator reuse or captured field2C=0.
 
-## Exact remaining work and dependencies
+## Positive procedural process —00482E50/00483E50/00483DE0
 
-00482E50 positive geometry is still RENDER-owned work. Its current C export
-loses x87/stack values (local280/local274/local294/unaff_ESI); reconstruct those
-from instructions before translating geometry. Recover00483E50/00483DE0 and
-configuration00485B50 over process0089B63C, textures clouder.tga/clouder2.tga
-flags502, buffers0x3CC00. This is unfinished work, not a UI blocker. Do not install
-a concrete GameUiRenderStages until that receiver exists.
+`ProceduralClouds<ResourceOwner>` now lives ONCE in StartupSession, representing
+process0089B63C independently of the per-world C4 volumes and224 clock. GEffects
+virtualB8 (vtable008101F0+ B8=00485B50) now has a concrete configure_procedural
+receiver. Original references contain no direct CALL00485B50; its one absolute
+reference is vtable008102A8. The live virtual caller/configuration producer is
+not yet bound by the reconstructed VM/application. No enable call is invented.
 
-0079B760 is also open RENDER work. New instruction inspection establishes reverse
-actual actor registry0089B3A0 traversal, type3,005A5D30 gate, HumanA0→DC0, frame
-08 epoch11C==Scene11C; at most21 qualifying records through0079AC40. It allocates
-process buffers3980(alignment16)/730 and draws via driver30 only for nonzero WORD
-count. Required positive0079AC40 geometry and actual DC0 producer must be checked
-against current Human source. It is not an arbitrary debug triangle service.
+00483E50 first clears, then loads clouder.tga/clouder2.tga through SAME graphics
+load_texture(primary,NULL,502,out), retaining actual out pointers even if returned
+status is nonzero (native ignores it). It allocates two0x3CC00 buffers even with
+missing textures. Texture0 absence legitimately returns without camera/draw;
+texture1 absence still binds NULL if its positive batch exists. Partial prefix
+initialization remains owned for clear/retry.00483DE0 releases texture0,texture1,
+buffer0,buffer1. The production C4 owner now binds SAME process retirement into
+its clear/load/destructor path before volume retirement (00482D70). The callback
+is gated by process.world==this, so a rejected competing constructor cannot clear
+an existing World's process resources while its members unwind. Startup has
+an idempotent fallback before engine/device shutdown. No frame borrowers enter
+this process owner, and no second resource cache was created.
+
+Instruction trace resolves all former lost C operands:
+
+-0048302D..00483084 truncates camera position*FLOAT1/16, then ascending X/Y/Z
+ ranges centre-6..centre+5. Integer seed2X+5Y+3Z wraps in32 bits.
+-00483149..004831AE computes extended sin/cos(seed), stored sine for X/Z jitter,
+ size=sin*.75f*4.f+12.199999809265137f; positions=(X+sin,Y+cos,Z+sin)*16.
+-004831B5..0048336B retains X displacement in x87, stores Y/Z, computes squared
+ distance and normalized away direction, rejects back hemisphere against actual
+ normalized Scene15C forward. Three actual camera samples provide eye/forward/up.
+-0048337B..00483467 alpha: squared<=100→0, squared<400→(sqrt(squared)-DOUBLE10)
+ *DOUBLE.1*DOUBLE.4000000059604645;400..2025→FLOAT.4; beyond2025→
+ (1-(squared-2025)*FLOAT.00033057850669138134)*FLOAT.4. Clamp0..1, draw only>.001f.
+-0048346D..004834A3 uses full SetDir(away,camera-up) after Identity, then actual
+ centre in matrix translation lanes. Keep all16 lanes; no SetDir3 substitution.
+-004834A8..004834F5 chooses texture0 for stored_sine>0, texture1 otherwise.
+ Stored alpha*255 then current-mode FISTP forms ARGB white. Exact six-vertex
+ order: (+,+)UV11,(+,-)UV10,(-,-)UV00,(-,+)UV01,copy0,copy2.
+ Stack pushes temporarily change offsets; the apparent sine-valued quad corner
+ in the old C export is actually the overwritten negative-size slot.
+-00483D1C..00483DCA sets driver3=0 even for zero batches, then binds texture,
+ identity world transform and triangle-list draw for batch0 then1.00482260
+ restores boolean driver3/Graph14/13 even on propagated source endpoint errors.
+ Passed clock is genuinely unused by00482E50. No randomness is added.
+
+Malformed/nonfinite/out-of-range camera input and incomplete positive buffers
+reject safely; these are source guards, not original successful branches.
+Static constants/strings/matrices were read from fingerprinted PE sections;
+actual engine-selected texture bytes remain unknown. Existing DATA stores record
+actual texture out-pointer presence/load status, camera selection and draw calls;
+World snapshots now record both process texture populations. These events never
+claim selected-byte provenance that the engine API cannot provide.
+
+## Debug skeleton and owned callback composition
+
+0079B760/0079AC40 are now implemented over the actual Human geometry skeleton,
+not independent joints or synthetic cameras. Original exports were regenerated
+read-only with temporary thiscall(vertices,indices,count) ABI, transaction rolled
+back; instruction ranges and script provenance are retained/fingerprinted.
+
+Process0098AF90/94 lazy buffers are3980 bytes aligned16 and730 bytes of WORD
+indices. Reverse actual identity-slot traversal uses00475D50 INCLUDING pending
+reserved-ID lookup. Qualifiers: type3, not005A5D30 suspended, actual DD0, geometry
+model08 epoch11C equals actual Scene11C. At most21 qualifying records are admitted.
+Missing actual containing Human owner remains an explicit failure, not a fake
+successful null-DD0 source. Existing actual null control is the native skip.
+
+0079AC40's frame offsets14+index*440 resolve to these20 bone pairs:
+22-9,9-13,13-8,8-4,4-5,5-6,8-14,14-16,16-18,18-20,
+8-15,15-17,17-19,19-21,22-11,11-3,3-1,22-10,10-2,2-0.
+Every endpoint rereads actual world matrix70..7C (four lanes) even for repeated
+bones; sequential WORD indices/count advance twice per line. Nonzero count sets
+identity world transform and invokes checked driver30(vertices,count,indices,
+count,RGB,16,alpha). Actual process colour00863620 starts00FF00FF; RGB uses
+FLOAT.003921568859368563 and the original high-byte alpha is preserved.
+No graphics/driver state changes beyond the original identity/draw are added.
+
+GameRenderStages now implements both required UI seam methods over SAME World.
+GameSessionLifecycle::bind_presentation() owns this adapter and the existing
+GameUiSceneCallbacks. Engine callback unregistration/dispatcher retirement happens
+before adapter retirement, pages, World/camera/textures. The external-receiver
+overload remains available; no automatic application activation was introduced.
+
+## Remaining boundary and external dependencies
+
+The original per-volume3C/40 first-read state remains the sole OPEN RENDER body
+boundary. No constructor/read/refresh producer is established. Existing source
+rejects a reached read. A native fixture with known seeded history is only a
+bounded source audit, never actual initialization or mission reachability.
 
 UI base GameUiPresentation::command_before_scene rejects004B6720. UI9ff6d0d
-contains later command geometry/full HUD dispatch; it is unmerged and was read
-through Git only. GameUiRenderStages is unchanged there. UI's remaining actual
-Human order sources, occupied actor/FPV and console producers remain its own
-contracts. No UI code copied, receivers suppressed or successful replacements.
+contains later command geometry/full HUD dispatch; inspected through Git only,
+still unmerged. Its GameUiRenderStages seam is unchanged. UI's remaining Human
+order, occupied actor/FPV and console producers remain its own contracts. No UI
+code copied, receivers suppressed or successful replacements installed.
 
-DATA's observation store/scopes and volume draw observation already exist in
-base. Actual camera selection now records an execution event via SAME frames.
-A selected camera event is not a completed render. No manually invoked hook or
-fixture population is claimed as actual mission observation. Historical selected
-bytes, static requirements, loaded populations and executed branches stay separate.
-OWN still installs lifecycle/render stages; FRAME still schedules camera/update
-and render-before-update; desktop acceptance remains user-operated.
+OWN must install/activate the lifecycle and caller; FRAME owns render-before-
+update scheduling/camera simulation. VM/configuration must supply actual virtual
+GEffectsB8 calls when reached. Empty current textures do not prove that future
+procedural branches are inactive. Live resource bytes/populations/branches and
+user-operated desktop acceptance remain unobserved. No push or merge.
 
 ## Verification
 
-Temporary native ASan/UBSan/LSan audit passes positive loader→visibility→pairwise
-swap→existing draw leaves with procedural/engine doubles and explicitly seeded
-known history.25 injected operation positions include restoration failures;
-restoration is attempted on every path, but a failing restore endpoint cannot
-promise restored state. Unknown history explicitly rejects and restores states.
-No resource/procedural positive or composed UI runtime claim.
-Strict i386 concrete World/GEffects/frame endpoints and lifecycle→Scene/callback
-entry compiled/linked; procedural is explicitly a throwing audit double. Existing
-application-launch compile/link passed. Outputs were not executed. Temporary
-sources/binaries fingerprinted in receipt and removed; logs retained in ignored
-WORK. No ledger credit added pending full containing/history boundary completion.
+Native ASan/UBSan/LSan: procedural positive generation, both batches, exact UV,
+colour/capacity,100 resource lifetimes, absent texture0/1, partial configure/retry,
+C4→process retirement, every reached operation failure prefix and malformed
+camera. Separate skeleton audit checks20 lines/reverse/max21/WORD indices/fourth
+lane/alignment/colour,100 lifetimes and40 bone failure/retry paths. Only engine/
+Human endpoints are doubles; procedural geometry has no seeded collection.
 
-Tracker validation remains blocked by existing absent ignored evidence
-`analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm` (0062D880);
-ledger unchanged. Diff check passes.
+Strict i386 compile/link instantiates actual World/GEffects positive configuration/
+render, debug Human/registry/geometry/driver endpoints, DATA snapshot, concrete
+GameRenderStages, lifecycle-owned callback install and lifecycle→actual Scene78.
+Application-launch compile/link passes. No Windows output or original code ran.
+Temporary audits/scripts/binaries fingerprinted then removed; concise logs and
+static exports retained in ignored WORK. Six frozen inventory entries gain partial
+source coverage; no complete promotion or absent-wrapper/delegated-engine credit.
+Tracker render/check still encounters pre-existing missing ignored evidence
+`analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm` (0062D880).

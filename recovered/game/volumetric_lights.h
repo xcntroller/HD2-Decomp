@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <functional>
 #include <limits>
 #include <memory>
 #include <optional>
@@ -50,7 +51,8 @@ public:
         std::vector<std::unique_ptr<Particle>> particles;
         ~Volume() {while(!particles.empty())particles.pop_back();} //004813D0/00480D00.
     };
-    explicit VolumetricLights(Frames& frames) : frames_(frames) {}
+    explicit VolumetricLights(Frames& frames,std::function<void()> retire_procedural={})
+        :frames_(frames),retire_procedural_(std::move(retire_procedural)) {}
     ~VolumetricLights() {clear();}
     VolumetricLights(const VolumetricLights&)=delete;
     VolumetricLights& operator=(const VolumetricLights&)=delete;
@@ -184,7 +186,7 @@ public:
         errors.attempt([&]{draw.volume_graphics_state(14,graph14);});
         errors.attempt([&]{draw.volume_graphics_state(13,graph13);});errors.rethrow();
     }
-    void clear() noexcept {while(!volumes_.empty())volumes_.pop_back();camera_history_={{1,0}};phase_=0;} //00482D70.
+    void clear() noexcept {if(retire_procedural_)retire_procedural_();while(!volumes_.empty())volumes_.pop_back();camera_history_={{1,0}};phase_=0;} //00482D70.
     bool read(SerializedBytes bytes) {
         clear();auto root=next_mission_chunk(bytes);
         if(!root||root->id!=1)return false;
@@ -352,6 +354,7 @@ private:
     }
     std::optional<std::array<float,2>> camera_history_{{{1,0}}};float phase_=0;
     Frames& frames_;
+    std::function<void()> retire_procedural_; //Production00482D70 retires SAME process0089B63C first.
     std::vector<std::unique_ptr<Volume>> volumes_;
 };
 
