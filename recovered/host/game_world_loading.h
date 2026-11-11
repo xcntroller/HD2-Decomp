@@ -307,6 +307,14 @@ public:
     bool dispatch_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority)override{
         return modules_.dispatch().dispatch_packet(kind,packet,authority);
     }
+    void receive_application_objective(std::uint32_t identity,std::uint32_t status)override{
+        owners_.scripts().runtime().receive_human_objective_status(static_cast<std::int32_t>(identity),static_cast<std::int32_t>(status));
+    }
+    void receive_application_peer_departure(std::uint32_t transport)override{owners_.human_services().retire_session_peer(transport);}
+    void receive_application_local_removal(std::uint32_t reason)override{
+        game::receive_local_session_removal(owners_.dependencies().session,reason,owners_.dependencies().hud);
+    }
+    void append_application_message(const std::string& message)override{owners_.dependencies().hud.append_message(message.c_str(),{{255,255,255}});}
     World(const World&)=delete;World& operator=(const World&)=delete;
     Scene& scene(){return scene_;}Owners& owners(){return owners_;}ModuleOwners& modules(){return modules_;}
     auto& vertices(){return vertices_;}

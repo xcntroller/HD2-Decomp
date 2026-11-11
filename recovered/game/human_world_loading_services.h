@@ -187,12 +187,7 @@ public:
             });
     }
     void emit_human_peer_removal_log(const std::string& text){ //006C4B40, called with SAME current World owner.
-        auto& startup=dependencies().startup;
-        if(startup.application_log_to_console()){startup.append_game_console(text);return;}
-        if(!startup.game_views().owner())return; //Native00698500 genuine absent-game gate.
-        const auto message=format_human_game_message(text);
-        if(!(mode_flags()&2u)){startup.append_game_console(message);return;}
-        dependencies().hud.append_message(message.c_str(),{{255,255,255}});
+        dependencies().startup.emit_application_log(text);
     }
     template<class Human>void human_damage_score(Human& human,std::int32_t source){score_human_death(dependencies().startup.game_control_records(),static_cast<std::uint32_t>(human.base().id10()),static_cast<std::uint32_t>(source),*this);}
     std::string human_score_rank_label(frontend::ControlStartupRecord& record){ //00725B00, SAME holder4 and definition44.

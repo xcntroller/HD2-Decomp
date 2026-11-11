@@ -7,6 +7,9 @@
 #include "frontend/control_frame.h"
 #include "game/session_local_packets.h"
 #include "game/session_application_commands.h"
+#include "game/session_received_application.h"
+#include "game/session_peer_records.h"
+#include "game/human_peer_removal.h"
 #include "game/network_mission_metadata.h"
 #include "game/session_owner.h"
 #include "host/application_command_lock.h"
@@ -756,6 +759,45 @@ public:
         application_commands_.enqueue({kind,first,second,target},gate_,*this);
     }
     void drain_application_commands(){application_commands_.drain(*this);}
+    std::uint32_t application_mode_flags()const{return gate_;}
+    bool has_application_game()const{return game_views_.owner()!=nullptr;}
+    std::int32_t application_local_peer()const{return local_player_identity();}
+    std::string application_localize(std::uint32_t id){return frontend::lookup_localized_text(text(),static_cast<std::int32_t>(id));}
+    std::optional<std::string> application_peer_name(std::uint32_t transport){
+        const auto slot=game::find_session_peer_transport(control_data_,*this,transport);
+        //0072EBD0 checks bounds after EC90 unlock; empty native char-array name is still nonnull.
+        return slot<control_data_.records.size()?std::optional<std::string>(control_data_.records[slot].name()):std::nullopt;
+    }
+    void prepare_application_packet_phase(bool authority){
+        if(authority&&game_configuration().field174==1)
+            throw std::runtime_error("Authority packet phase requires actual007239F0 domain service pump");
+    }
+    void dispatch_application_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority){
+        game::receive_session_application_packet(kind,packet,authority,*this);
+    }
+    void receive_application_objective(std::uint32_t identity,std::uint32_t status){packet_world_.receive_application_objective(identity,status);}
+    void receive_application_peer_departure(std::uint32_t transport){
+        if(!has_application_game())throw std::runtime_error("Departure receiver lost its actual current game");
+        packet_world_.receive_application_peer_departure(transport);
+    }
+    void receive_application_local_removal(std::uint32_t reason){packet_world_.receive_application_local_removal(reason);}
+    void receive_application_peer_removal(std::uint32_t reason,std::uint32_t identity){
+        struct Services{
+            StartupSession& startup;
+            std::uint32_t mode_flags(){return startup.application_flags();}
+            void queue_human_peer_removal(std::uint32_t why,std::uint32_t slot){startup.queue_application_command(17,0,why,slot);}
+            std::string human_damage_localize(std::uint32_t id){return startup.application_localize(id);}
+            void emit_human_peer_removal_log(const std::string& text){startup.emit_application_log(text);}
+        }services{*this};
+        game::remove_human_peer(control_data_,identity,reason,services);
+    }
+    void emit_application_log(const std::string& text){ //006C4B40→0069BF70, SAME application/current World owners.
+        if(application_log_to_console()){append_game_console(text);return;}
+        if(!has_application_game())return;
+        const auto message=game::format_human_game_message(text);
+        if(!(gate_&2u)){append_game_console(message);return;}
+        packet_world_.append_application_message(message);
+    }
     void bind_application_console_owner(void* owner,std::function<bool()> route,std::function<void()> close){
         if(application_console_owner_||!owner||!route||!close)throw std::logic_error("Invalid application console owner binding");
         application_console_route_=std::move(route);application_console_close_=std::move(close);application_console_owner_=owner;

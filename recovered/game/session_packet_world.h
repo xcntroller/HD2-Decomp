@@ -10,6 +10,10 @@ public:
     virtual ~SessionPacketWorld()=default;
     virtual bool world_loaded()const=0;
     virtual bool dispatch_packet(std::uint32_t,SessionPacketStream&,bool)=0;
+    virtual void receive_application_objective(std::uint32_t,std::uint32_t)=0;
+    virtual void receive_application_peer_departure(std::uint32_t)=0;
+    virtual void receive_application_local_removal(std::uint32_t)=0;
+    virtual void append_application_message(const std::string&)=0;
 };
 class SessionPacketWorldLink {
 public:
@@ -20,6 +24,10 @@ public:
     bool dispatch_packet(std::uint32_t kind,SessionPacketStream& packet,bool authority){
         return world_.bound()&&world_.get().dispatch_packet(kind,packet,authority);
     }
+    void receive_application_objective(std::uint32_t identity,std::uint32_t status){world_.get().receive_application_objective(identity,status);}
+    void receive_application_peer_departure(std::uint32_t transport){world_.get().receive_application_peer_departure(transport);}
+    void receive_application_local_removal(std::uint32_t reason){world_.get().receive_application_local_removal(reason);}
+    void append_application_message(const std::string& message){world_.get().append_application_message(message);}
 private:
     WorldLoadingDependencyLink<SessionPacketWorld> world_;
 };

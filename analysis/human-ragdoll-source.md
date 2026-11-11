@@ -1063,3 +1063,64 @@ partials and extends seven, no complete promotions:34 complete/2614 partial of
 application integration and desktop acceptance remain OPEN. Continue the actual
 spawn/application-packet/entry protocol and containing reaction/frame boundary;
 source lifecycle helpers are a verified dependency checkpoint, not delivery.
+
+
+### Application presentation messages in the containing process FIFO — 2026-11-11
+
+0072C0B0 reads envelope20 then32-bit application command BEFORE the current
+loaded-World gate; the actual process StartupSession now dispatches it and resumes
+this packet afterward.0072C3B0 can drain retained queues in non7 mode independently
+of transport production. Authority phase still gates bit1 first, then requires the
+actual007239F0 service pump if configuration174==1 BEFORE queue pop. That service,
+input-history decoder, non7 flush/send and authority00727800 remain explicit
+required failures. Their grammar is not the presentation00728450 grammar.
+
+Reached presentation00728450 branches now bind SAME source owners:
+
+-2 reads transport32 even if authority/no game. For client+game, forward active08/
+transport00 lookup0072EC90 uses actual418, then0072EBD0 bounds/name after unlock.
+A nonnull name (including empty) causes22CB localization, a SECOND name lookup,
+`%s %s` formatting and actual application log. Only afterward requery current game
+and reach actual0069E720 retirement. No record pointer crosses callbacks.
+-10 reads objective5/status4 unconditionally; client+game directly invokes actual
+0069BC40 on SAME Script objective owner, with no0069BA60 score/experience/FIFO echo.
+-17 reads reason32/peer32, checks game BEFORE comparing actual local slot. Matching
+peer invokes00699A20: result88=4 and8C=game28 precede optional hint22A7/22A6/22A9/
+22A8 for reasons0..3; unknown reason still mutates result/time. Query mode AFTER
+this receiver, then client invokes SAME0072F2F0 scalar log.17 does NOT remove the
+peer/Human. Received2 is the separate departure/retirement route. Earlier wording
+that received17 owned retirement was corrected in source.
+
+006C4B40 is now one process method shared with Human World services; existing
+actual application state/configuration console route precedes absent-game gate,
+then0069BF70 formatting and SAME World HUD message/console receiver. Application
+World bindings remain mandatory even when loaded14 is false; a current game
+without its required source graph fails explicitly. No new UI/loading/network
+success was exposed. Current packet ownership retires on callback failure while
+later queued packets remain available, preserving the actual process lifetime.
+
+Research index preceded original reuse. `human-application-reused-originals`
+pins research checkout C/metadata for00727800/0072EC90/0072E890 read-only. MAIN
+00728450 C and0072C0B0 C remain original evidence; raw
+`human-application-local-removal.asm` proves00699A20 scalar ordering, unsigned
+reason bound, hint leaves and jump table. No new Ghidra export was needed.
+**Entry correction:** actual0072E890 invokes0073F5A0 to CLEAR registered input
+records, preserving the manager and embedded30; it does not replace that owner.
+The caller006C20F0 retires its previous application state before this branch and
+constructs the new game state afterward. Full containing game/global lifetime
+ordering still needs matching source integration; do not infer a second manager
+or move input clear relative to Human shutdown from older handoff wording.
+
+Focused `human-application-packets-native` ASan/UBSan/LSan PASS: independent wire,
+application messages before loaded gate, SAME objective/session/peer state,
+no outbound objective echo, late mode/name (record vector growth), local hint/log
+failure prefixes, retained later packets, required authority/domain failures,
+truncated fields and100 actual scalar FIFO→broadcast→owned process queue lifetimes.
+Platform/log/HUD/Scene endpoints are doubles; no full World/application run.
+Strict actual World i386 and sequential launcher/startup-probe compile/link PASS;
+no original/DLL/Windows output executed. [Receipt](checkpoints/p2.2-human-application-packets-20261111.json)
+adds3 client partials and extends5:34 complete/2617 partial of18783 (2612 client+
+5 engine partials), no complete promotions. Temporary audit remains ignored for
+the ongoing full checkbox. Continue normal non7 spawn/entry/canonical input
+ownership, required runtime owners and containing reaction/frame/teardown;
+application loading/rendering and user desktop acceptance remain OPEN.

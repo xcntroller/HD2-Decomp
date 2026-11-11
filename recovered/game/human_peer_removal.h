@@ -4,7 +4,8 @@
 #include "game/human_damage_messages.h"
 namespace hd2::game {
 //0072F2F0 is scalar publication followed by a localized application log. It
-//does NOT itself delete the peer/transport/Human. Actual received17 owns that.
+//does NOT itself delete the peer/transport/Human. Received application2 reaches
+//0069E720;17 publishes the local result/hint and this scalar log.
 template<class Services>void remove_human_peer(frontend::ControlStartupState& state,std::uint32_t identity,std::uint32_t reason,Services& services){
     if(identity>=state.records.size())throw std::out_of_range("Peer removal requires actual process record");
     if(!state.records[identity].word(0))return;
