@@ -3,6 +3,7 @@
 
 #include "host/game_blast_waves.h"
 #include "host/game_ui_presentation.h"
+#include "host/game_session_frames.h"
 #include "game/session_lifecycle.h"
 #include <cstdio>
 #include <exception>
@@ -81,6 +82,17 @@ public:
     auto& world(){require_open();return loading_->world();}
     auto& presentation(){require_open();if(boundary_.activation_progress().finished)throw std::logic_error("Presentation prefix is retired");return *ui_;}
     auto& blast_waves(){require_open();return *blast_;}
+    const auto& selection()const{require_open();return activation_->selection();}
+    template<class Runtime>GameSessionFrames<Runtime>& bind_frames(GameSessionFrameExternal& external,Runtime& runtime){
+        require_open();if(frames_)throw std::logic_error("Session frame coordinator is already bound");
+        if(frame_retirement_started_||boundary_.activation_progress().finished)throw std::logic_error("Cannot bind frames to a retiring session");
+        auto frames=std::make_unique<GameSessionFrames<Runtime>>(loading_->world(),parent_,activation_->selection(),*blast_,external,runtime);
+        auto& result=*frames;frames_=std::move(frames);return result; //Publish only a complete same-owner composition.
+    }
+    void retire_frames()noexcept{if(frames_){frames_->retire();frames_.reset();}}
+    void input(const std::uint32_t* first,const std::uint32_t* second){require_frames().input(first,second);}
+    void fixed_update(std::uint32_t elapsed){require_frames().fixed_update(elapsed);}
+    void update(std::uint32_t elapsed){require_frames().update(elapsed);}
     const auto& activation_progress()const noexcept{return boundary_.activation_progress();}
     std::exception_ptr rollback_failure()const noexcept{return boundary_.rollback_failure();}
     std::exception_ptr activation_flag_failure()const{require_open();return activation_->activation_flag_failure();}
@@ -92,7 +104,9 @@ private:
     void unload_files(){loading_->loader().unload_loaded_mission();}
     void rethrow_cleanup_failure(){loading_->world().scene().frames().rethrow_actor_cleanup_failure();}
     void require_open()const{if(!loading_)throw std::logic_error("Session lifecycle is closed");}
+    GameSessionFrameCallbacks& require_frames(){require_open();if(!frames_)throw std::logic_error("Actual session frame coordinator is not bound");return *frames_;}
     void retire_presentation(){
+        frame_retirement_started_=true;retire_frames(); //Also on activation rollback, before any World borrower is retired.
         parent_.scene()->suspend_callback(); //Engine can no longer call UI or application during retirement/reset.
         if(callbacks_){parent_.scene()->unbind_callbacks(*callbacks_);callbacks_.reset();}
         pages_.clear(); //Actual unregister006E83B0 before page/row storage dies.
@@ -102,6 +116,7 @@ private:
     std::unique_ptr<GameMissionLoadingSession> loading_;
     std::unique_ptr<Activation> activation_;std::unique_ptr<GameBlastWaves> blast_;
     std::unique_ptr<GameUiPresentation> ui_;std::unique_ptr<GameUiSceneCallbacks> callbacks_;
+    std::unique_ptr<GameSessionFrameCallbacks> frames_;bool frame_retirement_started_=false;
     std::vector<std::unique_ptr<typename Overlay::PageOwner>> pages_;
 };
 } //namespace hd2::host

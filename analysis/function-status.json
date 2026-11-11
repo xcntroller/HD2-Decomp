@@ -26761,36 +26761,45 @@
       "program": "client",
       "entry": "0069a560",
       "status": "partial",
-      "coverage": "Native initial signed20/38 input gates, then required actual positive input receiver.",
+      "coverage": "Native initial signed20/38 input gates, then required actual positive input receiver. Positive containing input policy now preserves actual64-word view identities, native quick-save/load and difficulty/mission gates, original process-neutral arrays, cutscene-before-neutral, objective admission, fresh selected-Human input, FPV preference and non7/pause status ordering. Host composition requires explicit real UI/controller/Player/VM/non7 receivers; unavailable producer bodies are not credited.",
       "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/session_frame_loading.h",
         "analysis/frame-render-source.md",
-        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-session-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "0069af10",
       "status": "partial",
-      "coverage": "Offline fixed-frame ordering over same session clock, required actual control/modules/shared transient receiver.",
+      "coverage": "Offline fixed-frame ordering over same session clock, required actual control/modules/shared transient receiver. Concrete World/session/Players fixed/module/transient composition now reuses SAME lifecycle blast process, ascending modules and clock28. Native callback mode2-clear continuation advances30/7C/2C, actual engine scene and reverse retained models. Non7 match/peer body remains excluded.",
       "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/session_frame_loading.h",
         "analysis/frame-render-source.md",
-        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-session-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "0069b230",
       "status": "partial",
-      "coverage": "Offline update policy, same Music D0/application status/timers, native warming/pause/leaf ordering; positive actual endpoints required.",
+      "coverage": "Offline update policy, same Music D0/application status/timers, native warming/pause/leaf ordering; positive actual endpoints required. Concrete same-World session services now bind actual module/camera/physics/engine/model/dubbing/text/Car/particle/control owners with required external UI/FPV/Runtime. Added exact delayed offline objective-result exit, actual selected-camera-to-Human40 publication, authority-only fresh Human identity scan, lifecycle-owned retirement and preserved RET0049B7C0. Non7 match/transport remains excluded.",
       "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/session_frame_loading.h",
         "analysis/frame-render-source.md",
-        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-session-20261112.json"
       ]
     },
     {
@@ -34747,6 +34756,70 @@
         "recovered/frontend/game_data.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069a500",
+      "status": "partial",
+      "coverage": "Offline session exit publishes status6 and native500/1000 counters unless already6; supplied stack argument is unused. Conditional non7 tail remains required after the original state prefix.",
+      "limitations": "Source-only typed C++ ownership/ABI adaptation. Native UI/controller/engine endpoints are explicit doubles; actual containing World/services are i386 compile/link only. Required external Human/UI/Runtime/packet/physics producers, original object/allocator/SEH layout and integrated engine/desktop acceptance remain excluded. No whole-body equivalence or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_frame_loading.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-session-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045e380",
+      "status": "partial",
+      "coverage": "Conditional selection38 tick only without mode2, composed into actual0045DD90 fixed wrapper before live-count scan and0045EF00; presentation0045DDC0 uses actual0045E3A0 tick unconditionally.",
+      "limitations": "Source-only typed C++ ownership/ABI adaptation. Native UI/controller/engine endpoints are explicit doubles; actual containing World/services are i386 compile/link only. Required external Human/UI/Runtime/packet/physics producers, original object/allocator/SEH layout and integrated engine/desktop acceptance remain excluded. No whole-body equivalence or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-session-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045ef00",
+      "status": "partial",
+      "coverage": "Offline7 actual mission objective admission, reverse borrowed roster and signed positive health scan; aggregate live surface flags, publish same control34 before changed-only objective2000 failure or4000/FFFFFFFF hint. Actual fixed/presentation wrappers bound to session services.",
+      "limitations": "Source-only typed C++ ownership/ABI adaptation. Native UI/controller/engine endpoints are explicit doubles; actual containing World/services are i386 compile/link only. Required external Human/UI/Runtime/packet/physics producers, original object/allocator/SEH layout and integrated engine/desktop acceptance remain excluded. No whole-body equivalence or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/player_control_frames.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-session-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a9720",
+      "status": "partial",
+      "coverage": "Actual unattached DD0 ground754 contact flags masked6000, actual attached Car wheel aggregation via004DD090 and native other-attached-kind zero branch. Host reads SAME initialized Human/Car/collision owners, with explicit absent-owner safety rejection.",
+      "limitations": "Source-only typed C++ ownership/ABI adaptation. Native UI/controller/engine endpoints are explicit doubles; actual containing World/services are i386 compile/link only. Required external Human/UI/Runtime/packet/physics producers, original object/allocator/SEH layout and integrated engine/desktop acceptance remain excluded. No whole-body equivalence or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-session-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dd090",
+      "status": "partial",
+      "coverage": "Reverse actual initialized Car wheels; gate1FC bit8 and actual nonnull200 identity, OR live triangle/shape/dynamic descriptor flags6000 rather than cached query flags. Native audit uses actual wheel and collision record types.",
+      "limitations": "Source-only typed C++ ownership/ABI adaptation. Native UI/controller/engine endpoints are explicit doubles; actual containing World/services are i386 compile/link only. Required external Human/UI/Runtime/packet/physics producers, original object/allocator/SEH layout and integrated engine/desktop acceptance remain excluded. No whole-body equivalence or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/player_control_frames.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-session-20261112.json"
       ]
     }
   ]

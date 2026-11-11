@@ -157,6 +157,8 @@ public:
     Overlay* overlays() const { return overlays_.get(); }
     MissionTables<Backend>* tables() const { return tables_.get(); }
     bool constructed() const { return registry_.current == this; }
+    const auto& neutral_first_input()const noexcept{return registry_.table_e6e0;}
+    const auto& neutral_second_input()const noexcept{return registry_.table_e5e0;}
     bool loading_ready() const { return false; } // No activation/loader implementation in this owner.
     std::uint32_t status() const { return status_; } // Original ctor+04=0, pending+08=2.
     std::uint32_t pending_status() const { return 2; }

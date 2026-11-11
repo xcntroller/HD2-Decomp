@@ -335,3 +335,5 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Interactive commits require user desktop confirmation; no pushes without instruction.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
+
+P22-FRAME: [isolated plan](analysis/p22-frame-plan.md), base05dbdee; session/input/control and lifecycle-owned callable services verified at source, with explicit required UI/Runtime boundaries. Continue Runtime11/embedded physics and available Runtime bindings; no mission activation or desktop claim. [Implementation](analysis/p22-frame-implementation.md).

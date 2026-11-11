@@ -266,6 +266,7 @@ public:
     ModuleOwners(const ModuleOwners&)=delete;ModuleOwners& operator=(const ModuleOwners&)=delete;
     auto& dispatch(){return dispatch_;}auto& mission_effects(){return mission_effects_;}
     auto& game_effects(){return effects_;}
+    auto& particles(){return particles_;}
     void finish_file_borrowers(){effects_.finish_file_borrowers();}
     void discard_file_scene_borrowers(){particles_.discard_scene_borrower();mission_effects_.close();}
 private:

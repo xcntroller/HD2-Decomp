@@ -40,6 +40,7 @@ public:
             throw std::logic_error("Activation requires SAME actual loading/session/application squad owners");
     }
     bool activate(game::SessionActivationProgress* progress=nullptr){return game::activate_offline_session(session_,*this,parent_.request().mission.get(),progress,&flags_failure_);}
+    const auto& selection()const noexcept{return selection_;}
     bool finish(GameSessionTransientFinish& transients){
         transients_.bind(transients);
         struct Unbind {game::WorldLoadingDependencyLink<GameSessionTransientFinish>& link;GameSessionTransientFinish& owner;~Unbind(){link.unbind(owner);}} unbind{transients_,transients};

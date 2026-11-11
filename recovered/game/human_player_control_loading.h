@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_PLAYER_CONTROL_LOADING_H
 
 #include "game/human_player_roster.h"
+#include "game/player_control_frames.h"
 #include <array>
 #include <cstdint>
 #include <type_traits>
@@ -93,6 +94,14 @@ public:
     auto& selection(){return selection_;}const auto& collected_frames()const{return collected_;}const auto& sighted_dogs()const{return dogs_;}
     std::int32_t& selected_index(){return index28_;}std::int32_t& current_index(){return index2c_;}std::int32_t& previous_index(){return index30_;}
     Human*& override_player(){return override58_;} //Typed borrowed native58, actual writers remain containing consumers.
+    void advance_presentation(std::uint32_t elapsed){selection_.tick(elapsed);} //0045DDC0: base00461D20 RET4, then0045E3A0.
+    template<class Mission,class Queries>void advance_fixed(std::uint32_t elapsed,const Mission* mission,Queries& queries){ //0045DD90.
+        //00461D10 is RET4;0045E380 ticks only without mode2.
+        if(!(queries.mode_flags()&2u))selection_.tick(elapsed);
+        (void)roster_.live_count(); //Native scan before0045EF00, return unused.
+        update_player_control_frame_flags(*this,mission,field34_,queries);
+    }
+    std::uint32_t frame_surface_flags()const noexcept{return field34_;}
 private:
     Human* indexed(std::int32_t index)const {
         if(index==-1)return nullptr;

@@ -2,17 +2,33 @@
 #define HD2_GAME_SESSION_FRAME_LOADING_H
 #include "game/session_activation.h"
 #include "game/game_music_references.h"
+#include "game/session_frame_input.h"
 namespace hd2::game {
 inline std::int32_t session_frame_signed(std::uint32_t bits){std::int32_t value;std::memcpy(&value,&bits,4);return value;}
 
+//0069A500 offline branch: argument100 is unused, actual500/1000 counters.
+template<class Services>void begin_loading_session_exit(SessionActivationState& state,Services& services){
+    if(state.status==6)return;
+    state.status=6;state.words.set(0x20,std::uint32_t{500});state.words.set(0x24,std::uint32_t{1000});
+    if((services.mode_flags()&7u)!=7u)services.finish_nonoffline_session_exit();
+}
+template<class Services>bool finish_loading_objective_delay(SessionActivationState& state,Services& services){ //0069B230/0069B558.
+    if(mission_frame_input_allowed(state.mission)&&!state.words.get<std::uint8_t>(0x6f))return false;
+    state.words.set(0x88,std::uint32_t{0});
+    if(!services.is_current_application_state())return true;
+    if(services.application_saved_state_present()||state.words.get<std::uint8_t>(0x6f)){state.status=14;return true;}
+    begin_loading_session_exit(state,services);
+    if(services.current_player_available())services.objective_exit_camera();
+    return true;
+}
+
 //0069A560: native initial500ms/fade2500 gates precede HUD or any input access.
-//The positive input body remains a REQUIRED service, including its UI/save/
-//player consumers; no successful empty input handler stands in for it.
+//The positive containing body uses actual required UI/save/player consumers.
 template<class Services>bool input_loading_session(SessionActivationState& state,Services& services,
         const std::uint32_t* first,const std::uint32_t* second){
     if(session_frame_signed(state.words.get<std::uint32_t>(0x20))>0)return true;
     if(state.words.get<std::uint32_t>(0x38))return true;
-    return services.process_actual_session_input(first,second);
+    return process_session_frame_input(state,services,first,second);
 }
 
 //0069AF10's offline7 fixed path. Called even during status5 warming. Original
@@ -26,9 +42,18 @@ template<class Services>void fixed_loading_session(SessionActivationState& state
     if((services.mode_flags()&7u)!=7u)throw std::runtime_error("Fixed session frame requires actual nonoffline match/peer consumers");
     if(!state.words.get<std::uint8_t>(0x64)){
         state.words.set(0x28,state.words.get<std::uint32_t>(0x28)+elapsed);
+        if(!(services.mode_flags()&2u)){
+            if(!state.words.get<std::uint32_t>(0x88)){
+                state.words.set(0x30,state.words.get<std::uint32_t>(0x30)+elapsed);
+                state.words.set(0x7c,state.words.get<std::uint32_t>(0x7c)+elapsed);
+            }
+            state.words.set(0x2c,state.words.get<std::uint32_t>(0x2c)+elapsed);
+        }
         services.tick_authority_modules(elapsed);
         services.advance_shared_transient_records(elapsed);
-        if(!(services.mode_flags()&2u))throw std::runtime_error("Session mode changed into required non-presentation scene update");
+        if(!(services.mode_flags()&2u)){
+            services.advance_engine_scene(elapsed);services.advance_animated_models(elapsed);
+        }
     }
 }
 
@@ -44,7 +69,10 @@ template<class Services>void update_loading_session(SessionActivationState& stat
     if(state.words.get<std::uint32_t>(0x88)==1&&state.words.get<std::uint32_t>(0x8c)+4000u<state.words.get<std::uint32_t>(0x28))
         if(services.finish_offline_objective_delay())return; //Actual positive result/cutscene/controller receiver is required.
     services.recycle_collision_buckets(); //006EF330 even while game64 is set.
-    if(!(services.mode_flags()&2u))throw std::runtime_error("Session mode changed into required authority-only Human frame update");
+    if(!(services.mode_flags()&2u)){
+        if(state.status==5)state.status=1;
+        services.advance_authority_only_humans(elapsed);return;
+    }
     if(services.is_current_application_state()){
         if(services.hud_enabled())services.update_loaded_hud(elapsed);
         else services.synchronize_selected_camera_direction();

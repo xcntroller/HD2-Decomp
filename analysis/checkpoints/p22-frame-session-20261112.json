@@ -1,0 +1,360 @@
+{
+  "date": "2026-11-12",
+  "branch": "feature/p22-frame",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-frame",
+  "fetched_sha": "05dbdee51cc366476317011b91b1a1863041dcee",
+  "actual_implementation_base": "05dbdee51cc366476317011b91b1a1863041dcee",
+  "source_only": true,
+  "frame_source_complete": false,
+  "independent_frame_work_complete": false,
+  "continuing": "Runtime11/embedded rigid-body positive boundary and available concrete Runtime bindings; not stopping at UI dependency.",
+  "application_loading_enabled": false,
+  "original_code_executed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "unmerged_dependencies": {
+    "render": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+    "ui_inspected": "74220d455a58354aec9c3e728cda4247a2a48f79"
+  },
+  "original_client": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "bytes": 6889472
+  },
+  "reused_original_metadata": {
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/game-state-frame-coordination/0069a560.json": {
+      "sha256": "34aec112736e589c7f8f73a7e80bea8f3a13b91eae494358422e20a4c7787164",
+      "bytes": 34427
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/game-state-frame-coordination/0069af10.json": {
+      "sha256": "9fe48b77d005bcf868cd887b7013b2c6a8824b4828410a11825b3d5b5a7e28aa",
+      "bytes": 19614
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/game-state-frame-coordination/0069b230.json": {
+      "sha256": "38123013f07ee7e86258812149c1b9d1d3603a7f54a7f9585c60ca6c578b2638",
+      "bytes": 31161
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/players-control-selection-completion/0045ef00.json": {
+      "sha256": "2b7571ddfd878a8857d6678753741b43dcdd74343bbeb6f025608b437a334312",
+      "bytes": 6325
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-hud-first-person-required/005a9720.json": {
+      "sha256": "4f3487c5177d35ef8d3a4f10ddc1a4a9f5f3e656dadffc709f7a489102f5064f",
+      "bytes": 1567
+    }
+  },
+  "frozen_client_inventory": {
+    "sha256": "ae9a1cc1687bd8b471aee634e8977df63c1f4a9a4568842cd6bcf6ee9d5b61ad",
+    "bytes": 6291591
+  },
+  "new_partial_client_entries": [
+    "0069a500",
+    "0045e380",
+    "0045ef00",
+    "005a9720",
+    "004dd090"
+  ],
+  "expanded_partial_entries": [
+    "0069a560",
+    "0069af10",
+    "0069b230"
+  ],
+  "complete_promotions": 0,
+  "no_credit_absent": [
+    "0045dd90",
+    "0045ddc0",
+    "004c8ee0",
+    "004c9480"
+  ],
+  "no_credit_research_or_preserved_RET": [
+    "004c9000",
+    "005b7ec0",
+    "0049b7c0"
+  ],
+  "ledger_counts": {
+    "client": {
+      "complete": 34,
+      "partial": 2607
+    },
+    "engine": {
+      "complete": 0,
+      "partial": 5
+    }
+  },
+  "ledger_fingerprint": {
+    "sha256": "d9b818b8d68265da32bba4048394fc0c725bb0078d32c9261d5f3448b614125c",
+    "bytes": 2415280
+  },
+  "source_fingerprints": {
+    "recovered/game/human_player_control_loading.h": {
+      "sha256": "5e42b5d6fbe88372b9611445246e218f8e5720564618292ad23e02bfafb2e56d",
+      "bytes": 7677
+    },
+    "recovered/game/mission_script_world_loading.h": {
+      "sha256": "26a66b3fbcfc0242e049cae79f99f50e5a549848dc3f326c8ac040df810d1734",
+      "bytes": 5235
+    },
+    "recovered/game/player_control_frames.h": {
+      "sha256": "ba2e78c7558a93c42a3e421f833c21a82b2a81940a0c04dd94c72406eea3f0d8",
+      "bytes": 1594
+    },
+    "recovered/game/session_frame_input.h": {
+      "sha256": "7da1c08e5d342aea60a0fb65cbb674d057c78dcd675bfcf9dd689b672b6aec5f",
+      "bytes": 4608
+    },
+    "recovered/game/session_frame_loading.h": {
+      "sha256": "f27471a758b6b34c89ec2c78f4f3d4fedcd5c30cc474873c2f79fba9ae0771cf",
+      "bytes": 6965
+    },
+    "recovered/game/session_owner.h": {
+      "sha256": "66894e35031e5927149b15efacc29f757439024255a89a5cdd89bb1fbcfd255a",
+      "bytes": 11394
+    },
+    "recovered/game/session_selection.h": {
+      "sha256": "b64b239be87b24b2b5b7e3e3e04e4fd2eefb49ee25728158d3a96768e4a24ff2",
+      "bytes": 3035
+    },
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "9ed11b94082f45575626e169e8ea45f18f03674de576251a087ee587135824d6",
+      "bytes": 6135
+    },
+    "recovered/host/game_mission_module_frames.h": {
+      "sha256": "1586aa7a91374f52ed9b00dbfd057ff3369bdd5e6e6f2edbc0b746236bd0529f",
+      "bytes": 3221
+    },
+    "recovered/host/game_session_activation.h": {
+      "sha256": "5c3c238c7b7647ee549ba61ba10e7887601d8d771fa9e34c56e0148594990478",
+      "bytes": 9763
+    },
+    "recovered/host/game_session_frames.h": {
+      "sha256": "ac4dedd444743201aef0c372ebf08ffc6b3cd3e0e243facce31b7b4d0d832b61",
+      "bytes": 12337
+    },
+    "recovered/host/game_session_lifecycle.h": {
+      "sha256": "4c4679259c6f429bc34ea619846b721501d2e1c9d752124e1fa2aee291ce06ca",
+      "bytes": 8011
+    },
+    "recovered/host/game_world_loading.h": {
+      "sha256": "6abe0eb30b984e934a625f8da775c6aec7cd515d7b5d889d1def1d58e0d0f8d7",
+      "bytes": 26689
+    }
+  },
+  "verification": {
+    "native_policies": "PASS ASan/UBSan/LSan:100 actual session input +100 actual Players control lifetimes, positive/timer/gate/neutral pointer/NaN/objective/side-effect/error-prefix/retry and real application frame ordering; actual wheel/triangle/shape/dynamic descriptors and live flags. UI/controller/engine endpoints explicitly doubled.",
+    "native_lifecycle": "PASS ASan/UBSan/LSan: actual GameSessionLifecycle header100 lifetimes, construction/retry/single publication/forward/retire/rebind/failed finish/rollback-primary. World/Frame/UI/platform endpoints explicitly doubled; does not execute native Windows World.",
+    "i386": "PASS strict C++17 Werror actual full World construction + GameSessionFrames + both module passes + actual physics/camera/Scene/Players/model/dubbing/text/Car/particles/DATA + lifecycle bind/forward/retire compile and link. Required UI/Runtime receivers use defined throwing boundary doubles, no production or successful endpoint claim. Not executed.",
+    "application": "PASS existing sequential make application-launch compile/link after final core source. Not executed.",
+    "tracker": "Focused PASS: frozen inventories/baseline, ledger uniqueness, five new internal/non-thunk partial entries/evidence and three existing partial coverage expansions. Full --render blocked by pre-existing0062D880 missing ignored rule-refresh.asm evidence. README progress intentionally not regenerated.",
+    "diff_check": "PASS",
+    "ghidra": "Read-only/transaction rollback original4C9000 and5B7EC0 exports PASS. First attempt failed creating output directory because analysis/work parent did not exist; created parent and retried. No program change persisted."
+  },
+  "remaining": [
+    "Full Runtime consumer binding including embedded RigidBody24/positive integration and live contacts.",
+    "Actual Human/Player mapping, DD0/B0/action/fire/formation/Dog/occupied and PACK producers where unavailable; see runtime-required.json for exact consumers.",
+    "Unmerged positive UI/HUD/FPV/control producers and source receivers.",
+    "OWN actual controller identity/state-request/activation forwarding, VM cutscene and non7 integration.",
+    "Later original engine-selected resources/populations/positive runtime branches and authorized user desktop acceptance."
+  ],
+  "artifacts": {
+    "analysis/work/p22-frame-session-20261112/application.log": {
+      "sha256": "fd8e8cf22aebcba1d0922c14b3919e98ee34a223f6c3c48c2c164935f5435fb5",
+      "bytes": 613,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/car-surface.asm": {
+      "sha256": "915e0b8b8e93af10710eea94b76056c28d8f2474cf27001ecc6ce5681a6ca18c",
+      "bytes": 1162,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/control-flags.asm": {
+      "sha256": "75cb8ceed9676ff68cb1c2746d99a5322ecb282768a2957fd3da1b4697582b0f",
+      "bytes": 5205,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/control-wrappers.asm": {
+      "sha256": "207a06f0f2f9cdb8e562cd55ff78faeae66767676ee28d74f31453f8249b59d9",
+      "bytes": 1795,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/hud-show-RET.asm": {
+      "sha256": "54570b766c8dfa65603ca78bdb923fac868600d0cdf89408ec4a74c477876415",
+      "bytes": 161,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/human-surface.asm": {
+      "sha256": "efd5c08cdde0b65f5a9abd88787bbf066c5fd88e1f43abbe25cc216b33b45ecb",
+      "bytes": 895,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/native-lifecycle-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/native-lifecycle.log": {
+      "sha256": "75e0d23d288af655df66d003f175a98ad73acaea1706fad56c8c70a6df50c99c",
+      "bytes": 324,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/native-policy-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/native-policy.log": {
+      "sha256": "4eb43be837eb6e2b15ee7f81377b4c48b6e135e2ebc54138e0a78c3622c43db6",
+      "bytes": 404,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/rigid-substeps.asm": {
+      "sha256": "8da102fdeee27145a85dc70e4e9e97be1097ffe1b6771fa4cebaf52aaef41f7d",
+      "bytes": 4608,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/rigidbody-export-initial.log": {
+      "sha256": "4bedc87abac738421e3006ba01afb02d428538bb478055b33d725ae0731cef84",
+      "bytes": 6374,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/rigidbody-export.log": {
+      "sha256": "9c83d1555fe8e3ab7e5c4fc2239cf51e2d0f8f66dc5f1ed65e322ff45329ad02",
+      "bytes": 4505,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/runtime-required.json": {
+      "sha256": "9b37e65eca1411da5fab744ca3fb31ec07df3271317d7c0b26a08dbb24464fe1",
+      "bytes": 21489,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/session-exit.asm": {
+      "sha256": "b5633893994dd1ad1970d04857839d5c791e2d8a6da64923ed42dffa6cc427a5",
+      "bytes": 1340,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/session-fixed.asm": {
+      "sha256": "d441120f89f12d05573e3bba128c0d08e0df6bc19185c91cad0965927e42787b",
+      "bytes": 12799,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/session-input.asm": {
+      "sha256": "333baf796758322de644f6ea3d0691751d58fbce42419aa2e8e6ef71303e2f28",
+      "bytes": 18935,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/session-variable.asm": {
+      "sha256": "c12e55211b65ce0dd05da2247ee87c52519434e5f519073b17804867331365ed",
+      "bytes": 25456,
+      "retained": true
+    },
+    "analysis/work/p22-frame-rigidbody-20261111/004c9000.c": {
+      "sha256": "563f32a4bb1ea0edb0402a37abdf5f3b42ee54f891189842f66c5ac4395d3d00",
+      "bytes": 6790,
+      "retained": true
+    },
+    "analysis/work/p22-frame-rigidbody-20261111/004c9000.json": {
+      "sha256": "374a61975c828751efdc5d689ee2b26e2acfb565fdc11fe4a8eae410f5abcc60",
+      "bytes": 10592,
+      "retained": true
+    },
+    "analysis/work/p22-frame-rigidbody-20261111/005b7ec0.c": {
+      "sha256": "b3f64ec12ff4c28a9e47713379c6036586974c6750cc7beaa3130a9ed81b260d",
+      "bytes": 1494,
+      "retained": true
+    },
+    "analysis/work/p22-frame-rigidbody-20261111/005b7ec0.json": {
+      "sha256": "55b60dc225b76d23585ef887ac5131746047ece759d4e3caf5f7b2e49e0820c1",
+      "bytes": 5512,
+      "retained": true
+    },
+    "/tmp/p22-frame-header-i386.cpp": {
+      "sha256": "e6722621c4f7c328a8842870fc524f6442da2f2ed461404806cfb28a5ec19897",
+      "bytes": 101,
+      "retained": false
+    },
+    "/tmp/p22-frame-discover-i386.cpp": {
+      "sha256": "6f212514139c2f938030150075dc2d331b09b28e75c34ac955082a176de9e555",
+      "bytes": 222,
+      "retained": false
+    },
+    "/tmp/p22-frame-discover-i386.log": {
+      "sha256": "af110caacb5fdac09736f8e017e5d9a273fa504c83445818c64febd32e9fb6ab",
+      "bytes": 814099,
+      "retained": false
+    },
+    "/tmp/p22-frame-concrete-i386.cpp": {
+      "sha256": "0dda2812c543aab9a27c7f29533a785c72e7fffa4d4546f254db8d7caf0f5a1d",
+      "bytes": 13276,
+      "retained": false
+    },
+    "/tmp/p22-frame-concrete-i386.o": {
+      "sha256": "4e07d4af1517131990f04de444a71c5d6553382ab48bb1c73039d4a154177f90",
+      "bytes": 17318800,
+      "retained": false
+    },
+    "/tmp/p22-frame-concrete-i386.exe": {
+      "sha256": "cd87557ae3d86bb6721f8aa68696f661053dc78cbcdd1f47da5613ec8c3079fa",
+      "bytes": 10654720,
+      "retained": false
+    },
+    "/tmp/p22-frame-policy-native.cpp": {
+      "sha256": "016cb17c3cc988e750acd74640643aa900da3a84a3af758e551df85eef0280d0",
+      "bytes": 17176,
+      "retained": false
+    },
+    "/tmp/p22-frame-policy-native": {
+      "sha256": "5e4da8d7abcaf8450a3c1d501921c69574ceb6c22fc5f4e0b40b95f90cc4707d",
+      "bytes": 2830672,
+      "retained": false
+    },
+    "/tmp/p22-frame-life-native.cpp": {
+      "sha256": "0e5bd1d2f90fa6e6606040a66c05f56632238f74eec0ed41c0bc824df9f52139",
+      "bytes": 3026,
+      "retained": false
+    },
+    "/tmp/p22-frame-life-native": {
+      "sha256": "2581eb6b3ecf6e76a36e10c4a432af139ccdce9f2a2c7fb573e0312b159da864",
+      "bytes": 1320896,
+      "retained": false
+    },
+    "/tmp/p22-frame-life-stubs/host/game_session_frames.h": {
+      "sha256": "71e39f1ecada47febb62de15eb25d0aeb62a377d4fd2c3b377fba350659349aa",
+      "bytes": 35,
+      "retained": false
+    },
+    "/tmp/p22-frame-life-stubs/host/game_ui_presentation.h": {
+      "sha256": "71e39f1ecada47febb62de15eb25d0aeb62a377d4fd2c3b377fba350659349aa",
+      "bytes": 35,
+      "retained": false
+    },
+    "/tmp/p22-frame-life-stubs/host/game_blast_waves.h": {
+      "sha256": "71e39f1ecada47febb62de15eb25d0aeb62a377d4fd2c3b377fba350659349aa",
+      "bytes": 35,
+      "retained": false
+    },
+    "/tmp/p22-frame-life-stubs/host/frame_boundaries.h": {
+      "sha256": "a1bf5d42e7b6e1963c9370d0002a0bec1cd443be2998bd8ad7aea9921e3ba84b",
+      "bytes": 5359,
+      "retained": false
+    },
+    "/tmp/p22-frame-ghidra/ExportFrameRigidBody.java": {
+      "sha256": "76077d0df87f26b60309f97d708b9e9032e2df788314663d7fb6cfb3fc0e486f",
+      "bytes": 1266,
+      "retained": false
+    },
+    "analysis/work/p22-frame-session-20261112/tracker.log": {
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109,
+      "retained": true
+    },
+    "analysis/work/p22-frame-session-20261112/ledger-focused.log": {
+      "sha256": "46a7ebf420deef45c13937c210125da0acb05c3bb2513efbe3db107001887668",
+      "bytes": 268,
+      "retained": true
+    }
+  }
+}

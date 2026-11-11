@@ -14,6 +14,7 @@ public:
     using Actor=GameSceneActors::Instance;using Descriptor=world_loading::Scene::Descriptor;
     explicit GameBlastWaves(world_loading::Owners& owners):d_(owners.dependencies()),
         points_(d_.scene.buckets(),d_.scene.frames()){}
+    const auto& dependencies()const noexcept{return d_;} //Borrow identity for the containing FRAME adapter.
     bool create(const Process::Request& request){require_loaded();return d_.startup.blast_wave_process().create(request,*this);}
     void update(std::uint32_t elapsed){require_loaded();d_.startup.blast_wave_process().update(elapsed,*this);}
     void clear_all_shared_records()override{d_.startup.blast_wave_process().clear();} //006DF390(0,true), including positive linked records.
