@@ -84,6 +84,7 @@ public:
         if(state_.template get<std::int32_t>(0x1d4)==mode)return;
         control.working_mode(mode);state_.set(0x1d4,mode);
     }
+    bool scene_movement_enabled()const override{return false;} //005A42A0.
     std::uint32_t derived_loading_word(unsigned offset)const override {
         if(offset==0x1d2)return state_.template get<std::uint8_t>(offset); //005A5D30, shared actual suspension byte.
         if(offset!=0x1b0)throw std::runtime_error("Unrecovered script AI handover word");

@@ -94,6 +94,9 @@ public:
         if(!services_.player_knows_enemy(actor))services_.queue_active_ai_speech(*this,0x60u,1,2000,0);
     }
     void sight_dead_acquired(Human& actor)override{(void)services_.player_knows_enemy(actor);} //0052E6D0; NO common dead event.
+    bool scene_movement_enabled()const override{ //00532880.
+        return !(state_.template get<std::uint32_t>(0x174)&1u)&&AI::scene_movement_enabled();
+    }
     std::uint32_t derived_loading_word(unsigned offset)const override {
         if(offset!=0x174&&offset!=0x1d8)throw std::runtime_error("Unrecovered active AI handover word");
         if(offset==0x1d8&&!action_mode_)throw std::runtime_error("Active AI action mode has no native initializer");

@@ -135,6 +135,7 @@ public:
     Direction& direction(){return required(direction_);}Target& target(){return required(target_);}
     const Direction& direction()const{return required(direction_);}
     HumanAIFlagLoading& flag(){return required(flag_);}HumanAIQueryLoading& query(){return required(query_);}
+    const HumanAIQueryLoading& query()const{return required(query_);}
     HumanAIPathLoading& path(){return required(path_);}auto& state(){return state_;}const auto& state()const{return state_;}
     Actor* aimed_actor()const{return aimed_actor_;}
     Actor* selected_actor()const{return selected_actor_;}

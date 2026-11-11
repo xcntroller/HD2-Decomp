@@ -76,7 +76,10 @@ public:
         default:throw std::runtime_error("Unrecovered Human B0 close dispatch");
         }
     }
-    void publish_human_state(Human& human,Base* state)noexcept{human.loading_state=state;}
+    void publish_human_state(Human& human,Base* state)noexcept{
+        if(human.scene_movement)human.scene_movement->path=nullptr; //E0 borrows the retiring B0's vector.
+        human.loading_state=state;
+    }
     template<class Queries>bool advance_guard_or_area_frame(Base& state,bool authority,std::uint32_t elapsed,Queries& queries){
         const auto kind=state.words().template get<std::uint32_t>(0x48);
         if(kind!=4&&kind!=8)throw std::logic_error("Guard or Area frame requires its actual B0 state");

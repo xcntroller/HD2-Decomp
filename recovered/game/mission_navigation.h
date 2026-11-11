@@ -139,6 +139,7 @@ public:
         if(!table_.records4)throw std::runtime_error("Navigation table has no records");
         return static_cast<MissionTableRecord*>(table_.records4)+index;
     }
+    auto& movement_floor_candidates(){return movement_floor_candidates_;}
     std::uint16_t index_of(const MissionTableRecord& point)const{
         //The reference comes from this table's actual A4/record() borrower.
         return static_cast<std::uint16_t>(&point-record(0));
@@ -432,6 +433,7 @@ private:
         for(auto i=static_cast<std::int32_t>(pivot)-1;i>=0;--i)if(!visit(static_cast<std::uint32_t>(i)))break;
     }
     MissionTableSet& table_;
+    std::vector<MissionTableRecord*> movement_floor_candidates_; //00569890's retained navigation search buffer.
 };
 
 } //namespace hd2::game

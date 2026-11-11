@@ -39,6 +39,7 @@
 #include "game/human_ai_action_pool.h"
 #include "game/human_ai_navigation_jobs.h"
 #include "game/human_frame_inputs.h"
+#include "game/human_scene_movement.h"
 #include "game/actor_proximity_loading.h"
 #include "game/car_seat_camera.h"
 #include "game/car_definition_tables.h"
@@ -233,6 +234,7 @@ public:
     game::HumanAIFrameInputs& human_ai_frame_inputs(){return human_ai_frame_inputs_;}
     game::HumanAIActionPools& human_ai_action_pools(){return human_ai_actions_;}
     game::HumanAINavigationJobPool& human_ai_navigation_jobs(){return human_ai_navigation_jobs_;}
+    auto& human_scene_movement_process(){return human_scene_movement_process_;} //008AADD0, shared by Scene2 owners.
     auto& human_perception_record_pool(){return human_perception_records_;}
     auto& actor_proximity_state(){return actor_proximity_;} //Actual process008AED54, preserves bucket timers across world clear.
     EngineFrame*& car_loading_scene(){return car_loading_scene_;} //0089C0C0 borrowed engine scene,006D3F20 publication.
@@ -725,6 +727,8 @@ private:
     game::ItemHandModels<GameActorServices> item_hand_models_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanAIFrameInputs human_ai_frame_inputs_;
+    game::HumanSceneMovementProcess<GameSceneActors::Instance,GameSceneActors::Human,
+        game::CarSceneActor<GameActorServices>> human_scene_movement_process_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIActionPools human_ai_actions_;
     game::HumanAINavigationJobPool human_ai_navigation_jobs_;

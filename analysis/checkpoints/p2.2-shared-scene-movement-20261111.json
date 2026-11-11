@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "previous_checkpoint": "33ca2d7",
+  "added_entries": [
+    "00475d50",
+    "005647c0",
+    "00564ef0",
+    "005653c0",
+    "00565540",
+    "005656e0",
+    "00565f30",
+    "00566130",
+    "00566e50",
+    "00567ab0",
+    "00567ba0",
+    "00567c80",
+    "00567df0",
+    "00568190",
+    "00568580",
+    "00568dc0",
+    "00569530",
+    "00569890",
+    "0056a0f0",
+    "0056be90",
+    "005a45c0",
+    "005a5c70",
+    "005aa7b0",
+    "005ae230",
+    "005ac210"
+  ],
+  "ledger_added_partial_client": 25,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2242,
+  "checks": {
+    "native_scene_movement": "PASS (ASan/UBSan/LSan)",
+    "actual_host_i386": "PASS (strict compile)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/frame-shared-movement-native.cpp": {
+      "sha256": "b733932d7a9315791ac2d6176abbe2a28b3795bac2150c615ae7ed06b705a48d",
+      "bytes": 7995,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-native": {
+      "sha256": "ef87dcc6a7e61ef40ab3386bd57698343a3c7559c9649aa213f764e3b7206d93",
+      "bytes": 1848904,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-host.cpp": {
+      "sha256": "517e71ac9c03a10a89d6fec85653b6a1f0473aeb263d1fa25ee11c4eae33ed85",
+      "bytes": 455,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-host.o": {
+      "sha256": "009769acee941b0672860862adfe5022df745dfb04fe5cbd10b7672c38fa8e11",
+      "bytes": 641169,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-native.log": {
+      "sha256": "6a3074f158d13d82c20c0b7481d77581d0d4b4926cc9b7f475815cad7cc40fa2",
+      "bytes": 139,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-host.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/005647c0.c": {
+      "sha256": "2a7e268121dc6b2f79089f0621723b7924ebb52abc6f986f6d63b6e326b135e0",
+      "bytes": 9902,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement/005656e0.c": {
+      "sha256": "786b0d8e4afd7934d35e4a2e4800d6a3eaefd692ad92c57ed37108475ae31e43",
+      "bytes": 11283,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement/00566130.c": {
+      "sha256": "d1820344838e5026b700768a638e3287ffac82db5f54cb3ac55d611409dda73b",
+      "bytes": 13132,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement/00568580.c": {
+      "sha256": "89363f0b5a60d21cbeee9599095afa135f446c8bd81a2c70b4636df9e8e3bcbc",
+      "bytes": 7004,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-path/00568190.c": {
+      "sha256": "1bb4509e495ab9f0bd99414a5d57e4ccb1b6d60ed9ffa52891042563e429abf5",
+      "bytes": 3521,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-path/00569890.c": {
+      "sha256": "359adb322a79c0ce0283f66797622e464b93b86c8e726d1ee7fa42295699bb23",
+      "bytes": 8241,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-path/0056a0f0.c": {
+      "sha256": "7c625e123f92221cef16f16063536e02320c84f39156041567a6880826ec05d9",
+      "bytes": 10453,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-volume/00567df0.c": {
+      "sha256": "fd76d352f973dbfbac1bfb267564a56bef0bde60c4e32ec5af5fb1c2e14e333f",
+      "bytes": 4108,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-volume/0056be90.c": {
+      "sha256": "f4af26029aa77b2d4b61699c29356b05fc4796075dfd058ce56b48d26b59f0f6",
+      "bytes": 6026,
+      "retained": true
+    }
+  }
+}

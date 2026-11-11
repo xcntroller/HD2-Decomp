@@ -138,6 +138,15 @@ public:
         identity_count_=32;active_.clear();toggles_.clear();generations_.fill(0xff);clearing_=false;
     }
     Actor* identity(std::size_t index) const {return index<identity_count_?identities_[index]:nullptr;}
+    Actor* command_identity(std::int32_t index)const { //00475D50.
+        if(index<0||static_cast<std::size_t>(index)>=identity_count_)return nullptr;
+        auto* current=identities_[static_cast<std::size_t>(index)];
+        if(!current&&index<32)for(auto n=pending_.size();n;){
+            auto* actor=pending_[--n].record.owner.get();
+            if(actor&&actor->base().id10()==index)return actor;
+        }
+        return current;
+    }
     Actor* human_identity(std::int32_t index)const { //00475E00; bounds BEFORE pending lookup, unlike ordinary00475DD0.
         if(index<0||static_cast<std::size_t>(index)>=identity_count_)return nullptr;
         if(auto* actor=identities_[static_cast<std::size_t>(index)];actor&&actor->base().type()==3)return actor;

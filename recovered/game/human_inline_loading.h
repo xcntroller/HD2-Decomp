@@ -95,6 +95,10 @@ public:
         if(!look_)throw std::logic_error("Human frame movement mode requires actual live E0");
         return look_->state().template get<std::uint32_t>(0x50);
     }
+    std::uint32_t frame_posture_mode()const{ //005AC210, actual E0+4C.
+        if(!look_)throw std::logic_error("Human frame posture requires actual live E0");
+        return look_->state().template get<std::uint32_t>(0x4c);
+    }
     std::uint32_t frame_navigation_control_mode()const{ //005AC3F0.
         if(!control_)throw std::logic_error("Human navigation requires actual live DD0");
         return control_->physical().state().template get<std::uint32_t>(0x22c)&7u;

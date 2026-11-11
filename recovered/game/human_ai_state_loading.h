@@ -81,6 +81,11 @@ public:
     HumanVector target_direction()const override{return resources_.direction().state().template get<HumanVector>(0x10);} //0056FC00.
     bool aims_at_human(const Human& target)const override{return resources_.aimed_actor()==&target;}
     bool selected_hostile_is(const Human& target)const override{return resources_.selected_actor()==&target;} //00524DD0.
+    std::vector<HumanAINavigationJobPool::Lease>* scene_navigation_jobs()override{return &resources_.navigation_jobs();} //00524DC0.
+    bool scene_movement_enabled()const override{return !(this->words().template get<std::uint32_t>(0x50)&1u);} //00589290.
+    bool scene_movement_interaction()const override{ //00524DE0.
+        return (resources_.query().state.template get<std::uint32_t>(0x50)&0x30u)!=0;
+    }
     bool bound()const{return bound_;}
     template<class Queries>void advance_frame_timers(std::uint32_t elapsed,Queries& queries){
         advance_human_ai_frame_timers(resources_.state(),elapsed);Base::advance_frame_timers(elapsed,queries); //00571680→00588010.

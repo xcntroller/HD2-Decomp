@@ -17,6 +17,7 @@ namespace hd2::frontend {struct HumanRecord;}
 
 namespace hd2::game {
 struct SpeechDefinition;
+struct MissionTableRecord;
 
 //0059BF00's two aligned cold control allocations. These types intentionally
 //expose actual typed AI-event queues only after binding the process pool.
@@ -48,17 +49,29 @@ struct alignas(16) HumanSceneMovementState {
     explicit HumanSceneMovementState(Actor* actor) : owner(actor) {}
     Actor* owner;
     std::array<float,3> steering{};
-    std::array<std::uint32_t,3> position20{},direction40{};
-    //The E0/EC/F0 borrowers are cleared here. Their populated types and
-    //producers belong to the shared movement pass.
-    std::uint32_t fielde0=0,fieldec=0,fieldf0=0,field100=0xffffffffu;
+    HumanVector position20{},velocity30{},direction40{},origin50{},target60{};
+    HumanVector previous70{},previous80{};
+    HumanVector side90{},upA0{},forwardB0{},centreC0{};
+    std::array<float,3> radiiD0{};
+    float speedDC=0;
+    std::vector<HumanAINavigationJobPool::Lease>* path=nullptr; //E0 borrows the actual B0+F4 vector owner.
+    MissionTableRecord* target_record=nullptr; //EC.
+    MissionTableRecord* floor_record=nullptr; //F0.
+    MissionTableRecord* projected_floor=nullptr; //F4.
+    std::uint32_t field100=0xffffffffu;
     std::uint16_t fielde4=0;
-    std::uint32_t field70=0x7fc00000,field80=0x7fc00000;
-    bool flag10=false,flag104=true,flag105=true,flag106=true,flag109=false,flag10a=false;
+    std::uint16_t path_deadline=0;
+    float path_distance=0;
+    bool flag10=false,flag104=true,flag105=true,flag106=true,flag107=false,flag108=false,flag109=false;
+    std::uint8_t flag10a=0;
     void reset_loading(Actor& actor) { //0059F2C0 tail.
-        owner=&actor;fielde0=fieldec=fieldf0=0;fielde4=0;flag104=true;field100=0xffffffffu;
-        steering.fill(0);position20.fill(0);direction40.fill(0);flag10=flag109=flag10a=false;
-        flag105=flag106=true;field70=field80=0x7fc00000u;
+        owner=&actor;path=nullptr;target_record=floor_record=projected_floor=nullptr;
+        fielde4=0;flag104=true;field100=0xffffffffu;
+        steering.fill(0);position20.fill(0);direction40.fill(0);
+        flag10=flag109=false;flag10a=0;flag105=flag106=true;
+        const std::uint32_t unwritten=0x7fc00000u;
+        std::memcpy(&previous70[0],&unwritten,sizeof unwritten);
+        std::memcpy(&previous80[0],&unwritten,sizeof unwritten);
     }
 };
 

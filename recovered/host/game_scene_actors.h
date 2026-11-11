@@ -104,6 +104,7 @@ public:
         return id<0?nullptr:actors_.identity(static_cast<std::size_t>(id));
     }
     std::size_t scene_actor_identity_count()const{return actors_.identity_count();}
+    Instance* scene_actor_command_identity(std::int32_t id)const{return actors_.command_identity(id);} //00475D50.
     template<class Services>void tick_scene_actors(bool authority,std::uint32_t elapsed,Services& services){
         game::tick_scene_actor_registry(actors_,authority,elapsed,services);
     }
