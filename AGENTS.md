@@ -17,6 +17,14 @@ When instructed to continue:
    from analysis documents. Keep plan checklist entries short.
 9. Continue after dependencies/checkpoints until the selected full checkbox is done or blocked.
 
+## Research lookup
+
+- Before new exports, use `python3 -B tools/research_index.py find ADDRESS...`
+  to locate existing source, contracts, assembly and C/ABI export variants.
+  Batch related addresses; use `search` and `neighbors` for focused follow-up.
+  [Usage and scope](tools/research-index.md). Review candidate provenance and
+  differing versions; indexed mentions do not establish equivalence or completion.
+
 ## Audit and Verification Policy
 
 1. Prioritize implementation progress while maintaining correctness and fidelity to the original game.
