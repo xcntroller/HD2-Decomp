@@ -3,6 +3,7 @@
 
 #include "game/human_animation_tracks.h"
 #include "game/human_opacity_control.h"
+#include "game/human_state_frame_timers.h"
 
 namespace hd2::game {
 
@@ -112,6 +113,58 @@ public:
             words_.set(0x20,std::int32_t{0});
             if(span>0)words_.set(0x24,ftol(static_cast<long double>(remaining)/span*100.f));
         }
+    }
+    bool synchronize_authority_position(const Vector& target){ //007599F0, CD0.
+        if((control_.mode_flags()&7u)==7u||control_.animation_authority_actor()){
+            words_.set(0xc4,words_.template get<std::uint32_t>(0xc4)&~2u);
+            set_position(target,true);
+        }
+        if(!words_.template get<std::uint8_t>(0xd0))return false;
+        const auto attachment=state(0xa34);
+        if(attachment!=0&&attachment!=1)return false;
+        const auto current=world_position();
+        const float x=std::abs(current[0]-target[0]),y=std::abs(current[1]-target[1]),z=std::abs(current[2]-target[2]);
+        return static_cast<long double>(z)+y+x>=.0005f; //0080FA00.
+    }
+    void present_position(std::uint32_t elapsed){ //007587F0→007585C0.
+        require_model();
+        const auto gate=words_.template get<std::uint32_t>(0xc4);
+        if(words_.template get<std::uint8_t>(0x60))words_.set(0xc8,std::uint8_t{0});
+        else if(gate)words_.set(0xc8,std::uint8_t{1});
+        words_.set(0x20,words_.template get<std::uint32_t>(0x20)+elapsed);
+        const auto attachment=state(0xa34);
+        if(words_.template get<std::uint8_t>(0xd0)||(attachment!=0&&attachment!=1)||!(state(0x18c)&0xff)){
+            words_.set(0x20,0u);
+            return;
+        }
+        const auto motion=state(0x1ac);
+        if((motion!=1&&(motion<6||motion>9))||words_.template get<std::uint8_t>(0xc8))return;
+        words_.set(0x60,std::uint8_t{0});
+        const auto timer=words_.template get<std::int32_t>(0x20);
+        const auto duration=words_.template get<std::int32_t>(0x24);
+        float fraction=1.f;
+        if(timer<duration)fraction=static_cast<float>(static_cast<long double>(timer)/duration);
+        else if(!gate){
+            auto continuation=words_.template get<Vector>(0xa0);
+            for(unsigned axis=0;axis!=3;++axis)continuation[axis]+=words_.template get<float>(0xb0+axis*4);
+            set_position(continuation,false);
+            words_.set(0x20,elapsed);
+            fraction=static_cast<float>(static_cast<long double>(human_frame_signed_word(elapsed))/words_.template get<std::int32_t>(0x24));
+        }else{
+            words_.set(0xc8,std::uint8_t{1});
+            words_.set(0x20,0u);
+        }
+        const auto current=world_position();
+        auto target=current;
+        const float complement=1.f-fraction;
+        for(unsigned axis=0;axis!=3;++axis){
+            const float end=fraction*words_.template get<float>(0xa0+axis*4);
+            target[axis]=static_cast<float>(static_cast<long double>(complement)*words_.template get<float>(0x80+axis*4)+end);
+        }
+        const long double x=static_cast<long double>(target[0])-current[0];
+        const long double y=static_cast<long double>(target[1])-current[1];
+        const long double z=static_cast<long double>(target[2])-current[2];
+        if((x*x+y*y)+z*z>1.e-7f)frames_.human_control_set_position(model_,target);
     }
     const auto& words() const{return words_;}
     Frame sector() const{return sector_;}

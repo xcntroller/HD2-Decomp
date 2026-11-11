@@ -568,6 +568,16 @@ public:
     float human_light_multiplier(Frame light) const {return field<float>(light,0x168);}
     std::uint32_t human_frame_epoch(Frame frame) const {return vertex_frame_epoch(frame);}
     std::uint32_t human_scene_epoch() const {return vertex_scene_epoch();}
+    bool human_control_visible(Frame frame)const{return (field<std::uint8_t>(frame,0xe0)&1u)!=0;}
+    void human_control_set_position(Frame frame,const Vector& position){ //007599F0.
+        call<void>(frame,0x08,position.data());
+        call<void>(scene_.frame(),0x144,frame);
+        update_scene_object(frame);
+    }
+    void human_control_set_direction(Frame frame,const Vector& direction,float roll){ //00759B80.
+        call<void>(frame,0x0c,direction.data(),roll);
+        update_scene_object(frame);
+    }
     Vector collision_sweep_rotate(const Vector& value,const Matrix& matrix) {
         Vector result{};
         using Rotate=Vector*(WINAPI*)(const void*,void*,const void*);

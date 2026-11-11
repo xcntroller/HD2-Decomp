@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_ACTION_CONTROL_H
 
 #include "game/human_joint_owners.h"
+#include "game/human_state_frame_timers.h"
 
 namespace hd2::game {
 
@@ -40,6 +41,10 @@ public:
     Movement* movement() const{return movement_;}Human* human() const{return human_;}
     Frame marker() const{return marker_;}
     const auto& state() const{return state_;}
+    void advance_presentation_timer(std::uint32_t elapsed){ //00787D50, DD0+C58.
+        const auto timer=state_.template get<std::uint32_t>(0x58);
+        if(human_frame_signed_word(timer)>0)state_.set(0x58,timer-elapsed);
+    }
     void reset_equipment_command(){state_.set(0x38,std::int32_t{-10000});state_.set(0x3c,std::uint32_t{0});}
 private:
     Control* owner_=nullptr;Links* links_=nullptr;Movement* movement_=nullptr;Human* human_=nullptr;

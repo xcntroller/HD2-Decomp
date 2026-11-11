@@ -67,7 +67,7 @@ public:
         if(!callbacks)throw std::logic_error("Activation requires SAME actual Car callback pool");return *callbacks;
     }
     void clear_game_queues(){backend_.clear_game_queues();}
-    void rebuild_session_world_bounds(){bounds_.rebuild(d_.scene.frames(),input_);}
+    void rebuild_session_world_bounds(){d_.bounds.rebuild(d_.scene.frames(),input_);}
     auto& mission_light_visibility(){return lights_;}
     bool human_face_loading_enabled(){return startup_.human_face_quality_enabled();}
     auto& human_faces(){return d_.faces;}
@@ -113,13 +113,13 @@ public:
     void clear_car_particle_pool(){car_particles().clear_particles();}
     void clear_human_face_resources(){d_.faces.clear();}
     void clear_shared_finish_resources(){transients_.get().clear_all_shared_records();} //Required containing process receiver; no successful default.
-    auto& world_bounds(){return bounds_;}
+    auto& world_bounds(){return d_.bounds;}
 private:
     GameMissionLoadingSession& loading_;Parent& parent_;GameOwnerBackend& backend_;StartupSession& startup_;
     Graphics& graphics_;FrameClockPlatform& clock_;game::SessionActivationState& session_;Controller* controller_;
     world_loading::Dependencies& d_;GameLoadingQueries queries_;game::SessionSelection selection_;InputBinding input_;
     game::WorldLoadingDependencyLink<GameSessionTransientFinish> transients_;
-    game::MissionWorldBounds bounds_;game::MissionLightVisibility<GameActorServices> lights_;GamePreparedHumanLoading prepared_;
+    game::MissionLightVisibility<GameActorServices> lights_;GamePreparedHumanLoading prepared_;
 };
 } //namespace hd2::host
 #endif

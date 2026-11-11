@@ -206,6 +206,31 @@ public:
     std::uint32_t consume_frame_feedback(){ //005AC0D0, EAX returns OLD CC before clearing one-shot bits.
         const auto flags=state_.template get<std::uint32_t>(0xcc);state_.set(0xcc,flags&0xfffd0fefu);return flags;
     }
+    void begin_control_frame(std::uint32_t animation){ //00787270, after the actual model-geometry prepare.
+        state_.set(0xc8,0u);
+        state_.set(0xcc,(state_.template get<std::uint32_t>(0x5c)==1?0x40u:0u)|(animation==0x4a?0x10000u:0u));
+        state_.set(0xd8,0u);
+    }
+    template<class Publish>void advance_timed_posture(std::uint32_t elapsed,Publish& publish){ //0077FCE0/0077FC70.
+        const auto timer=state_.template get<std::int32_t>(0xbc);
+        if(timer==-10000)return;
+        const auto remaining=static_cast<std::uint32_t>(timer)-elapsed;
+        state_.set(0xbc,remaining);
+        if(remaining&0x80000000u)schedule_frame_posture(-10000,state_.template get<std::uint32_t>(0xc4),publish);
+    }
+    template<class Publish>void schedule_frame_posture(std::int32_t delay,std::uint32_t posture,Publish& publish){ //0077FC70.
+        if(delay!=-10000){
+            state_.set(0xbc,delay);
+            state_.set(0xc4,posture);
+            return;
+        }
+        state_.set(0xb0,std::uint8_t{1});
+        try{frame_posture(state_.template get<std::uint32_t>(0xc4),publish);}
+        catch(...){state_.set(0xb0,std::uint8_t{0});throw;}
+        defer(8);
+        state_.set(0xb0,std::uint8_t{0});state_.set(0xbc,std::int32_t{-10000});state_.set(0xc0,0u);
+    }
+    void clear_control_frame_commands(){state_.set(0x40,0u);}
 private:
     bool locked(std::uint32_t mask)const{return !state_.template get<std::uint8_t>(0xb0)&&((state_.template get<std::uint32_t>(0xd0)|state_.template get<std::uint32_t>(0xd4))&mask);}
     void defer(std::uint32_t mask){state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|mask);}

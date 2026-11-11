@@ -93,6 +93,16 @@ public:
     void resume_script_after_ai(Base& state){
         if(state.words().template get<std::uint32_t>(0x48)==5)static_cast<Script&>(state).resume_after_ai(control_);
     }
+    template<class Runtime>void advance_script_presentation(Base& state,std::uint32_t elapsed,Runtime& runtime){
+        if(state.words().template get<std::uint32_t>(0x48)!=5)
+            throw std::logic_error("Script presentation requires its actual B0 family");
+        static_cast<Script&>(state).advance_script_presentation(elapsed,services_,runtime);
+    }
+    template<class Queries,class Runtime>void advance_script_authority(Base& state,std::uint32_t elapsed,Queries& queries,Runtime& runtime){
+        if(state.words().template get<std::uint32_t>(0x48)!=5)
+            throw std::logic_error("Script authority requires its actual B0 family");
+        static_cast<Script&>(state).advance_script_authority(elapsed,queries,control_,services_,runtime);
+    }
     void reset_active_ai_orders(Base& state){
         if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Active AI reset requires state3");
         static_cast<Active&>(state).reset_orders_loading();

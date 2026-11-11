@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_CONTROL_LOADING_H
 
 #include "game/human_action_control.h"
+#include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
 #include "game/human_face_control.h"
 #include "game/human_model_geometry.h"
@@ -10,6 +11,8 @@
 #include "game/human_motion_state.h"
 #include "game/effects_shadow_models.h"
 #include "game/human_camera_amount.h"
+#include "game/human_ai_shot_direction.h"
+#include <cmath>
 #include <optional>
 
 namespace hd2::game {
@@ -155,7 +158,244 @@ public:
     }
     bool animation_authority_actor() const{return (mode_flags()&1u)&&human_->properties.field19c!=1;}
     void enable_animation_control(bool enabled){movement_.animation_control_delay(500);animation_.enable_control(enabled);} //007870D0.
+    template<class Look,class Sweep,class Runtime>void advance_control_frame(Look& look,Sweep& sweep,std::uint32_t elapsed,Runtime& runtime){ //00787270.
+        if(flag_dc4_)return;
+        if(!active_||!human_)throw std::logic_error("Human control update requires actual live DD0");
+        (void)frames_.actor_world_matrix(human_->base().frame());
+        const bool player=human_is_player();
+        auto& state=physical_.control_frame_words();
+        const auto physical_word=[&](unsigned offset){return state.template get<std::uint32_t>(offset);};
+        state.set(0x1c0,0u);state.set(0x760,std::uint8_t{0});
+        state.set(0x1d4,std::uint8_t{1});state.set(0x224,std::uint8_t{1});
+        state.set(0x1c0,0u-services_.human_control_microseconds());
+        const auto finish_clock=[&]{state.set(0x1c0,physical_word(0x1c0)+services_.human_control_microseconds());};
+        if(!physical_word(0x1ac)&&!physical_word(0x9c0)){
+            finish_clock();state.set(0x1d4,std::uint8_t{0});
+            if((geometry_.movement().field6304&0x200u)&&movement_.state().template get<float>(0x114)==-10000.099609375f)
+                runtime.update_inactive_human_obstruction(*this); //0074EA80 and the live geometry height gate.
+            return;
+        }
+        if(physical_word(0x22c)&8u){
+            finish_clock();state.set(0x1d4,std::uint8_t{0});return;
+        }
+        const auto look_word=[&](unsigned offset){return look.state().template get<std::uint32_t>(offset);};
+        if(!player&&look_word(0x4c)!=2&&look_word(0xb8)!=5)state.set(0x22c,physical_word(0x22c)|1u);
+        else physical_.clear_control_flags(1,look,sweep);
+        prepare_control_projection(look);
+        look.begin_control_frame(physical_word(0x1f4));
+        if(human_frame_signed_word(physical_word(0xa24))>1&&physical_word(0x1f4)==0x4b){
+            const auto remaining=physical_word(0xa24)-elapsed;
+            state.set(0xa24,human_frame_signed_word(remaining)<1?1u:remaining);
+        }
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        look.advance_timed_posture(elapsed,publish);
+        runtime.advance_human_control_actions(*this,elapsed); //0075F230.
+        runtime.apply_human_look_frame(*this,look,elapsed); //0077DE30.
+        const auto animation=physical_word(0x1d8);
+        if(!((animation>=0x29&&animation<=0x41)||(animation>=0x1e&&animation<=0x21)||
+             (animation>=0xa2&&animation<=0xa5))||state.template get<std::uint8_t>(0xa90)){
+            state.set(0x228,0u);movement_.control_frame_motion_mode(3);
+        }
+        if(human_frame_signed_word(physical_word(0x9ac))!=-10000){
+            const auto remaining=physical_word(0x9ac)-elapsed;
+            state.set(0x9ac,remaining);
+            if(human_frame_signed_word(remaining)<1){state.set(0x9ac,std::int32_t{-10000});state.set(0x228,std::int32_t{-500});}
+        }
+        if(human_frame_signed_word(physical_word(0xa28))>0){
+            const auto remaining=physical_word(0xa28)-elapsed;
+            state.set(0xa28,human_frame_signed_word(remaining)<0?0u:remaining);
+        }
+        if(physical_word(0x1ac)==1)runtime.advance_human_ground_frame(*this,elapsed); //007637D0.
+        runtime.advance_human_control_transitions(*this,elapsed); //007507A0.
+        runtime.advance_human_attachment_control(*this); //00779B30.
+        if(mode_flags()&2u)runtime.refresh_human_control_sector(*this); //0075C960/00789DB0/0075CAC0.
+        look.clear_control_frame_commands();
+        if(human_frame_signed_word(physical_word(0x980))>0){
+            const auto remaining=physical_word(0x980)-elapsed;
+            state.set(0x980,remaining);
+            if(human_frame_signed_word(remaining)<1){
+                if(human_frame_signed_word(physical_word(0x984))>0)runtime.retire_human_control_contacts(*this);
+                state.set(0x984,0u);
+            }
+        }
+        runtime.advance_human_control_motion(*this,elapsed); //00755500.
+        physical_.retire_frame_audio(mode_flags(),[&]{return services_.current_human_frame_player()==human_;},pool_->pool());
+        if(mode_flags()&1u){
+            if(look_word(0xb8)==5&&physical_word(0x764)==0x46)runtime.advance_human_motion_event(*this,0x46,elapsed);
+            else if(!state.template get<std::uint8_t>(0x760))runtime.advance_human_motion_event(*this,physical_word(0x75c),elapsed);
+            if(human_->base().world_position()[1]<static_cast<long double>(services_.human_control_world_floor())-5.f)
+                runtime.apply_human_floor_damage(*human_);
+        }
+        publish_control_frame_task(elapsed,runtime);
+        constexpr std::array<unsigned,4> periods{{200,300,400,600}};
+        for(unsigned n=0;n!=periods.size();++n){
+            const auto offset=0xa80+4*n,value=physical_word(offset);
+            if(value>=periods[n])state.set(offset,value-periods[n]);
+        }
+        const bool ordinary=!(physical_word(0x22c)&0x200u)||human_is_player()||physical_word(0x1ac)!=1;
+        const bool flag761=state.template get<std::uint8_t>(0x761)!=0;
+        const bool forced=!ordinary&&!flag761;
+        if(state.template get<std::uint8_t>(0x18c)&&
+           (static_cast<long double>(human_frame_signed_word(physical_word(0x228)))<=280.L/services_.human_control_animation_scale()||
+            (!forced&&flag761))){
+            if(forced)animation_.enable_control(true);
+            try{synchronize_control_position(human_->base().world_position());} //007599F0.
+            catch(...){if(forced)animation_.enable_control(false);throw;}
+            if(forced)animation_.enable_control(false);
+        }
+        finish_clock();
+        if(forced){
+            animation_.enable_control(true);
+            try{present_control_frame(look,elapsed,runtime);}
+            catch(...){animation_.enable_control(false);throw;}
+            animation_.enable_control(false);
+        }
+        const auto& tracks=tracks_.words();
+        const float speed=tracks.template get<float>(0x4a0-0x260),other=tracks.template get<float>(0x4c0-0x260);
+        auto vector=tracks.template get<HumanVector>((other<=speed?0x490u:0x4b0u)-0x260);
+        for(unsigned n=0;n!=3;++n)vector[n]*=other<=speed?speed:other;
+        movement_.control_frame_track_velocity(vector);
+        state.set(0x1d4,std::uint8_t{0});
+        if(human_frame_signed_word(field_dc8_)>0)--field_dc8_;
+    }
+    template<class Look,class Runtime>void present_control_frame(Look& look,std::uint32_t elapsed,Runtime& runtime){ //00787D50.
+        if(flag_dc4_)return;
+        if(!active_||!human_)throw std::logic_error("Human presentation requires actual live DD0");
+        auto& state=physical_.control_frame_words();
+        const auto word=[&](unsigned offset){return state.template get<std::uint32_t>(offset);};
+        if(!word(0x1ac)&&!word(0x9c0)){
+            state.set(0x1c4,0u);
+            runtime.present_human_control_geometry(*this,elapsed); //007A7470.
+            return;
+        }
+        if((mode_flags()&7u)!=7u&&!frames_.human_control_visible(human_->base().frame()))
+            runtime.refresh_nonoffline_human_visibility(*this);
+        const bool forced=state.template get<std::uint8_t>(0x1d4)!=0; //007881D0's same update without periodic/profiling work.
+        if(!forced){
+            for(unsigned offset:{0xa80u,0xa84u,0xa88u,0xa8cu})state.set(offset,word(offset)+elapsed);
+            if((word(0x22c)&0x200u)&&!human_is_player()&&word(0x1ac)==1)return;
+            state.set(0x1c4,0u-services_.human_control_microseconds());
+        }
+        const auto finish_clock=[&]{if(!forced)state.set(0x1c4,word(0x1c4)+services_.human_control_microseconds());};
+        if(word(0x1ac)!=1){
+            runtime.prepare_human_presentation_motion(*this,elapsed); //00772A00.
+            runtime.advance_human_ground_frame(*this,elapsed); //007637D0.
+        }
+        if(word(0x22c)&8u){
+            finish_clock();
+            return;
+        }
+        //0076DF10 is a genuine RET 4 in this client.
+        if(!human_is_player()){
+            runtime.advance_human_presentation_direction(*this,look.state().template get<HumanVector>(0x20),elapsed); //0076DB30.
+            const auto animation=human_frame_signed_word(word(0x1d8));
+            constexpr auto inactive=static_cast<std::uint32_t>(-10000);
+            if((animation<=8||animation>14)&&animation!=18&&(word(0x988)==inactive||word(0x998)!=inactive)){
+                movement_.advance_presentation_replay([&]{
+                    if(word(0x998)!=inactive){
+                        const auto remaining=word(0x998)-elapsed;
+                        state.set(0x998,human_frame_signed_word(remaining)<1?inactive:remaining);
+                    }
+                },[&]{return runtime.advance_human_presentation_replay(*this,elapsed);}); //0076CFE0(step,1).
+            }else movement_.cancel_presentation_replay();
+        }
+        if(state.template get<std::uint8_t>(0x18c))synchronize_presentation_direction(look,runtime);
+        animation_.present_position(elapsed); //007587F0→007585C0.
+        runtime.advance_human_presentation_effects(*this,elapsed); //00758830.
+        if(human_frame_signed_word(word(0x950))>0){
+            const auto remaining=word(0x950)-elapsed;
+            state.set(0x950,human_frame_signed_word(remaining)<0?0u:remaining);
+        }
+        action_.advance_presentation_timer(elapsed);
+        if(human_frame_signed_word(word(0xa94))<1000)state.set(0xa94,word(0xa94)+elapsed);
+        const auto ticks=word(0xa7c)+elapsed;
+        state.set(0xa7c,ticks>0xfffffc17u?0u:ticks);
+        finish_clock();
+        runtime.present_human_control_geometry(*this,elapsed); //007A7470.
+    }
 private:
+    template<class Look>void prepare_control_projection(const Look& look){ //00770100.
+        auto& state=physical_.control_frame_words();
+        auto flags=state.template get<std::uint32_t>(0x22c);
+        if(!(mode_flags()&2u)){
+            state.set(0x22c,flags|0x20u);
+            return;
+        }
+        const auto camera=frames_.active_game_camera();
+        if(!camera)throw std::logic_error("Human projection requires the actual active scene camera");
+        const auto model=frames_.actor_world_matrix(human_->base().frame());
+        const auto view=frames_.actor_world_matrix(camera);
+        const float x=model[12]-view[12],y=physical_.control_projection_height(model[13])-view[13],z=model[14]-view[14];
+        const auto square=static_cast<float>((static_cast<long double>(y)*y+static_cast<long double>(z)*z)+static_cast<long double>(x)*x);
+        constexpr float epsilon=1.e-8f; //0080F520 and the 322BCC77 cut at 00770292.
+        const float distance=square<epsilon?0.f:std::abs(static_cast<long double>(square)-1)<epsilon?1.f:std::sqrt(square);
+        const auto projection=frames_.vertex_camera_projection(camera);
+        const auto scale=physical_.control_camera_projection(services_.game_word28(),projection[0],projection[1]);
+        const float width=static_cast<float>(static_cast<long double>(scale)*distance*2.L);
+        const float size=1.7f/width; //008100A0. Native zero width compares as positive infinity.
+        constexpr float near_size=.15f; //0080FF04.
+        const bool visible_epoch=frames_.human_frame_epoch(human_->base().frame())==frames_.human_scene_epoch();
+        flags=(flags&0xffff102fu)|0x1020u;
+        if(services_.current_human_frame_player()==human_||state.template get<std::uint32_t>(0x1ac)!=1){
+            if(size>=near_size&&visible_epoch)flags|=0x10u;
+        }else{
+            const auto stance=look.state().template get<std::uint32_t>(0x50);
+            constexpr std::array<float,6> thresholds{{.035f,.025f,.018f,.03f,.03f,.0135f}};
+            const float threshold=stance<thresholds.size()?thresholds[stance]:.03f;
+            if(!visible_epoch||size<.0135f)flags=(flags&0xfffff10fu)|0x100u;
+            if(size>=near_size)flags|=0x10u;
+            else if(size<threshold)flags=(flags&~0x20u)|0x80u;
+            else if(size<.048f)flags=(flags&~0x20u)|0x40u;
+            if(!visible_epoch)flags|=0x200u;
+        }
+        if(width>25.f||distance>frames_.hud_camera_clips(camera)[1])flags=(flags&0xffff2fffu)|0x2000u;
+        state.set(0x22c,flags);
+    }
+    void synchronize_control_position(const HumanVector& position){ //007599F0.
+        if(!animation_.synchronize_authority_position(position))return;
+        physical_.invalidate_current_direction();
+        frames_.human_control_set_position(human_->base().frame(),position);
+    }
+    template<class Look,class Runtime>void synchronize_presentation_direction(const Look& look,Runtime& runtime){ //00759B80.
+        auto& state=physical_.control_frame_words();
+        const auto mode=state.template get<std::uint32_t>(0x1ac);
+        if(mode>2&&mode!=9&&state.template get<std::int32_t>(0x9cc)==-10000)return;
+        const auto model=human_->base().frame();
+        const auto matrix=frames_.actor_world_matrix(model);
+        HumanVector current{{matrix[8],matrix[9],matrix[10],matrix[11]}};
+        const float square=static_cast<float>((static_cast<long double>(current[0])*current[0]+
+            static_cast<long double>(current[2])*current[2])+static_cast<long double>(current[1])*current[1]);
+        normalize_human_ai_shot(current,square); //Same LS3DF zero/near-unit vector rule as the original here.
+        const auto& target=human_->base().world_direction();
+        const auto x=std::abs(current[0]-target[0]),y=std::abs(current[1]-target[1]),z=std::abs(current[2]-target[2]);
+        const auto roll=state.template get<float>(0x250);
+        if(state.template get<std::int32_t>(0xa44)>0||
+           (state.template get<float>(0x254)==roll&&static_cast<long double>(z)+y+x<.002f))return;
+        state.set(0x254,roll);
+        frames_.human_control_set_direction(model,target,roll);
+        if(look.state().template get<std::uint32_t>(0x4c)==2)runtime.refresh_prone_human_control(*this); //00763EC0(1).
+    }
+    void publish_control_frame_command(std::uint32_t command){ //005A5C90.
+        if(auto* state=services_.human_state_owner(*human_).get())state->publish_frame_command_flags(command);
+    }
+    template<class Runtime>void publish_control_frame_task(std::uint32_t elapsed,Runtime& runtime){
+        auto& state=physical_.control_frame_words();
+        const auto animation=state.template get<std::uint32_t>(0x1d8);
+        std::uint32_t task=0;
+        if((animation>=106&&animation<=108)||animation==8||animation==14)task=0x100000;
+        else if(animation>=8&&animation<=14)task=0x20000;
+        else if(animation==0x12||animation==0x17||animation==0x18)task=0x80000;
+        const auto height=movement_.state().template get<float>(0x114);
+        bool obstruction=false;
+        if(height!=-10000.099609375f){
+            const auto bone=physical_.bones().at(4);
+            if(!bone)throw std::logic_error("Human obstruction requires the actual head bone");
+            obstruction=static_cast<long double>(frames_.actor_world_matrix(bone)[13])+.08f<=height;
+            if(obstruction)task|=0x40000u;
+        }
+        runtime.update_human_control_obstruction(*this,elapsed,obstruction); //0075EBE0.
+        publish_control_frame_command(task?task:0x1e0000u);
+    }
     template<class Resources,class Sweep>void bind_controls(Resources& resources,Sweep& sweep,const CollisionTree<Frame>* tree) {
         movement_.bind(physical_,*human_,&links_,&action_,tree,frames_,resources,sweep);
         links_.bind(*this,movement_,action_,motion_,*human_);

@@ -55,15 +55,18 @@ public:
     template<class Frames>void advance_presentation_frame(std::uint32_t elapsed,Frames& frames){ //005ABC20.
         if(!initialized_||!control_||!equipment_)throw std::logic_error("Human presentation requires actual DD0/230");
         const bool player=control_->human_is_player();
-        if((player&&(factory_.mode_flags()&2u))||!(factory_.mode_flags()&1u))frames.advance_human_control(*control_,elapsed); //00787270 mandatory.
-        frames.present_human_control(*control_,elapsed); //00787D50 mandatory, even when the first call was skipped.
+        if((player&&(factory_.mode_flags()&2u))||!(factory_.mode_flags()&1u))
+            control_->advance_control_frame(required_look(),factory_.human_collision_sweep(),elapsed,frames);
+        control_->present_control_frame(required_look(),elapsed,frames);
         equipment_->advance_frame(elapsed);
     }
     template<class Frames>void advance_authority_frame(std::uint32_t elapsed,Frames& frames){ //005ABC70.
         if(!initialized_||!control_||!equipment_)throw std::logic_error("Human authority requires actual DD0/230");
         if(!(factory_.mode_flags()&2u)){
-            frames.advance_human_control(*control_,elapsed);equipment_->advance_frame(elapsed);
-        }else if(!control_->human_is_player())frames.advance_human_control(*control_,elapsed);
+            control_->advance_control_frame(required_look(),factory_.human_collision_sweep(),elapsed,frames);
+            equipment_->advance_frame(elapsed);
+        }else if(!control_->human_is_player())
+            control_->advance_control_frame(required_look(),factory_.human_collision_sweep(),elapsed,frames);
     }
     void exclude_query(bool remove_buckets=false) { //005AC1C0; genuine null-DD0 branch.
         if(control_)control_->physical().exclude_query(remove_buckets);

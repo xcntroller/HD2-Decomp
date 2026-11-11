@@ -47,6 +47,9 @@ public:
     auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
     auto& human_ai_navigation_jobs(){return dependencies().startup.human_ai_navigation_jobs();}
     std::uint32_t human_frame_random_word(){return dependencies().startup.random_word();}
+    std::uint32_t human_control_microseconds(){return dependencies().clock.microseconds();}
+    float human_control_animation_scale(){return dependencies().startup.human_animation_time_scale();}
+    float human_control_world_floor()const{return dependencies().bounds.scene_minimum_y();}
     auto& human_navigation_door(void* actor){
         using Frames=typename Dependencies::ActorFrames;
         auto* door=dynamic_cast<DoorSceneActor<Frames>*>(static_cast<SceneActor<Frames>*>(actor));
@@ -88,6 +91,7 @@ public:
     template<class Human>bool human_is_view_actor(const Human& human)const{return human_is_player(human);}
     bool human_view_offset_enabled(){auto& view=dependencies().first_person.view();return view.enabled()||view.secondary_enabled();} //0069A4B0, actual58 OR59.
     template<class Human>void player_select_human(Human& human){dependencies().players.control().select_human(human);} //00461410→0045DA60.
+    auto* current_human_frame_player(){return dependencies().players.control().current_player();}
     template<class Human>void human_frame_first_person_state(Human& human,std::uint32_t state){
         const auto mode=mode_flags();
         if((mode&2u)&&dependencies().players.control().current_player()==&human)
@@ -302,7 +306,10 @@ public:
         auto* state=owner.states().get();
         if(!state||!owner.states().ready())throw std::logic_error("Human frame requires its actual bound B0 state");
         const auto kind=state->words().template get<std::uint32_t>(0x48);
-        if(kind!=4&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
+        if(kind==6)return; //Actual005A4330/005A4340 are RET4.
+        auto& factory=owner.state_factory();
+        if(kind==5&&!authority){factory.advance_script_presentation(*state,elapsed,runtime);return;}
+        if(kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
         using Actor=SceneActor<typename Dependencies::ActorFrames>;
         using Base=std::remove_reference_t<decltype(*state)>;
         struct Queries {
@@ -324,7 +331,7 @@ public:
             }
             void finish_human_state_action(Base& state,bool success){complete_human_state_action(state,success,world,runtime);}
         } queries{*this,runtime};
-        auto& factory=owner.state_factory();
+        if(kind==5){factory.advance_script_authority(*state,elapsed,queries,runtime);return;}
         if(factory.advance_guard_or_area_frame(*state,authority,elapsed,queries,runtime)){
             owner.states().change(5); //005AF680, retire the previous state after its frame returns.
             factory.resume_script_after_ai(*owner.states().get());

@@ -40,6 +40,7 @@
 #include "game/mission_script_actor_bindings.h"
 #include "game/mission_script_player_predicates.h"
 #include "game/mission_script_model_visibility.h"
+#include "game/mission_scene_activation.h"
 #include "game/human_objective_experience.h"
 #include "game/collision_sweep.h"
 #include "game/human_input_default_receiver.h"
@@ -92,7 +93,7 @@ using SpawnPresentation=game::OfflineSpawnPresentation<Human,Control,Camera,Spaw
 using SpawnRecords=game::PreparedSpawnPackets<StartupSession,GameSceneActors,SpawnPresentation>;
 using SpawnDecoder=game::OfflineSpawnPacketDecoder<SpawnRecords,SpawnPresentation>;
 struct Dependencies{using Frame=EngineFrame*;using ActorFrames=Frames;using Composition=Composition;StartupSession& startup;const game::MissionRequest& request;game::SessionActivationState& session;Scene& scene;Actors& world_actors;Players& players;FirstPerson& first_person;game::HumanFaceResources<Frames>& faces;GameAnimations& animations;Shared& presentation_shared;Music& music;Sound& sound;Dubbing& dubbing;game::MissionSubtitlesLoading<GameOwnerBackend::DisplayText>& subtitles;Hud& hud;
- GameHumanAudioLoading& audio;Events& animation_events;Presentation& presentation;const frontend::PreMissionItemCatalogue& catalogue;Sweep& sweep;Inputs& inputs;game::MissionTableSet& second_tables;game::MissionNavigation& navigation;game::HumanInputCallbacks& input_callbacks;Contexts& contexts;frontend::HumanStore<HumanPortraits>& profiles;Sight& sight;Hearing& hearing;GameActorProximityLoading& proximity;Camera& camera;OwnerFactory& human_factory;ScriptLink& script_link;game::CarLoadingResources<Frames>& car_resources;game::CarDefinitionTables& car_definitions;game::SessionBroadcastPackets& broadcast_packets;SpawnDecoder& spawn_decoder;};
+ GameHumanAudioLoading& audio;Events& animation_events;Presentation& presentation;const frontend::PreMissionItemCatalogue& catalogue;Sweep& sweep;Inputs& inputs;game::MissionTableSet& second_tables;game::MissionNavigation& navigation;game::HumanInputCallbacks& input_callbacks;Contexts& contexts;frontend::HumanStore<HumanPortraits>& profiles;Sight& sight;Hearing& hearing;GameActorProximityLoading& proximity;Camera& camera;OwnerFactory& human_factory;ScriptLink& script_link;game::CarLoadingResources<Frames>& car_resources;game::CarDefinitionTables& car_definitions;game::SessionBroadcastPackets& broadcast_packets;SpawnDecoder& spawn_decoder;FrameClockPlatform& clock;game::MissionWorldBounds& bounds;};
 using Scripts=game::MissionScriptWorldLoading<Composition,ChunkFiles,Services,Players,FirstPlayers,Sight::Source,Hearing,FirstPerson::View,Camera,game::EffectsShadowModels<Frames>,GameHumanAudioLoading::Random,Hud,Scene::Buckets,FrameClockPlatform>;
 
 
@@ -157,7 +158,7 @@ public:
          spawn_decoder_(spawn_records_,spawn_presentation_,mode_),
          presentation_dependencies_{shared_,mode_,startup,startup.local_player_identity(),player_modes_,first_person_,camera_,players_,first_players_,hud_.scene()},
          dependencies_{startup,parent.request(),session,scene,actors_,players_,first_person_,faces_,startup.game_animations(),shared_,music_,sound_,dubbing_,subtitles_,hud_.scene(),
-            audio_,events_,bindings.presentation,catalogue,sweep_,inputs_,parent.tables()->sets()[1],navigation_,input_callbacks_,contexts_,startup.pre_mission_humans(),sight_,hearing_,proximity_,camera_,bindings.human_factory,script_link_,car_resources_,definitions,packets_,spawn_decoder_} {
+            audio_,events_,bindings.presentation,catalogue,sweep_,inputs_,parent.tables()->sets()[1],navigation_,input_callbacks_,contexts_,startup.pre_mission_humans(),sight_,hearing_,proximity_,camera_,bindings.human_factory,script_link_,car_resources_,definitions,packets_,spawn_decoder_,clock,bounds_} {
         try {
             bindings_.services.bind_dependencies(dependencies_);
             bindings_.presentation.bind_dependencies(presentation_dependencies_);
@@ -225,6 +226,7 @@ private:
     FirstPlayers first_players_;HudWorld hud_world_;GameHudLoading<Control,Actors::Items,Camera,HudWorld> hud_;
     FirstPerson first_person_;PlayerModes player_modes_;std::function<int()> car_random_;game::CarLoadingResources<Frames> car_resources_;
     game::SessionBroadcastPackets& packets_;SpawnRefresh spawn_refresh_;SpawnPresentation spawn_presentation_;SpawnRecords spawn_records_;SpawnDecoder spawn_decoder_;
+    game::MissionWorldBounds bounds_;
     PresentationDependencies presentation_dependencies_;Dependencies dependencies_;std::unique_ptr<Scripts> scripts_;bool closed_=false;
 };
 

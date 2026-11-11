@@ -16528,13 +16528,14 @@
       "program": "client",
       "entry": "0075eaa0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0075eaa0: Actual physical loading/descriptor ownership, posture/control registration and sound cleanup; unsupported face transitions reject.",
+      "coverage": "Actual DD0 sound return on cleanup and frame processing, with live player sound query and swap retirement through the existing SOUND pool.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_physics_loading.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json"
       ]
     },
     {
@@ -17109,13 +17110,14 @@
       "program": "client",
       "entry": "00591ed0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00591ed0: Actual script AI loading/state-gate/Sight source; real model context/VM services remain required.",
+      "coverage": "Script alarm stop gate on loading and actual query completion.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_script_ai_state_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json"
       ]
     },
     {
@@ -17552,7 +17554,7 @@
       "program": "client",
       "entry": "0052f750",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0052f750: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual sector and target context now bound; assembly-preserved extended (Z²+X²)+Y² comparisons.",
+      "coverage": "P2.2 source reconstruction at original entry 0052f750: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual sector and target context now bound; assembly-preserved extended (Z\u00b2+X\u00b2)+Y\u00b2 comparisons.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_weapon_selection.h",
@@ -17593,7 +17595,7 @@
       "program": "client",
       "entry": "00530b30",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00530b30: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual target context resolves after item/alternate/ammunition rejection; assembly-preserved FLOAT (Z²+Y²)+X² distance.",
+      "coverage": "P2.2 source reconstruction at original entry 00530b30: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual target context resolves after item/alternate/ammunition rejection; assembly-preserved FLOAT (Z\u00b2+Y\u00b2)+X\u00b2 distance.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_weapon_selection.h",
@@ -25168,7 +25170,7 @@
       "program": "client",
       "entry": "0058f680",
       "status": "partial",
-      "coverage": "EndScript state selection from property19C and actual command14: player select_script, enemy8/4,3→6,4/5→3; no stale Script borrower after selection.",
+      "coverage": "EndScript state selection from property19C and actual command14: player select_script, enemy8/4,3\u21926,4/5\u21923; no stale Script borrower after selection.",
       "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
       "evidence": [
         "analysis/mission-script-runtime-composition.md",
@@ -25379,7 +25381,7 @@
       "program": "client",
       "entry": "005a88b0",
       "status": "partial",
-      "coverage": "Actual missing/non3 B0→-1, else SAME Active AI virtual13C source pending/current first-mode getter.",
+      "coverage": "Actual missing/non3 B0\u2192-1, else SAME Active AI virtual13C source pending/current first-mode getter.",
       "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
       "evidence": [
         "analysis/hud-player-presentation-loading.md",
@@ -25390,7 +25392,7 @@
       "program": "client",
       "entry": "005a88d0",
       "status": "partial",
-      "coverage": "Actual missing/non3 B0→-1, else SAME Active AI virtual140 source pending/current second-mode getter.",
+      "coverage": "Actual missing/non3 B0\u2192-1, else SAME Active AI virtual140 source pending/current second-mode getter.",
       "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
       "evidence": [
         "analysis/hud-player-presentation-loading.md",
@@ -25656,7 +25658,7 @@
       "program": "client",
       "entry": "005a6280",
       "status": "partial",
-      "coverage": "Actual Human16C FLOAT→signed64 truncate low DWORD interpreted signed, clamp0..100.",
+      "coverage": "Actual Human16C FLOAT\u2192signed64 truncate low DWORD interpreted signed, clamp0..100.",
       "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
       "evidence": [
         "recovered/game/human_speech_loading.h",
@@ -27944,24 +27946,26 @@
       "program": "client",
       "entry": "005abc20",
       "status": "partial",
-      "coverage": "Same inline presentation mode/player policy, required real DD0 control then presentation and actual230 frame receiver in native order.",
+      "coverage": "Same inline presentation mode/player gate, now bound to recovered DD0 frame coordination before the actual 230 receiver.",
       "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-frame-20261110.json",
-        "recovered/game/human_inline_loading.h"
+        "recovered/game/human_inline_loading.h",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "005abc70",
       "status": "partial",
-      "coverage": "Same inline authority mode/player policy and actual230 update only on mode2-clear path; required real DD0 receiver.",
+      "coverage": "Same inline authority mode/player gate and mode2-clear 230 update, now bound to recovered DD0 frame coordination.",
       "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-frame-20261110.json",
-        "recovered/game/human_inline_loading.h"
+        "recovered/game/human_inline_loading.h",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json"
       ]
     },
     {
@@ -30120,7 +30124,7 @@
       "program": "client",
       "entry": "00563f90",
       "status": "partial",
-      "coverage": "Allocate the shared movement search’s 200 aligned work records and ten selected-route records.",
+      "coverage": "Allocate the shared movement search\u2019s 200 aligned work records and ten selected-route records.",
       "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
@@ -30330,6 +30334,174 @@
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
         "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416d50",
+      "status": "partial",
+      "coverage": "Resume the live VM through 00416CF0 when the Script navigation completion PC matches.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/mission_script_world_link.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058e1c0",
+      "status": "partial",
+      "coverage": "Script AI presentation gate, attachment branch and B4 queue drain.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_script_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058e210",
+      "status": "partial",
+      "coverage": "Script authority dispatch across shared input scratch, first B4 event scan, alarm, follow, navigation, aim, posture and movement/item application.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_script_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00591930",
+      "status": "partial",
+      "coverage": "Script alarm update, typed hostile reselection, countdown and original CRT draw on reset.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_script_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007585c0",
+      "status": "partial",
+      "coverage": "CD0 position interpolation, control/motion gates and real frame/scene publication.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_animation_state.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007587f0",
+      "status": "partial",
+      "coverage": "Presentation position latch/timer followed by the actual CD0 interpolation.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_animation_state.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007599f0",
+      "status": "partial",
+      "coverage": "Authority position synchronization through existing CD0, actual model position, frame publication and Scene+144.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_control_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00759b80",
+      "status": "partial",
+      "coverage": "Presentation direction synchronization with actual model forward and actor direction, roll and required prone refresh.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_control_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00770100",
+      "status": "partial",
+      "coverage": "Actual active camera and body marker projection with process cache and visibility thresholds.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_control_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077fc70",
+      "status": "partial",
+      "coverage": "Schedule or immediately force E0 posture with original timer, override and feedback stores.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077fce0",
+      "status": "partial",
+      "coverage": "Advance the actual E0 posture timer and trigger the forced command only on signed negative remainder.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00787270",
+      "status": "partial",
+      "coverage": "DD0 authority control order, E0 feedback, actual timing, task publication and special presentation tail.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_control_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00787d50",
+      "status": "partial",
+      "coverage": "DD0 ordinary presentation gates, periodic counters, profiling and required geometry update in native order.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_control_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007881d0",
+      "status": "partial",
+      "coverage": "DD0 forced presentation shares actual motion/direction, CD0, timer and geometry order without ordinary counters or profiling.",
+      "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+        "recovered/game/human_control_loading.h"
       ]
     }
   ]

@@ -37,6 +37,7 @@ private:
 class MissionWorldBounds {
 public:
     template<class Frames,class Inputs>void rebuild(Frames& frames,Inputs& inputs) {
+        ready_=false;
         HumanVector minimum{{1.e16f,1.e16f,1.e16f,0}},maximum{{-1.e16f,-1.e16f,-1.e16f,0}};
         frames.enumerate_activation_scene(true,1,[&](typename Frames::Frame frame){
             const auto bounds=frames.mission_frame_world_bounds(frame); //Native+58 lazy update, then frame10/20.
@@ -54,6 +55,12 @@ public:
         inputs.bind_world_quantizer(minimum_,range_); //0072F500, before bit counts and queue resets.
         for(unsigned axis=0;axis!=3;++axis)bits_[axis]=encode_range(range_[axis],counts_[axis]);
         inputs.reset_world_packet_state(); //505C=0, offline00982104=0, three00724EC0 buffers.
+        scene_minimum_y_=minimum[1]; //0097C924 before the quantizer margin.
+        ready_=true;
+    }
+    float scene_minimum_y()const{
+        if(!ready_)throw std::logic_error("Mission frame requires the activated world bounds");
+        return scene_minimum_y_;
     }
     const auto& minimum()const{return minimum_;}const auto& range()const{return range_;}
     const auto& bits()const{return bits_;}const auto& counts()const{return counts_;}
@@ -67,6 +74,7 @@ public:
     }
 private:
     HumanVector minimum_{},range_{};std::array<std::uint32_t,3> bits_{},counts_{};
+    float scene_minimum_y_=0.f;bool ready_=false;
 };
 } //namespace hd2::game
 #endif

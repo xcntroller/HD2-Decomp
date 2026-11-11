@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "previous_checkpoint": "2c6e1ec",
+  "added_entries": [
+    "00416d50",
+    "0058e1c0",
+    "0058e210",
+    "00591930",
+    "007585c0",
+    "007587f0",
+    "007599f0",
+    "00759b80",
+    "00770100",
+    "0077fc70",
+    "0077fce0",
+    "00787270",
+    "00787d50",
+    "007881d0"
+  ],
+  "ledger_added_partial_client": 14,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2274,
+  "checks": {
+    "native": "PASS (ASan, UBSan and LSan, focused owner fixture with explicit engine doubles)",
+    "actual_host_i386": "PASS (strict compile, remaining runtime leaves declaration-only)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-script-control-native.cpp": {
+      "sha256": "bf9f5a9390eb7853dc6218770617cd46d42e1be7b7d7031c5108693d1ac0de76",
+      "bytes": 6479,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-script-control-native": {
+      "sha256": "8dd9d39c990b7eb9f3b1993a2bb8cb17d4b8b8aa7f8bc90f5f18f9791429c695",
+      "bytes": 1241624,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-script-control-i386.cpp": {
+      "sha256": "0dbba60712adaf5a87cc2893a9fd60585550f1a67c89b5d4f8fb1104cfda8eca",
+      "bytes": 3755,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-script-control-i386.o": {
+      "sha256": "b64d2a896a6f1c167948dd69057d8afd6b89b0bab6aba2b45a18b10e4f0fce45",
+      "bytes": 11835960,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-script-control-native.log": {
+      "sha256": "1bf9fae020341839944eeb512b35385ea3b7b4257d2e0390b7eb2cb6d32b3556",
+      "bytes": 119,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-script-control-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-script-control-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-script-control-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-state-updates/0058e210.c": {
+      "sha256": "5d50d1637d648aa8825469d9e1afede164cf7548cd1e33beb23999938f17fa0a",
+      "bytes": 3670,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-script-and-active-workers/00591930.c": {
+      "sha256": "d958b07cb2af90ed1c4df38ea8928b3cdac756e83d54306298ff41a3506f4212",
+      "bytes": 1419,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-control-updates/00787270.c": {
+      "sha256": "6b4186f01219b2fc6329c2d67c4c1a76158f3fa57aa9842e8655130bf6570783",
+      "bytes": 12439,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-control-updates/00787d50.c": {
+      "sha256": "49a1146f35d7492ed706fd6218109f3be635a7211ee8f43d975aa2a7b3bf2ddf",
+      "bytes": 5738,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-drip-and-geometry/007881d0.c": {
+      "sha256": "cd4429f029fde08849a2335e72e583e86226fd188037603d9cd46b1458cd0c90",
+      "bytes": 2980,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-shot-projectile-workers/00770100.c": {
+      "sha256": "81e67c24d88688cfaeba9f32f24c6a1277e40ec1bc9bddc3b8cf7c15d387a04b",
+      "bytes": 4664,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-dd0-bound-workers/00759b80.c": {
+      "sha256": "a32410e603285dbfcafcf9ca3caf1c70e1c718062364151510797a320532cd1f",
+      "bytes": 2656,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-dd0-bound-workers/007599f0.c": {
+      "sha256": "063157b9889dc5979da77d00bf6830d29185c6c958e4937ed2e9d45913e01c47",
+      "bytes": 1918,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-dd0-animation-workers/007585c0.c": {
+      "sha256": "09fbe0b517c2d5b39002dbe99b8069d6ac10d93f27c813df2b87fad1e9368500",
+      "bytes": 2963,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-dd0-bound-workers.log": {
+      "sha256": "c32945a1e79e4ec06416f3e27e3eb5d4da55a879bcf911df4a2ab0b66830ee6a",
+      "bytes": 5830,
+      "retained": true
+    }
+  }
+}

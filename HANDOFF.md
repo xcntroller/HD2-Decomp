@@ -9,27 +9,25 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Human action completion, reload and containing module frames](analysis/human-frame-source.md#action-completion-reload-and-containing-module-frames)
-and [verification receipt](analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json).
-00588010 now borrows actual runtime active20, ExplosivePlace94 and HumanEC.
-00584E30 dispatches E0 completion, Door unlock, disarm and unavailability.
-007D4850 uses actual ammunition stacks, item retirement and SOUND. 0058BAF0
-samples shdum and original AI spread before required item virtual24. The
-containing facade composes actual physics, Scene2/Human and camera modules.
-Native sanitizer, actual-host i386, launcher link and 27 tracker checks pass.
-The tally is 34 complete and 2,260 partial entries (2,255 client and five engine)
-across 18,783 frozen functions. Both P2.2 checkboxes remain open. Application
-loading still declines and no mission desktop test has occurred.
-
-[Shared Scene2 movement](analysis/human-scene-movement.md) and
-[detour verification receipt](analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json).
-005647C0/008AADD0 supplies the eight substeps, B0 path detours and steering
-through actual active20. It is wired into the containing module facade.
+[Script AI and DD0 frame coordination](analysis/human-frame-source.md#script-ai-and-dd0-frame-coordination)
+and [verification receipt](analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json).
+Kind 5 now dispatches both passes and uses the real VM navigation completion.
+00787270/00787D50/007881D0 use actual E0/DD0/230 state, camera projection,
+unpadded activation bounds, audio retirement and CD0 pose interpolation.
+Positive motion, effects and geometry workers remain required. Native
+sanitizers, strict actual-host i386 and launcher link passed. The tally is
+34 complete and 2,274 partial entries (2,269 client and five engine) across
+18,783 frozen functions. Both P2.2 checkboxes remain open. Application loading
+still declines and no mission desktop test has occurred.
 
 ## Continue P2.2
 
-- Continue Human DD0 control 00787270/00787D50, other B0 families, positive
-  00584E30 effects and queued 00577B30. Guard cover/door, 0057CC50/007861A0,
+- Continue positive DD0 007637D0 ground, 0077DE30 look apply,
+  0075F230 action queue, 00779B30/00755500 motion, 00758830 effects and
+  007A7470 geometry. WORK `frame-human-dd0-bound-workers`,
+  `frame-human-dd0-animation-workers` and `frame-human-shot-and-control-workers`
+  preserve the exact bodies. Continue other B0 families, positive 00584E30
+  effects and queued 00577B30. Guard cover/door, 0057CC50/007861A0,
   floor-list 00581E30 and 0058BAF0 kind9 release remain required. For item
   virtual24 follow 007D4FD0 through the actual ShotMgr pool and 0044B910.
   Original files are in WORK `frame-human-control-updates`,

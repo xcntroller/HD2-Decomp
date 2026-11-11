@@ -133,6 +133,25 @@ public:
             state_.set(0x994,handle);
         }
     }
+    template<class CurrentPlayer,class Pool>void retire_frame_audio(std::uint32_t mode,CurrentPlayer&& current_player,Pool& pool){ //0075EAA0(false).
+        if(!(mode&2u))return;
+        if(!current_player()){
+            while(!sounds_.empty()){
+                auto sound=std::move(sounds_.back());sounds_.pop_back();pool.give(std::move(sound));
+            }
+            return;
+        }
+        for(std::size_t n=0;n<sounds_.size();){
+            if(frames_.car_sound_state(sounds_[n].get())){
+                ++n;
+                continue;
+            }
+            auto sound=std::move(sounds_[n]);
+            if(n!=sounds_.size()-1)sounds_[n]=std::move(sounds_.back());
+            sounds_.pop_back();
+            pool.give(std::move(sound));
+        }
+    }
     void enable(bool value){state_.set(0x18c,std::uint8_t(value));} //005AB330's final nonplayer gate.
     void add_control_flags(std::uint32_t mask) { //005AC390, same physical22C.
         const auto old=state_.template get<std::uint32_t>(0x22c);
@@ -146,6 +165,21 @@ public:
         if(!(next&6u)&&(old&6u)&&next!=old)reposition_human_state_on_ground(frames_,*human_,*this,look,sweep);
     }
     const auto& state() const{return state_;}
+    auto& control_frame_words(){return state_;} //DD0 physical scalar writes in the actual frame bodies.
+    float control_projection_height(float model_height)const{ //00770100, unscaled marker DD0+6E0.
+        const auto count=primary_count();
+        if(count<1)return model_height;
+        const auto& upper=posture_.at(static_cast<std::size_t>(count-1));
+        return upper[1]+upper[3];
+    }
+    float control_camera_projection(std::uint32_t tick,float field_of_view,float scale){ //00770100.
+        if(globals_.camera_projection_tick!=tick){
+            const float half_fov=field_of_view*.5f;
+            globals_.camera_projection_tick=tick;
+            globals_.camera_projection_scale=static_cast<float>(std::tan(static_cast<long double>(half_fov))/scale);
+        }
+        return globals_.camera_projection_scale;
+    }
     HumanVector current_direction_override()const{return state_.template get<HumanVector>(0x240);}
     void invalidate_current_direction(){ //0077F460 invalidates XYZ only; native24C comes from unwritten stack.
         for(unsigned axis=0;axis!=3;++axis)state_.set(0x240+axis*4,-10000.099609375f);

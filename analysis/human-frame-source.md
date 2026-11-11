@@ -412,3 +412,50 @@ passes with declarations for the remaining runtime leaves. The application
 linked. Static exports are in WORK `frame-human-action-completion-workers`,
 `frame-human-action-control-workers`, `frame-human-item-positive-workers`,
 `frame-human-shot-and-control-workers`, and `frame-human-live-inventory-and-aim`.
+
+## Script AI and DD0 frame coordination
+
+0058E1C0 and 0058E210 run against the existing kind 5 state. Presentation
+retains the B0+50 bit 800 gate and second B4 queue drain. Authority runs
+the actual timers, binds the shared Startup input scratch, scans the
+first B4 queue in reverse for 0x10000017, and updates alarm, player follow
+and navigation before movement and item dispatch. 00591930 uses the actual
+enemy list, typed target identity and shared CRT timer draw. A completed
+query takes the original PC from B0+1D8 to 00416D50. The checked VM link
+runs 00416CF0 on the same context only when that PC and the real VM advance
+gates match. Kind 6 B0 frame slots are genuine RET 4 at 005A4330/005A4340,
+which are absent from the frozen inventory.
+
+005ABC20 and 005ABC70 now call the recovered 00787270 and 00787D50 frame
+coordination through the existing E0, DD0 and 230 owners. The control body
+publishes E0 feedback, advances 0077FCE0/0077FC70 timed posture, and applies
+the signed cooldown and obstruction task gates. It samples the same QPF/QPC
+clock and uses the actual unpadded scene minimum Y produced by 0072D2B0.
+00770100 uses the live scene camera, unscaled top marker, frame visibility
+epoch and the process projection cache keyed by Game+28. 0075EAA0 now
+recycles the actual per-Human sound owners through the existing SOUND pool.
+The motion timer and attachment workers still require their positive bodies.
+
+00787D50 and 007881D0 share the motion, nonplayer replay, direction, CD0
+position and timer order. Only the ordinary branch advances four periodic
+counters and takes the presentation clock samples. 0076DF10 is a genuine
+RET 4 in this client. 00759B80 uses the actual model's forward vector,
+actor direction and retained roll with the Frame+0C/+24 calls. 007599F0
+and 007587F0/007585C0 use the actual CD0 pose state, frame, Scene+144 and
+position interpolation gate. The extra prone direction receiver remains
+required. Recovering these bodies did not activate the application path.
+
+The required positive Script leaves include event dispatch, attachment,
+formation, vehicle navigation and timed alarm/action work. DD0 still requires
+ground 007637D0, E0 command apply 0077DE30, action queue 0075F230, track/motion
+00779B30/00755500, sector sampling 00789DB0, effects 00758830 and render
+geometry 007A7470. The same gaps continue to block the containing frame.
+
+[Verification receipt](checkpoints/p2.2-script-ai-dd0-frames-20261111.json).
+The temporary native fixture exercised E0 feedback and timed posture,
+CD0 interpolation and forced control, VM navigation completion and actual
+unpadded bounds with explicit frame and engine doubles. Strict i386 compiled
+both actual World module passes with declaration-only runtime gaps. The
+launcher linked. Static evidence is under WORK `frame-human-state-updates`,
+`frame-human-script-and-active-workers`, `frame-human-control-updates`,
+`frame-human-dd0-bound-workers` and `frame-human-dd0-animation-workers`.

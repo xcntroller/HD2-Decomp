@@ -52,6 +52,20 @@ public:
         controller_->falling(true);
     }
     const auto& state() const {return state_;}
+    void control_frame_track_velocity(const HumanVector& value){ //00787270, DD0+B70. Native W is unwritten.
+        for(unsigned n=0;n!=3;++n)state_.set(0xb0+4*n,value[n]);
+    }
+    void control_frame_motion_mode(std::uint32_t mode){state_.set(0xe8,mode);} //DD0+BA8.
+    template<class Countdown,class Replay>void advance_presentation_replay(Countdown&& countdown,Replay&& replay){ //00787D50, DD0+B48/BA4/B4C/AE0.
+        constexpr float inactive=-10000.099609375f; //00816C6C.
+        if(!(state_.template get<float>(0x20)>inactive))return;
+        state_.set(0x88,std::uint8_t{1});
+        state_.set(0xe4,std::uint8_t{0});
+        countdown();
+        state_.set(0x8c,.008f); //0084E8F0.
+        if(replay())state_.set(0x20,inactive);
+    }
+    void cancel_presentation_replay(){state_.set(0x88,std::uint8_t{0});}
     void frame_climb_direction(bool backward){state_.set(0x12c,static_cast<std::uint8_t>(backward));} //DD0+BEC.
     void animation_control_delay(std::uint32_t value){state_.set(0x130,value);} //DD0+BF0,007870D0.
     void close_loading() { //007637C0→007706F0(true), the proven loading branch.
