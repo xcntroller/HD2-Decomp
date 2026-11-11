@@ -2209,5 +2209,189 @@
     ],
     "scope": "Only GUARD and its outgoing prerequisite satisfaction refreshed. Steam path corrects the earlier universal validator assumption.",
     "verification": "analysis/p2.2-critical-path/evidence/guard-verification.json"
+  },
+  "data_targeted_review": {
+    "source_sha": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+    "source_ref": "origin/feature/p22-data",
+    "reviewed_master_sha": "60f43dcc8aa6c4249a94817712324a9e18d8e6ae",
+    "merged_into_master": false,
+    "source_inputs": [
+      {
+        "path": "recovered/game/human_world_loading_services.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "7f6f6c576638dbbb6b2b2656aa8f0a4d577905101c84fe19464f3b98860512a0",
+        "bytes": 93275
+      },
+      {
+        "path": "recovered/game/mission_scene_documents.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "de88f31360135ae2c3b935b8962ee683c2e7886f90eac0764ae3295837f99dd3",
+        "bytes": 4578
+      },
+      {
+        "path": "recovered/game/mission_script_bindings.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "a4b916a15478c458b0c709dddf0c8c8ddec3b53b2b37b67437f61959f45b6d68",
+        "bytes": 3112
+      },
+      {
+        "path": "recovered/game/particle_module_loading.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "0d495c1217b38fcaf6811c8cf0b395388f48d5393329303b722fcc4b9f94cecb",
+        "bytes": 8381
+      },
+      {
+        "path": "recovered/game/selected_resource_analysis.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "bacbcb1856c8f49b9da263df035257dec64e60bbefd913ed622f328f56ecbbce",
+        "bytes": 5523
+      },
+      {
+        "path": "recovered/game/shot_blood_marks.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "372464827194accfc36ed4505fa7a2b8008b709a305e91842a164402a46b1657",
+        "bytes": 7479
+      },
+      {
+        "path": "recovered/game/shot_surface_marks.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "c0f45f633200341f122479a2eb9e5680daacbb8225cd4bb7e3ab7c1cda8fe0d7",
+        "bytes": 5730
+      },
+      {
+        "path": "recovered/host/application_launch.cpp",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "a15bbe75bfa6dc09dd5c19d9bb1f2953f9623ad5596eabcb037c7b277f550724",
+        "bytes": 36839
+      },
+      {
+        "path": "recovered/host/chunk_files.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "1e77edbee8dcb39d66f814c84e86b238327c90d5fab075d3270e577bb71d8649",
+        "bytes": 3593
+      },
+      {
+        "path": "recovered/host/game_actor_frames.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "466d0b17dd9df27c3b13638c979f41010508d6d69b803a5924711a2c96dddd9b",
+        "bytes": 94950
+      },
+      {
+        "path": "recovered/host/game_data_observations.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "65e394b2cce3fc6a2c6b66aa50ee988314c6ea7e20c735b44586e5b8d4734d5b",
+        "bytes": 2129
+      },
+      {
+        "path": "recovered/host/game_loading_modules.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "80e879fd69523beb18579cc4f073d20cb2f3955a9fc8486d3cac315e1ee1e8af",
+        "bytes": 13226
+      },
+      {
+        "path": "recovered/host/game_mission_loading.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "6cfcf672270ac587a224946cf8a6dcbdaae7a271cf97c5d4aac4734328a88c4b",
+        "bytes": 15670
+      },
+      {
+        "path": "recovered/host/game_mission_module_frames.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "da6b10b904ddd5e4e5294d151138ea2d7c5610cab224e323616f39235555e35d",
+        "bytes": 2469
+      },
+      {
+        "path": "recovered/host/game_runtime_actors.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "8b490633b9c06242853f5da098c9903edd9335bbca66613cd7b62e310ae14b8b",
+        "bytes": 8408
+      },
+      {
+        "path": "recovered/host/game_scene_actors.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "a461cda44eb86559610437e82bc8fd5517c269821475d2bdb4929bf260d6264d",
+        "bytes": 17595
+      },
+      {
+        "path": "recovered/host/game_scene_objects.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "685f27711a2f920037044995cf7a01cc27e38e356b969071a6eae64af220bcd9",
+        "bytes": 18862
+      },
+      {
+        "path": "recovered/host/loaded_resources.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "8f4968eb4afdf3f833adb2569f969335aba1348d935709f5759a22b301efc1e5",
+        "bytes": 8893
+      },
+      {
+        "path": "recovered/host/loading_input_capture.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "62c0ee41a5787840260f183439cded53ac3c733bfc8112b2d9ea37a7f2285f54",
+        "bytes": 8322
+      },
+      {
+        "path": "recovered/io/data_manifest.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "ea2a5eb07aaa863f75f01f5ab0867ee0224525f5ff6ba0c4bf180cbe564c78cf",
+        "bytes": 2346
+      },
+      {
+        "path": "recovered/io/data_operation.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "85ece8c52b0e0596a5a1d7bacfa4bef3cf141eb66253e7fe8dd3bfa9e77c55f7",
+        "bytes": 1148
+      },
+      {
+        "path": "recovered/io/loaded_resource_cache.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "3f5335385a185e4bf92390d0ab5028a90f2ce2efffd5c7967ff2b0af6cdf0104",
+        "bytes": 7341
+      },
+      {
+        "path": "recovered/io/resource_observations.h",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "b30b43b6a2c84be2bc69d30f4351149e4ee7548be1499f6722f35094dc0e4e6c",
+        "bytes": 9311
+      },
+      {
+        "path": "tools/validate_loading_capture.py",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "eda77560e391405ec3c817986323c2df34854b72c9c2ca782f15f44661025e24",
+        "bytes": 4579
+      },
+      {
+        "path": "tools/validate_selected_resource.cpp",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "db04b9a2bbe029f324ab2c6125e5c18901d276b3ceef5b9821657aba9bbbd33f",
+        "bytes": 6565
+      },
+      {
+        "path": "HANDOFF.md",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "808bf6ba5cefb740805530fbc5f1105791da2515bceba04d9d7ee2f325ed4599",
+        "bytes": 2690
+      },
+      {
+        "path": "analysis/p22-data-plan.md",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "0767b6805d0f0b779bfb807d171898938275bea1ebfa357b88e004501e4e2b4d",
+        "bytes": 2792
+      },
+      {
+        "path": "analysis/p22-data-implementation.md",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "a39910a3a8382cd49197363ec605429a78598bd58ba0a718626ff1ecc6742027",
+        "bytes": 15140
+      },
+      {
+        "path": "analysis/checkpoints/p22-data-20261111.json",
+        "revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+        "sha256": "4b2451c406064a23d3074f62e069de434a054d2658332f6c8456ef72836e3fe1",
+        "bytes": 21773
+      }
+    ],
+    "scope": "DATA row and outgoing conditional relationships. Other source-status claims not refreshed.",
+    "verification": "analysis/p2.2-critical-path/evidence/data-verification.json"
   }
 }

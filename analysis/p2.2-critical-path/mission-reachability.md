@@ -29,8 +29,22 @@ The original capture manifest/assets live in ignored research storage in Agent1'
 
 P22-MOVE now has concrete eight-pass solver and positive detours bound in the Scene2 source facade. Guard/Area, Player and Script frame dispatch and timer target queries are also concrete. Actual mission execution remains pending. Existing native fixtures use explicit engine/remaining-worker doubles, while strict i386 checks instantiate both actual World module phases. [Checkpoint summaries](evidence/overnight-checkpoints.json)
 
-A specific positive risk is now clearer. The actual ground collision can publish DD0+754 contact, while HumanWorldLoadingServices::sight_surface_factor throws on populated ground_contact because the GEffects material94 receiver remains missing. This is a conditional contact-and-Sight dependency. Record actual contact754, material index and Sight range call before claiming the branch is absent or universally reached.
+The earlier missing material94 receiver finding is superseded by the targeted DATA review. HumanWorldLoadingServices::sight_surface_factor now calls the actual GEffects material factor on the same DD0+754 contact in feature/p22-data and reviewed master60f43dc. Actual contact and Sight scheduling remain runtime observations.
 
 Runtime actor11 still requires the embedded rigid-body virtual24 shared by005B7320/005B7480. It uses a different owner from module2 Physics. Item firing may reach007D4FD0/0044B910 and populated ShotMgr. Neither held-model classification nor cold Shot queues establishes that those positive paths remain inactive. The selected actor/script/equipment data and first updates must decide reachability.
 
 Native fault guards remain around kind2 detour continuation, cardinal direction, zero velocity, mixed posture and zero lateral span. These are existing source adaptations. Record the exact guard if reached, then compare the original instructions. They are runtime unknowns rather than blanket first-frame blockers.
+
+## Verified DATA branch evidence
+
+At feature/p22-data e76afc1, DATA-owned observation and static validation implementation is complete. Its merge and actual execution integration remain pending. Independent production-validator rerun verified29 historical fingerprints,33 resource outcomes,28 payloads and16 supported parser scopes. No current installation or engine population was recaptured. [Targeted verification](evidence/data-verification.json)
+
+| Historical declarations | Tutorial | ALPS1 |
+| --- | ---: | ---: |
+| actors.bin Humans | 23 | 49 |
+| actors.bin Cars | 4 | 5 |
+| actors.bin Dogs / Null | 0 / 0 | 1 / 55 |
+| check2 navigation sets | 863 / 56 | 5113 / 100 |
+| Scripts.dta binding pairs | 114 | 148 |
+
+The observation hooks record actual resolver results, completed actor decoding, B0/DD0 frame entry, contacts, command publication attempts and positive particle/shot/render publication at their existing owners. A hook's existence does not establish that its operation ran. Fresh selected data, Runtime services and presentation are collected by OWN/FRAME/RENDER and their acceptance work. Tracker check remains incomplete on the DATA branch because its pre-existing ignored rule-refresh.asm evidence is absent.
