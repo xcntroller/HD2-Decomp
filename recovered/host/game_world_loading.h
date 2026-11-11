@@ -55,7 +55,7 @@ using Control=game::HumanPlayerControlLoading<GameSceneActors,Human,Presentation
 using Camera=game::MissionCamera<Frames,Human>;
 using Consumers=game::WorldActorLoadingConsumers<Dependencies>;
 using Actors=GameWorldActors<GameOwnerBackend,Consumers>;
-using Inputs=game::HumanInputLoadingManager<FrameClockPlatform,game::HumanInputCallbacks>;
+using Inputs=StartupSession::HumanInputs;
 struct Sound;
 using Subtitles=game::MissionSubtitlesLoading<GameOwnerBackend::DisplayText>;
 using Dubbing=game::HumanDubbingLoading<Human,Control,Subtitles>;
@@ -134,7 +134,7 @@ public:
            game::CarDefinitionTables& definitions,const game::CarMaterialRegistry& materials)
         :bindings_(bindings.require_unbound(scene,parent,startup)),startup_(startup),scene_(scene),mode_(startup.application_flags_owner()),navigation_(parent.tables()->sets()[0]),
          actors_(scene,bindings.consumers,navigation_,vertices,startup.text(),catalogue,suffix,startup.pre_mission_files(),clock,game::SessionTimeWord(session)),
-         camera_(scene.frames()),inputs_(clock,startup.human_input_shared()),audio_(startup,scene.frames()),
+         camera_(scene.frames()),inputs_(startup.prepare_game_human_inputs()),input_callbacks_(startup.game_human_input_callbacks()),audio_(startup,scene.frames()),
          faces_(scene.frames()),animation_resources_(startup.loaded_resources()),shared_(scene.frames(),bindings.services,startup.human_projection_process()),
          music_(Music::LiveTracks{scene.documents().fields().field_c8,scene.documents().fields().field_cc}),
          players_(startup.game_module_registry(),scene.frames(),bindings.presentation,startup.players_process(),bindings.services,startup.game_module_registration(11)),
@@ -172,10 +172,6 @@ public:
                 first_person_.view(),camera_,scene.effects(),audio_.random_source(),hud_.scene(),scene.buckets(),clock,session,
                 startup.mission_integrity_tables(),startup.mission_script_variables(),packets_,mode_,startup.script_advance_override(),
                 parent.request().preparation.mission_resource,script_link_);
-            inputs_.configure(input_profiles_,
-                [this](std::int32_t identity){return game::human_input_default_receiver(scene_.frames(),input_callbacks_,identity,false);},
-                [this](std::int32_t identity){return game::human_input_default_receiver(scene_.frames(),input_callbacks_,identity,true);},
-                startup_.local_player_identity(),mode_);
         }catch(...){unbind();throw;}
     }
     ~Owners(){close();}
@@ -188,7 +184,7 @@ public:
     Services& human_services(){require_open();return bindings_.services;}
     Scripts& scripts(){require_open();return *scripts_;}
     auto& spawn_records(){require_open();return spawn_records_;}
-    auto& input_profiles(){require_open();return input_profiles_;}
+    auto& input_profiles(){require_open();return inputs_.profiles();}
     auto& hud_panels(){require_open();return hud_.panels();} //SAME inline panel owners; no second HUD.
     void close()noexcept {
         if(closed_)return;closed_=true;
@@ -202,7 +198,7 @@ public:
         errors.attempt([&]{startup_.clear_game_dubbing();});
         actors_.close(); //Retracts Human lifetimes BEFORE binding aggregates.
         errors.attempt([&]{hud_.close();});
-        inputs_.clear();shared_.clear();
+        shared_.clear(); //Input records/embedded30 belong to process14; actual B0 retirement detaches its own borrowers.
         if(errors.failed())try{errors.rethrow();}catch(...){scene_.frames().record_actor_cleanup_failure(std::current_exception());}
         unbind();
     }
@@ -219,7 +215,7 @@ private:
         bindings_.services.unbind_dependencies(dependencies_);
     }
     Bindings& bindings_;StartupSession& startup_;Scene& scene_;std::uint32_t& mode_;
-    game::MissionNavigation navigation_;Actors actors_;Camera camera_;Inputs inputs_;game::HumanInputSessionProfiles input_profiles_;game::HumanInputCallbacks input_callbacks_;
+    game::MissionNavigation navigation_;Actors actors_;Camera camera_;Inputs& inputs_;game::HumanInputCallbacks& input_callbacks_;
     GameHumanAudioLoading audio_;game::HumanFaceResources<Frames> faces_;GameAnimationResources animation_resources_;
     Shared shared_;Music music_;Players players_;Subtitles subtitles_;Dubbing dubbing_;Sound sound_;
     AnimationActors animation_actors_;AnimationSound animation_sound_;Events events_;Sweep sweep_;
@@ -300,8 +296,9 @@ public:
         std::printf("P2.2 event=world_constructed result=success loaded14=%u\n",session.loaded?1u:0u);
     }
     ~World()override{
-        startup_.unbind_game_packet_world(*this);
         startup_.blast_wave_process().clear(); //Source failure guard: retained frames cannot outlive World/Scene retirement.
+        owners_.close(); //SAME current-game/default input getter remains published through Human/B0 retirement.
+        startup_.unbind_game_packet_world(*this);
     }
     bool world_loaded()const override{return owners_.session_loaded();}
     bool dispatch_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority)override{
@@ -315,6 +312,9 @@ public:
         game::receive_local_session_removal(owners_.dependencies().session,reason,owners_.dependencies().hud);
     }
     void append_application_message(const std::string& message)override{owners_.dependencies().hud.append_message(message.c_str(),{{255,255,255}});}
+    game::HumanInputCallbacks* input_default_receiver(std::int32_t identity,bool secondary)override{
+        return game::human_input_default_receiver(scene_.frames(),startup_.game_human_input_callbacks(),identity,secondary);
+    }
     World(const World&)=delete;World& operator=(const World&)=delete;
     Scene& scene(){return scene_;}Owners& owners(){return owners_;}ModuleOwners& modules(){return modules_;}
     auto& vertices(){return vertices_;}

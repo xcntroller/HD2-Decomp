@@ -1,4 +1,4 @@
-# P22-HUM handoff — 2026-11-11
+# P22-HUM handoff — 2026-11-12
 
 FULL P2.2 / **second Human checkbox: reactions/damage/ragdoll** remains OPEN.
 Read `AGENTS.md`, section2 of `plan.md`, [Human plan](analysis/p22-hum-plan.md)
@@ -12,7 +12,7 @@ explicitly requested returning here. Inspect HEAD/status before acting. Transfer
 base50f9193 and22 pending Human files were verified; ignored MAIN WORK
 `human-return-main-20261111` records before/after hashes. Other LIFE/UI/PACK/research
 worktrees and `/tmp/hd2-p22-hum-continue` are separate. Preserve their work and
-newer master merges. Latest preceding checkpoint7a2ec6d; external master pulls
+newer master merges. Latest preceding checkpointb4e9617; external master pulls
 have rebased earlier checkpoints: inspect current history.
 
 No original EXE/DLL/Proton or Windows fixture execution. Compile/link only.
@@ -21,6 +21,28 @@ checkpoints may be committed; interactive acceptance requires the user.
 Application mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source checkpoint
+
+[Canonical process-input receipt](analysis/checkpoints/p2.2-human-process-input-20261112.json)
+adds3 client partials/extends3:34 complete/2620 partial (2615 client+5 engine), no
+promotions. StartupSession owns ONE actual manager14/profiles and stable B0 handle;
+World borrows it.00723000 replacement deletes old manager then publishes/configures
+new, without atomic rollback; Remote retirement remains safe through actual
+contains/remove, while old Player close after record retirement still throws.
+Stateless callback bundle/getters are process-lived; source current-game/default
+getter link remains until Human/B0 teardown. World does not clear all process
+records. Cold World acquisition lazily creates actual manager only if absent;
+full native control-start/entry caller timing is not claimed.
+
+0072E890 now clears peer3C/stats under418, then actual input records after unlock,
+then team stats/scores; manager/embedded30/defaults survive. Cold reset accepts
+only actual owned process14, publishes mode7 before input clear; final shutdown
+deletes manager before locks. Live transport still required. Native ASan/UBSan/
+LSan PASS actual Remote, Player Base/retired-record failure, failed prefixes,
+entry/control reset and100 lifetimes; clock/Scene/frames/presentation are doubles.
+Strict actual World and launcher/probe compile/link PASS
+`human-process-input-{host,application}-i386.log`. No Windows output ran.
+
+## Previous source checkpoint
 
 [Containing application-packet receipt](analysis/checkpoints/p2.2-human-application-packets-20261111.json)
 adds3 client partials/extends5:34 complete/2617 partial (2612 client+5 engine) of
@@ -57,15 +79,17 @@ receivers with admitted network/application success.
 
 ## Immediate next work
 
-1. Continue actual normal non7 spawn/entry/transport.00611C90/006123A0/006125A0
-   callers still reject before unrecovered tails. Full containing Human frame
-   depends on actual peer3C producer/caller lifetime, beyond verified cold factory.
-2. Correct old entry wording:0072E890 clears peer3C/stats under418, calls0073F5A0
-   to CLEAR registered input records (manager and embedded30 survive), then clears
-   actual team stats/scores. It does NOT replace the manager.006C20F0 retires prior
-   application state before this branch and constructs new game afterward; exact
-   game/global lifetime integration still needs matching source. Recover canonical
-   process input ownership; no second manager or invented reverse-map cleanup.
+1. Continue reaction-specific non7 Car ownership/direct impulse, then actual
+   normal non7 spawn/entry/transport. Research index for004DE800/005A09A0 is WORK
+   `human-reaction-network-leaves-index.txt`.004DE800 original C already exists
+   in `car-callback-body-world-required`.007CBF90/007CC740 call004F2790 DIRECTLY
+   after that ownership check, including non7; current Human impulse guard is
+   unnecessarily broad and should follow the original actual call boundary.
+2. Full entry callers still need00730A40/00731610 (status9), and00724110 optional
+   service/current-state/map/load/sync (received0). Canonical input ownership and
+  0072E890 body now exist; do not merge reset with manager replacement. Normal
+  00611C90/006123A0/006125A0 non7 callers still reject unrecovered tails. Positive
+  00479700 kind2/9C and occupied attachment80 also remain required.
 3. Finish full containing Human frame/reaction, failure/re-entry and ordered
    teardown. Application loading/rendering and user desktop acceptance remain
    required. Commit larger verified checkpoints; keep documentation consolidated.

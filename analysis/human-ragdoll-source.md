@@ -1124,3 +1124,65 @@ adds3 client partials and extends5:34 complete/2617 partial of18783 (2612 client
 the ongoing full checkbox. Continue normal non7 spawn/entry/canonical input
 ownership, required runtime owners and containing reaction/frame/teardown;
 application loading/rendering and user desktop acceptance remain OPEN.
+
+
+### Canonical process input ownership and entry record reset — 2026-11-12
+
+Source World now borrows ONE process `SessionHumanInputs` handle; the actual
+0073EC50 manager allocation and inline20/120/A0 profiles belong to StartupSession.
+No second World manager or process-copy record registry exists. Native00723000
+first invokes00723220 (delete old manager, then null actual14), constructs and
+publishes the replacement BEFORE session setup, regenerates all three profiles,
+then binds defaults/getters/embedded local identity/shared relative flag. A failed
+published setup remains incomplete and explicit; no atomic rollback is invented.
+The stable source handle resolves the CURRENT actual allocation for B0 removal/
+contains checks, so Remote teardown/destructors never call a destroyed manager.
+Old Player close still REQUIRES its registered record: after replacement it
+throws at actual required-input boundary, after controlled-Car exit. No fresh
+record is fabricated to hide that original/reached failure.
+
+The stateless Human callback bundle is process-lived, matching the original
+callback labels. Default getter closures retain only StartupSession and resolve
+actual current Scene2 each time; Car input still requires its original receivers.
+World retirement detaches B0's own records/borrowers without destroying all process
+records, manager, profiles or embedded30. The source current-game packet/default
+getter link now stays published until Human/B0 owner retirement finishes, before
+World unbind. This is typed owner-lifetime adaptation, not another owner graph
+or additional original ABI credit.
+
+Status9's0072E890 is a DIFFERENT protocol phase: under418 clear peer3C and nine
+40..60 words; unlock; clear registered process14 records only if manager exists;
+then clear each three-team nine-word block and score. It preserves the manager,
+embedded30, defaults, peer-vector slots and unrelated fields. Source method is
+bound to SAME actual process state. Full00730A40→0072E890→00731610 caller is still
+required. Received-start0 instead invokes00724110/00723000 before old-game
+retirement, as the previous section and original initial-sync contract describe;
+its optional service/current-state/map/load/sync caller remains required.
+
+Cold source World construction currently acquires/configures the REAL process
+manager lazily only if absent; this is an explicit source graph adapter, NOT
+credit for full native control-start timing. Ordinary menu startup still has no
+manager. Cold/offline control reset accepts ONLY this actual owned process14,
+flushes first, publishes mode7 before record clear, then peers/queues. Manager/
+embedded30 survive reset. Final0072E460 additionally deletes actual manager
+through00723220 BEFORE critical-section deletion; fallback retires acquired
+storage while preserving any required reset exception. Live transport branches
+remain unavailable; no successful non7 shutdown or application entry was exposed.
+
+Research index preceded original reuse. `human-process-input-originals` pins
+00723000/00723220/0073F5A0/0073ED00/0072E890/0072E460/0072E4E0 and00724110 C/
+metadata; research checkout copied read-only where needed. No new Ghidra export.
+Focused `human-process-input-native` ASan/UBSan/LSan PASS: same manager/default/
+embedded ownership, actual Remote full bind/close across destructive replacement,
+Player Base plus required retired-input close failure, profile regeneration,
+failed publication/getter prefixes, entry peer/input/team ordering,100 lifetimes,
+actual cold control reset retention and final input deletion before locks.
+Frames/clock/Scene getter/presentation are explicit doubles, not full World entry.
+Strict actual World i386 and sequential application-launch/startup-probe compile/
+link PASS. No original/DLL/Windows output was executed; no desktop claim.
+
+[Receipt](checkpoints/p2.2-human-process-input-20261112.json) adds3 client partials
+and extends3:34 complete/2620 partial of18783 (2615 client+5 engine partials), no
+complete promotions. Full selected Human checkbox and application/desktop gates
+remain OPEN. Continue reaction-specific non7 Car ownership/direct impulse, normal
+spawn/entry callers and the full containing frame/failure/teardown boundary.

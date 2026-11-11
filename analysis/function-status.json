@@ -4863,14 +4863,19 @@
       "program": "client",
       "entry": "0072e460",
       "status": "partial",
-      "coverage": "Final standalone control shutdown: run existing cold reset even after status4 reset, reject live optional owners, delete the two initialized startup critical sections in order, clear flag and restore gate7.",
-      "limitations": "Only initialized standalone gate7 owners are supported. Optional interfaces/+4EE0, live network/worker producers, original object ABI and full destructor remain excluded. Native once-only/exception cleanup differs from original. Integrated and sanitizer/i386-audited; bounded desktop acceptance recorded on2026-10-31.",
+      "coverage": "Final standalone control shutdown: run existing cold reset even after status4 reset, reject live optional owners, delete the two initialized startup critical sections in order, clear flag and restore gate7. Actual canonical input-manager retirement after cold final control reset and before control critical sections; acquired-resource fallback preserves required reset failures.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee.",
       "evidence": [
         "analysis/shutdown-map.json",
         "analysis/shutdown-delivery.md",
         "recovered/frontend/control_frame.h",
         "recovered/host/control_startup.h",
-        "recovered/host/startup_session.h"
+        "recovered/host/startup_session.h",
+        "recovered/game/session_human_inputs.h",
+        "recovered/game/session_entry_records.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-process-input-20261112.json"
       ]
     },
     {
@@ -15254,13 +15259,20 @@
       "program": "client",
       "entry": "00723000",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00723000: Containing input manager/embedded record lifetime, actual session profiles/defaults and performance clock binding.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 00723000: Containing input manager/embedded record lifetime, actual session profiles/defaults and performance clock binding. Canonical process owner replaces manager before received-start old-game retirement; actual callbacks/profile20/120/A0 reset, embedded local identity/defaults/shared flag use same process. World acquisition borrows this owner, with explicit cold lazy acquisition adapter; full received-start caller remains unimplemented.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee.",
       "evidence": [
         "recovered/game/human_input_loading_manager.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/session_human_inputs.h",
+        "recovered/game/session_entry_records.h",
+        "recovered/frontend/control_frame.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-process-input-20261112.json"
       ]
     },
     {
@@ -15280,13 +15292,20 @@
       "program": "client",
       "entry": "0073f5a0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0073f5a0: Containing input manager/embedded record lifetime, actual session profiles/defaults and performance clock binding.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 0073f5a0: Containing input manager/embedded record lifetime, actual session profiles/defaults and performance clock binding. Actual process14 registered-record clear shared by entry/reset and World B0 removal, preserving allocation, embedded30/defaults and process callback labels across World exit.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee.",
       "evidence": [
         "recovered/game/human_input_loading_manager.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/session_human_inputs.h",
+        "recovered/game/session_entry_records.h",
+        "recovered/frontend/control_frame.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-process-input-20261112.json"
       ]
     },
     {
@@ -34939,6 +34958,54 @@
         "recovered/host/game_world_loading.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-application-packets-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072e890",
+      "status": "partial",
+      "coverage": "Actual status9 entry reset: SAME418 peer3C/nine40..60 clear, unlock before current process14 record clear, then three shared team stats/score blocks; manager, embedded30 and defaults survive.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee.",
+      "evidence": [
+        "recovered/game/session_human_inputs.h",
+        "recovered/game/session_entry_records.h",
+        "recovered/frontend/control_frame.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-process-input-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00723220",
+      "status": "partial",
+      "coverage": "Destructive retirement of ONE process14 manager allocation, source pointer remains published until actual destructor returns then null. B0/World borrow stable process handle across replacement, never another manager owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee.",
+      "evidence": [
+        "recovered/game/session_human_inputs.h",
+        "recovered/game/session_entry_records.h",
+        "recovered/frontend/control_frame.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-process-input-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072e4e0",
+      "status": "partial",
+      "coverage": "Reached cold/offline control reset recognizes only its actual owned process14, flushes first, publishes mode7 before registered-input clear, then actual peer/record/queue retirement; retains manager/embedded30/defaults. Live transport branches remain required failures.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee.",
+      "evidence": [
+        "recovered/game/session_human_inputs.h",
+        "recovered/game/session_entry_records.h",
+        "recovered/frontend/control_frame.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-process-input-20261112.json"
       ]
     }
   ]
