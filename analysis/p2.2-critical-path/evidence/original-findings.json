@@ -111,5 +111,16 @@
     }
   ],
   "source_review_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
-  "refresh_note": "Movement finding implemented at reviewed source. New targeted static evidence narrows startup lifetime/order and corrects render receiver/clock interpretation."
+  "refresh_note": "Movement finding implemented at reviewed source. New targeted static evidence narrows startup lifetime/order and corrects render receiver/clock interpretation.",
+  "guard_targeted_supersession": {
+    "source_sha": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+    "findings": [
+      "P22-R01",
+      "P22-R02",
+      "P22-R06",
+      "P22-R07"
+    ],
+    "scope": "Original writer/CFG evidence retained. Steam skip and concrete initializer/actions supersede their earlier blocking interpretation for the selected target.",
+    "verification": "analysis/p2.2-critical-path/evidence/guard-verification.json"
+  }
 }

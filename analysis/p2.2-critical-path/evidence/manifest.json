@@ -2106,5 +2106,108 @@
       }
     ],
     "scope": "Only P22-LIFE and its outgoing prerequisite satisfaction updated."
+  },
+  "guard_targeted_review": {
+    "source_sha": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+    "source_inputs": [
+      {
+        "path": "recovered/game/steam_integrity_calls.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "28a2cbfd3996209a74d05448b9e8ac7120779e448c4ed7aeefdb721b5cbad00f",
+        "bytes": 6715
+      },
+      {
+        "path": "recovered/game/integrity_threads.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "c106e96bb707c68485fea1f4744592a07e07e8751aac9331afd698528421b3e7",
+        "bytes": 8348
+      },
+      {
+        "path": "recovered/game/integrity_observation_actions.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "2e81f2bef1c5db1962560fe785eb31dfa2b83736e2dc00afe2f39da33b287317",
+        "bytes": 2891
+      },
+      {
+        "path": "recovered/game/integrity_descriptors.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "bc97dc4578b3878b5e391a35d126ebf9915699c7e9d2ecd1395a0779d8b98d52",
+        "bytes": 2228
+      },
+      {
+        "path": "recovered/game/mission_integrity_tables.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "ec790da7e8183edb3ba056c008fec88dfc0a773a8221c733924bb3b0dfecdf6d",
+        "bytes": 3140
+      },
+      {
+        "path": "recovered/host/startup_session.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "9a07f3121aa8b2f02059b0d4fa9a6b9a37aad43d142fad267a6f5886ca607a56",
+        "bytes": 56644
+      },
+      {
+        "path": "recovered/host/application_launch.cpp",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "0d7e49adab0de08a067295e59484f52a474738221e450b33064b882c929a3dc5",
+        "bytes": 36316
+      },
+      {
+        "path": "recovered/host/game_loading_queries.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "345076db057d75a0127c007276282c346af7512d9c8b51109c4229196fec22ab",
+        "bytes": 3891
+      },
+      {
+        "path": "recovered/host/game_mission_loading.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "b1554aa06ff37270ad24dbc15d839da462202f1f5a70e0fda49a0cc6c8ec9190",
+        "bytes": 11960
+      },
+      {
+        "path": "recovered/host/game_session_activation.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "38bbc312f085758f7ca24dd55c5847439da75087eea66310c59b00a1882dcf1f",
+        "bytes": 9681
+      },
+      {
+        "path": "recovered/frontend/pre_mission_flow.h",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "baef47d9dfdae3da8460b6d39a54872e1137a2cb41e0c3d1ea7e0dccfc2a191c",
+        "bytes": 26379
+      },
+      {
+        "path": "analysis/checkpoints/p22-guard-20261111.json",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "e860cae29a85f225876fcfa23dac114ddbd0423ecd5b54ac18f6ac12613af778",
+        "bytes": 15769
+      },
+      {
+        "path": "analysis/checkpoints/p22-guard-threads-20261111.json",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "0f4bce4232dedd5b6acab4cd1a59d0c9ec52158819b471f7cca313f73ede82f0",
+        "bytes": 2561
+      },
+      {
+        "path": "analysis/checkpoints/p22-guard-steam-20261111.json",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "7984558d32b0ea2c398c6ad588c5bc40db8310a73dc90c42bd5a3756cf4a728a",
+        "bytes": 5073
+      },
+      {
+        "path": "analysis/p22-guard-plan.md",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "30bd1761212aab7fb38044dc7a95ddc1fc6439e1a4850e638e39e9371b1f508d",
+        "bytes": 3239
+      },
+      {
+        "path": "analysis/p22-guard-implementation.md",
+        "revision": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+        "sha256": "0b44ecb74b56684c942c7927a809b32a863190497810f2bf23a66c05ac692cfe",
+        "bytes": 28465
+      }
+    ],
+    "scope": "Only GUARD and its outgoing prerequisite satisfaction refreshed. Steam path corrects the earlier universal validator assumption.",
+    "verification": "analysis/p2.2-critical-path/evidence/guard-verification.json"
   }
 }
