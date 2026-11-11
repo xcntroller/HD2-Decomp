@@ -9,6 +9,10 @@ template<class Services,class Resolve>class HumanPacketReceiver {
 public:
     HumanPacketReceiver(Services& services,Resolve& resolve,bool authority,bool reserved)
         :services_(services),resolve_(resolve),authority_(authority),reserved_(reserved){}
+    bool empty_receiver(){ //Nonreserved Remote B0+C4=00583220: genuine RET4, no tag read.
+        auto* human=resolve_();return authority_&&!reserved_&&human&&human->loading_state&&
+            human->loading_state->words().template get<std::uint32_t>(0x48)==7u;
+    }
     HumanPacketGrammar grammar(){
         auto* human=resolve_();const auto kind=human&&human->loading_state?
             human->loading_state->words().template get<std::uint32_t>(0x48):0u;
@@ -35,6 +39,7 @@ private:
 template<class Services,class Resolve>void receive_human_packet(SessionPacketStream& packet,std::uint32_t mode,
         bool authority,bool reserved,Services& services,Resolve&& resolve){
     HumanPacketReceiver<Services,std::remove_reference_t<Resolve>> receiver(services,resolve,authority,reserved);
+    if(receiver.empty_receiver())return;
     (void)receiver.grammar(); //Native actor/B0 receiver is selected even for an empty list.
     receive_human_packet_commands(packet,mode,receiver);
 }

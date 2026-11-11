@@ -31423,7 +31423,7 @@
       "program": "client",
       "entry": "00475570",
       "status": "partial",
-      "coverage": "Actual module13 authority-request wrapper and Human identity10 prefix, including boolean1 to priority0 mapping for the recovered kind6 producer.",
+      "coverage": "Actual module13 authority-request wrapper and Human identity10 prefix, including boolean1 to priority0 mapping for the recovered kind6 producer. Motion4 now preserves false\u2192priority3\u2192clamp2, lazy ordinary/motion groups and motion-before-ordinary finalization; authority FIRST request alias retains native append order.",
       "limitations": "Source-only typed native owners/containers replace original allocator, object/vtable and SEH ABI. Recovered kind6 producer/payload only. Positive Player weapon/input/FPV, moving-Car damage, nonoffline transport, other command payloads and containing application integration remain required. Explicit boundary doubles and compilation do not establish desktop delivery.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -31433,14 +31433,15 @@
         "recovered/game/human_world_loading_services.h",
         "recovered/game/human_state_base_loading.h",
         "recovered/game/session_broadcast_packets.h",
-        "recovered/host/game_loading_modules.h"
+        "recovered/host/game_loading_modules.h",
+        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "00475530",
       "status": "partial",
-      "coverage": "Actual module13 broadcast wrapper and Human identity10 prefix, including boolean1 to priority0 mapping for the recovered kind6 producer.",
+      "coverage": "Actual module13 broadcast wrapper and Human identity10 prefix, including boolean1 to priority0 mapping for the recovered kind6 producer. Motion4 now preserves false\u2192priority3\u2192clamp2, lazy ordinary/motion groups and motion-before-ordinary finalization; authority FIRST request alias retains native append order.",
       "limitations": "Source-only typed native owners/containers replace original allocator, object/vtable and SEH ABI. Recovered kind6 producer/payload only. Positive Player weapon/input/FPV, moving-Car damage, nonoffline transport, other command payloads and containing application integration remain required. Explicit boundary doubles and compilation do not establish desktop delivery.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -31450,15 +31451,16 @@
         "recovered/game/human_world_loading_services.h",
         "recovered/game/human_state_base_loading.h",
         "recovered/game/session_broadcast_packets.h",
-        "recovered/host/game_loading_modules.h"
+        "recovered/host/game_loading_modules.h",
+        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "00540db0",
       "status": "partial",
-      "coverage": "Player authority command-list kind6 decoder, actual Scene2 Ladder identity resolution and existing DD0007861A0 invocation with ignored result, through terminator24.",
-      "limitations": "Source-only typed native owners/containers replace original allocator, object/vtable and SEH ABI. Recovered kind6 producer/payload only. Positive Player weapon/input/FPV, moving-Car damage, nonoffline transport, other command payloads and containing application integration remain required. Explicit boundary doubles and compilation do not establish desktop delivery.",
+      "coverage": "Player authority command-list kind6 decoder, actual Scene2 Ladder identity resolution and existing DD0007861A0 invocation with ignored result, through terminator24. Shared grammar now admits actual non7 reaction17/damage and drop10 bodies, non7 Ladder6 forwarding after action, and native copy-before-command-insertion input0 order. Other required positive effects still reject.",
+      "limitations": "Source-only native typed ownership/dispatch replaces original object/allocator/SEH ABI. Focused actual Look/selection/selected-retirement and packet/policy/damage/Player B0 source runs under native sanitizers with explicit component/engine/geometry boundaries; actual World i386 and launcher/probe link are not application or desktop tests. Normal non7 metadata/peer3C/transport and containing World/frame admission/retirement remain required; no complete equivalence or application-loading claim.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-contact-player-20261111.json",
@@ -31467,7 +31469,9 @@
         "recovered/game/human_world_loading_services.h",
         "recovered/game/human_state_base_loading.h",
         "recovered/game/session_broadcast_packets.h",
-        "recovered/host/game_loading_modules.h"
+        "recovered/host/game_loading_modules.h",
+        "recovered/game/human_packet_receiver.h",
+        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json"
       ]
     },
     {
@@ -31655,13 +31659,15 @@
       "program": "client",
       "entry": "0077de30",
       "status": "partial",
-      "coverage": "Apply real Look commands, normalized primary/secondary selections, equipment/actions, face state and typed retained snapshot. Remote held-equipment selection and mounted retirement now use their actual same-owner receivers.",
+      "coverage": "Apply real Look commands, normalized primary/secondary selections, equipment/actions, face state and typed retained snapshot. Remote held-equipment selection and mounted retirement now use their actual same-owner receivers. Selected reaction0074D510 now invokes the verified SAME-owner ordered retirement tail through actual DD0.",
       "limitations": "Positive interaction retirement/execution, Ladder exit, occupied remote equipment and mounted actor retirement remain mandatory Runtime receivers. Source-only. Application loading and desktop execution remain pending.",
       "evidence": [
         "recovered/game/human_look_frame.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-look-posture-20261111.json",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "recovered/game/human_reaction_retirement.h",
+        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json"
       ]
     },
     {
@@ -34552,6 +34558,21 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0074d510",
+      "status": "partial",
+      "coverage": "Actual DD0+AA0 reaction selection, original flags/postures/shared sequence/mounted draws/shape attempts/source hold, followed by SAME physical/Look/equipment/action/tracks/audio/ladder/clip retirement and geometry entry in native order. Pool lookup stays at its original late phase; required failures preserve earlier mutations.",
+      "limitations": "Source-only native typed ownership/dispatch replaces original object/allocator/SEH ABI. Focused actual Look/selection/selected-retirement and packet/policy/damage/Player B0 source runs under native sanitizers with explicit component/engine/geometry boundaries; actual World i386 and launcher/probe link are not application or desktop tests. Normal non7 metadata/peer3C/transport and containing World/frame admission/retirement remain required; no complete equivalence or application-loading claim.",
+      "evidence": [
+        "recovered/game/human_reaction_selection.h",
+        "recovered/game/human_reaction_shape.h",
+        "recovered/game/human_reaction_retirement.h",
+        "recovered/game/human_control_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json"
       ]
     }
   ]

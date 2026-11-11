@@ -1,6 +1,6 @@
 # P22-HUM implementation plan
 
-Updated 2026-11-11 through the peer/console source checkpoint. P22-HUM remains OPEN.
+Updated 2026-11-11 through the reaction/authority retirement source checkpoint. P22-HUM remains OPEN.
 Both P2.2 checkboxes in `plan.md` remain OPEN. Mission loading still declines,
 and no mission desktop acceptance has occurred.
 
@@ -77,7 +77,9 @@ Player objective selection/status/score and the actual scalar application FIFO n
 have a [source checkpoint](checkpoints/p2.2-human-death-objective-session-20261111.json).
 Reached peer scalar publication and console logging now have a
 [source checkpoint](checkpoints/p2.2-human-peer-console-20261111.json).
-Continue reaction-specific authority packets, normal non7 metadata/peer3C/transport
-and containing failure, re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
+Reaction-specific authority admission, native input/stream ordering and selected
+reaction retirement now have a [source checkpoint](checkpoints/p2.2-human-reaction-authority-retirement-20261111.json).
+Continue normal non7 metadata/peer3C/transport and the full containing frame/failure,
+re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
 The full selected checkbox, P22-HUM and P2.2 remain open; no application or desktop
 acceptance is claimed.

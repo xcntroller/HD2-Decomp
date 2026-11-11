@@ -12,7 +12,7 @@ explicitly requested returning here. Inspect HEAD/status before acting. Transfer
 base50f9193 and22 pending Human files were verified; MAIN ignored WORK
 `human-return-main-20261111` records before/after hashes. Earlier LIFE/UI/PACK
 worktrees and `/tmp/hd2-p22-hum-continue` are separate, inactive for this task.
-Preserve their work and newer master merges. Latest preceding checkpoint60f43dc.
+Preserve their work and newer master merges. Latest preceding checkpoint5981afa; inspect current HEAD.
 
 No original EXE/DLL/Proton or Windows fixture execution. Compile/link only.
 Heavy compilation and Ghidra must run **sequentially**. No push. Source-only
@@ -21,11 +21,26 @@ Application mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source checkpoint
 
-[Peer/console receipt](analysis/checkpoints/p2.2-human-peer-console-20261111.json)
-adds ten client partials/extends four; totals34 complete/2592 partial of18783,
-no complete promotions. [Previous objective/session receipt](analysis/checkpoints/p2.2-human-death-objective-session-20261111.json)
-adds nine partials. Detailed behavioral contracts and earlier checkpoints are
-consolidated in the source note; do not re-audit unchanged solver/particles.
+[Reaction/authority retirement receipt](analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json)
+adds one client partial0074D510/extends four; totals34 complete/2593 partial of18783,
+no complete promotions. [Peer/console](analysis/checkpoints/p2.2-human-peer-console-20261111.json)
+and [objective/session](analysis/checkpoints/p2.2-human-death-objective-session-20261111.json)
+remain the preceding dependency checkpoints. Contracts are consolidated in the
+source note; do not re-audit unchanged solver/particles.
+
+World now admits actual non7 authority reaction17/damage and drop10; remaining
+missing PACK effects reject at their actual receivers.6 forwards AFTER action
+only non7, with Scene2/B0 recheck. Nonreserved Remote authority is genuine empty
+00583220; reserved Remote consumes authority DISCARD. Input0 stores C4/1C4 BEFORE
+queue insertion. Motion4 uses priority3(clamped2), ordinary0, lazily opening groups
+and finishing motion before ordinary; authority FIRST may alias both to2BC.
+Native tests preserve that actual append quirk, not an invented split.
+
+0074D510 selected retirement now shares one source body with actual DD0, with all
+original owner refs and phase order. Pool lookup remains late. Native Look hit→
+selection→retirement and packet→damage→actual Player B0→packet→presentation pass
+ordered failure/re-entry, callback B0-before-Human retirement and100 lifetimes.
+These are source/native boundary tests, NOT a full World/application run.
 
 0072F2F0 now preserves absent record00 return, scalar17(reason,peer) publication
 BEFORE localized text, then actual006C4B40 application routing. It does NOT itself
@@ -56,33 +71,37 @@ saved DD0 restore via00784310/005AB7A0, not a missing authored loader.
 
 ## Immediate next work
 
-1. Continue reaction-specific non7 authority packet admission. Current World
-   `receive_human_process_packet` blanket-rejects all non7 authority before the
-   actual per-command receivers. Existing00540DB0 C in WORK
-   `human-contact-static-missing` shows reaction17 and drop10 have direct bodies;
-   command6 forwards to SECOND90 only non7, while several item commands refresh
-   peerA8 after their own receivers. Preserve exact branch ordering; do not make
-   other missing PACK effects successful. Index before new exports.
-2. Continue actual normal metadata/peer3C/transport dependencies. Slot identity is
-   NOT Scene actor identity; no parallel records. Reused original006B8700/
-   0072A0B0 and provenance are MAIN WORK `human-objective-reused-originals`.
-3. Close full containing Human frame/damage, required failure/re-entry/retirement
-   boundary. Earlier ignored `human-state-damage-native.cpp` still uses the old
-   small command fixture shape; update/reuse actual shared HumanPacketCommand
-   when building the consolidated audit. No permanent tests. Remove temporary
-   audits only at full selected-checkbox completion.
+1. Continue normal non7 selected metadata/peer3C/lifecycle. **Inline MP mission
+   is kind13**, native006B5620 at006B56AF; objectives are kind12.006B8700 resource
+   goes to GameData38 (mission-relative24), name to80. Vtable00815AA8:
+   24=006B83B0 finalize,28=006B5890 clear,3C=006B5960 append; use index first.
+   Reused map/rules C remains in research worktree ignored
+   `analysis/work/future-dependencies/p28-*`; consult before new exports.
+   `human-objective-reused-originals` in MAIN already has006B8700/0072A0B0.
+2. Ordinary00612A60 ECX peer slot differs from EDX Scene identity. Late3C/A8
+   write, remote-AI auxiliary publication under418, and actual teardown must all
+   be recovered together; do not publish a dangling borrower or invent a map.
+   Existing MAIN C `offline-squad-storage-and-input/00612a60.c` and raw
+   `prepared-human-model.asm` retain evidence. Existing non7 storage/spawn
+   preconditions still reject; do not bypass them to manufacture a producer.
+3. Close the full containing Human frame/World/failure/re-entry/retirement
+   boundary. New focused audits use actual shared HumanPacketCommand. Old ignored
+   `human-state-damage-native.cpp` predates PACK and is not current evidence.
+   No permanent tests; remove temporary audits only at full checkbox completion.
+   Other PACK item/action/typed-control/speech effects retain required failures.
 
 ## Verification and commands
 
-WORK=`analysis/work/mission-world-20261103`. Latest focused ASan/UBSan/LSan:
-`human-peer-console-native.log` PASS (actual text/FIFO/peer source,100 lifetimes;
-explicit OS-lock/Win32/GDI/transport boundaries). Changed formatter regression
-`human-damage-messages-native.log` PASS. Prior objective, shared score, damage,
-clip/joint/contact and mounted SOUND focused evidence stays in linked receipts.
-Strict actual World i386: `human-peer-console-host-i386.log` PASS.
-Launcher AND startup-probe: `human-peer-console-application-i386.log` PASS,
-compile/link only, actual `-lgdi32` dependency. Outputs NOT executed.
-Tracker render/check and diff check required at checkpoint.
+WORK=`analysis/work/mission-world-20261103`. Latest ASan/UBSan/LSan PASS:
+`human-authority-damage-native.log` (actual Player B0/input registry/codec/damage,
+Base::bind queue boundary only; access checks disabled for private-input OOM
+inspection), `human-reaction-retirement-native.log` (actual Look/selection/body,
+component/engine/geometry doubles). Each includes100 entries/lifetimes.
+Previous peer/console/formatter and objective/score/damage evidence stays linked.
+Strict actual World/DD0 authority/presentation i386:
+`human-reaction-containing-host-i386.log` PASS. Launcher AND startup-probe:
+`human-reaction-containing-application-i386.log` PASS, compile/link only.
+Outputs NOT executed. Tracker render/check and diff check required at checkpoint.
 
 Client=`analysis/work/hd2.unpacked.exe`, SHA256
 `8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307`.

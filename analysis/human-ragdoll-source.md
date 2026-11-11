@@ -775,3 +775,79 @@ Continue reaction-specific authority packet admission/publication, actual non7
 metadata/peer3C/transport dependencies and the containing Human frame/failure/
 re-entry/retirement boundary. Full selected checkbox remains OPEN; no application
 mission integration or user desktop acceptance is claimed.
+
+### Authority damage and selected-reaction retirement — 2026-11-11
+
+The World receiver no longer rejects EVERY non7 authority packet before decoding.
+It now reaches the actual shared grammar and existing per-command receivers:
+00540DB0 command17 invokes005A1C90 with decoded kind/amount/hit/source and ZERO
+point/impulse;10 invokes actual005A3490 drop.6 performs its actual Ladder action,
+ignores that result, then queues to SAME SECOND90 only in non7, after rechecking
+actual Scene2 Human/B0 lifetime. Clothing/items/typed control/action/feedback
+positive gaps still throw at their own receivers. Their original conditional
+peerA8 timestamp refresh belongs after those effects, not a blanket admission
+success or timestamp for17/10/6. Nonreserved Remote C4=00583220 is genuine RET4
+without reading a tag; reserved Remote still selects authority DISCARD. The empty
+leaf is absent frozen and earns no credit.
+
+Original input0 stores both64-word C4/1C4 buffers BEFORE00547460 insertion. The
+imported queue-before-copy order was incorrect on allocation failure; source now
+retains the already stored inputs when insertion fails. This affects only actual
+native buffer/queue ordering, not the no-payload005AC760 command0 decoder.
+
+0053F370/00577B30 lazily open TWO groups: ordinary commands use wrapper boolean1
+→priority0; motion4 uses boolean0→priority3, clamped2 in0072BEF0. Both selected
+streams append a module13/actor10-bit prefix when first opened. Motion terminates/
+finishes BEFORE ordinary. Under authority FIRST, both wrappers select SAME2BC;
+the original nested prefix/order and both terminators are preserved, not replaced
+by an invented split. No claim is made that such a contrived alias sequence is a
+valid live protocol. Source transaction rollback restores every touched cursor/
+active field on failure, including a shared alias; it does not undo actual late
+snapshot effects. Ordinary reaction1/10/16 payload bytes remain unchanged.
+
+0074D510's existing selected-reaction tail is now one independently callable
+source body in `human_reaction_retirement.h`, invoked by actual DD0 with refs to
+its SAME Human/physical/face/action/tracks/movement/pool/World/frames/random/global
+owners. No new owner or production fallback is introduced. Private B0 publication
+is passed as its original containing callback. Pool dereference stays AFTER
+equipment event2/face work at actual motion-audio retirement, not helper argument
+evaluation. Seat removal precedes Human attachment clearing; step reset precedes
+voice; Look masks precede equipmentCC; action/fades precede transfer2/audio;
+Ladder removal precedes descriptors; update precedes transfer10/mount retirement;
+only velocity X becomes-10000 AFTER consuming all XYZ. Clip lookup/model placement
+and the >=7 air-pose/reason2 override retain original ordering before007B0910.
+
+Native `human-authority-damage-native.log` passes ASan/UBSan/LSan over actual
+grammar→policy/damage→real Player B0 queue→real serializer→received damage body.
+Actual input registry/callback types are reused. The audit deliberately calls
+Base::bind for the queue owner; this is not complete Player activation. Access
+control is disabled only to inspect private C4/1C4 after forced allocation failure;
+no production inspection API is added. Exact motion groups/request alias/two-stream
+rollback, actual Remote empty/discard distinction, missing state, required hit
+failure, B0/input-before-Human retirement with later-command discard, and100
+entries pass. Other World/engine endpoints are explicit doubles.
+
+`human-reaction-retirement-native.log` passes actual Look hit classification→
+selection→SAME selected-retirement source, with exact audio/equipment/clip order,
+failed seat prefix and re-entry, failed transfer BEFORE pool lookup, mounted random
+draws/seat conflict, motion deceleration/X-only sentinel, air override and100
+lifetimes. Component/engine/geometry endpoints are doubles; unchanged joint/clip/
+contact bodies were not re-audited. Strict actual World authority/presentation and
+DD0 closure compile passes in `human-reaction-containing-host-i386.log`; launcher
+AND startup probe compile/link pass sequentially in
+`human-reaction-containing-application-i386.log`. Windows outputs were not run.
+
+[Receipt](checkpoints/p2.2-human-reaction-authority-retirement-20261111.json) adds
+one client partial0074D510 and extends four existing entries; totals34 complete/
+2593 partial, no complete promotions. Earlier source-only joint/clip entries retain
+their uncredited status. Full selected checkbox remains OPEN pending the actual
+normal metadata/peer3C/transport and containing mission/World/frame boundary.
+
+Next metadata evidence: actual GameData inline MP mission is **kind13**, proved by
+006B5620 at006B56AF; its source still requires application ownership/admission.
+006B8700 resource copy goes to GameData38 (mission-relative24), not GameData24;
+GameData80 is selected name. Inline vtable00815AA8 has24=006B83B0 finalize,
+28=006B5890 clear and3C=006B5960 objective append. Read their existing/indexed
+evidence before recovering that containing producer.00612A60 ECX is separate peer
+slot, EDX Scene identity; its late3C/A8 write and remote-AI auxiliary publication
+must preserve418 and actual teardown. Never conflate those identities.

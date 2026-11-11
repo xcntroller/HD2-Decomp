@@ -1033,7 +1033,6 @@ public:
         receive_human_process_packet(actor,packet,false,reserved);
     }
     template<class Actor>void receive_human_process_packet(Actor* actor,SessionPacketStream& packet,bool authority,bool reserved){
-        if(authority&&(mode_flags()&7u)!=7u)throw std::runtime_error("Human authority commands require actual nonoffline forwarding");
         using Human=typename Dependencies::Composition::Human;
         const auto identity=actor?actor->base().id10():-1;
         const auto resolve=[&]()->Human*{
@@ -1070,10 +1069,20 @@ public:
             if(!authority&&!player)state->words().set(0x10,f.template get<HumanVector>(0x30)); //00583120, Remote virtual54 copies direction only.
             return; //Player/authority only decode this payload.
         case 6:{
+            const auto identity=human.base().id10();
             auto& control_owner=owner.control();auto* control=control_owner.control();auto* look=control_owner.look();
             if(!control||!look)throw std::logic_error("Human Ladder command requires the actual DD0/E0 owners");
             auto* target=dependencies().scene.frames().scene_actor_identity(command.actor_identity);
-            (void)control->request_frame_ladder(target,*look,*this);return; //00540DB0/005406C0/00592FE0 ignore result.
+            (void)control->request_frame_ladder(target,*look,*this); //00540DB0/005406C0/00592FE0 ignore result.
+            if(authority&&(mode_flags()&7u)!=7u){ //00547600 only AFTER action; even when its result is false.
+                auto* current=dependencies().scene.frames().scene_human_identity(identity);
+                if(current!=&human||current->loading_state!=state)
+                    throw std::logic_error("Ladder authority forwarding lost its actual Human/B0 during action");
+                auto* live=composition(*current).states().get();
+                if(live!=state)throw std::logic_error("Ladder authority forwarding requires SAME B0 owner");
+                live->queue_frame_command(command,true);
+            }
+            return;
         }
         case 13:if(!(mode_flags()&1u))throw std::runtime_error("Human inventory diagnostic requires actual005B2340 nonauthority receiver");return;
         case 15:
