@@ -23,6 +23,10 @@ void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed
         world.human_inline(human).frame_position(state().words().template get<HumanVector>(0x30));
         world.human_inline(human).frame_target_direction(state().target_direction());
     };
+    auto fire=[&](auto& item,Human& actor,const HumanVector& position,const HumanVector& direction,
+                  std::uint32_t argument,bool primary){
+        return runtime.fire_human_item(item,actor,position,direction,argument,primary);
+    };
     if(!authority){
         advance_human_presentation_timers(human.activation,elapsed);
         if((world.mode_flags()&7u)!=7u){
@@ -35,12 +39,14 @@ void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed
             }else human.field204=0;
         }
         if(human.base().id14()<0)return; //004D0E80 virtual64, separate from runtime byte1C.
-        human.activation.flag178=false;refresh();runtime.advance_human_bleeding(human,elapsed); //005A0480.
+        human.activation.flag178=false;refresh();
+        auto drops=[&](const HumanVector& position,const HumanVector& direction){runtime.spawn_human_blood(position,direction);};
+        world.advance_human_bleeding(human,elapsed,drops); //005A0480.
         world.advance_human_state(human,false,elapsed,runtime); //Actual B0 virtual24.
         directions();world.human_inline(human).advance_presentation_frame(elapsed,runtime);
         if(!(world.mode_flags()&1u))sample_human_frame_motion(human,frames,elapsed);
         const auto flags=world.human_inline(human).consume_frame_feedback();
-        runtime.apply_human_frame_feedback(human,flags);return;
+        world.apply_human_frame_feedback(human,flags,fire);return;
     }
     if(human.base().id14()<0)return;
     refresh();advance_human_float_timer(human.activation,elapsed);
@@ -50,7 +56,7 @@ void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed
     if((world.mode_flags()&1u)||(world.mode_flags()&7u)==7u)directions();
     world.human_inline(human).advance_authority_frame(elapsed,runtime);
     if(!(world.mode_flags()&2u)){
-        const auto flags=world.human_inline(human).consume_frame_feedback();runtime.apply_human_frame_feedback(human,flags);
+        const auto flags=world.human_inline(human).consume_frame_feedback();world.apply_human_frame_feedback(human,flags,fire);
     }
     if(signed_word(human.properties.stats_ec[0])<=0)return;
     sample_human_frame_motion(human,frames,elapsed);

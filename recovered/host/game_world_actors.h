@@ -211,6 +211,7 @@ public:
         require_open();
         if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
         else if(actor.base().type()==10)consumers_.spawn_packet_decoder().receive(static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor),&packet);
+        else if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
         else if(actor.base().type()==29){auto& fowl=static_cast<Fowl&>(actor);if(!fowl.loading)throw std::runtime_error("Fowl packet requires its actual generated-bird owner");fowl.loading->launch(false,0);}
         else throw std::runtime_error("Required Scene2 actor packet receiver is unavailable");
     }

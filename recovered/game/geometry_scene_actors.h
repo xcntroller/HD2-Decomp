@@ -237,6 +237,16 @@ public:
         }
         if(sound!=0xffffffffu)emit_sound(sound,sounds);
     }
+    void complete_lockpick(SessionBroadcastPackets& packets){ //005FF6C0.
+        if(properties.fields220[1]||!properties.flag234||!properties.flag235)return;
+        properties.flag234=0;
+        if(linked_door){
+            auto* linked=dynamic_cast<DoorSceneActor*>(linked_door);
+            if(!linked)throw std::runtime_error("Door lockpick requires its actual linked Door");
+            linked->properties.flag234=0;
+        }
+        write_door_loading_command(packets,this->base_.id10(),3);
+    }
     template<class Runtime,class Collisions,class Queries>void frame_update(std::uint32_t elapsed,Runtime& runtime,Collisions& collisions,
                                                                           Queries& queries,DynamicCollisionExclusions<Descriptor>& exclusions) { //005FFFE0, ordinary rotating Door.
         if(!flag90||!collision_ready_)throw std::logic_error("Door update requires completed activation");

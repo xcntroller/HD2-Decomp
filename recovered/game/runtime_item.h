@@ -4,6 +4,8 @@
 #include "frontend/pre_mission_data.h"
 #include "game/actor_slot_storage.h"
 #include "game/actor_base.h"
+#include <cmath>
+#include <limits>
 #include <memory>
 #include <optional>
 
@@ -46,6 +48,34 @@ public:
     std::int32_t storage_size() const {return frontend::pre_mission_detail::Bytes::integer(definition_.category);} //007D32A0.
     long double volume() const {const auto size=storage_size();return size?static_cast<long double>(size)*2:1.L;} //007D32B0.
     std::int32_t primary_payload_kind() const {return payload_kind(definition_.payloads[0]);}
+    float primary_payload_ballistic_speed()const{return real(payload_word(definition_.payloads[0],0x34));} //Native payload+38.
+    std::uint32_t ai_shot_interval()const{ //0058BAF0, native payload+18.
+        return weapon_payload_time(0x14);
+    }
+    bool allows_partial_reload()const{ //007E02F0, native payload byte20.
+        const auto& payload=definition_.payloads[0];
+        if(payload.type<1||payload.type>4)throw std::runtime_error("Weapon reload requires the actual reloadable payload family");
+        return payload.bytes.at(0x1c)!=0;
+    }
+    std::uint32_t reload_duration()const{
+        switch(definition_.payloads[0].type){
+        case 3:return weapon_payload_time(0x30); //007E0340, native34.
+        case 4:return weapon_payload_time(0x2c); //007E03A0, native30.
+        default:return 0; //007E02B0.
+        }
+    }
+    std::int32_t reload_sound()const{
+        const auto& payload=definition_.payloads[0];
+        if(payload.type==3)return frontend::pre_mission_detail::Bytes::integer(payload_word(payload,0x2c));
+        if(payload.type==4)return frontend::pre_mission_detail::Bytes::integer(payload_word(payload,0x28));
+        return -1; //007E02A0.
+    }
+    float loaded_ammunition()const{return real(fields50_54[0]);}
+    void loaded_ammunition(float value){fields50_54[0]=bits(value);}
+    void magazine_amount(float value){
+        if(family_!=Family::basic)throw std::logic_error("Reload remainder requires an actual ammunition instance");
+        amount_=value;
+    }
     bool pack_exposes_contents() const {return primary_payload_kind()==7&&payload_word(definition_.payloads[0],8)==0;}
     std::int32_t identity=-1; //Assigned by the actual item module after construction, not by this factory.
     bool flag1c=false,flag1d=false;
@@ -90,6 +120,13 @@ public:
     std::uint32_t other_field28() const {return other_field28_;}
     float auxiliary_amount()const{return family_==Family::other?real(other_field28_):-1.f;} //007D41A0/007D3280 virtual20.
 private:
+    std::uint32_t weapon_payload_time(std::size_t offset)const{
+        const auto value=static_cast<long double>(real(payload_word(definition_.payloads[0],offset)));
+        if(!std::isfinite(value)||value<std::numeric_limits<std::int64_t>::min()||
+           value>=-static_cast<long double>(std::numeric_limits<std::int64_t>::min()))
+            throw std::runtime_error("Weapon payload time is outside original conversion range");
+        return static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
+    }
     RuntimeItem(Backend& backend,Services& services,const Catalogue& catalogue,const Definition& definition,Family family)
         : services_(services),catalogue_(catalogue),definition_(definition),family_(family) {
         static_assert(noexcept(std::declval<Services&>().unregister_item_kind20(std::declval<RuntimeItem*>())),

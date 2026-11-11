@@ -89,10 +89,10 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and 2,247 partial entries (2,242 client and five engine).
+complete client functions and 2,260 partial entries (2,255 client and five engine).
 The [Physics object frame checkpoint](analysis/physics-object-frame-motion.md) supplies type0..5 motion, contact-seeded tipping, actual module2 queries, impulse/wake and ordered retirement source-only. Tree replacement/pickup and application/desktop integration remain required.
 The [Sight frame checkpoint](analysis/sight-shot-frame-source.md) binds scheduling, Human range/visibility metrics and marker rays to SAME World owners, source-only. Positive Dog/attachment/material branches and application/desktop delivery remain required.
-The [Human frame checkpoint](analysis/human-frame-source.md) supplies containing callback order, perception/command ageing, E0 feedback/directions, camera/item poses, equipment and periodic stats source-only. The AI continuation covers shared timers, navigation, Guard and Area frame dispatch, hostile selection and B0 movement output. The [shared Scene2 movement source](analysis/human-scene-movement.md) supplies substeps, floor and actor contacts, and pooled local detours. Positive B0/DD0/fire and the live application frame graph remain required.
+The [Human frame checkpoint](analysis/human-frame-source.md) covers callback order, perception, E0 commands, Guard and Area dispatch, action completion, reload and AI aim in source. The [shared Scene2 movement source](analysis/human-scene-movement.md) supplies floor and actor contacts and pooled local detours. The containing module facade uses these owners. Positive B0, DD0, fire and application integration remain required.
 The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) records
 the earlier accumulated source subsets. Later checkpoints include Human
 weapons/formation/Players, [prepared spawning](analysis/session-activation-loading.md),
@@ -241,11 +241,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **2,247 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **2,260 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 2,242 |
+| Base game client | 17,294 | 34 | 2,255 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

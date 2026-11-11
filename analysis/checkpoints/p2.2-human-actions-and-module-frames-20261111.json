@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "previous_checkpoint": "fabbd85",
+  "added_entries": [
+    "00584e30",
+    "0077fbb0",
+    "005a62e0",
+    "005a6360",
+    "005ff6c0",
+    "005a95d0",
+    "0060d9f0",
+    "0060da50",
+    "00572120",
+    "005722b0",
+    "007d4850",
+    "007dc2a0",
+    "007dbd80"
+  ],
+  "ledger_added_partial_client": 13,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2260,
+  "checks": {
+    "native_action_reload_aim": "PASS (ASan/UBSan/LSan)",
+    "actual_host_i386": "PASS (strict compile, required runtime leaves are fixture declarations)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-action-native.cpp": {
+      "sha256": "9bb4bc1c667c79299e05e86d7f00fe3176beb48c0132d420b2feabe038ad1ba8",
+      "bytes": 9053,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-action-native": {
+      "sha256": "f78ebeb662389e366d34f89dbef49a3eddd79380a360ccd66856f62195130b0c",
+      "bytes": 619976,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-action-native.log": {
+      "sha256": "03918d45fa72459445e903b4c057c45188bb242b17456958fdc08dac726a03b5",
+      "bytes": 133,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-action-host.cpp": {
+      "sha256": "2954406fe7c5fb2d9a8341c51e36c96e435bff8ad81883e97ef9c58a7ecd1230",
+      "bytes": 1002,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-action-host.o": {
+      "sha256": "320434f2175a94310f2263b16655f167a9b2481d4f9e9f38476250209d5430e6",
+      "bytes": 7066690,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-action-host.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-module-host.cpp": {
+      "sha256": "8af16404f5e7a57971f7951c0ac497f9442f9bee34c5d9816b1093babe58b430",
+      "bytes": 1951,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-module-host.o": {
+      "sha256": "c356b9a8be5b1269718ad5add1b8ece5fb503ba6a6fb7e924daeb8c77942e48a",
+      "bytes": 11624084,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-module-host.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-action-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-state-actions/00584e30.c": {
+      "sha256": "c81cb6e2174d25e991774e8bad3ec06a7f55d36787b5302b2f9e66e5509f5894",
+      "bytes": 11826,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-action-control-workers/0077fbb0.c": {
+      "sha256": "c96bcff613e26b819db416e5d97ee11c43fc4ba5359e31cf69c09385cce8c3a7",
+      "bytes": 776,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-item-positive-workers/007d4850.c": {
+      "sha256": "d7ac6bd89b7a7c061f5a4892ad74641313a2ae542b0a1ec9d19464b9bc46709a",
+      "bytes": 7396,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-guard-area-authority/0058baf0.c": {
+      "sha256": "6fa9318f54531c7cfc6ff82b23f2496ba886c6c50d3ae39a9927638b9538b94a",
+      "bytes": 8476,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-live-inventory-and-aim/00572120.c": {
+      "sha256": "d822e8c226a0427e35b2fd065fc2aba703fc381d01236119608a734a8c167aee",
+      "bytes": 2194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-shot-and-control-workers/005722b0.c": {
+      "sha256": "eb39d9eff51108d2956c6f770f9fcd00af5138897eb21f7365b08dd57ac6fa42",
+      "bytes": 8418,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/explosive-place-packet-assembly.txt": {
+      "sha256": "bcd9af4ad70db5e8bd8a00878f8f0f1033814e1a124adfbdb8159fdd82eda7ef",
+      "bytes": 27742,
+      "retained": true
+    }
+  }
+}

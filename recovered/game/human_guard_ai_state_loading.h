@@ -85,8 +85,8 @@ public:
     Actor* timer_target()const{return timer_target_;}void timer_target(Actor* target){timer_target_=target;}
     void refresh_reaction_timer(){refresh_human_guard_reaction_timer(*this,this->state_frames(),random_);} //00547DA0.
     template<class Queries>void advance_frame_prefix(std::uint32_t elapsed,Queries& queries){advance_human_guard_frame_prefix(*this,elapsed,queries);} //00547E70.
-    template<class Queries,class Inline,class World>
-    bool advance_authority_frame(std::uint32_t elapsed,Queries& queries,Inline& control,World& world){ //00548170.
+    template<class Queries,class Inline,class World,class Runtime>
+    bool advance_authority_frame(std::uint32_t elapsed,Queries& queries,Inline& control,World& world,Runtime& runtime){ //00548170.
         this->publish_authority_input_gate(control);
         if(this->words().template get<std::uint32_t>(0x50)&0x4000800u){
             this->process_second_frame_commands();
@@ -109,7 +109,7 @@ public:
                 throw std::runtime_error("Guard aim stop requires its actual 00548080 reaction and item receivers");
             this->advance_frame_direction(elapsed,control);
             this->apply_frame_movement(control);
-            this->apply_frame_items(control,world,elapsed);
+            this->apply_frame_items(control,world,runtime,elapsed,0);
         }
         this->process_second_frame_commands();
         if(this->resources().current_action_kind()&&!(this->words().template get<std::uint32_t>(0x50)&0x400u))return false;

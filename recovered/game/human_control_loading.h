@@ -24,6 +24,7 @@ class HumanControlLoading {
 public:
     using Self=HumanControlLoading;
     using Frame=typename Frames::Frame;
+    using SceneInstance=SceneActor<Frames>;
     using Geometry=HumanModelGeometry<Frames,Random>;
     using Face=HumanFaceControl<Frames,Human,Random>;
     using Physical=HumanPhysicsLoading<Frames,Human,Collisions,Face,Audio>;

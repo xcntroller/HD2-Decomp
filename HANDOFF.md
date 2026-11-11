@@ -9,31 +9,34 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Shared Scene2 movement](analysis/human-scene-movement.md) and
-[detour verification receipt](analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json).
-005647C0/008AADD0 now gathers actual active20, publishes Human+2C4 steering,
-runs eight ordered substeps, and applies Human/Car and linked floor constraints.
-Car radii come from the original 180/190 bounds in its embedded physics owner.
-0056A0F0 trims leading jobs and inserts local detours through the same B0 and
-Startup pool. Native sanitizer exercises standing, prone and Car detours.
-Actual-host i386 compile, launcher link and 27 tracker checks pass.
-The tally is 34 complete and 2,247 partial entries (2,242 client and five engine)
+[Human action completion, reload and containing module frames](analysis/human-frame-source.md#action-completion-reload-and-containing-module-frames)
+and [verification receipt](analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json).
+00588010 now borrows actual runtime active20, ExplosivePlace94 and HumanEC.
+00584E30 dispatches E0 completion, Door unlock, disarm and unavailability.
+007D4850 uses actual ammunition stacks, item retirement and SOUND. 0058BAF0
+samples shdum and original AI spread before required item virtual24. The
+containing facade composes actual physics, Scene2/Human and camera modules.
+Native sanitizer, actual-host i386, launcher link and 27 tracker checks pass.
+The tally is 34 complete and 2,260 partial entries (2,255 client and five engine)
 across 18,783 frozen functions. Both P2.2 checkboxes remain open. Application
 loading still declines and no mission desktop test has occurred.
 
-[Prior Guard and Area frame dispatch](analysis/human-frame-source.md#guard-and-area-frame-dispatch)
-was committed as 33ca2d7. The containing B0 owner dispatches actual shared input,
-action leases, hostile scoring and supported movement/item output.
+[Shared Scene2 movement](analysis/human-scene-movement.md) and
+[detour verification receipt](analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json).
+005647C0/008AADD0 supplies the eight substeps, B0 path detours and steering
+through actual active20. It is wired into the containing module facade.
 
 ## Continue P2.2
 
-- Finish positive Human B0/Guard/Area/DD0 workers as reached. Target action
-  completion 00584E30, weapon execution 0058BAF0, populated 00577B30 queues,
-  Guard cover/door and armed alignment, specialized navigation 0057CC50/007861A0,
-  Human Door kind 6 and floor-list 00581E30 still require actual receivers.
-  Original files are in WORK directories `frame-human-positive-{guard,aim}`,
-  `frame-human-guard-area-authority` and `frame-human-ai-path-receivers`.
-- Use the recovered movement facade when binding the actual active20 frame pass.
+- Continue Human DD0 control 00787270/00787D50, other B0 families, positive
+  00584E30 effects and queued 00577B30. Guard cover/door, 0057CC50/007861A0,
+  floor-list 00581E30 and 0058BAF0 kind9 release remain required. For item
+  virtual24 follow 007D4FD0 through the actual ShotMgr pool and 0044B910.
+  Original files are in WORK `frame-human-control-updates`,
+  `frame-human-shot-bullet-lifetime` and `frame-human-ai-path-receivers`.
+- Type11 original 005B7320/005B7480 share the embedded rigid-body virtual24.
+  WORK `frame-live-loose-items` has both exports. They cannot use module2
+  Physics object's separate motion solver.
 - Connect the real frame graph and its required positive modules, FPV/HUD/text,
   control and render callbacks. 00482260 calls procedural 00482E50 before the
   volume-light loop. Preserve the process texture owner, actual driver state

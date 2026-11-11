@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_AI_FRAME_OUTPUT_H
 
 #include "game/human_ai_navigation_path.h"
+#include "game/human_sight_relations.h"
 
 namespace hd2::game {
 
@@ -90,8 +91,9 @@ template<class AI,class Inline>void apply_human_ai_frame_movement(AI& ai,Inline&
     }else if((previous&0x30000f8u)&&!(request&0x30000f8u))animation(0x2d);
 }
 
-template<class AI,class Inline,class World>
-void apply_human_ai_frame_items(AI& ai,Inline& control,World& world,std::uint32_t elapsed){ //0058BAF0.
+template<class AI,class Inline,class World,class Runtime>
+void apply_human_ai_frame_items(AI& ai,Inline& control,World& world,Runtime& runtime,
+        std::uint32_t elapsed,std::uint32_t fire_argument){ //0058BAF0.
     auto& words=ai.words();
     words.set(0xb0,words.template get<std::uint32_t>(0xb0)+elapsed);
     const auto* second=ai.second_frame_inputs();
@@ -123,9 +125,16 @@ void apply_human_ai_frame_items(AI& ai,Inline& control,World& world,std::uint32_
         return;
     default:return;
     }
+    const auto reload=[&](bool forced){
+        std::int32_t ammunition=-1;
+        if(!world.reload_human_ai_weapon(item,*human,ammunition,human->properties.field19c==2))return;
+        world.human_frame_item_action_fpv(*human,6);
+        control.set_frame_item_action(3);
+        if(forced)item.field60&=~2u;
+        if((world.mode_flags()&7u)!=7u)throw std::runtime_error("AI reload requires actual B0 command05 transport");
+    };
     if(!trigger&&first->template get<float>(0x18)==0){
-        if(second->template get<float>(0x34)!=0)
-            throw std::runtime_error("AI frame reload requires the actual item reload receiver");
+        if(second->template get<float>(0x34)!=0)reload(false);
         return;
     }
     if(!words.template get<std::uint8_t>(0xad)){
@@ -135,11 +144,23 @@ void apply_human_ai_frame_items(AI& ai,Inline& control,World& world,std::uint32_
         return;
     }
     if(item.amount()==0||(item.field60&2u)){
-        if(trigger)throw std::runtime_error("AI frame reload requires the actual item reload receiver");
+        if(trigger)reload(true);
         return;
     }
     if(human_frame_signed_word(world.game_word28()-item.field58)<0)return;
-    throw std::runtime_error("AI item output requires the actual weapon execution receiver");
+    auto direction=words.template get<HumanVector>(0x10);
+    auto frame=item.shot_frame();
+    if(frame)frame=item.shot_frame();else frame=item.model();
+    const auto position=world.sight_position(frame);
+    world.prepare_human_ai_shot_direction(ai,control,item,direction); //B0 virtual04, after sampling shdum.
+    runtime.fire_human_item(item,*human,position,direction,fire_argument,true);
+    const auto interval=item.ai_shot_interval();
+    item.field58=world.game_word28()+interval;
+    control.set_frame_item_action(1);
+    words.set(0xb0,0u);
+    set_human_sight_alignment(*human,-30.f,world.mode_flags());
+    world.human_frame_item_action_fpv(*human,2);
+    if((world.mode_flags()&7u)!=7u)throw std::runtime_error("AI fire requires actual B0 command02 transport");
 }
 } //namespace hd2::game
 #endif

@@ -21,6 +21,7 @@ template<class Control>
 class HumanLookControl {
 public:
     using Frame=typename Control::Frame;
+    using Actor=typename Control::SceneInstance;
     HumanLookControl(){reset(1);}
     void bind(Control& control) { //0077DDA0.
         control_=&control;second_control_=&control;human_slot_=control.human_slot_address();
@@ -28,6 +29,7 @@ public:
     void reset(std::uint32_t property) { //0077DDC0 calls0077FD40 before its own writes.
         reset_human_look_words(state_);
         action_model_=Frame{}; //Native04 is a typed borrowed frame, never a host pointer DWORD.
+        interaction_actor_=nullptr; //Native08.
         state_.set(0xbc,std::int32_t{-10000});state_.set(0xa0,property);state_.set(0xb0,std::uint8_t{0});
         for(auto offset:{0xb8u,0xc0u,0xd4u,0xd0u,0x40u,0xc8u,0xccu,0xb4u,0xd8u})state_.set(offset,std::uint32_t{0});
     }
@@ -51,6 +53,20 @@ public:
             if(state_.template get<std::int32_t>(0x48)!=command){state_.set(0x48,command);if(changed)state_.set(0x40,state_.template get<std::uint32_t>(0x40)|2u);}
         }else state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|2u);
     }
+    void interaction_command(Actor* actor,std::uint32_t subtype,std::uint32_t argument){ //0077FBB0, changed=true.
+        if(!control_)throw std::logic_error("Human interaction command requires actual DD0");
+        const auto animation=static_cast<std::int32_t>(control_->animation_state_word(0x1d8));
+        constexpr std::uint32_t mask=0x4000u;
+        if(locked(mask)||(!state_.template get<std::uint8_t>(0xb0)&&animation>=8&&animation<=14)){
+            defer(mask);
+            return;
+        }
+        if(state_.template get<std::uint32_t>(0x90)==subtype)return;
+        state_.set(0x90,subtype);interaction_actor_=actor;
+        state_.set(0x94,argument);
+        state_.set(0x40,state_.template get<std::uint32_t>(0x40)|mask);
+    }
+    Actor* interaction_actor()const{return interaction_actor_;}
     void frame_item_action(std::int32_t command){ //0077F380.
         if(locked(0x200u)){defer(0x200u);return;}
         if(state_.template get<std::int32_t>(0x58)==command)return;
@@ -195,6 +211,7 @@ private:
     void defer(std::uint32_t mask){state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|mask);}
     HumanJointWords<0xe0> state_; //Only the stores above are behaviorally reconstructed.
     Control* control_=nullptr;Control* second_control_=nullptr;Frame action_model_{};
+    Actor* interaction_actor_=nullptr;
     decltype(std::declval<Control&>().human_slot_address()) human_slot_=nullptr;
 };
 } //namespace hd2::game

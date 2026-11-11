@@ -106,8 +106,9 @@ public:
         return advance_human_ai_frame_direction(*this,elapsed,this->state_frames(),look); //00575940.
     }
     template<class Inline>void apply_frame_movement(Inline& control){apply_human_ai_frame_movement(*this,control);}
-    template<class Inline,class World>void apply_frame_items(Inline& control,World& world,std::uint32_t elapsed){
-        apply_human_ai_frame_items(*this,control,world,elapsed);
+    template<class Inline,class World,class Runtime>void apply_frame_items(Inline& control,World& world,
+            Runtime& runtime,std::uint32_t elapsed,std::uint32_t fire_argument){
+        apply_human_ai_frame_items(*this,control,world,runtime,elapsed,fire_argument);
     }
     void advance_frame_presentation(std::uint32_t mode){ //Guard00548130 and Area00559DA0.
         if(!(this->words().template get<std::uint32_t>(0x50)&0x4000800u)&&(mode&7u)!=7u)

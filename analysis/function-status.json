@@ -28028,12 +28028,13 @@
       "program": "client",
       "entry": "00588010",
       "status": "partial",
-      "coverage": "Advance B8 and positive action duration, validate actual typed target and preserve cancellation/timeout order.",
-      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "coverage": "Advance shared Human B0 timers using actual runtime active20 membership, ExplosivePlace field94, Human health and the action completion dispatcher.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
-        "recovered/game/human_state_frame_timers.h"
+        "recovered/game/human_state_frame_timers.h",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json"
       ]
     },
     {
@@ -29360,12 +29361,13 @@
       "program": "client",
       "entry": "0058baf0",
       "status": "partial",
-      "coverage": "Advance B0 item time, apply input gates and dispatch supported kind 9 actions and readiness.",
-      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "coverage": "Run actual AI item reload, readiness, raw B0 fire pose/aim preparation and post-item publication. Positive virtual24 and kind-nine release remain required.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_frame_output.h"
+        "recovered/game/human_ai_frame_output.h",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json"
       ]
     },
     {
@@ -29720,12 +29722,13 @@
       "program": "client",
       "entry": "0058c330",
       "status": "partial",
-      "coverage": "Dispatch actual E0 weapon readiness and the selected player's FPV state.",
-      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "coverage": "Publish native E0 readiness and its actual FPV state in offline7. Nonoffline command transport remains required.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_inline_loading.h"
+        "recovered/game/human_inline_loading.h",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json"
       ]
     },
     {
@@ -30171,6 +30174,162 @@
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json",
         "recovered/game/human_scene_movement_detour.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00584e30",
+      "status": "partial",
+      "coverage": "Dispatch the actual B0 action completion sequence, including item refresh, reset, ordered E0 and required actor effects.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_state_action_completion.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077fbb0",
+      "status": "partial",
+      "coverage": "Publish the typed E0 interaction actor and command or defer through C8 on the actual lock/animation gate.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a62e0",
+      "status": "partial",
+      "coverage": "Set current B0 unavailability and apply experience, Sight mode and hearing listener retirement in authority order.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6360",
+      "status": "partial",
+      "coverage": "Set current B0 unavailability through the native virtual90 behavior.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ff6c0",
+      "status": "partial",
+      "coverage": "Unlock the actual closed pickable Door and linked Door, then enqueue the native unlock command.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/geometry_scene_actors.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a95d0",
+      "status": "partial",
+      "coverage": "Add to the actual offline DC lockpick skill and preserve its native upper cap.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060d9f0",
+      "status": "partial",
+      "coverage": "Disarm the actual ExplosivePlace and publish its Scene2 command1.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/simple_scene_actors.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060da50",
+      "status": "partial",
+      "coverage": "Apply the native ExplosivePlace disarm receiver only without authority.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/simple_scene_actors.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00572120",
+      "status": "partial",
+      "coverage": "Read actual Human skill, posture, stance and definition command for original engine random shot spread.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_ai_shot_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005722b0",
+      "status": "partial",
+      "coverage": "Transform raw B0 shot direction through ordinary spread or the actual ballistic target path.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_ai_shot_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d4850",
+      "status": "partial",
+      "coverage": "Select matching magazines, preserve the last-magazine gate, apply overflow, update weapon timers and invoke real reload sound.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_weapon_reload.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dc2a0",
+      "status": "partial",
+      "coverage": "Detach the selected ammunition from its actual stack with owner, HUD and carried-weight updates.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dbd80",
+      "status": "partial",
+      "coverage": "Retire actual ammunition in slots 1 and 6 with native holster/model positioning before Items removal.",
+      "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "recovered/game/human_world_loading_services.h"
       ]
     }
   ]

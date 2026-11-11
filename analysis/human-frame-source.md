@@ -355,3 +355,60 @@ The [source checkpoint receipt](checkpoints/p2.2-human-ai-frame-dispatch-2026111
 records native ASan/UBSan/LSan, strict actual-host i386 and launcher link
 checks. The native fixtures used doubles for the game frame clock, input and
 unimplemented runtime leaves. The application still declines mission loading.
+
+## Action completion, reload and containing module frames
+
+00588010's target list is the actual runtime registry active20 at
+0089B4C0+20. 00477330 writes that list. ExplosivePlace field94 and Human EC
+come from the typed target and its existing health owner. All eight B0 vtables
+use 00584E30 for virtual0C. It refreshes the hand, resets Human 17C/180/184,
+issues the original kind6 subtypes in order, and clears B0 60/64/68/6C after
+the reached effects. Offline kind6 writes the actual E0 actor borrow and
+90/94/40 through 0077FBB0, or defers at C8 on native locks/animation 8..14.
+The nonoffline 00751480 body remains required.
+
+005FF6C0 uses the actual Door state224 and lock bytes234/235, unlocks the
+linked Door, then queues command3 through the shared Scene2 broadcast owner.
+005A95D0 increments the actual offline DC skill with a cap of five. 005A62E0
+and 005A6360 dispatch B0 virtual8C/90, whose native 00524D50/60 both OR
+bit 0x4000000. The authority path then updates experience, Sight observer
+and target modes, and the real hearing listener. 0060D9F0 disarms the actual
+ExplosivePlace through 0060D380 and sends command1. Its 0060CDA0 presentation
+receiver handles command1 with the authority gate and command3 with the
+native state payload. Placement and detonation packets still require their
+real effects. 0060CDA0 and 00524D50/60 are absent from the frozen inventory.
+
+0058BAF0 now uses the real item reload path 007D4850. It selects the first
+matching native magazine stack, tracks its largest and smallest amounts,
+preserves the Guard single-magazine branch, and redistributes overflow or
+retires the selected entry through the actual Items owner. The 007DC2A0/
+007DBD80 ammo-slot path updates the borrower, HUD, carried weight, slot,
+holster and model pose before removal. Reload sound uses the same SOUND
+owner and the actual shdum lookup. 0098B02C is zero in ordinary runtime.
+The observed writer 007205E2 is a separate developer command.
+
+The direct positive-fire path samples shdum before B0 virtual04.
+00572120 and 005722B0 apply original engine RandFloat draws, timed and
+definition-command spread, and the ballistic target branch. The item
+virtual24 endpoint is required. Only its return allows the original
+cooldown store, E0 action1, B0 B0 reset, offline sight alignment and FPV
+notification. The actual 007D4FD0 effects remain required, including the
+00450D30/0044B030/0044B910 projectile chain. Kind9 model reference release
+and attached input remain pending. Timed action pickup, placement,
+treatment, movement and item drop still require their reached workers.
+
+The containing module facade now calls the actual loaded World module
+registry, physics, Scene2 movement/Human owners and camera. Human bleeding
+and feedback use their existing policies and the required positive blood
+and item endpoints. Dog, loose item, DD0 and remaining B0 kinds still need
+concrete runtime leaves. No application callback or desktop attempt used
+this facade at this checkpoint.
+
+[Verification receipt](checkpoints/p2.2-human-actions-and-module-frames-20261111.json).
+Native ASan/UBSan/LSan covered timer completion and invalidation, E0
+acceptance and deferral, action ordering, ammunition selection/transfer
+and AI aim draws. The i386 fixture compiled both actual World module
+passes with declarations for the remaining runtime leaves. The application
+linked. Static exports are in WORK `frame-human-action-completion-workers`,
+`frame-human-action-control-workers`, `frame-human-item-positive-workers`,
+`frame-human-shot-and-control-workers`, and `frame-human-live-inventory-and-aim`.

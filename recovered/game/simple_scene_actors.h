@@ -6,6 +6,7 @@
 #include "game/sound_emission.h"
 #include "game/rigid_body.h"
 #include "game/fowl_loading_lifetime.h"
+#include "game/prepared_spawn_packets.h"
 #include "frontend/cleanup.h"
 #include <functional>
 #include <cmath>
@@ -106,6 +107,23 @@ public:
         if(insert){if(!flag170)collisions.insert(descriptor_);flag170=true;}
         if(remove){if(flag170)collisions.remove(descriptor_);flag170=false;}
         this->backend_.update_scene_object(frame);
+    }
+    template<class Activation,class Collisions>void disarm(Activation& activation,Collisions& collisions){ //0060D9F0.
+        set_state(0,activation,collisions);
+        auto& packet=activation.session_broadcast_packets().begin(13,0);
+        packet.write(static_cast<std::uint32_t>(this->base_.id10()),10);
+        packet.write(1,2);
+        packet.finish_broadcast();
+    }
+    template<class Activation,class Collisions>void receive_loading_packet(SessionPacketStream& packet,
+            Activation& activation,Collisions& collisions){ //0060CDA0, presentation side.
+        switch(packet.read(2)){
+        case 1:
+            if(!(activation.mode_flags()&1u))set_state(0,activation,collisions); //0060DA50.
+            return;
+        case 3:set_state(packet.read(2),activation,collisions);return;
+        default:throw std::runtime_error("ExplosivePlace packet requires its actual detonation or placement receiver");
+        }
     }
     void update_authority(std::uint32_t elapsed) { //0060C330, before actual0060D870 detonation.
         if(!properties.flag98||signed_word(timer_c8_)<1)return;

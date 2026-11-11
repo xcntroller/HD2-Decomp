@@ -281,6 +281,9 @@ public:
     void stop_game_sound_voice(std::int32_t& handle) {
         frontend::stop_sound_voice(sound_data_.runtime,handle,sound_backend_); //00437340.
     }
+    bool game_sound_voice_live(std::int32_t handle)const{ //004374A0.
+        return frontend::sound_voice_frame(sound_data_.runtime,handle)!=nullptr;
+    }
     void resume_game_sound_voice(std::int32_t handle) { //SOUND+78/004374A0→actual frame+30(1), used by Door00601F90.
         set_game_sound_voice_enabled(handle,true);
     }

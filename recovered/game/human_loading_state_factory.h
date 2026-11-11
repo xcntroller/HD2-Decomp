@@ -80,15 +80,15 @@ public:
         if(human.scene_movement)human.scene_movement->path=nullptr; //E0 borrows the retiring B0's vector.
         human.loading_state=state;
     }
-    template<class Queries>bool advance_guard_or_area_frame(Base& state,bool authority,std::uint32_t elapsed,Queries& queries){
+    template<class Queries,class Runtime>bool advance_guard_or_area_frame(Base& state,bool authority,std::uint32_t elapsed,Queries& queries,Runtime& runtime){
         const auto kind=state.words().template get<std::uint32_t>(0x48);
         if(kind!=4&&kind!=8)throw std::logic_error("Guard or Area frame requires its actual B0 state");
         if(!authority){
             static_cast<AI&>(state).advance_frame_presentation(services_.mode_flags());
             return false;
         }
-        if(kind==4)return static_cast<Guard&>(state).advance_authority_frame(elapsed,queries,control_,services_);
-        return static_cast<Area&>(state).advance_authority_frame(elapsed,queries,control_,services_);
+        if(kind==4)return static_cast<Guard&>(state).advance_authority_frame(elapsed,queries,control_,services_,runtime);
+        return static_cast<Area&>(state).advance_authority_frame(elapsed,queries,control_,services_,runtime);
     }
     void resume_script_after_ai(Base& state){
         if(state.words().template get<std::uint32_t>(0x48)==5)static_cast<Script&>(state).resume_after_ai(control_);

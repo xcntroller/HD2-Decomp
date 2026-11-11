@@ -58,8 +58,8 @@ public:
     auto& state(){return state_;}const auto& state()const{return state_;}
     Actor* timer_target()const{return timer_target_;}void timer_target(Actor* target){timer_target_=target;}
     template<class Queries>void advance_frame_prefix(std::uint32_t elapsed,Queries& queries){advance_human_area_frame_prefix(*this,elapsed,queries);} //00559C60.
-    template<class Queries,class Inline,class World>
-    bool advance_authority_frame(std::uint32_t elapsed,Queries& queries,Inline& control,World& world){ //00559DE0.
+    template<class Queries,class Inline,class World,class Runtime>
+    bool advance_authority_frame(std::uint32_t elapsed,Queries& queries,Inline& control,World& world,Runtime& runtime){ //00559DE0.
         this->publish_authority_input_gate(control);
         if(this->words().template get<std::uint32_t>(0x50)&0x4000800u){
             this->process_second_frame_commands();
@@ -82,7 +82,7 @@ public:
                 throw std::runtime_error("Area aim stop requires its actual empty-weapon 00559CF0 receiver");
         }
         this->apply_frame_movement(control);
-        this->apply_frame_items(control,world,elapsed);
+        this->apply_frame_items(control,world,runtime,elapsed,0);
         this->process_second_frame_commands();
         return false;
     }
