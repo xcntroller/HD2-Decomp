@@ -442,10 +442,18 @@ public:
         exported<Set>("?SetDir@S_matrix@@QAGXABUS_vector@@0@Z",0x2ced0)(result.data(),direction.data(),up.data());
         return result;
     }
-    void human_publish_bone_rotation(Frame bone,Matrix matrix){ //007BF980, preserve direct B0 translation before publishing80.
+    void human_set_direction_roll(Matrix& matrix,const Vector& direction,float roll){ //007A8520, actual full SetDir overload.
+        using Set=void(WINAPI*)(void*,const void*,float);
+        exported<Set>("?SetDir@S_matrix@@QAGXABUS_vector@@M@Z",0x2cad0)(matrix.data(),direction.data(),roll);
+    }
+    void human_store_bone_rotation(Frame bone,Matrix matrix,bool unit_translation_w=false){ //007A6230 stores without a per-bone24 update.
         const auto position=field<Vector>(bone,0xb0);
         for(unsigned axis=0;axis!=4;++axis)matrix[12+axis]=position[axis];
+        if(unit_translation_w)matrix[15]=1;
         human_equipment_local_matrix(bone,matrix);
+    }
+    void human_publish_bone_rotation(Frame bone,Matrix matrix,bool unit_translation_w=false){ //007BF980, preserve direct B0 before publishing80 and24.
+        human_store_bone_rotation(bone,matrix,unit_translation_w);
         update_scene_object(bone);
     }
     void human_geometry_weapon_link(Frame weapon,Frame parent){ //007AFD70, native LinkTo flags5 and ignored result.
@@ -470,7 +478,7 @@ public:
         exported<Get>("?GetDir@S_quat@@QBG?AUS_vector@@XZ",0x2efd0)(result.data(),direction.data());
         return direction;
     }
-    void human_equipment_local_matrix(Frame frame,const Matrix& matrix) { //0078DF60's repeated matrix assignment.
+    void human_equipment_local_matrix(Frame frame,const Matrix& matrix) { //Shared0078DF60/007A59C0 matrix assignment.
         put(frame,0x80,matrix);Vector scale{};
         using Scale=Vector*(WINAPI*)(const void*,void*);
         exported<Scale>("?GetScale@S_matrix@@QBG?AUS_vector@@XZ",0x2db20)(address(frame,0x80),scale.data());

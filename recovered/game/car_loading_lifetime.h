@@ -3,6 +3,7 @@
 
 #include "game/car_cold_solver.h"
 #include "game/car_health_reset.h"
+#include "game/car_steering.h"
 
 namespace hd2::game {
 
@@ -27,6 +28,7 @@ public:
     virtual void deactivate(bool authority)=0;
     virtual void update(bool authority,std::uint32_t milliseconds)=0;
     virtual CarActorColdState<Frames>& cold_state()=0;
+    virtual CarSteeringState& steering_state()=0;
 };
 
 } //namespace hd2::game

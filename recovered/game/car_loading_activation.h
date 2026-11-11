@@ -68,7 +68,7 @@ public:
         receivers_.emplace(frames_,actor_,*initial_,resources_.random);
         body_collision_.emplace(frames_,actor_.geometry->model(),actor_.geometry->collision(),initial_->collision,queries_,exclusions_,resources_.materials,
             actor_.geometry->physics().scalars(),actor_.geometry->physics().flags().at(0x228c),*actor_.callbacks,*receivers_,initial_->body_layers,initial_->body_flags);
-        seats_.initialize();
+        seats_.initialize(services_);
         auto placement=position(frames_.actor_world_matrix(actor_.geometry->model()));placement[1]+=1.f;
         frames_.car_place_in_scene(actor_.geometry->model(),placement);navigation_elapsed_=0;refresh_navigation();
         helper_.emplace(frames_.create_supply_helper(9));if(!helper_->get())throw std::runtime_error("Cannot create Car camera helper model");
@@ -113,6 +113,7 @@ public:
         frames_.supply_model_tick(actor_.geometry->model(),elapsed); //Actual model+20,004D3110's final call.
     }
     CarActorColdState<Frames>& cold_state()override{if(!view_)throw std::logic_error("Car callback requires initialized source state");return *view_;}
+    CarSteeringState& steering_state()override{if(!initial_)throw std::logic_error("Car steering requires initialized source state");return initial_->steering;}
     auto& seats(){return seats_;}
 private:
     void require_mode()const{if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Car loading requires actual non7 network/input owners");}
@@ -120,7 +121,7 @@ private:
     void require_unoccupied()const{
         if(actor_.driver24ac)throw std::runtime_error("Car occupied input requires its actual driver owner");
         for(auto occupant:actor_.occupants)if(occupant)throw std::runtime_error("Car occupied update requires its actual Human attachment owner");
-        for(auto control:actor_.fields24b4)if(control)throw std::runtime_error("Car mounted control requires its actual simulation owner");
+        for(const auto& control:actor_.fields24b4)if(control)throw std::runtime_error("Car mounted control requires its actual simulation owner");
     }
     static Vector position(const typename Frames::Matrix& matrix){return {{matrix[12],matrix[13],matrix[14],matrix[15]}};}
     void update_core(std::uint32_t elapsed){update_car_cold(frames_,actor_.geometry->model(),actor_.geometry->physics(),resources_.tyres,initial_->body(),initial_->wheels,
@@ -153,7 +154,13 @@ private:
         errors.attempt([&]{seats_.release_cameras();});
     }
     void retire_derived(frontend::CleanupErrors& errors){
-        helper_.reset();retire_seats(errors);
+        helper_.reset();
+        for(auto index=actor_.fields24b4.size();index;){ //004D25C0, controls precede seats/cameras.
+            auto& control=actor_.fields24b4[--index];
+            if(control)errors.attempt([&]{control->loading->retire();});
+            control.reset();
+        }
+        retire_seats(errors);
         if(initial_&&initial_->ready())errors.attempt([&]{retire_runtime();});
     }
     Frames& frames_;Services& services_;Collisions& collisions_;Queries queries_;

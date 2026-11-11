@@ -287,6 +287,12 @@ public:
         }
     }
     void refresh_ground_geometry(){markers_.snapshot();shot_spheres();} //0075C4F0→0075C070/0075B870.
+    std::array<Vector,4> prone_pose_spheres(){ //007A8520→0075C160→0075BFF0(2).
+        markers_.snapshot(true);
+        std::array<Vector,4> spheres{};
+        if(markers_.copy_posture(2,spheres)!=4)throw std::runtime_error("Human prone posing requires all four actual collision markers");
+        return spheres;
+    }
     void refresh_shot_geometry(){shot_spheres();} //0075B870, SAME actual shot marker snapshots.
     void publish_air_shots(){ //00769920, scaled positions/radii without changing the native descriptor flags.
         const auto count=state_.template get<std::int32_t>(0x69c);

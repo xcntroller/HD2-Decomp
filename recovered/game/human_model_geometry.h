@@ -10,6 +10,9 @@
 #include "game/human_bone_direction.h"
 #include "game/human_ai_shot_direction.h"
 #include "game/human_two_bone_ik.h"
+#include "game/human_look_pose.h"
+#include "game/human_attachment_pose.h"
+#include "game/human_prone_pose.h"
 #include <limits>
 #include <exception>
 #include <optional>
@@ -63,6 +66,7 @@ public:
     }
     void clear() noexcept {
         joints_.clear(); //0079BAC0 retires body then point trees before camera references.
+        attachment_pose_.clear();
         skeleton_.clear();
         equipped_weapon_.clear();
         face_model_.reset(); //0079BAC0 retires62B0 before retained camera frames62F8/FC.
@@ -85,7 +89,6 @@ public:
         const void* source;
         Frame clip{};
         Vector root_position{},camera_position{};
-        void* support_actor=nullptr; //Native6414, borrowed from actual frame EC binding.
     };
     const auto& geometry_effect()const{return geometry_effect_;}
     void select_secondary_pose(Frame animation,std::uint32_t mode){ //007AE320, borrowed6630 and actual23-bone scratch.
@@ -343,7 +346,7 @@ public:
     template<class Queries>void present_prone_weapon(Queries& queries){ //007BA830.
         //660C borrows a retained direction-work allocation, separate from the
         //body/point trees at6848/6874. Its second vector is initialized by0079BD30.
-        const auto up=directions_[4][1];
+        const auto up=prone_pose_.vectors()[4][1];
         const auto right=frames_.actor_world_matrix(skeleton_.bones()[20].frame);
         const auto left=frames_.actor_world_matrix(skeleton_.bones()[21].frame);
         Vector start=up,displacement=up;
@@ -498,6 +501,11 @@ public:
         alignment=frames_.car_matrix_product(alignment,inverse);
         frames_.human_publish_bone_rotation(head.frame,alignment);
     }
+    void present_look_geometry(std::uint32_t mode,std::uint32_t elapsed){ //007ACCC0.
+        const auto pose=advance_human_look_pose(frames_,random_,look_,model_,skeleton_.bones()[6].frame,
+            skeleton_.bones()[8].frame,mode,movement_,elapsed);
+        if(pose)pose_head_direction(pose->direction,pose->influence);
+    }
     template<class Human,class Control,class Services>
     void begin_mounted_effect(Human& human,Control& control,Human& source,Services& services){
         //007B0910(flags8,zero,null,reason4,source). Other reasons and the
@@ -553,7 +561,7 @@ public:
         try{
             for(auto* joint:joints_.points())if(joint){
                 auto* actor=services.human_geometry_containing_actor(joint->template get<Vector>(0x30),0xd8102u);
-                if(actor){geometry_effect_->support_actor=actor;movement_.field6304|=0x10u;break;}
+                if(actor){attachment_pose_.actor(actor);movement_.field6304|=0x10u;break;}
             }
         }catch(...){inline_owner.restore_query(false);throw;}
         inline_owner.restore_query(false);
@@ -573,7 +581,7 @@ public:
     const auto& equipped_weapon() const{return equipped_weapon_;}
     struct Movement {
         bool flag62c8=false,flag65f0=false,flag6624=false;
-        std::uint32_t field62cc=0,field62d0=0,field65f4=0,field62d8=1,
+        std::uint32_t field62cc=0,field62d0=0,field62d4=0,field65f4=0,field62d8=1,
             field6304=0,field6308=0,field630c=300,field6310=0,field6314=0,field6318=0,field631c=0,field6410=100;
         std::int32_t field62dc=0;
         std::uint32_t time62c0=0,time62c4=0;
@@ -583,6 +591,23 @@ public:
             offset63a0{{-.075f,-.041f,-.003f,0}},offset63b0{{.075f,-.041f,-.003f,0}};
     };
     const Movement& movement() const {return movement_;}
+    const auto& attachment_pose()const{return attachment_pose_;}
+    const auto& prone_pose()const{return prone_pose_;}
+    template<class Human,class Control>void present_prone_pose(Human& human,Control& control){
+        prone_pose_.present(frames_,skeleton_,model_,human,control,movement_,frame_elapsed_,seed_);
+    }
+    template<class Services>void select_attachment_pose(std::uint32_t flags,void* actor,std::uint32_t seat,Services& services){
+        attachment_pose_.select(flags,actor,seat,services);
+    }
+    template<class Services>void present_attached_pose(std::uint32_t mode,Services& services){
+        attachment_pose_.present_attached(mode,geometry_detail_,frame_elapsed_,model_,services);
+    }
+    template<class Services>void present_target_pose(std::uint32_t mode,Services& services){
+        attachment_pose_.present_target(mode,geometry_detail_,frame_elapsed_,model_,services);
+    }
+    template<class Services>void present_vehicle_pose(std::uint32_t mode,Services& services){
+        attachment_pose_.present_vehicle(mode,geometry_detail_,model_,fields661c_,fields6620_,services);
+    }
     void clear_ground_geometry_flag(){movement_.flag65f0=false;} //007637D0, native65F0.
     void set_posture_transition(std::uint32_t posture){ //0076AF70, SAME geometry62D0/65F0/65F4.
         movement_.field62d0=posture;
@@ -684,7 +709,7 @@ public:
         if(human_frame_signed_word(human.properties.stats_ec[0])<1)return;
         if(movement_.flag65f0&&control.animation_look_word(0xb8)!=5&&
            ((control.mode_flags()&7u)==7u||control.human_is_player()))
-            runtime.present_human_foot_geometry(*this,control,human); //007A8520.
+            present_prone_pose(human,control); //007A8520.
         const auto flags=movement_.field6304;
         if((flags&1u)||(!(flags&0x3du)&&(flags&2u))){
             const auto weapon=equipped_weapon_.model();
@@ -698,18 +723,18 @@ public:
                 present_stowed_weapon(control.mode_flags()); //007B9750.
         }else if(flags&4u)present_weapon_mount(control.mode_flags()); //007BA0C0.
         else if(flags&8u){
-            runtime.present_human_attached_weapon_geometry(*this,control,human); //007AE3C0.
+            control.present_attached_geometry(); //007AE3C0.
             const auto world=frames_.actor_world_matrix(model_);
             pose_head_direction(Vector{{world[8],world[9],world[10],world[11]}},1.f); //007ADA10.
         }
-        else if(flags&0x10u)runtime.present_human_vehicle_weapon_geometry(*this,control,human); //007AF320.
-        else if(flags&0x20u)runtime.present_human_target_weapon_geometry(*this,control,human); //007AEBE0.
+        else if(flags&0x10u)control.present_vehicle_geometry(); //007AF320.
+        else if(flags&0x20u)control.present_target_geometry(); //007AEBE0.
         equipped_weapon_.advance_frame(elapsed);
-        if(movement_.field6304&0x40u)runtime.present_human_target_weapon_geometry(*this,control,human);
+        if(movement_.field6304&0x40u)control.present_target_geometry();
         if(movement_.field6304&0x100u)present_equipment_overlay(); //007AFD70.
         if(movement_.field6304&0x80u)present_secondary_clip(); //007AFC20.
         if(control.mode_flags()&2u){
-            if(look_.flags||(movement_.field6304&0x35u))runtime.present_human_look_geometry(*this,control,human,elapsed); //007ACCC0.
+            if(look_.flags||(movement_.field6304&0x35u))present_look_geometry(control.mode_flags(),elapsed); //007ACCC0.
             control.resolve_model_geometry_camera();
         }
         if(runtime.human_model_debug_enabled())runtime.present_human_model_debug(*this);
@@ -976,11 +1001,10 @@ private:
         const auto random=random_();if(random>0x7fff)throw std::runtime_error("Human geometry requires shared CRT random");
         seed_=random+1;
         look_={};
-        for(unsigned group=2;group!=5;++group)for(auto& value:directions_[group])value=Vector{{0,1,0,0}};
-        directions_[4][0][0]=std::numeric_limits<float>::quiet_NaN(); //Native660C first word only.
-        fields6614_={};
+        prone_pose_.reset();
         saved_body_angles_.fill(0); //0079C18B..0079C1A1 clears eleven words at691C.
         geometry_effect_.reset();
+        attachment_pose_.clear();
         secondary_pose_=Frame{}; //0079BD30 clears6630, scratch6638/6694 is reset by007AE320.
     }
     void bind_frames() {
@@ -1017,6 +1041,7 @@ private:
     bool geometry_detail_=true;
     Movement movement_;
     HumanWeaponBinding<Frames,Movement> equipped_weapon_{frames_,movement_};
+    HumanAttachmentPose<Frames,Movement> attachment_pose_{frames_,skeleton_,movement_};
     OfflineFaces* offline_faces_=nullptr;bool offline_quality_=false;std::int32_t offline_camouflage_=0;
     std::unique_ptr<HumanFaceModel<Frames>> face_model_;
     HumanLookState look_;
@@ -1026,9 +1051,7 @@ private:
     std::uint32_t secondary_pose_time_=0;
     std::uint32_t equipment_overlay_time_=0;
     std::array<std::uint32_t,23> secondary_pose_current_{},secondary_pose_previous_{};
-    std::array<std::uint8_t,6> fields65f8_{};
-    alignas(16)std::array<std::array<Vector,6>,6> directions_{};
-    std::array<std::uint32_t,6> fields6614_{};
+    HumanPronePose<Frames> prone_pose_;
     alignas(16)std::array<std::array<Vector,23>,6> fields661c_{},fields6620_{};
 };
 } //namespace hd2::game

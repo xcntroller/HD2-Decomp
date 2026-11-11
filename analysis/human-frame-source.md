@@ -1561,3 +1561,96 @@ instances and unimplemented pose/action receivers receive no new credit.
 Verification artifacts, source hashes and temporary audit cleanup are recorded in
 [the checkpoint receipt](checkpoints/p2.2-human-motion-pose-20261111.json).
 Continue [the Human checklist](p22-hum-plan.md), beginning with look007ACCC0.
+
+
+### Continuing the model-presentation checkbox
+
+007ACCC0 Look processing is now source-bound at007A7470. It shares the existing
+6570 flags, target6580, output6590, start65A0 and finish65B0 records with
+007AC780/007ACA30. Target/scan/return timers preserve strict negative expiry,
+low-byte80 retirement, shared CRT restart draws, power progress65D4, original
+interpolation order and target/weapon-specific forward/down limits. Actual
+model/torso transforms feed007ADA10 head publication.007E8CE0 remains delegated
+CRT power math with no new credit.
+
+WORK `human-look-geometry.asm` and the existing presentation C export preserve
+the original contract. Focused native sanitizers pass state transitions,
+strict timer boundaries, four restart draws, target/weapon clamps and engine
+failure prefixes. The actual World i386 fixture instantiates normal geometry
+presentation with declaration-only remaining Runtime receivers. Launcher
+compile/link passes in `human-look-pose-application-i386.log`. The containing model-presentation
+checkpoint below records the completed source consumers and their function credit. The active pose graph290..298 is separate
+from the skeleton neighbour graph2AC..2B8, relative to native bone nodes.
+
+
+## Model presentation source checkpoint
+
+The first checkbox in `p22-hum-plan.md` is complete at the source boundary.
+`HumanModelGeometry::present_frame`007A7470 now invokes actual Look007ACCC0,
+prone007A8520, attached007AE3C0, target007AEBE0 and vehicle007AF320 bodies.
+The existing secondary, equipment, stowed, aimed, mount and head paths keep
+their original order. Ragdoll dispatch belongs to the next Human checkbox.
+The actual application loading attempt and mission desktop acceptance remain open.
+
+`human_pose_chains.h` borrows the SAME23-bone skeleton.007A5B10 clears the
+active graph,007A5A30/007A5B40/007A5C00 construct forward/reverse routes and
+007A21F0 reverses a basis.007A6590/007A6670 refresh retained matrices.
+007A67E0/007A6C70 solve masked objectives in child-first order, using the actual
+borrowed constraint and engine quaternion operations.007A73E0 propagates the
+working matrices.007A5FC0/007A60F0/007A6230 publish through the original static
+skeleton graph and actual bone22 anchor. Boundary publication preserves B0,
+while active internal nodes publish their computed local translation. Shared
+matrix assignment007A59C0 delegates actual GetScale and preserves unwritten
+SIMD padding.007A4E80 and007A50F0 preserve left-before-right hand publication.
+007A5330 retains joint radial radius and restores the first child's orientation.
+
+`human_attachment_pose.h` owns the native6414..6428 borrowed actor/frame state,
+6430..64B0 retained matrices and66F4..6730 motion history. Command007ADD30 has
+a callable actual DD0 entry and preserves posture restoration, missing-marker
+returns and original flag writes. Its shared6414 is also used by reason4.
+Attached posing limits steering-hand capture using the real parent-local angle.
+Target posing preserves strict acceleration timer expiry and the two-stage
+hand/body solve. Vehicle posing consumes the actual six captured animation keys,
+original signed angular limits, canonical NaN-key gates, normalized engine
+quaternions and guarded B0 stores. These paths use original objective counts,
+iteration counts and the distinct positive anchor-movement mode.
+
+`human_prone_pose.h` owns the existing65F8..6618 contact/history state, including
+the normal consumed by aimed-weapon posing.0075C160 samples only the four actual
+prone markers.007A8520 preserves its forward-span rejection, original sweep
+masks, query exclusion/restoration, observed contact status, six interpolation
+counters, body-normal and roll limits, physical250 publication, root translation
+and ordered13/8/10/11/2/3 bone updates.007A3260 uses the existing vertical basis
+and an actual matrix product for signed roll. Full SetDir with roll remains an
+engine boundary, statically identified at LS3DF RVA2CAD0.
+
+Car004DA150/004DA1F0 and StaticWeapon00604D70/00604DD0 now supply actual aim and
+limit observations. Shared004C5870 reads the real VERT pivot. The existing
+004C1AD0/004C2380 resource owner is reused for embedded StaticWeapon controls
+and separately allocated Car gun seats. Car004D16A0 creates actual100 controls
+with the original seat index, model and pivot. Car004D25C0 retires those controls
+in reverse order before seats/cameras.004C6D90 preserves its104/F4 gates and
+visibility/update pair.004F2420 resets the SAME steering request during attached
+retirement. Its response curve comes from004E2900's core5F4 initialization. The
+shared owner retains actual registered items, clips, pivots, shells and callback
+backlinks. Populated movement sounds, occupied updates and firing keep their
+existing required receivers for the containing Car/StaticWeapon and Human action
+work. Car frame simulation retains its existing populated-control guard.
+
+Focused ASan/UBSan/LSan fixtures cover Look transitions, forward/reverse pose
+routes, first-iteration constraints, hand/radial publication, attached/target/
+vehicle consumers, prone positive/missed/sloped probes, shared control loading,
+failed initialization and repeated retirement. Engine quaternion/query boundaries
+use explicit fixture doubles. Strict i386 compilation instantiates actual World
+geometry, DD0 attachment commands and Car/StaticWeapon activation/retirement.
+The launcher compile/link passes. Evidence and temporary artifact hashes are in
+`checkpoints/p2.2-human-model-presentation-20261111.json`.
+
+Source adaptation choices preserve known vector padding and leave delegated
+engine/SIMD output padding uncredited. Missing prone markers and a blend request
+without actual populated Car control limits raise errors where native execution
+would consume unwritten data. Query restoration also runs after C++ failures,
+preserving the first failure and recording any secondary cleanup failure.
+The native pose-chain fixture exercises each constrained joint's first iteration
+from identity local rotations. It does not establish engine solver convergence
+or a loaded mission frame.

@@ -165,6 +165,61 @@ public:
         body.set(0x154,body.template get<std::uint32_t>(0x270));
         for(auto* child:body.children)if(child)capture_body_pose(*child);
     }
+    void snapshot_body_interpolation(Body& body){ //007CDA90, before the next physical step.
+        const auto local=body.template get<Matrix>(0xb0);
+        body.set(0xf0,local);
+        body.set(0x140,body.template get<Vector>(0x130));
+        body.set(0x150,body.template get<std::uint32_t>(0x154));
+        body.set(0x270,body.template get<std::uint32_t>(0x154));
+        body.set(0x60,body.parent?frames_.rigid_matrix_product(local,body.parent->template get<Matrix>(0x60)):local);
+        for(auto* child:body.children)if(child)snapshot_body_interpolation(*child);
+    }
+    void interpolate_body_pose(Body& body,float factor){ //007CDC90, retained previous/current local poses.
+        const float complement=1.f-factor;
+        const auto rotation=frames_.physics_slerp(body.template get<Vector>(0x140),body.template get<Vector>(0x130),factor,false);
+        body.set(0xa0,rotation);
+        auto local=body.template get<Matrix>(0x20);
+        frames_.human_set_matrix_rotation(local,rotation);
+        //Native X products remain extended, previous Y and both Z products spill.
+        local[12]=static_cast<float>(static_cast<long double>(complement)*body.template get<float>(0x120)+
+            static_cast<long double>(factor)*body.template get<float>(0xe0));
+        const float previous_y=complement*body.template get<float>(0x124);
+        local[13]=static_cast<float>(previous_y+static_cast<long double>(factor)*body.template get<float>(0xe4));
+        const float previous_z=complement*body.template get<float>(0x128);
+        const float current_z=factor*body.template get<float>(0xe8);
+        local[14]=previous_z+current_z;local[15]=1;
+        body.set(0x20,local);
+        body.set(0x60,body.parent?frames_.rigid_matrix_product(local,body.parent->template get<Matrix>(0x60)):local);
+        body.set(0x270,static_cast<float>(static_cast<long double>(factor)*body.template get<float>(0x154)+
+            static_cast<long double>(complement)*body.template get<float>(0x150)));
+        for(auto* child:body.children)if(child)interpolate_body_pose(*child,factor);
+    }
+    void project_body_bones(Body& body){ //007C59C0, actual per-body attached-bone matrices to native bone50.
+        for(std::size_t index=0;index!=body.used;++index){
+            const auto bone=body.bones.at(index);
+            bone_world_.at(static_cast<std::size_t>(bone))=frames_.rigid_matrix_product(body.matrices.at(index),body.template get<Matrix>(0x60));
+        }
+        for(auto* child:body.children)if(child)project_body_bones(*child);
+    }
+    void publish_body_bones(Body& body,float factor,Frame model){ //007C5A90, preserve actual frame translations.
+        for(std::size_t index=0;index!=body.used;++index){
+            const auto bone=body.bones.at(index);
+            const auto& node=skeleton_.bones().at(static_cast<std::size_t>(bone));
+            const auto parent=node.parent<0?model:bone_frame(node.parent);
+            auto inverse=human_transpose(frames_.actor_world_matrix(parent));
+            inverse[3]=inverse[7]=inverse[11]=0;
+            auto local=frames_.rigid_matrix_product(bone_world_.at(static_cast<std::size_t>(bone)),inverse);
+            if(factor<1){
+                const auto actual=frames_.car_local_matrix(node.frame); //004C8140 precedes the native quaternion capture.
+                const auto current=frames_.human_matrix_rotation(actual);
+                const auto desired=frames_.human_matrix_rotation(local);
+                frames_.human_set_matrix_rotation(local,frames_.physics_slerp(desired,current,factor,false));
+            }
+            orthonormalize_human_bone_matrix(local);
+            frames_.human_publish_bone_rotation(node.frame,local,true);
+        }
+        for(auto* child:body.children)if(child)publish_body_bones(*child,factor,model);
+    }
     void snapshot_body_endpoints(Body& body){ //007C80E0 capture=true, rebuild=false branch used by007B0910.
         if(!body.points[0]||!body.points[1])throw std::runtime_error("Human joint snapshot requires actual endpoint points");
         body.set(0x160,body.points[0]->template get<Vector>(0x30));
@@ -218,6 +273,7 @@ private:
         if(found!=owners.end())owners.erase(found);
     }
     Frames& frames_;const HumanSkeleton<Frame>& skeleton_;
+    std::array<Matrix,23> bone_world_{}; //Original geometry bone50 scratch, separate from IK chain200.
     std::vector<std::unique_ptr<Body>> bodies_;
     std::vector<std::unique_ptr<Point>> points_;
 };

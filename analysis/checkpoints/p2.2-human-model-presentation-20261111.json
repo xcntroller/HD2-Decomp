@@ -1,0 +1,333 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "49ff7dc",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "p22_hum_complete": false,
+  "hum_plan_checkbox": "model presentation",
+  "hum_plan_checkbox_source_complete": true,
+  "added_entries": [
+    "007accc0",
+    "007a5a30",
+    "007a5b10",
+    "007a5b40",
+    "007a5c00",
+    "007a21f0",
+    "007a6590",
+    "007a6670",
+    "007a5fc0",
+    "007a60f0",
+    "007a6230",
+    "007a67e0",
+    "007a6c70",
+    "007a73e0",
+    "007a4e80",
+    "007a5330",
+    "007a59c0",
+    "007a50f0",
+    "007add30",
+    "007ae3c0",
+    "007aebe0",
+    "007af320",
+    "007a8520",
+    "007a3260",
+    "0075c160",
+    "004f2420",
+    "00604d70",
+    "004c5870",
+    "004c6d90"
+  ],
+  "extended_entries": [
+    "007a7470",
+    "0079bd30",
+    "004c1ad0",
+    "004c2380",
+    "004d16a0",
+    "004d25c0"
+  ],
+  "ledger_added_partial_client": 29,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2500,
+  "checks": {
+    "native_sanitizers": "PASS ASan/UBSan/LSan for all five focused fixtures",
+    "pose_chain_native_scope": "Actual retained skeleton and graph, forward/reverse routing, first-iteration constrained quaternion corrections, blend, anchor and publication. Explicit engine doubles.",
+    "prone_native_scope": "Real retained skeleton/matrix hierarchy, contact states0/1/2, sloped/missed probes, ordered publication, first-failure restoration and repeated processing. Explicit collision oracle.",
+    "shared_control_native_scope": "Actual shared resource owner with explicit engine/item doubles, embedded StaticWeapon and indexed Car state, positive aim/limits/view, failed initialization and repeated retirement.",
+    "actual_world_i386": "PASS strict compilation of real007A7470, DD0 attachment command and Car/StaticWeapon activation/retirement paths. Ragdoll/debug remaining Runtime methods are declaration-only.",
+    "launcher_i386": "PASS make application-launch compile/link. Windows output was not run.",
+    "function_progress": "PASS render/check and all27 existing tracker tests",
+    "diff_check": "PASS",
+    "original_execution": false,
+    "mission_desktop_acceptance": false
+  },
+  "portability_decisions": [
+    "Preserve known vector padding and unwritten engine SIMD padding without new credit.",
+    "Reject missing prone markers and absent actual Car gun-control limits where native code consumes unwritten data.",
+    "Restore query exclusion after C++ failures, preserving the first failure and recording secondary cleanup failure."
+  ],
+  "excluded_credit": [
+    "Absent frozen Car/StaticWeapon wrappers",
+    "Delegated engine/CRT math, including007E8CE0 and007E67D0",
+    "Containing occupied Car/StaticWeapon frame, movement sounds and firing"
+  ],
+  "continuation": "Continue the reactions/damage/ragdoll checkbox at0074D510 and remaining007B0910. The full P22-HUM and P2.2 boundaries remain open.",
+  "source_files": {
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "8c7d5dfdca446c3999e423625f2ecc39ff321825028a3adaf3953af8357600e6",
+      "bytes": 14334
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "af7077d8abfad746c0eba225c69e97816ffb6e2f296c936118681f4a710d4766",
+      "bytes": 1493
+    },
+    "recovered/game/car_loading_seats.h": {
+      "sha256": "57fe0484f6cb6b4da7065f77593a049614f16778b569a40efca20e419d7cd0ff",
+      "bytes": 3315
+    },
+    "recovered/game/car_scene_actor.h": {
+      "sha256": "b012f4a90924b79d4bb373a0601231842d3006797003572ec7fb82a436278966",
+      "bytes": 8226
+    },
+    "recovered/game/car_steering.h": {
+      "sha256": "489feaff4ef16b27bae6e44ef2af50716dd067acffc2a95c6f1c178fea1fb550",
+      "bytes": 6217
+    },
+    "recovered/game/human_attachment_blend.h": {
+      "sha256": "dc27fe06154df1b05548f7b24068c52b9f7d12ee5e86c227430aa9eb06a264cb",
+      "bytes": 3248
+    },
+    "recovered/game/human_attachment_pose.h": {
+      "sha256": "92f2e119a8b3ad13b46436ceb44aa8bf6bc87de01723b700f5715575289558a0",
+      "bytes": 17263
+    },
+    "recovered/game/human_bone_direction.h": {
+      "sha256": "2519d719c58c897cd4da5fa9d44394dd2559c7c51839407c8da59a00ef3f6ddc",
+      "bytes": 10780
+    },
+    "recovered/game/human_collision_markers.h": {
+      "sha256": "4a7ce5fcf548eedf3ec8e16dd76d4b20466ebc6226343f91ce6b00c472979bd1",
+      "bytes": 3256
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "86c4dedf7a21bc46dbd47a74fb3d6e341ef68ecbb7c53be3238f6cfc7e2ff4bd",
+      "bytes": 48798
+    },
+    "recovered/game/human_joint_pose.h": {
+      "sha256": "e4fa73657a4e9c31010a8f68f26b785bc8e4927bda39d838b249a771a49d8429",
+      "bytes": 5906
+    },
+    "recovered/game/human_look_pose.h": {
+      "sha256": "3af10de3d47640c4a521430284b089fdead16924db4ab5e1a5617123a28d2dd4",
+      "bytes": 6483
+    },
+    "recovered/game/human_look_state.h": {
+      "sha256": "b68bb45422613fc735303442f9dabb379acadc4ada1ecfc8e7a9c23e13aacf99",
+      "bytes": 3955
+    },
+    "recovered/game/human_model_geometry.h": {
+      "sha256": "f1ac9866b6feaa94f2e4157f30513b808eb37ce93801f7f3cce74ac43176c87a",
+      "bytes": 66912
+    },
+    "recovered/game/human_physics_loading.h": {
+      "sha256": "0b56b418e79d955e7eda6f44f858dda3838612a04bb21be416b60f0145af16d6",
+      "bytes": 33004
+    },
+    "recovered/game/human_pose_chains.h": {
+      "sha256": "540016cd2c42d39f7310e5f605f7dbd535af9a7f0423905024075484c0e93577",
+      "bytes": 19000
+    },
+    "recovered/game/human_prone_pose.h": {
+      "sha256": "c7afa358560242be00226809eaf7d58cfaaf6879d84dbf614b5a15102ba95349",
+      "bytes": 19222
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "1a73959272f4d5a72e63ba27793d7e631f1897df23d5581c8502ac2fb24c5293",
+      "bytes": 52721
+    },
+    "recovered/game/mounted_weapon_control.h": {
+      "sha256": "e1d7cc4c016cc3765cf7952c39f3b2bddf55ac7633d96c8e054a5cda67581591",
+      "bytes": 1271
+    },
+    "recovered/game/mounted_weapon_control_loading.h": {
+      "sha256": "d0f3d16ebeb4d4e72b17dc12c7b5df3b0d5ab913313b6f6a2e22480cea702c99",
+      "bytes": 8880
+    },
+    "recovered/game/static_weapon_actor.h": {
+      "sha256": "410dd63f3f0f6b699670eea08b571bc7a2a59bedc37d529000f8618035867e61",
+      "bytes": 1150
+    },
+    "recovered/game/static_weapon_loading.h": {
+      "sha256": "03ccc65feefc6f6ddcd20c379f43385d372ef29ae0da283ba6e098b452cb1f1b",
+      "bytes": 8044
+    },
+    "recovered/game/static_weapon_loading_lifetime.h": {
+      "sha256": "f5216d570a8e6fdbcca86def8e195949267175c17159a7b2bc50ceb12bd10d73",
+      "bytes": 508
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "591c92220648d9d86e82ffd6eb265d7f99a47d55cf3892fbaf2af6d01dac1e01",
+      "bytes": 85750
+    },
+    "recovered/host/game_static_weapon_events.h": {
+      "sha256": "b9335d1fa9ebdd65fff82cdaa5ea99a72e1d1f205c5acfc756fa88a43fd00c7b",
+      "bytes": 3280
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "6a9f2388edcdd21e6521f6556d038f1fd02170657a62c7182f74cda1af01f76f",
+      "bytes": 20133
+    }
+  },
+  "retained_stage_logs": {
+    "analysis/work/mission-world-20261103/human-look-pose-native.log": {
+      "sha256": "46d56b425860a303310c62aa36f7fda346e40fe4dd2175ab9d01cf9009e28577",
+      "bytes": 128
+    },
+    "analysis/work/mission-world-20261103/human-look-pose-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-pose-chain-native.log": {
+      "sha256": "1c8e9df24eb24774365b885bf70b2fd0348d35bdf351badf4a5335c5c225b2ba",
+      "bytes": 165
+    },
+    "analysis/work/mission-world-20261103/human-pose-chain-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-attachment-pose-native.log": {
+      "sha256": "d14720c6c9b04d1fabdaf023445e0e88915ac9fcf2b8aee57a4748a89cd708de",
+      "bytes": 171
+    },
+    "analysis/work/mission-world-20261103/human-attachment-pose-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-prone-pose-native.log": {
+      "sha256": "1d83ef6dc40e9a9007748f63f17204e0d694b318ab44722053f0e8ebf333291f",
+      "bytes": 169
+    },
+    "analysis/work/mission-world-20261103/human-prone-pose-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-mounted-control-native.log": {
+      "sha256": "0a532031dde001fd391ebdde1e76a614ca0ce97734feb8f99abce06a1d422e5b",
+      "bytes": 188
+    },
+    "analysis/work/mission-world-20261103/human-mounted-control-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-model-presentation-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-model-presentation-application-i386.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547
+    },
+    "analysis/work/mission-world-20261103/human-pose-chain-workers-abi-v8.log": {
+      "sha256": "5c099602a3ffaec5ac77cd5372e52a20f220bda3463ef17fe215adbeb3c323d0",
+      "bytes": 4485
+    }
+  },
+  "original_evidence": {
+    "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "engine_sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+    "decompiler_export": "analysis/work/mission-world-20261103/human-pose-chain-workers-abi-v8",
+    "export_policy": "Original client SHA checked, read-only Ghidra, prototype/indirect-call overrides rolled back without saving. Earlier ABI variants are research history.",
+    "engine_roll_symbol": "?SetDir@S_matrix@@QAGXABUS_vector@@M@Z",
+    "engine_roll_rva": "0002cad0"
+  },
+  "temporary_artifacts": {
+    "analysis/work/mission-world-20261103/human-look-pose-native": {
+      "sha256": "781f7d902d62f1285359543fb6a5a6516506b90ddd893aa4c57fa2459ecc3818",
+      "bytes": 325936,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-look-pose-native.cpp": {
+      "sha256": "e894d18f52b2a21a9c1a23a7a432430bca2c69518f73ab006145b7b9f499af7c",
+      "bytes": 3856,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-pose-chain-native": {
+      "sha256": "58c26108ddb9dceca24e97009a2bd7df94ad132ceb29bcbc5602e07445e91e4e",
+      "bytes": 992600,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-pose-chain-native.cpp": {
+      "sha256": "19ec1b90d4a6d51beb5d7fec0e7439d107b5131dfd1ccc729b678918b11cdec3",
+      "bytes": 7016,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-attachment-pose-native": {
+      "sha256": "e7ee0ef660c9d94c3e0662b5f19dbbcd51bf1bf81eccd3467adff4697283d965",
+      "bytes": 1411256,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-attachment-pose-native.cpp": {
+      "sha256": "54f6e81c34ef86fe62832d1301cc11764783d931fac3d3656acb27e9a44b9ae8",
+      "bytes": 8848,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-prone-pose-native": {
+      "sha256": "98b1de0535d200d614bdd964481f100b3a476f825ff4a97578c364c040e62bd7",
+      "bytes": 877904,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-prone-pose-native.cpp": {
+      "sha256": "ef221580501b1904eeced4a6b84cc2c311df81762dd8a254bd626f9dc021bf0d",
+      "bytes": 7350,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-mounted-control-native": {
+      "sha256": "7e3a3e60914d074865e62c834328e4d6a9d698f1f7980c2f44693536df8b8fc8",
+      "bytes": 1710904,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-mounted-control-native.cpp": {
+      "sha256": "88a778428e61d22b16e4a7eac8b328f5775dd1d015de8062579dd03113771511",
+      "bytes": 6638,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-look-pose-i386.cpp": {
+      "sha256": "e3cdb642c285db2f420cb0b7d57cde7238493953fe058da6d61542b884c64830",
+      "bytes": 929,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-look-pose-i386.o": {
+      "sha256": "fbd94564b807ae0d3fd55b8a33262ac8f98844c1942f7e96f67d1ad0632ab1dc",
+      "bytes": 853043,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-model-presentation-i386.cpp": {
+      "sha256": "7e29bfd5c94a671bb82f5b42c684e35776add7ba29c3b497a69fed220c2e1d29",
+      "bytes": 1295,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-model-presentation-i386.o": {
+      "sha256": "ed3293d79b2d94c4100d3d767a046fd7c373987d94553bd23a68b6e70769339b",
+      "bytes": 5757758,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-attachment-pose-i386.o": {
+      "sha256": "a4f7838701ed487a16a8e914e30325a511e918c010b9bf0f61669e33dc0d4a88",
+      "bytes": 939030,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-prone-pose-i386.o": {
+      "sha256": "327ec28b68709560b0acbf2b49d841556559960a2c10c04348809a650766e319",
+      "bytes": 996032,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/ExportHumanPoseChainABI.java": {
+      "sha256": "53d713b8c307a8693ca60d26f54eb396a7358b695e7df0a8f60a8d5741f1c7a8",
+      "bytes": 5338,
+      "retained": false
+    }
+  },
+  "cleanup": "Removed listed temporary native fixture source/binaries, i386 objects/fixtures and rollback-only exporter after fingerprinting. Retained stage logs and original static exports/assembly."
+}

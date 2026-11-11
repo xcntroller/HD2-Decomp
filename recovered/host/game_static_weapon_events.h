@@ -2,6 +2,7 @@
 #define HD2_HOST_GAME_STATIC_WEAPON_EVENTS_H
 #include "host/game_actor_services.h"
 #include "game/static_weapon_loading_lifetime.h"
+#include "game/mounted_weapon_control.h"
 #include <map>
 namespace hd2::host {
 //004C1990(frame,event,text,time): original frameEC+1C borrows its actual control.
@@ -9,7 +10,7 @@ namespace hd2::host {
 //through rethrow_failure outside the engine; no exception crosses stdcall ABI.
 class GameStaticWeaponEvents {
 public:
-    using Frame=GameActorServices::Frame;using Control=game::StaticWeaponLoadingLifetime;
+    using Frame=GameActorServices::Frame;using Control=game::MountedWeaponControlLifetime;
     explicit GameStaticWeaponEvents(GameActorServices& frames):frames_(frames){}
     ~GameStaticWeaponEvents(){clear();}
     void install(Frame frame,Control& control) {

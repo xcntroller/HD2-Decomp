@@ -125,6 +125,10 @@ public:
         active_=started_=false;
     }
     Geometry& geometry(){return geometry_;}Face& face(){return face_;}Physical& physical(){return physical_;}
+    void select_geometry_attachment(std::uint32_t flags,void* actor,std::uint32_t seat){geometry_.select_attachment_pose(flags,actor,seat,services_);} //007ADD30.
+    void present_attached_geometry(){geometry_.present_attached_pose(mode_flags(),services_);} //007AE3C0.
+    void present_target_geometry(){geometry_.present_target_pose(mode_flags(),services_);} //007AEBE0.
+    void present_vehicle_geometry(){geometry_.present_vehicle_pose(mode_flags(),services_);} //007AF320.
     Movement& movement(){return movement_;}
     template<class Look>void prepare_motion_velocity(Look& look,bool refresh){ //0076B670.
         prepare_human_motion_velocity(*this,look,*human_,services_,frames_,refresh);
@@ -179,6 +183,9 @@ public:
     auto human_geometry_ray(const HumanVector& start,const HumanVector& displacement,
             std::uint32_t layers,std::uint32_t flags,bool normal=true){
         return services_.human_geometry_ray(start,displacement,layers,flags,normal);
+    }
+    auto prone_pose_sweep(const HumanVector& start,const HumanVector& displacement,float radius){
+        return services_.human_geometry_sweep().sweep(start,displacement,radius,0xc8102u,0x230000u);
     }
     bool frame_special_movement_item()const{ //005A66B0.
         auto* storage=human_?human_->base().storage():nullptr;

@@ -217,6 +217,71 @@ public:
             return;
         }
     }
+    void consume_impulses(float seconds){ //007CD730, primary queue before secondary queue.
+        if(!impulses_||!secondary_impulses_)throw std::logic_error("Human impulse step requires its actual initialized queues");
+        for(auto& impulse:*impulses_){
+            if(!impulse.point)continue;
+            const float duration=impulse.duration-seconds;
+            //Native tests the stored sign bit, including negative zero and signed NaNs.
+            if(std::signbit(duration)||(impulse.point->template get<std::uint8_t>(0x158)&3u)){
+                impulse.point=nullptr;continue;
+            }
+            impulse.duration=duration;
+            for(unsigned axis=0;axis!=3;++axis){
+                const auto offset=0x80+axis*4;
+                impulse.point->set(offset,impulse.point->template get<float>(offset)+impulse.value[axis]);
+            }
+        }
+        for(auto& impulse:*secondary_impulses_){
+            if(!impulse.point)continue;
+            const float duration=impulse.duration-seconds;
+            if(std::signbit(duration)){impulse.point=nullptr;continue;}
+            impulse.duration=duration;
+            for(unsigned axis=0;axis!=3;++axis){
+                const auto offset=0x80+axis*4;
+                const auto difference=static_cast<long double>(impulse.value[axis])-impulse.point->template get<float>(0x30+axis*4);
+                const auto delta=axis==2?static_cast<long double>(static_cast<float>(difference)):difference;
+                impulse.point->set(offset,static_cast<float>(delta+impulse.point->template get<float>(offset)));
+            }
+        }
+    }
+    void update_contact_frames(std::uint32_t elapsed,std::uint8_t mode){ //007CD840, actual retained frame motion.
+        if(!(mode&2u))return;
+        field690c=0;
+        const auto signed_elapsed=static_cast<std::int32_t>(elapsed);
+        for(auto* point:points_){
+            if(!point||!point->contact_frame)continue;
+            Vector velocity{};
+            bool release=frames_.item_frame_references(point->contact_frame)==1;
+            if(!release){
+                const auto world=frames_.actor_world_matrix(point->contact_frame);
+                const float inverse_elapsed=static_cast<float>(1.L/signed_elapsed);
+                for(unsigned axis=0;axis!=3;++axis){
+                    const auto difference=static_cast<long double>(world[12+axis])-point->template get<float>(0x140+axis*4);
+                    const auto delta=axis==2?static_cast<long double>(static_cast<float>(difference)):difference;
+                    velocity[axis]=static_cast<float>(delta*inverse_elapsed);
+                }
+                const auto square=(static_cast<long double>(velocity[2])*velocity[2]+static_cast<long double>(velocity[1])*velocity[1])+
+                    static_cast<long double>(velocity[0])*velocity[0];
+                release=square>9.999999747378752e-05f;
+            }
+            if(release){
+                if(field68d0<9.99999993922529e-09f){
+                    field68f0=4;field68d0=field68ec=1;
+                    for(auto* current:points_)if(current)current->set(0x24,1.f);
+                }
+                const auto scale=static_cast<long double>(signed_elapsed)*.10000000149011612f;
+                for(unsigned axis=0;axis!=3;++axis){
+                    const auto product=scale*velocity[axis];
+                    const auto delta=axis?static_cast<long double>(static_cast<float>(product)):product;
+                    point->set(0x40+axis*4,static_cast<float>(point->template get<float>(0x40+axis*4)-delta));
+                }
+                frames_.release_item_frame(point->contact_frame);
+                point->contact_frame=Frame{};
+            }
+            if(point->contact_frame)++field690c;
+        }
+    }
     template<class Random>void distribute_impulse(Random& random,std::uint32_t mask,const Vector& value,std::int32_t duration){ //007B3270.
         const auto first=random()+1u;
         const auto second=random()+1u;
@@ -254,6 +319,32 @@ public:
     void capture_body_pose(){
         if(!bodies_[0])throw std::runtime_error("Human joint pose capture requires its actual root body");
         owners_.capture_body_pose(*bodies_[0]);
+    }
+    void snapshot_body_interpolation(){
+        if(!bodies_[0])throw std::runtime_error("Human joint interpolation requires its actual root body");
+        owners_.snapshot_body_interpolation(*bodies_[0]);
+    }
+    void interpolate_body_pose(float factor){
+        if(!bodies_[0])throw std::runtime_error("Human joint interpolation requires its actual root body");
+        owners_.interpolate_body_pose(*bodies_[0],factor);
+    }
+    Vector publish_body_pose(Frame model,Body* body=nullptr,float factor=1){ //007C58B0.
+        if(!body)body=bodies_[0];
+        if(!body||!bodies_[0]||!model)throw std::runtime_error("Human joint publication requires its actual body tree and model");
+        owners_.project_body_bones(*body);
+        owners_.publish_body_bones(*body,factor,model);
+        const auto bone=bodies_[0]->template get<std::int32_t>(0x190);
+        const auto frame=skeleton_.bones().at(static_cast<std::size_t>(bone)).frame;
+        if(!frame)throw std::runtime_error("Human joint publication requires its actual root bone");
+        const auto anchor=frames_.actor_world_matrix(frame);
+        const auto root=bodies_[0]->template get<Vector>(0x90);
+        Vector delta{};
+        for(unsigned axis=0;axis!=3;++axis)delta[axis]=root[axis]-anchor[12+axis];
+        const auto previous=frames_.actor_world_matrix(model);
+        frames_.object_position(model,{{delta[0]+previous[12],delta[1]+previous[13],delta[2]+previous[14]}});
+        frames_.update_scene_object(model);
+        const auto world=frames_.actor_world_matrix(model);
+        return {{world[12],world[13],world[14],world[15]}}; //Caller publishes actual Human base30.
     }
     void snapshot_body_endpoints(){
         if(!bodies_[0])throw std::runtime_error("Human joint endpoint snapshot requires its actual root body");

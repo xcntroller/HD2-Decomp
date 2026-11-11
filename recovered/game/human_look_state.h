@@ -14,9 +14,9 @@ namespace hd2::game {
 struct HumanLookState {
     using Vector=std::array<float,4>;
     std::uint32_t flags=0;
-    Vector target{},baseline{},current{},scan{};
+    Vector target{},baseline{},current{},scan{}; //6580,6590 output,65A0 start,65B0 finish.
     std::uint32_t time65c0=0,time65c4=0,time65c8=0,time65cc=0;
-    float speed65d0=0;
+    float speed65d0=0,progress65d4=0;
     template<class Random>static std::uint32_t draw(Random& random) {
         const auto word=random();if(word>0x7fff)throw std::runtime_error("Human look requires shared CRT random");return word;
     }

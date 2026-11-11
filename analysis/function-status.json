@@ -16042,7 +16042,7 @@
       "program": "client",
       "entry": "0079bd30",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0079bd30: Actual Human geometry/skeleton/model loading and ordinary offline face lifetime; preserve-pose replacement/simulation excluded. Actual retained secondary clip state, direction-work defaults and loading preference defaults support the new live pose consumers.",
+      "coverage": "P2.2 source reconstruction at original entry 0079bd30: Actual Human geometry/skeleton/model loading and ordinary offline face lifetime; preserve-pose replacement/simulation excluded. Actual retained secondary clip state, direction-work defaults and loading preference defaults support the new live pose consumers. Actual retained prone normal/contact histories, interpolation counters and shared attachment graph state now support the remaining normal model consumers.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_model_geometry.h",
@@ -16050,7 +16050,8 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
       ]
     },
     {
@@ -23751,12 +23752,15 @@
       "program": "client",
       "entry": "004c1ad0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004c1ad0: Actual authored control/index0/barrel metadata, real registered weapon item, clip/pivot/shell ownership, axis-angle snapshot and frame callback/backlinks. Positive movement sounds/firing/occupied control excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 004c1ad0: Actual authored control/index0/barrel metadata, real registered weapon item, clip/pivot/shell ownership, axis-angle snapshot and frame callback/backlinks. Positive movement sounds/firing/occupied control excluded. Shared resource implementation now also constructs actual indexed Car gun-seat controls with their SAME state, model/pivot, registered item, clips, shell model and callbacks. Populated movement sounds, occupied updates and firing remain required.",
       "limitations": "Source-only typed/STL/RAII adaptation, without original full object/container/allocator/SEH ABI. Only linked cold/offline branches supported. Actual engine/item/model/cache/navigation/clock/runtime consumers remain required; no loaded application world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit.",
       "evidence": [
         "recovered/game/static_weapon_loading.h",
         "analysis/static-weapon-loading.md",
-        "analysis/checkpoints/p2.2-static-weapon-20261109.json"
+        "analysis/checkpoints/p2.2-static-weapon-20261109.json",
+        "recovered/game/mounted_weapon_control_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
       ]
     },
     {
@@ -23799,12 +23803,15 @@
       "program": "client",
       "entry": "004c2380",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004c2380: Actual cold control pose restoration/model update, same registered item removal, clip/shell retirement and matching callback/backlink source-lifetime cleanup. Populated movement sounds and occupied simulation excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 004c2380: Actual cold control pose restoration/model update, same registered item removal, clip/shell retirement and matching callback/backlink source-lifetime cleanup. Populated movement sounds and occupied simulation excluded. The SAME resource retirement is reused by separately allocated Car gun controls, preserving partial initialization, repeated entry and reverse containing control teardown.",
       "limitations": "Source-only typed/STL/RAII adaptation, without original full object/container/allocator/SEH ABI. Only linked cold/offline branches supported. Actual engine/item/model/cache/navigation/clock/runtime consumers remain required; no loaded application world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit.",
       "evidence": [
         "recovered/game/static_weapon_loading.h",
         "analysis/static-weapon-loading.md",
-        "analysis/checkpoints/p2.2-static-weapon-20261109.json"
+        "analysis/checkpoints/p2.2-static-weapon-20261109.json",
+        "recovered/game/mounted_weapon_control_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
       ]
     },
     {
@@ -24613,22 +24620,26 @@
       "program": "client",
       "entry": "004d16a0",
       "status": "partial",
-      "coverage": "Compose actual offline two-pass common/DM/proximity/runtime initialization, seats/cameras, helper, navigation and settling.",
+      "coverage": "Compose actual offline two-pass common/DM/proximity/runtime initialization, seats/cameras, helper, navigation and settling. Actual100 gun seats now create real shared004C1AD0 owners with the original seat index/model/pivot and publish only genuine successful initialization.",
       "limitations": "Unoccupied loading only; mounted/occupied/non7 receivers excluded. Host composition compile-only, no live world/desktop result.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_loading_activation.h"
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "004d25c0",
       "status": "partial",
-      "coverage": "Actual offline derived/common retirement order, repeated seats/cameras/runtime, navigation/proximity cleanup and acquired-prefix guards.",
+      "coverage": "Actual offline derived/common retirement order, repeated seats/cameras/runtime, navigation/proximity cleanup and acquired-prefix guards. Actual acquired gun-control owners retire in reverse order before the seats/cameras, preserving cleanup failures and shared resource ownership.",
       "limitations": "Occupied/mounted/non7 teardown excluded; engine/model/frame operations delegated.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_loading_activation.h"
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
       ]
     },
     {
@@ -30683,13 +30694,14 @@
       "program": "client",
       "entry": "007a7470",
       "status": "partial",
-      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required. Actual secondary clips, equipment overlays, stowed/aimed weapon presentation, mounted direction and attached head-direction publication now run at their native frame boundaries. Foot/look/attached/vehicle/target and ragdoll receivers remain required.",
+      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required. Actual secondary clips, equipment overlays, stowed/aimed weapon presentation, mounted direction and attached head-direction publication now run at their native frame boundaries.  Actual Look, prone and attached/target/vehicle bodies now run at their original normal frame boundaries, including shared pose chains and real source aim/limits. Ragdoll remains required.",
       "limitations": "Source-only typed state/owners and delegated engine methods. Native fixtures exercise state/frame doubles. Positive DD0 ground/look/track and geometry workers, actual runtime/application integration and user desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
         "recovered/game/human_model_geometry.h",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
       ]
     },
     {
@@ -33018,6 +33030,354 @@
         "recovered/game/human_model_geometry.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007accc0",
+      "status": "partial",
+      "coverage": "Actual retained Look target/scan/return transitions, native timer/power conventions, repeated model/torso projections and original directional limits, bound to real007ADA10 publication.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_look_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a5a30",
+      "status": "partial",
+      "coverage": "Build retained pose objectives from the SAME skeleton, preserving root matrix queries, masks and objective order.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a5b10",
+      "status": "partial",
+      "coverage": "Clear only the23-node active pose masks and temporary graph neighbours.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a5b40",
+      "status": "partial",
+      "coverage": "Search original child0/1/2 then parent routes with the previous-edge exclusion.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a5c00",
+      "status": "partial",
+      "coverage": "Build forward/reverse active routes with actual source frames, borrowed constraints, original basis reversal, lengths and parent-relative local matrices.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a21f0",
+      "status": "partial",
+      "coverage": "Reverse X/Z basis rows and publish the original homogeneous basis layout.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a6590",
+      "status": "partial",
+      "coverage": "Refresh the actual root and recurse through the retained active pose graph.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a6670",
+      "status": "partial",
+      "coverage": "Refresh source/basis working matrices and preserve the native pre-recursion own-frame position and post-recursion parent position writes.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a5fc0",
+      "status": "partial",
+      "coverage": "Derive retained pose outputs, traverse the original static graph and publish the actual bone22 anchor displacement.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a60f0",
+      "status": "partial",
+      "coverage": "Derive node or predecessor output matrices according to actual borrowed source-frame identity.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a6230",
+      "status": "partial",
+      "coverage": "Publish boundary/internal local matrices through the original static neighbours, preserving B0 only at boundaries and retaining computed internal translation.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a67e0",
+      "status": "partial",
+      "coverage": "Iterate actual masked pose errors with DOUBLE convergence threshold and original iteration-exhaustion anchor translation.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a6c70",
+      "status": "partial",
+      "coverage": "Apply child-first masked constraints, native weighted cross/quaternion corrections, multi-objective blends and actual matrix propagation.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a73e0",
+      "status": "partial",
+      "coverage": "Propagate local working matrices through retained active parents and ordered children.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_pose_chains.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a4e80",
+      "status": "partial",
+      "coverage": "Publish actual left/right source-frame hand rotations through their real engine parents, preserving B0 and original update order.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_joint_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a5330",
+      "status": "partial",
+      "coverage": "Preserve joint radial radius around its actual parent/first-child axis, reorient both bones and restore the first child world orientation.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_joint_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a59c0",
+      "status": "partial",
+      "coverage": "Reuse actual local-matrix assignment, delegated GetScale and original frame flags. Unwritten SIMD padding is preserved.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a50f0",
+      "status": "partial",
+      "coverage": "Publish captured left/right world matrices through the SAME hand frames and actual parent-relative rotation worker.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_attachment_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007add30",
+      "status": "partial",
+      "coverage": "Produce actual borrowed actor/frame, posture, flag, retained matrix, motion history and pose-chain state for Car/StaticWeapon attachment commands.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_attachment_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ae3c0",
+      "status": "partial",
+      "coverage": "Apply actual attached steering-hand capture, two-stage pose solves, acceleration filtering, hand/elbow publication and retained source-pose refresh.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_attachment_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007aebe0",
+      "status": "partial",
+      "coverage": "Apply original one- or three-objective target poses, strict motion timer/caps, actual hands/elbows and source-actor aim observation.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_attachment_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007af320",
+      "status": "partial",
+      "coverage": "Consume real six-key captured overlays, signed angular limits, canonical missing-key gates, quaternion/position publication and original positive anchor solve.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_attachment_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a8520",
+      "status": "partial",
+      "coverage": "Apply actual prone span/marker/sweep observations, contact classification, normal/height histories and timers, model/physical roll and ordered root/spine/leg publication.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_prone_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a3260",
+      "status": "partial",
+      "coverage": "Extract signed matrix roll through the existing native vertical basis, real matrix product and atan2.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_bone_direction.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075c160",
+      "status": "partial",
+      "coverage": "Sample only the four actual prone markers into the SAME physical marker positions, relative centres and radii.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_collision_markers.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2420",
+      "status": "partial",
+      "coverage": "Apply original signed steering response/clamps to the SAME live request, with core5F4 response initialized by004E2900.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/car_steering.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00604d70",
+      "status": "partial",
+      "coverage": "Forward actual StaticWeapon virtualA4 aim to its SAME embedded control resource owner.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/static_weapon_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c5870",
+      "status": "partial",
+      "coverage": "Observe the original failure gate and actual VERT pivot world forward vector, preserving native normalization and source lifetime.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/mounted_weapon_control_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c6d90",
+      "status": "partial",
+      "coverage": "Observe actual104/F4 gates and publish visibility followed by the real frame update.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Original full object/container/allocator/SEH ABI and unwritten vector/SIMD padding are excluded. Engine quaternion/matrix/render and collision operations remain actual delegated boundaries. Focused native fixtures use explicit engine/query doubles, including first-iteration pose constraints. Containing action, occupied-control/firing, ragdoll, application mission loading and user desktop acceptance remain open. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/mounted_weapon_control_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
       ]
     }
   ]

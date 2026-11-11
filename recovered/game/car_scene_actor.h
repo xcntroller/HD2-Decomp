@@ -6,6 +6,7 @@
 #include "game/car_ancillary_model.h"
 #include "game/car_callback_services.h"
 #include "game/car_loading_lifetime.h"
+#include "game/mounted_weapon_control.h"
 #include <functional>
 
 namespace hd2::game {
@@ -51,7 +52,7 @@ public:
         geometry.reset(); //004E7F10 before00610170's base storage/frame/reference cleanup.
     }
     bool initialize(Frame frame) override { //004D10A0.
-        flag24a1=false;fields24b4.fill(0);
+        flag24a1=false;for(auto& control:fields24b4)control.reset();
         if(!this->base_.initialize_frame(frame))return false;
         if(geometry)throw std::logic_error("Car geometry initialization repeated");
         geometry.emplace(this->backend_,frame,services_.car_tyre_ids());
@@ -82,7 +83,7 @@ public:
     //Actual runtime producers must fill these owners before invoking callbacks;
     //cold loading alone does not initialize a current simulation state.
     std::vector<CarSeatContactCooldown> cooldowns;
-    std::array<std::uint32_t,10> fields24b4{};
+    std::array<std::unique_ptr<CarMountedWeaponControl>,10> fields24b4{};
     std::array<std::uint32_t,2> fields2474{};
     std::uint32_t clock2470,field24dc=0xffffffffu;
     bool flag24a1=false;

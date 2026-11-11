@@ -1,6 +1,6 @@
 # P22-HUM implementation plan
 
-Updated 2026-11-11 for the Human motion/pose source checkpoint. P22-HUM remains OPEN.
+Updated 2026-11-11 for the Human model-presentation source checkpoint. P22-HUM remains OPEN.
 Both P2.2 checkboxes in `plan.md` remain OPEN. Mission loading still declines,
 and no mission desktop acceptance has occurred.
 
@@ -33,9 +33,9 @@ frozen client partials, with no complete-function promotions.
 
 ## Remaining completion sequence
 
-- [ ] Complete model presentation. Finish look007ACCC0, foot007A8520, attached007AE3C0,
-  vehicle007AF320 and target007AEBE0 paths, their retained-state producers and
-  reached pose-chain helpers. Bind each at the actual007A7470 boundary.
+- [x] Complete model presentation and its retained producers/pose-chain helpers
+  through actual007A7470 dispatch. Source checks are recorded in the
+  [model checkpoint](checkpoints/p2.2-human-model-presentation-20261111.json).
 - [ ] Complete reactions, damage and ragdoll behavior. Finish0074D510,
   remaining007B0910 reason/source branches, positive obstruction/contact/fall
   damage, joint impulse consumption and actual ragdoll pose/contact retirement.
@@ -67,6 +67,9 @@ workstreams.
 
 ## Current next work
 
-Continue look007ACCC0. Mount and head-direction source checks pass. Existing assembly and decompilation
-were located with the research index. Its CRT power helper007E8CE0 is delegated
-runtime math and receives no reconstruction credit.
+Continue reactions, damage and ragdoll behavior at0074D510 and remaining007B0910
+branches. The model-presentation checkbox has source verification, with actual
+World i386 and launcher compile/link checks. Its original00755500 interaction
+callers continue in the later positive-action checkbox. Shared mounted-control
+movement sounds, occupied updates and firing remain required in their containing
+Car/StaticWeapon/action paths. P22-HUM and both P2.2 checkboxes remain open.

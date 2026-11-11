@@ -23,6 +23,8 @@
 #include "game/scene_light_sample.h"
 #include "game/geometry_scene_actors.h"
 #include "game/simple_scene_actors.h"
+#include "game/static_weapon_actor.h"
+#include "game/car_steering.h"
 #include <algorithm>
 #include <stdexcept>
 
@@ -134,6 +136,52 @@ public:
     }
     template<class Frame>void restore_human_mount_camera_amount(Frame frame){
         (void)dependencies().scene.effects().model_camera_amount(frame,0.f); //00486510 GEffects virtual50=00486D30.
+    }
+    auto& human_pose_actor(void* value){
+        if(!value)throw std::logic_error("Human attachment pose requires its actual source actor");
+        return *static_cast<SceneActor<typename Dependencies::ActorFrames>*>(value);
+    }
+    auto& human_pose_car(void* value){
+        using Car=typename std::decay_t<decltype(dependencies().world_actors)>::Car;
+        auto* car=dynamic_cast<Car*>(&human_pose_actor(value));
+        if(!car||!car->geometry)throw std::logic_error("Human attachment pose requires actual Car geometry");
+        return *car;
+    }
+    std::uint32_t human_pose_actor_type(void* actor){return human_pose_actor(actor).base().type();}
+    auto human_pose_actor_model(void* actor){return human_pose_actor(actor).base().frame();}
+    HumanVector human_pose_car_velocity(void* actor){return dependencies().scene.car_callbacks().car_position4a0(&human_pose_car(actor));} //Actual native4A0 velocity.
+    std::uint32_t human_pose_car_state(void* actor){return static_cast<std::uint32_t>(human_pose_car(actor).occupants.size());} //004D0E30, native1040 seat count.
+    void human_pose_clear_car_steering(void* actor){ //007ADD30→004F2420(0), SAME live steering owner.
+        auto& car=human_pose_car(actor);
+        if(!car.loading)throw std::logic_error("Human attachment retirement requires actual Car runtime");
+        request_car_steering(car.loading->steering_state(),0.f);
+    }
+    bool human_pose_actor_has_control(void* actor,std::uint32_t seat){ //Car004DA020, StaticWeapon00604D20.
+        if(human_pose_actor_type(actor)==4)return static_cast<bool>(human_pose_car(actor).fields24b4.at(seat));
+        if(human_pose_actor_type(actor)==21)return seat==0;
+        throw std::logic_error("Human attachment control query requires Car or StaticWeapon");
+    }
+    HumanVector human_pose_actor_direction(void* actor,std::uint32_t seat){ //Actual virtualA4.
+        if(human_pose_actor_type(actor)==4){
+            const auto& control=human_pose_car(actor).fields24b4.at(seat);
+            return control?control->loading->aim_direction():HumanVector{}; //004DA150→004C5870, actual null-control output.
+        }
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;
+        auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Human attachment aim requires actual StaticWeapon runtime");
+        return weapon->loading->aim_direction(); //00604D70→004C5870.
+    }
+    std::array<float,4> human_pose_actor_limits(void* actor,std::uint32_t seat){ //Actual virtualB8.
+        if(human_pose_actor_type(actor)==4){
+            const auto& control=human_pose_car(actor).fields24b4.at(seat);
+            if(!control)throw std::logic_error("Human pose blending requires actual populated Car gun control limits"); //Native null branch leaves all four outputs unwritten.
+            return control->loading->limits(); //004DA1F0, same128..134 control fields.
+        }
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;
+        auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon)throw std::logic_error("Human pose limits require Car or StaticWeapon");
+        const auto& control=weapon->control;
+        return {{control.field128,control.field12c,control.field130,control.field134}}; //00604DD0, actual embedded160+128.
     }
     template<class Human>bool human_is_player(const Human& human)const{return human_camera_is_player(human,mode_flags(),human_current_player_id());} //005A0890, AL.
     template<class Human>bool human_is_view_actor(const Human& human)const{return human_is_player(human);}

@@ -139,6 +139,12 @@ public:
     void remove_car_proximity(std::int32_t index){consumers_.actor_proximity().remove_actor(index);}
     const Car* car_current_attachment(){return consumers_.car_current_attachment();}
     unsigned car_game_kind(){return consumers_.car_game_kind();}
+    std::unique_ptr<game::CarMountedWeaponControl> make_car_weapon_control(Car& actor,GameActorServices::Frame pivot,unsigned index){ //004D16A0's actual100 branch.
+        auto control=std::make_unique<game::CarMountedWeaponControl>();
+        auto loading=std::make_unique<game::MountedWeaponControlLoading<GameActorServices,GameWorldActors,Items>>(scene_.frames(),*this,items_,control->state);
+        if(!loading->initialize(actor.base().frame(),pivot,index))return nullptr;
+        control->loading=std::move(loading);return control;
+    }
     using StaticWeapon=game::StaticWeaponSceneActor<GameActorServices>;
     void activate_static_weapon(StaticWeapon& actor,bool authority){
         require_open();if(!actor.loading)actor.loading=std::make_unique<game::StaticWeaponLoading<GameActorServices,GameWorldActors,Collisions,Items>>(scene_.frames(),*this,scene_.buckets(),items_,actor);
@@ -146,8 +152,8 @@ public:
     }
     void deactivate_static_weapon(StaticWeapon& actor,bool authority){if(actor.loading)actor.loading->deactivate(authority);}
     void update_static_weapon(StaticWeapon& actor,bool authority,std::uint32_t elapsed){require_open();if(!actor.loading)throw std::runtime_error("StaticWeapon requires actual loading owner");actor.loading->update(authority,elapsed);}
-    void install_static_weapon_events(GameActorServices::Frame frame,game::StaticWeaponLoadingLifetime& control){static_weapon_events_.install(frame,control);}
-    void remove_static_weapon_events(GameActorServices::Frame frame,game::StaticWeaponLoadingLifetime& control){static_weapon_events_.remove(frame,control);}
+    void install_static_weapon_events(GameActorServices::Frame frame,game::MountedWeaponControlLifetime& control){static_weapon_events_.install(frame,control);}
+    void remove_static_weapon_events(GameActorServices::Frame frame,game::MountedWeaponControlLifetime& control){static_weapon_events_.remove(frame,control);}
     void rethrow_static_weapon_event_failure(){static_weapon_events_.rethrow_failure();}
     GameActorServices::Vector static_weapon_navigation_position(StaticWeapon& actor){
         const auto references=navigation_.actor_references(&actor);if(!references.empty()){

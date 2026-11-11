@@ -7,6 +7,27 @@
 
 namespace hd2::game {
 
+//Native composition shared by007BF980/007BFE80 and007A6C70. Each vector
+//product and sum retains its original FLOAT spill before the scalar dot.
+inline HumanVector multiply_human_bone_rotations(const HumanVector& left,const HumanVector& right){
+    HumanVector cross{};
+    cross[0] = static_cast<float>(static_cast<long double>(left[1]) * right[2] - static_cast<long double>(left[2]) * right[1]);
+    cross[1] = static_cast<float>(static_cast<long double>(left[2]) * right[0] - static_cast<long double>(left[0]) * right[2]);
+    cross[2] = static_cast<float>(static_cast<long double>(left[0]) * right[1] - static_cast<long double>(left[1]) * right[0]);
+    HumanVector combined{};
+    for (unsigned component = 0; component != 3; ++component) {
+        const float first = static_cast<float>(static_cast<long double>(left[component]) * right[3]);
+        const float second = static_cast<float>(static_cast<long double>(right[component]) * left[3]);
+        const float sum = first + second;
+        combined[component] = sum + cross[component];
+    }
+    const float scalar = static_cast<float>(static_cast<long double>(left[3]) * right[3]);
+    const auto dot = (static_cast<long double>(right[2]) * left[2] +
+        static_cast<long double>(right[1]) * left[1]) + static_cast<long double>(right[0]) * left[0];
+    combined[3] = static_cast<float>(scalar - dot);
+    return combined;
+}
+
 //Shared quaternion worker in007BF980 and007BFE80. Callers retain their
 //different projection and cross-product FLOAT spill boundaries.
 inline std::optional<HumanVector> human_bone_rotation_correction(HumanVector axis,
@@ -33,22 +54,7 @@ inline std::optional<HumanVector> human_bone_rotation_correction(HumanVector axi
         correction[component] = static_cast<float>(axis[component] * sine);
     correction[3] = static_cast<float>(std::cos(static_cast<long double>(static_cast<float>(half_angle))));
 
-    HumanVector cross{};
-    cross[0] = static_cast<float>(static_cast<long double>(rotation[1]) * correction[2] - static_cast<long double>(rotation[2]) * correction[1]);
-    cross[1] = static_cast<float>(static_cast<long double>(rotation[2]) * correction[0] - static_cast<long double>(rotation[0]) * correction[2]);
-    cross[2] = static_cast<float>(static_cast<long double>(rotation[0]) * correction[1] - static_cast<long double>(rotation[1]) * correction[0]);
-    HumanVector combined{};
-    for (unsigned component = 0; component != 3; ++component) {
-        const float first = static_cast<float>(static_cast<long double>(rotation[component]) * correction[3]);
-        const float second = static_cast<float>(static_cast<long double>(correction[component]) * rotation[3]);
-        const float sum = first + second;
-        combined[component] = sum + cross[component];
-    }
-    const float scalar = static_cast<float>(static_cast<long double>(rotation[3]) * correction[3]);
-    const auto dot = (static_cast<long double>(correction[2]) * rotation[2] +
-        static_cast<long double>(correction[1]) * rotation[1]) + static_cast<long double>(correction[0]) * rotation[0];
-    combined[3] = static_cast<float>(scalar - dot);
-    return combined;
+    return multiply_human_bone_rotations(rotation,correction);
 }
 
 //007BF980 transforms both directions through repeated actual model queries,
@@ -144,6 +150,13 @@ void align_human_matrix_up(Frames& frames, HumanMatrix& matrix, const HumanVecto
     human_align_vectors(HumanVector{{matrix[4], matrix[5], matrix[6], matrix[7]}}, direction, rotation);
     rotation[15] = 1;
     matrix = frames.car_matrix_product(matrix, rotation);
+}
+
+//007A3260 extracts signed roll relative to007A2E10's vertical basis.
+template<class Frames>float human_matrix_roll(Frames& frames,const HumanMatrix& matrix){
+    const HumanVector forward{{matrix[8],matrix[9],matrix[10],matrix[11]}};
+    const auto relative=frames.rigid_matrix_product(matrix,human_transpose(human_vertical_basis(forward)));
+    return static_cast<float>(std::atan2(static_cast<long double>(relative[1]),static_cast<long double>(relative[0])));
 }
 
 //007A43C0 uses the original first-child basis stored by skeleton loading.

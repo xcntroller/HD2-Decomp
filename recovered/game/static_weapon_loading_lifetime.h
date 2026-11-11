@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_STATIC_WEAPON_LOADING_LIFETIME_H
 #define HD2_GAME_STATIC_WEAPON_LOADING_LIFETIME_H
 #include <cstdint>
+#include <array>
 namespace hd2::game {
 class StaticWeaponLoadingLifetime {
 public:
@@ -9,6 +10,7 @@ public:
     virtual void deactivate(bool authority)=0;
     virtual void update(bool authority,std::uint32_t elapsed)=0;
     virtual void fire_marker()=0;
+    virtual std::array<float,4> aim_direction()=0;
 };
 }
 #endif

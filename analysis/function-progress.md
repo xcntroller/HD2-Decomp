@@ -32,10 +32,11 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are34 complete client functions and2,471 partial entries
-(2,466 client and five engine). The [Human motion/pose checkpoint](checkpoints/p2.2-human-motion-pose-20261111.json)
-adds100 frozen client partials and extends nine existing partials, with no complete
-promotions or denominator changes. P22-HUM and mission desktop delivery remain open.
+The current totals are34 complete client functions and2,500 partial entries
+(2,495 client and five engine). The [Human model-presentation checkpoint](checkpoints/p2.2-human-model-presentation-20261111.json)
+adds29 frozen client partials and extends six existing partials. Complete counts
+and the denominator remain unchanged. The first Human-plan checkbox has source
+verification. P22-HUM and mission desktop delivery remain open.
 The [ledger](function-status.json) and generated README tally remain authoritative.
 
 The [P22-LIFE source checkpoint](p22-life-implementation.md) extends five existing
