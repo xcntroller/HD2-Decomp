@@ -4817,3 +4817,12 @@ Targeted tracing corrected005AC400 to the actual230 equipment flag. Native
 sanitizers, strict actual World i386 and launcher link pass. Two source partials.
 Scene144 desktop execution, positive look/frame workers, rendering, integrity and
 application integration remain. Both P2.2 checkboxes remain open.
+
+2026-11-11. [Look frame, posture collision and held-model classification](analysis/human-frame-source.md#look-frame-posture-collision-and-held-model-classification)
+now supplies actual command dispatch, six room-query families, posture timers and
+shared geometry/230 state, lateral stride collision, lazy Item marker/clone state
+and selected animation timing. Native sanitizers, strict actual World i386 and
+launcher link pass. Fourteen source partials bring the tally to34 complete and
+2,367 partial. Positive interaction/Ladder/remote equipment, remaining frame,
+rendering, integrity and application integration remain. Both P2.2 checkboxes and
+mission desktop acceptance remain open.

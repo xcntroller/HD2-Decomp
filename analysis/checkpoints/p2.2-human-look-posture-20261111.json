@@ -1,0 +1,298 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "original_execution": false,
+  "previous_checkpoint": "7d8bc0c",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0077de30",
+    "0076af70",
+    "0074ef60",
+    "00749d60",
+    "0074a290",
+    "007d46d0",
+    "007d5250",
+    "00791c10",
+    "00775770",
+    "0075cd00",
+    "00781290",
+    "007812b0",
+    "007812d0",
+    "0074e820"
+  ],
+  "ledger_added_partial_client": 14,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2367,
+  "assumptions": [
+    "Actual Look commands and typed model/actor snapshots use SAME per-Human DD0/E0 owners. Positive interaction, Ladder, remote equipment and mounted-actor workers remain required.",
+    "Posture room/lateral fixtures use explicit physical/model/sweep boundaries. Actual World i386 compilation instantiates the real owners and remaining Runtime leaves remain declaration-only.",
+    "Native missing spheres/bones/holder and invalid animation lane fail explicitly at original invalid access boundaries. Existing mixed-posture allocation risk stays guarded.",
+    "Marker classification uses actual item model/cache and existing auxiliary clone owner. Explicit reclassification releases any old auxiliary through RAII. Other Item families genuine zero earn no new credit.",
+    "Selected track uses signed model time, retained signed duration and original inactive/zero-duration IEEE behavior. Engine time and transforms are delegated.",
+    "Earlier cardinal-cycle, early106 zero-speed and original fault guards remain documented. Both P2.2 checkboxes and desktop mission acceptance remain open."
+  ],
+  "checks": {
+    "native_look": "PASS ASan/UBSan/LSan actual Look/physical/face dispatch and typed snapshots",
+    "native_item": "PASS ASan/UBSan/LSan actual RuntimeItem marker priority/cache/failure/pose/ownership",
+    "native_posture": "PASS ASan/UBSan/LSan six posture transitions, room obstruction/retries/impulses/exclusion cleanup and lateral stride",
+    "native_tracks": "PASS ASan/UBSan/LSan actual selected lane/time and inactive/zero-duration results",
+    "actual_host_i386": "PASS strict actual World authority/presentation instantiation",
+    "application_launch": "PASS i386 link",
+    "function_tracker": "PASS render/check and27 tests"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-face-control-modes.asm": {
+      "sha256": "50d251600a7ef939721322540be03dab92f3ef6bf270befed6e50eb9d429fc67",
+      "bytes": 2440,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-item-marker-native": {
+      "sha256": "a384ba4a7239de1a684f57cfb48a3e748ae2b98061d0a9d53dd3f549c6e5191c",
+      "bytes": 1379696,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-item-marker-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-item-marker-native.cpp": {
+      "sha256": "1144c119c601b9a417b21391648d2eca057ccca1f39bf6f84c5ae99bc4e686a6",
+      "bytes": 3917,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-item-marker-native.log": {
+      "sha256": "12d9dd8a57113a0a8d424afe3b8ca051fd99eba482d9123a3531675884cd361f",
+      "bytes": 148,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-item-projectile-markers.asm": {
+      "sha256": "a32d1bc6594c874dd173d2b6526fbe05c6c5b153170b27a9dcf082878c897acf",
+      "bytes": 4937,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-lateral-stride.asm": {
+      "sha256": "d3ca902eb4b238122dd3c7bee082f4052ee9e9e13b6a35ab196a2e3426555b5e",
+      "bytes": 15842,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0074a290.c": {
+      "sha256": "86a3687754be41d0b488b8371348bff8ab4237517579ced57f1ebf927a2fc3c2",
+      "bytes": 3826,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0074a290.json": {
+      "sha256": "c723e3da0b2ceb9c1ff13f9a937e4cea728a2525588948cc3a72b854a4d8b3e6",
+      "bytes": 25993,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0074e820.c": {
+      "sha256": "2b331c2c03aaf71d13f6ad635be10f538c8566eef4d745ad2db19fce42ce9d29",
+      "bytes": 169,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0074e820.json": {
+      "sha256": "ae79d80ed4404c72c2d80f0cb02f5bca0df7aebf329024a0b1474481049c25d0",
+      "bytes": 1212,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0075cd00.c": {
+      "sha256": "4216f5fd78ae6aef35c927ecffc04da2076b144ba4b4c94ced571c7c23c17bd6",
+      "bytes": 279,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0075cd00.json": {
+      "sha256": "09acedbef4a2d402d665a6f5dd30f6a4e597cf7c11536cca49dd9f977d929eee",
+      "bytes": 2322,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0076af70.c": {
+      "sha256": "b6669d4e79807a82ab2d5d829844f610290efecd28ff937f51f4a4a444ce0bb8",
+      "bytes": 8928,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0076af70.json": {
+      "sha256": "f3192f87e7233590eb7a27974f69bcfc575792063a77f0f3297b18f2a5ba81e4",
+      "bytes": 15590,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-i386.cpp": {
+      "sha256": "7a2f689ef3122ac42616d1684d0bab8deb0728e0891fde2d755451dceb6f4526",
+      "bytes": 8741,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-i386.o": {
+      "sha256": "2b3eceda79e6f578a9ce55be9cf56d0e32ddc2e067d7e6d65e1fcebce3e493ac",
+      "bytes": 13064843,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-leaf-workers/0075e290.c": {
+      "sha256": "f3c723283905b078eb30596583843e4df9006cc1280ab1047a9327ab40b62cf2",
+      "bytes": 3249,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-leaf-workers/0075e290.json": {
+      "sha256": "352167a6b1ce74e3f431f7b3ae41c781c872227b89caed76f493879d46fb2313",
+      "bytes": 6439,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-leaf-workers/00775770.c": {
+      "sha256": "86569b6d8d10129348ae4ec23fdfddc1a71a2cfcffeca6732d03cd3bc013b6d6",
+      "bytes": 454,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-leaf-workers/00775770.json": {
+      "sha256": "0dfce9e072d30fe9aff71ddccf06fa73e79565c106c018976c9836114be29514",
+      "bytes": 942,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-leaf-workers-export.log": {
+      "sha256": "a8fd00d8924d4fdca9681517c2f98f18e74a08350f42d7ac08da82bc9f48d814",
+      "bytes": 4491,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-native": {
+      "sha256": "8f553c1a54885739f033b80209c899fad8c195b8d4af1a160d3f125e31aed316",
+      "bytes": 764512,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-native.cpp": {
+      "sha256": "c8ba72fd7b2788eef7434cb5eaa72d64f5d5ec89c8efdd724b415df566de8a35",
+      "bytes": 8255,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-look-frame-native.log": {
+      "sha256": "81a6aec62118e6251d07045290e1697cff090a65e82d0e17be8b957fca94ecd6",
+      "bytes": 206,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-posture-room-workers/0074ef60.c": {
+      "sha256": "0475d34ea438cf15d6859020ff1e997ce4bb4701692033ab3b6e5839960e0bd9",
+      "bytes": 23076,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-posture-room-workers/0074ef60.json": {
+      "sha256": "293625deffb767f750901f426e3f51704e83367432f2140e5a1a2ec3d4a8e5f5",
+      "bytes": 116401,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-posture-room-workers/0075c7e0.c": {
+      "sha256": "e9e45b11822c3f05023b283e23944e902748c588ac745b70a287da2037615437",
+      "bytes": 869,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-posture-room-workers/0075c7e0.json": {
+      "sha256": "6c4a87f085a69931b389909811ad65dbb04a5e1ca84dd7a1decfa1f5ce35caad",
+      "bytes": 6237,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-posture-room-workers/00791c10.c": {
+      "sha256": "a71762d18323e274203dc5ed27ddc8bb054e52561c8818327cc7c14e7d38faae",
+      "bytes": 738,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-posture-room-workers/00791c10.json": {
+      "sha256": "393e807ecd3552a1d5e18c02a44a9d39e50a2d6af2284c893d14d0f5aef05828",
+      "bytes": 1305,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-posture-room-workers/007d5250.c": {
+      "sha256": "b55bc485d3f1ad7dfa0e2f721e6dd44e1830de9b59bcac2447db7c8f1f483d25",
+      "bytes": 1929,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-posture-room-workers/007d5250.json": {
+      "sha256": "1c824b6c08d67059535648355464fa5281f34fc36f1b2b5d3e7ae268f2131b29",
+      "bytes": 3562,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-posture-timing.asm": {
+      "sha256": "60336d29b8818851564dfcbf460633ea403f64be7e7a428be38f5543e0d57349",
+      "bytes": 26008,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-posture-room-native": {
+      "sha256": "373e286f19609277c183b3095b41b632f66e880c8b1a1ff575af84fde4eac1ad",
+      "bytes": 1166096,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-posture-room-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-posture-room-native.cpp": {
+      "sha256": "7f734f7076e751cc2c5a6742fa4760be8d574d47c155d17b12d6da17364342d9",
+      "bytes": 9179,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-posture-room-native.log": {
+      "sha256": "79691ea75ee1640947fab6e43f57897390a7b853ce6f94f3d31668952fe0148d",
+      "bytes": 189,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-posture-room.asm": {
+      "sha256": "7e819f10670b52857896b56b257f0cdd8006f2ab08ece93d08bfca7c6f6d903a",
+      "bytes": 78462,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-room-axis-initializers.asm": {
+      "sha256": "ed701fc0670b8b5f39d5d2d85d9def21011eb54ce6b3e63a97e0bae4ed2d4aaa",
+      "bytes": 2043,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-room-axis-refs.asm": {
+      "sha256": "0ae1e2375071a03b9fb213018911275bfc35a7b53bdbdc1913a31a3a3805096c",
+      "bytes": 1197,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-room-side-direction.asm": {
+      "sha256": "5608220ad009f0cc2f916a6a8965fef5147ff673deb3b6c84c346cc75874dbf4",
+      "bytes": 3511,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-track-position-native": {
+      "sha256": "bbd2f7f7cc5644abd356ba8c1e2999667d870cdf4116749fa582131724eb0454",
+      "bytes": 234624,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-track-position-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-track-position-native.cpp": {
+      "sha256": "13a6173d5e3ad98cda94ac5a22eb37d608fa747cd0ba0b3f3b05e6b438fc0642",
+      "bytes": 1853,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-track-position-native.log": {
+      "sha256": "f873640c9972fae655e068fe935cafc8707818896719f3d7bbb16257013be148",
+      "bytes": 170,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-look-function-progress-tests.log": {
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e",
+      "bytes": 126,
+      "retained": true
+    }
+  }
+}

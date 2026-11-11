@@ -31571,6 +31571,174 @@
         "recovered/game/human_ai_state_loading.h",
         "recovered/game/human_world_loading_services.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0077de30",
+      "status": "partial",
+      "coverage": "Apply real Look commands, normalized primary/secondary selections, equipment/actions, face state and typed retained snapshot.",
+      "limitations": "Positive interaction retirement/execution, Ladder exit, occupied remote equipment and mounted actor retirement remain mandatory Runtime receivers. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_look_frame.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076af70",
+      "status": "partial",
+      "coverage": "Coordinate six posture transitions, room checks, same geometry/230 fields, physical timers and normalized descriptors.",
+      "limitations": "Native mixed-posture allocation and positive physical face/morph boundaries remain guarded. Active8..14 uses confirmed pure predicate result. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_posture_transition.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0074ef60",
+      "status": "partial",
+      "coverage": "Perform six actual posture-room query families, ordered paired sweeps, retries, search reversal and retained displacement impulses.",
+      "limitations": "Actual physical/model/sweep ownership remains required. Missing spheres reject native invalid indexing. Engine queries remain delegated. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_posture_room.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00749d60",
+      "status": "partial",
+      "coverage": "Retain original CRT-initialized side vectors and rotate using existing planar-angle and actual engine matrix/vector receivers.",
+      "limitations": "Only native selectors0/1 are defined. Engine quaternion/matrix/vector bodies remain delegated. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_posture_room.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0074a290",
+      "status": "partial",
+      "coverage": "Compare active/queued descriptors, query actual bone4/posture colliders and publish same C00 lateral stride limit.",
+      "limitations": "Actual marker/physical/engine/sweep owners required. Missing bone rejects original null dereference. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_lateral_stride.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d46d0",
+      "status": "partial",
+      "coverage": "Dispatch lazy weapon marker classification only for field7C1 and retain cached virtual40 family.",
+      "limitations": "Actual primary model/cache/clone services remain required. Other Item families retain original zero. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/runtime_item.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d5250",
+      "status": "partial",
+      "coverage": "Classify projectile/mag1/mag2/mag3 with original priority and result, retain auxiliary clone and capture local marker pose.",
+      "limitations": "Native74 uses typed borrower. RAII releases any prior auxiliary on explicit reclassification. Clone/engine bodies stay delegated. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/runtime_item.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00791c10",
+      "status": "partial",
+      "coverage": "Resolve same hand holder twice and query actual runtime Item virtual40, retaining empty-hand zero.",
+      "limitations": "Requires actual containing Human storage and Items module. Missing holder raises source error at original null dereference. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00775770",
+      "status": "partial",
+      "coverage": "Query selected actual animation lane and signed model time divided by retained signed duration, including inactive and IEEE results.",
+      "limitations": "Requires actual bound model and supported group/lane. Engine time callback remains delegated. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075cd00",
+      "status": "partial",
+      "coverage": "Dispatch actual kind1/2/3 face control mode and argument writes.",
+      "limitations": "Shared typed face owner replaces native DD0 offset addressing. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_face_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00781290",
+      "status": "partial",
+      "coverage": "Write face control mode2 and argument from kind1 dispatch.",
+      "limitations": "Shared typed face owner replaces native object ABI. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_face_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007812b0",
+      "status": "partial",
+      "coverage": "Write face control mode3 and argument from kind2 dispatch.",
+      "limitations": "Shared typed face owner replaces native object ABI. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_face_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007812d0",
+      "status": "partial",
+      "coverage": "Write face control mode4 and argument from kind3 dispatch.",
+      "limitations": "Shared typed face owner replaces native object ABI. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_face_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0074e820",
+      "status": "partial",
+      "coverage": "Inline original queued34 to28 mapping and other input to36 before primary normalization.",
+      "limitations": "Recovered within actual Look caller. Native object ABI remains adapted. Source-only. Application loading and desktop execution remain pending.",
+      "evidence": [
+        "recovered/game/human_look_frame.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+      ]
     }
   ]
 }

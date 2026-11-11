@@ -57,6 +57,9 @@ public:
         }
         state_.set(0x3c,recovery);state_.set(0x38,std::int32_t{-1});
     }
+    void control_command(std::uint32_t kind,std::uint32_t value){ //0075CD00→00781290/B0/D0.
+        if(kind>=1&&kind<=3){state_.set(0x4c,kind+1u);state_.set(0x50,value);}
+    }
     void equipment_primary_command(std::uint32_t value){state_.set(0x78,value);} //00781300.
     void equipment_secondary_command(std::uint32_t value){state_.set(0x64,value);} //007812F0.
     template<class Pool>void close_sound(Pool& pool) { //00780AB0, typed native7C owner.

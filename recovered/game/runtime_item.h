@@ -87,7 +87,9 @@ public:
     std::int32_t holder_slot=0; //Native24.
     std::array<std::uint32_t,2> fields50_54{{0xbf800000u,0xbf800000u}};
     std::uint32_t field58=0,field5c=0,field60=1,field64=0,field68=0,field6c=0;
-    std::uint32_t field74=0,field7c=1,field88=1,field8c=0,field9c=0,fielda0=0,fielda8=0xffffffffu;
+    Frame projectile_marker{}; //Native74 borrowed from the primary model.
+    std::array<float,4> projectile_position{},projectile_rotation{}; //Native30/40, lazy007D5250 snapshot.
+    std::uint32_t field7c=1,field88=1,field8c=0,field9c=0,fielda0=0,fielda8=0xffffffffu;
     Frame shot_marker{}; //Native A4 borrowed child, never truncate its identity into a DWORD.
     bool flag90=false;
     float field98=1;
@@ -113,6 +115,11 @@ public:
         return model_?model_->get():Frame{};
     }
     Frame flash_frame() const {return flash_;} //Borrowed from primary model.
+    std::uint32_t reload_animation_family() { //Item virtual40,007D46D0 / genuine007D32F0 zero.
+        if(family_!=Family::weapon)return 0;
+        if(field7c==1)classify_projectile_marker();
+        return field7c;
+    }
     Frame shot_frame() { //0058BA80: absent shdum is NOT cached as a successful fallback.
         if(!shot_marker){
             const auto frame=model();if(!frame)throw std::runtime_error("Item shot marker requires actual primary model");
@@ -123,6 +130,28 @@ public:
     std::uint32_t other_field28() const {return other_field28_;}
     float auxiliary_amount()const{return family_==Family::other?real(other_field28_):-1.f;} //007D41A0/007D3280 virtual20.
 private:
+    void classify_projectile_marker() { //007D5250, classification and clone use the actual model hierarchy.
+        const auto frame=model();
+        projectile_marker=Frame{};auxiliary_model_.reset();field7c=0;
+        if(!frame)return;
+        projectile_marker=services_.find_item_model_frame(frame,"projectile",0xffff);
+        if(!projectile_marker)projectile_marker=services_.find_item_model_frame(frame,"mag1",0xffff);
+        if(projectile_marker)field7c=2;
+        else {
+            projectile_marker=services_.find_item_model_frame(frame,"mag2",0xffff);
+            if(projectile_marker)field7c=3;
+            else {
+                projectile_marker=services_.find_item_model_frame(frame,"mag3",0xffff);
+                if(projectile_marker)field7c=4;
+            }
+        }
+        if(projectile_marker){
+            //Native code ignores the clone result and still captures the marker pose.
+            auxiliary_model_.emplace(services_.clone_item_model_frame(projectile_marker));
+            projectile_position=services_.item_model_frame_position(projectile_marker);
+            projectile_rotation=services_.item_model_frame_rotation(projectile_marker);
+        }
+    }
     std::uint32_t weapon_payload_time(std::size_t offset)const{
         const auto value=static_cast<long double>(real(payload_word(definition_.payloads[0],offset)));
         if(!std::isfinite(value)||value<std::numeric_limits<std::int64_t>::min()||

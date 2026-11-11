@@ -28,6 +28,9 @@ public:
     Frame first_person_magazine(const frontend::PreMissionItem& definition) const {return models_.first_person_magazine(definition);}
     const typename ItemScubaModelCache<Frames>::Parts* scuba_parts(const frontend::PreMissionItem& definition) {return scuba_.parts(definition);}
     Frame find_item_model_frame(Frame frame,const char* name,std::uint32_t mask) {return frames_.actor_find(frame,name,mask);}
+    ItemModelOwner clone_item_model_frame(Frame frame){return ItemFrameTree<Frames>::clone(frames_,frame);}
+    auto item_model_frame_position(Frame frame){return frames_.actor_position(frame);}
+    auto item_model_frame_rotation(Frame frame){return frames_.item_marker_rotation(frame);}
     void item_model_visible(Frame frame,bool visible) {frames_.object_visible(frame,visible);}
     std::uint32_t item_game_word28() const {return game_word28_;}
     void register_item_kind20(void* item) {

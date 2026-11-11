@@ -47,6 +47,7 @@ public:
     }
     void reset_equipment_command(){state_.set(0x38,std::int32_t{-10000});state_.set(0x3c,std::uint32_t{0});}
     void finish_special_motion_command(){state_.set(0x20,0u);} //00768170, SAME C00 linked at AC0+4C.
+    void lateral_stride_limit(float amount){state_.set(0xa0,amount);} //0074A290, SAME C00+A0.
 private:
     Control* owner_=nullptr;Links* links_=nullptr;Movement* movement_=nullptr;Human* human_=nullptr;
     Frame marker_{};HumanJointWords<0xb0> state_;

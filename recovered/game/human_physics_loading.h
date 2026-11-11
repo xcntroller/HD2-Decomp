@@ -5,6 +5,7 @@
 #include "game/human_look_control.h"
 #include "game/human_morph_tables.h"
 #include "game/rigid_body.h"
+#include "game/collision_tree.h"
 #include "game/dynamic_collision_exclusions.h"
 #include "game/human_state_ground.h"
 #include "game/human_physics_globals.h"
@@ -12,6 +13,7 @@
 #include <functional>
 
 namespace hd2::game {
+template<class>class SceneActor;
 
 
 //Loading0075B280/0075AE40/0075B870 and the descriptor portion of0075B6C0.
@@ -166,6 +168,13 @@ public:
     }
     const auto& state() const{return state_;}
     auto& frame_globals(){return globals_;}
+    template<class Look>void capture_look_frame(const Look& look){ //0077DE30's retained A0-byte770 snapshot.
+        for(unsigned offset=0;offset!=0xa0;offset+=4)
+            if(offset!=4&&offset!=8)state_.set(0x770+offset,look.state().template get<std::uint32_t>(offset));
+        look_snapshot_model_=look.action_model();look_snapshot_actor_=look.interaction_actor();
+    }
+    Frame look_snapshot_model()const{return look_snapshot_model_;}
+    SceneActor<Frames>* look_snapshot_actor()const{return look_snapshot_actor_;}
     auto& control_frame_words(){return state_;} //DD0 physical scalar writes in the actual frame bodies.
     auto& control_action_queue(){return queue_;} //DD0+A4C, SAME deque retired by0075B6C0.
     void rebind_frame_posture(std::uint32_t posture){rebind_posture(posture);} //0075BC80.
@@ -271,6 +280,7 @@ public:
     int primary_count() const{return state_.template get<std::int32_t>(0x698);}
     Human** human_slot_address(){return &human_;}
 private:
+    Frame look_snapshot_model_{};SceneActor<Frames>* look_snapshot_actor_=nullptr; //Native774/778 borrowed identities.
     std::vector<SoundOwner> sounds_; //Native198; no unresearched playback producer is exposed.
     void rebind_posture(std::uint32_t requested) { //0075BC80 ordinary descriptor branch.
         if(state_.template get<std::uint32_t>(0x22c)&8u)return;
@@ -346,7 +356,8 @@ private:
         const auto model=human_->base().frame();
         shot_markers_[0]=frames_.actor_find(model,"shot1",0x20);shot_markers_[1]=frames_.actor_find(model,"shot2",0x20);
         state_.set(0x9a4,std::uint32_t{3});state_.set(0x9a8,std::uint32_t{3});
-        audio_.configure_physics_voices();reset_human_look_words(state_,0x770);queue_.clear();
+        audio_.configure_physics_voices();reset_human_look_words(state_,0x770);
+        look_snapshot_model_=Frame{};look_snapshot_actor_=nullptr;queue_.clear();
     }
     void shot_spheres() { //0075B870: relative centres are saved BEFORE the health adjustment.
         state_.set(0x69c,std::int32_t{2});

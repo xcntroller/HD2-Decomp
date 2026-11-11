@@ -7,6 +7,10 @@
 #include "game/human_motion_velocity.h"
 #include "game/human_ground_geometry.h"
 #include "game/human_ground_motion.h"
+#include "game/human_look_frame.h"
+#include "game/human_posture_transition.h"
+#include "game/human_lateral_stride.h"
+#include "game/human_posture_room.h"
 #include "game/human_direction_replay.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
@@ -367,6 +371,16 @@ public:
     }
     bool animation_authority_actor() const{return (mode_flags()&1u)&&human_->properties.field19c!=1;}
     void enable_animation_control(bool enabled){movement_.animation_control_delay(500);animation_.enable_control(enabled);} //007870D0.
+    template<class Look>bool posture_room_available(Look& look,unsigned kind){
+        return human_posture_room_available(*this,look,*human_,services_,frames_,services_.human_geometry_sweep(),kind);
+    }
+    template<class Look>void apply_look_posture(Look& look){
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        apply_human_posture_transition(*this,look,*human_,services_,publish);
+    }
+    template<class Look>void refine_look_lateral_stride(const Look& look){
+        refine_human_lateral_stride(*this,look,*human_,frames_,services_.human_geometry_sweep());
+    }
     template<class Look,class Sweep,class Runtime>void advance_control_frame(Look& look,Sweep& sweep,std::uint32_t elapsed,Runtime& runtime){ //00787270.
         if(flag_dc4_)return;
         if(!active_||!human_)throw std::logic_error("Human control update requires actual live DD0");
@@ -401,7 +415,7 @@ public:
         look.advance_timed_posture(elapsed,publish);
         auto& equipment_owner=services_.human_presentation_equipment(*human_);
         advance_human_control_action_queue(*this,look,physical_.control_action_queue(),equipment_owner,elapsed,publish,runtime);
-        runtime.apply_human_look_frame(*this,look,elapsed); //0077DE30.
+        apply_human_look_frame(*this,look,*human_,services_,runtime,elapsed); //0077DE30.
         const auto animation=physical_word(0x1d8);
         if(!((animation>=0x29&&animation<=0x41)||(animation>=0x1e&&animation<=0x21)||
              (animation>=0xa2&&animation<=0xa5))||state.template get<std::uint8_t>(0xa90)){

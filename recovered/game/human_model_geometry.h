@@ -101,6 +101,10 @@ public:
     };
     const Movement& movement() const {return movement_;}
     void clear_ground_geometry_flag(){movement_.flag65f0=false;} //007637D0, native65F0.
+    void set_posture_transition(std::uint32_t posture){ //0076AF70, SAME geometry62D0/65F0/65F4.
+        movement_.field62d0=posture;
+        if(posture==2){movement_.flag65f0=true;movement_.field65f4=500;}
+    }
     void command_target_direction(const Vector& target,bool player) { //007B8E80, no normalization of its input.
         if(!(movement_.field6304&1u))return;
         auto snap=[&]{movement_.direction6360=movement_.direction6380=movement_.direction6370=target;movement_.time62c0=0;};

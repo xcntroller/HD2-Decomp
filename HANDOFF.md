@@ -9,24 +9,27 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Ground projection and shared receiver bindings](analysis/human-frame-source.md#ground-projection-and-shared-receiver-bindings)
-and [verification receipt](analysis/checkpoints/p2.2-human-ground-bindings-20261111.json).
-Actual AI B0+58 projection and Player/Remote false receiver now replace the
-Runtime leaf. Dynamic ground uses SAME CD0 CE8 timer, existing opacity DB4 flag
-and actual scene144(model). Targeted tracing corrected005AC400 to equipment230
-flags50. Native ASan/UBSan/LSan, strict actual World i386 and launcher link pass.
-Scene144 desktop execution remains untested. Tally is34 complete and2,353 partial
-(2,348 client and five engine) across18,783 frozen functions. Earlier cardinal,
-zero-speed and native fault guards remain documented. Both P2.2 checkboxes remain
-open. Application loading still declines and no mission desktop test has occurred.
+[Look frame, posture collision and held-model classification](analysis/human-frame-source.md#look-frame-posture-collision-and-held-model-classification)
+and [verification receipt](analysis/checkpoints/p2.2-human-look-posture-20261111.json).
+Actual0077DE30 dispatch,0076AF70 posture transitions,0074EF60 room queries,
+0074A290 lateral collision, lazy held Item marker/clone classification and actual
+00775770 selected-track position now use the existing owners. Typed Look04/08
+snapshots stay outside DWORDs. Native ASan/UBSan/LSan, strict actual World i386
+and launcher link pass. Fourteen new source partials bring the tally to34
+complete and2,367 partial (2,362 client/five engine) across18,783 frozen functions.
+Earlier cardinal, zero-speed, mixed-posture and native fault guards remain
+recorded. Both P2.2 checkboxes remain open. Application loading still declines.
+No mission desktop test has occurred.
 
 ## Continue P2.2
 
-- Next complete0077DE30 look apply and required workers, then positive DD0 air,
-  interaction/floor. WORK `human-look-frame-animation-workers` holds fresh
-  0074A290/0076AF70/0074E820/0075CD00 originals. Retain typed Look04/08
-  snapshot pointers and real geometry/230 posture fields. Continue
-  00779B30/00755500 track/motion and remaining 007A7470 geometry workers.
+- Next complete positive0074D510 interaction retirement and00751480 action
+  execution, real0074A690 Ladder exit and mounted0075E290/remote equipment.
+  WORK `human-look-frame-leaf-workers` holds00775770/0075E290 originals.
+  WORK `frame-human-climb-retirement`, `frame-human-action-control-workers`
+  and `frame-human-ladder-movement` preserve the larger original workers.
+  Continue positive DD0 air/interaction/floor and00779B30/00755500 track/motion,
+  then remaining007A7470 geometry workers.
   WORK `frame-human-live-model-geometry` contains foot, hand, look and
   mount/attachment originals. Climb movement still requires
   positive0074A690, derived Human damage and AI0057CC50. WORK

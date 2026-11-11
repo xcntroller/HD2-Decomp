@@ -122,6 +122,15 @@ public:
         if(secondary[0]!=91&&requests[1].animation){set_secondary(0x1ec,get_secondary(0x210));set_secondary(0x210,secondary);}
         if(third[0]!=75&&requests[2].animation){set_secondary(0x1f8,get_secondary(0x21c));set_secondary(0x21c,third);}
     }
+    long double normalized_clip_position(unsigned group){ //00775770, signed model time / retained signed clip duration.
+        if(group>=4)throw std::out_of_range("Human animation position group");
+        const auto lane=integer(group*0x2c+0xc);
+        if(lane==-1)return -1.L;
+        if(lane<0||lane>1)throw std::runtime_error("Human animation position has an invalid lane");
+        require_model();
+        const auto time=frames_.human_model_time(model_,static_cast<unsigned>(lane)+group*2);
+        return static_cast<long double>(time)/integer(group*0x2c+0x30); //Native zero-duration IEEE result is retained.
+    }
     void synchronize(const Requests& requests,unsigned group) { //00773260.
         if(group>=4)throw std::out_of_range("Human animation group");
         const auto lane=integer(group*0x2c+0xc);if(lane==-1)return;

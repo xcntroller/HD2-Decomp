@@ -937,10 +937,71 @@ linking pass. Scene144 execution remains untested. Two frozen client entries gai
 partial credit. Both P2.2 checkboxes remain open and application loading/mission
 desktop acceptance remain pending.
 
-Continue0077DE30 and its actual positive workers. Fresh originals are in WORK
-`human-look-frame-animation-workers`.0074A290 applies only to lateral162..165.
-0074E820 maps0x22 to0x1C and other input to0x24 before primary normalization.
-0076AF70 requires the real posture room query0074EF60, geometry62D0/65F0/65F4,
-230+CC and mixed physical99C..9B4 transitions. The previous mixed-posture count
-risk remains recorded.0075CD00(2,0) calls007812B0. Retained Look snapshots must
-keep native04 model and08 actor pointers typed outside DWORD scalar storage.
+## Look frame, posture collision and held-model classification
+
+0077DE30 now applies the SAME E0 commands to DD0, including primary/secondary
+normalization, jump and Ladder gates, equipment/action selection, packed face
+commands, posture changes and the retained770 snapshot. Borrowed native04 model
+and08 actor identities stay typed outside the DWORD storage. Interaction commands
+retire only after the required actual worker returns. Positive0074D510,
+00751480,0074A690, remote equipment and mounted-object retirement remain mandatory
+Runtime receivers. Source dispatch retains those execution boundaries.
+
+0076AF70 now publishes original geometry62D0/65F0/65F4 and230+CC state through
+the existing owners. Six posture transitions preserve physical99C/9A0/9A4/9A8,
+9B4, queued primary descriptors and failure restoration.400/220/900/1100/1000
+millisecond numerators divide by the SAME0084E80C float before native LOW-DWORD
+conversion. The2→0 transition retains fixed430 and500/1000 timers. The active
+8..14 branch uses the confirmed true0075C7E0 result, forces45 then normalizes
+with the old posture and schedules200/scale. No new credit is claimed for the
+unimplemented other-ID predicate. Concrete tracing also restored0077F0A0's
+changed=false argument. Publication to B0 still occurs while the E0 changed8
+bit stays clear on native restoration calls.
+
+0074EF60 now performs all six actual room-query families. Reload/draw conflicts
+append the original250ms retry to the existing action deque. Self descriptors
+are excluded around the original ordered query pairs and restored before normal
+classification or displacement publication. Standing/crouch/prone queries retain
+0xCC002/0xC8002/0xC9002 layers,0x230000 flags, original radii/scales, the low-normal
+and angle thresholds, reversed search and motion-dependent sample limits.
+Positive offset searches publish the SAME AC0 D0/D4 and track00773B20 impulse.
+The0/1 branches use500/400 divided by scale. The4/5 branches use100 divided by
+scale. Native missing spheres raise source errors. The earlier mixed-posture
+allocation risk remains guarded in the actual physical owner.
+
+00749D60's side directions retain the asymmetric CRT-initialized vectors from
+00749CB0/00749CE0/00749D10, with the existing007885B0 angle and real00788490
+quaternion/matrix/vector receivers. They cannot be replaced by cardinal axes.
+0074A290 compares all three queued/active descriptor words before rebind and
+query. Native840 is bone index4 in the810/stride0C records. The original swept
+lateral displacement limits SAME C00+A0 to travel/(2*span), or normalizes queued
+206 for zero span. Engine transforms remain delegated.
+
+00791C10 resolves the actual hand holder twice and invokes the SAME Item
+virtual40. Weapon007D46D0 lazily runs007D5250 only for field7C=1. Actual model
+lookup priority is projectile,mag1,mag2,mag3 with maskFFFF and result2/2/3/4.
+A missing marker or model caches result0. The existing ItemFrameTree owns the auxiliary78
+clone. Native clone failure still captures the marker pose. Native74 is now a
+typed borrower and30/40 retain all four local-position/quaternion words.
+The engine adapter publishes flag8 before S_quat::Make. Source RAII releases
+an existing auxiliary clone if reclassification is explicitly requested again.
+Normal cached calls preserve the original one-query lifetime. The other three
+item families retain genuine007D32F0 zero with no frozen credit.
+
+00775770 now queries the selected actual animation lane through model A0 and
+divides signed time by its retained signed duration. Inactive lane returns-1.
+Zero duration preserves infinity/NaN.0077DE30's remote posture gate retains both
+native calls and short-circuit ordering.0075CD00 and00781290/B0/D0 publish the
+actual face control mode/argument.0074E820's original mapping remains inlined
+before normalization.
+
+[Verification receipt](checkpoints/p2.2-human-look-posture-20261111.json).
+Focused ASan/UBSan/LSan covers actual Look/physical snapshots/face mode,
+RuntimeItem marker priority/cache/failure/lifetime and real animation-track lane
+selection/IEEE results. Posture/room/lateral checks exercise these coordinators
+with explicit model, physical and sweep boundaries. Strict actual World i386
+instantiation and launcher linking pass. Fourteen frozen client entries gain
+partial credit, with zero complete or desktop promotions. Both P2.2 checkboxes
+remain open. Application loading still declines and mission desktop acceptance
+has not occurred. Continue the positive interaction and Ladder receivers, then
+remaining DD0/B0/frame/render/integrity/application integration.

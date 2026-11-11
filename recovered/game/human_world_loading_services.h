@@ -189,6 +189,12 @@ public:
         return reload_human_weapon(item,human,ammunition,retain_last,false,*this);
     }
     auto& human_reload_items(){return dependencies().world_actors.items();}
+    template<class Human>std::uint32_t human_reload_animation_family(Human& human){ //00791C10, SAME hand holder and lazy Item virtual40.
+        auto* storage=human.base().storage();auto* holder=storage?storage->holder(3):nullptr;
+        if(!holder)throw std::runtime_error("Human reload animation requires actual hand holder");
+        if(!holder->entry())return 0;
+        return dependencies().world_actors.items().runtime_item(holder->entry()).reload_animation_family();
+    }
     template<class Human,class Entry>void consume_human_ammunition(Human& human,Entry entry,unsigned slot){
         auto& d=dependencies();
         auto& items=d.world_actors.items();

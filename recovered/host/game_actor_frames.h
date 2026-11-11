@@ -360,6 +360,15 @@ public:
     Vector actor_position(Frame frame) const {return car_position(frame);}
     void item_actor_unit_scale(Frame frame) {call<void>(frame,0x54,1.f);} //005B68D0 actual uniform scale receiver.
     game::MissionQuaternion actor_rotation(Frame frame) {return car_rotation(frame);}
+    game::MissionQuaternion item_marker_rotation(Frame frame) { //007D5250 publishes the cache flag before Make.
+        const auto flags=field<std::uint32_t>(frame,0xe0);
+        if(!(flags&8u)){
+            put(frame,0xe0,flags|8u);
+            using Make=void(WINAPI*)(void*,const void*);
+            exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(address(frame,0xc0),address(frame,0x80));
+        }
+        return field<game::MissionQuaternion>(frame,0xc0);
+    }
     game::MissionQuaternion human_matrix_rotation(const Matrix& matrix) {
         game::MissionQuaternion result{};
         using Make=void(WINAPI*)(void*,const void*);

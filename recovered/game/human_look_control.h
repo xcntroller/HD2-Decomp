@@ -146,7 +146,7 @@ public:
         state_.set(0x40,state_.template get<std::uint32_t>(0x40)|0x10u);
         publish(mode==0?0x1000u:mode==5?0x10000u:mode==1?0x2000u:mode==2?0x4000u:0x8000u);
     }
-    template<class Publish>void frame_posture(std::uint32_t posture,Publish&& publish){ //0077F0A0.
+    template<class Publish>void frame_posture(std::uint32_t posture,Publish&& publish,bool changed=true){ //0077F0A0.
         if(!control_)throw std::logic_error("Human posture command requires actual DD0");
         const auto mask=state_.template get<std::uint32_t>(0xc0)|state_.template get<std::uint32_t>(0xd0)|
             state_.template get<std::uint32_t>(0xd4);
@@ -159,7 +159,7 @@ public:
         }
         if(state_.template get<std::uint32_t>(0x4c)!=posture){
             state_.set(0x4c,posture);
-            state_.set(0x40,state_.template get<std::uint32_t>(0x40)|8u);
+            if(changed)state_.set(0x40,state_.template get<std::uint32_t>(0x40)|8u);
         }
         if(posture<=2)publish(4u>>posture);
     }
@@ -169,6 +169,8 @@ public:
         try{equipment_command(command,changed);}catch(...){state_.set(0xb0,std::uint8_t{0});throw;}
         state_.set(0xb0,std::uint8_t{0});
     }
+    auto& frame_words(){return state_;} //Mutable original0077DE30 receiver, shared with command producers.
+    void complete_frame_interaction(){interaction_actor_=nullptr;state_.set(0x90,0u);} //Native08 and90, after00751480.
     const auto& state() const {return state_;}
     void position_command(const HumanVector& value,bool changed=true){ //0077F260.
         if(locked(0x40)){defer(0x40);return;}
