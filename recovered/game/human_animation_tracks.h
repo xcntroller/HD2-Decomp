@@ -8,6 +8,19 @@
 
 namespace hd2::game {
 
+template<class Words>void normalize_human_primary_animation(Words& words,unsigned base){ //00782EB0.
+    auto id=words.template get<std::int32_t>(base),detail=words.template get<std::int32_t>(base+4);
+    switch(id){case 26:case 32:detail=0;break;case 27:case 30:detail=1;break;case 31:case 33:detail=2;break;default:break;}
+    words.set(base+4,detail);
+    if(id>=45&&id<=65){
+        if(detail==2&&id<63)id=id==46||id==56?64:63;
+        else if(detail==1&&(id<55||id>62))id=id==46||id==64?56:55;
+        else if(detail==0&&id>54)id=id==56||id==64?46:45;
+        words.set(base,id);
+    }
+    words.set(base+12,std::uint8_t{1});
+}
+
 //DD0+260:007720C0/007723B0,007733D0/00773260 and007724E0's track owner.
 //Frame/animation resources are real borrowed objects. Callback registration,
 //player queries and the live0084E80C scale are mandatory containing services.
@@ -220,6 +233,7 @@ public:
     void motion_impulse(const HumanVector& displacement,std::int32_t duration){ //00773A90.
         words_.set(0x280,displacement);words_.set(0x290,0u);words_.set(0x294,duration);
     }
+    void clear_motion_displacement(){for(unsigned axis=0;axis!=3;++axis)words_.set(0x270+4*axis,0.f);} //0074B4F0, XYZ only.
     void secondary_motion_impulse(const HumanVector& displacement,std::int32_t duration){ //00773B20.
         words_.set(0x2e0,displacement);words_.set(0x2f0,0u);words_.set(0x2f4,duration);
     }
@@ -455,16 +469,7 @@ private:
     void set_primary(unsigned base,const Primary& value){for(unsigned n=0;n!=3;++n)words_.set(base+n*4,value[n]);}
     void set_secondary(unsigned base,const Secondary& value){for(unsigned n=0;n!=2;++n)words_.set(base+n*4,value[n]);}
     void normalize_primary(unsigned base) { //00782EB0, including byteC write.
-        auto id=integer(base),detail=integer(base+4);
-        switch(id){case 26:case 32:detail=0;break;case 27:case 30:detail=1;break;case 31:case 33:detail=2;break;default:break;}
-        words_.set(base+4,detail);
-        if(id>=45&&id<=65) {
-            if(detail==2&&id<63)id=id==46||id==56?64:63;
-            else if(detail==1&&(id<55||id>62))id=id==46||id==64?56:55;
-            else if(detail==0&&id>54)id=id==56||id==64?46:45;
-            words_.set(base,id);
-        }
-        words_.set(base+12,std::uint8_t{1});
+        normalize_human_primary_animation(words_,base);
     }
     void reset_meta(unsigned slot) {
         const auto base=slot*0x24;

@@ -12,6 +12,7 @@
 #include "game/sound_emission.h"
 #include "game/switch_actor_state.h"
 #include "game/rigid_body.h"
+#include <algorithm>
 #include "frontend/cleanup.h"
 #include <functional>
 #include <optional>
@@ -100,7 +101,12 @@ public:
     const Descriptor* collision_descriptor(unsigned index) const {return descriptors_.at(index).get();}
     LadderActorProperties properties;
     std::optional<LadderGeometry<Backend>> geometry;
-    std::vector<std::uint32_t> field164;
+    std::vector<SceneActor<Backend>*> field164; //Native164/168/16C, actual borrowed occupants.
+    void add_occupant(SceneActor<Backend>& actor){field164.push_back(&actor);} //005EB8C0, preserves duplicates/order.
+    void remove_occupant(SceneActor<Backend>& actor){ //005EBA70, remove first match with native last-element replacement.
+        const auto found=std::find(field164.begin(),field164.end(),&actor);
+        if(found!=field164.end()){*found=field164.back();field164.pop_back();}
+    }
     bool flag90=false;
 private:
     template<class Bounds>void prepare(Descriptor& descriptor,const Bounds& bounds,Frame frame) {

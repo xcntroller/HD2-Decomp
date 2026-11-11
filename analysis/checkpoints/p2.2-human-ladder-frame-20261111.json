@@ -1,0 +1,166 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "previous_checkpoint": "355ea04",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0074b4f0",
+    "0074bbe0",
+    "0074c1e0",
+    "0076ce30",
+    "0075cd50",
+    "005eb8c0",
+    "005eba70",
+    "007709c0",
+    "00768230"
+  ],
+  "ledger_added_partial_client": 9,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2305,
+  "checks": {
+    "native": "PASS (ASan/UBSan/LSan, actual track/movement/E0 owners with explicit frame/query/actor and unresolved-receiver doubles)",
+    "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining runtime leaves declaration-only)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-ladder-frame-native.cpp": {
+      "sha256": "73a826b475b1d861a8132518bbcaf12adece083eb2fea0d4dc04d72f1668984e",
+      "bytes": 12406,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ladder-frame-native": {
+      "sha256": "3309eaf9fedf7171320cefa94630399b6a9beb35f841d3b72d2892a45e2c2174",
+      "bytes": 966408,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ladder-frame-i386.cpp": {
+      "sha256": "a80fa3854b1d640f4ce53a2342e5bc41e460261d8c1a0c195f5f4b6faccadcd3",
+      "bytes": 7589,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ladder-frame-i386.o": {
+      "sha256": "573735fe1752b0444705753c1c1f802846dadd7494905e99f8616526a3f98e8d",
+      "bytes": 12291491,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ladder-frame-native.log": {
+      "sha256": "ac801b7f2cd4a72209cbb15c4f8738879a4ab2b5032f99d161b532683dcc863b",
+      "bytes": 108,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ladder-frame-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ladder-frame-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ladder-frame-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ladder-f8-vtables.json": {
+      "sha256": "3c918875888bcef0dbfa106e9628ae70fa9ea5502e666fd878344e291ceb36a3",
+      "bytes": 1192,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ladder-f8-00588d20.asm": {
+      "sha256": "31e1ed99a06f5a99fe4ef7c24376b9db0a8fbca5745345711fc87eddda63a631",
+      "bytes": 6905,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-climb-action/0074b4f0.asm": {
+      "sha256": "203845685beb8d1723a5fc88b457f870a2ad1e5cf806bf61d888234a797683c5",
+      "bytes": 25857,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/0074bbe0.asm": {
+      "sha256": "d38037e905f9dd61ad658186590345dc145110aa6154eb8976f257c878891fb7",
+      "bytes": 7725,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-climb-action/0074b4f0.c": {
+      "sha256": "0e45e769297dd3d17317bde16bec9c42ef555a8e1bf2c3410d32589b00325288",
+      "bytes": 5982,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-climb-action/007865e0.c": {
+      "sha256": "03effd99d5e330cdf7fba174ff7c4de13e034845afa2ed782c79d22201cf0a5b",
+      "bytes": 193,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-climb-state/005eb8c0.c": {
+      "sha256": "19e58d36cb5fe0c1f6e8891eca5b7cbffd0ce6d4cd836bf72fcafc228486509c",
+      "bytes": 2153,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-climb-state/0075cd50.c": {
+      "sha256": "f6c305fe55219b18c7b11671aab9077d297189c650a419d29d7f4b8f55f64cb3",
+      "bytes": 3319,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ladder-movement/005eba70.c": {
+      "sha256": "55270ddf73f9f0fd76cd4ff1904ebeab9663c883acb08fb42a6ec0fca2ee38cf",
+      "bytes": 891,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ladder-movement/0074a690.c": {
+      "sha256": "49b711c13f5a04d212476692f54a53018b175133a12a8688268b8407d61aa6d9",
+      "bytes": 15126,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ladder-movement/007709c0.c": {
+      "sha256": "5018b4681d6751b491053605aa83f9b025d2091d8ee4ee2dcc35901f89d500f8",
+      "bytes": 1631,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ladder-movement/00788840.c": {
+      "sha256": "56dc9d5deed26abb4a491e96178522936a11806b4249d054034f04ad106ed7f5",
+      "bytes": 6258,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/0074bbe0.c": {
+      "sha256": "95e89a3559e5686eada23dd4670b377f6c17bcb5889e7b22ccdca2186a025569",
+      "bytes": 5351,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/0074c1e0.c": {
+      "sha256": "51b51d8091d10e0a2e14de45499fb70a357d4996ebabded457ce0f36514ed487",
+      "bytes": 4139,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/00773850.c": {
+      "sha256": "dd5ad0728c570957c36e07d2b00fc9ee559abd3e5e9e3390ecaba3c347e83f5d",
+      "bytes": 1552,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/00773a90.c": {
+      "sha256": "72f02e8236127f4906c59aac506ade3e9f2afd0aef60e2036c7f61f308a9dc2e",
+      "bytes": 418,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/00773b20.c": {
+      "sha256": "1a2ed3e1a89231458b949cc601beede4c30051716468319ce5931932e3e67bbf",
+      "bytes": 418,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-producers/00773b60.c": {
+      "sha256": "3a67699732b30f8c56954dd383cab8046b6bbe9b2dc8eb8508dbeede50b37951",
+      "bytes": 2372,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ladder-frame-tracker.log": {
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e",
+      "bytes": 126,
+      "retained": true
+    }
+  }
+}

@@ -28566,12 +28566,13 @@
       "program": "client",
       "entry": "0077ec00",
       "status": "partial",
-      "coverage": "Select and publish the offline E0 climb animation for subtype 1E, including the original defer and mode gates.",
+      "coverage": "Select and publish the offline E0 climb animation for subtype 1E, including the original defer and mode gates. Native changed flag now gates E0+40 publication while preserving command and serial writes.",
       "limitations": "Offline climb animation request only. Other movement and animation commands require their actual receivers.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
-        "recovered/game/human_look_control.h"
+        "recovered/game/human_look_control.h",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
       ]
     },
     {
@@ -30771,6 +30772,114 @@
         "recovered/game/human_control_loading.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0074b4f0",
+      "status": "partial",
+      "coverage": "Actual shared AA0/DD0/AC0/E0/Human/Ladder setup, nearest-end selection, native animation, equipment, motion reset and occupant registration; positive nonoffline notification remains required.",
+      "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ladder_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0074bbe0",
+      "status": "partial",
+      "coverage": "Actual posture and secondary descriptor setup, upper-height gate, two loaded-tree sphere sweeps and retained descriptor publication with exclusion restoration; nonoffline B0 F8 remains required.",
+      "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ladder_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0074c1e0",
+      "status": "partial",
+      "coverage": "Actual loaded segment-ray climb clearance, ladder marker geometry and player horizontal-facing rejection with exclusion restoration.",
+      "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ladder_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076ce30",
+      "status": "partial",
+      "coverage": "Original stored planar turn angle, player .006 or live AC0 turn rate, nonplayer2.5 multiplier and native ftol low-word handling.",
+      "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ladder_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075cd50",
+      "status": "partial",
+      "coverage": "Actual E0 movement modes0..4, animation order, lock masks and DD0 interaction sentinel retirement.",
+      "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_look_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005eb8c0",
+      "status": "partial",
+      "coverage": "Actual typed Ladder occupant append, retaining duplicates and insertion order.",
+      "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005eba70",
+      "status": "partial",
+      "coverage": "Actual typed Ladder occupant first-match removal by final-element replacement.",
+      "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007709c0",
+      "status": "partial",
+      "coverage": "Actual cached ActorBase position projection between Ladder markers, height clamp and original direction offset; output input is independently overwritten.",
+      "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ladder_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00768230",
+      "status": "partial",
+      "coverage": "Actual shared Ladder motion routing, track displacement, posture sweeps, accepted/rejected exit ordering, bottom impulses, equipment/occupant retirement and transition clamp. Positive0076B670/0074A690/00788840 remain required.",
+      "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ladder_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
       ]
     }
   ]

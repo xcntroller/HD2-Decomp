@@ -206,6 +206,17 @@ public:
     const auto& shot_relative() const{return shot_relative_;}
     const auto& bones() const{return bones_;}
     const auto& offset740() const{return offset740_;}
+    const auto& posture_spheres()const{return posture_;}
+    void prepare_ladder_secondary(){state_.set(0x984,state_.template get<std::uint32_t>(0x698));} //0074BBE0.
+    void publish_ladder_secondary(const Vector& origin,const Vector& step){ //0074BBE0, SAME allocated secondary descriptors.
+        const auto count=state_.template get<std::int32_t>(0x984);
+        for(int index=0;index<count;++index){
+            auto& descriptor=required(secondary_,index);
+            for(unsigned axis=0;axis!=3;++axis)
+                descriptor.position[axis]=static_cast<float>(static_cast<long double>(step[axis])*index+origin[axis]);
+            descriptor.radius=posture_.at(static_cast<std::size_t>(index))[3];
+        }
+    }
     void refresh_ground_geometry(){markers_.snapshot();shot_spheres();} //0075C4F0→0075C070/0075B870.
     int primary_count() const{return state_.template get<std::int32_t>(0x698);}
     Human** human_slot_address(){return &human_;}

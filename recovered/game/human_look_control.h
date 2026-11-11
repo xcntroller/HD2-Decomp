@@ -81,7 +81,7 @@ public:
         notify(ready?2u:1u);
         state_.set(0x40,state_.template get<std::uint32_t>(0x40)|mask);
     }
-    template<class Publish>void frame_movement_animation(std::int32_t animation,Publish&& publish){ //0077EC00.
+    template<class Publish>void frame_movement_animation(std::int32_t animation,Publish&& publish,bool changed=true){ //0077EC00.
         if(!control_)throw std::logic_error("Human movement animation requires actual DD0");
         const auto mask=state_.template get<std::uint32_t>(0xc0)|state_.template get<std::uint32_t>(0xd0)|
             state_.template get<std::uint32_t>(0xd4)|state_.template get<std::uint32_t>(0xd8);
@@ -136,7 +136,7 @@ public:
         if(old==animation||(animation>=0xbe&&current==0x11)||(animation==0x1d&&old!=0x22))return;
         state_.set(0xb4,state_.template get<std::uint32_t>(0xb4)+1);
         state_.set(0x44,animation);
-        state_.set(0x40,state_.template get<std::uint32_t>(0x40)|1u);
+        if(changed)state_.set(0x40,state_.template get<std::uint32_t>(0x40)|1u);
     }
     template<class Publish>void frame_movement_mode(std::uint32_t mode,Publish&& publish){ //0077F190.
         if(locked(0x10u)){defer(0x10u);return;}
@@ -232,6 +232,37 @@ public:
     }
     void clear_control_frame_commands(){state_.set(0x40,0u);}
     void force_frame_commands(bool enabled){state_.set(0xb0,static_cast<std::uint8_t>(enabled));}
+    template<class Publish>void control_movement_mode(std::uint32_t kind,bool enabled,Publish& publish){ //0075CD50.
+        if(!control_)throw std::logic_error("Human movement-mode command requires actual DD0");
+        auto flags=state_.template get<std::uint32_t>(0xd0);
+        switch(kind){
+        case 0:
+            state_.set(0xb8,enabled?1u:0u);
+            state_.set(0xd0,enabled?flags|0x808u:flags&~0x808u);
+            if(!enabled)control_->physical().control_frame_words().set(0x988,std::int32_t{-10000});
+            return;
+        case 1:case 2:
+            if(!enabled){
+                state_.set(0xb8,0u);
+                frame_movement_animation(45,publish);
+                flags=state_.template get<std::uint32_t>(0xd0);
+                state_.set(0xd0,flags&~0x818u);
+            }else{
+                frame_movement_animation(kind==1?34:35,publish);
+                state_.set(0xb8,kind+1);
+                flags=state_.template get<std::uint32_t>(0xd0);
+                state_.set(0xd0,flags|0x818u);
+            }
+            return;
+        case 3:
+            state_.set(0xb8,enabled?4u:0u);state_.set(0xd0,enabled?flags|0x1au:flags&~0x1au);
+            return;
+        case 4:
+            state_.set(0xb8,enabled?5u:0u);state_.set(0xd0,enabled?flags|8u:flags&~8u);
+            return;
+        default:return;
+        }
+    }
     void control_frame_animation_lock(bool enabled){ //0075F230 commands13..15.
         const auto flags=state_.template get<std::uint32_t>(0xd0);
         state_.set(0xd0,enabled?flags|1u:flags&~1u);

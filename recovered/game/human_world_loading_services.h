@@ -51,12 +51,13 @@ public:
     float human_control_animation_scale(){return dependencies().startup.human_animation_time_scale();}
     float human_control_world_floor()const{return dependencies().bounds.scene_minimum_y();}
     bool human_alternate_motion_sound()const{return dependencies().presentation_shared.alternate_motion_sound();}
-    const auto& human_ladder_geometry(void* actor){
+    auto& human_ladder(void* actor){
         using Frames=typename Dependencies::ActorFrames;
         auto* ladder=dynamic_cast<LadderSceneActor<Frames>*>(static_cast<SceneActor<Frames>*>(actor));
         if(!ladder||!ladder->geometry)throw std::runtime_error("Human climbing requires actual Ladder marker geometry");
-        return *ladder->geometry;
+        return *ladder;
     }
+    const auto& human_ladder_geometry(void* actor){return *human_ladder(actor).geometry;}
     auto& human_navigation_door(void* actor){
         using Frames=typename Dependencies::ActorFrames;
         auto* door=dynamic_cast<DoorSceneActor<Frames>*>(static_cast<SceneActor<Frames>*>(actor));

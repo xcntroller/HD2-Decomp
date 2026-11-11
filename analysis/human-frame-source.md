@@ -584,3 +584,60 @@ linked. Application loading still declines and desktop acceptance is pending.
 Original exports are in WORK `frame-human-ground-motion`,
 `frame-human-ground-audio`, `frame-human-motion-producers`,
 `frame-human-dd0-bound-workers` and `frame-human-climb-action`.
+
+## Ladder setup and movement
+
+0074B4F0 now uses the actual AA0-linked DD0, AC0, E0, Human and Ladder
+owners. It supplies nearest-end selection, native animation requests,
+equipment hide, velocity/displacement reset, fall reset and turn delay.
+Assembly 0074B7AC compares down-marker distance against up-marker distance.
+The down-nearest and equal-distance cases request ascent106. The other
+case requests entry8 and publishes the native upper-marker position offset.
+The decompiler's reused stack-vector names conceal that comparison order.
+0076CE30 preserves stored planar angle, actual player/AC0 turn rates and
+the nonplayer 2.5 multiplier. 0075CD50 supplies the original E0 movement
+mode and lock-mask changes, including animation command ordering.
+
+0074C1E0 now probes the actual loaded segment ray with mask14002 and
+preserves the player's horizontal facing rejection. 0074BBE0 rebinds the
+actual posture, copies the secondary descriptor count and performs both
+8C002 sphere sweeps. It publishes the real retained secondary descriptor
+positions/radii only after clearance. Every exit clears shared exclusions.
+The native nonoffline B0+F8 notification remains required. All eight
+recovered B0 vtables point that slot to00588D20, which constructs command15
+and forwards it through the authority/local command owner. That target is
+absent from the frozen function inventory and receives no new credit.
+WORK `human-ladder-f8-vtables.json` records the actual words.
+
+00768230 now advances the live Ladder movement through the same track
+displacement and ActorBase position. It preserves contact-before-motion
+ordering, offset posture sphere selection, CC002 sweep blockers, queued
+top-exit preparation and bottom-exit impulses. A real blocked sweep requires
+the positive 00788840 response. A rejected 0074A690 top-exit preparation
+normalizes queued206 and returns before position publication or occupancy
+removal. The floor/contact receiver 0076B670 remains required. 007709C0
+projects from the actual cached ActorBase position, independently of the
+caller's proposed vector. Its calls before/after native position publication
+retain that distinction. The final transition branch keeps its elapsed-time
+position clamp and E0 override order.
+
+Ladder164 now stores typed borrowed actors. 005EB8C0 appends without
+deduplication. 005EBA70 removes the first match using the original final-entry
+replacement. Normal exits restore equipment and release that borrower.
+0077EC00 now accepts the native changed flag, preserving silent exit commands
+without publishing a new E0+40 bit. The existing primary animation
+normalization is shared with DD0's queued descriptor.
+
+[Verification receipt](checkpoints/p2.2-human-ladder-frame-20261111.json).
+The native sanitizer fixture exercised both setup directions, equal-distance
+selection, movement, rejected/accepted exit preparation, bottom impulses,
+projection/clamping, player facing, E0 modes, actual blocked-query gates and
+query-failure exclusion cleanup. It used real track/movement/E0 owners with
+explicit actor/frame/collision and unresolved-receiver doubles. Actual
+secondary descriptor writes and both containing World passes were strict
+i386 compile-verified. The source launcher linked. Required positive contact,
+exit-preparation, collision-response, AI0057CC50 and nonoffline command bodies
+remain open. Application loading still declines and desktop acceptance is
+pending. WORK `frame-human-climb-action`, `frame-human-motion-producers`,
+`frame-human-climb-state`, `frame-human-ground-motion` and
+`frame-human-ladder-movement` preserve the original bodies.

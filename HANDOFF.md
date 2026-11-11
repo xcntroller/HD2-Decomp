@@ -9,25 +9,26 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Ground frame, displacement and motion audio](analysis/human-frame-source.md#ground-frame-displacement-and-motion-audio)
-and [verification receipt](analysis/checkpoints/p2.2-human-ground-frame-20261111.json).
-007637D0 now coordinates the actual DD0/AC0/E0 ground frame. 00772A00 and its
-four motion producers share the actual animation displacement state.
-0076FBC0 supplies ground/Ladder direction alignment. 00770770/007705E0/007706F0
-supply actual pooled motion audio and retry-safe return. 007861A0 consumes
-queued climb requests, with positive0074B4F0 still required. Native sanitizers,
-strict actual-host i386 and launcher link passed. The tally is 34 complete
-and 2,296 partial entries (2,291 client and five engine) across 18,783 frozen
-functions. Both P2.2 checkboxes remain open. Application loading still declines
-and no mission desktop test has occurred.
+[Ladder setup and movement](analysis/human-frame-source.md#ladder-setup-and-movement)
+and [verification receipt](analysis/checkpoints/p2.2-human-ladder-frame-20261111.json).
+0074B4F0/0074BBE0/0074C1E0 now supply actual shared-owner climb setup and
+loaded-tree clearance. 00768230 supplies movement and exit ordering, using
+007709C0 projection, real E0 modes and typed Ladder occupancy. Positive floor
+contacts0076B670, exit preparation0074A690 and collision response00788840 remain
+required. Native sanitizers, strict actual-host i386 and launcher link passed.
+The tally is 34 complete and 2,305 partial entries (2,300 client and five engine)
+across 18,783 frozen functions. Both P2.2 checkboxes remain open. Application
+loading still declines and no mission desktop test has occurred.
 
 ## Continue P2.2
 
 - Continue positive DD0 ground collision/replay/air workers, 0077DE30 look apply,
   00779B30/00755500 track/motion and remaining 007A7470 geometry workers.
   WORK `frame-human-live-model-geometry` contains foot, hand, look and
-  mount/attachment originals. 0074B4F0 remains the climb setup leaf. WORK `frame-human-ground-motion` and
-  `frame-human-motion-producers` preserve the ground and climb originals. Presentation track events4..9/13..20/22..24 still need
+  mount/attachment originals. Climb movement still requires
+  positive0076B670/0074A690/00788840 and AI0057CC50. WORK
+  `frame-human-ground-motion`, `frame-human-ladder-movement` and
+  `frame-human-motion-producers` preserve the originals. Presentation track events4..9/13..20/22..24 still need
   positive workers, as do the camera reset and attached230 branch. WORK `frame-human-dd0-bound-workers`,
   `frame-human-dd0-animation-workers`, `frame-human-presentation-effects`,
   `frame-human-breathing-audio` and `frame-human-shot-and-control-workers`

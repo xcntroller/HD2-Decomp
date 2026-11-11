@@ -3,6 +3,7 @@
 
 #include "game/human_action_control.h"
 #include "game/human_control_action_queue.h"
+#include "game/human_ladder_control.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
 #include "game/human_face_control.h"
@@ -104,6 +105,7 @@ public:
         active_=started_=false;
     }
     Geometry& geometry(){return geometry_;}Face& face(){return face_;}Physical& physical(){return physical_;}
+    Movement& movement(){return movement_;}
     Tracks& tracks(){return tracks_;}Action& action(){return action_;}
     Shadow& shadow(){return shadow_;}
     const Links& links() const{return links_;}const auto& motion() const{return motion_;}
@@ -128,9 +130,9 @@ public:
         if(!target||posture()==2)return -1;
         physical_.control_action_actor(target);
         const bool remote=(mode_flags()&7u)!=7u&&!human_is_player()&&!animation_authority_actor();
-        if(!posture()&&(remote||(!word(0x1dc)&&word(0x9ac)==-10000)))
-            return runtime.begin_human_ladder(*this,*target,look); //0074B4F0, actual AA0 links.
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        if(!posture()&&(remote||(!word(0x1dc)&&word(0x9ac)==-10000)))
+            return begin_human_frame_ladder(*this,look,*human_,services_,runtime,publish); //0074B4F0.
         look.frame_posture(0,publish);
         if(word(0x9ac)==-10000&&!posture()&&word(0x1dc))state.set(0x7bc,word(0x1dc));
         auto& queue=physical_.control_action_queue();
@@ -187,6 +189,7 @@ public:
         const auto signed_word=[&](unsigned offset){return human_frame_signed_word(word(offset));};
         const auto move_signed=[&](unsigned offset){return movement.template get<std::int32_t>(offset);};
         const auto look_word=[&](unsigned offset){return look.state().template get<std::uint32_t>(offset);};
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
         movement.set(0xf0,0u);
         if(signed_word(0x99c)>=-1)for(unsigned offset:{0x99cu,0x9a0u})if(signed_word(offset)>=0){
             const auto remaining=word(offset)-elapsed;
@@ -276,7 +279,7 @@ public:
                     if(mode==5)runtime.advance_human_floor_motion(*this,step); //00768E50.
                     else if(interaction)runtime.advance_human_interaction_motion(*this,step); //00767D40.
                     else if(special)advance_special_ground_motion(step,runtime); //00768170.
-                    else runtime.advance_human_navigation_motion(*this,step); //00768230.
+                    else advance_human_ladder_motion(*this,look,*human_,services_,step,runtime,publish); //00768230.
                 }else runtime.advance_human_walk_motion(*this,step); //007646F0.
             }
         }
