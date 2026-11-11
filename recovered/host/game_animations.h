@@ -2,6 +2,7 @@
 #define HD2_HOST_GAME_ANIMATIONS_H
 
 #include "game/animation_tables.h"
+#include "game/human_animation_arbitration.h"
 #include "host/loaded_resources.h"
 #include "host/chunk_files.h"
 #include "host/loading_input_capture.h"
@@ -57,9 +58,13 @@ public:
     }
     bool available() const { return tables_.available(); }
     const Tables& tables() const { return tables_; }
-    EngineFrame* resource(unsigned table,unsigned row) const {
+    const auto& row(unsigned table,unsigned index)const{
         if(!tables_.available())throw std::runtime_error("Actual animation tables are unavailable");
-        return tables_.tables().at(table).at(row).animation.get();
+        return tables_.tables().at(table).at(index);
+    }
+    auto& arbitration_process(){return arbitration_;}
+    EngineFrame* resource(unsigned table,unsigned row) const {
+        return this->row(table,row).animation.get();
     }
     EngineFrame* holster_pose() { //0078CE20's0098ADB0, SAME category3 cache.
         if(!holster_pose_) {
@@ -77,6 +82,7 @@ private:
     GameAnimationResources resources_;
     game::AnimationLoadGate gate_;
     Tables tables_;
+    game::HumanAnimationArbitrationState<EngineFrame*> arbitration_;
     GameAnimationResources::Reference holster_pose_;
 };
 

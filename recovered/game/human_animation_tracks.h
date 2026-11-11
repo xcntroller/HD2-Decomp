@@ -3,6 +3,7 @@
 
 #include "game/human_joint_owners.h"
 #include "game/human_ai_shot_direction.h"
+#include "game/human_animation_requests.h"
 #include <cmath>
 #include <limits>
 
@@ -29,7 +30,7 @@ template<class Frames,class Callbacks>
 class HumanAnimationTracks {
 public:
     using Frame=typename Frames::Frame;
-    struct Request {Frame animation{};float weight=1;std::uint32_t flags=0;float blend=0;bool separate=false;};
+    using Request=HumanAnimationRequest<Frame>;
     using Requests=std::array<Request,4>;
     using Primary=std::array<std::int32_t,3>;
     using Secondary=std::array<std::int32_t,2>;
@@ -122,13 +123,177 @@ public:
         if(secondary[0]!=91&&requests[1].animation){set_secondary(0x1ec,get_secondary(0x210));set_secondary(0x210,secondary);}
         if(third[0]!=75&&requests[2].animation){set_secondary(0x1f8,get_secondary(0x21c));set_secondary(0x21c,third);}
     }
+    std::int32_t track_time(unsigned group){ //00774C60, actual selected engine lane.
+        if(group>=4)throw std::out_of_range("Human animation time group");
+        const auto lane=integer(group*0x2c+0xc);
+        if(lane==-1)return -10000;
+        if(lane<0||lane>1)throw std::runtime_error("Human animation time has an invalid lane");
+        require_model();return frames_.human_model_time(model_,static_cast<unsigned>(lane)+group*2);
+    }
+    bool track_reached(unsigned group,std::int32_t threshold){ //00775210, native float-scaled comparison.
+        if(group>=4)throw std::out_of_range("Human animation threshold group");
+        if(integer(group*0x2c+0xc)==-1)return true;
+        const auto time=static_cast<float>(track_time(group));
+        const float scaled=static_cast<float>(static_cast<long double>(threshold)*callbacks_.animation_time_scale());
+        return scaled<=time;
+    }
+    void resume(unsigned group){ //007752A0, native paused14 zero leaves both words untouched.
+        if(group>=4)throw std::out_of_range("Human animation resume group");
+        const auto base=group*0x2c;
+        if(!integer(base+0x14))return;
+        words_.set(base+0x14,std::int32_t{-1});
+        const auto lane=integer(base+0xc);
+        if(lane<0||lane>1)throw std::runtime_error("Human animation resume has no actual lane");
+        words_.set((group*2+static_cast<unsigned>(lane))*0x24+0xd0,1.f);
+    }
+    void discard_pending_tracks(unsigned group){ //00775310, three two-entry native descriptor rings.
+        constexpr std::array<unsigned,3> bases{{0x358,0x37c,0x398}};
+        if(group>=bases.size())return;
+        const auto base=bases[group];
+        while(integer(base)!=integer(base+4)){
+            auto next=wrap(integer(base),1);if(next>1)next=0;
+            words_.set(base,next);
+            if(words_.template get<std::uint8_t>(base+8)&&next==integer(base+4))words_.set(base+8,std::uint8_t{0});
+        }
+    }
+    void hold_pending_tracks(unsigned group){ //00775450, no branch for group3.
+        constexpr std::array<unsigned,3> flags{{0x360,0x384,0x3a0}};
+        if(group<flags.size())words_.set(flags[group],std::uint8_t{1});
+    }
+    std::int32_t active_event_tag(unsigned group)const{ //00775670, native metadata DC.
+        if(group>=4)throw std::out_of_range("Human animation event-tag group");
+        const auto lane=integer(group*0x2c+0xc);if(lane==-1)return -1;
+        if(lane<0||lane>1)throw std::runtime_error("Human animation event tag has no actual lane");
+        return integer((group*2+static_cast<unsigned>(lane))*0x24+0xdc);
+    }
+    void active_event_tag(unsigned group,std::int32_t tag){ //007755B0, clear completion D8 after assigning DC.
+        if(group>=4)throw std::out_of_range("Human animation event-tag group");
+        const auto lane=integer(group*0x2c+0xc);if(lane==-1)return;
+        if(lane<0||lane>1)throw std::runtime_error("Human animation event tag has no actual lane");
+        const auto meta=(group*2+static_cast<unsigned>(lane))*0x24;
+        words_.set(meta+0xdc,tag);words_.set(meta+0xd8,std::uint8_t{0});
+    }
+    bool consume_event_tag(unsigned group,std::int32_t tag){ //007755F0, first lane then second.
+        if(group>=4)throw std::out_of_range("Human animation event-tag group");
+        for(unsigned lane=0;lane!=2;++lane){
+            const auto meta=(group*2+lane)*0x24;const auto current=integer(meta+0xdc);
+            if(words_.template get<std::uint8_t>(meta+0xd8)&&current==tag&&current>=0){
+                words_.set(meta+0xdc,std::int32_t{-1});words_.set(meta+0xd8,std::uint8_t{0});return true;
+            }
+        }
+        return false;
+    }
+    void mask_bones(unsigned group,std::array<Frame,8>& bones,std::int32_t count){ //00775510.
+        if(group>=4)throw std::out_of_range("Human animation bone-mask group");
+        if(count>=static_cast<std::int32_t>(bones.size()))throw std::runtime_error("Human bone-mask donor exceeds actual scratch storage");
+        require_model();
+        const auto channels=frames_.human_model_channel_count(model_);
+        auto* bindings=frames_.human_model_channels(model_); //Native calls D4 even with no channels.
+        if(channels>0&&!bindings)throw std::runtime_error("Human animation model lost its actual channel list");
+        for(std::int32_t channel=0;channel<channels;++channel){
+            for(std::int32_t bone=0;bone<count;++bone){
+                const auto binding=bindings[channel];
+                if(!binding)throw std::runtime_error("Human animation model has a null channel binding");
+                if(frames_.human_model_channel_target(binding)==bones[static_cast<unsigned>(bone)]){
+                    //Native reads bones[old count] BEFORE decrementing count,
+                    //then advances the loop index without retrying that slot.
+                    bones[static_cast<unsigned>(bone)]=bones[static_cast<unsigned>(count)];--count;
+                    const auto lane=integer(group*0x2c+0xc);
+                    frames_.remove_human_model_channel_animation(bindings[channel],wrap(lane,group*2));
+                }
+            }
+        }
+    }
+    void mirror_first_half(unsigned group){ //007756A0, actual signed duration/2 and engine time.
+        if(group>=4)throw std::out_of_range("Human animation mirror group");
+        const auto base=group*0x2c;const auto lane=integer(base+0xc);if(lane==-1)return;
+        const auto time=track_time(group),duration=integer(base+0x30);
+        if(time<duration/2){
+            const auto mirrored=wrap(duration,-static_cast<std::int64_t>(time));
+            frames_.human_model_time(model_,static_cast<unsigned>(lane)+group*2,mirrored);
+            words_.set(base+0x34,std::uint8_t{1});words_.set(base+0x10,mirrored);
+        }
+    }
+    void pause_at_clip_fraction(unsigned group,float fraction){ //00775710.
+        if(group>=4)throw std::out_of_range("Human animation fraction group");
+        const auto base=group*0x2c;const auto lane=integer(base+0xc);
+        if(lane==-1)return;
+        if(lane<0||lane>1)throw std::runtime_error("Human animation fraction has an invalid lane");
+        require_model();
+        const auto slot=group*2+static_cast<unsigned>(lane);
+        const auto time=human_animation_time_integer(static_cast<long double>(integer(base+0x30))*fraction);
+        frames_.human_model_time(model_,slot,time);words_.set(slot*0x24+0xd0,0u);
+        words_.set(base+0x10,time);words_.set(base+0x14,time);words_.set(base+0x34,std::uint8_t{0});
+    }
+    void primary_stop_fraction(std::int32_t duration,float fraction){ //00776110, actual minimum fraction00811FC0.
+        if(fraction<.22f)fraction=.22f;
+        words_.set(0x334,human_animation_time_integer(static_cast<long double>(duration)*fraction));
+    }
+    float choose_primary(Primary& command,bool authoritative){ //00773D90, actual two-entry338 ring.
+        Primary selected{{206,command[1],command[2]}};
+        const auto blend=[&]{return primary_blend_active();};
+        const auto moving=[](std::int32_t id){return id>=190&&id<=205;};
+        const auto old=get_primary(0x1dc),current=get_primary(0x200);
+        if(integer(0x358)!=integer(0x35c)){
+            if(blend()){
+                const bool walking=old[0]>=45&&old[0]<=65&&command[0]>=45&&command[0]<=65;
+                if(old[0]!=206&&(old==command||walking)&&(moving(command[0])||moving(current[0])))selected=command;
+            }else{
+                selected=get_primary(0x338+static_cast<unsigned>(integer(0x358))*0x10);
+                advance_pending_head(0x358);
+                if(selected==command)command[0]=206;
+            }
+        }
+        if(command[0]!=206&&command!=current){
+            const bool empty=integer(0x358)==integer(0x35c);
+            if(empty&&selected[0]==206){
+                const bool same_moving=old[0]!=206&&old==command&&(moving(command[0])||moving(current[0]));
+                const bool immediate=command[0]==14||(command[0]>=26&&command[0]<=33);
+                if(blend()&&authoritative&&!same_moving&&!immediate)append_primary_pending(command);
+                else selected=command;
+            }else append_primary_pending(command);
+        }
+        command=selected;return 1.f;
+    }
+    float choose_equipment(Secondary& command){ //00774470, actual two-entry364 ring.
+        Secondary selected{{91,command[1]}};
+        const auto lane=integer(0x38);
+        const auto old=get_secondary(0x1ec),current=get_secondary(0x210);
+        const auto blending=[&]{
+            if(lane==-1)return false;
+            if(lane<0||lane>1)throw std::runtime_error("Human equipment selector has an invalid lane");
+            const auto meta=(static_cast<unsigned>(lane)+2)*0x24;
+            //00774470 uses the negated comparisons. Preserve unordered inputs.
+            return !(real(meta+0xc0)<=0.f||real(meta+0xc4)<0.f||real(meta+0xc0)<=real(meta+0xc4));
+        };
+        if(integer(0x37c)!=integer(0x380)){
+            if(!blending()){
+                selected=get_secondary(0x364+static_cast<unsigned>(integer(0x37c))*0xc);
+                advance_pending_head(0x37c);
+                if(selected==command){command=selected;return 1.f;}
+            }else if(old[0]!=91&&old==command)selected=command;
+        }
+        if(command[0]==91||command==current){command=selected;return 1.f;}
+        if(integer(0x37c)==integer(0x380)&&selected[0]==91){
+            if(lane==-1)selected=command;
+            else if(!blending())selected=command;
+            else if((old[0]!=91&&old==command)||(word(0x114+static_cast<unsigned>(lane)*0x24)&1u))selected=command;
+            else{
+                append_equipment_pending(command);
+                const auto other=(lane==0?3u:2u)*0x24;
+                words_.set(other+0xc0,static_cast<float>(static_cast<long double>(real(other+0xc0))+real(other+0xc4)));
+            }
+        }else append_equipment_pending(command);
+        command=selected;return 1.f;
+    }
+    void queue_equipment(const Secondary& command){append_equipment_pending(command);} //00774A20.
     long double normalized_clip_position(unsigned group){ //00775770, signed model time / retained signed clip duration.
         if(group>=4)throw std::out_of_range("Human animation position group");
         const auto lane=integer(group*0x2c+0xc);
         if(lane==-1)return -1.L;
         if(lane<0||lane>1)throw std::runtime_error("Human animation position has an invalid lane");
         require_model();
-        const auto time=frames_.human_model_time(model_,static_cast<unsigned>(lane)+group*2);
+        const auto time=track_time(group);
         return static_cast<long double>(time)/integer(group*0x2c+0x30); //Native zero-duration IEEE result is retained.
     }
     void synchronize(const Requests& requests,unsigned group) { //00773260.
@@ -151,7 +316,7 @@ public:
             const auto duration=frames_.human_clip_duration(clip);
             const auto next=frames_.human_model_clip(model_,current);if(!next)return;
             const auto end=frames_.human_clip_duration(next);
-            if(duration>0)frames_.human_model_time(model_,current,ftol(static_cast<long double>(time)/duration*end));
+            if(duration>0)frames_.human_model_time(model_,current,human_animation_time_integer(static_cast<long double>(time)/duration*end));
         }
     }
     void update(std::int32_t elapsed,bool transitions_only,const Requests* requests=nullptr) { //007724E0's first DWORD is unused.
@@ -167,7 +332,7 @@ public:
                 callbacks_.animation_player_check(model_);
                 auto value=static_cast<long double>(base)*callbacks_.animation_time_scale();
                 if(slot<6)value*=static_cast<long double>(real(slot*0x24+0xd0))*real(slot*0x24+0xd4);
-                advances[slot]=ftol(value);
+                advances[slot]=human_animation_time_integer(value);
             }
             frames_.human_model_advance(model_,advances);
             callbacks_.rethrow_animation_event_failure(); //Never let a caught engine-callback failure publish activation.
@@ -178,7 +343,7 @@ public:
             if(lane!=0&&lane!=1)throw std::runtime_error("Invalid Human animation lane");
             const auto slot=group*2+static_cast<unsigned>(lane),other=group*2+static_cast<unsigned>(lane==0),meta=slot*0x24;
             if(integer(base+0x14)<1) {
-                words_.set(base+0x10,ftol(static_cast<long double>(elapsed)*callbacks_.animation_time_scale()+integer(base+0x10)));
+                words_.set(base+0x10,human_animation_time_integer(static_cast<long double>(elapsed)*callbacks_.animation_time_scale()+integer(base+0x10)));
                 const auto stop=integer(0x334);
                 if(stop>=0&&!group&&stop<=frames_.human_model_time(model_,slot)) {
                     pause(group,stop);words_.set(0x10,integer(0x334));
@@ -344,7 +509,7 @@ public:
                 }
                 for(unsigned axis=0;axis!=3;++axis)
                     words_.set(0x300+4*axis,real(0x300+4*axis)-real(0x310+4*axis));
-                remaining=ftol(static_cast<long double>(accumulated)-80.f);
+                remaining=human_animation_time_integer(static_cast<long double>(accumulated)-80.f);
                 words_.set(0x320,0u);
             }
             const float dt=static_cast<float>(static_cast<long double>(step)*.001f);
@@ -362,7 +527,7 @@ public:
                 step=static_cast<float>(wrap(integer(0x2d4),-static_cast<std::int64_t>(timer)+elapsed));
                 for(unsigned axis=0;axis!=3;++axis)words_.set(0x2c0+4*axis,0.f); //Native clears BEFORE adding this last portion.
             }
-            const float fraction=static_cast<float>(static_cast<long double>(ftol(step))/integer(0x2d4));
+            const float fraction=static_cast<float>(static_cast<long double>(human_animation_time_integer(step))/integer(0x2d4));
             for(unsigned axis=0;axis!=3;++axis)
                 words_.set(0x270+4*axis,static_cast<float>(static_cast<long double>(fraction)*real(0x2c0+4*axis)+real(0x270+4*axis)));
         }
@@ -438,9 +603,47 @@ public:
         return integer(group*0x2c+0x18+index*4);
     }
     const auto& words() const{return words_;}
+    auto& frame_words(){return words_;} //Actual DD0+260 storage shared by the physical frame view.
     Frame model() const{return model_;}
     Frame parent_marker() const{return parent_marker_;}
 private:
+    bool primary_blend_active()const{
+        const auto lane=integer(0xc);if(lane==-1)return false;
+        if(lane<0||lane>1)throw std::runtime_error("Human primary selector has an invalid lane");
+        const auto meta=static_cast<unsigned>(lane)*0x24;
+        return real(meta+0xc0)>0.f&&real(meta+0xc4)>=0.f&&real(meta+0xc4)<real(meta+0xc0);
+    }
+    void advance_pending_head(unsigned base){
+        auto next=wrap(integer(base),1);if(next>1)next=0;
+        words_.set(base,next);
+        if(words_.template get<std::uint8_t>(base+8)&&next==integer(base+4))words_.set(base+8,std::uint8_t{0});
+    }
+    bool pending_append_blocked(unsigned base){
+        if(!words_.template get<std::uint8_t>(base+8))return false;
+        if(integer(base)!=integer(base+4))return true;
+        words_.set(base+8,std::uint8_t{0});return false;
+    }
+    void advance_pending_tail(unsigned base){
+        auto next=wrap(integer(base+4),1);if(next>1)next=0;
+        words_.set(base+4,next);
+        if(next==integer(base))advance_pending_head(base);
+    }
+    void append_primary_pending(const Primary& value){ //00774440 compares all three meaningful words.
+        if(pending_append_blocked(0x358))return;
+        const auto tail=integer(0x35c);
+        if(tail<0||tail>1)throw std::runtime_error("Human primary descriptor ring has an invalid tail");
+        const auto last=0x338u+static_cast<unsigned>(tail==0?1:0)*0x10;
+        if(integer(0x358)!=tail&&get_primary(last)==value)return;
+        set_primary(0x338+static_cast<unsigned>(tail)*0x10,value);advance_pending_tail(0x358);
+    }
+    void append_equipment_pending(const Secondary& value){ //007749D0/007749F0 ignore their third stack word.
+        if(pending_append_blocked(0x37c))return;
+        const auto tail=integer(0x380);
+        if(tail<0||tail>1)throw std::runtime_error("Human equipment descriptor ring has an invalid tail");
+        const auto last=0x364u+static_cast<unsigned>(tail==0?1:0)*0xc;
+        if(integer(0x37c)!=tail&&get_secondary(last)==value)return;
+        set_secondary(0x364+static_cast<unsigned>(tail)*0xc,value);advance_pending_tail(0x37c);
+    }
     static float motion_length(const HumanVector& vector){
         const float square=static_cast<float>((static_cast<long double>(vector[1])*vector[1]+
             static_cast<long double>(vector[2])*vector[2])+static_cast<long double>(vector[0])*vector[0]);
@@ -458,7 +661,7 @@ private:
             step=static_cast<float>(wrap(limit,-static_cast<std::int64_t>(accumulated)+elapsed));
         }
         if(limit>0){
-            const float fraction=static_cast<float>(static_cast<long double>(ftol(step))/limit);
+            const float fraction=static_cast<float>(static_cast<long double>(human_animation_time_integer(step))/limit);
             for(unsigned axis=0;axis!=3;++axis)
                 words_.set(0x270+4*axis,static_cast<float>(static_cast<long double>(fraction)*real(vector+4*axis)+real(0x270+4*axis)));
         }
@@ -475,13 +678,6 @@ private:
     static std::int32_t wrap(std::int32_t first,std::int64_t second) {
         const auto bits=static_cast<std::uint32_t>(first)+static_cast<std::uint32_t>(second);
         std::int32_t value;std::memcpy(&value,&bits,4);return value;
-    }
-    static std::int32_t ftol(long double value) {
-        if(!std::isfinite(value)||value<static_cast<long double>(std::numeric_limits<std::int64_t>::min())||
-            value>=-static_cast<long double>(std::numeric_limits<std::int64_t>::min()))
-            throw std::runtime_error("Human animation __ftol exceeds original integer range");
-        const auto bits=static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
-        std::int32_t result;std::memcpy(&result,&bits,4);return result;
     }
     static long double blend_ratio(float elapsed,float step,float duration) { //007724A0, keep its x87 evaluation order.
         const auto denominator=static_cast<long double>(duration)*.01f;

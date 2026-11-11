@@ -2,6 +2,7 @@
 #define HD2_GAME_COLLISION_MOTION_H
 
 #include "game/actor_activation_math.h"
+#include <cstdint>
 #include <limits>
 #include <optional>
 
@@ -90,6 +91,45 @@ inline std::size_t iterations(float value){
     return static_cast<std::size_t>(value); //Original __ftol, bounded actual process producer.
 }
 } //namespace collision_motion_math
+
+//0071B650, full three-axis sliding used by swimming and air motion. Its
+//process budget is shared with the standing/prone receivers below.
+template<class Hit,class Services>
+std::optional<Hit> advance_collision_motion(CollisionMotion<Hit>& request,Services& services,float budget){
+    using namespace collision_motion_math;
+    request.validate();
+    if(!std::isfinite(budget)||budget<0||budget>10)
+        throw std::runtime_error("Collision motion iteration budget exceeds original contact storage");
+    auto centers=request.centers;
+    auto travel=request.displacement;
+    request.contact_count=0;
+    std::optional<Hit> retained;
+    while(static_cast<float>(request.contact_count)<budget){
+        float nearest=std::numeric_limits<float>::max();
+        std::optional<Hit> selected;
+        std::size_t sphere=0;
+        for(std::size_t index=0;index<request.count;++index){
+            const auto hit=services.human_geometry_sweep().sweep(centers[index],travel,request.radii[index],
+                request.excluded_layers,request.excluded_flags);
+            if(hit&&hit->distance_squared<nearest){
+                nearest=hit->distance_squared;
+                selected=hit;
+                retained=hit;
+                sphere=index;
+            }
+        }
+        auto displacement=travel;
+        if(selected){
+            displacement=subtract(selected->position,centers[sphere]);
+            travel=add(plane_remainder(centers[sphere],travel,selected->position,selected->normal),scale(selected->normal,.01f));
+            request.append(*selected,sphere);
+        }
+        for(std::size_t index=0;index<request.count;++index)centers[index]=add(centers[index],displacement);
+        if(!selected)break;
+    }
+    request.position=centers[0];
+    return retained;
+}
 
 //0071BAF0. Services supplies actual sweep/ray and descriptor metadata. The
 //return retains the last native identity even when the final sweep misses.

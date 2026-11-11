@@ -34,7 +34,7 @@ inline void normalize_human_ai_shot(HumanVector& vector,long double length){
     constexpr float epsilon=9.99999993922529e-09f;
     if(std::abs(length-1)<epsilon)return;
     const float stored=static_cast<float>(length);
-    if(stored>=epsilon){
+    if(!(stored<epsilon)){ //Native unordered comparison also takes the sqrt branch.
         const auto inverse=1.L/std::sqrt(static_cast<long double>(stored));
         for(unsigned n=0;n!=3;++n)vector[n]=static_cast<float>(vector[n]*inverse);
     }else{
