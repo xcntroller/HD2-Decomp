@@ -3,6 +3,10 @@
 `feature/p22-pack`, isolated `HD2-Decomp-p22-pack`, starting clean HEAD and actual
 read-only fetched master `f9d5f03183900044ce191530a13f34690b7e8059`.
 Master/Human, UI and LIFE checkouts were not changed. No push or merge.
+At closeout, the shared origin/master ref had independently advanced to
+`494cbee40566248084aaf9c8f01e7f75724d13c5`. Its model-presentation diff was
+inspected through Git; it does not supply the missing packet effect interfaces.
+This checkpoint keeps the exact initial fetched base above; no rebase/import.
 
 [Exact plan](analysis/p22-pack-plan.md) ·
 [Payload contracts and blockers](analysis/p22-pack-implementation.md) ·
