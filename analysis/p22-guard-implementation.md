@@ -1,28 +1,29 @@
-# P22-GUARD implementation in progress
+# P22-GUARD implementation — Steam source composition
 
 [Work plan](p22-guard-plan.md). Branch feature/p22-guard, base/fetched master
 494cbee40566248084aaf9c8f01e7f75724d13c5. No other checkout modified, no merge/push.
 Research/p22 was read through Git at40aea3ef4135a8443c986ec552942a239396686f.
-The denominator remains18,783. Seven implemented scalar/predicate rows are added
-as partial and006E9EA0 is extended; totals34 complete/2,507 partial. No whole-body
-completion promotion. GUARD is **not source-closed**.
+The frozen denominator remains18,783:34 complete/2,510 partial. Steam GUARD
+source composition is closed for the existing reconstructed offline graph.
+Source/binding, original research and application/engine/desktop execution
+remain separate; conditional unimplemented enclosing bodies are listed below.
 
-## Reference provenance clarification
+## Selected distribution and superseded blocker
 
-The user confirms the supplied installation is an UNMODIFIED Steam release.
-Nothing found establishes local tampering, corruption or a defective download.
-Intentional removal/skipping of obsolete retail protection in the distribution
-is a plausible explanation for the retained code and sparse private data, but
-is not vendor-confirmed here. The recorded jump proves executed control flow,
-not its historical reason. References below to an intact/pre-bypass payload mean
-an earlier/different protection-bearing build, not a repaired copy of this one.
+The user confirms an unmodified Steam release and explicitly instructs “Match
+the steam behavior.” This supersedes the earlier retail no-skip constraint.
+The source now reproduces the observed Steam skip, explicitly recorded as
+`SteamValidation::skipped_by_distribution`, never a successful retail check.
+Earlier retail/reference-data blocker sections below are historical evidence,
+not outstanding requirements for this distribution. Dormant retail producers,
+validation2 and private imports are not credited as implemented.
 
-Steam-executed behavior and dormant retail-protection reconstruction must remain
-separate. The initial task explicitly forbids bypasses/equality substitutes;
-that constraint has not been silently replaced with Steam's skip behavior.
-Consequently, retained private code alone does not establish that its producers
-are required for ordinary execution of this distribution. The former claim of
-unconditional original validation is superseded by the actual Steam bytes.
+Client hash8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307
+is reproduced by fresh decompression of supplied unmodified Steam input hash
+e015f149b860d99e866a1ae71a7688c2691de00fe81a0f1ec9e796eb44dde2b3.
+No original code was executed. Obsolete retail protection removal is a plausible
+historical explanation, not a vendor-confirmed fact. The concrete jump and
+static reachability, rather than that explanation, determine implementation.
 
 ## Implemented initialization
 
@@ -321,3 +322,123 @@ User confirmed on2026-11-11 that no additional original installation/backup is
 available. Remaining exact private constants/import/startup population cannot
 be supplied from another local reference. The documented bypass/data conflict
 still blocks faithful positive producers and concrete validation/publication.
+
+## Concrete Steam composition (current target)
+
+`steam_integrity_calls.h` binds all32 four-DWORD00A8D258 entries and the existing
+00994810 matcher. Native00997602 (`E9 51 00 00 00`) jumps to00997658, past
+00997648's00994DF0 invocation. Thus11/20/21/02 validators, their alternating
+counters/environment branches and private producers are not executed in this
+path. No substitute validator or guessed private inputs are installed.
+0099766A still calls009FB050;009976F3 dispatches00996330;009977BB calls00996750
+on rejection. All active entries select02 or62, whose native fallback is empty.
+Source key0/null blocked pointer are actual initial BSS values. Indexed reads/
+writes show their only known writers inside dormant0099AEB0; this is distinct
+from allocating a fake healthy private payload. Retained native PE entry,
+CRT initializer range and empty TLS callback list establish the bounded static
+startup relationship; this is not successful dynamic startup proof.
+
+Action62 publishes the matched expected snapshot before the actual API. The raw
+return then replaces the API payload. Action02 stores a per-thread override;
+the actual API still executes, then the override is restored and the original
+caller stores the returned observation. For window-bearing02 callers the raw
+payload retains the HWND argument. Raw results are reported separately and are
+never substituted for observations. Actual expected/observed storage remains
+ONE StartupSession owner borrowed by World, Human and objective services.
+Original address tokens identify matched destinations; actual C++ pointers are
+bound separately, avoiding truncated host pointers in native audits.
+
+Window arguments resolve fresh GetIGraph/virtual48 before action dispatch.
+Source leases start before that callback to detect owner replacement before
+accessing borrowed storage (native thread registration follows argument
+resolution). Retirement checks precede every payload/observation write; API
+exceptions retain prior62 publication but never synthesize a post-API02 result.
+Source nested/capacity/thread/exception guards are documented above; no native
+SEH/allocator equivalence is claimed. Native validators cannot throw; source
+callbacks may, and RAII clears caller/override without clearing retained IDs.
+No per-mission reseeding or thread-owner reset is added.
+
+Actual006DBFC0 tail calls time(NULL)007E721A at006DC37F then srand007E5F26 at
+006DC385, after frame-text setup006DC373. Source uses time(NULL) to reseed SAME
+CRT at this later boundary, leaving both permutations intact. Main006DCAE0
+copies expected83/60/100 to their observations at006DCBB0/BD7/BF3 after successful
+setup. These are original direct stores, expressly distinct from validation.
+It then probes90 before controller.start and25 after successful controller.start.
+
+### Wrapper continuation inventory
+
+Each row gives original return, API, stage, and concrete binding. Descriptors
+are validation/action metadata; the Steam validation decision is always skipped
+when a descriptor matches.16 active entries cover8 marker families with and
+without the window prefix. No selected-mission observations are seeded.
+
+| Return | API | Stage | Binding/status |
+|---|---|---:|---|
+|006CA913|GetParent|117|GameLoadingQueries loading|
+|006CAAC0|IsWindowVisible|34|GameLoadingQueries loading|
+|006CAB29|IsIconic|39|GameLoadingQueries loading; Human obstruction consumer|
+|00698AAE|GetTickCount|77|GameLoadingQueries activation|
+|00698C09|IsWindowVisible|13|GameLoadingQueries activation; objective consumer|
+|00698C5D|GetCapture|5|GameLoadingQueries activation|
+|00699112|GetFocus|100|GameLoadingQueries finish|
+|006DB2BE|GetParent|29|Startup graphics|
+|006DB390|IsZoomed|48|Startup graphics|
+|006DB411|IsZoomed|20|Startup graphics|
+|006DB534|GetCapture|19|Startup device setup|
+|006DB60B|GetFocus|8|Startup device setup|
+|006DB8CD|GetFocus|53|Startup archive setup|
+|006DBF31|IsZoomed|69|Startup directory setup|
+|006DC291|IsWindowVisible|123|Startup device tail|
+|006DC360|IsZoomed|41|Startup device tail; Human zoom consumer|
+|006DCC31|GetFocus|90|Startup main (earlier83/60/100 are separate direct stores)|
+|006DCD15|GetTickCount|25|Startup controller tail|
+|00688087|IsWindow(marker)|107|Opening begin|
+|006880DD|GetFocus|89|Opening begin|
+|00688435|GetTickCount|98|Opening begin|
+|00688B06|IsWindow(marker)|83|Opening rectangle|
+|00673734|IsWindowVisible|69|PreMission stock preparation|
+|0067379F|IsIconic|41|PreMission stock preparation|
+|006E9EC2|GetTickCount|none|Actual table seed, raw API|
+|00423D96|IsIconic|25|Unimplemented containing00423C70|
+|006263A5|GetTickCount|70|Unimplemented containing00626340|
+|0067F3B3|IsWindowVisible|117|Unimplemented containing0067F350|
+|0068CD40|GetTickCount|123|Unimplemented containing0068CCF0|
+|0068CDCA|GetCapture|77|Unimplemented containing0068CCF0|
+|006937CE|GetCapture|8|Unimplemented containing00693760|
+|0069C3F2|GetFocus|90|Unimplemented containing0069C390|
+|0069C78F|IsIconic|83|Unimplemented containing0069C390|
+|0069C98F|GetFocus|60|Unimplemented containing0069C8E0|
+|006C33A8|GetTickCount|19|Unimplemented containing006C3340|
+|006C40F3|IsIconic|53|Unimplemented containing006C4070|
+|00734B31|GetTickCount|none|Noninventoried containing code, no observation metadata|
+|00737D71|GetTickCount|none|Noninventoried containing code, no observation metadata|
+
+These remaining enclosing functions have no implemented frozen-ledger bodies;
+no callback is invented to execute them. Their eventual owners can call the
+same concrete Steam helpers. Closure here is the reconstructed offline GUARD
+graph, not every conditional wrapper in the original executable or whole-game
+function equivalence. Source queries remain callable through actual World/LIFE
+composition; successful GameApplicationState loading/activation stays disabled.
+
+### Verification boundary
+
+Focused native ASan/UBSan/LSan uses explicit CRT/API/window/ID endpoint doubles.
+It checks all32 descriptor words against independent retained original export,
+all16 active prefix/marker matches, skipped validation, actual blocked bits,
+unchanged62 destinations on rejection,02 actual-return fallback, pre/post API
+ordering, raw-versus-observed distinction, snapshot mutation, unmatched metadata,
+throwing argument/API receivers, owner replacement, retained IDs, independent
+thread overrides,100 process lifetimes, actual objective mismatch RNG gate and
+actual Human obstruction consumer. Human zoom is checked in the concrete source
+composition; no separate positive real-engine zoom execution is claimed.
+Earlier initializer/thread receipts retain exact896-draw/permutation, failure,
+capacity/thread and counter/CRC audits; unchanged code is not redundantly audited.
+Strict i386 linking explicitly instantiates GameSessionLifecycle with the actual
+application LaunchOwners::Controller and real Startup/World/Human/objective
+composition. The existing application-launch build is a separate link check.
+Neither executable is run. These are source/binding checks, not actual API,
+real-engine, application execution or desktop acceptance.
+
+[Final verification receipt](checkpoints/p22-guard-steam-20261111.json): native
+sanitizers, strict i386 composition, application link and27 tracker tests pass.
+Temporary audit sources/binaries are fingerprinted and removed.

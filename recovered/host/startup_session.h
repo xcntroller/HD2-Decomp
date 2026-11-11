@@ -31,6 +31,7 @@
 #include "game/human_physics_globals.h"
 #include "game/mission_integrity_tables.h"
 #include "game/integrity_threads.h"
+#include "game/steam_integrity_calls.h"
 #include "game/mission_script_variables.h"
 #include "game/mission_effects_loading.h"
 #include "game/shot_manager_loading.h"
@@ -84,7 +85,7 @@ namespace hd2::host {
 // Original Win32 import targets are called directly; no protection success API.
 class StartupSession {
 public:
-    using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>>;
+    using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>,StartupSession>;
     using PlayerHuman=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
     std::optional<frontend::MultiplayerLaunchRequest>& multiplayer_request() { return multiplayer_request_; }
     StartupSession(HMODULE engine, HMODULE rw_data, HMODULE joy,const std::string& selected_language={})
@@ -134,27 +135,60 @@ public:
             return call.complete(GetTickCount()).value;
         },random);
     }
+    void graphics_integrity_queries(){
+        if(phase_!=Phase::control_ready)throw std::logic_error("Steam graphics integrity order mismatch");
+        (void)steam_window_probe({29,0x6db2be,0x0a4276bc},[](HWND value){return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetParent(value)));});
+        (void)steam_window_probe({48,0x6db390,0x0a4276bc},[](HWND value){return static_cast<std::uint32_t>(IsZoomed(value));});
+        (void)steam_window_probe({20,0x6db411,0x056a648f,0x702fe,true},[](HWND value){return static_cast<std::uint32_t>(IsZoomed(value));});
+    }
     // Called only after real graphics, sound and I3D initialization. The caller
     // retains device ownership; close_consumers must run before device close.
     void setup_devices() {
         if (phase_ != Phase::control_ready) throw std::logic_error("Startup device order mismatch");
         phase_ = Phase::loading;
         setup_started_ = true;
+        (void)game::steam_integrity_marker_call(*this,{19,0x6db534,0x0a4276bc},[]{return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetCapture()));});
+        (void)game::steam_integrity_marker_call(*this,{8,0x6db60b,0x097a5e32},[]{return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetFocus()));});
         auto random = [&] { return settings_backend_.sound_random_word(); };
         auto mask = io::begin_archive_key_mask(random);
         const auto selected_language = language_.get();
-        archive_focus_ = GetFocus(); // Original006DB8C7 wrapper → real GetFocus.
+        archive_focus_ = reinterpret_cast<HWND>(static_cast<std::uintptr_t>(
+            game::steam_integrity_marker_call(*this,{53,0x6db8cd,0x075ac025},[]{
+                return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetFocus()));
+            }).returned)); //Original006DB8C7, Steam action62 before actual API.
         archives_.create(io::language_archive_name(selected_language));
         archives_.configure(mask, random);
         io::setup_resource_directory_trees(caches_, directory_platform_);
-        using Window = HWND (WINAPI *)(EngineFrame*);
-        auto* graphics = static_cast<EngineFrame*>(input_setup_.graphics());
-        const auto window = scene_method<Window>(graphics, engine(), 0x48, 0x6a240)(graphics);
-        directory_window_ = IsZoomed(window); // Original006DBF2B wrapper target.
+        directory_window_=static_cast<BOOL>(steam_window_probe({69,0x6dbf31,0x0a4276bc},
+            [](HWND argument){return static_cast<std::uint32_t>(IsZoomed(argument));}).returned);
         input_setup_started_ = true;
         frontend::setup_graphics_input(input_, input_setup_, language_, text_, platform_, text_files_, directory_);
         modules_.initialize(gate_, files_); // Original006DBFB0 includes this phase.
         phase_ = Phase::resources_ready;
+    }
+    void complete_device_integrity(){
+        if(phase_!=Phase::resources_ready)throw std::logic_error("Steam device-tail integrity order mismatch");
+        (void)steam_window_probe({123,0x6dc291,0x0143b042,0x4076b,true},[](HWND value){return static_cast<std::uint32_t>(IsWindowVisible(value));});
+        (void)steam_window_probe({41,0x6dc360,0x01770325,0xa1372,true},[](HWND value){return static_cast<std::uint32_t>(IsZoomed(value));});
+    }
+    void complete_device_startup_randomness(){
+        if(phase_!=Phase::resources_ready)throw std::logic_error("Startup CRT tail seed order mismatch");
+        //006DC37F time(NULL) ->006DC385 srand, AFTER the table initializer and
+        //device/module/text setup. This reseeds the SAME stream, not the tables.
+        seed_random(static_cast<std::uint32_t>(std::time(nullptr)));
+    }
+    void prepare_steam_process_observations(){
+        if(phase_!=Phase::resources_ready)throw std::logic_error("Steam process publication order mismatch");
+        //Actual006DCBB0/006DCBD7/006DCBF3 writes, not a retail check result.
+        for(const auto stage:{83u,60u,100u})mission_integrity_tables_.observed(stage)=mission_integrity_tables_.expected(stage);
+        (void)game::steam_integrity_marker_call(*this,{90,0x6dcc31,0x0143b042,0x4076b,true},[]{
+            return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetFocus()));
+        });
+
+    }
+    void complete_steam_controller_integrity(){
+        if(phase_!=Phase::ready)throw std::logic_error("Steam controller integrity order mismatch");
+        (void)game::steam_integrity_marker_call(*this,{25,0x6dcd15,0x01770325,0xa1372,true},[]{return GetTickCount();});
     }
     bool prepare_application() {
         if (phase_ != Phase::resources_ready) throw std::logic_error("Application preparation repeated/out of order");
@@ -251,6 +285,7 @@ public:
         //00996A3F..00996A5E resolves00B4EDB8 to actual GetCurrentThreadId.
         return mission_integrity_threads_.acquire(GetCurrentThreadId(),caller);
     }
+    const game::SteamIntegrityState& steam_integrity_state()const{return steam_integrity_state_;}
     bool& script_advance_override(){return script_advance_override_;} //008692D0;00424900 reset scope owns its writes.
     game::MissionIntegrityTables& mission_integrity_tables(){return mission_integrity_tables_;} //SAME process owner; no invented initialized/healthy state.
     game::MissionScriptVariables& mission_script_variables(){return mission_script_variables_;} //Module4 survives world finish/reconstruction;004270D0 applies actual selection kind afterward.
@@ -393,8 +428,12 @@ public:
     input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
     const std::string& profile_name() { return data_.profile().directories.current_name; }
     PreMission& pre_mission() {
-        if (!pre_mission_) pre_mission_=std::make_unique<PreMission>(data_.humans());
+        if (!pre_mission_) pre_mission_=std::make_unique<PreMission>(data_.humans(),*this);
         return *pre_mission_;
+    }
+    void preparation_store_integrity(){
+        (void)steam_window_probe({69,0x673734,0x0437e723,0x923a1,true},[](HWND value){return static_cast<std::uint32_t>(IsWindowVisible(value));});
+        (void)steam_window_probe({41,0x67379f,0x0143b042,0x4076b,true},[](HWND value){return static_cast<std::uint32_t>(IsIconic(value));});
     }
     bool prepare_pre_mission() {
         if (profile_name().empty())
@@ -728,6 +767,14 @@ public:
         }
     }
 private:
+    template<class Api>game::SteamIntegrityResult steam_window_probe(game::SteamIntegritySite site,Api api){
+        return game::steam_integrity_window_call(*this,site,[&]{
+            using Window=HWND (WINAPI *)(EngineFrame*);
+            auto* current=static_cast<EngineFrame*>(input_setup_.graphics());
+            const auto value=scene_method<Window>(current,engine(),0x48,0x6a240)(current);
+            return game::IntegrityApiArgument<HWND>{value,static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(value))};
+        },api);
+    }
     HMODULE engine() const { return engine_; }
     enum class Phase { constructed, control_ready, loading, resources_ready, data_ready, ready, closed };
     game::ScenePresentationFlags scene_presentation_flags_;
@@ -776,6 +823,7 @@ private:
     game::MissionIntegrityTables mission_integrity_tables_;
     //Destroyed/retired BEFORE tables, so callback-held loans cannot publish
     //through a replaced StartupSession's former process table lifetime.
+    game::SteamIntegrityState steam_integrity_state_;
     game::IntegrityThreads mission_integrity_threads_;
     game::MissionScriptVariables mission_script_variables_;
     game::MissionEffectsProcess<GameActorServices> mission_effects_process_;

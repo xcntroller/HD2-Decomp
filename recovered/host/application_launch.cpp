@@ -167,10 +167,13 @@ public:
     void begin_movie(const char* filename) {
         if (resources_live_) throw std::logic_error("Opening resources already owned");
         resources_live_ = true;
-        // Underlying Win32 payloads decoded from00A59000; binary integrity VM
-        // and original-address checks are outside the native reconstruction.
-        IsWindow(reinterpret_cast<HWND>(static_cast<std::uintptr_t>(0x97a5e32)));
-        GetFocus();
+        //Actual Steam marker actions; skipped retail validation is explicit.
+        (void)game::steam_integrity_marker_call(startup_,{107,0x688087,0x097a5e32},[]{
+            return static_cast<std::uint32_t>(IsWindow(reinterpret_cast<HWND>(static_cast<std::uintptr_t>(0x97a5e32))));
+        });
+        (void)game::steam_integrity_marker_call(startup_,{89,0x6880dd,0x0143b042,0x4076b,true},[]{
+            return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetFocus()));
+        });
         audio_.create_voice(); //00688040: separate voice BEFORE IShow, even without cues.
         video_.open(filename, 0x400);
         float target; const std::uint32_t bits = 0x3c343958; std::memcpy(&target, &bits, 4);
@@ -182,6 +185,9 @@ public:
             const auto width = host::scene_method<Dimension>(startup_.graphics(), module_, 0x18, 0x6de50)(startup_.graphics());
             const auto height = host::scene_method<Dimension>(startup_.graphics(), module_, 0x1c, 0x6de70)(startup_.graphics());
             const auto dimensions = video_.dimensions();
+            (void)game::steam_integrity_marker_call(startup_,{83,0x688b06,0x0143b042,0x4076b,true},[]{
+                return static_cast<std::uint32_t>(IsWindow(reinterpret_cast<HWND>(static_cast<std::uintptr_t>(0x143b042))));
+            });
             video_.rectangle(frontend::opening_video_rectangle(width, height, dimensions.width, dimensions.height));
             frontend::LocalizedTextCache local_text;
             const auto loaded = startup_.load_movie_subtitles(filename, local_text);
@@ -200,7 +206,7 @@ public:
             video_.play();
             time_marker(); // Original QPC clock sample after successful Play.
         }
-        GetTickCount();
+        (void)game::steam_integrity_marker_call(startup_,{98,0x688435,0x075ac025},[]{return GetTickCount();});
     }
     void close_movie(const char* filename) {
         for (int i = 0; i != 3; ++i) video_.clear_present();
@@ -544,10 +550,14 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int widt
         startup.before_devices();
         startup.begin_device_attempt();
         auto& graphics = owners.graphics.emplace(module,fullscreen);
+        startup.graphics_integrity_queries();
         owners.sound.emplace(module, graphics.window());
         auto& driver = owners.driver.emplace(module);
         startup.setup_devices();
+        startup.complete_device_integrity();
         startup.initialize_frame_text_overlay(driver,*graphics.graphics()); //006DBFC0 final006E8590, even with no registered pages.
+        startup.complete_device_startup_randomness();
+        startup.prepare_steam_process_observations();
         if (!loading_capture.empty()) {
             LoadingCaptureOutput output(loading_capture);
             host::capture_loading_inputs(startup.pre_mission_files(), output, startup.model_resource_directories());
@@ -567,6 +577,7 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int widt
         auto& services = owners.services.emplace(startup, driver, module, graphics.graphics(), graphics.window(), keyboard);
         auto& controller = owners.controller.emplace(services);
         if (!controller.start(false)) throw std::runtime_error("Controller application preparation failed");
+        startup.complete_steam_controller_integrity();
         host::FrameClockPlatform clock_platform;
         frontend::FrameClock frame_clock(clock_platform);
         std::uint32_t frames = 0, previous_type = 0, previous_sequence = 0;

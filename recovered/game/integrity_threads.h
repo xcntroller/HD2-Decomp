@@ -57,6 +57,15 @@ public:
             slot.decision=accepted?Decision::action:Decision::rejected;
             return accepted;
         }
+        bool apply_steam(std::uint8_t action,bool blocked,std::uint32_t matched,std::uint32_t* destination){
+            const auto state=require_state();std::lock_guard<std::mutex> lock(state->mutex);
+            auto& slot=require_slot(*state);
+            if(slot.decision!=Decision::pending)throw std::logic_error("Integrity call decision already applied");
+            if(blocked){slot.decision=Decision::rejected;return false;}
+            slot.decision=Decision::failed;
+            const auto applied=dispatch_integrity_observation_action(action,matched,destination,slot.returned);
+            slot.decision=Decision::action;return applied;
+        }
         void fallback(std::uint8_t action) {
             const auto state=require_state();
             std::lock_guard<std::mutex> lock(state->mutex);
@@ -67,7 +76,16 @@ public:
             fallback_integrity_observation_action(action);
             slot.decision=Decision::fallback;
         }
-        Completion complete(std::uint32_t actual_api_result) {
+        void record_api_argument(std::uint32_t* payload,std::uint32_t argument) {
+            const auto state=require_state();
+            std::lock_guard<std::mutex> lock(state->mutex);
+            const auto& slot=require_slot(*state);
+            if(slot.decision!=Decision::pending||!payload)
+                throw std::logic_error("Integrity API argument requires a pending live call/payload");
+            *payload=argument;
+        }
+        Completion complete(std::uint32_t actual_api_result,std::uint32_t* payload=nullptr,
+            std::uint32_t* returned_observation=nullptr) {
             const auto state=require_state(); //Keep state alive until lock is released.
             std::lock_guard<std::mutex> lock(state->mutex);
             auto& slot=require_slot(*state);
@@ -76,6 +94,10 @@ public:
             if(slot.decision==Decision::failed)
                 throw std::logic_error("Failed integrity receiver requires call retirement");
             const Completion result{restore_integrity_api_return(actual_api_result,slot.returned),slot.caller};
+            //The pointer may belong to a replaced process owner. Check its
+            //loan above BEFORE accessing it, under the retirement mutex.
+            if(payload)*payload=actual_api_result;
+            if(returned_observation)*returned_observation=result.value;
             clear(slot);
             state_.reset();
             return result;

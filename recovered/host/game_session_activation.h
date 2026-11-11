@@ -31,7 +31,7 @@ public:
             StartupSession& startup,Graphics& graphics,HMODULE module,FrameClockPlatform& clock,
             game::SessionActivationState& session,Controller* controller)
         :loading_(loading),parent_(parent),backend_(backend),startup_(startup),graphics_(graphics),clock_(clock),session_(session),controller_(controller),
-         d_(loading.world().owners().dependencies()),queries_(module),
+         d_(loading.world().owners().dependencies()),queries_(module,startup),
          selection_(startup.pre_mission().game(),startup.pre_mission().route(),parent.request().preparation),
          input_(loading.world().owners().input_profiles(),startup.human_input_shared(),&d_.inputs,startup.game_control_records(),
                 startup.local_player_identity(),startup.application_flags_owner()),lights_(d_.scene.frames()),prepared_(d_){

@@ -1,0 +1,99 @@
+{
+  "status": "steam_guard_source_composition_complete_existing_offline_graph",
+  "branch": "feature/p22-guard",
+  "parent_commit": "b935070",
+  "base_sha": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "user_target": "Match the steam behavior.",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "validation": "explicitly skipped by original00997602 jump; not successful retail validation",
+  "native_sanitizers": "PASS ASan/UBSan/LSan; all32 descriptor words,16 active matches, blocked/unmatched, actions/fallback, raw/observed split, exceptions/replacement, thread isolation,100 process lifetimes, actual objective and Human obstruction consumer bodies",
+  "native_endpoint_doubles": [
+    "CRT sequence",
+    "Win32 API results",
+    "GetIGraph/window argument",
+    "native thread IDs",
+    "Human physical/control/look/runtime endpoints"
+  ],
+  "i386_composition": "PASS strict compile/link of actual application LaunchOwners::Controller explicitly instantiating GameSessionLifecycle and concrete Startup/World/loading/activation/Human/objective composition; not executed",
+  "application_link": "PASS make -C recovered -j1 application-launch",
+  "source_files": {
+    "recovered/game/steam_integrity_calls.h": "28a2cbfd3996209a74d05448b9e8ac7120779e448c4ed7aeefdb721b5cbad00f",
+    "recovered/game/integrity_threads.h": "c106e96bb707c68485fea1f4744592a07e07e8751aac9331afd698528421b3e7",
+    "recovered/game/integrity_observation_actions.h": "2e81f2bef1c5db1962560fe785eb31dfa2b83736e2dc00afe2f39da33b287317",
+    "recovered/host/startup_session.h": "e903d407e576b76f2f51731712acdf8c945f1312e0276979734fe2ea32be3736",
+    "recovered/host/game_loading_queries.h": "345076db057d75a0127c007276282c346af7512d9c8b51109c4229196fec22ab",
+    "recovered/host/application_launch.cpp": "0d7e49adab0de08a067295e59484f52a474738221e450b33064b882c929a3dc5",
+    "recovered/frontend/pre_mission_flow.h": "baef47d9dfdae3da8460b6d39a54872e1137a2cb41e0c3d1ea7e0dccfc2a191c"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/p22-guard-steam.cpp",
+      "sha256": "3b3885388f37a78f2529e6b9b272af21f5c7138da007215bb648bf3b06e87248",
+      "removed": true,
+      "scope": "final Steam verification"
+    },
+    {
+      "path": "/tmp/p22-guard-steam",
+      "sha256": "a01e79a5b9e1614319bb56c3f18e5c8e63298202c29cdfb325b2da009f189cf5",
+      "removed": true,
+      "scope": "final Steam verification"
+    },
+    {
+      "path": "/tmp/p22-guard-full-i386.cpp",
+      "sha256": "4509826922ac56026a68c7acf37ee878612dd4c95f26cc12ca8cda9777d67509",
+      "removed": true,
+      "scope": "final Steam verification"
+    },
+    {
+      "path": "/tmp/p22-guard-full-i386.exe",
+      "sha256": "a245af19906880e738140b46c372c3c466e81e626952b2ffcd16c928d5eca4c3",
+      "removed": true,
+      "scope": "final Steam verification"
+    },
+    {
+      "path": "/tmp/p22-guard-raw.cpp",
+      "sha256": "a3cf319100742a44761887bf3d88601416453f7c09cedf3e01850cc7d47f5d0b",
+      "removed": true,
+      "scope": "superseded intermediate raw-only audit"
+    },
+    {
+      "path": "/tmp/p22-guard-raw",
+      "sha256": "7ff1d5b3c9d727868aa0d0376fa3b9a6953f4faec8106f4b1b11736d571c84fc",
+      "removed": true,
+      "scope": "superseded intermediate raw-only audit"
+    },
+    {
+      "path": "/tmp/p22-guard-raw-i386.cpp",
+      "sha256": "915040e484600daf4b2deafa21efeeb470f718ed25716c7155ff44086e444058",
+      "removed": true,
+      "scope": "superseded intermediate raw-only audit"
+    },
+    {
+      "path": "/tmp/p22-guard-raw-i386.exe",
+      "sha256": "f74942a8d246f5c3499a94306a952fbdac74a22299d7bfcc926bbd979ce38f98",
+      "removed": true,
+      "scope": "superseded intermediate raw-only audit"
+    }
+  ],
+  "retained_logs": [
+    "analysis/work/p22-guard/application-build-steam.log",
+    "analysis/work/p22-guard/verification-steam.log"
+  ],
+  "new_frozen_partial": "00996b62; bounded dispatch slices only",
+  "excluded": [
+    "dormant retail private producer/validator equivalence",
+    "unimplemented containing-function conditional wrappers listed in contract",
+    "successful GameApplicationState loading/activation",
+    "real-engine/application execution",
+    "desktop acceptance"
+  ],
+  "push_or_merge": false,
+  "original_evidence_sha256": {
+    "analysis/work/p22-guard/all-wrapper-call-details.txt": "43c958dd2f700d7f278c91a81c3dd1e46c628f419f98d6ba716fdde9577c7bf9",
+    "analysis/work/p22-guard/steam-block-references.txt": "203dcfb02dc779813e6a4d51b746473e821d83cf16decda5da22d02c6ba51a34",
+    "analysis/work/p22-guard/startup-time-seed.asm": "6bcdae7eed6e28252f13950dc919151e2498859fa44294680cf4f957523e9c52",
+    "analysis/work/p22-guard/caller-observation-writes.asm": "a8345b4f4dabcf03a091f6b2780b25f2304136c6de2a5f2f82216ebc47e1807a",
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/guard-activation-descriptors.json": "50edb4f08953609bbd09b5a8ffe968f940f8fabe869213418af9665a42a76f30"
+  },
+  "tracker": "PASS exact inventories/fingerprints/counts/evidence/README and27 unittest checks"
+}

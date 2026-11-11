@@ -91,6 +91,7 @@ class PreMissionStore {
 
 // 006736D0: only subtype3 replaces stock; subtype4 retains it. Entry byte12
 //  selects the associated ammunition ID rather than the item's own ID.
+//  Containing PreMissionFlow performs the two original process integrity probes.
 inline void prepare_pre_mission_store(PreMissionStore &store, const GameDataNode &descriptor,
                                       const PreMissionItemCatalogue &catalogue) {
     if (descriptor.kind != 6)

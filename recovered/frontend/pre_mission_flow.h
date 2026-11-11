@@ -14,9 +14,9 @@ enum class PreMissionAcceptance { accepted, missing_equipment, overloaded, confi
 // descriptor pointers belong to game_ (or route_'s synthetic mission). Screens
 // borrow this owner; a pending game request owns its payload independently.
 // No screen index is used as a descriptor or successful world-load result.
-template <class Humans> class PreMissionFlow {
+template <class Humans,class Integrity> class PreMissionFlow {
   public:
-    explicit PreMissionFlow(Humans &humans) : humans_(humans), route_(game_) {}
+    PreMissionFlow(Humans &humans,Integrity& integrity) : humans_(humans), integrity_(integrity), route_(game_) {}
     PreMissionFlow(const PreMissionFlow &) = delete;
     PreMissionFlow &operator=(const PreMissionFlow &) = delete;
 
@@ -533,6 +533,7 @@ template <class Humans> class PreMissionFlow {
             break;
         case 3:
         case 4:
+            integrity_.preparation_store_integrity(); //006736D0 probes BEFORE subtype3/4 stock body.
             prepare_pre_mission_store(store_, *descriptor, resources_.catalogue);
             screen_ = PreMissionScreen::equipment;
             break;
@@ -541,6 +542,7 @@ template <class Humans> class PreMissionFlow {
         }
     }
     Humans &humans_;
+    Integrity& integrity_;
     GameData game_;
     PreMissionRoute route_;
     PreMissionResources resources_;

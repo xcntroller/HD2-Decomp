@@ -27,7 +27,7 @@ public:
     using ScratchOwner=std::unique_ptr<world_loading::Scene::Scratch>;
     GameMissionLoading(World& world,Parent& parent,StartupSession& startup,
                        game::SessionActivationState& session,GameLoadingScreen& screen,HMODULE module)
-        :world_(world),parent_(parent),startup_(startup),session_(session),screen_(screen),queries_(module){
+        :world_(world),parent_(parent),startup_(startup),session_(session),screen_(screen),queries_(module,startup){
         auto& d=world_.owners().dependencies();
         if(&d.startup!=&startup||&d.session!=&session||&d.request!=&parent.request())
             throw std::logic_error("Mission loader requires SAME world/process/session/request owners");

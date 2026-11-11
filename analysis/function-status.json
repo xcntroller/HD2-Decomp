@@ -2609,13 +2609,16 @@
       "program": "client",
       "entry": "006dbfc0",
       "status": "partial",
-      "coverage": "Window-position read, move and focus region after input setup.",
-      "limitations": "All surrounding initialization and protection-state operations remain open. Explicit initial bytes model short reads; native operating-system and original rw_data adapters are source-only and i386 compile/link audited.",
+      "coverage": "Window-position read, move and focus region after input setup. Steam device-tail123/41 observations and later shared-CRT time seed are source-bound.",
+      "limitations": "All surrounding initialization and protection-state operations remain open. Explicit initial bytes model short reads; native operating-system and original rw_data adapters are source-only and i386 compile/link audited. Steam source composition only; retail validation is explicitly skipped as in the supplied executable, not credited. No application/engine/desktop execution.",
       "evidence": [
         "analysis/window-position-map.json",
         "analysis/window-position.md",
         "recovered/frontend/window_position.h",
-        "recovered/host/window_position.h"
+        "recovered/host/window_position.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-steam-20261111.json",
+        "recovered/game/steam_integrity_calls.h"
       ]
     },
     {
@@ -4718,14 +4721,17 @@
       "program": "client",
       "entry": "006dcae0",
       "status": "partial",
-      "coverage": "Normal frame composition samples actual input, ticks3D, renders before fixed/variable controller updates, maintains cold control and presents.",
-      "limitations": "Bounded native window/message loop; original full setup, alternate modes, setup.exe and binary VM branches are not reconstructed. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated.",
+      "coverage": "Normal frame composition samples actual input, ticks3D, renders before fixed/variable controller updates, maintains cold control and presents. Actual Steam direct83/60/100 stores and90/25 wrapped calls preserve startup/controller order.",
+      "limitations": "Bounded native window/message loop; original full setup, alternate modes, setup.exe and binary VM branches are not reconstructed. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated. Steam source composition only; retail validation is explicitly skipped as in the supplied executable, not credited. No application/engine/desktop execution.",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "recovered/frontend/application_frame.h",
         "analysis/function-completion-audit.md",
-        "analysis/phase1-traversal.md"
+        "analysis/phase1-traversal.md",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-steam-20261111.json",
+        "recovered/game/steam_integrity_calls.h"
       ]
     },
     {
@@ -6846,12 +6852,15 @@
       "program": "client",
       "entry": "006736d0",
       "status": "partial",
-      "coverage": "Initialize subtype-three mission stock from descriptors and associated ammunition.",
-      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "coverage": "Initialize subtype-three mission stock from descriptors and associated ammunition. Actual Steam69/41 probes precede stock subtype selection.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed. Steam source composition only; retail validation is explicitly skipped as in the supplied executable, not credited. No application/engine/desktop execution.",
       "evidence": [
         "analysis/singleplayer-pipeline.md",
         "analysis/singleplayer-function-audit.md",
-        "recovered/frontend/pre_mission_inventory.h"
+        "recovered/frontend/pre_mission_inventory.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-steam-20261111.json",
+        "recovered/game/steam_integrity_calls.h"
       ]
     },
     {
@@ -8574,8 +8583,8 @@
       "program": "client",
       "entry": "006989b0",
       "status": "partial",
-      "coverage": "Installed unloaded application owner still declines activation. Callable offline activation over the SAME World/request/live squad now records entered/completed resource, light, face, authority/presentation module, HUD/FPV, spawn, dubbing and text prefixes without changing original loaded14/status5 publication. Concrete GameSessionLifecycle supplies rollback, graphics restoration (preserving primary errors), cleanup diagnostics and actual process finalizer.",
-      "limitations": "Source-only offline7 typed/STL/RAII reconstruction and explicit lifetime guards, not native allocator/SEH/object ABI equivalence. Actual application loading and full frame/render/guard/positive Human/UI producers remain separate; native engine/archive/clock endpoints are doubles. Strict actual i386 composition is compile/link only; no mission desktop acceptance.",
+      "coverage": "Installed unloaded application owner still declines activation. Callable offline activation over the SAME World/request/live squad now records entered/completed resource, light, face, authority/presentation module, HUD/FPV, spawn, dubbing and text prefixes without changing original loaded14/status5 publication. Concrete GameSessionLifecycle supplies rollback, graphics restoration (preserving primary errors), cleanup diagnostics and actual process finalizer. Actual Steam77/13/5 calls now bind descriptor actions, underlying APIs and distinct observation publication.",
+      "limitations": "Source-only offline7 typed/STL/RAII reconstruction and explicit lifetime guards, not native allocator/SEH/object ABI equivalence. Actual application loading and full frame/render/guard/positive Human/UI producers remain separate; native engine/archive/clock endpoints are doubles. Strict actual i386 composition is compile/link only; no mission desktop acceptance. Steam source composition only; retail validation is explicitly skipped as in the supplied executable, not credited. No application/engine/desktop execution.",
       "evidence": [
         "recovered/host/game_owner.h",
         "analysis/game-owner-integration.md",
@@ -8590,7 +8599,10 @@
         "recovered/host/game_session_activation.h",
         "recovered/host/game_session_lifecycle.h",
         "analysis/p22-life-implementation.md",
-        "analysis/checkpoints/p22-life-20261111.json"
+        "analysis/checkpoints/p22-life-20261111.json",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-steam-20261111.json",
+        "recovered/game/steam_integrity_calls.h"
       ]
     },
     {
@@ -18125,8 +18137,8 @@
       "program": "client",
       "entry": "006ca780",
       "status": "partial",
-      "coverage": "Original ordered loading stages and required cold module tail remain bound through SAME GameMissionLoadingSession/World. Source lifecycle now rolls back false/throw prefixes, including pre-tree failure and exceptions after real loaded14 publication, before parent scene reset; scratch/name maps still retire before the required module loading tail.",
-      "limitations": "Source-only typed borrowers/STL/RAII and bounded guards, not native ABI/SEH equivalence. Actual engine/archive/clock endpoints are native audit doubles; concrete Windows composition is compiled/linked without execution. Positive runtime producers, successful application integration/first frame and desktop acceptance remain excluded.",
+      "coverage": "Original ordered loading stages and required cold module tail remain bound through SAME GameMissionLoadingSession/World. Source lifecycle now rolls back false/throw prefixes, including pre-tree failure and exceptions after real loaded14 publication, before parent scene reset; scratch/name maps still retire before the required module loading tail. Actual Steam117/34/39 calls now publish through SAME Startup process tables.",
+      "limitations": "Source-only typed borrowers/STL/RAII and bounded guards, not native ABI/SEH equivalence. Actual engine/archive/clock endpoints are native audit doubles; concrete Windows composition is compiled/linked without execution. Positive runtime producers, successful application integration/first frame and desktop acceptance remain excluded. Steam source composition only; retail validation is explicitly skipped as in the supplied executable, not credited. No application/engine/desktop execution.",
       "evidence": [
         "recovered/game/mission_loading.h",
         "analysis/mission-world-loading.md",
@@ -18137,7 +18149,10 @@
         "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json",
         "recovered/host/game_session_lifecycle.h",
         "analysis/p22-life-implementation.md",
-        "analysis/checkpoints/p22-life-20261111.json"
+        "analysis/checkpoints/p22-life-20261111.json",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-steam-20261111.json",
+        "recovered/game/steam_integrity_calls.h"
       ]
     },
     {
@@ -33832,6 +33847,19 @@
         "recovered/game/integrity_string_record.h",
         "analysis/p22-guard-implementation.md",
         "analysis/checkpoints/p22-guard-threads-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00996b62",
+      "status": "partial",
+      "coverage": "Steam wrapper decision interval00997584..00997606, blocked/action dispatch00997658..009976FF and active02/62 fallback in0099776D..009977C4, over actual32 descriptors and SAME process tables/thread continuations. Explicit validation skip follows00997602 jump.",
+      "limitations": "Only described scalar Steam dispatch slices, not obfuscated full function/native code patching, ABI, private retail validation or upstream dormant producers. Absent return-helper inventory entries receive no credit. Actual APIs delegated; native endpoints doubled; concrete i386 link only, no execution/desktop acceptance.",
+      "evidence": [
+        "recovered/game/steam_integrity_calls.h",
+        "recovered/game/integrity_threads.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-steam-20261111.json"
       ]
     }
   ]

@@ -237,7 +237,7 @@ preparation, not a standalone audit-only milestone.
 
 ## 2. Load an original mission to its first world frame
 
-[P22-GUARD source plan](analysis/p22-guard-plan.md): process initializer/thread owner are source-bound; private producers and concrete publication remain open. Steam reachability and dormant retail protection are distinguished in the contract.
+[P22-GUARD source plan](analysis/p22-guard-plan.md): Steam descriptor/actions and concrete process publication are source-bound to startup and existing offline consumers; focused sanitizers, actual i386 composition and application link pass (34 complete/2,510 partial). Dormant retail protection is excluded by the explicitly selected Steam target; application execution remains separate.
 
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
