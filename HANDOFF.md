@@ -1,28 +1,34 @@
 # P22-RENDER handoff —2026-11-11
 
-Only `/home/control/Documents/Projects/HD2-Decomp-p22-render`, branch
-feature/p22-render. Base/fetched origin/master447e073ed90f9fc6fb0fdd305fe6d725115d1786.
-No master/other checkout edits, original execution, Windows output execution,
-Proton, push or merge. Heavy compilation/Ghidra sequential.
+Work only in `/home/control/Documents/Projects/HD2-Decomp-p22-render`, branch
+feature/p22-render, implementation base/fetched447e073ed90f9fc6fb0fdd305fe6d725115d1786.
+No original EXE/DLL/Proton or Windows output execution; heavy compilation/Ghidra
+sequential. No push/merge or other worktree edits.
 
-[Plan](analysis/p22-render-plan.md), [contracts](analysis/p22-render-implementation.md),
-[latest receipt](analysis/checkpoints/p22-render-services-20261111.json).
-Positive procedural00482E50/resources00483E50/00483DE0, debug0079B760/0079AC40,
-concrete GameRenderStages and lifecycle-owned callback composition are implemented.
-SAME Startup process textures/buffers and actual C4 volumes/224 clock/Scene15C
-camera/graphics/Human skeleton/registry are used. DATA hooks preserved/extended.
-Native ASan/UBSan/LSan, actual i386 composition and application link pass.
-No full live UI/engine frame, present or desktop acceptance claim.
+[Plan](analysis/p22-render-plan.md), [implementation](analysis/p22-render-implementation.md),
+[strict history proof](analysis/p22-render-history.md),
+[latest receipt](analysis/checkpoints/p22-render-history-20261111.json).
+Procedural/resources/debug/concrete callback services remain verified atc1bbd09.
+Latest continuation binds actual render operation/camera/volume/history diagnostics
+through SAME DATA store, without extra frame reads or changed render policy.
+Native ASan/UBSan/LSan, concrete i386 composition and application link pass.
+No new function credit; original full render/desktop acceptance unobserved.
 
-RENDER remains OPEN at original per-volume3C/40 initial history.00481320 writes44
-from shared random but never3C/40; read/refresh likewise. Source safely rejects
-that reached first read. Do not seed original angles or forcefield2C=0. Remaining
-progress requires establishing actual initial bytes/producer, not another audit
-of unchanged positive leaves. Owner phase10 and18/1C reset(1,0) are established.
+**User decision: preserve original behavior.** No first-visible sample, invented
+angle, zero delta, extra random draw or field2C bypass is authorized.
+00482BB8 allocates48 via ordinary new007E520F→007E81D9→007E8205. Small-block
+reuse/HeapAlloc(flag0) do not guarantee cleared payload.00481320/read/refresh
+leave per-volume3C/40 unwritten;0048284E consumes them before writing current
+history. Actual original heap bytes remain unknown. Owner18/1C reset(1,0) is
+separate. Current reached failure is an explicit reconstruction guard, not a
+claimed original error or successful rendering. Keep the first containing
+checkbox OPEN. Do not repeat this confirmed allocator/constructor investigation
+without new evidence. A faithful successful read requires actual original-state
+provenance or an evidenced producer; do not substitute fixture scalar history.
 
-External integration: OWN installs/activates; FRAME schedules/update camera;
-UI9ff6d0d positive receivers are unmerged (read via Git only). GEffects virtualB8
-configuration method exists; actual VM/configuration caller remains external.
-No forced procedural enable, empty successful UI receivers or HUD suppression.
-Six new partial ledger entries, zero complete promotions. Tracker/README tally
-refresh blocked by existing ignored rule-refresh.asm evidence; see receipt.
+UI now19f049b was inspected via Git only; general HUD controls advanced, RENDER
+seam unchanged, relevant Human/order/occupied actor/FPV/console producers remain.
+Master observed83e77da, not imported. OWN installs/activates; FRAME schedules and
+updates camera; VM/configuration supplies actual GEffectsB8 calls where reached.
+No source closure claim for those external owners. Prior tracker generation is
+blocked by existing missing ignored rule-refresh.asm evidence; ledger unchanged.

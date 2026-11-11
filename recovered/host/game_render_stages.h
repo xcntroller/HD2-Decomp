@@ -1,6 +1,7 @@
 #ifndef HD2_HOST_GAME_RENDER_STAGES_H
 #define HD2_HOST_GAME_RENDER_STAGES_H
 #include "host/game_ui_presentation.h"
+#include "io/data_operation.h"
 namespace hd2::host {
 //Concrete RENDER pre-scene service for the existing UI seam. Borrows SAME World;
 //retire with its callbacks before lifecycle close. Does not own a second camera,
@@ -10,11 +11,15 @@ public:
     explicit GameRenderStages(world_loading::World& world):world_(world){}
     void render_before_scene()override{
         (void)world_.owners().dependencies();
-        world_.modules().game_effects().render_before_scene();
+        io::observe_data_operation(world_.scene().frames().resource_observations(),"00486BF0 pre-scene render",[&]{
+            world_.modules().game_effects().render_before_scene();
+        });
     }
     void render_debug_geometry()override{
         auto& d=world_.owners().dependencies();
-        d.startup.render_debug_skeleton().render(*this);
+        io::observe_data_operation(d.scene.frames().resource_observations(),"0079B760 debug geometry",[&]{
+            d.startup.render_debug_skeleton().render(*this);
+        });
     }
     auto debug_actor_count(){return world_.scene().frames().scene_actor_identity_count();}
     template<class Emit>bool visit_debug_geometry(std::size_t index,Emit&& emit){

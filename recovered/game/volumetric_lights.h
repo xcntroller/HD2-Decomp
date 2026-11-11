@@ -3,6 +3,7 @@
 
 #include "game/serialized_bytes.h"
 #include "frontend/cleanup.h"
+#include "io/resource_observations.h"
 #include <algorithm>
 #include <array>
 #include <cmath>
@@ -44,6 +45,7 @@ public:
     };
     struct Volume {
         Frame light{};
+        std::string light_name; //Owning diagnostic copy of the actual serialized reference; no native field claim.
         float field18=10,field1c=0,field20=0,field28=0,field2c=0,field30=30,field34=25,plane38=0,distance44=0;
         //00481320 leaves3C/40 unwritten. No invented first-frame direction.
         std::optional<std::array<float,2>> history3c;
@@ -135,19 +137,29 @@ public:
         const auto graph13=std::uint32_t(draw.volume_graphics_state(13)!=0);
         frontend::CleanupErrors errors;
         try{
+            io::observe_bound_data(frames_,"execution","00482260 input","clock224 bits",static_cast<std::uint32_t>(time));
             draw.volume_graphics_state(14,0);
             procedural.render(time);
             draw.hud_driver_state(3,1);
             const auto camera=draw.volume_render_camera();
             const auto position=frames_.car_world_matrix(camera);
+            observe_float("00482260 camera","position X bits",position[12]);
+            observe_float("00482260 camera","position Y bits",position[13]);
+            observe_float("00482260 camera","position Z bits",position[14]);
             const auto orientation=frames_.car_world_matrix(draw.volume_render_camera());
             auto forward=normalize({orientation[8],orientation[9],orientation[10]});
             forward=normalize({forward[0],0,forward[2]});
             if(!camera_history_)throw std::runtime_error("00482260 requires original owner18/1C angular history");
+            observe_float("00482260 camera","previous horizontal X bits",(*camera_history_)[0]);
+            observe_float("00482260 camera","previous horizontal Z bits",(*camera_history_)[1]);
             phase_=static_cast<float>(static_cast<long double>(phase_)+angle_delta(*camera_history_,{forward[0],forward[2]}));
             camera_history_=std::array<float,2>{forward[0],forward[2]};
+            observe_float("00482260 camera","current horizontal X bits",forward[0]);
+            observe_float("00482260 camera","current horizontal Z bits",forward[2]);
+            observe_float("00482260 camera","phase10 bits",phase_);
             for(std::size_t n=0;n<volumes_.size();){
                 auto& volume=*volumes_[n];
+                io::observe_bound_data(frames_,"execution","00482260 selected volume",volume.light_name.c_str(),n);
                 const auto relation=draw.volume_visibility_relation(volume.light);
                 if(!relation){volumes_.erase(volumes_.begin()+n);continue;}
                 volume.visible24=draw.volume_relation_visible(relation);
@@ -163,7 +175,18 @@ public:
                         std::int32_t bits;std::memcpy(&bits,&squared,4);
                         volume.render_distance14=bits<0x322bcc77?0:std::abs(static_cast<long double>(squared)-1)<9.99999993922529e-09f?1:static_cast<float>(std::sqrt(static_cast<long double>(squared)));
                         if(volume.render_distance14<volume.field30){
-                            if(!volume.history3c)throw std::runtime_error("00482260 requires original volume3C/40 angular history");
+                            observe_float("00482260 volume","distance14 bits",volume.render_distance14);
+                            observe_float("00482260 volume","angular44 before update bits",volume.distance44);
+                            observe_float("00482260 volume","field2C bits",volume.field2c);
+                            observe_float("00482260 volume","current direction X bits",direction[0]);
+                            observe_float("00482260 volume","current direction Z bits",direction[2]);
+                            io::observe_bound_data(frames_,"execution","00482260 volume","history3C40 known",volume.history3c.has_value());
+                            if(!volume.history3c){
+                                io::observe_bound_data(frames_,"source-guard","00482260 unknown initial history",volume.light_name.c_str());
+                                throw std::runtime_error("00482260 requires original volume3C/40 angular history");
+                            }
+                            observe_float("00482260 volume","previous direction3C bits",(*volume.history3c)[0]);
+                            observe_float("00482260 volume","previous direction40 bits",(*volume.history3c)[1]);
                             volume.distance44=static_cast<float>(static_cast<long double>(volume.distance44)+angle_delta(*volume.history3c,{direction[0],direction[2]}));
                             volume.history3c=std::array<float,2>{direction[0],direction[2]};
                         }else volume.visible24=false;
@@ -264,6 +287,10 @@ public:
         }
     }
 private:
+    void observe_float(const char* operation,const char* detail,float value)noexcept{
+        std::uint32_t bits;std::memcpy(&bits,&value,sizeof bits);
+        io::observe_bound_data(frames_,"execution",operation,detail,bits);
+    }
     static long double angle_delta(const std::array<float,2>& old,const std::array<float,2>& next){
         auto delta=std::atan2(static_cast<long double>(next[1]),static_cast<long double>(next[0]))-
                    std::atan2(static_cast<long double>(old[1]),static_cast<long double>(old[0]));
@@ -330,7 +357,8 @@ private:
             auto& value=chunk->bytes;
             switch(chunk->id) {
             case 10:
-                volume.light=frames_.find_scene_frame(text(value),2);
+                volume.light_name=text(value);
+                volume.light=frames_.find_scene_frame(volume.light_name,2);
                 if(!volume.light)return; //Original leaves the volume; refresh deletes it.
                 seed=distance(volume.light);break;
             case 0x14:volume.field18=value.real();break;

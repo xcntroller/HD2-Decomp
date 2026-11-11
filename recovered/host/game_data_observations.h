@@ -24,6 +24,7 @@ inline void observe_world_data(world_loading::World& world){
         std::uint32_t bits;std::memcpy(&bits,&volume->field2c,4);
         frames.observe_data("population","Volume field2C","float bits",bits);
         frames.observe_data("population","Volume particles","count",volume->particles.size());
+        frames.observe_data("population","Volume history3C40",volume->light_name.c_str(),volume->history3c.has_value());
     }
     const auto& clouds=d.startup.procedural_clouds();
     frames.observe_data("population","process0089B63C","texture0 present",clouds.has_texture(0));

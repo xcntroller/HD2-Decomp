@@ -10,7 +10,7 @@ Source-only work. Application loading remains disabled.
   same GEffects+C4 volumes/224 clock, draw leaves, fades and overlay owners.
   Preserve frame-render-source.md and its20261110 checkpoint; no new credit for
   absent0069B870/00486BF0 or original RET00724CB0.
-- [x] Inspect UI branch9ff6d0d read-only: full HUD dispatch and command UI have
+- [x] Inspect UI branch19f049b read-only: full HUD dispatch and command UI have
   advanced; do not repeat the stale claim that all HUD updates are absent.
 
 ## RENDER implementation
@@ -19,11 +19,18 @@ Source-only work. Application loading remains disabled.
   hemisphere/distance, native pairwise far-first swaps and retained history;
   bind00486BF0 to SAME volume owner/clock and actual frame/graphics endpoints.
 - [x] Recover/implement positive00482E50 and00483E50/00483DE0 process textures,
-  buffers, initialization, cleanup and retry; establish actual configuration caller.
+  buffers, initialization, cleanup and retry; expose actual GEffectsB8 receiver.
 - [x] Implement concrete render stages and callable Scene/callback composition;
   recover0079B760 positive debug geometry and retire callback borrowers.
 - [x] Focused temporary sanitizers, strict actual i386 World composition and
   application link; fingerprint/remove temporary fixtures, record checkpoint.
+
+## Current continuation
+
+- [x] Finish original allocator-to-first-history-read proof and bind reached
+  render operation/camera/volume/history diagnostics through existing DATA APIs.
+  User chose strict original behavior; retain the guard without an invented initializer.
+  Diagnostic hooks alone receive no function credit.
 
 ## Exact external dependencies
 
@@ -60,3 +67,11 @@ External live producers remain: GEffects virtualB8's configuration caller (sourc
 method exists; no forced enable or fabricated loaded textures), UI's unmerged
 positive receivers, FRAME camera/scheduling and OWN activation/install. Runtime
 resource selection/populations and desktop acceptance remain separate.
+
+## Strict-history decision
+
+[Allocator-to-read proof and diagnostics](p22-render-history.md) narrow the
+remaining boundary to unwritten allocator-residual3C/40, not a missing constructor
+constant. The user explicitly chose original behavior: no first-visible rule.
+The actual prior bytes remain unknown, so the reached guard remains and the
+containing checkbox is OPEN. Do not repeat the same confirmed investigation.

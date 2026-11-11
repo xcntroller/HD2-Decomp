@@ -83,12 +83,13 @@ public:
         require_open();
         if(!callbacks_||boundary_.activation_progress().finished)
             throw std::logic_error("Mission render requires a live bound presentation");
-        game::render_session(*this);
+        io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"0069B870 render policy",[&]{game::render_session(*this);});
     }
     std::uint32_t mode_flags()const{return startup_.application_flags();}
     bool external_loading_progress()const{return startup_.game_configuration().flag170!=0;}
     void render_actual_mission_scene(){
-        require_open();parent_.scene()->render();
+        require_open();
+        io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"Scene78 mission render",[&]{parent_.scene()->render();});
     }
     //Pages use the EXISTING process registry/font owner. Retire the real page
     //wrappers before World/HUD fonts; process overlay itself survives sessions.

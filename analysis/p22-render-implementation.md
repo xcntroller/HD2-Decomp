@@ -147,7 +147,7 @@ boundary. No constructor/read/refresh producer is established. Existing source
 rejects a reached read. A native fixture with known seeded history is only a
 bounded source audit, never actual initialization or mission reachability.
 
-UI base GameUiPresentation::command_before_scene rejects004B6720. UI9ff6d0d
+UI base GameUiPresentation::command_before_scene rejects004B6720. UI19f049b
 contains later command geometry/full HUD dispatch; inspected through Git only,
 still unmerged. Its GameUiRenderStages seam is unchanged. UI's remaining Human
 order, occupied actor/FPV and console producers remain its own contracts. No UI
@@ -177,3 +177,13 @@ static exports retained in ignored WORK. Six frozen inventory entries gain parti
 source coverage; no complete promotion or absent-wrapper/delegated-engine credit.
 Tracker render/check still encounters pre-existing missing ignored evidence
 `analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm` (0062D880).
+
+## Strict history continuation
+
+[Allocator-to-first-read proof](p22-render-history.md) and
+[receipt](checkpoints/p22-render-history-20261111.json) now establish the ordinary
+non-clearing allocator path and residual3C/40 boundary. The user chose original
+behavior, so no new initialization policy is installed. Actual render operation,
+camera and reached light/history state diagnostics are bound to the existing DATA
+store with primary-error preservation. This is not additional function credit,
+full containing closure, original engine execution or desktop delivery.
