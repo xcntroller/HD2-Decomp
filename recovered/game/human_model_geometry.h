@@ -75,6 +75,20 @@ public:
             if(human)joints_.build();
         }catch(...) {clear();throw;}
     }
+    void rebind_clothing_model(std::uint32_t mode,std::optional<OfflineBinding> offline){ //0079C320(2), no movement/joint/effect reset.
+        if(!model_)throw std::logic_error("Human geometry refresh requires bound model");
+        skeleton_.bind_graph(frames_,model_);bind_frames();
+        for(const auto& bone:skeleton_.bones()){
+            if(!bone.frame)throw std::runtime_error("Clothing model requires complete Human skeleton");
+            frames_.human_unit_pose(bone.frame);
+        }
+        frames_.human_unit_pose(model_);
+        if((mode&7u)==7u&&offline_quality_){
+            if(!offline||!offline_faces_)throw std::logic_error("Clothing face refresh requires actual profile/clothing bindings");
+            if(!face_model_)face_model_=std::make_unique<HumanFaceModel<Frames>>(frames_,*offline_faces_);
+            face_model_->bind(model_,offline->player,offline_camouflage_,offline->clothing,2);
+        }
+    }
     void clear() noexcept {
         joints_.clear(); //0079BAC0 retires body then point trees before camera references.
         attachment_pose_.clear();
@@ -1690,9 +1704,9 @@ private:
         secondary_pose_=Frame{}; //0079BD30 clears6630, scratch6638/6694 is reset by007AE320.
     }
     void bind_frames() {
-        auto camera=frames_.actor_find(model_,"camera3RD",0xffff);
+        camera3rd_.reset();auto camera=frames_.actor_find(model_,"camera3RD",0xffff);
         if(camera)camera3rd_.emplace(frames_.retain_actor_frame(camera));
-        camera=frames_.actor_find(model_,"cameraFPV",0xffff);
+        camera_fpv_.reset();camera=frames_.actor_find(model_,"cameraFPV",0xffff);
         if(camera)camera_fpv_.emplace(frames_.retain_actor_frame(camera));
         weapon1_=frames_.actor_find(model_,"hw1",0xffff);weapon2_=frames_.actor_find(model_,"hw2",0xffff);
         marker_z_=frames_.actor_find(model_,"z",0xffff);

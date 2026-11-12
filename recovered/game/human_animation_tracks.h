@@ -79,6 +79,15 @@ public:
             for(auto offset:{0x1f8u,0x21cu}){words_.set(offset,std::int32_t{75});words_.set(offset+4,std::int32_t{0});}
         }catch(...){clear();throw;}
     }
+    void rebind_model(Frame model){ //00772400, preserve metadata/current tracks. SAME model clothing skips copy.
+        const auto previous=model_;model_=model;
+        marker_=frames_.actor_find(model,"a",0xffff);
+        if(marker_)callbacks_.install_animation_events(marker_,*this);
+        if(previous&&previous!=model)for(unsigned slot=0;slot!=8;++slot)if(frames_.human_model_clip(previous,slot)){
+            const auto weight=frames_.human_model_weight(previous,slot);const auto clip=frames_.human_model_clip(previous,slot);
+            frames_.human_model_animation(model,clip,slot,weight,0);frames_.human_model_time(model,slot,frames_.human_model_time(previous,slot));
+        }
+    }
     void clear() noexcept { //007723B0, before CD0's separate shadow cleanup.
         if(!started_)return;
         attempt([&]{

@@ -5,6 +5,7 @@
 #include "game/human_track_effect_events.h"
 
 #include "game/human_action_control.h"
+#include "game/human_clothing_control.h"
 #include "game/human_control_action_queue.h"
 #include "game/human_ladder_control.h"
 #include "game/human_step_preparation.h"
@@ -103,6 +104,30 @@ public:
             }
         }
         geometry_.bind_loading(human.base().frame(),&human,this,mode_flags(),offline);
+    }
+    void rebind_clothing_model(){ //00786C20, same actual DD0/bone leases.
+        if(!human_||!active_)throw std::logic_error("Clothing refresh requires actual active DD0");
+        rebind_human_clothing_control(*this,*human_,frames_);
+    }
+    void retire_clothing_bone(unsigned n){if(!bones_.at(n))throw std::logic_error("Clothing refresh lost retained Human bone");bones_[n].reset();}
+    void retain_clothing_bone(unsigned n){bones_.at(n).emplace(frames_.retain_actor_frame(physical_.bones().at(n)));}
+    void refresh_clothing_bindings(){ //0075D1C0/0075D080,0077D410,0079C320(2),007936E0 in native order.
+        const auto model=human_->base().frame();
+        physical_.rebind_clothing_bones();physical_.rebind_clothing_markers();tracks_.rebind_model(model);
+        services_.clothing_bind_equipment_markers(*human_); //0075D080 tail0078CC90, before C00/geometry.
+        action_.rebind_model(frames_);
+        std::optional<typename Geometry::OfflineBinding> offline;
+        if((mode_flags()&7u)==7u){
+            const bool quality=services_.human_face_quality_enabled();
+            geometry_.configure_offline_faces(services_.human_face_resources(),quality,services_.human_face_camouflage());
+            if(quality){
+                auto* storage=human_->base().storage();auto* holder=storage?storage->holder(0):nullptr;
+                if(!holder)throw std::logic_error("Clothing face refresh requires actual holder0");
+                std::optional<float> clothing;if(const auto entry=holder->entry())clothing=frames_.entry_scalar(entry);
+                offline=typename Geometry::OfflineBinding{human_->properties.field19c==1,clothing};
+            }
+        }
+        geometry_.rebind_clothing_model(mode_flags(),offline);services_.clothing_rebind_equipment(*human_);
     }
     template<class Resources,class Sweep>void activate(Resources& resources,Sweep& sweep,const CollisionTree<Frame>* tree) {
         if(started_||!human_||!human_->base().frame())throw std::logic_error("DD0 activation has no bound cold Human");

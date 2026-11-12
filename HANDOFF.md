@@ -7,68 +7,69 @@ H8/P22-HUM remain OPEN. Read AGENTS.md, section2 of plan.md and
 No push/original EXE/DLL/Proton/Windows/application/desktop execution. Heavy
 compilation/Ghidra sequential. No permanent tests. User priority: getting in game.
 
-Latest [process order/marker/Active list checkpoint](analysis/human-h8-order-owner-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json): actual
-Startup manager+18 order pool, SAME HUD marker/World200-mode1 link/EC/dynamic
-buckets and full Active250 insertion/update/retire/reset/hold/recent query now
-use typed owners. Cleanup preserves callback-visible borrowers, removes buckets
-BEFORE EC/model return and releases route allocation BEFORE free-list return.
-Native merge accepts unordered; index0 publishes REQUEST direction, distinct
-from stored order. Native hold uses retained first-slot scalar storage after
-erase, not current B050. Positive route74 layout remains required. Native
-ASan/UBSan/LSan PASS84400/100 lifetimes with explicit endpoint doubles; strict
-actual process/Active/list/HUD/buckets/formation/entire Human i386 FULL LINK and
-latest launcher/probe rebuild PASS. Twelve new partials, no complete promotions;
-34 complete/3385 partial. Temporary audits fingerprinted/removed; fresh logs
-retained. Full Active authority is NOT enabled.
+**CURRENT USER PRIORITY:** finish PACK's actual Human effect dependencies in
+`../HD2-Decomp-p22-pack/analysis/p22-pack-hum-h8-review.md` BEFORE returning to
+ordinary H8 Active/frame work. PACK does not require H8 as a whole to close.
+Do not edit/import its agent's worktree. The review at H8 `14d59d3` is the baseline.
 
-Prior [action/HUD marker checkpoint](analysis/human-h8-order-action-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-order-action-20261112.json): SAME
-process current-action7/8/**12**,0052A1E0 driver lookahead and HUD marker model
-acquisition/update/return;00582920 creates12, NOT4. This source checkpoint is
-committed as1509bb6. No per-Human replacement pool.
+Latest [PACK clothing/Active dependency checkpoint](analysis/human-h8-pack-effects-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json): **command2
+active source dependency resolved**, actual005A6930/005A6A00/0048A780 through SAME
+DD0/25 bone capture-release-rebind-restore-retain, geometry face2, physical/tracks/
+equipment holsters and markers, Players frame collection/current camera and
+Sight target refresh. Native guard25C but target INDEX258 is preserved. Mode1
+precedes presentation lookup; authority queues only after success/fresh non7.
+Native ASan/UBSan/LSan PASS14800/100 lifetimes with explicit endpoints; actual
+packet/clothing/DD0/physical/geometry/face/tracks/equipment/Sight/Players/camera/
+Active task/follow/whole Human i386 FULL LINK and launcher/probe rebuild PASS.
+Temporary audits fingerprinted/removed. Thirteen new partials, no completes;
+34 complete/3398 partial. Source-only; PACK still must integrate/test its stream.
 
-NEXT H8.2:005282E0 pending processing and00529F60 setup,00534340 action-state
-command,00528950 decisions and00536120 follow BEFORE ordinary navigation/aim/
-movement/trigger/command retirement/self-treatment in00526550. Do not replace
-this mandatory receiver with idle success. Existing C/raw/source map in WORK and
-contracts; index before exports.0052EE60 raw proves it publishes REQUEST kind2
-and REQUEST20 after merging the stored order;0058D720 unordered copies. Native
-0052ED00/0052EB20/0052ECA0/0052F130/0052F150 are recovered from raw, absent frozen
-starts and receive no extra credit.0052F0E0 restores formation to selected28.
-Reconcile actual command callers, Human190 ownership/reference producers and
-native route74 producer/frame when selected; raw190 remains guarded. Preserve
-order teardown before HUD close and actor/target lifetimes. H8 plan records
-completed source dependencies separately from the still-open parent checkbox.
+The prior uncommitted Active work is preserved/verified in that checkpoint:
+00534340 actual1E0 task/224,00535730 cancel,005377F0 positive follow,005357E0
+regroup,00538390 empty-order callback and005982D0 formation change. Callback
+00455AF0 uses SAME process delayed speech vector0089AC20, native reverse duplicate
+scan/RandFloat200+300/truncate/game2C-after-draw; absent frozen start, no credit.
+Active posture observes actual name then verified retail logger RET. Full
+pending/decision/authority remains guarded; positive follow is not whole AI.
 
-Earlier source checkpoints: [frame composition](analysis/human-h8-frame-composition-source.md)
-Scene2→SAME World→borrowed Runtime→B0/inline/DD0/geometry with required guards;
-[presentation](analysis/human-h8-active-presentation-source.md)00525DA0 and actual
-Car004D9E10. Do not re-audit unchanged H1–H7 kernels. [H6 closure](analysis/human-h6-source-closure.md).
+**NEXT PACK:** commands7/8 general validation/application005A2D50/005A2E10 and
+005A2E90/005A2F50; these also underlie command20 live equipment0059EB60. Existing
+`transfer_prepared_cold_item` explicitly rejects active B0/A8; merely routing
+command20 to cold populate would be wrong. Recover actual live007D8B40 family/
+source/destination/notifications and lifecycle. Item commands9/11 need actual
+005A39D0/005A3A40 and005A37C0/005A38F0; Player/Remote12 requires0053D5D0/0053D870/
+00594110; named-animation18 requires005A9C20/005AC4A0/0077CE10/007757E0; common3
+remaining subtypes. All remain required guards. Indexed original C exports are
+now in WORK `human-h8-pack-effects`, and existing inventory/swap/peer lifecycle
+contracts; index before new exports.005B2A90 indexed but not yet exported.
 
-Other required H8.2: Script00591550, remaining00751480/00755500, reached Player
-camera/delayed commands, hazard00451900 and water005A97C0/00585A60. Hazard's
-blast5/1000/sourceNULL/initial100 precedes ShotMgr packet00452CA0/00452D00;
-not session-broadcast by assumption. Water174's exact typed producer and command
-retirement need recovery; do not convert a raw scalar to an assumed actor loan
-or just clear it. Non7 Remote/input/visibility is conditional, not an offline
-detour. H8.3+ async combat, Car/OWN/D11/absent actors, completed FRAME/render
-composition and user desktop acceptance remain open. Other branches stay owned
-by their agents; completed masterfa94dee render is not imported here yet.
+After PACK effects, resume005282E0/00529F60 pending processing,00528950 decisions,
+00536120 follow BEFORE ordinary navigation/aim/movement/command retirement in
+00526550; retain native first pointer slot after regroup resets pending list.
+Existing C/raw/source map in WORK and contracts. Human190/route74 producers and
+actor target lifetime remain required. Other H8.2 Script00591550,00751480/00755500,
+Player delayed/camera, hazard00451900 and water005A97C0/00585A60 remain open;
+H8.3+ async combat, Car/OWN/D11/absent actors, actual FRAME/render/application
+composition and user desktop acceptance remain open. No idle success substitution.
 
-Accidental worktree deletion recovery: committed source survived at31c436e.
-Tools now link to shared master .tools; WORK independently reflink-copied from
-surviving HUM. Some ignored H6/H8 audit logs were lost; old receipts remain
-historical verification, not reruns. Read-only Ghidra regenerated recent H8
-exports/static bytes, recorded in local `analysis/work/human-h8-worktree-recovery-20261112.json`.
-New checkpoint above has fresh verification logs.
+Prior verified source contracts: [process order/marker/Active250](analysis/human-h8-order-owner-source.md)
+`14d59d3`, [actions7/8/12 and actual HUD marker model](analysis/human-h8-order-action-source.md)
+`1509bb6`, [frame composition](analysis/human-h8-frame-composition-source.md),
+[presentation](analysis/human-h8-active-presentation-source.md), [H6](analysis/human-h6-source-closure.md).
+Do not re-audit unchanged H1–H7 kernels. Masterfa94dee render is not imported.
+
+Recovery from accidental deletion preserved committed source at31c436e. Tools
+link to shared master .tools; WORK independently reflink-copied from surviving
+HUM. Some old ignored H6/H8 audit logs were lost; historical receipts are not
+reruns. Recovery record `analysis/work/human-h8-worktree-recovery-20261112.json`.
+Latest checkpoints have fresh verification logs.
 
 WORK=`analysis/work/mission-world-20261103`. Index BEFORE new exports:
-`python3 -B tools/research_index.py find ADDRESS...`. Existing H8 order lifecycle,
-proxy/marker-return/action-boundary C and raw assembly are retained. OriginalSHA
+`python3 -B tools/research_index.py find ADDRESS...`. OriginalSHA
 8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307. Ghidra
 `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`, project
 `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
-hd2.unpacked.exe -readOnly -noanalysis. Check ERROR even on exit0. No types changed.
+hd2.unpacked.exe -readOnly -noanalysis. Check ERROR even exit0. No types changed.
 Build: `make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
 Ledger: `python3 -B tools/function_progress.py --render`/`--check`; `git diff --check`.

@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H8 PACK command2 active clothing, preserving Active task/follow work",
+  "base": "14d59d3",
+  "branch": "feature/p22-hum-h8",
+  "source_only": true,
+  "H8_complete": false,
+  "PACK_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-pack-effects-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_action_control.h",
+      "bytes": 3562,
+      "sha256": "f9bb2cd5483b657e76073afd0eb900e6130ae7be9c210016a886eb8adf8383f7"
+    },
+    {
+      "path": "recovered/game/human_active_ai_orders.h",
+      "bytes": 8281,
+      "sha256": "fd42a3a48c435b7d68aa3e439042fc306e9863802cf6e161db8d539e37e97fb2"
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "bytes": 17188,
+      "sha256": "b546a34077536bc36672bce20f78ab93ad3f00a36df7ab0a0fd00a307c307398"
+    },
+    {
+      "path": "recovered/game/human_ai_resources.h",
+      "bytes": 14885,
+      "sha256": "d01f3effb426f1fbea59d51fc3f7a7040c4840eb88320a8d4ceb8e5707c2e2ad"
+    },
+    {
+      "path": "recovered/game/human_ai_state_loading.h",
+      "bytes": 32002,
+      "sha256": "1219247b0b14646a6fefc20354594dcbd3ec65f967aa9e320ace6f3833ac782a"
+    },
+    {
+      "path": "recovered/game/human_animation_tracks.h",
+      "bytes": 45436,
+      "sha256": "951f06a70281ce055d0d2fe85af84990219f9fd582011e067b003f537392e96b"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 62279,
+      "sha256": "2aac0d6265c9dc34fd0aad9adcf16f02531147b1bd6ec9616d8fb59410e5c5d2"
+    },
+    {
+      "path": "recovered/game/human_equipment_loading.h",
+      "bytes": 7758,
+      "sha256": "195e12d20c744d5df2c6a01f5d62c25da5bc321b2140f1343799c0f5dd32ea8b"
+    },
+    {
+      "path": "recovered/game/human_formation.h",
+      "bytes": 37883,
+      "sha256": "4f6f6d3dca1f66899ba6872fbd3af5bdfd80db52a8d551085fd47e71b9f58033"
+    },
+    {
+      "path": "recovered/game/human_model_geometry.h",
+      "bytes": 113813,
+      "sha256": "af58be69c68b9fcc884fc5e77e5e20edcf7d0346c12d68894f02ee3539bd21d2"
+    },
+    {
+      "path": "recovered/game/human_physics_loading.h",
+      "bytes": 36430,
+      "sha256": "9b87d2558bb6bc15ecfce1618ac9ec4123cd15c46f4e142ed6b6c21b74d77345"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 190194,
+      "sha256": "0f96da0aec4201d3ec387ecc359c392c6665e921a4e63681bdb51b512537dfe2"
+    },
+    {
+      "path": "recovered/game/players_process.h",
+      "bytes": 7571,
+      "sha256": "31084e5ba7a3982e7cc67ba442ff2c51b1e574c8a72c274cc975948c9f3ded3f"
+    },
+    {
+      "path": "recovered/game/prepared_human_clothing.h",
+      "bytes": 10397,
+      "sha256": "2571c04d6dd85f9b8ee0ba993d0d5818aae97fa65ef64d122a664379ecbdca53"
+    },
+    {
+      "path": "recovered/game/prepared_human_loading.h",
+      "bytes": 5927,
+      "sha256": "5de875ec0651fee3b31689cc0bfc2f49efb180a9d2feba09ba5ee0b6141f0991"
+    },
+    {
+      "path": "recovered/game/sight_loading.h",
+      "bytes": 31893,
+      "sha256": "fd501ef5d210e8ac7061a4c1e19f760282aaa8665bcb006019e8c86469a39624"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 124536,
+      "sha256": "4ececc81f6ff6f883039f50d8112ad4afda805d5c4558775fb7f6863e4fd9908"
+    },
+    {
+      "path": "recovered/game/human_clothing_control.h",
+      "bytes": 1507,
+      "sha256": "e5c23cfdf10e939590600b6a6bc717846de511e3cd894b2b852e7cc7d7271e44"
+    },
+    {
+      "path": "recovered/game/human_active_ai_task_state.h",
+      "bytes": 6131,
+      "sha256": "d63aa22f1b0f737928df944a1da31db5f83653be561511de7b58947c93d78629"
+    }
+  ],
+  "original_program_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a6a00.c",
+      "bytes": 973,
+      "sha256": "0ba08487808994d1364ad38012b2a406703e01f249850d2a3e3749dcef43aad3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a2e10.c",
+      "bytes": 523,
+      "sha256": "b9fa92b5222cb4f5aef9119f88d64b4397eb16d4456015f78114b73cbb1161d8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a2f50.c",
+      "bytes": 661,
+      "sha256": "8ba605b6311064049a9ce07081d112d80b347e6b3d9d81909687afbdcf4b839c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a39d0.c",
+      "bytes": 403,
+      "sha256": "2d2bc021d86af7c94e73727762866eb84f772417947835c11b2b5bf9c0fd0302"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a3a40.c",
+      "bytes": 413,
+      "sha256": "51ff1ed900550bdd8dbf11f019fbaef33c867c9e80a6cd0942c2e02e82ce658c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a37c0.c",
+      "bytes": 1454,
+      "sha256": "93ad0ca167466c8efc45bdc338f3a2c65d2a1d5ca9c5e74a61f0ec414bff9f30"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a38f0.c",
+      "bytes": 1068,
+      "sha256": "dc494e9bb9188b01981bdd0418e87c599dafcffffd82c287e42bd22b5ac8e621"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/0053d5d0.c",
+      "bytes": 3075,
+      "sha256": "e227fe8a6caeaeae1f903ec88d4d5c9c6f8ff40f28172b6ff14c4b2ed69b235c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/0053d870.c",
+      "bytes": 615,
+      "sha256": "aa021adc929fefc1fb49c9061c778c64cd48b6234ba01789c015b10368a7bb7d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/00594110.c",
+      "bytes": 615,
+      "sha256": "e5a0cb6825ae82c0c4ff2bfd360f99264e1d6035f5cded8443344f00c2e2db79"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a9c20.c",
+      "bytes": 59,
+      "sha256": "d1053bbb6672980039b7258319265c1f7e85f903209f280aaf6a3a9124c309b0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005ac4a0.c",
+      "bytes": 59,
+      "sha256": "f36f932b43194071273892eaf8dbc6ef9e63f3066a3700a15fb3b22859f5401e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/007757e0.c",
+      "bytes": 1856,
+      "sha256": "fa8dc40a72f7f551b96b769750102d7b1ac80e0b7e20e595bcb495d6bd030e41"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-clothing-control/00786c20.c",
+      "bytes": 3014,
+      "sha256": "a0a14cfcefdcff635a71d98c172c5c3a1aaee8d228e4603e2942273b20d35219"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-clothing-rebind/0075d1c0.c",
+      "bytes": 536,
+      "sha256": "50abcd4325b00b4f26b1b3b5c5bc7140f2f1c980c747b40b21b1ce50b4e504bf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-clothing-rebind/0077d410.c",
+      "bytes": 262,
+      "sha256": "f13907467633241d34f9ff7668f4a75c1e7ffd13baae92f0ba0d30a5fa95c0c4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-clothing-rebind/007936e0.c",
+      "bytes": 2764,
+      "sha256": "7546f12a9048d095c056265334ac86d9fd01e1e230305302176fc59c54dad750"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-clothing-physical/0075d080.c",
+      "bytes": 1594,
+      "sha256": "0935c1d7ad6e7273b314dbc06e9bdb30f4405e37088709446fb7fd3adebc115b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-clothing-morph/00781af0.c",
+      "bytes": 146,
+      "sha256": "f871af889f17b0db8b26b1f89a56d2b1e670d12a09a96a39160fc15a1b3db4db"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-clothing-morph/00772400.c",
+      "bytes": 1031,
+      "sha256": "cb14eb84bf0a4816ec221b4f1a3b048663d410921c9e449fd03830c35de76678"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-clothing-rebind.asm",
+      "bytes": 8150,
+      "sha256": "285108275dbab7b8c8adaa1be9c1ff5f6811a356e95a51210b259a948b1c19de"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-clothing-sight.asm",
+      "bytes": 2258,
+      "sha256": "5b146246d7ce16aec01efbb0cfca75abe838e007740085972e1d9f736de93075"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-empty.asm",
+      "bytes": 10572,
+      "sha256": "7b767292f0ec3e9935a26c1b4f832bdaa9b3653bf63174e45ec291e5f3971684"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-follow.asm",
+      "bytes": 9028,
+      "sha256": "5ac427d83164a8ae88b139864155a70aacf5f468418784b8216c17f5c285ec81"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-setup/00534340.c",
+      "bytes": 1109,
+      "sha256": "9938b5ff16ae4921acb9330cc9457bcd21ed3e8d38dfba228e9ac3b10856a024"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-setup/005357e0.c",
+      "bytes": 1141,
+      "sha256": "84caddec396ee85a88cf9114c9c792e43f1dc7e0d2489dd0d7b4d0037d09e75f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-formation/005982d0.c",
+      "bytes": 368,
+      "sha256": "aa4e8109e43e78d3608c0e10c925cc0c693c96416104cc215f7b5ca6637a69a2"
+    }
+  ],
+  "verification": {
+    "native_sanitizers": "PASS 14800 assertions /100 lifetimes, ASan/UBSan/LSan, explicit endpoint doubles",
+    "actual_host_i386": "Strict full link, actual packet/clothing/DD0/geometry/Sight/equipment/Players/camera/Active task/follow/entire Human frame; not executed",
+    "launcher_and_startup_probe": "rebuild PASS; not executed",
+    "logs": [
+      "analysis/work/mission-world-20261103/human-h8-pack-clothing-native-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-clothing-native-run.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-effects-host-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-clothing-application-link.log"
+    ]
+  },
+  "temporary_audits_removed_after_verification": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-clothing-native.cpp",
+      "bytes": 13520,
+      "sha256": "9d1cedbcb5a0e4639758fb4b35857ffb83336d9397a471fc14cfd3d8b8af6a5b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-clothing-native",
+      "bytes": 3975560,
+      "sha256": "dbf798386a453bb5103bb29dcbae1a2056ea3b21c4d7d6b3c0768fc70b025a78"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects-host-i386.cpp",
+      "bytes": 1081,
+      "sha256": "121aa999f19dec50db3273de98faa9ac54f72b69d7466c7366501e422c9a1261"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects-host-i386.exe",
+      "bytes": 8806912,
+      "sha256": "934d439090d0af5a542fdd0ddd24a5ee4857635ba7e13b28062fc3e955759a6b"
+    }
+  ],
+  "remaining": [
+    "PACK commands3/7/8/9/11/12/18/20 positive effects and actual general live insertion",
+    "PACK separate stream/FIFO/module integration/verification",
+    "Full pending005282E0/00529F60, decision00528950/follow00536120 and00526550 authority",
+    "Other H8.2+, actual application/FRAME/OWN/render and desktop acceptance"
+  ],
+  "ledger": {
+    "new_partials": 13,
+    "new_completes": 0,
+    "complete": 34,
+    "partial": 3398,
+    "absent_start_00455af0_credit": false
+  }
+}

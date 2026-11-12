@@ -753,6 +753,10 @@ public:
         const auto z=actor_find(model,"z",0xffff),q=actor_find(model,"q",0xffff);
         call<void>(scene_.frame(),0x138,model,q,z);
     }
+    void register_replaced_human_model(Frame model){ //00786C20 only registers unsectored or sector-kind5 models.
+        const auto sector=field<Frame>(model,0x108);
+        if(!sector||field<std::uint16_t>(sector,0xf8)==5)register_human_model(model);
+    }
     void refresh_dynamic_human_model(Frame model){call<void>(scene_.frame(),0x144,model);} //007646F0/00755500, original scene receiver.
     void detach_human_effect_model(Frame model){(void)call<std::int32_t>(model,0x38,Frame{},std::uint32_t{5});} //007B0910 ignores native LinkTo return.
     void human_reaction_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{1});} //0074D510/occupied seat removal ignore LinkTo status.

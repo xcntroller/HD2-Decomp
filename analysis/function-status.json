@@ -13383,13 +13383,16 @@
       "program": "client",
       "entry": "005377f0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005377f0: Active AI constructor/loading/handover/retirement, loading action modes/reset and Sight reactions; actual weapon reselection remains required.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 005377f0: Active AI constructor/loading/handover/retirement, loading action modes/reset and Sight reactions; actual weapon reselection remains required. Extended: Full positive and disabled follow policy with actual task cancellation, mode/masks/timers, formation leader distance and Players delayed callback; unordered distance follows native far branch.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
       "evidence": [
         "recovered/game/human_active_ai_state_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_active_ai_task_state.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
       ]
     },
     {
@@ -13762,13 +13765,15 @@
       "program": "client",
       "entry": "0055e130",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0055e130: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 0055e130: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded. Extended: Write actual path90 movement flags masked1F000 on SAME path owner.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
       "evidence": [
         "recovered/game/human_ai_resources.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
       ]
     },
     {
@@ -19744,13 +19749,15 @@
       "program": "client",
       "entry": "0046eb20",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0046eb20: Actual shared Sight observer/target/relations allocation, marker binding, mode and removal callbacks.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 0046eb20: Actual shared Sight observer/target/relations allocation, marker binding, mode and removal callbacks. Extended: Refresh markers on SAME actual target record, preserving target identity/relations and existing Human fallback marker policy.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
       "evidence": [
         "recovered/game/sight_loading.h",
         "analysis/sight-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
       ]
     },
     {
@@ -21353,24 +21360,28 @@
       "program": "client",
       "entry": "005a6930",
       "status": "partial",
-      "coverage": "SAME Human inventory lookup; native strstr resource shortcut, actual dubbing retirement/cold model replacement, f marker and178, ignoring optional effects failure.",
-      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "coverage": "SAME Human inventory lookup; native strstr resource shortcut, actual dubbing retirement/cold model replacement, f marker and178, ignoring optional effects failure. Extended: Actual active clothing lookup/shortcut, dubbing, SAME-model replacement, head marker and native25C-guard/258-target-index Sight refresh; publish178 and authority forwarding.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
       "evidence": [
         "recovered/game/prepared_human_clothing.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "0048a780",
       "status": "partial",
-      "coverage": "Cold Human SAME model replacement through actual category1 cache, eye capture/restoration, temporary rand(6)-4 pose and two-way reverse animation/link/foreign-child transfer.",
-      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "coverage": "Cold Human SAME model replacement through actual category1 cache, eye capture/restoration, temporary rand(6)-4 pose and two-way reverse animation/link/foreign-child transfer. Extended: Extend SAME-model animation/link/attachment replacement through actual active DD0/equipment visibility and Players/current camera refresh before eye restoration.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
       "evidence": [
         "recovered/game/prepared_human_clothing.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
       ]
     },
     {
@@ -28859,12 +28870,15 @@
       "program": "client",
       "entry": "005767f0",
       "status": "partial",
-      "coverage": "Guard crouch branch applies actual DD0 and navigation gates, writes shared input 20 and clamps C8 to at least 300.",
-      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "coverage": "Guard crouch branch applies actual DD0 and navigation gates, writes shared input 20 and clamps C8 to at least 300. Extended: Extend existing posture gates through actual Active name observation005A82C0 followed by genuine retail loggerRET; retained common posture body.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "recovered/game/human_ai_state_loading.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
       ]
     },
     {
@@ -45546,6 +45560,162 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-order-owner-source.md",
         "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6a00",
+      "status": "partial",
+      "coverage": "Received clothing mode1-before-lookup, actual same-model/DD0/equipment/Players/camera refresh, head marker178; no authority Sight refresh.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/prepared_human_clothing.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00786c20",
+      "status": "partial",
+      "coverage": "Unregister, capture25 old bone poses before releasing each reference, ordered actual DD0 rebind, restore/retain25 new bones, conditional sector registration and model flag/update.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_clothing_control.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075d1c0",
+      "status": "partial",
+      "coverage": "Refresh25 physical bone borrowers then actual0075D080 collision/face/tracks/equipment links without resetting live descriptors.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_physics_loading.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075d080",
+      "status": "partial",
+      "coverage": "Refresh actual shot/collision/bone borrowers, existing descriptor frame links, face, animation event marker and equipment markers in native order.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_physics_loading.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077d410",
+      "status": "partial",
+      "coverage": "Refresh C00 HD marker borrower from actual current Human model without command reset.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_action_control.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007936e0",
+      "status": "partial",
+      "coverage": "Retire/rebuild actual holsters, ascending storage1 stacks and hand-group0 models, then refresh230 volume/body marker borrowers; retain other equipment state/light.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_equipment_loading.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00781af0",
+      "status": "partial",
+      "coverage": "Current-model face rebind through actual existing007809C0 owner at clothing refresh.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_physics_loading.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00772400",
+      "status": "partial",
+      "coverage": "Rebind current model and install actual animation-event marker; copy positive old-model clips/weights/time on distinct-model branch without resetting track metadata.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534340",
+      "status": "partial",
+      "coverage": "Initialize actual Active1E0 task scalar payload/target224, target identity and exact byte208/209 stores; preserve neighboring lanes.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_state.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00535730",
+      "status": "partial",
+      "coverage": "Cancel current task through actual query/path and selected formation owners; native37/512 masks replace174 when nonzero, tail runs even idle.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_state.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005357e0",
+      "status": "partial",
+      "coverage": "Select actual Player28 before regroup/reset/cancel/mode and formation callbacks; mark actual member changed and preserve follow/empty-order tail ordering.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_state.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00538390",
+      "status": "partial",
+      "coverage": "Actual empty pending-list gate to SAME Players singleton delayed speech scheduler00455AF0.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_state.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005982d0",
+      "status": "partial",
+      "coverage": "On actual leader/slot storage, reverse membership lookup including NULL then set member88 changed; no rebuild.",
+      "limitations": "Source-only typed native adaptation; original allocator/container/object/virtual ABI and delegated engine bodies excluded. Focused native endpoint doubles and concrete host i386 linking are not application/desktop verification. Full pending decisions, remaining PACK effects and containing H8 integration remain open.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
       ]
     }
   ]

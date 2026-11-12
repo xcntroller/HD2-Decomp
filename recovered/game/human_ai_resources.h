@@ -117,6 +117,7 @@ public:
     bool flags(std::uint32_t bits)const{return (state_.get<std::uint32_t>(0x40)&bits)!=0;} //0055E2E0.
     void set_flags(std::uint32_t bits){state_.set(0x40,state_.get<std::uint32_t>(0x40)|bits);} //0055E2B0.
     void clear_flags(std::uint32_t bits){state_.set(0x40,state_.get<std::uint32_t>(0x40)&~bits);} //0055E2C0.
+    void movement_flags(std::uint32_t flags){state_.set(0x90,flags&0x1f000u);} //0055E130.
     void request_vehicle_position(const HumanVector& destination,float speed){ //0055E160, signed speed and NaN tangent sentinel.
         if(std::abs(static_cast<long double>(speed))>9.99999993922529e-9){clear_flags(4);set_flags(1);state_.set(0x50,destination);state_.set(0x60,0x7fc00000u);state_.set(0x8c,speed);}
         else set_flags(4);

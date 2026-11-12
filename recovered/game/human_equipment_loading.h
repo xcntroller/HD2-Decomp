@@ -36,6 +36,21 @@ public:
     HumanEquipmentLoading(const HumanEquipmentLoading&)=delete;
     HumanEquipmentLoading& operator=(const HumanEquipmentLoading&)=delete;
     template<class Human>void activate(Human& human){activation_.activate(human);}
+    template<class Human>void rebind_clothing_model(Human& human,Items& items){ //007936E0, retain230 state/attachments/light.
+        const auto model=human.base().frame();holsters_.clear();holsters_.initialize(model);
+        auto* storage=human.base().storage();if(!storage||storage->single())throw std::logic_error("Clothing holsters require actual Human storage");
+        auto* stacks=storage->slots(1);if(!stacks)throw std::logic_error("Clothing holsters lost actual stack array");
+        for(std::size_t n=0;n<stacks->occupied_stacks();++n){
+            const auto& stack=stacks->slots().at(n);if(stack.entries.empty())continue;
+            holsters_.show_items(items.runtime_item(stack.entries.front()).definition(),static_cast<std::int32_t>(stack.entries.size()),services_.equipment_opacity());
+        }
+        auto* hand=storage->holder(3);if(!hand)throw std::logic_error("Clothing holsters lost actual hand holder");
+        if(const auto entry=hand->entry()){
+            const auto& definition=items.runtime_item(entry).definition();
+            if(human_item_holster_group(definition)==0)holsters_.show_items(definition,1,services_.equipment_opacity());
+        }
+        state_.bind_markers(frames_,model);
+    }
     void deactivate() noexcept {activation_.deactivate();}
     void refresh(Frame model)override{visibility_.refresh(model);}
     auto& state(){return state_;}const auto& state()const{return state_;}

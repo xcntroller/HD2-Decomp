@@ -67,6 +67,10 @@ public:
         for(std::size_t n=slots.size();n;)if(slots[--n].member==human){if(index)*index=static_cast<std::int32_t>(n);return true;}
         return false;
     }
+    void mark_member_changed(Human* human){ //005982D0, reverse membership including NULL, no rebuild.
+        if(!leader_||!slots_)return;
+        std::int32_t index=0;if(contains(human,&index))slot(static_cast<unsigned>(index)).words.set(0x88,std::uint8_t{1});
+    }
     bool consume_member_position(Human* human,HumanVector& position,std::uint16_t* point=nullptr){ //00598320.
         if(!human||!leader_||!slots_)return false;
         std::int32_t index=0;if(!contains(human,&index))return false;

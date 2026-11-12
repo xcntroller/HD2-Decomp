@@ -64,6 +64,7 @@
 #include "game/human_script_event_output.h"
 #include "game/human_sound_state_callbacks.h"
 #include "game/human_squad_snapshot.h"
+#include "game/human_hud_names.h"
 #include "game/human_score_presentation.h"
 #include "game/human_death_objective.h"
 #include "game/human_peer_removal.h"
@@ -115,6 +116,18 @@ public:
         auto& d=dependencies();auto* leader=d.players.control().selected_player(mode_flags());if(!leader)return;
         auto* human=state.human();if(!human)throw std::logic_error("Active order formation requires bound Human44");
         set_human_formation<typename Dependencies::ActorFrames>(d.scene.frames(),d.navigation,d.startup.players_process().formation_scale(),*human,leader);
+    }
+    template<class Human>void active_posture_debug_name(Human& human){ //005767F0 Active prefix:005A82C0 then retail logger0069BFE0 RET.
+        (void)human_hud_short_name(human,mode_flags(),dependencies().startup.game_control_records());
+    }
+    auto* active_selected_player(){return dependencies().players.control().selected_player(mode_flags());}
+    template<class State,class Human>void set_active_order_formation(State& state,Human* leader){ //005357E0's005A91A0, including NULL.
+        auto& d=dependencies();auto* human=state.human();if(!human)throw std::logic_error("Active regroup requires bound Human44");
+        set_human_formation<typename Dependencies::ActorFrames>(d.scene.frames(),d.navigation,d.startup.players_process().formation_scale(),*human,leader);
+    }
+    template<class Human>void active_order_completion(Human* human){ //00538390→actual Players singleton virtual38/00455AF0.
+        auto& d=dependencies();d.startup.players_process().schedule_order_completion(human,d.startup.delayed_player_speech(),
+            [&]{return d.scene.frames().volume_random_unit();},[&]{return game_frame_serial();});
     }
     auto& human_ai_navigation_jobs(){return dependencies().startup.human_ai_navigation_jobs();}
     std::uint32_t human_frame_random_word(){return dependencies().startup.random_word();}
@@ -1801,6 +1814,35 @@ public:
         if(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=7u)return;
         throw std::runtime_error("Human PACK command20 requires Remote equipment replacement0059EB60 on actual Items/B0/DD0");
     }
+    template<class Human>void clothing_control_refresh(Human& human){ //0048A780→00786C20; cold Human has no DD0.
+        if(!human.loading_lifetime){if(human.fielda0)throw std::logic_error("Clothing raw A0 has no typed DD0 lifetime");return;}
+        if(auto* control=human_inline(human).control())control->rebind_clothing_model();
+    }
+    template<class Human>void clothing_equipment_visibility(Human& human){ //Fresh A0 gate,007866D0→007920B0.
+        if(!human.loading_lifetime){if(human.fielda0)throw std::logic_error("Clothing raw A0 has no typed DD0 lifetime");return;}
+        if(auto* control=human_inline(human).control())control->refresh_equipment_visibility();
+    }
+    template<class Human>void clothing_bind_equipment_markers(Human& human){ //0075D080's actual230 native0078CC90.
+        if(auto* equipment=human_inline(human).equipment())equipment->state().bind_markers(dependencies().scene.frames(),human.base().frame());
+    }
+    template<class Human>void clothing_rebind_equipment(Human& human){ //00786C20's conditional230/007936E0.
+        if(auto* equipment=human_inline(human).equipment())equipment->rebind_clothing_model(human,dependencies().world_actors.items());
+    }
+    template<class Human>void clothing_players_refresh(Human& human){ //0048A780, fresh reverse roster and actual current2C.
+        if(human.properties.field19c!=1)return;
+        auto& d=dependencies();auto& control=d.players.control();
+        for(auto n=control.human_roster().size();n;){
+            const auto index=static_cast<std::int32_t>(--n);if(control.human_roster().at(index)!=&human)continue;
+            control.collect_frames(index);
+            if(control.current_player()==&human){
+                HumanVector direction;d.camera.query_direction(3,direction);d.presentation.reset_player_camera(0);d.camera.set_direction(direction);
+            }
+            return;
+        }
+    }
+    template<class Human>void clothing_refresh_sight(Human& human){ //005A6930 native guard25C but INDEX258, preserved even when indices differ.
+        refresh_human_clothing_sight(human,dependencies().sight.source());
+    }
     auto& human_command_frames(){return dependencies().scene.frames();}
     template<class Human>void replay_human_climb_position(Human& human,const HumanVector& position){
         auto* control=human_inline(human).control();
@@ -1890,7 +1932,13 @@ public:
         case 1:{
             present_human_damage(human,human_damage_command_value(command),*this,dependencies().scene.frames());return;
         }
-        case 2:throw std::runtime_error(authority?"Human PACK command2 requires active clothing005A6930":"Human PACK command2 requires active clothing005A6A00");
+        case 2:{
+            PreparedHumanLoading<Dependencies> clothing(dependencies());
+            if(authority){
+                if(clothing.apply_clothing(human,f.template get<std::int32_t>(8))&&(mode_flags()&7u)!=7u)state->queue_frame_command(command,true);
+            }else clothing.apply_received_clothing(human,f.template get<std::int32_t>(8));
+            return;
+        }
         case 3:{
             const auto identity=human.base().id10();
             receive_human_common_command(*state,command,authority,player,*this,

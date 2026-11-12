@@ -383,6 +383,9 @@ public:
         }catch(...){try{restore();}catch(...){}throw;}
         restore();return false;
     }
+    void refresh_target_markers(std::int32_t index){ //Target virtual08/0046EB20, preserve SAME record/relations.
+        auto& target=required_target(index);target.markers.clear();bind_markers(target);
+    }
     Target* target(std::int32_t index){return live_target(index);}
     const auto& observers()const{return observers_;}const auto& targets()const{return targets_;}
 private:

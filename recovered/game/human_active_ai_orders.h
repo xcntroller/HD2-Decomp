@@ -32,6 +32,10 @@ public:
     };
     ~HumanActiveAIOrders(){while(!records_.empty())records_.pop_back();} //Defined rollback guard; normal0052EF20 retires with callbacks first.
     auto& records(){return records_;}const auto& records()const{return records_;}
+    Order& retained_first()const{ //005282E0 rereads begin[0] after00529F60 can reset the list.
+        if(!retained_first_)throw std::logic_error("Active pending processor requires its native retained first slot");
+        return *retained_first_;
+    }
     Order& at(std::size_t index)const{auto* value=records_.at(index).get();if(!value)throw std::logic_error("Active order slot lost its borrower");return *value;}
     template<class State,class World>bool append(State& ai,Lease value,World& world){return insert(ai,std::move(value),0,true,world);}
     template<class State,class World>bool insert_after(State& ai,Lease value,std::int32_t after,World& world){return insert(ai,std::move(value),after,false,world);}

@@ -26,10 +26,11 @@ public:
         Startup& startup;
         void retire_model(Frame model){startup.retire_game_dubbing(model);}
     };
-    using Clothing=game::PreparedHumanClothing<Frames,Models,Items,Effects,Random,DubbingModels,Control>;
+    using Runtime=Borrowed<decltype(std::declval<Dependencies&>().human_factory.world_services())>;
+    using Clothing=game::PreparedHumanClothing<Frames,Models,Items,Effects,Random,DubbingModels,Control,Runtime>;
     explicit PreparedHumanLoading(Dependencies& dependencies)
         :d_(dependencies),dubbing_{d_.startup},clothing_(d_.scene.frames(),d_.startup.loaded_resources(),d_.world_actors.items(),d_.scene.effects(),
-            d_.audio.random_source(),dubbing_,d_.players.control(),d_.catalogue,game::SessionTimeWord(d_.session)){}
+            d_.audio.random_source(),dubbing_,d_.players.control(),d_.catalogue,game::SessionTimeWord(d_.session),d_.human_factory.world_services()){}
     Human* operator()(const game::HumanVector& position,const game::HumanVector& direction,std::int32_t identity,
                       frontend::PreMissionSoldier& soldier,std::int32_t clothing,bool alternate){
         return game::create_prepared_human(d_.scene.frames(),d_.startup.loaded_resources(),d_.scene.frames(),*this,
@@ -62,6 +63,8 @@ public:
     std::uint32_t peer_human_ticks(){return d_.startup.peer_human_ticks();}
     void append_peer_auxiliary_human(Human* human){(void)d_.players.auxiliary().human_roster().append(human);} //0045FDE0→00461AA0.
     void publish_peer_human(std::uint32_t peer,Human& human){game::publish_session_peer_human(d_.startup.game_control_records(),peer,human,*this);}
+    bool apply_clothing(Human& human,std::int32_t identity){return clothing_.apply_prepared_human_clothing(human,identity);}
+    void apply_received_clothing(Human& human,std::int32_t identity){clothing_.apply_received_clothing(human,identity);}
     void populate(Human& human,frontend::PreMissionSoldier& soldier){
         game::populate_prepared_human_storage_live(human,soldier,d_.world_actors.items(),clothing_,[this]{return mode_flags();});
     }

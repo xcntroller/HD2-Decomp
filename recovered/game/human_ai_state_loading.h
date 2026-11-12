@@ -278,6 +278,7 @@ public:
         emit_sight(actor,2); //005741F0.
     }
 protected:
+    virtual void observe_active_posture_name(){throw std::logic_error("Active posture requires its derived name observer");}
     template<class Inline>void request_navigation_posture(std::uint32_t posture,Inline& control,std::uint32_t mode){ //005767F0.
         if(this->human()->field174)return;
         auto* animation=control.control();
@@ -285,7 +286,7 @@ protected:
         if(human_frame_signed_word(animation->animation_state_word(0xa30))>0||
            animation->animation_state_word(0x1d8)==0x5fu)return;
         if(this->words().template get<std::uint32_t>(0x48)==3)
-            throw std::runtime_error("Active AI posture requires the actual localized frame-text receiver");
+            observe_active_posture_name(); //005A82C0 before genuine RET0069BFE0; no localized text lookup.
         const auto flags=this->words().template get<std::uint32_t>(0x50);
         if(flags&posture||(posture!=1&&posture!=2&&posture!=4))return;
         const auto point_kind=this->point()?this->point()->byte16:0;

@@ -34,6 +34,27 @@ Continue through these dependencies, committing verified larger checkpoints.
 Do not re-audit unchanged H1–H7 kernels or expand non7 research solely because
 an adjacent function exists. Required missing bodies stay honest.
 
+## PACK effects — current priority within H8.2
+
+User-directed priority after PACK's [review](../../HD2-Decomp-p22-pack/analysis/p22-pack-hum-h8-review.md)
+at H8 `14d59d3`: finish the mandatory effect families below before resuming
+ordinary Active/frame work. PACK closure does not require all of H8 to finish.
+The preceding Active task/follow work is preserved and verified in the clothing checkpoint; full decisions remain open.
+
+- [x] Command2: active clothing/DD0/equipment/Sight/Players/camera [source checkpoint](human-h8-pack-effects-source.md).
+- [ ] Commands7/8: general inventory validation, transfer/swap and presentation.
+- [ ] Commands9/11: item pickup and source-container validation/application.
+- [ ] Command12: actual Player validation/application and Remote actions.
+- [ ] Command18: named animation resources, setup and control lifetime.
+- [ ] Command20: active Remote equipment/storage replacement and retirement.
+- [ ] Command3: remaining selected common-command subtypes and effects.
+- [ ] Verify actual owners, packet positive/failure/lifetime paths, concrete host
+  link and launcher; publish committed contracts for PACK integration.
+
+Index lookup and original call boundaries are retained under WORK's
+`human-h8-pack-effects*`. Do not replace required positive effects with guards
+and claim resolution. PACK's own integration/stream checks remain its work.
+
 ## Active AI dependency boundary (current H8.2 frontier)
 
 The initial authority path00526550 requires005282E0 pending tasks,00528950

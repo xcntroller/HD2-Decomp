@@ -7,6 +7,7 @@
 #include "game/human_active_ai_presentation.h"
 #include "game/human_active_ai_order_action.h"
 #include "game/human_active_ai_orders.h"
+#include "game/human_active_ai_task_state.h"
 
 namespace hd2::game {
 
@@ -87,6 +88,14 @@ public:
     auto& pending_orders(){return orders_.records();}const auto& pending_orders()const{return orders_.records();}
     bool orders_recently_changed()const{return orders_.recently_changed(*this,services_);}
     void append_hold_order(const HumanVector& position,const HumanVector& direction){orders_.hold(*this,position,direction,services_);}
+    void initialize_task(SceneActor<Frames>* target,std::uint32_t action,const HumanVector& position,const HumanVector& direction,bool enabled,float radius){
+        initialize_human_active_ai_task(*this,target,action,position,direction,enabled,radius);
+    }
+    void cancel_task(){cancel_human_active_ai_task(*this,services_);}
+    void regroup(bool reset){regroup_human_active_ai(*this,reset,services_);}
+    void enable_follow(bool immediate){set_follow(true,immediate);}
+    void pending_first_mode(unsigned mode){set_first_mode(mode);} //00538510, same state/mode timers.
+    void refresh_pending_action_mode(){refresh_action_mode();} //00538640.
     void sight_enemy_acquired(Human& actor) override { //0052E5B0: shared event FIRST, before Players/Speech.
         this->emit_sight(actor,0);
         auto* human=this->human();if(!human)throw std::logic_error("Active AI sight has no Human");
@@ -186,17 +195,18 @@ public:
             state_.set(0x1a0,std::uint32_t{4000});inventory.select_weapon(selected,slot);
         }
     }
+protected:
+    void observe_active_posture_name()override{
+        auto* human=this->human();if(!human)throw std::logic_error("Active posture requires Human44");
+        services_.active_posture_debug_name(*human);
+    }
 private:
     bool weapon_command_blocked()const {
         return this->words().template get<std::int32_t>(0x64)>0&&this->words().template get<std::int32_t>(0x60)!=-1;
     }
     static std::int32_t signed_health(const Human& human){const auto bits=human.properties.stats_ec[0];std::int32_t result;std::memcpy(&result,&bits,4);return result;}
     void reset_action(){this->resources().retire_current_action();} //00575820.
-    void set_follow(bool enabled,bool immediate) { //005377F0(false,...) loading branch.
-        if(enabled)throw std::runtime_error("Active AI follow requires actual formation/runtime orders");
-        state_.set(0x188,std::uint8_t(immediate));state_.set(0x189,std::uint8_t{0});
-        state_.set(0x1b0,std::uint32_t{0});state_.set(0x160,this->current_direction());set_first_mode(immediate?3:2);
-    }
+    void set_follow(bool enabled,bool immediate){follow_human_active_ai(*this,enabled,immediate,services_);} //005377F0.
     void set_first_mode(unsigned value) { //00538510.
         if(value<16)state_.set(0x1c8,static_cast<std::uint32_t>(value));
         else if(value<20){state_.set(0x1cc,static_cast<std::uint32_t>(value));state_.set(0x1b4,std::uint32_t{2000});}
