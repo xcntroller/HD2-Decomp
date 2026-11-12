@@ -51,6 +51,10 @@ public:
         default:throw std::runtime_error("No original Human B0 factory case");
         }
         result->bind_frame_command_packets(services_);
+        result->bind_common_command_receiver([this](Base& state,const HumanPacketCommand& command){
+            dispatch_human_deferred_common_command(state,command,
+                [this](Base& current,const HumanPacketCommand& value){return common_command(current,value);});
+        });
         if(kind==4||kind==8)result->bind_special_music_reference([this](bool enabled){services_.human_special_music_reference(enabled);});
         return result;
     }
@@ -168,6 +172,12 @@ public:
         if(!script||state.words().template get<std::uint32_t>(0x48)!=5)
             throw std::logic_error("Script binding notification requires the actual current state5");
         script->script_context(context);
+    }
+    void script_formation(Base& state,typename Script::Formation* formation){
+        auto* script=dynamic_cast<Script*>(&state);
+        if(!script||state.words().template get<std::uint32_t>(0x48)!=5u)
+            throw std::logic_error("Formation binding requires actual Script B0");
+        script->script_formation(formation); //0058D900; producer owns borrower retirement before formation destruction.
     }
     void retire_dead_state(Base& state){ //Virtual84:005836E0, with Player0053BD00 tail.
         retire_human_dead_state(state,services_,frames_);

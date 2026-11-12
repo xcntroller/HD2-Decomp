@@ -60,8 +60,9 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
 - [x] H3 — Offline Car/StaticWeapon entry/exit and mounted receivers on existing owners.
   [Verified source](checkpoints/p2.2-human-seat-interaction-20261112.json); [contract](human-seat-interaction-source.md).
   [H2 integration](checkpoints/p2.2-human-h3-integration-20261112.json) retains D4b/D6b1 owners and D5 guards.
-- [ ] H4 — Common AI outputs: reached00584E30 completions, B0 action/navigation/
-  formation, track events and DD0 transition/attachment consumers.
+- [x] H4 — Common outputs, available completions, track/DD0, Script/vehicle and
+  subgroup/formation source on existing owners. [Source closure and external limits](human-h4-source-closure.md),
+  [receipt](checkpoints/p22-hum-h4-source-20261112.json). Full Runtime/absent actors/application remain H8.
 - [x] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9
   release and actual Scene2 actor dispatch. [Completed source](checkpoints/p2.2-human-guard-area-source-20261112.json),
   integrated from completed aggregate201adbf; H8/desktop verification remains separate.

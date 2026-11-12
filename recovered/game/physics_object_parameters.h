@@ -44,7 +44,7 @@ std::optional<PhysicsObjectParameters<Frame>> physics_scene_parameters(Frame fra
     if(has("can")) {value.type=2;value.first_list=true;return value;}
     if(has("cross"))value.type=6;
     value.free_axis=has("free")||has("axis");value.tree=has("tree");
-    const auto broken=text.find("break");value.breakable=broken!=std::string::npos;
+    const auto broken=text.find("break");value.breakable=broken!=std::string::npos;value.pickup=value.breakable; //Native record1E→object204 is ONE flag.
     if(value.breakable) {
         const auto start=text.find_first_not_of(" \t\r\n\v\f",broken+5);
         if(start==std::string::npos)value.break_model="plotdira";

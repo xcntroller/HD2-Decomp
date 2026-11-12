@@ -144,7 +144,12 @@ public:
     }
     void assign_seat(std::int32_t index,SceneActor<Frames>* human)override{assign_car_seat(*this,index,human);}
     bool exit_seat(std::int32_t index)override{return exit_car_seat(*this,index);}
+    bool seat_exit_pose(std::size_t index,Vector& position,Vector& direction)override{return exit_pose(index,position,direction);} //004DA420 query, no occupant mutation.
     void driver_input(float pedal,float steering)override{request_car_seat_input(*this,pedal,steering);}
+    void path_governor(float speed)override{if(!initial_)throw std::logic_error("Car path requires initialized governor");initial_->drive.governor=speed>0?static_cast<float>(static_cast<long double>(speed)+.5f):speed;} //004F2630, positive half-unit margin.
+    void path_drive(float value)override{if(!initial_)throw std::logic_error("Car path requires initialized drive");request_car_drive_pedal(initial_->control_requests,initial_->drive,actor_.geometry->physics().scalars(),initial_->solver.substeps,value,true);} //004F2100.
+    void path_brake(float value)override{if(!initial_)throw std::logic_error("Car path requires initialized brake");request_car_brake_pedal(initial_->control_requests,initial_->drive,actor_.geometry->physics().scalars(),initial_->solver.substeps,value);} //004F2270.
+    void path_emergency(bool enabled,bool held)override{if(!initial_)throw std::logic_error("Car path requires initialized emergency brake");request_car_emergency_brake(actor_.geometry->physics().scalars(),initial_->solver.substeps,initial_->brake_ramp,initial_->brake_amount,initial_->brake_latch,enabled,held);} //004F26A0.
     void driver_frame_inputs(const HumanFrameInputBuffer& first,const HumanFrameInputBuffer& second)override{request_car_driver_frame_inputs(*this,first,second);}
     void dead_human_controls()override{ //005A0220, actual core controls, before reaction removes the occupied seat.
         if(!initial_||!ready_)throw std::logic_error("Dead Human Car controls require initialized runtime");

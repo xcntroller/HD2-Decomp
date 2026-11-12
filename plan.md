@@ -251,7 +251,7 @@ preparation, not a standalone audit-only milestone.
   - [ ] OWN/H8 entry integration: complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
   - [x] Complete H2-owned reaction composition, consolidated verification, inventory and audit cleanup ([source receipt](analysis/checkpoints/p2.2-human-h2-source-20261112.json)). External Car producer/entry failures remain guarded; H8 owns full Human-frame assembly.
 
-  Human branch assignments: H1/H3/H5/H7 finished and merged into `feature/p22-hum`; [completed aggregate201adbf is integrated into H2](analysis/human-completed-branch-integration.md). H2 source-complete here; H4 active with another agent; H6/H8 unassigned until H2 or H4 finishes. Keep active H4 separate.
+  Human branch assignments: H1/H2/H3/H5/H7 are source-complete and merged into `feature/p22-hum`. H4 common-output source is complete on existing actor owners in `feature/p22-hum-h4`, with completed aggregate46a6cef integrated; H6 work remains preserved separately. H8 owns absent actor factories and full Human/World/application integration.
 
   [P22-UI source-closed](analysis/p22-ui-source-closure.md), [checklist](analysis/p22-ui-plan.md): concrete same-World HUD/FPV/text/overlay/control, occupied/nonoffline presentation and console consumers verified. Human/Actor/packet producers and FRAME/RENDER/OWN execution remain external; no loading activation or desktop claim.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.
@@ -343,3 +343,11 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Interactive commits require user desktop confirmation; no pushes without instruction.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
+
+P22-HUM H4 common-output source is complete on existing actor owners:
+[source closure / selected-call inventory and external limits](analysis/human-h4-source-closure.md),
+[receipt](analysis/checkpoints/p22-hum-h4-source-20261112.json). Vehicle path/VM
+producer/control/finish, completed H3/H5 interfaces and Active AI grenade response
+are now bound to actual owners. H6 item production/Player medical and H8 absent
+actors/full Runtime/application/user desktop acceptance remain required. The
+parent Human/mission-loading delivery checkbox stays open.

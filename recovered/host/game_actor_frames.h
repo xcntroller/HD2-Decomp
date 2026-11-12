@@ -134,10 +134,21 @@ public:
         if(call<std::int32_t>(frame,0x38,root,std::uint32_t{1})<0)
             throw std::runtime_error("Cannot link physics object to actual scene root");
     }
+    MenuDriver::Owner create_physics_replacement_model(){return driver_.create(9);} //00407BD0.
+    std::int32_t load_physics_replacement_model(Frame model,const std::string& key){return resources_.load_model(model,key,0);}
+    Frame find_physics_replacement_frame(Frame model,const std::string& name){return call<Frame>(model,0x48,name.c_str(),std::uint32_t{0xffff});}
+    void detach_physics_replacement_frame(Frame model,Frame frame){call<void>(model,0x80,frame);}
+    void physics_replacement_position(Frame model,const Vector& position){call<void>(model,8,position.data());}
+    void physics_replacement_direction(Frame model,const Vector& direction){call<void>(model,0xc,direction.data(),std::uint32_t{0});}
+    MenuDriver::Owner retain_optional_physics_frame(Frame frame){return frame?retain(frame):MenuDriver::Owner{nullptr,nullptr};}
+    void add_physics_replacement_frame(Frame frame){if(const auto scene=scene_.frame())call<void>(scene,0x80,frame);} //Actual nullable World18.
     void physics_publish_pose(Frame frame,const Vector& position,const std::array<float,4>& rotation){ //0040AB80, native frame08, direct normalized quaternion, SceneEC, frame24.
         call<void>(frame,8,position.data());object_rotation(frame,rotation);auto_parent_object(frame);update_scene_object(frame);
     }
     void physics_publish_position(Frame frame,const Vector& position){call<void>(frame,8,position.data());update_scene_object(frame);} //0040F5A2; no quaternion or parent update here.
+    void replay_human_model_position(Frame frame,const Vector& position){ //00759E20, Scene144 BEFORE frame24.
+        call<void>(frame,8,position.data());refresh_dynamic_human_model(frame);update_scene_object(frame);
+    }
     void physics_restore_pose(Frame frame,const Vector& position,const Vector& rotation){object_rotation(frame,rotation);call<void>(frame,8,position.data());update_scene_object(frame);} //0040D1B1/0040D9BF, ONE24 after both writes, no SceneEC.
     Vector physics_local_translation(Frame frame){const auto matrix=car_local_matrix(frame);return {{matrix[12],matrix[13],matrix[14],matrix[15]}};} //0040F5E3/58 lazy local matrix.
     Vector physics_local_sphere_centre(Frame frame){(void)rigid_visual_bounds(frame);return field<Vector>(frame,0x1c0);}
@@ -565,6 +576,15 @@ public:
         }
         return field<game::MissionQuaternion>(frame,0xc0);
     }
+    void item_auxiliary_link(Frame frame,Frame parent){(void)call<std::int32_t>(frame,0x38,parent,0u);} //007D5380 ignores native status.
+    void item_auxiliary_forward(Frame frame){const Vector forward{{0,0,1,0}};call<void>(frame,0x1c,forward.data(),0.f);} //007D5380, THREE native direction lanes.
+    void human_mounted_model_position(Frame model,const Vector& position){call<void>(model,8,position.data());} //00793490, no early24.
+    void human_mounted_model_sector(Frame model,Frame sector){(void)call<std::int32_t>(model,0x38,sector,1u);} //00793490 ignores native status.
+    void human_mounted_model_visibility(Frame model,Frame source){ //79367D..68D retains native ECX upper bytes, masks CL only.
+        const auto argument=(static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(source))&0xffffff00u)|
+            (field<std::uint8_t>(source,0xe0)&1u);
+        call<void>(model,0x30,argument);
+    }
     game::MissionQuaternion human_matrix_rotation(const Matrix& matrix) {
         game::MissionQuaternion result{};
         using Make=void(WINAPI*)(void*,const void*);
@@ -632,6 +652,12 @@ public:
         put(frame,0xb8,static_cast<float>(static_cast<long double>(field<float>(frame,0xb8))+amount));
         put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);
     }
+    void human_equipment_action_link(Frame frame,Frame parent,std::uint32_t flags){(void)call<std::int32_t>(frame,0x38,parent,flags);} //0078DF60/00790520 ignore status.
+    void human_equipment_action_visibility(Frame frame,const void* human,bool hidden){
+        const auto argument=(static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(human))&0xffffff00u)|std::uint32_t(!hidden);
+        call<void>(frame,0x30,argument);
+    }
+    Bounds human_equipment_bounds_data(Frame frame)const{return field<Bounds>(frame,0x10);}
     void human_equipment_link(Frame frame,Frame parent,std::uint32_t flags) {
         if(call<std::int32_t>(frame,0x38,parent,flags)<0)
             throw std::runtime_error("Cannot attach required Human equipment frame");
@@ -668,6 +694,14 @@ public:
     void human_model_advance(Frame model,const std::array<std::int32_t,8>& times) {call<void>(model,0xb0,times.data());}
     void human_model_remove_animation(Frame model,std::uint32_t slot) {call<void>(model,0x8c,slot);}
     void human_equipment_tick_model(Frame model,std::int32_t elapsed){call<void>(model,0x20,elapsed);} //00790520 case9.
+    void suppress_human_mount_visuals(Frame model){ //0075DF70 native model120/128 rereads, visual1 virtual80(0).
+        for(std::int32_t n=0;n<field<std::int32_t>(model,0x128);++n){
+            const auto list=field<Frame*>(model,0x120);
+            if(!list||n>=0x100000)throw std::runtime_error("Mounted Human has invalid frame array");
+            const auto frame=list[n];if(!frame)throw std::runtime_error("Mounted Human has null visual");
+            if(frame_kind(frame)==1)call<void>(frame,0x80,0u);
+        }
+    }
     void restore_human_mount_visuals(Frame model){ //0075E290, native flattened model120/128 array is reread each visit.
         for(std::uint32_t n=0;n<field<std::uint32_t>(model,0x128);++n){
             const auto list=field<Frame*>(model,0x120);
@@ -721,6 +755,20 @@ public:
     void refresh_dynamic_human_model(Frame model){call<void>(scene_.frame(),0x144,model);} //007646F0/00755500, original scene receiver.
     void detach_human_effect_model(Frame model){(void)call<std::int32_t>(model,0x38,Frame{},std::uint32_t{5});} //007B0910 ignores native LinkTo return.
     void human_reaction_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{1});} //0074D510/occupied seat removal ignore LinkTo status.
+    const float* human_target_world_matrix(Frame frame){ //00575450/670 and005A3AB0 retain native world-matrix loans across later updates.
+        if(!frame)throw std::logic_error("Human target matrix requires actual frame");
+        if(!(field<std::uint32_t>(frame,0xe0)&0x20u)){
+            using Update=void(__thiscall*)(Frame);
+            exported<Update>("?UpdateWMatrixProc@I3D_frame@@AAEXXZ",0x1e390)(frame);
+        }
+        return reinterpret_cast<const float*>(address(frame,0x40));
+    }
+    const Frame* human_target_bone_table(Frame visual){ //005A3AB0 captures actual214 before model updates.
+        if(!visual)throw std::logic_error("Human target point requires actual a visual");
+        const auto* bones=field<const Frame*>(visual,0x214);
+        if(!bones)throw std::logic_error("Human target point requires actual skeletal table");
+        return bones;
+    }
     void human_seat_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{0});}
     void human_seat_origin(Frame model){car_suspension_position(model,Vector{});call<void>(model,0x1c,Vector{{0,0,1,0}}.data(),0.f);update_scene_object(model);}
     void human_seat_exit_pose(Frame model,const Vector& position,const Vector& direction){call<void>(model,8,position.data());call<void>(model,0x1c,direction.data(),0.f);update_scene_object(model);}

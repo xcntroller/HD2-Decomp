@@ -15,6 +15,8 @@
 #include "game/human_ai_frame_output.h"
 #include "game/human_ai_ground_projection.h"
 #include "game/human_ai_light_observation.h"
+#include "game/human_ai_trigger_output.h"
+#include "game/human_ai_alignment.h"
 
 namespace hd2::game {
 
@@ -91,8 +93,8 @@ public:
     }
     HumanVector current_direction()const override{return resources_.direction().state().template get<HumanVector>(0);} //0056FBF0.
     HumanVector target_direction()const override{return resources_.direction().state().template get<HumanVector>(0x10);} //0056FC00.
-    void set_current_direction(const HumanVector& value)override{(void)resources_.direction().set_current(value);} //0056FC10→0055D630.
-    void set_target_direction(const HumanVector& value)override{(void)resources_.direction().set_target(value);} //0056FC20→0055D2E0.
+    void set_current_direction(const HumanVector& value)override{(void)resources_.direction().set_current(value);} //0056FC10→0055D630, absent frozen.
+    void set_target_direction(const HumanVector& value)override{(void)resources_.direction().set_target(value);} //0056FC20→0055D2E0, absent frozen.
     bool aims_at_human(const Human& target)const override{return resources_.aimed_actor()==&target;}
     bool selected_hostile_is(const Human& target)const override{return resources_.selected_actor()==&target;} //00524DD0.
     std::vector<HumanAINavigationJobPool::Lease>* scene_navigation_jobs()override{return &resources_.navigation_jobs();} //00524DC0.
@@ -136,45 +138,10 @@ public:
         if(!animation)throw std::logic_error("AI authority input gate requires actual DD0");
         input->word38=animation->animation_state_word(0x1ac)||animation->animation_state_word(0x9c0)?7u:0u;
     }
-    template<class World>void advance_frame_aim(World& world){ //00576350.
-        auto& target=resources_.target();
-        if(target.state.template get<std::uint8_t>(0x35)){
-            resources_.state().set(0xe0,target.state.template get<HumanVector>(0x20));aim_human_ai_grenade(*this,world);target.state.set(0x35,std::uint8_t{0});return;
-        }
-        if(target.state.template get<std::uint8_t>(0x34))throw std::runtime_error("AI aim frame requires its actual special-item target receiver");
-        const auto delta=target.state.template get<std::array<float,3>>(0x10);
-        const bool firing=(this->words().template get<std::uint32_t>(0x50)&0x200000u)!=0;
-        if(!target.actor&&human_scene_steering_square(delta)<1.e-16f){
-            if(firing)stop_frame_aim(100,world);
-            target.state.set(0x38,8u);
-            return;
-        }
-        if(!firing){
-            resources_.publish_aimed_actor(target.actor);
-            resources_.state().set(0xd8,target.actor?0u:2u);
-        }
-        std::uint32_t result;
-        if(!this->item()){
-            if(firing){stop_frame_aim(400,world);stop_frame_aim(100,world);} //00575D50, then 00576350's status-10 mask.
-            result=0x10;
-        }else{
-            const auto& item=world.human_frame_output_item(this->item());
-            const auto now=world.game_word28();
-            if(now<item.field14||human_frame_signed_word(now-item.field58)<0)result=0x40;
-            else if(now<item.field5c)result=1;
-            else if(resources_.state().template get<std::int32_t>(0xc8)>0)result=4;
-            else if(firing&&!resources_.state().template get<std::uint32_t>(0xc4)){
-                stop_frame_aim(static_cast<std::uint32_t>(static_cast<long double>(world.human_sound_random())*400.f+300.f),world);
-                result=4;
-            }
-            else throw std::runtime_error("AI aim frame requires actual weapon alignment and line-of-fire receivers");
-            if(firing){
-                if(result==1)stop_frame_aim(100,world);
-                else if(target.actor!=resources_.aimed_actor()){stop_frame_aim(100,world);result=0x80;}
-            }
-        }
-        target.state.set(0x38,result);
-    }
+    template<class World>std::uint32_t advance_frame_aim(std::uint32_t elapsed,World& world){return advance_human_ai_aim(*this,elapsed,world);} //00576350.
+    template<class World>bool begin_frame_aim(World& world){return begin_human_ai_aim(*this,world);} //00571A40.
+    template<class World>void advance_frame_trigger(std::uint32_t elapsed,World& world){advance_human_ai_trigger(*this,elapsed,world);} //00572AF0.
+    void finish_frame_trigger(){finish_human_ai_trigger(*this);} //00572C00.
     void advance_scene_steering(){advance_human_ai_scene_steering(*this);} //0057F610.
     template<class Graph>std::uint32_t advance_frame_query(Graph& graph,std::uint32_t elapsed){
         return advance_human_ai_frame_query(*this,this->state_frames(),graph,elapsed);
@@ -346,27 +313,7 @@ protected:
         queue_human_ai_sight_event(this->state_frames(),command->first.events,actor,kind);
     }
 private:
-    template<class World>void stop_frame_aim(std::uint32_t delay,World& world){ //00572C20, no inline action-kind 4 stop.
-        auto& target=resources_.target().state;
-        const auto base=target.template get<std::int32_t>(0x44);
-        if(base!=-1){
-            const auto random=static_cast<long double>(world.human_sound_random());
-            const auto span=target.template get<std::int32_t>(0x48);
-            delay=static_cast<std::uint32_t>(static_cast<std::int64_t>((random-.5L)*span*2+base));
-        }
-        const auto flags=this->words().template get<std::uint32_t>(0x50);
-        this->words().set(0x50,flags&~0x200000u);
-        if(flags&0x8000000u)throw std::runtime_error("AI aim stop requires the actual inline action and B0 command receivers");
-        resources_.publish_aimed_actor(nullptr);
-        resources_.state().set(0xd8,0u);
-        if(this->item()){
-            const auto& item=world.human_frame_output_item(this->item());
-            const auto now=world.game_word28();
-            const auto interval=std::max(human_frame_signed_word(item.field14-now),human_frame_signed_word(item.field58-now));
-            if(interval>0&&static_cast<std::uint32_t>(interval)>delay)delay=static_cast<std::uint32_t>(interval);
-        }
-        resources_.state().set(0xc8,delay);
-    }
+    template<class World>void stop_frame_aim(std::uint32_t delay,World& world){stop_human_ai_aim(*this,delay,world);} //00572C20.
     HumanVector frame_navigation_origin(){
         auto* human=this->human();
         if(!human||!human->base().frame())throw std::logic_error("AI route requires the actual Human model");

@@ -7,6 +7,7 @@
 #include "game/human_equipment_services.h"
 #include "game/human_equipment_transfers.h"
 #include "game/human_equipment_frame.h"
+#include "game/human_equipment_mount_presentation.h"
 
 namespace hd2::game {
 
@@ -41,6 +42,8 @@ public:
     auto& attachments(){return attachments_;}
     auto& transfers(){return transfers_;}
     void toggle_frame_action(bool enabled){toggle_human_equipment_action(frames_,state_,activation_.light(),services_.mode_flags(),enabled);} //007931B0.
+    void set_frame_action_lens(bool enabled){human_equipment_action_lens(frames_,state_,enabled);} //007933D0, SAME action model.
+    void present_mounted_frame(std::uint32_t elapsed){present_human_equipment_mount(frames_,state_,services_,elapsed);} //00793490.
     void set_action_holster_visible(bool visible){holsters_.set_action_holster_visible(visible);} //007918C0, SAME initialized group4.
     void set_frame_weapon_pose(bool ready,bool toggle){ //00791AC0.
         auto& words=state_.words();

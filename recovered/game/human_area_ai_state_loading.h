@@ -76,7 +76,7 @@ public:
         this->advance_frame_query(control,world,elapsed,runtime);
         this->advance_frame_direction(elapsed,control);
         const auto was_firing=this->words().template get<std::uint32_t>(0x50)&0x200000u;
-        this->advance_frame_aim(world); //00559D40 ->00576350.
+        this->advance_frame_aim(elapsed,world); //00559D40 ->00576350.
         if(was_firing&&!(this->words().template get<std::uint32_t>(0x50)&0x200000u)&&this->item()){
             const auto& item=world.human_frame_output_item(this->item());
             if(item.definition().identifier==0x26&&item.amount()==0)
