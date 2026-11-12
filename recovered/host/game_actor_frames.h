@@ -261,6 +261,71 @@ public:
     std::string human_face_model_resource(Frame model) const { //007968A0 uses actual model134, case-sensitive.
         const auto* name=field<const char*>(model,0x134);return name?name:"";
     }
+    MenuDriver::Owner load_version_resource(Frame model){ //0043CE40, SAME category5 owner/cache/search directories.
+        auto name=human_face_model_resource(model);
+        if(name.size()>=128)throw std::length_error("Versions model name exceeds native buffer");
+        if(const auto dot=name.rfind('.');dot!=std::string::npos)name.resize(dot);
+        if(const auto slash=name.rfind('\\');slash!=std::string::npos)name.erase(0,slash+1);
+        MenuDriver::Owner result(nullptr,nullptr);(void)resources_.cache(5).get("d"+name,result,{},0x10);return result;
+    }
+    std::int32_t reload_version_model(Frame model){return resources_.load_model(model,human_face_model_resource(model),0);}
+    MenuDriver::Owner make_version_replacement(Frame old,Frame variant){ //0043BA60 prefix, preserve old visual subtype.
+        auto next=create_visual(visual_type(old));const auto frame=next.get();
+        call<void>(frame,0x4c,variant);call<void>(frame,0x38,actor_parent(old),std::uint32_t{0});
+        car_suspension_position(frame,actor_position(old));
+        prepared_human_direction(frame,car_forward(old));put(frame,0xd0,field<Vector>(old,0xd0));
+        (void)car_rotation(frame);put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+        update_scene_object(frame);return next;
+    }
+    void attach_version_replacement(Frame old,Frame next){ //0043BA60 AFTER EC transfer/clear, before old reference release.
+        const auto model=field<Frame>(old,0x100);if(!model)return;
+        call<void>(model,0x7c,next);call<void>(model,0x80,old);call<void>(old,0x30,static_cast<const char*>(nullptr));update_scene_object(old);
+        for(auto n=actor_child_count(old);n;){const auto child=actor_child(old,--n);
+            if(child&&visual_type(child)==0x4a4f5250u){call<void>(child,0x38,next,std::uint32_t{1});update_scene_object(child);}
+        }
+        if(visual_type(old)==0x50414d4cu&&visual_type(next)==0x50414d4cu){
+            const auto offset=field<std::uint32_t>(old,0x210)*0x38u;
+            call<void>(next,0xc4,field<std::uint32_t>(old,0x218+offset));const auto target=field<std::uint32_t>(next,0x210)*0x38u;
+            put(next,0x21c+target,field<std::uint32_t>(old,0x21c+offset));put(next,0x220+target,field<std::uint32_t>(old,0x220+offset));
+            call<void>(next,0xc8,field<std::uint32_t>(old,0x210));const Vector up{{0,1,0,0}};
+            call<void>(next,0xb4,scene_.frame(),up.data(),field<std::uint32_t>(old,0x21c+offset),std::uint32_t{4},std::uint32_t{0},std::uint32_t{0});
+            update_scene_object(next);
+        }
+    }
+    void finish_version_replacement(Frame next){
+        for(auto n=actor_child_count(next);n;){const auto child=actor_child(next,--n);
+            if(child&&visual_type(child)==0x4a4f5250u){call<void>(child,0xbc,std::uint32_t{0},std::uint32_t{0});update_scene_object(child);}
+        }
+    }
+    void version_debris_pose(Frame target,Frame source){ //0043B140, WORLD forward normalized, rotation0C.
+        auto world=actor_world_matrix(source);const Vector position{{world[12],world[13],world[14],world[15]}};
+        call<void>(target,8,position.data());world=actor_world_matrix(source);
+        const auto direction=game::actor_activation_direction(Vector{{world[8],world[9],world[10],world[11]}});
+        call<void>(target,0x0c,direction.data(),std::uint32_t{0});
+        Vector scale;
+        if(!actor_parent(source))scale=field<Vector>(source,0xd0);
+        else{world=actor_world_matrix(source);using Get=Vector*(WINAPI*)(const void*,void*);
+            scale={};exported<Get>("?GetScale@S_matrix@@QBG?AUS_vector@@XZ",0x2db20)(world.data(),scale.data());}
+        put(target,0xd0,scale);(void)car_rotation(target);
+        put(target,0xe0,(field<std::uint32_t>(target,0xe0)&0xfffffecbu)|0x40000008u);update_scene_object(target);
+    }
+    void prepare_version_debris(Frame group,Frame source){if(const auto parent=actor_parent(group))version_debris_pose(parent,source);}
+    MenuDriver::Owner create_version_fragment(Frame child){
+        auto result=create_visual(visual_type(child));const auto frame=result.get();call<void>(frame,0x4c,child);
+        put(frame,0x1d0,field<std::uint32_t>(frame,0x1d0)&0xffffdfffu);
+        const auto world=actor_world_matrix(child);const Vector position{{world[12],world[13],world[14],world[15]}};
+        const auto root=field<Frame>(scene_.frame(),0x1f8);if(!root)throw std::logic_error("Version debris requires actual scene root");
+        call<void>(frame,0x38,root,std::uint32_t{0});update_scene_object(frame);
+        //Original position is captured BEFORE reparenting the clone.
+        call<void>(frame,8,position.data());const auto fresh=actor_world_matrix(child);
+        const auto direction=game::actor_activation_direction(Vector{{fresh[8],fresh[9],fresh[10],fresh[11]}});
+        call<void>(frame,0x0c,direction.data(),std::uint32_t{0});Vector scale;
+        if(!actor_parent(child))scale=field<Vector>(child,0xd0);
+        else{const auto matrix=actor_world_matrix(child);scale={};using Get=Vector*(WINAPI*)(const void*,void*);
+            exported<Get>("?GetScale@S_matrix@@QBG?AUS_vector@@XZ",0x2db20)(matrix.data(),scale.data());}
+        put(frame,0xd0,scale);(void)car_rotation(frame);put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+        update_scene_object(frame);place_human_reaction_model(frame);update_scene_object(frame);return result;
+    }
     Frame human_face_lod(Frame visual) {
         const auto mesh=field<Frame>(visual,0x1e0);
         if(!mesh)throw std::runtime_error("Skinned Human face visual has no mesh");

@@ -16,6 +16,7 @@
 #include "game/mission_effects_loading.h"
 #include "game/particle_module_loading.h"
 #include "game/version_module_loading.h"
+#include "game/version_debris.h"
 #include "game/effects_module_loading.h"
 #include "host/game_world_actors.h"
 #include "host/game_human_animation_events.h"
@@ -253,7 +254,37 @@ public:
              [this]{return d_.session.words.template get<std::uint8_t>(0x64)!=0;},
              [&owners](const game::HumanVector& position){return static_cast<float>(owners.human_services().human_scene_light(position,Frames::Frame{},true));}),
          dependencies_{d_.startup,d_.request,d_.scene,d_.world_actors,d_.session,owners.human_services(),d_.presentation_shared,owners.scripts(),d_.sight,d_.players,d_.camera,
-             tracks_,effects_,versions_,lightmaps_,shifts_,vertices,shots_,heavy_fire_,particles_},dispatch_(dependencies_){}
+             tracks_,effects_,versions_,lightmaps_,shifts_,vertices,shots_,heavy_fire_,particles_},dispatch_(dependencies_){
+        typename Versions::TransitionServices services;
+        services.script=[this](Frames::Frame frame,bool hit){
+            const auto* data=d_.scene.frames().find_actor_frame_data(frame);if(!data||!data->words[1])return;
+            auto* context=dependencies_.scripts.module().contexts().context_for_frame(frame);
+            if(!context)throw std::logic_error("Version script metadata has no actual containing context");
+            if(hit)context->hit((d_.startup.application_flags()&1u)!=0);
+            else context->death(dependencies_.scripts.runtime()); //0041D920; no gameplay-save suppression producer is exposed here.
+        };
+        services.particle=[this](Frames::Frame frame,std::int32_t id){
+            if(frame)(void)d_.startup.mission_effects_process().emit(static_cast<std::uint32_t>(id),d_.scene.frames().actor_world_matrix(frame),Frames::Frame{},true,false);
+        };
+        services.sound=[this](Frames::Frame frame,std::int32_t id){
+            if(id==-1||!frame)return;
+            frontend::SpatialSoundRequest request;const auto matrix=d_.scene.frames().actor_world_matrix(frame);
+            request.position={{matrix[12],matrix[13],matrix[14],matrix[15]}};request.group=7;request.flags=1;request.entry=id;(void)d_.sound.emit(request);
+        };
+        services.debris=[this](Frames::Frame source,Frames::Frame group,std::uint32_t material,Frames::Frame master,bool effects){
+            struct Random {StartupSession& startup;std::int32_t fowl_random_word(){return static_cast<std::int32_t>(startup.random_word());}} random{d_.startup};
+            game::emit_version_debris(d_.scene.frames(),d_.world_actors.physics(),random,source,group,material,master,effects);
+        };
+        services.publish=[this](std::uint32_t master,std::uint32_t part,std::uint32_t stage){
+            auto& packet=d_.broadcast_packets.begin(7,0);packet.write(master,16);packet.write(part,8);packet.write(stage,8);packet.finish_broadcast();
+        };
+        versions_.bind_transition_services(std::move(services));
+        car_versions_=dynamic_cast<GameCarCallbacks*>(&d_.scene.car_callbacks());
+        if(!car_versions_)throw std::logic_error("Versions binding requires actual scene Car callback owner");
+        try{d_.world_actors.bind_versions(versions_);car_versions_->bind_versions(versions_);}
+        catch(...){d_.world_actors.unbind_versions(versions_);car_versions_->unbind_versions(versions_);throw;}
+    }
+    ~ModuleOwners(){d_.world_actors.unbind_versions(versions_);if(car_versions_)car_versions_->unbind_versions(versions_);}
     ModuleOwners(const ModuleOwners&)=delete;ModuleOwners& operator=(const ModuleOwners&)=delete;
     auto& dispatch(){return dispatch_;}auto& mission_effects(){return mission_effects_;}
     auto& game_effects(){return effects_;}
@@ -265,7 +296,7 @@ private:
     Dependencies& d_;MissionEffects mission_effects_;game::MissionTracksLoading tracks_;Effects effects_;Versions versions_;
     game::MissionLightmapGroupsLoading<Frames> lightmaps_;game::MissionTextureShiftLoading shifts_;
     game::ShotManagerLoading<Frames> shots_;game::HeavyFireModuleLoading heavy_fire_;Particles particles_;
-    ModuleDependencies dependencies_;GameLoadingModules<ModuleDependencies> dispatch_;
+    ModuleDependencies dependencies_;GameLoadingModules<ModuleDependencies> dispatch_;GameCarCallbacks* car_versions_=nullptr;
 };
 
 //One actual cold world/session dependency allocation. Original loader stages

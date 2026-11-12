@@ -93,3 +93,11 @@ removed; research/logs kept.27 tracker checks pass.13 new partial bodies,
 zero complete promotions; totals34 complete/1,915 partial(1,910 client/five engine)
 /18,783 frozen. Continue GEffects1, actual containing dispatcher/session/loader,
 meaningful guard observations and camera/update/render/failure/repeat.
+
+## Positive transition continuation — 2026-11-12
+
+The earlier cold-array/resource/changed-reload limitations are superseded by
+[actual damage transitions](version-damage-transitions.md). The SAME Master/Part/
+metadata/buckets/category5 cache/script/session/Physics/effect owners now supply
+lazy stages, visual replacement, broadcast/received stages and ordered positive
+retirement. Save/replay and actual application/desktop delivery remain open.

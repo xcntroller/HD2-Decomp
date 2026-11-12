@@ -107,3 +107,7 @@ acceptance is claimed.
 Normal Mine creation/ground placement, Human inventory consumption and module12
 packet envelopes now have a [source checkpoint](checkpoints/p2.2-human-mine-producers-20261112.json).
 Continue full entry, Versions and containing frame dependencies; no Human checkbox closure.
+
+Positive Versions Car/blast contacts now have a [source checkpoint](checkpoints/p2.2-human-versions-transitions-20261112.json),
+including actual part/resource/reload/effect ownership. Continue armed Mine contact
+and explosion producers, full entry and containing Human frame dependencies.

@@ -188,3 +188,7 @@ plus final launcher/probe compile/link PASS. Temporary audits remain ignored.
 Adds5 client partials, extends00477660;34 complete/2685 partial(2680 client+5
 engine), no promotions. Full Human entry/frame/failure/re-entry/ordered teardown,
 Versions transitions, save/replay and actual application/desktop acceptance remain.
+
+The subsequent [Versions transition checkpoint](version-damage-transitions.md)
+now supplies positive Car/blast frameEC5 contacts. Continue actual armed Mine
+contact005FEFB0 and explosion00451990 producer; full Human entry/frame remains open.

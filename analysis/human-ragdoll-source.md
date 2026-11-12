@@ -1665,3 +1665,17 @@ adds13 partials, extends6:34 complete/2680 partial, no promotions. Native saniti
 i386/launcher compile/link only. Full selected checkbox, containing application
 frame, failure/re-entry/teardown and desktop acceptance remain OPEN. Continue
 00478B90/resource/ground/wire/module12 producers, entry and full Human dispatch.
+
+### Normal Mine producers and positive Versions transitions — 2026-11-12
+
+[Mine producer contract](human-runtime-mine-source.md#normal-producers-and-module12-envelopes--2026-11-12)
+closes normal model/resource/ground/definition-inventory/wire/module12 envelopes
+through the SAME existing owners (checkpoint59fee6f,5 partials). [Versions contract](version-damage-transitions.md)
+closes actual positive frameEC5/Car/blast damage-stage, lazy category5 resources,
+visual/metadata replacement, module7 packets, Script/Physics/SOUND/particles and
+ordered Part/Master/descriptor/reload retirement. Native400-lifetime/real cache/
+packet/debris producer source sanitizer checks and actual full World i386/final
+launcher compile/link pass, with explicit endpoint doubles and no engine/desktop
+claim. Adds12 partials/extends8:34 complete/2697 partial. Full selected Human
+checkbox stays OPEN. Continue actual armed Mine005FEFB0 and00451990 explosion
+producer, full entry and containing Human frame/failure/re-entry/ordered teardown.

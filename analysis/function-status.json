@@ -9975,7 +9975,7 @@
       "program": "client",
       "entry": "004d4a70",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004d4a70: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Corrected6A8 to00410630 physics module2+4C/00410530 and actual word4 handle before Versions/flags.",
+      "coverage": "P2.2 source reconstruction at original entry 004d4a70: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Corrected6A8 to00410630 physics module2+4C/00410530 and actual word4 handle before Versions/flags. Positive timed frameEC5 contact now binds actual SAME Versions owner/damage path instead of required placeholder throw.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/car_contact_callbacks.h",
@@ -9983,7 +9983,9 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/car-callback-world-binding.md",
-        "recovered/host/game_car_callbacks.h"
+        "recovered/host/game_car_callbacks.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
       ]
     },
     {
@@ -18740,7 +18742,7 @@
       "program": "client",
       "entry": "0040b5e0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0040b5e0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded. Common motion fields now share actual frame/impulse/pose state; callback context is captured in a typed callable.",
+      "coverage": "P2.2 source reconstruction at original entry 0040b5e0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded. Common motion fields now share actual frame/impulse/pose state; callback context is captured in a typed callable. Versions debris actual construction record native10/material is retained distinctly from zero native18 in SAME Physics parameters/common state.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/physics_object.h",
@@ -18752,7 +18754,9 @@
         "recovered/host/game_physics_frames.h",
         "recovered/host/game_actor_frames.h",
         "analysis/physics-object-frame-motion.md",
-        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
       ]
     },
     {
@@ -23211,12 +23215,14 @@
       "program": "client",
       "entry": "0040bd70",
       "status": "partial",
-      "coverage": "Type4 common retained frame lifetime, cached frame+3C comparison flags and shared GEffects5000ms fade-out scheduling without collision registration.",
+      "coverage": "Type4 common retained frame lifetime, cached frame+3C comparison flags and shared GEffects5000ms fade-out scheduling without collision registration. Actual Versions debris type4 now borrows existing Physics/fade owner with native material10/first-list/sight construction, not another simulation.",
       "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
       "evidence": [
         "recovered/game/physics_object.h",
         "analysis/item-transfer-physics-loading.md",
-        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+        "analysis/checkpoints/p2.2-world-owners-20261109.json",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
       ]
     },
     {
@@ -26098,13 +26104,15 @@
       "program": "client",
       "entry": "0043e2c0",
       "status": "partial",
-      "coverage": "Reverse actual model-master retirement, reverse deferred collision retirement and cold empty borrowed-reload list.",
+      "coverage": "Reverse actual model-master retirement, reverse deferred collision retirement and cold empty borrowed-reload list. Positive NULL Master slots/deferred collisions/changed borrowed model reloads now retire in actual reverse order through same model cache.",
       "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
       "evidence": [
         "recovered/game/version_module_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/version-module-loading.md",
-        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
       ]
     },
     {
@@ -26176,39 +26184,45 @@
       "program": "client",
       "entry": "0043aef0",
       "status": "partial",
-      "coverage": "Clear matching partEC5/6 before actual retained-frame release; cold resource array retirement.",
+      "coverage": "Clear matching partEC5/6 before actual retained-frame release; cold resource array retirement. Positive borrowed resource arrays now free50/40/30/20 AFTER actual metadata clear and frame release.",
       "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
       "evidence": [
         "recovered/game/version_module_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/version-module-loading.md",
-        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "0043c320",
       "status": "partial",
-      "coverage": "Lazy actual sphere-radius threshold selects immediate or deferred grid descriptor retirement; master metadata then reverse part release.",
+      "coverage": "Lazy actual sphere-radius threshold selects immediate or deferred grid descriptor retirement; master metadata then reverse part release. Positive changed model reload queue now follows actual collision retirement/metadata clear and precedes resource/model release.",
       "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
       "evidence": [
         "recovered/game/version_module_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/version-module-loading.md",
-        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "0043c1a0",
       "status": "partial",
-      "coverage": "Reverse actual part owner retirement then retained model release; cold null C branch.",
+      "coverage": "Reverse actual part owner retirement then retained model release; cold null C branch. Populated resource0C now retires AFTER reverse Parts and BEFORE model08.",
       "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
       "evidence": [
         "recovered/game/version_module_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/version-module-loading.md",
-        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
       ]
     },
     {
@@ -27220,7 +27234,7 @@
       "program": "client",
       "entry": "006ddd40",
       "status": "partial",
-      "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required. Reached Human D8=66 and actual D4 through SAME live loading owner, final hit0; record1C is a full-width typed borrowed Human source, not a scalar identity. Other actor/Versions positive receivers remain required. Actual runtime Mine D8 uses bound100, D4 is genuine empty005B88A0; no unknown-actor success fallback.",
+      "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required. Reached Human D8=66 and actual D4 through SAME live loading owner, final hit0; record1C is a full-width typed borrowed Human source, not a scalar identity. Other actor/Versions positive receivers remain required. Actual runtime Mine D8 uses bound100, D4 is genuine empty005B88A0; no unknown-actor success fallback. Positive frameEC5 now binds SAME Versions actual part damage/transitions/retirement, through containing World module owner.",
       "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/blast_wave_process.h",
@@ -27238,7 +27252,9 @@
         "recovered/host/game_actor_frames.h",
         "recovered/host/game_car_callbacks.h",
         "analysis/human-runtime-mine-source.md",
-        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
       ]
     },
     {
@@ -36124,6 +36140,150 @@
         "recovered/host/game_runtime_actors.h",
         "analysis/human-runtime-mine-source.md",
         "analysis/checkpoints/p2.2-human-mine-producers-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c6a0",
+      "status": "partial",
+      "coverage": "Actual Master frameEC5 borrower, reverse parts/damage/false accumulation and global NULL-slot recheck after callbacks that may retire both owners.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043b000",
+      "status": "partial",
+      "coverage": "Optional frame output, signed health/subtraction and lazy resource binding, multi-stage remaining health, actual visual replacement BEFORE module7 packet, presentation selector/application, stage publication then Master change/retirement.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043cca0",
+      "status": "partial",
+      "coverage": "SAME Master category5 resource, short-name/maskFFFF lookup, case-sensitive version/sound parse, reverse kind6/kind1 child chain, native separate40/30/20/50 append order, final count/bound publication.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c710",
+      "status": "partial",
+      "coverage": "Changed28 before actual Script hit, terminal Part NULL-slot retirement, actual shared collision bounds/world/inverse/descriptor refresh and final empty Master removal.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043ba60",
+      "status": "partial",
+      "coverage": "Actual visual factory/clone/parent/local position/forward/scale/update, SAME metadata transfer, model add/remove/name retirement, PROJ/LMAP transfer, old reference release before new owner/publication and final PROJ reset.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/host/game_actor_services.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c040",
+      "status": "partial",
+      "coverage": "Lazy resources/failed-prefix retirement, nonadvancing/negative-stage policy, original authority/presentation replacement gates, actual particle/debris/sound order and final stage write.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043ce40",
+      "status": "partial",
+      "coverage": "Actual model134 final-dot/backslash basename and d-prefix, SAME preexisting category5 cache/search/entries/current/capacity/reference owner with native open10, retained resource publication BEFORE actual Script death.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043ce10",
+      "status": "partial",
+      "coverage": "Actual reverse chain-child selector: valid kind6 supplies debris frame, kind1 supplies next visual, preserving visited order and borrowed resource lifetime.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043b140",
+      "status": "partial",
+      "coverage": "Actual debris parent pose, reverse visual cloning/root placement, shared Physics type4 construction with material native10/distinct zero18, SAME CRT Z/Y/X draws and optional actual stable-handle impulse before factory release.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/version_debris.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043b9d0",
+      "status": "partial",
+      "coverage": "Fresh actual SOUND request group7/flags1/default voice4, signed skip-1 entry and current world position/null source/relative, actual sound owner and ignored result.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/host/game_world_loading.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c000",
+      "status": "partial",
+      "coverage": "Actual current part world matrix into SAME particle process004451B0, null parent/orientationtrue/flagfalse, conditional nonnull frame.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/host/game_world_loading.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e7c0",
+      "status": "partial",
+      "coverage": "Actual module Master retirement leaves NULL global slot, marks retired, orders collision/metadata/changed reload queue and unique native-source owner retirement.",
+      "limitations": "Source-only typed STL/RAII/native-frame/backend adaptation; original object/allocator/reference-count/container/SEH ABI, malformed-data UB, gameplay-save suppression/replay and whole-body equivalence excluded. Native sanitizer checks400 actual Versions/metadata/bucket lifetimes and real cache/stream/debris source with explicit frame/resource/engine/script/effect/Physics endpoint doubles; final actual full World i386 and launcher/probe compile/link pass. Actual application loading, full Human/entry/frame and desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "analysis/version-damage-transitions.md",
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
       ]
     }
   ]

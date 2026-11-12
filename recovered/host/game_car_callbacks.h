@@ -9,6 +9,7 @@
 #include "game/car_particle_pool.h"
 #include "game/car_definition_tables.h"
 #include "game/physics_contact_link.h"
+#include "game/version_contact_link.h"
 
 namespace hd2::host {
 
@@ -22,7 +23,7 @@ public:
     using Car=game::CarSceneActor<GameActorServices>;
     GameCarCallbacks(GameActorServices& actors,StartupSession& startup,game::CarDefinitionTables& definitions,const game::CarTyres& tyres)
         :GameCarCallbackFrames(actors,startup.application_flags_owner(),startup.local_player_identity(),
-            tyres,[&startup]{return startup.control_milliseconds();}),startup_(startup),definitions_(definitions),particles_(actors,*this),physics_contact_(actors){}
+            tyres,[&startup]{return startup.control_milliseconds();}),startup_(startup),definitions_(definitions),particles_(actors,*this),physics_contact_(actors),versions_contact_(actors){}
     bool initialize(const std::vector<game::CarParticleDefinition>& definitions){
         if(&definitions!=&car_particle_definitions())throw std::logic_error("Car particles require SAME actual definition owner");
         return initialize_particles();
@@ -96,8 +97,10 @@ public:
     void submit_car_wheel_damage(Actor,const game::CarWheelDamageEvent&)override{
         throw std::runtime_error("Car wheel request requires actual004DB2E0 event serialization");
     }
-    void car_timed_contact(std::uintptr_t,unsigned,unsigned)override{
-        throw std::runtime_error("Car Versions contact requires actual0043C6A0/0043B000 part transitions");
+    template<class Versions>void bind_versions(Versions& versions){versions_contact_.bind(versions);}
+    template<class Versions>void unbind_versions(Versions& versions)noexcept{versions_contact_.unbind(versions);}
+    void car_timed_contact(std::uintptr_t handle,unsigned damage,unsigned effects)override{
+        std::int32_t amount;std::memcpy(&amount,&damage,4);(void)versions_contact_.contact(handle,amount,effects);
     }
     void car_item_contact(Actor,Actor,unsigned)override{
         throw std::runtime_error("Car trigger contact requires actual005FEFB0 runtime trigger owner");
@@ -124,6 +127,7 @@ public:
 private:
     StartupSession& startup_;game::CarDefinitionTables& definitions_;game::CarParticlePool<GameActorServices,GameCarCallbacks> particles_;
     game::PhysicsContactLink<GameActorServices> physics_contact_;
+    game::VersionContactLink<GameActorServices> versions_contact_;
 };
 
 inline auto make_game_car_callback_factory(StartupSession& startup,game::CarDefinitionTables& definitions,const game::CarTyres& tyres){

@@ -76,11 +76,11 @@ public:
         }
         throw std::runtime_error("Blast damage requires actual actor virtualD4 receiver");
     }
-    void blast_physics_impulse(EngineFrame* frame,std::int32_t,unsigned){
+    void blast_physics_impulse(EngineFrame* frame,std::int32_t damage,unsigned effects){
         const auto* data=d_.scene.frames().find_actor_frame_data(frame);
         //The existing source method name is historical: EC+14 borrows a
         //Versions group here;0043C6A0 damages its parts, not a rigid-body force.
-        if(data&&data->words[5])throw std::runtime_error("Blast contact requires actual Versions0043C6A0/0043B000 part transitions");
+        if(data&&data->words[5])(void)d_.world_actors.version_contact(data->words[5],damage,effects);
     }
 private:
     static world_loading::Human& human(Actor& actor){

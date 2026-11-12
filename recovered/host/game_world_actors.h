@@ -1,6 +1,7 @@
 #ifndef HD2_HOST_GAME_WORLD_ACTORS_H
 #define HD2_HOST_GAME_WORLD_ACTORS_H
 #include "game/human_loading_retirement.h"
+#include "game/version_contact_link.h"
 
 #include "game/session_time_word.h"
 #include "host/game_world_scene.h"
@@ -59,6 +60,9 @@ public:
         return query.ray(start,displacement,0,0,true); //006F7C90: SAME World, both exclusion masks0, actual hit normal.
     }
     auto& physics(){require_open();return physics_;}auto& item_models(){require_open();return models_;}
+    template<class Versions>void bind_versions(Versions& versions){require_open();versions_contact_.bind(versions);}
+    template<class Versions>void unbind_versions(Versions& versions)noexcept{versions_contact_.unbind(versions);}
+    bool version_contact(std::uintptr_t handle,std::int32_t damage,std::uint32_t effects){require_open();return versions_contact_.contact(handle,damage,effects);}
     template<class Callbacks>void bind_car_physics(Callbacks& callbacks){
         require_open();
         static_assert(noexcept(callbacks.unbind_physics(physics_)),"Car physics retirement must not throw");
@@ -293,6 +297,7 @@ private:
     Scene& scene_;Consumers& consumers_;Vertices& vertices_;game::MissionNavigation& navigation_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
     typename Body::Registry bodies_;GameRuntimeItemServices models_;
     std::map<Human*,std::unique_ptr<game::HumanLoadingLifetime>> human_loading_;
+    game::VersionContactLink<GameActorServices> versions_contact_{scene_.frames()};
     Items items_;Runtime runtime_;Physics physics_;std::function<void()> car_physics_unbind_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false,closing_=false;
 };
 } //namespace hd2::host

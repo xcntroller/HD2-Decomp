@@ -76,13 +76,13 @@ public:
     // Get retains a hit. On a miss, load +38 scratch, allocate its replacement,
     // publish old scratch to the cache/caller, and install replacement last.
     int get(const std::string& name, Owner& output,
-            const std::function<void(const std::string&)>& failed = {}) {
+            const std::function<void(const std::string&)>& failed = {},std::uint32_t flags=0) {
         output.reset();
         const auto key = directory_c_string(name);
         if (auto* hit = lookup_[key]) { observe_bound_data(backend_,"execution","cache hit",key.c_str()); output = backend_.retain(hit); return 0; }
         if (!current_) current_ = backend_.create();
         if (!current_) throw std::runtime_error("Cache scratch factory returned null");
-        const auto status = search(current_.get(), key, failed ? 4u : 0u);
+        const auto status = search(current_.get(), key, flags | (failed ? 4u : 0u));
         if (status < 0) {
             if (!terminal(status) && failed) failed(key);
             return status;
