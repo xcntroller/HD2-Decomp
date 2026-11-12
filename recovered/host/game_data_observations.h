@@ -13,7 +13,8 @@ inline void observe_world_data(world_loading::World& world){
     const auto& shots=d.startup.shot_manager_process();
     frames.observe_data("population","ShotMgr","blood90",shots.blood_marks.size());
     frames.observe_data("population","ShotMgr","surfacesA0",shots.surfaces.size());
-    for(unsigned n=0;n<shots.render.size();++n)frames.observe_data("population","ShotMgr render",n?"B0":"80",shots.render[n].size());
+    frames.observe_data("population","ShotMgr render","80",shots.render.size());
+    frames.observe_data("population","ShotMgr render","B0",shots.muzzle_flashes.size());
     for(unsigned n=0;n<shots.transient.size();++n)frames.observe_data("population","ShotMgr transient",n==0?"114":n==1?"124":"134",shots.transient[n].size());
     const auto& particles=d.startup.mission_effects_process();
     frames.observe_data("population","Particles","active1014",particles.active_particles());

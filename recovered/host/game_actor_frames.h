@@ -1143,6 +1143,66 @@ public:
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}
     MenuDriver::Owner create_hud_info_model(){return driver_.create(9);}
     MenuDriver::Owner create_shot_model(){return driver_.create(9);}
+    bool shot_actor_in_scene(Frame frame)const{return field<Frame>(frame,0x11c)==field<Frame>(scene_.frame(),0x11c);}
+    void configure_shot_light(Frame light,Frame parent){ //00453D80.
+        human_sound_link(light,parent);human_equipment_name(light,"WeaponLight");
+        call<void>(light,0x94,std::uint32_t{0x11});call<void>(light,0x74,std::uint32_t{1});
+        const std::array<float,3> white{{1,1,1}};call<void>(light,0x7c,white.data());
+        call<void>(light,0x88,1.5f);call<void>(light,0x80,white.data());call<void>(light,0x8c);
+        car_sound_head(light,Vector{{0,0,0,0}});
+        const auto position=actor_world_matrix(parent);const Vector origin{{position[12],position[13],position[14],position[15]}};
+        const auto sector=human_scene_sector(origin);if(!sector)throw std::runtime_error("Muzzle flash has no actual sector");
+        call<void>(sector,0x74,light);
+        const auto records=field<Frame*>(sector,0x25c);
+        for(std::uint32_t n=0;n<field<std::uint32_t>(sector,0x264);++n){
+            if(!records)throw std::runtime_error("Muzzle flash sector has no portal list");
+            const auto adjacent=field<Frame>(records[n],0x194);
+            if(!adjacent)throw std::runtime_error("Muzzle flash portal has no adjacent sector");
+            const auto p=actor_world_matrix(parent);const auto q=actor_world_matrix(adjacent);
+            const auto x=static_cast<long double>(q[12])-p[12],y=static_cast<long double>(q[13])-p[13],z=static_cast<long double>(q[14])-p[14];
+            const auto square=(z*z+y*y)+x*x;
+            if(!(square>16.f)){call<void>(adjacent,0x74,light);update_scene_object(adjacent);}
+        }
+        call<void>(light,0x98,4.f);hud_unit_scale(light);call<void>(light,0x9c,.99f,std::uint32_t{0},.01f);
+        object_visible(light,true);update_scene_object(light);
+    }
+    void shot_light_intensity(Frame light,float value){call<void>(light,0x88,value);}
+    void shot_light_range(Frame light,float value){call<void>(light,0x98,value);}
+    void remove_shot_light_sectors(Frame light){ //00454120 captures list/count, then removes in reverse.
+        const auto sectors=field<Frame*>(light,0x120);auto count=field<std::uint32_t>(light,0x128);
+        if(count&&!sectors)throw std::runtime_error("Muzzle flash has no actual sector list");
+        while(count)call<void>(sectors[--count],0x78,light);
+    }
+    MenuDriver::Owner create_shot_trace(Frame source,const Vector& position){ //0044B030, nonzero trace branch.
+        auto owner=driver_.create(0x44524242u);const auto frame=owner.get();
+        if(!frame)throw std::runtime_error("Bullet trace requires actual driver visual");
+        call<void>(frame,0x4c,source);
+        const auto mesh=field<Frame>(frame,0x1e0);
+        if(!mesh)throw std::runtime_error("Bullet trace has no actual mesh");
+        const auto lod=call<Frame>(mesh,4,std::uint32_t{0});
+        if(!lod)throw std::runtime_error("Bullet trace has no actual first LOD");
+        const auto group=call<Frame>(lod,0x14,std::uint32_t{0});
+        if(!group)throw std::runtime_error("Bullet trace has no actual material group");
+        const auto material=field<Frame>(group,4);
+        if(!material)throw std::runtime_error("Bullet trace has no actual material");
+        put(material,8,field<std::uint32_t>(material,8)|0x8000000u);
+        const std::array<float,3> white{{1,1,1}},black{{0,0,0}};
+        call<void>(material,0xc,white.data());call<void>(material,0x10,black.data());
+        call<void>(material,8,black.data());call<void>(material,0x14,std::uint32_t{0});
+        human_sound_link(frame,shot_hidden_sector());car_sound_head(frame,position);
+        object_visible(frame,false);update_scene_object(frame);return owner;
+    }
+    MenuDriver::Owner create_shot_flare(const Vector& position){ //0044B030, no trace and definition265.
+        auto owner=create_shot_model();const auto frame=owner.get();
+        if(!frame)throw std::runtime_error("Bullet flare requires actual driver model");
+        (void)load_shot_model(frame,"m_w_flare");human_sound_link(frame,shot_hidden_sector());
+        object_visible(frame,true);update_scene_object(frame);car_sound_head(frame,position);
+        shot_surface_scale(frame,.5f,.5f,.5f);update_scene_object(frame);
+        if(const auto flare=actor_find(frame,"flare",0xffffu)){
+            put(flare,0x1e0,.1f);put(flare,0x1e4,.1f);put(flare,0x244,.1f);update_scene_object(flare);
+        }
+        return owner;
+    }
     MenuDriver::Owner create_shot_surface(){return driver_.create(0x4a4f5250u);} //004546E0, PROJ driver extension.
     void shot_surface_texture(Frame frame,Frame texture){call<void>(frame,0x9c,texture);}
     void shot_surface_scale(Frame frame,float x,float y,float z){

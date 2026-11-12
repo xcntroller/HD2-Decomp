@@ -32023,7 +32023,7 @@
       "program": "client",
       "entry": "005433b0",
       "status": "partial",
-      "coverage": "Actual Player gates/family dispatch now invokes held completion/title, forced-reload/dry-fire/command05 and the positive shot coordinator with real payload math, World muzzle/camera/ray query bindings, late A8 refreshes, Look/FPV/cooldown/notification and integrity/drop ordering. The required item24 projectile effect, melee/repair and actor-action consumers remain explicit. Reached kind0 melee, kind10 first-queue action17 and kind11 actual repair target/queue14 now have source bindings.",
+      "coverage": "Actual Player gates/family dispatch now invokes held completion/title, forced-reload/dry-fire/command05 and the positive shot coordinator with real payload math, World muzzle/camera/ray query bindings, late A8 refreshes, Look/FPV/cooldown/notification and integrity/drop ordering. The required item24 projectile effect, melee/repair and actor-action consumers remain explicit. Reached kind0 melee, kind10 first-queue action17 and kind11 actual repair target/queue14 now have source bindings. H6 extends actual weapon/bullet/light producer and owned retirement composition; selected special-effect and asynchronous frame guards remain explicit.",
       "limitations": "Source-only typed/STL/RAII adaptation with authored data and explicit Inline/FPV/engine/OS observations. Selected native checks use an explicit item24 projectile-effect double; actual shared item24/28/projectile delivery, melee/repair and full World/Player frame integration remain required. Original object/container/allocator/SEH ABI, unwritten W lanes and solver/trajectory equivalence are excluded. Strict actual host i386 and launcher/probe compile/link are not Windows/application/desktop execution.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -32038,7 +32038,9 @@
         "analysis/checkpoints/p2.2-human-player-item-controller-20261112.json",
         "recovered/game/human_player_actor_actions.h",
         "analysis/human-player-item-sound-actions-source.md",
-        "analysis/checkpoints/p2.2-human-player-item-sound-actions-20261112.json"
+        "analysis/checkpoints/p2.2-human-player-item-sound-actions-20261112.json",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
       ],
       "verification": "Native100 ASan/UBSan/LSan actual Player/Human/input/holder/RuntimeItem controller checks with declared component/engine/item24 boundaries; actual nested host i386 and launcher/probe compile/link PASS."
     },
@@ -43815,6 +43817,162 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-player-item-sound-actions-source.md",
         "analysis/checkpoints/p2.2-human-player-item-sound-actions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d4fd0",
+      "status": "partial",
+      "coverage": "Shared weapon primary receiver with counter/signed tracer dispatch, actual ordinary bullet/sound/ammo/clocks, type2 prefix and required selected special projectile/melee bodies.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/human_item_fire.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00451100",
+      "status": "partial",
+      "coverage": "Mode2 actual FPV versus cached same-item cardum/blsdum selection before ordinary bullet production.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00450d30",
+      "status": "partial",
+      "coverage": "Offline7 same-process pool acquisition, actual bullet initialization, conditional initial100 before active114 publication, then selected shell/particle/light production order.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/shot_bullet_production.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004482a0",
+      "status": "partial",
+      "coverage": "Actual typed bullet base shooter/pose/direction/payload/damage initialization with the reached null base-visual argument.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/shot_bullet_record.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044b030",
+      "status": "partial",
+      "coverage": "Actual owned bullet velocity, pose/flags/timers, driver trace/flare visuals and payload-speed dispatch.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/shot_bullet_record.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044b350",
+      "status": "partial",
+      "coverage": "Matching bullet visual reference release before actual module17 particle stop/B4 reset through record retirement/destruction.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/shot_bullet_record.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044b380",
+      "status": "partial",
+      "coverage": "Reusable bullet retirement releases visual before stopping B4; actual active-vector ownership returns the record to its original pool.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/shot_bullet_record.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00453140",
+      "status": "partial",
+      "coverage": "Same aligned typed bullet mark pool refills in batches16 and preserves LIFO acquisition/recycle ownership.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/shot_manager_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00453d80",
+      "status": "partial",
+      "coverage": "Actual ShotMgrB0 WeaponLight/sector configuration and retained muzzle flash initialization, with null-parent time boundary.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/shot_muzzle_flash.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00454060",
+      "status": "partial",
+      "coverage": "Actual old-time flash>50 retirement, signed duration comparison, light intensity/range/update before elapsed addition.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/shot_muzzle_flash.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00454120",
+      "status": "partial",
+      "coverage": "Actual reverse light-sector removal/unlink/release precedes retained flash hide/release.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/shot_muzzle_flash.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d46b0",
+      "status": "partial",
+      "coverage": "Lazy projectile-marker classification returns original74 borrower rather than auxiliary clone78.",
+      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "evidence": [
+        "recovered/game/runtime_item.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-item-bullet-production-source.md",
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
       ]
     }
   ]

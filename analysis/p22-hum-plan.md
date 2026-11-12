@@ -33,7 +33,7 @@ its JSON receipt records hashes and results. It is not application/desktop accep
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3254 partial; [joint/clip kernel inventory
+credit is separate: current source34 complete/3266 partial; [joint/clip kernel inventory
 reconciliation](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json) is complete,
 while full containing-World/application verification and external producer
 limitations remain open.

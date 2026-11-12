@@ -31,7 +31,7 @@ Strict actual nested-host i386 and latest launcher/probe rebuild/link PASS.
 Five other Runtime declarations always throw, compile-only. New temporary audit
 sources/binary/object are fingerprinted/removed, logs and dedicated Windows
 snapshots retained. Existing frozen inputs unchanged. Five new frozen partials,
-two extensions, no complete promotions: **34 complete/3254 partial (3249client+5engine)**.
+two extensions, no complete promotions: **34 complete/3266 partial (3261client+5engine)**.
 
 Important contracts: held deadlines are hand HOLDER18 via007D68B0, not item14
 or DD0. Recoil publishes each B0+10 component before the next draw. Local command
@@ -49,23 +49,35 @@ PlayerD8/0053D340 first-queue producer. Native100 sanitizers, strict actual nest
 host i386 and launcher/probe rebuild PASS. Explicit engine/query/Look/Human doubles
 are documented; full positive owner graph is not claimed. New temporary audits
 removed after fingerprints; frozen inputs retained. Four new partials, no complete
-promotions:34 complete/3254 partial (3249client+5engine). Native SOUND refill leak
+promotions:34 complete/3266 partial (3261client+5engine). Native SOUND refill leak
 is retained through source item retirement and then reclaimed, explicitly limited.
 
-Continue shared actual item24/28 `007D4FD0/007D5210`, reached projectile
-producer/retirement on SAME process ShotMgr. Existing C candidates in
-frame-human-shot-and-control-workers, frame-human-live-inventory-and-aim,
-frame-human-shot-projectile-workers and frame-human-shot-bullet-lifetime;
-no broad new exports. `human-h6-projectile-base-index.txt` records boundary lookup.
-Ordinary offline unmounted00450D30 initializes/publishes a bullet without its
-conditional100ms frame. Attached/non7 Player does invoke it. Actual ShotMgr
-RuntimeRecord is still only forward-declared; never install successful fire or
-opaque pointer/pool substitutes. Real body004482A0 initializes shooter/pose/
-direction/payload/damage,0044B030 scales velocity/configures visual;0044B910 is the
-large reached asynchronous damage/collision consumer. Shell0044E5D0/visual and
-flash00453D80 lifetimes also selected in mode2. ShotMgr full World scheduling is
-H8, but producer ownership/retirement must be real. Kind9 grenade and type2
-projectile remain selected dispatcher branches. Do not absorb active H4.
+## Latest bullet production checkpoint and next work
+
+[Weapon/bullet contract](analysis/human-item-bullet-production-source.md),
+[receipt](analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json).
+Actual007D4FD0 dispatch,00451100 marker selection, offline00450D30,004482A0/
+0044B030 record initialization, SAME ShotMgr pool/active114 ownership/retirement
+and B0 muzzle light/retained flash lifetimes are implemented. Player fire now
+uses actual World item receiver. Native100 sanitizers, strict real host i386 and
+latest launcher/probe rebuild PASS. Explicit engine/item/effect/frame doubles,
+non7 and selected projectile guards are documented; no combat/World/desktop claim.
+New audit sources/native/object removed after fingerprints. Twelve new partials,
+no complete promotions:34 complete/3266 partial (3261client+5engine).
+
+Continue remaining offline H6 **producers/retirement**: shell0044E5D0/
+00454190/004546C0 using SAME pool64/transient134; capsule00451670/00448CE0;
+grenade00450400/0044CFF0 with existing rigid owner; immediate melee00451230
+through existing H2 damage. Do not expand full async combat/World assembly or
+non7 replay as an H6 detour:0044B910/0044B400/00454360 are H8, with explicit
+required guards including attached initial100. No successful simulation stubs.
+Exact-frontier C exports shell/capsule/falloff now exist in
+`human-h6-shot-record-dependencies` (all five true, no ERROR), indexed before
+export; unknown ABI still needs actual caller/raw confirmation. Existing
+0044E5D0 C has stack aliases; inspect bounded raw where needed. Projectile
+getter007D46B0 returns marker74, NOT auxiliary clone78. Native6C tracer uses
+signed IDIV. Actual neighboring light threshold is16; old-time flash hides>50.
+Keep active H4 separate and preserve module17/Scene/borrower retirement order.
 
 Existing static exports and original assembly are in WORK with `human-h6-`
 prefixes. Successful new005441E0/005AC550/007D5C70 C exports have initially

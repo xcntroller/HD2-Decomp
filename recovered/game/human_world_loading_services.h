@@ -8,6 +8,8 @@
 #include "game/human_player_shot_direction.h"
 #include "game/human_hud_loading.h"
 #include "game/human_item_shot_sound.h"
+#include "game/human_item_fire.h"
+#include "game/shot_bullet_production.h"
 
 #include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
@@ -1030,6 +1032,41 @@ public:
     template<class Item,class Human>void play_following_item_sounds(Item& item,Human& human){
         play_human_following_shot_sounds(item,human,*this);
     }
+    void stop_shot_particle(std::int32_t identity){dependencies().startup.mission_effects_process().stop(identity);}
+    template<class Bullet>unsigned advance_shot_bullet_authority(Bullet&,std::uint32_t){
+        throw std::runtime_error("ShotMgr bullet requires actual0044B910 collision/damage receiver");
+    }
+    template<class Bullet>void advance_shot_bullet_presentation(Bullet&,std::uint32_t){
+        throw std::runtime_error("ShotMgr bullet requires actual0044B400 visual receiver");
+    }
+    template<class Item,class Human>std::uint32_t fire_human_item(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,std::uint32_t argument,bool primary){
+        return fire_human_weapon_item(item,human,position,direction,argument,primary,*this);
+    }
+    template<class Item,class Human>void emit_item_bullet(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,bool trace,bool silent){ //00451100.
+        auto& d=dependencies();typename Dependencies::Frame shell{},muzzle{};
+        if(mode_flags()&2u){
+            if(human_is_player(human)&&human_view_offset_enabled()){
+                if(const auto model=d.first_person.models().model())shell=d.scene.frames().actor_find(model,"cardum",0x20);
+                if(const auto model=d.first_person.models().model())muzzle=d.scene.frames().actor_find(model,"blsdum",0x20);
+            }else{shell=item.shell_frame();muzzle=item.projectile_effect_frame();}
+        }
+        produce_item_bullet(d.startup.shot_manager_process(),d.scene.frames(),*this,item,human,position,direction,muzzle,shell,trace,silent);
+    }
+    template<class Item,class Frame>void emit_item_muzzle_particle(Item& item,Frame muzzle){
+        const auto& payload=item.definition().payloads[0];
+        if(payload.bytes.size()<0x1c)throw std::runtime_error("Muzzle particle requires complete native primary payload1C");
+        const auto id=frontend::pre_mission_detail::Bytes::word(payload.bytes.data()+0x18);auto& d=dependencies();
+        (void)d.startup.mission_effects_process().emit(id,d.scene.frames().actor_world_matrix(muzzle),muzzle,true,false);
+    }
+    template<class Human>bool shot_actor_in_scene(Human& human){return dependencies().scene.frames().shot_actor_in_scene(human.base().frame());}
+    template<class Human,class Frame>void emit_item_shell(Human&,Frame,std::uint32_t){
+        throw std::runtime_error("ShotMgr shell requires actual0044E5D0 producer and00454190/00454360 lifetime");
+    }
+    template<class... Args>void emit_item_grenade(Args&&...){throw std::runtime_error("Item grenade requires actual00450400/0044CFF0 producer");}
+    template<class... Args>void emit_item_capsule(Args&&...){throw std::runtime_error("Item projectile requires actual00451670/00448CE0 producer");}
+    template<class... Args>void apply_item_melee(Args&&...){throw std::runtime_error("Item melee requires actual00451230 damage receiver");}
     template<class Player>auto* player_item_melee_target(Player& state){
         using Human=typename Dependencies::Composition::Human;
         auto* human=state.human();if(!human)throw std::logic_error("Player melee query requires its actual Human");

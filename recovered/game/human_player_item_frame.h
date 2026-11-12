@@ -77,7 +77,7 @@ void advance_player_item_frame(Player& player,Inline& control,World& world,Runti
         if(human_frame_signed_word(world.game_word28()-item.field58)<0)return;
         {
             auto fire=[&](auto& weapon,auto& actor,const auto& position,const auto& direction,std::uint32_t extra,bool primary)->decltype(auto){
-                return runtime.fire_human_item(weapon,actor,position,direction,extra,primary);
+                return world.fire_human_item(weapon,actor,position,direction,extra,primary);
             };
             fire_player_weapon(player,control,world,fire);
         }

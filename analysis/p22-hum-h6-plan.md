@@ -32,12 +32,17 @@ C exports with unknown signatures do not establish their ABI.
   [Controller checkpoint and limits](human-player-item-controller-source.md).
 - [ ] H6.3 — Positive005433B0 firing/dry-fire/reload, command00542920 effects,
   FPV animation/FOV duration and post-shot inventory refresh/cooldowns. Source
-  coordinator/dry-fire/reload notification are verified; actual item24 remains required.
+  coordinator/dry-fire/reload notification are verified; shared item24 and ordinary
+  bullet/light production are in source, with selected projectile/effect guards open.
 - [ ] H6.4 — Melee00542B80, actor actions/repair query and actual command routing;
   reached item virtual24/28, sound/flash/projectile borrowers must be real or
   retain an explicit blocker. Shared projectile/ShotMgr dependencies need an
   ownership decision from the actual call chain, not a fabricated successful fire.
-  Melee/repair/first-queue and shared shot sound are now [source-verified](human-player-item-sound-actions-source.md); projectile producer remains open.
+  Melee/repair/first-queue and shared shot sound are [source-verified](human-player-item-sound-actions-source.md).
+  [Ordinary bullet/light ownership](human-item-bullet-production-source.md) is implemented;
+  shell/capsule/grenade/immediate melee producers remain open. Full asynchronous
+  module14 collision/visual/combat-frame assembly remains H8, preserving selected
+  initial100 requirements. Do not expand non7 replay as an offline H6 dependency.
 - [ ] H6.5 — Compose reached item commands with actual input/queue owners.
   Player08 SAME-Record pending production is verified in the controller
   checkpoint. Full non7 history/replay/admission is conditional external

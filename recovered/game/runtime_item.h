@@ -119,7 +119,8 @@ public:
     std::uint32_t field58=0,field5c=0,field60=1,field64=0,field68=0,field6c=0;
     Frame projectile_marker{}; //Native74 borrowed from the primary model.
     std::array<float,4> projectile_position{},projectile_rotation{}; //Native30/40, lazy007D5250 snapshot.
-    std::uint32_t field7c=1,field88=1,field8c=0,field9c=0,fielda0=0,fielda8=0xffffffffu;
+    std::uint32_t field7c=1,field88=1,field8c=0,fielda8=0xffffffffu;
+    Frame field9c{},fielda0{}; //Native9C/A0 borrowed cardum/blsdum frames, not DWORD identities.
     Frame shot_marker{}; //Native A4 borrowed child, never truncate its identity into a DWORD.
     bool flag90=false;
     float field98=1;
@@ -157,6 +158,15 @@ public:
         }
         return shot_marker;
     }
+    Frame shell_frame(){ //00451100, item9C lazy borrower.
+        if(!field9c)field9c=services_.find_item_model_frame(model(),"cardum",0x20);
+        return field9c;
+    }
+    Frame projectile_effect_frame(){ //00451100/007D4FD0, itemA0 lazy borrower.
+        if(!fielda0)fielda0=services_.find_item_model_frame(model(),"blsdum",0x20);
+        return fielda0;
+    }
+    Frame projectile_frame(){if(field7c==1)classify_projectile_marker();return projectile_marker;} //Item38/007D46B0 returns74, not the auxiliary clone78.
     template<class Frames,class Lookup>Frame shot_sound(unsigned index,Frames& frames,Lookup& lookup){ //007D5C70.
         if(index>=shot_sounds_.size())throw std::out_of_range("Item shot sound exceeds native two-slot array");
         if(shot_sounds_[index])return shot_sounds_[index]->get();
@@ -269,7 +279,7 @@ private:
             flash_=services_.find_item_model_frame(frame,"flash",1);
             if(flash_)services_.item_model_visible(flash_,false);
         }
-        field9c=fielda0=field8c=0;shot_marker=Frame{};fielda8=0xffffffffu; //007D4780.
+        field8c=0;field9c=fielda0=shot_marker=Frame{};fielda8=0xffffffffu; //007D4780.
     }
     Services& services_;
     const Catalogue& catalogue_;
