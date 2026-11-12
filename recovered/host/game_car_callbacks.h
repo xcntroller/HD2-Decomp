@@ -67,10 +67,10 @@ public:
         if(actor_type(actor)==3){
             (void)game::dispatch_human_actor_contact(human_actor(actor),source,point);return;
         }
-        //The fourteen actual Scene2 constructors' nonHuman5C entries all bind
+        //Known Scene2 nonHuman5C entries and runtime Mine00812F08 bind
         //00611070, genuine AL0/RET28. Unknown runtime families are not assumed.
         switch(actor_type(actor)){
-        case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:return;
+        case 2:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:return;
         default:throw std::runtime_error("Car contact requires its actual derived actor5C receiver");
         }
     }

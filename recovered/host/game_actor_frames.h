@@ -1188,6 +1188,7 @@ public:
     MenuDriver::Owner create_fowl_model(){return driver_.create(9);}
     MenuDriver::Owner create_animation_actor_model(){return driver_.create(9);}
     std::int32_t load_animation_actor_model(Frame model,const std::string& name){return resources_.load_model(model,recovered::model_resource_key(name),0x10);}
+    void mine_model_name(Frame frame,const char* name){call<void>(frame,0x34,name);} //005FDF90 ignores HRESULT.
     void animation_actor_name(Frame frame,const std::string& name){if(call<std::int32_t>(frame,0x34,name.c_str())<0)throw std::runtime_error("Cannot name Animation helper model");}
     void animation_actor_scale(Frame frame,const Vector& scale){
         put(frame,0xd0,scale);

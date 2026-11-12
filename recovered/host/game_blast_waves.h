@@ -59,10 +59,16 @@ public:
     }
     std::int32_t blast_material_index(const Actor& actor,EngineFrame*){
         if(actor.base().type()==3)return game::human_blast_material; //0059C2A0, absent frozen inventory.
+        if(actor.base().type()==2){
+            const auto* mine=dynamic_cast<const world_loading::Actors::Runtime::Mine*>(&actor);
+            if(!mine)throw std::logic_error("Blast material requires actual runtime Mine owner");
+            return mine->material(); //005FEEB0, actual bound100, absent frozen.
+        }
         throw std::runtime_error("Blast damage requires actual actor virtualD8 material receiver");
     }
     std::uint32_t blast_material_absorption(std::int32_t index)const{return d_.startup.car_definitions().materials().at(index).word(0x28);}
     void blast_actor_damage(Actor& actor,std::uint32_t kind,float amount,const Vector& point,const Vector& impulse,Actor* source){
+        if(actor.base().type()==2)return; //Mine D4=005B88A0, genuine RET24.
         if(actor.base().type()==3){
             auto& target=d_.world_actors.human_loading_actor(&actor);
             auto* cause=source?&d_.world_actors.human_loading_actor(source):nullptr;

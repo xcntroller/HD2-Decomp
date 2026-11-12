@@ -6,6 +6,7 @@
 #include "game/session_packet_stream.h"
 #include "frontend/localized_text.h"
 #include "frontend/spatial_sound.h"
+#include "game/shot_effect.h"
 #include <limits>
 
 namespace hd2::game {
@@ -80,6 +81,10 @@ public:
     void emit_supply_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_fowl_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_animation_actor_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
+    void emit_mine_effect(const HumanVector& position,const HumanVector& direction,std::uint32_t particle,std::int32_t sound){
+        auto& world=d();emit_shot_effect_without_material(world.startup.shot_manager_process(),world.sound,
+            world.startup.mission_effects_process(),world.scene.frames(),position,direction,particle,sound);
+    }
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(typename Dependencies::Frame frame,void* callback,Resolve&& resolve,Type&& type){
         return d().startup.add_game_sound_listener(frame,callback,std::forward<Resolve>(resolve),std::forward<Type>(type));
     }

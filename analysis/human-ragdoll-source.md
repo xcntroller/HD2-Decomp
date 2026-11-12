@@ -1650,3 +1650,18 @@ reused originals preserve provenance. The derived005FDFB0 exact index lookup was
 late (after its export); its raw/vtable evidence preceded that export. Do not claim
 that lookup happened before it. Continue actual runtime producers/lifetime, entry
 protocol and containing frame/failure/re-entry/retirement.
+
+### Runtime Mine owner and Human9C retirement — 2026-11-12
+
+[Full owner/evidence contract](human-runtime-mine-source.md) now closes the actual
+Mine type2 constructor/bind/timer/sphere/deactivation/packet leaf and positive
+00479700 source ownership scan. SAME runtime registry/SceneEC/buckets/ShotMgr/
+SOUND/module17; no parallel graph. Source actual Car5C and blastD8/D4 recognize
+its verified native leaves. Payload native14/1C maps to serialized10/18 after the
+omitted vtable; no positive-material ShotMgr branches are invented. Frame/packet/
+placement producers still have their original required guards. [Receipt](checkpoints/p2.2-human-runtime-mine-20261112.json)
+adds13 partials, extends6:34 complete/2680 partial, no promotions. Native sanitizer
+800-lifetime owner audit passes with explicit endpoint/grid doubles; actual host/
+i386/launcher compile/link only. Full selected checkbox, containing application
+frame, failure/re-entry/teardown and desktop acceptance remain OPEN. Continue
+00478B90/resource/ground/wire/module12 producers, entry and full Human dispatch.

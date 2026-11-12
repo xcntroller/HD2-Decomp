@@ -46,6 +46,7 @@ public:
     ~GameWorldActors(){close();}
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
+    void emit_mine_effect(const GameActorServices::Vector& position,const GameActorServices::Vector& direction,std::uint32_t particle,std::int32_t sound){consumers_.emit_mine_effect(position,direction,particle,sound);}
     auto& physics(){require_open();return physics_;}auto& item_models(){require_open();return models_;}
     template<class Callbacks>void bind_car_physics(Callbacks& callbacks){
         require_open();

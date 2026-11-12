@@ -5,6 +5,8 @@
 #include "game/placed_item_actor.h"
 #include "game/dynamic_item_actor.h"
 #include "game/runtime_actor_registry.h"
+#include "game/mine_scene_actor.h"
+#include "game/shot_effect.h"
 #include "frontend/localized_text.h"
 
 namespace hd2::host {
@@ -22,6 +24,7 @@ public:
     using ActorOwner=std::unique_ptr<Instance>;
     using ItemActor=game::PlacedItemActor<GameActorServices,Activation>;
     using LooseItemActor=game::DynamicItemActor<GameActorServices,Activation,Collisions,Items>;
+    using Mine=game::MineSceneActor<GameActorServices,GameRuntimeActors,Collisions>;
     using Body=typename LooseItemActor::Body;
     using Descriptor=typename Body::Descriptor;
     using Entry=GameActorServices::Entry;
@@ -30,6 +33,7 @@ public:
                       const frontend::LocalizedTextCache& text,Collisions& collisions,typename Body::Registry& bodies,Items& items)
         : frames_(frames),activation_(activation),navigation_(navigation),text_(text),collisions_(collisions),bodies_(bodies),items_(items) {}
     ActorOwner make_runtime_actor(std::uint32_t type) {
+        if(type==2)return std::make_unique<Mine>(frames_,*this,collisions_);
         if(type==35)return std::make_unique<ItemActor>(frames_,activation_,navigation_,frontend::lookup_localized_text(text_,0x1bf6));
         if(type==11)return std::make_unique<LooseItemActor>(frames_,activation_,collisions_,bodies_,items_);
         throw std::runtime_error("Required runtime actor constructor is not reconstructed: "+std::to_string(type));
@@ -39,6 +43,20 @@ public:
     }
     LooseItemActor* create_loose_item(Frame frame,std::int32_t identity=-1) {
         return static_cast<LooseItemActor*>(registry_.create(11,frame,identity));
+    }
+    Mine* create_mine(Frame frame,std::int32_t identity=-1){return static_cast<Mine*>(registry_.create(2,frame,identity));}
+    void set_runtime_actor_active(Base& base,bool value){set_active(base,value);}
+    void set_scene_actor_active(Base& base,bool value){activation_.set_scene_actor_active(base,value);}
+    std::string mine_caption(std::int32_t identity){
+        const auto* definition=items_.catalogue().item(identity);
+        if(!definition)throw std::logic_error("Mine caption requires actual item definition");
+        return frontend::lookup_localized_text(text_,static_cast<std::int32_t>(definition->caption));
+    }
+    void mine_effect(std::int32_t identity,const GameActorServices::Vector& position,const GameActorServices::Vector& direction){
+        const auto* definition=items_.catalogue().item(identity);
+        if(!definition)throw std::logic_error("Mine effect requires actual item definition");
+        const auto effect=game::mine_effect_definition(*definition);
+        activation_.emit_mine_effect(position,direction,effect.particle,effect.sound);
     }
     void set_active(Base& base,bool value) {registry_.active(registry_.actor_for_base(base),value);}
     void begin_activation(bool authority) {registry_.begin_activation(authority);}
@@ -77,10 +95,12 @@ public:
         items_.consume_placed_items();
     }
     void remove(Instance* actor) noexcept {registry_.remove(actor);}
-    template<class Human>void remove_human_links(Human&){ //00479700; current factories admit no kind2 Human-reference owner.
-        registry_.remove_owned_forward([](Instance& actor){
+    template<class Human>void remove_human_links(Human& human){ //00479700, SAME runtime Mine9C borrower and native increment-after-swap quirk.
+        registry_.remove_owned_forward([&](Instance& actor){
             if(actor.base().type()!=2)return false;
-            throw std::runtime_error("Human runtime retirement requires actual kind2 Human reference9C");
+            auto* mine=dynamic_cast<Mine*>(&actor);
+            if(!mine)throw std::logic_error("Runtime type2 lost actual Mine owner");
+            return mine->human_reference()==static_cast<Instance*>(&human);
         });
     }
     void clear() noexcept {registry_.clear();}
@@ -106,6 +126,7 @@ public:
         registry_.visit_active([&](Instance& actor){
             frames_.observe_data("execution","Runtime actor frame",authority?"authority":"presentation",actor.base().type());
             if(actor.base().type()==35)return; //00611050/60 genuine RET4 in00812750.
+            if(actor.base().type()==2){static_cast<Mine&>(actor).update(authority,elapsed);return;}
             if(actor.base().type()==11){derived.update_loose_item(static_cast<LooseItemActor&>(actor),authority,elapsed);return;}
             throw std::runtime_error("Required runtime actor frame receiver is unavailable");
         });
@@ -115,11 +136,13 @@ public:
     void bind_runtime_actor_frame(Frame frame,Instance* actor) {frames_.bind_scene_actor_frame(frame,actor);}
     void unbind_runtime_actor_frame(Frame frame) noexcept {frames_.unbind_scene_actor_frame(frame);}
     void activate_runtime_actor(Instance& actor,bool authority) {
-        if(actor.base().type()==11)static_cast<LooseItemActor&>(actor).activate(authority);
+        if(actor.base().type()==2)static_cast<Mine&>(actor).activate(authority);
+        else if(actor.base().type()==11)static_cast<LooseItemActor&>(actor).activate(authority);
         else item(actor).activate(authority);
     }
     void deactivate_runtime_actor(Instance& actor,bool authority) {
-        if(actor.base().type()==11)static_cast<LooseItemActor&>(actor).deactivate(authority);
+        if(actor.base().type()==2)static_cast<Mine&>(actor).deactivate(authority);
+        else if(actor.base().type()==11)static_cast<LooseItemActor&>(actor).deactivate(authority);
         else {
             for(auto& queued:static_items_)if(queued.actor==&actor) {
                 queued.descriptor->actor=nullptr;queued.actor=nullptr;

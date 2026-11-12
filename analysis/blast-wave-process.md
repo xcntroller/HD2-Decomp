@@ -77,6 +77,8 @@ actor deduplication does not suppress Physics impulse. Counts reset per advance.
 World Human lifetime map, compares owner keys before touching a retired borrower,
 and calls actual005A1C90 through the existing lifetime. No second Human owner or
 health-only mutation was added. Native source retirement still does not retain1C.
+Runtime Mine type2 now binds actual100 material and genuine empty D4; its
+[owner contract](human-runtime-mine-source.md) preserves the same registry/grid.
 Other derived actor D8/D4 and0043C6A0/0043B000 Versions part transitions remain
 required positive receivers. The historical source endpoint name
 `blast_physics_impulse` does not imply a rigid-body force: actual EC+14 points to

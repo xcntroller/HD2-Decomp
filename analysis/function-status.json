@@ -19059,26 +19059,46 @@
       "program": "client",
       "entry": "004770b0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004770b0: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches.",
+      "coverage": "P2.2 source reconstruction at original entry 004770b0: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches. Actual runtime type2 Mine factory now shares SAME initialization/EC/identity/activation-before-bind source path.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/runtime_actor_registry.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00477190",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00477190: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches.",
+      "coverage": "P2.2 source reconstruction at original entry 00477190: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches. Actual type2 Mine retirement now unregisters SAME borrowed collision descriptor before common/base/frame cleanup.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/runtime_actor_registry.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
       ]
     },
     {
@@ -19150,26 +19170,46 @@
       "program": "client",
       "entry": "004774c0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004774c0: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches.",
+      "coverage": "P2.2 source reconstruction at original entry 004774c0: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches. Runtime Mine authority18 now binds genuine005FEE70/SAME timer gate through actual runtime owner.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/runtime_actor_registry.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00477590",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00477590: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches.",
+      "coverage": "P2.2 source reconstruction at original entry 00477590: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches. Runtime Mine presentation14 now binds genuine005FEE90/SAME timer gate through actual runtime owner.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/runtime_actor_registry.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
       ]
     },
     {
@@ -27176,7 +27216,7 @@
       "program": "client",
       "entry": "006ddd40",
       "status": "partial",
-      "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required. Reached Human D8=66 and actual D4 through SAME live loading owner, final hit0; record1C is a full-width typed borrowed Human source, not a scalar identity. Other actor/Versions positive receivers remain required.",
+      "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required. Reached Human D8=66 and actual D4 through SAME live loading owner, final hit0; record1C is a full-width typed borrowed Human source, not a scalar identity. Other actor/Versions positive receivers remain required. Actual runtime Mine D8 uses bound100, D4 is genuine empty005B88A0; no unknown-actor success fallback.",
       "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/blast_wave_process.h",
@@ -27186,7 +27226,15 @@
         "recovered/host/game_blast_waves.h",
         "recovered/host/game_world_actors.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-containing-blast-20261112.json"
+        "analysis/checkpoints/p2.2-human-containing-blast-20261112.json",
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
       ]
     },
     {
@@ -34915,12 +34963,22 @@
       "program": "client",
       "entry": "0069e720",
       "status": "partial",
-      "coverage": "Reverse transport00 lookup under418, stable peer slot/name reset, A2/game78, actual HUD refresh/override-camera-FPV/spectator/auxiliary phases, required runtime-link receiver then SAME Scene2 delayed retirement, peer3C/stat clear. Source actual World bindings preserve destructive failure prefixes.",
+      "coverage": "Reverse transport00 lookup under418, stable peer slot/name reset, A2/game78, actual HUD refresh/override-camera-FPV/spectator/auxiliary phases, required runtime-link receiver then SAME Scene2 delayed retirement, peer3C/stat clear. Source actual World bindings preserve destructive failure prefixes. Reached runtime00479700 now removes actual type2 Mine9C borrowers through SAME owner registry, retaining native skipped swapped-in matches.",
       "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "recovered/game/session_peer_lifetime.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json",
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
       ]
     },
     {
@@ -35750,6 +35808,253 @@
         "recovered/host/startup_session.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fde30",
+      "status": "partial",
+      "coverage": "Actual runtime type2 factory now constructs SAME Mine owner with common frame/registry/collision references; source unique ownership adapts original0x120 aligned allocation/EH.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fdec0",
+      "status": "partial",
+      "coverage": "Actual runtime Mine/common actor type2 and cold zero descriptor/table lifetime; unproduced90/94/98/99/9C/100/104 reads guarded rather than invented native defaults.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fdf40",
+      "status": "partial",
+      "coverage": "Reached owned Mine deleting lifetime via SAME runtime registry/unique allocation; collision/base retirement before allocation free, not full scalar-delete flag ABI.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fdf60",
+      "status": "partial",
+      "coverage": "Mine cold null-table/base lifetime plus explicit source failed-registration cleanup before descriptor/frame free; populated108-table producers remain excluded.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fdf90",
+      "status": "partial",
+      "coverage": "Actual Mine frame name Actor_mine BEFORE common initialization; native name HRESULT ignored; SAME retained frame/storage/base identity.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fdfd0",
+      "status": "partial",
+      "coverage": "Actual Mine descriptor unregister when99, clear99 AFTER receiver, THEN common runtime deactivation; source failed-prefix guard remains explicit.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fe010",
+      "status": "partial",
+      "coverage": "Mine100/94/98/90/9C stores, definition70/71 normalized forward FLOAT offset, late world placement/update and actual shared catalogue/localized caption LAST; typed borrowed Human9C.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005febb0",
+      "status": "partial",
+      "coverage": "No-stack-argument arming body: late world positionY+.2/normalization, actual shared42/40000 sphere descriptor/radius/material owner registration,94/98/99 after actual bucket insertion.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005feec0",
+      "status": "partial",
+      "coverage": "Actual Mine98 clear then SAME runtime owner removal, no binding/definition/effect read before deletion.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fef50",
+      "status": "partial",
+      "coverage": "Actual Mine definition48 effect view/98-clear/ShotMgr sound+particle negative-material branch BEFORE SAME runtime owner removal; failed effect retains owner/prefix.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00451a80",
+      "status": "partial",
+      "coverage": "Reached material=-1 effect wrapper: SAME ShotMgr D0 group6/position/flags1/sound entry/null borrowers, preserve other request fields, real SOUND emit before particle call.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00451db0",
+      "status": "partial",
+      "coverage": "Reached negative-material branch uses existing00445150/module17 with original definition/pose/NULL parent/orientation1/flag0; positive material surface/additional particle branches remain required.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00479700",
+      "status": "partial",
+      "coverage": "Actual shared runtime ownership forward scan and type2 Mine9C pointer comparison/removal, preserving native increment after swap-last and skipped matching owner quirk.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "recovered/game/shot_effect.h",
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_car_callbacks.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
       ]
     }
   ]
