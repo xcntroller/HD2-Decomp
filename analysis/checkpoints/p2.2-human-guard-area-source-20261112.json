@@ -1,0 +1,515 @@
+{
+  "date": "2026-11-12",
+  "branch": "feature/p22-hum-h5",
+  "requested_base_commit": "520b03ef57e1f98f2137a151a840216a2373894f",
+  "previous_checkpoint_commit": "fc4f5d542301030274945a96ff8c43b10cd39b6c",
+  "source_only": true,
+  "selected_checkbox": "H5",
+  "selected_checkbox_complete": true,
+  "completed_plan_checkpoints": [
+    "H5 source checkpoint"
+  ],
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "windows_outputs_executed": false,
+  "complete_promotions": 0,
+  "added_entries": [
+    "0054cf70",
+    "0054cbb0",
+    "0054d300",
+    "0054d5c0",
+    "0054d570",
+    "0054d620",
+    "0054d800",
+    "0054dc50",
+    "0054dcf0",
+    "0054f040",
+    "0054e7d0",
+    "0054dd20",
+    "0054ded0",
+    "0054f280",
+    "0054f910",
+    "0054e7a0",
+    "0054dc10",
+    "0055d280",
+    "00570ca0",
+    "00558110",
+    "00548010",
+    "00558bd0",
+    "00560820",
+    "00560840",
+    "00559cf0",
+    "005ae610",
+    "005af700",
+    "00585a60"
+  ],
+  "extended_entries": [
+    "005710b0",
+    "00548080",
+    "00559d40",
+    "00548170",
+    "00559de0",
+    "00559a50",
+    "00421c00",
+    "006f78f0",
+    "006f3250",
+    "00586200",
+    "005ae450"
+  ],
+  "ledger_complete": 34,
+  "ledger_partial": 3150,
+  "no_credit": [
+    "00571C10 absent frozen inventory despite reached source protocol",
+    "Folded0054D560 AL1 and engine/STL forwarding receive no new entry credit"
+  ],
+  "source_files": {
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "3eff1e5c6344ddbfe941bb699740cf27cd8ad40dcba0a6a6368363cca52c4ed6",
+      "bytes": 23139
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "7b409a53b7339b844c03415926a70a1873aefcae5ca73b5f791fce5f3ea178f7",
+      "bytes": 2816
+    },
+    "recovered/game/car_seat_actions.h": {
+      "sha256": "1a13c7102e98cd06eae0ad2fa43a140df4bb94c89a41ee38cb055a9fd64847ea",
+      "bytes": 12455
+    },
+    "recovered/game/door_collision_queries.h": {
+      "sha256": "47ee1fe70b702de5f5e074307c9938392cb501c53bc3b82ea806848676b6f9d8",
+      "bytes": 7266
+    },
+    "recovered/game/human_ai_action_pool.h": {
+      "sha256": "40974b1f2bb3ca8ee96adfe03a923d84c879d03d3288dfb3a10a7d9f425dce18",
+      "bytes": 6220
+    },
+    "recovered/game/human_ai_cover.h": {
+      "sha256": "721f4f8dff6e0f18c2035e3c55cbdd22983930cb674be99db526c80d28079cab",
+      "bytes": 7637
+    },
+    "recovered/game/human_ai_direction.h": {
+      "sha256": "f7b4a5ecc9562692c29f807c156e05866879c448b3b1b9c2a0071d09d72491a9",
+      "bytes": 6174
+    },
+    "recovered/game/human_ai_floor_path.h": {
+      "sha256": "2b98d57ca8bdcc88984cdb3e0e13ad6a7ae518b897634451a56dcb78ccb9a96c",
+      "bytes": 9153
+    },
+    "recovered/game/human_ai_frame_metrics.h": {
+      "sha256": "fc51945bf62c6cce41fb5c32ea218e30229178b7f59bec56144de3d92803dc2b",
+      "bytes": 12222
+    },
+    "recovered/game/human_ai_frame_output.h": {
+      "sha256": "04444cad74a4ed7bcc603256da81eb7bcdbcdf80d27db3279262d211583f4033",
+      "bytes": 8603
+    },
+    "recovered/game/human_ai_grenade.h": {
+      "sha256": "c130a837396d9f224e968151e473bba8feb3faa8aa23fd8139b9d994e2f605ce",
+      "bytes": 6275
+    },
+    "recovered/game/human_ai_resources.h": {
+      "sha256": "ac61549106c72769d5f2a13c79d4cf62765aa2e25c814f245ca835dc7aa0ef38",
+      "bytes": 12233
+    },
+    "recovered/game/human_ai_state_loading.h": {
+      "sha256": "e2939bd1776bca126305e7cf8772769bbd3bedc6dee43d60f512ef6f02333817",
+      "bytes": 34653
+    },
+    "recovered/game/human_ai_traversal.h": {
+      "sha256": "4820e3c9df2ad6b0073b6e0836a5bafd6ecd4491106b0ef642628de5772a0984",
+      "bytes": 3105
+    },
+    "recovered/game/human_area_ai_state_loading.h": {
+      "sha256": "f2af4ce179b407090760df4441b3d6e3ee182c2379697987eec15501567e81a2",
+      "bytes": 17355
+    },
+    "recovered/game/human_common_command.h": {
+      "sha256": "5f0bac2843a0e9cbe23147facf43de1d1ab56f39e1b87003e81cc376ea9ee098",
+      "bytes": 4547
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "6edd9acd17d00c595855dc9ba39fea09f3574f4241bd9e3c98b90e5f84987fea",
+      "bytes": 57093
+    },
+    "recovered/game/human_guard_ai_state_loading.h": {
+      "sha256": "261f83eaa00e17857588c6945cd123112bbcf28beab923d3b2dd9f59cea6b7bf",
+      "bytes": 125768
+    },
+    "recovered/game/human_inline_loading.h": {
+      "sha256": "a6a3ec334ce3d676e7ed39f26b933ec874f6fea40e6c887262264ace1ede8298",
+      "bytes": 11577
+    },
+    "recovered/game/human_loading_state_factory.h": {
+      "sha256": "24ab9b2a2dc0ef02a0b822a0be4e0ae431b6944e44487e4f6a8888c088a332c9",
+      "bytes": 15938
+    },
+    "recovered/game/human_look_control.h": {
+      "sha256": "60d27f6f56a6023b0f2665153c6383530591d85945c14b2d46fb2ae1a997da7f",
+      "bytes": 20533
+    },
+    "recovered/game/human_scene_actor.h": {
+      "sha256": "ce8bcd3db084535827bbd0f68e8aa6607a330ab87108dfdda775e08d27f88dbf",
+      "bytes": 8629
+    },
+    "recovered/game/human_script_ai_state_loading.h": {
+      "sha256": "d906709f042171df4c892a965f2ae336de3327e9663e82fc30dfabc9468b0ce8",
+      "bytes": 13937
+    },
+    "recovered/game/human_script_loading_controls.h": {
+      "sha256": "aea3a20b392c38bbef115ebe4b9dae22b1e5ebadfd6251fdb3b8edf34af1c507",
+      "bytes": 7685
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "799645add2225e0467cf9c3620bcbd555496119286995f86f9c9255854cd5792",
+      "bytes": 143505
+    },
+    "recovered/game/mounted_weapon_capability.h": {
+      "sha256": "817ca168f2b03b8ebc7f940ce25d8e5a11e7fbd3edbe6115c699b69b4d6b1b89",
+      "bytes": 4132
+    },
+    "recovered/game/mounted_weapon_control.h": {
+      "sha256": "8ac5ed157b87b02548bd0e809974d369a10174cb88ae4c1587c7a933143e909a",
+      "bytes": 3124
+    },
+    "recovered/game/mounted_weapon_control_loading.h": {
+      "sha256": "d51c399cf8162cd2b8b3ca95d1c1946caeec785e2864a231d17dda6d7ffdc1f5",
+      "bytes": 12559
+    },
+    "recovered/game/sight_loading.h": {
+      "sha256": "60376c83770243ceec75a220bbe59970368e6f73e748b0371398a8614fc0c000",
+      "bytes": 31684
+    },
+    "recovered/game/static_weapon_loading.h": {
+      "sha256": "e83d61c1ac65a038be6f1b26cd6ceaaa7261043a5da207b5e5efe20993371108",
+      "bytes": 13920
+    },
+    "recovered/game/static_weapon_loading_lifetime.h": {
+      "sha256": "1b167db73aa681ec81e75bc94b68d6353b9eb47f370ff725f33678c9f81a483e",
+      "bytes": 1274
+    },
+    "recovered/host/game_sight_loading.h": {
+      "sha256": "ac2a289c2f192747692f1e9abb3018d4709b0bb5762acbece2fef3854295a4a4",
+      "bytes": 7891
+    }
+  },
+  "temporary_audits": {
+    "/tmp/h5-traversal-native.cpp": {
+      "sha256": "efb8b0e5a5fea8f2ce4256279e4f06910c506d56920a92c9153ad7a99eb9ffef",
+      "bytes": 6643
+    },
+    "/tmp/h5-traversal-native": {
+      "sha256": "0e78dc19f3b582cec88b948ae4ed7633bd964c5a5afa2796da78f73855789b7a",
+      "bytes": 2485648
+    },
+    "/tmp/h5-area-native.cpp": {
+      "sha256": "7a6f8c87020da8e4bec064ea137fb8cfb4fad3ef1f36f51888decc55c64d389e",
+      "bytes": 19293
+    },
+    "/tmp/h5-area-native": {
+      "sha256": "cf2cb2e3fecb067d209cc120a536266183b1d50efe410cd26c31c3246eb7b293",
+      "bytes": 8091696
+    },
+    "/tmp/h5-routes-native.cpp": {
+      "sha256": "b57db380b91623cdd5639935ecbba11fdbfb6cdbcb6cebb610e0ef158370a4fa",
+      "bytes": 4023
+    },
+    "/tmp/h5-routes-native": {
+      "sha256": "8a19181b0bc32d5afb26c3a240e04fede2ed7d79f19d493b24a7c4335ef68733",
+      "bytes": 8193872
+    },
+    "/tmp/h5-attached-native.cpp": {
+      "sha256": "5e1afcd0a3abdb7386baf681a0f843ebda8728e7218af08e35fe9e11b13bdf01",
+      "bytes": 4083
+    },
+    "/tmp/h5-attached-native": {
+      "sha256": "ab2b498063eaac5742ecbe6b3c73df34e9bc6cfa2d708995709372aba622a609",
+      "bytes": 228560
+    },
+    "/tmp/h5-tasks-native.cpp": {
+      "sha256": "b87069709aee2d3ce6952a446ae04aab3ffa4fd4ba0b3171294c8a75b1a1d049",
+      "bytes": 8766
+    },
+    "/tmp/h5-tasks-native": {
+      "sha256": "d316d5b78e43391d69bf4ddedc97a0a70f300f90589def4b21a80f2aba9cfd07",
+      "bytes": 9001384
+    },
+    "/tmp/h5-panic-native.cpp": {
+      "sha256": "f1190a21bdf860c96824e0aff3abf579853cc291e58d15f5691d7b68f65dcc19",
+      "bytes": 4066
+    },
+    "/tmp/h5-panic-native": {
+      "sha256": "afc0dc439299c9f19a10a41651addbd7b0746366ad7bf9dc60c9178b23d97cf5",
+      "bytes": 9557400
+    },
+    "/tmp/h5-vehicles-native.cpp": {
+      "sha256": "63c8113e467668567f7b75d14a8827a1868b0b9fc2cfbc8f04a8432a02cf5c1a",
+      "bytes": 3585
+    },
+    "/tmp/h5-vehicles-native": {
+      "sha256": "4ab06f89ee05611a16937313fa79aa24a1f22a727ea3f083c272ea4f2590099e",
+      "bytes": 9882728
+    },
+    "/tmp/h5-mounted-native.cpp": {
+      "sha256": "e127eb277b203b16d0aaaddb45e4e14936cbd8e657013a395c13e382b4216618",
+      "bytes": 8188
+    },
+    "/tmp/h5-mounted-native": {
+      "sha256": "edb7c6a0e034abd5ac5311474a3f52117e698b0a28c8faf59ac894f185f75b06",
+      "bytes": 10343096
+    },
+    "/tmp/h5-scene-native.cpp": {
+      "sha256": "d4f92630dcb95826ba952a65b97a06390c9d0e51aed8a82bd1bede74235445de",
+      "bytes": 14748
+    },
+    "/tmp/h5-scene-native": {
+      "sha256": "de2fd3e18cdc0acc6d8eb6a0391342b0232f339c3763dc876621731539d61b78",
+      "bytes": 15715456
+    },
+    "/tmp/h5-target-ray-native.cpp": {
+      "sha256": "f693450f5c5079d4c93122150b37170bdb93453694de381faf5ae54b5d4050cc",
+      "bytes": 1838
+    },
+    "/tmp/h5-target-ray-native": {
+      "sha256": "906db8f69dafa53c8330245802a5542f0ce43718f7df8791c3960b6d70f492d8",
+      "bytes": 1100704
+    }
+  },
+  "i386_fixture": {
+    "path": "analysis/work/mission-world-20261103/h5-host-i386.cpp",
+    "sha256": "a3dfa437bbbed9ac782728418d5bfc40b75cd9f271b4e83d2c567885c2530de9",
+    "bytes": 5184
+  },
+  "i386_object": {
+    "path": "/tmp/h5-host-i386.o",
+    "sha256": "5761d4602860371fe857a9a39bbc75478b0d9718f38c8e4a4bb8443a5f3b4f89",
+    "bytes": 12445819
+  },
+  "build_logs": {
+    "analysis/work/mission-world-20261103/h5-final-area-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-final-area-native-run.log": {
+      "sha256": "025543428c082616c3eb13ca324a988bdcce1b2901a2ded1b44f67de9f1f6b3d",
+      "bytes": 194
+    },
+    "analysis/work/mission-world-20261103/h5-final-tasks-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-final-tasks-native-run.log": {
+      "sha256": "cf9b590adb55fccc9e0b8112e74526b9d44c2ae0ff90ebfddbf7e04e3f61d4d0",
+      "bytes": 143
+    },
+    "analysis/work/mission-world-20261103/h5-final-panic-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-final-panic-native-run.log": {
+      "sha256": "b826273f9843f2f8558d464f39d72fe7f9107bfc73e0b77eb364f6d0319e5c96",
+      "bytes": 157
+    },
+    "analysis/work/mission-world-20261103/h5-final-vehicles-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-final-vehicles-native-run.log": {
+      "sha256": "e7ca12dda4e352d967d84162711bf50c8fe4b3c29e936f7cf84f3920ade73ab9",
+      "bytes": 166
+    },
+    "analysis/work/mission-world-20261103/h5-final-mounted-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-final-mounted-native-run.log": {
+      "sha256": "5051818bb2008c07eb2a132c1b1f1b07c76e9273ca213cbf0aa086f96fd27821",
+      "bytes": 182
+    },
+    "analysis/work/mission-world-20261103/h5-final-scene-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-final-scene-native-run.log": {
+      "sha256": "ddc1276069d6dfcf3f05dcbb907e5109c5e999d7c93558fe71fc8220ff57e024",
+      "bytes": 249
+    },
+    "analysis/work/mission-world-20261103/h5-final-traversal-native-run.log": {
+      "sha256": "289689d79c56e6b50cefcbc4d36f4328f813df4de7b6b4e1d81e8459303a0e37",
+      "bytes": 160
+    },
+    "analysis/work/mission-world-20261103/h5-final-routes-native-run.log": {
+      "sha256": "e72d6b83a6a7575cd0ddf23f3c7053416c919ad8a704e4695f113646e2e2496d",
+      "bytes": 110
+    },
+    "analysis/work/mission-world-20261103/h5-final-attached-native-run.log": {
+      "sha256": "76714307f8e7736d70054fc07d78771a87703abba1f5c94713e09139c017dd0d",
+      "bytes": 116
+    },
+    "analysis/work/mission-world-20261103/h5-final-target-ray-native-run.log": {
+      "sha256": "b900331edece55bf9efb6668b548a6ac22e9eba38783abdc81ee2bf32175fc16",
+      "bytes": 190
+    },
+    "analysis/work/mission-world-20261103/h5-target-ray-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-final-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-final-application-i386.log": {
+      "sha256": "d0428c26c28b0162c7fbe696e94ccc31d77c5137325cf684c595ff055119b74c",
+      "bytes": 802
+    }
+  },
+  "native_results": {
+    "traversal": "PASS 100 Ladder protocol and100 populated floor-filter/detour families; actual query/direction/flag/job owners, explicit model/Scene2/DD0/command/ray endpoints",
+    "area": "PASS populated Area/Guard selection, mounted bounds, retained transfer, forced Sight, grenade and kind6 pool audits; 100 Area action/event/target families; explicit frame/Inline/World endpoints",
+    "routes": "PASS actual navigation filter masks, removals, NaN cap, Guard range/hold/approach/retreat/nearby route owners",
+    "attached": "PASS mounted actual aim-rate state and Car driver controls; explicit physics/engine endpoints; no Windows execution",
+    "tasks": "PASS 100 Guard task action/event/route families on actual pools/navigation/direction/query/input owners; explicit frame/Inline/World endpoints",
+    "panic": "PASS 100 Guard panic/surrender/flee/armed/reload/drop decision families; actual action/query/input/direction owners; explicit animation/drop/World endpoints",
+    "vehicles": "PASS 100 Guard vehicle capability/route/rocket/avoidance/fallback/retirement families; actual action/navigation/query owners; explicit seat/inventory/World endpoints",
+    "mounted": "PASS 100 Guard mounted action/event/score/retained report/aim/input/exit families; actual pooled actions, direction, queues, state and inputs; explicit mounted/Sight/frame endpoints",
+    "scene": "PASS 100 actual Scene2 registry/family/Guard-Area factory frame dispatch, positive idle/mounted decisions, gates, H4 failure/re-entry and action/job/queue retirement families; explicit World/Inline/movement endpoints; no full Human or desktop claim",
+    "target-ray": "PASS 100 actual dynamic grid/descriptor nearest-hit, Door boolean, masks, equal/inside/zero-ray and retirement families; existing49/4A boundary preserved; explicit unused OBB math endpoints"
+  },
+  "original_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/h5-mounted-target-ray.asm": {
+      "sha256": "3e466efafb4986fc6f6a911f0873a1e3f8c655520846ee956f7daf947634796e",
+      "bytes": 3886
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-actions.asm": {
+      "sha256": "5709468dff3a82f0ecb16506bbd2359a8cc87225d7abb2eed466e9007e71e492",
+      "bytes": 35672
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-events.asm": {
+      "sha256": "b023da40ad6963ef36b83ecbc66e33a1201f2f9c32ae05f1c39b902a8b1202b4",
+      "bytes": 16782
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-hostile-score.asm": {
+      "sha256": "5bdec1d8b1b78d818cfd25dc46a6ef722a6f7a7701d4a703d41ed11805b3e145",
+      "bytes": 10680
+    },
+    "analysis/work/mission-world-20261103/h5-aim-stop-delay.asm": {
+      "sha256": "dd57791ca60bdb4cbc909507f6aa4472c58cbb5c6ba99241f9092c7dae694f16",
+      "bytes": 4310
+    },
+    "analysis/work/mission-world-20261103/h5-aim-stop-parameters.asm": {
+      "sha256": "b6166deee7dc465820d4f818bed82d0954d9d0aca3f95c66ae8b90a85ac10e26",
+      "bytes": 10193
+    },
+    "analysis/work/mission-world-20261103/h5-aim-stop-wrapper.asm": {
+      "sha256": "1b09d5b41c5906927411cb980821d6ae824c0f470d6e6748ac60d39ce1aea53c",
+      "bytes": 3079
+    },
+    "analysis/work/mission-world-20261103/h5-sniper-command.asm": {
+      "sha256": "1fe39c81c9d0481e1edfe7a0e0065afa39411a9907022c05913cc44861da766c",
+      "bytes": 1704
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-aim-stop-constants.json": {
+      "sha256": "7ee18dfb34b41929399eb0177188bb5308fa3863660444e296b816f7f947f3ec",
+      "bytes": 2767
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-stack-abi/0054cf70.c": {
+      "sha256": "dd1d3289f235486855fbae086cac45c7039ed1a4c6cd873eb7e1be5e34d02286",
+      "bytes": 4953
+    },
+    "analysis/work/mission-world-20261103/frame-human-guard-event-workers/0054cbb0.c": {
+      "sha256": "2c71647af1b65a698dc602cadd011ef8339541049be28bc476ec9817126d9866",
+      "bytes": 4310
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-stack-abi/0054d300.c": {
+      "sha256": "3fc8836e2ea9d01d2b64819dd09a934890f7fe63261528176d37ed70250103a7",
+      "bytes": 3086
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-leaves-abi/0054d570.c": {
+      "sha256": "3d2c397c918e42558ce5baa6d951732921634605a12f19e4d5377677f46c953f",
+      "bytes": 986
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-final-abi/0054d800.c": {
+      "sha256": "b09c5f5a5e06263f7d1660b88d27e2959b6a843d1d08966219797fee281f90e2",
+      "bytes": 4664
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-stack-abi/0054ded0.c": {
+      "sha256": "ea61f04c3fb492f1ce8b9db4ed9ebc4eb591e313e1de0c5ae66e9ef143b9af62",
+      "bytes": 5012
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-stack-abi/0054f280.c": {
+      "sha256": "886c08ad1827065fe7122d721309efca98a0100364904400044490492eb604e0",
+      "bytes": 7004
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-stack-abi/0054e7d0.c": {
+      "sha256": "2c341302cd3d3157d9d90f1ceeb840c68a17a0bd8da2c14f8d877261bceb6806",
+      "bytes": 9743
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-target-position-abi/0054d6b0.c": {
+      "sha256": "898d8c08cf9143d0c05c7266214325dd59e01fd847e0325275cc9a34f10b7555",
+      "bytes": 1720
+    },
+    "analysis/work/mission-world-20261103/h5-mounted-calls-abi/00570ca0.c": {
+      "sha256": "296f43ea2c64ee164d3a10e2adb4a6c7044cf91d72d9d3a3f4a7e356622e7e1a",
+      "bytes": 4680
+    },
+    "analysis/work/mission-world-20261103/h5-aim-stop-abi/00558110.c": {
+      "sha256": "f566a227b10cac14637973e9dddddbcbbe9fc5167f0f877a02978b660bf89daf",
+      "bytes": 811
+    },
+    "analysis/work/mission-world-20261103/h5-aim-stop-abi/00548010.c": {
+      "sha256": "515da8e4d7238fc153767d4981cc9060778b85a9b8f79600144299d5bddc1193",
+      "bytes": 673
+    },
+    "analysis/work/mission-world-20261103/h5-aim-stop-abi/00558bd0.c": {
+      "sha256": "b88a5c22718a69ad66d7bc05340143d0544a5ca13dc08159661d4970154af385",
+      "bytes": 2591
+    },
+    "analysis/work/mission-world-20261103/h5-area-producer-abi/005ae610.c": {
+      "sha256": "cf1310be65bedecb2574eb627c493e910387e9e6c63e64eae0c3087850c960c7",
+      "bytes": 430
+    },
+    "analysis/work/mission-world-20261103/h5-area-wrapper-final-abi/005af700.c": {
+      "sha256": "5e4078f2020228fb64ea5cab6c32a2fdf74d04a1c8e8ea4b031cc39163d97d51",
+      "bytes": 313
+    }
+  },
+  "research_contract": "analysis/human-guard-area-source.md",
+  "prior_receipts": [
+    "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
+    "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json",
+    "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+  ],
+  "verification": [
+    "PASS consolidated ASan/UBSan/leak audits over stated real source owners; endpoint doubles and limits recorded in contract.",
+    "PASS source Scene2 registry/family/factory Guard-Area callbacks, positive idle/mounted actions, Area producer/handover, gates, retained failure/re-entry and ordered pool/queue/registry teardown.",
+    "PASS strict actual nested World/Guard/Area and actual Human VM dispatcher i386 object compilation.",
+    "PASS application launcher and startup-probe compile/link only.",
+    "No original EXE/DLL/Proton or Windows output execution; no desktop or full Human/DD0 execution claim."
+  ],
+  "remaining_delivery_dependencies": [
+    "H4 actual common target/alignment/query completions and DD0 transition outputs",
+    "H6 held/mounted fire/reload consumers",
+    "H8 full Human/DD0/containing frame and OWN/FRAME integration",
+    "Existing other transport/aircraft005E0DD0/non7 and shared collision49/4A boundaries",
+    "Application loading and actual desktop acceptance"
+  ],
+  "temporary_audits_removed": true,
+  "permanent_tests_added": false,
+  "cleanup": "All20 native audit fixtures/binaries plus the compile-only i386 fixture/object removed after exact fingerprint verification; logs and original research retained.",
+  "final_native_builds": [
+    "area",
+    "tasks",
+    "panic",
+    "vehicles",
+    "mounted",
+    "scene",
+    "target-ray"
+  ],
+  "unchanged_kernel_binaries_rerun": [
+    "traversal",
+    "routes",
+    "attached"
+  ],
+  "formatting_after_checks": "One indentation-only source correction; receipt fingerprints the final source."
+}

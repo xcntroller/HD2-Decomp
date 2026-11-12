@@ -1,7 +1,9 @@
 # Human reactions and ragdoll source
 
-P22-HUM's second plan checkbox remains open. Current work continues the same
-body/point owners. Application mission loading and desktop acceptance remain open.
+P22-HUM H2 is source-complete on the same actual Human/control/body/point
+owners. [Closure and verification limits](human-h2-source-closure.md),
+[receipt](checkpoints/p2.2-human-h2-source-20261112.json). Full World/application
+loading and desktop acceptance remain open.
 
 Current status and remaining dependency order are maintained in the
 [revised Human plan](p22-hum-plan.md), including D1–D3 and D4a source checkpoints. S01–S14 identify verified
@@ -9,9 +11,42 @@ source checkpoints; D0–D12 identify remaining composition/producer dependencie
 Earlier “in progress”, “continue” and “not yet bound” notes below are dated
 research snapshots, superseded by later checkpoints. In particular007B3C80,
 007B37C0→00787110,0074D510 and Car fuel10/impulse11 are source-recovered; their
-containing-path/application acceptance is still open. Do not restart these
-kernels from an earlier snapshot. Deferred joint/clip inventory reconciliation
-belongs to D12 and does not imply that their implemented bodies are absent.
+H2-owned containing source segment is now verified; actual World/application
+acceptance remains open. Do not restart these
+kernels from an earlier snapshot. Joint/clip inventory reconciliation is now recorded below; full containing-World verification and external producer limitations remain open.
+
+## Earlier kernel source checkpoint and inventory reconciliation — 2026-11-12
+
+[Receipt](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json) reconciles
+27 previously implemented, verified frozen client bodies: body interpolation/
+publication, length/angular/sibling/segment constraints, impulse/contact-frame/
+point integration, weighted correction/substep dispatch, point/body contacts,
+sleep, contact SOUND, rest-surface selection, direct Car impulses and retained
+clip007B7410/007B3C80. It extends the historical007B0910/007A7470 records to the
+expanded entry and actual ragdoll branch. **No source body changed in this
+accounting checkpoint, and no function was promoted to complete.**
+
+Current tally is34 complete/3245 partial (3240client+5engine), including completed
+aggregate201adbf merged at98c96ca. Research-index checks establish that all27 new
+entries are actual frozen non-thunk functions. Interior labels, absent helpers,
+engine calls and generic adapters receive no extra credit.
+
+Existing focused native verification is reused without repeating unchanged
+kernel audits. The retained-reaction fixture explicitly seeds known private
+model/Human/control/skeleton/camera fields with `-fno-access-control`; it does
+not execute actual geometry loading. Engine math/Slerp, query and selected
+containing components are doubles. The current completed-branch merge also
+compiled the actual nested host World/Control/Human kernel bindings and rebuilt
+launcher/probe; Windows output was not executed. The receipt fingerprints
+current source, retained original research and existing verification, and links
+the merged-check artifacts. Existing frozen fixtures remain intact; no new test
+source was introduced for this reconciliation.
+
+That earlier checkpoint closed only the deferred kernel-inventory item. The
+later [H2 closure](human-h2-source-closure.md) verifies actual reaction owners;
+D11's fresh part5F9, wheel695 and reached effect-record failures remain explicit
+on their external Car/containing-world callers. Full cross-branch
+frame/application/desktop delivery stays separate; H4 source is not imported.
 
 ## Original evidence
 
@@ -102,7 +137,7 @@ changes. Consolidate credit, receipts and temporary-source removal at completion
 
 The original continuation scope was007A7470,007B3C80,007B0910,0074D510 and
 positive obstruction/contact/fall damage. Later sections below record their
-source recovery. Use the current [D0–D12 plan](p22-hum-plan.md#h2-remaining-dependencies-and-exit-tests)
+source recovery. Use the current [D0–D12 plan](p22-hum-plan.md#recovered-h2-source-and-containing-world-dependencies)
 for remaining work rather than treating this historical list as unchecked.
 
 007CDE00 emits flags5, source Human, relative bone22/group0/entry44 for6914.

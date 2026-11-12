@@ -27,6 +27,11 @@ public:
     const auto& seats()const{return seats_;}const auto& barrels()const{return control_.barrels();}
     const Descriptor& descriptor()const{return descriptor_;}Entry weapon_item()const{return control_.weapon_item();}
     bool presentation_failed()const{return control_.failed();} //004C57B0, SAME shared mounted owner.
+    std::array<float,4> mounted_position()override{return control_.mounted_position();} //00604D40.
+    bool can_target(const std::array<float,4>& target)override{return control_.can_target(target);} //006055A0.
+    void seat_frame_inputs(std::int32_t seat,const HumanFrameInputBuffer& first,const HumanFrameInputBuffer& second)override{ //00604CF0 has no signed bounds gate.
+        if(seats_.at(static_cast<std::size_t>(seat)).occupant)control_.frame_inputs(first,second);
+    }
     void presentation_view(bool enabled){control_.view(enabled);} //004C6D90.
     void activate(bool authority)override { //006036D0 common-first; once guard covers derived pass only.
         actor_.base().activate_frame(authority,services_);
@@ -56,13 +61,49 @@ public:
     void update(bool authority,std::uint32_t elapsed)override { //00603070/006034D0 cold ownerFC=0 path.
         if(!ready_)throw std::logic_error("StaticWeapon first update requires completed loading");
         if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("StaticWeapon update requires actual non7 input/network receivers");
-        if(control_.occupied()||actor_.control.flagd4||actor_.control.flagdc)throw std::runtime_error("StaticWeapon occupied control requires actual targeting/firing receivers");
-        (void)elapsed;
-        if(!authority&&!seats_.empty()&&seats_.front().occupant)throw std::runtime_error("StaticWeapon occupied seat requires model/seat simulation receivers");
-        //004C55E0 and004C56A0 both return after their true null controlFC gate.
+        control_.advance(authority,elapsed);
+        if(!authority&&!seats_.empty()&&seats_.front().occupant){frames_.supply_model_tick(actor_.base().frame(),elapsed);refresh_seat_collision();}
     }
-    void fire_marker()override{control_.fire_marker();}
+    void fire_marker(void* barrel)override{control_.fire_marker(barrel);}
     std::array<float,4> aim_direction()override{return control_.aim_direction();}
+    void* seat_occupant(std::int32_t index)const override{
+        return index<0||static_cast<std::size_t>(index)>=seats_.size()?nullptr:seats_[static_cast<std::size_t>(index)].occupant;
+    }
+    void assign_seat(std::int32_t index,void* value)override{ //006041A0, unlike Car, even the SAME existing occupant rejects.
+        if(index<0||static_cast<std::size_t>(index)>=seats_.size())return;
+        auto& seat=seats_[static_cast<std::size_t>(index)];if(seat.occupant)return;
+        if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("StaticWeapon seat entry requires actual non7 packet owner");
+        if(value){
+            auto* actor=static_cast<SceneActor<Frames>*>(value);const auto model=actor->base().frame();
+            frames_.human_seat_link(model,seat.frame);frames_.human_seat_origin(model);
+            auto world=frames_.actor_world_matrix(seats_.front().frame);actor->base().world_position({{world[12],world[13],world[14],world[15]}}); //Native reads FIRST seat for base pose.
+            world=frames_.actor_world_matrix(seats_.front().frame);typename Frames::Vector direction{{world[8],world[9],world[10],world[11]}};
+            const float square=static_cast<float>((static_cast<long double>(direction[0])*direction[0]+static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[1])*direction[1]);
+            normalize_human_ai_shot(direction,square);actor->base().world_direction(direction);
+            services_.seat_human_direction(actor,direction);frames_.update_scene_object(actor_.base().frame());
+        }
+        seat.occupant=value;control_.set_occupant(value);refresh_seat_collision();services_.seat_script_use(actor_.base().frame());
+    }
+    bool exit_seat(std::int32_t index)override{ //006046D0, fixed navigation fallback; no Car collision search.
+        if(index<0||static_cast<std::size_t>(index)>=seats_.size())return false;
+        auto& seat=seats_[static_cast<std::size_t>(index)];if(!seat.occupant)return false;
+        auto placed=navigation_position_;const auto square=(static_cast<long double>(placed[2])*placed[2]+static_cast<long double>(placed[1])*placed[1])+static_cast<long double>(placed[0])*placed[0];
+        if(!(square>=1.0000000168623835e-16f)){
+            auto world=frames_.actor_world_matrix(actor_.base().frame());typename Frames::Vector offset=placed;
+            for(unsigned axis=0;axis!=3;++axis)offset[axis]=-world[8+axis];
+            world=frames_.actor_world_matrix(actor_.base().frame());for(unsigned axis=0;axis!=3;++axis)placed[axis]=offset[axis]+world[12+axis];
+        }
+        const auto world=frames_.actor_world_matrix(actor_.base().frame());typename Frames::Vector direction{{world[8],world[9],world[10],world[11]}};
+        const float length=static_cast<float>((static_cast<long double>(direction[0])*direction[0]+static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[1])*direction[1]);
+        normalize_human_ai_shot(direction,length);
+        auto* actor=static_cast<SceneActor<Frames>*>(seat.occupant);frames_.human_seat_link(actor->base().frame(),frames_.camera_root_sector());
+        frames_.human_seat_exit_pose(actor->base().frame(),placed,direction);
+        seat.occupant=nullptr;control_.clear_occupant();refresh_seat_collision();return true;
+    }
+    std::optional<std::uint32_t> seat_weapon_kind()override{
+        if(control_.failed())return std::nullopt;
+        return items_.runtime_item(control_.weapon_item()).primary_payload_kind(); //00604DA0→004C57B0, native definition48 virtual0C.
+    }
     void remove_reaction_seat(std::int32_t index)override{ //00604630, absent frozen inventory.
         if(index<0||static_cast<std::size_t>(index)>=seats_.size())return;
         auto& seat=seats_[static_cast<std::size_t>(index)];
@@ -72,6 +113,8 @@ public:
             frames_.update_scene_object(actor_.base().frame());initialize_collision();collisions_.move(descriptor_);
         }
     }
+    bool seat_claimed(std::int32_t index)const override{return index<0||static_cast<std::size_t>(index)>=seats_.size()?true:seats_[static_cast<std::size_t>(index)].flag;} //00604A90 invalid seats are CLOSED.
+    void claim_seat(std::int32_t index,bool value)override{if(index>=0&&static_cast<std::size_t>(index)<seats_.size())seats_[static_cast<std::size_t>(index)].flag=value;} //00604AD0.
     std::uint32_t reaction_seat_flags(std::int32_t index)const override{ //00604A10, first case-sensitive SEAT substring.
         if(index<0||static_cast<std::size_t>(index)>=seats_.size())return 0;
         const auto text=frames_.actor_user_data(seats_[static_cast<std::size_t>(index)].frame);const auto at=text.find("SEAT");
@@ -83,6 +126,9 @@ public:
     }
 
 private:
+    void refresh_seat_collision(){ //00604E90, SAME stable descriptor.
+        if(actor_.flag150){frames_.update_scene_object(actor_.base().frame());initialize_collision();collisions_.move(descriptor_);}
+    }
     static std::string indexed(const char* format,unsigned first,unsigned second=0) {
         char text[64];const auto size=std::snprintf(text,sizeof(text),format,first,second);
         if(size<0||static_cast<std::size_t>(size)>=sizeof(text))throw std::runtime_error("StaticWeapon authored name exceeds native bounds");

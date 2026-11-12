@@ -1654,3 +1654,11 @@ preserving the first failure and recording any secondary cleanup failure.
 The native pose-chain fixture exercises each constrained joint's first iteration
 from identity local rotations. It does not establish engine solver convergence
 or a loaded mission frame.
+
+## H3 seat interaction source checkpoint — 2026-11-12
+
+[H3 contract](human-seat-interaction-source.md) extends the earlier cold/partial
+boundary with actual offline occupied Car/StaticWeapon entry/exit, driver controls,
+mounted reset/aim and casing receivers. [Receipt](checkpoints/p2.2-human-seat-interaction-20261112.json).
+Full occupied/non7 Car frame remains D5; H2/H4–H6/H8 and application/desktop
+delivery remain open. Earlier checkpoint exclusions above describe their original scope.

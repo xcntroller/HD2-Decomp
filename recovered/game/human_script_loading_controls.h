@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_SCRIPT_LOADING_CONTROLS_H
 
 #include "game/mission_script_actor_context.h"
+#include <cstring>
 
 namespace hd2::game {
 
@@ -35,6 +36,11 @@ public:
             if(factory.control().human()!=&human)throw std::logic_error("Script working mode factory belongs to another Human");
             state->working_mode(mode,factory.control());
         }
+    }
+    void sniper_area(Human& human,bool enabled,float radius){ //005AF700→005AE610, does not change B0 here.
+        const auto matrix=frames_.actor_world_matrix(human.base().frame());
+        if(!human.command)throw std::logic_error("Human sniper area requires actual B4");
+        human.command->sniper_area(enabled,radius,{{matrix[12],matrix[13],matrix[14],matrix[15]}});
     }
     void end_script(Human& human) { //005AF450→0058F680; no state borrower survives selection.
         auto* state=script(human);if(!state)return;
@@ -98,7 +104,7 @@ private:
 //actual base00416E10 receiver first, then this derived Human receiver.
 template<class Frames,class Human,class Controls,class Runtime>std::optional<bool> execute_human_loading_script_command(
         MissionScriptContext<Frames>& context,const MissionScriptInstruction& instruction,Controls& controls,Runtime& runtime){
-    switch(instruction.opcode){case 0x1d:case 0x21:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:break;default:return std::nullopt;}
+    switch(instruction.opcode){case 0x1d:case 0x21:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:case 0x44:break;default:return std::nullopt;}
     if(context.family()!=1)return std::nullopt;
     if(!runtime.script_authority())return false;
     auto* derived=dynamic_cast<ActorMissionScriptContext<Frames,1>*>(&context);
@@ -109,6 +115,11 @@ template<class Frames,class Human,class Controls,class Runtime>std::optional<boo
     case 0x21:case 0x30:
         controls.attack(*human,context.slot(instruction.operands.at(0)),context.program().integers.at(instruction.operands.at(1)).value,instruction.opcode==0x30,context.pc());
         return true; //Original PC parks even if admission is rejected; timed completion advances it conditionally.
+    case 0x44:{
+        const auto enabled=context.program().integers.at(instruction.operands.at(0)).value!=0;
+        const auto bits=context.program().integers.at(instruction.operands.at(1)).value;std::int32_t radius;std::memcpy(&radius,&bits,4);
+        controls.sniper_area(*human,enabled,static_cast<float>(radius));break;
+    }
     case 0x1d:controls.set_alarm(*human,context.program().integers.at(instruction.operands.at(0)).value!=0);break;
     case 0xc7:controls.guard_mode(*human);break;
     case 0xcf:controls.zombie_mode(*human);break;

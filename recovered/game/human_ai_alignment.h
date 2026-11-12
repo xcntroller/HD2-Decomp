@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_AI_ALIGNMENT_H
 #include "game/human_ai_target_output.h"
 #include "game/human_ai_trigger_output.h"
+#include "game/human_ai_grenade.h"
 namespace hd2::game {
 //00558E50: actual friendly278 list and physical6E0 posture spheres. The
 //native test uses the infinite line, not a clamped segment; keep its200 scale.
@@ -124,16 +125,15 @@ template<class State,class World>std::uint32_t continue_human_ai_aim(State& stat
     if(state.words().template get<std::uint32_t>(0x48)==3u&&world.human_ai_ammunition_count(state)==0)return 0x800u;
     finish_human_ai_trigger(state);return 0x200u;
 }
-//00576350 ordinary and special34 composition. Special35 is the H5 grenade
-//worker already recovered on HUM; the current base must fail at that exact
-//unimported receiver, preserving E0 publication, until integration supplies it.
+//00576350: grenade35 returns zero without publishing ordinary status38.
 template<class State,class World>
 std::uint32_t advance_human_ai_aim(State& state,std::uint32_t elapsed,World& world){
     auto& resources=state.resources();auto& target=resources.target();
     const auto publish=[&](std::uint32_t value){resources.target().state.set(0x38,value);return value;};
     if(target.state.template get<std::uint8_t>(0x35)){
         resources.state().set(0xe0,target.state.template get<HumanVector>(0x20));
-        throw std::runtime_error("AI target35 requires H5 human_ai_grenade.h integration from feature/p22-hum");
+        aim_human_ai_grenade(state,world);
+        resources.target().state.set(0x35,std::uint8_t{0});return 0u;
     }
     if(target.state.template get<std::uint8_t>(0x34)){
         if(state.item()&&world.human_ai_ammunition_count(state)==0)return publish(0x800u);

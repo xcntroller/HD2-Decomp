@@ -41,7 +41,7 @@ private:
     struct Binding{GameStaticWeaponEvents* owner;Control* control;};inline static std::map<Frame,Binding> bindings_;
     static std::int32_t WINAPI invoke(Frame frame,std::uint32_t,const char* text,std::int32_t)noexcept {
         const auto found=bindings_.find(frame);if(found==bindings_.end()||!text||*text!='S')return 0;
-        auto& binding=found->second;try{binding.control->fire_marker();}catch(...){if(!binding.owner->failure_)binding.owner->failure_=std::current_exception();}return 0;
+        auto& binding=found->second;try{binding.control->fire_marker(frame);}catch(...){if(!binding.owner->failure_)binding.owner->failure_=std::current_exception();}return 0;
     }
     GameActorServices& frames_;std::exception_ptr failure_;
 };

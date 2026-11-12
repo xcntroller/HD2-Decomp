@@ -1191,6 +1191,11 @@ public:
             offset63a0{{-.075f,-.041f,-.003f,0}},offset63b0{{.075f,-.041f,-.003f,0}};
     };
     const Movement& movement() const {return movement_;}
+    void seat_posture(std::uint32_t posture){ //00755500 updates SAME native62D0/65F0/65F4 after E0 posture.
+        movement_.field62d0=posture;
+        if(posture==2){movement_.flag65f0=true;movement_.field65f4=500;}
+        else movement_.flag65f0=false;
+    }
     const auto& attachment_pose()const{return attachment_pose_;}
     const auto& prone_pose()const{return prone_pose_;}
     template<class Human,class Control>void present_prone_pose(Human& human,Control& control){
@@ -1278,7 +1283,10 @@ public:
         movement_.field630c=static_cast<std::uint32_t>(duration);
         movement_.field6308=static_cast<std::uint32_t>(human_animation_time_integer(static_cast<long double>(duration)*human_animation_word_float(movement_.field6318)));
     }
-    template<class Human,class Control,class Runtime>void present_frame(Human& human,Control& control,std::uint32_t elapsed,Runtime& runtime){ //007A7470.
+    //007A7470's common frame sampling and selected ragdoll branch. The normal
+    //presentation continuation shares this exact prefix, including its clock
+    //and motion samples; it does not run when the reaction branch consumes it.
+    template<class Human,class Control>bool present_reaction_frame(Human& human,Control& control,std::uint32_t elapsed){
         if(human_!=&human||control_!=&control||!model_)throw std::logic_error("Human geometry frame lost its actual owners");
         frame_elapsed_=elapsed;++seed_; //Native62B4/62B8.
         auto countdown=movement_.field6410-elapsed;
@@ -1304,8 +1312,12 @@ public:
         geometry_detail_=(control.animation_state_word(0x22c)&0x380u)==0; //Native62C9.
         if(movement_.field6304&0x200u){
             control.present_ragdoll_geometry();
-            return;
+            return true;
         }
+        return false;
+    }
+    template<class Human,class Control,class Runtime>void present_frame(Human& human,Control& control,std::uint32_t elapsed,Runtime& runtime){ //007A7470.
+        if(present_reaction_frame(human,control,elapsed))return;
         if(human_frame_signed_word(human.properties.stats_ec[0])<1)return;
         if(movement_.flag65f0&&control.animation_look_word(0xb8)!=5&&
            ((control.mode_flags()&7u)==7u||control.human_is_player()))

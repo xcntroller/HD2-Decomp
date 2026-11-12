@@ -244,12 +244,14 @@ preparation, not a standalone audit-only milestone.
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
   [Full boundary/source progress](analysis/mission-world-loading.md), [frame/render](analysis/frame-render-source.md), [module/actor frames](analysis/module-actor-frame-source.md), [projection process](analysis/human-projection-frame-process.md), [Physics frames](analysis/physics-object-frame-motion.md), [Sight frames](analysis/sight-shot-frame-source.md), [Human frames](analysis/human-frame-source.md), [shared movement](analysis/human-scene-movement.md). The containing module facade, ground collision/water/fall coordination, Human contacts, Look/posture collision and Player frame/input state are in source. Positive actor, rendering, integrity and application integration remain.
-  [P22-HUM dependency plan](analysis/p22-hum-plan.md): H2 reactions/damage/ragdoll remains OPEN. S01–S14, D1–D3 and D4a/D4b record completed source checkpoints through positive Car damage, Door restoration and frame-event/common-command receivers; full reactions/frame delivery remains open.
+  [P22-HUM dependency plan](analysis/p22-hum-plan.md): **H2 reactions/damage/ragdoll is source-complete** ([closure and limits](analysis/human-h2-source-closure.md)). S01–S14, D1–D3 and D4a/D4b and D6a record completed source checkpoints through positive Car damage, Door restoration, frame-event/common-command receivers and cold connection/entry records plus worker/control lifetime D6b1 and received fragments/retained messages through process FIFOs D6b2a/b; full cross-branch World/frame delivery remains H8. H3 offline seat interactions/mounted receivers are [source-verified](analysis/checkpoints/p2.2-human-seat-interaction-20261112.json); D5/H8 remain open.
 
-  - [x] Record verified reaction/damage, peer/input/entry-prefix, Mine/Versions and Car source checkpoints with their limits ([S01–S14](analysis/p22-hum-plan.md#h2-source-checkpoints-already-achieved)).
-  - [ ] Finish the remaining required containing path (boundary established in [D0](analysis/p22-hum-plan.md#d0--confirm-the-remaining-containing-path-boundary)); D1–D3/D4a/D4b source is complete; finish reached occupied/non7 dependencies D5 and containing Car frame D4.
-  - [ ] Complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
-  - [ ] Complete actual Human composition, required producer resolution and consolidated verification D10–D12; then close H2. H3–H6 and the full Human-frame H8 gate remain separately visible.
+  - [x] Record verified reaction/damage, peer/input/entry-prefix, Mine/Versions and Car source checkpoints with their limits ([S01–S14](analysis/p22-hum-plan.md#h2-source-checkpoints-already-achieved)); [deferred joint/clip inventory is reconciled](analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json).
+  - [ ] H8/Car integration: finish the remaining selected containing path (boundary established in [D0](analysis/p22-hum-plan.md#d0--confirm-the-remaining-containing-path-boundary)); D1–D3/D4a/D4b source is complete; finish reached occupied/non7 dependencies D5 and containing Car frame D4.
+  - [ ] OWN/H8 entry integration: complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
+  - [x] Complete H2-owned reaction composition, consolidated verification, inventory and audit cleanup ([source receipt](analysis/checkpoints/p2.2-human-h2-source-20261112.json)). External Car producer/entry failures remain guarded; H8 owns full Human-frame assembly.
+
+  Human branch assignments: H1/H2/H3/H5/H7 are source-complete and merged into `feature/p22-hum`. H4 takeover uses its own `feature/p22-hum-h4` worktree, with completed aggregate46a6cef integrated; H6 work remains preserved separately. H8 owns full Human/World/application integration.
 
   [P22-UI source-closed](analysis/p22-ui-source-closure.md), [checklist](analysis/p22-ui-plan.md): concrete same-World HUD/FPV/text/overlay/control, occupied/nonoffline presentation and console consumers verified. Human/Actor/packet producers and FRAME/RENDER/OWN execution remain external; no loading activation or desktop claim.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.
@@ -342,31 +344,11 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
 
-P22-HUM H4: [isolated implementation plan](analysis/p22-hum-h4-plan.md) selects common outputs/completions, B0 navigation/formation and track/DD0 consumers from HUMe742f84; H2/H3/H5/H6 and desktop acceptance remain separate.
-H4 C2: actual family climb/DC1F/DD0 replay and track0 source verified; sanitizer59+12 and concrete World/DD0 presentation/i386/application links PASS. H4 remains open; [receipt](analysis/checkpoints/p22-hum-h4-climb-20261112.json).
-
-H4 C9a: actual held4/8 attachment/retirement and track9 verified; [receipt](analysis/checkpoints/p22-hum-h4-action-held-20261112.json). H4 stays open; continue track8/mounted assignment and remaining completions/Script.
-
-H4: mounted assignment/track8 and all0..24 track dispatch receivers now source-bound; Script/completion/subgroup families remain open. [Receipt](analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json).
-
-H4: timed inventory transfer and actual slot3 notification source-bound; [receipt](analysis/checkpoints/p22-hum-h4-timed-transfer-20261112.json). Remaining Script/completion/subgroup work stays open.
-
-H4 common target/aim input and stop workers verified over current World owners; alignment/Script/completion/subgroup still open. [Receipt](analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json).
-
-H4 ordinary AI alignment/friendly-line and actual elapsed composition verified; H5 target35 import and remaining original H4 work stay open. [Receipt](analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json). Historical C labels are implementation batches only.
-
-H4 actual Script attack VM producers and timed consumers verified; mounted A8 needs the unimported H5 position API. Vehicle/attachment/completion/subgroup remain open. [Receipt](analysis/checkpoints/p22-hum-h4-script-timed-20261112.json).
-
-H4 ground completion and containing type35 motion/navigation/packet/Script source verified; positive Physics pickup and type15 owner remain open alongside vehicle/attachment/subgroup. [Receipt](analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json).
-
-H4 Script TurnAt VM producer and original attachment consumer now concrete; vehicle/formation/Physics pickup remain open. [Receipt](analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json).
-
-H4 positive Physics replacement/numbered-volume and SAME-manager child contact
-source verified; remaining H4 bodies are vehicle and Players subgroup formation.
-Type15 owner/imports and live acceptance stay separate. [Receipt](analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json).
-
-
-H4 actual Players subgroup/mode9/formation frame and base VM commands are source-verified;
-[receipt](analysis/checkpoints/p22-hum-h4-subgroup-20261112.json). Vehicle output,
-completed H3/H5 interface integration and H6's reached Active AI grenade recipient
-remain open; no containing mission or desktop acceptance claim.
+P22-HUM H4 remains open: [current dependency plan](analysis/p22-hum-h4-plan.md).
+Common outputs/tracks, Script attacks/attachment, positive Physics replacement and
+Players subgroup/formation are source-verified. Completed H3/H5 interfaces now
+compose through actual Car exit-pose, mounted position and grenade aiming owners;
+[integration contract](analysis/human-h4-completed-integration.md). Vehicle and
+Active AI grenade reaction remain, followed by the final selected-call inventory.
+Historical checkpoint details remain in the linked H4 implementation history;
+source verification does not establish application or desktop delivery.

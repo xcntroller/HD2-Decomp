@@ -205,6 +205,24 @@ public:
     const Car* car_current_attachment(){return consumers_.car_current_attachment();}
     unsigned car_game_kind(){return consumers_.car_game_kind();}
     auto mounted_sound_entry(std::int32_t id)const{return consumers_.mounted_sound_entry(id);}
+    bool mounted_human_view(void* actor){return consumers_.mounted_human_view(actor);} //004C6DD0's actual005A0890/0069A4B0.
+    std::uint32_t session_mission_ordinal(){return consumers_.session_mission_ordinal();}
+    bool mounted_human_is_player(void* actor){return consumers_.mounted_human_is_player(actor);}
+    GameActorServices::Vector mounted_human_target(void* actor){return consumers_.mounted_human_target(actor);}
+    void mounted_human_target(void* actor,const GameActorServices::Vector& value){consumers_.mounted_human_target(actor,value);}
+    void mounted_shell_physics(GameActorServices::Frame frame,const GameActorServices::Vector& velocity){
+        game::PhysicsObjectParameters<GameActorServices::Frame> parameters;parameters.frame=frame;parameters.type=0;
+        parameters.material10=12;parameters.first_list=true;parameters.sight_pass=true;
+        auto* handle=physics().create(parameters);physics().impulse(handle,velocity,GameActorServices::Vector{},.05f);
+    }
+    bool car_seat_integrity_matches(){return consumers_.car_seat_integrity_matches();}
+    void seat_human_direction(void* actor,const GameActorServices::Vector& direction){consumers_.seat_human_direction(actor,direction);}
+    std::uint32_t seat_human_state_kind(void* actor){return consumers_.seat_human_state_kind(actor);}
+    std::int32_t seat_human_health(void* actor){return consumers_.seat_human_health(actor);}
+    void seat_human_proximity_kind(void* actor,unsigned kind){consumers_.seat_human_proximity_kind(actor,kind);}
+    void seat_proximity_kind(std::int32_t index,unsigned kind){consumers_.seat_proximity_kind(index,kind);}
+    bool seat_view_enabled(){return consumers_.seat_view_enabled();}
+    void seat_script_use(GameActorServices::Frame frame){consumers_.seat_script_use(frame);}
     std::unique_ptr<game::CarMountedWeaponControl> make_car_weapon_control(Car& actor,GameActorServices::Frame pivot,unsigned index){ //004D16A0's actual100 branch.
         auto control=std::make_unique<game::CarMountedWeaponControl>();
         auto loading=std::make_unique<game::MountedWeaponControlLoading<GameActorServices,GameWorldActors,Items>>(scene_.frames(),*this,items_,control->state);

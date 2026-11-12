@@ -4,39 +4,33 @@ Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`, branch
 `feature/p22-hum-h4`, original basee742f84. The user explicitly authorized taking
 over the usage-limited H4 agent's existing work. Preserve other worktrees and
 changes; H6 stays separate at0398a50 plus its recorded uncommitted producer work.
-No merge/push/original/Windows/desktop execution. Heavy builds/Ghidra sequential.
+No push/original/Windows/desktop execution. Heavy builds/Ghidra sequential.
 
 **H4 remains OPEN.** Read AGENTS.md, section2 of plan.md,
 [concise H4 plan](analysis/p22-hum-h4-plan.md) and relevant
 [implementation contracts](analysis/p22-hum-h4-implementation.md). Do not add
 numbered C requirements or restart unchanged historical audits.
 
-Latest verified: preserved Players subgroup/formation work is completed through
-actual producer/admission/retirement, mode9/static layouts,0059BA70 frame workers
-and base VM2..C. [Contract](analysis/human-players-subgroup-source.md),
-[receipt](analysis/checkpoints/p22-hum-h4-subgroup-20261112.json). A targeted
-lifetime correction tracks the separate formation leader when Script-only
-subgroup admission rejects it; original004608A0 still selects that leader.
+Latest verified: subgroup checkpoint96356ab and completed aggregate46a6cef
+integration on H4. [Integration contract](analysis/human-h4-completed-integration.md),
+[receipt](analysis/checkpoints/p22-hum-h4-completed-integration-20261112.json).
+Preserved newer H4 aim/trigger/deferred/climb/VM implementations alongside H3/H5;
+Car nonmutating exit-pose, Script mountedA8 and grenade35 worker now bound.
+Native sanitizers PASS27 new integration/failure checks; strict actual World/
+Script/Car i386 full link and launcher/probe links PASS, no Windows execution.
+34 complete/3306 partial. Full checker FAILS on inherited0062D880 missing ignored
+rule-refresh.asm; scoped all-row validation reports four other pre-existing
+ignored evidence gaps. Exact frozen baseline/schema/address uniqueness/totals
+and available evidence checked separately. Never fabricate/copy missing artifacts.
 
-Native sanitizers PASS55 formation/subgroup/module/navigation and PASS16 VM/
-context; explicit endpoint doubles recorded. Actual World/subgroup/formation/VM
-strict i386 FULL LINK and latest launcher/probe builds PASS. Temporary new audit
-sources/native/i386 outputs fingerprinted/removed; original evidence retained.
-15 new frozen partials, 2 extensions, no complete promotions:34 complete/3073
-partial (3068client+5engine). Full checker still FAILS on unchanged0062D880's
-missing ignored rule-refresh.asm. Changed rows/frozen baseline/totals/README pass
-separately. Never invent/copy that artifact or report full checker PASS.
-
-Continue original H4: vehicle00578770/90; actual completed H3/H5 API integration
-(Car exit-pose query, mounted A8/004C5800 position lifetime and target35 grenade
-worker); final selected-call inventory. HUM46a6cef contains completed H2/H3/H5/H7,
-but this older branch has not imported it. Inspect current graph before merging;
-no abstract Runtime method alone proves absence. H3's CarLoadingActivation has
-private exit_pose; expose a real nonmutating query rather than calling exit_seat.
-The subgroup source has an explicit required Car/Aircraft query boundary meanwhile.
+Continue original H4: vehicle00578770/90 and Active AI00530FF0, then final concrete
+selected-call inventory. The new exact original exports (after index lookup)
+are WORK/vehicle-grenade-takeover-original, matching the verified client SHA.
+Vehicle main3894 bytes, grenade reaction2247; investigate actual path/control/
+task/navigation/formation dependency boundary before implementation.
 
 H6 additionally reaches0045EAB0→Active AI00530FF0 after real grenade publication
-and before inventory removal. That receiver is absent here; now resolve it on H4
+and before inventory removal. That receiver remains open here; resolve it on H4
 under the user's takeover authorization. Do not move unfinished H4 into H6 by
 inference. H6's ignored `human-h6-grenade-notification/0045eab0.c` is original
 static evidence, not an implemented AI body. H6 handoff has exact pending state.
