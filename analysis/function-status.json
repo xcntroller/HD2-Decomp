@@ -25312,14 +25312,15 @@
       "program": "client",
       "entry": "00421c00",
       "status": "partial",
-      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion.",
+      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion. Actual op3E TurnAt frame-slot forwarding through SAME Script5 controls, original normal instruction advance.",
       "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
       "evidence": [
         "recovered/game/human_script_loading_controls.h",
         "analysis/mission-script-initial-controls.md",
         "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
         "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
-        "analysis/p22-hum-h4-implementation.md"
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json"
       ]
     },
     {
@@ -41269,6 +41270,42 @@
       "evidence": [
         "analysis/p22-hum-h4-implementation.md",
         "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005904c0",
+      "status": "partial",
+      "coverage": "Actual TurnAt target-frame geometry/current50 then target54 publication, fresh supported attachment/98 admission, typed1CC/1D0 producer and failed-prefix behavior.",
+      "limitations": "Source-only typed borrowers/STL/native safety adaptations, not native thiscall/object/allocator/SEH equivalence. Native actual AI direction owners with explicit Human/matrix/seat endpoint doubles; actual i386 World/Script/VM/Controls composition links only. Type20/34 factories, vehicle/subgroup/Physics pickup H4 bodies and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json",
+        "recovered/game/human_script_attachment_output.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058db20",
+      "status": "partial",
+      "coverage": "Actual Script1CC non-null raw displacement/A4 dot threshold and flag clearing, null attached-model forward with distinct normalization/.99999 retain gate, current50 then target54 writes.",
+      "limitations": "Source-only typed borrowers/STL/native safety adaptations, not native thiscall/object/allocator/SEH equivalence. Native actual AI direction owners with explicit Human/matrix/seat endpoint doubles; actual i386 World/Script/VM/Controls composition links only. Type20/34 factories, vehicle/subgroup/Physics pickup H4 bodies and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json",
+        "recovered/game/human_script_attachment_output.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af660",
+      "status": "partial",
+      "coverage": "Actual SAME Human Script5 guard and TurnAt005904C0 forwarding, concretely bound from actual VM opcode3E.",
+      "limitations": "Source-only typed borrowers/STL/native safety adaptations, not native thiscall/object/allocator/SEH equivalence. Native actual AI direction owners with explicit Human/matrix/seat endpoint doubles; actual i386 World/Script/VM/Controls composition links only. Type20/34 factories, vehicle/subgroup/Physics pickup H4 bodies and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json",
+        "recovered/game/human_script_attachment_output.h"
       ]
     }
   ]

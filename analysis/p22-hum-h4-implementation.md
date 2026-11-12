@@ -748,3 +748,41 @@ Strict actual i386 World→drop→ray→Mine and World→registry→type35→Phy
 navigation/packet/Script FULL LINK, plus launcher/probe links PASS. Outputs are
 never executed. Source callable binding is distinct from actual mission or
 engine execution/desktop acceptance.
+
+## Script TurnAt and attachment output
+
+005904C0/005AF660 and actual VM00421C00 opcode3E now supply the real typed
+Script1CC target frame and1D0 producer. A non-null frame first produces a
+normalized model→target vector, calling current virtual50 BEFORE target54.
+Only then does it freshly test actual attachment kind4/20/21/34 and98 control,
+publishing1D0=1 then1CC on admission; rejection clears only1D0, retaining old1CC.
+NULL target skips initial direction writes but can still arm attached alignment.
+Frame loans follow the existing Script state lifetime and clear at bind/close.
+
+0058DB20 now consumes the actual borrower at the existing presentation/authority
+call sites. A non-null target preserves real lazy matrix loans, stores XYZ
+subtraction, calls actual A4, and compares the **unnormalized** distance vector's
+dot to FLOAT.985 before normalization: reached threshold clears1D0. NULL target
+uses the attached actor model forward and original three normalization passes
+with their distinct sum orders; FLOAT.99999 alignment returns while **retaining**
+1D0. Required direction writes call50 then54. No forced look flag, permanent
+empty target, synthetic direction or successful missing receiver. Actual A4/98
+exist here; type20/34 containing actors remain unavailable rather than faked.
+
+The base gained virtual current-direction setter00583100 and AI override
+0056FC10→existing124/0055D630, agreeing with current HUM/H3 read-only source;
+these absent frozen entries get no credit. Native raw setter and both containing
+bodies were checked before implementation, including explicit failed setter
+prefixes. Typed W0 on three-component unwritten scratch results remains only a
+source safety guard, not a native lane-equivalence assertion.
+
+Verification: strictO1 native ASan/UBSan/LSan PASS42 over actual AI/direction
+owners with explicit Human/matrix/seat endpoint doubles. Producer4/20/21/34 gates,
+NULL/non-null target, current-before-target ordering, a real matrix loan changed
+by a later update, raw distance versus normalized alignment, distinct1D0 clearing/
+retention and reached failures/retry pass. Strict actual i386 World/Script/VM/
+Controls TurnAt→attachment full link and virtual setter composition pass without
+selected receiver doubles. Application/probe links pass; Windows outputs never
+executed. Only original implemented005904C0/0058DB20/005AF660 partial rows gain
+credit,00421C00 extends. Vehicle path/subgroup/Physics pickup remain open; no
+whole-H4, live mission or desktop acceptance claim.

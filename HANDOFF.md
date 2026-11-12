@@ -10,16 +10,15 @@ Master/other worktrees untouched; no merge/push or original/Windows execution.
 Earlier C labels are historical implementation batches, not new requirements.
 Do not add C labels. Report against the original H4 remaining work directly.
 
-Latest: action11 actual260→static-only vertical floor ray→SAME runtime Mine
-factory; action10 actual runtime type35→Physics90→navigation/packet/Script/motion
-composition. Actual0051F280/005248C0 table link marking and0073D760 yaw-only
-packet writer supplied. Native ASan/UBSan/LSan PASS51; concrete actual i386
-World/ray/Mine/type35/Physics/packet/Script full links and application/probe PASS.
-[Receipt](analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json).
-Physics00407BD0 positive model/cache replacement remains an explicit required
-failure, also absent on current HUM201adbf; containing motion is not successful
-production pickup. Type15 Scene2 actor91/factory remains absent/explicit.
-No new credit for those missing bodies or general006F6870.
+Latest: actual HUMAN_TurnAt opcode3E→005AF660/005904C0 typed1CC/1D0 producer
+and0058DB20 attachment receiver. Native sanitizer PASS42, strict actual World/
+Script/VM/Controls/current-target virtual setter i386 full link and application/
+probe links PASS. [Receipt](analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json).
+Actual A4/98 are present; positive type20/34 owner families remain absent.
+
+Prior ground completion/type35 navigation/packet/Script composition verified;
+Physics00407BD0 positive model/cache replacement still required (same current HUM
+guard). Type15 Scene2 actor91/factory absent. No general006F6870/body credit.
 
 Prior timed VM producers/consumers and ordinary AI alignment verified. H5 imports
 remain: target35 human_ai_grenade.h and mounted A8 human_emplacement_position/
@@ -30,9 +29,13 @@ Preserved completed track0..24, mounted assignment/retirement, timed inventory
 transfer, target-direction/trigger/start/stop workers and prior completion/climb/
 formation/event output families; details/receipts linked from implementation.
 
-Next original H4 work: vehicle path00578770/90 and attachment0058DB20;
+Next original H4 work: vehicle path00578770/90;
 remaining type5 pickup00407BD0 and type15 owner;
-Players subgroup formation mode9 producer/retirement. Research locators and raw
+Players subgroup formation mode9 producer/retirement AND0059BA70 updater.
+Mode9 native00596D60 positions and005971E0→8AB890 copy found; actual00461290
+producer and00460980 destructor exported. Tick00460A10→0059BA70 is substantial,
+not the roster00461D20 RET. Do not create a successful empty group tick.
+Research locators and raw
 instructions in analysis/work/p22-hum-h4-20261112. Mounted timed geometry now implemented from raw despite broken C aliases.
 Inspect current H3 interfaces through Git; no Runtime absence alone proves a blocker.
 

@@ -246,3 +246,24 @@ implemented and verified. Positive Physics00407BD0 model/cache producer remains
 open; type15 Scene2 owner/factory remains absent/explicit. Native PASS51 and
 actual full i386/application/probe links; no source closure from endpoint doubles.
 [Receipt](checkpoints/p22-hum-h4-ground-placed-motion-20261112.json).
+
+Subgroup completion boundary researched:00461290 scans actual formation leader
+then004608A0 creates mode9 using00596D60→005971E0 static rows. It owns actual
+roster08/formation28;004603C0 admits ONLY Script5 before roster/formation/bind,
+and00460850 removes roster before formation/Script loan clear. Tick00460A10 is
+0059BA70, not an empty roster tick. Full updater and module finish/drop lifetime
+must be resolved before closing this checkbox; no successful subgroup receiver.
+
+Independent Script attachment boundary selected:005904C0 TurnAt(op3E) produces
+actual typed1CC and1D0 after actual virtual50/54 direction writes, valid4/20/21/34
+attachment and98 gate.0058DB20 consumes it with original raw-distance .985 gate,
+separate normalized actor-forward/current alignment .99999 gate, virtual50 before
+54, and original flag clearing/retention. Existing A4/98 are concrete here;
+20/34 actor owners remain explicit. Verify current/target direction setters and
+engine matrix loans before implementing this whole producer→consumer family.
+
+
+Script TurnAt005904C0 and actual VM3E/005AF660 producer→0058DB20 attachment
+consumer verified and concretely linked, native PASS42, application/probe PASS.
+The original combined Script family still has open vehicle00578790 work.
+[Receipt](checkpoints/p22-hum-h4-script-attachment-20261112.json).

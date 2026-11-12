@@ -358,3 +358,5 @@ H4 ordinary AI alignment/friendly-line and actual elapsed composition verified; 
 H4 actual Script attack VM producers and timed consumers verified; mounted A8 needs the unimported H5 position API. Vehicle/attachment/completion/subgroup remain open. [Receipt](analysis/checkpoints/p22-hum-h4-script-timed-20261112.json).
 
 H4 ground completion and containing type35 motion/navigation/packet/Script source verified; positive Physics pickup and type15 owner remain open alongside vehicle/attachment/subgroup. [Receipt](analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json).
+
+H4 Script TurnAt VM producer and original attachment consumer now concrete; vehicle/formation/Physics pickup remain open. [Receipt](analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json).

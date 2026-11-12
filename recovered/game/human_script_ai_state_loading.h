@@ -4,6 +4,7 @@
 #include "game/human_ai_state_loading.h"
 #include "game/human_script_formation_output.h"
 #include "game/human_script_timed_output.h"
+#include "game/human_script_attachment_output.h"
 #include "game/human_ai_frame_metrics.h"
 
 namespace hd2::game {
@@ -37,11 +38,12 @@ public:
         for(auto offset:{0x1d2u,0x18cu,0x1bdu})state_.set(offset,std::uint8_t{0});
         for(auto offset:{0x1c8u,0x1c4u,0x1ccu})state_.set(offset,std::uint32_t{0});
         attack_actor_=nullptr;attack_frame_=Frame{};
+        turn_frame_=Frame{};
         formation_=nullptr; //Native1E0 typed borrower, never a pointer in DWORD storage.
         state_.set(0x1d0,std::uint8_t{0});state_.set(0x150,std::uint8_t{0});
         return context_!=nullptr; //Native factory ignores this return; absence is not a successful script bind.
     }
-    void close_loading(){AI::close_loading();this->clear_human_reference();alarm_target_=nullptr;attack_actor_=nullptr;attack_frame_=Frame{};} //0058D8E0.
+    void close_loading(){AI::close_loading();this->clear_human_reference();alarm_target_=nullptr;attack_actor_=nullptr;attack_frame_=Frame{};turn_frame_=Frame{};} //0058D8E0.
     template<class World,class Runtime>void advance_script_presentation(std::uint32_t elapsed,World& world,Runtime& runtime){ //0058E1C0.
         if(!(this->words().template get<std::uint32_t>(0x50)&0x800u)){
             if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(runtime);
@@ -149,6 +151,10 @@ public:
     auto& state(){return state_;}const auto& state()const{return state_;}
     Actor* script_attack_actor()const{return attack_actor_;}
     Frame script_attack_frame()const{return attack_frame_;}
+    Frame script_turn_frame()const{return turn_frame_;}
+    void publish_script_turn_frame(Frame frame){turn_frame_=frame;}
+    template<class World>void turn_at_frame(Frame frame,World& world){turn_human_script_at_frame(*this,frame,this->state_frames(),world);}
+    template<class World>void advance_attachment(World& world){advance_human_script_attachment(*this,this->state_frames(),world);}
     void publish_script_attack_actor(Actor* actor){attack_actor_=actor;}
     void publish_script_attack_frame(Frame frame){attack_frame_=frame;}
     template<class World>void request_actor_attack(Actor* actor,std::uint32_t duration,bool ill_fire,std::int32_t pc,World& world){request_human_script_actor_attack(*this,actor,duration,ill_fire,pc,world);}
@@ -165,14 +171,10 @@ public:
 private:
     Formation* formation_=nullptr;
     Actor* attack_actor_=nullptr;Frame attack_frame_{}; //Native1C4/1C8 loans, retired before Scene/frame destruction.
+    Frame turn_frame_{}; //Native1CC, actual TurnAt producer; no DWORD pointer.
     bool alarm_enabled()const{return state_.template get<std::uint8_t>(0x198)!=0;}
     template<class Runtime>void update_script_attachment(Runtime& runtime){ //0058DB20.
-        const auto* attachment=this->human()->field160;
-        if(attachment){
-            const auto kind=attachment->base().type();
-            if(kind==4||kind==0x14||kind==0x15||kind==0x22){runtime.update_script_attachment(*this);return;}
-        }
-        state_.set(0x1d0,std::uint8_t{0});
+        advance_attachment(runtime);
     }
     template<class World>void update_script_follow_gate(World& world){
         if(!state_.template get<std::uint8_t>(0x18c))return;
