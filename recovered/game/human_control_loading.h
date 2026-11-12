@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_CONTROL_LOADING_H
 #define HD2_GAME_HUMAN_CONTROL_LOADING_H
 #include "game/human_track_equipment_events.h"
+#include "game/human_track_control_events.h"
 
 #include "game/human_action_control.h"
 #include "game/human_control_action_queue.h"
@@ -704,6 +705,7 @@ private:
                     present_footstep(look,event==5);
                     present_footstep_track_sound(look);
                     return true;
+                case 7:apply_human_track_door(*this,*human_,services_);return true;
                 case 10:equipment_owner.set_frame_weapon_pose(false,true);return true;
                 case 0x0b:case 0x0c:
                     if(event==0x0c||!animation_.equipment_frame_timer_active())equipment_owner.set_frame_weapon_pose(false,true);
@@ -713,6 +715,9 @@ private:
                     apply_human_track_hand_transfer(event,tracks_,*this,equipment_owner);
                     return true;
                 case 0x15:state.set(0x9c8,std::uint8_t{1});return true;
+                case 0x14:apply_human_track_action_light(*this,equipment_owner);return true;
+                case 0x16:apply_human_track_deceleration(*this,*human_);return true;
+                case 0x17:apply_human_track_motion_reset(*this);return true;
                 default:return runtime.apply_human_track_event(*this,look,event);
                 }
             },

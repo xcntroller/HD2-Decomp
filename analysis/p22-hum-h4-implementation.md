@@ -167,3 +167,27 @@ log/audit fingerprints; all six temporary audit sources/binaries removed.
 New partials00759E20/00587540/00758170 only;34 complete/3,019 partial
 (3,014 client+5 engine), frozen18,783 unchanged. Focused tracker checks PASS;
 inherited missing0062D880 evidence still blocks its full check. H4 stays OPEN.
+
+## C3 — track7/20/22/23 concrete consumers
+
+Track7 checks A34&3FF=1, writes physicalA44=-1 BEFORE fresh authority bit1,
+then uses actual A3C Door borrower (not native990 ladder actor), A40 argument
+and Human19C to call existing005FF4B0(3-or-2,1,0,kind!=1) on SAME Door/World.
+Track20 tests third animation1F4=17 for existing007931B0(true), then ALWAYS
+007933D0(true) on SAME230 action/lens owner. Track22 writes byte9C9 first,
+reads actual Human base40 direction (not B0), FLOAT X/Z*.05 and Y=.1 into
+existing00773B60 with trunc(700/FLOAT1.4)=500. Native fourth scratch lane is
+unwritten and semantically unused. Track23 writes physical228=-2000 then SAME
+DD0 movement.D8=0. No synthetic animation, camera, light or Door is introduced.
+Original00758D20 raw bytes and constants were checked against the original client;
+all positive receiver bodies already exist and are reused.
+
+Native ASan/UBSan/LSan PASS125 selected Door gates/modes/kinds/arguments/failure,
+optional light-toggle/lens absence/positive/failure prefixes, ACTUAL existing
+track deceleration words and motion resets. World/Door/engine/toggle endpoints
+are explicit doubles. Actual i386 World construction and PUBLIC containing DD0
+presentation with actual Door,230 lens/action and tracks FULL LINK PASS; remaining
+Runtime paths are DEFINED throwing doubles. Existing launcher/probe strictO2
+links PASS, never run. No new ledger rows: only00758D20 coverage extended.
+H3 committed source10bebe9 is now on feature/p22-hum520b03e, inspected through
+Git only; its seat/aim graph is an import dependency, not assumed linked here.

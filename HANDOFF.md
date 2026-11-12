@@ -6,7 +6,11 @@ Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`, branch
 
 [H4 plan](analysis/p22-hum-h4-plan.md),
 [implementation/remaining families](analysis/p22-hum-h4-implementation.md).
-**H4 is the selected whole checkbox and remains OPEN. Continue after C2.**
+**H4 is the selected whole checkbox and remains OPEN. Continue after C3.**
+
+C3: actual track7 Door A3C,20 action/lens,22 Human40 deceleration and23 reset.
+Sanitizers PASS125 and actual World/public DD0 presentation/i386/application links PASS.
+[C3 receipt](analysis/checkpoints/p22-hum-h4-track-control-20261112.json).
 
 C1 f3788fd: actual Mine/ExplosivePlace/shared medicine completion and track13/14.
 C2: actual Player/Remote/AI D8 climb dispatch differences, common DC1F on same
@@ -23,8 +27,9 @@ Next: continue whole H4 families: remaining completion type15 actor91,
 physical35 motion005E2510/type5 pickup00407BD0, ground/drop006F6870; Script event/
 formation/vehicle/timed/attachment and remaining DD0 track consumers. Original
 remaining exports in ignored WORK/remaining-original are locators with checked
-client fingerprint; verify instructions/ABI before implementation. Track7 Door,
-20 action lens and23 physical/movement words have concrete owners available.
+client fingerprint; verify instructions/ABI before implementation. Script event0058FD30 has existing perception/event pools, list2AC and B4 receivers;
+00591F00 is vector insertion into SAME2A8/2AC/2B0 list, not a script context.
+Original raw tail confirms it; implement whole producer/queue retirement/group callbacks.
 Do not stop at C2 or treat missing Runtime methods as external blockers alone.
 
 No original EXE/DLL/Proton or Windows output execution. Heavy builds/Ghidra are

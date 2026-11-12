@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 C3 actual track7/20/22/23 consumers",
+  "implementation_base": "1e5d8f5",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "source_files": [
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "sha256": "02c65865745de2d505b6fb13276d7cc39a28d0a91b235cd11b06e5308635ae5c",
+      "bytes": 56248
+    },
+    {
+      "path": "recovered/game/human_equipment_loading.h",
+      "sha256": "c63e1cec69efbad55384bfba480863548e14673bf791219b49657d305cd5f123",
+      "bytes": 6341
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "d670632755ca6d742e13936ad0f278df378a5952c8b0842466f7168e030408d2",
+      "bytes": 124357
+    },
+    {
+      "path": "recovered/game/human_track_control_events.h",
+      "sha256": "a8aa42c5be793b105a35699e8fb57051f4950b4b85a2ff6ed67734af0b7c51a5",
+      "bytes": 2074
+    }
+  ],
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-original.asm",
+      "sha256": "7c19ad26d0935d74fc83425deda73eb31979fef8fd4789c0a0c12c4bc2a861de",
+      "bytes": 40733
+    }
+  ],
+  "verification": {
+    "native": "PASS125 strict C++17 O1 ASan/UBSan/LSan; actual track deceleration/lens and policies; World/Door/engine/toggle endpoints explicitly doubled",
+    "i386": "PASS strict O0 actual World construction and public containing DD0 presentation FULL LINK including actual Door/230 light/lens/tracks; remaining Runtime endpoints explicitly defined throwing doubles",
+    "application": "PASS existing application-launch/startup-probe strictO2 links; no PE execution",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-native-run.log",
+      "sha256": "e50164cc171b737fc3672aafb886448896bb34ae8c2b37751c515d764e2a2727",
+      "bytes": 66
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-native.cpp",
+      "sha256": "b75ff6868d6e5b91bdf32740b20721ad14dbf2c941d73372485bdaef3db3bfac",
+      "bytes": 4354
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-native",
+      "sha256": "8d508beee057c3a97a0e6e92b2a09213139a26ff8302cb7c51fd9b4f23c92b1f",
+      "bytes": 302112
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-host.cpp",
+      "sha256": "cb63e3a8e96b48b874486d79170ac5f04da9ee8d1bb3e6120ca69d2726f8de1a",
+      "bytes": 2382
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-host.exe",
+      "sha256": "ae8430f5bcd72bc7f67a45b5ceb56dd803c5213faf22584abb966a63e719a6e7",
+      "bytes": 7640064
+    }
+  ],
+  "ledger": "Extend existing00758D20 only; no new rows/promotions/count change. Frozen18783;34 complete/3019 partial.",
+  "external_import": "H3 seat/aim checkpoint10bebe9 now merged on feature/p22-hum520b03e; read-only inspection, not linked/imported in H4 base."
+}

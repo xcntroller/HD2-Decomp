@@ -31015,7 +31015,7 @@
       "program": "client",
       "entry": "00758d20",
       "status": "partial",
-      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved. Added track0 actual00758170(false) inventory/peer transfer and fresh shadow gate.",
+      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved. Added track0 actual00758170(false) inventory/peer transfer and fresh shadow gate. Added actual track7 Door A3C/authority/argument,20 action/lens,22 Human40 deceleration and23 physical/movement reset receivers.",
       "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -31023,7 +31023,8 @@
         "recovered/game/human_control_loading.h",
         "analysis/p22-hum-h4-implementation.md",
         "recovered/game/human_state_action_completion.h",
-        "recovered/game/human_track_equipment_events.h"
+        "recovered/game/human_track_equipment_events.h",
+        "recovered/game/human_track_control_events.h"
       ]
     },
     {

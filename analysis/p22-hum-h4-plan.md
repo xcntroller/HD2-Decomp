@@ -75,3 +75,16 @@ concrete source binding is missing, with its precise blocking owner/input named.
 - [x] Focused native sanitizer audits PASS59 and actual physical owner PASS12.
 - [x] Finish C2 strict actual i386 track/World link, application/probe links,
   evidence/ledger/receipt and commit; continue remaining whole H4 families.
+
+## C3 selected track consumers
+
+- [x] Bind actual track7 Door A44/authority/side receiver,20 optional action/lens,
+ 22 Human40 velocity to existing tracks,23 physical/movement resets.
+- [x] Verify whole selected callbacks through native sanitizer and concrete i386
+  public DD0 presentation/World composition; record original bytes/ABI, remove
+  temporary audits and commit before continuing remaining H4 families.
+
+Current HUM/H3 refs inspected read-only: H3 source checkpoint10bebe9 is merged
+on feature/p22-hum520b03e, unavailable in this implementation base. Preserve its
+actual seat/aim contracts as an import dependency; do not duplicate its ledger or
+assume unmerged source is linked here. H4 base remains e742f84.

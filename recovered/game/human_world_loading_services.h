@@ -673,6 +673,9 @@ public:
     void human_action_request_door(void* actor,std::uint32_t command){ //00751480 case1, real005FF4B0(command,1,0,0).
         human_navigation_door(actor).change_state(command,true,false,false,dependencies().world_actors);
     }
+    void human_track_request_door(void* actor,std::uint32_t command,bool non_player_kind){ //00758D20 event7.
+        human_navigation_door(actor).change_state(command,true,false,non_player_kind,dependencies().world_actors);
+    }
     void human_navigation_request_door(void* actor,std::uint32_t flags){ //00586200 subtype1B.
         auto& door=human_navigation_door(actor);
         if((flags&1u)&&(mode_flags()&1u)){
