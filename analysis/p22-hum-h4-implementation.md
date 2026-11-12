@@ -281,3 +281,36 @@ original/log and removed audit fingerprints. Four new frozen partials only;
 34 complete/3,024 partial (3,019 client+5 engine), denominator18,783 unchanged.
 Full tracker inherited missing0062D880 ignored evidence; focused checks PASS.
 Formation callable source is implemented; subgroup producer dependency stays open.
+
+## C6 — Item magazine attachment and track15/16/17
+
+Original RuntimeItem weapon vtable817018+3C=007D5380, while other three actual
+family vtables have genuine007D32E0 RET4. Holder-entry virtual40 supplies the
+actual RuntimeItem; it is not itself the weapon classifier or a graphic frame.
+Existing RuntimeItem clone78/marker74, saved local position30/quaternion40 and
+lazy007D5250 are reused. Positive007D5380 classifies only7C=1, then legitimately
+returns for absent clone OR marker. Parent attaches clone with original frame38
+flags0 and ignored status, direct guarded XYZ0, actual frame1C(+Z,0), clonevisible1,
+originalmarkervisible0, clone24, marker24. Null parent restores to actual lazy
+primary model, saved XYZ and normalized quaternion with existing exact dirty flags,
+clonevisible0, markervisible1 and same update order. No identity quaternion is
+substituted for the original direction call. Original frame38 negative status is
+not turned into a new native branch; checked endpoint/exception guards remain
+separate from original behavior. Existing clone owner retires before primary model.
+
+Equipment events16/17/18 resolve actual hand3/entry/Items instance and call that
+receiver with actual HW2/HW1/NULL, respectively. Track15/16/17 invoke those SAME
+230 events. No synthetic magazine or extra resource/model registry. Missing hand
+entry raises explicit native safety failure at original required dereference.
+Other RuntimeItem families retain genuine no-op without new ledger credit.
+Native ASan/UBSan/LSan PASS20 uses ACTUAL catalogue decoder/RuntimeItem constructor/
+lazy marker/clone ownership and attachment: attach/restore success, all seven
+endpoint failure prefixes, legitimate marker/clone/model absence, other family,
+cached retry and repeated lifetime. Resource/engine endpoints are labelled doubles.
+Strict actual i386 composition/equipment hand->Items->RuntimeItem->actual frame
+services and public DD0 presentation including track bindings FULL LINK PASS;
+only adjacent containing Runtime branches use defined throwing doubles.
+Launcher/probe strictO2 links PASS, never run. New frozen007D5380 partial only;
+existing007913D0/00758D20 extended.34 complete/3,025 partial; no promotions.
+[C6 receipt](checkpoints/p22-hum-h4-magazine-20261112.json) retains fingerprints;
+temporary audit sources/binaries removed. H4 remains OPEN.

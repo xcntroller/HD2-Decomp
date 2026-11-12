@@ -35,6 +35,11 @@ public:
     auto item_model_frame_position(Frame frame){return frames_.actor_position(frame);}
     auto item_model_frame_rotation(Frame frame){return frames_.item_marker_rotation(frame);}
     void item_model_visible(Frame frame,bool visible) {frames_.object_visible(frame,visible);}
+    void link_item_auxiliary(Frame frame,Frame parent){frames_.item_auxiliary_link(frame,parent);}
+    void position_item_auxiliary(Frame frame,const MissionVector& position){frames_.object_position(frame,position);}
+    void direct_item_auxiliary(Frame frame){frames_.item_auxiliary_forward(frame);}
+    void rotate_item_auxiliary(Frame frame,const MissionQuaternion& rotation){frames_.object_rotation(frame,rotation);}
+    void update_item_auxiliary(Frame frame){frames_.update_scene_object(frame);}
     std::uint32_t item_game_word28() const {return game_word28_;}
     void register_item_kind20(void* item) {
         if(!item)throw std::logic_error("Cannot register a null kind20 item");

@@ -36,6 +36,11 @@ public:
     int equipment_animation_identity()const{return signed_word(control_.animation_state_word(0x1d8));}
     bool equipment_visibility_override(){return world_.human_is_view_actor(human_)&&world_.human_view_offset_enabled();}
     auto equipment_item(std::int32_t identity){return find_human_inventory_item(human_,items_,identity);}
+    void attach_equipment_reload_auxiliary(Frame parent){ //007913D0 events16/17/18: actual hand holder -> runtime Item.
+        auto* storage=human_.base().storage();auto* holder=storage?storage->holder(3):nullptr;
+        if(!holder||!holder->entry())throw std::runtime_error("Reload attachment requires its actual hand entry");
+        items_.runtime_item(holder->entry()).attach_reload_auxiliary(parent);
+    }
     std::optional<float> equipment_identity_scalar(std::int32_t identity) {
         if(auto* item=equipment_item(identity))return item->scalar();
         return std::nullopt;

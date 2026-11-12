@@ -568,6 +568,8 @@ public:
         }
         return field<game::MissionQuaternion>(frame,0xc0);
     }
+    void item_auxiliary_link(Frame frame,Frame parent){(void)call<std::int32_t>(frame,0x38,parent,0u);} //007D5380 ignores native status.
+    void item_auxiliary_forward(Frame frame){const Vector forward{{0,0,1,0}};call<void>(frame,0x1c,forward.data(),0.f);} //007D5380, THREE native direction lanes.
     game::MissionQuaternion human_matrix_rotation(const Matrix& matrix) {
         game::MissionQuaternion result{};
         using Make=void(WINAPI*)(void*,const void*);

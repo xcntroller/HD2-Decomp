@@ -14548,13 +14548,14 @@
       "program": "client",
       "entry": "007913d0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007913d0: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 007913d0: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded. Actual magazine attachment16/17/18 and track15/16/17 now bind same hand RuntimeItem clone/marker, HW2/HW1/null restore.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_equipment_transfers.h",
         "analysis/human-equipment-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/p22-hum-h4-implementation.md"
       ]
     },
     {
@@ -31015,7 +31016,7 @@
       "program": "client",
       "entry": "00758d20",
       "status": "partial",
-      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved. Added track0 actual00758170(false) inventory/peer transfer and fresh shadow gate. Added actual track7 Door A3C/authority/argument,20 action/lens,22 Human40 deceleration and23 physical/movement reset receivers.",
+      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved. Added track0 actual00758170(false) inventory/peer transfer and fresh shadow gate. Added actual track7 Door A3C/authority/argument,20 action/lens,22 Human40 deceleration and23 physical/movement reset receivers. Actual magazine attachment16/17/18 and track15/16/17 now bind same hand RuntimeItem clone/marker, HW2/HW1/null restore.",
       "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -40870,6 +40871,22 @@
       "evidence": [
         "recovered/game/human_script_formation_output.h",
         "recovered/game/human_world_loading_services.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d5380",
+      "status": "partial",
+      "coverage": "Actual same RuntimeItem lazy clone78/marker74 attach/restore: family/cache/absence gates; original ignored link status; direct guarded position, native direction or saved quaternion normalization; clone/marker visibility and update order; existing resource retirement. Equipment16/17/18 and track15/16/17 concretely bind actual hand/Items/Runtime receiver.",
+      "limitations": "Source-only typed/RAII/STL and checked engine endpoints, not original object/allocator/thiscall/SEH ABI. Native resource/engine endpoints explicitly doubled; actual i386 composition/equipment/Items/Runtime/frame/public DD0 graph links only. Other H4 outputs/mission runtime/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/runtime_item.h",
+        "recovered/game/runtime_item_services.h",
+        "recovered/game/human_equipment_services.h",
+        "recovered/game/human_equipment_transfers.h",
+        "recovered/game/human_control_loading.h",
+        "recovered/host/game_actor_frames.h",
         "analysis/p22-hum-h4-implementation.md"
       ]
     }

@@ -177,6 +177,9 @@ public:
         case 9:attachments_.attach(6);return;
         case 10:remove_inventory_model(7);return;
         case 11:attachments_.attach(7);return;
+        case 16:services_.attach_equipment_reload_auxiliary(state_.second_volume());return;
+        case 17:services_.attach_equipment_reload_auxiliary(state_.first_volume());return;
+        case 18:services_.attach_equipment_reload_auxiliary(Frame{});return;
         default:throw std::runtime_error("Equipment event requires its actual action-model producer");
         }
     }

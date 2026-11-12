@@ -714,6 +714,7 @@ private:
                 case 0x0d:case 0x0e:
                     apply_human_track_hand_transfer(event,tracks_,*this,equipment_owner);
                     return true;
+                case 0x0f:case 0x10:case 0x11:equipment_owner.transfers().event(static_cast<unsigned>(event)+1u);return true;
                 case 0x15:state.set(0x9c8,std::uint8_t{1});return true;
                 case 0x14:apply_human_track_action_light(*this,equipment_owner);return true;
                 case 0x16:apply_human_track_deceleration(*this,*human_,services_);return true;

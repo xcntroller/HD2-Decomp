@@ -6,7 +6,11 @@ Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`, branch
 
 [H4 plan](analysis/p22-hum-h4-plan.md),
 [implementation/remaining families](analysis/p22-hum-h4-implementation.md).
-**H4 is the selected whole checkbox and remains OPEN. Continue after C5.**
+**H4 is the selected whole checkbox and remains OPEN. Continue after C6.**
+
+C6: actual RuntimeItem magazine attach/restore and equipment16/17/18,track15/16/17.
+Sanitizer PASS20; concrete actual equipment/Items/Runtime/frame/public DD0 links
+and launcher/probe PASS. [C6 receipt](analysis/checkpoints/p22-hum-h4-magazine-20261112.json).
 
 C5: actual callable Script formation binding/getter/query/output, sanitizer PASS54;
 track22 reads shared animation scale, timing PASS6; actual i386/launcher links PASS.
@@ -29,7 +33,7 @@ Native ASan/UBSan/LSan PASS59 policy + PASS12 actual physics failure/retirement/
 retry. Strict actual i386 World/climb/public DD0 presentation/track FULL LINK PASS;
 remaining Runtime endpoints are labelled throwing doubles, not installed services.
 Application/probe links PASS, never executed. [C2 receipt](analysis/checkpoints/p22-hum-h4-climb-20261112.json).
-All temporary audit sources/binaries fingerprinted/removed.34 complete/3,024 partial;
+All temporary audit sources/binaries fingerprinted/removed.34 complete/3,025 partial;
 full tracker inherited missing0062D880 evidence, focused checks PASS.
 
 Next: continue whole H4 families: remaining completion type15 actor91,
@@ -40,10 +44,11 @@ client fingerprint; verify instructions/ABI before implementation. Next formatio
 Original0058D900 setter binds a Players subgroup formation from004603C0; this is
 not auxiliary moduleE8/selection28 and not automatically Human2C8. Inspect actual
 subgroup producer/lifetime before binding. Additional evidence exports retained.
-Next C6: RuntimeItem virtual3C=007D5380 attach/restore actual lazy magazine clone,
-then equipment16/17/18 and track15/16/17. Export/raw/vtable817018 evidence in WORK.
-Reuse actual item services and existing frame position/quaternion/direction/link
-endpoints. Do not stop at this checkpoint or install successful endpoints.
+Next C7: track18 particle33 at actual bone4 world position/normalized forward,
+19 Ladder174 SOUND at actual bone16 with early-return gates,24 presentation sound
+at actual bone4 with FPV/player early-return. Existing particle/SOUND services
+are available. Constants80FF04=.15 and810734=.04 verified in original PE; raw
+track-control-original.asm preserves FLOAT/extended calculation order. Continue.
 
 No original EXE/DLL/Proton or Windows output execution. Heavy builds/Ghidra are
 sequential; inspect other workstreams' active jobs before ours. No agents or push.

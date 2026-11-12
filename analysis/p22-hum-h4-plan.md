@@ -109,9 +109,9 @@ assume unmerged source is linked here. H4 base remains e742f84.
 
 ## C6 selected inventory attachment events (next)
 
-- [ ] Implement actual RuntimeItem virtual3C=007D5380 over existing lazy
+- [x] Implement actual RuntimeItem virtual3C=007D5380 over existing lazy
   projectile-marker clone/pose, then bind equipment events16/17/18 and track15/16/17.
-- [ ] Preserve holder-to-runtime wrapper, absent clone/marker, attach/restore
+- [x] Preserve holder-to-runtime wrapper, absent clone/marker, attach/restore
   native flags/quaternion/direction/visibility/update order and resource lifetime.
-- [ ] Focused positive/failure/absence/retry sanitizer and concrete i386 World/
+- [x] Focused positive/failure/absence/retry sanitizer and concrete i386 World/
   item/track binding; original fingerprints/ABI, receipt, audit removal and commit.
