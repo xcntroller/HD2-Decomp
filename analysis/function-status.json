@@ -30908,24 +30908,30 @@
       "program": "client",
       "entry": "0058e1c0",
       "status": "partial",
-      "coverage": "Script AI presentation gate, attachment branch and B4 queue drain.",
+      "coverage": "Script AI presentation gate, attachment branch and B4 queue drain. H8 actual Scene2/World/borrowed frame Runtime now composes this recovered source in the whole Human frame; native policy1100 with explicit endpoints and strict actual-host full link verify composition only. Remaining named positive receivers still fail.",
       "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
-        "recovered/game/human_script_ai_state_loading.h"
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-frame-composition-source.md",
+        "analysis/checkpoints/p2.2-human-h8-frame-composition-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "0058e210",
       "status": "partial",
-      "coverage": "Script authority dispatch across shared input scratch, first B4 event scan, alarm, follow, navigation, aim, posture and movement/item application.",
+      "coverage": "Script authority dispatch across shared input scratch, first B4 event scan, alarm, follow, navigation, aim, posture and movement/item application. H8 actual Scene2/World/borrowed frame Runtime now composes this recovered source in the whole Human frame; native policy1100 with explicit endpoints and strict actual-host full link verify composition only. Remaining named positive receivers still fail.",
       "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
-        "recovered/game/human_script_ai_state_loading.h"
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-frame-composition-source.md",
+        "analysis/checkpoints/p2.2-human-h8-frame-composition-20261112.json"
       ]
     },
     {
@@ -31198,7 +31204,7 @@
       "program": "client",
       "entry": "007a7470",
       "status": "partial",
-      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required. Actual secondary clips, equipment overlays, stowed/aimed weapon presentation, mounted direction and attached head-direction publication now run at their native frame boundaries.  Actual Look, prone and attached/target/vehicle bodies now run at their original normal frame boundaries, including shared pose chains and real source aim/limits. The actual6304&200 branch dispatches retained clips or full joints, fixed-step/interpolation/pose publication, Human/Scene/shot/light updates and contact/audio retirement with source-Human query exclusion/restoration. Its shared sampling/ragdoll branch now executes on actual activated Human/control/geometry owners, including clip replacement/expiry and two-Human source borrowing.",
+      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required. Actual secondary clips, equipment overlays, stowed/aimed weapon presentation, mounted direction and attached head-direction publication now run at their native frame boundaries.  Actual Look, prone and attached/target/vehicle bodies now run at their original normal frame boundaries, including shared pose chains and real source aim/limits. The actual6304&200 branch dispatches retained clips or full joints, fixed-step/interpolation/pose publication, Human/Scene/shot/light updates and contact/audio retirement with source-Human query exclusion/restoration. Its shared sampling/ragdoll branch now executes on actual activated Human/control/geometry owners, including clip replacement/expiry and two-Human source borrowing. H8 actual Scene2/World/borrowed frame Runtime now composes this recovered source in the whole Human frame; native policy1100 with explicit endpoints and strict actual-host full link verify composition only. Remaining named positive receivers still fail.",
       "limitations": "Source-only typed state/owners and delegated engine methods. The actual activated H2 branch now has native sanitizer coverage with authored data and explicit engine/OS/lookup endpoints. Remaining normal-frame H4/H6 consumers, full World/H8 scheduling/application integration, original ABI/trajectory equivalence and user desktop acceptance are excluded.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -31209,7 +31215,10 @@
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json",
         "analysis/human-h2-source-closure.md",
-        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-frame-composition-source.md",
+        "analysis/checkpoints/p2.2-human-h8-frame-composition-20261112.json"
       ],
       "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
@@ -31616,7 +31625,7 @@
       "program": "client",
       "entry": "007646f0",
       "status": "partial",
-      "coverage": "Actual DD0 walking coordinator, projection/slope gate, impulses, stationary support, multisphere queries, material/contact/fall routing, dynamic position and stall handling, water polling and original boolean hit result. Required positive projection, dynamic geometry and derived contact receivers remain explicit. Concrete projection uses actual B0 receiver. Dynamic-position tail writes same CD0 sector timer and existing opacity DB4 flag before real scene144(model), after both actual position synchronizations.",
+      "coverage": "Actual DD0 walking coordinator, projection/slope gate, impulses, stationary support, multisphere queries, material/contact/fall routing, dynamic position and stall handling, water polling and original boolean hit result. Required positive projection, dynamic geometry and derived contact receivers remain explicit. Concrete projection uses actual B0 receiver. Dynamic-position tail writes same CD0 sector timer and existing opacity DB4 flag before real scene144(model), after both actual position synchronizations. H8 actual Scene2/World/borrowed frame Runtime now composes this recovered source in the whole Human frame; native policy1100 with explicit endpoints and strict actual-host full link verify composition only. Remaining named positive receivers still fail.",
       "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ground_motion.h",
@@ -31627,7 +31636,10 @@
         "recovered/game/human_control_loading.h",
         "recovered/game/human_animation_state.h",
         "recovered/game/human_opacity_control.h",
-        "recovered/host/game_actor_frames.h"
+        "recovered/host/game_actor_frames.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-frame-composition-source.md",
+        "analysis/checkpoints/p2.2-human-h8-frame-composition-20261112.json"
       ]
     },
     {
@@ -31780,12 +31792,15 @@
       "program": "client",
       "entry": "0075eee0",
       "status": "partial",
-      "coverage": "Actual material threshold, five damage families, retained hazard ID, tick-gated surface effects and genuine ordinary-material return. Positive damage/effect endpoints remain required.",
+      "coverage": "Actual material threshold, five damage families, retained hazard ID, tick-gated surface effects and genuine ordinary-material return. Positive damage/effect endpoints remain required. H8 actual Scene2/World/borrowed frame Runtime now composes this recovered source in the whole Human frame; native policy1100 with explicit endpoints and strict actual-host full link verify composition only. Remaining named positive receivers still fail.",
       "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ground_motion.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-frame-composition-source.md",
+        "analysis/checkpoints/p2.2-human-h8-frame-composition-20261112.json"
       ]
     },
     {
@@ -31987,7 +32002,7 @@
       "program": "client",
       "entry": "0053f9b0",
       "status": "partial",
-      "coverage": "Actual local Player input-frame coordination, same movement receiver, native C4/1C4 ownership/copy/clear, endurance/readiness/item calls, breath and item timers, final request drain. Positive attachment, selected-item notification and nonoffline transport remain required.",
+      "coverage": "Actual local Player input-frame coordination, same movement receiver, native C4/1C4 ownership/copy/clear, endurance/readiness/item calls, breath and item timers, final request drain. Positive attachment, selected-item notification and nonoffline transport remain required. H8 actual Scene2/World/borrowed frame Runtime now composes this recovered source in the whole Human frame; native policy1100 with explicit endpoints and strict actual-host full link verify composition only. Remaining named positive receivers still fail.",
       "limitations": "Source-only typed owners/STL and direct calls replace native object/vtable, allocator and SEH ABI. Broader input mapping, positive attachment/shot/held/dry-fire/repair, command05/FPV and nonoffline transport remain required. Explicit native boundary doubles and strict compilation do not establish application or desktop delivery.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -31997,7 +32012,10 @@
         "recovered/game/human_player_item_frame.h",
         "recovered/game/human_frame_stats.h",
         "recovered/game/human_world_loading_services.h",
-        "recovered/game/first_person_view_loading.h"
+        "recovered/game/first_person_view_loading.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-frame-composition-source.md",
+        "analysis/checkpoints/p2.2-human-h8-frame-composition-20261112.json"
       ]
     },
     {
@@ -42756,12 +42774,15 @@
       "program": "client",
       "entry": "00583bc0",
       "status": "partial",
-      "coverage": "Reached attached state virtual00 invokes actual Car driver frame input with original player/seat0 gate; aircraft005E0DD0 remains required.",
+      "coverage": "Reached attached state virtual00 invokes actual Car driver frame input with original player/seat0 gate; aircraft005E0DD0 remains required. H8 actual Scene2/World/borrowed frame Runtime now composes this recovered source in the whole Human frame; native policy1100 with explicit endpoints and strict actual-host full link verify composition only. Remaining named positive receivers still fail.",
       "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
       "evidence": [
         "recovered/game/human_world_loading_services.h",
         "analysis/human-guard-area-source.md",
-        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-frame-composition-source.md",
+        "analysis/checkpoints/p2.2-human-h8-frame-composition-20261112.json"
       ]
     },
     {

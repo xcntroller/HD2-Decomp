@@ -294,6 +294,11 @@ public:
             action_.finish_special_motion_command();
         }
     }
+    template<class Runtime>bool advance_walk_frame(std::int32_t elapsed,Runtime& runtime){ //007646F0 on this SAME DD0/E0.
+        auto& look=services_.human_look_control(*human_);
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        return advance_human_walk_motion(*this,look,*human_,services_,elapsed,runtime,publish);
+    }
     template<class Look,class Runtime>void advance_ground_frame(Look& look,std::uint32_t elapsed,Runtime& runtime){ //007637D0.
         auto& state=physical_.control_frame_words();
         auto& movement=movement_.frame_words();

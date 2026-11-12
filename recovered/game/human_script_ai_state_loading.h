@@ -46,7 +46,7 @@ public:
     void close_loading(){AI::close_loading();this->clear_human_reference();alarm_target_=nullptr;attack_actor_=nullptr;attack_frame_=Frame{};turn_frame_=Frame{};} //0058D8E0.
     template<class World,class Runtime>void advance_script_presentation(std::uint32_t elapsed,World& world,Runtime& runtime){ //0058E1C0.
         if(!(this->words().template get<std::uint32_t>(0x50)&0x800u)){
-            if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(runtime);
+            if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(world);
             if((world.mode_flags()&7u)!=7u)runtime.advance_network_ai_presentation(*this,elapsed); //0056F710.
         }
         this->process_second_frame_commands();
@@ -79,7 +79,7 @@ public:
                     }
                     if(alarm_enabled())state_.set(0x19c,0x80u); //00591ED0.
                 }
-            }else if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(runtime);
+            }else if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(world);
             if(alarm_enabled())this->advance_frame_aim(elapsed,world);
             this->advance_frame_direction(elapsed,control);
             const auto alarm_posture=state_.template get<std::uint32_t>(0x1a4);

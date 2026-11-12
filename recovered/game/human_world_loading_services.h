@@ -31,6 +31,7 @@
 #include "game/human_frame_feedback.h"
 #include "game/human_item_frame_execution.h"
 #include "game/human_scene_frame.h"
+#include "game/human_frame_runtime.h"
 #include "game/human_mine_contact.h"
 #include "game/human_state_action_completion.h"
 #include "game/human_action_completion_effects.h"
@@ -1104,6 +1105,21 @@ public:
     template<class Human>bool player_attachment_blocks_item(Human& human){ //005433B0 Actor98(seat), SAME H3/UI owner.
         return dependencies().first_players.seat_presentation().has_control(human_pose_actor(human.field160),human.field164);
     }
+    template<class Human>std::uint32_t player_attachment_control_flags(Human& human){ //005457E0 Actor8C(seat).
+        return dependencies().first_players.seat_presentation().flags(human_pose_actor(human.field160),human.field164);
+    }
+    template<class State>void notify_player_selected_item(State& state){ //0053F9B0's expired530, secondary payload4C+10.
+        const auto entry=state.item();if(!entry)throw std::logic_error("Player delayed zoom lost actual cached A8 item");
+        const auto& payload=human_frame_output_item(entry).definition().payloads[1];
+        if(payload.bytes.size()<0x10)throw std::logic_error("Player delayed zoom requires actual secondary payload10");
+        const auto fov=frontend::pre_mission_detail::Bytes::real(frontend::pre_mission_detail::Bytes::word(payload.bytes.data()+0xc));
+        dependencies().first_person.view().set_zoom(mode_flags(),true,fov);
+    }
+    bool human_model_debug_enabled(){return dependencies().startup.scene_presentation_flags().debug;} //Actual0098AF98, not a fabricated false callback.
+    template<class Geometry>void present_human_model_debug(Geometry&){throw std::runtime_error("Human debug requires actual geometry5D94 visualA8 receiver");}
+    void human_walk_debug_beep(){dependencies().scene.frames().human_walk_debug_beep();}
+    template<class Human>void human_ground_surface_effect(Human&,std::int32_t){throw std::runtime_error("Human hazard requires actual00451900 blast and ShotMgr packet producer");}
+    template<class Human>void retire_human_water_attachment(Human&){throw std::runtime_error("Human water requires actual005A97C0 command5 and packet174 receiver");}
     std::int32_t player_mission_ordinal()const{return dependencies().session.words.template get<std::int32_t>(0x3c);}
     bool player_recoil_disabled(){return dependencies().startup.game_console_variables().integer(6)!=0;} //00720B80(6).
     bool player_zoom_enabled(){return dependencies().first_person.view().zoom_enabled();}
@@ -1481,6 +1497,10 @@ public:
     }
     template<class Human,class Runtime>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed,Runtime& runtime){
         game::advance_human_scene_frame(human,authority,elapsed,*this,runtime,dependencies().scene.frames());
+    }
+    template<class Human>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed){
+        HumanFrameRuntime<HumanWorldLoadingServices> runtime(*this);
+        advance_human_scene_frame(human,authority,elapsed,runtime);
     }
     template<class Human>void human_frame_contact(Human& human){ //0059FFD0's reached006FCB60→005FEFB0.
         auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Human Mine contact query requires actual loaded World");

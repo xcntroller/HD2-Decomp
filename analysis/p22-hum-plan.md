@@ -1,8 +1,8 @@
 # P22-HUM implementation and dependency plan
 
 Revised 2026-11-12; D0 confirmed against merged master **415e850**. Worktree:
-`/home/control/Documents/Projects/HD2-Decomp-p22-hum-h6`, branch `feature/p22-hum-h6`
-(created from completed H2 `85593e8` at the user's request; prior Human
+`/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`
+(created from completed H6fc9d452 at the user's request; prior Human
 worktrees/branches preserved). P22-HUM and both P2.2 delivery
 checkboxes remain OPEN. Application loading still declines; no mission desktop
 acceptance has occurred. This plan replaces the former chronological next-work
@@ -13,7 +13,7 @@ list. Detailed behavior/evidence stays in the linked contracts.
 H1/H2/H3/H4/H5/H7 source work is completed and merged into `feature/p22-hum`.
 Completed HUM/H4b9d67aa is imported into H6 at7e6e019. H6 source is now complete
 on the existing owners; [H6 closure and external limits](human-h6-source-closure.md),
-[dependency plan](p22-hum-h6-plan.md). H8 remains open/unassigned. H4's branch may
+[dependency plan](p22-hum-h6-plan.md). H8 is assigned to this worktree/agent; [H8 implementation/dependencies](p22-hum-h8-plan.md). H4's branch may
 be deleted; no continued dependency on its old worktree or branch is required.
 Source completion does not add function-inventory credit or application delivery.
 
@@ -71,6 +71,7 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
   process/module17 lifetime. [Checkpoint](checkpoints/p2.2-human-particle-surface-20261111.json).
 - [ ] H8 — Full Human frame: H2–H6, actual World/control dispatch, positive paths,
   partial failure/re-entry/ordered teardown, consolidated verification and audit cleanup.
+  [Active H8 plan](p22-hum-h8-plan.md); [containing-frame composition](human-h8-frame-composition-source.md).
 
 Earlier mounted/remote equipment, motion/terrain/Look, bone/IK/weapon posing,
 aimed-posture workers, mount007BA0C0 and head007ADA10 source remain verified in

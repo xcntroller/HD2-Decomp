@@ -21,6 +21,7 @@ namespace hd2::host {
 class GameActorFrames : public GameCarFrames {
 public:
     using GameCarFrames::GameCarFrames;
+    void human_walk_debug_beep(){(void)::MessageBeep(0xffffffffu);} //007646F0's actual platform endpoint.
     MenuDriver::Owner retain_actor_frame(Frame frame) {return retain(frame);}
     std::uint32_t visual_lightmap_group(Frame frame)const{return field<std::uint32_t>(frame,0x210);}
     void set_visual_lightmap_group(Frame frame,std::uint32_t group){call<void>(frame,0xc8,group);} //0048D270/0048C790.
