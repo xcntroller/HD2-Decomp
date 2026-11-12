@@ -1713,3 +1713,12 @@ Human frame remain required; this does not close the selected checkbox.
 004DB360, DM particle/SOUND producers, same process00445740/00445800 retirement
 and actual puncture sounds. Native unwritten EXPL_D8/smoke14 require honest
 producer/empty-list proof; terminal authority/visual/frame consumers remain open.
+
+
+## Authority Car destruction/nearby Human damage —2026-11-12
+
+[Contract](human-car-destruction-source.md) and
+[checkpoint](checkpoints/p2.2-human-car-destruction-20261112.json) bind actual
+004DBF00/004DC580 to SAME Car/Script/Scene2/Human/random/packet owners, with
+native partial-failure, water/source, wheel and radius-edge ordering. Queued
+visual/physical reset, detachment, timed-DM and full containing Human paths remain.

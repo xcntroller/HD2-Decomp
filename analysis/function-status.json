@@ -24791,15 +24791,17 @@
       "program": "client",
       "entry": "004d16a0",
       "status": "partial",
-      "coverage": "Compose actual offline two-pass common/DM/proximity/runtime initialization, seats/cameras, helper, navigation and settling. Actual100 gun seats now create real shared004C1AD0 owners with the original seat index/model/pivot and publish only genuine successful initialization. Actual actor254A and authority24B0 reset now share the reached damage owner.",
-      "limitations": "Unoccupied loading only; mounted/occupied/non7 receivers excluded. Host composition compile-only, no live world/desktop result.",
+      "coverage": "Compose actual offline two-pass common/DM/proximity/runtime initialization, seats/cameras, helper, navigation and settling. Actual100 gun seats now create real shared004C1AD0 owners with the original seat index/model/pivot and publish only genuine successful initialization. Actual actor254A and authority24B0 reset now share the reached damage owner. Actual2548 reset is shared with destruction/mesh consumers; native nullable model254C uses its actual owned-reference storage.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI, whole-body equivalence or complete Car/selected-Human closure. Native100 repeated authority/area families and direct DM entry use actual body/wheel/DM/packet source with explicit Scene/engine/control/Script/Human-damage/clock/detachment endpoint doubles. Strict actual full World/control/Script/ray/Car/DM/Human i386 and launcher/probe compile/link pass. Car physical/mesh presentation004E9DB0/004DCD10/004DC780, positive Item12/glass/timed consumers, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_loading_activation.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-model-presentation-20261111.json",
         "analysis/human-car-blast-damage-source.md",
-        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json",
+        "analysis/human-car-destruction-source.md",
+        "analysis/checkpoints/p2.2-human-car-destruction-20261112.json"
       ]
     },
     {
@@ -36354,12 +36356,14 @@
       "program": "client",
       "entry": "004dba10",
       "status": "partial",
-      "coverage": "Actual Car D4 RET24 gates, source24B0, Scene104 pick, SAME part health/resistance/WORD flags/dirty, native force/velocity and reverse wheel event production, embedded DM dispatch then SAME2350/core22C0 publication.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "coverage": "Actual Car D4 RET24 gates, source24B0, Scene104 pick, SAME part health/resistance/WORD flags/dirty, native force/velocity and reverse wheel event production, embedded DM dispatch then SAME2350/core22C0 publication. Source Human policy observations now validate actual containing Human lifetime map keys before dereference, preserving explicit failure on source retirement.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI, whole-body equivalence or complete Car/selected-Human closure. Native100 repeated authority/area families and direct DM entry use actual body/wheel/DM/packet source with explicit Scene/engine/control/Script/Human-damage/clock/detachment endpoint doubles. Strict actual full World/control/Script/ray/Car/DM/Human i386 and launcher/probe compile/link pass. Car physical/mesh presentation004E9DB0/004DCD10/004DC780, positive Item12/glass/timed consumers, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
       "evidence": [
         "recovered/game/car_actor_damage.h",
         "analysis/human-car-blast-damage-source.md",
-        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json",
+        "analysis/human-car-destruction-source.md",
+        "analysis/checkpoints/p2.2-human-car-destruction-20261112.json"
       ]
     },
     {
@@ -36462,12 +36466,14 @@
       "program": "client",
       "entry": "004e1fe0",
       "status": "partial",
-      "coverage": "Actual DM64 gate, required004DBF00 destruction callback and triggered publication only AFTER successful callback; required missing actual destruction receiver stays explicit.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "coverage": "Actual DM64 gate, SAME bound authority004DBF00, then triggered64 publication only AFTER return, including original254A early return after a prior failed prefix; no rollback/replay of that tail.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI, whole-body equivalence or complete Car/selected-Human closure. Native100 repeated authority/area families and direct DM entry use actual body/wheel/DM/packet source with explicit Scene/engine/control/Script/Human-damage/clock/detachment endpoint doubles. Strict actual full World/control/Script/ray/Car/DM/Human i386 and launcher/probe compile/link pass. Car physical/mesh presentation004E9DB0/004DCD10/004DC780, positive Item12/glass/timed consumers, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
       "evidence": [
         "recovered/game/car_ancillary_model.h",
         "analysis/human-car-blast-damage-source.md",
-        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json",
+        "analysis/human-car-destruction-source.md",
+        "analysis/checkpoints/p2.2-human-car-destruction-20261112.json"
       ]
     },
     {
@@ -36612,6 +36618,42 @@
         "recovered/game/car_sound_updates.h",
         "analysis/human-car-dm-presentation-source.md",
         "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dbf00",
+      "status": "partial",
+      "coverage": "Actual authority Car destruction RET4 through SAME owners:254A beforewire4, late non7 clock gate, flags/control/fuel/health/Script, reverse occupant D4/water source, model254C retirement, forward max6 wheel CRT/engine-random/callback, experience600, late2548 and nearby Human damage; original partial-failure retry preserved.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI, whole-body equivalence or complete Car/selected-Human closure. Native100 repeated authority/area families and direct DM entry use actual body/wheel/DM/packet source with explicit Scene/engine/control/Script/Human-damage/clock/detachment endpoint doubles. Strict actual full World/control/Script/ray/Car/DM/Human i386 and launcher/probe compile/link pass. Car physical/mesh presentation004E9DB0/004DCD10/004DC780, positive Item12/glass/timed consumers, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_destruction.h",
+        "analysis/human-car-destruction-source.md",
+        "analysis/checkpoints/p2.2-human-car-destruction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dc580",
+      "status": "partial",
+      "coverage": "Actual SAME Scene2 reverse Human slots/head260, cached Car centreY+.5, native radius25 and FLOAT/extended distance, static-only same World ray, post-ray slot reload and actual random skeletal point before kind2/final0 damage including native negative edge amount.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI, whole-body equivalence or complete Car/selected-Human closure. Native100 repeated authority/area families and direct DM entry use actual body/wheel/DM/packet source with explicit Scene/engine/control/Script/Human-damage/clock/detachment endpoint doubles. Strict actual full World/control/Script/ray/Car/DM/Human i386 and launcher/probe compile/link pass. Car physical/mesh presentation004E9DB0/004DCD10/004DC780, positive Item12/glass/timed consumers, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_destruction.h",
+        "analysis/human-car-destruction-source.md",
+        "analysis/checkpoints/p2.2-human-car-destruction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073eac0",
+      "status": "partial",
+      "coverage": "Actual clock restart: SAME control milliseconds2470 publication before enabled2478=1, leaving period2474 unchanged.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI, whole-body equivalence or complete Car/selected-Human closure. Native100 repeated authority/area families and direct DM entry use actual body/wheel/DM/packet source with explicit Scene/engine/control/Script/Human-damage/clock/detachment endpoint doubles. Strict actual full World/control/Script/ray/Car/DM/Human i386 and launcher/probe compile/link pass. Car physical/mesh presentation004E9DB0/004DCD10/004DC780, positive Item12/glass/timed consumers, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_scene_actor.h",
+        "analysis/human-car-destruction-source.md",
+        "analysis/checkpoints/p2.2-human-car-destruction-20261112.json"
       ]
     }
   ]

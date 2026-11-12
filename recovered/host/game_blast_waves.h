@@ -5,6 +5,8 @@
 #include "game/collision_ray.h"
 #include "game/human_blast_damage.h"
 #include "game/car_actor_damage.h"
+#include "game/car_destruction.h"
+#include "game/human_objective_experience.h"
 #include "game/mission_script_player_predicates.h"
 namespace hd2::host {
 //Actual fixed-update/finish bridge to SAME Startup008AED48 storage. Constructor
@@ -95,12 +97,12 @@ public:
         throw std::runtime_error("Blast damage requires actual actor virtualD4 receiver");
     }
     std::uint32_t car_damage_mode()const{return mode_flags();}
-    std::uint32_t car_damage_role(Actor* actor){return human(*actor).properties.field19c;}
-    std::int32_t car_damage_health(Actor* actor){return game::car_contact_signed_word(human(*actor).properties.stats_ec[0]);}
-    bool car_damage_hostile(Actor* observer,Actor* target){return d_.sight.human_sight_hostile(observer,target);}
-    bool car_damage_player(Actor* actor){return game::script_human_player_controlled(human(*actor),mode_flags());}
-    bool car_damage_suppressed(Actor* actor){return d_.presentation.human_selected_suppressed(human(*actor));}
-    std::uint32_t car_damage_side(Actor* actor){return services_.human_specialization(human(*actor),false);}
+    std::uint32_t car_damage_role(Actor* actor){return d_.world_actors.human_loading_actor(actor).properties.field19c;}
+    std::int32_t car_damage_health(Actor* actor){return game::car_contact_signed_word(d_.world_actors.human_loading_actor(actor).properties.stats_ec[0]);}
+    bool car_damage_hostile(Actor* observer,Actor* target){return d_.sight.human_sight_hostile(&d_.world_actors.human_loading_actor(observer),&d_.world_actors.human_loading_actor(target));}
+    bool car_damage_player(Actor* actor){return game::script_human_player_controlled(d_.world_actors.human_loading_actor(actor),mode_flags());}
+    bool car_damage_suppressed(Actor* actor){return d_.presentation.human_selected_suppressed(d_.world_actors.human_loading_actor(actor));}
+    std::uint32_t car_damage_side(Actor* actor){return services_.human_specialization(d_.world_actors.human_loading_actor(actor),false);}
     Actor* car_damage_occupant(Actor* actor,std::size_t index){
         auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(actor);
         if(!car)throw std::logic_error("Car damage seat query requires actual Car owner");
@@ -111,7 +113,44 @@ public:
     }
     std::uint32_t car_damage_absorption(std::int32_t index){return d_.car_definitions.materials().at(index).word(0x28);}
     void car_damage_event(Actor* actor,const game::CarDamageEvent& event){game::publish_car_damage(d_.broadcast_packets,actor->base().id10(),event);}
-    void car_damage_destroy(Actor*,bool){throw std::runtime_error("Car destruction requires actual004DBF00 effects/control/occupant receiver");}
+    void car_damage_destroy(Actor* actor,bool water){
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(actor);
+        if(!car||!car->geometry)throw std::logic_error("Car destruction requires actual containing Car geometry");
+        game::destroy_car_actor(frames(),*this,*car,[&]()->auto&{
+            if(!car->loading)throw std::logic_error("Car destruction requires actual loading lifetime");return car->loading->cold_state();
+        },water);
+    }
+    bool car_destruction_remote_ai(){return d_.startup.human_remote_ai_enabled();}
+    std::int32_t car_destruction_style(){return d_.startup.game_configuration().style224;}
+    void car_destruction_controls(game::CarSceneActor<GameActorServices>& car){
+        if(!car.loading)throw std::logic_error("Car destruction requires its actual control lifetime");car.loading->destruction_controls();
+    }
+    void car_destruction_script(game::CarSceneActor<GameActorServices>& car){
+        const auto frame=car.base().frame();const auto* data=frames().find_actor_frame_data(frame);
+        if(data&&data->words[1]){auto* context=d_.script_link.context_for_frame(frame);
+            if(!context)throw std::logic_error("Car death Script metadata has no actual context");context->death(d_.script_link);}
+    }
+    Actor* car_destruction_source(const std::optional<std::int32_t>& identity){
+        if(!identity)throw std::runtime_error("Car source24B0 has no native producer");
+        return *identity==-1?nullptr:d_.scene.frames().scene_actor_command_identity(*identity);
+    }
+    std::uint32_t car_destruction_random_word(){return d_.startup.random_word();}
+    float car_destruction_random_float(){return frames().volume_random_unit();} //ENGINE RandFloat, independent from CRT.
+    void car_destruction_experience(Actor* actor,std::int32_t amount){
+        game::HumanObjectiveExperience experience(d_.startup.application_flags_owner());
+        experience.add_experience(d_.world_actors.human_loading_actor(actor),amount);
+    }
+    std::size_t car_area_count(){return d_.scene.frames().scene_actor_identity_count();}
+    Actor* car_area_actor(std::size_t index){if(index>0x7fffffffu)throw std::length_error("Car area Scene2 index exceeds signed range");return d_.scene.frames().scene_actor_identity(static_cast<std::int32_t>(index));}
+    std::uint32_t car_area_type(Actor* actor){return actor->base().type();}
+    EngineFrame* car_area_head(Actor* actor){auto frame=d_.world_actors.human_loading_actor(actor).head_marker;
+        if(!frame)throw std::logic_error("Car area damage requires actual Human260 head marker");return frame;}
+    bool car_area_obstructed(const Vector& centre,const Vector& displacement){
+        game::CollisionRay<EngineFrame*,Descriptor,GameCollisionResources,GameActorServices> ray(
+            &d_.scene.collision_tree(),&d_.scene.buckets(),d_.scene.collision_resources(),frames());
+        return bool(ray.ray(centre,displacement,0xffffffffu,0,false)); //007183A0(...,NULL,NULL,-1,0): static only, no normal.
+    }
+    Vector car_area_random_point(Actor* actor){return services_.human_damage_random_position(d_.world_actors.human_loading_actor(actor));}
     std::int32_t car_emit_particle(std::int32_t definition,const Matrix& matrix,EngineFrame* parent){
         return d_.startup.mission_effects_process().emit(static_cast<std::uint32_t>(definition),matrix,parent,true,false);
     }

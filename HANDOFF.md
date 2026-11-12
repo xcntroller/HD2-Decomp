@@ -10,7 +10,7 @@ is genuinely blocked. Source progress does not close application/desktop work.
 
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
 explicitly requested transferring back here; transfer evidence is ignored WORK
-`human-return-main-20261111`. Preceding checkpoint **cfd8aa3**. Check current
+`human-return-main-20261111`. Preceding checkpoint **e6f08b7**. Check current
 HEAD/status before acting. Preserve other LIFE/UI/PACK/research worktrees,
 `/tmp/hd2-p22-hum-continue` and unrelated changes.
 
@@ -21,34 +21,36 @@ the user. Mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source
 
-[Car packets/DM receipt](analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json)
-adds12 partials/extends3: **34 complete/2723 partial(2718client+5engine)**, no
-promotions. [Full contract](analysis/human-car-dm-presentation-source.md).
-Actual module13→Car1C004DB360 uses SAME World/Car/DM/parts/wheels/streams.
-Kinds0/1 mutation,2 late authority/current-health gate,3 flags→actual puncture
-sound9EC/CBC,5 actual explosion particle and4 DM effects BEFORE required004DC780.
-Reserved8/9/unassigned kinds are genuine empty;6/7/10/11 still required.
-00445740 signed binary lookup and00445800 immediate instance close/delete before
-stable erase, NO pooling, use SAME process/module17/points/parent ownership.
-DM004E1F70/004E2000 emit through SAME process/SOUND; reverse explosion retirement,
-fire→smoke→positive SID; clear/reset/dtor preserve native process ownership.
-Missing optional DM reset is genuine success. Native record8 is unwritten by
-004E09D0/malloc; use a produced handle or actual empty-list proof, otherwise fail.
-Constructor004E08C0 also leaves smoke14 unwritten; missing-model positive smoke
-emission fails at that boundary. **These omissions are confirmed; do not re-audit
-without contrary evidence.** Native100 repeated packet/DM families plus separate
-actual particle retirement and sound-slot audits PASS; endpoint doubles explicit.
-Strict full World i386 and final launcher/probe PASS `human-car-dm-presentation-*`,
-`human-car-particle-retirement-*`, `human-car-dm-sound-*`. No Windows output run.
+[Authority destruction receipt](analysis/checkpoints/p2.2-human-car-destruction-20261112.json)
+adds3 partials/extends3: **34 complete/2726 partial(2721client+5engine)**, no
+promotions. [Full contract](analysis/human-car-destruction-source.md).
+Actual004DBF00 RET4 binds SAME Car/DM/body/wheels/controls/Script/Scene2/random/
+streams:254A→wire4→late clock→flags/engine/fuel/health→Script→source lookup→reverse
+Human kind5→model254C release→forward max6 wheels→experience600→late2548→area.
+Car734/core6A4 callback remains coldNULL. Normal hostility observer is VICTIM;
+water source24AC and base30 point reread per occupant. Engine RandFloat is
+separate from CRT. Clock0073EAC0 timestamp BEFORE enabled. Original failed-prefix
+retry may return on254A without replaying tail; DM64 still publishes afterreturn.
+Actual004DC580 traverses SAME Scene2/head260, cached centreY+.5/radius25,
+**static-only** ray `(start,offset,NULL,NULL,-1,0)` (zero args are output pointers),
+post-ray slot reload, actual random bone point and HumanD4kind2. Radius5's small
+negative damage is preserved. Human map-key guards precede source dereference.
+Native100 repeated authority/area families PASS with explicit endpoint doubles;
+strict actual World/control/Script/ray/Car/Human i386 and launcher/probe PASS
+`human-car-destruction-*`. **Queued visual/physical reset, Item12 detachment and
+full timed/frame paths remain required; no full Car/Human/application claim.**
 
-Preceding **cfd8aa3** [Car blast receipt](analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json),
-[contract](analysis/human-car-blast-damage-source.md): actual004DBA10 RET24 binds
-SAME Car/body/wheels/deformables/embedded24E0 DM. Source faction2 policy,254A gate,
-24B0 before Scene104 pick, part28/24/WORD38/dirty events, wheel radial Y/Z gates,
-DM zone/seat damage and2350=mass_changed. Car feature uses254A; seat engine stop
-instead uses234F/core22BF=engine_transition (including runningfalse). Glass event
-is0, ordinarypart1, wheelpuncture3, destruction4, explosion5. Event writers and
-004D9A40 absent frozen ZERO credit. Terminal destruction/full visuals remain required.
+Preceding **e6f08b7** [Car packets/DM lifetimes](analysis/human-car-dm-presentation-source.md)
+binds actual004DB360 to SAME parts/wheels/DM/streams/module17/SOUND. Actual
+00445740/00445800 signed binary lookup/immediate stable deletion (no pooling),
+DM explosion/fire/smoke/SID/clear/reset/dtor and puncture9EC/CBC are in source.
+Record8 is genuinely unwritten by004E09D0/malloc: require produced handle or
+actual empty-list proof; otherwise fail. Constructor smoke14 is also unwritten
+without actual DM parse. **Confirmed omissions; no repeated audit needed.**
+Preceding **cfd8aa3** [Car blast](analysis/human-car-blast-damage-source.md) binds
+004DBA10 to actual body/parts/wheels/embedded24E0 DM. Car254A differs from seat
+engine234F/core22BF transition. Event glass0/part1/puncture3/destruction4/explosion5.
+Event writers and004D9A40 absent frozen ZERO credit. Earlier focused audits pass.
 
 Preceding verified dependencies (contracts retain evidence/order details):
 - **e861ace** [armed Mine/shared explosion](analysis/human-mine-contact-source.md):
@@ -64,25 +66,19 @@ Preceding verified dependencies (contracts retain evidence/order details):
 
 ## Next work
 
-1. Finish **004DBF00** authority destruction and004DC580 nearby Human damage,
-   then **004DC780** presentation, timed-DM frame and other reached receivers.
-   Indexed/new originals are already in WORK:
-   `human-car-destruction-dependencies-index.txt`,
-   `human-car-destruction-inner-index.txt`,
-   `car-actor-dm-water-required/004dbf00.{c,json}`,
-   `human-car-damage-presentation-workers` (004DC580/004DC780/004E2000/00500DA0/
-   0051A880/004E1F70), `human-car-destruction-mesh-workers` (004E9DB0/004DCD10).
-   Raw **`human-car-destruction.asm` now covers FULL004DBF00..004DC580**, and
-   `human-car-destruction-human-area.asm` covers004DC580. C aliases remain bad.
-   Preserve254A→wire4→clock/flags/control/fuel/health→Script→reverse seat damage→
-   model254C release→forward max6 wheel CRT/RandFloat/detach→experience→late2548→
-   area damage. Normal source is lookup24B0, water uses driver24AC; normal victim
-   is hostility OBSERVER after damage. RandFloat is ENGINE (existing Frames
-   volume_random_unit), separate from CRT.734/core6A4 is cold NULL callback.
-   004DC780 first calls actual004E9DB0 physical reset, then004DCD10 mesh work;
-   positive glass/Item12 detachment remain guards. Inspect these existing originals
-   before implementation; use index before any additional exports.004DBEE0/D8 is
-   not reached by blastCar4 and needs no speculative recovery.
+1. Finish **004DC780** presentation and **004E9DB0** physical reset/
+   **004DCD10** mesh/occupant transitions, then Item12 detach/positive glass,
+   timed-DM and other reached effects. Original WORK already indexed/exported:
+   `human-car-destruction-mesh-workers/{004e9db0,004dcd10}.{c,json}`;
+   `human-car-damage-presentation-workers/{004dc780,00500da0}.c`;
+   `human-car-reset-dependencies-index.txt` for4C8140/4CCC60/4EA760/507A40/4F5840.
+   Current default C aliases in4E9DB0 are badly corrupted by engine math ABIs;
+   use raw or a rollback ABI-corrected export before implementation. Entire body
+   is2474bytes; includes wheel pose/frame publication, SAME body/cache/motion/
+   solver/wheel resets, optional4FEEA0/4FE910 and receiver relinks. Reuse actual
+   existing owners. Actual native4DC780 first invokes4E9DB0(speed958,true).
+   Keep4DBF00/area/packet/DM checkpoints; no kernel re-audit needed. Use research
+   index before further exports, and memory-sequential compilation/Ghidra.
 2. Full status9/received0 entry remains unbound. Read
    [shared world](analysis/multiplayer-world/shared-world.md).00730A40 needs actual
    peer6C/client334 wrappers/worker lifecycle→0072E890→00731610(true). Reuse WORK

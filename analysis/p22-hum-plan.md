@@ -123,3 +123,7 @@ full reactions checkbox remains open.
 Actual Car event/DM effect and process particle retirement ownership now have a
 [source checkpoint](checkpoints/p2.2-human-car-dm-presentation-20261112.json).
 Continue terminal Car destruction/visual/timed consumers and full entry/frame.
+
+Authority Car destruction and nearby Human damage now have a
+[source checkpoint](checkpoints/p2.2-human-car-destruction-20261112.json).
+Continue queued visual/physical reset, detachment and full timed/entry/frame paths.

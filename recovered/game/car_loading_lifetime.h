@@ -34,6 +34,7 @@ public:
     virtual void dead_human_controls()=0;
     virtual void release_presented_driver_pedal()=0;
     virtual void puncture_sound(std::size_t)=0;
+    virtual void destruction_controls()=0;
 };
 
 } //namespace hd2::game

@@ -2,6 +2,7 @@
 #define HD2_GAME_CAR_LOADING_ACTIVATION_H
 
 #include "game/car_actor_features.h"
+#include "game/car_destruction.h"
 #include "game/car_body_collision_controller.h"
 #include "game/car_cold_receivers.h"
 #include "game/car_loading_seats.h"
@@ -50,7 +51,7 @@ public:
     }
     void activate(bool authority)override{
         require_mode();require_geometry();
-        actor_.flag254a=false;enemy_notified_=false;damage_target_=damage_template_=-1;
+        actor_.flag254a=false;actor_.flag2548=false;actor_.model254c.reset();damage_target_=damage_template_=-1;
         if(authority)actor_.source24b0=-1;
         clock2584_=actor_.callback_services().car_clock();camera_setting_=services_.car_camera_setting264();
         actor_.ancillary->reset_loading(frames_,actor_.geometry->auxiliary().seats().size());
@@ -137,6 +138,16 @@ public:
         if(!initial_||!ready_)throw std::logic_error("Presented dead driver requires actual initialized Car controls");
         auto& state=*initial_;request_car_drive_pedal(state.control_requests,state.drive,actor_.geometry->physics().scalars(),state.solver.substeps,0.f,true);
     }
+    void destruction_controls()override{ //004DBF00/004DC780, actual core flags/control/fuel/health.
+        if(!initial_)throw std::logic_error("Car destruction requires its actual initialized control owner");
+        clear_destroyed_car_lights(initial_->finalizer.lights.flags,[this]{
+            if(actor_.callbacks->state6a4)actor_.callbacks->state6a4();
+        });
+        //004F2530(false,true) publishes these fields BEFORE0051B8F0.
+        initial_->engine_timeout=5000;initial_->health.destroyed=false;initial_->drive.engine_speed=0;
+        initial_->finalizer.engine_transition=false;initial_->drive.running=false;initial_->sounds.stop_all();
+        initial_->set_fuel(0);initial_->health.body=0;
+    }
     void puncture_sound(std::size_t index)override{
         if(!initial_)throw std::logic_error("Car puncture sound requires initialized actual sound/wheel owners");
         initial_->audio.puncture(initial_->drive.audible,initial_->finalizer.inside,initial_->wheels.at(index).vectors.at(0x30));
@@ -209,7 +220,7 @@ private:
     std::optional<Initial> initial_;std::optional<CarActorColdState<Frames>> view_;std::optional<Receivers> receivers_;std::optional<BodyCollision> body_collision_;
     Vector initial_position_{},initial_direction_{};std::uint32_t clock2584_=0,navigation_elapsed_=0;
     std::int32_t proximity_=-1,damage_target_=-1,damage_template_=-1;
-    bool ready_=false,enemy_notified_=false,camera_setting_=false,same_epoch_=false;
+    bool ready_=false,camera_setting_=false,same_epoch_=false;
 };
 
 } //namespace hd2::game

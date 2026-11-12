@@ -31,7 +31,7 @@ public:
         std::function<void(std::size_t)> hide69c;
         std::function<Contact*(Contact&)> contact6a8;
         std::function<Contact*(Contact&,unsigned)> surface6ac;
-        std::function<void()> empty6b0,empty6b4;
+        std::function<void()> empty6b0,empty6b4,state6a4; //Actual core6A4/actor734 is cold NULL.
         std::function<bool(CarParticleState<Frame>&,unsigned)> particle6bc;
         std::function<std::int32_t(unsigned,unsigned)> reuse6c0;
         //6A0/6B8 remain unassigned cold null;6A4 is explicitly null.
@@ -76,6 +76,7 @@ public:
     std::vector<SceneActor<Backend>*> occupants;
     SceneActor<Backend>* driver24ac=nullptr; //004D0B60, separate from seat0's current occupant.
     Services& callback_services(){return services_;}
+    void restart_clock(){clock2470=services_.car_clock();fields2474[1]=1;} //0073EAC0.
     bool clock_expired(){ //0073EA90 on the actual0073EA50 owner at actor2470.
         if(!fields2474[1])return false;
         if(car_contact_signed_word(clock2470+fields2474[0])>=car_contact_signed_word(services_.car_clock()))return false;
@@ -87,6 +88,9 @@ public:
     std::array<std::unique_ptr<CarMountedWeaponControl>,10> fields24b4{};
     std::array<std::uint32_t,2> fields2474{};
     std::uint32_t clock2470,field24dc=0xffffffffu;
+    using DamageModelOwner=decltype(std::declval<Backend&>().retain_car_frame(std::declval<Frame>()));
+    std::optional<DamageModelOwner> model254c; //Native owned reference, initialized NULL by004D16A0.
+    bool flag2548=false;
     bool flag24a1=false,flag254a=false; //254A reset by actual004D16A0; set by004DBF00.
     std::optional<std::int32_t> source24b0; //Native24B0 is produced by authority activation or actualD4.
     std::array<std::vector<std::uint32_t>,2> lists2518;
