@@ -1183,6 +1183,11 @@ public:
             offset63a0{{-.075f,-.041f,-.003f,0}},offset63b0{{.075f,-.041f,-.003f,0}};
     };
     const Movement& movement() const {return movement_;}
+    void seat_posture(std::uint32_t posture){ //00755500 updates SAME native62D0/65F0/65F4 after E0 posture.
+        movement_.field62d0=posture;
+        if(posture==2){movement_.flag65f0=true;movement_.field65f4=500;}
+        else movement_.flag65f0=false;
+    }
     const auto& attachment_pose()const{return attachment_pose_;}
     const auto& prone_pose()const{return prone_pose_;}
     template<class Human,class Control>void present_prone_pose(Human& human,Control& control){

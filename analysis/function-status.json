@@ -23957,12 +23957,14 @@
       "program": "client",
       "entry": "00603070",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00603070: Offline mode7 first authority update with genuine null controlFC; occupied, firing and non7 input/packet branches excluded.",
-      "limitations": "Source-only typed/STL/RAII adaptation, without original full object/container/allocator/SEH ABI. Only linked cold/offline branches supported. Actual engine/item/model/cache/navigation/clock/runtime consumers remain required; no loaded application world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "coverage": "Offline authority updates actual occupied mounted control; non7 input/packets remain explicitly required.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/static_weapon_loading.h",
         "analysis/static-weapon-loading.md",
-        "analysis/checkpoints/p2.2-static-weapon-20261109.json"
+        "analysis/checkpoints/p2.2-static-weapon-20261109.json",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
       ]
     },
     {
@@ -24865,8 +24867,8 @@
       "program": "client",
       "entry": "004d16a0",
       "status": "partial",
-      "coverage": "Compose actual offline two-pass common/DM/proximity/runtime initialization, seats/cameras, helper, navigation and settling. Actual100 gun seats now create real shared004C1AD0 owners with the original seat index/model/pivot and publish only genuine successful initialization. Actual actor254A and authority24B0 reset now share the reached damage owner. Actual2548 reset is shared with destruction/mesh consumers; native nullable model254C uses its actual owned-reference storage.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI, whole-body equivalence or complete Car/selected-Human closure. Native100 repeated authority/area families and direct DM entry use actual body/wheel/DM/packet source with explicit Scene/engine/control/Script/Human-damage/clock/detachment endpoint doubles. Strict actual full World/control/Script/ray/Car/DM/Human i386 and launcher/probe compile/link pass. Car physical/mesh presentation004E9DB0/004DCD10/004DC780, positive Item12/glass/timed consumers, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "coverage": "Compose actual offline two-pass common/DM/proximity/runtime initialization, seats/cameras, helper, navigation and settling. Actual100 gun seats now create real shared004C1AD0 owners with the original seat index/model/pivot and publish only genuine successful initialization. Actual actor254A and authority24B0 reset now share the reached damage owner. Actual2548 reset is shared with destruction/mesh consumers; native nullable model254C uses its actual owned-reference storage. H3: Existing offline activation/lifetime additionally produces24A8 before occupied input; full occupied/non7 frame remains D5.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_loading_activation.h",
@@ -24875,7 +24877,9 @@
         "analysis/human-car-blast-damage-source.md",
         "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json",
         "analysis/human-car-destruction-source.md",
-        "analysis/checkpoints/p2.2-human-car-destruction-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-destruction-20261112.json",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
       ]
     },
     {
@@ -32640,24 +32644,30 @@
       "program": "client",
       "entry": "00751480",
       "status": "partial",
-      "coverage": "Door entry/completion and model-attachment actions8..10 with authored/fallback exits, typed target lifetime, real pose/link/timer/equipment and track receivers. Other occupied actions/exits remain required.",
-      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "coverage": "Door/model actions plus occupied entry2/4/6/B/D and exit3/5/7/C requests, real previous-seat initialization, timers/locks, live/dead displacement and immediate nonplayer advance.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/human_door_action.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "recovered/game/human_seat_action.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00755500",
       "status": "partial",
-      "coverage": "Door entry/completion and model-attachment actions8..10 with authored/fallback exits, typed target lifetime, real pose/link/timer/equipment and track receivers. Other occupied actions/exits remain required.",
-      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "coverage": "Door/model actions plus occupied seat completion, race rejection, animation/posture/attachment/equipment/shadow publication, failed-exit402 and actual exit cleanup.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/human_door_action.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "recovered/game/human_seat_action.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
       ]
     },
     {
@@ -34521,12 +34531,14 @@
       "program": "client",
       "entry": "00518710",
       "status": "partial",
-      "coverage": "Reached false/stop branch over SAME Car sound slots: pre-return observations,81-slot stop, selected voice, four seeks and native scalar publication. Start branch excluded.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Both start and stop over SAME81 SOUND slots, original observation order,22A2 gate, pending duration/elapsed threshold and22BF/2298 publication.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/car_sound_updates.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
       ]
     },
     {
@@ -34672,13 +34684,15 @@
       "program": "client",
       "entry": "004c6dd0",
       "status": "partial",
-      "coverage": "Reached null-occupant/view release uses SAME typed120/124 SOUND owners; disable movement, enable stopping and clear400 only after both calls.",
-      "limitations": "Source-only typed owners/RAII replace native pointer/STL/SEH ABI. Positive occupant assignment, running aim/firing and wider Car simulation remain separate. Existing sound cache and engine calls are delegated with no new callee credit. Invalid missing kind4 frame or null variant rejects rather than dereferencing. Native catalog/resource/engine endpoints doubled; actual World i386 and launcher compile/link only, no execution or desktop verification.",
+      "coverage": "Positive/null occupant publication precedes actual player/view query and SAME120/124 SOUND release.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/mounted_weapon_movement_sounds.h",
         "recovered/game/mounted_weapon_control_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-mounted-sounds-20261111.json"
+        "analysis/checkpoints/p2.2-human-mounted-sounds-20261111.json",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
       ]
     },
     {
@@ -40378,13 +40392,16 @@
       "program": "client",
       "entry": "004c57b0",
       "status": "partial",
-      "coverage": "Mounted HUD definition reader observes actual failed138 gate before accessing the SAME live item158 definition; no fabricated weapon definition.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original object/container/allocator/SEH ABI and unsafe malformed-pointer behavior are excluded. Native ASan/UBSan/LSan executes real HUD hands/TextObject/Actor storage and presentation reader policies with explicit engine, item, roster and occupied-Actor endpoints doubled. Actual World/i386 objects and temporary latest-master composition compile; no populated game World execution, reload simulation, desktop rendering or whole-body equivalence claim. Actor20/34 owners, typed Human focus, order producers and FRAME/RENDER/OWN remain required.",
+      "coverage": "Mounted HUD definition reader observes actual failed138 gate before accessing the SAME live item158 definition; no fabricated weapon definition. H3: Existing mounted HUD definition reader plus interaction weapon-kind projection from SAME live item, with actual failed138 gate.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/actor_seat_presentation.h",
         "recovered/host/game_occupied_actor_presentation.h",
         "analysis/p22-ui-implementation.md",
-        "analysis/checkpoints/p22-ui-occupied-20261111.json"
+        "analysis/checkpoints/p22-ui-occupied-20261111.json",
+        "recovered/game/mounted_weapon_control_loading.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
       ]
     },
     {
@@ -40569,12 +40586,14 @@
       "program": "client",
       "entry": "004dd0d0",
       "status": "partial",
-      "coverage": "Offline7 true reset over SAME activation/body/wheel/mesh/Door/collision/skid/particle/navigation owners: restore prefix, late proximity overwrite, ascending seat removal, suspend, saved pose, settings/special collision, body flag1, physical reset,5ms settle/finalize, fuel, source/driver/latch/navigation/model/pending retirement. Positive mounted004C6620 and non7 consumers remain required.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "coverage": "Offline7 true reset over SAME activation/body/wheel/mesh/Door/collision/skid/particle/navigation owners: restore prefix, late proximity overwrite, ascending seat removal, suspend, saved pose, settings/special collision, body flag1, physical reset,5ms settle/finalize, fuel, source/driver/latch/navigation/model/pending retirement. Positive mounted004C6620 and non7 consumers remain required. H3: Existing offline reset additionally invokes actual mounted004C6620 after each ascending seat removal.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/car_loading_activation.h",
         "analysis/human-car-frame-events-source.md",
-        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
       ]
     },
     {
@@ -40711,6 +40730,210 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-car-target-command-source.md",
         "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d9430",
+      "status": "partial",
+      "coverage": "Offline seat assignment, integrity prelude, reverse prior-seat removal, real mass/B0/link/driver/control/proximity/view publication.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/car_seat_actions.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004da2f0",
+      "status": "partial",
+      "coverage": "Current-first then ascending candidate exit search over SAME seat markers; successful pose publication and occupied receiver composition.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/car_seat_actions.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004da420",
+      "status": "partial",
+      "coverage": "Actual body-space exit search, side/200 offset, SAME query exclusions, lateral/floor sweeps, output-on-success and cleanup.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/car_seat_exit.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d9280",
+      "status": "partial",
+      "coverage": "Actual driver/health gates and24A8 input masks into SAME pedal/steering controls.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/car_seat_actions.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2530",
+      "status": "partial",
+      "coverage": "Force and normal engine start/stop, fuel/body rejection, sound transitions and failed-start receiver over actual22A2/22BF state. F6C feature gate borrows actual solver.substeps.flags.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/car_seat_actions.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051a620",
+      "status": "partial",
+      "coverage": "Observe both failed-start voices before selecting retained2298 inside/outside sound and enable/volume publication.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006041a0",
+      "status": "partial",
+      "coverage": "Offline empty-seat assignment: requested marker link, FIRST-seat base pose, actual B0/control/collision/script tail.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/static_weapon_loading.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00604590",
+      "status": "partial",
+      "coverage": "Signed bounded actual seat occupant reader, preserving SAME actor identity.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/static_weapon_loading.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006046d0",
+      "status": "partial",
+      "coverage": "Navigation-position/fallback exit pose, then actual seat/control/collision release.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/static_weapon_loading.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00604e90",
+      "status": "partial",
+      "coverage": "Actual150-gated model update, SAME stable descriptor reinitialization and collision move.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/static_weapon_loading.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c6620",
+      "status": "partial",
+      "coverage": "Save actual occupant, retire/reinitialize SAME model/pivot/index resource owner and restore borrower.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/mounted_weapon_control_loading.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c55e0",
+      "status": "partial",
+      "coverage": "Authority failed/null/health gates, mode-dependent presentation delegation and154/20 expiry.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/mounted_weapon_control_loading.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c56a0",
+      "status": "partial",
+      "coverage": "Presentation reloadE0 expiry before gates, actual player/AI aim, model/mode delegation and D0 idle clock.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/mounted_weapon_control_loading.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c2580",
+      "status": "partial",
+      "coverage": "AI target/world direction into bounded local HORT/VERT aim with native speed/angle/direction bits and actual movement SOUND transitions.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/mounted_weapon_aim.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c3120",
+      "status": "partial",
+      "coverage": "Player CC/D8 input rates, local pivots, clamp/damping, movement SOUND and actual B0 target-only publication.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/mounted_weapon_aim.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c5080",
+      "status": "partial",
+      "coverage": "Actual barrel S-marker casing: four engine random draws, GunShells/SHELL visual lifecycle, SAME Physics type0/material12/list1 creation and impulse.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/mounted_weapon_shell.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075e560",
+      "status": "partial",
+      "coverage": "Dead-seat displacement SetPos/base30, shot scale reset and actual geometry-effect flags8/reason0 then model update.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_control_loading.h",
+        "analysis/human-seat-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
       ]
     }
   ]

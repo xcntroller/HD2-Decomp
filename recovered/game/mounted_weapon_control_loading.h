@@ -5,6 +5,8 @@
 #include "game/static_weapon_metadata.h"
 #include "game/human_ai_shot_direction.h"
 #include "game/mounted_weapon_movement_sounds.h"
+#include "game/mounted_weapon_aim.h"
+#include "game/mounted_weapon_shell.h"
 #include "frontend/cleanup.h"
 #include <cstdio>
 #include <optional>
@@ -27,12 +29,34 @@ public:
     const auto& barrels()const{return barrels_;}Entry weapon_item()const{return item_;}
     bool failed()const{return failed_;}
     bool occupied()const{return control_occupant_!=nullptr;}
+    std::optional<std::uint32_t> weapon_kind()override{if(failed_)return std::nullopt;return items_.runtime_item(item_).primary_payload_kind();}
     auto& movement_sounds(){return movement_sounds_;}
-    void clear_occupant()override{ //004C6DD0(NULL), actual null-only caller reached by reaction seat release.
-        control_occupant_=nullptr;view(false);
+    void clear_occupant()override{set_occupant(nullptr);}
+    void set_occupant(void* human)override{ //004C6DD0: publish FC BEFORE player/view queries and SOUND release.
+        control_occupant_=human;
+        view(human&&services_.mounted_human_view(human));
         movement_sounds_.release_motion(control_.field14c);
     }
-    void fire_marker()override{throw std::runtime_error("Mounted weapon S marker requires actual004C5080 firing receiver");}
+    void reset()override{ //004C6620, SAME owner/resources, saved borrower restored after reinitialization.
+        const auto occupant=control_occupant_;const auto model=model_,pivot=pivot_;const auto index=control_.fieldc8;
+        retire();(void)initialize(model,pivot,index);set_occupant(occupant);
+    }
+    void fire_marker(void* barrel)override{emit_mounted_weapon_shell(frames_,services_,static_cast<Frame>(barrel),shells_?shells_->get():Frame{});}
+    void advance(bool authority,std::uint32_t elapsed)override{ //004C55E0/004C56A0, original mode-bit mutual delegation.
+        if(!authority&&control_.fielde0){control_.fielde0-=elapsed;if(human_frame_signed_word(control_.fielde0)<=0)control_.fielde0=0;}
+        if(failed_||!control_occupant_)return;
+        if(services_.seat_human_health(control_occupant_)<=0){movement_sounds_.release_motion(control_.field14c);return;}
+        if(authority){
+            if(!(services_.mode_flags()&2u))advance(false,elapsed);
+            if(control_.field154){control_.field154-=elapsed;if(human_frame_signed_word(control_.field154)<=0){control_.field14c&=~0x20u;control_.field154=0;}}
+        }else{
+            if(services_.mounted_human_is_player(control_occupant_))advance_mounted_player_aim(frames_,model_,horizontal_,vertical_,control_,movement_sounds_,elapsed,[&](const auto& direction){services_.mounted_human_target(control_occupant_,direction);});
+            else advance_mounted_ai_aim(frames_,model_,horizontal_,vertical_,control_,movement_sounds_,elapsed,services_.mounted_human_target(control_occupant_));
+            if(control_.field14c&0xfu)frames_.update_scene_object(model_);
+            if(!(services_.mode_flags()&1u))advance(true,elapsed);
+            control_.fieldd0=control_.flagd4&&control_.flagdc?control_.fieldd0+elapsed:0u;
+        }
+    }
     std::array<float,4> limits()const override{return {{control_.field128,control_.field12c,control_.field130,control_.field134}};}
     void view(bool visible)override{ //004C6D90, actual retained F4 frame.
         if(!control_.flag104||!view_)return;
@@ -51,8 +75,8 @@ public:
     bool initialize(Frame model,Frame pivot,unsigned index) { //004C1AD0(actor,model,pivot,index).
         if(control_.flag104)throw std::logic_error("Retire actual StaticWeapon control before reinitializing");
         if(!model||!pivot)return false;
-        model_=model;control_.flag104=true;failed_=false;control_occupant_=nullptr;
-        auto& c=control_;c.fielde0=c.fielde4=0;c.fieldc8=index;c.field13c=c.field140=c.field144=c.field14c=0;
+        model_=model;pivot_=pivot;control_.flag104=true;failed_=false;control_occupant_=nullptr;
+        auto& c=control_;c.fielde0=c.fielde4=c.field154=0;c.fieldc8=index;c.field13c=c.field140=c.field144=c.field14c=0;
         root_=frames_.actor_parent(pivot);
         if(!root_||frames_.actor_short_name(root_).compare(0,6,indexed("HORT%02u",index))!=0)root_=pivot;
         view_=frames_.actor_find(model,indexed("VIEW%02u",index).c_str(),0x10001);
@@ -120,7 +144,7 @@ private:
 
     Frames& frames_;Services& services_;Items& items_;StaticWeaponControl& control_;
     std::vector<Barrel> barrels_;Entry item_{};std::optional<Model> shells_;
-    Frame model_{},root_{},view_{},horizontal_{},vertical_{},aim_{},projectile_{};
+    Frame model_{},pivot_{},root_{},view_{},horizontal_{},vertical_{},aim_{},projectile_{};
     AxisAngle horizontal_pose_,vertical_pose_;
     void* control_occupant_=nullptr;
     std::uint32_t ammunition_=0;

@@ -14,6 +14,7 @@
 #include "game/human_look_frame.h"
 #include "game/human_door_action.h"
 #include "game/human_model_action.h"
+#include "game/human_seat_action.h"
 #include "game/human_animation_arbitration.h"
 #include "game/human_posture_transition.h"
 #include "game/human_lateral_stride.h"
@@ -159,6 +160,10 @@ public:
         finish_human_walk_fall(*this,look,*human_,services_,runtime,false,publish); //00770B90(0).
     }
     template<class Look,class Runtime>void apply_look_interaction(Look& look,SceneInstance* target,std::uint32_t flags,std::uint32_t argument,Runtime& runtime){
+        if(human_seat_entry_action(flags&0x3ffu)||human_seat_exit_action(flags&0x3ffu)){
+            auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+            (void)begin_human_seat_action(*this,look,*human_,target,flags,argument,services_,frames_,runtime,publish);return;
+        }
         if((flags&0x3ffu)==1u){(void)begin_human_door_action(*this,look,*human_,services_,frames_,target,flags,argument);return;}
         if((flags&0x3ffu)==8u){
             auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
@@ -176,8 +181,24 @@ public:
         if((flags&0x3ffu)==8u)advance_human_model_action(*this,look,*human_,services_,frames_,elapsed);
         else advance_human_model_exit(*this,look,*human_,services_,frames_,elapsed);
     }
+    template<class Look,class Runtime>void advance_seat_action(Look& look,std::uint32_t elapsed,Runtime& runtime){
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        advance_human_seat_action(*this,look,*human_,services_,frames_,runtime,publish,elapsed);
+    }
+    template<class Look,class Runtime,class Publish>void arbitrate_seat_animation(Look& look,Runtime& runtime,Publish& publish){
+        arbitrate_human_animation_frame(*this,look,*human_,services_,frames_,runtime,publish);
+    }
+    void publish_seat_ground_position(){ //00755500→007599F0 twice, then CE8/DB4/Scene144.
+        physical_.control_frame_words().set(0x228,0u);publish_dynamic_ground_position();
+    }
+    void retire_dead_seat(const HumanVector& position){ //0075E560, engine SetPos then reason0 geometry effect.
+        frames_.car_camera_position(human_->base().frame(),position);human_->base().world_position(position);
+        physical_.control_frame_words().set(0x1cc,1.f);physical_.control_frame_words().set(0x1d0,1.f);
+        begin_geometry_effect(8,HumanVector{},Frame{},0,nullptr);frames_.update_scene_object(human_->base().frame());
+    }
     Shadow& shadow(){return shadow_;}
     const Links& links() const{return links_;}const auto& motion() const{return motion_;}
+    auto& motion_words(){return action_.frame_words();}
     const auto& animation() const{return animation_;}const auto& opacity() const{return opacity_;}
     auto& opacity(){return opacity_;}
     Human** human_slot_address(){return physical_.human_slot_address();}

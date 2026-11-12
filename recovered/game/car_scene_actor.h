@@ -75,6 +75,9 @@ public:
     std::unique_ptr<CarLoadingLifetime<Backend>> loading;
     std::vector<SceneActor<Backend>*> occupants;
     SceneActor<Backend>* driver24ac=nullptr; //004D0B60, separate from seat0's current occupant.
+    bool driver_enabled2321=false; //004D11C0 publishes with driver24AC.
+    std::array<bool,4> input_flags2329{}; //Reached004D9430 publications.
+    std::uint32_t control_mask24a8=0; //004D16A0 produces before004D9280 consumes.
     Services& callback_services(){return services_;}
     void restart_clock(){clock2470=services_.car_clock();fields2474[1]=1;} //0073EAC0.
     bool clock_expired(){ //0073EA90 on the actual0073EA50 owner at actor2470.

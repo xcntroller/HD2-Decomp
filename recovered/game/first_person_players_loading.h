@@ -48,6 +48,11 @@ public:
         return control.scene_sector(); //005AC4C0; an actual null sector remains engaged.
     }
     bool attached_driver(Human& human)const{return human.field160&&seat_presentation().kind(*human.field160)==4&&human.field164==0;}
+    void release_driver_input(Human& human){
+        auto* car=dynamic_cast<typename World::Car*>(human.field160);
+        if(!car||!car->loading)throw std::logic_error("Player close requires actual occupied Car lifetime");
+        car->loading->driver_input(0,0);
+    }
     void bind_seat_presentation(SeatPresentation& source){
         if(seats_)throw std::logic_error("First-person seat presentation already bound");seats_=&source;
     }
