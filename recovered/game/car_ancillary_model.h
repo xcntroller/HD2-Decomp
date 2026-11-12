@@ -3,6 +3,7 @@
 
 #include "game/car_damage_packets.h"
 #include <cmath>
+#include <functional>
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
@@ -34,9 +35,18 @@ public:
     using Frame=typename Frames::Frame;
     using Owner=decltype(std::declval<Frames&>().create_car_ancillary_model());
     struct Zone {Frame frame{};std::int32_t hit_points=-1,material=-1;};
-    struct Explosion {Frame frame{};std::int32_t delay=0,part=-1;bool armed=false;};
+    struct Explosion {Frame frame{};std::int32_t delay=0,part=-1;bool armed=false;std::optional<std::int32_t> instance;};
+    ~CarAncillaryModel(){
+        try{clear_metadata();}catch(...){if(frames_)frames_->record_actor_cleanup_failure(std::current_exception());}
+    }
+    template<class Particles>void bind_particles(Particles& particles){
+        if(stop_particle_||active_particles_)throw std::logic_error("Car DM particle borrowers already bound");
+        stop_particle_=[&particles](std::int32_t id){particles.car_retire_particle(id);};
+        active_particles_=[&particles]{return particles.car_active_particles();};
+    }
     void load(Frames& frames,const std::string& resource,std::size_t seat_count) {
         if(model_)throw std::logic_error("Car ancillary model loaded twice");
+        frames_=&frames;
         auto model=frames.create_car_ancillary_model();
         if(!model)return;
         if(!frames.load_car_ancillary_model(model.get(),"DM"+resource))return;
@@ -44,14 +54,14 @@ public:
         parse(frames,seat_count);
         frames.object_visible(model_->get(),false);
     }
-    //004E0EA0 ->004E0DC0/004E09D0, before this cold owner's first activation.
-    //No live particle/sound handles are produced by this metadata owner. Their
-    //later producers require matching effect owners before active DM updates.
+    //004E0EA0 ->004E0DC0/004E09D0. Particle identities borrow the SAME
+    //process and retire in native order; no independent effect pool is made.
     void reset_loading(Frames& frames,std::size_t seat_count){
-        if(!model_)throw std::runtime_error("Car activation requires its actual DM model");
-        seats_.clear();planes_.clear();zones_.clear();explosions_.clear();particle_=Frame{};
-        parse(frames,seat_count);
+        clear_metadata();
+        if(model_)parse(frames,seat_count); //004E09D0 genuinely returns for absent optional DM.
         countdown_=0;triggered_=false; //004E0EA0 AFTER004E0DC0/004E09D0, not004E08C0's initial-1.
+        if(fire_instance_!=-1)retire_particle(fire_instance_);
+        if(smoke_instance_!=-1)retire_particle(smoke_instance_);
     }
     void update_cold(std::uint32_t){ //004E1990's actual post-reset cold gate.
         if(triggered_||countdown_==0)return;
@@ -132,6 +142,30 @@ public:
     template<class Runtime,class Actor>void destroy(Runtime& runtime,Actor self){ //004E1FE0,64 AFTER004DBF00.
         if(!triggered_){runtime.car_damage_destroy(self,false);triggered_=true;}
     }
+    //004E1F70: the EXPL_D particle is retained by identity in native record8.
+    //It is independent of record10's authority countdown/armed state.
+    template<class Runtime>void present_explosion(Frames& frames,Frame car,Runtime& runtime,std::size_t index){
+        auto& explosion=explosions_.at(index);if(explosion.part==-1)return;
+        align_damage_model(frames,car);
+        const auto matrix=frames.actor_world_matrix(explosions_.at(index).frame);
+        const auto identity=runtime.car_emit_particle(explosions_.at(index).part,matrix,car);
+        explosions_.at(index).instance=identity; //Reread native slot AFTER the callback.
+    }
+    template<class Runtime>void present_destruction(Frames& frames,Frame car,Runtime& runtime){ //004E2000.
+        for(auto n=explosions_.size();n;){auto& explosion=explosions_[--n];
+            retire_explosion(explosion); //Record8=-1 only follows actual stop/no-owner proof.
+        }
+        align_damage_model(frames,car);
+        auto marker=particle_?particle_:car;
+        auto matrix=frames.actor_world_matrix(marker);
+        fire_instance_=runtime.car_emit_particle(fire_,matrix,car);
+        marker=particle_?particle_:car;
+        matrix=frames.actor_world_matrix(marker);
+        smoke_instance_=runtime.car_emit_particle(smoke(),matrix,car);
+        if(sound_>0)runtime.car_emit_dm_sound(sound_,particle_?particle_:car);
+    }
+    std::int32_t fire_instance()const{return fire_instance_;}
+    std::int32_t smoke_instance()const{return smoke_instance_;}
     std::int32_t countdown()const{return countdown_;}
     Frame model() const {return model_?model_->get():Frame{};}
     const std::vector<Frame>& seats() const {return seats_;}
@@ -141,8 +175,27 @@ public:
     Frame particle() const {return particle_;}
     std::int32_t sound() const {return sound_;}
     std::int32_t fire() const {return fire_;}
-    std::int32_t smoke() const {return smoke_;}
+    std::int32_t smoke() const {if(!smoke_)throw std::runtime_error("Car DM smoke definition14 has no native producer");return *smoke_;}
 private:
+    void retire_particle(std::int32_t identity){
+        if(!stop_particle_)throw std::logic_error("Car DM requires its SAME process particle retirement borrower");
+        stop_particle_(identity);
+    }
+    void retire_explosion(Explosion& explosion){
+        //004E09D0 allocates0x14 bytes and writes0/4/C/10, but leaves8 unwritten.
+        //An empty actual active list makes EVERY possible native value a miss.
+        //With populated records, do not invent an ID/ownership for that read.
+        if(!explosion.instance){
+            if(!active_particles_||active_particles_()!=0)
+                throw std::runtime_error("Car EXPL_D particle8 has no native producer while particle records may be active");
+        }else if(*explosion.instance>=0)retire_particle(*explosion.instance);
+        explosion.instance=-1;
+    }
+    void clear_metadata(){ //004E0DC0: planes, zones, seats THEN reverse explosion stop/free, markerNULL.
+        planes_.clear();zones_.clear();seats_.clear();
+        while(!explosions_.empty()){retire_explosion(explosions_.back());explosions_.pop_back();}
+        particle_=Frame{};
+    }
     template<class Runtime,class Actor>void damage_seats(Frames& frames,Runtime& runtime,Actor self,
             const CarContactVector& start,const CarContactVector& direction,float amount,Actor source){ //004E18C0.
         frames.object_visible(model(),true);
@@ -181,7 +234,7 @@ private:
                 const auto user=frames.car_user_data(*frame);
                 const auto bits=static_cast<std::uint32_t>(car_attribute_number(user,"EXPL"))*1000u;
                 std::int32_t delay;std::memcpy(&delay,&bits,sizeof(delay));
-                explosions_.push_back({*frame,delay,car_attribute_number(user,"PARTID")});
+                explosions_.push_back({*frame,delay,car_attribute_number(user,"PARTID"),false,std::nullopt});
             }
         }
         particle_=frames.car_find(model_->get(),"particle",0x10020);
@@ -190,12 +243,15 @@ private:
         if(fire_==-1)fire_=0x60;
         if(smoke_==-1)smoke_=0x5f;
     }
+    Frames* frames_=nullptr;
+    std::function<void(std::int32_t)> stop_particle_;std::function<std::size_t()> active_particles_;
+    std::int32_t fire_instance_=-1,smoke_instance_=-1; //Native1C/20; process owns instances, not this model.
     std::optional<Owner> model_;
     std::vector<Frame> seats_,planes_;
     std::vector<Zone> zones_;
     std::vector<Explosion> explosions_;
     Frame particle_{};
-    std::int32_t sound_=-1,fire_=-1,smoke_=-1;
+    std::int32_t sound_=-1,fire_=-1;std::optional<std::int32_t> smoke_; //Native14 is unwritten by004E08C0; only004E09D0 produces it.
     std::int32_t countdown_=-1;bool triggered_=false; //004E08C0 C/64, before actor activation's reset.
 };
 

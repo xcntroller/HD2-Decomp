@@ -1704,3 +1704,12 @@ actual004DBA10 to SAME Car part/wheel/DM/body owners, positive zone/occupant
 damage and native shared packet production.004E1A20 is embedded24E0 DM, distinct
 from physics health. Terminal destruction, presentation/timed-DM and containing
 Human frame remain required; this does not close the selected checkbox.
+
+
+## Car packets and DM effect lifetimes —2026-11-12
+
+[Original/source contract](human-car-dm-presentation-source.md) and
+[checkpoint](checkpoints/p2.2-human-car-dm-presentation-20261112.json) bind actual
+004DB360, DM particle/SOUND producers, same process00445740/00445800 retirement
+and actual puncture sounds. Native unwritten EXPL_D8/smoke14 require honest
+producer/empty-list proof; terminal authority/visual/frame consumers remain open.

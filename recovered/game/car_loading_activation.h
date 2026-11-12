@@ -137,6 +137,10 @@ public:
         if(!initial_||!ready_)throw std::logic_error("Presented dead driver requires actual initialized Car controls");
         auto& state=*initial_;request_car_drive_pedal(state.control_requests,state.drive,actor_.geometry->physics().scalars(),state.solver.substeps,0.f,true);
     }
+    void puncture_sound(std::size_t index)override{
+        if(!initial_)throw std::logic_error("Car puncture sound requires initialized actual sound/wheel owners");
+        initial_->audio.puncture(initial_->drive.audible,initial_->finalizer.inside,initial_->wheels.at(index).vectors.at(0x30));
+    }
 private:
     void require_mode()const{if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Car loading requires actual non7 network/input owners");}
     void require_geometry()const{if(!actor_.geometry||!actor_.ancillary||!actor_.callbacks)throw std::logic_error("Car activation requires its actual geometry/DM/callback owners");}

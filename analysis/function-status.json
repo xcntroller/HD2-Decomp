@@ -9817,13 +9817,15 @@
       "program": "client",
       "entry": "004e09d0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004e09d0: Ancillary DM model, metadata lifetime and original substring/atoi property extraction.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Actual same DM model/metadata parser with EXPL_D8 represented as unproduced until real particle emission; actual PSMOKE/default95 produces smoke14 only when a DM model exists.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
       "evidence": [
         "recovered/game/car_ancillary_model.h",
         "analysis/car-geometry-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
       ]
     },
     {
@@ -24165,25 +24167,29 @@
       "program": "client",
       "entry": "004e0ea0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004e0ea0: Cold retained DM metadata reset/reparse before activation; missing required DM rejects. Reset/reparse SAME DM model and set actual countdown0/triggeredfalse before first authority update.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "coverage": "Actual DM clear/reparse with genuine missing optional model return, countdown0/triggeredfalse publication then old fire1C/smoke20 retirement in order without resetting IDs.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
       "evidence": [
         "recovered/game/car_ancillary_model.h",
         "analysis/car-runtime-loading.md",
         "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
-        "analysis/car-activation-loading.md"
+        "analysis/car-activation-loading.md",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "004e0dc0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004e0dc0: Cold ancillary metadata clear subset; live sound/effect handle producers remain excluded.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "coverage": "Actual planes/zones/seats clear before reverse explosion-particle retirement/free and markerNULL, then model retirement. Unproduced explosion8 needs actual empty active-list proof; fire/smoke remain process-owned.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
       "evidence": [
         "recovered/game/car_ancillary_model.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
       ]
     },
     {
@@ -36462,6 +36468,150 @@
         "recovered/game/car_ancillary_model.h",
         "analysis/human-car-blast-damage-source.md",
         "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00445740",
+      "status": "partial",
+      "coverage": "SAME active particle1014 signed binary identity lookup with native middle selection and output index unchanged on misses.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/mission_effects_loading.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00445800",
+      "status": "partial",
+      "coverage": "Actual particle instance close/delete before stable active-record erase, immediate parent/points/visual retirement without pooling, genuine missing-ID return and typed interrupted-close retry.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/mission_effects_loading.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004db360",
+      "status": "partial",
+      "coverage": "Actual Car actor1C shared module13 dispatch: complete known event decode before part/wheel mutation, native authority cursor/policy, zero-health callbacks, puncture and DM effects ordering; genuine empty defaults and required remaining event/effect branches.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_actor_damage.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0340",
+      "status": "partial",
+      "coverage": "Actual Car glass part10/health10/default direction(-1) reader through SAME packet stream/quantizers.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0410",
+      "status": "partial",
+      "coverage": "Actual Car part10/health10 then two default-primary/mask7 vectors only for health<1, preserving cursor order.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0540",
+      "status": "partial",
+      "coverage": "Actual wheel8/health10 then one default-primary/mask7 vector only for health<1; authority still consumes full payload.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0630",
+      "status": "partial",
+      "coverage": "Actual wheel8 reader, before SAME flags80000000 and actual puncture sound.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e06a0",
+      "status": "partial",
+      "coverage": "Actual explosion4 reader before actual retained DM particle production.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0710",
+      "status": "partial",
+      "coverage": "Genuine empty Car event4 reader RET4; consumes no additional payload before actual DM destruction presentation.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e1f70",
+      "status": "partial",
+      "coverage": "Actual EXPL_D partID gate, SAME DM align/marker world matrix/Car-parent particle emission and slot-reread identity8 publication. Repeated emission keeps earlier process instance as original.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e2000",
+      "status": "partial",
+      "coverage": "Reverse recorded explosion stop before DM align, same optional marker/Car world matrices, fire then smoke identity publication, fresh actual shared SOUND relative/group6/flags1/positive SID.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051a880",
+      "status": "partial",
+      "coverage": "Actual Car audibility/inside gate and shared9EC/CBC sound slots, enabled-before-volume1 and outside SAME wheel30 position, without frame24 or mass_changed.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/human-car-dm-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
       ]
     }
   ]

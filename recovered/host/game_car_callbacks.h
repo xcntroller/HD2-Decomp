@@ -25,6 +25,15 @@ public:
     GameCarCallbacks(GameActorServices& actors,StartupSession& startup,game::CarDefinitionTables& definitions,const game::CarTyres& tyres)
         :GameCarCallbackFrames(actors,startup.application_flags_owner(),startup.local_player_identity(),
             tyres,[&startup]{return startup.control_milliseconds();}),startup_(startup),definitions_(definitions),particles_(actors,*this),physics_contact_(actors),versions_contact_(actors),runtime_contact_(actors),explosion_contact_(actors){}
+    template<class Receiver>void bind_damage_packets(Receiver& receiver){
+        if(&receiver.frames()!=&frames_||damage_owner_)throw std::logic_error("Car packets require SAME unbound containing damage receiver");
+        damage_packet_=[&receiver](Actor actor,game::SessionPacketStream& packet){receiver.receive_car_damage(*actor,packet);};damage_owner_=&receiver;
+    }
+    template<class Receiver>void unbind_damage_packets(Receiver& receiver)noexcept{if(damage_owner_==&receiver){damage_packet_={};damage_owner_=nullptr;}}
+    void receive_damage_packet(Actor actor,game::SessionPacketStream& packet)override{
+        if(!damage_owner_||!damage_packet_)throw std::runtime_error("Car packet requires its actual containing damage owner");
+        damage_packet_(actor,packet);
+    }
     bool initialize(const std::vector<game::CarParticleDefinition>& definitions){
         if(&definitions!=&car_particle_definitions())throw std::logic_error("Car particles require SAME actual definition owner");
         return initialize_particles();
@@ -33,6 +42,8 @@ public:
     const std::vector<game::CarParticleDefinition>& car_particle_definitions()const override{return definitions_.particles();}
     std::vector<game::CarParticleState<Frame>>& car_particle_pool()override{return particles_.states();}
     void clear_particles(){particles_.clear();}
+    void car_retire_particle(std::int32_t identity)override{startup_.mission_effects_process().stop(identity);}
+    std::size_t car_active_particles()const override{return startup_.mission_effects_process().active_particles();}
     void update_particles(std::uint32_t elapsed){particles_.update(elapsed);} //004ED130, same actual emitter pool.
     std::uint32_t car_random_word()override{return startup_.random_word();}
     template<class Physics>void bind_physics(Physics& physics){physics_contact_.bind(physics);}
@@ -128,6 +139,7 @@ public:
         throw std::runtime_error("Car detached wheel requires actual005FDC00 Item12 movement owner");
     }
 private:
+    const void* damage_owner_=nullptr;std::function<void(Actor,game::SessionPacketStream&)> damage_packet_;
     StartupSession& startup_;game::CarDefinitionTables& definitions_;game::CarParticlePool<GameActorServices,GameCarCallbacks> particles_;
     game::PhysicsContactLink<GameActorServices> physics_contact_;
     game::VersionContactLink<GameActorServices> versions_contact_;

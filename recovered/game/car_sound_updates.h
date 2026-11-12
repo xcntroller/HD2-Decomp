@@ -29,6 +29,15 @@ public:
         for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset))frames_.human_sound_parameter94(sound,0);
         drive.engine_speed=0;drive.running=false;transition=false;destroyed=false;
     }
+    void puncture(bool audible,bool inside,const Vector& wheel_position){ //0051A880.
+        if(!audible)return;
+        const unsigned slot=inside?0x9ec:0xcbc;
+        if(const auto sound=sounds_.sound(slot)){
+            frames_.human_sound_enabled(sound,true);
+            frames_.human_sound_volume(sounds_.sound(slot),1.f); //Read-only0083BEC4=1.
+            if(!inside)frames_.object_position(sounds_.sound(slot),wheel_position);
+        }
+    }
     void suspension(float volume,bool audible,bool inside){ //0051B560.
         if(!audible)return;
         const auto sound=sounds_.sound(inside?0x9e8:0xcb8);if(!sound)return;

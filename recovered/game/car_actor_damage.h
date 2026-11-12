@@ -91,5 +91,31 @@ template<class Frames,class Runtime,class Car,class StateFactory,class Actor>voi
     car.ancillary->damage(frames,car.base().frame(),r,static_cast<Actor>(&car),kind,amount,point,direction,source);
     state.solver.mass_changed=true; //Actor2350/core22C0, before genuine empty00611080(0).
 }
+//004DB360 actor1C. Decode the native event completely BEFORE the physical
+//mutations. Authority still consumes presentation payload, including wheel2.
+template<class Frames,class Runtime,class Car,class StateFactory>void receive_car_damage_packet(
+        Frames& frames,Runtime& r,Car& car,StateFactory&& get_state,SessionPacketStream& packet){
+    const auto event=read_car_damage_event(packet,packet.read(4));
+    if(event.kind>5)return; //Genuine native default, before any state access.
+    if(event.kind==5){car.ancillary->present_explosion(frames,car.base().frame(),r,event.index);return;}
+    if(event.kind==4){car.ancillary->present_destruction(frames,car.base().frame(),r);r.car_present_destroyed(car);return;}
+    auto& state=get_state();
+    if(event.kind==0||event.kind==1){
+        state.dirty|=2u;auto& part=car.geometry->deformables().parts().at(event.index);part.flags|=2u;part.health=static_cast<float>(event.health);
+        if(event.kind==0){ //00500DA0: positive material exchange still requires its actual receiver.
+            const auto threshold=car.geometry->physics().geometry().parts.at(event.index).scalars.get(0x20);
+            if(part.health<threshold&&!(part.flags&8u))throw std::runtime_error("Car glass requires actual00500DA0 material/texture exchange");
+            if(part.health<=0){part.flags|=1u;car.callbacks.value().hide69c(event.index);}
+        }else if(part.health<=0)(void)car.callbacks.value().part694(event.index,event.first,&event.second);
+    }else if(event.kind==2){
+        if(!(r.car_damage_mode()&1u)&&state.wheels.at(event.index).scalars.get(0x230)>0){
+            state.dirty|=2u;auto& wheel=state.wheels.at(event.index);wheel.flags|=0x10000000u;wheel.scalars.set(0x230,static_cast<float>(event.health));
+            if(wheel.scalars.get(0x230)<=0&&car.geometry->physics().scalars().get(0x550)==0)
+                (void)car.callbacks.value().wheel698(event.index,event.first,nullptr);
+        }
+    }else if(event.kind==3){state.wheels.at(event.index).flags|=0x80000000u;r.car_puncture_sound(car,event.index);}
+    //00611080(0) is genuine empty; no2350 change is made here.
+}
+
 }
 #endif

@@ -255,6 +255,7 @@ public:
     void receive_actor_packet(typename Runtime::Instance& actor,game::SessionPacketStream& packet) {
         require_open();
         if(actor.base().type()==3)consumers_.receive_human_presentation_packet(&actor,packet);
+        else if(actor.base().type()==4)scene_.car_callbacks().receive_damage_packet(&actor,packet);
         else if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
         else if(actor.base().type()==10)consumers_.spawn_packet_decoder().receive(static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor),&packet);
         else if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());

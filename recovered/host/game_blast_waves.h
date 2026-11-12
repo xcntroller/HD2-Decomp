@@ -20,10 +20,10 @@ public:
         points_(d_.scene.buckets(),d_.scene.frames()){
         car_=dynamic_cast<GameCarCallbacks*>(&d_.scene.car_callbacks());
         if(!car_)throw std::logic_error("Explosion binding requires actual scene Car callback owner");
-        try{d_.world_actors.bind_explosion(*this);car_->bind_explosion(*this);}
-        catch(...){d_.world_actors.unbind_explosion(*this);car_->unbind_explosion(*this);throw;}
+        try{d_.world_actors.bind_explosion(*this);car_->bind_explosion(*this);car_->bind_damage_packets(*this);}
+        catch(...){car_->unbind_damage_packets(*this);d_.world_actors.unbind_explosion(*this);car_->unbind_explosion(*this);throw;}
     }
-    ~GameBlastWaves()override{d_.world_actors.unbind_explosion(*this);if(car_)car_->unbind_explosion(*this);}
+    ~GameBlastWaves()override{if(car_)car_->unbind_damage_packets(*this);d_.world_actors.unbind_explosion(*this);if(car_)car_->unbind_explosion(*this);}
     GameActorServices& frames(){return d_.scene.frames();}
     void explode(Actor* source,const Vector& position,float radius,float power,std::int32_t sound){
         game::emit_shot_explosion(d_.startup.shot_manager_process(),d_.sound,*this,source,position,radius,power,sound);
@@ -112,6 +112,24 @@ public:
     std::uint32_t car_damage_absorption(std::int32_t index){return d_.car_definitions.materials().at(index).word(0x28);}
     void car_damage_event(Actor* actor,const game::CarDamageEvent& event){game::publish_car_damage(d_.broadcast_packets,actor->base().id10(),event);}
     void car_damage_destroy(Actor*,bool){throw std::runtime_error("Car destruction requires actual004DBF00 effects/control/occupant receiver");}
+    std::int32_t car_emit_particle(std::int32_t definition,const Matrix& matrix,EngineFrame* parent){
+        return d_.startup.mission_effects_process().emit(static_cast<std::uint32_t>(definition),matrix,parent,true,false);
+    }
+    void car_emit_dm_sound(std::int32_t entry,EngineFrame* relative){
+        frontend::SpatialSoundRequest request;request.flags=1;request.group=6;request.entry=entry;request.relative=relative;
+        (void)d_.sound.emit(request);
+    }
+    void receive_car_damage(Actor& actor,game::SessionPacketStream& packet){ //004DB360, actual actor1C; no early mode gate.
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(&actor);
+        if(!car||!car->geometry||!car->ancillary)throw std::logic_error("Car packet requires actual Car/DM/geometry owners");
+        game::receive_car_damage_packet(frames(),*this,*car,[&]()->auto&{
+            if(!car->loading)throw std::logic_error("Car packet requires actual initialized loading lifetime");return car->loading->cold_state();
+        },packet);
+    }
+    void car_present_destroyed(game::CarSceneActor<GameActorServices>&){
+        throw std::runtime_error("Car destroyed presentation requires actual004DC780 physical/mesh/occupant receivers");
+    }
+    void car_puncture_sound(game::CarSceneActor<GameActorServices>& car,std::size_t index){car.loading->puncture_sound(index);}
     void blast_physics_impulse(EngineFrame* frame,std::int32_t damage,unsigned effects){
         const auto* data=d_.scene.frames().find_actor_frame_data(frame);
         //The existing source method name is historical: EC+14 borrows a

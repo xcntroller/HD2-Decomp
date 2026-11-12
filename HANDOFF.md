@@ -1,140 +1,102 @@
-# P22-HUM handoff — 2026-11-12
+# P22-HUM handoff —2026-11-12
 
-FULL P2.2 / **second Human checkbox: reactions/damage/ragdoll** remains OPEN.
+FULL P2.2 / **second Human checkbox: reactions/damage/ragdoll remains OPEN**.
 Read `AGENTS.md`, Phase2 section2 of `plan.md`, [Human plan](analysis/p22-hum-plan.md),
-[Human contracts](analysis/human-ragdoll-source.md) and relevant linked notes.
-Continue dependencies until the FULL selected checkbox completes or genuinely blocks.
+[Human contracts](analysis/human-ragdoll-source.md), and the relevant linked notes.
+Continue dependencies/checkpoints until the FULL selected checkbox completes or
+is genuinely blocked. Source progress does not close application/desktop work.
 
 ## Checkout and boundaries
 
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
-explicitly requested returning here; transfer byte-verified in ignored WORK
-`human-return-main-20261111`. Check HEAD/status before acting. Latest preceding
-checkpointe861ace; older hashes may differ after rebases. Preserve other LIFE/UI/
-PACK/research worktrees, `/tmp/hd2-p22-hum-continue` and external merges.
+explicitly requested transferring back here; transfer evidence is ignored WORK
+`human-return-main-20261111`. Preceding checkpoint **cfd8aa3**. Check current
+HEAD/status before acting. Preserve other LIFE/UI/PACK/research worktrees,
+`/tmp/hd2-p22-hum-continue` and unrelated changes.
 
 No original EXE/DLL/Proton or Windows fixture execution. Native own audits only;
-Windows compile/link only. Heavy compilation and Ghidra **sequentially**. No push.
-Source-only checkpoints may be committed; interactive acceptance requires user.
-Application mission loading remains disabled; no mission desktop verification.
+Windows compile/link only. Heavy compilation/Ghidra **sequentially**. No push.
+Commit completed source checkpoints and continue; interactive acceptance requires
+the user. Mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source
 
-[Car blast damage receipt](analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json)
-adds10 partials/extends3:34 complete/2711 partial(2706client+5engine), no promotions.
-[Full original/source contract](analysis/human-car-blast-damage-source.md).
-Actual004DBA10 RET24 now binds SAME Car/body/wheels/dirty/deformables/24E0 DM through
-GameBlastWaves. Source faction2 reverse-seat policy, actor254A gate, source24B0
-before Scene104 picking(direction*10), part28 resistance/24 health/WORD38 flags,
-native force/velocity and reverse wheel radial regions lead actual shared module13
-priority3 broadcast events. Native glass is kind0, otherpart1, wheel3, destruction4,
-explosion5; writers absent frozen ZERO credit. Body2350 is SAME mass_changed.
-Actual004E1DC0 DM pose/root/short-name plane quaternion alignment;004E1A20 nearest
-blast-zone ties or model pick, actual material/HP, reverse seat rays and SAME
-Human lifetime damage. Zone0HP does not trigger; negativeHP clamps0/occupants
-before destruction. Kind1 EXPL_D search success leaves model visible; minimum
-delay/armed publish before wire.004E1FE0 sets64 only AFTER actual destruction.
-Car feature path shares254A; seat engine shutdown instead uses234F/core22BF
-engine_transition, not254A, including transitiontrue/runningfalse.004D9A40 absent
-frozen ZERO credit. Native100 repeated damage-family lifetimes with actual DM/
-part/body/wheel/streams PASS; engine/geometry/coefficients/actor-policy/Human-damage/
-destruction endpoints are explicit doubles. Strict actual full World i386 and
-final launcher/probe PASS `human-car-damage-*`. **004DBF00 destruction,004DB360
-presentation and positive timed-DM frame remain required failures.** No complete
-Car or Human damage/frame/application claim.
+[Car packets/DM receipt](analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json)
+adds12 partials/extends3: **34 complete/2723 partial(2718client+5engine)**, no
+promotions. [Full contract](analysis/human-car-dm-presentation-source.md).
+Actual module13→Car1C004DB360 uses SAME World/Car/DM/parts/wheels/streams.
+Kinds0/1 mutation,2 late authority/current-health gate,3 flags→actual puncture
+sound9EC/CBC,5 actual explosion particle and4 DM effects BEFORE required004DC780.
+Reserved8/9/unassigned kinds are genuine empty;6/7/10/11 still required.
+00445740 signed binary lookup and00445800 immediate instance close/delete before
+stable erase, NO pooling, use SAME process/module17/points/parent ownership.
+DM004E1F70/004E2000 emit through SAME process/SOUND; reverse explosion retirement,
+fire→smoke→positive SID; clear/reset/dtor preserve native process ownership.
+Missing optional DM reset is genuine success. Native record8 is unwritten by
+004E09D0/malloc; use a produced handle or actual empty-list proof, otherwise fail.
+Constructor004E08C0 also leaves smoke14 unwritten; missing-model positive smoke
+emission fails at that boundary. **These omissions are confirmed; do not re-audit
+without contrary evidence.** Native100 repeated packet/DM families plus separate
+actual particle retirement and sound-slot audits PASS; endpoint doubles explicit.
+Strict full World i386 and final launcher/probe PASS `human-car-dm-presentation-*`,
+`human-car-particle-retirement-*`, `human-car-dm-sound-*`. No Windows output run.
 
-[Armed Mine receipt](analysis/checkpoints/p2.2-human-mine-contact-20261112.json)
-adds4 partials/extends2:34 complete/2701 partial(2696client+5engine), no promotions.
-[Full contact/explosion contract](analysis/human-mine-contact-source.md). Actual
-005FEFB0 RET8 gates source/family, clears98/unregisters99, source9C/Human/Car24AC,
-catalogue pointer→wire→late payload read→retained baseY+.2 explosion→late removal.
-Actual table70/71 is type2/40bytes: radii5/8,power2500/25000,sound2.005FEEE0 disarm
-wire1 does not read binding or unregister until removal. Human0059FFD0 uses SAME
-radius.5/FFFBFFFF query and ONLY first candidate. Car and World borrow actual runtime/
-GameBlastWaves; constructor failure and retirement unbind links in owner order.
-00451990 performs actual positive wave initial100ms BEFORE late offline reused D0
-SOUND(flags22/source/group6); later Mine visual effect retains its lower Y centre.
-Human9C retirement during initial explosion may delete the Mine: local runtime
-borrower preserves native global access without retaining/delaying actor lifetime.
-Native800 contact lifetimes and separately800 actual producer→wave→Human/B0 queue
-PASS with explicit endpoint doubles; strict actual World i386/final launcher/probe
-PASS `human-mine-contact-*` /`human-mine-explosion-damage-native.*`. No Windows run.
+Preceding **cfd8aa3** [Car blast receipt](analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json),
+[contract](analysis/human-car-blast-damage-source.md): actual004DBA10 RET24 binds
+SAME Car/body/wheels/deformables/embedded24E0 DM. Source faction2 policy,254A gate,
+24B0 before Scene104 pick, part28/24/WORD38/dirty events, wheel radial Y/Z gates,
+DM zone/seat damage and2350=mass_changed. Car feature uses254A; seat engine stop
+instead uses234F/core22BF=engine_transition (including runningfalse). Glass event
+is0, ordinarypart1, wheelpuncture3, destruction4, explosion5. Event writers and
+004D9A40 absent frozen ZERO credit. Terminal destruction/full visuals remain required.
 
-[Versions receipt](analysis/checkpoints/p2.2-human-versions-transitions-20261112.json)
-adds12 partials/extends8, no promotions:34 complete/2697 partial(2692client+5engine).
-[Full contract](analysis/version-damage-transitions.md). Actual frameEC5/Car/blast
-0043C6A0→0043B000 now borrows SAME module7 Master/Part/metadata/buckets. Lazy d+model
-resource uses existing category5 cache open10; four stage arrays borrow its model.
-Actual visual/PROJ/LMAP replacement precedes packet/effects; Script death/hit,
-existing Physics type4/material10 (NOT18), SOUND/particles/session are shared.
-Terminal Part/Master self-retirement preserves global NULL-slot recheck. Frame
-release precedes array free; collision/deferred owners retire before reverse
-borrowed model reloads.0043F1E0 signed16/8/8/late-authority grammar has source,
-absent frozen ZERO credit. Save/replay suppression has no admitted producer.
-Native400 lifecycle/cache/packet/debris sanitizer checks, strict actual full World
-i386 and final launcher/probe PASS `human-containing-versions-*`. Native frame/
-resource/engine/script/effect/Physics endpoints are explicit doubles. No Windows run.
-
-Preceding59fee6f [Mine producers](analysis/checkpoints/p2.2-human-mine-producers-20261112.json)
-adds5 partials; [full Mine contract](analysis/human-runtime-mine-source.md).
-00478B90/00478D30 actual model/resource/direct pose→create/activate/bind→factory
-reference release→definition then ID-based Human inventory retirement. Late-mode
-optional00478CC0 uses ORIGINAL pose/SAME process streams: module12 prefix2+2bits,
-IDs16/default primary(-1)/axis mask7/direction(-1).004788A0/E0 envelopes admit only
-actual known leaves; other actor leaves fail.004788A0 absent frozen ZERO credit.
-Placed flag1D/kind10 uses SAME World ray startY+.5/displacement(0,-2,0), masks0/0,
-actual hit normal or genuine miss, then creator→item removal. Missing geometry
-fails; failed required model removes placed entry before mandatory-load error.
-Created actors survive later bind/inventory/wire failure. Native prior800+400
-producer lifetimes, strict actual World/Human inventory/ray/module i386 and final
-launcher/probe PASS, endpoint doubles explicit. Raw overrides bad C stack aliases.
-
-Earlierc4895a4 [Mine owner](analysis/checkpoints/p2.2-human-runtime-mine-20261112.json)
-uses actual0x120 type2/vtable00812F08, Human9C, SceneEC, runtime/buckets/ShotMgr/
-SOUND/module17.005FEBB0 takes NO args; timer2000, modelY+.2, radius.4 for71/.15
-otherwise.00479700 retains native forward increment after swap-last (may skip).
-Payload native sound14/particle1C maps to serialized10/18, minimum1C.00451A80 C
-tail is misleading: raw451AE2..451AF4 supplies SOUND→particle order. Positive
-material ShotMgr branches and unproduced Mine fields remain required.
-
-Earlierda59872 [blast binding](analysis/checkpoints/p2.2-human-containing-blast-20261112.json)
-uses borrowed Human1C/final hit0, lifetime→005A1C90→B0 queue. Owner-map key guard
-precedes source dereference. EC+14 word5 is Versions master, NOT rigid-body force.
-Earlier18196e5 [entry/voice](analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json)
-uses SAME pending inputs/ONE selected FIFO. Final voice ABI-v3 has EIGHT initializer
-args ending clientConfig,optionalPlaybackInterface; raw overrides bad C aliases.
-Connect(audio,clientConfig,1), interface at18; publish0C before init, ignored HRESULT,
-client-before-server close. Positive non7 reset still fails honestly. Attachment80
-borrows SAME existing Car/StaticWeapon seats. Solver/clip/rest/Car/contact/spawn/map
-checkpoints remain valid; no unchanged-kernel audit needed. Temporary audits stay
-ignored until full selected Human checkbox completion.
+Preceding verified dependencies (contracts retain evidence/order details):
+- **e861ace** [armed Mine/shared explosion](analysis/human-mine-contact-source.md):
+  actual item70/71 type2/radii5/8/power2500/25000/sound2; Mine may self-retire during
+  Human source damage. Retained local runtime reference preserves global access.
+- **4e96476** [Versions](analysis/version-damage-transitions.md): SAME Master/Part,
+  d+model category5 cache open10, effects/Script/Physics/material10, slot retirement.
+- **59fee6f** [Mine producers](analysis/human-runtime-mine-source.md): actual model/
+  pose/load→create/activate→bind→factory release→inventory→late optional packet.
+- Earlier source contracts/checkpoints for solver/clip/rest/reactions, authority,
+  policy/death, PACK/session/spawn/map/entry/voice remain valid. Do not reopen
+  unchanged kernels. Temporary native audits remain ignored until full closure.
 
 ## Next work
 
-1. Continue terminal004DBF00 and actual Car1C=004DB360 presentation/timed-DM
-   frame, other reached derived/surface receivers and containing Human frame.
-   Index/reused original WORK `human-car-damage-receivers-index.txt`,
-   `human-car-damage-dispatch-index.txt`, `car-actor-dm-water-required/004dbf00.c`
-   and `car-actor-cold-effects-required/004e1fe0.c`. New read-only exports/raw and
-   native exact gates/fields are in full Car blast contract above. Packet reader
-   addresses004E0340/004E0410/004E0630/004E06A0/004E0710 and004DB360 are indexed,
-   not yet exported. PE `human-car-damage-receive-vtable.json` pins1C. Preserve
-   actual event producer/consumer split, health/protection/occupants/Script,
-   part/wheel effects and lifecycle ordering. Do not reopen solver/clip/Mine/
-   Versions kernels without new evidence.
+1. Finish **004DBF00** authority destruction and004DC580 nearby Human damage,
+   then **004DC780** presentation, timed-DM frame and other reached receivers.
+   Indexed/new originals are already in WORK:
+   `human-car-destruction-dependencies-index.txt`,
+   `human-car-destruction-inner-index.txt`,
+   `car-actor-dm-water-required/004dbf00.{c,json}`,
+   `human-car-damage-presentation-workers` (004DC580/004DC780/004E2000/00500DA0/
+   0051A880/004E1F70), `human-car-destruction-mesh-workers` (004E9DB0/004DCD10).
+   Raw **`human-car-destruction.asm` now covers FULL004DBF00..004DC580**, and
+   `human-car-destruction-human-area.asm` covers004DC580. C aliases remain bad.
+   Preserve254A→wire4→clock/flags/control/fuel/health→Script→reverse seat damage→
+   model254C release→forward max6 wheel CRT/RandFloat/detach→experience→late2548→
+   area damage. Normal source is lookup24B0, water uses driver24AC; normal victim
+   is hostility OBSERVER after damage. RandFloat is ENGINE (existing Frames
+   volume_random_unit), separate from CRT.734/core6A4 is cold NULL callback.
+   004DC780 first calls actual004E9DB0 physical reset, then004DCD10 mesh work;
+   positive glass/Item12 detachment remain guards. Inspect these existing originals
+   before implementation; use index before any additional exports.004DBEE0/D8 is
+   not reached by blastCar4 and needs no speculative recovery.
 2. Full status9/received0 entry remains unbound. Read
-   `analysis/multiplayer-world/shared-world.md`.00730A40 needs actual peer6C/client334
-   wrappers/worker lifecycle, then0072E890, then00731610(true). Reuse pinned WORK
+   [shared world](analysis/multiplayer-world/shared-world.md).00730A40 needs actual
+   peer6C/client334 wrappers/worker lifecycle→0072E890→00731610(true). Reuse WORK
    `human-entry-connection-originals`. Worker registration underB4 writes connection08
    =workerD4 before append; swap-last unregister does not delete. Client00723D20
    publishes334 thenport10/register; host007260A0 peer6C register AFTER418 unlock.
-3. Preserve game publication/failure order: status9 restores retained game BEFORE
-   menu shutdown and uses SAME00698510/006989B0. Received0 manager replacement
-   precedes old-game retirement; failed new-game deletion differs from status9's
-   explicit shutdown/delete. Non7 zone decisions/frame and full containing Human
-   frame/failure/re-entry/ordered teardown remain required. Actual application
-   loading/rendering/user desktop acceptance remain separate. No fake wrappers.
-   Commit larger verified checkpoints, continue FULL selected Human checkbox.
+3. Preserve publication/failure order: status9 restores retained game BEFORE menu
+   shutdown using SAME00698510/006989B0. Received0 manager replacement precedes
+   old-game retirement; failed new-game deletion differs from status9's explicit
+   shutdown/delete. Voice final ABI-v3 has EIGHT initializer args ending config/
+   optional interface; interface18, publish0C before init, client-before-server close.
+   Non7 zone decisions/frame and full Human containing frame/failure/re-entry/
+   ordered teardown remain required. Actual loading/render/user acceptance remain
+   separate. No fake transport/service wrappers.
 
 ## Commands
 
@@ -142,9 +104,9 @@ WORK=`analysis/work/mission-world-20261103`; original
 `analysis/work/hd2.unpacked.exe` SHA256
 `8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307`.
 Frozen=`analysis/work/function-progress/client.json`.
-`python3 -B tools/research_index.py find ADDRESS...` before new exports;
-`neighbors ADDRESS` has no `--count`. Candidates are not equivalence proof.
-`python3 -B tools/function_progress.py --render` / `--check`; `git diff --check`.
+`python3 -B tools/research_index.py find ADDRESS...` before exports; candidates
+are not equivalence proof. `neighbors ADDRESS` has no`--count`.
+`python3 -B tools/function_progress.py --render`/`--check`; `git diff --check`.
 
 Compiler `.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`;
 native runtime `.tools/hd2-sanitizer-runtime/usr/lib64`.
@@ -153,6 +115,5 @@ Ghidra `ghidra/support/analyzeHeadless`, JAVA_HOME
 `/home/control/.sdkman/candidates/java/25.0.0.0-oracle`, project
 `/home/control/Documents/Projects/HD2ResearchProject` /HD2Research,
 `-process hd2.unpacked.exe -readOnly -noanalysis`, rollback scripts, ONE scriptPath.
-ExportFunctions refuses existing output directories: choose new suffix. Inspect
-ERROR even on exit0; absent entry needs explicit rollback function creation.
+ExportFunctions refuses existing output dirs; inspect ERROR even on exit0.
 Never overlap heavy compilation. `objdump -s` ignores bounds: bounded PE reads only.

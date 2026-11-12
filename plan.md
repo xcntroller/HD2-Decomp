@@ -249,6 +249,7 @@ preparation, not a standalone audit-only milestone.
   [Versions contact dependency](analysis/checkpoints/p2.2-human-versions-transitions-20261112.json) is source-only; actual Human frame/entry and application delivery remain open.
   [Armed Mine/explosion dependency](analysis/checkpoints/p2.2-human-mine-contact-20261112.json) is source-only; derived damage/full entry/frame remain open.
   [Car blast/DM dependency](analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json) is source-only; terminal damage/presentation/full Human frame remain open.
+  [Car packets/DM lifetimes](analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json) are source-only; terminal destruction/full frame remain open.
   [P22-UI implementation](analysis/p22-ui-implementation.md): presentation/text/timer leaves verified; full HUD/FPV updates remain open.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat

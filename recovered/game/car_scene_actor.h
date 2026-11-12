@@ -59,6 +59,7 @@ public:
         occupants.assign(geometry->auxiliary().seats().size(),nullptr); //004E2E30's actual FA8+30 zeroed seats.
         bind_callbacks();
         ancillary.emplace();
+        ancillary->bind_particles(services_);
         ancillary->load(this->backend_,geometry->resource(),geometry->auxiliary().seats().size());
         return true;
     }

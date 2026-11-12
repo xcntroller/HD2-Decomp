@@ -15,6 +15,23 @@ struct CarDamageEvent {
     CarContactVector first{},second{};
     static CarDamageEvent explosion(std::uint32_t index){CarDamageEvent e;e.kind=5;e.index=index;return e;}
 };
+inline CarDamageEvent read_car_damage_event(SessionPacketStream& packet,std::uint32_t kind){
+    CarDamageEvent e;e.kind=kind;
+    switch(kind){
+    case 0:e.index=packet.read(10);e.health=static_cast<std::int32_t>(packet.read(10));e.first=packet.read_direction(-1);break; //004E0340.
+    case 1:e.index=packet.read(10);e.health=static_cast<std::int32_t>(packet.read(10));
+        if(e.health<1){e.first=packet.read_vector(packet.primary_quantizer(-1),7);e.second=packet.read_vector(packet.primary_quantizer(-1),7);}break; //004E0410.
+    case 2:e.index=packet.read(8);e.health=static_cast<std::int32_t>(packet.read(10));
+        if(e.health<1)e.first=packet.read_vector(packet.primary_quantizer(-1),7);
+        break; //004E0540.
+    case 3:e.index=packet.read(8);break; //004E0630.
+    case 4:break; //004E0710 genuine RET4, no payload.
+    case 5:e.index=packet.read(4);break; //004E06A0.
+    case 6:case 7:case 10:case 11:throw std::runtime_error("Car packet requires its actual derived reader");
+    default:break; //004DB360 genuinely ignores8/9 and unassigned four-bit kinds.
+    }
+    return e;
+}
 template<class Packets>void publish_car_damage(Packets& streams,std::int32_t identity,const CarDamageEvent& e){ //004DB2B0.
     auto& packet=streams.begin(13,3); //00475530(id,false): priority3's actual third stream.
     packet.write(static_cast<std::uint32_t>(identity),10);
