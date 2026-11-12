@@ -10,8 +10,40 @@ Earlier “in progress”, “continue” and “not yet bound” notes below ar
 research snapshots, superseded by later checkpoints. In particular007B3C80,
 007B37C0→00787110,0074D510 and Car fuel10/impulse11 are source-recovered; their
 containing-path/application acceptance is still open. Do not restart these
-kernels from an earlier snapshot. Deferred joint/clip inventory reconciliation
-belongs to D12 and does not imply that their implemented bodies are absent.
+kernels from an earlier snapshot. Joint/clip inventory reconciliation is now recorded below; actual containing
+reaction verification and required producer resolution remain open.
+
+## Kernel source checkpoint and inventory reconciliation — 2026-11-12
+
+[Receipt](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json) reconciles
+27 previously implemented, verified frozen client bodies: body interpolation/
+publication, length/angular/sibling/segment constraints, impulse/contact-frame/
+point integration, weighted correction/substep dispatch, point/body contacts,
+sleep, contact SOUND, rest-surface selection, direct Car impulses and retained
+clip007B7410/007B3C80. It extends the historical007B0910/007A7470 records to the
+expanded entry and actual ragdoll branch. **No source body changed in this
+accounting checkpoint, and no function was promoted to complete.**
+
+Current tally is34 complete/3245 partial (3240client+5engine), including completed
+aggregate201adbf merged at98c96ca. Research-index checks establish that all27 new
+entries are actual frozen non-thunk functions. Interior labels, absent helpers,
+engine calls and generic adapters receive no extra credit.
+
+Existing focused native verification is reused without repeating unchanged
+kernel audits. The retained-reaction fixture explicitly seeds known private
+model/Human/control/skeleton/camera fields with `-fno-access-control`; it does
+not execute actual geometry loading. Engine math/Slerp, query and selected
+containing components are doubles. The current completed-branch merge also
+compiled the actual nested host World/Control/Human kernel bindings and rebuilt
+launcher/probe; Windows output was not executed. The receipt fingerprints
+current source, retained original research and existing verification, and links
+the merged-check artifacts. Existing frozen fixtures remain intact; no new test
+source was introduced for this reconciliation.
+
+This closes the deferred kernel-inventory item of D12, not D10/D12 or H2.
+Actual reaction-owner composition and D11's demonstrated fresh part5F9,
+wheel695 and reached effect-record failures remain explicit. Full cross-branch
+frame/application/desktop delivery stays separate; H4 source is not imported.
 
 ## Original evidence
 

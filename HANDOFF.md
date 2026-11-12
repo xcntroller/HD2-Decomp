@@ -23,7 +23,7 @@ assembly. This agent continues H2, without importing/taking over H4/H6/H8.
 Source conflicts retain H2's reset/damage/worker/message owners alongside H5's
 Car driver/seat and mounted input/capability/action additions. Ledger union has
 no independently conflicting rows:122 new frozen partials,23 extensions, no
-promotions. **34 complete/3218 partial (3213client+5engine)**. H5's65 historical
+promotions. Merge tally was34 complete/3218 partial (3213client+5engine). H5's65 historical
 source hashes match Git;56 available evidence/log records copied/hash-checked;
 37 previously removed /tmp audits honestly absent. No active H4 source/credit.
 
@@ -39,8 +39,20 @@ Prior5491e5b retained messages/process delivery stays verified:
 [receipt](analysis/checkpoints/p2.2-human-retained-messages-20261112.json).
 D6b2a/b preserve SAME record/worker/B4/process FIFO, decode-before-admission,
 generations and ordered retirement; D6b2c admission/application remains OPEN.
-Do not restart unchanged kernels. H2 joint/clip source is implemented but its
-deferred frozen-inventory reconciliation remains next independent H2 work.
+Do not restart unchanged kernels.
+
+## Latest H2 kernel source accounting
+
+[Kernel receipt](analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json)
+reconciles27 previously implemented frozen joint/contact/sleep/Car-impulse/
+retained-clip/SOUND/rest bodies and extends007B0910/007A7470 historical coverage.
+No source-body change or complete promotion. **34 complete/3245 partial
+(3240client+5engine)**. Existing native checks are reused with their documented
+private-field seeding and math/query/component doubles; current merged i386 and
+launcher/probe checks are linked. No new permanent/temporary tests; frozen old
+inputs preserved. D12's inventory item is done; D10/D11/full D12/H2 remain open.
+Continue actual H2 reaction-owner composition while preserving external H4/H6
+contracts and the confirmed failures below; H8 owns full cross-branch frame.
 
 ## Continue through dependencies
 

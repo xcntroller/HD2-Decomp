@@ -31114,14 +31114,16 @@
       "program": "client",
       "entry": "007a7470",
       "status": "partial",
-      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required. Actual secondary clips, equipment overlays, stowed/aimed weapon presentation, mounted direction and attached head-direction publication now run at their native frame boundaries.  Actual Look, prone and attached/target/vehicle bodies now run at their original normal frame boundaries, including shared pose chains and real source aim/limits. Ragdoll remains required.",
+      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required. Actual secondary clips, equipment overlays, stowed/aimed weapon presentation, mounted direction and attached head-direction publication now run at their native frame boundaries.  Actual Look, prone and attached/target/vehicle bodies now run at their original normal frame boundaries, including shared pose chains and real source aim/limits. The actual6304&200 branch dispatches retained clips or full joints, fixed-step/interpolation/pose publication, Human/Scene/shot/light updates and contact/audio retirement with source-Human query exclusion/restoration.",
       "limitations": "Source-only typed state/owners and delegated engine methods. Native fixtures exercise state/frame doubles. Positive DD0 ground/look/track and geometry workers, actual runtime/application integration and user desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
         "recovered/game/human_model_geometry.h",
         "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
-        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
       ]
     },
     {
@@ -33027,12 +33029,14 @@
       "program": "client",
       "entry": "007b0910",
       "status": "partial",
-      "coverage": "Actual reason4/non-null-source geometry effect initialization, saved-pose/point/contact reset and containing-grid publication. Other reasons/source branches and ragdoll simulation remain required.",
+      "coverage": "Actual reason4/non-null-source geometry effect initialization, saved-pose/point/contact reset and containing-grid publication. Expanded source covers reason1/2/3 retained-clip snapshots/cursors/contact positions and null/present-source full-joint entry, saved pose, unavailable limbs, velocity/gravity, camera capture and containing-point query restoration.",
       "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
       "evidence": [
         "recovered/game/human_model_geometry.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
       ]
     },
     {
@@ -43330,6 +43334,330 @@
         "analysis/human-guard-area-source.md",
         "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
         "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c59c0",
+      "status": "partial",
+      "coverage": "Project actual attached-bone matrices from the same body tree into retained world poses in child order.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c5a90",
+      "status": "partial",
+      "coverage": "Publish body-derived bone rotations against actual parent frames, preserving frame translations and the original blend gate.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ca390",
+      "status": "partial",
+      "coverage": "Compute paired length endpoint corrections only outside native tolerance; leave outputs unchanged within tolerance.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ca470",
+      "status": "partial",
+      "coverage": "Apply ordered parent-relative angular bounds and publish actual endpoint flags/corrections.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cb510",
+      "status": "partial",
+      "coverage": "Traverse actual fixed parent/sibling neighbours for body overlap corrections.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cb5d0",
+      "status": "partial",
+      "coverage": "Compute recursive sibling segment/radius overlap corrections with native endpoint and traversal ordering.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cda90",
+      "status": "partial",
+      "coverage": "Snapshot body interpolation matrices/rotation words and rebuild retained parent-relative world pose before the physical step.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cdc90",
+      "status": "partial",
+      "coverage": "Interpolate retained previous/current body poses with original component rounding and publish the same body tree.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c58b0",
+      "status": "partial",
+      "coverage": "Project/publish the actual body tree/bones and return root-derived model position using native full/blended pose selection.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c77e0",
+      "status": "partial",
+      "coverage": "Choose native iteration priority, rescale activity and execute impulse/integration/constraint/contact/sleep substeps with odd/final collision cadence and timing publication.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c79f0",
+      "status": "partial",
+      "coverage": "Integrate actual point tree with contact response before gravity/forces and original prior-position/endpoint correction ordering.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c8b10",
+      "status": "partial",
+      "coverage": "Dispatch body length/angular/sibling and body1 transverse constraints over retained endpoint corrections before weighted application.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cbae0",
+      "status": "partial",
+      "coverage": "Apply weighted retained endpoint corrections using actual linked bodies and clear consumed correction state.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cd730",
+      "status": "partial",
+      "coverage": "Consume primary then secondary impulse queues, retaining native duration expiry and confirmed secondary-duration producer behavior.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cd840",
+      "status": "partial",
+      "coverage": "Update/release actual retained contact frames and local-point motion with native mode/elapsed ordering.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cdfc0",
+      "status": "partial",
+      "coverage": "Select original contact restitution constants by material ranges.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b37c0",
+      "status": "partial",
+      "coverage": "Build rest-surface position/normal from same torso points/radii/shared CRT draw, subtract radius offset and publish6740 only after actual DD0 surface request.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cbd50",
+      "status": "partial",
+      "coverage": "Run all actual point contacts before body contacts and smoothed correction publication with per-point flag clearing.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cbf90",
+      "status": "partial",
+      "coverage": "Solve static/dynamic point sphere contacts with radius selection, retained frame publication and actual Car direct impulses.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cc740",
+      "status": "partial",
+      "coverage": "Solve paired body contacts with native segment/query/correction ordering and actual static/dynamic frame/Car receivers.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cd230",
+      "status": "partial",
+      "coverage": "Advance joint sleep/rest over same process physics globals, preserving shared decay scratch, byte upward-contact count and rest callback order.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cde00",
+      "status": "partial",
+      "coverage": "Create primary/secondary contact SOUND requests from actual bone markers/shared pool with original parity and handle sentinels.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cdf10",
+      "status": "partial",
+      "coverage": "Retire only existing inactive contact SOUND handle with primary/secondary sentinel differences.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b7410",
+      "status": "partial",
+      "coverage": "Sample retained reaction clip position/rotation keys through actual bone cursors/cache-read/write gates; publish directly without influence blend.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_clip_pose.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b3c80",
+      "status": "partial",
+      "coverage": "Advance signed1.5x retained time, reason3 seven-position collision/transition, odd-seed three-position dynamics, strict expiry, surface/camera publication and common query restoration; return immediately after effect replacement.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_retained_clip_motion.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2790",
+      "status": "partial",
+      "coverage": "Apply direct linear/angular impulses to same Car410/210 motion/inertia/settling state with independent suppression flags and actual notification receiver.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/car_external_impulses.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ce070",
+      "status": "partial",
+      "coverage": "Compute segment closest-point/distance outputs with native parallel/zero-segment and untouched-output branches used by sibling constraints.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "evidence": [
+        "recovered/game/human_joint_math.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
       ]
     }
   ]

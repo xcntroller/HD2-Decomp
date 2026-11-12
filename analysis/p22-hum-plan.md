@@ -34,8 +34,9 @@ its JSON receipt records hashes and results. It is not application/desktop accep
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3218 partial; joint/clip recovery still
-has deferred credit reconciliation.
+credit is separate: current source34 complete/3245 partial; [joint/clip kernel inventory
+reconciliation](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json) is complete,
+while containing-path verification and required producer resolution remain open.
 
 The selected **H2 reactions/damage/ragdoll** milestone remains open until its
 required producer→dispatch→reaction/damage→contact/effect→retirement path works
@@ -77,7 +78,8 @@ below still apply; these are not whole-subsystem or desktop claims.
 
 - [x] S01 — Joint impulses, integration, constraints, point/body contacts, Car
   forwarding, sleep/substeps, pose publication and contact/audio retirement source.
-  [Contract and focused verification](human-ragdoll-source.md#source-progress).
+  [Contract and focused verification](human-ragdoll-source.md#source-progress);
+  [kernel source/inventory receipt](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json).
 - [x] S02 — Retained clip007B7410/007B3C80 collision/transitions and actual ragdoll
   007A7470 branch. [Contract](human-ragdoll-source.md#retained-clips-actual-frame-dispatch-and-rest-surfaces).
 - [x] S03 — Actual rest007B37C0→00787110, shared ShotMgr surface pool and retained
@@ -280,8 +282,9 @@ interface18 and publish0C before initialization. Do not repeat its completed aud
 - [ ] D12 — Consolidated H2-owned containing-path verification and source closure:
   actual dispatch, positive paths, interrupted mutation/cleanup, repeated entry
   and teardown; targeted ASan/UBSan/LSan, strict actual i386 and final launcher.
-  Reconcile deferred joint/clip function credit only for frozen implemented bodies,
-  record endpoint/integration limits and fingerprint/remove temporary audits.
+  Joint/clip frozen inventory reconciliation is [complete](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json);
+  actual containing verification, endpoint/integration limits and temporary audit
+  cleanup remain required. No new audits were introduced for reconciliation.
 
 **H2 exit:** H2-owned D0 dependencies and D10–D12 pass, with external milestone
 contracts/dependencies recorded and no reached missing
