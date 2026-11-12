@@ -212,3 +212,43 @@ Guard kind2 positive event/routes, kind1/3 target-vehicle modes, kind5 panic/arm
 kind6 mounted action/event worker, actual Scene2 authority dispatch/retirement,
 and reached remaining command/owner dependencies still require implementation.
 H4 aim/query and H6 fire continuations remain separate known boundaries.
+
+### Positive task and event continuation
+
+00549AE0 kind2 now covers positive0/3/4/5/6/7/8/9/A/B/E/F in addition to existing
+2/C/D. It uses actual event clones, query state, direction flags, posture inputs,
+DD0 animation, navigation and retained processed events. Preserve native sequential
+fallthrough, strict age/range comparisons,2000+1500 observation and15000+10000
+wait draws. Long task search keeps the actual QWORD100/150 jitter constants and
+four CRT draws; head-look interval uses actual common108.00557F70 side-look uses
+LS3DF RandFloat6000+4000, separate from CRT.00554840 face predicate/turn writes
+actual current/target and Inline look commands.00553EB0 search,005541F0 reposition,
+00557540 preliminary cover and00557D10 nearest-list point use the loaded graph.
+00557540 retains its unusual discarded second angular filter and returns the
+previously selected point. Unconsumed scalar outputs earn no separate services.
+
+00549940 now dispatches actual00549700/00549760 matching refresh,00554C30 damage
+replacement,00554D20 report and00554E20 hint policies before common speech/event
+retention. Clone replacement returns the old pool lease BEFORE acquisition, as
+native does, including reuse of that same record. Mode7 refresh preserves opposite
+half-space and100 squared-motion branches. Retained mode8 compares original event
+kind/source/target/XYZ/word30 before cloning, without replacing the process pool.
+Guard close does not own or clear the Human command queues; actual containing
+Human teardown must retire them before the process pool. The fixture observes
+that lifetime explicitly. No production ownership policy was changed to fit it.
+
+Original exports h5-tasks-abi/h5-task-leaves-abi use temporary signatures;
+00549AE0 has native RET4 with unused elapsed argument (the initial temporary C
+signature omitted that unused argument; bounded h5-task-actions.asm is authority).
+Source takes elapsed through existing timers before task dispatch. Typed constants
+in h5-task-constants.json distinguish FLOAT/QWORD. Raw also corrected the earlier
+kind3 chase's discarded random hold prefix to+1000 before its final1000 overwrite;
+this matters if a later posture endpoint fails. No broad re-audit was initiated.
+
+Temporary /tmp/h5-tasks-native passes100 positive action/event/route families
+under ASan/UBSan/LSan on real pools, candidate graph, direction/query/input owners,
+with explicit frame/Inline/World endpoints. Includes mode7 random transitions,
+pooled replacement identity, retained re-selection, Ladder exit and no-target
+fallback. Strict actual World i386 instantiation passes. Whole H5 remains open:
+kind1/3 vehicle-target modes, kind5 panic/armed, kind6 mounted action/events,
+actual Scene2 authority/retirement and remaining reached owners are next.

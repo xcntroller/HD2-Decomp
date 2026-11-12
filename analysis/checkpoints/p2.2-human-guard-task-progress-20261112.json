@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-12",
+  "branch": "feature/p22-hum-h5",
+  "base_commit": "909bb2add802ee846fcd7ab4ff83bc2d66ea3bea",
+  "source_only": true,
+  "selected_checkbox": "H5",
+  "selected_checkbox_complete": false,
+  "completed_plan_checkpoints": [],
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "added_entries": [
+    "00549700",
+    "00549760",
+    "00554c30",
+    "00554d20",
+    "00554e20",
+    "00553eb0",
+    "00557d10",
+    "005541f0",
+    "00557540",
+    "00554840",
+    "00557f70",
+    "00554760",
+    "005547b0",
+    "00554800"
+  ],
+  "extended_entries": [
+    "00549ae0",
+    "00549940"
+  ],
+  "ledger_complete": 34,
+  "ledger_partial": 3107,
+  "source_files": {
+    "recovered/game/human_guard_ai_state_loading.h": {
+      "sha256": "40f192f0742f691efd49d34a3efd24414f5b14985640a74ba73c49aedfbf1e90",
+      "bytes": 83568
+    }
+  },
+  "temporary_audit": {
+    "/tmp/h5-tasks-native.cpp": {
+      "sha256": "64829a0b6caca31de2dbb5039223ba1dd7697c06374a2867b227a311369d8d43",
+      "bytes": 8330
+    },
+    "/tmp/h5-area-native.cpp": {
+      "sha256": "90f1b725a6318bbb7d824348b58d0f1d5888bea637b4df61295f5b645e9fa951",
+      "bytes": 18025
+    },
+    "/tmp/h5-tasks-native": {
+      "sha256": "a831b89e48b2ed08d4dee921c213816248898858087fb5d0dd81a41f0dab2754",
+      "bytes": 8880744
+    }
+  },
+  "verification": [
+    "PASS strict native compile with ASan/UBSan;100 task action/event/route/search/retained replacement families under ASan/UBSan/LSan. Actual pools/navigation/direction/query/input state; explicit frame/Inline/World endpoints.",
+    "PASS strict actual nested World/Guard/Area i386 instantiation, compile only.",
+    "PASS application launcher/startup-probe compile/link; no Windows execution.",
+    "No desktop/full Scene2 integration claim; H5 remains open."
+  ],
+  "build_logs": {
+    "analysis/work/mission-world-20261103/h5-tasks-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-tasks-application-i386.log": {
+      "sha256": "d0428c26c28b0162c7fbe696e94ccc31d77c5137325cf684c595ff055119b74c",
+      "bytes": 802
+    }
+  },
+  "original_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "evidence": [
+    "analysis/human-guard-area-source.md",
+    "analysis/work/mission-world-20261103/h5-tasks-abi",
+    "analysis/work/mission-world-20261103/h5-task-leaves-abi",
+    "analysis/work/mission-world-20261103/h5-task-actions.asm",
+    "analysis/work/mission-world-20261103/h5-task-constants.json"
+  ],
+  "remaining": [
+    "Guard kind1/3 vehicle-target modes",
+    "Guard kind5 panic/armed worker",
+    "Guard kind6 mounted action/events",
+    "Actual Scene2 authority callback/retirement verification",
+    "Remaining reached actor/command owners and separate H4/H6/H8 dependencies"
+  ],
+  "temporary_audit_policy": "Remove temporary native audits at final H5 consolidation; no permanent tests added."
+}

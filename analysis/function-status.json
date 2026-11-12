@@ -28885,12 +28885,14 @@
       "program": "client",
       "entry": "00549ae0",
       "status": "partial",
-      "coverage": "Advance kind 2 wait mode 2 through look, expiry and the actual navigation request, then handle completion and the randomized mode 0C wait.",
+      "coverage": "Advance kind 2 wait mode 2 through look, expiry and the actual navigation request, then handle completion and the randomized mode 0C wait. H5 task source checkpoint: Guard kind2 positive task modes0/3/4/5/6/7/8/9/A/B/E/F on actual event/query/direction/input owners, Ladder exit, search, observation/reselection and original timer draws.",
       "limitations": "Mode 2/0D/0C waits and reached hostile interruption only.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
       ]
     },
     {
@@ -29938,12 +29940,14 @@
       "program": "client",
       "entry": "00549940",
       "status": "partial",
-      "coverage": "Clone and retain supported kind 2 target events before generic merge.",
+      "coverage": "Clone and retain supported kind 2 target events before generic merge. H5 task source checkpoint: Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
       ]
     },
     {
@@ -41731,6 +41735,174 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-guard-area-source.md",
         "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00549700",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00549760",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554c30",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554d20",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554e20",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00553eb0",
+      "status": "partial",
+      "coverage": "Guard task search, nearest-list point, reposition and preliminary cover selection on actual navigation. Preserve reverse removal/ties and the discarded second angular filter.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00557d10",
+      "status": "partial",
+      "coverage": "Guard task search, nearest-list point, reposition and preliminary cover selection on actual navigation. Preserve reverse removal/ties and the discarded second angular filter.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005541f0",
+      "status": "partial",
+      "coverage": "Guard task search, nearest-list point, reposition and preliminary cover selection on actual navigation. Preserve reverse removal/ties and the discarded second angular filter.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00557540",
+      "status": "partial",
+      "coverage": "Guard task search, nearest-list point, reposition and preliminary cover selection on actual navigation. Preserve reverse removal/ties and the discarded second angular filter.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554840",
+      "status": "partial",
+      "coverage": "Actual task face/turn and side-look policies, Inline look commands, direction publication and separate LS3DF random look interval.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00557f70",
+      "status": "partial",
+      "coverage": "Actual task face/turn and side-look policies, Inline look commands, direction publication and separate LS3DF random look interval.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554760",
+      "status": "partial",
+      "coverage": "Actual task route readiness, posture, flag/query-mask and look-command policies; no substitute route service.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005547b0",
+      "status": "partial",
+      "coverage": "Actual task route readiness, posture, flag/query-mask and look-command policies; no substitute route service.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554800",
+      "status": "partial",
+      "coverage": "Actual task route readiness, posture, flag/query-mask and look-command policies; no substitute route service.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
       ]
     }
   ]

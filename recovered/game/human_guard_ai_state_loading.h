@@ -188,13 +188,13 @@ public:
         this->resources().current_action(std::move(action));
         words.set(0x10,5000u);
     }
-    template<class World,class Inline>bool advance_frame_wait_action(World& world,Inline& control){ //00549AE0 modes 2, 0D, 0C.
+    template<class World,class Inline>bool advance_frame_wait_action(World& world,Inline& control){ //00549AE0, cold arms and complete positive task-mode dispatch.
         if(this->resources().current_action_kind()!=2)return false;
         auto* action=this->resources().template current_action_as<HumanAIAction2Pool>();
         if(!action)throw std::logic_error("Guard kind 2 action requires its typed pool record");
         auto& words=action->state;
         const auto action_mode=words.template get<std::uint32_t>(8);
-        if(action_mode!=2&&action_mode!=0xd&&action_mode!=0xc)return false;
+        if(action_mode!=2&&action_mode!=0xd&&action_mode!=0xc)return advance_positive_task_action(world,control);
         auto* human=this->human();
         if(!human)throw std::logic_error("Guard action worker requires the bound Human");
         if(!human->perception.lists()[0].empty()&&can_interrupt_task(control)){
@@ -461,23 +461,8 @@ private:
             auto event=incoming.pop_front();
             const auto code=event->words[0];
             const auto kind=resources.current_action_kind();
-            if(kind==2){ //005482A0 ->00549940.
-                if(auto* target=world.human_ai_resolve_actor(event->words[4])){
-                    auto* action=resources.template current_action_as<HumanAIAction2Pool>();
-                    const auto priority=code&0xf0000000u;
-                    if(!selected_event_&&priority){
-                        clone_frame_event(incoming,*event,event->words[4]);
-                        action->state.set(8,4u);
-                    }else if(selected_event_&&priority<0x40000000u&&
-                             world.human_ai_resolve_actor(selected_event_->words[4])==target){
-                        if(action->state.template get<std::uint32_t>(8)==7)
-                            throw std::runtime_error("Guard target refresh requires the actual 00549760 route receiver");
-                    }else if(code==0x30000001u){
-                        if(can_interrupt_task(control))select_hostile_action();
-                    }else if(code==0x20000013u||(code>=0x3000000bu&&code<=0x3000000du)||
-                             code==0x3000000fu||code==0x40000010u||code==0x40000011u||code==0x40000015u)
-                        throw std::runtime_error("Guard wait event requires its actual positive route receiver");
-                }
+            if(kind==2){ //005482A0→00549940, before the common retained/speech pass.
+                advance_task_event(incoming,*event,world,control);
             }else{
                 const bool damage=code==0x40000010u||code==0x40000011u||code==0x40000015u;
                 const bool report=code==0x3000000bu||code==0x3000000cu;
@@ -540,6 +525,216 @@ private:
             default:break;
             }
         }
+    }
+    template<class World,class Inline>bool advance_positive_task_action(World& world,Inline& control){ //00549AE0 positive modes; elapsed is genuinely unused.
+        auto& resources=this->resources();
+        if(!this->human()->perception.lists()[0].empty()&&can_interrupt_task(control)){select_hostile_action();return true;}
+        auto& action=resources.template current_action_as<HumanAIAction2Pool>()->state;auto& query=resources.query();
+        const auto mode=[&]{return action.template get<std::uint32_t>(8);};
+        const auto flag=[&](std::uint32_t value){resources.flag().request(value);resources.reconcile_direction_flags();}; //0056F1E0.
+        const auto wait=[&]{action.set(8,2u);action.set(0x10,static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*10000.f+15000.f));};
+        const auto actor=[&]()->Actor*{return selected_event_?world.human_ai_resolve_actor(selected_event_->words[4]):nullptr;};
+        const auto event=[&](){if(!selected_event_)throw std::logic_error("Guard task lost actual selected event");return event_position(*selected_event_);};
+        const auto facing=[&](const HumanVector& target,bool head){const auto origin=head?this->state_frames().actor_world_matrix(this->human()->head_marker):this->state_frames().actor_world_matrix(this->human()->base().frame());HumanVector delta=target;for(unsigned n=0;n<3;++n)delta[n]=static_cast<float>(static_cast<long double>(target[n])-origin[12+n]);resources.direction().set_target(delta);resources.direction().set_current(delta);};
+        if(mode()==0xf){
+            auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard Ladder exit requires actual navigation");
+            auto first=query.state.template get<std::uint16_t>(0x48);const auto second=query.state.template get<std::uint16_t>(0x4a);const auto* a=navigation->record(first);const auto* b=navigation->record(second);
+            if(!a||!b)action.set(8,2u);
+            else{if(human_ai_cover::position(*b)[1]<=human_ai_cover::position(*a)[1])first=second;query.request_point(first);query.state.set(0x54,0x4010u);action.set(8,0xeu);}
+        }else if(mode()==0xe){
+            if(this->words().template get<std::uint32_t>(0x50)&0x100000u)return true;
+            if(!actor())wait();else action.set(8,4u);
+        }
+        if(!actor()){if(!task_animation(control))wait();else action.set(8,0xfu);return true;}
+        if(mode()==4){
+            flag(0);if(task_animation(control)){action.set(8,0xfu);return true;}
+            if(query.state.template get<std::uint32_t>(0x50)&0x10000000u)query.state.set(0x50,query.state.template get<std::uint32_t>(0x50)|0x2000u);
+            if(selected_event_->words[0]!=0x3000000eu||!face_task_position(event(),control)){
+                auto* target=actor();if(!target)throw std::logic_error("Guard task target disappeared during facing");if(!face_task_position(frame_position(*target),control))return true;
+                const auto own=frame_position(*this->human());target=actor();if(!target)throw std::logic_error("Guard task target disappeared before Sight");const auto to=frame_position(*target);
+                const auto delta=human_ai_cover::difference(to,own);if((static_cast<long double>(delta[1])*delta[1]+static_cast<long double>(delta[2])*delta[2])+static_cast<long double>(delta[0])*delta[0]<900.f){if(auto* live=actor())world.human_area_force_sight(*this->human(),*live);}
+            }
+            action.set(8,5u);action.set(0xc,0u);this->look_command(0,control);if(!this->words().template get<std::uint8_t>(0xad))set_task_ready(control,world);
+        }
+        if(mode()==0){
+            const auto target=event();const auto delta=human_ai_cover::difference(target,frame_position(*this->human()));
+            if(world.human_guard_root_sector(*this->human())&&(static_cast<long double>(delta[1])*delta[1]+static_cast<long double>(delta[2])*delta[2])+static_cast<long double>(delta[0])*delta[0]>=400.f){const auto point=task_cover_point(target);if(point!=0xffff){task_route_stance(true,control,world);query.request_point(point);action.set(8,3u);return true;}}
+            request_posture(2,control,world.mode_flags());action.set(8,4u);return true;
+        }
+        if(mode()==3&&(query.state.template get<std::uint32_t>(0x50)&0x80000000u)){
+            set_task_ready(control,world);flag(2);const auto own=frame_position(*this->human());auto* target=actor();if(!target)throw std::logic_error("Guard task route completion lost target");const auto delta=human_ai_cover::difference(frame_position(*target),own);resources.direction().set_target(delta);resources.direction().set_current(delta);action.set(0xc,0u);action.set(8,5u);this->look_command(0,control);
+        }
+        if(mode()==5){
+            if(!this->words().template get<std::uint8_t>(0xad))set_task_ready(control,world);
+            const auto age=static_cast<float>(action.template get<std::int32_t>(0xc));bool search=false;
+            if(this->words().template get<std::uint32_t>(0x50)&0x100u)search=static_cast<long double>(random_word())*random_scale*600.f+200.f<age;
+            if(search||static_cast<long double>(random_word())*random_scale*2000.f+500.f<age)action.set(8,6u);
+        }
+        if(mode()==6){
+            const auto point=task_search_point();
+            if(point==0xffff){request_posture(2,control,world.mode_flags());wait();return true;}
+            const auto delta=human_ai_cover::difference(event(),frame_position(*this->human()));const float distance=static_cast<float>(human_ai_cover::length(static_cast<float>((static_cast<long double>(delta[1])*delta[1]+static_cast<long double>(delta[2])*delta[2])+static_cast<long double>(delta[0])*delta[0])));
+            if(!(this->words().template get<std::uint32_t>(0x50)&0x100u)){task_route_stance(false,control,world);flag(1);request_posture(2,control,world.mode_flags());}
+            else if(world.human_guard_root_sector(*this->human())&&static_cast<long double>(random_word())*random_scale*20.f+60.f<distance)task_route_stance(true,control,world);
+            else if(distance<=(static_cast<long double>(random_word())*random_scale+1)*20.f){resources.flag().request(1);query.state.set(0x54,0x2008u);this->look_command(4,control);}
+            else{request_posture(4,control,world.mode_flags());task_route_stance(false,control,world);}
+            query.request_point(point);action.set(8,7u);return true;
+        }
+        if(mode()==7){
+            if(query.state.template get<std::uint32_t>(0x50)&0x10000000u){
+                const auto delta=human_ai_cover::difference(event(),frame_position(*this->human()));const float square=static_cast<float>((static_cast<long double>(delta[1])*delta[1]+static_cast<long double>(delta[2])*delta[2])+static_cast<long double>(delta[0])*delta[0]);
+                const auto jitter=[&]{unsigned total=0;for(unsigned n=0;n<4;++n)total+=random_word()>>2;return static_cast<long double>(total)*random_scale-.5L;};
+                bool slow=false;const auto mask=query.state.template get<std::uint32_t>(0x54);
+                if(mask&0x10000u)slow=jitter()*100.L+150.L>square;
+                if(!slow&&(mask&0x4000u))slow=(jitter()+1.L)*100.L>square;
+                if(slow){this->look_command(4,control);query.state.set(0x54,0x2008u);if(!this->words().template get<std::uint8_t>(0xad))set_task_ready(control,world);}
+                else if(!(mask&0x1000u)&&square<static_cast<long double>(random_word())*random_scale*24.f+25.f){request_posture(2,control,world.mode_flags());this->look_command(4,control);query.state.set(0x54,0x1008u);if(!this->words().template get<std::uint8_t>(0xad))set_task_ready(control,world);}
+                if(square<36.f){
+                    if(!resources.state().template get<std::uint32_t>(0x108)){const auto target=event();this->look_command(7,control,&target);resources.state().set(0x108,static_cast<std::uint32_t>((static_cast<long double>(random_word())*random_scale+1)*1500.f));}
+                    else if(actor()){const auto& lost=this->human()->perception.lists()[2];for(auto n=lost.size();n;)if(actor()==lost[--n]){query.state.set(0x50,query.state.template get<std::uint32_t>(0x50)|0x2000u);break;}}
+                }
+            }
+            const auto flags=query.state.template get<std::uint32_t>(0x50);
+            if(!(flags&0x10000000u)||(flags&0x80000000u)){set_task_ready(control,world);flag(2);facing(event(),true);this->look_command(4,control);action.set(8,8u);action.set(0x10,static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*2000.f+1500.f));}
+        }
+        if(mode()==8){
+            auto* target=dynamic_cast<Human*>(actor());if(!target)throw std::logic_error("Guard task observation requires actual Human target");
+            if(human_frame_signed_word(target->properties.stats_ec[0])<1||!(this->words().template get<std::uint32_t>(0x50)&0x100u)){
+                auto* command=this->command();if(!command)throw std::logic_error("Guard task observation requires actual command queue");const auto* next=command->second.events.strongest_at(frame_position(*this->human()));bool same=false;
+                if(next&&selected_event_){same=next->words[3]==selected_event_->words[3]&&next->words[0]==selected_event_->words[0]&&next->words[4]==selected_event_->words[4]&&next->words[12]==selected_event_->words[12];const auto a=event_position(*next),b=event();same=same&&a[0]==b[0]&&a[1]==b[1]&&a[2]==b[2];}
+                if(!next||same||!world.human_ai_resolve_actor(next->words[4])){request_posture(2,control,world.mode_flags());wait();}
+                else{clone_frame_event(command->second.events,*next,next->words[4]);action.set(8,5u);action.set(0xc,0u);}
+            }else if(!action.template get<std::uint32_t>(0x10))action.set(8,9u);
+        }
+        if(mode()==9){
+            const auto own=frame_position(*this->human());auto* target=actor();if(!target)throw std::logic_error("Guard task reposition lost target");const auto delta=human_ai_cover::difference(frame_position(*target),own);
+            if(human_ai_cover::square_xyz(delta)>=36.f){const auto point=task_reposition_point();if(point==0xffff){request_posture(2,control,world.mode_flags());wait();}
+                else{request_posture(4,control,world.mode_flags());resources.flag().request(1);query.state.set(0x54,0x2008u);query.request_point(point);this->look_command(3,control);action.set(8,10u);}}
+            else{request_posture(2,control,world.mode_flags());resources.flag().request(4);query.state.set(0x54,0x1008u);target=actor();if(!target)throw std::logic_error("Guard task close route lost target");query.request_position(frame_position(*target));this->look_command(0,control);action.set(8,0xbu);}
+        }
+        if(mode()==10&&(query.state.template get<std::uint32_t>(0x50)&0x80000000u)){if(static_cast<long double>(random_word())*random_scale*100.f>=60.f){request_posture(2,control,world.mode_flags());wait();}else action.set(8,9u);}
+        if(mode()==0xb){
+            if(query.state.template get<std::uint32_t>(0x50)&0x10000000u){const auto own=frame_position(*this->human());auto* target=actor();if(!target)throw std::logic_error("Guard task close tracking lost target");resources.direction().set_target(human_ai_cover::difference(frame_position(*target),own));}
+            if(query.state.template get<std::uint32_t>(0x50)&0x80000000u){if(static_cast<long double>(random_word())*random_scale*100.f<80.f){action.set(8,9u);return true;}request_posture(2,control,world.mode_flags());wait();}
+        }
+        return true;
+    }
+    std::uint16_t task_search_point(){ //00553EB0→00557D10.
+        if(!selected_event_)throw std::logic_error("Guard search requires actual selected event");
+        auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard search requires actual navigation");
+        const auto target=event_position(*selected_event_);const auto flags=this->words().template get<std::uint32_t>(0x50);
+        if(!(flags&0x100u)){
+            const auto& points=flags&0x200u?primary_:secondary_;std::uint16_t selected=0xffff;float best=100000.f;
+            for(auto n=points.size();n;){const auto i=--n;const auto* point=navigation->record(points[i]);if(!point)throw std::logic_error("Guard nearest search lost actual point");const float square=static_cast<float>(human_ai_cover::square_xyz(human_ai_cover::difference(target,human_ai_cover::position(*point))));if(square<best){best=square;selected=points[i];}}
+            return selected; //00557D10's last-square output is discarded by this caller.
+        }
+        const auto nearest=navigation->nearest_volume({{target[0],target[1],target[2]}},5.f,-1);if(nearest==0xffff)return nearest;
+        std::vector<std::uint16_t> points;(void)navigation->append_reachable(nearest,5.f,points);
+        if(points.empty())return nearest;
+        const auto from=human_ai_cover::difference(frame_position(*this->human()),target);
+        for(auto n=points.size();n;){const auto i=--n;const auto* point=navigation->record(points[i]);if(!point)continue;const auto delta=human_ai_cover::difference(human_ai_cover::position(*point),target);
+            if((static_cast<long double>(from[0])*delta[0]+static_cast<long double>(delta[1])*from[1])+static_cast<long double>(delta[2])*from[2]<0){points[i]=points.back();points.pop_back();}
+        }
+        if(points.empty())return nearest;
+        if(points.size()==1)return points.front();
+        return points[random_word()%points.size()];
+    }
+    std::uint16_t task_reposition_point(){ //005541F0.
+        if(!selected_event_)throw std::logic_error("Guard reposition requires actual selected event");
+        auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard reposition requires actual navigation");
+        std::vector<std::uint16_t> points;(void)navigation->append_reachable(this->point()?navigation->index_of(*this->point()):0xffff,20.f,points);
+        if(points.empty())return 0xffff;
+        const auto target=event_position(*selected_event_);auto from=human_ai_cover::difference(frame_position(*this->human()),target);normalize_human_ai_shot(from,human_ai_cover::square_xyz(from));
+        for(auto n=points.size();n;){const auto i=--n;const auto* point=navigation->record(points[i]);if(!point)continue;
+            const auto p=human_ai_cover::position(*point);const auto self=human_ai_cover::difference(p,frame_position(*this->human()));bool remove=true;
+            if(human_ai_cover::square_xyz(self)>=100.f){auto delta=human_ai_cover::difference(p,target);normalize_human_ai_shot(delta,(static_cast<long double>(delta[0])*delta[0]+static_cast<long double>(delta[2])*delta[2])+static_cast<long double>(delta[1])*delta[1]);
+                const auto dot=(static_cast<long double>(delta[0])*from[0]+static_cast<long double>(delta[1])*from[1])+static_cast<long double>(delta[2])*from[2];remove=!(dot<=.5f);}
+            if(remove){points[i]=points.back();points.pop_back();}
+        }
+        if(points.empty())return 0xffff;
+        if(points.size()==1)return points.front();
+        return points[random_word()%points.size()];
+    }
+    std::uint16_t task_cover_point(const HumanVector& target){ //00557540.
+        if(human_ai_cover::square(target)<1.e-16f)return 0xffff;
+        auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard task cover requires actual navigation");
+        std::vector<std::uint16_t> points;(void)navigation->append_reachable(this->point()?navigation->index_of(*this->point()):0xffff,10.f,points);
+        if(points.empty())return 0xffff;
+        const auto selected=human_ai_cover::filter_points(*navigation,frame_position(*this->human()),target,points,0xc0004101u);
+        //Native performs a second shifting angular filter, then discards that
+        //vector and returns the previously selected ID. Keep its live pose reads.
+        auto toward=human_ai_cover::difference(target,frame_position(*this->human()));toward[1]=0;normalize_human_ai_shot(toward,static_cast<long double>(toward[0])*toward[0]+static_cast<long double>(toward[2])*toward[2]);
+        for(auto n=points.size();n;){const auto i=--n;const auto* point=navigation->record(points[i]);if(!point)continue;auto delta=human_ai_cover::difference(human_ai_cover::position(*point),frame_position(*this->human()));delta[1]=0;normalize_human_ai_shot(delta,static_cast<long double>(delta[0])*delta[0]+static_cast<long double>(delta[2])*delta[2]);
+            const auto dot=(static_cast<long double>(delta[1])*toward[1]+static_cast<long double>(delta[0])*toward[0])+static_cast<long double>(toward[2])*delta[2];
+            if(dot<-.7070000171661377f||dot>.7070000171661377f)points.erase(points.begin()+static_cast<std::ptrdiff_t>(i));
+        }
+        return selected;
+    }
+    template<class Inline>bool face_task_position(const HumanVector& target,Inline& control){ //00554840.
+        const auto head=this->state_frames().actor_world_matrix(this->human()->head_marker);HumanVector forward{{head[8],head[9],head[10],head[11]}};
+        normalize_human_ai_shot(forward,(static_cast<long double>(forward[0])*forward[0]+static_cast<long double>(forward[2])*forward[2])+static_cast<long double>(forward[1])*forward[1]);forward[1]=0;
+        auto delta=human_ai_cover::difference(target,frame_position(*this->human()));delta[1]=0;
+        normalize_human_ai_shot(forward,static_cast<long double>(forward[0])*forward[0]+static_cast<long double>(forward[2])*forward[2]);normalize_human_ai_shot(delta,static_cast<long double>(delta[0])*delta[0]+static_cast<long double>(delta[2])*delta[2]);
+        const auto dot=(static_cast<long double>(delta[1])*forward[1]+static_cast<long double>(delta[0])*forward[0])+static_cast<long double>(delta[2])*forward[2];
+        if(dot>=.7599999904632568f)return true;
+        this->look_command(7,control,&target);auto& direction=this->resources().direction();direction.set_current(delta);direction.set_target(delta);return false;
+    }
+    template<class Inline,class World>void set_task_ready(Inline& control,World& world){control.set_frame_item_ready(true,[&](std::uint32_t value){world.human_frame_first_person_state(*this->human(),value);});if((world.mode_flags()&7u)!=7u)throw std::runtime_error("Guard task readiness requires actual non7 command01 transport");}
+    template<class Inline,class World>void task_route_stance(bool run,Inline& control,World& world){ //00554800/005547B0.
+        if(run){clear_item_ready(control,world);request_posture(4,control,world.mode_flags());}
+        else if(this->words().template get<std::uint8_t>(0xad)&&this->item()){
+            const auto kind=weapon_kind(world);if(kind!=0&&kind!=3&&kind!=7&&kind!=9)clear_item_ready(control,world); //00554760.
+        }
+        this->resources().flag().request(1);this->resources().query().state.set(0x54,run?0x10008u:0x4008u);this->look_command(0,control);
+    }
+    static HumanVector event_position(const HumanAIEvent& event){HumanVector result;std::memcpy(result.data(),event.words.data()+8,16);return result;}
+    template<class Inline>static std::uint32_t task_animation(Inline& control){auto* animation=control.control();if(!animation)throw std::logic_error("Guard task requires actual DD0");return animation->animation_state_word(0x1d8);}
+    template<class World,class Inline>void task_side_look(const HumanVector& position,World& world,Inline& control){ //00557F70.
+        const auto head=this->state_frames().actor_world_matrix(this->human()->head_marker);HumanVector forward{{head[8],head[9],head[10],head[11]}};
+        normalize_human_ai_shot(forward,(static_cast<long double>(forward[0])*forward[0]+static_cast<long double>(forward[2])*forward[2])+static_cast<long double>(forward[1])*forward[1]);
+        const auto origin=frame_position(*this->human());
+        const auto cross=static_cast<long double>(forward[2])*(static_cast<long double>(position[0])-origin[0])-(static_cast<long double>(position[2])-origin[2])*forward[0];
+        this->look_command(cross>=0?5u:6u,control);
+        this->resources().state().set(0x108,static_cast<std::uint32_t>(static_cast<long double>(world.human_sound_random())*6000.f+4000.f)); //Actual LS3DF RandFloat, not CRT rand.
+    }
+    template<class Inline>void replace_task_event(HumanAIEventQueue& queue,const HumanAIEvent& event,Inline& control){ //00554C30.
+        clone_frame_event(queue,event,event.words[4]);auto& action=this->resources().template current_action_as<HumanAIAction2Pool>()->state;
+        const auto mode=action.template get<std::uint32_t>(8);if(mode!=4&&mode!=0&&mode!=3&&!task_animation(control))action.set(8,4u);
+    }
+    template<class World,class Inline>void refresh_task_event(HumanAIEventQueue& queue,const HumanAIEvent& event,World&,Inline& control){ //00549760.
+        auto& action=this->resources().template current_action_as<HumanAIAction2Pool>()->state;
+        if(action.template get<std::uint32_t>(8)!=7){replace_task_event(queue,event,control);return;}
+        if(!selected_event_)throw std::logic_error("Guard task refresh lost actual event");
+        const auto previous=human_ai_cover::difference(event_position(*selected_event_),frame_position(*this->human()));
+        const auto current=human_ai_cover::difference(event_position(event),frame_position(*this->human()));
+        const auto delta=human_ai_cover::difference(previous,current);
+        clone_frame_event(queue,event,event.words[4]);
+        const auto dot=(static_cast<long double>(current[0])*previous[0]+static_cast<long double>(current[1])*previous[1])+static_cast<long double>(current[2])*previous[2];
+        if(dot<0)action.set(8,4u);else if(human_ai_cover::square_xyz(delta)>100.f)action.set(8,6u);
+    }
+    template<class World,class Inline>void advance_task_event(HumanAIEventQueue& queue,const HumanAIEvent& event,World& world,Inline& control){ //00549940.
+        if(!world.human_ai_resolve_actor(event.words[4]))return;
+        auto& action=this->resources().template current_action_as<HumanAIAction2Pool>()->state;
+        const auto priority=event.words[0]&0xf0000000u;
+        if(!selected_event_&&priority){if(world.human_ai_resolve_actor(event.words[4])){clone_frame_event(queue,event,event.words[4]);action.set(8,4u);}return;}
+        bool same=false;
+        if(selected_event_&&world.human_ai_resolve_actor(selected_event_->words[4])){
+            auto* target=world.human_ai_resolve_actor(event.words[4]);same=target==world.human_ai_resolve_actor(selected_event_->words[4]);
+        }
+        if(same&&priority<0x40000000u){refresh_task_event(queue,event,world,control);return;}
+        const auto code=event.words[0];
+        if(code==0x30000001u){if(can_interrupt_task(control))select_hostile_action();return;}
+        if(code==0x20000013u){ //00554E20 does not replace its selected event.
+            const auto mode=action.template get<std::uint32_t>(8);if(mode!=4&&mode!=0&&!task_animation(control)){if(mode==7)task_side_look(event_position(event),world,control);else action.set(8,4u);}return;
+        }
+        if((code>=0x3000000bu&&code<=0x3000000du)||code==0x3000000fu){ //00554D20.
+            if(!selected_event_)throw std::logic_error("Guard report requires actual selected task event");
+            if((selected_event_->words[0]&0xf0000000u)<priority||action.template get<std::uint32_t>(8)!=7){replace_task_event(queue,event,control);return;}
+            const auto delta=human_ai_cover::difference(event_position(event),frame_position(*this->human()));const float square=static_cast<float>(human_ai_cover::square_xyz(delta));
+            if(human_ai_cover::length(square)>=20.f){task_side_look(event_position(event),world,control);return;}
+            replace_task_event(queue,event,control);return;
+        }
+        if(code==0x40000010u||code==0x40000011u||code==0x40000015u)replace_task_event(queue,event,control);
     }
     template<class World>bool equip_missing_frame_weapon(World& world){ //00559420.
         this->refresh_item();
@@ -671,7 +866,7 @@ private:
                                 auto* old=timer_target_;if(old==select_human_hostile<Human>(*this,this->state_frames(),world)){query.request_position(frame_position(*old));query.state.set(0x54,query_mask());}
                                 const float age=static_cast<float>(action.template get<std::int32_t>(0xc));
                                 const float deadline=static_cast<float>(static_cast<long double>(random_word())*random_scale*3000.f+4000.f);
-                                if(deadline<=age){query.state.set(0x50,query.state.template get<std::uint32_t>(0x50)|0x2000u);resources.flag().request(2);action.set(8,4u);action.set(0x10,static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*3000.f+2000.f));request_cover_posture(control,world);}
+                                if(deadline<=age){query.state.set(0x50,query.state.template get<std::uint32_t>(0x50)|0x2000u);resources.flag().request(2);action.set(8,4u);action.set(0x10,static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*3000.f+1000.f));request_cover_posture(control,world);}
                                 action.set(0x10,1000u); //Native overwrites even a newly drawn hold deadline.
                             }else action.set(0x10,2000u);
                         }else{query.state.set(0x50,query.state.template get<std::uint32_t>(0x50)|0x2000u);attack_hold(3000);}
@@ -804,6 +999,7 @@ private:
         clone_frame_event(queue,event,retarget?static_cast<std::uint32_t>(target.base().id10()):event.words[4]);
     }
     void clone_frame_event(HumanAIEventQueue& queue,const HumanAIEvent& event,std::uint32_t target){
+        selected_event_.reset(); //Native returns the previous clone BEFORE acquiring its replacement.
         auto copy=queue.pool().acquire();
         copy->words[0]=event.words[0];
         copy->words[1]=10000;
