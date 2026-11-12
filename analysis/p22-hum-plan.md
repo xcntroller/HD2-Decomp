@@ -12,7 +12,7 @@ list. Detailed behavior/evidence stays in the linked contracts.
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3028 partial; joint/clip recovery still
+credit is separate: current source34 complete/3150 partial; joint/clip recovery still
 has deferred credit reconciliation.
 
 The **H2 reactions/damage/ragdoll** milestone remains open until its
@@ -32,8 +32,8 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
   [Verified source checkpoint](checkpoints/p2.2-human-seat-interaction-20261112.json); [contract](human-seat-interaction-source.md).
 - [ ] H4 — Common AI outputs: reached00584E30 completions, B0 action/navigation/
   formation, track events and DD0 transition/attachment consumers.
-- [ ] H5 — Guard/Area decisions, Ladder0057CC50, floor lists00581E30, kind9 release
-  and actual Scene2 dispatch. [Full boundary in progress](human-guard-area-source.md).
+- [x] H5 — Guard/Area decision source, Ladder/floor/kind9 and Scene2 dispatch.
+  [Verified source checkpoint](checkpoints/p2.2-human-guard-area-source-20261112.json); [contract](human-guard-area-source.md).
 - [ ] H6 — Player items:00542E20 held item,00545140/005454D0 shots and reached
   command/FOV/dry-fire/melee/repair/transport consumers.
 - [x] H7 — Reached breath/blood particle and rest-footprint source through SAME

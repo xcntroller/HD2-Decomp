@@ -80,12 +80,17 @@ public:
         if(was_firing&&!(this->words().template get<std::uint32_t>(0x50)&0x200000u)&&this->item()){
             const auto& item=world.human_frame_output_item(this->item());
             if(item.definition().identifier==0x26&&item.amount()==0)
-                throw std::runtime_error("Area aim stop requires its actual empty-weapon 00559CF0 receiver");
+                drop_empty_frame_hand(world);
         }
         this->apply_frame_movement(control);
         this->apply_frame_items(control,world,runtime,elapsed,0);
         this->process_second_frame_commands();
         return false;
+    }
+    template<class World>void drop_empty_frame_hand(World& world){ //00559CF0, SAME hand3/virtual70/005A2C50 protocol as00558AA0.
+        auto* storage=this->human()->base().storage();if(!storage||!storage->holder(3))throw std::logic_error("Area empty weapon requires actual hand3");
+        const auto entry=storage->holder(3)->entry();if(entry==this->item())this->clear_cached_item();
+        if(entry)world.human_guard_drop_hand(*this->human(),entry,this->target_direction());
     }
     void select_area_action(){ //0055A130. Area virtual10C is00575820.
         this->resources().retire_current_action();

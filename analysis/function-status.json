@@ -13558,13 +13558,15 @@
       "program": "client",
       "entry": "005ae450",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005ae450: Shared typed AI event allocation/queue/retirement and actual Sight event construction; broader runtime producers remain separate.",
+      "coverage": "P2.2 source reconstruction at original entry 005ae450: Shared typed AI event allocation/queue/retirement and actual Sight event construction; broader runtime producers remain separate. Preserve produced B4 area position while clearing original flag14/radius10.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ai_event_queue.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -14137,13 +14139,15 @@
       "program": "client",
       "entry": "00559a50",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00559a50: Area AI loading/handover route lists, original stat thresholds and required inventory/context consumers.",
+      "coverage": "Bind Area8 with actual B4 sniper-area producer, navigation/route/kind10 filters, thresholds, inventory and context dependencies; no unproduced area default.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_area_ai_state_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -23478,24 +23482,28 @@
       "program": "client",
       "entry": "006f78f0",
       "status": "partial",
-      "coverage": "Required loaded-grid dynamic-only Door segment query boolean result, native state/flag setup and actual006F3250 traversal. Output normal/W/pointer ABI and missing-grid branch excluded.",
+      "coverage": "Return actual nearest dynamic descriptor for mounted target query and existing Door boolean consumer on loaded-grid006F3250 path. Missing grid, output normal/W ABI and49/4A remain explicit.",
       "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
       "evidence": [
         "recovered/game/door_collision_queries.h",
         "analysis/door-loading.md",
-        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+        "analysis/checkpoints/p2.2-door-loading-20261109.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "006f3250",
       "status": "partial",
-      "coverage": "Actual Door dynamic grid range expansion/Z-X-bucket traversal, native line/sphere broad phase, shared40/41 slabs and42/44 inside/zero-length/strict best-parameter behavior. Known49/4A receivers and raw output ABI excluded.",
+      "coverage": "Traverse SAME dynamic grid in native Z/X/bucket order with line/sphere broad phase,40/41 slabs and42/44 inside/zero/strict best parameter; expose the actual winning descriptor without changing Door boolean behavior.",
       "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
       "evidence": [
         "recovered/game/door_collision_queries.h",
         "analysis/door-loading.md",
-        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+        "analysis/checkpoints/p2.2-door-loading-20261109.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -25306,12 +25314,14 @@
       "program": "client",
       "entry": "00421c00",
       "status": "partial",
-      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension.",
+      "coverage": "Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer.",
       "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
       "evidence": [
         "recovered/game/human_script_loading_controls.h",
         "analysis/mission-script-initial-controls.md",
-        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -29628,7 +29638,7 @@
       "program": "client",
       "entry": "00586200",
       "status": "partial",
-      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. H5 source checkpoint: Reached Door1B/Ladder1E and Car/StaticWeapon subtype3 command admission, actual seat claim/E0 interaction and independent deferred kind3 copy. Other selected actors and non7 transport remain required.",
+      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. H5 source checkpoint: Reached Door1B/Ladder1E and Car/StaticWeapon subtype3 command admission, actual seat claim/E0 interaction and independent deferred kind3 copy. Other selected actors and non7 transport remain required. Final H5: shared subtype5 reaches actual Car/StaticWeapon exit and separate deferred copy.",
       "limitations": "Only the direct Door branch. Other command cases and Human kind 6 remain required. D4b selected common-command checkpoint; wider commands/occupied/non7 frame and full Human/application acceptance remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -29638,7 +29648,8 @@
         "analysis/checkpoints/p2.2-human-car-target-command-20261112.json",
         "recovered/game/human_common_command.h",
         "analysis/human-guard-area-source.md",
-        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -29705,12 +29716,14 @@
       "program": "client",
       "entry": "005710b0",
       "status": "partial",
-      "coverage": "Rank detached Human hostile candidates using native eligibility, geometry, Sight, stance, and allied selection.",
+      "coverage": "Rank ordinary and Actor98-controlled Human hostile candidates on actual perception and state owners; uncontrolled attachment seats retain ordinary single-candidate behavior.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_frame_metrics.h"
+        "recovered/game/human_ai_frame_metrics.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -29816,26 +29829,29 @@
       "program": "client",
       "entry": "00548080",
       "status": "partial",
-      "coverage": "Advance actual common aim state in Guard and guard the required positive stop effects.",
-      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
-      "evidence": [
-        "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
-      ]
-    },
-    {
-      "program": "client",
-      "entry": "00548170",
-      "status": "partial",
-      "coverage": "Run the Guard authority callback with actual shared buffers, action state and ordered outputs. H5 source checkpoint: Extend ordinary Guard route/attack/chase modes and attached direction/input branch on actual owners. Remaining vehicle/event/panic/mounted workers and H4/H6/H8 boundaries are explicit; no whole Guard closure.",
+      "coverage": "Advance common aim then execute Guard positive stop: empty26 drop, actual CRT/distance wait, low-ammunition byte, weapon table target parameters and action-mode200/100 override.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
         "recovered/game/human_guard_ai_state_loading.h",
         "analysis/human-guard-area-source.md",
-        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548170",
+      "status": "partial",
+      "coverage": "Dispatch Guard authority through actual shared input, timers, complete H5 decision/action/event families and ordered attached/detached outputs; source Scene2 registry/factory dispatch and failure/re-entry/retirement audited. H4/H6/H8 positive consumers remain explicit.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -30111,24 +30127,28 @@
       "program": "client",
       "entry": "00559d40",
       "status": "partial",
-      "coverage": "Advance actual common aim state in Area and gate the required empty-weapon follow-up.",
+      "coverage": "Advance common aim then execute actual Area empty26 hand3 cached-item clear/drop on firing stop.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_area_ai_state_loading.h"
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00559de0",
       "status": "partial",
-      "coverage": "Run Area authority with actual shared buffers, wait actions and ordered output or Script handover.",
+      "coverage": "Dispatch Area authority through actual shared buffers, positive actions/events, ordered output and Script return; source Scene2 registry/factory dispatch and produced area handover audited. H4/H6/H8 consumers remain explicit.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_area_ai_state_loading.h"
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -42092,6 +42112,342 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-guard-area-source.md",
         "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054cf70",
+      "status": "partial",
+      "coverage": "Run Guard mounted action6 modes0..7 on actual action, target, attachment, flags, direction and input owners, preserving sequential transitions, CRT timers, reload/fire requests and distinct exit modes.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054cbb0",
+      "status": "partial",
+      "coverage": "Run mounted follow/report/damage events with actual source links, actor identity, friendship, target capability, health, distance, look and action mutations before the common retained pass.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d300",
+      "status": "partial",
+      "coverage": "Select mounted target from scored hostiles and forward retained reports, preserving signed age/lifetime gates, integer quotient, BC capability and inclusive weighted-distance ties.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d5c0",
+      "status": "partial",
+      "coverage": "Apply actual StaticWeapon threat gate and reverse hostile traversal; native D560 AL1 excludes the other-actor traversal.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d570",
+      "status": "partial",
+      "coverage": "Evaluate mounted leave threat with native strict8/20 distances and actual led-target capability, without an added health gate.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d620",
+      "status": "partial",
+      "coverage": "Compute mounted wait from actual closest hostile distance, FLOAT half-distance spill and original CRT130+70; empty hostiles returns500.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d800",
+      "status": "partial",
+      "coverage": "Produce mounted target direction from actual A8, target B0/head/base/velocity and statFC spread, with distinct special/ordinary coefficients and CRT Z/Y/X order.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054dc50",
+      "status": "partial",
+      "coverage": "Reject mounted target only after actual BC rejects both led target position and repeated Y+.5 position.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054dcf0",
+      "status": "partial",
+      "coverage": "Read actual Human attachment identity and StaticWeapon kind21 for mounted policy.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054f040",
+      "status": "partial",
+      "coverage": "Reverse-score actual hostile heads with health/exclusion, real target B0 aim, BC, capped distance/recent/posture and special dynamic ray eligibility.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054e7d0",
+      "status": "partial",
+      "coverage": "Scan reverse hostiles and forward retained reports using actual mounted position/direction and native angular/distance scoring, then publish selected direction.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054dd20",
+      "status": "partial",
+      "coverage": "Track selected mounted Human through real predicted target direction and native normalization order.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054ded0",
+      "status": "partial",
+      "coverage": "Publish ordinary mounted aim, gate reaction/ammunition/strict alignment and real Sight feedback, apply spread and first-tick suppression, then request actual74/78 fire or74 reload inputs.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054f280",
+      "status": "partial",
+      "coverage": "Publish special mounted aim with native ammo/reaction order, planar inclusive alignment, real Sight and spread, then actual74/78 fire request without ordinary first-tick suppression.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054f910",
+      "status": "partial",
+      "coverage": "Run actual dynamic-only target-origin segment with SAME Inline exclusion/restoration, winning descriptor, actor25 blocker and Car hostile-occupant policy.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054e7a0",
+      "status": "partial",
+      "coverage": "Query actual attachment9C ammunition with the original null-attachment false result for the mounted reload decision.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054dc10",
+      "status": "partial",
+      "coverage": "Issue actual subtype5 through immediate common DC and the independent deferred kind3 copy.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d280",
+      "status": "partial",
+      "coverage": "Publish enabled look interval48/4C and clear XYZ20/typed target frame; disabled changes only4C to-1.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_ai_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00570ca0",
+      "status": "partial",
+      "coverage": "Score actual controlled-mount hostiles including the one-candidate case, real weapon/Car5E0 eligibility, Player-facing50/0, BC20 and distance/recent/posture bonuses.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_ai_frame_metrics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558110",
+      "status": "partial",
+      "coverage": "Compute Guard aim-stop wait from real target distance, independent CRT thresholds and native near/moving/distance-scaled branches.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548010",
+      "status": "partial",
+      "coverage": "Publish Guard low-ammunition boolean using actual selected item and strict amount<10.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558bd0",
+      "status": "partial",
+      "coverage": "Publish target3C/40/44/48 from original immutable weapon-kind tables, native FLOAT squared distance, opposite interpolations and truncated ten-percent steps.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560820",
+      "status": "partial",
+      "coverage": "Write actual AI target first parameter/step3C/40 in native order.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560840",
+      "status": "partial",
+      "coverage": "Write actual AI target second parameter/step44/48 in native order.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559cf0",
+      "status": "partial",
+      "coverage": "Read actual Area hand3, clear cached A8 on equality, and drop through shared real virtual70/005A2C50 only when present.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ae610",
+      "status": "partial",
+      "coverage": "Publish actual B4 sniper flag14, radius10 and full produced position00..0C in native order; no constructor position default.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_scene_actor.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af700",
+      "status": "partial",
+      "coverage": "Sample actual Human world matrix before publishing the B4 sniper area producer used by Area handover.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00585a60",
+      "status": "partial",
+      "coverage": "Execute selected attached Car/StaticWeapon exit: actual seat claim clear then SAME E0 interaction403/407; unsupported special/unattached/non7 consumers remain explicit.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_world_loading_services.h"
       ]
     }
   ]

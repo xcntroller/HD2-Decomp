@@ -1,7 +1,8 @@
 # Human H5 Guard/Area source reconstruction
 
 Worktree `../HD2-Decomp-p22-hum-h5`, branch `feature/p22-hum-h5`, based on
-`feature/p22-hum`520b03e (includes H3 and H2/D4b). H5 is IN PROGRESS.
+`feature/p22-hum`520b03e (includes H3 and H2/D4b). Earlier progress sections below
+are checkpoint history; the final source boundary and verification are at the end.
 No original/Windows execution. Existing H1/H3/H7 and H2 checkpoints are retained;
 full Human frame/application/desktop delivery remain H8/OWN/FRAME/P2.2.
 
@@ -292,3 +293,116 @@ are compile/link checks, not Windows execution or full Scene2 acceptance. Final
 H5 work remains: kind6 mounted action/events and reached receivers, actual
 Scene2 dispatch/retirement, then consolidated verification/audit cleanup. H4/H6
 continuations remain explicit. Do not close H5 or stop at this checkpoint.
+
+### Mounted decisions, aim-stop and command-area producer — final H5 source boundary
+
+Guard kind6 now runs0054CF70 modes0..7 and0054CBB0 events on the SAME action6
+lease, Human attachment/seat, retained reports, direction, target borrower and
+process input buffers. Mode0 publishes flag2 and tests the real B4 payload kind;
+mode1 waits/looks,2 selects,3 attacks,4 tracks/scans,5 requests exit or marks the
+script return,6 clears target/look/flags WITHOUT exit,7 clears then exits.
+Native sequential `if` transitions can execute multiple modes in one call.
+Timers retain the CRT draw order and FLOAT constants. Threat0054D5C0 runs only
+for StaticWeapon21:0054D560 genuinely returns AL1, so its other-actor branch is
+unreachable.0054D570 tests strict8m, then strict20m plus capability rejection;
+there is no added health gate.0054D620 spills half the closest distance before
+its independent CRT130+70 draw; no hostiles returns500.
+
+0054DC50 tests the led target, then repeats at Y+.5.0054D6B0 uses actual target
+B0 posture, base/head position and1B0 velocity*.125; its native argument is a
+Human-layout pointer, despite0054D300 accepting a generic report identity.
+Source rejects a non-Human when the original would dereference its Human
+B0/health layout; it does not invent generic actor health or aim position.
+0054D800 samples mounted A8 first, base/head selection and velocity next,
+then optional spread. Standing consumes the base/head CRT draw even without
+spread; spread draws Z,Y,X. StatFC and original ordinary/special coefficients
+remain distinct. W outside a demonstrated writer receives no ABI credit.
+
+0054F040 reverse-scores live available hostiles using real head markers, actual
+B0 aim predicate00584890, BC capability, distance capped100, recent-shot and
+posture bonuses. Special20 mode additionally runs0054F910.0054D300 starts with
+that hostile, then considers processed reports FORWARD, with native signed
+age*2/lifetime filtering, INTEGER age/lifetime quotient and inclusive replacement
+on equal weighted squared distance. It skips current hostile identities.
+0054E7D0 scans reverse enemies and forward valid reports, while0054DD20 tracks
+only an actual selected target. No successful target/ray service is introduced.
+
+0054DED0 and0054F280 publish normalized target direction before gating reaction,
+ammunition and alignment. Ordinary alignment is strict>.985; special uses
+planar inclusive>=.9998. Actual Sight relation0046F320 supplies count/visibility,
+then the native400/200/100 thresholds apply. Spread updates direction again;
+ordinary140 suppresses the first trigger, special140 clears and fires immediately.
+Output is real74/78 input18, or74 input34 for reload. It does not implement H6's
+004C4780/004C6400 firing/reload. Their existing required boundary remains visible.
+
+0054F910's corrected raw stack proves the unusual ray: start at target, delta
+is target-minus-mounted, layers/flags0. SAME Inline query exclusion is restored
+BEFORE descriptor48 inspection, including source exception cleanup. The dynamic
+query now exposes its actual winning descriptor while preserving Door's boolean
+consumer. Actor25 blocks; Car4 delegates the existing hostile-occupant policy
+004DDE20/004DDF70. Other/no actor succeeds. Shared dynamic40/41 and42/44 semantics
+are retained; existing49/4A and missing-grid receivers remain explicit collision
+workstream boundaries, never misses. Query source is not credited twice.
+
+General005710B0 now tests actual attachment98. A Car seat without control uses
+the original ordinary selector. Actual mounted00570CA0 scores even one candidate,
+uses B4's actual weapon definition, excludes protected Car5E0 occupants for
+role1/non-kind2, and uses the native50/0 Player-facing bonus, BC20, half-distance,
+recent-shot and posture scores. No detached Sight/facing bonuses are added.
+The existing runtime item returns-1 for absent payload; this selector only tests
+kind==2, so it preserves the original fallback10's non-kind2 branch.
+
+0054DC10 reaches shared DC subtype5 immediately and queues an independent kind3
+copy through00571C10, AFTER execution and regardless of native ignored status.
+00585A60's selected Car/StaticWeapon branches clear the actual seat claim then
+emit E0 interaction403/407 on the SAME actor/seat. Non7 Car map notification,
+unattached special-state completion and other transport owners remain required.
+They are not successful fallback exits. Existing00586200 subtype3/14/1B/1E
+behavior is retained.
+
+00548080 now performs its positive aim-stop continuation: empty item26 follows
+actual00558AA0 drop; otherwise00558110 publishes the distance/CRT wait,00548010
+publishes amount<10 at byte1D4,00558BD0 publishes target3C/40/44/48. The immutable
+0083C568/588/5A8/5C8 integer tables, opposite first/second interpolation direction,
+10% truncating steps and actual action MODE+8 bit08000000 override200/100 are
+preserved. Raw558C88..CAe establishes the stored (Z²+X²)+Y² sum, correcting the
+default C expression order. Area00559D40 reaches00559CF0's SAME hand3 cached-item
+clear/drop protocol. Both vtable70 entries811688/8117A0 resolve00587BE0→005A3490;
+no fabricated item deletion or new H6 fire is used.
+
+Area handover now has its original producer. Human script opcode44
+`HUMAN_SetSniper` converts the second A0 INTEGER to FLOAT (raw004226B0..26D7),
+then005AF700 samples the Human world matrix before005AE610 writes B4 flag14,
+radius10 and XYZ/W00..0C in order. The actual command owner retains an optional
+produced position; the native constructor does not initialize it.005AE450 clears
+flag14/radius but retains that position. Existing EndScript chooses Area8 when
+flag14 is set;00559A50 reads the SAME position/radius. Unproduced forced Area
+handover fails explicitly, with no origin/radius default.
+
+### Final verification and delivery limits
+
+The final receipt records the complete selected H5 **source checkpoint**, not
+H8 or application/desktop delivery. Prior checkpoints cover Ladder/floor/kind9,
+Area decisions, Guard ordinary/route/task/panic/vehicle decisions; the final
+checkpoint supplies mounted decisions, their remaining H5 receivers and Scene2
+verification. No original EXE, DLL, Proton or Windows fixture was executed.
+
+Temporary native audits exercise100 families of the actual Scene2 registry,
+family dispatcher and HumanLoadingStateFactory Guard/Area frame dispatcher with
+source Guard/Area states, actual action/job/event pools, navigation and shared
+input buffers. They cover positive idle/mounted actions, Area producer/handover,
+authority/presentation gates, retained H4 failure/re-entry and ordered action/job/
+queue/music/registry retirement. World/frame/Inline/outer movement endpoints are
+explicit doubles. The Inline stance endpoint calls actual0077F190 source.
+This does not establish the containing Human/DD0 frame or actual engine execution.
+Other native audits cover positive Area/Guard decision families and the dynamic
+winning-descriptor path under ASan/UBSan/leak detection. Final fingerprints and
+cleanup are in the receipt; no permanent tests are added.
+
+Strict i386 instantiates the nested actual World/Guard/Area bindings and actual
+VM Human command dispatch, including opcode44; launcher and startup-probe are
+compile/link checks only. H4 still owns common target/alignment/query completion;
+H6 owns held/mounted firing/reload; H8 owns full Human/DD0 and containing-frame
+integration. Aircraft005E0DD0 and other attachment families, non7 transport and
+shared collision49/4A remain explicitly required by their owning workstreams.
+Application loading remains disabled and desktop acceptance remains open.

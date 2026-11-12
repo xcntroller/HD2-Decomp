@@ -137,6 +137,9 @@ public:
         retire_current_action(); //Typed nativeF0; explicit state close normally returns it first.
         direction_.reset();target_.reset();flag_.reset();path_.reset();query_.reset();finish_navigation_jobs();
     }
+    std::uint32_t current_action_mode()const{
+        return std::visit([](const auto& lease)->std::uint32_t{using T=std::decay_t<decltype(lease)>;if constexpr(std::is_same_v<T,std::monostate>)return 0;else return lease?lease->state.template get<std::uint32_t>(8):0;},current_action_);
+    }
     Direction& direction(){return required(direction_);}Target& target(){return required(target_);}
     const Direction& direction()const{return required(direction_);}
     HumanAIFlagLoading& flag(){return required(flag_);}HumanAIQueryLoading& query(){return required(query_);}

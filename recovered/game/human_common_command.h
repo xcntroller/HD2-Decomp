@@ -6,11 +6,15 @@
 
 namespace hd2::game {
 //00586200 DC, shared by the proven Player/Remote/AI vtables. Only the reached
-//subtypes3/14/1B/1E bodies are supplied here. The actual state refreshes A8 before resolving
+//subtypes3/5/14/1B/1E bodies are supplied here. The actual state refreshes A8 before resolving
 //the target, then short-circuits target/item/definition guards in native order.
 template<class State,class World>bool execute_human_common_command(State& state,
         const HumanPacketCommand& command,World& world){
     const auto& fields=command.fields;
+    if(fields.template get<std::uint32_t>(8)==5u){ //00586200→virtualE4/00585A60, reached attached exit.
+        auto* human=state.human();if(!human)throw std::logic_error("Seat exit command requires actual bound Human");
+        world.human_command_exit_emplacement(*human);return true;
+    }
     if(fields.template get<std::uint32_t>(8)==3u){ //00586200→virtualE0/00585D10, reached Car/StaticWeapon admission.
         auto* human=state.human();if(!human)throw std::logic_error("Seat entry command requires actual bound Human");
         return world.human_command_enter_emplacement(*human,world.human_command_actor(fields.template get<std::int32_t>(0xc)),fields.template get<std::int32_t>(0x10));

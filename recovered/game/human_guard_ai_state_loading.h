@@ -120,7 +120,7 @@ public:
             const auto was_firing=this->words().template get<std::uint32_t>(0x50)&0x200000u;
             this->advance_frame_aim(world); //00548080 ->00576350.
             if(was_firing&&!(this->words().template get<std::uint32_t>(0x50)&0x200000u))
-                throw std::runtime_error("Guard aim stop requires its actual 00548080 reaction and item receivers");
+                finish_frame_aim_stop(world);
             this->advance_frame_direction(elapsed,control);
             this->apply_frame_movement(control);
             }
@@ -469,7 +469,7 @@ private:
                 const bool damage=code==0x40000010u||code==0x40000011u||code==0x40000015u;
                 const bool report=code==0x3000000bu||code==0x3000000cu;
                 const auto& hostiles=human.perception.lists()[0];
-                if(kind==6)throw std::runtime_error("Guard attachment event requires its actual current action receiver");
+                if(kind==6)advance_mounted_event(*event,world,control);
                 if((kind==1&&(damage||report||code==0x30000001u||(code==0x20000013u&&hostiles.empty())))||
                    (kind==3&&(damage||report))||(kind==5&&(damage||(code>=0x3000000bu&&code<=0x3000000fu)))){
                     if(auto* actor=world.human_ai_resolve_actor(event->words[4])){
@@ -523,6 +523,167 @@ private:
             default:break;
             }
         }
+    }
+    bool mounted_special()const{return (state_.template get<std::uint32_t>(0x144)&0x20u)!=0;}
+    static long double mounted_dot(const HumanVector& a,const HumanVector& b){return (static_cast<long double>(a[0])*b[0]+static_cast<long double>(a[1])*b[1])+static_cast<long double>(a[2])*b[2];}
+    template<class World>bool mounted_reject_target(Actor& target,World& world){ //0054DC50, second target is raised by.5.
+        auto& human=*this->human();if(!human.field160)throw std::logic_error("Guard mounted capability requires actual attachment");auto point=world.human_emplacement_target(target);
+        if(world.human_emplacement_can_target(human.field160,human.field164,point))return false;
+        point[1]=static_cast<float>(static_cast<long double>(point[1])+.5f);return !world.human_emplacement_can_target(human.field160,human.field164,point);
+    }
+    template<class World>bool mounted_leave_threat(World& world){ //0054D5C0/0054D570;0054D560 is genuinely AL1.
+        auto& human=*this->human();if(!human.field160||human.field160->base().type()!=0x15)return false;
+        const auto& enemies=human.perception.lists()[0];for(auto n=enemies.size();n;){auto* target=enemies[--n];const auto distance=human_ai_actor_distance(human,*target,this->state_frames());if(distance<8.f||(distance<20.f&&mounted_reject_target(*target,world)))return true;}
+        return false;
+    }
+    std::uint32_t mounted_wait_duration(){ //0054D620, native distance/2 FLOAT spill precedes the CRT draw.
+        if(this->human()->perception.lists()[0].empty())return 500;
+        const float half=static_cast<float>(human_ai_closest_enemy_distance(*this->human(),this->state_frames())*.5f);
+        return static_cast<std::uint32_t>((static_cast<long double>(random_word())*random_scale*130.f+70.f)*half);
+    }
+    template<class World>HumanVector mounted_direction(bool spread,World& world){ //0054D800 returns its actual output vector pointer.
+        auto& human=*this->human();auto* target=dynamic_cast<Human*>(timer_target_);if(!human.field160||!target||!target->loading_state)throw std::logic_error("Guard mounted direction requires attachment and actual target B0");
+        const auto origin=world.human_emplacement_position(human.field160,human.field164);const auto flags=target->loading_state->words().template get<std::uint32_t>(0x50);HumanVector point;
+        if(flags&6u){const auto m=this->state_frames().actor_world_matrix(target->head_marker);point={{m[12],static_cast<float>(static_cast<long double>(m[13])-.30000001192092896f),m[14],0}};}
+        else if(static_cast<long double>(random_word())*random_scale==0)point=frame_position(*target);
+        else{const auto m=this->state_frames().actor_world_matrix(target->head_marker);point={{m[12],m[13],m[14],m[15]}};}
+        for(unsigned n=0;n<3;++n)point[n]=static_cast<float>(static_cast<long double>(point[n])+static_cast<long double>(target->activation.vector1b0[n])*.125f);
+        if(spread){
+            const auto x=static_cast<long double>(point[0])-origin[0],y=static_cast<long double>(point[1])-origin[1],z=static_cast<long double>(point[2])-origin[2];const float distance=static_cast<float>(human_ai_cover::length(static_cast<float>((x*x+y*y)+z*z)));
+            const float skill=static_cast<float>(1.L-static_cast<long double>(signed_stat(human,4))*.009999999776482582f);
+            const auto first=random_word();const float rz=static_cast<float>((static_cast<long double>(first)*random_scale+static_cast<long double>(first)*random_scale)-1.f);
+            const auto second=random_word();const float ry=static_cast<float>(mounted_special()?static_cast<long double>(second)*random_scale-.30000001192092896f:static_cast<long double>(second)*random_scale*1.2000000476837158f-1.f);
+            const auto last=random_word();const float amplitude=static_cast<float>((static_cast<long double>(skill)*.03999999910593033f+(mounted_special()?.03999999910593033f:.05999999865889549f))*distance);
+            const float rx=static_cast<float>(amplitude*((static_cast<long double>(last)*random_scale+static_cast<long double>(last)*random_scale)-1.f));const float dy=ry*amplitude,dz=rz*amplitude;
+            point[0]=static_cast<float>(static_cast<long double>(point[0])+rx);point[1]=static_cast<float>(static_cast<long double>(point[1])+dy);point[2]=static_cast<float>(static_cast<long double>(point[2])+dz);
+        }
+        return human_ai_cover::difference(point,origin);
+    }
+    template<class World>Actor* mounted_hostile(World& world){ //0054F040, reverse scored hostile head markers.
+        auto& human=*this->human();if(!human.field160)return nullptr;const auto origin=frame_position(human);float best=-100000.f;Actor* selected=nullptr;
+        const auto& enemies=human.perception.lists()[0];for(auto n=enemies.size();n;){auto* actor=enemies[--n];auto* target=dynamic_cast<Human*>(actor);if(!target)throw std::logic_error("Guard mounted selection requires actual hostile Human");
+            if(human_frame_signed_word(target->properties.stats_ec[0])<1||world.human_unavailable(*target)||(target->properties.field19c==2&&target->loading_state&&target->loading_state->suppress_hostile_selection()))continue;
+            const auto m=this->state_frames().actor_world_matrix(target->head_marker);const HumanVector point{{m[12],m[13],m[14],m[15]}};
+            if(mounted_special()&&!world.human_guard_mounted_target_clear(human,point))continue;
+            const auto x=static_cast<long double>(point[0])-origin[0],y=static_cast<long double>(point[1])-origin[1],z=static_cast<long double>(point[2])-origin[2];const auto distance=human_ai_cover::length(static_cast<float>((x*x+y*y)+z*z));const float capped=distance>100?100.f:static_cast<float>(distance);
+            auto* state=target->loading_state;if(!state)throw std::logic_error("Guard mounted score requires actual target B0");float score=human_ai_aims_at(*target,*state,human,this->state_frames())?50.f:0.f;
+            if(world.human_emplacement_can_target(human.field160,human.field164,point))score+=20.f;
+            score=static_cast<float>((100.L-capped)*.5f+score);if(state->words().template get<std::int32_t>(0xb0)<400)score+=20.f;
+            const auto posture=state->words().template get<std::uint32_t>(0x50)&3u;if(!posture)score+=10.f;else if(posture&2u)score+=5.f;
+            if(score>best){best=score;selected=actor;}
+        }
+        return selected;
+    }
+    template<class World>Actor* mounted_select_target(World& world){ //0054D300, forward retained reports can replace the initial hostile on equality.
+        auto& human=*this->human();if(!human.field160)return nullptr;auto* selected=mounted_hostile(world);if(mounted_special())return selected;
+        const auto origin=frame_position(human);float best=1000000.f;if(selected){const auto point=frame_position(*selected);const auto x=static_cast<long double>(point[0])-origin[0],y=static_cast<long double>(point[1])-origin[1],z=static_cast<long double>(point[2])-origin[2];best=static_cast<float>((x*x+y*y)+z*z);}
+        auto* command=this->command();if(!command)throw std::logic_error("Guard mounted report selection requires actual command queue");const auto& enemies=human.perception.lists()[0];
+        for(std::size_t n=0;n<command->second.events.size();++n){const auto& event=*command->second.events.at(n);const auto age=human_frame_signed_word(event.words[2]),life=human_frame_signed_word(event.words[1]);const auto twice=human_frame_signed_word(event.words[2]*2u);if(twice>life)continue;
+            auto* actor=world.human_ai_resolve_actor(event.words[4]);if(!actor)continue;if(auto* target=dynamic_cast<Human*>(actor);target&&human_frame_signed_word(target->properties.stats_ec[0])<1)continue;
+            if(std::find(enemies.begin(),enemies.end(),actor)!=enemies.end())continue;
+            const auto point=event_position(event);if(!world.human_emplacement_can_target(human.field160,human.field164,point))continue;
+            if(!life)throw std::logic_error("Guard mounted report divides by actual zero lifetime");
+            const auto quotient=age/life;const auto x=static_cast<long double>(point[0])-origin[0],y=static_cast<long double>(point[1])-origin[1],z=static_cast<long double>(point[2])-origin[2];const float weighted=static_cast<float>((static_cast<float>(quotient)+1.399999976158142f)*((x*x+y*y)+z*z));
+            if(weighted<=best){selected=world.human_ai_resolve_actor(event.words[4]);best=weighted;}
+        }
+        return selected;
+    }
+    template<class World>void mounted_scan(World& world){ //0054E7D0, reverse enemies then forward retained reports.
+        auto& human=*this->human();if(!human.field160)return;auto aim=world.human_pose_actor_direction(human.field160,human.field164);const auto origin=world.human_emplacement_position(human.field160,human.field164);normalize_human_ai_shot(aim,(static_cast<long double>(aim[0])*aim[0]+static_cast<long double>(aim[2])*aim[2])+static_cast<long double>(aim[1])*aim[1]);
+        float best=-100000000.f;HumanVector selected{};const auto score=[&](const HumanVector& point){auto delta=human_ai_cover::difference(point,origin);const float square=static_cast<float>(human_ai_cover::square_xyz(delta));const auto distance=human_ai_cover::length(square);normalize_human_ai_shot(delta,square);const float value=static_cast<float>(mounted_dot(delta,aim)*5.f+(100.L-distance)*.5f);if(value>best){best=value;selected=point;}};
+        const auto& enemies=human.perception.lists()[0];for(auto n=enemies.size();n;)score(frame_position(*enemies[--n]));
+        auto* command=this->command();if(!command)throw std::logic_error("Guard mounted scan requires actual command owner");
+        for(std::size_t n=0;n<command->second.events.size();++n){const auto& event=*command->second.events.at(n);if(human_frame_signed_word(event.words[2]*2u)>human_frame_signed_word(event.words[1]))continue;auto* actor=world.human_ai_resolve_actor(event.words[4]);auto* target=dynamic_cast<Human*>(actor);if(!target||human_frame_signed_word(target->properties.stats_ec[0])<1||std::find(enemies.begin(),enemies.end(),actor)!=enemies.end())continue;score(event_position(event));}
+        if(best>-100000.f){auto delta=human_ai_cover::difference(selected,origin);normalize_human_ai_shot(delta,human_ai_cover::square_xyz(delta));this->set_target_direction(delta);}
+    }
+    template<class World>void mounted_track(World& world){ //0054DD20.
+        if(!timer_target_)return;
+        auto direction=mounted_direction(false,world);normalize_human_ai_shot(direction,(static_cast<long double>(direction[0])*direction[0]+static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[1])*direction[1]);this->set_target_direction(direction);
+    }
+    template<class World>void mounted_attack(World& world){ //0054DED0/0054F280, input requests only; H6 executes firing/reload.
+        if(!timer_target_)return;
+        auto& human=*this->human();if(!human.field160)throw std::logic_error("Guard mounted attack requires actual attachment");
+        auto direction=mounted_direction(false,world);auto aim=world.human_pose_actor_direction(human.field160,human.field164);
+        normalize_human_ai_shot(aim,(static_cast<long double>(aim[0])*aim[0]+static_cast<long double>(aim[2])*aim[2])+static_cast<long double>(aim[1])*aim[1]);
+        const auto x=static_cast<long double>(direction[0])*direction[0],y=static_cast<long double>(direction[1])*direction[1],z=static_cast<long double>(direction[2])*direction[2];normalize_human_ai_shot(direction,mounted_special()?(x+z)+y:human_ai_cover::square_xyz(direction)); //Special X/Z/Y order.
+        this->set_target_direction(direction);auto* first=this->first_frame_inputs();auto* second=this->second_frame_inputs();if(!first||!second)throw std::logic_error("Guard mounted attack requires actual74/78 inputs");
+        if(mounted_special()){if(!world.human_emplacement_ammunition(human.field160,human.field164)){first->set(0x34,1.f);return;}if(state_.template get<std::int32_t>(0x1a8)<=0)return;}
+        else{if(state_.template get<std::int32_t>(0x1a8)<=0)return;if(!world.human_emplacement_ammunition(human.field160,human.field164)){first->set(0x34,1.f);return;}}
+        bool aligned;
+        if(mounted_special()){auto flat=direction,flat_aim=aim;flat[1]=flat_aim[1]=0;normalize_human_ai_shot(flat,static_cast<long double>(flat[0])*flat[0]+static_cast<long double>(flat[2])*flat[2]);normalize_human_ai_shot(flat_aim,static_cast<long double>(flat_aim[0])*flat_aim[0]+static_cast<long double>(flat_aim[2])*flat_aim[2]);aligned=mounted_dot(flat,flat_aim)>=.9998000264167786f;}
+        else aligned=mounted_dot(direction,aim)>.9850000143051147f;
+        if(!aligned)return;
+        bool visible=false;const auto count=world.human_guard_sight_feedback(human,*timer_target_,visible);const auto flags=this->words().template get<std::uint32_t>(0x50);
+        if(!visible&&((flags&0x400u)||((flags&0x200u)&&human_frame_signed_word(count)<=2)||((flags&0x100u)&&human_frame_signed_word(count)<=0)))return;
+        auto shot=mounted_direction(true,world);normalize_human_ai_shot(shot,mounted_special()?(static_cast<long double>(shot[0])*shot[0]+static_cast<long double>(shot[2])*shot[2])+static_cast<long double>(shot[1])*shot[1]:human_ai_cover::square_xyz(shot));this->set_target_direction(shot);
+        if(!mounted_special()&&state_.template get<std::uint8_t>(0x140)){state_.set(0x140,std::uint8_t{0});return;}
+        state_.set(0x140,std::uint8_t{0});first->set(0x18,1.f);second->set(0x18,1.f);
+    }
+    bool mounted_static()const{auto* human=this->human();return human&&human->field160&&human->field160->base().type()==0x15;} //0054DCF0.
+    bool mounted_target_member(Actor* actor)const{const auto& enemies=this->human()->perception.lists()[0];return actor&&std::find(enemies.begin(),enemies.end(),actor)!=enemies.end();} //005582A0 without an added health test.
+    static bool mounted_actor_alive(Actor& actor){auto* target=dynamic_cast<Human*>(&actor);if(!target)throw std::logic_error("Guard mounted action health requires actual Human target");return human_frame_signed_word(target->properties.stats_ec[0])>0;}
+    template<class World,class Inline>void advance_mounted_action(World& world,Inline& control){ //0054CF70.
+        auto& resources=this->resources();auto& action=resources.template current_action_as<HumanAIAction6Pool>()->state;const auto mode=[&]{return action.template get<std::uint32_t>(8);};
+        const auto hostile=[&]{return !this->human()->perception.lists()[0].empty();};const auto flag=[&](std::uint32_t value){resources.flag().request(value);resources.reconcile_direction_flags();};
+        const auto wait=[&]{action.set(0x10,mounted_wait_duration());action.set(8,4u);};
+        const auto reload=[&]{auto* input=this->first_frame_inputs();if(!input)throw std::logic_error("Guard mounted reload requires actual74 input");input->set(0x34,1.f);};
+        auto& human=*this->human();
+        if(mode()==0){flag(2);action.set(8,2u);if(human.field160)if(const auto kind=world.human_seat_weapon_kind(human.field160,human.field164);kind&&*kind==2)state_.set(0x144,state_.template get<std::uint32_t>(0x144)|0x20u);}
+        if(mode()==1){
+            if(!(this->words().template get<std::uint32_t>(0x50)&0x400000u))this->look_command(3,control);
+            if(!hostile()){if(!action.template get<std::uint32_t>(0x10)){this->look_command(0,control);action.set(8,5u);}else if(mounted_special())mounted_scan(world);}
+            else action.set(8,2u);
+        }
+        if(mode()==2){
+            timer_target_=mounted_select_target(world);
+            if(!timer_target_){
+                if(!hostile()||!mounted_special()){resources.direction().look_interval(true,4000);action.set(0x10,static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*10000.f+15000.f));action.set(8,1u);}
+                else wait();
+            }else if(!mounted_reject_target(*timer_target_,world)){action.set(0x10,static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*3000.f+500.f));action.set(8,3u);state_.set(0x140,std::uint8_t{1});}
+            else{timer_target_=nullptr;wait();}
+        }
+        if(mode()==3){
+            if(mounted_leave_threat(world))action.set(8,7u);
+            else if(!timer_target_||(mounted_actor_alive(*timer_target_)&&mounted_reject_target(*timer_target_,world)))action.set(8,2u);
+            else if(human.field160&&!world.human_emplacement_ammunition(human.field160,human.field164)){reload();wait();}
+            else if(action.template get<std::uint32_t>(0x10))mounted_attack(world);
+            else wait();
+        }
+        if(mode()==4){
+            if(mounted_leave_threat(world))action.set(8,7u);
+            else if(!action.template get<std::uint32_t>(0x10))action.set(8,2u);
+            else if(mounted_special())mounted_scan(world);
+            else if(mounted_target_member(timer_target_))mounted_track(world);
+        }
+        if(mode()==5){this->look_command(0,control);if(state_.template get<std::uint32_t>(0x144)&0x10u){state_.set(0x144,state_.template get<std::uint32_t>(0x144)|4u);return;}world.human_guard_exit_emplacement(*this);return;}
+        if(mode()==6){timer_target_=nullptr;this->look_command(0,control);flag(0);return;} //Native mode6 does NOT execute54DC10.
+        if(mode()==7){timer_target_=nullptr;this->look_command(0,control);flag(0);world.human_guard_exit_emplacement(*this);}
+    }
+    template<class World,class Inline>void advance_mounted_event(const HumanAIEvent& event,World& world,Inline& control){ //0054CBB0, then the unchanged common event pass.
+        auto& action=this->resources().template current_action_as<HumanAIAction6Pool>()->state;const auto mode=[&]{return action.template get<std::uint32_t>(8);};const auto code=event.words[0];
+        const auto resolve=[&](unsigned word){return world.human_ai_resolve_actor(event.words[word]);};
+        const auto acquire=[&](Actor& actor,float scale,float base){timer_target_=&actor;action.set(0x10,static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*scale+base));action.set(8,3u);state_.set(0x140,std::uint8_t{1});};
+        if(code==0x20000004u||code==0x20000012u){
+            if(mounted_special()||mode()!=1)return;
+            auto* source=dynamic_cast<Human*>(resolve(3));if(!source||!world.human_sound_friendly(*this->human(),source))return;
+            source=dynamic_cast<Human*>(resolve(3));if(!source||!source->command)throw std::logic_error("Guard mounted follow event requires actual source command owner");const auto* link=source->command->second.events.last_of_kind(0x10000016u);auto* target=link?world.human_ai_resolve_actor(link->words[4]):nullptr;
+            if(!target||!mounted_actor_alive(*target)||mounted_reject_target(*target,world))return;
+            if(target->base().type()==3)acquire(*target,2000,1500);
+            return;
+        }
+        if(code==0x20000013u||(code>=0x3000000bu&&code<=0x3000000fu)){
+            if(mounted_special()||mode()!=1||!resolve(4))return;
+            auto* target=resolve(4);if(world.human_sound_friendly(*this->human(),target))return;target=resolve(4);if(!target||!mounted_actor_alive(*target))return;
+            auto point=event_position(event);point[1]=static_cast<float>(static_cast<long double>(point[1])+1.f);this->look_command(7,control,&point);target=resolve(4);if(!target||target->base().type()!=3)return;
+            if(!mounted_reject_target(*resolve(4),world))if(auto* live=resolve(4))acquire(*live,2500,1000);
+            return;
+        }
+        if(code!=0x40000010u&&code!=0x40000011u&&code!=0x40000015u)return;
+        if(!this->human()||!this->human()->field160||!resolve(4))return;
+        auto* target=resolve(4);if(world.human_sound_friendly(*this->human(),target))return;target=resolve(4);if(!target||target->base().type()!=3)return;target=resolve(4);if(!target||!mounted_actor_alive(*target)||mounted_target_member(resolve(4)))return;
+        if(!mounted_static()){if(mode()==1)action.set(8,2u);return;} //0054D560 is AL1.
+        target=resolve(4);if(human_ai_actor_distance(*this->human(),*target,this->state_frames())>=8.f&&!mounted_reject_target(*resolve(4),world)){if(mode()==1)action.set(8,2u);return;}
+        action.set(8,7u);
     }
     template<class Words,class World,class Inline>bool advance_vehicle_action(Words& action,World& world,Inline& control,std::uint32_t idle){ //00548B00/0054AC40 shared vehicle modes.
         const auto mode=[&]{return action.template get<std::uint32_t>(8);};if(mode()<100)return false;
@@ -642,6 +803,46 @@ private:
         const auto entry=storage->holder(3)->entry();
         if(entry==this->item())this->clear_cached_item();
         if(entry)world.human_guard_drop_hand(*this->human(),entry,this->words().template get<HumanVector>(0x10));
+    }
+    std::uint32_t stopped_aim_wait(){ //00558110, native FLOAT distance and independent CRT thresholds.
+        if(!timer_target_)return 0;
+        const float distance=static_cast<float>(human_ai_actor_distance(*this->human(),*timer_target_,this->state_frames()));
+        if(static_cast<long double>(random_word())*random_scale*4.f+6.f>distance)return 0;
+        if(distance<static_cast<long double>(random_word())*random_scale*5.f+15.f)return static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*500.f+300.f);
+        if(this->resources().query().state.template get<std::uint32_t>(0x50)&0x10000000u)return static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*1100.f+700.f);
+        const float low=distance*20.f;return static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*(static_cast<long double>(distance)*60.f-low)+low);
+    }
+    template<class World>void stopped_aim_parameters(World& world){ //00558BD0, original0083C568..5E7 immutable tables.
+        std::int32_t first=-1,second=-1,first_step=-1,second_step=-1;
+        if(timer_target_&&this->item()){
+            const auto kind=world.human_frame_output_item(this->item()).definition().kind();
+            const std::array<std::int32_t,8>* row=nullptr;
+            static constexpr std::array<std::int32_t,8> pistol{{50,110,25,625,480,1000,25,400}},rifle{{95,380,25,2500,580,1480,25,2500}},automatic{{93,280,25,2500,480,1780,100,10000}},heavy{{380,480,100,10000,1400,2520,100,10000}};
+            if(kind==2)row=&pistol;else if(kind==3)row=&rifle;else if(kind==4)row=&automatic;else if(kind==5||kind==12)row=&heavy;
+            if(row&&(*row)[0]!=-1){
+                const auto target=frame_position(*timer_target_),self=frame_position(*this->human());const auto x=static_cast<long double>(self[0])-target[0],y=static_cast<long double>(self[1])-target[1],z=static_cast<long double>(self[2])-target[2];const float square=static_cast<float>((z*z+x*x)+y*y);
+                const auto& r=*row;
+                if(square<static_cast<float>(r[2]))first=r[1];
+                else if(static_cast<float>(r[3])<square)first=r[0];
+                else first=static_cast<std::int32_t>((1.L-(static_cast<long double>(square)-static_cast<float>(r[2]))/(r[3]-r[2]))*(r[1]-r[0])+r[0]);
+                first_step=static_cast<std::int32_t>(static_cast<long double>(first)*.10000000149011612f);
+                if(square<static_cast<float>(r[6]))second=r[4];
+                else if(static_cast<float>(r[7])<square)second=r[5];
+                else second=static_cast<std::int32_t>(((static_cast<long double>(square)-static_cast<float>(r[6]))/(r[7]-r[6]))*(r[5]-r[4])+r[4]);
+                second_step=static_cast<std::int32_t>(static_cast<long double>(second)*.10000000149011612f);
+            }
+        }
+        auto& words=this->resources().target().state;words.set(0x3c,first);words.set(0x40,first_step);words.set(0x44,second);words.set(0x48,second_step); //00560820/840.
+    }
+    template<class World>void finish_frame_aim_stop(World& world){ //00548080 AFTER00576350 cleared firing.
+        if(this->item()){auto& item=world.human_frame_output_item(this->item());if(item.definition().identifier==0x26&&item.amount()==0){panic_drop_hand(world);return;}}
+        state_.set(0x1b0,stopped_aim_wait());bool low=false;if(this->item())low=world.human_frame_output_item(this->item()).amount()<10.f;state_.set(0x1d4,static_cast<std::uint8_t>(low)); //00548010.
+        stopped_aim_parameters(world);
+        if(this->resources().current_action_kind()){
+            //Original tests ACTION+8 (mode), not the action kind.
+            const auto mode=this->resources().current_action_mode();
+            if(mode&0x8000000u){auto& words=this->resources().target().state;words.set(0x44,200);words.set(0x48,100);}
+        }
     }
     template<class World>bool panic_should_reload(World& world){ //00558230.
         const auto entry=this->item();if(!entry)return false;auto& item=world.human_frame_output_item(entry);
@@ -937,6 +1138,7 @@ private:
         auto& resources=this->resources();
         const auto kind=resources.current_action_kind();
         if(kind==2&&advance_frame_wait_action(world,control))return;
+        if(kind==6){advance_mounted_action(world,control);return;}
         const bool hostile=!this->human()->perception.lists()[0].empty();
         if(kind==3&&!(resources.query().state.template get<std::uint32_t>(0x50)&0x10000000u))
             state_.set(0x1cc,state_.template get<std::uint32_t>(0x1cc)+elapsed);

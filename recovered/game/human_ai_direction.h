@@ -47,6 +47,11 @@ public:
         if(std::abs(separation)<1.3089969158172607f){if(state_.template get<std::int32_t>(0x4c)>0)state_.set(0x4c,5000);return 0;}
         return current_locked()?2:set_target(input);
     }
+    void look_interval(bool enabled,std::uint32_t interval){ //0055D280.
+        if(!enabled){state_.set(0x4c,std::int32_t{-1});return;}
+        for(auto offset:{0x20u,0x24u,0x28u})state_.set(offset,0u);
+        state_.set(0x48,interval);state_.set(0x4c,interval);target_frame_=Frame{};
+    }
     auto& state(){return state_;}const auto& state()const{return state_;}
     Frame target_frame()const{return target_frame_;}void target_frame(Frame frame){target_frame_=frame;} //Native50 borrowed aim frame, not a DWORD.
     bool lock_target(){return change_lock(1,true);} //0055D8C0, AL only.
