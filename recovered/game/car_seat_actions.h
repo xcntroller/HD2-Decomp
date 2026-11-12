@@ -3,6 +3,7 @@
 #include "game/car_control_requests.h"
 #include "game/car_steering.h"
 #include "game/human_ai_shot_direction.h"
+#include "game/human_frame_inputs.h"
 namespace hd2::game {
 //Seat algorithms share the containing loading owner; no separate runtime state.
 template<class Owner,class Human>
@@ -104,6 +105,31 @@ void request_car_seat_input(Owner& owner,float pedal,float steering){
         request_car_drive_pedal(initial_->control_requests,initial_->drive,actor_.geometry->physics().scalars(),initial_->solver.substeps,pedal,true);
         request_car_steering(initial_->steering,steering);
 
+}
+template<class Owner>
+void request_car_driver_frame_inputs(Owner& owner,const HumanFrameInputBuffer& first,const HumanFrameInputBuffer&){ //004D9050; second buffer is genuinely unused.
+    auto& actor=owner.actor_;auto& services=owner.services_;
+    if(!actor.driver24ac)return;
+    if((services.mode_flags()&7u)!=7u&&!actor.callback_services().car_human_controlled(actor.driver24ac))return;
+    if(!owner.initial_)throw std::logic_error("Car frame input requires actual initialized physics");
+    auto& state=*owner.initial_;const auto& fields=actor.geometry->physics().scalars();
+    if(!state.finalizer.engine_transition&&state.fuel>0.019999999552965164f)owner.request_engine(true,false);
+    float steering=static_cast<float>(static_cast<long double>(first.get<float>(0xc))-first.get<float>(8));
+    float pedal=first.get<float>(0);const auto flags=actor.control_mask24a8;if(flags&4u)pedal=0;
+    if(services.seat_human_health(actor.driver24ac)<=0){
+        request_car_drive_pedal(state.control_requests,state.drive,fields,state.solver.substeps,0.f,true);request_car_steering(state.steering,0.f);
+        request_car_brake_pedal(state.control_requests,state.drive,fields,state.solver.substeps,0.f);
+        request_car_emergency_brake(fields,state.solver.substeps,state.brake_ramp,state.brake_amount,state.brake_latch,false,true);
+        request_car_clutch_pedal(state.control_requests,fields,state.controller().desired_clutch,0.f);return;
+    }
+    if((flags&3u)==3u)pedal=steering=0;
+    else if(flags&1u){if(steering<0)steering=0;if(pedal!=0&&steering==0){steering=-1;pedal*=.30000001192092896f;}}
+    else if(flags&2u){if(steering>0)steering=0;if(pedal!=0&&steering==0){steering=1;pedal*=.30000001192092896f;}}
+    request_car_drive_pedal(state.control_requests,state.drive,fields,state.solver.substeps,pedal,true);request_car_steering(state.steering,steering);
+    request_car_brake_pedal(state.control_requests,state.drive,fields,state.solver.substeps,first.get<float>(4));
+    request_car_emergency_brake(fields,state.solver.substeps,state.brake_ramp,state.brake_amount,state.brake_latch,first.get<float>(0x48)!=0,!(pedal>0));
+    const auto speed=fields.get(0x6f0);state.drive.governor=speed>0?speed+.5f:speed;
+    request_car_clutch_pedal(state.control_requests,fields,state.controller().desired_clutch,static_cast<float>(1.L-first.get<float>(0xf4)));
 }
 template<class Owner>
 void request_car_seat_engine(Owner& owner,bool running,bool force){

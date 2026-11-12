@@ -672,13 +672,76 @@ public:
     void human_action_request_door(void* actor,std::uint32_t command){ //00751480 case1, real005FF4B0(command,1,0,0).
         human_navigation_door(actor).change_state(command,true,false,false,dependencies().world_actors);
     }
-    void human_navigation_request_door(void* actor,std::uint32_t flags){ //00586200 subtype1B.
-        auto& door=human_navigation_door(actor);
-        if((flags&1u)&&(mode_flags()&1u)){
-            door.change_state(1,true,false,false,dependencies().world_actors);
-            return;
+    bool human_emplacement_claimed(void* actor,std::int32_t seat){
+        if(human_pose_actor_type(actor)==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Seat claim requires actual Car loading owner");return car.loading->seat_claimed(seat);}
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Seat claim requires actual mounted actor owner");
+        return weapon->loading->seat_claimed(seat);
+    }
+    template<class Human,class Actor>bool human_command_enter_emplacement(Human& human,Actor* actor,std::int32_t seat){ //00585D10 reached cases4/15.
+        if(!actor)return false;
+        const auto kind=actor->base().type();
+        if(kind!=4&&kind!=0x15)throw std::runtime_error("Human entry requires the actual selected actor E0 receiver");
+        if(kind==4){
+            if((mode_flags()&7u)!=7u&&human_emplacement_claimed(actor,seat))return false;
+            auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Human entry requires actual Car loading owner");
+            const bool offline=(mode_flags()&7u)==7u;
+            for(auto n=car.occupants.size();n;){auto* occupant=car.occupants[--n];if(!occupant)continue;auto& other=selection_human(*occupant);
+                if(offline){if(dependencies().sight.human_sight_hostile(&human,&other)&&human_frame_signed_word(other.properties.stats_ec[0])>0)return false;}
+                else if(human_frame_signed_word(other.properties.stats_ec[0])>0&&script_human_player_controlled(other,mode_flags())&&!human_selected_suppressed(other)){
+                    const auto first=human_specialization(other,false);if(first!=human_specialization(human,false))return false;
+                }
+            }
+            car.loading->claim_seat(seat,true);human_look_control(human).interaction_command(actor,0x402u,static_cast<std::uint32_t>(seat));return true;
         }
-        throw std::runtime_error("AI Door action requires the actual Human kind6 interaction receiver");
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(actor);
+        if(!weapon||!weapon->loading)throw std::logic_error("Human entry requires actual StaticWeapon owner");
+        if(weapon->loading->seat_claimed(seat))return false;
+        weapon->loading->claim_seat(seat,true);human_look_control(human).interaction_command(actor,0x406u,static_cast<std::uint32_t>(seat));return true;
+    }
+    template<class State>void human_guard_enter_emplacement(State& state,void* actor){ //00571C10 executes DC BEFORE allocating its separate kind3/94 copy, ignoring status.
+        HumanPacketCommand command;command.kind=3;command.fields.set(8,3u);command.fields.set(0xc,human_pose_actor(actor).base().id10());command.fields.set(0x10,0u);
+        (void)composition(*state.human()).state_factory().common_command(state,command);state.queue_frame_command(std::move(command),true);
+    }
+    template<class Human>void human_command_exit_emplacement(Human& human){ //00585A60, attached Car/StaticWeapon branch.
+        auto* actor=human.field160;if(!actor)throw std::runtime_error("Unattached exit requires actual00585A60 special-state continuation");
+        const auto seat=static_cast<std::int32_t>(human.field164);const auto kind=actor->base().type();
+        if(kind==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Car exit command requires actual seat owner");car.loading->claim_seat(seat,false);human_look_control(human).interaction_command(actor,0x403u,human.field164);if((mode_flags()&7u)!=7u)throw std::runtime_error("Car exit requires actual non7 map notification");return;}
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(actor);
+        if(!weapon||!weapon->loading)throw std::runtime_error("Attached exit requires actual selected actor E4 receiver");
+        weapon->loading->claim_seat(seat,false);human_look_control(human).interaction_command(actor,0x407u,human.field164);
+    }
+    template<class State>void human_guard_exit_emplacement(State& state){ //0054DC10→00571C10; immediate DC then separate deferred kind3 copy.
+        HumanPacketCommand command;command.kind=3;command.fields.set(8,5u);command.fields.set(0xc,0u);command.fields.set(0x10,0u);
+        (void)composition(*state.human()).state_factory().common_command(state,command);state.queue_frame_command(std::move(command),true);
+    }
+    template<class State,class Runtime>void human_navigation_request_ladder(State& state,void* actor,Runtime& runtime){
+        HumanPacketCommand command;command.kind=2;command.fields.set(8,0x1eu);
+        command.fields.set(0xc,human_pose_actor(actor).base().id10());
+        (void)composition(*state.human()).state_factory().common_command(state,command,runtime);
+    }
+    template<class State>void human_navigation_request_door(State& state,void* actor){ //00587540→00586200 subtype1B.
+        HumanPacketCommand command;command.kind=2;command.fields.set(8,0x1bu);command.fields.set(0xc,human_pose_actor(actor).base().id10());
+        (void)composition(*state.human()).state_factory().common_command(state,command);
+    }
+    template<class Human,class Actor>void human_command_open_door(Human& human,Actor* actor,bool direct){
+        if(direct){if(actor)human_navigation_door(actor).change_state(1,true,false,false,dependencies().world_actors);return;}
+        human_look_control(human).interaction_command(actor,1u,1u); //005ABD90 kind6, actual E090/94/08.
+    }
+    auto* human_floor_actor(std::uint32_t identity){ //005AE230, SAME B4 command-neighbour lookup as Scene2 movement.
+        using Human=typename Dependencies::Composition::Human;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(human_frame_signed_word(identity));
+        auto* human=dynamic_cast<Human*>(actor);if(!human)throw std::logic_error("AI floor path neighbour has no actual Human owner");return human;
+    }
+    template<class Human>bool human_floor_actor_suspended(const Human& human){
+        const auto* state=human.loading_state;return state&&state->words().template get<std::uint32_t>(0x48)==5&&state->derived_loading_word(0x1d2)!=0;
+    }
+    template<class Human>bool human_floor_actor_attached(const Human& human){return human.field160!=nullptr;}
+    template<class Human>bool human_floor_actor_state(const Human& human){return human.loading_state!=nullptr;}
+    template<class Human>std::int32_t human_floor_actor_health(const Human& human){return human_frame_signed_word(human.properties.stats_ec[0]);}
+    template<class Human>HumanVector human_floor_actor_velocity(const Human& human){return human.loading_state->words().template get<HumanVector>(0x30);}
+    bool human_floor_detour_ground(HumanVector position){ //00580790, actual007183A0 ray, original floor height is not copied back.
+        position[1]+=.30000001192092896f;return human_geometry_ray(position,HumanVector{{0,-10,0,0}},0xffffffffu,0u).has_value();
     }
     auto human_ai_resolve_actor(std::uint32_t handle){ //005ACA50→00475DD0, Scene2 identity.
         auto& scene=dependencies().scene.frames();
@@ -826,6 +889,87 @@ public:
         if(human_pose_actor_type(actor)==4)return static_cast<bool>(human_pose_car(actor).fields24b4.at(seat));
         if(human_pose_actor_type(actor)==21)return seat==0;
         throw std::logic_error("Human attachment control query requires Car or StaticWeapon");
+    }
+    template<class Actor>std::array<float,3> human_grenade_lead_position(Actor& actor,float time){ //00558390 snapshots native1B0 before its model query.
+        const auto velocity=selection_human(actor).activation.vector1b0;const auto p=sight_position(actor.base().frame());std::array<float,3> result;for(unsigned n=0;n<3;++n)result[n]=static_cast<float>(static_cast<long double>(time)*velocity[n]+p[n]);return result;
+    }
+    std::int32_t human_grenade_animation_duration(unsigned posture){ //005AC200→0075CC30, id4F and type0 use original98A47C/table2.
+        if(!dependencies().animations.available())return -1; //Original NULL table2 returns-1, without manufacturing a clip.
+        const auto clip=human_animation_resource(2,79u*3+posture);return clip?dependencies().scene.frames().human_clip_duration(clip):-1;
+    }
+    template<class Human>bool human_guard_mounted(Human& human){ //00548590.
+        auto* actor=human.field160;if(!actor)return false;switch(actor->base().type()){case 4:case 0x14:case 0x15:case 0x22:return human_pose_actor_has_control(actor,human.field164);default:return false;}
+    }
+    template<class Human,class Entry>void human_guard_drop_hand(Human& human,Entry entry,const HumanVector& direction){ //005A2C50→Guard70/00587BE0→005A3490.
+        const auto x=static_cast<float>(static_cast<long double>(human_sound_random())*.20000000298023224f);
+        const auto y=static_cast<float>(static_cast<long double>(human_sound_random())*.10000000149011612f);
+        const auto z=human_sound_random();HumanVector velocity{};
+        velocity[0]=static_cast<float>((static_cast<long double>(x)+direction[0])*2.5f);
+        velocity[1]=static_cast<float>((static_cast<long double>(y)+direction[1])*2.5f);
+        const float last=static_cast<float>(static_cast<long double>(z)*.20000000298023224f+direction[2]);velocity[2]=last*2.5f;
+        drop_human_damage_item(human,entry,velocity);human.activation.flag178=true;
+    }
+    template<class State>void human_attachment_frame_inputs(State& state){ //00583BC0, actual Human state virtual00.
+        auto& human=*state.human();auto* actor=human.field160;if(!actor)throw std::logic_error("Attached state input requires actual actor");
+        if(!human_is_player(human)&&human.field164!=0)return;
+        const auto* first=state.first_frame_inputs();const auto* second=state.second_frame_inputs();
+        if(!first||!second)throw std::logic_error("Attached state input requires actual74/78 buffers");
+        if(actor->base().type()==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Car driver input requires actual runtime");car.loading->driver_frame_inputs(*first,*second);}
+        else if(actor->base().type()==0x14)throw std::runtime_error("Attached aircraft input requires actual005E0DD0 receiver");
+    }
+    void human_emplacement_frame_inputs(void* actor,std::uint32_t seat,const HumanFrameInputBuffer& first,const HumanFrameInputBuffer& second){ //Actual ActorC0.
+        if(human_pose_actor_type(actor)==4){auto& control=human_pose_car(actor).fields24b4.at(seat);if(control)control->loading->frame_inputs(first,second);return;}
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Mounted input requires actual Car/StaticWeapon runtime");
+        weapon->loading->seat_frame_inputs(static_cast<std::int32_t>(seat),first,second);
+    }
+    template<class Human>bool human_guard_root_sector(Human& human){return human_inline(human).scene_sector()==dependencies().scene.frames().camera_root_sector();} //00553CE0.
+    template<class Human>bool human_guard_clear_neighbours(Human& human){ //005AE890.
+        const auto origin=sight_position(human.base().frame());if(!human.command)throw std::logic_error("Guard prone query requires actual command owner");
+        const auto& ids=human.command->lists[0];for(auto i=ids.size();i;){auto* actor=human_ai_resolve_actor(ids[--i]);if(!actor)continue;const auto point=sight_position(actor->base().frame());const auto x=static_cast<long double>(point[0])-origin[0],y=static_cast<long double>(point[1])-origin[1],z=static_cast<long double>(point[2])-origin[2];if((x*x+y*y)+z*z<4.f)return false;}return true;
+    }
+    template<class Actor>bool human_guard_prone_ray(Actor& actor,const HumanVector& origin){ //00552190.
+        const auto target=sight_position(selection_human(actor).head_marker);auto delta=target;for(unsigned n=0;n<3;++n)delta[n]=static_cast<float>(static_cast<long double>(target[n])-origin[n]);return !human_geometry_ray(origin,delta,3,0);
+    }
+    template<class Actor>HumanVector human_emplacement_target(Actor& actor){ //0054D6B0, native W is unclaimed outside the standing branch.
+        auto& human=selection_human(actor);if(!human.loading_state)throw std::logic_error("Guard emplacement target requires actual B0");
+        const auto flags=human.loading_state->words().template get<std::uint32_t>(0x50);
+        auto point=sight_position(flags&6u?human.head_marker:human.base().frame());if(flags&6u)point[1]=static_cast<float>(static_cast<long double>(point[1])-.30000001192092896f);
+        for(unsigned n=0;n<3;++n){const float lead=human.activation.vector1b0[n]*.125f;point[n]=static_cast<float>(static_cast<long double>(point[n])+lead);}return point;
+    }
+    HumanVector human_emplacement_position(void* actor,std::uint32_t seat=0){ //Actual Actor A8.
+        if(human_pose_actor_type(actor)==4){const auto& control=human_pose_car(actor).fields24b4.at(seat);return control?control->loading->mounted_position():HumanVector{};}
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Guard emplacement requires actual mounted actor runtime");
+        return weapon->loading->mounted_position();
+    }
+    bool human_emplacement_can_target(void* actor,std::uint32_t seat,const HumanVector& target){ //Actual Actor BC.
+        if(human_pose_actor_type(actor)==4){const auto& control=human_pose_car(actor).fields24b4.at(seat);return control&&control->loading->can_target(target);}
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Guard capability requires actual mounted actor runtime");
+        return weapon->loading->can_target(target);
+    }
+    std::uint32_t human_emplacement_ammunition(void* actor,std::int32_t seat){return dependencies().first_players.seat_presentation().current(human_pose_actor(actor),seat);} //SAME actual9C/004C6550 owner already bound for occupied actors.
+    template<class Human,class Actor>std::uint32_t human_guard_sight_feedback(Human& human,Actor& actor,bool& visible){ //0046F320, real existing observer relation.
+        return dependencies().sight.source().human_relation_feedback(static_cast<std::int32_t>(human.field258),static_cast<std::int32_t>(selection_human(actor).field25c),nullptr,&visible);
+    }
+    template<class Human>bool human_guard_mounted_target_clear(Human& human,const HumanVector& target){ //0054F910, dynamic-only006F78F0.
+        const auto origin=human_emplacement_position(human.field160,human.field164);HumanVector delta{};for(unsigned n=0;n<3;++n)delta[n]=static_cast<float>(static_cast<long double>(target[n])-origin[n]);
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Mounted target ray requires actual loaded World/tree");
+        auto queries=d.scene.door_queries();using Descriptor=typename std::remove_reference_t<decltype(d.scene)>::Descriptor;
+        const Descriptor* hit=nullptr;auto& control=human_inline(human);control.exclude_query(false);
+        try{hit=queries.nearest(target,delta,0,0);}catch(...){control.restore_query(false);throw;}
+        control.restore_query(false); //Native restores BEFORE inspecting descriptor48.
+        if(!hit||!hit->actor)return true;
+        auto& actor=human_pose_actor(hit->actor);const auto kind=actor.base().type();
+        if(kind==0x19)return false;
+        if(kind!=4)return true;
+        auto& car=human_pose_car(&actor);const bool offline=(mode_flags()&7u)==7u;
+        for(auto n=car.occupants.size();n;){auto* occupant=car.occupants[--n];if(!occupant)continue;auto& other=selection_human(*occupant);
+            if(offline){if(d.sight.human_sight_hostile(&human,&other)&&human_frame_signed_word(other.properties.stats_ec[0])>0)return true;}
+            else if(human_frame_signed_word(other.properties.stats_ec[0])>0&&script_human_player_controlled(other,mode_flags())&&!human_selected_suppressed(other)){const auto side=human_specialization(other,false);if(side!=human_specialization(human,false))return true;}
+        }
+        return false; //004DDF70 negates the SAME004DDE20 source/occupant policy.
     }
     HumanVector human_pose_actor_direction(void* actor,std::uint32_t seat){ //Actual virtualA4.
         if(human_pose_actor_type(actor)==4){
@@ -986,6 +1130,13 @@ public:
         if(!storage||storage->single()||!storage->holder(2))throw std::logic_error("Guard weapon selection requires the actual shoulder holder");
         return storage->holder(2)->entry();
     }
+    template<class Human>bool human_guard_equip_rocket(Human& human){ //00559590, real hand3 and shoulder2 commands.
+        auto* storage=human.base().storage();if(!storage||!storage->holder(3)||!storage->holder(2))throw std::logic_error("Guard rocket selection requires actual holders3/2");
+        const auto hand=storage->holder(3)->entry(),shoulder=storage->holder(2)->entry();auto& items=dependencies().world_actors.items();
+        if(hand&&items.runtime_item(hand).definition().kind()==6)return true;
+        if(!shoulder||items.runtime_item(shoulder).definition().kind()!=6)return false;
+        auto& inventory=composition(human).inventory();return hand?inventory.swap(hand,3,human,shoulder,2):inventory.move(shoulder,human,2,3,0);
+    }
     template<class State>bool prepare_guard_frame_weapon(State& state){ //005594B0.
         state.refresh_item();
         auto* human=state.human();
@@ -1000,6 +1151,7 @@ public:
         if(shoulder&&items.runtime_item(shoulder).definition().kind()!=6&&equip(shoulder,2))return true;
         return equip(human_guard_holster_weapon(*human),1);
     }
+    template<class State>void human_ai_release_feedback(State& state){composition(*state.human()).state_factory().notify_inline_frame_command(state,0x10u);} //0058BAF0→B0 virtual08, not contactC8.
     template<class Human>auto human_feedback_kind9(Human& human){return find_player_mode_holster(human,dependencies().world_actors.items(),9,game_word28());}
     auto human_projectile_direction(){return dependencies().first_person.view().projectile_direction();}
     auto human_projectile_position(){return dependencies().first_person.view().projectile_position(mode_flags());}
@@ -1132,6 +1284,7 @@ public:
         return {config.style224,static_cast<std::uint32_t>(config.rules228[5]),static_cast<std::uint32_t>(config.rules228[6])};
     }
     template<class Human>auto& human_inline(Human& human){return composition(human).control();}
+    template<class Human,class Actor>void human_area_force_sight(Human& human,Actor& target){(void)dependencies().sight.force_human_target(human,selection_human(target));} //0055B6C0.
     template<class Human>bool sight_controlled_target(Human& human){ //005A59E0's SAME00461410/20 roster membership.
         if((mode_flags()&7u)!=7u&&human_remote_ai_enabled()&&(mode_flags()&1u))return dependencies().players.auxiliary().human_roster().contains(&human);
         return dependencies().players.control().human_roster().contains(&human);
@@ -1466,7 +1619,10 @@ public:
         return car->geometry->physics().scalars().get(0x550)!=0; //Actor5E0, SAME owner as collision callbacks.
     }
     struct CommandArea{std::array<float,4> position;float radius;};
-    template<class Human>CommandArea human_ai_command_area(Human&){throw std::runtime_error("Area AI handover requires the actual Human B4 area producer");}
+    template<class Human>CommandArea human_ai_command_area(Human& human){
+        if(!human.command||!human.command->area_position)throw std::logic_error("Area AI handover requires produced B4 sniper area005AE610");
+        float radius;std::memcpy(&radius,&human.command->field10,4);return {*human.command->area_position,radius};
+    }
     template<class State>void adjust_active_ai_stance(State& state,bool){
         if(!state.first_frame_inputs()||!state.second_frame_inputs())return;
         throw std::runtime_error("Populated Active AI stance requires actual74/78 command and A4/A8 posture producers");

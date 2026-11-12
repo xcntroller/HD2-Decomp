@@ -53,6 +53,11 @@ struct HumanAIQueryLoading {
         state.set(0x58,std::uint8_t{0});
         state.set(0x24,0u);
     }
+    void request_mode(std::uint32_t mode,std::uint32_t range){ //00560E20.
+        state.set(0x38,mode);state.set(0x3c,range);state.set(0x20,std::uint16_t{0xffff});
+        state.set(0x50,(state.get<std::uint32_t>(0x50)&0x7ff7fff8u)|5u);
+        state.set(0x58,std::uint8_t{0});state.set(0x24,0u);
+    }
     void finish(){ //00560F30.
         door=nullptr;
         state.set(0x50,(state.get<std::uint32_t>(0x50)&0xcfff57ffu)|0x80000000u);
@@ -132,6 +137,9 @@ public:
         retire_current_action(); //Typed nativeF0; explicit state close normally returns it first.
         direction_.reset();target_.reset();flag_.reset();path_.reset();query_.reset();finish_navigation_jobs();
     }
+    std::uint32_t current_action_mode()const{
+        return std::visit([](const auto& lease)->std::uint32_t{using T=std::decay_t<decltype(lease)>;if constexpr(std::is_same_v<T,std::monostate>)return 0;else return lease?lease->state.template get<std::uint32_t>(8):0;},current_action_);
+    }
     Direction& direction(){return required(direction_);}Target& target(){return required(target_);}
     const Direction& direction()const{return required(direction_);}
     HumanAIFlagLoading& flag(){return required(flag_);}HumanAIQueryLoading& query(){return required(query_);}
@@ -160,6 +168,7 @@ public:
     void current_action(HumanAIAction2Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction3Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction5Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction6Pool::Lease value){current_action_=std::move(value);}
     template<class Pool>auto* current_action_as()const{
         const auto* lease=std::get_if<typename Pool::Lease>(&current_action_);
         return lease?lease->get():nullptr;
@@ -207,7 +216,7 @@ private:
     std::vector<HumanAINavigationJobPool::Lease> jobs_; //NativeF8.
     HumanAINavigationJobPool::Lease current_job_{nullptr,HumanAINavigationJobPool::Return{}}; //Native104.
     std::variant<std::monostate,HumanAIAction1Pool::Lease,HumanAIAction2Pool::Lease,
-        HumanAIAction3Pool::Lease,HumanAIAction5Pool::Lease> current_action_;
+        HumanAIAction3Pool::Lease,HumanAIAction5Pool::Lease,HumanAIAction6Pool::Lease> current_action_;
 };
 } //namespace hd2::game
 #endif

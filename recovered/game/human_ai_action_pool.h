@@ -120,11 +120,17 @@ public:
 static_assert(sizeof(HumanAIPooledAction<2,0x50>)==0x50);
 static_assert(sizeof(HumanAIPooledAction<3,0x40>)==0x40);
 
+//0058AB40 allocates native14 bytes aligned16; known fields stop at lifetime10.
+//00582A90 only transfers the existing record;0054CB70 writes mode8 afterwards.
+class HumanAIAction6Pool:public HumanAIActionPool<6,0x20> {
+public:Lease acquire(){return acquire_record();}
+};
 struct HumanAIActionPools {
     HumanAIAction1Pool kind1;
     HumanAIAction2Pool kind2;
     HumanAIAction3Pool kind3;
     HumanAIAction5Pool kind5;
+    HumanAIAction6Pool kind6;
 };
 } //namespace hd2::game
 #endif

@@ -129,6 +129,11 @@ public:
     CarSteeringState& steering_state()override{if(!initial_)throw std::logic_error("Car steering requires initialized source state");return initial_->steering;}
     auto& seats(){return seats_;}
     float fuel_amount()const{if(!initial_)throw std::logic_error("Car HUD fuel requires actual initialized Car state");return initial_->fuel;} //Borrow SAME004F2670 coreF5C/actorFEC; no simulation/ownership change.
+    bool seat_claimed(std::int32_t index)const override{return (seats_.seats().at(static_cast<std::size_t>(index)).flags&0x400u)!=0;} //004D93C0 has no native bounds gate.
+    void claim_seat(std::int32_t index,bool value)override{ //004D93E0, signed bounds before the flag write.
+        if(index<0||static_cast<std::size_t>(index)>=seats_.seats().size())return;
+        auto& flags=seats_.seats()[static_cast<std::size_t>(index)].flags;flags=value?flags|0x400u:flags&~0x400u;
+    }
     std::uint32_t reaction_seat_flags(std::int32_t index)const override{ //004D9FC0.
         return index<0||static_cast<std::size_t>(index)>=seats_.seats().size()?0u:seats_.seats()[static_cast<std::size_t>(index)].flags;
     }
@@ -140,6 +145,7 @@ public:
     void assign_seat(std::int32_t index,SceneActor<Frames>* human)override{assign_car_seat(*this,index,human);}
     bool exit_seat(std::int32_t index)override{return exit_car_seat(*this,index);}
     void driver_input(float pedal,float steering)override{request_car_seat_input(*this,pedal,steering);}
+    void driver_frame_inputs(const HumanFrameInputBuffer& first,const HumanFrameInputBuffer& second)override{request_car_driver_frame_inputs(*this,first,second);}
     void dead_human_controls()override{ //005A0220, actual core controls, before reaction removes the occupied seat.
         if(!initial_||!ready_)throw std::logic_error("Dead Human Car controls require initialized runtime");
         auto& state=*initial_;const auto& fields=actor_.geometry->physics().scalars();
@@ -215,6 +221,7 @@ private:
     template<class Owner,class Human>friend void assign_car_seat(Owner&,std::int32_t index,Human* human);
     template<class Owner>friend bool exit_car_seat(Owner&,std::int32_t index);
     template<class Owner>friend void request_car_seat_input(Owner&,float pedal,float steering);
+    template<class Owner>friend void request_car_driver_frame_inputs(Owner&,const HumanFrameInputBuffer&,const HumanFrameInputBuffer&);
     template<class Owner>friend void request_car_seat_engine(Owner&,bool running,bool force);
     template<class Owner>friend void remove_car_seat(Owner&,std::size_t index);
     bool exit_pose(std::size_t index,Vector& placed,Vector& direction){

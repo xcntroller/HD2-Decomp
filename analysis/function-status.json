@@ -13558,13 +13558,15 @@
       "program": "client",
       "entry": "005ae450",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005ae450: Shared typed AI event allocation/queue/retirement and actual Sight event construction; broader runtime producers remain separate.",
+      "coverage": "P2.2 source reconstruction at original entry 005ae450: Shared typed AI event allocation/queue/retirement and actual Sight event construction; broader runtime producers remain separate. Preserve produced B4 area position while clearing original flag14/radius10.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ai_event_queue.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -14137,13 +14139,15 @@
       "program": "client",
       "entry": "00559a50",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00559a50: Area AI loading/handover route lists, original stat thresholds and required inventory/context consumers.",
+      "coverage": "Bind Area8 with actual B4 sniper-area producer, navigation/route/kind10 filters, thresholds, inventory and context dependencies; no unproduced area default.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_area_ai_state_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -23478,24 +23482,28 @@
       "program": "client",
       "entry": "006f78f0",
       "status": "partial",
-      "coverage": "Required loaded-grid dynamic-only Door segment query boolean result, native state/flag setup and actual006F3250 traversal. Output normal/W/pointer ABI and missing-grid branch excluded.",
+      "coverage": "Return actual nearest dynamic descriptor for mounted target query and existing Door boolean consumer on loaded-grid006F3250 path. Missing grid, output normal/W ABI and49/4A remain explicit.",
       "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
       "evidence": [
         "recovered/game/door_collision_queries.h",
         "analysis/door-loading.md",
-        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+        "analysis/checkpoints/p2.2-door-loading-20261109.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "006f3250",
       "status": "partial",
-      "coverage": "Actual Door dynamic grid range expansion/Z-X-bucket traversal, native line/sphere broad phase, shared40/41 slabs and42/44 inside/zero-length/strict best-parameter behavior. Known49/4A receivers and raw output ABI excluded.",
+      "coverage": "Traverse SAME dynamic grid in native Z/X/bucket order with line/sphere broad phase,40/41 slabs and42/44 inside/zero/strict best parameter; expose the actual winning descriptor without changing Door boolean behavior.",
       "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
       "evidence": [
         "recovered/game/door_collision_queries.h",
         "analysis/door-loading.md",
-        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+        "analysis/checkpoints/p2.2-door-loading-20261109.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -25306,12 +25314,14 @@
       "program": "client",
       "entry": "00421c00",
       "status": "partial",
-      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension.",
+      "coverage": "Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer.",
       "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
       "evidence": [
         "recovered/game/human_script_loading_controls.h",
         "analysis/mission-script-initial-controls.md",
-        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -28885,12 +28895,14 @@
       "program": "client",
       "entry": "00549ae0",
       "status": "partial",
-      "coverage": "Advance kind 2 wait mode 2 through look, expiry and the actual navigation request, then handle completion and the randomized mode 0C wait.",
+      "coverage": "Advance kind 2 wait mode 2 through look, expiry and the actual navigation request, then handle completion and the randomized mode 0C wait. H5 task source checkpoint: Guard kind2 positive task modes0/3/4/5/6/7/8/9/A/B/E/F on actual event/query/direction/input owners, Ladder exit, search, observation/reselection and original timer draws.",
       "limitations": "Mode 2/0D/0C waits and reached hostile interruption only.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
       ]
     },
     {
@@ -28912,24 +28924,28 @@
       "program": "client",
       "entry": "0055ad50",
       "status": "partial",
-      "coverage": "Advance the normal Area wait through the original four CRT draws and elapsed modes.",
+      "coverage": "Advance the normal Area wait through the original four CRT draws and elapsed modes. H5 source checkpoint: Area positive modes0..6 on actual action/event owners, target selection/retirement, point routes, posture, immediate Sight and original timer draws.",
       "limitations": "No-target wait modes only. Positive route and hostile workers remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
-        "recovered/game/human_area_ai_state_loading.h"
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "0055a6e0",
       "status": "partial",
-      "coverage": "Advance the short Area wait through its distinct four-draw interval and cold mode branches.",
+      "coverage": "Advance the short Area wait through its distinct four-draw interval and cold mode branches. H5 source checkpoint: Area positive modes0..6 on actual action/event owners, target selection/retirement, point routes, posture, immediate Sight and original timer draws.",
       "limitations": "No-target wait modes only. Positive route and hostile workers remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
-        "recovered/game/human_area_ai_state_loading.h"
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
       ]
     },
     {
@@ -29622,14 +29638,18 @@
       "program": "client",
       "entry": "00586200",
       "status": "partial",
-      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required.",
+      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. H5 source checkpoint: Reached Door1B/Ladder1E and Car/StaticWeapon subtype3 command admission, actual seat claim/E0 interaction and independent deferred kind3 copy. Other selected actors and non7 transport remain required. Final H5: shared subtype5 reaches actual Car/StaticWeapon exit and separate deferred copy.",
       "limitations": "Only the direct Door branch. Other command cases and Human kind 6 remain required. D4b selected common-command checkpoint; wider commands/occupied/non7 frame and full Human/application acceptance remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-car-target-command-source.md",
-        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json",
+        "recovered/game/human_common_command.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -29696,12 +29716,14 @@
       "program": "client",
       "entry": "005710b0",
       "status": "partial",
-      "coverage": "Rank detached Human hostile candidates using native eligibility, geometry, Sight, stance, and allied selection.",
+      "coverage": "Rank ordinary and Actor98-controlled Human hostile candidates on actual perception and state owners; uncontrolled attachment seats retain ordinary single-candidate behavior.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_frame_metrics.h"
+        "recovered/game/human_ai_frame_metrics.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -29780,13 +29802,15 @@
       "program": "client",
       "entry": "0058baf0",
       "status": "partial",
-      "coverage": "Run actual AI item reload, readiness, raw B0 fire pose/aim preparation and post-item publication. Positive virtual24 and kind-nine release remain required.",
+      "coverage": "Run actual AI item reload, readiness, raw B0 fire pose/aim preparation and post-item publication. Positive virtual24 and kind-nine release remain required. H5 source checkpoint: Reached kind9 action13 retained-model request and correct B0 virtual08 notification; actual attached ActorC0 input routing. H6 firing/projectile continuation excluded.",
       "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
         "recovered/game/human_ai_frame_output.h",
-        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json"
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
       ]
     },
     {
@@ -29805,24 +29829,29 @@
       "program": "client",
       "entry": "00548080",
       "status": "partial",
-      "coverage": "Advance actual common aim state in Guard and guard the required positive stop effects.",
+      "coverage": "Advance common aim then execute Guard positive stop: empty26 drop, actual CRT/distance wait, low-ammunition byte, weapon table target parameters and action-mode200/100 override.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00548170",
       "status": "partial",
-      "coverage": "Run the Guard authority callback with actual shared buffers, action state and ordered outputs.",
+      "coverage": "Dispatch Guard authority through actual shared input, timers, complete H5 decision/action/event families and ordered attached/detached outputs; source Scene2 registry/factory dispatch and failure/re-entry/retirement audited. H4/H6/H8 positive consumers remain explicit.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -29877,60 +29906,70 @@
       "program": "client",
       "entry": "00548610",
       "status": "partial",
-      "coverage": "Select and transition supported Guard actions with health, skill, equipment and event gates.",
+      "coverage": "Select and transition supported Guard actions with health, skill, equipment and event gates. H5 panic/vehicle source checkpoint: Complete stated kind1/3 vehicle decision modes and vehicle event gates, distinct idle/fallback policies; exact idle0 decision gate and real armed action4C. Mounted kind6 and full Scene2 runtime remain required.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00548840",
       "status": "partial",
-      "coverage": "Dispatch the typed Guard action lease to its matching supported worker.",
+      "coverage": "Dispatch the typed Guard action lease to its matching supported worker. H5 source checkpoint: Extend ordinary Guard route/attack/chase modes and attached direction/input branch on actual owners. Remaining vehicle/event/panic/mounted workers and H4/H6/H8 boundaries are explicit; no whole Guard closure.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00548b00",
       "status": "partial",
-      "coverage": "Run Guard kind 1 wait, hostile acquisition, missing-cover and timed attack paths.",
+      "coverage": "Run Guard kind 1 wait, hostile acquisition, missing-cover and timed attack paths. H5 panic/vehicle source checkpoint: Complete stated kind1/3 vehicle decision modes and vehicle event gates, distinct idle/fallback policies; exact idle0 decision gate and real armed action4C. Mounted kind6 and full Scene2 runtime remain required.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00548900",
       "status": "partial",
-      "coverage": "Handle supported Guard kind 1 damage and report events.",
+      "coverage": "Handle supported Guard kind 1 damage and report events. H5 panic/vehicle source checkpoint: Complete stated kind1/3 vehicle decision modes and vehicle event gates, distinct idle/fallback policies; exact idle0 decision gate and real armed action4C. Mounted kind6 and full Scene2 runtime remain required.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00549940",
       "status": "partial",
-      "coverage": "Clone and retain supported kind 2 target events before generic merge.",
+      "coverage": "Clone and retain supported kind 2 target events before generic merge. H5 task source checkpoint: Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
       ]
     },
     {
@@ -29949,12 +29988,15 @@
       "program": "client",
       "entry": "0054ac40",
       "status": "partial",
-      "coverage": "Run Guard kind 3 wait and hostile acquisition, and handle its stationary attack state.",
+      "coverage": "Run Guard kind 3 wait and hostile acquisition, and handle its stationary attack state. H5 source checkpoint: Extend ordinary Guard route/attack/chase modes and attached direction/input branch on actual owners. Remaining vehicle/event/panic/mounted workers and H4/H6/H8 boundaries are explicit; no whole Guard closure. H5 panic/vehicle source checkpoint: Complete stated kind1/3 vehicle decision modes and vehicle event gates, distinct idle/fallback policies; exact idle0 decision gate and real armed action4C. Mounted kind6 and full Scene2 runtime remain required.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
@@ -29985,12 +30027,14 @@
       "program": "client",
       "entry": "0054e600",
       "status": "partial",
-      "coverage": "Advance the CRT Door-search deadline before checking the actual Guard Door list.",
+      "coverage": "Advance the CRT Door-search deadline before checking the actual Guard Door list. H5 source checkpoint: Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
       ]
     },
     {
@@ -30045,12 +30089,14 @@
       "program": "client",
       "entry": "00559610",
       "status": "partial",
-      "coverage": "Apply null and actor-kind gates before the required vehicle seat capability check.",
+      "coverage": "Apply null and actor-kind gates before the required vehicle seat capability check. H5 panic/vehicle source checkpoint: Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
@@ -30081,24 +30127,28 @@
       "program": "client",
       "entry": "00559d40",
       "status": "partial",
-      "coverage": "Advance actual common aim state in Area and gate the required empty-weapon follow-up.",
+      "coverage": "Advance common aim then execute actual Area empty26 hand3 cached-item clear/drop on firing stop.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_area_ai_state_loading.h"
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00559de0",
       "status": "partial",
-      "coverage": "Run Area authority with actual shared buffers, wait actions and ordered output or Script handover.",
+      "coverage": "Dispatch Area authority through actual shared buffers, positive actions/events, ordered output and Script return; source Scene2 registry/factory dispatch and produced area handover audited. H4/H6/H8 consumers remain explicit.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_area_ai_state_loading.h"
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
       ]
     },
     {
@@ -40934,6 +40984,1470 @@
         "recovered/game/human_control_loading.h",
         "analysis/human-seat-interaction-source.md",
         "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057cc50",
+      "status": "partial",
+      "coverage": "Ladder state/mode/occupancy protocol using actual query, DD0, input and path leases; real common-command1E and failure prefixes.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_traversal.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00581e30",
+      "status": "partial",
+      "coverage": "Populated neighbour filtering and grounded two-candidate floor detours with actual navigation-job leases, reverse removal, endpoint mutation and retained partial insertion.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_floor_path.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00580e30",
+      "status": "partial",
+      "coverage": "Populated neighbour filtering and grounded two-candidate floor detours with actual navigation-job leases, reverse removal, endpoint mutation and retained partial insertion.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_floor_path.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00581b00",
+      "status": "partial",
+      "coverage": "Populated neighbour filtering and grounded two-candidate floor detours with actual navigation-job leases, reverse removal, endpoint mutation and retained partial insertion.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_floor_path.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005814d0",
+      "status": "partial",
+      "coverage": "Populated neighbour filtering and grounded two-candidate floor detours with actual navigation-job leases, reverse removal, endpoint mutation and retained partial insertion.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_floor_path.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00581580",
+      "status": "partial",
+      "coverage": "Populated neighbour filtering and grounded two-candidate floor detours with actual navigation-job leases, reverse removal, endpoint mutation and retained partial insertion.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_floor_path.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00581aa0",
+      "status": "partial",
+      "coverage": "Populated neighbour filtering and grounded two-candidate floor detours with actual navigation-job leases, reverse removal, endpoint mutation and retained partial insertion.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_floor_path.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00580790",
+      "status": "partial",
+      "coverage": "Populated neighbour filtering and grounded two-candidate floor detours with actual navigation-job leases, reverse removal, endpoint mutation and retained partial insertion.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_floor_path.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055b6f0",
+      "status": "partial",
+      "coverage": "Area positive modes0..6 on actual action/event owners, target selection/retirement, point routes, posture, immediate Sight and original timer draws.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055bc40",
+      "status": "partial",
+      "coverage": "Area positive modes0..6 on actual action/event owners, target selection/retirement, point routes, posture, immediate Sight and original timer draws.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055b6c0",
+      "status": "partial",
+      "coverage": "Area positive modes0..6 on actual action/event owners, target selection/retirement, point routes, posture, immediate Sight and original timer draws.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055b8a0",
+      "status": "partial",
+      "coverage": "Area positive modes0..6 on actual action/event owners, target selection/retirement, point routes, posture, immediate Sight and original timer draws.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055b8d0",
+      "status": "partial",
+      "coverage": "Area positive modes0..6 on actual action/event owners, target selection/retirement, point routes, posture, immediate Sight and original timer draws.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055b920",
+      "status": "partial",
+      "coverage": "Area positive modes0..6 on actual action/event owners, target selection/retirement, point routes, posture, immediate Sight and original timer draws.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_area_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055bd40",
+      "status": "partial",
+      "coverage": "Actual point directional masks, reverse integer cover scoring, generic nearest/farthest filtering and signed distance-cap removal; native FLOAT stores and tie policy.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_cover.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055c0b0",
+      "status": "partial",
+      "coverage": "Actual point directional masks, reverse integer cover scoring, generic nearest/farthest filtering and signed distance-cap removal; native FLOAT stores and tie policy.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_cover.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055c450",
+      "status": "partial",
+      "coverage": "Actual point directional masks, reverse integer cover scoring, generic nearest/farthest filtering and signed distance-cap removal; native FLOAT stores and tie policy.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_cover.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005534b0",
+      "status": "partial",
+      "coverage": "Actual point directional masks, reverse integer cover scoring, generic nearest/farthest filtering and signed distance-cap removal; native FLOAT stores and tie policy.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_cover.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00524a30",
+      "status": "partial",
+      "coverage": "Actual point directional masks, reverse integer cover scoring, generic nearest/farthest filtering and signed distance-cap removal; native FLOAT stores and tie policy.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_cover.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045acf0",
+      "status": "partial",
+      "coverage": "Actual point directional masks, reverse integer cover scoring, generic nearest/farthest filtering and signed distance-cap removal; native FLOAT stores and tie policy.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_cover.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00520a30",
+      "status": "partial",
+      "coverage": "Actual point directional masks, reverse integer cover scoring, generic nearest/farthest filtering and signed distance-cap removal; native FLOAT stores and tie policy.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_cover.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d1f0",
+      "status": "partial",
+      "coverage": "Actual direction lock/current state, original AngleTo threshold, stored target and look timer behavior.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_direction.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0046d8c0",
+      "status": "partial",
+      "coverage": "Actual Human immediate target observer, reverse marker rays, exclusion lifetime, relation publication and notification; no manufactured visibility.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054e390",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054e520",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005579e0",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00552970",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00552200",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00552190",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00551fc0",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00552040",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005520e0",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00552140",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00553d10",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00551e80",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00551db0",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00551e10",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00552b00",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00553530",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00553550",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00553580",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554e80",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005572f0",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00553be0",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00553b90",
+      "status": "partial",
+      "coverage": "Guard emplacement/cover eligibility, actual posture predicates, preferred engagement ranges and ordinary approach/retreat/chase route selection. Full Guard vehicle/event/panic/mounted workers remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c5800",
+      "status": "partial",
+      "coverage": "Shared mounted position/capability on actual vertical pivot and engine AngleTo; strict open angle limits and explicit unproduced118/11C failure.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/mounted_weapon_capability.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c6230",
+      "status": "partial",
+      "coverage": "Shared mounted position/capability on actual vertical pivot and engine AngleTo; strict open angle limits and explicit unproduced118/11C failure.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/mounted_weapon_capability.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c5f60",
+      "status": "partial",
+      "coverage": "Shared mounted position/capability on actual vertical pivot and engine AngleTo; strict open angle limits and explicit unproduced118/11C failure.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/mounted_weapon_capability.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c5a30",
+      "status": "partial",
+      "coverage": "Shared mounted position/capability on actual vertical pivot and engine AngleTo; strict open angle limits and explicit unproduced118/11C failure.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/mounted_weapon_capability.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005584b0",
+      "status": "partial",
+      "coverage": "Actual kind9 inventory requery, lead prediction, reverse cluster trimming, ballistic direction, input40 and real animation deadlines; no projectile creation claim.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_grenade.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558390",
+      "status": "partial",
+      "coverage": "Actual kind9 inventory requery, lead prediction, reverse cluster trimming, ballistic direction, input40 and real animation deadlines; no projectile creation claim.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_grenade.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00573210",
+      "status": "partial",
+      "coverage": "Actual kind9 inventory requery, lead prediction, reverse cluster trimming, ballistic direction, input40 and real animation deadlines; no projectile creation claim.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_grenade.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00572de0",
+      "status": "partial",
+      "coverage": "Actual kind9 inventory requery, lead prediction, reverse cluster trimming, ballistic direction, input40 and real animation deadlines; no projectile creation claim.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_grenade.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac200",
+      "status": "partial",
+      "coverage": "Reached type0/id4F animation duration through actual table2 row237+posture and engine clip duration; other animation lookup cases excluded.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075cc30",
+      "status": "partial",
+      "coverage": "Reached type0/id4F animation duration through actual table2 row237+posture and engine clip duration; other animation lookup cases excluded.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f760",
+      "status": "partial",
+      "coverage": "Retained frame setter publishes04 then transfers direct E4 retain downstream; same/defer/reset behavior preserves native ownership without artificial releases.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_look_control.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058ab40",
+      "status": "partial",
+      "coverage": "Actual kind6 action pool record fields and acquire reuse retain pooled age/lifetime; host padding is excluded.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_action_pool.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00582a90",
+      "status": "partial",
+      "coverage": "Actual kind6 action pool record fields and acquire reuse retain pooled age/lifetime; host padding is excluded.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_action_pool.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054cb70",
+      "status": "partial",
+      "coverage": "Actual mounted action producer and Actor98 decision with query flag and real pooled record; positive mounted worker still required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548590",
+      "status": "partial",
+      "coverage": "Actual mounted action producer and Actor98 decision with query flag and real pooled record; positive mounted worker still required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00573240",
+      "status": "partial",
+      "coverage": "Actual actor distance with native FLOAT square, signed epsilon-bit test and model reads.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_ai_frame_metrics.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d9050",
+      "status": "partial",
+      "coverage": "Car driver frame input reaches actual pedal, steering, brake, governor, clutch and engine owners, preserving mode/health/mask gates.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/car_seat_actions.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c3b60",
+      "status": "partial",
+      "coverage": "Actual occupied mounted aim-rate prefix: absolute/accumulated input, idle flags and native limits. Trigger/reload continuation explicitly requires H6; no firing credit.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/mounted_weapon_control.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00585d10",
+      "status": "partial",
+      "coverage": "Reached Door1B/Ladder1E and Car/StaticWeapon subtype3 command admission, actual seat claim/E0 interaction and independent deferred kind3 copy. Other selected actors and non7 transport remain required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_common_command.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00583bc0",
+      "status": "partial",
+      "coverage": "Reached attached state virtual00 invokes actual Car driver frame input with original player/seat0 gate; aircraft005E0DD0 remains required.",
+      "limitations": "Source-only reconstruction with typed native owners/STL instead of original object/vtable, allocator and SEH ABI. Supported scope is stated in coverage and contract; delegated engine calls, missing workers and H4/H6/H8 continuations earn no credit. No full Scene2 integration or desktop acceptance. H5 remains unchecked.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00549700",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00549760",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554c30",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554d20",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554e20",
+      "status": "partial",
+      "coverage": "Guard task event match/refresh/damage/report/hint handling, original action-mode policy and return-before-acquire clone replacement on the actual process pool.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00553eb0",
+      "status": "partial",
+      "coverage": "Guard task search, nearest-list point, reposition and preliminary cover selection on actual navigation. Preserve reverse removal/ties and the discarded second angular filter.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00557d10",
+      "status": "partial",
+      "coverage": "Guard task search, nearest-list point, reposition and preliminary cover selection on actual navigation. Preserve reverse removal/ties and the discarded second angular filter.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005541f0",
+      "status": "partial",
+      "coverage": "Guard task search, nearest-list point, reposition and preliminary cover selection on actual navigation. Preserve reverse removal/ties and the discarded second angular filter.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00557540",
+      "status": "partial",
+      "coverage": "Guard task search, nearest-list point, reposition and preliminary cover selection on actual navigation. Preserve reverse removal/ties and the discarded second angular filter.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554840",
+      "status": "partial",
+      "coverage": "Actual task face/turn and side-look policies, Inline look commands, direction publication and separate LS3DF random look interval.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00557f70",
+      "status": "partial",
+      "coverage": "Actual task face/turn and side-look policies, Inline look commands, direction publication and separate LS3DF random look interval.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554760",
+      "status": "partial",
+      "coverage": "Actual task route readiness, posture, flag/query-mask and look-command policies; no substitute route service.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005547b0",
+      "status": "partial",
+      "coverage": "Actual task route readiness, posture, flag/query-mask and look-command policies; no substitute route service.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00554800",
+      "status": "partial",
+      "coverage": "Actual task route readiness, posture, flag/query-mask and look-command policies; no substitute route service.",
+      "limitations": "Source-only typed reconstruction of the stated task branches; native STL/pool/borrower adaptation replaces original object, allocator and SEH ABI. External frame/Inline/World endpoints are explicit. No full Guard/Scene2 integration or desktop acceptance; H5 remains open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054b8f0",
+      "status": "partial",
+      "coverage": "Guard kind5 idle/surrender/flee/armed modes, actual Inline actions, target/drop/reload requests, original timers and state fallthrough.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558aa0",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558a60",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558980",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558230",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00572c00",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560e20",
+      "status": "partial",
+      "coverage": "Publish query mode/range, point sentinel, original flags and reset fields on the same query owner.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a2c50",
+      "status": "partial",
+      "coverage": "Reached Guard outer drop: three actual LS3DF random draws and original velocity spills, through proven00587BE0 tail receiver to existing005A3490, then178 publication. Ignored native return value excluded.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559660",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005596d0",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559570",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005525f0",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00555400",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00555ca0",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559590",
+      "status": "partial",
+      "coverage": "Equip actual kind6 from hand3/shoulder2 using the same inventory move/swap owners and return the original success policy.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054cf70",
+      "status": "partial",
+      "coverage": "Run Guard mounted action6 modes0..7 on actual action, target, attachment, flags, direction and input owners, preserving sequential transitions, CRT timers, reload/fire requests and distinct exit modes.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054cbb0",
+      "status": "partial",
+      "coverage": "Run mounted follow/report/damage events with actual source links, actor identity, friendship, target capability, health, distance, look and action mutations before the common retained pass.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d300",
+      "status": "partial",
+      "coverage": "Select mounted target from scored hostiles and forward retained reports, preserving signed age/lifetime gates, integer quotient, BC capability and inclusive weighted-distance ties.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d5c0",
+      "status": "partial",
+      "coverage": "Apply actual StaticWeapon threat gate and reverse hostile traversal; native D560 AL1 excludes the other-actor traversal.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d570",
+      "status": "partial",
+      "coverage": "Evaluate mounted leave threat with native strict8/20 distances and actual led-target capability, without an added health gate.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d620",
+      "status": "partial",
+      "coverage": "Compute mounted wait from actual closest hostile distance, FLOAT half-distance spill and original CRT130+70; empty hostiles returns500.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054d800",
+      "status": "partial",
+      "coverage": "Produce mounted target direction from actual A8, target B0/head/base/velocity and statFC spread, with distinct special/ordinary coefficients and CRT Z/Y/X order.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054dc50",
+      "status": "partial",
+      "coverage": "Reject mounted target only after actual BC rejects both led target position and repeated Y+.5 position.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054dcf0",
+      "status": "partial",
+      "coverage": "Read actual Human attachment identity and StaticWeapon kind21 for mounted policy.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054f040",
+      "status": "partial",
+      "coverage": "Reverse-score actual hostile heads with health/exclusion, real target B0 aim, BC, capped distance/recent/posture and special dynamic ray eligibility.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054e7d0",
+      "status": "partial",
+      "coverage": "Scan reverse hostiles and forward retained reports using actual mounted position/direction and native angular/distance scoring, then publish selected direction.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054dd20",
+      "status": "partial",
+      "coverage": "Track selected mounted Human through real predicted target direction and native normalization order.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054ded0",
+      "status": "partial",
+      "coverage": "Publish ordinary mounted aim, gate reaction/ammunition/strict alignment and real Sight feedback, apply spread and first-tick suppression, then request actual74/78 fire or74 reload inputs.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054f280",
+      "status": "partial",
+      "coverage": "Publish special mounted aim with native ammo/reaction order, planar inclusive alignment, real Sight and spread, then actual74/78 fire request without ordinary first-tick suppression.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054f910",
+      "status": "partial",
+      "coverage": "Run actual dynamic-only target-origin segment with SAME Inline exclusion/restoration, winning descriptor, actor25 blocker and Car hostile-occupant policy.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054e7a0",
+      "status": "partial",
+      "coverage": "Query actual attachment9C ammunition with the original null-attachment false result for the mounted reload decision.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054dc10",
+      "status": "partial",
+      "coverage": "Issue actual subtype5 through immediate common DC and the independent deferred kind3 copy.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d280",
+      "status": "partial",
+      "coverage": "Publish enabled look interval48/4C and clear XYZ20/typed target frame; disabled changes only4C to-1.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_ai_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00570ca0",
+      "status": "partial",
+      "coverage": "Score actual controlled-mount hostiles including the one-candidate case, real weapon/Car5E0 eligibility, Player-facing50/0, BC20 and distance/recent/posture bonuses.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_ai_frame_metrics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558110",
+      "status": "partial",
+      "coverage": "Compute Guard aim-stop wait from real target distance, independent CRT thresholds and native near/moving/distance-scaled branches.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548010",
+      "status": "partial",
+      "coverage": "Publish Guard low-ammunition boolean using actual selected item and strict amount<10.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558bd0",
+      "status": "partial",
+      "coverage": "Publish target3C/40/44/48 from original immutable weapon-kind tables, native FLOAT squared distance, opposite interpolations and truncated ten-percent steps.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560820",
+      "status": "partial",
+      "coverage": "Write actual AI target first parameter/step3C/40 in native order.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560840",
+      "status": "partial",
+      "coverage": "Write actual AI target second parameter/step44/48 in native order.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559cf0",
+      "status": "partial",
+      "coverage": "Read actual Area hand3, clear cached A8 on equality, and drop through shared real virtual70/005A2C50 only when present.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ae610",
+      "status": "partial",
+      "coverage": "Publish actual B4 sniper flag14, radius10 and full produced position00..0C in native order; no constructor position default.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_scene_actor.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af700",
+      "status": "partial",
+      "coverage": "Sample actual Human world matrix before publishing the B4 sniper area producer used by Area handover.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00585a60",
+      "status": "partial",
+      "coverage": "Execute selected attached Car/StaticWeapon exit: actual seat claim clear then SAME E0 interaction403/407; unsupported special/unattached/non7 consumers remain explicit.",
+      "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
+      "evidence": [
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "recovered/game/human_world_loading_services.h"
       ]
     }
   ]
