@@ -1,4 +1,4 @@
-# H8 PACK effects — active clothing checkpoint, 2026-11-12
+# H8 PACK effects — source checkpoints, 2026-11-12
 
 User-directed priority is the missing effect families in PACK's review of H8
 `14d59d3`. The clothing checkpoint resolves **command2's active source dependency**.
@@ -6,7 +6,8 @@ The subsequent live-creation checkpoint below resolves **command20's active sour
 The subsequent pickup checkpoint resolves **command9's source dependency**.
 The supply checkpoint resolves **command11's source effect dependency**.
 The named-animation checkpoint resolves **command18's source effect dependency**.
-Commands3/7/8/12 remain required. PACK must integrate committed
+The general inventory checkpoint resolves **commands7/8 source effects**.
+Commands3/12 remain required. PACK must integrate committed
 source, reconcile its helpers and run its own affected stream/FIFO/module checks.
 H8, P22-HUM and application/desktop delivery remain open. No original or Windows
 binary was executed. Frozen inventory claims remain partial native adaptations.
@@ -279,9 +280,100 @@ Latest launcher/probe rebuild passes. Audits fingerprinted/removed. No Windows
 execution or desktop acceptance. Receipt:
 `analysis/checkpoints/p2.2-human-h8-pack-special-20261112.json`.
 
-PACK source work remaining: general command7/8 source/cross-Human inventory
-validation/application and native swap/preflight/fallback, plus command12 Player
+At the named-animation checkpoint, general command7/8 inventory work was still
+open; the subsequent checkpoint below supplies it. Remaining command12 Player
 validation/presentation and Remote action effects through remaining common3
 subtypes. H8 stays open; SourceBox later frame work and other H8.2+ dependencies
 remain as recorded in the plan. PACK integration/stream/FIFO/module verification
 is still separate from the source availability checkpoints above.
+
+## Commands7/8 general inventory source effect checkpoint
+
+`human_inventory_packet.h`, `human_inventory_transfer.h` and
+`human_inventory_swap.h` now bind actual005A2D50/005A2E10 and005A2E90/005A2F50
+through the SAME World Scene2, Items, Human storage, B0/230, Players/HUD and FPV
+owners. These are received effects, not requeued B0+74/+78 requests. Existing
+focused loading weapon kernels/producers remain scoped to their documented
+callers; their guards do not substitute for these general packet effects.
+
+The index was consulted first. Original C comes from WORK's
+`human-inventory-immediate-transfer`, `human-inventory-weapon-swap`,
+`human-inventory-swap-dependencies`, `human-inventory-command-receivers` and
+`human-h8-pack-effects`; original SHA remains
+8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+Fresh bounded raw `human-h8-pack-inventory-receivers.asm` confirms both source
+lookups' ECX, lost by the C signatures. General transfer/swap/preflight assembly
+is retained beside it. No new Ghidra project edits or original execution.
+
+Authority move resolves source−1 to this Human or actual00475D50 command identity,
+then searches **that source's requested slot**005A6DB0. Destination7 invokes
+007DA3F0 source automatic placement, whose payload2/3 hand/empty-shoulder policy
+is distinct from no-source007D9B40. Other targets call007D8B40 with notify1 and
+native override/retain/dry flags0. Success marks178, conditionally resets actual
+Player item mode005A8190(0), then forwards with updated destination only after
+fresh non7 observation. Presentation gates mode1 BEFORE lookup, uses **source
+whole-inventory**005A6FF0, ignores ordinary admission failure and marks178; it
+does not perform the authority Player reset or automatic-destination substitution.
+
+Authority swap performs both slot-restricted lookups before requiring matches;
+presentation performs both whole-inventory lookups and does not require a
+current-entry match.007D9DE0 failure is ignored only by presentation, which still
+marks both Humans178. Missing/non-Human Scene2 borrowers are required failures;
+the original005A6DB0/005A6FF0 bodies require the seven-pointer Human layout.
+General007D8B40 itself also supports actual single-array storage actors.
+
+007D8B40 preserves source/destination validation and native result codes,
+head/shoulder/hand/armour/pack eligibility, cooldown and expiry gates, per-owner
+scalar/volume/size limits, cross-actor capacity, same-storage/index−1 rejection
+and dry-run prefixes. It obtains the actual lazy item model BEFORE target checks.
+Insertion/replacement precedes **separate FLOAT weight stores**, item20/24
+publication, source detach, model hiding and exposed-pack6 withdrawal. Retain
+suppresses subtraction, not detachment. Pack contents remain owned by their
+actual RuntimeItem; pack6 is borrowed. No drop actor or retirement is invented.
+General fallback uses this same complete kernel; rejected displaced entries
+remain owned by Items and preserve native stale20/24 borrowers on the drop tail.
+
+Raw floating-point distinctions: ordinary slots spill capacity+0080F53C to FLOAT;
+pack5 keeps capacity and the final weight sum/subtraction in x87 registers
+(007D94D9..EF), after spilling incoming/previous pack totals. Pack5/6 slot scalar
+limits spill first+epsilon to FLOAT.007DA5E0 uses **no epsilon**, FLOAT item deltas,
+and ordered extended weight+delta versus integer capacity (007DA79C..A8), without
+a final FLOAT spill. NaN fails its ordered fits; general transfer retains native
+unordered admission comparisons. Negative slot inputs, outside decoded3-bit
+packet values, reject before native pointer arithmetic.
+
+007DA5E0 examines the displaced definition's actual permitted-slot mask and tests
+source holsters1, optional pack6, shoulder2, hand3, armour4, head0, pack5 in native
+order. Source-array removal can admit a full array even if no stack is freed;
+later real insertion can still fail.007D9DE0 completes the first move with notify0,
+then returns displaced using override1/retain1. Failure tries007D9B40 no-source
+placement, then the native no-source/no-destination drop call. Equipment
+notifications occur AFTER both moves, with actual distinct230 peers, live health,
+returned-slot substitution, holster counts/events and destination holster animation
+refresh00791EB0. Hand/hand and hand/nonhand FPV requests retain9/8 versus8/0
+arguments. HUD, B0 refresh and clocks stay at their native callback stages.
+
+Armour swap005A6920 dispatch is the actual B0+68 borrower: raw Player vtable
+00811848+68→0053E0B0 appends command2 to FIRST80; actual AI and Remote
+008112D8+68→00588160 tail-call005A6930 immediately. The wrapper/native container
+ABI and absent frozen producer starts receive no separate credit. Model/clothing
+refresh uses the already verified same-owner clothing contract above.
+
+Fresh focused ASan/UBSan/LSan audit: **84100 assertions /100 lifecycle matrices**, actual
+ActorBase/storage/holders/stacks, catalogue decoding, RuntimeItem families/pack
+contents and general/packet helpers. Explicit engine/model, equipment observation,
+clock, Players/HUD/FPV/clothing endpoints isolate the new policy. Covers result
+prefixes, dry run, same-array insertion, cross-Human all-holder families, exposed
+pack accounting/publication, live clock changes, swapped hand health/FPV, fallback
+and final drop after a HUD callback changes return capacity, required callback
+failure, authority/presentation distinctions, single-array actors, disabled-module, no-pack capacity precedence
+and the two precision regressions. This does not rerun unchanged230/DD0/clothing
+internals. Strict actual-host i386 FULL LINK includes the full packet dispatcher
+and concrete World/Items/B0/DD0/equipment/clothing/Players/HUD/FPV owners. Latest
+launcher/probe rebuild passes; neither Windows fixture is executed. Temporary
+audits are fingerprinted/removed. Receipt:
+`analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json`.
+
+PACK source remaining: command12 Player validation/presentation and Remote
+application, plus remaining common3 effects. PACK stream/FIFO/module integration,
+full H8 application/frame composition and user desktop acceptance stay open.

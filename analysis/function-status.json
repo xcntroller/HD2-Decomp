@@ -15973,13 +15973,17 @@
       "program": "client",
       "entry": "005a2d50",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005a2d50: Offline AI same-Human source1/2-to-empty-hand3 loading command/caller and source identity lookup; queued player/remote/nonoffline packet and general transfers excluded.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "General received authority inventory move through actual source-slot lookup, explicit or automatic destination, Player reset and fresh forwarding policy.",
+      "limitations": "Source-only native adaptation with actual typed borrowers/STL/RAII instead of original object/vtable/container/allocator/SEH ABI. Existing focused loading request/kernel APIs retain their own documented scope. Decoded Human command source lookup requires an actual Human; missing/foreign borrowers fail. No whole-body ABI equivalence, containing application-world delivery or desktop acceptance.",
       "evidence": [
         "recovered/game/human_loading_inventory.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_inventory_packet.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
       ]
     },
     {
@@ -17791,8 +17795,8 @@
       "program": "client",
       "entry": "007d8b40",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007d8b40: Verified source/no-source same-Human weapon-slot transfer, cooldown/expiry/dry-run/displacement/retain accounting; containing swap/drop and other families excluded. Exact no-source loading transfer with module notifications disabled; general runtime exchanges excluded. Offline activation/prepared-spawn checkpoint: Cold no-source prepared Human placement retains enabled-module178/hand cooldown and all-slot game28+920 expiry, explicitly excluding active B0/A8/displaced transfers. Added reached no-source/no-destination slot0 branch for a newly constructed item: no holder/model/weight/module178 mutation, final game28+920 expiry remains. Extended: Extend no-source Human creation with late authority/enabled cooldown gate, actual230 added/HUD/B0/FPV effects and final fresh-clock item14; arbitrary source/cross-Human/swap/drop branches remain excluded.",
-      "limitations": "Source-only typed ownership/STL/RAII instead of original allocator/object/decoder/virtual ABI; explicit endpoint doubles and concrete i386 host linking are not application or desktop verification. Only live no-source population into empty Human holders/stacks is added; general source moves/swaps/pickup and other PACK effects remain required.",
+      "coverage": "General actual-source/destination item transfer with single/Human storage, all slots, live validation/results, weight/pack publication and ordered equipment/HUD/B0/FPV effects; retained-accounting, drop and dry-run branches.",
+      "limitations": "Source-only native adaptation with actual typed borrowers/STL/RAII instead of original object/vtable/container/allocator/SEH ABI. Existing focused loading request/kernel APIs retain their own documented scope. Decoded Human command source lookup requires an actual Human; missing/foreign borrowers fail. No whole-body ABI equivalence, containing application-world delivery or desktop acceptance.",
       "evidence": [
         "recovered/game/human_weapon_transfer.h",
         "recovered/game/loading_item_transfer.h",
@@ -17806,7 +17810,10 @@
         "analysis/human-car-frame-events-source.md",
         "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json",
         "analysis/human-h8-pack-effects-source.md",
-        "analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json"
+        "analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json",
+        "recovered/game/human_inventory_transfer.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
       ]
     },
     {
@@ -20560,51 +20567,66 @@
       "program": "client",
       "entry": "005a2e90",
       "status": "partial",
-      "coverage": "Resolve both actual weapon entries by ID/slot, invoke same-Human swap and mark activation on success.",
-      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "coverage": "General received authority swap: paired slot lookups, actual general swap and ordered activation/Player reset.",
+      "limitations": "Source-only native adaptation with actual typed borrowers/STL/RAII instead of original object/vtable/container/allocator/SEH ABI. Existing focused loading request/kernel APIs retain their own documented scope. Decoded Human command source lookup requires an actual Human; missing/foreign borrowers fail. No whole-body ABI equivalence, containing application-world delivery or desktop acceptance.",
       "evidence": [
         "recovered/game/human_loading_inventory.h",
         "analysis/human-equipment-loading.md",
-        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json",
+        "recovered/game/human_inventory_packet.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "007d9de0",
       "status": "partial",
-      "coverage": "Same-Human source1/2/6 to hand3 swap, displaced return with retained accounting, fallback/drop, ordered equipment and FPV callbacks.",
-      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "coverage": "General cross-Human/all-family swap, displaced preflight/return/fallback/drop and paired actual230/holster/clothing/FPV notifications.",
+      "limitations": "Source-only native adaptation with actual typed borrowers/STL/RAII instead of original object/vtable/container/allocator/SEH ABI. Existing focused loading request/kernel APIs retain their own documented scope. Decoded Human command source lookup requires an actual Human; missing/foreign borrowers fail. No whole-body ABI equivalence, containing application-world delivery or desktop acceptance.",
       "evidence": [
         "recovered/game/human_weapon_swap.h",
         "analysis/human-equipment-loading.md",
-        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json",
+        "recovered/game/human_inventory_swap.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "007da5e0",
       "status": "partial",
-      "coverage": "Same-Human displaced weapon preflight using actual allowed slots, float deltas, capacities, cooldowns and full source-array replacement quirk.",
-      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "coverage": "General displaced-item preflight through actual permitted-slot mask, live clocks, cross-Human weights/pack contents, precise scalar/volume fits and ordered extended capacity checks.",
+      "limitations": "Source-only native adaptation with actual typed borrowers/STL/RAII instead of original object/vtable/container/allocator/SEH ABI. Existing focused loading request/kernel APIs retain their own documented scope. Decoded Human command source lookup requires an actual Human; missing/foreign borrowers fail. No whole-body ABI equivalence, containing application-world delivery or desktop acceptance.",
       "evidence": [
         "recovered/game/human_weapon_swap.h",
         "analysis/human-equipment-loading.md",
-        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json",
+        "recovered/game/human_inventory_swap.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "007d9b40",
       "status": "partial",
-      "coverage": "Displaced weapon no-source fallback through hand, shoulder, holsters and optional pack contents, retaining native payload3 condition grouping. Extended: Extend automatic no-source Human placement through actual head/pack/hand/shoulder/holster/pack-content policies, native terminal results/outputslot, notify0 effects and same-owner live transfer.",
-      "limitations": "Source-only typed native ownership rather than original allocator/object/virtual ABI. Native audits use explicit item/engine/runtime/equipment endpoints; concrete host full link is not actual application or desktop verification. Arbitrary source/cross-Human transfers, swaps, source-container pickup and other PACK effects remain required.",
+      "coverage": "Automatic unheld Human placement for pickup and general displaced-item fallback, native candidate order, no-source transfer and retained module ownership on failure.",
+      "limitations": "Source-only native adaptation with actual typed borrowers/STL/RAII instead of original object/vtable/container/allocator/SEH ABI. Existing focused loading request/kernel APIs retain their own documented scope. Decoded Human command source lookup requires an actual Human; missing/foreign borrowers fail. No whole-body ABI equivalence, containing application-world delivery or desktop acceptance.",
       "evidence": [
         "recovered/game/human_weapon_swap.h",
         "analysis/human-equipment-loading.md",
         "analysis/checkpoints/p2.2-weapon-swap-20261109.json",
         "recovered/game/human_item_pickup.h",
         "analysis/human-h8-pack-effects-source.md",
-        "analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json"
+        "analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json",
+        "recovered/game/human_inventory_swap.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
       ]
     },
     {
@@ -45828,6 +45850,45 @@
       ],
       "coverage": "Actual four-argument fourth-track setup: native selector, clip duration/flags, slot7 weight0 or slot6 weight1, ordered selected-lane metadata/byte stores and loop/fade224.",
       "limitations": "Source-only typed reconstruction. Native temporary allocator/reference-counted diagnostic strings and original object/virtual ABI excluded; no new credit for delegated engine bodies or forwarding wrappers. Actual track-owner native audits terminate engine/cache/callback endpoints; concrete host linking is not application/desktop verification. Remaining PACK inventory/actions/common commands and H8 frame remain required."
+    },
+    {
+      "program": "client",
+      "entry": "005a2e10",
+      "status": "partial",
+      "coverage": "Received inventory presentation: authority gate before source whole-inventory lookup, actual immediate transfer and native ignored-result/178 policy.",
+      "limitations": "Source-only native adaptation with actual typed borrowers/STL/RAII instead of original object/vtable/container/allocator/SEH ABI. Existing focused loading request/kernel APIs retain their own documented scope. Decoded Human command source lookup requires an actual Human; missing/foreign borrowers fail. No whole-body ABI equivalence, containing application-world delivery or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_inventory_packet.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a2f50",
+      "status": "partial",
+      "coverage": "Received swap presentation: paired whole-inventory lookups, actual general swap and native ignored-result/both-Human activation policy.",
+      "limitations": "Source-only native adaptation with actual typed borrowers/STL/RAII instead of original object/vtable/container/allocator/SEH ABI. Existing focused loading request/kernel APIs retain their own documented scope. Decoded Human command source lookup requires an actual Human; missing/foreign borrowers fail. No whole-body ABI equivalence, containing application-world delivery or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_inventory_packet.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007da3f0",
+      "status": "partial",
+      "coverage": "Automatic source item transfer through general swap, terminal pack and source-specific head/weapon/holster/pack candidate order.",
+      "limitations": "Source-only native adaptation with actual typed borrowers/STL/RAII instead of original object/vtable/container/allocator/SEH ABI. Existing focused loading request/kernel APIs retain their own documented scope. Decoded Human command source lookup requires an actual Human; missing/foreign borrowers fail. No whole-body ABI equivalence, containing application-world delivery or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_inventory_swap.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
+      ]
     }
   ]
 }

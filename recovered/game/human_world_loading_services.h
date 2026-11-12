@@ -4,6 +4,7 @@
 #include "game/human_ai_alignment.h"
 #include "game/human_vehicle_path.h"
 #include "game/human_inventory_counts.h"
+#include "game/human_inventory_packet.h"
 #include "game/car_actor_authority.h"
 #include "game/car_targeted_placement.h"
 #include "game/car_scene_actor.h"
@@ -598,6 +599,56 @@ public:
         if(!human_is_player(human))return;
         auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Human item removal requires its actual Player B0");
         human_state_factory(human).reset_item_player_mode(*state);
+    }
+    //007D8B40/007D9DE0 borrow the existing Scene2/Human/230 owners only.
+    template<class Actor>auto* inventory_human(Actor* actor){
+        using Human=typename Dependencies::Composition::Human;
+        if(!actor)return static_cast<Human*>(nullptr);
+        auto* human=dynamic_cast<Human*>(actor);
+        if(!human)throw std::logic_error("Human inventory storage has no matching typed Human");
+        return human;
+    }
+    template<class Human>auto* inventory_equipment(Human* human){
+        using Owner=std::remove_pointer_t<decltype(human_inline(*human).equipment())>;
+        using Transfers=std::remove_reference_t<decltype(std::declval<Owner&>().transfers())>;
+        if(!human)return static_cast<Transfers*>(nullptr);
+        if(!human->loading_lifetime){if(human->fielda8)throw std::logic_error("Inventory raw A8 lost typed230 lifetime");return static_cast<Transfers*>(nullptr);}
+        auto* equipment=human_inline(*human).equipment();return equipment?&equipment->transfers():nullptr;
+    }
+    template<class Human>bool inventory_is_current(Human* human){return dependencies().players.control().current_player()==human;}
+    template<class Human>void inventory_hud_changed(Human* human){if(inventory_is_current(human))dependencies().hud.inventory_changed();}
+    void inventory_fpv_unchecked(unsigned command,unsigned argument){dependencies().first_person.view().request(mode_flags(),command,argument);}
+    template<class Human>void inventory_fpv(Human* human,unsigned command,unsigned argument){
+        if((mode_flags()&2u)&&inventory_is_current(human))inventory_fpv_unchecked(command,argument);
+    }
+    template<class Actor>void inventory_drop_fpv(Actor* actor){
+        if((mode_flags()&2u)&&static_cast<void*>(dependencies().players.control().current_player())==static_cast<void*>(actor))inventory_fpv_unchecked(20,0);
+    }
+    template<class Human>void inventory_clothing_command(Human& human,std::int32_t identity){ //005A6920, B0+68.
+        auto* state=composition(human).states().get();if(!state)throw std::logic_error("Swap clothing requires actual B0");
+        if(state->words().template get<std::uint32_t>(0x48)==1){ //0053E0B0 appends FIRST80.
+            HumanPacketCommand command;command.kind=2;command.fields.set(8,identity);state->queue_frame_command(std::move(command),false);
+        }else { //00588160, including actual Remote vtable008112D8.
+            PreparedHumanLoading<Dependencies> clothing(dependencies());(void)clothing.apply_clothing(human,identity);
+        }
+    }
+    template<class Human>Human* human_inventory_source(Human& human,std::int32_t identity){
+        if(identity==-1)return &human;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(identity);
+        auto* source=dynamic_cast<Human*>(actor);
+        if(actor&&!source)throw std::logic_error("Human identity lookup requires actual Human inventory layout");
+        return source;
+    }
+    template<class Human,class Entry>std::int32_t move_received_human_inventory(Human& human,Human& source,Entry entry,
+            std::int32_t source_slot,std::int32_t& destination_slot,std::int32_t index,bool authority){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;auto& d=dependencies();
+        auto* from=static_cast<Actor*>(&source);auto* to=static_cast<Actor*>(&human);
+        if(authority&&destination_slot==7)return move_human_inventory_automatically(d.scene.frames(),d.world_actors.items(),*this,entry,from,source_slot,to,destination_slot);
+        Entry displaced{};return transfer_human_inventory(d.scene.frames(),d.world_actors.items(),*this,entry,displaced,from,source_slot,to,destination_slot,index,static_cast<Actor*>(nullptr),true,false,false,false);
+    }
+    template<class Human,class Entry>std::int32_t swap_received_human_inventory(Human& human,Human& source,Entry entry,std::int32_t source_slot,std::int32_t destination_slot){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;auto& d=dependencies();Entry displaced{};std::int32_t placed=7,returned=7;
+        return swap_human_inventory(d.scene.frames(),d.world_actors.items(),*this,entry,static_cast<Actor*>(&source),source_slot,static_cast<Actor*>(&human),destination_slot,displaced,placed,returned);
     }
     template<class Human,class Entry>std::int32_t transfer_created_human_item(Human& human,Entry entry,std::int32_t slot){
         auto& d=dependencies();return game::transfer_created_human_item<typename Dependencies::ActorFrames>(d.scene.frames(),human,d.world_actors.items(),*this,entry,slot);
@@ -2009,8 +2060,16 @@ public:
                 });
             return;
         }
-        case 7:throw std::runtime_error(authority?"Human PACK command7 requires inventory validation005A2D50":"Human PACK command7 requires inventory apply005A2E10");
-        case 8:throw std::runtime_error(authority?"Human PACK command8 requires inventory swap005A2E90":"Human PACK command8 requires inventory swap apply005A2F50");
+        case 7:{
+            auto slot=f.template get<std::int32_t>(0x14);
+            if(receive_human_inventory_move(human,dependencies().world_actors.items(),*this,authority,f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),f.template get<std::int32_t>(0x10),slot,f.template get<std::int32_t>(0x18))&&authority&&(mode_flags()&7u)!=7u){
+                auto updated=command;updated.fields.set(0x14,slot);state->queue_frame_command(std::move(updated),true);
+            }return;
+        }
+        case 8:{
+            if(receive_human_inventory_swap(human,dependencies().world_actors.items(),*this,authority,f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),f.template get<std::int32_t>(0x10),f.template get<std::int32_t>(0x14),f.template get<std::int32_t>(0x18))&&authority&&(mode_flags()&7u)!=7u)state->queue_frame_command(command,true);
+            return;
+        }
         case 9:{
             auto updated=command;auto slot=f.template get<std::int32_t>(0xc);
             if(authority){

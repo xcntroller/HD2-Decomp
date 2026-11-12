@@ -42,7 +42,7 @@ ordinary Active/frame work. PACK closure does not require all of H8 to finish.
 The preceding Active task/follow work is preserved and verified in the clothing checkpoint; full decisions remain open.
 
 - [x] Command2: active clothing/DD0/equipment/Sight/Players/camera [source checkpoint](human-h8-pack-effects-source.md).
-- [ ] Commands7/8: general inventory validation, transfer/swap and presentation.
+- [x] Commands7/8: general inventory validation, transfer/swap and presentation [source checkpoint](human-h8-pack-effects-source.md#commands78-general-inventory-source-effect-checkpoint).
 - [x] Command9: actual runtime pickup, automatic placement and handoff [source checkpoint](human-h8-pack-effects-source.md#command9-pickup-and-automatic-unheld-placement-checkpoint).
 - [x] Command11: SupplyBox validation, creation/application, depletion and visibility [source checkpoint](human-h8-pack-effects-source.md#command11-supplybox-source-effect-checkpoint).
 - [ ] Command12: actual Player validation/application and Remote actions.
