@@ -14376,7 +14376,7 @@
       "program": "client",
       "entry": "0078df60",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0078df60: Equipment attachment cases0/1/2/3/10 and four-root retirement with original geometry/math; action cases4..9 excluded. C9a adds actual held4/8 internal bounds/HW midpoint and Human40 geometry, WORLD saved pose, native raw visibility/link flags and face order.",
+      "coverage": "P2.2 source reconstruction at original entry 0078df60: Equipment attachment cases0/1/2/3/10 and four-root retirement with original geometry/math; action cases4..9 excluded. C9a adds actual held4/8 internal bounds/HW midpoint and Human40 geometry, WORLD saved pose, native raw visibility/link flags and face order. Actual mounted attachment9/230 event15 and containing track8 now bound; original unsigned events>24 skip, all0..24 actual dispatch consumers available.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_equipment_attachments.h",
@@ -14384,7 +14384,8 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/p22-hum-h4-implementation.md",
-        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json"
+        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
       ]
     },
     {
@@ -14552,7 +14553,7 @@
       "program": "client",
       "entry": "007913d0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007913d0: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded. Actual magazine attachment16/17/18 and track15/16/17 now bind same hand RuntimeItem clone/marker, HW2/HW1/null restore. C9a binds events4/5/12/13 to actual230 held4/8 attachment/retirement.",
+      "coverage": "P2.2 source reconstruction at original entry 007913d0: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded. Actual magazine attachment16/17/18 and track15/16/17 now bind same hand RuntimeItem clone/marker, HW2/HW1/null restore. C9a binds events4/5/12/13 to actual230 held4/8 attachment/retirement. Actual mounted attachment9/230 event15 and containing track8 now bound; original unsigned events>24 skip, all0..24 actual dispatch consumers available.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_equipment_transfers.h",
@@ -14560,7 +14561,8 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/p22-hum-h4-implementation.md",
-        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json"
+        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
       ]
     },
     {
@@ -31024,7 +31026,7 @@
       "program": "client",
       "entry": "00758d20",
       "status": "partial",
-      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved. Added track0 actual00758170(false) inventory/peer transfer and fresh shadow gate. Added actual track7 Door A3C/authority/argument,20 action/lens,22 Human40 deceleration and23 physical/movement reset receivers. Actual magazine attachment16/17/18 and track15/16/17 now bind same hand RuntimeItem clone/marker, HW2/HW1/null restore. Track18 actual bone4/particle33,19 Ladder174/bone16 SOUND with whole-dispatch return,24 actual mode/FPV/player-gated SOUND now bound. C9a binds event9 actual CD0 timer1400/liveScale, signed frameE4 reference gate, original4F/5A release counts, NULL selection and E0 feedback/mode exit.",
+      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved. Added track0 actual00758170(false) inventory/peer transfer and fresh shadow gate. Added actual track7 Door A3C/authority/argument,20 action/lens,22 Human40 deceleration and23 physical/movement reset receivers. Actual magazine attachment16/17/18 and track15/16/17 now bind same hand RuntimeItem clone/marker, HW2/HW1/null restore. Track18 actual bone4/particle33,19 Ladder174/bone16 SOUND with whole-dispatch return,24 actual mode/FPV/player-gated SOUND now bound. C9a binds event9 actual CD0 timer1400/liveScale, signed frameE4 reference gate, original4F/5A release counts, NULL selection and E0 feedback/mode exit. Actual mounted attachment9/230 event15 and containing track8 now bound; original unsigned events>24 skip, all0..24 actual dispatch consumers available.",
       "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -31035,7 +31037,8 @@
         "recovered/game/human_track_equipment_events.h",
         "recovered/game/human_track_control_events.h",
         "recovered/game/human_track_effect_events.h",
-        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json"
+        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
       ]
     },
     {
@@ -40912,6 +40915,42 @@
         "recovered/game/human_equipment_services.h",
         "recovered/host/game_actor_frames.h",
         "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075df70",
+      "status": "partial",
+      "coverage": "Actual mounted Human assignment over SAME source/target DD0/230/physical/DC0/Scene/Car/StaticWeapon/SOUND/GEffects; original ordered mutations, gates and reached failures.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation, native safety guards distinct from original ABI. Delegated engine/SOUND endpoints and missing actor20/34 factories excluded. No actual mission execution or desktop acceptance, no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_mount_assignment.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075e250",
+      "status": "partial",
+      "coverage": "Actual motion1AC/optional1B0, enable18C and zero-motion face activation ordering over SAME physical/face owners.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation, native safety guards distinct from original ABI. Delegated engine/SOUND endpoints and missing actor20/34 factories excluded. No actual mission execution or desktop acceptance, no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_physics_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b30b0",
+      "status": "partial",
+      "coverage": "Actual DC0 mount geometry exit: clear6304 bit200, ordered6914/6918 SOUND stops/sentinels and existing contact-frame retirement without clearing effect storage.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation, native safety guards distinct from original ABI. Delegated engine/SOUND endpoints and missing actor20/34 factories excluded. No actual mission execution or desktop acceptance, no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
       ]
     }
   ]

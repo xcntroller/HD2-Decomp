@@ -135,15 +135,15 @@ assume unmerged source is linked here. H4 base remains e742f84.
 - [x] Native policy/order/failure/ownership audits and strict actual World/public
   DD0 composition/i386/application links; receipt/cleanup/commit and continue.
 
-## C9 selected action-model track consumers (in progress)
+## C9 action-model track consumers (verified)
 
-- [ ] Recover full original boundary of track8/9, action-model attachment4/8,
+- [x] Recover full original boundary of track8/9, action-model attachment4/8,
   retirement4/8, mounted assignment0075DF70 and event9 hand-model retirement;
   verify corrected thiscall/stdcall ABI and raw values before implementing.
-- [ ] Complete independently available bodies over actual model/box/HW markers/
+- [x] Complete independently available bodies over actual model/box/HW markers/
   face/Item/geometry owners. Preserve source/raw visibility, reference counts,
   failure prefixes and exact action completion flags; label true dependencies.
-- [ ] Focused temporary sanitizer audits and actual i386 containing World/DD0/
+- [x] Focused temporary sanitizer audits and actual i386 containing World/DD0/
   model/Items linkage, application links, ledger/receipt/cleanup/commit.
 
 ### C9a verified held-model family
@@ -151,5 +151,26 @@ assume unmerged source is linked here. H4 base remains e742f84.
 - [x] Complete actual attachment4/8 and retirement4/8,230 events4/5/12/13 and
   track9 original timer/model refs/selection/feedback, with native sanitizer and
   concrete actual containing i386 linkage.
-- [ ] Finish remaining C9 track8/mounted assignment0075DF70 and attachment9;
+- [x] Finish remaining C9 track8/mounted assignment0075DF70 and attachment9;
   continue other H4 families after the held-family receipt/commit.
+
+## Mounted assignment (verified original H4 work)
+
+- [x] Bind track8 actual A2C reset/fresh bit policy and0075DF70 over SAME
+  equipment/target DD0/physical/geometry/Scene/SOUND owners; preserve exact
+  occupied-release failure where the current base lacks actor types20/34.
+- [x] Supply actual230 attachment9 retain/row288/track6/clip8/tick/presentation
+  and native0075E250 motion/007B30B0 geometry exit; focused verification/receipt.
+
+## Remaining original H4 work
+
+Earlier C labels record implementation batches only. Do not add numbered batches
+as requirements. Complete the original H4 boundary through these remaining families:
+
+- [ ] Common completion type15/91, physical35/type5 pickup and ground/drop.
+- [ ] Timed inventory transfer00758170(true) and its actual containing caller.
+- [ ] Script timed0058E500/special0058EBD0; reached vehicle00578770/90 and
+  attachment0058DB20 with actual existing seat/aim/control interfaces.
+- [ ] Actual Players subgroup formation producer004603C0/mode9 and retirement.
+- [ ] Final remaining-call inventory, concrete binding verification and H4 closure;
+  precise other-owner blockers, actual engine/mission and H8 acceptance separately.

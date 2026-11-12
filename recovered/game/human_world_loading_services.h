@@ -786,6 +786,7 @@ public:
         if(!human)throw std::runtime_error("Human mount model is bound to a different actor family");
         return human;
     }
+    template<class Frame>void apply_human_mount_camera_amount(Frame frame,float amount){(void)dependencies().scene.effects().model_camera_amount(frame,amount);}
     template<class Frame>void restore_human_mount_camera_amount(Frame frame){
         (void)dependencies().scene.effects().model_camera_amount(frame,0.f); //00486510 GEffects virtual50=00486D30.
     }

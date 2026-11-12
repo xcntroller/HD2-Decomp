@@ -176,6 +176,7 @@ public:
         case 12:remove_inventory_model(8);return;
         case 13:attachments_.attach(8);return;
         case 14:remove_inventory_model(9);return;
+        case 15:attachments_.attach(9);return;
         case 6:remove_inventory_model(5);return;
         case 7:attachments_.attach(5);return;
         case 8:remove_inventory_model(6);return;

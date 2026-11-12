@@ -29,5 +29,21 @@ void present_human_equipment_mount(Frames& frames,State& state,Services& service
         frames.human_equipment_tick_model(model(),human_animation_time_integer(scaled+scaled));
     }
 }
+//0078DF60 case9. Retain precedes B0, and model track6 (not the table
+//resource) receives the word8=2 write before ticking and100ms presentation.
+template<class Frames,class State,class Services>
+void attach_human_equipment_mount(Frames& frames,State& state,Services& services){
+    if(!state.model(1))return;
+    const auto model=[&]{const auto value=state.model(1);if(!value)throw std::logic_error("Mount attachment lost actual model");return value;};
+    auto retained=frames.retain_actor_frame(model());retained.release();state.words().set(0xb0,9u);
+    frames.human_model_animation(model(),services.equipment_animation_resource(0,288),6,1.f,2);
+    const auto clip=frames.human_model_clip(model(),6);
+    if(!clip)throw std::logic_error("Mount attachment requires actual model track6 clip");
+    frames.human_clip_word8(clip,2u);
+    frames.human_equipment_tick_model(model(),1000);
+    present_human_equipment_mount(frames,state,services,100u);
+    if(frames.visual_type(model())==0x5f4a424fu)frames.human_equipment_opacity(model(),services.equipment_opacity());
+}
+
 }
 #endif

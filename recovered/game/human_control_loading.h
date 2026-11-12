@@ -22,6 +22,7 @@
 #include "game/human_lateral_stride.h"
 #include "game/human_posture_room.h"
 #include "game/human_mount_retirement.h"
+#include "game/human_mount_assignment.h"
 #include "game/human_direction_replay.h"
 #include "game/human_position_replay.h"
 #include "game/human_state_frame_timers.h"
@@ -662,7 +663,7 @@ public:
         }
         if(state.template get<std::uint8_t>(0x18c))synchronize_presentation_direction(look,runtime);
         animation_.present_position(elapsed); //007587F0→007585C0.
-        present_control_effects(look,elapsed,runtime);
+        present_control_effects(look,elapsed);
         if(human_frame_signed_word(word(0x950))>0){
             const auto remaining=word(0x950)-elapsed;
             state.set(0x950,human_frame_signed_word(remaining)<0?0u:remaining);
@@ -688,7 +689,7 @@ private:
             else if(variant==1||variant==3||variant==4||(variant==0&&chance()))play_presentation_track_sound(8);}
         else if(posture==2&&(variant==2||variant==5||variant==1||variant==3||variant==4||(variant==0&&chance())))play_presentation_track_sound(7);
     }
-    template<class Look,class Runtime>void present_control_effects(const Look& look,std::uint32_t elapsed,Runtime& runtime){ //00758830.
+    template<class Look>void present_control_effects(const Look& look,std::uint32_t elapsed){ //00758830.
         auto& equipment_owner=services_.human_presentation_equipment(*human_);
         auto& state=physical_.control_frame_words();
         const auto mode=animation_.present_scene_effects(elapsed,human_is_player(),
@@ -708,6 +709,10 @@ private:
                     present_footstep_track_sound(look);
                     return true;
                 case 7:apply_human_track_door(*this,*human_,services_);return true;
+                case 8:{
+                    auto& current=services_.human_look_control(*human_);
+                    apply_human_track_action_transition(*this,current,*human_,equipment_owner,services_,frames_);return true;
+                }
                 case 9:{
                     auto& current=services_.human_look_control(*human_);
                     auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
@@ -729,7 +734,7 @@ private:
                 case 0x16:apply_human_track_deceleration(*this,*human_,services_);return true;
                 case 0x17:apply_human_track_motion_reset(*this);return true;
                 case 0x18:apply_human_track_presentation_sound(*this,*human_,services_);return true;
-                default:return runtime.apply_human_track_event(*this,look,event);
+                default:return true; //758D6B..74: unsigned event>24 skips to next event.
                 }
             },
             [&](Frame previous,Frame next){

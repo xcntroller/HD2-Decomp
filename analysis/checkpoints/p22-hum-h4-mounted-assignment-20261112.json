@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 original mounted assignment/attachment and track8 boundary",
+  "implementation_base": "7191915",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "sha256": "3e8dfe743a30e05aca9459201e91edda48fec26a7d1dfc2f83df5e5910db4a57",
+      "bytes": 57967
+    },
+    {
+      "path": "recovered/game/human_equipment_attachments.h",
+      "sha256": "4799617a978fba9b80accb89f392baf56f516a9e09ada992d82620c66d70b099",
+      "bytes": 15506
+    },
+    {
+      "path": "recovered/game/human_equipment_mount_presentation.h",
+      "sha256": "037153b870649fcc1136d9aac9a89b935e46b769b7d5befa0477c56962e0f373",
+      "bytes": 3305
+    },
+    {
+      "path": "recovered/game/human_equipment_transfers.h",
+      "sha256": "b359a2c7939edd4184ef1faa02fbe8f820baa2ebcfb8885a954e00dca8026ac2",
+      "bytes": 12144
+    },
+    {
+      "path": "recovered/game/human_model_geometry.h",
+      "sha256": "b31716520a5bd36d905f85d1f304d1344853b92027e4955f191fec3978b721f9",
+      "bytes": 112119
+    },
+    {
+      "path": "recovered/game/human_physics_loading.h",
+      "sha256": "663831ac63a8f63d0c8661cbb9c2b18676332e87c93ae5793e1d7f504f2326ee",
+      "bytes": 35213
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "5add23e74fceb9367986819357f73a73ac004b4913ff933fcf31c58b05ad0a38",
+      "bytes": 127029
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "sha256": "49888c6dc02a455efbfaf7ea5a2c896e0256c609690d76bd5d61d8760e983272",
+      "bytes": 112584
+    },
+    {
+      "path": "recovered/game/human_mount_assignment.h",
+      "sha256": "49b5b15aa4f6ed72ac50d74a0a28d674a081fab61df16735f38ef3c30d900594",
+      "bytes": 4862
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-motion-reset.asm",
+      "sha256": "8e7f5ece89a5c38ac44afd3479f4e4b3369bdb8091d107ff8e394514dbdfa2bc",
+      "bytes": 872
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-geometry-reset.asm",
+      "sha256": "ab6814728d05bd4b1be2f5455cf98f286e91b82414755b243bbefc47425d6f7e",
+      "bytes": 2212
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-original.asm",
+      "sha256": "7c19ad26d0935d74fc83425deda73eb31979fef8fd4789c0a0c12c4bc2a861de",
+      "bytes": 40733
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-original/0075df70.c",
+      "sha256": "d026cdda9048d3eb7042136754877c8f15bb51d097f9347212f43390ac3f3ec2",
+      "bytes": 3081
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-original/0075df70.json",
+      "sha256": "518faeb6248a5c89332de53120736610ed7bf0b8c0763e926f4816c943cfb439",
+      "bytes": 6765
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-original/0075e250.c",
+      "sha256": "553604761930161361de7258c76870dfa52d4ccd66381cab515f81cbee7abc2d",
+      "bytes": 307
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-original/0075e250.json",
+      "sha256": "240048123a811754beda9603b90241635dd05751979c5d33567cfad220469b53",
+      "bytes": 1512
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-original/007b30b0.c",
+      "sha256": "6f3f7668b9737ff3ff835a8bf6bf0f443cd221f237dfe7e1a81e4ac66e1b9ef6",
+      "bytes": 760
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-original/007b30b0.json",
+      "sha256": "06e9a1c693571e66a74aa403592febaad91dfd5499e26cea1181aa4ed3d966f6",
+      "bytes": 2340
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-sound-owner-index.log",
+      "sha256": "61151446e109e549c12d0a4e982289104aa9a22aa2c48fe82046c2b7b3461fe7",
+      "bytes": 1989
+    }
+  ],
+  "external_original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-dd0-surface-producer-range.asm",
+      "sha256": "6308ff0fabe41465786c0b994cfccea4c37f8167bacf6305a82d7d33dad1532e",
+      "bytes": 3444231
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-equipment-attachment.asm",
+      "sha256": "5044422091fcd1d2e5c72014ca82213c7cd64971c1d2b82da2b7e4bfdcc0be11",
+      "bytes": 141639
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/animation/00783760.c",
+      "sha256": "fc2ded9f8933c6d58d29118f83de452e06c774d51076251059e8ebb2a2376fee",
+      "bytes": 2600
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/startup-movie-service-20261030/004336c0.c",
+      "sha256": "ea0cf112a79f9952b1ac4e2a8afc34493f3e05f201b816d8315a8579ae484b19",
+      "bytes": 62
+    }
+  ],
+  "verification": {
+    "native_policy": "PASS128 strictO1 ASan/UBSan/LSan actual230 state + mount policy; explicit adjacent DD0/engine/Scene doubles. Positive target/null, reached failure prefixes, fresh reset-bit policy, occupied parent gates, missing returned clip.",
+    "native_actual_owner": "PASS42 strictO1 ASan/UBSan/LSan actual DC0 HumanModelGeometry/joints/movement owner; explicit SOUND/engine doubles. Handle sentinels/flags/ordered failure/retry/repeat construction.",
+    "i386": "PASS strictO0 FULL LINK actual World/publicDD0/230/targetDD0/DC0/Car/StaticWeapon/Scene/GEffects/SOUND. No track-event or mount-assignment Runtime double; adjacent unresolved Runtime methods explicitly throwing doubles.",
+    "application": "PASS existing application-launch/startup-probe strictO2 full links, no execution.",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-native-run.log",
+      "sha256": "64d804f22d10b97175c994f304c0d23885d58001f7f9c8dda4aefec6bedd8db9",
+      "bytes": 110
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-reset-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-reset-native-run.log",
+      "sha256": "5ec06afbe331c31e1d2d5ebb7c40046e3c461e256f49e02b38e4f0eef0e9bee7",
+      "bytes": 94
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-export.log",
+      "sha256": "7531630a8e6040e14cd0d303321b923a22cf7fedcdbe4a8e7fe23b654c1ce02f",
+      "bytes": 4658
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-audit.cpp",
+      "sha256": "86cb328a6e3a39f7a95b52e99cc7d5f602a627bd11d35c427d7916cd2bb85e49",
+      "bytes": 9164
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-audit",
+      "sha256": "09a7e8a0bc797b446aeec93926f018618a50af11b6e086bd79f9be1c05a6298d",
+      "bytes": 1325104
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-reset-audit.cpp",
+      "sha256": "4756971669d22cbb246bf3c182b98bd0e2a67b00f8f8cb324b41083e1fd23357",
+      "bytes": 2388
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-reset-audit",
+      "sha256": "b3ac9ccd11fd01677a7b6bf23f43ac65f353b6e4490b1e2ec7c6e8d3bb990e50",
+      "bytes": 1611600
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-host.cpp",
+      "sha256": "70c5cfeb394db29a843204f16a71a551f42376078570e8c00255dafb636680eb",
+      "bytes": 1070
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-assignment-host.exe",
+      "sha256": "79426b8d83c60a90351bebc14a6ae953cae2dc87ff0b2522f896421b4354978a",
+      "bytes": 4326912
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "0075df70",
+      "0075e250",
+      "007b30b0"
+    ],
+    "extended": [
+      "0078df60",
+      "007913d0",
+      "00758d20"
+    ],
+    "complete": 34,
+    "partial": 3029,
+    "client_partial": 3024,
+    "engine_partial": 5,
+    "denominator": 18783
+  },
+  "remaining": "Original H4 completion, timed transfer and Script/subgroup families remain OPEN. Missing actor20/34 factories external; current Car/StaticWeapon receivers concretely bound. Source/link/audit evidence separate from mission/desktop delivery."
+}

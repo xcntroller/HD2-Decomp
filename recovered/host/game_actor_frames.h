@@ -686,6 +686,14 @@ public:
     void human_model_advance(Frame model,const std::array<std::int32_t,8>& times) {call<void>(model,0xb0,times.data());}
     void human_model_remove_animation(Frame model,std::uint32_t slot) {call<void>(model,0x8c,slot);}
     void human_equipment_tick_model(Frame model,std::int32_t elapsed){call<void>(model,0x20,elapsed);} //00790520 case9.
+    void suppress_human_mount_visuals(Frame model){ //0075DF70 native model120/128 rereads, visual1 virtual80(0).
+        for(std::int32_t n=0;n<field<std::int32_t>(model,0x128);++n){
+            const auto list=field<Frame*>(model,0x120);
+            if(!list||n>=0x100000)throw std::runtime_error("Mounted Human has invalid frame array");
+            const auto frame=list[n];if(!frame)throw std::runtime_error("Mounted Human has null visual");
+            if(frame_kind(frame)==1)call<void>(frame,0x80,0u);
+        }
+    }
     void restore_human_mount_visuals(Frame model){ //0075E290, native flattened model120/128 array is reread each visit.
         for(std::uint32_t n=0;n<field<std::uint32_t>(model,0x128);++n){
             const auto list=field<Frame*>(model,0x120);

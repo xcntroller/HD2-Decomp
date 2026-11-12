@@ -418,3 +418,63 @@ and temporary audit cleanup.
 C9 remains open: track8 containing mount assignment0075DF70 and mounted
 attachment9 are not supplied by these held-model paths. H4's other completion,
 Script, subgroup and attachment families remain open. Continue after C9a.
+
+## Mounted assignment and track8
+
+The original H4 track/DD0 attachment item now includes0075DF70 and230 case9.
+No new milestone is introduced; earlier C labels are historical verified batch
+identifiers, not additions to scope. Remaining work is tracked by H4 family.
+
+Track8 preserves fresh A2C reads: mode=(A2C&~8); mode0 sets bit1, forces E0B0,
+executes0077F2F0(1,false), clears force, chooses event13/5 from fresh bit8 and
+refreshes230. Mode2 writesA2C=-10000 BEFORE choosing event12/4 from the reset
+value, then refreshes230. Other modes select actual model9/EC Human forA30=0
+assignment orA30=2 retirement0075E290. Native unsigned events>24 skip to the
+next event (758D6B..74); all0..24 cases now have actual receivers or original
+no-op behavior. The unbound Runtime track-event callback is removed, not replaced
+with a successful placeholder for a required event.
+
+0075DF70 hides source230 and models3 then2, writesA30=1/rateD0=1, force-writes
+20C=88, clears force. Positive target executes0075E250(0,true):1AC/1B0 then18C
+before the actual00781310 face/random receiver. It clears target1CC/1D0, rebinds
+posture, and conditionally detaches actual occupied A3C actor/A40 only for native
+attachment types4/20/21/34 with a real nonsector5 parent. Scene registration
+looks up z thenq and sends(model,q,z) toSAME Scene138 BEFORE clearing target160/
+A3C/164. Then actual DC0 reset007B30B0, eight fresh target DD0+260 model track
+assignments(NULL,slot,1,0), target1B4=1, visual1 virtual80(0), and target GEffects
+camera amount from sourceHuman94. Source230 event15, refresh and E0D0|8 are LAST.
+
+Actual current Car and StaticWeapon seat-removal owners are reused. Type20/34
+factories are absent from this base (has_scene_actor_factory excludes both); a
+reached required actor receiver fails explicitly. H3 was inspected through Git:
+its current receiver likewise supplies Car/StaticWeapon, so no stale claim that
+those two bodies need an import. Missing other actor families remain outside
+H4; no occupied population is synthesized. Regular loaded Car/StaticWeapon paths
+are concretely linked. Unmerged H3 source is not assumed imported.
+
+007B30B0 clears only6304 bit200 and stops6914 if!=-1, then writes-1; stops6918
+if>=0 then writes-2; then existing007CDA40 retires actual contact frames if690C.
+It retains effect storage/clip. Original004336C0 is MOV EAX,00899728/RET: the
+manager is a constant process object, independent of sound-device availability.
+No invented availability flag/gate or second SOUND owner. Actual stop failures
+preserve the reached handle/flag prefix.0075E250 likewise does not rebuild or
+invent motion geometry; its face callback is the existing actual owner.
+
+230 attachment9 retains actual1C BEFOREB0=9, assigns table0 row288 (nativeD88,
+compact stride12+8 from00783760), slot6/weight1/flags2; queries actual model clip6
+and writes its word8=2, ticks1000, calls00793490(100), then actual OBJ opacity.
+This is distinct from retirement row291/nativeDAC. Missing model is legitimate;
+a missing required returned clip fails explicitly. Existing animation resources,
+track owner, clock and lifetime are reused.
+
+Verification: native strict ASan/UBSan/LSan PASS128 actual230 state + policy with
+explicit adjacent DD0/Scene/engine doubles; positive target/null, all reached
+failure prefixes, exact reset-bit policy and callback-visible change, occupied
+parent gates, actual track-model selection and missing required clip. PASS42
+constructs the actual DC0 HumanModelGeometry/joints/movement owner, checks handle
+sentinels/flag preservation/stop ordering/failure/retry/repeated construction with
+explicit SOUND/engine doubles. Strict actual containing i386 World/publicDD0/
+230/targetDD0/DC0/Car/StaticWeapon/Scene/GEffects/SOUND full link passes with NO
+track-event or mounted-assignment Runtime doubles. Adjacent remaining DD0 runtime
+branches are explicitly throwing doubles. Application/probe link separately;
+no output execution, actual mission reachability or desktop claim.
