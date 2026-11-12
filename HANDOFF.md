@@ -1,12 +1,27 @@
 # P22-HUM H2 handoff —2026-11-12
 
 Active worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h2`, branch
-`feature/p22-hum-h2`. Latest base1629702 (fragments), after1e091a7 (H3)/131e9b4 (worker)/f771a60 (D6a) and fb89d76's move
-frome742f84. Check HEAD/status; preserve unrelated worktrees and user changes.
+`feature/p22-hum-h2`. Latest source checkpoint5491e5b (retained messages), after
+1629702 (fragments),1e091a7 (H3),131e9b4 (worker),f771a60 (D6a) and fb89d76's
+move frome742f84. Check HEAD/status; preserve unrelated worktrees and user changes.
 Read AGENTS.md, Phase2 section2 plan.md, [Human plan](analysis/p22-hum-plan.md).
 **H2 remains OPEN.** No agents/push, original EXE/DLL/Proton or Windows output
 execution. Heavy compilation/Ghidra sequential. Actual application/render/user
 desktop acceptance remains P2.2; this checkpoint is source-only.
+
+## Assignment clarification — user 2026-11-12
+
+H1/H3/H5/H7 are finished on separate branches. This agent owns H2 only. H4 is
+being developed by another agent; keep it separate and do not import its source.
+H6/H8 are unassigned until H2 or H4 finishes. H8 owns full cross-branch Human-frame
+assembly/verification; do not expand H2 into that milestone or require H8 first.
+Preserve H2's actual reaction-owner/producers/retirement verification and exact
+failures. Record reached external contracts without supplying successful doubles.
+The attempted uncommitted H4 import was fully backed out; source/ledger remain
+at5491e5b. Diagnostic evidence is ignored under WORK
+`h2-h4-import-backed-out/`; merged-only results do not verify this checkout.
+The restored H2 native owner-boundary audit PASS100 and launcher/probe rebuild
+passed; temporary new audits were fingerprinted/removed. No new function credit.
 
 ## Latest — D6b2b retained messages and process delivery
 
@@ -80,9 +95,9 @@ unchanged kernels. D5 occupied/non7 Car frame guards remain required.
 4. **D10** actual unmounted0077DE30→0074D510→007B0910→007A7470 can advance without
    all live transport. Existing earlier audits still separate containing control/
    selection/geometry endpoints; they do not close real containing-owner composition.
-   H4 has advanced through committed7191915 (held action geometry/retirement),
-   38108c3 (mounted equipment/opacity) and0f904f4 (particle/SOUND events). Review
-   its latest committed contract/receipt before integration; preserve sibling edits.
+   H4 is an external active branch, not an import task for this agent. Record
+   reached contract gaps, continue independent H2 work, and leave full cross-branch
+   frame assembly to H8. Preserve the other agent’s work and branch separation.
 
 **D11 genuine closure blockers unchanged:** fresh part004CB2CD reads/toggles
 unproduced5F9 BEFORE motion; wheel005FDD10 reads unproduced695 after body/lifetime

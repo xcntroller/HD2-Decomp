@@ -8,6 +8,21 @@ checkboxes remain OPEN. Application loading still declines; no mission desktop
 acceptance has occurred. This plan replaces the former chronological next-work
 list. Detailed behavior/evidence stays in the linked contracts.
 
+## Branch ownership — user clarification 2026-11-12
+
+H1, H3, H5 and H7 are finished on their respective branches. H2 is assigned to
+this worktree/agent. H4 is active with another agent on its separate branch;
+do not import or implement its work here. H6 and H8 are unassigned and will be
+started after H2 or H4 finishes. Finished status does not assert that a branch's
+source is present in this checkout or add function-inventory credit.
+
+H2 completes its reactions/damage/ragdoll source and verifies its own owner,
+producer and retirement boundaries. Reached H4/H6 contracts remain explicit
+external dependencies, not permission to take over those milestones. H8 owns
+full Human-frame assembly and verification across the branches; H2 must not
+require completion of H8 before delivering its own result. Existing required
+source failures remain visible, and application/desktop acceptance stays separate.
+
 ## Completion boundaries
 
 Labels describe the plan: H = Human milestones, D = required dependencies, and
@@ -25,7 +40,8 @@ The selected **H2 reactions/damage/ragdoll** milestone remains open until its
 required producer→dispatch→reaction/damage→contact/effect→retirement path works
 through the actual containing owners, including positive branches, failures and
 re-entry. Leaf fixtures and compile/link alone do not close H2. Full Human frame
-verification also depends on the separately listed H3–H6 behaviors where reached.
+verification belongs to H8 and depends on H3–H6 where reached; H2 records those
+interfaces and dependencies without assuming the other agents’ work.
 P2.2 additionally requires the other workstreams and actual user acceptance.
 
 ## Human milestones
@@ -39,8 +55,9 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
   [H2 integration](checkpoints/p2.2-human-h3-integration-20261112.json) retains D4b/D6b1 owners and D5 guards.
 - [ ] H4 — Common AI outputs: reached00584E30 completions, B0 action/navigation/
   formation, track events and DD0 transition/attachment consumers.
-- [ ] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9
-  release and actual Scene2 actor dispatch.
+- [x] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9
+  release and actual Scene2 actor dispatch. Finished on its separate branch, as
+  confirmed by the user; integration into H2 is not claimed.
 - [ ] H6 — Player items:00542E20 held item,00545140/005454D0 shots and reached
   command/FOV/dry-fire/melee/repair/transport consumers.
 - [x] H7 — Reached breath/blood particle and rest-footprint source through SAME
@@ -245,7 +262,9 @@ interface18 and publish0C before initialization. Do not repeat its completed aud
   the real containing Human/control owner, including source-null/source-present,
   retained clip/joints, obstruction/contact/fall/blast damage, mounted/death and
   effect/contact/audio retirement. Complete only newly reached required receivers.
-  Depends on relevant Car/entry tasks from D0 and H3–H6 receivers where reached.
+  Depends on relevant Car/entry tasks from D0 and external H3–H6 receivers where
+  reached. Verify the H2-owned reaction segment; full cross-branch frame assembly
+  is H8. Do not implement/import active H4 or take over unassigned H6/H8.
 - [ ] D11 — Resolve required unproduced-state boundaries: part5F9, wheel695,
   EXPL record8 and smoke14. Preserve already confirmed findings. For each reached
   path, supply a demonstrated original producer, prove native unreachability or
@@ -257,13 +276,14 @@ interface18 and publish0C before initialization. Do not repeat its completed aud
   preserve both failures. [Exact blocking paths](human-reaction-containing-boundary.md#source-closure-blockers).
   D4b now preserves absent subtype14 placement lazily: zero-health/busy rejection
   and mode2-clear authority do not read it; reached presentation XYZ still fails honestly.
-- [ ] D12 — Consolidated containing-path verification and H2 source closure:
+- [ ] D12 — Consolidated H2-owned containing-path verification and source closure:
   actual dispatch, positive paths, interrupted mutation/cleanup, repeated entry
   and teardown; targeted ASan/UBSan/LSan, strict actual i386 and final launcher.
   Reconcile deferred joint/clip function credit only for frozen implemented bodies,
   record endpoint/integration limits and fingerprint/remove temporary audits.
 
-**H2 exit:** D0's required dependencies and D10–D12 pass, with no reached missing
+**H2 exit:** H2-owned D0 dependencies and D10–D12 pass, with external milestone
+contracts/dependencies recorded and no reached missing
 producer/required receiver hidden by doubles. If a real blocker remains, leave H2
 unchecked and state the exact blocking input/owner/evidence. Do not relabel leaf
 source or link success as a running Human frame. H8 still verifies the entire

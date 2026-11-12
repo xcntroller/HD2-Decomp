@@ -5,6 +5,17 @@ call-path/dependency decision, not additional implementation or function credit.
 H2 and P2.2 remain OPEN. Existing original evidence is indexed in WORK
 `human-d0-containing-index.txt`; detailed source contracts remain authoritative.
 
+## Branch scope clarification — 2026-11-12
+
+The user split Human work across H1–H8 branches: H1/H3/H5/H7 finished, H2
+assigned here, H4 active elsewhere, H6/H8 later and unassigned. This map records
+call dependencies, not ownership of all their implementations. Keep H4 separate;
+record its contracts and required failures rather than importing/taking over its
+work. H2 verifies the reaction/damage/ragdoll segment on its actual owners.
+Full cross-branch Human-frame assembly belongs to H8 and must not be made a
+prerequisite for H2 source delivery. The original-behavior and no-invented-state
+requirements, including D11's demonstrated failures, remain unchanged.
+
 ## Required paths and dependency classification
 
 | D12 case / actual trigger | Containing path and owners | Remaining boundary |
