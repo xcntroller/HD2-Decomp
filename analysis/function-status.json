@@ -19157,13 +19157,17 @@
       "program": "client",
       "entry": "00477660",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00477660: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches.",
+      "coverage": "P2.2 source reconstruction at original entry 00477660: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches. Actual flag1D/kind10 placed Mine now uses SAME World ray startY+.5/displacement(0,-2,0)/masks0/0, actual hit/miss pose, normal Mine creator then actual item removal; failed required model reports error after native removal prefix.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/runtime_actor_registry.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/game/runtime_mine_creation.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-mine-producers-20261112.json"
       ]
     },
     {
@@ -36055,6 +36059,71 @@
         "recovered/host/game_blast_waves.h",
         "analysis/human-runtime-mine-source.md",
         "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004787e0",
+      "status": "partial",
+      "coverage": "SAME module12 broadcast priority selection and two-bit selector1/subkind prefix, native priority0/3 behavior.",
+      "limitations": "Source-only typed owner/template/STL/RAII adaptation; original object/allocator/refcount/SEH ABI and undefined malformed-data behavior not claimed. Focused native sanitizers exercise actual Mine/runtime registry/packet streams with explicit frame, inventory/Scene2 and ray endpoint doubles. Strict actual World/Human inventory/ray/module composition and launcher/probe compile/link pass. Other runtime packet leaves, full Human/entry/frame, actual application loading and desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/runtime_actor_packets.h",
+        "recovered/host/game_runtime_actors.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-mine-producers-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004788e0",
+      "status": "partial",
+      "coverage": "Actual runtime module presentation envelope: two-bit selector/subkind, ten-bit runtime token and existing actor1C dispatch, signed16 Mine IDs/default-profile pose decode and00478D30 dispatch; native true/missing/unknown consumption.",
+      "limitations": "Source-only typed owner/template/STL/RAII adaptation; original object/allocator/refcount/SEH ABI and undefined malformed-data behavior not claimed. Focused native sanitizers exercise actual Mine/runtime registry/packet streams with explicit frame, inventory/Scene2 and ray endpoint doubles. Strict actual World/Human inventory/ray/module composition and launcher/probe compile/link pass. Other runtime packet leaves, full Human/entry/frame, actual application loading and desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/runtime_actor_packets.h",
+        "recovered/host/game_runtime_actors.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-mine-producers-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00478b90",
+      "status": "partial",
+      "coverage": "Actual catalogue34 model resource, factory/load/direct pose/update, same runtime create/activate/bind, factory-reference release BEFORE definition/identity-based inventory removal; optional late-mode original-pose Mine wire; retained owner on later failure.",
+      "limitations": "Source-only typed owner/template/STL/RAII adaptation; original object/allocator/refcount/SEH ABI and undefined malformed-data behavior not claimed. Focused native sanitizers exercise actual Mine/runtime registry/packet streams with explicit frame, inventory/Scene2 and ray endpoint doubles. Strict actual World/Human inventory/ray/module composition and launcher/probe compile/link pass. Other runtime packet leaves, full Human/entry/frame, actual application loading and desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/runtime_mine_creation.h",
+        "recovered/host/game_runtime_actors.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-mine-producers-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00478cc0",
+      "status": "partial",
+      "coverage": "SAME004787E0 module12 command0/prioritytrue; three16-bit IDs, primary(-1) position/axis mask7, secondary(-1) direction, broadcast finish through existing process streams.",
+      "limitations": "Source-only typed owner/template/STL/RAII adaptation; original object/allocator/refcount/SEH ABI and undefined malformed-data behavior not claimed. Focused native sanitizers exercise actual Mine/runtime registry/packet streams with explicit frame, inventory/Scene2 and ray endpoint doubles. Strict actual World/Human inventory/ray/module composition and launcher/probe compile/link pass. Other runtime packet leaves, full Human/entry/frame, actual application loading and desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/runtime_actor_packets.h",
+        "recovered/host/game_runtime_actors.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-mine-producers-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00478d30",
+      "status": "partial",
+      "coverage": "Modebit1 runtime identity-only return; actual model/resource/pose, Scene2 source lookup, explicit runtime identity create/bind, frame release BEFORE optional actual Human inventory retirement, no publication.",
+      "limitations": "Source-only typed owner/template/STL/RAII adaptation; original object/allocator/refcount/SEH ABI and undefined malformed-data behavior not claimed. Focused native sanitizers exercise actual Mine/runtime registry/packet streams with explicit frame, inventory/Scene2 and ray endpoint doubles. Strict actual World/Human inventory/ray/module composition and launcher/probe compile/link pass. Other runtime packet leaves, full Human/entry/frame, actual application loading and desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/runtime_mine_creation.h",
+        "recovered/host/game_runtime_actors.h",
+        "analysis/human-runtime-mine-source.md",
+        "analysis/checkpoints/p2.2-human-mine-producers-20261112.json"
       ]
     }
   ]

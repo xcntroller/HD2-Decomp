@@ -47,6 +47,17 @@ public:
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
     void emit_mine_effect(const GameActorServices::Vector& position,const GameActorServices::Vector& direction,std::uint32_t particle,std::int32_t sound){consumers_.emit_mine_effect(position,direction,particle,sound);}
+    bool consume_mine_inventory(typename Runtime::Instance* human,std::int32_t definition){return consumers_.consume_mine_inventory(human,definition);}
+    auto* mine_scene_actor(std::int32_t identity){require_open();return scene_.frames().scene_actor_identity(identity);}
+    void publish_mine(std::int32_t identity,std::int32_t human,std::int32_t definition,const game::HumanVector& position,const game::HumanVector& direction){
+        consumers_.publish_mine(identity,human,definition,position,direction);
+    }
+    auto mine_ground_ray(const game::HumanVector& start,const game::HumanVector& displacement){
+        require_open();
+        game::CollisionRay<GameActorServices::Frame,typename Scene::Descriptor,GameCollisionResources,GameActorServices>
+            query(&scene_.collision_tree(),&scene_.buckets(),scene_.collision_resources(),scene_.frames());
+        return query.ray(start,displacement,0,0,true); //006F7C90: SAME World, both exclusion masks0, actual hit normal.
+    }
     auto& physics(){require_open();return physics_;}auto& item_models(){require_open();return models_;}
     template<class Callbacks>void bind_car_physics(Callbacks& callbacks){
         require_open();

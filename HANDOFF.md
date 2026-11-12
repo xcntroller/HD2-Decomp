@@ -11,7 +11,7 @@ Continue dependencies until the FULL selected checkbox completes or genuinely bl
 explicitly requested returning here. Check HEAD/status before acting. Transfer
 was byte-verified in ignored WORK `human-return-main-20261111`. Preserve other
 LIFE/UI/PACK/research worktrees, `/tmp/hd2-p22-hum-continue` and external merges.
-Latest preceding checkpointda59872; older hashes may differ after rebases.
+Latest preceding checkpointc4895a4; older hashes may differ after rebases.
 
 No original EXE/DLL/Proton or Windows fixture execution. Native own audits only;
 Windows compile/link only. Heavy compilation and Ghidra **sequentially**. No push.
@@ -19,6 +19,24 @@ Source-only checkpoints may be committed; interactive acceptance requires user.
 Application mission loading remains disabled; no mission desktop verification.
 
 ## Latest source result
+
+[Normal Mine producer receipt](analysis/checkpoints/p2.2-human-mine-producers-20261112.json)
+adds5 partials/extends00477660, zero promotions:34 complete/2685 partial(2680client+
+5engine).00478B90/00478D30 actual model/resource/direct pose→runtime create/activate/
+bind→factory-reference release→definition then ID-based Human inventory retirement.
+Late-mode optional00478CC0 uses ORIGINAL pose and SAME process broadcast streams;
+module12 command prefix2+2bits, IDs16/default primary(-1)/axis mask7/direction(-1).
+004788A0 authority/004788E0 presentation envelopes now dispatch actual Mine leaves;
+other actor leaves remain required errors.004788A0 absent frozen getsZERO credit.
+Placed flag1D/kind10 now uses SAME World ray startY+.5/displacement(0,-2,0), masks0/0,
+actual hit normal or genuine miss fallback, then creator→actual item removal. Missing
+required geometry fails; missing model releases temporary frame and removes placed
+entry before containing mandatory-load failure. Created actor survives later bind/
+inventory/wire failure. Raw overrides misleading driver-call C aliases.
+ASan/UBSan/LSan prior800+400 producer lifetimes/cursor/ownership/failure PASS. Frames,
+inventory/Scene2 and ray endpoints explicit doubles. Strict actual full World/Human
+inventory/ray/module/Mine i386 and final launcher/probe compile/link PASS
+`human-runtime-mine-producers-{host,application}-i386.log`. No Windows execution.
 
 [Runtime Mine receipt](analysis/checkpoints/p2.2-human-runtime-mine-20261112.json)
 adds13 partials/extends6, no promotions:34 complete/2680 partial (2675 client+5
@@ -57,15 +75,13 @@ clip/contact audit needed.
 
 ## Next work
 
-1. Finish Mine normal producers before admitting their routes:00478B90 real model/
-   resource/pose/frame setup→runtime create/activate→005FE010→local reference update,
-   then optional00478CC0 wire publication. Actual placed-item kind10 currently
-   requires original ground ray006F7C90; do not substitute flat/empty geometry or
-   remove that guard. Actual module12 envelopes/authority/presentation receivers
-   remain required. WORK `human-runtime-kind2-*` and `human-runtime-mine-*` contain
-   originals/ABI/raw/vtable/verification. ABI-v2 has correct no-arg005FEBB0;
-   00451A80 C export tail is misleading after indirect SOUND call: use raw stack.
-   Exact005FDFB0 index lookup was late after its export; do not claim otherwise.
+1. Continue full containing Human frame/dependency boundary. Mine normal producers,
+   placed-ground and module12 envelopes now have source bodies; do not reopen unchanged
+   kernels. Other runtime packet leaves, save/replay and positive Mine contact-trigger
+   005FEFB0 are still required if reached. Versions0043C6A0/0043B000 transitions block
+   positive Car/blast frameEC word5; index lookup saved WORK
+   `human-containing-versions-transition-index.txt`, existing originals reused, no new
+   Versions export yet. Full contract `analysis/human-runtime-mine-source.md`.
 2. Full status9/received0 entry remains unbound. Read
    `analysis/multiplayer-world/shared-world.md`.00730A40 needs actual peer6C/client334
    wrappers/worker lifecycle, then0072E890, then00731610(true). Read-only pinned

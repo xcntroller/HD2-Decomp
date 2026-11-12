@@ -7,6 +7,7 @@
 #include "frontend/localized_text.h"
 #include "frontend/spatial_sound.h"
 #include "game/shot_effect.h"
+#include "game/runtime_actor_packets.h"
 #include <limits>
 
 namespace hd2::game {
@@ -84,6 +85,13 @@ public:
     void emit_mine_effect(const HumanVector& position,const HumanVector& direction,std::uint32_t particle,std::int32_t sound){
         auto& world=d();emit_shot_effect_without_material(world.startup.shot_manager_process(),world.sound,
             world.startup.mission_effects_process(),world.scene.frames(),position,direction,particle,sound);
+    }
+    template<class Actor>bool consume_mine_inventory(Actor* borrowed,std::int32_t definition){
+        auto& world=d();auto& human=world.world_actors.human_loading_actor(borrowed);
+        return world.human_factory.world_services().consume_human_mine_inventory(human,definition);
+    }
+    void publish_mine(std::int32_t identity,std::int32_t human,std::int32_t definition,const HumanVector& position,const HumanVector& direction){
+        publish_runtime_mine(d().broadcast_packets,identity,human,definition,position,direction);
     }
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(typename Dependencies::Frame frame,void* callback,Resolve&& resolve,Type&& type){
         return d().startup.add_game_sound_listener(frame,callback,std::forward<Resolve>(resolve),std::forward<Type>(type));

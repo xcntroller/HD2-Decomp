@@ -575,6 +575,15 @@ public:
         if(slot==3){state.words().set(0xd4,std::int32_t{-10000});state.model(0,typename Dependencies::ActorFrames::Frame{});
             state.words().set(0x30,std::int32_t{-1});state.words().set(0x34,std::int32_t{-1});}
     }
+    template<class Human>bool consume_human_mine_inventory(Human& human,std::int32_t definition){ //00478B90/00478D30 after factory frame release.
+        auto& items=dependencies().world_actors.items();
+        const auto entry=find_human_inventory_definition(human,items,definition);
+        if(!entry)return false;
+        //Native performs a SECOND identity lookup005A7B70. Preserve holder
+        //priority/duplicate-identity behavior rather than retiring this entry directly.
+        const auto identity=items.runtime_item(entry).identity;
+        remove_human_inventory_item(human,items,identity,true,*this);return true;
+    }
     template<class Human,class Entry>void drop_human_damage_item(Human& human,Entry requested,const HumanVector& velocity){ //005A3490→00478EE0.
         drop_human_damage_item_identity(human,dependencies().world_actors.items().runtime_item(requested).identity,velocity);
     }

@@ -170,6 +170,7 @@ public:
             return true;
         }
         if(kind==4&&!authority){bound(*module,d_.scripts.module());return d_.scripts.module().receive(&packet);} //00424590→0042B650.
+        if(kind==12)return d_.world_actors.runtime().receive_packet(packet,authority); //004788A0/E0, required positive leaves remain checked.
         if(authority&&kind!=12)return false; //Original default module28 returnsfalse.
         if(!authority&&kind!=4&&kind!=7&&kind!=12&&kind!=14&&kind!=16)return false;
         throw std::runtime_error("Required actual authority/presentation module packet receiver is unavailable");

@@ -103,3 +103,7 @@ the containing frame/failure/re-entry/teardown. Detailed boundaries are in
 [the active contract](human-ragdoll-source.md).
 The full selected checkbox, P22-HUM and P2.2 remain open; no application or desktop
 acceptance is claimed.
+
+Normal Mine creation/ground placement, Human inventory consumption and module12
+packet envelopes now have a [source checkpoint](checkpoints/p2.2-human-mine-producers-20261112.json).
+Continue full entry, Versions and containing frame dependencies; no Human checkbox closure.

@@ -7,6 +7,8 @@
 #include "game/runtime_actor_registry.h"
 #include "game/mine_scene_actor.h"
 #include "game/shot_effect.h"
+#include "game/runtime_mine_creation.h"
+#include "game/runtime_actor_packets.h"
 #include "frontend/localized_text.h"
 
 namespace hd2::host {
@@ -45,6 +47,26 @@ public:
         return static_cast<LooseItemActor*>(registry_.create(11,frame,identity));
     }
     Mine* create_mine(Frame frame,std::int32_t identity=-1){return static_cast<Mine*>(registry_.create(2,frame,identity));}
+    Mine* place_mine(Instance* human,std::int32_t definition,const game::HumanVector& position,const game::HumanVector& direction,bool publish){
+        return game::create_runtime_mine(frames_,*this,items_.catalogue(),human,definition,position,direction,publish);
+    }
+    Instance* present_mine(std::int32_t identity,std::int32_t human,std::int32_t definition,const game::HumanVector& position,const game::HumanVector& direction){
+        return game::present_runtime_mine(frames_,*this,items_.catalogue(),identity,human,definition,position,direction);
+    }
+    auto* mine_scene_actor(std::int32_t identity){return activation_.mine_scene_actor(identity);}
+    bool consume_mine_inventory(Instance* human,std::int32_t definition){return activation_.consume_mine_inventory(human,definition);}
+    void publish_mine(std::int32_t identity,std::int32_t human,std::int32_t definition,const game::HumanVector& position,const game::HumanVector& direction){
+        activation_.publish_mine(identity,human,definition,position,direction);
+    }
+    bool receive_packet(game::SessionPacketStream& packet,bool authority){return game::receive_runtime_actor_packet(*this,packet,authority);}
+    void receive_runtime_authority(Instance& actor,game::SessionPacketStream&){
+        if(actor.base().type()==2)return; //005FEBA0, actual Mine vtable20 RET4.
+        throw std::runtime_error("Required runtime actor authority packet leaf is unavailable");
+    }
+    void receive_runtime_presentation(Instance& actor,game::SessionPacketStream& packet){
+        if(actor.base().type()==2){static_cast<Mine&>(actor).receive(packet);return;}
+        throw std::runtime_error("Required runtime actor presentation packet leaf is unavailable");
+    }
     void set_runtime_actor_active(Base& base,bool value){set_active(base,value);}
     void set_scene_actor_active(Base& base,bool value){activation_.set_scene_actor_active(base,value);}
     std::string mine_caption(std::int32_t identity){
@@ -81,8 +103,13 @@ public:
         for(std::size_t index=0;index!=items_.placed_items().size();++index) {
             const auto placed=items_.placed_items()[index];
             auto& item=items_.runtime_item(placed.entry);
-            if(item.flag1d&&item.definition().kind()==10)
-                throw std::runtime_error("Required placed item ground/effect receiver is unavailable");
+            if(item.flag1d&&item.definition().kind()==10){
+                const auto pose=game::placed_mine_pose(activation_,placed.position);
+                const auto* mine=place_mine(nullptr,static_cast<std::int32_t>(item.definition().identifier),pose.first,pose.second,false);
+                items_.remove_runtime_item(placed.entry); //007DC8A0 after00478B90, including a failed model load.
+                if(!mine)throw std::runtime_error("Required placed Mine model resource failed to load");
+                continue;
+            }
             auto model=item.model();
             if(!model)throw std::runtime_error("Placed mission item model is unavailable");
             frames_.object_position(model,{placed.position[0],placed.position[1],placed.position[2]});
