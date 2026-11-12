@@ -497,7 +497,7 @@ bool advance_human_walk_motion(Control& control,Look& look,Human& human,Services
                 }
             }
         }
-        if(word(0x1d8)==17&&primary)runtime.human_walk_debug_beep(); //Original MessageBeep(-1).
+        if(word(0x1d8)==17&&primary)services.human_walk_debug_beep(); //Original MessageBeep(-1), SAME World/platform.
         if((supported||move_real(0xf4)>9.81f)&&primary&&steep){
             finish_human_walk_fall(control,look,human,services,runtime,move_real(0xf4)>9.81f,publish); //00770B90.
             clear_stall();

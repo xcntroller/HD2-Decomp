@@ -1,9 +1,9 @@
-# P22-FRAME implementation —2026-11-11
+# P22-FRAME implementation —2026-11-12
 
 Fresh fetched/actual base05dbdee51cc366476317011b91b1a1863041dcee;
 isolated feature/p22-frame. [Plan](p22-frame-plan.md). Source-only: application
 loading/forwarding remains disabled in OWN; no original/Windows code or desktop
-execution. RENDER54a93e7 and UI74220d4 were inspected read-only, not imported.
+execution. RENDER54a93e7, current UIebdcbf5 and masterb132e6d were inspected read-only; their unmerged changes are not imported.
 The inherited master/Human handoff does not authorize editing that checkout here.
 
 ## Implemented session and control boundary
@@ -112,7 +112,7 @@ retained application descriptor, UI warning/filter/modal/control/HUD/FPV and
 Human input, cutscene and non7 input/peer receivers. The concrete FRAME adapter
 binds all available local owners; this interface has no successful defaults.
 
-At inspected UI74220d4, `advance_hud(elapsed,GameUiHudFrameSources)` and
+At current inspected UIebdcbf5, `advance_hud(elapsed,GameUiHudFrameSources)` and
 `advance_first_person(elapsed)` already exist on unmerged GameUiPresentation.
 Its `process_hud_controls(...,first,second,64)` exists too. UI/OWN must bind their
 real order/command/occupied/console sources and the exact0049FC10/0049F090/
@@ -128,13 +128,119 @@ motion/action/attachment/Player weapon/formation, Dog/Sight and loose-item physi
 consumers still need concrete positive services. Required boundary doubles in the
 i386 audit throw if called; they are not production bindings or mission evidence.
 
-The independent Runtime11 continuation is currently under investigation:
-005B7320/005B7480 call embedded RigidBody virtual24=004C9000, not module2 Physics.
-Fresh read-only, transaction-rolled-back exports establish its virtual20=
-004C8EE0 substep policy and positive integration004C94B0/004CB2B0 dependency.
-Those integration producers own collision records5BC/5C4 and sleep/contact state;
-they must not be replaced with an empty collection, a successful tick or module2.
-Original004C9000 and005B7EC0 exports are evidence, not implementation credit.
+### Runtime11 containing source and real packet/fade bindings
+
+005B7320/005B7480 are now methods of the existing DynamicItemActor, dispatched
+by GameSceneActorFrames through SAME GameRuntimeActors. Authority entry90 gate
+precedes all work;6B0 wraps before conditional body24;6AC countdown restores via
+005B7EC0 BEFORE publishing-1. Finite6A0 wraps and uses signed<=0; expiry calls
+GEffects60, hides/updates the actual model, publishes the real module12 message,
+then writes-1, and only then removes through the existing deferred registry when
+mode2 is clear. No actor reads follow removal. Positive<=500 publishes6A8 before
+the existing retained fade-out queue; failures preserve that prefix. Presentation
+always calls body24 first, even with no item, and only then wraps/clamps6A4.
+
+Raw00486E90 confirms GEffects60 is NOT fade cancellation: it invokes virtual50
+with0, actual00486D30→model54(1). The concrete adapter uses existing
+EffectsShadowModels.model_camera_amount;64 uses SAME frame_fades().fade_out,
+remaining time and hide=false. Expiry leaves retained fade records alive.
+
+publish_expiration writes through SAME Dependencies.broadcast_packets, which
+already borrows Startup's process owner: begin(12,0), selector0/2 bits, actual
+actor10 identity/10 bits, opcode0/**3 bits**, finish_broadcast. Original
+005B73DC..005B7404 uses DOUBLE4/DOUBLE2 logarithms plus DOUBLE1 then __ftol=3;
+Mine's two-bit command is a different grammar. Existing stream header5 makes
+20 written bits. No duplicate packet, transport or stream registry is introduced;
+no missing unmerged helper is assumed. This binds the actual production consumer,
+while native execution uses labelled engine/physics boundaries.
+
+Body24 is REQUIRED through advance_loose_item_body(body,elapsed,SAME WorldActors).
+It is separate from module2 physics. The actual implementation is now committed
+on masterc1908cf, **after this worktree's exact base**: RigidBody.update plus
+GameWorldActors.update_detached_body and its ray/exclusion/actor/water endpoints.
+Its callback contract also changes from Descriptor* to full ContactEvent*, so
+import must include the matching DynamicItemActor and callers. No body/kernel
+or ledger was copied. Its source proof confirms fresh part5F9 is unproduced;
+004CB2B0 reads it before motion. False/zero/random initial state is forbidden.
+Current master source is therefore an import dependency with a remaining original
+state-provenance blocker, not proof that a live item can move. Wheel695 is a
+separate confirmed original unknown on its reached launch path.
+
+005B7EC0's original offline7 RET is bound. Positive non7 restore still needs the
+SAME Runtime retained-items array, original pose/005B7DA0, quaternion inversion,
+vector/direction quantizers and module12 publication. It remains an explicit
+required Runtime receiver; no synthetic saved item or packet is installed.
+
+### Existing Human leaves connected without taking over HUM
+
+00768170 now calls the existing real007646F0 generic walk coordinator over SAME
+DD0/Look/Human/World, with actual command publication and its boolean result;
+the timer still publishes first. This removes a redundant whole-walk Runtime
+callback, not the solver's positive HUM/geometry dependencies. Ladder0074B4F0/00768230 and step0074A690 route notifications to SAME existing
+World.notify_human_ladder_probe, which still explicitly rejects the missing
+non7 command15 producer00588D20. There is no successful notification substitute.
+007646F0's reached native MessageBeep(-1) uses the actual GameActorServices Win32
+endpoint through World; no Runtime debug-beep callback remains. Delegated Win32
+execution earns no function credit and was not run.
+
+### Mutable original input pair correction
+
+Frame input, lifecycle forwarding, external HUD/Player interfaces and neutral
+Registry access now preserve mutable uint32_t arrays. HUD controls consume the
+same arrays before Player input and the final2E status gate; a const pointer
+seam could not bind current UI.process_hud_controls correctly. No copies or
+additional polls are introduced. OWN's still-disabled application forwarding
+must carry the actual writable sampled views; it must not cast genuinely
+read-only storage. Other application states and their interface are untouched.
+
+### Remaining blockers, with owners and reached branches
+
+[Exact current Runtime contracts](p22-frame-external-contracts.json) records54
+required typed operations with their current consumer lines and gates. This is
+an instantiation inventory, NOT54 observed Tutorial failures or a claim that all
+callee bodies are missing everywhere. Four redundant boundaries were removed:
+walk, Ladder notification, platform beep and whole loose-item update; the latter
+is replaced by specific physics and positive restoration requirements. Packet
+expiry is now concretely bound to the base's real process API.
+
+- **HUM/physics import:** masterc1908cf actual kernels004C9000/004C94B0/
+  004CB2B0 and SAME World adapters; original first5F9 read remains blocked even
+  after source import. Actual bodies now exist elsewhere; do not repeat an
+  across-all-branches missing-body claim.
+- **HUM/Player/Items:** remaining B0 families, DD0 action/motion events,
+  attachment/action/formation, weapon/item24, actual0053BF90 input mapping and
+  Dog/Sight producers are not FRAME replacements. Native inputs/populations may
+  determine which branches run, but absent captures do not prove inactivity.
+- **PACK/Runtime:** positive005B7EC0 retained restore and non7 notification/input
+  transport; actual stream ownership exists and is already reused for expiry.
+- **UI import:** source is COMPLETE on unmergedebdcbf5, not missing. The base
+  lacks advance_hud/advance_first_person/process_hud_controls and the updated
+  command render receiver. Use GameUiHudFrameSources/GameUiHudControlSources,
+  actual mutable64-word views, and real order/command/network/selector/console
+  loans. GameSessionFrameExternal is the explicit consumer boundary; no false
+  HUD suppression or successful external receiver was supplied.
+- **RENDER import:**54a93e7 actual stages/callback/procedural/special-model source;
+  strict initial volume3C/40 remains an original provenance blocker. General
+  network overlay00724CB0 is still an actual RET, not a network prerequisite.
+- **Conditional non7 session FRAME bodies remain OPEN:**0069AF10 requires
+  actual config170 console/007447B0 messages,88=3 match-reset/peers/config238/
+  224/27C,88=2 round/config234 and positive00699B50/00699320;0069B230 requires
+  0069EED0 clock, config224/23C/240 and0072A0B0/0072DCD0/0072B1C0 command/peer
+  producers plus90/9C pending queues. Those typed process/config/peer owners
+  are not exposed by this base's session seam. Both paths fail explicitly after
+  their preserved native prefix; no offline flag is forced to admit them.
+- **OWN/LIFE:** actual controller identity/requests/saved state, script cutscene
+ 00423EB0, loaded install/application mutable input forwarding and scheduling;
+  retire this coordinator before finish/rollback/World destruction. Existing
+  render-before-fixed/update/present policy is unchanged.
+
+FRAME is **blocked, not source complete overall**. Its offline session/control
+and Runtime11 containing work and available base bindings are verified. Concrete
+physics/positive restore and conditional non7 bodies above stay open; these are
+not relabelled completed just because they need other component contracts.
+Further progress needs those imports/producers or original state provenance,
+not another successful boundary double. No merge, push or application enabling
+was performed.
 
 ## Verification checkpoint scope
 
@@ -160,4 +266,26 @@ binding/forwarding/retirement. Required external UI/Runtime endpoints are explic
 throwing, defined doubles, not unresolved declarations. No production closure is
 claimed for those unavailable endpoints. Existing application link is checked
 separately; no Windows fixture or original code is executed. Temporary audit
-sources/binaries will be fingerprinted/removed in the checkpoint receipt.
+sources/binaries are fingerprinted/removed in the checkpoint receipts.
+
+
+## Final containing-frame checkpoint
+
+[Receipt](checkpoints/p22-frame-runtime-20261112.json) records actual source and
+original export fingerprints. Native ASan/UBSan/LSan passes100 loose-item policy
+families plus100 actual RuntimeActorRegistry creation/deferred-removal lifetimes,
+actual RigidBody loading/geometry and shared retained EffectsFrameFades, actual
+SessionBroadcastPackets bit serialization and partial body/fade/restore/packet
+failure/retry prefixes. Engine geometry/visibility/math, positive physics, saved
+item restore and sound emissions are explicit doubles. Native input audit passes
+100 writable input pairs, UI mutation visible to Player/final session gate and
+failed UI prefix. It does not load a real mission or seed production populations.
+Strict i386 full actual World/lifecycle/module graph defines throwing external
+UI/Runtime doubles and omits the removed Runtime methods; link succeeds through
+the new actual containing/fade/packet/Win32 bindings. Existing application link
+passes separately. Windows outputs are never executed. Temporary fixture
+sources/binaries/scripts are fingerprinted and removed; concise logs retained.
+Two new partial inventory entries005B7320/005B7480, coverage expansions only for
+0069A560/00768170, and zero complete promotions. No kernel/delegated/absent-entry
+credit. Existing full-ledger tracker is still limited by the unrelated missing
+legacy0062D880 WORK evidence; focused changed-entry/inventory checks pass.

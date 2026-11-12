@@ -82,12 +82,62 @@ public:
     template<class Sound>void contact_sound(Sound& sound) { //005B7570, actual item definition38 and world pose.
         emit_dynamic_item_contact(this->backend_,items_,entry_,this->base_.frame(),field6a4_,sound);
     }
+    template<class Services>void advance_frame(bool authority,std::uint32_t elapsed,Services& services) {
+        if(!authority) { //005B7480: body24 runs even without item90, BEFORE cooldown.
+            services.advance_loose_item_body(body_,elapsed);
+            if(field6a4_!=0) {
+                field6a4_=subtract_time(field6a4_,elapsed);
+                if(field6a4_<0)field6a4_=0;
+            }
+            return;
+        }
+        if(!entry_)return; //005B7320, native entry90 gate precedes every write.
+        require_bound(); //Native safety: do not consume a partially bound source object.
+        field6b0_+=elapsed;
+        if(!(activation_.mode_flags()&2u))services.advance_loose_item_body(body_,elapsed);
+        if(field6ac_!=-1) {
+            field6ac_=subtract_time(field6ac_,elapsed);
+            if(field6ac_<=0) {
+                services.restore_loose_item(*this); //005B7EC0, actual retained-item/packet producer.
+                field6ac_=-1; //Publish only AFTER successful receiver.
+            }
+        }
+        if(field6a0_==-1)return;
+        field6a0_=subtract_time(field6a0_,elapsed);
+        if(field6a0_<=0) {
+            services.restore_loose_item_opacity(this->base_.frame()); //GEffects60=00486E90, NOT fade cancellation.
+            this->backend_.object_visible(this->base_.frame(),false);
+            this->backend_.update_scene_object(this->base_.frame());
+            services.send_loose_item_expiration(*this); //00478780(id,true), opcode0/3 bits,00478880.
+            field6a0_=-1;
+            if(!(activation_.mode_flags()&2u)) {
+                services.remove_loose_item(this); //Actual deferred runtime registry. No subsequent actor read.
+                return;
+            }
+        }else if(field6a0_<=500&&!flag6a8_) { //Native FILD signed integer versus FLOAT0080F6F0=500.
+            flag6a8_=true; //Failed fade must preserve this publication.
+            services.fade_loose_item(this->base_.frame(),field6a0_);
+        }
+    }
+    template<class Packets>void publish_expiration(Packets& packets) const {
+        //005B7320 calls00478780 with priority=true over the existing process
+        //module12 broadcast stream. No additional packet/transport owner.
+        auto& packet=packets.begin(12,0);
+        packet.write(0,2);packet.write(static_cast<std::uint32_t>(this->base_.id10()),10);
+        //FYL2X(log4/log2)+DOUBLE1 -> __ftol is3, distinct from Mine's2-bit command.
+        packet.write(0,3);packet.finish_broadcast(); //00478880→0072BF90.
+    }
     Entry entry() const {return entry_;}
     Body& body() {return body_;}
     void thrown_lifetime(std::int32_t value){require_bound();field6ac_=value;} //00478EE0's nonoffline kind20 branch.
     std::int32_t lifetime() const {require_bound();return field6a0_;}
     std::int32_t sound_cooldown() const {require_bound();return field6a4_;}
+    std::uint32_t frame_age() const {require_bound();return field6b0_;}
 private:
+    static std::int32_t subtract_time(std::int32_t value,std::uint32_t elapsed) {
+        const auto bits=static_cast<std::uint32_t>(value)-elapsed;
+        std::int32_t result;std::memcpy(&result,&bits,4);return result;
+    }
     void require_bound() const {if(!bound_)throw std::logic_error("Loose item fields require completed binding");}
     Activation& activation_;Items& items_;Body body_;
     Entry entry_{};

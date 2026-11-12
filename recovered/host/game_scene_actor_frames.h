@@ -109,7 +109,7 @@ private:
 
 //Actual Scene2 frame facade: SAME registered actors, buckets, proximity and
 //Human state owners as loading/activation. Runtime supplies positive leaves
-//inside the Human body plus actual Dog and runtime11 ticks.
+//inside the Human body, actual Dog, and required loose-item physics/PACK leaves.
 template<class Dependencies,class Services,class Runtime>class GameSceneActorFrames {
 public:
     using Actor=GameSceneActors::Instance;
@@ -117,7 +117,20 @@ public:
     GameSceneActorFrames(Dependencies& dependencies,Services& services,Runtime& runtime)
         :d_(dependencies),services_(services),movement_(dependencies,services),runtime_(runtime){}
     void tick_scene(bool authority,std::uint32_t elapsed){d_.scene.frames().tick_scene_actors(authority,elapsed,*this);}
-    void tick_runtime(bool authority,std::uint32_t elapsed){d_.world_actors.runtime().tick(authority,elapsed,runtime_);}
+    void tick_runtime(bool authority,std::uint32_t elapsed){d_.world_actors.runtime().tick(authority,elapsed,*this);}
+    template<class Item>void update_loose_item(Item& item,bool authority,std::uint32_t elapsed){
+        item.advance_frame(authority,elapsed,*this);
+    }
+    template<class Body>void advance_loose_item_body(Body& body,std::uint32_t elapsed){
+        runtime_.advance_loose_item_body(body,elapsed,d_.world_actors); //004C9000 over SAME body/World collision owners.
+    }
+    template<class Item>void restore_loose_item(Item& item){ //005B7EC0's offline RET; positive retained-item restoration remains required.
+        if((mode_flags()&7u)!=7u)runtime_.restore_loose_item(item,d_.world_actors.runtime());
+    }
+    template<class Item>void send_loose_item_expiration(Item& item){item.publish_expiration(d_.broadcast_packets);}
+    template<class Item>void remove_loose_item(Item* item){d_.world_actors.runtime().remove(item);}
+    void restore_loose_item_opacity(GameActorServices::Frame frame){(void)d_.scene.effects().model_camera_amount(frame,0);}
+    void fade_loose_item(GameActorServices::Frame frame,std::int32_t remaining){d_.scene.effects().frame_fades().fade_out(frame,remaining,false);}
     std::uint32_t mode_flags()const{return d_.startup.application_flags();}
     bool human_remote_ai_enabled(){return d_.startup.human_remote_ai_enabled();}
     void flush_retired_scene_actors(std::uint32_t elapsed){

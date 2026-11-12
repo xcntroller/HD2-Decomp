@@ -117,11 +117,11 @@ bool prepare_human_step_motion(Control& control,Look& look,Human& human,Services
     state.set(0x200,0u);normalize_human_primary_animation(state,0x1fc);
     if(!offline){
         switch(word(0x1fc)){
-        case 10:runtime.notify_human_ladder_probe(human,6u);break;
-        case 11:runtime.notify_human_ladder_probe(human,1u);break;
-        case 12:runtime.notify_human_ladder_probe(human,2u);break;
-        case 13:runtime.notify_human_ladder_probe(human,3u);break;
-        case 14:runtime.notify_human_ladder_probe(human,0u);break;
+        case 10:services.notify_human_ladder_probe(human,6u);break;
+        case 11:services.notify_human_ladder_probe(human,1u);break;
+        case 12:services.notify_human_ladder_probe(human,2u);break;
+        case 13:services.notify_human_ladder_probe(human,3u);break;
+        case 14:services.notify_human_ladder_probe(human,0u);break;
         default:break;
         }
     }

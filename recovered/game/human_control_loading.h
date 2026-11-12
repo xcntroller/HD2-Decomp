@@ -252,7 +252,9 @@ public:
     template<class Runtime>void advance_special_ground_motion(std::int32_t elapsed,Runtime& runtime){ //00768170.
         auto& movement=movement_.frame_words();
         movement.set(0x100,movement.template get<std::uint32_t>(0x100)+static_cast<std::uint32_t>(elapsed));
-        if(runtime.advance_human_walk_motion(*this,elapsed)&& //007646F0, native boolean result.
+        auto& look=services_.human_look_control(*human_);
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        if(game::advance_human_walk_motion(*this,look,*human_,services_,elapsed,runtime,publish)&& //SAME actual007646F0, native boolean result.
                 movement.template get<std::int32_t>(0x100)>((mode_flags()&7u)==7u?1:80)){
             tracks_.motion_impulse({{0,0,0,0}},0);
             tracks_.motion_deceleration({{0,0,0,0}},0);

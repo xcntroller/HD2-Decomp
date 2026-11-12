@@ -25,7 +25,7 @@ template<class Services>bool finish_loading_objective_delay(SessionActivationSta
 //0069A560: native initial500ms/fade2500 gates precede HUD or any input access.
 //The positive containing body uses actual required UI/save/player consumers.
 template<class Services>bool input_loading_session(SessionActivationState& state,Services& services,
-        const std::uint32_t* first,const std::uint32_t* second){
+        std::uint32_t* first,std::uint32_t* second){
     if(session_frame_signed(state.words.get<std::uint32_t>(0x20))>0)return true;
     if(state.words.get<std::uint32_t>(0x38))return true;
     return process_session_frame_input(state,services,first,second);

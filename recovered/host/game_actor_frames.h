@@ -151,6 +151,7 @@ public:
         Vector result{};using Slerp=void*(WINAPI*)(const void*,void*,const void*,float,std::uint8_t);
         exported<Slerp>("?Slerp@S_quat@@QBG?AU1@ABU1@M_N@Z",0x302e0)(first.data(),result.data(),last.data(),factor,static_cast<std::uint8_t>(shortest));return result;
     }
+    void human_walk_debug_beep(){(void)::MessageBeep(0xffffffffu);} //007646F0, native return is ignored.
     void human_clip_blend_position(Frame frame,const Vector& target,float influence){ //007B02B0, direct B0 before the signed flag80 gate.
         const auto previous=field<Vector>(frame,0xb0);
         const auto complement=1.L-influence;

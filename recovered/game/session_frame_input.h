@@ -31,7 +31,7 @@ inline bool session_input_active(const std::uint32_t* input,unsigned index){
 //controller, player input and process-neutral arrays. No copied/polled inputs,
 //replacement camera, successful missing UI or save/activation operation.
 template<class State,class Services>bool process_session_frame_input(State& state,Services& services,
-        const std::uint32_t* first,const std::uint32_t* second){
+        std::uint32_t* first,std::uint32_t* second){
     if(services.mode_flags()&2u)services.filter_hud_input(first,second); //0049FC10.
     if(second&&services.is_current_application_state()&&(services.mode_flags()&7u)==7u&&
             state.words.template get<std::uint8_t>(0x6e)){

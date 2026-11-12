@@ -90,7 +90,7 @@ public:
         auto& result=*frames;frames_=std::move(frames);return result; //Publish only a complete same-owner composition.
     }
     void retire_frames()noexcept{if(frames_){frames_->retire();frames_.reset();}}
-    void input(const std::uint32_t* first,const std::uint32_t* second){require_frames().input(first,second);}
+    void input(std::uint32_t* first,std::uint32_t* second){require_frames().input(first,second);}
     void fixed_update(std::uint32_t elapsed){require_frames().fixed_update(elapsed);}
     void update(std::uint32_t elapsed){require_frames().update(elapsed);}
     const auto& activation_progress()const noexcept{return boundary_.activation_progress();}

@@ -1150,6 +1150,7 @@ public:
     template<class Human>void notify_human_ladder_probe(Human&,std::uint32_t){
         throw std::runtime_error("Nonoffline Ladder probe requires actual00588D20 command15 publication");
     }
+    void human_walk_debug_beep(){dependencies().scene.frames().human_walk_debug_beep();}
     template<class Descriptor>const ActorFrameData* human_geometry_contact_data(const Descriptor& descriptor){
         return dependencies().scene.frames().find_actor_frame_data(descriptor.frame);
     }

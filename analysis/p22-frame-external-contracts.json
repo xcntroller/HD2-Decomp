@@ -1,0 +1,717 @@
+{
+  "base": "05dbdee51cc366476317011b91b1a1863041dcee",
+  "kind": "Current concrete template instantiation contracts; not a claim that every leaf is reached in Tutorial or absent on every other branch.",
+  "render_inspected": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+  "ui_inspected": "ebdcbf59bc6a59880bb664c0a5934e46105669d6",
+  "master_inspected": "b132e6d78d9622e63dcfee982e917ad0ac10b64f",
+  "operations": [
+    {
+      "required_runtime_method": "advance_human_control_motion",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_door_action.h",
+          "line": 50,
+          "call": "if((flags&0x3ffu)!=1u){runtime.advance_human_control_motion(control,elapsed);return;} //Other required positive action cases."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_human_formation",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_scene_frame.h",
+          "line": 67,
+          "call": "if(human.formation)runtime.advance_human_formation(*human.formation,elapsed); //Actual2C8 receiver0059BA70."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_human_motion_event",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_control_loading.h",
+          "line": 578,
+          "call": "if(look_word(0xb8)==5&&physical_word(0x764)==0x46)runtime.advance_human_motion_event(*this,0x46,elapsed);"
+        },
+        {
+          "source": "recovered/game/human_control_loading.h",
+          "line": 579,
+          "call": "else if(!state.template get<std::uint8_t>(0x760))runtime.advance_human_motion_event(*this,physical_word(0x75c),elapsed);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_human_state",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_world_loading_services.h",
+          "line": 899,
+          "call": "if(kind!=1&&kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_loose_item_body",
+      "owner": "HUM/physics import",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/host/game_scene_actor_frames.h",
+          "line": 125,
+          "call": "runtime_.advance_loose_item_body(body,elapsed,d_.world_actors); //004C9000 over SAME body/World collision owners."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_network_ai_presentation",
+      "owner": "HUM/PACK",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_script_ai_state_loading.h",
+          "line": 43,
+          "call": "if((world.mode_flags()&7u)!=7u)runtime.advance_network_ai_presentation(*this,elapsed); //0056F710."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_player_empty_weapon",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 67,
+          "call": "if(item.amount()==0||(item.field60&2u)){runtime.advance_player_empty_weapon(player,item,elapsed);return;}"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_player_held_item",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 36,
+          "call": "if(state.template get<std::uint8_t>(0x538)&&runtime.advance_player_held_item(player,elapsed))return; //00542E20 genuinely returns0 when538 is clear."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_player_input_transport",
+      "owner": "HUM/PACK",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 238,
+          "call": "runtime.advance_player_input_transport(*this,elapsed); //Actual history/position/velocity/0073E5A0 branch."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_player_remote_inputs",
+      "owner": "HUM/PACK",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 162,
+          "call": "runtime.advance_player_remote_inputs(*this,elapsed); //Remaining positive0053F520 body."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_script_formation_path",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_script_ai_state_loading.h",
+          "line": 64,
+          "call": "const bool formation=state_.template get<std::uint32_t>(0x1e0)&&runtime.advance_script_formation_path(*this);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_script_timed_action",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_script_ai_state_loading.h",
+          "line": 83,
+          "call": "if(state_.template get<std::uint32_t>(0x1c0))runtime.advance_script_timed_action(*this,elapsed); //0058E500."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "advance_script_vehicle_path",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_script_ai_state_loading.h",
+          "line": 82,
+          "call": "runtime.advance_script_vehicle_path(*this,elapsed); //00578770\u219200578790, actual path+74 gate."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "apply_human_look_interaction",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_control_loading.h",
+          "line": 172,
+          "call": "runtime.apply_human_look_interaction(*this,target,flags,argument); //00751480's remaining required action cases."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "apply_human_track_event",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_control_loading.h",
+          "line": 708,
+          "call": "default:return runtime.apply_human_track_event(*this,look,event);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "apply_player_attachment_inputs",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 211,
+          "call": "runtime.apply_player_attachment_inputs(*this); //Virtual0=00583BC0, actual Car/mounted control receivers."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "choose_script_alarm_action",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_script_ai_state_loading.h",
+          "line": 180,
+          "call": "if(human_frame_signed_word(remaining)<=0)runtime.choose_script_alarm_action(*this); //00591550."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "dispatch_player_inline_command",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 154,
+          "call": "runtime.dispatch_player_inline_command(*this); //0053D5B0, Players virtual0 with actual inline4E0 command."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "dispatch_script_ai_event",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_script_ai_state_loading.h",
+          "line": 57,
+          "call": "runtime.dispatch_script_ai_event(*this,command->first.events,n); //0058FD30."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "finish_human_action_drop",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_state_action_completion.h",
+          "line": 56,
+          "call": "if constexpr(may_succeed)if(authority_success&&state.item())runtime.finish_human_action_drop(state,*human);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "finish_human_actor_motion",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_state_action_completion.h",
+          "line": 53,
+          "call": "if constexpr(may_succeed)if(authority_success&&target)runtime.finish_human_actor_motion(*target,state);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "finish_human_explosive_placement",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_state_action_completion.h",
+          "line": 39,
+          "call": "runtime.finish_human_explosive_placement(*target,*human);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "finish_human_runtime_pickup",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_state_action_completion.h",
+          "line": 31,
+          "call": "if constexpr(may_succeed)if(authority_success&&target)runtime.finish_human_runtime_pickup(*target);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "finish_human_timed_type15",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_state_action_completion.h",
+          "line": 34,
+          "call": "if constexpr(may_succeed)if(success&&target&&target->base().type()==15)runtime.finish_human_timed_type15(*target,*human);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "finish_human_treatment",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_state_action_completion.h",
+          "line": 49,
+          "call": "if constexpr(may_succeed)if(authority_success&&target)runtime.finish_human_treatment(state,target->base().id10(),-1);"
+        },
+        {
+          "source": "recovered/game/human_state_action_completion.h",
+          "line": 66,
+          "call": "if constexpr(may_succeed)if(authority_success&&target)runtime.finish_human_treatment(state,human->base().id10(),"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "fire_human_item",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_ai_frame_output.h",
+          "line": 156,
+          "call": "runtime.fire_human_item(item,*human,position,direction,fire_argument,true);"
+        },
+        {
+          "source": "recovered/game/human_scene_frame.h",
+          "line": 28,
+          "call": "return runtime.fire_human_item(item,actor,position,direction,argument,primary);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "fire_player_weapon",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 69,
+          "call": "runtime.fire_player_weapon(player,item,elapsed); //Actual camera/shdum query,00545140, item24,005454D0 and integrity-observed branch."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "human_contact_actor",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_ladder_control.h",
+          "line": 79,
+          "call": "runtime.human_contact_actor(*result.actor,human,request.position,request.displacement,request.contacts.at(request.contact_count-1)->normal); //Actual actor58."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "human_fall_damage_authority",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_ground_motion.h",
+          "line": 258,
+          "call": "((control.mode_flags()&7u)==7u||runtime.human_fall_damage_authority(control))){"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "human_frame_contact",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_scene_frame.h",
+          "line": 65,
+          "call": "if(square>=1.0000000168623835e-16f&&(state().words().template get<std::uint32_t>(0x5c)&0x16000u))runtime.human_frame_contact(human); //005A5C80 returns5C;006FCB60 radius.5/maskFFFBFFFF and actual actor005FEFB0."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "human_ground_surface_effect",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_ground_motion.h",
+          "line": 117,
+          "call": "runtime.human_ground_surface_effect(human,material); //00451900 receives the actual current model world position."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "human_model_debug_enabled",
+      "owner": "RENDER",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_model_geometry.h",
+          "line": 1332,
+          "call": "if(runtime.human_model_debug_enabled())runtime.present_human_model_debug(*this);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "notify_player_selected_item",
+      "owner": "HUM/PACK",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 233,
+          "call": "runtime.notify_player_selected_item(*this); //00492130(1, actual item payload+10), before530 clear."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "player_attachment_blocks_item",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 20,
+          "call": "if(human->field160&&(human->field164==0||runtime.player_attachment_blocks_item(*human)))return;"
+        },
+        {
+          "source": "recovered/game/human_player_weapon_control.h",
+          "line": 69,
+          "call": "if(human->field160&&runtime.player_attachment_blocks_item(*human))return;"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "player_attachment_control_flags",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_weapon_control.h",
+          "line": 21,
+          "call": "if(kind==4){if(!(runtime.player_attachment_control_flags(*human)&0x20u))return;}"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "player_item_actor_action",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 79,
+          "call": "if(trigger()&&words.template get<std::int32_t>(0x60)==-1)runtime.player_item_actor_action(player,17u,human->base().id10());"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "player_item_reload_notification",
+      "owner": "HUM/PACK",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 63,
+          "call": "runtime.player_item_reload_notification(player,ammunition); //00542920 command05, including real FPV duration/FOV."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "player_repair_item",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 82,
+          "call": "if(trigger()&&words.template get<std::int32_t>(0x60)==-1)runtime.player_repair_item(player);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "player_unarmed_item",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 44,
+          "call": "if(trigger())runtime.player_unarmed_item(player); //00542B80."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "present_human_control_attachment",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_control_loading.h",
+          "line": 718,
+          "call": "runtime.present_human_control_attachment(*this,elapsed,mode); //00793490 and attached opacity."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "present_human_model_debug",
+      "owner": "RENDER",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_model_geometry.h",
+          "line": 1332,
+          "call": "if(runtime.human_model_debug_enabled())runtime.present_human_model_debug(*this);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "publish_player_held_item_title",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 33,
+          "call": "runtime.publish_player_held_item_title(player,world.human_frame_output_item(grenade)); //Actual Human17C/180/184 publication from native definition14."
+        },
+        {
+          "source": "recovered/game/human_player_item_frame.h",
+          "line": 76,
+          "call": "runtime.publish_player_held_item_title(player,item);return;"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "refresh_nonoffline_human_visibility",
+      "owner": "HUM/PACK",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_control_loading.h",
+          "line": 626,
+          "call": "runtime.refresh_nonoffline_human_visibility(*this);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "refresh_suppressed_player_camera",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 141,
+          "call": "runtime.refresh_suppressed_player_camera(*this,*human); //Actual World B8/B4 gates and camera virtual48."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "request_human_respawn",
+      "owner": "OWN/network",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_scene_frame.h",
+          "line": 37,
+          "call": "runtime.request_human_respawn();human.field204=0xfffff060u; //-4000 AFTER actual006DC940/0072B1C0 request."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "restore_loose_item",
+      "owner": "HUM/PACK",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/host/game_scene_actor_frames.h",
+          "line": 128,
+          "call": "if((mode_flags()&7u)!=7u)runtime_.restore_loose_item(item,d_.world_actors.runtime());"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "retire_human_water_attachment",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_ground_motion.h",
+          "line": 187,
+          "call": "runtime.retire_human_water_attachment(human); //005A97C0, positive offline174 command/packet receiver."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "send_human_fall_damage",
+      "owner": "HUM/PACK",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_ground_motion.h",
+          "line": 260,
+          "call": "else runtime.send_human_fall_damage(human,amount); //005A9BF0, original packet receiver owns truncation."
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "sight_dog_head_matrix",
+      "owner": "HUM/Scene2 Dog",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_sight_metrics.h",
+          "line": 128,
+          "call": "const auto target_head=dogs.sight_dog_head_matrix(target);"
+        },
+        {
+          "source": "recovered/host/game_mission_module_frames.h",
+          "line": 49,
+          "call": "auto sight_dog_head_matrix(Actor actor){return runtime_.sight_dog_head_matrix(actor);}"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "sight_dog_marker_metric",
+      "owner": "HUM/Scene2 Dog",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/sight_loading.h",
+          "line": 168,
+          "call": "auto metric=score;queries.sight_dog_marker_metric(observer.actor,actor,interval,metric); //Actual005D64C0."
+        },
+        {
+          "source": "recovered/host/game_mission_module_frames.h",
+          "line": 47,
+          "call": "runtime_.sight_dog_marker_metric(observer,target,interval,score);"
+        },
+        {
+          "source": "recovered/host/game_sight_loading.h",
+          "line": 70,
+          "call": "void sight_dog_marker_metric(Actor observer,Actor target,std::uint32_t& interval,float& score){queries.sight_dog_marker_metric(observer,target,interval,score);}"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "sight_dog_origin",
+      "owner": "HUM/Scene2 Dog",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/sight_loading.h",
+          "line": 172,
+          "call": "const auto origin=queries.sight_dog_origin(observer.actor);if(!origin||!frame)return false;"
+        },
+        {
+          "source": "recovered/host/game_mission_module_frames.h",
+          "line": 45,
+          "call": "auto sight_dog_origin(Actor actor){return runtime_.sight_dog_origin(actor);}"
+        },
+        {
+          "source": "recovered/host/game_sight_loading.h",
+          "line": 69,
+          "call": "std::optional<typename Source::Vector> sight_dog_origin(Actor actor){return queries.sight_dog_origin(actor);}"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "sight_exclude_dog",
+      "owner": "HUM/Scene2 Dog",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/sight_loading.h",
+          "line": 143,
+          "call": "else if(kind==1){queries.sight_exclude_dog(actor);layers|=2u;}"
+        },
+        {
+          "source": "recovered/host/game_mission_module_frames.h",
+          "line": 44,
+          "call": "void sight_exclude_dog(Actor actor){runtime_.sight_exclude_dog(actor);}"
+        },
+        {
+          "source": "recovered/host/game_sight_loading.h",
+          "line": 67,
+          "call": "void sight_exclude_dog(Actor actor){queries.sight_exclude_dog(actor);}"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "update_dog",
+      "owner": "HUM/Scene2 Dog",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/host/game_scene_actor_frames.h",
+          "line": 148,
+          "call": "runtime_.update_dog(static_cast<game::DogSceneActor<GameActorServices>&>(actor),authority,elapsed);"
+        }
+      ]
+    },
+    {
+      "required_runtime_method": "update_script_attachment",
+      "owner": "HUM/Player/Items",
+      "status": "required typed service; no successful fallback",
+      "consumer_sites": [
+        {
+          "source": "recovered/game/human_script_ai_state_loading.h",
+          "line": 151,
+          "call": "if(kind==4||kind==0x14||kind==0x15||kind==0x22){runtime.update_script_attachment(*this);return;}"
+        }
+      ]
+    }
+  ]
+}

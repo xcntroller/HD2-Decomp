@@ -167,7 +167,7 @@ template<class Movement,class Human>std::int32_t human_ladder_turn_delay(const M
 
 template<class Control,class Look,class Human,class Services,class Runtime,class Publish>
 std::int32_t begin_human_frame_ladder(Control& control,Look& look,Human& human,
-        Services& services,Runtime& runtime,Publish& publish){ //0074B4F0, actual AA0 five-link owner.
+        Services& services,Runtime&,Publish& publish){ //0074B4F0, actual AA0 five-link owner.
     auto& physical=control.physical();auto& state=physical.control_frame_words();
     auto& movement=control.movement();auto& movement_words=movement.frame_words();
     auto& ladder=services.human_ladder(physical.control_action_actor());
@@ -218,7 +218,7 @@ std::int32_t begin_human_frame_ladder(Control& control,Look& look,Human& human,
         clear_velocity();clear_velocity();
         control.tracks().clear_motion_displacement();
     }else{
-        auto notify=[&](std::uint32_t kind){runtime.notify_human_ladder_probe(human,kind);}; //005A9680→B0 virtualF8, nonoffline only.
+        auto notify=[&](std::uint32_t kind){services.notify_human_ladder_probe(human,kind);}; //005A9680→B0 virtualF8, nonoffline only; SAME World receiver.
         if(!probe_human_ladder_down(physical,look,geometry,services.human_geometry_sweep(),remote,offline,notify))return 0;
         queue_animation(8);
         forced([&]{
@@ -320,7 +320,7 @@ void advance_human_ladder_motion(Control& control,Look& look,Human& human,Servic
         for(unsigned axis=0;axis!=3;++axis)position[axis]+=displacement[axis];
         if(ascending){if(near_top()&&!finish_top())return;}
         else if(position[1]<geometry.down_position()[1]){
-            if((control.mode_flags()&7u)!=7u)runtime.notify_human_ladder_probe(human,5u);
+            if((control.mode_flags()&7u)!=7u)services.notify_human_ladder_probe(human,5u);
             position[1]=geometry.down_position()[1];
             state.set(0x988,std::int32_t{-10000});state.set(0x1fc,45u);normalize_human_primary_animation(state,0x1fc);
             state.set(0x98c,std::uint8_t{1});

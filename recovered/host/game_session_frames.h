@@ -19,21 +19,21 @@ public:
     virtual bool mission_save_blocked()=0; //0067FAA0, queried only with missionA8.
     virtual bool application_saved_state_present()=0; //Actual application descriptor+4.
     virtual void show_session_warning(std::uint32_t caption,bool format_zero)=0; //0069BF70, RGB255;2536 uses00405100(format,0).
-    virtual void filter_hud_input(const std::uint32_t*,const std::uint32_t*)=0; //0049FC10/006C71C0.
+    virtual void filter_hud_input(std::uint32_t*,std::uint32_t*)=0; //0049FC10/006C71C0.
     virtual bool hud_nonoffline_input_blocked()=0; //0049F090.
     virtual bool hud_player_input_blocked()=0; //0049D300.
-    virtual void process_hud_controls(const std::uint32_t*,const std::uint32_t*)=0; //0049C3C0, actual64-word input views.
+    virtual void process_hud_controls(std::uint32_t*,std::uint32_t*)=0; //0049C3C0, actual64-word input views.
     virtual void update_loaded_hud(std::uint32_t)=0; //Latest UI advance_hud with its real sources.
     virtual void advance_first_person(std::uint32_t)=0; //00491E90, latest UI advance_first_person.
-    virtual void process_player_input(Human&,const std::uint32_t*,const std::uint32_t*)=0; //005A3DE0→0053BF90.
+    virtual void process_player_input(Human&,std::uint32_t*,std::uint32_t*)=0; //005A3DE0→0053BF90.
     virtual void end_session_cutscene()=0; //00423EB0 actual script process; no end flag substitute.
-    virtual void process_nonoffline_session_input(const std::uint32_t*,const std::uint32_t*)=0; //0069AAB0.
+    virtual void process_nonoffline_session_input(std::uint32_t*,std::uint32_t*)=0; //0069AAB0.
     virtual Human* network_input_player()=0; //00730460 actual local peer3C borrower.
 };
 class GameSessionFrameCallbacks {
 public:
     virtual ~GameSessionFrameCallbacks()=default;
-    virtual void input(const std::uint32_t*,const std::uint32_t*)=0;
+    virtual void input(std::uint32_t*,std::uint32_t*)=0;
     virtual void fixed_update(std::uint32_t)=0;
     virtual void update(std::uint32_t)=0;
     virtual void retire()noexcept=0;
@@ -56,7 +56,7 @@ public:
             throw std::logic_error("Session FRAME requires its SAME World/parent/selection/blast/external owners");
     }
     GameSessionFrames(const GameSessionFrames&)=delete;GameSessionFrames& operator=(const GameSessionFrames&)=delete;
-    void input(const std::uint32_t* first,const std::uint32_t* second)override{
+    void input(std::uint32_t* first,std::uint32_t* second)override{
         require_open();io::observe_data_operation(store(),"0069A560 session input",[&]{(void)game::input_loading_session(d_.session,*this,first,second);});
     }
     void fixed_update(std::uint32_t elapsed)override{
@@ -70,7 +70,7 @@ public:
     bool is_current_application_state(){return external_.is_current_application_state();}
     bool full_viewport()const{return d_.startup.scene_presentation_flags().full_viewport;}
     bool hud_enabled()const{return parent_.hud()->enabled();}
-    void filter_hud_input(const std::uint32_t* a,const std::uint32_t* b){external_.filter_hud_input(a,b);}
+    void filter_hud_input(std::uint32_t* a,std::uint32_t* b){external_.filter_hud_input(a,b);}
     void update_loaded_hud(std::uint32_t elapsed){external_.update_loaded_hud(elapsed);}
     void show_loaded_hud(bool)noexcept{} //0049B7C0 is actual RET4, not a flags1 setter.
     void players_control_fixed(std::uint32_t elapsed){d_.players.control().advance_fixed(elapsed,d_.session.mission,*this);}
@@ -128,7 +128,7 @@ public:
     void fail_player_control_objective(bool special){world_.owners().scripts().fail_objectives(special);}
     void player_control_hint(std::uint32_t id){d_.hud.set_hint(static_cast<std::int32_t>(id));}
     bool selected_player_available(){return d_.players.control().selected_player(mode_flags())!=nullptr;}
-    void process_selected_player_input(const std::uint32_t* a,const std::uint32_t* b){
+    void process_selected_player_input(std::uint32_t* a,std::uint32_t* b){
         auto* human=d_.players.control().selected_player(mode_flags());
         if(!human)throw std::logic_error("Session input lost its actual selected Human after HUD callbacks");
         external_.process_player_input(*human,a,b);
@@ -147,11 +147,11 @@ public:
     std::uint32_t selected_mission_ordinal(std::uint32_t root)const{return selection_.selected_mission_ordinal(root);}
     bool hud_nonoffline_input_blocked(){return external_.hud_nonoffline_input_blocked();}
     bool hud_player_input_blocked(){return external_.hud_player_input_blocked();}
-    void process_hud_controls(const std::uint32_t* a,const std::uint32_t* b){external_.process_hud_controls(a,b);}
-    void process_nonoffline_session_input(const std::uint32_t* a,const std::uint32_t* b){external_.process_nonoffline_session_input(a,b);}
+    void process_hud_controls(std::uint32_t* a,std::uint32_t* b){external_.process_hud_controls(a,b);}
+    void process_nonoffline_session_input(std::uint32_t* a,std::uint32_t* b){external_.process_nonoffline_session_input(a,b);}
     void end_session_cutscene(){external_.end_session_cutscene();}
     Human* network_input_player(){return external_.network_input_player();}
-    void process_network_player_input(Human& human,const std::uint32_t* a,const std::uint32_t* b){external_.process_player_input(human,a,b);}
+    void process_network_player_input(Human& human,std::uint32_t* a,std::uint32_t* b){external_.process_player_input(human,a,b);}
 private:
     auto store(){return d_.scene.frames().resource_observations();}
     void require_open(){

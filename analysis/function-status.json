@@ -26761,7 +26761,7 @@
       "program": "client",
       "entry": "0069a560",
       "status": "partial",
-      "coverage": "Native initial signed20/38 input gates, then required actual positive input receiver. Positive containing input policy now preserves actual64-word view identities, native quick-save/load and difficulty/mission gates, original process-neutral arrays, cutscene-before-neutral, objective admission, fresh selected-Human input, FPV preference and non7/pause status ordering. Host composition requires explicit real UI/controller/Player/VM/non7 receivers; unavailable producer bodies are not credited.",
+      "coverage": "Native initial signed20/38 input gates, then required actual positive input receiver. Positive containing input policy now preserves actual64-word view identities, native quick-save/load and difficulty/mission gates, original process-neutral arrays, cutscene-before-neutral, objective admission, fresh selected-Human input, FPV preference and non7/pause status ordering. Host composition requires explicit real UI/controller/Player/VM/non7 receivers; unavailable producer bodies are not credited. Mutable original input arrays pass HUD mutation to Player input and final status gates without copying; actual neutral Registry arrays retain mutable views.",
       "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/session_frame_loading.h",
@@ -26769,7 +26769,8 @@
         "analysis/checkpoints/p2.2-frame-render-source-20261110.json",
         "recovered/host/game_session_frames.h",
         "analysis/p22-frame-implementation.md",
-        "analysis/checkpoints/p22-frame-session-20261112.json"
+        "analysis/checkpoints/p22-frame-session-20261112.json",
+        "analysis/checkpoints/p22-frame-runtime-20261112.json"
       ]
     },
     {
@@ -30876,12 +30877,13 @@
       "program": "client",
       "entry": "00768170",
       "status": "partial",
-      "coverage": "Actual accumulated special-motion timer, native boolean walk gate, offline/nonoffline deadline and shared impulse/C00 reset. Walk solver remains required.",
+      "coverage": "Actual accumulated special-motion timer, native boolean walk gate, offline/nonoffline deadline and shared impulse/C00 reset. Now concretely invokes existing007646F0 over SAME DD0/Look/Human/World and command publisher instead of an unbound whole-walk Runtime callback; positive solver leaves remain required.",
       "limitations": "Source-only typed owner/STL adaptation. Remaining positive runtime workers, containing application integration and user mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine bodies are excluded. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_control_loading.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json"
+        "analysis/checkpoints/p2.2-human-ground-frame-20261111.json",
+        "analysis/checkpoints/p22-frame-runtime-20261112.json"
       ]
     },
     {
@@ -34820,6 +34822,32 @@
         "recovered/host/game_session_frames.h",
         "analysis/p22-frame-implementation.md",
         "analysis/checkpoints/p22-frame-session-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b7320",
+      "status": "partial",
+      "coverage": "Actual loose-item authority entry90 gate, wrapping6B0/6AC/6A0, mode2 body gate, restore-before-sentinel, GEffects opacity/hide/update before real process packet, signed expiry and native500ms one-shot fade; actual deferred runtime removal. Module12 selector2/identity10/command3-bit publication reuses existing process stream.",
+      "limitations": "Source-only typed C++ ownership/ABI adaptation. Actual embedded-body motion and positive retained-item restoration remain required external receivers; engine/frame/math and these endpoints are explicit native doubles. Concrete World/module/lifecycle/fade/process-packet composition is i386 compile/link only, not engine execution or mission reachability. Original object/allocator/SEH ABI, undefined padding and delegated callee bodies are excluded. No whole-body equivalence or desktop claim.",
+      "evidence": [
+        "recovered/game/dynamic_item_actor.h",
+        "recovered/host/game_scene_actor_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-runtime-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b7480",
+      "status": "partial",
+      "coverage": "Actual loose-item presentation: embedded body24 called unconditionally before sound6A4 wrapping subtraction and signed-negative clamp, including missing item entry. Body must succeed before cooldown mutation; body simulation remains required.",
+      "limitations": "Source-only typed C++ ownership/ABI adaptation. Actual embedded-body motion and positive retained-item restoration remain required external receivers; engine/frame/math and these endpoints are explicit native doubles. Concrete World/module/lifecycle/fade/process-packet composition is i386 compile/link only, not engine execution or mission reachability. Original object/allocator/SEH ABI, undefined padding and delegated callee bodies are excluded. No whole-body equivalence or desktop claim.",
+      "evidence": [
+        "recovered/game/dynamic_item_actor.h",
+        "recovered/host/game_scene_actor_frames.h",
+        "analysis/p22-frame-implementation.md",
+        "analysis/checkpoints/p22-frame-runtime-20261112.json"
       ]
     }
   ]
