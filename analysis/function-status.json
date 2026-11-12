@@ -24932,11 +24932,13 @@
       "program": "client",
       "entry": "004e1990",
       "status": "partial",
-      "coverage": "Actual cold post-reset countdown0/triggered gate used by offline authority update.",
-      "limitations": "Positive timed destruction/sound/effect receivers explicitly reject.",
+      "coverage": "Actual countdown/trigger gate, signed wrapping subtraction, countdown0 BEFORE same bound004E1FE0/004DBF00 and flag64 AFTER successful return; reached through existing Car authority loading frame.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and complete network/trajectory equivalence excluded. Native100 focused families use actual packet buffers/quantizers/streams, Scene2 routing and Car request/countdown source with explicit actor/frame/math, Human damage, detachment/glass, particle and final destruction doubles. Strict actual module13/World/Car/Human i386 and launcher/probe compile/link only. Authority request10 fuel and11 impulse explicitly require their actual readers/consumers; wider Car deformation/occupied frame, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate required failures.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_ancillary_model.h"
+        "recovered/game/car_ancillary_model.h",
+        "analysis/human-car-contact-request-source.md",
+        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json"
       ]
     },
     {
@@ -36415,12 +36417,14 @@
       "program": "client",
       "entry": "004db2b0",
       "status": "partial",
-      "coverage": "SAME module13 priority3/third stream, identity10 and actual derived damage event writers before finish; only broadcast, with no local presentation application.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "coverage": "SAME module13 priority3/third stream, identity10 and actual derived damage event writers before finish; only broadcast, with no local presentation application. Reached wheel2 writer now shares the actual broadcast payload grammar.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and complete network/trajectory equivalence excluded. Native100 focused families use actual packet buffers/quantizers/streams, Scene2 routing and Car request/countdown source with explicit actor/frame/math, Human damage, detachment/glass, particle and final destruction doubles. Strict actual module13/World/Car/Human i386 and launcher/probe compile/link only. Authority request10 fuel and11 impulse explicitly require their actual readers/consumers; wider Car deformation/occupied frame, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate required failures.",
       "evidence": [
         "recovered/game/car_damage_packets.h",
         "analysis/human-car-blast-damage-source.md",
-        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json",
+        "analysis/human-car-contact-request-source.md",
+        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json"
       ]
     },
     {
@@ -36989,6 +36993,42 @@
         "recovered/game/rigid_body_motion_math.h",
         "analysis/human-car-rigid-motion-source.md",
         "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004db2e0",
+      "status": "partial",
+      "coverage": "SAME module13 authority-request stream selection/priority3/identity10, actual wheel2 or Human9 writer and target0 finish; no local damage substitute.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and complete network/trajectory equivalence excluded. Native100 focused families use actual packet buffers/quantizers/streams, Scene2 routing and Car request/countdown source with explicit actor/frame/math, Human damage, detachment/glass, particle and final destruction doubles. Strict actual module13/World/Car/Human i386 and launcher/probe compile/link only. Authority request10 fuel and11 impulse explicitly require their actual readers/consumers; wider Car deformation/occupied frame, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate required failures.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-contact-request-source.md",
+        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004db760",
+      "status": "partial",
+      "coverage": "Actual actor20 authority kinds2 wheel health/detachment,8 water destruction prefix,9 signed/raw Human request and reverse/current seat/driver order; original defaults and explicit required10/11.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and complete network/trajectory equivalence excluded. Native100 focused families use actual packet buffers/quantizers/streams, Scene2 routing and Car request/countdown source with explicit actor/frame/math, Human damage, detachment/glass, particle and final destruction doubles. Strict actual module13/World/Car/Human i386 and launcher/probe compile/link only. Authority request10 fuel and11 impulse explicitly require their actual readers/consumers; wider Car deformation/occupied frame, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate required failures.",
+      "evidence": [
+        "recovered/game/car_actor_damage.h",
+        "analysis/human-car-contact-request-source.md",
+        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0180",
+      "status": "partial",
+      "coverage": "Actual Human contact request reader: signed16 target/amount and six raw32 FLOAT component bit patterns, preserving field order and initialized unproduced fourth lanes.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and complete network/trajectory equivalence excluded. Native100 focused families use actual packet buffers/quantizers/streams, Scene2 routing and Car request/countdown source with explicit actor/frame/math, Human damage, detachment/glass, particle and final destruction doubles. Strict actual module13/World/Car/Human i386 and launcher/probe compile/link only. Authority request10 fuel and11 impulse explicitly require their actual readers/consumers; wider Car deformation/occupied frame, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate required failures.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-contact-request-source.md",
+        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json"
       ]
     }
   ]

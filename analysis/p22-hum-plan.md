@@ -140,5 +140,7 @@ Detached Car Item12 clone/launch/lifecycle now has a
 [source checkpoint](checkpoints/p2.2-human-car-item12-20261112.json).
 Actual rigid-body authority motion/contact now has a
 [source checkpoint](checkpoints/p2.2-human-car-rigid-motion-20261112.json).
-Fresh part5F9 remains an honest required read; continue Car event2/timed-DM,
-deformed restore and entry/full frame.
+Fresh part5F9 remains an honest required read. Car wheel2/Human9 requests,
+module13 authority routing and timed-DM now have a
+[source checkpoint](checkpoints/p2.2-human-car-contact-request-20261112.json).
+Continue fuel10/impulse11, deformed restore and entry/full frame.

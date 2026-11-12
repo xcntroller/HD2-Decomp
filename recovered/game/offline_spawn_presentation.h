@@ -88,5 +88,16 @@ bool receive_scene2_presentation_packet(Scene& scene,SessionPacketStream& packet
     }
     return true;
 }
+//004755D0 (module13 virtual28): preserve reserved005A5F80 versus actor20.
+template<class Scene,class Actors,class Reserved>
+bool receive_scene2_authority_packet(Scene& scene,SessionPacketStream& packet,Actors& actors,Reserved& reserved){
+    const auto identity=packet.read(10);auto* actor=scene.scene_actor_identity(static_cast<std::int32_t>(identity));
+    if(identity<32)reserved.receive_player_authority_packet(actor,packet);
+    else {
+        if(!actor)throw std::runtime_error("Scene2 authority packet has no actual actor at its identity");
+        actors.receive_actor_authority_packet(*actor,packet);
+    }
+    return true;
+}
 } //namespace hd2::game
 #endif

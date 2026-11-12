@@ -253,7 +253,7 @@ preparation, not a standalone audit-only milestone.
   [Car authority destruction](analysis/checkpoints/p2.2-human-car-destruction-20261112.json) is source-only; queued visuals/detachment/full frame remain open.
   [Car physical/mesh/glass](analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json) is source-only; positive fragments/detachment/timed-DM/full Human paths remain open.
   [Car glass fragments](analysis/checkpoints/p2.2-human-car-fragments-20261112.json) are source-only; Item12/timed-DM/full Human paths remain open.
-  [Car Item12 launch](analysis/checkpoints/p2.2-human-car-item12-20261112.json) and [rigid motion/contact](analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json) are source-only; unproduced state/timed-DM/full Human paths remain open.
+  [Car Item12 launch](analysis/checkpoints/p2.2-human-car-item12-20261112.json), [rigid motion](analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json) and [contact requests/timer](analysis/checkpoints/p2.2-human-car-contact-request-20261112.json) are source-only; unproduced state/fuel/impulse/full Human paths remain open.
   [P22-UI implementation](analysis/p22-ui-implementation.md): presentation/text/timer leaves verified; full HUD/FPV updates remain open.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat

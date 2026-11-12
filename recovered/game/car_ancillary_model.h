@@ -67,6 +67,11 @@ public:
         if(triggered_||countdown_==0)return;
         throw std::runtime_error("Car timed DM destruction requires its actual004E1FE0/004DBF00 receiver");
     }
+    template<class Destroy>void update(std::uint32_t elapsed,Destroy&& destroy){ //004E1990, signed native wrapping subtraction.
+        if(triggered_||countdown_==0)return;
+        const auto bits=static_cast<std::uint32_t>(countdown_)-elapsed;std::memcpy(&countdown_,&bits,4);
+        if(countdown_<=0){countdown_=0;trigger(std::forward<Destroy>(destroy));}
+    }
     //004E1DC0: borrow the actual Car frame twice, then align HOR/VERT markers
     //by their short names to the matching Car local quaternion. No frame clone.
     void align_damage_model(Frames& frames,Frame car) {
@@ -140,7 +145,7 @@ public:
         destroy(runtime,self);
     }
     template<class Runtime,class Actor>void destroy(Runtime& runtime,Actor self){ //004E1FE0,64 AFTER004DBF00.
-        if(!triggered_){runtime.car_damage_destroy(self,false);triggered_=true;}
+        trigger([&]{runtime.car_damage_destroy(self,false);});
     }
     //004E1F70: the EXPL_D particle is retained by identity in native record8.
     //It is independent of record10's authority countdown/armed state.
@@ -177,6 +182,7 @@ public:
     std::int32_t fire() const {return fire_;}
     std::int32_t smoke() const {if(!smoke_)throw std::runtime_error("Car DM smoke definition14 has no native producer");return *smoke_;}
 private:
+    template<class Destroy>void trigger(Destroy&& destroy){if(!triggered_){destroy();triggered_=true;}}
     void retire_particle(std::int32_t identity){
         if(!stop_particle_)throw std::logic_error("Car DM requires its SAME process particle retirement borrower");
         stop_particle_(identity);

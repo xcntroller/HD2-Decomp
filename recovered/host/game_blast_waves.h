@@ -117,6 +117,17 @@ public:
     }
     std::uint32_t car_damage_absorption(std::int32_t index){return d_.car_definitions.materials().at(index).word(0x28);}
     void car_damage_event(Actor* actor,const game::CarDamageEvent& event){game::publish_car_damage(d_.broadcast_packets,actor->base().id10(),event);}
+    void car_contact_event(Actor* actor,const game::CarWheelDamageEvent& event,bool request){
+        if(!actor||actor->base().type()!=4)throw std::logic_error("Car wheel publication requires its actual Car owner");
+        if(request){const auto identity=actor->base().id10();const auto mode=mode_flags();game::request_car_contact(d_.broadcast_packets,mode,identity,event);}
+        else {game::CarDamageEvent packet;packet.kind=event.kind;packet.index=event.wheel;packet.health=event.value;packet.first=event.point;
+            game::publish_car_damage(d_.broadcast_packets,actor->base().id10(),packet);}
+    }
+    void car_contact_request(Actor* actor,const game::CarHumanDamageEvent& event){
+        if(!actor||actor->base().type()!=4)throw std::logic_error("Car Human publication requires its actual Car owner");
+        const auto identity=actor->base().id10();const auto mode=mode_flags();game::request_car_contact(d_.broadcast_packets,mode,identity,event);
+    }
+    Actor* car_request_target(std::int32_t identity){return d_.scene.frames().scene_actor_command_identity(identity);} //00475D50.
     void car_damage_destroy(Actor* actor,bool water){
         auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(actor);
         if(!car||!car->geometry)throw std::logic_error("Car destruction requires actual containing Car geometry");
@@ -167,6 +178,13 @@ public:
         if(!car||!car->geometry||!car->ancillary)throw std::logic_error("Car packet requires actual Car/DM/geometry owners");
         game::receive_car_damage_packet(frames(),*this,*car,[&]()->auto&{
             if(!car->loading)throw std::logic_error("Car packet requires actual initialized loading lifetime");return car->loading->cold_state();
+        },packet);
+    }
+    void receive_car_damage_request(Actor& actor,game::SessionPacketStream& packet){ //004DB760, actor20.
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(&actor);
+        if(!car)throw std::logic_error("Car authority request requires its actual Car owner");
+        game::receive_car_contact_request(*this,*car,[&]()->auto&{
+            if(!car->loading)throw std::logic_error("Car authority request requires actual loading lifetime");return car->loading->cold_state();
         },packet);
     }
     void car_present_destroyed(game::CarSceneActor<GameActorServices>& car){

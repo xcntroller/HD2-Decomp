@@ -285,6 +285,10 @@ public:
         else if(actor.base().type()==29){auto& fowl=static_cast<Fowl&>(actor);if(!fowl.loading)throw std::runtime_error("Fowl packet requires its actual generated-bird owner");fowl.loading->launch(false,0);}
         else throw std::runtime_error("Required Scene2 actor packet receiver is unavailable");
     }
+    void receive_actor_authority_packet(typename Runtime::Instance& actor,game::SessionPacketStream& packet){
+        require_open();if(actor.base().type()==4){scene_.car_callbacks().receive_damage_request(&actor,packet);return;}
+        throw std::runtime_error("Scene2 authority packet requires its actual derived actor20 receiver");
+    }
     void set_scene_actor_active(GameActorServices::Actor& actor,bool value){scene_.frames().set_scene_actor_active(actor,value);}
     void set_runtime_actor_active(GameActorServices::Actor& actor,bool value){runtime_.set_active(actor,value);}
     void remove_actor_presentation_references(typename Runtime::Instance& actor){consumers_.remove_actor_presentation_references(actor);}

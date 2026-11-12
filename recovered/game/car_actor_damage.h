@@ -114,5 +114,33 @@ template<class Frames,class Runtime,class Car,class StateFactory>void receive_ca
     //00611080(0) is genuine empty; no2350 change is made here.
 }
 
+//004DB760, actor20 authority receiver. It is distinct from presentation1C:
+//kinds0/1/3/4/5 genuinely fall through without consuming their payloads here.
+template<class Runtime,class Car,class StateFactory>void receive_car_contact_request(
+        Runtime& runtime,Car& car,StateFactory&& get_state,SessionPacketStream& packet){
+    const auto kind=packet.read(4);
+    if(kind==2){
+        const auto event=read_car_damage_event(packet,kind);auto& state=get_state();auto& wheel=state.wheels.at(event.index);
+        if(wheel.scalars.get(0x230)>0){
+            state.dirty|=2u;wheel.flags|=0x10000000u;wheel.scalars.set(0x230,static_cast<float>(event.health));
+            if(wheel.scalars.get(0x230)<=0){
+                if(!car.geometry)throw std::logic_error("Car wheel request requires its actual physical owner");
+                if(car.geometry->physics().scalars().get(0x550)==0)(void)car.callbacks.value().wheel698(event.index,event.first,nullptr);
+            }
+        }
+    }else if(kind==8){car.flag2544=true;runtime.car_damage_destroy(&car,true);}
+    else if(kind==9){
+        const auto event=read_car_human_contact(packet);
+        const float amount=static_cast<float>(car_contact_signed_word(event.amount));
+        if(event.target==-1){
+            for(auto n=car.occupants.size();n;){auto* target=runtime.car_damage_occupant(&car,--n);
+                if(target&&runtime.car_damage_health(target)>0)
+                    runtime.car_damage_human(target,5,amount,event.point,event.impulse,runtime.car_damage_occupant(&car,0));
+            }
+        }else if(auto* target=runtime.car_request_target(event.target))
+            runtime.car_damage_human(target,5,amount,event.point,event.impulse,runtime.car_damage_occupant(&car,0));
+    }else if(kind==10||kind==11)throw std::runtime_error("Car authority request requires its actual scalar-fuel/impulse reader and consumer");
+}
+
 }
 #endif

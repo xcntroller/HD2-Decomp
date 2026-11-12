@@ -15,6 +15,30 @@ struct CarDamageEvent {
     CarContactVector first{},second{};
     static CarDamageEvent explosion(std::uint32_t index){CarDamageEvent e;e.kind=5;e.index=index;return e;}
 };
+inline void write_car_wheel_damage_payload(SessionPacketStream& packet,std::uint32_t index,std::int32_t health,const CarContactVector& velocity){ //004E05B0 after kind4.
+    packet.write(index,8);packet.write(static_cast<std::uint32_t>(health),10);
+    if(health<1)(void)packet.write_vector(velocity,packet.primary_quantizer(-1),7);
+}
+inline void write_car_contact_event(SessionPacketStream& packet,const CarWheelDamageEvent& event){ //004E05B0, RET4.
+    packet.write(event.kind,4);write_car_wheel_damage_payload(packet,event.wheel,event.value,event.point);
+}
+inline void write_car_contact_event(SessionPacketStream& packet,const CarHumanDamageEvent& event){ //004E0270, RET4.
+    packet.write(event.kind,4);packet.write(static_cast<std::uint32_t>(event.target),16);packet.write(event.amount,16);
+    for(const auto* vector:{&event.impulse,&event.point})for(unsigned axis=0;axis!=3;++axis){
+        std::uint32_t bits;std::memcpy(&bits,&(*vector)[axis],4);packet.write(bits,32);
+    }
+}
+inline CarHumanDamageEvent read_car_human_contact(SessionPacketStream& packet){ //004E0180; kind already consumed.
+    CarHumanDamageEvent event;
+    const auto signed_word=[](std::uint32_t word){return word&0x8000u?static_cast<std::int32_t>(word)-65536:static_cast<std::int32_t>(word);};
+    event.target=signed_word(packet.read(16));event.amount=static_cast<std::uint32_t>(signed_word(packet.read(16)));
+    for(auto* vector:{&event.impulse,&event.point})for(unsigned axis=0;axis!=3;++axis){const auto bits=packet.read(32);std::memcpy(&(*vector)[axis],&bits,4);}
+    return event; //Both native fourth vector lanes are unproduced; source lanes remain initialized.
+}
+template<class Packets,class Event>void request_car_contact(Packets& streams,std::uint32_t mode,std::int32_t identity,const Event& event){ //004DB2E0→00475570(id,false).
+    auto& packet=streams.request_stream(3,mode);packet.begin(13,3,0,false);
+    packet.write(static_cast<std::uint32_t>(identity),10);write_car_contact_event(packet,event);packet.finish_broadcast();
+}
 inline CarDamageEvent read_car_damage_event(SessionPacketStream& packet,std::uint32_t kind){
     CarDamageEvent e;e.kind=kind;
     switch(kind){
@@ -44,6 +68,7 @@ template<class Packets>void publish_car_damage(Packets& streams,std::int32_t ide
         packet.write(e.index,10);packet.write(static_cast<std::uint32_t>(e.health),10);
         if(e.health<1){(void)packet.write_vector(e.first,packet.primary_quantizer(-1),7);
             (void)packet.write_vector(e.second,packet.primary_quantizer(-1),7);}break;
+    case 2:write_car_wheel_damage_payload(packet,e.index,e.health,e.first);break; //004E05B0.
     case 3:packet.write(e.index,8);break; //004E0650.
     case 4:break; //004E0720.
     case 5:packet.write(e.index,4);break; //004E06C0.

@@ -164,10 +164,7 @@ public:
         (void)checked_kind(*module);
         if(kind==13){
             if(!authority)return game::receive_scene2_presentation_packet(d_.scene.frames(),packet,*this,*this);
-            const auto identity=packet.read(10); //004755D0, reserved0..31 use005A5F80.
-            auto* actor=d_.scene.frames().scene_actor_identity(static_cast<std::int32_t>(identity));
-            d_.human_services.receive_human_authority_packet(actor,packet,identity<32u);
-            return true;
+            return game::receive_scene2_authority_packet(d_.scene.frames(),packet,*this,*this);
         }
         if(kind==4&&!authority){bound(*module,d_.scripts.module());return d_.scripts.module().receive(&packet);} //00424590→0042B650.
         if(kind==12)return d_.world_actors.runtime().receive_packet(packet,authority); //004788A0/E0, required positive leaves remain checked.
@@ -178,6 +175,13 @@ public:
     }
     template<class Actor>void receive_player_packet(Actor* actor,game::SessionPacketStream& packet){
         d_.human_services.receive_human_presentation_packet(actor,packet,true);
+    }
+    template<class Actor>void receive_player_authority_packet(Actor* actor,game::SessionPacketStream& packet){
+        d_.human_services.receive_human_authority_packet(actor,packet,true);
+    }
+    template<class Actor>void receive_actor_authority_packet(Actor& actor,game::SessionPacketStream& packet){
+        if(actor.base().type()==3)d_.human_services.receive_human_authority_packet(&actor,packet,false);
+        else d_.world_actors.receive_actor_authority_packet(actor,packet);
     }
     template<class Actor>void receive_actor_packet(Actor& actor,game::SessionPacketStream& packet){
         if(!d_.human_services.try_human_presentation_packet(actor,packet))d_.world_actors.receive_actor_packet(actor,packet);

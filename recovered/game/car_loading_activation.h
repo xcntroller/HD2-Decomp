@@ -98,7 +98,7 @@ public:
             if(actor_.clock_expired())throw std::runtime_error("Car periodic event6 requires its actual event receiver");
             if(damage_target_!=-1)throw std::runtime_error("Car targeted damage requires its actual pending damage owner");
             update_car_loading_water(frames_,actor_.geometry->model(),queries_,initial_->health,actor_.occupants,actor_.callback_services(),services_.mode_flags());
-            actor_.ancillary->update_cold(elapsed);
+            actor_.ancillary->update(elapsed,[&]{actor_.callback_services().car_timed_destroy(&actor_);});
             if(initial_->health.body!=0&&initial_->solver.speed<.10000000149011612f)
                 (void)car_support_checks(initial_->health,initial_->fuel,initial_->solver.speed,initial_->wheels,initial_->body().pose().up,2);
             return; //All actual occupied control/exit/UI producers are null here.

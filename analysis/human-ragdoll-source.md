@@ -1766,3 +1766,8 @@ byte. Wheel695 stays unproduced. Native focused sanitizers and strict actual
 composition/launcher checks are source evidence with explicit engine/query
 doubles, not trajectories/application/desktop acceptance. Continue Car event2,
 timed-DM/deformed restore and full Human entry/frame; this checkbox remains OPEN.
+
+Car wheel2/Human9 publication, actual Scene2 actor20 authority routing and timed
+004E1990 now have a [source checkpoint](checkpoints/p2.2-human-car-contact-request-20261112.json),
+with [contract/limits](human-car-contact-request-source.md). Fuel10/impulse11,
+deformed restore and the full Human entry/frame remain required; no checkbox closure.

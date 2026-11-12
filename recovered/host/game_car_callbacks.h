@@ -27,14 +27,21 @@ public:
         :GameCarCallbackFrames(actors,startup.application_flags_owner(),startup.local_player_identity(),
             tyres,[&startup]{return startup.control_milliseconds();}),startup_(startup),definitions_(definitions),particles_(actors,*this),physics_contact_(actors),versions_contact_(actors),runtime_contact_(actors),explosion_contact_(actors){}
     template<class Receiver>void bind_damage_packets(Receiver& receiver){
-        if(&receiver.frames()!=&frames_||damage_owner_)throw std::logic_error("Car packets require SAME unbound containing damage receiver");
-        damage_packet_=[&receiver](Actor actor,game::SessionPacketStream& packet){receiver.receive_car_damage(*actor,packet);};damage_owner_=&receiver;
+        if(&receiver.frames()!=&frames_||damage_)throw std::logic_error("Car packets require SAME unbound containing damage receiver");
+        auto next=std::make_unique<DamageReceivers>();next->owner=&receiver;
+        next->packet=[&receiver](Actor actor,game::SessionPacketStream& packet,bool authority){
+            if(authority)receiver.receive_car_damage_request(*actor,packet);else receiver.receive_car_damage(*actor,packet);};
+        next->wheel=[&receiver](Actor actor,const game::CarWheelDamageEvent& event,bool request){receiver.car_contact_event(actor,event,request);};
+        next->human=[&receiver](Actor actor,const game::CarHumanDamageEvent& event){receiver.car_contact_request(actor,event);};
+        next->destroy=[&receiver](Actor actor){receiver.car_damage_destroy(actor,false);};
+        damage_=std::move(next); //All borrowers publish together; preparation failures leave no live endpoint.
     }
-    template<class Receiver>void unbind_damage_packets(Receiver& receiver)noexcept{if(damage_owner_==&receiver){damage_packet_={};damage_owner_=nullptr;}}
+    template<class Receiver>void unbind_damage_packets(Receiver& receiver)noexcept{if(damage_&&damage_->owner==&receiver)damage_.reset();}
     void receive_damage_packet(Actor actor,game::SessionPacketStream& packet)override{
-        if(!damage_owner_||!damage_packet_)throw std::runtime_error("Car packet requires its actual containing damage owner");
-        damage_packet_(actor,packet);
+        required_damage().packet(actor,packet,false);
     }
+    void receive_damage_request(Actor actor,game::SessionPacketStream& packet)override{required_damage().packet(actor,packet,true);}
+    void car_timed_destroy(Actor actor)override{required_damage().destroy(actor);}
     bool initialize(const std::vector<game::CarParticleDefinition>& definitions){
         if(&definitions!=&car_particle_definitions())throw std::logic_error("Car particles require SAME actual definition owner");
         return initialize_particles();
@@ -101,14 +108,14 @@ public:
         if(!human.loading_lifetime)throw std::logic_error("Car Human damage requires the actual containing Human lifetime");
         human.loading_lifetime->damage(static_cast<std::uint32_t>(kind),amount,point,impulse,cause,static_cast<std::uint32_t>(hit_kind));
     }
-    void submit_car_human_damage(Actor,const game::CarHumanDamageEvent&)override{
-        throw std::runtime_error("Car Human damage publication requires actual004DB2E0 event serialization");
+    void submit_car_human_damage(Actor actor,const game::CarHumanDamageEvent& event)override{
+        required_damage().human(actor,event);
     }
-    void apply_car_wheel_damage(Actor,const game::CarWheelDamageEvent&)override{
-        throw std::runtime_error("Car wheel event requires actual004DB2B0 broadcast serialization");
+    void apply_car_wheel_damage(Actor actor,const game::CarWheelDamageEvent& event)override{
+        required_damage().wheel(actor,event,false);
     }
-    void submit_car_wheel_damage(Actor,const game::CarWheelDamageEvent&)override{
-        throw std::runtime_error("Car wheel request requires actual004DB2E0 event serialization");
+    void submit_car_wheel_damage(Actor actor,const game::CarWheelDamageEvent& event)override{
+        required_damage().wheel(actor,event,true);
     }
     template<class Versions>void bind_versions(Versions& versions){versions_contact_.bind(versions);}
     template<class Versions>void unbind_versions(Versions& versions)noexcept{versions_contact_.unbind(versions);}
@@ -139,7 +146,15 @@ public:
         runtime_contact_.launch(actor,request,mode);
     }
 private:
-    const void* damage_owner_=nullptr;std::function<void(Actor,game::SessionPacketStream&)> damage_packet_;
+    struct DamageReceivers{
+        const void* owner=nullptr;
+        std::function<void(Actor,game::SessionPacketStream&,bool)> packet;
+        std::function<void(Actor,const game::CarWheelDamageEvent&,bool)> wheel;
+        std::function<void(Actor,const game::CarHumanDamageEvent&)> human;
+        std::function<void(Actor)> destroy;
+    };
+    DamageReceivers& required_damage(){if(!damage_)throw std::runtime_error("Car damage requires its actual containing damage owner");return *damage_;}
+    std::unique_ptr<DamageReceivers> damage_;
     StartupSession& startup_;game::CarDefinitionTables& definitions_;game::CarParticlePool<GameActorServices,GameCarCallbacks> particles_;
     game::PhysicsContactLink<GameActorServices> physics_contact_;
     game::VersionContactLink<GameActorServices> versions_contact_;

@@ -32,8 +32,8 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are34 complete client functions and2,751 partial entries
-(2,746 client and five engine), through the [rigid motion checkpoint](checkpoints/p2.2-human-car-rigid-motion-20261112.json). The [Human damage/scoring checkpoint](checkpoints/p2.2-human-damage-presentation-20261111.json)
+The current totals are34 complete client functions and2,754 partial entries
+(2,749 client and five engine), through the [Car contact request checkpoint](checkpoints/p2.2-human-car-contact-request-20261112.json). The [Human damage/scoring checkpoint](checkpoints/p2.2-human-damage-presentation-20261111.json)
 adds32 frozen client partials and extends four existing partials, preserving the
 preceding GUARD additions. The mounted SOUND checkpoint adds three client
 partials and extends two existing entries. The [Player objective/session checkpoint](checkpoints/p2.2-human-death-objective-session-20261111.json)

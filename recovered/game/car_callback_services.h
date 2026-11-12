@@ -36,6 +36,8 @@ public:
     std::vector<std::int32_t> car_tyre_ids()const{return car_tyres().material_ids();}
     virtual std::uint32_t car_clock()=0;
     virtual void receive_damage_packet(Actor,SessionPacketStream&)=0;
+    virtual void receive_damage_request(Actor,SessionPacketStream&)=0;
+    virtual void car_timed_destroy(Actor)=0;
     virtual void car_retire_particle(std::int32_t)=0;
     virtual std::size_t car_active_particles()const=0;
     virtual Actor car_actor_from_frame(Frame)=0;

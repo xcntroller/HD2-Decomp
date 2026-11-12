@@ -138,3 +138,7 @@ Physics i386 and launcher/probe checks are recorded in the linked receipt.
 Continue actual Car event2/wheel request serialization, deformed/global backup/
 occupied restore/timed-DM, then full Human entry/frame/failure/re-entry/retirement.
 The selected checkbox and P2.2 application/desktop acceptance remain OPEN.
+
+Subsequent [contact request/timer checkpoint](human-car-contact-request-source.md)
+now supplies wheel2/Human9 publication, actual actor20 routing and timed004E1990.
+Its required fuel10/impulse11 and full containing frame remain separate gaps.

@@ -92,6 +92,7 @@ public:
     std::optional<DamageModelOwner> model254c; //Native owned reference, initialized NULL by004D16A0.
     bool flag2548=false;
     bool flag24a1=false,flag254a=false; //254A reset by actual004D16A0; set by004DBF00.
+    std::optional<bool> flag2544; //Actual004DB760 case8 publication; no cold producer is invented.
     std::optional<std::int32_t> source24b0; //Native24B0 is produced by authority activation or actualD4.
     std::array<std::vector<std::uint32_t>,2> lists2518;
     std::vector<std::uint32_t> lists2528,lists2538,lists258c,lists259c;

@@ -10,7 +10,7 @@ is genuinely blocked. Source progress does not close application/desktop work.
 
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
 requested transferring back here; transfer evidence is ignored WORK
-`human-return-main-20261111`. Preceding checkpoint **8881fdd**; check current
+`human-return-main-20261111`. Preceding checkpoint **c1908cf**; check current
 HEAD/status. Preserve LIFE/UI/PACK/research worktrees, `/tmp/hd2-p22-hum-continue`
 and unrelated changes. No agents were spawned. No push. No original EXE/DLL/
 Proton or Windows fixture execution; native own audits only, Windows compile/link.
@@ -19,35 +19,42 @@ blocked; no mission desktop acceptance. Source-only checkpoint commits authorize
 
 ## Latest verified source
 
-[Rigid motion receipt](analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json)
-adds11 client partials/extends3: **34 complete/2751 partial(2746client+5engine)**.
-[Full contract](analysis/human-car-rigid-motion-source.md). Actual004C9000→004C8EE0
-→wheel004C94B0/part004CB2B0 now runs through SAME Item12/RigidBody/World/tree/
-buckets. Pose004CC520/impulse004CCCC0/004CE7A0/filter004CE990/sleep004CF440/
-refresh004CEAA0 and borrowed actor contact cache are in source. Body20 elapsed
-ABI corrected in `human-car-rigid-motion-final-abi`; initial motion-abi omits it.
-004C8EE0/004C9480 absent frozen ZERO credit.007E4F02 is plane IntersectionLine,
-LS3DF RVA306C0;004CD4F0 componentwise multiply,004CD520 add,004066C0 scale.
-Native100 families PASS ASan/UBSan/LSan, Item12 regression PASS, strict actual
-nested World/Human/Car/Item12/Physics i386 and launcher/probe PASS. Heavy jobs
-sequential; explicit engine/frame/math/ray/actor/particle doubles, no original
-trajectory/convergence/application/desktop claim. Temporary audits remain ignored.
+[Contact request/timer receipt](analysis/checkpoints/p2.2-human-car-contact-request-20261112.json)
+adds3 client partials/extends2: **34 complete/2754 partial(2749client+5engine)**.
+[Contract](analysis/human-car-contact-request-source.md). Actual004DB2E0 uses SAME
+request2BC/third stream; wheel2 writer/ Human9 signed16+rawFLOAT grammar and
+004DB760 kinds2/8/9 now source-bound through SAME damage owner. Module13 actual
+004755D0 routes reserved0..31 to existing Human fallback, larger IDs to actual
+actor20. Car00810778+20=004DB760,1C=004DB360; authority and presentation stay
+separate.004E1990 now invokes existing004E1FE0/004DBF00 through actual Car authority
+loading frame: countdown0 BEFORE callback,64 AFTER success; failed expiry does
+not replay next frame. Endpoint borrowers publish/unbind together.
 
-**Confirmed new unproduced byte:** part004CB2CD reads/toggles5F9 before motion.
-Actual ctor writes5F8/5FB/5FC/5FD; reset clears5EA..5F7 and sets5FA; neither launcher
-writes5F9. Source fails BEFORE gravity/movement for a fresh part; warm verification
-explicitly seeds known prior5F9. Do not invent a default or repeatedly re-audit
-without new evidence. Wheel695 remains independently unproduced at final500ms.
-Actual contact cache borrows ACTORS/common30, not primitive/frame retention.
-Close removes descriptor BEFORE freeing cache. Query exclusions clear on failure;
-water particle/requery stay inside SAME window. Matrix-only substep tails precede
-containing004CEAA0 basis refresh. Preserve original ordered partial writes.
+Native100 focused families PASS ASan/UBSan/LSan: actual stream/quantizer/buffer,
+Scene2 routing, wheel requests, raw FLOAT bits/signed16, reverse/current seats/
+driver, truncated packet/required10/11, timer expiry/failure. Explicit actor/frame/
+math/Human damage/detachment/glass/particle/final destruction doubles. Strict
+actual nested module13/World/Car/Human and launcher/probe PASS. New rollback
+`ExportHumanCarContactRequestABI.java`→`human-car-contact-request-abi`; original
+candidate aliases remain in `human-car-contact-request-originals`.004E0270/
+004E05B0/004755D0 absent frozen ZERO credit. No application/desktop claim.
 
-**8881fdd** [Item12 receipt](analysis/checkpoints/p2.2-human-car-item12-20261112.json),
-[contract](analysis/human-car-item12-source.md): actual00479450/005FDA20/005FDAB0
-clone/type12 owner, existing field74_ counter,005FDC00/005FDC50 launch and004CD550
-wheel setup.005FDD10 body frame precedes lifetime; fade final500ms, expiry60 is
-00486E90 camera amount0/frame54(1), NOT fade cancellation.64 is shared fade-out.
+**c1908cf** [rigid motion receipt](analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json),
+[contract](analysis/human-car-rigid-motion-source.md): actual004C9000→004C8EE0→
+wheel004C94B0/part004CB2B0, pose/impulse/filter/sleep/frame caches through SAME
+Item12/body/World/tree/buckets and borrowed ACTOR/common30 contact cache. Native100,
+Item12 regression, strict actual nested i386 and launcher PASS. Initial motion-abi
+omits body20 elapsed; use final-abi/raw.004CD4F0 multiply,004CD520 add,004066C0 scale;
+007E4F02 plane IntersectionLine LS3DF RVA306C0. Matrix-only substep tails precede
+containing004CEAA0 basis refresh; preserve native partial writes.
+
+**Confirmed unproduced byte:** part004CB2CD reads/toggles5F9 before movement.
+Ctor5F8/5FB/5FC/5FD and reset5EA..5F7/5FA leave5F9 unchanged; launchers do too.
+Fresh source fails BEFORE gravity/movement; warm verification explicitly seeds a
+known prior byte. Wheel695 remains independently unproduced at final500ms.
+Do not invent defaults or repeatedly re-audit without new evidence. Existing
+8881fdd Item12 clone/launch/lifetime and shared fade/camera semantics remain linked
+from [its contract](analysis/human-car-item12-source.md).
 
 Preceding checkpoints remain verified; don't reopen unchanged kernels:
 - **9ebacae** [glass fragments](analysis/human-car-fragments-source.md): actual
@@ -70,15 +77,19 @@ Preceding checkpoints remain verified; don't reopen unchanged kernels:
 
 ## Next work
 
-1. Continue actual Car event2/wheel request serialization, timed-DM and deformed/
-   global backup/occupied restore. `GameCarCallbacks::apply_car_wheel_damage`,
-   `submit_car_wheel_damage`, `submit_car_human_damage` still require actual
-   004DB2B0/004DB2E0. Existing `car_damage_packets.h` supplies kinds0/1/3/4/5,
-   kind2 writer missing; read kind2 already exists. Original part/wheel Item12
-   construction and body motion now have source. `car_ancillary_model.h` still
-   requires004E1FE0/004DBF00 for positive countdown. `car_deformable_parts.h`
-   reverse restore still requires actual mesh backup on flag4. Use research index
-   BEFORE new exports; don't reopen confirmed clip/solver/reset/fragment kernels.
+1. Continue Car authority requests **10 fuel/11 impulse** (current explicit required
+   failures BEFORE their payload readers), then deformed/global backup/occupied
+   restore and containing frames. Kind10 calls004F2670 FUEL, not body health.
+   Reuse WORK `human-car-authority-extra-branches-index.txt`:004E0040/004E00F0
+   fuel grammar,004E0800 impulse reader unexported;004D3D10 already has default C
+   `car-callback-body-world-required/004d3d10.c`, still needs raw/corrected ABI.
+   004D3D10 performs ownership/current driver/local-ID decisions,1000ms rebroadcast
+   and actual Car→Car impulse; preserve same fields/clock/request owners. Callback
+   hit58 non7 still requires004DE800/004D3D10. New raw
+   `human-car-damage-request-receiver.asm`, `human-car-human-damage-packets.asm`
+   and event vtable metadata are indexed. Use research index BEFORE more exports.
+   `car_deformable_parts.h` reverse restore still requires actual mesh backup on
+   flag4. Don't reopen confirmed clip/solver/reset/fragment/rigid kernels.
 2. Full status9/received0 entry remains unbound. Read
    [shared world](analysis/multiplayer-world/shared-world.md).00730A40 needs actual
    peer6C/client334 wrappers/worker lifecycle→0072E890→00731610(true). Reuse WORK
