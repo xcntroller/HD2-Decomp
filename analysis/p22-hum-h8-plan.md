@@ -57,7 +57,8 @@ was traced after the inventory checkpoint. Complete these before crediting it:
 
 - [ ] Actual mapped inline actions, Players byte/setter, speech duration and Player delayed-action publication.
 - [ ] Action33/34: actual HeavyFire16 request/configuration/list/publication owners and populated lifecycle policy.
-- [ ] Required nonoffline speech19 FIFO producer, eligibility and actual received playback.
+- [x] Required flags1 nonoffline speech19 FIFO producer, eligibility and actual received playback.
+  [Speech/ordinary action checkpoint](human-h8-pack-action-resume-source.md); support33/34 and command12 remain open.
 - [ ] Command12 positive/failure/FIFO/lifetime verification and concrete host/launcher checks.
 
 Index lookup and original call boundaries are retained under WORK's

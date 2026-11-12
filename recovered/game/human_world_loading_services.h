@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_ai_target_output.h"
+#include "game/human_player_packet_action.h"
 #include "game/human_ai_alignment.h"
 #include "game/human_vehicle_path.h"
 #include "game/human_inventory_counts.h"
@@ -2017,10 +2018,9 @@ public:
             if(authority)return; //00540DB0 only decodes this command.
             receive_human_score_rank(human,f.template get<std::uint32_t>(8),player);return;
         case 19:{
-            if((mode_flags()&7u)!=7u)throw std::runtime_error("Human speech packet requires actual nonoffline00588170 receiver");
             if(!human.speech_definition)throw std::runtime_error("Human speech packet has no actual speech definition");
             HumanSpeechLoading speech(dependencies().scene.frames(),*this);
-            speech.offline(*state,static_cast<std::int32_t>(f.template get<std::uint32_t>(8)),f.template get<std::uint32_t>(0xc)!=0);return;
+            speech.play(*state,static_cast<std::int32_t>(f.template get<std::uint32_t>(8)),f.template get<std::uint32_t>(0xc)!=0);return;
         }
         case 21:{ //Authority00540DB0 synthesizes20 in SAME second90 vector, including offline.
             HumanPacketCommand response;response.kind=20;response.fields.set(8,f.template get<std::int32_t>(8));state->queue_frame_command(std::move(response),true);return;
@@ -2093,7 +2093,12 @@ public:
             }else apply_human_supply_pickup(human,f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),slot,identity,*this);
             return;
         }
-        case 12:throw std::runtime_error(authority?"Human PACK command12 requires Player action validation0053D5D0":player?"Human PACK command12 requires Player action apply0053D870":"Human PACK command12 requires Remote action apply00594110");
+        case 12:
+            if(authority){
+                auto validate=human_packet_action_validator(*state);
+                if(apply_player_packet_action(static_cast<typename Factory::Player&>(*state),command,*this)){validate();state->queue_frame_command(command,true);}
+            }else present_human_packet_action(*state,command,*this);
+            return;
         case 14:{
             using PacketHuman=typename Dependencies::Composition::Human;
             auto* target=dynamic_cast<PacketHuman*>(dependencies().scene.frames().scene_actor_identity(static_cast<std::int32_t>(f.template get<std::uint32_t>(8))));
@@ -2348,6 +2353,33 @@ public:
     std::uint32_t projection_game_time(){return dependencies().session.words.template get<std::uint32_t>(0x28);}
     std::int32_t projection_random_word(){return static_cast<std::int32_t>(dependencies().startup.random_word());}
     std::uint32_t projection_quality_byte(){return dependencies().startup.profile_settings().quality_byte(2);}
+    template<class State>auto human_packet_action_validator(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("Packet action requires its actual Human");
+        const auto identity=human->base().id10();auto* expected=&state;
+        return [this,human,identity,expected]{
+            auto* current=dependencies().scene.frames().scene_human_identity(identity);
+            if(current!=human||!current||current->loading_state!=expected)
+                throw std::logic_error("Packet action Human/B0 retired during callback");
+        };
+    }
+    auto& human_packet_players_process(){return dependencies().startup.players_process();}
+    template<class State>void human_packet_inline_action(State& state,std::uint32_t action){
+        auto* human=state.human();if(!human)throw std::logic_error("Packet action lost its actual Human");
+        human_inline(*human).action_command(static_cast<std::int32_t>(action));
+    }
+    template<class State>std::uint32_t human_packet_action_speech(State& state,std::uint32_t category){
+        HumanSpeechLoading speech(dependencies().scene.frames(),*this);return speech.request(state,static_cast<std::int32_t>(category),100,1,false);
+    }
+    template<class State>bool human_packet_support_action(State&,const HumanPacketCommand&){
+        throw std::runtime_error("Player support action requires actual HeavyFire16 owners and request receivers");
+    }
+    auto* human_speech_candidate(std::int32_t index){ //00475DD0, physical Scene2 slots, no retirement fallback.
+        using Human=typename Dependencies::Composition::Human;
+        auto* actor=dependencies().scene.frames().scene_actor_identity(index);auto* human=dynamic_cast<Human*>(actor);
+        if(actor&&!human)throw std::logic_error("Reserved speech identity requires its actual Human");return human;
+    }
+    template<class Human>bool human_speech_suppressed(Human& human){return human_selected_suppressed(human);}
+    template<class Human>bool human_speech_player_controlled(Human& human){return script_human_player_controlled(human,mode_flags());}
     bool speech_special_mode43(){return dependencies().startup.players_process().words().template get<std::uint8_t>(0x43)!=0;} //00459480.
     bool speech_group0_active(){return !dependencies().startup.players_process().groups()[0].empty();} //00456B80(0), SAME process group48.
     std::uint32_t human_speech_length(std::int32_t identity){return dependencies().startup.game_speech_length(identity);}

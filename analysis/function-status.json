@@ -26076,24 +26076,26 @@
       "program": "client",
       "entry": "005882f0",
       "status": "partial",
-      "coverage": "Actual offline common speech: null definition, first guarded phrase rotation before timer/suppression, B8/deadline mutation, second offline playback and FIRST sample metadata return; explicit nonoffline task/peer rejection.",
+      "coverage": "Actual offline common speech: null definition, first guarded phrase rotation before timer/suppression, B8/deadline mutation, second offline playback and FIRST sample metadata return; explicit nonoffline task/peer rejection. Resumed PACK source: flags1 nonoffline speech eligibility uses actual reserved physical Humans31..0 and SAME B0 second90 command19; received playback is mode-independent. Immediate SOUND4C flags1-clear prefix remains guarded.",
       "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
       "evidence": [
         "recovered/game/human_speech_loading.h",
         "analysis/human-speech-loading.md",
-        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json",
+        "analysis/human-h8-pack-action-resume-source.md"
       ]
     },
     {
       "program": "client",
       "entry": "00588170",
       "status": "partial",
-      "coverage": "Actual second unguarded phrase rotation, Player notification before quiet, actual camera/head FLOAT differences and distance/unordered gate, real shared process dubbing of second sample.",
+      "coverage": "Actual second unguarded phrase rotation, Player notification before quiet, actual camera/head FLOAT differences and distance/unordered gate, real shared process dubbing of second sample. Resumed PACK source: flags1 nonoffline speech eligibility uses actual reserved physical Humans31..0 and SAME B0 second90 command19; received playback is mode-independent. Immediate SOUND4C flags1-clear prefix remains guarded.",
       "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
       "evidence": [
         "recovered/game/human_speech_loading.h",
         "analysis/human-speech-loading.md",
-        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json",
+        "analysis/human-h8-pack-action-resume-source.md"
       ]
     },
     {
@@ -45888,6 +45890,50 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-pack-effects-source.md",
         "analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0053d520",
+      "status": "partial",
+      "coverage": "Select actual Players virtual2C speech BYTE mode from the original action cases; getter00459480 preserves raw byte and neighbors.",
+      "limitations": "Source-only portable typed owners and explicit guards replace native pointer/virtual/allocator/SEH ABI. HeavyFire support33/34 and delayed Players frame dispatch remain required; no full command12, H8, PACK, engine or desktop completion claim.",
+      "evidence": [
+        "recovered/game/human_player_packet_action.h",
+        "analysis/human-h8-pack-action-resume-source.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0053d5d0",
+      "status": "partial",
+      "coverage": "Ordinary offline/nonoffline action mapping and speech, actual Players speech byte, failure-prefix520 reset, native random fallback and full nine-DWORD delayed4F0 publication; source lifetime guards. Support33/34 still explicitly requires actual HeavyFire module owners.",
+      "limitations": "Source-only portable typed owners and explicit guards replace native pointer/virtual/allocator/SEH ABI. HeavyFire support33/34 and delayed Players frame dispatch remain required; no full command12, H8, PACK, engine or desktop completion claim.",
+      "evidence": [
+        "recovered/game/human_player_packet_action.h",
+        "analysis/human-h8-pack-action-resume-source.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0053d870",
+      "status": "partial",
+      "coverage": "Presentation action53/56 consume-only and original0083C348 mapping into SAME inline98 action command; no speech/delayed publication.",
+      "limitations": "Source-only portable typed owners and explicit guards replace native pointer/virtual/allocator/SEH ABI. HeavyFire support33/34 and delayed Players frame dispatch remain required; no full command12, H8, PACK, engine or desktop completion claim.",
+      "evidence": [
+        "recovered/game/human_player_packet_action.h",
+        "analysis/human-h8-pack-action-resume-source.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00594110",
+      "status": "partial",
+      "coverage": "Remote presentation action53/56 consume-only and original0083C348 mapping into SAME inline98 action command; no speech/delayed publication.",
+      "limitations": "Source-only portable typed owners and explicit guards replace native pointer/virtual/allocator/SEH ABI. HeavyFire support33/34 and delayed Players frame dispatch remain required; no full command12, H8, PACK, engine or desktop completion claim.",
+      "evidence": [
+        "recovered/game/human_player_packet_action.h",
+        "analysis/human-h8-pack-action-resume-source.md"
       ]
     }
   ]

@@ -44,7 +44,18 @@ actual suffix/category3 loan/fourth-track/shared outgoing process. Their native
 and concrete-host receipts remain in the consolidated contract. SupplyBox later
 state1 closing/crossfade/respawn/falling frame still requires actual H8 work.
 
-**NEXT PACK:** command12 actual Player0053D5D0/0053D870 and Remote00594110,
+**LATEST TAKEOVER:** [speech/ordinary action checkpoint](analysis/human-h8-pack-action-resume-source.md),
+[receipt](analysis/checkpoints/p2.2-human-pack-action-resume-20261112.json).
+Preserved predecessor speech edits and completed flags1 nonoffline command19
+producer/received playback plus ordinary command12 mapped/special action policy,
+actual Players BYTE43 setter/getter and nine-DWORD delayed publication. Command12
+still explicitly fails at HeavyFire33/34. Native speech+mapped policy100 lifetimes
+each pass ASan/UBSan/leaks, actual full packet-host i386 link and final launcher/
+probe rebuild pass; Windows binaries not run. Four new partials;34 complete/3413
+partial. Temporary new audits fingerprinted/removed. PACK worktree remains as
+previously found; do not merge until required effects complete.
+
+**NEXT PACK:** HeavyFire16 support33/34 for command12,
 then remaining common3/00586200 subtypes, then combined PACK source verification.
 Command12 [dependency boundary](analysis/human-h8-pack-action-boundary.md) now
 records actual mapping/Players/speech and HeavyFire dependencies. Successful
@@ -58,8 +69,8 @@ retirement are still required; cold HeavyFire update must not remain successful
 when support becomes producible. See the note's exact next addresses (index first).
 Nonoffline speech queues frame0x13 (=decimal19) to SAME second90, not an AI action
 pool13. Both producer eligibility and received00588170 playback remain required.
-Command12 implementation is not started; plan now records these dependencies.
-No credit/closure was added for research alone. Continue the whole command12
+Ordinary command12 and speech source is implemented in the takeover checkpoint; HeavyFire support remains required.
+No closure was added for research alone. Continue the whole command12
 boundary, then common3, before ordinary H8 frame work.
 
 General inventory research: WORK `human-h8-pack-inventory-resume-index.txt`,

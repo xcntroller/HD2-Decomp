@@ -31,6 +31,9 @@ public:
     HumanVector formation_scale()const{return words_.template get<HumanVector>(0x110);} //Actual0089AD40.
     const auto& groups()const{return groups_;}auto& words(){return words_;}const auto& words()const{return words_;}
 
+    void speech_mode(std::uint8_t value){words_.set(0x43,value);} //00459470, virtual2C: one BYTE store only.
+    std::uint8_t speech_mode()const{return words_.template get<std::uint8_t>(0x43);} //00459480, virtual30.
+
     template<class Random,class Clock>void schedule_order_completion(Human* human,
             std::vector<DelayedSpeech>& delayed,Random&& random,Clock&& clock){ //00455AF0, singleton virtual38; absent frozen start.
         if(!human)return;
