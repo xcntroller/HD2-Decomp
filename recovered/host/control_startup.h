@@ -24,7 +24,9 @@ class ControlStartupServices {
 public:
     // Peer-owner+ B4 lock is constructed with the cold owner007466E0, before
     // the two startup locks. Native storage does not reproduce its object ABI.
-    ControlStartupServices() {
+    ControlStartupServices()=default;
+    void initialize_control_worker_lock(){
+        if(initialized_[2])throw std::logic_error("Worker lock initialization repeated");
         InitializeCriticalSection(&locks_[2]);
         initialized_[2] = true;
     }

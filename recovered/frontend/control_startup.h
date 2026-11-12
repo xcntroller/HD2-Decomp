@@ -35,6 +35,7 @@ public:
         if(offset==0x6c){
             if(value)throw std::logic_error("Control connection cannot be manufactured from a DWORD");
             connection6c_=nullptr;
+            connection_lifetime_.reset();
         }
         for (unsigned i = 0; i != 4; ++i) byte(offset + i, static_cast<std::uint8_t>(value >> (i * 8)));
     }
@@ -53,9 +54,12 @@ public:
     ControlConnectionRecord* connection()const{
         for(unsigned n=0;n<4;++n)if(byte(0x6c+n).value())
             throw std::logic_error("Control connection requires its actual typed owner");
+        if(connection6c_){const auto lifetime=connection_lifetime_.lock();
+            if(!lifetime||!lifetime->live)throw std::logic_error("Control connection borrower outlived its actual owner");}
         return connection6c_;
     }
-    void connection(ControlConnectionRecord* value){word(0x6c,0);connection6c_=value;}
+    void connection(ControlConnectionRecord* value){word(0x6c,0);connection6c_=value;
+        connection_lifetime_=value?value->lifetime():std::weak_ptr<ControlConnectionRecord::Lifetime>{};}
     std::string name()const {
         std::string value;
         for(std::size_t n=8;n!=size;++n){const auto c=byte(n);
@@ -69,6 +73,7 @@ private:
     std::bitset<size> defined_;
     void* human3c_=nullptr;
     ControlConnectionRecord* connection6c_=nullptr;
+    std::weak_ptr<ControlConnectionRecord::Lifetime> connection_lifetime_;
 };
 
 // 00725A50 via00725A40: only these bytes are written; reset preserves the rest.
@@ -101,6 +106,7 @@ struct ControlStartupState {
     void* service14 = nullptr;
     std::vector<ControlStartupRecord> records; // +1DC, elements at+1E0
     ControlConnectionRecord* client334=nullptr; //Distinct from transport client04 and voice0C. Original process BSS; borrowed here.
+    std::uint32_t server_address338=0; //SAME process BSS/00723D20 producer, distinct from discovery descriptor4E00.
     std::optional<ControlStartupCallback> callback414;
     std::uint32_t word448 = 0, word4e4 = 0;
     //0097D070+44C/464 lie beyond .data's raw extent in the original image:

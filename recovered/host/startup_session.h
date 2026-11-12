@@ -74,6 +74,8 @@
 #include "frontend/options_settings.h"
 #include "host/chunk_files.h"
 #include "host/control_startup.h"
+#include "host/control_connection_platform.h"
+#include "frontend/control_connection_worker.h"
 #include "host/graphics_input_services.h"
 #include "host/human_store.h"
 #include "host/joystick_backend.h"
@@ -96,7 +98,7 @@ namespace hd2::host {
 // executable. Construct BEFORE graphics initialization (game.cfg timing).
 // This does not supply application/video/menu states or the binary wrapper VM.
 // Original Win32 import targets are called directly; no protection success API.
-class StartupSession {
+class StartupSession : public ControlConnectionPlatform {
 public:
     using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>,StartupSession>;
     using PlayerHuman=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
@@ -116,7 +118,8 @@ public:
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
           session_voice_(control_data_.wrapper0c,settings_backend_),
           human_inputs_(*this,human_input_shared_,control_data_.service14),control_frame_(control_data_, gate_, *this,broadcast_packets_),
-          local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_) {
+          local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_),
+          connection_worker_(*this,control_data_,frontend::ControlConnectionStorage::loader_zero_filled_process) {
         if (!selected_language.empty()) language_.select(selected_language);
         menu_cursor_={menu_width()*.5f,menu_height()*.5f};
         // Actual00748940/00748960 clock basis, separate from frame pacing.
@@ -875,6 +878,16 @@ public:
     auto make_game_connection(std::uint32_t identity,std::uint32_t address,void* context){
         return std::make_unique<frontend::ControlConnectionOwner<StartupSession>>(*this,identity,address,context);
     }
+    void initialize_control_worker_lock(){lock_services_.initialize_control_worker_lock();}
+    bool owns_control_worker()const{return true;} //This object's SAME inline source worker, not transport readiness.
+    void reset_control_connections(){connection_worker_.reset_native();control_frame_.state().worker_active=false;}
+    void flush_control_connections(){connection_worker_.flush_all(true);}
+    void start_control_connections(std::uint32_t port){connection_worker_.start(port);control_frame_.state().worker_active=connection_worker_.active();}
+    auto& create_client_control_connection(std::uint32_t address,std::uint32_t port){return connection_worker_.publish_client(address,port);}
+    void complete_client_control_connection(std::uint32_t result,const std::vector<unsigned char>& reply){connection_worker_.complete_client(result,reply,control_frame_.state().local_peer);}
+    void retire_client_control_connection(){connection_worker_.retire_client();}
+    auto& finish_prepared_peer_connection(std::uint32_t slot){return connection_worker_.finish_prepared_peer(slot);}
+    void disconnect_peer_connection(std::uint32_t slot){connection_worker_.disconnect_peer(slot);}
     bool session_voice_enabled(){return profile_settings().bytes[0x38]!=0;}
     void create_session_voice(bool authority){session_voice_.create(authority,control_frame_.state().server,control_frame_.state().client);}
     void retire_session_voice(){session_voice_.retire();}
@@ -1029,6 +1042,7 @@ private:
     HWND archive_focus_ = nullptr;
     BOOL directory_window_ = FALSE;
     LARGE_INTEGER control_frequency_{}, control_origin_{};
+    frontend::ControlConnectionWorker<StartupSession> connection_worker_; //LAST: callbacks retire while every borrowed process/platform owner is still alive.
 };
 
 }

@@ -6,8 +6,20 @@
 #include <optional>
 #include <stdexcept>
 #include <vector>
+#include <atomic>
 
 namespace hd2::frontend {
+class ControlConnectionStream;
+
+enum class ControlConnectionStorage{unproduced,loader_zero_filled_process};
+
+struct ControlConnectionPump {
+    virtual ~ControlConnectionPump()=default;
+    virtual std::uint32_t connection_clock()=0;
+    virtual bool connection_callback_bound()const=0;
+    virtual ControlConnectionStream& connection_scratch()=0;
+    virtual void connection_send(const std::vector<unsigned char>& bytes,std::uint32_t address,std::uint32_t port,void* context)=0;
+};
 
 // Consumed +08 of the actual 0x50-byte00745D20 connection, NOT a replacement
 // constructor/transport. ControlConnectionOwner constructs the queue/lock/clock
@@ -16,7 +28,20 @@ namespace hd2::frontend {
 // no default here supplies their missing lifetime or a successful connection.
 class ControlConnectionRecord {
 public:
-    virtual ~ControlConnectionRecord()=default; //Native vtable00 deletes the containing owner, not this consumed-field view alone.
+    ControlConnectionRecord()=default;
+    ControlConnectionRecord(const ControlConnectionRecord&)=delete;
+    ControlConnectionRecord& operator=(const ControlConnectionRecord&)=delete;
+    struct Lifetime{std::atomic<bool> live{true};}; //Source safety metadata, not an original field or readiness flag.
+    virtual ~ControlConnectionRecord(){invalidate_lifetime();}
+    auto lifetime()const{return std::weak_ptr<Lifetime>{lifetime_};}
+    void invalidate_lifetime()noexcept{lifetime_->live=false;}
+    virtual std::uint32_t identity()const{throw std::logic_error("Connection requires its actual containing owner");}
+    virtual void identity(std::uint32_t){throw std::logic_error("Connection identity publication requires its actual owner");}
+    virtual void maintain(ControlConnectionPump&){throw std::logic_error("Connection maintenance requires its actual owner");}
+    virtual void flush(ControlConnectionPump&,bool){throw std::logic_error("Connection flush requires its actual owner");}
+    virtual void receive(ControlConnectionPump&,std::uint32_t,ControlConnectionStream&,std::uint32_t,std::uint32_t){
+        throw std::logic_error("Connection receive requires its actual owner");
+    }
     std::uint32_t generation() const {
         if(!generation08_)throw std::logic_error("Connection generation has no original producer");
         return *generation08_;
@@ -24,6 +49,7 @@ public:
     void generation(std::uint32_t value){generation08_=value;}
 private:
     std::optional<std::uint32_t> generation08_;
+    std::shared_ptr<Lifetime> lifetime_=std::make_shared<Lifetime>();
 };
 
 // Worker+04/+08/+0C registry.007466E0 constructs an EMPTY vector; it does not
@@ -34,12 +60,18 @@ template<class Allocator=std::allocator<ControlConnectionRecord*>>
 class ControlConnectionRegistry {
 public:
     explicit ControlConnectionRegistry(const Allocator& allocator=Allocator{}):entries_(allocator){}
+    explicit ControlConnectionRegistry(ControlConnectionStorage storage,const Allocator& allocator=Allocator{}):entries_(allocator){
+        if(storage==ControlConnectionStorage::loader_zero_filled_process)generationd4_=0;
+    }
     void generation(std::uint32_t value){generationd4_=value;}
     std::uint32_t generation()const {
         if(!generationd4_)throw std::logic_error("Worker generation has no original producer");
         return *generationd4_;
     }
     const auto& entries()const{return entries_;}
+    void reset_end(){entries_.clear();} //007467B0 resets end WITHOUT deleting prior pointers or freeing capacity.
+    void pop_deleted_last(){if(entries_.empty())throw std::logic_error("Deleted connection has no registry entry");entries_.pop_back();}
+    void release_storage(){decltype(entries_) empty(entries_.get_allocator());entries_.swap(empty);}
 
     template<class Locks>void append(ControlConnectionRecord& connection,Locks& locks){ //00746B50.
         locks.enter_control_lock(2); //SAME worker B4, not process418/430.

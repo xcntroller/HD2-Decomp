@@ -5,6 +5,7 @@
 #include "frontend/cleanup.h"
 #include "game/session_broadcast_packets.h"
 #include <cstring>
+#include <type_traits>
 
 namespace hd2::frontend {
 
@@ -82,7 +83,7 @@ private:
         flush_packets();
         startup_.word448=0;startup_.byte4df8=0;startup_.word5044=0;gate_=7;
         if(startup_.service14)backend_.clear_control_input_records(); //0072E4E0→0073F5A0, manager and embedded30 survive.
-        {Lock peers(backend_,2);}
+        reset_connections(); //00746890→334 clear→00746840, BEFORE418 record retirement.
         {Lock records(backend_,0);startup_.records.clear();}
         clear_packets();state_.local_peer=0;
     }
@@ -99,7 +100,7 @@ private:
         gate_=7;errors.rethrow();
     }
     void require_cold(bool packets=false) const {
-        if (gate_ != 7 || state_.server || state_.client || state_.worker_active ||
+        if (gate_ != 7 || state_.server || state_.client || (state_.worker_active&&!owns_worker()) ||
                 state_.firewall_changed || startup_.wrapper0c || startup_.wrapper10 ||
                 (startup_.service14&&(!packets||!backend_.owns_control_input_manager(startup_.service14))) ||
                 startup_.handle4d3c != -1 || state_.timer_enabled)
@@ -126,6 +127,11 @@ private:
         state_.pending_words = 0;
         state_.pending_bits = 0;
     }
+    template<class T,class=void>struct HasWorker:std::false_type{};
+    template<class T>struct HasWorker<T,std::void_t<decltype(std::declval<T&>().reset_control_connections()),decltype(std::declval<const T&>().owns_control_worker())>>:std::true_type{};
+    bool owns_worker()const{if constexpr(HasWorker<Backend>::value)return backend_.owns_control_worker();else return false;}
+    void reset_connections(){if constexpr(HasWorker<Backend>::value)backend_.reset_control_connections();
+        else{if(state_.worker_active||startup_.client334)throw std::logic_error("Control reset requires its actual worker owner");Lock peers(backend_,2);}}
     ControlStartupState& startup_;
     std::uint32_t& gate_;
     Backend& backend_;

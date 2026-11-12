@@ -88,7 +88,15 @@ constructor, registry and entry receivers; launcher/probe compile/link separatel
 No Windows output or original binary is executed; no desktop claim. Temporary
 audits remain in ignored WORK until D12's consolidated cleanup.
 
-## D6b remains required
+## Subsequent worker checkpoint
+
+[Worker/control source](human-worker-control-source.md) now supplies the explicit
+static-storage producer and SAME process414/workerD8 alias. Generic D4 remains
+unproduced; the actual singleton loader-zero producer and native start are now
+separate, demonstrated cases. The containing D6b2 admission/payload work stays
+open. The original remaining-boundary map below is retained as research history.
+
+## Original D6b boundary map
 
 The source checkpoint is intentionally separate from the containing worker and
 caller lifetime. Expanded native evidence establishes these next dependencies:

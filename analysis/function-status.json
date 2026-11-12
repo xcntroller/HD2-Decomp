@@ -6658,11 +6658,14 @@
       "program": "client",
       "entry": "00722180",
       "status": "partial",
-      "coverage": "Decode browser-kind0 DirectPlay response data including legacy/version-rewind layouts, three-bit extended style, signed port and DEMO-substring edition handling.",
-      "limitations": "Other callback message kinds and kind1 game-info continuation excluded. Native checked byte parsing rejects malformed input and copies owned values. No network game/session receiver, live endpoint or desktop acceptance.",
+      "coverage": "Decode browser-kind0 DirectPlay response data including legacy/version-rewind layouts, three-bit extended style, signed port and DEMO-substring edition handling. Additional CONNECT_COMPLETE receiver publishes SAME00982104 before actual334+04, preserving success7F mask/failure5044 byte and missing334 mutation prefix; TERMINATE connection prefix unregisters/deletes/clears334 then5044 through SAME source worker.",
+      "limitations": "Existing browser decoder limits remain; Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
       "evidence": [
         "analysis/multiplayer-pipeline.md",
-        "recovered/frontend/multiplayer_discovery.h"
+        "recovered/frontend/multiplayer_discovery.h",
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
       ]
     },
     {
@@ -40831,6 +40834,510 @@
         "recovered/game/session_entry_connections.h",
         "analysis/human-entry-connection-source.md",
         "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007466e0",
+      "status": "partial",
+      "coverage": "Actual singleton worker storage: empty borrowed registry, inline socket before B4, A4 cold and SAME process414/workerD8 callback cleared. Explicit PE loader-zero producer supplies otherwise untouched singleton fields; no generic heap-worker defaults.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007474e0",
+      "status": "partial",
+      "coverage": "Actual cold socket lifetime: real owned empty list storage,32768/800 buffers and54 critical section in native acquisition order, typed consumed scalar fields and explicit singleton zero-filled storage.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746750",
+      "status": "partial",
+      "coverage": "Reached worker storage retirement: B4 before socket54/buffers/lists/vector, then borrowed registry capacity. Explicit source callback joining/exceptional RAII is separate from native destructor body.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007475b0",
+      "status": "partial",
+      "coverage": "Reached cold socket storage retirement:54 then buffers14/18,4C/40 FIFO storage and empty reassembly storage. No populated incoming reassembly retirement claim.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007467b0",
+      "status": "partial",
+      "coverage": "Actual worker start: B0 event, socket start, end reset without deletion, A4/AC/D4, one fresh clock forCC/D0, then actual source worker callback creation. No transport-ready return invented.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747690",
+      "status": "partial",
+      "coverage": "Actual socket start with raw Win32 WSA/socket/bind endpoints, signed-1 ephemeral port, stop70 clear, source thread creation BEFORE74/78 completion/wake publication. Typed RET4 port verified from raw assembly.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746840",
+      "status": "partial",
+      "coverage": "Actual worker stop prefix A4=0/AC=1 before1000ms B0 wait, socket stop then B0 close. Extra owned-thread joining retains storage on pending failure and supports checked retry; not native timeout recovery.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747750",
+      "status": "partial",
+      "coverage": "Socket stop70 publication,78 signal,74 timed wait,74/78 close, socket close/-1 and WSA cleanup. Extra source joins/exceptional fallback separate; invalid-socket callback ownership cannot silently succeed.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746890",
+      "status": "partial",
+      "coverage": "Actual reverse connection retirement under B4: delete last SAME owned wrapper, then fresh end decrement. Separate ownership tracker rejects duplicate/stale deletion, preserves borrower invalidation, and never substitutes unregister for delete.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746eb0",
+      "status": "partial",
+      "coverage": "Actual source maintenance/receive callback loop with native priority2, stopAC and B0 completion only on natural loop exit. Called on real source threads in native audit; callback failures are not synthetic native completion.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00748220",
+      "status": "partial",
+      "coverage": "Actual source outbound callback waits78, drains actual FIFO, resets78 and rechecks70, then signals74. Early zero/previous-handle publication and source lifecycle joining preserved.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746da0",
+      "status": "partial",
+      "coverage": "Actual B4 forward connection maintenance then fresh signed wrappingCC age>500 and real force-flush. No fake worker scheduling or empty callback body.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746e00",
+      "status": "partial",
+      "coverage": "Actual active A4 gate; fresh clock publishesCC BEFORE B4 and actual forward connection flush, preserving late native phase ordering.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746a10",
+      "status": "partial",
+      "coverage": "Reached control receive over actual socket and raw bit storage: paced fragments, D0, type/identity read, outer B4 and recursive actual lookup, endpoint publication and SAME connection receiver. Populated payload/reassembly remain required failures.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746900",
+      "status": "partial",
+      "coverage": "Actual first matching connection04 lookup under B4, including recursive acquisition from actual00746A10 outer B4. No copied roster or retained vector iterator across callbacks.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007460f0",
+      "status": "partial",
+      "coverage": "Actual strict signed wrapping clock44+2000 deadline, same connection ping effect and clock44 publication only after ping unlock/return.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746000",
+      "status": "partial",
+      "coverage": "Actual modulo256 ping sequence and pre20 identity/sequence snapshot, type2/identity header, direction/sequence/fresh timestamp, same38 socket under20; shared raw scratch, no input owner clone.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746120",
+      "status": "partial",
+      "coverage": "Actual3C refresh, cold queue maintenance, actual builder then nonempty output send AFTER builder20 unlock/container retirement, through SAME38 socket. Populated outgoing producer remains absent/required.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007465f0",
+      "status": "partial",
+      "coverage": "Reached valid-port cold queue maintenance:20 lock and ascending queues, base no-op/reliable+ordered fresh clock empty-list branches. NULL queues remain required failures.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746490",
+      "status": "partial",
+      "coverage": "Reached cold builder owns actual temporary sentinel BEFORE20, preserves port/force gates, header/ACK/zero message count and shared scratch. Unlock/head retirement precede caller send; no invented populated payload.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747070",
+      "status": "partial",
+      "coverage": "Actual common control type8/connection identity8 serializer using shared reconstructed bit kernel. Ping/container preserve their native header snapshots.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747200",
+      "status": "partial",
+      "coverage": "Reached EMPTY container payload serializer writes count8=0 after actual cold container/list production. Nonempty message serialization remains open.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007473a0",
+      "status": "partial",
+      "coverage": "Actual ping payload writer: direction1/sequence8, fresh timestamp for requests or retained timestamp for replies; same raw scratch and padding adaptation.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007473f0",
+      "status": "partial",
+      "coverage": "Actual ping payload reader and unsigned elapsed subtraction for replies, zero clamp1, matching-sequence4C publication in containing receiver.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007477a0",
+      "status": "partial",
+      "coverage": "Actual low24 plaintext-DWORD checksum then complete-DWORD XOR with fresh key28+length*2048, wrapping arithmetic and untouched remainder bytes. Portable byte-vector/pool/layout adaptation.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747800",
+      "status": "partial",
+      "coverage": "Actual inverse complete-DWORD XOR and low24 plaintext checksum comparison. Malformed/truncated receive padding remains checked failure, not fabricated input.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747860",
+      "status": "partial",
+      "coverage": "Actual direct path below500; otherwise wrapping fragment ID,500-byte pieces, byte index/high flag/final bit, owned deferred FIFO. Required null18 scratch boundary after ID mutation.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007480f0",
+      "status": "partial",
+      "coverage": "Actual immediate FIFO ownership: append under54, unlock then signal78. Source owns bytes; no borrowed temporary payload or fake completion.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00748070",
+      "status": "partial",
+      "coverage": "Actual at-most-one deferred fragment per strict signed now>shared00983100, pop/clock publication then immediate enqueue. Same process pacing state, not per-packet copied clock.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00748180",
+      "status": "partial",
+      "coverage": "Actual outbound FIFO pop under54, unlock for same sockaddr mutation/raw send/free, then relock. Native send return ignored; no transport-readiness claim.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747f50",
+      "status": "partial",
+      "coverage": "Actual raw select/FD_ISSET/recvfrom endpoint composition and positive receive1C byte counter before checksum parsing, real32768 source buffer and typed sender address/port.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747a00",
+      "status": "partial",
+      "coverage": "Actual same sockaddr target/port publication before raw sendto, followed by20 byte count irrespective of ignored native send result.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747a40",
+      "status": "partial",
+      "coverage": "Reached unfragmented checksum/decode receiver; malformed carrier and high-bit fragment reach honest required ownership guards. No successful reassembly or retained payload receiver claim.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007450c0",
+      "status": "partial",
+      "coverage": "Actual23-bit sequence lifting relative to prior high bits with quarter thresholds and unsigned wrapping; signed old-ACK suppression in containing queue receiver. Native wrap/old-ACK goldens pass.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746390",
+      "status": "partial",
+      "coverage": "Reached EMPTY incoming container path: separate20 scope, both ACK decoders/update then count8, before later take/completion rounds. Nonempty count fails after required endpoint/clock/ACK prefix.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745f20",
+      "status": "partial",
+      "coverage": "Reached empty received-message extraction branch over actual same queue owner: no synthetic callback or retained packet. Nonempty extraction remains required.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745fb0",
+      "status": "partial",
+      "coverage": "Reached ascending empty incoming-queue take under20, including actual ordered empty-list branch. No successful fabricated user message.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746630",
+      "status": "partial",
+      "coverage": "Actual separate20 completion scope and ascending three cold queue completion receivers, selected by SAME callback414/workerD8 after receive.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007457c0",
+      "status": "partial",
+      "coverage": "Reached actual empty reliable/ordered completion-list branch against real cold40 sentinel owner. Populated contiguous completion retirement remains open.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745920",
+      "status": "partial",
+      "coverage": "Reached actual empty ordered incoming1C-list take branch against same real sentinel owner. Populated next-sequence extraction remains open.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00723d20",
+      "status": "partial",
+      "coverage": "Actual post-worker-start connection prefix: SAME338 address producer, real cold wrapper,334 publication BEFORE port+1/register and immediate force-flush. Full descriptor/DirectPlay connect/admission is not supplied.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007260a0",
+      "status": "partial",
+      "coverage": "Reached PREPARED CREATE_PLAYER tail through actual record04/A8/A1/6C/statistics and SAME worker registration AFTER418 unlock; destroy unregister/delete/6C clear; abort deliberately retains stale6C and typed failure. Admission/name/address prefix and later input70/app consumers remain required.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "evidence": [
+        "recovered/frontend/control_connection_worker.h",
+        "analysis/human-worker-control-source.md",
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
       ]
     }
   ]

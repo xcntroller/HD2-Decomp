@@ -164,6 +164,7 @@ D10 unmounted composition can advance without waiting for all transport work.
   004D3D10 or prove that the selected branch cannot produce it.
   H3 worktree has uncommitted mounted-control/Car owner changes; preserve them
   and integrate its verified checkpoint before duplicating these receivers.
+  H3 now has committed10bebe9; review and integrate that snapshot, not later edits.
 
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,
@@ -195,7 +196,14 @@ closes positive damage and Door visual restoration; D4/D5 remain open.
   start callbacks and00746840/00747750 stop/retirement; client334/peer6C
   publication, port/register and disconnect deletion through SAME owner.
   Client00723D20 publishes334 before port/register; host007260A0 registers
-  after418 unlock. Preserve cold unproducedD4 and populated queue failures.
+  after418 unlock. D6b1 is verified source; D6b2 remains. Generic coldD4 is
+  unproduced; actual singleton loader-zero and native start are proven producers.
+- [x] D6b1 — Worker/socket/control lifetime source: actual callbacks, ACK/ping,
+  typed caller prefixes and reverse-delete/stop/storage ordering.
+  [Verified boundary](human-worker-control-source.md); no live session claim.
+- [ ] D6b2 — Actual admission/callback composition and reached retained payload/
+  queue/fragment receivers; preserve same client/server, process414 and app11.
+  Required before containing D6b/D6 closes; not a Phase3 live-session test.
 - [ ] D7 — Status9 composition:00730A40→0072E890→00731610(true), retained-game
   restoration BEFORE menu shutdown, SAME00698510/006989B0 owner and actual request.
   Depends on D6 and existing S06/S07; preserve its shutdown/delete failure path.
