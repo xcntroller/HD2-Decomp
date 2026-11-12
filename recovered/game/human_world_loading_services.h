@@ -666,6 +666,7 @@ public:
         return *ladder;
     }
     const auto& human_ladder_geometry(void* actor){return *human_ladder(actor).geometry;}
+    std::int32_t human_track_ladder_sound_group(void* actor){return human_frame_signed_word(human_ladder(actor).properties.settings170[1]);} //Native174.
     auto& human_navigation_door(void* actor){
         using Frames=typename Dependencies::ActorFrames;
         auto* door=dynamic_cast<DoorSceneActor<Frames>*>(static_cast<SceneActor<Frames>*>(actor));

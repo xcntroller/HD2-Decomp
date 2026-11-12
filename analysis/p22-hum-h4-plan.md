@@ -115,3 +115,13 @@ assume unmerged source is linked here. H4 base remains e742f84.
   native flags/quaternion/direction/visibility/update order and resource lifetime.
 - [x] Focused positive/failure/absence/retry sanitizer and concrete i386 World/
   item/track binding; original fingerprints/ABI, receipt, audit removal and commit.
+
+## C7 selected track particle/sound output
+
+- [x] Bind track18 actual bone4 transform/forward/particle33,19 actual Ladder174
+  group and bone16 SOUND,24 mode/FPV/player-gated bone4 SOUND. Preserve whole
+  dispatch return for19's absent actor/entry, versus24's next-event skip.
+- [x] Verify original native requests, FLOAT/extended arithmetic and exact gates
+  against raw bytes; sanitizer policies/failure prefixes and concrete i386 links.
+- [x] Record resource/producer requirements, receipt, audit removal and commit;
+  continue track8/9/DD0 attachment and remaining H4 completion/Script families.

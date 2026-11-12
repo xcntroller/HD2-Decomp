@@ -6,7 +6,11 @@ Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`, branch
 
 [H4 plan](analysis/p22-hum-h4-plan.md),
 [implementation/remaining families](analysis/p22-hum-h4-implementation.md).
-**H4 is the selected whole checkbox and remains OPEN. Continue after C6.**
+**H4 is the selected whole checkbox and remains OPEN. Continue after C7.**
+
+C7: track18 particle33 and19/24 exact SOUND/gates/return policy; sanitizer PASS41,
+actual public DD0/World/effects/SOUND/i386/launcher links PASS.
+[C7 receipt](analysis/checkpoints/p22-hum-h4-track-effects-20261112.json).
 
 C6: actual RuntimeItem magazine attach/restore and equipment16/17/18,track15/16/17.
 Sanitizer PASS20; concrete actual equipment/Items/Runtime/frame/public DD0 links
@@ -44,11 +48,11 @@ client fingerprint; verify instructions/ABI before implementation. Next formatio
 Original0058D900 setter binds a Players subgroup formation from004603C0; this is
 not auxiliary moduleE8/selection28 and not automatically Human2C8. Inspect actual
 subgroup producer/lifetime before binding. Additional evidence exports retained.
-Next C7: track18 particle33 at actual bone4 world position/normalized forward,
-19 Ladder174 SOUND at actual bone16 with early-return gates,24 presentation sound
-at actual bone4 with FPV/player early-return. Existing particle/SOUND services
-are available. Constants80FF04=.15 and810734=.04 verified in original PE; raw
-track-control-original.asm preserves FLOAT/extended calculation order. Continue.
+Next C8: actual00793490 mounted230 model presentation and00758830 target opacity
+copy. Model1, HW1, sameScene144, actual sector/link/visibility and model-bound
+Human EC consumers exist. HumanOpacity target is nativeDA8, ambientDB8; preserve
+raw target/ambient before target.update. Track8/9 still require original action
+model kinds4/8 and0075DF70; do not assume action5..7 covers those families.
 
 No original EXE/DLL/Proton or Windows output execution. Heavy builds/Ghidra are
 sequential; inspect other workstreams' active jobs before ours. No agents or push.

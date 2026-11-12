@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_CONTROL_LOADING_H
 #include "game/human_track_equipment_events.h"
 #include "game/human_track_control_events.h"
+#include "game/human_track_effect_events.h"
 
 #include "game/human_action_control.h"
 #include "game/human_control_action_queue.h"
@@ -715,10 +716,13 @@ private:
                     apply_human_track_hand_transfer(event,tracks_,*this,equipment_owner);
                     return true;
                 case 0x0f:case 0x10:case 0x11:equipment_owner.transfers().event(static_cast<unsigned>(event)+1u);return true;
+                case 0x12:apply_human_track_particle(*this,services_,frames_);return true;
+                case 0x13:return apply_human_track_ladder_sound(*this,*human_,services_);
                 case 0x15:state.set(0x9c8,std::uint8_t{1});return true;
                 case 0x14:apply_human_track_action_light(*this,equipment_owner);return true;
                 case 0x16:apply_human_track_deceleration(*this,*human_,services_);return true;
                 case 0x17:apply_human_track_motion_reset(*this);return true;
+                case 0x18:apply_human_track_presentation_sound(*this,*human_,services_);return true;
                 default:return runtime.apply_human_track_event(*this,look,event);
                 }
             },

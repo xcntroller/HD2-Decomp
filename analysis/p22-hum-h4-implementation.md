@@ -314,3 +314,27 @@ Launcher/probe strictO2 links PASS, never run. New frozen007D5380 partial only;
 existing007913D0/00758D20 extended.34 complete/3,025 partial; no promotions.
 [C6 receipt](checkpoints/p22-hum-h4-magazine-20261112.json) retains fingerprints;
 temporary audit sources/binaries removed. H4 remains OPEN.
+
+## C7 — track18/19/24 effects and sound
+
+Track18 uses actual bone4(native840), actual world matrix position/forward and
+existing normalization. Raw x87 square is(Y²+Z²)+X²; originalFLOAT distance.15
+and height.04 preserve X extended product, stored Y/Z products and extended
+positionY+height. It emits actual particle33 through SAME mission effects process
+(parentNULL,orientation1,flag0), never a guessed emitter/model. Missing bone is
+explicit native safety failure before engine lookup. Track19 retains native990
+Ladder actor, actual settings174 group, bone16(native8D0), flags1, entry0,
+position(0,-.4,0), sourceHuman and voicegroup3 in SAME SOUND service. Missing
+actor or group-1 returns from the WHOLE track dispatch (false), while the caller
+continues its normal animation/presentation. Track24 checks mode2, then actual
+FPV view58/59 and current-player gate, and skips only THIS event when suppressed.
+Positive SOUND uses flags1/group46/entry1/bone4/(0,.1,0)/sourceHuman/defaultvoice4.
+Null relative bone retains original legitimate world-space request behavior.
+
+Native ASan/UBSan/LSan PASS41 request/gate/short-circuit/normalization and engine/
+emitter failure-prefix families. Engine/Scene/Ladder/player/SOUND/effects endpoints
+are explicit doubles. Actual public DD0 presentation->real World/particle/SOUND/
+Scene/Ladder/FPV services i386 FULL LINK PASS; other containing Runtime branches
+are defined throwing doubles. Existing launcher/probe strictO2 links PASS, never
+run. Existing00758D20 only extended; no new counts/promotions. [C7 receipt](checkpoints/p22-hum-h4-track-effects-20261112.json)
+records source/original/log and removed audit fingerprints. H4 remains OPEN.
