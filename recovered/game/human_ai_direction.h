@@ -42,6 +42,11 @@ public:
         state_.set(0x38,horizontal[0]);state_.set(0x3c,horizontal[2]);
         state_.set(0x30,horizontal[0]);state_.set(0x34,horizontal[2]);return 0;
     }
+    template<class Angle>int request_look(const HumanVector& input,Angle&& angle){ //0055D1F0.
+        const auto separation=angle(input,state_.template get<HumanVector>(0x10));state_.set(0x20,input);
+        if(std::abs(separation)<1.3089969158172607f){if(state_.template get<std::int32_t>(0x4c)>0)state_.set(0x4c,5000);return 0;}
+        return current_locked()?2:set_target(input);
+    }
     auto& state(){return state_;}const auto& state()const{return state_;}
     Frame target_frame()const{return target_frame_;}void target_frame(Frame frame){target_frame_=frame;} //Native50 borrowed aim frame, not a DWORD.
     bool lock_target(){return change_lock(1,true);} //0055D8C0, AL only.

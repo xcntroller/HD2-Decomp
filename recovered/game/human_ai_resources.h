@@ -160,6 +160,7 @@ public:
     void current_action(HumanAIAction2Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction3Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction5Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction6Pool::Lease value){current_action_=std::move(value);}
     template<class Pool>auto* current_action_as()const{
         const auto* lease=std::get_if<typename Pool::Lease>(&current_action_);
         return lease?lease->get():nullptr;
@@ -207,7 +208,7 @@ private:
     std::vector<HumanAINavigationJobPool::Lease> jobs_; //NativeF8.
     HumanAINavigationJobPool::Lease current_job_{nullptr,HumanAINavigationJobPool::Return{}}; //Native104.
     std::variant<std::monostate,HumanAIAction1Pool::Lease,HumanAIAction2Pool::Lease,
-        HumanAIAction3Pool::Lease,HumanAIAction5Pool::Lease> current_action_;
+        HumanAIAction3Pool::Lease,HumanAIAction5Pool::Lease,HumanAIAction6Pool::Lease> current_action_;
 };
 } //namespace hd2::game
 #endif

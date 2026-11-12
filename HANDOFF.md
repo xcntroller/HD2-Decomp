@@ -1,64 +1,41 @@
-# P22-HUM H3 handoff — 2026-11-12
+# P22-HUM H5 handoff — 2026-11-12
 
-Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h3`, branch
-`feature/p22-hum-h3`, based on `feature/p22-hum` b99f088 at the user's request.
-Check HEAD/status; preserve unrelated worktrees and changes. No agents or push.
-No original EXE/DLL/Proton or Windows output execution. Heavy builds/Ghidra
-sequential. Ignored WORK is a local copy-on-write research snapshot; tools link
-existing installations. Source-only checkpoint; no desktop test or acceptance.
+Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h5`, branch
+`feature/p22-hum-h5`, based on requested `feature/p22-hum`520b03e. H3 worktree
+and10bebe9 preserved. Continue the WHOLE unchecked H5 in the
+[Human plan](analysis/p22-hum-plan.md), [contract](analysis/human-guard-area-source.md).
+Do not stop at this interim checkpoint. No agents, push, original EXE/DLL/Proton,
+Windows output execution or invented desktop acceptance. Source-only work.
 
-**H3 source is complete.** [Contract](analysis/human-seat-interaction-source.md),
-[receipt](analysis/checkpoints/p2.2-human-seat-interaction-20261112.json),
-[Human plan](analysis/p22-hum-plan.md). Positive offline Car/StaticWeapon seat
-entry/exit, driver controls, existing mass/cameras/seat/B0 owners, mounted
-assignment/reset/aim and actual S-marker casing/Physics receiver are bound.
-004C1AD0 produces154=0; aim118/11C remain disengaged until actual writes.
-Previous-seat temporary in00751480 is initialized-1; stdcall stack movement
-caused the misleading decompilation. Car exit search and StaticWeapon FIRST-seat
-pose remain distinct. Full occupied/non7 Car simulation remains **D5**, shooting
-producers H4/H6, full Human frame H8, application/desktop delivery OWN/FRAME/P2.2.
-Do not claim those from this checkpoint. H2 remains blocked independently below.
+Latest source checkpoint covers Ladder/floor protocols, real kind9 retained
+release and correct virtual08 feedback, positive Area actions/Sight, grenade
+prediction/aim/deadlines, Guard cover/emplacement selection and ordinary combat
+route/chase continuation, mounted capability/rate prefix and actual Car driver
+input. Kind6 pool/decision producer exists; mounted worker remains required.
+[Progress receipt](analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json)
+records precise scope and verification. Ledger34 complete/3093 partial; no
+complete promotions or whole H5 credit. Launcher/startup-probe compile/link and
+strict nested actual World i386 instantiation passed; no desktop run.
 
-Four temporary native ASan/UBSan/LSan audit executables pass100 families each:
-action timers/modes/races/failures; actual StaticWeapon seat/control/resource
-lifecycle and aim/casing; SAME Car seat kernels with actual mass/physics/control/
-SOUND/exclusions and no seeded occupants; Human-action→actual StaticWeapon
-assignment/update/exit/teardown. Explicit adjacent Human/Car/engine/query/Items/
-camera/B0 endpoints and the composition limits are recorded in the contract.
-Actual nested World/Human/Car/Items/Physics i386 instantiation and application
-launcher/startup probe build pass, compilation/link only. Temporary H3 audits
-are fingerprinted in the receipt then removed; ignored research/logs retained.
-A targeted additional100 engine-admission families verify F6C feature ownership
-(actual solver.substeps.flags) independently of5B0 lighting flags, correcting a
-final ownership-check finding before the checkpoint.
-**34 complete/3025 partial (3020 client+5 engine)**:17 new frozen partials,
-8 extensions, no promotions. Absent functions and delegated engine calls receive
-no new credit. Previous D4a receipt remains historical and unchanged.
+Next: finish Guard kind2 positive events/routes, kind1/3 target-vehicle modes,
+kind5 panic/armed and kind6 mounted action/events; actual Scene2 Guard/Area
+callback dispatch and retirement audit. Reached aircraft005E0DD0 and other actor
+receivers remain explicit. Mounted trigger/reload is separate H6 after actual
+004C3B60 aim-rate prefix; H4 alignment/query and H8 full movement remain required.
+Do not use those boundaries to skip independent H5 decision work. Preserve
+native operation order, original addresses and actual owners; research before
+exports. Mounted118/11C require the actual aim writer, never assumed zero.
 
-## Next work
+Temporary native audits /tmp/h5-{traversal,area,routes,attached}-native.cpp and
+binaries remain for ongoing H5 work; fingerprinted in receipt, remove at final
+consolidation. ASan/UBSan/LSan checks passed for their stated scopes. Their
+frame/Inline/World/physics doubles are explicit; none proves full Scene2 runtime.
+Actual compile-only fixture is WORK/h5-host-i386.cpp. Heavy builds/Ghidra
+sequential; inspect active sessions first. No permanent tests.
 
-The requested H3 boundary is finished. Next independent Human milestone is H4;
-read its entire completion boundary and relevant existing evidence before coding.
-H2 D4b/D5 and D10 remain separate open dependencies in the Human plan. H3 resolves
-mounted004C6620 reset, but Car's containing update still explicitly rejects
-occupied/non7 simulation; do not remove that gate without D5 reconstruction.
-
-**Confirmed H2/D11 blockers:** fresh detached part004CB2CD reads unproduced5F9;
-fresh wheel005FDD10 reads unproduced695 after body/lifetime mutation. EXPL8 and
-smoke14 also remain unproduced. Do not invent defaults or repeat confirmed
-searches. [Exact triggers](analysis/human-reaction-containing-boundary.md#source-closure-blockers).
-D4b00586200 subtype14 additionally ignores004DEC60's ray-miss Boolean while its
-XYZ outputs remain unwritten. See the existing D4a contract's caller section.
-
-## Evidence/commands
-
-WORK=`analysis/work/mission-world-20261103`; original client SHA256
+WORK=`analysis/work/mission-world-20261103`; original SHA256
 `8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307`.
-Research index before new exports: `python3 -B tools/research_index.py find ADDRESS...`.
-Local H3 index was `/tmp/hd2-h3-local.sqlite`; indexed mentions do not establish
-fidelity. Contract lists ABI variants/raw evidence; Ghidra scripts roll back.
-
-`python3 -B tools/function_progress.py --render` / `--check`; `git diff --check`.
-i386 compiler `.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
-`make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
-Native sanitizer runtime `.tools/hd2-sanitizer-runtime/usr/lib64`; no permanent tests.
+Local index `/tmp/hd2-h5-local.sqlite`. Latest successful rollback-only exports:
+h5-boundary-abi-v4, h5-decisions-abi, h5-routes-abi, h5-mounted-workers-abi,
+h5-mounted-leaves-abi, h5-mounted-calls-abi. Default exports lose hidden vectors
+and registers; consult raw ranges and corrected signatures in the contract.

@@ -9,6 +9,9 @@
 #include "game/human_ai_direction_frame.h"
 #include "game/human_ai_scene_steering.h"
 #include "game/human_ai_frame_query.h"
+#include "game/human_ai_traversal.h"
+#include "game/human_ai_grenade.h"
+#include "game/human_ai_floor_path.h"
 #include "game/human_ai_frame_output.h"
 #include "game/human_ai_ground_projection.h"
 #include "game/human_ai_light_observation.h"
@@ -135,9 +138,11 @@ public:
     }
     template<class World>void advance_frame_aim(World& world){ //00576350.
         auto& target=resources_.target();
+        if(target.state.template get<std::uint8_t>(0x35)){
+            resources_.state().set(0xe0,target.state.template get<HumanVector>(0x20));aim_human_ai_grenade(*this,world);target.state.set(0x35,std::uint8_t{0});return;
+        }
+        if(target.state.template get<std::uint8_t>(0x34))throw std::runtime_error("AI aim frame requires its actual special-item target receiver");
         const auto delta=target.state.template get<std::array<float,3>>(0x10);
-        if(target.state.template get<std::uint8_t>(0x35)||target.state.template get<std::uint8_t>(0x34))
-            throw std::runtime_error("AI aim frame requires its actual special-item target receiver");
         const bool firing=(this->words().template get<std::uint32_t>(0x50)&0x200000u)!=0;
         if(!target.actor&&human_scene_steering_square(delta)<1.e-16f){
             if(firing)stop_frame_aim(100,world);
@@ -174,10 +179,10 @@ public:
     template<class Graph>std::uint32_t advance_frame_query(Graph& graph,std::uint32_t elapsed){
         return advance_human_ai_frame_query(*this,this->state_frames(),graph,elapsed);
     }
-    template<class Inline,class World>std::uint32_t advance_frame_query(Inline& control,World& world,std::uint32_t elapsed){
+    template<class Inline,class World,class Runtime>std::uint32_t advance_frame_query(Inline& control,World& world,std::uint32_t elapsed,Runtime& runtime){
         struct Graph {
             Inline& control;
-            World& world;
+            World& world;Runtime& runtime;
             bool create_ai_navigation_path(HumanAIStateLoading& ai){
                 return ai.create_frame_navigation_path(world.human_ai_navigation_jobs(),control,world.mode_flags());
             }
@@ -185,9 +190,9 @@ public:
                 ai.reroute_frame_navigation_point(world.human_ai_navigation_jobs(),control,world.mode_flags());
             }
             void advance_ai_navigation_path(HumanAIStateLoading& ai,std::uint32_t){
-                ai.advance_frame_navigation_path(control,world);
+                ai.advance_frame_navigation_path(control,world,runtime);
             }
-        } graph{control,world};
+        } graph{control,world,runtime};
         return advance_frame_query(graph,elapsed);
     }
     template<class Inline>bool create_frame_navigation_path(HumanAINavigationJobPool& pool,Inline& control,std::uint32_t mode){ //0057CA70.
@@ -231,7 +236,7 @@ public:
         human_ai_navigation::finish_path(*this,4u);
         create_frame_navigation_path(pool,control,mode);
     }
-    template<class Inline,class World>void advance_frame_navigation_path(Inline& control,World& world){ //0057F670.
+    template<class Inline,class World,class Runtime>void advance_frame_navigation_path(Inline& control,World& world,Runtime& runtime){ //0057F670.
         using namespace human_ai_navigation;
         auto& query=resources_.query().state;
         const auto flags=[&]{return query.template get<std::uint32_t>(0x50);};
@@ -245,14 +250,14 @@ public:
         const auto kind=this->words().template get<std::uint32_t>(0x48);
         if(kind!=3&&!jobs.empty())update_navigation_control(origin,control,world);
         if(flags()&0x800u){advance_navigation_door(origin,control,world,floor_search);return;}
-        if(flags()&0x30u)throw std::runtime_error("AI interaction traversal requires its actual 0057CC50 receiver");
+        if(flags()&0x30u){advance_human_ai_ladder_traversal(*this,control,world,runtime);return;}
         if(jobs.empty()){finish_path(*this,4u);return;}
         const bool floor_path=flags()&0x700u;
         const bool reached=reach_path_job(*this,origin);
         if(flags()&0x80000000u)return;
         auto& movement=frame_navigation_movement();
         if(floor_path){
-            if(!command->lists[0].empty())throw std::runtime_error("AI floor path requires its actual 00581E30 actor-list receiver");
+            advance_human_ai_floor_path(*this,this->state_frames(),world,reached);
             if(jobs.size()>1&&jobs.front()->words.template get<std::uint8_t>(0x26)!=15)
                 query.set(0x50,flags()&~0x700u);
         }else check_navigation_transition(reached,origin,control,world);
@@ -276,6 +281,8 @@ public:
         const auto model=this->state_frames().actor_world_matrix(this->human()->base().frame());
         output_path_inputs(*this,movement,model,floor_search);
     }
+    auto frame_traversal_matrix(){return this->state_frames().actor_world_matrix(this->human()->base().frame());}
+    void queue_navigation_ladder_contact(std::int32_t identity){this->queue_ladder_contact(identity);}
     HumanSightMetricFamily sight_metric_family()const override{return HumanSightMetricFamily::ai;} //B0+34=0056FC80,+38=00570280.
     void sight_enemy_acquired(Human& actor) override {
         const auto kind=this->words().template get<std::uint32_t>(0x48);
@@ -503,13 +510,12 @@ private:
             direction.set_current({{delta[0],delta[1],delta[2],direction.state().template get<float>(0x0c)}});
             query.set(0x34,300u);
         }
-        const auto flags=this->words().template get<std::uint32_t>(0x50);
         if(this->item()&&this->words().template get<std::uint8_t>(0xad)){
             control.clear_frame_item_ready([&](std::uint32_t value){world.human_frame_first_person_state(*this->human(),value);});
             if((world.mode_flags()&7u)!=7u)throw std::runtime_error("AI Door readiness requires its actual nonoffline command receiver");
             query.set(0x34,500u);
         }
-        if(!query.template get<std::uint32_t>(0x34))world.human_navigation_request_door(receiver.door,flags);
+        if(!query.template get<std::uint32_t>(0x34))world.human_navigation_request_door(*this,receiver.door);
     }
     template<class Inline>void navigation_posture_near_point(Inline& control,std::uint32_t mode,const HumanVector& origin){ //00576610.
         using namespace human_ai_navigation;

@@ -64,7 +64,7 @@ public:
                 const bool formation=state_.template get<std::uint32_t>(0x1e0)&&runtime.advance_script_formation_path(*this);
                 auto& query=resources.query().state;
                 const auto before=query.template get<std::uint32_t>(0x50);
-                this->advance_frame_query(control,world,elapsed);
+                this->advance_frame_query(control,world,elapsed,runtime);
                 if((before&0x10000000u)&&!(query.template get<std::uint32_t>(0x50)&0x10000000u)){
                     if(!formation){
                         if(context_)contexts_.finish_human_script_navigation(*context_,state_.template get<std::int32_t>(0x1d8));

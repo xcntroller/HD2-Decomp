@@ -27,6 +27,11 @@ public:
     const auto& seats()const{return seats_;}const auto& barrels()const{return control_.barrels();}
     const Descriptor& descriptor()const{return descriptor_;}Entry weapon_item()const{return control_.weapon_item();}
     bool presentation_failed()const{return control_.failed();} //004C57B0, SAME shared mounted owner.
+    std::array<float,4> mounted_position()override{return control_.mounted_position();} //00604D40.
+    bool can_target(const std::array<float,4>& target)override{return control_.can_target(target);} //006055A0.
+    void seat_frame_inputs(std::int32_t seat,const HumanFrameInputBuffer& first,const HumanFrameInputBuffer& second)override{ //00604CF0 has no signed bounds gate.
+        if(seats_.at(static_cast<std::size_t>(seat)).occupant)control_.frame_inputs(first,second);
+    }
     void presentation_view(bool enabled){control_.view(enabled);} //004C6D90.
     void activate(bool authority)override { //006036D0 common-first; once guard covers derived pass only.
         actor_.base().activate_frame(authority,services_);
@@ -108,6 +113,8 @@ public:
             frames_.update_scene_object(actor_.base().frame());initialize_collision();collisions_.move(descriptor_);
         }
     }
+    bool seat_claimed(std::int32_t index)const override{return index<0||static_cast<std::size_t>(index)>=seats_.size()?true:seats_[static_cast<std::size_t>(index)].flag;} //00604A90 invalid seats are CLOSED.
+    void claim_seat(std::int32_t index,bool value)override{if(index>=0&&static_cast<std::size_t>(index)<seats_.size())seats_[static_cast<std::size_t>(index)].flag=value;} //00604AD0.
     std::uint32_t reaction_seat_flags(std::int32_t index)const override{ //00604A10, first case-sensitive SEAT substring.
         if(index<0||static_cast<std::size_t>(index)>=seats_.size())return 0;
         const auto text=frames_.actor_user_data(seats_[static_cast<std::size_t>(index)].frame);const auto at=text.find("SEAT");

@@ -3,12 +3,13 @@
 
 #include "game/human_ai_state_loading.h"
 #include "game/human_ai_frame_timers.h"
+#include "game/human_ai_cover.h"
 #include <optional>
 
 namespace hd2::game {
 
 //005A3F20 case4,005478C0/00547CF0. Runtime current-action/event producers
-//remain separate; three route/door buffers have actual typed ownership.
+//remain separate; three route/emplacement buffers have actual typed ownership.
 //Contexts resolves modelEC data1/statusEC; handover replays actual005518F0.
 template<class Frames,class Human,class Inputs,class Random,class Contexts>
 class HumanGuardAIStateLoading : public HumanAIStateLoading<Frames,Human,Inputs> {
@@ -21,7 +22,7 @@ public:
     template<class Inline>void bind(Human& human,const Base* previous,MissionNavigation* navigation,
             std::uint32_t mode,Inline& control) {
         AI::bind(human,previous,navigation,mode,control);
-        timer_target_=nullptr; //Native19C borrower, independent from AI128's target actor.
+        selected_emplacement_=nullptr;timer_target_=nullptr; //Native19C borrower, independent from AI128's target actor.
         this->resources().state().set(0xf0,std::uint32_t{0});
         for(auto offset:{0x1b0u,0x148u,0x150u,0x144u,0x14cu,0x1a8u,0x1c4u,0x1d0u,0x1dcu})state_.set(offset,std::uint32_t{0});
         state_.set(0x190,std::int32_t{-1});state_.set(0x154,std::uint8_t{0});
@@ -55,7 +56,7 @@ public:
         control.look_command(0,nullptr); //00570A10(0)→005A45F0 command5.
         this->words().set(0x50,this->words().template get<std::uint32_t>(0x50)&~0x400000u);
     }
-    void close_loading(){AI::close_loading();primary_.clear();secondary_.clear();doors_.clear();} //00547CF0 retains Human44.
+    void close_loading(){AI::close_loading();primary_.clear();secondary_.clear();emplacements_.clear();} //00547CF0 retains Human44.
     void constant_timers(){state_.set(0x1a4,std::int32_t{100000});state_.set(0x1a8,std::int32_t{10000});} //00547AD0.
     void radius_timers(bool short_range) { //00547AF0/00547BF0.
         auto* human=this->human();if(!human)throw std::logic_error("Guard radius timers have no bound Human");
@@ -72,15 +73,28 @@ public:
         const auto radius=state_.template get<float>(0x194);
         primary_.clear();(void)navigation->append_reachable(point,radius,primary_); //00551B00.
         secondary_.clear();(void)navigation->append_marked_reachable(point,radius,secondary_); //00551B50.
-        doors_.clear(); //00551BA0, reverse PRIMARY points, not the filtered secondary list.
+        emplacements_.clear(); //00551BA0, reverse PRIMARY points, not the filtered secondary list.
         for(auto n=primary_.size();n;) {
             const auto index=primary_[--n];const auto* record=navigation->record(index);
             if(!record)throw std::runtime_error("Guard AI radius includes an absent navigation point");
-            if(record->byte16==11)if(auto* object=navigation->object_for_reference(index))doors_.push_back(object);
+            if(record->byte16==11)if(auto* object=navigation->object_for_reference(index))emplacements_.push_back(object);
         }
     }
     const auto& primary_route()const{return primary_;}const auto& secondary_route()const{return secondary_;}
-    const auto& doors()const{return doors_;}std::optional<float> speed()const{return speed_;}
+    const auto& emplacements()const{return emplacements_;}std::optional<float> speed()const{return speed_;}
+    template<class World>void* select_emplacement(World& world){ //0054E600, timer draw precedes even an empty list.
+        state_.set(0x1c4,static_cast<std::uint32_t>((static_cast<long double>(random_word())*random_scale+1)*2000.f));
+        std::vector<void*> available;
+        for(auto i=emplacements_.size();i;){auto* actor=emplacements_[--i];
+            auto* occupant=world.human_seat_occupant(actor,0);
+            if((!occupant||human_frame_signed_word(world.human_seat_occupant(actor,0)->properties.stats_ec[0])<1)&&!reject_emplacement(actor,world))available.push_back(actor);
+        }
+        if(available.empty())return nullptr;
+        if(available.size()==1)return available.front();
+        const auto origin=frame_position(*this->human());void* selected=nullptr;float best=10000;
+        for(auto i=available.size();i;){auto* actor=available[--i];const auto p=world.human_emplacement_position(actor);const auto x=static_cast<long double>(p[0])-origin[0],y=static_cast<long double>(p[1])-origin[1],z=static_cast<long double>(p[2])-origin[2];const float square=static_cast<float>((x*x+y*y)+z*z);if(square<best){best=square;selected=actor;}}
+        return selected; //0054E520 reverse strict nearest.
+    }
     auto& state(){return state_;}const auto& state()const{return state_;}
     Actor* timer_target()const{return timer_target_;}void timer_target(Actor* target){timer_target_=target;}
     void refresh_reaction_timer(){refresh_human_guard_reaction_timer(*this,this->state_frames(),random_);} //00547DA0.
@@ -96,19 +110,20 @@ public:
         if(advance_frame_decision(elapsed,control,world)){
             advance_frame_action(elapsed,world,control);
             const auto* attachment=this->human()->field160;
-            if(attachment){
-                const auto type=attachment->base().type();
-                if(type==4||type==0x14||type==0x15||type==0x22)
-                    throw std::runtime_error("Guard attachment frame requires its actual command receiver");
-            }
+            const auto type=attachment?attachment->base().type():0;
+            if(attachment&&(type==4||type==0x14||type==0x15||type==0x22)){
+                this->advance_frame_direction(elapsed,control);
+                world.human_attachment_frame_inputs(*this);
+            }else{
             this->resources().reconcile_direction_flags();
-            this->advance_frame_query(control,world,elapsed);
+            this->advance_frame_query(control,world,elapsed,runtime);
             const auto was_firing=this->words().template get<std::uint32_t>(0x50)&0x200000u;
             this->advance_frame_aim(world); //00548080 ->00576350.
             if(was_firing&&!(this->words().template get<std::uint32_t>(0x50)&0x200000u))
                 throw std::runtime_error("Guard aim stop requires its actual 00548080 reaction and item receivers");
             this->advance_frame_direction(elapsed,control);
             this->apply_frame_movement(control);
+            }
             this->apply_frame_items(control,world,runtime,elapsed,0);
         }
         this->process_second_frame_commands();
@@ -212,6 +227,168 @@ public:
         return true;
     }
 private:
+    std::uint16_t select_cover_point(Actor* target){ //005579E0, kind1 only.
+        auto* action=this->resources().template current_action_as<HumanAIAction1Pool>();if(!action)return 0xffff;
+        if(!target){action->state.set(8,0u);return 0xffff;}
+        if(secondary_.empty()){action->state.set(8,8u);return 0xffff;}
+        auto points=secondary_;auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard cover requires actual navigation");
+        const auto origin=frame_position(*this->human());const auto target_position=frame_position(*target);
+        (void)human_ai_cover::filter_points(*navigation,origin,target_position,points,0xc0004102u);
+        //The second filter shifts, retaining surviving order before the CRT modulo.
+        for(auto n=points.size();n;){const auto i=--n;const auto* point=navigation->record(points[i]);if(!point)continue;
+            const auto p=human_ai_cover::position(*point);const auto current=frame_position(*target);
+            const auto distance=human_ai_cover::length(static_cast<float>(human_ai_cover::square(human_ai_cover::difference(current,p))));
+            if(distance-static_cast<long double>(point->prefix[0x13])*.0625f<6.f)points.erase(points.begin()+static_cast<std::ptrdiff_t>(i));
+        }
+        return points.empty()?0xffff:points[random_word()%points.size()];
+    }
+    //00551E80/00551DB0: preferred engagement ranges are independent of
+    //the wider minimum/maximum fire predicates used by00553D10.
+    template<class World>std::array<float,2> preferred_range(World& world){
+        if(!this->item())return {{20,60}};
+        switch(weapon_kind(world)){case 2:return {{5,20}};case 3:return {{6,30}};case 4:return {{10,60}};
+        case 5:return {{15,70}};case 6:return {{8,35}};case 7:return {{5,15}};case 9:return {{12,45}};case 12:return {{10,70}};default:return {{0,2}};}
+    }
+    template<class World>int preferred_range_status(World& world){const float distance=static_cast<float>(human_ai_actor_distance(*this->human(),*timer_target_,this->state_frames()));const auto range=preferred_range(world);return distance<range[0]?-1:range[1]<distance?1:0;}
+    std::uint16_t approach_point(const HumanVector& target){ //005572F0.
+        if(human_ai_cover::square(target)<1.e-16f)return 0xffff;
+        auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard approach requires actual navigation");
+        auto points=primary_;
+        if(this->words().template get<std::uint32_t>(0x50)&0x100u){points.clear();(void)navigation->append_reachable((this->point()?navigation->index_of(*this->point()):std::uint16_t{0xffff}),15.f,points);}
+        //00556610 only writes two discarded stack distances; no owner mutation.
+        return human_ai_cover::filter_points(*navigation,frame_position(*this->human()),target,points,0x40004101u);
+    }
+    template<class World>std::uint16_t retreat_point(World& world){ //00552B00.
+        if(!(human_ai_actor_distance(*this->human(),*timer_target_,this->state_frames())>=12.f)&&!weapon_allows_crouch(world))return 0xffff;
+        auto* navigation=this->navigation();if(!navigation||!this->point())return 0xffff;
+        std::vector<std::uint16_t> points;(void)navigation->append_reachable((this->point()?navigation->index_of(*this->point()):std::uint16_t{0xffff}),20.f,points);
+        const auto origin=frame_position(*this->human());auto toward=human_ai_cover::difference(frame_position(*timer_target_),origin);
+        normalize_human_ai_shot(toward,human_ai_cover::square(toward));
+        for(auto n=points.size();n;){const auto i=--n;const auto* point=navigation->record(points[i]);if(!point)throw std::logic_error("Guard retreat lost actual point");auto delta=human_ai_cover::difference(human_ai_cover::position(*point),origin);
+            const auto dot=[&]{return (static_cast<long double>(delta[2])*toward[2]+static_cast<long double>(delta[1])*toward[1])+static_cast<long double>(delta[0])*toward[0];};
+            bool remove=dot()>=0;
+            if(!remove){normalize_human_ai_shot(delta,human_ai_cover::square(delta));remove=dot()<-.9599999785423279f;}
+            if(remove){points[i]=points.back();points.pop_back();}
+        }
+        std::vector<std::uint32_t> scores(points.size());
+        for(auto n=points.size();n;){const auto i=--n;const auto* point=navigation->record(points[i]);if(point==this->point())continue;
+            const float own_square=static_cast<float>(human_ai_cover::square(human_ai_cover::difference(human_ai_cover::position(*point),frame_position(*this->human()))));
+            const auto target_square=human_ai_cover::square_xyz(human_ai_cover::difference(human_ai_cover::position(*point),frame_position(*timer_target_)));
+            const float reciprocal=own_square>1?static_cast<float>(5.L/own_square):5.f;const float factor=static_cast<float>(static_cast<long double>(reciprocal)+target_square);
+            const auto& enemies=this->human()->perception.lists()[0];for(auto h=enemies.size();h;){const auto mask=human_ai_cover::blocked_toward(*point,frame_position(*enemies[--h]));scores[i]+=static_cast<long double>(mask&4u)*factor!=0?0u:mask&2u?3u:(mask&1u)*2u;}
+        }
+        std::int32_t best=-1;std::uint16_t selected=0xffff;
+        for(auto n=points.size();n;){const auto i=--n;std::int32_t score;std::memcpy(&score,&scores[i],4);if(score>best){best=score;selected=points[i];}}
+        return selected;
+    }
+    template<class World>std::uint16_t nearby_attack_point(World& world){ //00553580.
+        if(!(human_ai_actor_distance(*this->human(),*timer_target_,this->state_frames())>=12.f)&&!weapon_allows_crouch(world))return 0xffff;
+        auto* navigation=this->navigation();if(!navigation||!this->point())return 0xffff;
+        std::vector<std::uint16_t> points;(void)navigation->append_reachable((this->point()?navigation->index_of(*this->point()):std::uint16_t{0xffff}),10.f,points);
+        const auto origin=frame_position(*this->human()),target=frame_position(*timer_target_);auto toward=human_ai_cover::difference(target,origin);normalize_human_ai_shot(toward,human_ai_cover::square(toward));
+        const auto maximum=maximum_weapon_range(world),minimum=minimum_weapon_range(world);
+        for(auto n=points.size();n;){const auto i=--n;const auto* point=navigation->record(points[i]);if(!point)throw std::logic_error("Guard attack route lost actual point");const auto p=human_ai_cover::position(*point),delta=human_ai_cover::difference(p,origin);
+            const auto dot=(static_cast<long double>(delta[2])*toward[2]+static_cast<long double>(delta[1])*toward[1])+static_cast<long double>(delta[0])*toward[0];
+            bool remove=!(dot>=0);if(!remove){const auto distance=human_ai_cover::distance_xyz(target,p);remove=distance<minimum||maximum<distance;}
+            if(remove){points[i]=points.back();points.pop_back();}
+        }
+        //Both model queries are repeated after the candidate filter in native.
+        const auto live_target=frame_position(*timer_target_),live_origin=frame_position(*this->human());
+        return human_ai_cover::filter_points(*navigation,live_origin,live_target,points,0xc0004101u);
+    }
+    std::uint16_t distant_attack_point(Actor* target){ //00554E80, original radius and two separate rejection sites.
+        if(!target)return 0xffff;
+        const float radius=static_cast<float>(static_cast<long double>(random_word())*random_scale*10.f+15.f);
+        const auto initial_target=frame_position(*target),initial_origin=frame_position(*this->human());
+        const float range=static_cast<float>(human_ai_cover::distance_xyz(initial_origin,initial_target));
+        auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard distant route requires actual navigation");
+        std::vector<std::uint16_t> points;(void)navigation->append_marked_reachable((this->point()?navigation->index_of(*this->point()):std::uint16_t{0xffff}),radius,points);
+        const auto live_target=frame_position(*target),live_origin=frame_position(*this->human());
+        (void)human_ai_cover::filter_points(*navigation,live_origin,live_target,points,0xc0004102u);
+        for(auto n=points.size();n;){const auto i=--n;if(i>=points.size())throw std::logic_error("Guard distant route native repeated removal exhausted candidates");const auto* point=navigation->record(points[i]);if(!point)continue;
+            const auto p=human_ai_cover::position(*point);const float self_distance=static_cast<float>(human_ai_cover::distance_xyz(frame_position(*this->human()),p));
+            const float clearance=static_cast<float>(human_ai_cover::distance_xyz(frame_position(*target),p)-static_cast<long double>(point->prefix[0x13])*.0625f);
+            const auto remove=[&]{if(points.empty()||i>=points.size())throw std::logic_error("Guard distant route repeated native pop is invalid");points[i]=points.back();points.pop_back();};
+            if(range<clearance)remove();
+            if(!(clearance>=6.f&&self_distance<=range))remove();
+        }
+        if(points.empty())return 0xffff;
+        if(points.size()==1)return points.front();
+        return points[random_word()%points.size()];
+    }
+    template<class World>std::uint16_t engagement_point(World& world){ //00551E10→00553530/00553550.
+        const auto range=preferred_range_status(world);if(range<0)return retreat_point(world);if(range>0)return distant_attack_point(timer_target_);return approach_point(frame_position(*timer_target_));
+    }
+    template<class World>bool hold_current_cover(World& world){ //00553BE0.
+        if(!timer_target_||!this->point())return false;
+        if(state_.template get<std::int32_t>(0x1dc)<2000){
+            auto* command=this->command();if(!command)throw std::logic_error("Guard cover hold requires actual command owner");
+            //00553B90 visits B4+7C forward and tests self friendship, not the neighbour.
+            for(auto id:command->lists[0])if(auto* actor=world.human_ai_resolve_actor(id))if(actor->base().type()==3&&world.human_sound_friendly(*this->human(),this->human()))return static_cast<float>(static_cast<long double>(random_word())*random_scale*2.f)!=0;
+            return true;
+        }
+        const auto target=frame_position(*timer_target_);const auto* point=this->point();if(!point)throw std::logic_error("Guard cover hold lost A4 during model query");
+        if(human_ai_cover::blocked_toward(*point,target,1)){if(state_.template get<std::int32_t>(0x1cc)<7001)return true;state_.set(0x1cc,0u);}return false;
+    }
+    template<class World>std::uint32_t weapon_kind(World& world){if(!this->item())throw std::logic_error("Guard weapon predicate requires actual selected item");return world.human_frame_output_item(this->item()).definition().kind();}
+    template<class World>float minimum_weapon_range(World& world){ //00551FC0.
+        if(!this->item())return 20.f;
+        switch(weapon_kind(world)){case 6:return 4;case 7:return 3;case 9:return 12;case 12:return 5;default:return 0;}
+    }
+    template<class World>float maximum_weapon_range(World& world){ //00552040.
+        if(!this->item())return 0;
+        switch(weapon_kind(world)){case 0:return 2;case 2:return 30;case 3:return 70;case 4:return 250;case 5:case 12:return 300;case 6:return 50;case 7:return 25;case 9:return 45;default:return 0;}
+    }
+    template<class World>bool weapon_allows_crouch(World& world){switch(weapon_kind(world)){case 0:case 2:case 3:case 7:case 9:return true;default:return false;}} //00552140.
+    template<class World>bool target_in_weapon_range(World& world){ //005520E0.
+        if(!this->item()||!timer_target_)return false;
+        const float distance=static_cast<float>(human_ai_actor_distance(*this->human(),*timer_target_,this->state_frames()));const float maximum=maximum_weapon_range(world);return minimum_weapon_range(world)<distance&&distance<maximum;
+    }
+    template<class Words,class Inline,class World>bool request_cover_route(std::uint16_t point,Words& action,Inline& control,World& world){ //00553D10.
+        if(point==0xffff)return false;
+        auto& resources=this->resources();auto& query=resources.query();
+        if(human_ai_closest_enemy_distance(*this->human(),this->state_frames())<minimum_weapon_range(world)){
+            request_posture(4,control,world.mode_flags());resources.flag().request(2);query.request_point(point);query.state.set(0x54,0x2008u);action.set(8,5u);return true;
+        }
+        if(human_ai_closest_enemy_distance(*this->human(),this->state_frames())>maximum_weapon_range(world)){
+            clear_item_ready(control,world);request_posture(4,control,world.mode_flags());resources.flag().request(1);query.request_point(point);query.state.set(0x54,0x4008u);action.set(8,6u);return true;
+        }
+        if(target_in_weapon_range(world)&&weapon_allows_crouch(world)){
+            request_posture(2,control,world.mode_flags());resources.flag().request(2);query.request_point(point);query.state.set(0x54,0x4008u);action.set(8,5u);return true;
+        }
+        if(!weapon_allows_crouch(world))clear_item_ready(control,world);
+        request_posture(4,control,world.mode_flags());resources.flag().request(1);query.request_point(point);query.state.set(0x54,world.human_guard_root_sector(*this->human())?0x10008u:0x4008u);action.set(8,6u);return true;
+    }
+    template<class Inline,class World>void clear_item_ready(Inline& control,World& world){control.clear_frame_item_ready([&](std::uint32_t value){world.human_frame_first_person_state(*this->human(),value);});if((world.mode_flags()&7u)!=7u)throw std::runtime_error("Guard readiness requires actual non7 transport");}
+    template<class Inline,class World>bool can_use_prone(Inline&,World& world){ //00552200.
+        const auto from=frame_position(*this->human()),to=frame_position(*timer_target_);const auto delta=human_ai_cover::difference(to,from);const float square=static_cast<float>((static_cast<long double>(delta[1])*delta[1]+static_cast<long double>(delta[2])*delta[2])+static_cast<long double>(delta[0])*delta[0]);
+        if(!(human_ai_cover::length(square)>=20.f)||!(std::abs(static_cast<long double>(delta[1])/human_ai_cover::length(square))<=.17364799976348877f)||!this->item())return false;
+        switch(weapon_kind(world)){case 0:case 2:case 6:case 7:case 9:return false;default:break;}
+        if(!world.human_guard_clear_neighbours(*this->human())||!world.human_guard_root_sector(*this->human()))return false;
+        auto planar=delta;planar[1]=0;normalize_human_ai_shot(planar,static_cast<long double>(delta[2])*delta[2]+static_cast<long double>(delta[0])*delta[0]);
+        auto probe=from;probe[0]=static_cast<float>(static_cast<long double>(planar[0])*.5f+from[0]);probe[1]=static_cast<float>(static_cast<long double>(from[1])+.15000000596046448f+static_cast<long double>(planar[1])*.5f);probe[2]=static_cast<float>(static_cast<long double>(planar[2])*.5f+from[2]);
+        return world.human_guard_prone_ray(*timer_target_,probe);
+    }
+    template<class Inline,class World>void request_cover_posture(Inline& control,World& world){ //00552970.
+        if(!this->point()||!timer_target_)return;
+        const auto blocked=[&](std::uint8_t posture){const auto target=frame_position(*timer_target_);const auto* point=this->point();if(!point)throw std::logic_error("Guard cover posture lost actual A4 during model update");return human_ai_cover::blocked_toward(*point,target,posture);};
+        if(!blocked(1)&&can_use_prone(control,world)){request_posture(1,control,world.mode_flags());return;}
+        if(!blocked(2)){request_posture(2,control,world.mode_flags());return;}
+        if(!blocked(4))request_posture(4,control,world.mode_flags());
+    }
+    template<class World>bool reject_emplacement(void* actor,World& world){ //0054E390, AL-only result.
+        const auto origin=frame_position(*this->human());const auto p=world.human_emplacement_position(actor);
+        const auto x=static_cast<long double>(p[0])-origin[0],y=static_cast<long double>(p[1])-origin[1],z=static_cast<long double>(p[2])-origin[2];const float square=static_cast<float>((y*y+x*x)+z*z);
+        const auto& hostiles=this->human()->perception.lists()[0];
+        if(square>=36.f){
+            if(!(square<100.f)||!(human_ai_closest_enemy_distance(*this->human(),this->state_frames())>=30.f))return true;
+            for(auto i=hostiles.size();i;)if(world.human_emplacement_can_target(actor,0,world.human_emplacement_target(*hostiles[--i])))return false;
+            return true;
+        }
+        if(!(human_ai_closest_enemy_distance(*this->human(),this->state_frames())>=12.f))return true;
+        for(auto i=hostiles.size();i;){auto* target=hostiles[--i];if(human_ai_actor_distance(*this->human(),*target,this->state_frames())<30.f&&!world.human_emplacement_can_target(actor,0,world.human_emplacement_target(*target)))return true;}
+        return false;
+    }
     template<class Inline,class World>
     bool advance_frame_decision(std::uint32_t elapsed,Inline& control,World& world){ //00548610.
         auto& words=this->words();
@@ -228,19 +405,13 @@ private:
             radius_timers(false);
         }
         const bool hostile=!human->perception.lists()[0].empty(); //005582F0.
-        const auto require_attachment=[&]{
-            if(const auto* attachment=human->field160){
-                const auto type=attachment->base().type();
-                if(type==4||type==0x14||type==0x15||type==0x22)
-                    throw std::runtime_error("Guard task requires its actual 00548590 attachment query");
-            }
-        };
+        const auto mounted=[&]{return world.human_guard_mounted(*human);}; //00548590, SAME Actor98 control presence.
         auto& resources=this->resources();
         auto kind=resources.current_action_kind();
         if(!kind){ //00548520.
             if(state_.template get<std::uint32_t>(0x144)&4u)return false;
             (void)world.prepare_guard_frame_weapon(*this);
-            require_attachment();
+            if(mounted()){state_.set(0x144,state_.template get<std::uint32_t>(0x144)|0x10u);select_mounted_action();return true;}
             if(hostile)select_hostile_action();else select_frame_task(world,control);
             return resources.current_action_kind()!=0;
         }
@@ -254,12 +425,13 @@ private:
                 throw std::runtime_error("Guard armed task requires the actual inline weapon command");
             return true;
         }
-        require_attachment();
         if(kind==6){
+            if(mounted())return true;
             state_.set(0x144,state_.template get<std::uint32_t>(0x144)&~0x20u);
             if(hostile)select_hostile_action();else select_frame_task(world,control);
             return resources.current_action_kind()!=0;
         }
+        if(mounted()){select_mounted_action();return true;}
         if(skill>19||(state_.template get<std::uint32_t>(0x144)&1u)){
             if(this->item())return true;
             this->refresh_item(); //005593D0.
@@ -408,8 +580,12 @@ private:
                     return true;
                 }
                 if(kind==1){ //00548B00 invokes the Door search before classifying the target attachment.
-                    state_.set(0x1c4,static_cast<std::uint32_t>((static_cast<long double>(random_word())*random_scale+1)*2000.f));
-                    if(!doors_.empty())throw std::runtime_error("Guard target requires the actual populated 0054E600 Door search");
+                    if(auto* emplacement=select_emplacement(world)){
+                        auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard emplacement route requires actual navigation");
+                        const auto references=navigation->actor_references(emplacement);const auto point=references.empty()?0xffffu:references.front();
+                        if(point!=0xffff){selected_emplacement_=emplacement;action.set(8,2u);resources.query().state.set(0x54,0x4008u);resources.query().request_point(point);}
+                        return false;
+                    }
                 }
                 auto& target=static_cast<Human&>(*timer_target_);
                 if(const auto* attachment=target.field160){
@@ -423,17 +599,32 @@ private:
             if(kind==1){ //00548B00.
                 auto& action=resources.template current_action_as<HumanAIAction1Pool>()->state;
                 if(wait_or_retry(action,0,1))return;
+                if(action.template get<std::uint32_t>(8)==2){
+                    if(resources.query().state.template get<std::uint32_t>(0x50)&0x80000000u){
+                        if(!selected_emplacement_)throw std::logic_error("Guard emplacement arrival lost actual native148 actor");
+                        if(!world.human_emplacement_claimed(selected_emplacement_,0)||
+                           (world.human_seat_occupant(selected_emplacement_,0)&&human_frame_signed_word(world.human_seat_occupant(selected_emplacement_,0)->properties.stats_ec[0])<1)){
+                            world.human_guard_enter_emplacement(*this,selected_emplacement_);return;
+                        }
+                        action.set(8,7u);
+                    }else return;
+                }
                 if(action.template get<std::uint32_t>(8)==3){
-                    if(timer_target_&&!secondary_.empty())
-                        throw std::runtime_error("Guard target requires actual 005579E0 cover selection");
-                    action.set(8,7u); //00553D10 returns false for the missing cover point.
+                    const auto point=select_cover_point(timer_target_);
+                    if(!request_cover_route(point,action,control,world))action.set(8,7u);
                     return;
+                }
+                if(action.template get<std::uint32_t>(8)==5){
+                    if(resources.query().state.template get<std::uint32_t>(0x50)&0x80000000u)action.set(8,7u);
+                    else{if(target_still_hostile())advance_attack(world,control);return;}
+                }
+                if(action.template get<std::uint32_t>(8)==6){
+                    if(resources.query().state.template get<std::uint32_t>(0x50)&0x80000000u)action.set(8,7u);else return;
                 }
                 if(action.template get<std::uint32_t>(8)==7){
                     const auto distance=human_ai_closest_enemy_distance(*this->human(),this->state_frames());
                     action.set(0x10,distance>=10.f?6000u:3000u);
-                    if(this->point()&&timer_target_)
-                        throw std::runtime_error("Guard target requires actual 00552970 cover posture");
+                    request_cover_posture(control,world);
                     resources.flag().request(2);
                     action.set(8,8u);
                     this->look_command(0,control);
@@ -449,19 +640,55 @@ private:
             }else{ //0054AC40.
                 auto& action=resources.template current_action_as<HumanAIAction3Pool>()->state;
                 if(wait_or_retry(action,5,0))return;
-                if(action.template get<std::uint32_t>(8)==4){
-                    if(target_still_hostile())advance_attack(world,control);
-                    else{
-                        resources.target().bind_actor(nullptr);
-                        action.set(8,0u);
-                        resources.flag().request(0);
+                const auto mode=[&]{return action.template get<std::uint32_t>(8);};
+                auto& query=resources.query();
+                const auto query_mask=[&]{return world.human_guard_root_sector(*this->human())?0x10008u:0x4008u;};
+                const auto attack_hold=[&](std::uint32_t duration){resources.flag().request(2);action.set(8,4u);action.set(0x10,duration);};
+                const auto route=[&](std::uint16_t point){
+                    if(target_in_weapon_range(world)&&weapon_allows_crouch(world)){
+                        resources.flag().request(2);query.request_point(point);query.state.set(0x54,0x4008u);this->look_command(0,control);request_posture(2,control,world.mode_flags());action.set(8,2u);
+                    }else{
+                        clear_item_ready(control,world);resources.flag().request(1);query.request_point(point);query.state.set(0x54,query_mask());this->look_command(0,control);request_posture(4,control,world.mode_flags());action.set(8,3u);
                     }
-                    if(!action.template get<std::uint32_t>(0x10)){
-                        action.set(8,0u);
-                        resources.flag().request(0);
+                };
+                if(mode()==1){
+                    if(hold_current_cover(world)){request_cover_posture(control,world);action.set(8,4u);return;}
+                    const auto point=engagement_point(world);
+                    if(point==0xffff){
+                        if(preferred_range_status(world)<1){request_cover_posture(control,world);attack_hold(3000);return;}
+                        clear_item_ready(control,world);resources.flag().request(1);query.request_position(frame_position(*timer_target_));query.state.set(0x54,query_mask());this->look_command(0,control);request_posture(4,control,world.mode_flags());action.set(8,6u);action.set(0xc,0u);action.set(0x10,1000u);return;
                     }
-                    return;
+                    route(point);return;
                 }
+                if(mode()==6){
+                    if(!timer_target_){resources.target().bind_actor(nullptr);action.set(8,0u);resources.flag().request(0);}
+                    if((query.state.template get<std::uint32_t>(0x50)&0x10000000u)&&!action.template get<std::uint32_t>(0x10)){
+                        if(!timer_target_)throw std::logic_error("Guard chase lost actual target before distance query");
+                        const float distance=static_cast<float>(human_ai_actor_distance(*this->human(),*timer_target_,this->state_frames()));
+                        if(distance>=static_cast<long double>(minimum_weapon_range(world))+10.f){
+                            if(!preferred_range_status(world)){
+                                const auto point=nearby_attack_point(world);if(point!=0xffff){route(point);return;}
+                                auto* old=timer_target_;if(old==select_human_hostile<Human>(*this,this->state_frames(),world)){query.request_position(frame_position(*old));query.state.set(0x54,query_mask());}
+                                const float age=static_cast<float>(action.template get<std::int32_t>(0xc));
+                                const float deadline=static_cast<float>(static_cast<long double>(random_word())*random_scale*3000.f+4000.f);
+                                if(deadline<=age){query.state.set(0x50,query.state.template get<std::uint32_t>(0x50)|0x2000u);resources.flag().request(2);action.set(8,4u);action.set(0x10,static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*3000.f+2000.f));request_cover_posture(control,world);}
+                                action.set(0x10,1000u); //Native overwrites even a newly drawn hold deadline.
+                            }else action.set(0x10,2000u);
+                        }else{query.state.set(0x50,query.state.template get<std::uint32_t>(0x50)|0x2000u);attack_hold(3000);}
+                    }
+                    if(query.state.template get<std::uint32_t>(0x50)&0x80000000u)attack_hold(3000);
+                }
+                if(mode()==2){
+                    if(query.state.template get<std::uint32_t>(0x50)&0x80000000u)attack_hold(3000);
+                    if(target_still_hostile())advance_attack(world,control);
+                }
+                if(mode()==3&&(query.state.template get<std::uint32_t>(0x50)&0x80000000u))attack_hold(3000);
+                if(mode()==4){
+                    if(target_still_hostile())advance_attack(world,control);
+                    else{resources.target().bind_actor(nullptr);action.set(8,0u);resources.flag().request(0);}
+                    if(!action.template get<std::uint32_t>(0x10)){action.set(8,0u);resources.flag().request(0);}
+                }
+                if(mode()<=6)return;
             }
         }
         if(kind==5&&!hostile){
@@ -500,14 +727,7 @@ private:
             }
             return;
         }
-        const auto grenade=world.human_feedback_kind9(*this->human()); //005584B0 first queries the real holder.
-        const auto age=state_.template get<std::int32_t>(0x1ac);
-        const auto flags=this->words().template get<std::uint32_t>(0x50);
-        if(grenade&&age>=10000&&state_.template get<std::uint32_t>(0x1a8)&&!(flags&0x200001u)){
-            const auto count=this->human()->perception.lists()[0].size();
-            if(!count||static_cast<long double>(age)>=40.L/count*1000.f)
-                throw std::runtime_error("Guard attack requires the actual grenade selection and trajectory receivers");
-        }
+        if(select_human_guard_grenade(*this,world)){aim_human_ai_grenade(*this,world);state_.set(0x1ac,0u);return;} //005584B0 and00572DE0.
         if(timer_target_&&resources.state().template get<std::int32_t>(0xcc)<1){
             auto* target=dynamic_cast<Human*>(timer_target_);
             if(!target||!target->head_marker||!this->human()->head_marker)
@@ -551,6 +771,10 @@ private:
         const auto state=animation->animation_state_word(0x1d8);
         return state!=8&&state!=14&&(state<106||state>108);
     }
+    void select_mounted_action(){ //0054CB70.
+        reset_frame_action();auto& resources=this->resources();auto& query=resources.query().state;query.set(0x50,query.template get<std::uint32_t>(0x50)|0x2000u);
+        resources.current_action(actions_.kind6.acquire());state_.set(0x198,0u);resources.template current_action_as<HumanAIAction6Pool>()->state.set(8,0u);
+    }
     void select_hostile_action(){ //00548890/0054AB00.
         reset_frame_action();
         auto& query=this->resources().query().state;
@@ -592,7 +816,8 @@ private:
     template<class Inline>void request_posture(std::uint32_t posture,Inline& control,std::uint32_t mode){ //00559360→005767F0.
         const auto flags=this->words().template get<std::uint32_t>(0x50);
         if(flags&posture)return;
-        const auto speed=posture==2?.59f:.45f;
+        if(posture!=1&&posture!=2&&posture!=4)return;
+        const auto speed=posture==1?0.f:posture==2?.59f:.45f;
         state_.set(0x1a0,speed);
         speed_=speed;
         this->resources().state().set(0x10c,0u);
@@ -602,9 +827,10 @@ private:
     std::uint32_t random_word(){const auto value=random_();if(value>0x7fff)throw std::runtime_error("Guard AI requires shared CRT random");return value;}
     static std::int32_t signed_stat(const Human& human,unsigned index){const auto bits=human.properties.stats_ec.at(index);std::int32_t value;std::memcpy(&value,&bits,4);return value;}
     HumanAIActionPools& actions_;Random& random_;Contexts& contexts_;HumanJointWords<0x1e0> state_;
-    std::vector<std::uint16_t> primary_,secondary_;std::vector<void*> doors_;
+    std::vector<std::uint16_t> primary_,secondary_;std::vector<void*> emplacements_;
     std::optional<float> speed_;
     HumanAIEventPool::Lease selected_event_{nullptr,HumanAIEventPool::Return{}}; //Native148, a separate clone from the processed queue.
+    void* selected_emplacement_=nullptr; //Native148 actor borrower, independent of kind2 event clone.
     Actor* timer_target_=nullptr; //Actual19C; scalar guard words never publish a host pointer.
 };
 } //namespace hd2::game

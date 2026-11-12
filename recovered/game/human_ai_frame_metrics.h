@@ -102,6 +102,13 @@ Human* select_human_hostile(State& state,Frames& frames,World& world,const Human
     return best;
 }
 
+//00573240, one actual target; same native FLOAT square and signed bit length test.
+template<class Human,class Actor,class Frames>long double human_ai_actor_distance(Human& human,Actor& target,Frames& frames){
+    const auto first=frames.actor_world_matrix(human.base().frame()),second=frames.actor_world_matrix(target.base().frame());
+    const auto x=static_cast<long double>(second[12])-first[12],y=static_cast<long double>(second[13])-first[13],z=static_cast<long double>(second[14])-first[14];
+    const float square=static_cast<float>((z*z+y*y)+x*x);std::int32_t bits;std::memcpy(&bits,&square,4);
+    return bits<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1)<9.99999993922529e-09f?1.L:std::sqrt(static_cast<long double>(square));
+}
 //005733E0: reverse actual hostile list, real model poses each iteration;
 //extended differences, stored FLOAT square, SIGNED bit-pattern epsilon test.
 template<class Human,class Frames>long double human_ai_closest_enemy_distance(Human& human,Frames& frames){

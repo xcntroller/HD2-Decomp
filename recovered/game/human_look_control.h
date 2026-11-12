@@ -29,7 +29,7 @@ public:
     }
     void reset(std::uint32_t property) { //0077DDC0 calls0077FD40 before its own writes.
         reset_human_look_words(state_);
-        action_model_=Frame{}; //Native04 is a typed borrowed frame, never a host pointer DWORD.
+        action_model_=Frame{}; //Native04 resets without releasing:0077F760 transfers its reference downstream.
         death_source_=nullptr;interaction_actor_=nullptr;interaction_frame_=Frame{}; //Native00/08 and typed94 frame alternative.
         state_.set(0xbc,std::int32_t{-10000});state_.set(0xa0,property);state_.set(0xb0,std::uint8_t{0});
         for(auto offset:{0xb8u,0xc0u,0xd4u,0xd0u,0x40u,0xc8u,0xccu,0xb4u,0xd8u})state_.set(offset,std::uint32_t{0});
@@ -48,6 +48,14 @@ public:
         if((!(state_.template get<std::uint32_t>(0xd0)&0x10000u)&&!(state_.template get<std::uint32_t>(0xd4)&0x10000u))||state_.template get<std::uint8_t>(0xb0)){
             if(action_model_!=model){action_model_=model;if(changed)state_.set(0x40,state_.template get<std::uint32_t>(0x40)|0x10000u);}
         }else state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|0x10000u);
+    }
+    void retained_action_model(Frame model,bool changed){ //0077F760, publish native04 BEFORE direct E4 retain.
+        if(locked(0x10000u)){defer(0x10000u);return;}
+        if(action_model_==model)return;
+        action_model_=model;
+        if(!control_)throw std::logic_error("Retained Human action requires its actual DD0 owner");
+        control_->retain_frame_action(model);
+        if(changed)state_.set(0x40,state_.template get<std::uint32_t>(0x40)|0x10000u);
     }
     void action_command(std::int32_t command,bool changed) { //0077F050, independent of equipment54.
         if((!(state_.template get<std::uint32_t>(0xd0)&2u)&&!(state_.template get<std::uint32_t>(0xd4)&2u))||state_.template get<std::uint8_t>(0xb0)){

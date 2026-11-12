@@ -196,6 +196,10 @@ public:
         physical_.control_frame_words().set(0x1cc,1.f);physical_.control_frame_words().set(0x1d0,1.f);
         begin_geometry_effect(8,HumanVector{},Frame{},0,nullptr);frames_.update_scene_object(human_->base().frame());
     }
+    void retain_frame_action(Frame frame){
+        if(!frame)throw std::logic_error("Retained Human item action requires actual model");
+        auto retained=frames_.retain_actor_frame(frame);retained.release(); //0077F760 direct E4 retain, transferred to the action consumer.
+    }
     Shadow& shadow(){return shadow_;}
     const Links& links() const{return links_;}const auto& motion() const{return motion_;}
     auto& motion_words(){return action_.frame_words();}

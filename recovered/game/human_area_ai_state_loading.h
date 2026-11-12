@@ -3,6 +3,7 @@
 
 #include "game/human_ai_state_loading.h"
 #include "game/human_ai_frame_timers.h"
+#include "game/human_ai_cover.h"
 
 namespace hd2::game {
 
@@ -70,9 +71,9 @@ public:
             this->process_second_frame_commands();
             return true; //005AF680 runs after dispatch returns to the owning composition.
         }
-        if(!advance_frame_wait_action())throw std::runtime_error("Area frame requires its actual positive action worker");
+        advance_frame_action(control,world);
         this->resources().reconcile_direction_flags();
-        this->advance_frame_query(control,world,elapsed);
+        this->advance_frame_query(control,world,elapsed,runtime);
         this->advance_frame_direction(elapsed,control);
         const auto was_firing=this->words().template get<std::uint32_t>(0x50)&0x200000u;
         this->advance_frame_aim(world); //00559D40 ->00576350.
@@ -111,39 +112,85 @@ public:
             this->resources().retire_current_action(); //0055A0E0→00575820.
         return this->resources().current_action_kind();
     }
-    bool advance_frame_wait_action(){ //0055AD50/0055A6E0, kind 3 wait and no-target modes.
-        const auto kind=this->resources().current_action_kind();
-        if(kind==5||kind==0)return true; //0055A100 has no worker for these kinds.
-        if(kind!=3)return false;
+    template<class Inline,class World>void advance_frame_action(Inline& control,World& world){ //0055A100/0055A1C0→0055AD50/0055A6E0.
+        const auto kind=this->resources().current_action_kind();if(kind==0||kind==5)return;
+        if(kind!=3)throw std::logic_error("Area worker requires actual kind3 action");
         auto* action=this->resources().template current_action_as<HumanAIAction3Pool>();
-        auto* human=this->human();
-        auto* command=this->command();
-        if(!action||!human||!command)throw std::logic_error("Area worker requires the bound Human, command and kind 3 action");
-        auto& words=action->state;
-        const auto mode=words.template get<std::uint32_t>(8);
+        if(!action||!this->human()||!this->command())throw std::logic_error("Area worker requires actual Human, command and action owners");
+        auto& words=action->state;auto& resources=this->resources();auto& query=resources.query();
+        const auto mode=[&]{return words.template get<std::uint32_t>(8);};
+        const auto hostile=[&]{return !this->human()->perception.lists()[0].empty();};
+        const auto active=[&]{return hostile()||this->command()->second.events.size()!=0;}; //0055B860.
         const bool short_range=(this->words().template get<std::uint32_t>(0x50)&0x400u)!=0;
-        const bool expired=words.template get<std::uint32_t>(0x10)==0;
-        if(mode==2&&(!expired||short_range))return true;
-        if(mode!=0&&mode!=2&&mode!=3)return false;
-        if(!human->perception.lists()[0].empty()||command->second.events.size())return false; //0055B860.
-        if(mode==0){
-            if(expired)state_.set(0x154,state_.template get<std::uint32_t>(0x154)|4u);
-            return true;
+        if(mode()==0){if(active())words.set(8,3u);else if(!words.template get<std::uint32_t>(0x10))state_.set(0x154,state_.template get<std::uint32_t>(0x154)|4u);}
+        if(!short_range&&mode()==2&&!words.template get<std::uint32_t>(0x10))words.set(8,3u);
+        if(!short_range&&mode()==1){
+            const auto selected=human_ai_cover::defensive_point(*this,this->state_frames(),route_);
+            if(selected==0xffff)words.set(8,3u);
+            else{
+                auto* navigation=this->navigation();const auto current=this->point()?navigation->index_of(*this->point()):0xffffu;
+                if(current==selected){request_defensive_posture(this->point(),control,world);words.set(0x10,random_interval(8000.,9000.));}
+                else{request_defensive_posture(navigation->record(selected),control,world);query.state.set(0x54,0x4100u);query.request_point(selected);(void)random_word();words.set(0x10,3000u);}
+                words.set(8,2u);
+            }
         }
-        //Normal range mode 2 first changes to mode 3, then runs the same wait reset.
-        words.set(8,0u);
-        std::uint32_t total=0;
-        for(unsigned n=0;n<4;++n){
-            const auto draw=contexts_.human_script_random();
-            if(draw>0x7fffu)throw std::runtime_error("Area wait requires the shared CRT random source");
-            total+=draw>>2;
+        const auto attack_mode=[&]{
+            if(target_is_hostile()){resources.flag().request(2);words.set(8,6u);words.set(0x10,random_interval(2000.,4000.));}
+            else{resources.flag().request(0);words.set(8,4u);words.set(0x10,1000u);}
+        };
+        if(mode()==3){
+            if(!active()){words.set(8,0u);words.set(0x10,random_interval(short_range?6000.:8000.,short_range?8000.:16000.));}
+            else{
+                const bool enemies=hostile();
+                if(enemies){const auto& list=this->human()->perception.lists()[0];timer_target_=short_range&&list.size()==1?list.front():select_human_hostile<Human>(*this,this->state_frames(),world);}
+                else{auto event=this->command()->second.events.pop_front();timer_target_=event?world.human_ai_resolve_actor(event->words[4]):nullptr;} //0055B920 returns the processed lease after resolution.
+                if(short_range){
+                    resources.flag().request(enemies?2u:0u);words.set(8,enemies?6u:4u);if(!enemies)words.set(0x10,1000u);
+                }else{
+                    const auto selected=human_ai_cover::attack_point(*this,this->state_frames(),kind10_,timer_target_,enemies);
+                    const auto current=this->point()&&this->navigation()?this->navigation()->index_of(*this->point()):0xffffu;
+                    if(selected!=0xffff&&selected!=current){request_attack_posture(this->navigation()->record(selected),control,world);query.state.set(0x54,0x4000u);query.request_point(selected);words.set(8,5u);return;}
+                    request_attack_posture(this->point(),control,world);attack_mode();
+                }
+            }
         }
-        const auto centered=static_cast<long double>(total)*0x1.0002p-15f-.5;
-        const auto lifetime=short_range?centered*6000.+8000.:centered*8000.+16000.;
-        words.set(0x10,static_cast<std::uint32_t>(lifetime));
-        return true;
+        if(!short_range&&mode()==5&&(query.state.template get<std::uint32_t>(0x50)&0x80000000u))attack_mode();
+        if(mode()==4){
+            if(timer_target_&&!target_is_hostile()&&target_alive()&&words.template get<std::uint32_t>(0x10)){
+                using namespace human_ai_cover;
+                if(!this->human()->head_marker)throw std::logic_error("Area look requires actual head marker");
+                const auto matrix=this->state_frames().actor_world_matrix(this->human()->head_marker);HumanVector facing{{matrix[8],matrix[9],matrix[10],matrix[11]}};
+                normalize_human_ai_shot(facing,square(facing));
+                const auto self=actor_position(this->state_frames(),*this->human());const auto target=actor_position(this->state_frames(),*timer_target_);auto direction=difference(target,self);normalize_human_ai_shot(direction,square(direction));
+                normalize_human_ai_shot(facing,square(facing));
+                const auto dot=(static_cast<long double>(facing[0])*direction[0]+static_cast<long double>(facing[1])*direction[1])+static_cast<long double>(facing[2])*direction[2];
+                if(dot<=.7599999904632568f){
+                    if(resources.direction().request_look(direction,[&](const auto& a,const auto& b){return this->state_frames().car_vector_angle(a,b);}))words.set(8,3u);
+                }else{world.human_area_force_sight(*this->human(),*timer_target_);words.set(8,3u);}
+            }else words.set(8,3u);
+        }
+        if(mode()==6){
+            if(!timer_target_||!target_alive()||!target_is_hostile()){resources.target().bind_actor(nullptr);words.set(8,3u);resources.flag().request(0);}
+            else resources.target().bind_actor(timer_target_);
+            if(!short_range&&!words.template get<std::uint32_t>(0x10)){words.set(8,3u);resources.flag().request(0);}
+        }
     }
 private:
+    bool target_alive()const{const auto* human=dynamic_cast<const Human*>(timer_target_);if(!human)throw std::logic_error("Area target requires actual Human health");return human_frame_signed_word(human->properties.stats_ec[0])>0;}
+    bool target_is_hostile()const{const auto& enemies=this->human()->perception.lists()[0];return std::find(enemies.rbegin(),enemies.rend(),timer_target_)!=enemies.rend();} //0055B8D0.
+    std::uint32_t random_word(){const auto value=contexts_.human_script_random();if(value>0x7fffu)throw std::logic_error("Area requires shared CRT random source");return value;}
+    std::uint32_t random_interval(double range,double base){std::uint32_t total=0;for(unsigned n=0;n<4;++n)total+=random_word()>>2;return static_cast<std::uint32_t>((static_cast<long double>(total)*0x1.0002p-15f-.5)*range+base);}
+    template<class Inline,class World>void request_defensive_posture(const MissionTableRecord* point,Inline& control,World& world){ //0055B6F0.
+        if(!point)return;
+        const auto& list=this->human()->perception.lists()[0];
+        const auto exposed=[&](std::uint8_t posture){for(auto i=list.size();i;)if(!human_ai_cover::blocked_toward(*point,human_ai_cover::actor_position(this->state_frames(),*list[--i]),posture))return true;return false;};
+        if(exposed(4)&&!exposed(2)&&(this->words().template get<std::uint32_t>(0x50)&4u))this->request_navigation_posture(2,control,world.mode_flags());
+    }
+    template<class Inline,class World>void request_attack_posture(const MissionTableRecord* point,Inline& control,World& world){ //0055BC40.
+        if(!point||!timer_target_)return;
+        if(!human_ai_cover::blocked_toward(*point,human_ai_cover::actor_position(this->state_frames(),*timer_target_),2)){this->request_navigation_posture(2,control,world.mode_flags());return;}
+        if(!human_ai_cover::blocked_toward(*point,human_ai_cover::actor_position(this->state_frames(),*timer_target_),4))this->request_navigation_posture(4,control,world.mode_flags());
+    }
     void drain_frame_events(){
         auto* command=this->command();
         if(!command)throw std::logic_error("Area event dispatch requires the actual command owner");
