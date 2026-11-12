@@ -29717,12 +29717,14 @@
       "program": "client",
       "entry": "00572c20",
       "status": "partial",
-      "coverage": "Clear ordinary aim state and resolve the original stop delay against actual item deadlines.",
+      "coverage": "Clear ordinary aim state and resolve the original stop delay against actual item deadlines. Actual arbitrary-frame direction and common aim-stop positive inline/feedback branches now supplied, preserving fresh separate deadline-clock reads and native failure prefixes.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_state_loading.h"
+        "recovered/game/human_ai_state_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
       ]
     },
     {
@@ -30067,12 +30069,14 @@
       "program": "client",
       "entry": "00575670",
       "status": "partial",
-      "coverage": "Compute the normalized direction between actual Human head markers.",
+      "coverage": "Compute the normalized direction between actual Human head markers. Actual arbitrary-frame direction and common aim-stop positive inline/feedback branches now supplied, preserving fresh separate deadline-clock reads and native failure prefixes.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
       ]
     },
     {
@@ -40954,6 +40958,66 @@
         "recovered/game/human_model_geometry.h",
         "analysis/p22-hum-h4-implementation.md",
         "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a3ab0",
+      "status": "partial",
+      "coverage": "Select actual target skeletal point from SAME Sight mask, live model matrices, original role/distance weighting and CRT order, reusing actual zero-mask/no-observer fallback.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation and explicit native exception guards; original object/allocator/SEH ABI and delegated engine/Sight/Item/Inline endpoints excluded. Callable World composition verified; containing alignment/Script and actual mission/desktop execution remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_target_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00575450",
+      "status": "partial",
+      "coverage": "Emit normalized actual source260-to-target Human skeletal point or non-Human20 direction with native stored XYZ/extended order.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation and explicit native exception guards; original object/allocator/SEH ABI and delegated engine/Sight/Item/Inline endpoints excluded. Callable World composition verified; containing alignment/Script and actual mission/desktop execution remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_target_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00571a40",
+      "status": "partial",
+      "coverage": "Actual common aim admission/duration/second-input/byteC0/flag publication, late query/stance/point gate, existing inline2 and command11 receivers.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation and explicit native exception guards; original object/allocator/SEH ABI and delegated engine/Sight/Item/Inline endpoints excluded. Callable World composition verified; containing alignment/Script and actual mission/desktop execution remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_trigger_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00572af0",
+      "status": "partial",
+      "coverage": "Actual C4 countdown, same Item amount/flags, conditional RandFloat hold and Sight visibility/count gates producing SAME first/second inputs.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation and explicit native exception guards; original object/allocator/SEH ABI and delegated engine/Sight/Item/Inline endpoints excluded. Callable World composition verified; containing alignment/Script and actual mission/desktop execution remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_trigger_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00572c00",
+      "status": "partial",
+      "coverage": "Write actual second input34 before clearing common AI D8 bit1.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation and explicit native exception guards; original object/allocator/SEH ABI and delegated engine/Sight/Item/Inline endpoints excluded. Callable World composition verified; containing alignment/Script and actual mission/desktop execution remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_trigger_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
       ]
     }
   ]

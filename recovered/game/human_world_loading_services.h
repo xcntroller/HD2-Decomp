@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
+#include "game/human_ai_target_output.h"
 #include "game/car_actor_authority.h"
 
 #include "game/world_loading_dependency_link.h"
@@ -1514,6 +1515,21 @@ public:
         if(health<1||!human.loading_state||human.properties.field19c==1)return false;
         return (human.loading_state->words().template get<std::uint32_t>(0x50)&0x4000000u)!=0;
     }
+    template<class State>void stop_human_ai_look(State& state){auto* human=state.human();if(!human)throw std::logic_error("AI look stop requires actual Human");state.look_command(0,human_inline(*human));}
+    template<class State>void begin_human_ai_inline_action(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("AI item2 requires actual Human");
+        human_inline(*human).set_frame_item_action(2);human_state_factory(*human).notify_inline_frame_command(state,0x11u);
+    }
+    template<class State>void finish_human_ai_inline_action(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("AI item22 requires actual Human");
+        human_inline(*human).clear_frame_item_action();human_state_factory(*human).notify_inline_frame_command(state,0x12u);
+    }
+    template<class Human>std::uint32_t human_ai_trigger_feedback(Human& source,Human& target,std::uint32_t* previous,bool* visible){
+        return dependencies().sight.source().human_relation_feedback(human_frame_signed_word(source.field258),human_frame_signed_word(target.field25c),previous,visible);
+    }
+    template<class Actor>auto& human_ai_target_human(Actor& actor){return selection_human(actor);}
+    template<class State,class Actor>HumanVector human_frame_actor_target_direction(State& state,Actor& actor){return human_ai_actor_target_direction(state,actor,dependencies().scene.frames(),*this);}
+    template<class State,class Frame>HumanVector human_frame_frame_target_direction(State& state,Frame frame){return human_ai_frame_target_direction(state,frame,dependencies().scene.frames());}
     template<class Human>std::uint32_t human_hostile_relation_mask(const Human& observer,const Human& target){
         return dependencies().sight.source().human_relation_mask(human_frame_signed_word(observer.field258),
             human_frame_signed_word(target.field25c));

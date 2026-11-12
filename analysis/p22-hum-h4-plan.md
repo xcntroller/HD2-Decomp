@@ -179,3 +179,14 @@ Timed transfer completion boundary:00758170(true) is called by00792590 slot3,
 after actual model selection/mode3 and forced command; it is not a DD0 command
 queue event. Implement original20C=1F before150/liveScale conversion, common
 peer/shadow order and late E0 equipment2/6 gate; bind SAME actual transfer owner.
+
+Before finishing Script timed output, inspect its whole common-AI dependency
+boundary00575450/00575670,00571A40,00572AF0/00572C00/00572C20 and original
+005A3AB0/0046F320/00416D70. These are original H4 common outputs, confirmed by
+current HUM/H5 source contract201adbf (read-only), not new scope. Preserve H5's
+completed decisions and H6's held/mounted firing; share existing inputs/target/
+Sight/VM owners. Implement available complete families before recording blockers.
+
+Common target/trigger/aim start-stop workers now implemented and verified over
+actual owners. Alignment00575D50/00576350 and containing Script outputs remain
+open. Continue those original bodies; no new milestone or whole-H4 closure.

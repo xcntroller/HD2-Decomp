@@ -747,6 +747,20 @@ public:
     void refresh_dynamic_human_model(Frame model){call<void>(scene_.frame(),0x144,model);} //007646F0/00755500, original scene receiver.
     void detach_human_effect_model(Frame model){(void)call<std::int32_t>(model,0x38,Frame{},std::uint32_t{5});} //007B0910 ignores native LinkTo return.
     void human_reaction_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{1});} //0074D510/occupied seat removal ignore LinkTo status.
+    const float* human_target_world_matrix(Frame frame){ //00575450/670 and005A3AB0 retain native world-matrix loans across later updates.
+        if(!frame)throw std::logic_error("Human target matrix requires actual frame");
+        if(!(field<std::uint32_t>(frame,0xe0)&0x20u)){
+            using Update=void(__thiscall*)(Frame);
+            exported<Update>("?UpdateWMatrixProc@I3D_frame@@AAEXXZ",0x1e390)(frame);
+        }
+        return reinterpret_cast<const float*>(address(frame,0x40));
+    }
+    const Frame* human_target_bone_table(Frame visual){ //005A3AB0 captures actual214 before model updates.
+        if(!visual)throw std::logic_error("Human target point requires actual a visual");
+        const auto* bones=field<const Frame*>(visual,0x214);
+        if(!bones)throw std::logic_error("Human target point requires actual skeletal table");
+        return bones;
+    }
     Frame human_visual_bone(Frame visual,unsigned index){ //005A3CC0, actual borrowed skeletal frame table214.
         if(!visual)throw std::logic_error("Human damage point requires its actual skeletal visual");
         const auto* bones=field<const Frame*>(visual,0x214);

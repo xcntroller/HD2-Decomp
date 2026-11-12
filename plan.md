@@ -350,3 +350,5 @@ H4 C9a: actual held4/8 attachment/retirement and track9 verified; [receipt](anal
 H4: mounted assignment/track8 and all0..24 track dispatch receivers now source-bound; Script/completion/subgroup families remain open. [Receipt](analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json).
 
 H4: timed inventory transfer and actual slot3 notification source-bound; [receipt](analysis/checkpoints/p22-hum-h4-timed-transfer-20261112.json). Remaining Script/completion/subgroup work stays open.
+
+H4 common target/aim input and stop workers verified over current World owners; alignment/Script/completion/subgroup still open. [Receipt](analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json).

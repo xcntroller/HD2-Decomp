@@ -23,6 +23,13 @@ Latest additional result: actual timed00758170(true) from00792590 slot3;
 PASS142 native sanitizer, full concrete actual World/Items/230/DD0/frame/Scene/
 SOUND i386 link and launcher/probe. [Receipt](analysis/checkpoints/p22-hum-h4-timed-transfer-20261112.json).
 
+Latest common outputs: actual005A3AB0/00575450/00575670 target direction;
+00571A40/00572AF0/00572C00 and complete positive00572C20 output/stop workers.
+PASS173 target and PASS212 actual AI-resource/input-owner sanitizers; actual
+World/Script/Sight/Items/Inline/factory i386 links and launcher/probe PASS.
+[Receipt](analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json).
+Callable source does not close alignment00575D50/00576350 or Script timed paths.
+
 Next original H4 families: completion type15/91, physical35/type5 pickup/drop;
 Script timed/special, vehicle and attachment;
 Players subgroup formation mode9 producer/retirement. Research lookup for Script

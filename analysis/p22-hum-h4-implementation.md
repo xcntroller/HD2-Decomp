@@ -504,3 +504,75 @@ false branch preservation. Existing application/probe also strictly link.
 Source callable binding does not prove a live no-source inventory notification
 or actual mission branch execution. Only existing00758170/00792590 partial ledger
 rows extend, no new functions or equivalence/desktop credit.
+
+## Common AI target, trigger and aim output workers
+
+These complete additional bodies within the original H4 B0-output scope; H4
+itself remains open. Current HUM201adbf/H5 source was inspected read-only and
+explicitly assigns target/alignment/query completion to H4 and held/mounted fire
+to H6. Nothing from those branches is assumed merged into this checkout.
+
+005A3AB0 now selects an actual target skeletal point using SAME observer258/
+target25C Sight relation mask, actual target visual `a`/table214, model-world
+matrices, observerHuman19C and shared CRT draw. Null observer/zero mask reuses
+existing005A3CC0 random body point. The mask-weighted candidate order and strict
+squared-distance thresholds225/100 are from raw5A3Bxx..5A3CAe. Player mask1
+suppresses mask10's torso list; additional bits2/4/8 append24/14/10. The signed
+CRT draw occurs before required nonzero count; unknown-mask-only failure retains
+that draw. No seeded marker/vector, random replacement, model cache or Sight owner.
+Native bone-table pointer is captured BEFORE world-matrix updates, and those
+matrices remain real engine-owned float loans across later updates. World uses
+its actual initialized actor/scene/Sight owners; all borrowers keep their existing
+World/frame lifetime. Missing required visual/table/bone throws explicitly.
+
+00575450 emits normalized direction from actual source260 to the selected Human
+point or non-Human20 model. Raw5754E6..ED proves targetHuman is ECX and source
+Human is the stack observer argument, correcting the default C signature's
+misleading call.00575670 supports an arbitrary actual target frame. Stored XYZ
+and extended-square order differ: actor(Y²+Z²)+X² versus frame(Z²+Y²)+X². Native
+fourth return scratch word has no writer, represented solely as guard0. Existing
+AI virtual54 now routes through124's existing0055D2E0 setter; the corrected base
+virtual/AI override agrees with current HUM/H5's interface.0056FC20 is absent
+from frozen inventory and receives no credit.
+
+00571A40 admission requires actual item and D0 actor or vectorD8 bit2; actual
+second18 readiness precedes optional target3C/40 duration, using SAME LS3DF
+RandFloat and __ftol. Default duration is RandFloat*300+100. It writes C4,
+clears only byteC0 for vector mode, publishes B0 flag200000, then actual look0
+when400000, and late query/stance/point4000 gates for C8=200 + actual inline
+item2 and B0 virtual08 command11. Current actual AI command08 is RET offline7;
+required non7 transport keeps its existing explicit failure. No shot is generated.
+
+00572AF0 decrements/clamps signedC4, reads SAME RuntimeItem amount/60 bit2,
+consumes RandFloat only on a live empty-item countdown, and preserves FLOAT.8
+threshold. It publishes first18 hold orD8 bit1; populated item uses SAME Sight
+feedback0046F320 with original visible and flags200/400 count gates before
+first18/second18.00572AE0 is actual RET, not a missing networking target update.
+00572C00 writes second34 before clearing D8 bit1. These produce the existing
+shared74/78 frame inputs; H6 still owns actual firing/reload/ammunition receivers.
+
+00572C20 now includes actual inline item22/virtual08 command12 before D0/D8
+clear, optional target44/48 random duration, and exact item deadline samples.
+Raw572D27..9D reads game28 twice, and if an extension wins, twice AGAIN using a
+fresh item. The second interval is signed(now58diff), multiplied by-1 then native
+__ftol; low32 wrap is preserved. This replaces the previous cached single-clock
+calculation. Clock/receiver failures retain original reached mutations; native
+exception guards remain distinct. Effect/action/ownership registries are reused.
+
+Verification: native ASan/UBSan/LSan PASS173 target-policy checks with explicit
+Sight/CRT/engine endpoints; covers literal native mask families/player roles/thresholds,
+failure prefixes, null/zero fallback, malformed mask/bone-table borrowing and
+live matrix updates. PASS212 uses actual HumanAIResources target/query/direction
+and shared input-buffer owners with explicit Item/Sight/RandFloat/Inline/clock
+endpoints; covers admission, conditional draws, input order, feedback gates,
+late query changes, stop failures/retry and four distinct deadline-clock samples.
+Strict actual Script/World/Scene/Sight/RNG/Item/Inline/factory/target/trigger/stop
+and virtual target setter i386 full link passes without selected endpoint doubles.
+Application/probe link separately, never executed. Callable workers do not claim
+completed containing00575D50/00576350 alignment or Script0058E500/special path,
+actual actor/VM producers, actual mission execution or desktop acceptance.
+
+Only five newly implemented inventoried bodies receive partial rows005A3AB0,
+00575450,00571A40,00572AF0,00572C00; existing00575670/00572C20 extend. Existing
+reused005A3CC0, inlined target parameter reads, RET comment and absent0056FC20
+receive no new credit. The remaining original H4 checklist stays open.
