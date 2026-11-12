@@ -1,107 +1,70 @@
-# P22-HUM H8 handoff — 2026-11-12
+# P22-HUM H8 handoff — 2026-11-13
 
 Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8`, branch
 `feature/p22-hum-h8`. All H1–H7 source is present, including merged H4b9d67aa.
-Read AGENTS.md, section2 of plan.md and [H8 plan](analysis/p22-hum-h8-plan.md).
-H8/P22-HUM/application remain OPEN. Preserve other worktrees and user changes.
-No push, original EXE/DLL/Proton/Windows/application execution or invented desktop
-test. Heavy compilation/Ghidra sequential. No permanent tests.
+User explicitly authorized takeover here: finish PACK Human dependencies, then
+return to `../HD2-Decomp-p22-pack` and finish PACK. Do not stop at a smaller
+source slice; continue dependencies/checkpoints. No push/original EXE/DLL/
+Proton/Windows execution, invented desktop test or permanent new tests. Heavy
+compilation/Ghidra sequential; preserve other worktrees and existing changes.
+Read AGENTS.md, plan.md section2 and [H8 plan](analysis/p22-hum-h8-plan.md).
 
-**USER PRIORITY:** finish actual Human effects from PACK's
-`../HD2-Decomp-p22-pack/analysis/p22-pack-hum-h8-review.md`, baseline14d59d3,
-BEFORE ordinary Active/frame work. Do not edit PACK's worktree. Full H8 closure
-is not a PACK prerequisite; PACK retains its own stream/FIFO/module integration.
+**Latest:** [HeavyFire/command12 source checkpoint](analysis/human-h8-pack-heavy-support-source.md),
+[receipt](analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json).
+Ordinary mapped Player/Remote actions, Players BYTE43, delayed nine-DWORD
+publication and flags1 nonoffline speech19 are committed as6d799e8. Source now
+also supplies actual support33/34 item/ray/side/count/random policy and SAME
+HeavyFire16 config, lists, flags, writer/receiver, both actual support objects,
+models/SOUND/particles and checked same-World blast link. Module subobject+4
+means activation1AC and primary request1B0 are SAME flags; finish preserves
+flags and activate resets them. Native nonnull-Human writer emitsFFFFFFFF;
+NULL reads absolute10 and is source-guarded. Ordinary kind3 mission allocation50
+cannot supply native action34 descriptor50/54; actual extended kind13 does.
+Zero-plane frame and received mortar side2 cleanup overflow also retain exact
+native-invalid-memory guards. No fake resource/actor/configuration is supplied.
 
-[Consolidated source contracts](analysis/human-h8-pack-effects-source.md) now
-supply **commands2/7/8/9/11/18/20** on SAME actual owners. Latest general inventory
-checkpoint binds005A2D50/005A2E10/005A2E90/005A2F50 via new
-`human_inventory_packet.h`, `human_inventory_transfer.h`, `human_inventory_swap.h`.
-007D8B40 source/destination storage, actual all-slot/cross-Human validation and
-mutation;007DA5E0 displaced preflight;007D9DE0 retained return/fallback/drop and
-paired equipment/clothing/FPV;007DA3F0 source automatic placement are supplied.
-Authority slot lookup and presentation source whole-inventory lookup/ignored
-result differ. Existing loading weapon request/kernel APIs retain their scope;
-received packets bypass queued request producers. Typed source lookups require
-native Human inventory layout; foreign/missing Scene2 borrowers fail honestly.
+Fresh five-suite ASan/UBSan/leaks passes100 lifetimes each (config, ownership/
+wire, mortar, aircraft, combined Human12 codec/support/module16). Endpoints are
+explicit doubles; concrete actual Human/World/module16/engine/ray/SOUND/blast
+FULL i386 link and latest launcher/probe rebuild pass, not run. Temporary audits
+fingerprinted/removed; fresh logs retained. Fifteen new partials;34 complete/
+3428 partial. PACK source closure and application loading remain OPEN.
 
-Raw precision evidence: normal capacity spills FLOAT; pack5 capacity/final sum
-stays x87; preflight weight+FLOAT delta stays x87 without epsilon/final FLOAT
-spill. Slot6 whole capacity failure precedes absent-pack rejection. Pack6 remains
-borrowed, Items owns rejected displaced entries, source detach follows insertion,
-retain only changes subtraction. Native B0+68 clothing policy: Player queues
-FIRST80, AI/Remote directly apply existing clothing. No extra wrapper/absent
-producer credit. Fresh audit PASS84100 assertions/100 lifecycle matrices on actual
-ActorBase/storage/catalogue/RuntimeItem and policies with explicit engine/model,
-equipment, Players/HUD/FPV/clothing endpoints. Concrete actual host i386 full link
-and latest launcher/probe pass; no Windows fixture execution. Temporary audits
-fingerprinted/removed. Ledger34 complete/3409 partial (3404 client+5 engine).
-[Receipt](analysis/checkpoints/p2.2-human-h8-pack-inventory-20261112.json).
+**NEXT:** remaining common3/00586200 subtypes, then consolidated Human packet
+source checks. Existing research map is WORK `human-pack-common-resume-index.txt`
+and `human-car-target-transform-final/00586200.c` plus raw00586200. Required:
+0/1 Door key lock/unlock005FF650/005FF5F0;2/4/E/F/10/11/13/23/24/26 actual target/
+timer/interaction/progress;6 typed Human174 focus;1C Door close;22 type-specific
+0060E9B0; genuine default holes return1. Existing3/5/14/1B/1E/1F stay preserved.
+B0 already has typed `action_target()`68. Human174 is still a raw guarded scalar;
+common6 is an actual producer, so recover its typed loan/retirement before
+publishing it. HUD focus still asks an external typed producer. Read original
+005ABCC0 before interaction binding: offline Look dispatch/deferred4000, non7
+immediate00751480 and selected seat camera cases. New timed starts must not
+silently skip required positive receivers. Base action completion is already
+source; containing00751480/00755500 and missing actors remain H8 obligations
+where genuinely outside PACK's selected source effects. Do not fabricate
+success or mark those frame paths delivered.
 
-Earlier verified source checkpoints remain:5460739 active clothing and preceding
-Active task/follow/cancel/regroup/delayed speech;447d5d8 live Remote20 creation;
-cd1473e runtime9 pickup/handoff; e14d9c6 SupplyBox11 effects;f3b9295 named18
-actual suffix/category3 loan/fourth-track/shared outgoing process. Their native
-and concrete-host receipts remain in the consolidated contract. SupplyBox later
-state1 closing/crossfade/respawn/falling frame still requires actual H8 work.
+After common3, commit completed dependency contracts, return to PACK, preserve
+its uncommitted dependency-review docs, integrate these committed Human owners,
+reconcile notification/rank and run full affected stream/FIFO/module/Human
+positive/failure/lifetime sanitizers and strict i386/application links. No
+function credit for copied/delegated/absent bodies. No push.
 
-**LATEST TAKEOVER:** [speech/ordinary action checkpoint](analysis/human-h8-pack-action-resume-source.md),
-[receipt](analysis/checkpoints/p2.2-human-pack-action-resume-20261112.json).
-Preserved predecessor speech edits and completed flags1 nonoffline command19
-producer/received playback plus ordinary command12 mapped/special action policy,
-actual Players BYTE43 setter/getter and nine-DWORD delayed publication. Command12
-still explicitly fails at HeavyFire33/34. Native speech+mapped policy100 lifetimes
-each pass ASan/UBSan/leaks, actual full packet-host i386 link and final launcher/
-probe rebuild pass; Windows binaries not run. Four new partials;34 complete/3413
-partial. Temporary new audits fingerprinted/removed. PACK worktree remains as
-previously found; do not merge until required effects complete.
+[Earlier effect contracts](analysis/human-h8-pack-effects-source.md) retain
+commands2/7/8/9/11/18/20 source checkpoints. Full H8 remains open at ordinary
+Active decisions/frame, Script/Player/DD0/hazard/water, SupplyBox and async
+combat, conditional Car/OWN/D11/entry/absent actors, render/application and actual
+user desktop acceptance. Existing H1–H7 kernels need no repeated broad audit.
 
-**NEXT PACK:** HeavyFire16 support33/34 for command12,
-then remaining common3/00586200 subtypes, then combined PACK source verification.
-Command12 [dependency boundary](analysis/human-h8-pack-action-boundary.md) now
-records actual mapping/Players/speech and HeavyFire dependencies. Successful
-read-only Ghidra exports in WORK `human-h8-pack-player-action` supply0053D520/
-005467C0; `human-h8-pack-heavy-producers` supply00472E50/00472CE0. No errors/types
-changed; both jobs finished. Static table capture and raw setter/owner evidence
-are retained alongside. **Action33/34 requires HeavyFire16 process0089B1B0**, not
-Mine module12. Derived vtable00810050 replaces the temporary purecall base table.
-Its actual support constructors/configuration/populated lists/publication/frame/
-retirement are still required; cold HeavyFire update must not remain successful
-when support becomes producible. See the note's exact next addresses (index first).
-Nonoffline speech queues frame0x13 (=decimal19) to SAME second90, not an AI action
-pool13. Both producer eligibility and received00588170 playback remain required.
-Ordinary command12 and speech source is implemented in the takeover checkpoint; HeavyFire support remains required.
-No closure was added for research alone. Continue the whole command12
-boundary, then common3, before ordinary H8 frame work.
-
-General inventory research: WORK `human-h8-pack-inventory-resume-index.txt`,
-`human-h8-pack-inventory-detail-index.txt`, original C dirs
-`human-inventory-immediate-transfer`, `human-inventory-weapon-swap`,
-`human-inventory-swap-dependencies`, `human-inventory-command-receivers`, plus
-`human-h8-pack-effects`. Fresh general transfer/swap/preflight/receivers assembly
-records precise argument/ECX ownership; do not rely on decompiler signatures.
-
-After PACK:005282E0/00529F60 pending,00528950 decisions,00536120 follow before
-full00526550 authority. Retained first slot survives regroup reset; Human190/
-route74 producers and target lifetime remain required. Other offline Script/
-Player/DD0/hazard/water, SupplyBox frames, async combat, Car/OWN/D11/absent actors,
-completed FRAME/render/application composition and actual user desktop acceptance
-remain required. Masterfa94dee render is not imported. Prior contracts:
-[orders](analysis/human-h8-order-owner-source.md),
-[actions](analysis/human-h8-order-action-source.md),
-[frame](analysis/human-h8-frame-composition-source.md),
-[presentation](analysis/human-h8-active-presentation-source.md),
-[H6](analysis/human-h6-source-closure.md). Do not re-audit unchanged H1–H7.
-
-Accidental deletion recovery preserved committed source31c436e. Tools link to
-master; WORK independently reflink-copied from surviving HUM. Lost old ignored
-logs are historical receipts, not reruns; latest checkpoints have fresh logs.
-Recovery `analysis/work/human-h8-worktree-recovery-20261112.json`.
-
-WORK=`analysis/work/mission-world-20261103`. Index BEFORE exports:
+WORK=`analysis/work/mission-world-20261103`. Research index BEFORE exports:
 `python3 -B tools/research_index.py find ADDRESS...`. Original SHA
-8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307. Ghidra
-`../H&D2 Decomp 4/ghidra/support/analyzeHeadless`, project
-`/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
-hd2.unpacked.exe -readOnly -noanalysis. Check ERROR even exit0; no types changed.
-Build: `make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
-Ledger: `python3 -B tools/function_progress.py --render`/`--check`; `git diff --check`.
+8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+Read-only/noanalysis Ghidra path `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`,
+project `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
+hd2.unpacked.exe. Check ERROR even exit0. Temporary absent-start research in
+`human-pack-action-players-resume-v2` discarded all changes, no saved types.
+Build `make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
+Ledger `python3 -B tools/function_progress.py --render`/`--check`; existing27
+tracker tests and `git diff --check` pass.

@@ -45,7 +45,7 @@ The preceding Active task/follow work is preserved and verified in the clothing 
 - [x] Commands7/8: general inventory validation, transfer/swap and presentation [source checkpoint](human-h8-pack-effects-source.md#commands78-general-inventory-source-effect-checkpoint).
 - [x] Command9: actual runtime pickup, automatic placement and handoff [source checkpoint](human-h8-pack-effects-source.md#command9-pickup-and-automatic-unheld-placement-checkpoint).
 - [x] Command11: SupplyBox validation, creation/application, depletion and visibility [source checkpoint](human-h8-pack-effects-source.md#command11-supplybox-source-effect-checkpoint).
-- [ ] Command12: actual Player validation/application and Remote actions.
+- [x] Command12: actual Player validation/application and Remote actions; [HeavyFire/source guards](human-h8-pack-heavy-support-source.md).
 - [x] Command18: named cache resources, fourth-track setup and control lifetime [source checkpoint](human-h8-pack-effects-source.md#command18-named-special-animation-source-effect-checkpoint).
 - [x] Command20: active Remote equipment/storage replacement and retirement [source checkpoint](human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint).
 - [ ] Command3: remaining selected common-command subtypes and effects.
@@ -55,11 +55,11 @@ The preceding Active task/follow work is preserved and verified in the clothing 
 Command12's [required dependency boundary](human-h8-pack-action-boundary.md)
 was traced after the inventory checkpoint. Complete these before crediting it:
 
-- [ ] Actual mapped inline actions, Players byte/setter, speech duration and Player delayed-action publication.
-- [ ] Action33/34: actual HeavyFire16 request/configuration/list/publication owners and populated lifecycle policy.
+- [x] Actual mapped inline actions, Players byte/setter, speech duration and Player delayed-action publication.
+- [x] Action33/34: actual HeavyFire16 request/configuration/list/publication and populated lifecycle policy; native unsafe paths remain explicit guards.
 - [x] Required flags1 nonoffline speech19 FIFO producer, eligibility and actual received playback.
   [Speech/ordinary action checkpoint](human-h8-pack-action-resume-source.md); support33/34 and command12 remain open.
-- [ ] Command12 positive/failure/FIFO/lifetime verification and concrete host/launcher checks.
+- [x] Command12 positive/failure/stream/lifetime source checks and concrete host/launcher links; full PACK FIFO integration remains below.
 
 Index lookup and original call boundaries are retained under WORK's
 `human-h8-pack-effects*`. Do not replace required positive effects with guards

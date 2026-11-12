@@ -377,3 +377,13 @@ audits are fingerprinted/removed. Receipt:
 PACK source remaining: command12 Player validation/presentation and Remote
 application, plus remaining common3 effects. PACK stream/FIFO/module integration,
 full H8 application/frame composition and user desktop acceptance stay open.
+
+## Command12 support/source checkpoint — 2026-11-13
+
+[HeavyFire and full command12 source effects](human-h8-pack-heavy-support-source.md)
+now bind actual ordinary/mapped/speech and support33/34 effects. Both real
+support object types, config/list/flags, module16 publication/receiver and
+World ray/model/SOUND/particle/blast consumers are supplied and source-verified.
+Original invalid memory branches retain precise documented source guards.
+Common3 remains open; no full H8/PACK/application/desktop closure is implied.
+[Receipt](checkpoints/p2.2-human-pack-heavy-support-20261113.json).

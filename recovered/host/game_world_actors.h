@@ -79,6 +79,7 @@ public:
     }
     void publish_mine_contact(std::int32_t identity,std::uint32_t command){consumers_.publish_mine_contact(identity,command);}
     void mine_explosion(typename Runtime::Instance* source,const game::HumanVector& position,float radius,float power,std::int32_t sound){explosion_contact_.explode(source,position,radius,power,sound);}
+    bool heavy_fire_blast(typename Runtime::Instance* source,const game::HumanVector& position,float radius,float power){return explosion_contact_.wave(source,position,radius,power);}
     template<class Blast>void bind_explosion(Blast& blast){require_open();explosion_contact_.bind(blast);}
     template<class Blast>void unbind_explosion(Blast& blast)noexcept{explosion_contact_.unbind(blast);}
     auto mine_ground_ray(const game::HumanVector& start,const game::HumanVector& displacement){

@@ -45907,11 +45907,12 @@
       "program": "client",
       "entry": "0053d5d0",
       "status": "partial",
-      "coverage": "Ordinary offline/nonoffline action mapping and speech, actual Players speech byte, failure-prefix520 reset, native random fallback and full nine-DWORD delayed4F0 publication; source lifetime guards. Support33/34 still explicitly requires actual HeavyFire module owners.",
+      "coverage": "Ordinary offline/nonoffline action mapping and speech, actual Players speech byte, failure-prefix520 reset, native random fallback and full nine-DWORD delayed4F0 publication; source lifetime guards. Support33/34 still explicitly requires actual HeavyFire module owners. Support33/34 now dispatch actual item/ray/HeavyFire16 requests and positive constructor/list/publication/frame/retirement owners; native invalid descriptor reads retain source guards.",
       "limitations": "Source-only portable typed owners and explicit guards replace native pointer/virtual/allocator/SEH ABI. HeavyFire support33/34 and delayed Players frame dispatch remain required; no full command12, H8, PACK, engine or desktop completion claim.",
       "evidence": [
         "recovered/game/human_player_packet_action.h",
-        "analysis/human-h8-pack-action-resume-source.md"
+        "analysis/human-h8-pack-action-resume-source.md",
+        "analysis/human-h8-pack-heavy-support-source.md"
       ]
     },
     {
@@ -45934,6 +45935,171 @@
       "evidence": [
         "recovered/game/human_player_packet_action.h",
         "analysis/human-h8-pack-action-resume-source.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00472210",
+      "status": "partial",
+      "coverage": "Original support record name/speed30/effect0/count2/power1000/radius10 defaults.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004732b0",
+      "status": "partial",
+      "coverage": "Real airsupport.tbl root/group/field reader over original sixteen config records; defaults reset after first root and unknown fields skipped; source bounds guards.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00472e50",
+      "status": "partial",
+      "coverage": "Actual mode/busy/type request policy, owned support insertion, flag prefix and original module16 air serialization. Real aircraft constructor is bound through SAME World.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00472ce0",
+      "status": "partial",
+      "coverage": "Actual mode/busy mortar admission, Y300 constructor, owned list/flag prefix and original module16 subtype1 serialization.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00470530",
+      "status": "partial",
+      "coverage": "Actual normalized direction/timer/plane model hierarchy/local offsets and attached SOUND voices; independent owned airspeech and exact process producers.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00471170",
+      "status": "partial",
+      "coverage": "Actual signed64 flight timer, plane motion/interior oscillation, voice transition, crossing blast, scatter particles/sound and expiry.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00471090",
+      "status": "partial",
+      "coverage": "Reverse plane model/SOUND-handle retirement before independent speech release and list storage.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004719f0",
+      "status": "partial",
+      "coverage": "Actual mortar timer7000, position/Y300 input, radius20/power1000/scatter20, source voice and length delay.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00471b50",
+      "status": "partial",
+      "coverage": "Actual signed64 mortar advancement, voice transition, ground-ray blast crossing, per-frame scatter and expiry.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00472590",
+      "status": "partial",
+      "coverage": "Both original module16 packet grammars with authority consume-only gate, physical Human resolution and actual support construction/list ownership.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00472350",
+      "status": "partial",
+      "coverage": "Air flag clear then object delete then swap-last/erase policy on actual support list.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004723f0",
+      "status": "partial",
+      "coverage": "Mortar flag clear then object delete then swap-last/erase; explicit native presented-side2 overflow guard.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00472510",
+      "status": "partial",
+      "coverage": "Presentation reverse air then mortar advancement and native false-result retirement.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00472c60",
+      "status": "partial",
+      "coverage": "Authority reverse air then mortar advancement with actual combined-mode wrappers and false-result retirement.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005467c0",
+      "status": "partial",
+      "coverage": "Real definition243/244 admission, scaled ray, side/count and original random type/height, SAME HeavyFire16 requests; ignores module busy result after admitted ray. Source rejects native invalid ordinary descriptor50/54 read.",
+      "limitations": "Source-only portable typed/STL/RAII/borrower adaptation. Native invalid memory/empty/type/side branches explicitly reject; engine calls are delegated and not credited. Full containing H8/World/application/desktop validation remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-heavy-support-source.md",
+        "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
       ]
     }
   ]

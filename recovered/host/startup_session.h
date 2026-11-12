@@ -411,6 +411,7 @@ public:
     void stop_game_sound_voice(std::int32_t& handle) {
         frontend::stop_sound_voice(sound_data_.runtime,handle,sound_backend_); //00437340.
     }
+    EngineFrame* borrowed_game_sound_voice(std::int32_t handle)const{return static_cast<EngineFrame*>(frontend::sound_voice_frame(sound_data_.runtime,handle));}
     bool game_sound_voice_live(std::int32_t handle)const{ //004374A0.
         return frontend::sound_voice_frame(sound_data_.runtime,handle)!=nullptr;
     }

@@ -2,6 +2,9 @@
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_ai_target_output.h"
 #include "game/human_player_packet_action.h"
+#include "game/heavy_fire_mortar.h"
+#include "game/heavy_fire_aircraft.h"
+#include "game/heavy_fire_player_support.h"
 #include "game/human_ai_alignment.h"
 #include "game/human_vehicle_path.h"
 #include "game/human_inventory_counts.h"
@@ -2370,9 +2373,105 @@ public:
     template<class State>std::uint32_t human_packet_action_speech(State& state,std::uint32_t category){
         HumanSpeechLoading speech(dependencies().scene.frames(),*this);return speech.request(state,static_cast<std::int32_t>(category),100,1,false);
     }
-    template<class State>bool human_packet_support_action(State&,const HumanPacketCommand&){
-        throw std::runtime_error("Player support action requires actual HeavyFire16 owners and request receivers");
+    using HeavyFireOwner=decltype(std::declval<typename Dependencies::ActorFrames&>().create_human_sound());
+    std::unique_ptr<HeavyFireSupportObject> make_heavy_fire_air(const HeavyFireAirRequest& request,const HeavyFireDefinition& definition){
+        return std::make_unique<HeavyFireAircraft<HumanWorldLoadingServices>>(request,definition,*this);
     }
+    HeavyFireOwner heavy_fire_model(const std::string& name){return dependencies().scene.frames().heavy_fire_model(name);}
+    void heavy_fire_model_root(typename Dependencies::Frame model){auto& f=dependencies().scene.frames();f.link_scene_object(model,f.camera_root_sector());}
+    void heavy_fire_model_parent(typename Dependencies::Frame model,typename Dependencies::Frame parent){dependencies().scene.frames().link_scene_object(model,parent);}
+    float heavy_fire_model_extent(typename Dependencies::Frame model){return dependencies().scene.frames().heavy_fire_model_extent(model);}
+    void heavy_fire_model_position(typename Dependencies::Frame model,const HumanVector& p,bool initial=false){dependencies().scene.frames().heavy_fire_model_position(model,p,initial);}
+    void heavy_fire_model_direction(typename Dependencies::Frame model,const HumanVector& p){dependencies().scene.frames().heavy_fire_model_direction(model,p);}
+    void heavy_fire_model_update(typename Dependencies::Frame model){dependencies().scene.frames().update_scene_object(model);}
+    std::int32_t heavy_fire_plane_voice(typename Dependencies::Frame model,std::uint32_t sound,const HumanVector& velocity){
+        auto& d=dependencies();frontend::SpatialSoundRequest request;request.flags=0xdu;request.relative=model;request.group=8;request.entry=human_frame_signed_word(sound);
+        auto voice=d.sound.emit(request);
+        try{if(auto* frame=d.startup.borrowed_game_sound_voice(voice)){
+            d.scene.frames().heavy_fire_sound_velocity(frame,velocity);
+            const auto cursor=human_packet_ftol(static_cast<long double>(human_sound_random())*1000.f);
+            d.startup.game_sound_voice_cursor(voice,cursor);d.scene.frames().update_scene_object(frame);
+        }}catch(...){try{d.startup.stop_game_sound_voice(voice);}catch(...){d.scene.frames().record_actor_cleanup_failure(std::current_exception());}throw;}
+        return voice;
+    }
+    void heavy_fire_stop_voice(std::int32_t& voice){dependencies().startup.stop_game_sound_voice(voice);}
+    void heavy_fire_cleanup_failure(std::exception_ptr error)noexcept{dependencies().scene.frames().record_actor_cleanup_failure(std::move(error));}
+    bool heavy_fire_sound_available(){return dependencies().scene.frames().human_sound_available();}
+    HeavyFireOwner heavy_fire_air_speech(void* actor,std::int32_t identity){
+        auto* human=heavy_fire_actor(actor,identity);if(!human||!human->head_marker)throw std::logic_error("Aircraft support voice requires actual source head260");
+        auto& f=dependencies().scene.frames();auto sound=f.create_human_sound();if(!sound)throw std::runtime_error("Aircraft support voice allocation failed");
+        (void)f.load_human_sound(sound.get(),"90005601.wav");f.human_sound_parameter7c(sound.get(),1);f.human_sound_volume(sound.get(),1.f);
+        f.game_camera_name(sound.get(),"airsupport_speech");human=heavy_fire_actor(actor,identity);if(!human||!human->head_marker)throw std::logic_error("Aircraft voice source retired during resource callback");f.human_sound_link(sound.get(),human->head_marker);
+        f.car_sound_head(sound.get(),HumanVector{{0,-.5f,0,0}});f.human_sound_range(sound.get(),4.f,15.f,1.f,0.f);f.human_sound_enabled(sound.get(),true);return sound;
+    }
+    void heavy_fire_air_speech_reply(typename Dependencies::Frame sound){
+        auto& f=dependencies().scene.frames();(void)f.load_human_sound(sound,"90005603.wav");f.human_sound_parameter7c(sound,1);f.human_sound_volume(sound,.5f);
+        f.game_camera_name(sound,"airsupport_speech");f.human_sound_range(sound,3.f,10.f,1.f,0.f);f.human_sound_enabled(sound,true);
+    }
+    bool heavy_fire_sound_playing(typename Dependencies::Frame sound){return dependencies().scene.frames().car_sound_state(sound);}
+    void heavy_fire_sound_disable(typename Dependencies::Frame sound){dependencies().scene.frames().human_sound_enabled(sound,false);}
+    std::unique_ptr<HeavyFireSupportObject> make_heavy_fire_mortar(const HeavyFireMortarRequest& request){
+        return std::make_unique<HeavyFireMortar<HumanWorldLoadingServices>>(request,*this);
+    }
+    void* heavy_fire_received_human(std::int32_t identity){
+        if(identity==-1)return nullptr;
+        auto* actor=dependencies().scene.frames().scene_actor_identity(identity);
+        if(!actor)throw std::runtime_error("HeavyFire native received Human lookup dereferences absent actor");
+        using Human=typename Dependencies::Composition::Human;return dynamic_cast<Human*>(actor);
+    }
+    std::int32_t heavy_fire_actor_identity(void* actor){return human_score_actor(actor).base().id10();}
+    auto* heavy_fire_actor(void* actor,std::int32_t identity){
+        using Human=typename Dependencies::Composition::Human;
+        auto* current=dependencies().scene.frames().scene_human_identity(identity);
+        if(actor&&current!=actor)throw std::logic_error("HeavyFire Human loan retired during callback");
+        return actor?static_cast<Human*>(current):nullptr;
+    }
+    void heavy_fire_voice(void* actor,std::int32_t identity,const char* name,float near_range,float far_range,float volume){
+        auto* human=heavy_fire_actor(actor,identity);if(!human)throw std::logic_error("HeavyFire voice requires actual source Human");
+        frontend::SpatialSoundRequest request;request.position={{0,1.5f,0,0}};request.flags=1;
+        request.relative=human->base().frame();request.filename=name;request.near_range=near_range;request.far_range=far_range;request.volume=volume;
+        (void)dependencies().sound.emit(request);
+    }
+    std::uint32_t heavy_fire_voice_length(std::int32_t identity){return dependencies().startup.game_speech_length(identity);}
+    std::optional<HumanVector> heavy_fire_ground(const HumanVector& position){
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("HeavyFire ground query requires actual loaded World");
+        using Scene=std::remove_reference_t<decltype(d.scene)>;using Resources=std::remove_reference_t<decltype(d.scene.collision_resources())>;
+        CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
+            ray(&d.scene.collision_tree(),&d.scene.buckets(),d.scene.collision_resources(),d.scene.frames());
+        const auto hit=ray.ray(position,HumanVector{{0,-500,0,0}},0xffffffffu,0,false);
+        return hit?std::optional<HumanVector>(hit->position):std::nullopt;
+    }
+    void heavy_fire_blast(void* actor,std::int32_t identity,const HumanVector& position,float radius,float power){
+        (void)dependencies().world_actors.heavy_fire_blast(heavy_fire_actor(actor,identity),position,radius,power);
+    }
+    void heavy_fire_particle(std::uint32_t definition,const HumanVector& position){
+        auto& d=dependencies();(void)emit_mission_particle(d.startup.mission_effects_process(),d.scene.frames(),definition,position,HumanVector{{0,1,0,0}},typename Dependencies::Frame{},true,false);
+    }
+    void heavy_fire_scatter_sound(const HumanVector& position,std::uint32_t flags){
+        frontend::SpatialSoundRequest request;request.position=position;request.flags=flags;request.group=6;request.entry=3;
+        (void)dependencies().sound.emit(request);
+    }
+    std::int32_t heavy_fire_configuration_count(std::uint32_t side){
+        const auto* mission=dependencies().session.mission;
+        //006BC5A0 allocates ordinary kind3 missions with50 bytes: reading
+        //descriptor50/54 there is outside that native object. Kind13 has the
+        //actual typed Mission50/54 producer. Reject the unsafe ordinary read.
+        if(!mission||!mission->network_mission)throw std::runtime_error("HeavyFire native descriptor50/54 read requires actual extended mission record");
+        const auto& value=mission->network_mission->words50[side?0u:1u];
+        if(!value)throw std::logic_error("HeavyFire descriptor50/54 lacks its actual producer");
+        return human_frame_signed_word(*value);
+    }
+    template<class Human>bool heavy_fire_has_definition(Human& human,std::int32_t definition){return bool(find_human_inventory_definition(human,dependencies().world_actors.items(),definition));}
+    std::optional<HumanVector> heavy_fire_target_ray(const HumanVector& start,const HumanVector& displacement){
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Player support ray requires actual loaded World");
+        using Scene=std::remove_reference_t<decltype(d.scene)>;using Resources=std::remove_reference_t<decltype(d.scene.collision_resources())>;
+        CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
+            ray(&d.scene.collision_tree(),&d.scene.buckets(),d.scene.collision_resources(),d.scene.frames());
+        const auto hit=ray.ray(start,displacement,1,0,false);return hit?std::optional<HumanVector>(hit->position):std::nullopt;
+    }
+    void heavy_fire_request_air(const HeavyFireAirRequest& request){auto& d=dependencies();(void)d.startup.heavy_fire_process().module().request_air(request,*this,d.broadcast_packets);}
+    void heavy_fire_request_mortar(const HeavyFireMortarRequest& request){auto& d=dependencies();(void)d.startup.heavy_fire_process().module().request_mortar(request,*this,d.broadcast_packets);}
+    template<class State>bool human_packet_support_action(State& state,const HumanPacketCommand& command){return request_human_heavy_fire(state,command,*this);}
     auto* human_speech_candidate(std::int32_t index){ //00475DD0, physical Scene2 slots, no retirement fallback.
         using Human=typename Dependencies::Composition::Human;
         auto* actor=dependencies().scene.frames().scene_actor_identity(index);auto* human=dynamic_cast<Human*>(actor);

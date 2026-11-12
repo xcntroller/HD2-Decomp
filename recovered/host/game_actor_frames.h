@@ -1027,6 +1027,14 @@ public:
         return result;
     }
     void mark_human_air_shadow(Frame frame){put(frame,0xe0,field<std::uint32_t>(frame,0xe0)|0x80u);} //00769920.
+    MenuDriver::Owner heavy_fire_model(const std::string& key){
+        auto model=driver_.create(9);if(!model)throw std::runtime_error("HeavyFire requires allocated engine model");
+        (void)resources_.load_model(model.get(),key,0x10);return model;
+    }
+    float heavy_fire_model_extent(Frame model){if(!(field<std::uint32_t>(model,0xe0)&0x100u))call<void>(model,0x58);return field<float>(model,0x3c);}
+    void heavy_fire_model_position(Frame model,const Vector& p,bool initial){if(initial)call<void>(model,8,p.data());else car_sound_head(model,p);}
+    void heavy_fire_model_direction(Frame model,const Vector& direction){call<void>(model,0xc,direction.data(),0.f);}
+    void heavy_fire_sound_velocity(Frame sound,const Vector& velocity){call<void>(sound,0xb0,velocity.data());}
     MenuDriver::Owner create_game_camera() {return driver_.create(3);}
     MenuDriver::Owner create_human_sound() {return driver_.create(4);}
     bool human_sound_available() {
