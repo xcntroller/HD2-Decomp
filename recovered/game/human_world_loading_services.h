@@ -73,6 +73,7 @@
 #include "game/session_spawn_match.h"
 #include "game/session_transmit_targets.h"
 #include "game/prepared_human_loading.h"
+#include "game/human_item_pickup.h"
 #include "game/human_spawn_position.h"
 #include "game/zone_scene_actor.h"
 #include "game/session_human_spawn.h"
@@ -1832,6 +1833,20 @@ public:
             [&](std::int32_t identity){return dynamic_cast<Human*>(dependencies().scene.frames().scene_actor_identity(identity));},
             [&](Human& human,auto& soldier){PreparedHumanLoading<Dependencies> factory(dependencies());factory.populate(human,soldier);});
     }
+    auto* human_loose_item(std::int32_t identity){ //004772F0, actual runtime identity domain (not Scene2 slots).
+        using Runtime=std::remove_reference_t<decltype(dependencies().world_actors.runtime())>;
+        auto* actor=dependencies().world_actors.runtime().identity(identity);
+        auto* item=dynamic_cast<typename Runtime::LooseItemActor*>(actor);
+        if(actor&&!item)throw std::logic_error("Human pickup token requires actual loose-item actor11");
+        return item;
+    }
+    template<class ItemActor>void retire_picked_up_item(ItemActor& actor){actor.release_item_to_inventory();dependencies().world_actors.runtime().remove(&actor);}
+    template<class Human,class Entry>std::int32_t place_unheld_human_item(Human& human,Entry entry,std::int32_t& slot,bool notify){
+        auto& d=dependencies();return game::place_unheld_human_item<typename Dependencies::ActorFrames>(d.scene.frames(),&human,d.world_actors.items(),*this,entry,slot,notify);
+    }
+    template<class Human,class Entry>std::int32_t apply_unheld_human_item(Human& human,Entry entry,std::int32_t slot){
+        auto& d=dependencies();return game::transfer_created_human_item<typename Dependencies::ActorFrames>(d.scene.frames(),human,d.world_actors.items(),*this,entry,slot);
+    }
     template<class Human>void clothing_control_refresh(Human& human){ //0048A780→00786C20; cold Human has no DD0.
         if(!human.loading_lifetime){if(human.fielda0)throw std::logic_error("Clothing raw A0 has no typed DD0 lifetime");return;}
         if(auto* control=human_inline(human).control())control->rebind_clothing_model();
@@ -1971,7 +1986,13 @@ public:
         }
         case 7:throw std::runtime_error(authority?"Human PACK command7 requires inventory validation005A2D50":"Human PACK command7 requires inventory apply005A2E10");
         case 8:throw std::runtime_error(authority?"Human PACK command8 requires inventory swap005A2E90":"Human PACK command8 requires inventory swap apply005A2F50");
-        case 9:throw std::runtime_error(authority?"Human PACK command9 requires item validation005A39D0":"Human PACK command9 requires item apply005A3A40");
+        case 9:{
+            auto updated=command;auto slot=f.template get<std::int32_t>(0xc);
+            if(authority){
+                if(validate_human_item_pickup(human,f.template get<std::int32_t>(8),slot,*this)&&(mode_flags()&7u)!=7u){updated.fields.set(0xc,slot);state->queue_frame_command(std::move(updated),true);}
+            }else apply_human_item_pickup(human,f.template get<std::int32_t>(8),slot,*this);
+            return;
+        }
         case 10:{
             const auto drop=human_drop_command_value(command);
             if(authority){auto velocity=drop.direction;for(unsigned axis=0;axis!=3;++axis)velocity[axis]*=drop.speed;

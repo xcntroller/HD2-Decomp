@@ -43,7 +43,8 @@ The preceding Active task/follow work is preserved and verified in the clothing 
 
 - [x] Command2: active clothing/DD0/equipment/Sight/Players/camera [source checkpoint](human-h8-pack-effects-source.md).
 - [ ] Commands7/8: general inventory validation, transfer/swap and presentation.
-- [ ] Commands9/11: item pickup and source-container validation/application.
+- [x] Command9: actual runtime pickup, automatic placement and handoff [source checkpoint](human-h8-pack-effects-source.md#command9-pickup-and-automatic-unheld-placement-checkpoint).
+- [ ] Command11: source-container validation, creation and application.
 - [ ] Command12: actual Player validation/application and Remote actions.
 - [ ] Command18: named animation resources, setup and control lifetime.
 - [x] Command20: active Remote equipment/storage replacement and retirement [source checkpoint](human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint).

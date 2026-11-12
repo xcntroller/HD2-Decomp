@@ -3,7 +3,8 @@
 User-directed priority is the missing effect families in PACK's review of H8
 `14d59d3`. The clothing checkpoint resolves **command2's active source dependency**.
 The subsequent live-creation checkpoint below resolves **command20's active source dependency**.
-Commands3/7/8/9/11/12/18 remain required. PACK must integrate committed
+The subsequent pickup checkpoint resolves **command9's source dependency**.
+Commands3/7/8/11/12/18 remain required. PACK must integrate committed
 source, reconcile its helpers and run its own affected stream/FIFO/module checks.
 H8, P22-HUM and application/desktop delivery remain open. No original or Windows
 binary was executed. Frozen inventory claims remain partial native adaptations.
@@ -146,3 +147,44 @@ packet command effects through real Items/World/control/clothing owners. Latest
 launcher/startup-probe rebuild passes. Audits fingerprinted/removed; no Windows
 fixture or application was run. Receipt:
 `analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json`.
+
+
+## Command9 pickup and automatic unheld placement checkpoint
+
+`007D9B40` now has actual general unheld-Human placement: output slot7 first,
+NULL target−100, non-Human storage−101, NULL item−666; payload7 requires an empty
+pack5 and is terminal, payload8 tries head0 then falls through, payload0/1/2/3
+try empty hand3, payload3 always tries shoulder2 whereas payload2 requires size2/3
+and an empty shoulder, then holsters1 and optional pack6. Successful attempt
+publishes its slot; exhausted general fallback returns−102. Actual no-source
+transfer remains the verified same Items/holder/stack/pack owner. Notify0 skips
+230/FPV request but retains native HUD/178/B0/timers; this is not dry-run success.
+This helper is a prerequisite for general transfer/swap but does not complete it.
+
+Authority `005A39D0` resolves actual runtime identity004772F0 (not a Scene2 slot),
+requires its real loose-item11 owner, and applies automatic placement. Only
+result1 continues. `005B6980` erases actual frame EC allocation FIRST, clears
+borrowed entry90, releases actual frame20, then00477190 retires the runtime
+actor/body. The entry now belongs to actual inventory/module; loose-actor cleanup
+must not delete it. Human178 is set AFTER runtime retirement. The packet queues
+an updated destination slot only after successful effect and fresh non7 mode.
+
+Presentation `005A3A40` checks mode1 BEFORE runtime lookup. It applies the given
+slot but deliberately ignores the ordinary transfer result: it still performs
+handoff/runtime retirement and178 after rejected placement. The unplaced entry
+remains module-owned, matching native behavior. Missing runtime item genuinely
+returns; required malformed-owner exceptions propagate. No early body close is
+inserted into005B6980; body cleanup belongs to subsequent runtime removal.
+
+Fresh native ASan/UBSan/LSan audit: **6300 assertions /100 lifetimes** with actual
+ActorBase, holder/stack/pack storage, automatic-placement/live-transfer policies,
+pickup kernels and frame/item handoff. Explicit runtime actor/item/engine/
+equipment endpoints terminate the graph. Positive pickup, missing/rejected
+pickup, mode-before-lookup, presentation rejection retirement, head/pack/shoulder/
+holster/hand selection, notify0, EC/item/frame visibility ordering, ownership
+through retirement/failure and repeated cleanup are covered. Actual host i386
+FULL LINK includes whole packet dispatch, real runtime loose actor/registry/body,
+Items, World and clothing/equipment, plus command20. Latest launcher/probe rebuild
+passes. Temporary audits are fingerprinted/removed. No Windows execution or
+desktop acceptance. Receipt:
+`analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json`.

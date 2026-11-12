@@ -10,7 +10,7 @@ namespace hd2::game {
 //swap. Actual module/state/clock observations are fresh at their native stages.
 template<class Frames,class Human,class Items,class World>
 std::int32_t transfer_created_human_item(Frames& frames,Human& human,Items& items,World& world,
-        typename Frames::Entry entry,std::int32_t slot){
+        typename Frames::Entry entry,std::int32_t slot,bool notify=true){
     if(!entry)return -1;
     auto* storage=human.base().storage();if(!storage||storage->single())throw std::logic_error("Live Human creation requires actual seven-pointer storage");
     typename Frames::Entry displaced{};
@@ -22,13 +22,13 @@ std::int32_t transfer_created_human_item(Frames& frames,Human& human,Items& item
     if(result<1)return result;
     if(displaced)throw std::logic_error("No-source Human creation unexpectedly displaced an entry");
     if(items.equipment_notifications_enabled()){
-        world.created_human_equipment_added(human,entry,slot); //00792590 only when actual A8 exists.
+        if(notify)world.created_human_equipment_added(human,entry,slot); //00792590 only when actual A8 exists.
         if(world.mode_flags()&2u)world.notify_human_inventory_changed(human); //Fresh current2C within callback.
         human.activation.flag178=true;
         if(slot==3){
             storage->holder(3)->field18(world.game_word28()+0x398u);
             world.created_human_refresh_item(human); //005A6A90 before FPV checks.
-            world.created_human_hand_fpv(human); //Fresh mode/current2C/A8/50-bit1 observations.
+            if(notify)world.created_human_hand_fpv(human); //Fresh mode/current2C/A8/50-bit1 observations.
         }
     }
     items.runtime_item(entry).field14=world.game_word28()+0x398u;return result;

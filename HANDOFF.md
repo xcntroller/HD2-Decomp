@@ -12,7 +12,19 @@ compilation/Ghidra sequential. No permanent tests. User priority: getting in gam
 ordinary H8 Active/frame work. PACK does not require H8 as a whole to close.
 Do not edit/import its agent's worktree. The review at H8 `14d59d3` is the baseline.
 
-Latest [PACK live equipment checkpoint](analysis/human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint),
+Latest [PACK pickup checkpoint](analysis/human-h8-pack-effects-source.md#command9-pickup-and-automatic-unheld-placement-checkpoint),
+[receipt](analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json): **command9
+source dependency resolved**, actual runtime lookup,007D9B40 automatic unheld
+placement and005A39D0/005A3A40 validation/application. Native005B6980 erases EC
+BEFORE entry90 clear/frame20 release; actual runtime retirement/body cleanup
+follows. Presentation intentionally retires loose actor even after ordinary
+placement rejection. Notify0 retains native HUD/B0/timer effects. Native
+ASan/UBSan/LSan PASS6300/100 lifetimes with explicit endpoints; strict actual
+packet/World/Items/runtime loose actor/registry/body/equipment/clothing i386
+FULL LINK and latest launcher/probe rebuild PASS. Three new partials, no complete
+promotions;34 complete/3402 partial. Audits fingerprinted/removed.
+
+Prior [PACK live equipment checkpoint](analysis/human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint),
 [receipt](analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json): **command20
 active source dependency resolved**, including Remote-only admission and reserved/
 discard routes. SAME storage reset/pack6 retirement, actual no-source live Items
@@ -50,8 +62,7 @@ pending/decision/authority remains guarded; positive follow is not whole AI.
 source/destination transfer007D8B40, automatic007DA3F0 placement,007D9DE0 swap/
 007DA5E0 preflight and fallback007D9B40. Reuse verified source, extend actual
 cross-actor/equipment owners, retain validation/result/publication ordering.
-Item commands9/11 need actual
-005A39D0/005A3A40 and005A37C0/005A38F0; Player/Remote12 requires0053D5D0/0053D870/
+Command11 still needs005A37C0/005A38F0; Player/Remote12 requires0053D5D0/0053D870/
 00594110; named-animation18 requires005A9C20/005AC4A0/0077CE10/007757E0; common3
 remaining subtypes. Those effects remain required guards. Indexed original C exports are
 now in WORK `human-h8-pack-effects`, and existing inventory/swap/peer lifecycle
@@ -86,3 +97,12 @@ WORK=`analysis/work/mission-world-20261103`. Index BEFORE new exports:
 hd2.unpacked.exe -readOnly -noanalysis. Check ERROR even exit0. No types changed.
 Build: `make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
 Ledger: `python3 -B tools/function_progress.py --render`/`--check`; `git diff --check`.
+
+Focused next research: actual SupplyBox9 owner already exists. Command11 requires
+its availability/state124/250/count130 gates, current-weapon ammo005A2B10 or
+side-dependent properties.items, new-item placement, count decrement and
+005FCD80(1) depletion plus005FD760 visibility. Cold SupplyBoxLoading guards state1
+and crossfade; recover reached depletion setup before removing the command11
+guard. WORK `human-h8-pack-supply*` indexes existing evidence. General transfer/
+swap full boundary is in `human-h8-pack-general-transfer-index.txt`; automatic
+unheld placement now resolves one prerequisite, not the full swap preflight.

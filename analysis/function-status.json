@@ -20596,12 +20596,15 @@
       "program": "client",
       "entry": "007d9b40",
       "status": "partial",
-      "coverage": "Displaced weapon no-source fallback through hand, shoulder, holsters and optional pack contents, retaining native payload3 condition grouping.",
-      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "coverage": "Displaced weapon no-source fallback through hand, shoulder, holsters and optional pack contents, retaining native payload3 condition grouping. Extended: Extend automatic no-source Human placement through actual head/pack/hand/shoulder/holster/pack-content policies, native terminal results/outputslot, notify0 effects and same-owner live transfer.",
+      "limitations": "Source-only typed native ownership rather than original allocator/object/virtual ABI. Native audits use explicit item/engine/runtime/equipment endpoints; concrete host full link is not actual application or desktop verification. Arbitrary source/cross-Human transfers, swaps, source-container pickup and other PACK effects remain required.",
       "evidence": [
         "recovered/game/human_weapon_swap.h",
         "analysis/human-equipment-loading.md",
-        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json",
+        "recovered/game/human_item_pickup.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json"
       ]
     },
     {
@@ -45735,6 +45738,42 @@
       ],
       "coverage": "Actual postdecode command20 effect, including reserved/discard route, referenced Scene2 Human/B0kind7 admission and temporary mutable soldier population.",
       "limitations": "Source-only typed ownership/STL/RAII instead of original allocator/object/decoder/virtual ABI; explicit endpoint doubles and concrete i386 host linking are not application or desktop verification. Only live no-source population into empty Human holders/stacks is added; general source moves/swaps/pickup and other PACK effects remain required."
+    },
+    {
+      "program": "client",
+      "entry": "005a39d0",
+      "status": "partial",
+      "evidence": [
+        "recovered/game/human_item_pickup.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json"
+      ],
+      "coverage": "Actual runtime loose-item pickup, successful automatic placement, ordered frame EC/item/frame handoff and runtime retirement before Human178/packet forwarding.",
+      "limitations": "Source-only typed native ownership rather than original allocator/object/virtual ABI. Native audits use explicit item/engine/runtime/equipment endpoints; concrete host full link is not actual application or desktop verification. Arbitrary source/cross-Human transfers, swaps, source-container pickup and other PACK effects remain required."
+    },
+    {
+      "program": "client",
+      "entry": "005a3a40",
+      "status": "partial",
+      "evidence": [
+        "recovered/game/human_item_pickup.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json"
+      ],
+      "coverage": "Mode1 before runtime lookup; actual placement ordinary result deliberately ignored, then frame/item handoff, runtime retirement and178 even on rejected placement.",
+      "limitations": "Source-only typed native ownership rather than original allocator/object/virtual ABI. Native audits use explicit item/engine/runtime/equipment endpoints; concrete host full link is not actual application or desktop verification. Arbitrary source/cross-Human transfers, swaps, source-container pickup and other PACK effects remain required."
+    },
+    {
+      "program": "client",
+      "entry": "005b6980",
+      "status": "partial",
+      "evidence": [
+        "recovered/game/loose_item_handoff.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json"
+      ],
+      "coverage": "Erase actual frame EC allocation before clearing90 item borrower and releasing20 frame reference; body cleanup belongs to later runtime retirement.",
+      "limitations": "Source-only typed native ownership rather than original allocator/object/virtual ABI. Native audits use explicit item/engine/runtime/equipment endpoints; concrete host full link is not actual application or desktop verification. Arbitrary source/cross-Human transfers, swaps, source-container pickup and other PACK effects remain required."
     }
   ]
 }
