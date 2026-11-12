@@ -6,6 +6,7 @@
 #include "frontend/control_actor_records.h"
 #include "frontend/control_frame.h"
 #include "game/session_local_packets.h"
+#include "game/session_connection_packets.h"
 #include "game/session_application_commands.h"
 #include "game/session_received_application.h"
 #include "game/session_peer_records.h"
@@ -13,6 +14,7 @@
 #include "game/session_entry_packets.h"
 #include "game/session_entry_inputs.h"
 #include "game/session_entry_records.h"
+#include "game/session_entry_connections.h"
 #include "game/human_peer_removal.h"
 #include "game/network_mission_metadata.h"
 #include "game/session_owner.h"
@@ -73,6 +75,8 @@
 #include "frontend/options_settings.h"
 #include "host/chunk_files.h"
 #include "host/control_startup.h"
+#include "host/control_connection_platform.h"
+#include "frontend/control_connection_worker.h"
 #include "host/graphics_input_services.h"
 #include "host/human_store.h"
 #include "host/joystick_backend.h"
@@ -95,7 +99,7 @@ namespace hd2::host {
 // executable. Construct BEFORE graphics initialization (game.cfg timing).
 // This does not supply application/video/menu states or the binary wrapper VM.
 // Original Win32 import targets are called directly; no protection success API.
-class StartupSession {
+class StartupSession : public ControlConnectionPlatform {
 public:
     using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>,StartupSession>;
     using PlayerHuman=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
@@ -115,7 +119,8 @@ public:
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
           session_voice_(control_data_.wrapper0c,settings_backend_),
           human_inputs_(*this,human_input_shared_,control_data_.service14),control_frame_(control_data_, gate_, *this,broadcast_packets_),
-          local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_) {
+          local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_),
+          connection_worker_(*this,control_data_,frontend::ControlConnectionStorage::loader_zero_filled_process) {
         if (!selected_language.empty()) language_.select(selected_language);
         menu_cursor_={menu_width()*.5f,menu_height()*.5f};
         // Actual00748940/00748960 clock basis, separate from frame pacing.
@@ -794,6 +799,15 @@ public:
     }
     auto& game_broadcast_packets(){return broadcast_packets_;}
     auto& game_local_packets(){return local_packets_;}
+    void receive_control_connection_payload(const std::vector<unsigned char>& bytes,std::uint32_t channel,std::uint32_t flags){ //0072C360.
+        game::deliver_session_connection_packet(gate_,bytes,channel,flags,local_packets_);
+    }
+    void publish_control_reset_mode(std::uint32_t mode){
+        enter_control_lock(2);gate_=mode;leave_control_lock(2); //Source synchronization with callback's existing B4 scope.
+    }
+    void send_control_connection_payload(std::uint32_t target,const std::vector<unsigned char>& bytes,std::uint32_t flags){
+        game::submit_session_connection_packet(control_data_,gate_,target,bytes,flags,connection_worker_,*this);
+    }
     void enter_application_command_lock(){application_command_lock_.enter();}
     void leave_application_command_lock()noexcept{application_command_lock_.leave();}
     void queue_application_command(std::uint32_t kind,std::uint32_t target,std::uint32_t first,std::uint32_t second){
@@ -869,6 +883,21 @@ public:
     void clear_human_player_slot(std::uint32_t identity){frontend::clear_human_player_slot(control_data_,lock_services_,identity);}
     frontend::ControlStartupState& game_control_records(){return control_data_;} //PreparedSpawnPackets borrows SAME1DC storage and acquires lock0 for each access.
     void reset_control_entry_packets(bool reset_inputs){game::reset_session_entry_packets(human_inputs_,local_packets_,reset_inputs,[this]{return gate_;});}
+    void begin_game_entry_connections(){game::toggle_session_entry_connections(control_data_,gate_,control_frame_.state().local_peer,*this);}
+    std::unique_ptr<frontend::ControlConnectionLock> create_connection_lock(){return std::make_unique<ControlConnectionLock>();}
+    auto make_game_connection(std::uint32_t identity,std::uint32_t address,void* context){
+        return std::make_unique<frontend::ControlConnectionOwner<StartupSession>>(*this,identity,address,context);
+    }
+    void initialize_control_worker_lock(){lock_services_.initialize_control_worker_lock();}
+    bool owns_control_worker()const{return true;} //This object's SAME inline source worker, not transport readiness.
+    void reset_control_connections(){connection_worker_.reset_native();control_frame_.state().worker_active=false;}
+    void flush_control_connections(){connection_worker_.flush_all(true);}
+    void start_control_connections(std::uint32_t port){connection_worker_.start(port);control_frame_.state().worker_active=connection_worker_.active();}
+    auto& create_client_control_connection(std::uint32_t address,std::uint32_t port){return connection_worker_.publish_client(address,port);}
+    void complete_client_control_connection(std::uint32_t result,const std::vector<unsigned char>& reply){connection_worker_.complete_client(result,reply,control_frame_.state().local_peer);}
+    void retire_client_control_connection(){connection_worker_.retire_client();}
+    auto& finish_prepared_peer_connection(std::uint32_t slot){return connection_worker_.finish_prepared_peer(slot);}
+    void disconnect_peer_connection(std::uint32_t slot){connection_worker_.disconnect_peer(slot);}
     bool session_voice_enabled(){return profile_settings().bytes[0x38]!=0;}
     void create_session_voice(bool authority){session_voice_.create(authority,control_frame_.state().server,control_frame_.state().client);}
     void retire_session_voice(){session_voice_.retire();}
@@ -933,7 +962,8 @@ private:
     game::HudCompassShared hud_compass_state_;
     game::HudClickSound<MenuDriver::Owner> hud_click_sound_;
     bool source_packet_path()const{
-        return human_inputs_.present()||packet_world_.bound()||broadcast_packets_.pending()||!local_packets_.authority_queue().empty()||!local_packets_.presentation_queue().empty();
+        return connection_worker_.active()||human_inputs_.present()||packet_world_.bound()||broadcast_packets_.pending()||local_packets_.pending();
+        //Active selects the actual queue owner, not transport or World readiness.
     }
     game::ConsoleVariables game_console_variables_;
     game::TextRenderControls game_text_render_controls_;
@@ -1023,6 +1053,7 @@ private:
     HWND archive_focus_ = nullptr;
     BOOL directory_window_ = FALSE;
     LARGE_INTEGER control_frequency_{}, control_origin_{};
+    frontend::ControlConnectionWorker<StartupSession> connection_worker_; //LAST: callbacks retire while every borrowed process/platform owner is still alive.
 };
 
 }

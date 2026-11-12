@@ -1,0 +1,768 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "f771a606f95ff6a79967127a89d50fb4dbfb220b",
+  "source_only": true,
+  "worker_control_source_checkpoint_complete": true,
+  "d6b_complete": false,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "007466e0",
+    "007474e0",
+    "00746750",
+    "007475b0",
+    "007467b0",
+    "00747690",
+    "00746840",
+    "00747750",
+    "00746890",
+    "00746eb0",
+    "00748220",
+    "00746da0",
+    "00746e00",
+    "00746a10",
+    "00746900",
+    "007460f0",
+    "00746000",
+    "00746120",
+    "007465f0",
+    "00746490",
+    "00747070",
+    "00747200",
+    "007473a0",
+    "007473f0",
+    "007477a0",
+    "00747800",
+    "00747860",
+    "007480f0",
+    "00748070",
+    "00748180",
+    "00747f50",
+    "00747a00",
+    "00747a40",
+    "007450c0",
+    "00746390",
+    "00745f20",
+    "00745fb0",
+    "00746630",
+    "007457c0",
+    "00745920",
+    "00723d20",
+    "007260a0"
+  ],
+  "extended_entries": [
+    "00722180"
+  ],
+  "excluded_absent_frozen_entries": [
+    "00745650",
+    "00745680",
+    "007456d0",
+    "007466d0",
+    "00748370"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 3063,
+  "source_files": {
+    "recovered/Makefile": {
+      "sha256": "5b8d94057547f8863a8009ace7ca269ec60d1da420faf6a47d2a3dee6e700ff6",
+      "bytes": 9208
+    },
+    "recovered/frontend/control_connection_records.h": {
+      "sha256": "618b0ead2c6c253c3e56a3fb060b5629e1ce6fe1b1248862feae37a0574f4ed1",
+      "bytes": 5500
+    },
+    "recovered/frontend/control_connection_owner.h": {
+      "sha256": "091ac7cd1eb907dfaada5b958a3c08e29d0882e3017f2f5dc2410df8e677c888",
+      "bytes": 11262
+    },
+    "recovered/frontend/control_connection_socket.h": {
+      "sha256": "7af28baf157306e8ea3385a659c5eea960d4964fbac35867cec3da3a3f782323",
+      "bytes": 10348
+    },
+    "recovered/frontend/control_connection_stream.h": {
+      "sha256": "6b334647ccd597a7cd8763bea494c5439872bae1c9237da734422678e3a09572",
+      "bytes": 2949
+    },
+    "recovered/frontend/control_connection_worker.h": {
+      "sha256": "d77f48bc88cd893d764b5837df3d18d4e381d035dbb94a6792d81c92e16be04e",
+      "bytes": 10236
+    },
+    "recovered/frontend/control_startup.h": {
+      "sha256": "30892e41dd8a05a3a23b978a802082c42b37f8414d9386eeb1ed5a1e45bddfa1",
+      "bytes": 8094
+    },
+    "recovered/frontend/control_frame.h": {
+      "sha256": "ac4c998197e6d516e73fb91d76b50110e6835d7093386dc7012ba1dc232fbe7e",
+      "bytes": 7665
+    },
+    "recovered/host/control_startup.h": {
+      "sha256": "87892fd1388cb8196c31c3e1a8b46320f68575e4841bb53f95cbb2a747dad4f8",
+      "bytes": 2580
+    },
+    "recovered/host/control_connection_platform.h": {
+      "sha256": "6d5a135d35d872928045346d8d19008904b41fdfa4715d5d3511764161c28460",
+      "bytes": 4604
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "f1195be2656b67c089f1e777e6b08e4fec04deccf461a960b9ea3ea9de780d8f",
+      "bytes": 70483
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-h2-worker-native.cpp": {
+      "sha256": "b8403f65698cc06854f3bca582a6cfcdb4ddf0b4291bff216f97603503e3ec33",
+      "bytes": 18767
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-native": {
+      "sha256": "fd9a96b5a7eff8bf74c5b0418be16d9abc6a86252270f10911fd2be44fbdad79",
+      "bytes": 4397216
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-native.log": {
+      "sha256": "1dd89bbf08890b62e01c1cc2ae86abf64897dbd444d470db56c18e6ac9196c55",
+      "bytes": 502
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-host-i386.cpp": {
+      "sha256": "5db564a24160c1c8dc3351b70be3c5080c59b0a3af6ea7f3b9c2ab41be473480",
+      "bytes": 492
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-host-i386.o": {
+      "sha256": "6adff22d20b9cc8d0c5b543d533462aff22340d976fbd764f5cfb9499d1d3cd7",
+      "bytes": 549283
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-launcher-build.log": {
+      "sha256": "7e9252d1406678b33b81e74a22b80ce66dc917f4950fae75cb2f1bc6e630b306",
+      "bytes": 820
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-connection-regression-native": {
+      "sha256": "bc2c6d393be30e05932db0d928be17489c117edb3c4db329b977a1d9415611fa",
+      "bytes": 1949896
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-connection-regression-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-connection-regression-native.log": {
+      "sha256": "b500b6d566da8c898b42228f6a76453058572a49def1baf7867dc13e69845ebf",
+      "bytes": 595
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-application_launch.exe": {
+      "sha256": "da01b08f73f275f36313288d3789e242df2a68bfb92452a02b6c52d08a357c1b",
+      "bytes": 3932672
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-startup_probe.exe": {
+      "sha256": "6690cd12b49f7b3f245afa5d98a8531633bc3613a9f2cbaeb54d699a961c7302",
+      "bytes": 1135104
+    },
+    "analysis/work/mission-world-20261103/human-h2-connection-records-native.cpp": {
+      "sha256": "5bef7eebcd8d91e8bf2ed6fc71286f5efbb2e928cf834da3f731357e524619b7",
+      "bytes": 10027
+    }
+  },
+  "evidence_files": {
+    "analysis/work/mission-world-20261103/human-h2-worker-loop-originals/00746eb0.c": {
+      "sha256": "97db81d41b7cc5658a6216de275a40765896839d9417f92a5d5955a32a903060",
+      "bytes": 387
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-loop-originals/00746eb0.json": {
+      "sha256": "c9acfacdf9af3bb3073709268a5e445fddc50a4f4ea9f14a255a19f6bd25b10f",
+      "bytes": 2725
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-pumps-originals/00746a10.c": {
+      "sha256": "7c1eb2b5cb4dbe295d38ee9fb0ee35fb2ac0962d551925bb7049418727befce9",
+      "bytes": 1439
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-pumps-originals/00746da0.c": {
+      "sha256": "26152d67e513338d1c1658b17c0d7fc9790b63f0600b20250a07cbd672727ee0",
+      "bytes": 489
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-pumps-originals/00748220.c": {
+      "sha256": "abe2de843d05c87953dee22d0d3b9014aa3c1ee68aeb2a1612eec4c719f1737f",
+      "bytes": 477
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-pumps-originals/00746a10.json": {
+      "sha256": "a5bc07e23c20618f8d7b46651acbd5550f3591211d04d2dd787d8ca7493492d3",
+      "bytes": 6347
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-pumps-originals/00746da0.json": {
+      "sha256": "ccf94519d1779355b4e10fa3db62c19820c77496cbae711f8896dac6353289ed",
+      "bytes": 2946
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-pumps-originals/00748220.json": {
+      "sha256": "b7b0fb718c31e337adfd1ab55173173ff517559c01b6484b947c4b08b0c828ba",
+      "bytes": 3410
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/007460f0.c": {
+      "sha256": "0d4e316f9e580351923678024f37c0e584076feb32cbd3146286882dec3e5ecf",
+      "bytes": 212
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00746120.c": {
+      "sha256": "761f8710e8e7be7567b9953a45fb8ec987d69040e545d644c44018b34cb53fb8",
+      "bytes": 399
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00747a40.c": {
+      "sha256": "d0d492bde2ea2664b043c5751c26f0424ab2f53550cec752f7fb36c30f22a31e",
+      "bytes": 3181
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00748070.c": {
+      "sha256": "1611ffdd06d02731365506ea48aead62b1e8abbfb810c37da5fcdf9a7e876463",
+      "bytes": 882
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00748180.c": {
+      "sha256": "9902a9f881680e20bc76c30f6145fc055d6a7d7ec916ec2df53e94d9a07719e3",
+      "bytes": 1195
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/007460f0.json": {
+      "sha256": "5bd0de11f3e88fbf98fdab0e7fba220b6a8a81c46a759e314da0cb0840b22a53",
+      "bytes": 1166
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00746120.json": {
+      "sha256": "1e34776606aae3dec623426e8c44d400e7eb5ef745f2bcd3836ee9f876c66db6",
+      "bytes": 1693
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00747a40.json": {
+      "sha256": "29b757780209de5604311d4ecd66a75352142a7922d576047c832ef470c84767",
+      "bytes": 9010
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00748070.json": {
+      "sha256": "39d4aaced030de4ed5e680000ff0c17ef6bf61b74918b491f5a356221d3d275a",
+      "bytes": 1930
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00748180.json": {
+      "sha256": "4140702b657672fdbb9dac05ec70c440a357bcc54bbe973f3b0e4859f4fccce0",
+      "bytes": 4265
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/00746000.c": {
+      "sha256": "ff9f72786e90636e160ee4d49479c63f43334b98fdc11de41bbc14867381d663",
+      "bytes": 975
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/00746490.c": {
+      "sha256": "bc484476be404d3ffe083a475b32f08890d217279d168997a55da226a31ed19e",
+      "bytes": 1763
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/007465f0.c": {
+      "sha256": "75ec79ada9dc7414ae5f6dea23e813fdb66a5ecd731cc771a98f4f743264052e",
+      "bytes": 502
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/00747a00.c": {
+      "sha256": "93a9d71c06ecaf6c69206626e8ca72cf92b22ee9eb7cb593ec382444bf49afab",
+      "bytes": 401
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/00747f50.c": {
+      "sha256": "3738b724ee1aa7da8cd3202d04e3a2c81ce34996db245a39a65e8ac11e27ceed",
+      "bytes": 1409
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/007480f0.c": {
+      "sha256": "76aa175f1f055e6a761e566e10b77ab5f19bc76f935e96e476cf549cfc53b954",
+      "bytes": 1064
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/00746000.json": {
+      "sha256": "1d3b4d2bd67630a429b88f33bf97e3833c38cc8bce3d46ba8a9e101f2c434e57",
+      "bytes": 6364
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/00746490.json": {
+      "sha256": "091d7023f5e1023638ef9afa6cecba524b65c3c580ed67654e950a7bc9e45f44",
+      "bytes": 7411
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/007465f0.json": {
+      "sha256": "84e024f897feeeed7ab4ea7497be36dde2266b4f057c57c601ed1699ccd91c5a",
+      "bytes": 1818
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/00747a00.json": {
+      "sha256": "ed0e67931d39bebd34d3efeb7e57d44b3aeb57006241204a41cb7e0d36338d88",
+      "bytes": 1158
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/00747f50.json": {
+      "sha256": "3db95508a30ceed69789fb0af48833867284d03a4ff9f49c7b92ad067f06754f",
+      "bytes": 3644
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-originals/007480f0.json": {
+      "sha256": "e2bceda187a456cee6993b32e8ea0d04ff330f3ffdea41537f543f54b2589a13",
+      "bytes": 3896
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747070.c": {
+      "sha256": "8ca26fcf465f8d2eb7be4e1c0b2fabceb9f86d61d055635a9d9e1b06254e2aff",
+      "bytes": 155
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747200.c": {
+      "sha256": "e4f520e7e894217ca2c22831e9756471276473b5d8ebbbcd586212cf259c2b34",
+      "bytes": 395
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747350.c": {
+      "sha256": "507b631502ce31920efe9c25b7a6fb7c7d71b4cb7685d49cea524ee16dde2a1b",
+      "bytes": 194
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/007473a0.c": {
+      "sha256": "77371a88bc330ecb8c59809512ef18e896dc200dc393712526135a9befdc6e10",
+      "bytes": 349
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747800.c": {
+      "sha256": "594fec6a938b6381435dd0aa5817f45c2eba4d6ada074aeda12bd608d419458d",
+      "bytes": 637
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747860.c": {
+      "sha256": "6fb8e3a73a2867e3c333d463e5a854d1eaf862e6dfba5fde84510946f4594052",
+      "bytes": 3282
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747070.json": {
+      "sha256": "b369d59bf0c27a1838c3725f8845fd53b58a8a037a440d5facba13fce95266bb",
+      "bytes": 1183
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747200.json": {
+      "sha256": "b7425ac587f14462d49a38445ca40365ea9a96de960c02fa7ff322a52eea3e63",
+      "bytes": 1208
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747350.json": {
+      "sha256": "f9b321804bf75df87891087072be4b38dbcbb69b6643fb7dc34ab9837bff6d75",
+      "bytes": 977
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/007473a0.json": {
+      "sha256": "579d246266956c35915993afb0f957e49694a7d63dc14e3a74d8d49ee66a2b86",
+      "bytes": 1885
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747800.json": {
+      "sha256": "34cbe2a61b4e1ea62412399e2be8a884730a9a8b53a9b926c8d7b84adb745c92",
+      "bytes": 1415
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-originals/00747860.json": {
+      "sha256": "85fcb6d78e8522a9849c6973714e8557740dffc1fcbcf412c28a66915c0187a3",
+      "bytes": 7628
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-originals/00746fd0.c": {
+      "sha256": "e90ed134899092fd519720f739461d60e0e0b19b2e107c92e59d5c03755ad095",
+      "bytes": 135
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-originals/00747030.c": {
+      "sha256": "5b5c409f2420b45208abe2200e0bb0bb9d872d30da18fc1c06d2da8e3e463740",
+      "bytes": 99
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-originals/007470a0.c": {
+      "sha256": "6ceda1795ba33fdc85f3311b8adaf16b07675ef148b79cda557207526bfc54a6",
+      "bytes": 590
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-originals/007477a0.c": {
+      "sha256": "40b1fdd4756e57cfad2c066d671e40c82b5e4ac85f629dff92046f085efda5b5",
+      "bytes": 655
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-originals/00746fd0.json": {
+      "sha256": "858e16ce4593ba79f4a6b953a19b8d275c5e4a0ba82b241ff0aa150e8e04a5a6",
+      "bytes": 849
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-originals/00747030.json": {
+      "sha256": "369f7e0a4e29661614cb8d9da7e2bc8634e90060ba527b5d9e1d0f19e794fea8",
+      "bytes": 1274
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-originals/007470a0.json": {
+      "sha256": "4e8a840c254b9c7eab8e48faab8c0c98a31356c75674c69a5e50f61b5d328f4b",
+      "bytes": 2460
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-originals/007477a0.json": {
+      "sha256": "fd21f69b999ab4ee92d77c286fde56ab05f23fe6bb60199a0c52771239e4a044",
+      "bytes": 1417
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-control-receive-originals/00746170.c": {
+      "sha256": "d10bd0e616e720e1774cab7e2e58fe14d2eb8d4edb258ff4dc623e12f2dadfe2",
+      "bytes": 2418
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-control-receive-originals/00746170.json": {
+      "sha256": "0b863311c9a30432094424620796d7b22462bcaa0605207bcbf944af42a98d63",
+      "bytes": 10256
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ack-originals/007450c0.c": {
+      "sha256": "7f7c767e0dba19fc8790f95653cf60280894bba870e3f7b0b4dece3affda10d0",
+      "bytes": 541
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ack-originals/00746390.c": {
+      "sha256": "4c03ecc1b6e7b12983673f46f863c29450511164fe9608f3c157aec0258b8354",
+      "bytes": 1246
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ack-originals/007473f0.c": {
+      "sha256": "2d984e7dd8ff397a51104e5d3a177734c23205429f462708e463a84c3c338d87",
+      "bytes": 522
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ack-originals/007450c0.json": {
+      "sha256": "cb142f69f36ebdccfa51fe0cdfc171557cb6c459495ecad3a370c5d0985954f3",
+      "bytes": 1976
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ack-originals/00746390.json": {
+      "sha256": "43a16c185fb4841912f207514513686afd892a1c0aa86eddc28bd5be07725351",
+      "bytes": 6137
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ack-originals/007473f0.json": {
+      "sha256": "7a489092073a851b80230a6b147dd382db5037c71ca1001a56935885a8dede35",
+      "bytes": 2152
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00744ed0.c": {
+      "sha256": "23cab11c52a2296ddf50917506acb1aa1e6c3084fedcfe0ccf9ccd50fa6b7737",
+      "bytes": 795
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00745350.c": {
+      "sha256": "58d93e0fa3ce26b6414198b1d388b6c9e57c4e5fc7d03138adab1a7f70c41b15",
+      "bytes": 927
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007458d0.c": {
+      "sha256": "76f25ce213c8f224db6bb91379b768f1bebd771d9118cdc58e73d1f496d06724",
+      "bytes": 165
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00745e40.c": {
+      "sha256": "57a3e650bfcca6e1d320a272032c4edbd5fe8190caff24680ee0b7b24bc318b0",
+      "bytes": 477
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007466e0.c": {
+      "sha256": "039121e0824f8a53cf7a12e26857988e415d3446556eaa7b287668cae3525cf9",
+      "bytes": 577
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00746750.c": {
+      "sha256": "8bd44b2025792d8992f7144830061c064edb4c5d2f0ea93adcd05642d977f575",
+      "bytes": 489
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007467b0.c": {
+      "sha256": "5d2e9004def0fdb0c403a64dddb7f70916d8641372915140ffd70961a9cbcbd3",
+      "bytes": 906
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00746e00.c": {
+      "sha256": "8f56105df645935e42de80abdda3e548b74672bf461c5d70b88033be706b41e4",
+      "bytes": 557
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007474e0.c": {
+      "sha256": "74e6c4073c26a54d3a79562ed25be2924d0aafe435c929d57427b92d1c07e56f",
+      "bytes": 1172
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007475b0.c": {
+      "sha256": "8aebd74124e44fbae8877170e3536f533465aaffa9d27ceedec5b155b176e427",
+      "bytes": 1362
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00747690.c": {
+      "sha256": "4062ea88707e198449ba246e421366bd229b8d3e496f65be747bcb50687daaee",
+      "bytes": 993
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00744ed0.json": {
+      "sha256": "36796a4b58caecad494037f47f58e74ef70a414da7037f5a3691eb9827ece29e",
+      "bytes": 2838
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00745350.json": {
+      "sha256": "a3ec8977a0a5e93cb1be7efdf95ec46646cbb43755d935a69fdc19ce1389d27b",
+      "bytes": 3244
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007458d0.json": {
+      "sha256": "3db1eaf620582011a447b8f31459b177529f6435ff72c8bd0673b01fa9e0935a",
+      "bytes": 1069
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00745e40.json": {
+      "sha256": "e07de6d5785598d1144061ddae62f5f217cea410a75e1164116fbaa174979fe2",
+      "bytes": 1652
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007466e0.json": {
+      "sha256": "69703d16eba6829afe2664e79c1b8731a6f7b30b008e58e1b9f174147064b8bc",
+      "bytes": 2476
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00746750.json": {
+      "sha256": "e328b3f864e87a76f867ebcc78404cbbfdb5a622068ab7d0ae214acbed816647",
+      "bytes": 2731
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007467b0.json": {
+      "sha256": "b6eff7141a80b3b35d57135f3d044bedddd30450df2e16a095e5aa5d182e01b8",
+      "bytes": 2662
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00746e00.json": {
+      "sha256": "0a4c88f41dab95937427359c3b1f5b3723a075b1bd46b413abbcf6885a272a54",
+      "bytes": 2819
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007474e0.json": {
+      "sha256": "42912f940c9c217f6bca4d4dc82f25cc3530516a4ac8e06e6261a5e353f7684a",
+      "bytes": 3550
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/007475b0.json": {
+      "sha256": "bae21d91eb295f4f406ca6ba59a00b5a5d8f7a8193d383615f52c138a7666962",
+      "bytes": 4512
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-originals/00747690.json": {
+      "sha256": "c34e6beb4022e625fe4c37c058a5016cd8a47b9f5b285b96fc6fec1a1dc5a797",
+      "bytes": 3745
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00744fa0.c": {
+      "sha256": "4ecc15003f023b3c18b3bfe9cac00e1604dbe915118a35bd71b61d0ee84df9c8",
+      "bytes": 170
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00744fc0.c": {
+      "sha256": "2e9ef66f0e3fd2497af7b38341cb9f0a1239209208a27fbe90050b5696e37637",
+      "bytes": 1300
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/007453f0.c": {
+      "sha256": "367fb272a884fbb6bac982afccc8f6e6d2a1b02888d16b0cadaa6c2db659dd48",
+      "bytes": 170
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00745410.c": {
+      "sha256": "2cfadc8e90e6a8034fee427cb26930f6ab7c2e748c35001a995efc3f5706ac79",
+      "bytes": 1422
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/007458f0.c": {
+      "sha256": "6f0c991e5b21f03c605e32b690f263eceb94fee897f4e6f94e3a2f2f33198942",
+      "bytes": 170
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00746840.c": {
+      "sha256": "ffe497ea5606095437e8fd71143bd7e463fa939f8eb15abefb1ff0c6031533c6",
+      "bytes": 313
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00746890.c": {
+      "sha256": "4fc5965a8c9dc0b13e46e62a1959cae8c40628918912d203ac61453e9a926676",
+      "bytes": 626
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00747750.c": {
+      "sha256": "0103021c40859d945de4b0625c02e7f18b6bcab74329251c15f48c7e25dc3e84",
+      "bytes": 358
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00748400.c": {
+      "sha256": "8acd32d1f4c6c85df9231b6daa5b1b59cdee65c9e809274c52000bbfc13f3404",
+      "bytes": 292
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00744fa0.json": {
+      "sha256": "7a11399efa5c7ef2a2110005c907528b3a6bc6c2cd35798776daa5c208985d65",
+      "bytes": 1234
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00744fc0.json": {
+      "sha256": "8df7e778a207ceb235ecef563c4820005d188335d5febec21268ec3ec2f15b50",
+      "bytes": 4107
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/007453f0.json": {
+      "sha256": "7c6b47cabf19fa7bf138acbfae7e2147b9b77d5633d71c232fbeed82beae8e25",
+      "bytes": 1234
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00745410.json": {
+      "sha256": "996d9fe66c64241fcee9c3e7b33c7f5ac60b12e98e2351f715683cae68ea8ced",
+      "bytes": 4321
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/007458f0.json": {
+      "sha256": "f52f13ba63e3fbc484c6b658523397d40d7c601b8fb4fede0d86f036308dc2d2",
+      "bytes": 1234
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00746840.json": {
+      "sha256": "2dca2c64692b64748bd9d7d6363ac1d8e6f0f0d34a1557f1c28666ef48142033",
+      "bytes": 1885
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00746890.json": {
+      "sha256": "53acc3e4e5b9fe3fc4a3c3807b1523c53b0e1daf96f18134640ff16b64e37065",
+      "bytes": 2628
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00747750.json": {
+      "sha256": "f76cf37f3db0a4cf527f7ecd006a3394afa4d900a1b0ea7653cc5dce44fed1a7",
+      "bytes": 2870
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-originals/00748400.json": {
+      "sha256": "20fa209fccea9a35147800d7e15cda1f40c72dc8d05b196cc18b148a883b52e6",
+      "bytes": 1015
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ack-index.txt": {
+      "sha256": "f9e94e8cf791d6059656928f38a205870ff41f6750501a0c3e41cfb7a1c83354",
+      "bytes": 2390
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-callback-alias-index.txt": {
+      "sha256": "5a2a544fa2085f8060f321945b0d130ea4ef4345ba3303aa8e59380f7d085dc2",
+      "bytes": 6887
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-callback-index.txt": {
+      "sha256": "699ab579f5556d714c5570b2e068046ec8fe2746babd5ba072d335962d2f3306",
+      "bytes": 8722
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-client-callback-index.txt": {
+      "sha256": "69fd460d5dbba9eb7757b2573fae3c47a4da7dc82a18bff8ef5a07d0ac4011b6",
+      "bytes": 4257
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-client-reset-index.txt": {
+      "sha256": "ba74ac7218c08f5d98e817811b948c3f2ee23d24bb73554e41853de12e6617e3",
+      "bytes": 2272
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-index.txt": {
+      "sha256": "090f96748e56a324f25cf9bde53805fce2f45bcbf7bee6f93c88d6867f006b94",
+      "bytes": 4459
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-control-receive-index.txt": {
+      "sha256": "76061c081cd35f7bca7f591b2378af74d6c83f3a7e4e83ec1d1fc89823599d6f",
+      "bytes": 1436
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-index.txt": {
+      "sha256": "d81f49560b43696e5ba32e0fda9c9c3bfd211d39dd24c21d14f86df9ae9fa0f1",
+      "bytes": 4246
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-lifecycle-index.txt": {
+      "sha256": "fa48ddf53e3835a8c7cc13f87ca27a4b77c21e570d01034b211c4033b621e26f",
+      "bytes": 10645
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-index.txt": {
+      "sha256": "684cc54fc77fbd647ca06a6bb4747c06ac182a9993ea8702894393e11e002120",
+      "bytes": 3981
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-index.txt": {
+      "sha256": "7ac0fdaabb106197cb208aa69e77346e7ea757d761a6cca9fd999d4aeaf6afa3",
+      "bytes": 3056
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-pumps-index.txt": {
+      "sha256": "7cb509286fbb6c77a79fa1ed1e09814ffd8a6a743b0dfa4b667305aab7cdaec0",
+      "bytes": 2597
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-index.txt": {
+      "sha256": "fd2314e60a19714821bcbd87992f32c3d4b1f354fee5c51ec2d52d631da15940",
+      "bytes": 10795
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-index.txt": {
+      "sha256": "5c4eb6b52794da6e52ea1eb37c596172fb65f6f0cd7a4dac792156fe6887a272",
+      "bytes": 7032
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ack-export.log": {
+      "sha256": "e5d9862df4b72940b0055a50afc1ab09ab772eeca38d779e297b0d3ac78a9e22",
+      "bytes": 4728
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-cold-paths-export.log": {
+      "sha256": "4db1014ccfd890448c400bacdc882f1f9ff819a9060503dfba1e400817e6f8c0",
+      "bytes": 5044
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-control-receive-export.log": {
+      "sha256": "097c94cc307c7bbdfaaae57f866b6de39d0465b0602e16f135b7c756732c0337",
+      "bytes": 4534
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-export.log": {
+      "sha256": "a2e703f787311eb754e1a55d93b8e8a9aa913cedb4e0536a7cc1f3a7d027108a",
+      "bytes": 4933
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-loop-export.log": {
+      "sha256": "097a8921a9fb9412e8f181d2732d88d34cb9f254e1114193bca1c4c581f580a4",
+      "bytes": 4523
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-owners-export.log": {
+      "sha256": "24add1fe4cb5f0c50b612d4a08877485ef49d78608df9ed6c24554132d5bc809",
+      "bytes": 5554
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-export.log": {
+      "sha256": "1cdcb867172766bd28f9671f42617405319d0e172050afc0a6256bafe70a77db",
+      "bytes": 4832
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-pumps-export.log": {
+      "sha256": "9d5794f105e6ffd6fbc3147d57a6e529582cdca5f8052fe4b291b54b64ef900e",
+      "bytes": 4730
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-retirement-export.log": {
+      "sha256": "84965aacec075ef39a6397bfe1ccd3020ff596bff6ed0121a003e2308adedcd6",
+      "bytes": 5352
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-wire-export.log": {
+      "sha256": "1aaab44a1d307dd11834c897386496725a052abeccf8cc9edd0412491e0f23d5",
+      "bytes": 6253
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-construction.asm": {
+      "sha256": "ff23173ab03ab0903ee7c40b2edce3846e47e60097e51ee03917833ba69245af",
+      "bytes": 26672
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-loop.asm": {
+      "sha256": "e4ac36755ba34b1ef45c6c71049f3fb18516bc4b67750180153d24b0997f4745",
+      "bytes": 1537
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-ping-raw.asm": {
+      "sha256": "d7b756d7176dae85c4b6b3ac1f41879d1fc6ab2e31a561ef140f72f2ff875053",
+      "bytes": 4431
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-receive-raw.asm": {
+      "sha256": "99080e6e5f75df44fca3ca5012e451c6d28c681c8d3e6abfb09380820ad4ef49",
+      "bytes": 6074
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-stop.asm": {
+      "sha256": "9dc9ce4e2876b942a77b64c3dbc305dd4799e5ba7776749716f0dfcc1967ed0b",
+      "bytes": 12755
+    },
+    "analysis/work/mission-world-20261103/human-h2-empty-message-take.asm": {
+      "sha256": "ff61edd3281917b7d214012334c094ba432bc22f9f39cb060d08c669fbf8d3aa",
+      "bytes": 5957
+    },
+    "analysis/work/mission-world-20261103/human-h2-empty-ordered-take.asm": {
+      "sha256": "cdb2af0cc8dddf7f563ffeb2acabb916d96c60c5ad9f2c895fd3dd627fb802ed",
+      "bytes": 6034
+    },
+    "analysis/work/mission-world-20261103/human-h2-empty-queue-complete.asm": {
+      "sha256": "4c6e0746d9a97a2c8ec203667f815e4442f363df24948a21d1c2adba2ae84431",
+      "bytes": 8162
+    },
+    "analysis/work/mission-world-20261103/human-h2-empty-queue-take-raw.asm": {
+      "sha256": "a2806d14eb0f62a60d9818dff16071e87216036b49b394bfac926dd3559fc439",
+      "bytes": 2446
+    },
+    "analysis/work/mission-world-20261103/human-h2-client-completion-retirement.asm": {
+      "sha256": "48153f56ca438019e8a8e906e9154b280d9a50c52ac9a0c774582ae6cd68fa54",
+      "bytes": 20692
+    },
+    "analysis/work/mission-world-20261103/human-h2-client-publication.asm": {
+      "sha256": "136631d2ff9187078fa09d490d309ab1ad5b4b26aa766403b4f93195d10950ce",
+      "bytes": 5903
+    },
+    "analysis/work/mission-world-20261103/human-h2-socket-callback.asm": {
+      "sha256": "b03cf0f423ef3aa257c1ccfdcfef6bc1363cc7072245dc20ed125315ba991160",
+      "bytes": 4057
+    },
+    "analysis/work/mission-world-20261103/human-h2-socket-start-raw.asm": {
+      "sha256": "24f884736a9fab071f388d966772c74d68dacacd64fdf50452f9f0477067b1e2",
+      "bytes": 4256
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-static-storage.json": {
+      "sha256": "eeeb9a0043b89e74e503f0604c17f808c8851f9d89ef9cf893285590b4e1ec99",
+      "bytes": 1379
+    },
+    "analysis/work/mission-world-20261103/ExportFunctions.java": {
+      "sha256": "8b64ff824c6d5421f29714d860e8129c277427eec922aad289af4b63ba82bbb5",
+      "bytes": 6442
+    },
+    "analysis/work/multiplayer-callbacks-20261101/00722180.c": {
+      "sha256": "02cda8514b06846ade93032e193fd9357f5a0420066ae6f5c2a41c5a24280b4e",
+      "bytes": 5203
+    },
+    "analysis/work/multiplayer-callbacks-20261101/00722180.json": {
+      "sha256": "8197db5aa7d748ffd3a127a91cccaab2f85ab64100acb4ce12a41e916a41350a",
+      "bytes": 23501
+    },
+    "analysis/work/multiplayer-ui-completion-20261101/007260a0.c": {
+      "sha256": "dff77dfc12a298cfdef61aa71cdd5f8bd29f0fdfefc5c24c11622fb04315a38a",
+      "bytes": 19172
+    },
+    "analysis/work/multiplayer-ui-completion-20261101/007260a0.json": {
+      "sha256": "d891fbc5e3417d8c954020a6d3ad889e66b628196bbb1a6eac2f816dedc2c5db",
+      "bytes": 76939
+    },
+    "analysis/work/multiplayer-services-20261101/00723d20.c": {
+      "sha256": "cf4c5dab9d6513e28fbd290917dcb38db7e88586fb82657b3c79a43b869a7e20",
+      "bytes": 5702
+    },
+    "analysis/work/multiplayer-services-20261101/00723d20.json": {
+      "sha256": "e8d02148f69c8d8edab09b46bbff7c1f5f2f6b8baf5b40c89b7937724a4416f7",
+      "bytes": 13922
+    },
+    "analysis/work/multiplayer-client-20261101/00723a30.c": {
+      "sha256": "18d8c9de531ff70ccefe06cd760fcaa5f43bfa47189a32eda4057809b44276e5",
+      "bytes": 838
+    },
+    "analysis/work/multiplayer-client-20261101/00723a30.json": {
+      "sha256": "4a05674f13aac4a6d2351623090d018761cc8c7567384362a6f7afb1f3bd9082",
+      "bytes": 2483
+    }
+  },
+  "verification": {
+    "native": "PASS100 actual source worker/socket/connection/C4/entry/cold reset;200 same-worker start/reset cycles; real source callback C++ threads; ASan/UBSan/LSan. Explicit OS/graphics doubles, no live network. Slot/alias/prefix/timeout/acquisition/CRC/fragment/ping/signed deadline/sequence wrap and required populated/reassembly boundaries.",
+    "regression": "PASS prior D6a100 families on new output paths, preserving its frozen input/artifacts",
+    "i386": "PASS actual StartupSession worker/source callback/Win32/socket/entry/caller instantiations; strict warnings-as-errors, compile only",
+    "launcher": "PASS application-launch/startup-probe sequential compile/link; dedicated frozen executable copies retained, never run"
+  },
+  "research_warning": "Worker-wire export batch wrote six C/JSON pairs then reported missing007456D0. That absent function and other absent wrappers/helpers are implemented only from bounded raw evidence with NO new frozen credit; never claim this export batch fully succeeded.",
+  "remaining": [
+    "D6b2 actual DirectPlay admission/name/address/callback/current-application11 composition, same client/server owners",
+    "Required retained message/payload/queue/fragment receivers remain explicit failures before D8/D9 can rely on them",
+    "D5/H3 dependency now committed10bebe9; review and integrate snapshot, preserve later worktree changes",
+    "D7-D12 and D11 known unproduced part5F9/wheel695/EXPL8/smoke14 remain open",
+    "Actual application/World/frame/render integration and user desktop acceptance remain P2.2"
+  ]
+}

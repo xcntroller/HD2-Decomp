@@ -1,6 +1,9 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/car_actor_authority.h"
+#include "game/car_targeted_placement.h"
+#include "game/car_scene_actor.h"
+#include "game/first_person_human_items.h"
 
 #include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
