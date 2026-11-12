@@ -44,7 +44,7 @@ public:
         body_.bind(model);
         const auto category=frontend::pre_mission_detail::Bytes::integer(item.definition().category); //007D32A0, not instance family.
         typename Body::Parameters parameters{velocity,item.scalar(),.800000011920928955078125f,
-            [this](unsigned event,void* context,Descriptor* contact){return callback(event,context,contact);},this,false,category<=1};
+            [this](unsigned event,void* context,typename Body::ContactEvent* contact){return callback(event,context,contact?contact->primitive:nullptr);},this,false,category<=1};
         body_.configure(parameters);body_.reset();body_.actor(this);
         field6a4_=0;field6ac_=-1;
         if(!(activation_.mode_flags()&1)||(activation_.mode_flags()&7)==7||items_.dynamic_item_server_policy()||

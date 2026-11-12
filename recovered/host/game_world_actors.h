@@ -48,7 +48,27 @@ public:
     ~GameWorldActors(){close();}
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
-    void update_detached_body(Body&,std::uint32_t){throw std::runtime_error("Detached Item authority requires actual004C9000 rigid-body simulation/contact publication");}
+    void update_detached_body(Body& body,std::uint32_t elapsed){require_open();body.update(elapsed,*this);}
+    auto& rigid_exclusions(){require_open();return scene_.exclusions();}
+    std::optional<typename Body::MotionHit> rigid_ray(const GameActorServices::Vector& start,const GameActorServices::Vector& displacement,
+                                                     std::uint32_t layers,std::uint32_t flags){
+        require_open();
+        game::CollisionRay<GameActorServices::Frame,typename Scene::Descriptor,GameCollisionResources,GameActorServices>
+            query(&scene_.collision_tree(),&scene_.buckets(),scene_.collision_resources(),scene_.frames());
+        const auto hit=query.ray(start,displacement,layers,flags,true);if(!hit)return std::nullopt;
+        typename Body::MotionHit result;result.position=hit->position;result.normal=hit->normal;
+        if(hit->dynamic_identity)result.primitive=*hit->dynamic_identity;
+        else {
+            if(!hit->static_identity)throw std::logic_error("Rigid query lost its actual tree/descriptor identity");
+            const auto id=*hit->static_identity;const auto& tree=scene_.collision_tree();
+            if(id.kind){const auto& shape=tree.shapes.at(id.kind-0x80).at(id.index);result.primitive.flags=shape.flags;result.primitive.frame=shape.frame;}
+            else {const auto& triangle=tree.triangles.at(id.index);result.primitive.flags=triangle.flags;result.primitive.frame=triangle.frame;}
+        }
+        return result;
+    }
+    std::uint32_t rigid_actor_type(void* actor){return rigid_actor(actor).base().type();}
+    GameActorServices::Vector rigid_actor_position(void* actor){return rigid_actor(actor).base().world_position();}
+    void rigid_water_particle(const GameActorServices::Vector& position){consumers_.rigid_water_particle(position);}
     void restore_detached_camera_amount(GameActorServices::Frame frame){(void)scene_.effects().model_camera_amount(frame,0.f);} //00486E90, NOT fade cancellation.
     void fade_detached(GameActorServices::Frame frame,std::int32_t remaining){scene_.effects().frame_fades().fade_out(frame,remaining,false);}
     void emit_mine_effect(const GameActorServices::Vector& position,const GameActorServices::Vector& direction,std::uint32_t particle,std::int32_t sound){consumers_.emit_mine_effect(position,direction,particle,sound);}
@@ -305,6 +325,14 @@ public:
         items_.clear();frames.clear_actor_entries();models_.clear_model_cache();closing_=false;
     }
 private:
+    typename Runtime::Instance& rigid_actor(void* borrowed){
+        require_open();if(!borrowed)throw std::logic_error("Rigid contact actor is null");
+        auto* actor=static_cast<typename Runtime::Instance*>(borrowed);
+        if(runtime_.owns(actor))return *actor;
+        const auto count=scene_.frames().scene_actor_identity_count();
+        for(std::size_t index=0;index<count;++index)if(scene_.frames().scene_actor_identity(static_cast<std::int32_t>(index))==actor)return *actor;
+        throw std::logic_error("Rigid contact actor has no live containing registry owner");
+    }
     void require_open()const{if(closed_)throw std::logic_error("World actor owners are closed");}
     Scene& scene_;Consumers& consumers_;Vertices& vertices_;game::MissionNavigation& navigation_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
     typename Body::Registry bodies_;GameRuntimeItemServices models_;

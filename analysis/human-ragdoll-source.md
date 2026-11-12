@@ -1754,3 +1754,15 @@ no lifetime-only success. Wheel695 is confirmed unwritten without a real
 producer and remains a required read failure. Native owner/launch sanitizers
 and actual World/i386/launcher pass. Continue actual wheel/part motion/contact,
 Car timed-DM and full Human entry/frame; selected checkbox remains OPEN.
+
+## Detached Car rigid-body source checkpoint —2026-11-12
+
+[Actual motion/contact contract](human-car-rigid-motion-source.md) and
+[receipt](checkpoints/p2.2-human-car-rigid-motion-20261112.json) now cover
+004C9000→004C8EE0→wheel004C94B0/part004CB2B0 with the SAME rigid body, World
+queries/exclusions, actor cache and buckets. Fresh part5F9 is confirmed
+unproduced and fails BEFORE movement; warm-state checks explicitly seed a prior
+byte. Wheel695 stays unproduced. Native focused sanitizers and strict actual
+composition/launcher checks are source evidence with explicit engine/query
+doubles, not trajectories/application/desktop acceptance. Continue Car event2,
+timed-DM/deformed restore and full Human entry/frame; this checkbox remains OPEN.

@@ -135,3 +135,13 @@ indexed in `human-car-item12-next-motion-index.txt`; main kernels still unexport
 004C9480 is only37-byte wake helper, NOT the integration kernel; absent frozen,
 no new credit. Then timed-DM, full entry and containing Human frame/failure/
 re-entry/retirement. Do not reopen previous clip/solver/reset/fragment kernels.
+
+## Subsequent motion source checkpoint —2026-11-12
+
+The later [rigid-motion contract](human-car-rigid-motion-source.md) supersedes
+this checkpoint's required004C9000 throw: SAME body/World/buckets now supply its
+actual containing motion/contact frame. Fresh part5F9 remains unproduced and
+fails before movement; no stationary authority or arbitrary initial byte is
+substituted. The original wheel695 omission remains unchanged. Historical
+Item12 verification above used a doubled authority endpoint; current motion
+verification and its limits are recorded separately.

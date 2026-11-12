@@ -7,6 +7,7 @@
 #include "frontend/localized_text.h"
 #include "frontend/spatial_sound.h"
 #include "game/shot_effect.h"
+#include "game/mission_particle_emission.h"
 #include "game/runtime_actor_packets.h"
 #include <limits>
 
@@ -85,6 +86,11 @@ public:
     void emit_mine_effect(const HumanVector& position,const HumanVector& direction,std::uint32_t particle,std::int32_t sound){
         auto& world=d();emit_shot_effect_without_material(world.startup.shot_manager_process(),world.sound,
             world.startup.mission_effects_process(),world.scene.frames(),position,direction,particle,sound);
+    }
+    void rigid_water_particle(const HumanVector& position){
+        auto& world=d();
+        (void)emit_mission_particle(world.startup.mission_effects_process(),world.scene.frames(),45,position,
+            HumanVector{{0,1,0,0}},typename Dependencies::Frame{},false,false);
     }
     template<class Actor>bool consume_mine_inventory(Actor* borrowed,std::int32_t definition){
         auto& world=d();auto& human=world.world_actors.human_loading_actor(borrowed);

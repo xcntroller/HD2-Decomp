@@ -188,6 +188,7 @@ public:
         }
     }
     const auto& active_actors() const {return registry_.active_actors();}
+    bool owns(const Instance* actor)const{return registry_.owns(actor);}
     template<class Derived>void tick(bool authority,std::uint32_t elapsed,Derived& derived) {
         registry_.visit_active([&](Instance& actor){
             frames_.observe_data("execution","Runtime actor frame",authority?"authority":"presentation",actor.base().type());

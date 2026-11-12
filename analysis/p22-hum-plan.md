@@ -138,4 +138,7 @@ Continue actual Item12 detachment, timed-DM and full entry/frame.
 
 Detached Car Item12 clone/launch/lifecycle now has a
 [source checkpoint](checkpoints/p2.2-human-car-item12-20261112.json).
-Continue actual rigid-body authority motion/contact, timed-DM and entry/full frame.
+Actual rigid-body authority motion/contact now has a
+[source checkpoint](checkpoints/p2.2-human-car-rigid-motion-20261112.json).
+Fresh part5F9 remains an honest required read; continue Car event2/timed-DM,
+deformed restore and entry/full frame.

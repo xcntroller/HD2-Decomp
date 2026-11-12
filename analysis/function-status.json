@@ -10051,14 +10051,15 @@
       "entry": "004d4ca0",
       "status": "partial",
       "coverage": "P2.2 source reconstruction at original entry 004d4ca0: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Positive part detachment now clones and launches actual shared-registry Item12/rigid body before link invalidation/hide; full rigid-body authority motion remains required.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/car_contact_callbacks.h",
         "analysis/car-geometry-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
       ]
     },
     {
@@ -10066,14 +10067,15 @@
       "entry": "004d4eb0",
       "status": "partial",
       "coverage": "P2.2 source reconstruction at original entry 004d4eb0: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Positive wheel detachment now clones and launches actual shared-registry Item12/rigid wheel; remaining event2 publication and authority motion retain required failures.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/car_contact_callbacks.h",
         "analysis/car-geometry-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
       ]
     },
     {
@@ -18956,28 +18958,32 @@
       "program": "client",
       "entry": "004c8980",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004c8980: Actual rigid-body ownership, collision registration/state change and actor borrower writes. Accept actual produced wheel004CD550 configuration without inventing part geometry; preserve5FB/root-position branches and SAME descriptor/buckets/actor order.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "coverage": "P2.2 source reconstruction at original entry 004c8980: Actual rigid-body ownership, collision registration/state change and actor borrower writes. Accept actual produced wheel004CD550 configuration without inventing part geometry; preserve5FB/root-position branches and SAME descriptor/buckets/actor order. Reset additionally clears the SAME typed point actor/surface state.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open. Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/rigid_body.h",
         "analysis/rigid-body-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "004c8ea0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004c8ea0: Actual rigid-body ownership, collision registration/state change and actor borrower writes.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 004c8ea0: Actual rigid-body ownership, collision registration/state change and actor borrower writes. Removes the SAME descriptor before freeing owned borrowed-actor contact cache and clearing counts.",
+      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/rigid_body.h",
         "analysis/rigid-body-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
       ]
     },
     {
@@ -19062,13 +19068,15 @@
       "program": "client",
       "entry": "004c84a0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004c84a0: Verified rigid-body geometry/mass/inertia loading fields; simulation and unsupported model branches excluded.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 004c84a0: Verified rigid-body geometry/mass/inertia loading fields; simulation and unsupported model branches excluded. Actual cache capacity/count cold fields retained;5F9 is confirmed unproduced.",
+      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/rigid_body_geometry.h",
         "analysis/rigid-body-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
       ]
     },
     {
@@ -19076,7 +19084,7 @@
       "entry": "004770b0",
       "status": "partial",
       "coverage": "P2.2 source reconstruction at original entry 004770b0: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches. Actual runtime type2 Mine factory now shares SAME initialization/EC/identity/activation-before-bind source path. Runtime factory now admits actual type12 through SAME ownership/publication/mode activation and source frame data, alongside existing2/11/35.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/runtime_actor_registry.h",
         "analysis/actor-loading-ownership.md",
@@ -19093,7 +19101,8 @@
         "analysis/human-runtime-mine-source.md",
         "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
       ]
     },
     {
@@ -36764,11 +36773,12 @@
       "entry": "00479450",
       "status": "partial",
       "coverage": "Actual visual-subtype gate/clone/pose/update prefix, SAME module74 clone counter, explicit old+1000000 runtime type12 identity, original publication and factory-reference release order.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/host/game_runtime_actors.h",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
       ]
     },
     {
@@ -36776,11 +36786,12 @@
       "entry": "005fda20",
       "status": "partial",
       "coverage": "Actual runtime factory type12 now creates its dedicated existing-registry DetachedItemActor/body lifetime; native scalar allocator/SEH ABI excluded.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/host/game_runtime_actors.h",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
       ]
     },
     {
@@ -36788,11 +36799,12 @@
       "entry": "005fdab0",
       "status": "partial",
       "coverage": "Actual type12 common actor plus embedded SAME rigid body registry/lifetime; no inventory entry, Physics substitute or invented690/694/695 initialization.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/detached_item_actor.h",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
       ]
     },
     {
@@ -36800,11 +36812,12 @@
       "entry": "005fdbd0",
       "status": "partial",
       "coverage": "Close actual body BEFORE common runtime actor deactivation, preserving model ownership until ordered common cleanup.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/detached_item_actor.h",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
       ]
     },
     {
@@ -36812,11 +36825,12 @@
       "entry": "005fdc00",
       "status": "partial",
       "coverage": "Actual wheel launch: ENGINE lifetime FTOL publication, body bind, native wheel parameters, reset then actor publication; unwritten695 remains honestly unproduced.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/detached_item_actor.h",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
       ]
     },
     {
@@ -36824,11 +36838,12 @@
       "entry": "005fdc50",
       "status": "partial",
       "coverage": "Actual part launch: ENGINE lifetime then695 argument, SAME body bind/part configure/reset/actor publication and failed prefix retained in registry.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/detached_item_actor.h",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
       ]
     },
     {
@@ -36836,11 +36851,144 @@
       "entry": "004cd550",
       "status": "partial",
       "coverage": "Actual wheel mass/radius/width/isotropic inertia/motion, native low-motion state order, coefficients/gravity/mode/callback/flags in SAME rigid body and existing reset/buckets.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Fresh part5F9 fails before motion; see the current rigid-motion contract. No stationary/lifetime-only substitute. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/rigid_body.h",
         "analysis/human-car-item12-source.md",
-        "analysis/checkpoints/p2.2-human-car-item12-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-item12-20261112.json",
+        "analysis/human-car-rigid-motion-source.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c9000",
+      "status": "partial",
+      "coverage": "Actual containing rigid-body authority frame: substeps before time clamp, sleep/stable timers, borrowed actor cache movement/expiry, state2, model/SceneEC and descriptor/bucket publication.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c94b0",
+      "status": "partial",
+      "coverage": "Actual wheel force/torque/gravity/inertia integration, prior support, downward/forward contact rays, wheel plane/width/radius contact, rollback/impulse/reintegration and matrix cache tail.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004cb2b0",
+      "status": "partial",
+      "coverage": "Part14-point reverse integration/query/plane-cache/contact impulse/correction, dynamic actor cache and water emission/requery; fresh unproduced5F9 fails before motion, warm seeded source branch verified.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004cc520",
+      "status": "partial",
+      "coverage": "Angular displacement through actual inverse, axis quaternion composition, centre-pivot rotation, basis rebuild/normalization and frame10 pose publication.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004cccc0",
+      "status": "partial",
+      "coverage": "Normal impulse and bounded tangential friction through same mass/inertia/motion fields, maximum impulse/index/point observation and native partial failure prefixes.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ce990",
+      "status": "partial",
+      "coverage": "Full typed primitive/position/normal callback event, surface bypass/rejection,5FD and actor4/25 classification with checked containing actor borrowers.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ce7a0",
+      "status": "partial",
+      "coverage": "Actual state/timer/linear impulse then centre-offset inverse-inertia angular response in same rigid body.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004cf440",
+      "status": "partial",
+      "coverage": "Actual axis/shape selection and native aspect-ratio gate; elongated part toppling impulse before sleep admission, with borrowed-contact gate.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ceaa0",
+      "status": "partial",
+      "coverage": "Actual current/ inverse and rotation-only caches, repeated centre/root world observations and delayed right/up/forward publication.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004cd4f0",
+      "status": "partial",
+      "coverage": "Actual componentwise XYZ vector multiplication, retaining the existing fourth source lane.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body_motion_math.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004cd520",
+      "status": "partial",
+      "coverage": "Actual XYZ vector addition, retaining the existing fourth source lane.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Fresh part5F9 has no defined native producer and fails before movement; wheel695 remains unproduced. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/rigid_body_motion_math.h",
+        "analysis/human-car-rigid-motion-source.md",
+        "analysis/checkpoints/p2.2-human-car-rigid-motion-20261112.json"
       ]
     }
   ]

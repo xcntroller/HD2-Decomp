@@ -971,6 +971,25 @@ public:
         exported<Set>("?SetDir3@S_matrix@@QAGXABUS_vector@@0@Z",0x2cf10)(address(frame,0x80),forward.data(),up.data());
         put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffed3u)|0x40000010u);
     }
+    void rigid_body_pose(Frame frame,const Vector& position,const Vector& forward,const Vector& up){
+        call<void>(frame,0x10,position.data(),forward.data(),up.data()); //004CCC53, actual frame virtual10/RET16.
+    }
+    void rigid_body_position(Frame frame,const Vector& position){call<void>(frame,8,position.data());}
+    void rigid_publish_frame(Frame frame){ //004C93FA..004C9424, distinct from auto-parent's world-position input.
+        call<void>(frame,0x24);
+        if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
+        call<void>(scene_.frame(),0xec,frame,address(frame,0x30));
+    }
+    Vector rigid_descriptor_position(Frame frame)const{return field<Vector>(frame,0x30);}
+    bool rigid_intersection_line(const Vector& first,const Vector& second,Vector& point,Vector& direction){
+        using Intersect=std::uint8_t(WINAPI*)(const void*,const void*,void*,void*);
+        return exported<Intersect>("?IntersectionLine@S_plane@@QBG_NABU1@AAUS_vector@@1@Z",0x306c0)(first.data(),second.data(),point.data(),direction.data())!=0;
+    }
+    long double rigid_vector_angle(const Vector& first,const Vector& second){
+        //The native caller consumes ST0 directly with FSIN, without a FLOAT spill.
+        using Angle=long double(WINAPI*)(const void*,const void*);
+        return exported<Angle>("?AngleTo@S_vector@@QBGMABU1@@Z",0x2e8c0)(first.data(),second.data());
+    }
     std::array<float,4> car_axis_quaternion(const Vector& axis,float angle){
         std::array<float,4> result{};using Make=void(WINAPI*)(void*,const void*,float);
         exported<Make>("?Make@S_quat@@QAGXABUS_vector@@M@Z",0x2f070)(result.data(),axis.data(),angle);return result;
