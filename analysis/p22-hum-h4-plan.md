@@ -168,9 +168,14 @@ Earlier C labels record implementation batches only. Do not add numbered batches
 as requirements. Complete the original H4 boundary through these remaining families:
 
 - [ ] Common completion type15/91, physical35/type5 pickup and ground/drop.
-- [ ] Timed inventory transfer00758170(true) and its actual containing caller.
+- [x] Timed inventory transfer00758170(true) and actual00792590 slot3 caller.
 - [ ] Script timed0058E500/special0058EBD0; reached vehicle00578770/90 and
   attachment0058DB20 with actual existing seat/aim/control interfaces.
 - [ ] Actual Players subgroup formation producer004603C0/mode9 and retirement.
 - [ ] Final remaining-call inventory, concrete binding verification and H4 closure;
   precise other-owner blockers, actual engine/mission and H8 acceptance separately.
+
+Timed transfer completion boundary:00758170(true) is called by00792590 slot3,
+after actual model selection/mode3 and forced command; it is not a DD0 command
+queue event. Implement original20C=1F before150/liveScale conversion, common
+peer/shadow order and late E0 equipment2/6 gate; bind SAME actual transfer owner.

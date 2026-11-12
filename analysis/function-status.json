@@ -14496,13 +14496,15 @@
       "program": "client",
       "entry": "00792590",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00792590: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 00792590: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded. Actual timed00758170(true) now bound from00792590 slot3 after selection/mode/forced command, preserving150/liveScale __ftol, peer/shadow gates and late E0 equipment2/6 tail; previous event1-only substitute removed.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_equipment_transfers.h",
         "analysis/human-equipment-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-timed-transfer-20261112.json"
       ]
     },
     {
@@ -40807,11 +40809,12 @@
       "program": "client",
       "entry": "00758170",
       "status": "partial",
-      "coverage": "Original false argument path reached by track0: secondary22/23/24 and A34/A44 gates, actual equipment2/3 transfer and fresh shadow visibility restore.",
+      "coverage": "Original false argument path reached by track0: secondary22/23/24 and A34/A44 gates, actual equipment2/3 transfer and fresh shadow visibility restore. Actual timed00758170(true) now bound from00792590 slot3 after selection/mode/forced command, preserving150/liveScale __ftol, peer/shadow gates and late E0 equipment2/6 tail; previous event1-only substitute removed.",
       "limitations": "Source-only typed owners/STL/RAII and native safety guards, not original object/allocator/thiscall/SEH ABI equivalence. Focused native audits use explicit engine/model/collision/Face/audio/World endpoint doubles; strict actual i386 composition links only. Remaining H4 consumers and full mission/desktop execution remain open. True timed-transition branch remains required.",
       "evidence": [
         "recovered/game/human_track_equipment_events.h",
-        "analysis/p22-hum-h4-implementation.md"
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-timed-transfer-20261112.json"
       ]
     },
     {

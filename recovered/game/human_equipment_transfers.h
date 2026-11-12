@@ -61,7 +61,7 @@ public:
         case 3:
             if(human_item_holster_group(item.definition())==0)show(item);
             select(item,3);services_.equipment_transfer_mode(item.definition().equipment_command(),3,false);
-            services_.force_equipment_command(item.definition().equipment_command());event(1);return;
+            services_.force_equipment_command(item.definition().equipment_command());services_.finish_equipment_added_transfer(*this);return;
         case 5:select(item,1);attachments_.attach(1);return;
         default:return; //Native slots4/6 have no230 notification.
         }

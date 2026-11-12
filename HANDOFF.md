@@ -19,8 +19,12 @@ Type20/34 actor factories absent; reached other actor detach fails explicitly.
 Current Car/StaticWeapon receivers already exist in this base; no stale import
 claim. H3 inspected through Git, no source copied/imported from its branch.
 
+Latest additional result: actual timed00758170(true) from00792590 slot3;
+PASS142 native sanitizer, full concrete actual World/Items/230/DD0/frame/Scene/
+SOUND i386 link and launcher/probe. [Receipt](analysis/checkpoints/p22-hum-h4-timed-transfer-20261112.json).
+
 Next original H4 families: completion type15/91, physical35/type5 pickup/drop;
-true00758170 timed transfer/caller; Script timed/special, vehicle and attachment;
+Script timed/special, vehicle and attachment;
 Players subgroup formation mode9 producer/retirement. Research lookup for Script
 0058E500/0058EBD0/00578770/90 saved WORK/script-timed-index.log; existing Script
 0058EBD0 export in WORK/script-followup-original has bad stack aliases, use raw

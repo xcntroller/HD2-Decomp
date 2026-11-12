@@ -478,3 +478,29 @@ explicit SOUND/engine doubles. Strict actual containing i386 World/publicDD0/
 track-event or mounted-assignment Runtime doubles. Adjacent remaining DD0 runtime
 branches are explicitly throwing doubles. Application/probe link separately;
 no output execution, actual mission reachability or desktop claim.
+
+## Timed inventory transfer and actual notification binding
+
+00758170(true) is now implemented and called from actual00792590 slot3 after
+original model selection,7C4/mode3 and forced E0 command. The previous event1-only
+substitute at that point is removed. Actual transfer caller remains the SAME
+Human weapon/inventory notification owner; no collection or input is seeded.
+
+20C=1F is published BEFORE150/live shared animation scale and native __ftol;
+A28 then stores the converted value. Original00810D90 bytes00001643 encode150.
+The common A34=0/1 orA44=2/4 gate controls event3 and old-shadow visibility sample;
+fresh actual shadow AFTER peer transfer is hidden only when old was absent or
+hidden. Gate rejection still reaches the true-only tail: read fresh E0 equipment54
+and invoke actual230 event0 unless2/6. False track0 branch retains22->2,23/24->3
+and no timer/tail. Both branches now reuse the same small peer/shadow worker.
+
+Actual230 Transfers -> EquipmentServices -> SAME DD0 -> true worker -> SAME
+Transfers is concretely instantiated and fully linked through actual World,
+Items/frame/Scene/SOUND. No new ownership or callback registry and no selected
+endpoint double. Native sanitizer PASS142 with explicit peer/graphics doubles
+covers all gate combinations, negative/zero/live scale, conversion failure prefix,
+old/missing/changed shadow, late E0 callback changes, reached exceptions and
+false branch preservation. Existing application/probe also strictly link.
+Source callable binding does not prove a live no-source inventory notification
+or actual mission branch execution. Only existing00758170/00792590 partial ledger
+rows extend, no new functions or equivalence/desktop credit.

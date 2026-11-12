@@ -54,6 +54,7 @@ public:
     void pose_equipment_weapon(unsigned command){control_.geometry().equipment_weapon_pose(command);}
     std::int32_t equipment_look_command()const{return look_.state().template get<std::int32_t>(0x5c);}
     void blend_equipment_weapon(std::int32_t duration){control_.geometry().blend_equipment_weapon(duration);}
+    template<class Transfers>void finish_equipment_added_transfer(Transfers& transfers){control_.finish_inventory_added_transfer(transfers,look_);}
     void equipment_transfer_mode(std::uint32_t command,std::uint32_t mode,bool moved){control_.equipment_transfer_mode(command,mode,moved);}
     void force_equipment_command(std::int32_t command,bool changed=false){look_.force_equipment_command(command,changed);}
     void equipment_first_person_request(std::int32_t animation){world_.human_frame_item_action_fpv(human_,animation);}

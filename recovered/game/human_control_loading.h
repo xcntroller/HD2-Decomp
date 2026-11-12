@@ -422,6 +422,9 @@ public:
     std::uint32_t human_scene_epoch(){return frames_.human_scene_epoch();}
     int equipment_current_mode() const{return physical_.state().template get<std::int32_t>(0xa20);}
     int equipment_command_identity() const{return action_.state().template get<std::int32_t>(0x38);}
+    template<class Transfers,class Look>void finish_inventory_added_transfer(Transfers& transfers,Look& look){
+        apply_human_timed_inventory_transfer(*this,transfers,frames_,look,services_); //00792590→00758170(true).
+    }
     void reset_equipment_command(){action_.reset_equipment_command();}
     void equipment_transfer_mode(std::uint32_t command,std::uint32_t mode,bool moved) {
         if(moved)field_dc8_=3;
