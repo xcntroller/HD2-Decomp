@@ -24733,15 +24733,18 @@
       "program": "client",
       "entry": "004fe910",
       "status": "partial",
-      "coverage": "Reset SAME part health/flags; cold reverse alternatives/base visibility restore and actual6B4 callback. Part38 flags are represented as native WORD; byte-low bit clearing preserves the high byte. Reverse glass texture restore now shares actual retained material exchange, frame24 after success and clears8 even on NULL; missing positive mesh backups fail at their per-part point, preserving reverse restore prefixes.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "coverage": "Reset SAME part health/flags; cold reverse alternatives/base visibility restore and actual6B4 callback. Part38 flags are represented as native WORD; byte-low bit clearing preserves the high byte. Reverse glass texture restore now shares actual retained material exchange, frame24 after success and clears8 even on NULL; Actual same-owner backup matching, reverse LOD0/1 XYZ restoration, native rebuild/invalidation/frame24 order, flag4/count/release/erase now precede existing glass/visibility/health. Unmatched resource/part keys genuinely skip mesh restoration and retain4.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/allocator/SEH/virtual ABI, original engine mesh or whole-body equivalence. Native100 repeated mesh families pass ASan/UBSan/LSan through actual impact capture/deformation/restoration with explicit engine/frame/geometry coefficient doubles; only known coefficients seeded with access checks disabled, no manual backup producer. Independent Decimal100 spill golden matches. Strict actual nested World/Car/Human/module13 i386 and new-worktree launcher/probe compile/link pass. Positive light/part-health/variant/glass/wheel consumers, occupied attachment restoration, containing frame/entry and application/desktop acceptance remain required.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_deformable_parts.h",
         "analysis/human-car-blast-damage-source.md",
         "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json",
         "analysis/human-car-physical-reset-source.md",
-        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json",
+        "recovered/game/car_deform_mesh.h",
+        "analysis/human-car-mesh-backup-source.md",
+        "analysis/checkpoints/p2.2-human-car-mesh-backup-20261112.json"
       ]
     },
     {
@@ -24838,11 +24841,14 @@
       "program": "client",
       "entry": "004ff8b0",
       "status": "partial",
-      "coverage": "Actual cold body/part/wheel threshold skip gates on SAME physics and geometry before any deformation mutation.",
-      "limitations": "Positive mesh/variant/glass/wheel deformation explicitly rejects; no whole-function claim.",
+      "coverage": "Actual detached/threshold gates plus positive mesh capture at the first affected LOD0/1 vertex through SAME physical resource/part cache, shared CRT, original-relative displacement clamps and native FLOAT spills. Backup record/count/flag4 and changed-part callback/dirty/rebuild ordering retained. Damage-suppressed mesh and variant hit observations are supplied; later positive light/health/variant/glass/wheel consumers remain required.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/allocator/SEH/virtual ABI, original engine mesh or whole-body equivalence. Native100 repeated mesh families pass ASan/UBSan/LSan through actual impact capture/deformation/restoration with explicit engine/frame/geometry coefficient doubles; only known coefficients seeded with access checks disabled, no manual backup producer. Independent Decimal100 spill golden matches. Strict actual nested World/Car/Human/module13 i386 and new-worktree launcher/probe compile/link pass. Positive light/part-health/variant/glass/wheel consumers, occupied attachment restoration, containing frame/entry and application/desktop acceptance remain required.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_cold_deformation.h"
+        "recovered/game/car_cold_deformation.h",
+        "recovered/game/car_deform_mesh.h",
+        "analysis/human-car-mesh-backup-source.md",
+        "analysis/checkpoints/p2.2-human-car-mesh-backup-20261112.json"
       ]
     },
     {

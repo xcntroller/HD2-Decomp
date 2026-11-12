@@ -1787,3 +1787,8 @@ Car fuel10/collision impulse11 now have a [source checkpoint](checkpoints/p2.2-h
 through SAME packet/physical/activation clock owners. [Contract/limits](human-car-fuel-impulse-source.md).
 Continue Car6/7/deformed/global backup/occupied restore, full entry and Human frame;
 the selected reactions checkbox remains OPEN.
+
+D0 now has an explicit [containing trigger/owner map](human-reaction-containing-boundary.md).
+D1 mesh backup/capture/restoration has a [verified source checkpoint](checkpoints/p2.2-human-car-mesh-backup-20261112.json)
+and [contract](human-car-mesh-backup-source.md). Continue reached D2 positive
+light/health/variant/glass/wheel consumers and D3–D12; H2 remains OPEN.

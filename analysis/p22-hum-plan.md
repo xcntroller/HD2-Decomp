@@ -1,7 +1,8 @@
 # P22-HUM implementation and dependency plan
 
 Revised 2026-11-12; D0 confirmed against merged master **415e850**. Worktree:
-`/home/control/Documents/Projects/H&D2 Decomp 4`. P22-HUM and both P2.2 delivery
+`/home/control/Documents/Projects/HD2-Decomp-p22-hum`, branch `feature/p22-hum`
+(created from clean master2c96a7d at the user's request). P22-HUM and both P2.2 delivery
 checkboxes remain OPEN. Application loading still declines; no mission desktop
 acceptance has occurred. This plan replaces the former chronological next-work
 list. Detailed behavior/evidence stays in the linked contracts.
@@ -11,7 +12,7 @@ list. Detailed behavior/evidence stays in the linked contracts.
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: currently34 complete/2757 partial; joint/clip recovery still
+credit is separate: merged baseline34 complete/2997 partial; joint/clip recovery still
 has deferred credit reconciliation.
 
 The selected **H2 reactions/damage/ragdoll** milestone remains open until its
@@ -123,15 +124,16 @@ and leave a nonreached wider feature with its explicit required guard.
 actual producers/retirement, mandatory versus mode/occupancy dependencies and
 merged UI limits. Direct ragdoll→Car004F2790 does not imply mesh deformation;
 Car→Car/passenger004F2B60 does. Status9/received0 are entry-specific, not callees
-of every offline reaction. Next: D1 capture/restore lifetime, then reached D2–D5;
+of every offline reaction. D1 capture/restore is now complete; next: reached D2–D5;
 D10 unmounted composition can advance without waiting for all transport work.
 
 ### Car state producers, damage and retirement
 
-- [ ] D1 — Mesh backup ownership and reverse restore004FE910. Recover producer
+- [x] D1 — Mesh backup ownership and reverse restore004FE910. Recover producer
   004FF8B0's resource/part matching, native658 vector owner/sharing, retained mesh
   and usage-count lifetime. Restore LOD0/1 positions with native lock/unlock,
   recompute/invalidation, flag4 clearing, decrement/release/erase order.
+  [Verified source checkpoint](checkpoints/p2.2-human-car-mesh-backup-20261112.json); later positive damage remains D2.
 - [ ] D2 — Reached positive impact004FF8B0: light/projector damage, part thresholds,
   backup capture, variant/glass transitions, deformation and wheel puncture/
   detachment. Depends on D1's ownership contract and existing S10–S14 receivers.
@@ -159,8 +161,9 @@ Evidence: [reset/restore](human-car-physical-reset-source.md),
 `human-car-restore-fuel-checkpoint-index.txt`, `human-car-global-mesh-backup-index.txt`,
 `human-car-deformation-producer-index.txt`, `human-car-backup-container-index.txt`,
 `human-car-part-restore.asm` and `human-car-deformation.asm`. These are research,
-not implementation completion. Native658 sharing/ownership still needs proof;
-do not assume a new global cache.
+D1 implementation/evidence is in the [mesh checkpoint](human-car-mesh-backup-source.md).
+Native654/658 is the physical object's owned vector (constructor004E2900 and
+append004FC320); no process global cache is introduced. D2–D5 remain open.
 
 ### Shared entry and process lifetime
 

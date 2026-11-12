@@ -88,7 +88,7 @@ public:
             skids.clear_wheel(n);
         }
         skids.clear();
-        errors.attempt([&]{geometry_.deformables().restore_cold(frames_,geometry_.physics(),callbacks.empty6b4);});
+        errors.attempt([&]{geometry_.deformables().restore_cold(frames_,geometry_.physics(),callbacks.empty6b4,geometry_.resource());});
         finalizer.lights.flags=0;
         errors.attempt([&]{update_car_loading_lights(frames_,geometry_.lighting(),finalizer.lights,.10000000149011612f,solver.substeps.flags,finalizer.previous_features);});
         errors.attempt([&]{sounds.unregister_receivers(sound_receivers_);});

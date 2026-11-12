@@ -17,7 +17,8 @@ public:
     using Hit=CarCollisionHit<typename Frames::Frame,SceneActor<Frames>*>;
     using Initial=CarColdInitialization<Frames,Collisions>;
     CarColdReceivers(Frames& frames,Actor& actor,Initial& state,Random& random)
-        :actor_(actor),state_(state),random_(random),deformation_(frames,actor.geometry.value(),state.body(),state.wheels,state.solver.substeps.flags){
+        :actor_(actor),state_(state),random_(random),deformation_(frames,actor.geometry.value(),state.body(),state.wheels,
+            state.solver.substeps.flags,state.finalizer.dirty_flags,random,actor.callbacks.value().empty6b0){
         if(!actor_.callbacks)throw std::logic_error("Car runtime requires its actual installed callbacks");
     }
     Hit* surface(Hit& hit,unsigned index){ //004D4B50/6AC preserves or rejects this SAME contact.

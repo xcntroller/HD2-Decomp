@@ -1,9 +1,13 @@
 # P22-HUM handoff —2026-11-12
 
-**Worktree `/home/control/Documents/Projects/H&D2 Decomp 4`, master.** Latest
-source checkpoint **b132e6d**; resumed at merged master **415e850**. Check HEAD/status; preserve all unrelated changes,
+**Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum`, branch `feature/p22-hum`.**
+Created from clean master **2c96a7d** at the user's request. Latest
+source checkpoint follows below; initial source baseline b132e6d plus merged UI415e850.
+Check HEAD/status; preserve all unrelated changes,
 LIFE/UI/PACK/research worktrees and `/tmp/hd2-p22-hum-continue`. Transfer evidence
 is ignored WORK `human-return-main-20261111`.
+Ignored research is a local copy-on-write snapshot for safe evidence validation;
+.tools/ghidra entries link the existing installations. No tracked main edits.
 
 FULL P2.2 / **Human H2 reactions/damage/ragdoll remains OPEN**. User requested a
 plan revision because the old checkbox hid many dependencies. The
@@ -22,29 +26,29 @@ Windows compile/link. Heavy compilation and Ghidra MUST run sequentially.
 
 ## Latest verified result
 
-**b132e6d** [fuel/impulse receipt](analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json),
-[contract](analysis/human-car-fuel-impulse-source.md): adds3 client partials,
-extends6; **34 complete/2757 partial(2752client+5engine)**.004E0040 fuel16 and
-004E0800 impulse grammar feed BOTH004DB360/004DB760 through SAME setter/body/
-Scene2/packets.004D3D10 preserves fresh driver/local-ID/mode reads, signed1000ms
-and SECOND clock store before relay.004D3EF0 unowned hit58 requests11 or invokes
-SAME consumer.2584 remains existing CarLoadingActivation state produced by
-004D16A0 before camera/reset; optional distinguishes absent producer from valid0.
-Fuel5000 encodes65534; capacity clamp precedes original-event rebroadcast. Raw
-x87 XYZ spills match Decimal100 golden457E4C41/42/43. Non-Car9A8/4A0 mapping
-remains required. Writers4E00F0/4E0830 absent frozen0credit.
+[D1 mesh receipt](analysis/checkpoints/p2.2-human-car-mesh-backup-20261112.json),
+[contract](analysis/human-car-mesh-backup-source.md): actual004FF8B0 first-hit mesh
+capture/deformation and004FE910 reverse restore now share SAME physical part/
+resource/mesh owners. Native654/658 is an owned per-physical-object vector, not
+process global (004E2900 zero initialization,004FC320 ECX=this+654 append).
+Record/count/flag4 ordering, LOD0/1 locks/XYZ-only writes, original-relative clamp,
+shared CRT, callback/dirty/rebuild and flag-clear/count/release/erase are preserved.
+Resource mismatch genuinely skips mesh restore and retains4. Later positive
+light/health/variant/glass/wheel damage still fails honestly at D2; FA8+28 occupied
+attachment repair remains D3. No successful full positive-impact claim.
 
-Expanded regression caught004E0180's uninitialized source fourth lanes; now
-value-initialized, six wire FLOAT components unchanged. Native100 request/timer
-regression+100 fuel/impulse families PASS ASan/UBSan/LSan with explicit endpoint
-doubles. Strict actual nested World/Car/Human/module13 i386 and final launcher/
-probe PASS. No pending launcher rebuild for this source checkpoint.
+Native100 focused families PASS ASan/UBSan/LSan: producer→backup→restore, both
+LOD capture branches, repeated/shared-key hits, reverse partial restore, retry/
+release and lock/factory/notification/rebuild failure prefixes. Engine/frame/
+geometry coefficients doubled; access checks disabled only to seed known physical
+fields, no manually seeded backup. Decimal100 golden matches XYZ3FA55876/
+C14A137E/42F7D5D2. Strict actual nested World/Car/Human/module13 i386 and NEW-worktree
+launcher/probe PASS. ONLY extends existing004FF8B0/004FE910 partials: merged total
+34 complete/2997 partial(2992client+5engine), no additions/promotions.
 
-Previous receipts/contracts are indexed under S01–S14 in the plan. In particular
-joint solver/substeps,007B3C80 clip collision, actual007B37C0→00787110 rest chain,
-0074D510 selection/retirement and reached damage bodies are already in source.
-Don't reopen unchanged kernels. Deferred joint/clip inventory reconciliation and
-full containing verification remain D12 work; source checks are not delivery.
+Earlier b132e6d fuel/impulse, S01–S14 and D0 boundary map remain verified. Source
+progress is not application loading/desktop acceptance. No pending launcher rebuild
+for D1. Preserve confirmed unproduced5F9/695/EXPL8/smoke14 failures.
 
 ## Next work: D0 completed; implement the reached dependencies
 
@@ -53,22 +57,26 @@ actual state producers/retirement and mode/occupancy/entry-specific dependencies
 Direct ragdoll→Car004F2790 does not require004FF8B0 mesh deformation; positive
 Car→Car/passenger004F2B60 does. Status9/received0 are not callees of every offline
 reaction. UI source is merged/source-closed; Human producers/frame callers remain.
-Next implement D1 capture/restore lifetime, then reached D2–D5; D10 unmounted
+D1 is source-complete. Next implement reached D2 positive damage, then D3–D5; D10 unmounted
 composition can advance independently of full transport. Check
 and commit each verified checkpoint, then continue. Add newly discovered required
 dependencies to the plan with a caller and exit test before following them.
 
-Latest restore investigation is **research only**, no implementation since b132e6d:
+D2 continuation evidence:
 
-- D1/D2:004FE910 original is in WORK `car-initializer-mass-required/004fe910.c`;
+- D2:004FE910 original is in WORK `car-initializer-mass-required/004fe910.c`;
   default C has broken indirect-call/register aliases.004FF8B0 producer default C
   is `car-impact-typed-required/004ff8b0.c`. Current raw
   `human-car-part-restore.asm`/`human-car-deformation.asm` is bounded disassembly.
 - Index receipts: `human-car-restore-fuel-checkpoint-index.txt`,
   `human-car-global-mesh-backup-index.txt`,
   `human-car-deformation-producer-index.txt`,
-  `human-car-backup-container-index.txt`. No new corrected restore Ghidra export
-  yet. Native658 vector ownership/sharing needs proof; do not assume a global cache.
+  `human-car-backup-container-index.txt`. Rollback `ExportHumanCarRestoreABI.java`
+  →`human-car-restore-impact-abi`; later `ExportHumanCarImpactDamageABI.java`
+  →`human-car-impact-damage-abi` corrects694/698 to FASTCALL ECXcontext/EDXindex
+  plus TWO stack args(RET8), not initial invented thiscall extra argument.
+  Workers004FEFD0/00500CB0 are indexed in `human-car-positive-deformation-workers-index.txt`;
+  their new export is research only until implemented.
 - D3: actual FA8+28 mesh+20 repair precedes variant/visibility restore. Preserve
   native reverse matching, LOD lock/unlock, flag4/refcount/release/erase order.
 - D4/D5: Car6/7 grammar, periodic/pending damage/SOUND, occupied driver/mounted

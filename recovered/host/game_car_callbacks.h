@@ -78,7 +78,9 @@ public:
             struct Restore {game::CarPhysics& physics;float mass;bool changed;~Restore(){if(changed)physics.contact_mass(mass);}} restore{physics,original_mass,reduced};
             auto incoming=impulse;
             if(reduced){physics.contact_mass(original_mass*.5f);for(unsigned axis=0;axis!=3;++axis)incoming[axis]*=1.399999976158142f;}
-            game::CarColdDeformation<GameActorServices> deformation(frames_,*car.geometry,state.body,state.wheels,state.solver.substeps.flags);
+            auto random=[this]{return static_cast<int>(startup_.random_word());};
+            game::CarColdDeformation<GameActorServices> deformation(frames_,*car.geometry,state.body,state.wheels,
+                state.solver.substeps.flags,state.dirty,random,car.callbacks.value().empty6b0);
             game::apply_car_contact_impulse(frames_,state,1.2000000476837158f,point,incoming,normal,source!=nullptr,
                 deformation,[&](float magnitude){game::damage_car_health(physics,state.drive,state.health,state.dirty,magnitude);},
                 [&](const Vector& value,const Vector& at,bool collision){if(car.callbacks->passenger690)car.callbacks->passenger690(value,at,collision,nullptr);},[]{});

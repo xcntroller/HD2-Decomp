@@ -205,6 +205,25 @@ public:
         return assigned;
     }
     Frame car_mesh(Frame visual) const {return field<Frame>(visual,0x1e0);}
+    ResourceOwner copy_car_deform_backup(Frame source){ //004FF8B0, native654 vector owns the factory reference.
+        auto mesh=own_car_resource(call<Frame>(driver_.frame(),0x6c));
+        if(!mesh)throw std::runtime_error("Car original mesh factory failed");
+        (void)call<std::int32_t>(mesh.get(),0xc,source); //Native ignores the copy status here.
+        for(auto lod=field<std::uint32_t>(mesh.get(),0x44);lod>2;){--lod;call<void>(mesh.get(),8,Frame{},lod);}
+        return mesh;
+    }
+    Frame car_deform_lod(Frame mesh,unsigned lod){return call<Frame>(mesh,4,lod);}
+    std::uint32_t car_deform_lod_count(Frame mesh)const{return field<std::uint32_t>(mesh,0x44);}
+    std::size_t car_deform_vertex_count(Frame lod)const{return field<std::uint32_t>(lod,0x54);}
+    unsigned char* car_lock_deform_vertices(Frame lod){
+        if(!lod)throw std::runtime_error("Car deformation has no actual mesh LOD");
+        if(field<std::uint32_t>(lod,0x64)!=32)throw std::runtime_error("Unsupported Car deformation vertex format");
+        return call<unsigned char*>(lod,4,std::uint32_t{0});
+    }
+    void car_unlock_deform_vertices(Frame lod){call<void>(lod,8);}
+    void car_rebuild_deform_lod(Frame lod){call<void>(lod,0x2c);}
+    void car_refresh_deform_mesh(Frame mesh){call<void>(mesh,0x14);}
+    void car_invalidate_deform_frame(Frame frame,unsigned lod){call<void>(frame,0xac,lod);}
     bool car_exchange_glass_texture(Frame mesh,std::optional<ResourceOwner>& texture){ //00500DA0/004FE910(0).
         const auto lod=call<Frame>(mesh,4,std::uint32_t{0});const auto slot=call<Frame>(lod,0x14,std::uint32_t{0});
         const auto material=field<Frame>(slot,4);
