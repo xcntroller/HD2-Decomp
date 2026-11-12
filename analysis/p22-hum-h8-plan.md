@@ -52,6 +52,14 @@ The preceding Active task/follow work is preserved and verified in the clothing 
 - [ ] Verify actual owners, packet positive/failure/lifetime paths, concrete host
   link and launcher; publish committed contracts for PACK integration.
 
+Command12's [required dependency boundary](human-h8-pack-action-boundary.md)
+was traced after the inventory checkpoint. Complete these before crediting it:
+
+- [ ] Actual mapped inline actions, Players byte/setter, speech duration and Player delayed-action publication.
+- [ ] Action33/34: actual HeavyFire16 request/configuration/list/publication owners and populated lifecycle policy.
+- [ ] Required nonoffline speech19 FIFO producer, eligibility and actual received playback.
+- [ ] Command12 positive/failure/FIFO/lifetime verification and concrete host/launcher checks.
+
 Index lookup and original call boundaries are retained under WORK's
 `human-h8-pack-effects*`. Do not replace required positive effects with guards
 and claim resolution. PACK's own integration/stream checks remain its work.

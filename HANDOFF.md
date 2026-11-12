@@ -46,16 +46,21 @@ state1 closing/crossfade/respawn/falling frame still requires actual H8 work.
 
 **NEXT PACK:** command12 actual Player0053D5D0/0053D870 and Remote00594110,
 then remaining common3/00586200 subtypes, then combined PACK source verification.
-Command12 C in WORK `human-h8-pack-effects`; actual mapped action table0083C348
-and speech table0083C4A0 are still required. Action33/34 call005467C0(action,
-position, direction). Offline other actions call0053D520 (Players virtual2C
-setter, raw `human-h8-pack-action-control.asm`), capture Players virtual30 into
-PlayerC0, reset520, dispatch actual inline action/speech, native fallback random
-speech duration, then copy command24/30..50 to Player4E4/4F0..510. Non7 policy
-and presentation differ. Do not replace actions with successful no-ops. Index
-lookup `human-h8-pack-action-index.txt` records missing0053D520/005467C0 C; export
-needed if raw insufficient. No new exports for these yet. Full checkbox boundary
-must be researched before implementing it.
+Command12 [dependency boundary](analysis/human-h8-pack-action-boundary.md) now
+records actual mapping/Players/speech and HeavyFire dependencies. Successful
+read-only Ghidra exports in WORK `human-h8-pack-player-action` supply0053D520/
+005467C0; `human-h8-pack-heavy-producers` supply00472E50/00472CE0. No errors/types
+changed; both jobs finished. Static table capture and raw setter/owner evidence
+are retained alongside. **Action33/34 requires HeavyFire16 process0089B1B0**, not
+Mine module12. Derived vtable00810050 replaces the temporary purecall base table.
+Its actual support constructors/configuration/populated lists/publication/frame/
+retirement are still required; cold HeavyFire update must not remain successful
+when support becomes producible. See the note's exact next addresses (index first).
+Nonoffline speech queues frame0x13 (=decimal19) to SAME second90, not an AI action
+pool13. Both producer eligibility and received00588170 playback remain required.
+Command12 implementation is not started; plan now records these dependencies.
+No credit/closure was added for research alone. Continue the whole command12
+boundary, then common3, before ordinary H8 frame work.
 
 General inventory research: WORK `human-h8-pack-inventory-resume-index.txt`,
 `human-h8-pack-inventory-detail-index.txt`, original C dirs
