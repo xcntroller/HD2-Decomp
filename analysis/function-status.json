@@ -18842,13 +18842,16 @@
       "program": "client",
       "entry": "004079f0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004079f0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 004079f0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded. Replacement230 descriptor/frame loans retire in reverse;214 original frame quaternion/visibility restored before base feedback and actual handle retraction.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/physics_object.h",
         "analysis/item-transfer-physics-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/host/game_physics_objects.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json"
       ]
     },
     {
@@ -26755,7 +26758,7 @@
       "program": "client",
       "entry": "00408780",
       "status": "partial",
-      "coverage": "Actual non-tree contact seeds tipping/oscillation from same frame, locked/free axis and targets, native active/progress gates, angle-based descriptor disable and kind3 semantics. Pickup204 clears before required notification; tree kind0 preserves unwritten202; positive tree parent-kind9 replacement remains required.",
+      "coverage": "Actual non-tree contact seeds tipping/oscillation from same frame, locked/free axis and targets, native active/progress gates, angle-based descriptor disable and kind3 semantics. Pickup204 clears before required notification; tree kind0 preserves unwritten202; positive tree parent-kind9 replacement remains required. Kind3/204 now calls actual00407BD0; scene breakable/pickup record1E flag is mapped to SAME204, no successful missing receiver.",
       "limitations": "Source-only typed frame/Physics adaptation. Pickup notification/model replacement/cache/proximity branch remains required and throws; no invented success. Unknown constructor202 remains optional until actual contact seeds it. Original ABI/SEH and full x87 precision excluded; no desktop mission acceptance.",
       "evidence": [
         "analysis/car-callback-world-binding.md",
@@ -26766,7 +26769,10 @@
         "recovered/host/game_actor_frames.h",
         "recovered/host/game_physics_frames.h",
         "analysis/physics-object-frame-motion.md",
-        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json",
+        "recovered/host/game_physics_objects.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json"
       ]
     },
     {
@@ -41306,6 +41312,32 @@
         "analysis/p22-hum-h4-implementation.md",
         "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json",
         "recovered/game/human_script_attachment_output.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00407bd0",
+      "status": "partial",
+      "coverage": "Actual type5 replacement over SAME category1 cache: collision disable, plot/dira detach/reparent, actual140 replacement/214 restoration, numbered VOLB0 descriptors, SAME manager create and contact before218 publication; native absent resource/marker and failed-prefix policy.",
+      "limitations": "Source-only typed borrowers/STL/RAII and explicit safety guards, not native allocator/object/SEH ABI equivalence. Native actual Physics/parser/cache audited with explicit engine/collision/manager endpoint doubles; actual i386 World/Physics manager create/contact composition full link. Tree nonzero contact00408780, type6, mission execution and desktop acceptance remain separate.",
+      "evidence": [
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00406740",
+      "status": "partial",
+      "coverage": "Actual numbered VOLB0 marker detachment, dummy/aggregate bounds and native FLOAT math, local-scale normalization/world inverse, SAME dynamic descriptor insertion/move and matching reverse retirement; stable typed descriptor ownership.",
+      "limitations": "Source-only typed borrowers/STL/RAII and explicit safety guards, not native allocator/object/SEH ABI equivalence. Native actual Physics/parser/cache audited with explicit engine/collision/manager endpoint doubles; actual i386 World/Physics manager create/contact composition full link. Tree nonzero contact00408780, type6, mission execution and desktop acceptance remain separate.",
+      "evidence": [
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json"
       ]
     }
   ]

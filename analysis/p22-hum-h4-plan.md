@@ -167,7 +167,7 @@ assume unmerged source is linked here. H4 base remains e742f84.
 Earlier C labels record implementation batches only. Do not add numbered batches
 as requirements. Complete the original H4 boundary through these remaining families:
 
-- [ ] Common completion type15/91, physical35/type5 pickup and ground/drop.
+- [x] H4 ground/drop and physical35/type5 replacement; type15/91 awaits its absent Scene2 owner.
 - [x] Timed inventory transfer00758170(true) and actual00792590 slot3 caller.
 - [ ] Script timed0058E500/special0058EBD0; reached vehicle00578770/90 and
   attachment0058DB20 with actual existing seat/aim/control interfaces.
@@ -267,3 +267,21 @@ Script TurnAt005904C0 and actual VM3E/005AF660 producer→0058DB20 attachment
 consumer verified and concretely linked, native PASS42, application/probe PASS.
 The original combined Script family still has open vehicle00578790 work.
 [Receipt](checkpoints/p22-hum-h4-script-attachment-20261112.json).
+
+Positive Physics completion boundary selected:00407BD0 disables its original
+collision before factory/cache search, requires actual plot/dira markers, detaches
+and reparents both, replaces140 while preserving214 restoration, rebuilds numbered
+VOLB0 descriptors00406740, then creates/contacts a second type5 via SAME Physics
+manager before218 publication. Scene break metadata record1E feeds the SAME204
+flag; current split breakable/pickup loses that producer and must be corrected.
+Preserve legitimate absent factory/cache/markers, native failed-prefix mutations,
+actual word4 stable handle, descriptor retirement and original frame restoration.
+Latest HUM46a6cef/H285593e8 inspected read-only: both still contain00407BD0 guard.
+
+Physics00407BD0/00406740 positive replacement and concrete SAME-manager child
+binding now implemented. Native sanitizer PASS173, actual i386 manager/create/
+contact full link, application/probe verification in receipt. The original204
+producer is corrected from actual scene break metadata. Tree nonzero contact and
+type6 are separate Physics families, not substitutes for this kind3 completion.
+Continue vehicle output and actual Players subgroup formation/update; no new
+numbered milestones and no whole-H4 closure from this checkpoint.

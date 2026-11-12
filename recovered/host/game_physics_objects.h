@@ -44,7 +44,9 @@ public:
         //Capacity before the constructor publishes a collision/queue pointer.
         if(slot==list.end())list.reserve(list.size()+1);
         if(parameters.type==5)scene_objects_.reserve(scene_objects_.size()+1);
-        auto owner=std::make_unique<Object>(frames_,collisions_,actors_,parameters,*handle,fades_);
+        auto owner=std::make_unique<Object>(frames_,collisions_,actors_,parameters,*handle,fades_,[this](const Parameters& child,const Frames::Vector& motion){
+            auto* created=create(child);(void)contact(reinterpret_cast<std::uintptr_t>(created),1,motion,{});
+        });
         owner->initialize();owner->install_feedback();
         handle->index=static_cast<std::int32_t>(index);handle->first_list=parameters.first_list;
         try {owner->publish();}catch(...) {handle->index=-1;throw;}

@@ -134,6 +134,14 @@ public:
         if(call<std::int32_t>(frame,0x38,root,std::uint32_t{1})<0)
             throw std::runtime_error("Cannot link physics object to actual scene root");
     }
+    MenuDriver::Owner create_physics_replacement_model(){return driver_.create(9);} //00407BD0.
+    std::int32_t load_physics_replacement_model(Frame model,const std::string& key){return resources_.load_model(model,key,0);}
+    Frame find_physics_replacement_frame(Frame model,const std::string& name){return call<Frame>(model,0x48,name.c_str(),std::uint32_t{0xffff});}
+    void detach_physics_replacement_frame(Frame model,Frame frame){call<void>(model,0x80,frame);}
+    void physics_replacement_position(Frame model,const Vector& position){call<void>(model,8,position.data());}
+    void physics_replacement_direction(Frame model,const Vector& direction){call<void>(model,0xc,direction.data(),std::uint32_t{0});}
+    MenuDriver::Owner retain_optional_physics_frame(Frame frame){return frame?retain(frame):MenuDriver::Owner{nullptr,nullptr};}
+    void add_physics_replacement_frame(Frame frame){if(const auto scene=scene_.frame())call<void>(scene,0x80,frame);} //Actual nullable World18.
     void physics_publish_pose(Frame frame,const Vector& position,const std::array<float,4>& rotation){ //0040AB80, native frame08, direct normalized quaternion, SceneEC, frame24.
         call<void>(frame,8,position.data());object_rotation(frame,rotation);auto_parent_object(frame);update_scene_object(frame);
     }

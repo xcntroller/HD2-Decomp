@@ -786,3 +786,60 @@ selected receiver doubles. Application/probe links pass; Windows outputs never
 executed. Only original implemented005904C0/0058DB20/005AF660 partial rows gain
 credit,00421C00 extends. Vehicle path/subgroup/Physics pickup remain open; no
 whole-H4, live mission or desktop acceptance claim.
+
+
+## Positive Physics replacement in original H4 completion scope
+
+00407BD0 is now implemented over the existing Physics object and category1
+LoadedResources model cache.00410B40 record1E (break metadata) is the SAME flag
+that00407390 publishes to204; the previous separate source pickup spelling lost
+that producer. Parsing now supplies both compatible spellings, and the containing
+object treats them as one flag. Kind3 clears204 before the worker, preserving
+legitimate return/failure behavior rather than retrying the replacement implicitly.
+
+The worker disables160/removes its descriptor before driver9 factory and exact
+zero cache result. It finds plot then dira (literal00832C7C/74), borrows plot's
+optional first child, publishes original140 world position before a FRESH world
+forward read and (X²+Y²)+Z² extended normalization. Factory, cache and absent
+markers return without a fabricated model. Both markers and optional child detach
+from the loaded model; dira/plot preserve world pose while linking to fresh140
+parents and enter actual World18 Scene. Old140 word4 clears, hides/updates,214
+preserves the original frame and140 becomes plot.1E0 quaternion updates,1F0
+restoration remains original; new140 word4 uses SAME stable handle150.
+
+00406740 searches VOLB00,01,... until the FIRST missing marker; no all-descendants
+substitute. Each detached marker links to fresh140's parent. Dummy6 centre uses
+FLOAT(min+max), then FLOAT*.5 via00404280/004066C0/00406720; radius is half Y
+span. Aggregate bounds use00406C70's distinct extended Y/Z half spans and stored
+X half span. Native unwritten aggregate centre, nonfinite direction and zero/
+nonfinite local scale reject as explicit native safety guards. Bounds scale by
+local XYZ; world matrix rows divide by actual local scales using00406C30's
+extended reciprocal. Real engine inverse/GetScale/transform delegates preserve
+matrix lanes, radius scaling and both world-centre writes. The existing dynamic
+bucket owner receives flags40/mask200000 descriptors, followed by actual move;
+marker word4 then publishes SAME handle. Native230/234/238 becomes stable owning
+records in the same Physics object, with no new collision registry.
+
+Actual GamePhysicsObjects::create installs the concrete child receiver. After
+volumes,00407BD0 creates a default nonbreak type5 on dira using SAME manager,
+then calls its actual00410530(kind1, original motion, zero point), including
+second→first list migration and original tipping contact.218 publishes ONLY after
+that call. No observation-only or manually seeded production binding is claimed.
+00408750 can now hide the real218 borrower. Derived close removes replacement
+collisions before releasing loans, restores current/original quaternions, shows
+original214, then retains existing base feedback/handle ordering. Additional
+retained frame loans, early owning publication and metadata retirement guard
+source partial failures; they are distinguished from original engine operations.
+
+Verification: native ASan/UBSan/LSan PASS173 for actual PhysicsObject/parser and
+LoadedResourceCache with explicitly doubled engine, collision and spawn endpoints;
+includes positive volumes, cache hit on repeat construction, missing/positive/
+negative cache statuses, missing markers/child/volumes, malformed bounds/scale,
+nonfinite forward, each reached failure prefix, original restoration and primary
+failure preservation during cleanup error. Strict actual i386 World/Physics
+borrowed motion AND manager create→child contact full link; application/probe
+links separately recorded in receipt. No engine/mission/desktop execution.
+Two implemented inventory bodies add partial credit (34 complete/3058 partial);
+helpers,00410B40 (absent frozen), cache delegation and instrumentation gain none.
+H4 still requires vehicle and subgroup formation output; type15 Scene2 owner and
+H3/H5 unimported APIs remain exact other-owner integration boundaries.

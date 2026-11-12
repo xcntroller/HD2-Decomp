@@ -360,3 +360,7 @@ H4 actual Script attack VM producers and timed consumers verified; mounted A8 ne
 H4 ground completion and containing type35 motion/navigation/packet/Script source verified; positive Physics pickup and type15 owner remain open alongside vehicle/attachment/subgroup. [Receipt](analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json).
 
 H4 Script TurnAt VM producer and original attachment consumer now concrete; vehicle/formation/Physics pickup remain open. [Receipt](analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json).
+
+H4 positive Physics replacement/numbered-volume and SAME-manager child contact
+source verified; remaining H4 bodies are vehicle and Players subgroup formation.
+Type15 owner/imports and live acceptance stay separate. [Receipt](analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json).

@@ -11,6 +11,8 @@
 #include "game/physics_object_tipping.h"
 #include "frontend/cleanup.h"
 #include <optional>
+#include <functional>
+#include <limits>
 
 namespace hd2::game {
 
@@ -28,9 +30,10 @@ public:
     using Parameters=PhysicsObjectParameters<Frame>;
     using Descriptor=RigidBodyCollisionDescriptor<Frame>;
     using FrameOwner=decltype(std::declval<Frames&>().retain_actor_frame(std::declval<Frame>()));
+    using PickupSpawn=std::function<void(const Parameters&,const Vector&)>;
     PhysicsObject(Frames& frames,Collisions& collisions,RuntimeActors& actors,const Parameters& parameters,PhysicsObjectHandle& handle,
-                  EffectsFrameFades<Frames>* fades=nullptr)
-        : frames_(frames),collisions_(collisions),actors_(actors),parameters_(parameters),handle_(handle),fades_(fades) {
+                  EffectsFrameFades<Frames>* fades=nullptr,PickupSpawn spawn={})
+        : frames_(frames),collisions_(collisions),actors_(actors),parameters_(parameters),handle_(handle),fades_(fades),pickup_spawn_(std::move(spawn)) {
         if(!parameters.frame)throw std::logic_error("Physics object requires a real frame");
         if(parameters.type!=0&&parameters.type!=1&&parameters.type!=2&&parameters.type!=3&&parameters.type!=4&&parameters.type!=5)
             throw std::runtime_error("Required physics object constructor is unavailable: "+std::to_string(parameters.type));
@@ -86,9 +89,9 @@ public:
             endpoint190_=frames_.car_transform(high,inverse_);
             auto projected=low;projected[1]=high[1];endpoint1a0_=frames_.car_transform(projected,inverse_);
             tipping_.saved=frames_.actor_rotation(frame_.get());rotation1f0_=frames_.actor_rotation(frame_.get());rotation_ready_=true;
-            pickup_=parameters_.pickup;
+            pickup_=parameters_.pickup||parameters_.breakable; //Both source spellings represent native record1E/204.
             flag161_=true;
-            if(parameters_.pickup) {
+            if(pickup_) {
                 descriptor_.flags|=0x100000;
                 actors_.queue_static_item(frame_.get(),this,descriptor_);queued_=true;
             }
@@ -106,10 +109,22 @@ public:
         closed_=true;
         if(queued_) {actors_.remove_static_item(this);queued_=false;}
         frontend::CleanupErrors errors;
+        for(auto n=replacement_volumes_.size();n;){auto& volume=*replacement_volumes_[--n];
+            collisions_.remove_for_cleanup(volume.descriptor);
+            errors.attempt([&]{if(volume.frame){auto& data=frames_.actor_frame_data(volume.frame.get());
+                if(data.words[4]==reinterpret_cast<std::uintptr_t>(&handle_))data.words[4]=ActorFrameData::empty_text_token();}});
+        }
+        replacement_volumes_.clear();
         if(frame_&&rotation_ready_) {
             errors.attempt([&]{frames_.object_rotation(frame_.get(),rotation1f0_);});
             errors.attempt([&]{frames_.update_scene_object(frame_.get());});
         }
+        if(original_frame_){
+            errors.attempt([&]{frames_.object_rotation(original_frame_.get(),rotation1f0_);});
+            errors.attempt([&]{frames_.object_visible(original_frame_.get(),true);frames_.update_scene_object(original_frame_.get());});
+            original_frame_.reset();
+        }
+        pickup_replacement_=Frame{};
         collisions_.remove_for_cleanup(descriptor_);
         errors.attempt([&]{(void)feedback(3);}); //0040B816 ECX3, SAME handle, before EC retraction/frame release.
         if(frame_) {
@@ -201,7 +216,7 @@ public:
         if(kind==3){
             if(!pickup_)return true;
             pickup_=false; //Native204 clears BEFORE required pickup notification.
-            throw std::runtime_error("Physics type5 contact requires actual00407BD0 pickup notification");
+            notify_pickup(velocity);return true;
         }
         if(tipping_.progress!=0)return false;
         contact1b0_=velocity;
@@ -237,6 +252,93 @@ public:
     const auto& principal_axes()const{return principal_axes_;} //Type3 native170/180/190/1A0, XYZ only.
     bool inverse_flag170()const{return ground_stop_.enabled;} //Type4 native inverse-matrix+2C comparison.
 private:
+    //00407BD0: legitimate factory/cache/marker absence returns after disabling160.
+    void notify_pickup(const Vector& velocity){
+        if(collision_enabled_){collision_enabled_=false;collisions_.remove(descriptor_);} //0040AD80(0), first mutation.
+        auto model=frames_.create_physics_replacement_model();if(!model)return;
+        if(frames_.load_physics_replacement_model(model.get(),parameters_.break_model)!=0)return; //Exact zero, cache hit included.
+        const auto plot=frames_.find_physics_replacement_frame(model.get(),"plot");
+        const auto dira=frames_.find_physics_replacement_frame(model.get(),"dira");
+        if(!dira||!plot)return;
+        const auto first=frames_.actor_child_count(plot)?frames_.actor_child(plot,0):Frame{};
+        auto world=frames_.actor_world_matrix(frame_.get());
+        const Vector position{{world[12],world[13],world[14],world[15]}};
+        //Position is published BEFORE the second fresh140 world/forward read.
+        frames_.physics_replacement_position(model.get(),position);
+        world=frames_.actor_world_matrix(frame_.get());
+        Vector direction{{world[8],world[9],world[10],world[11]}};
+        const auto square=(static_cast<long double>(direction[0])*direction[0]+static_cast<long double>(direction[1])*direction[1])+static_cast<long double>(direction[2])*direction[2];
+        const float stored=static_cast<float>(square);constexpr float epsilon=9.99999993922529e-09f;
+        if(!std::isfinite(square)||!std::isfinite(stored))throw std::runtime_error("Non-finite Physics replacement direction"); //Native safety guard.
+        if(std::abs(square-1)>=epsilon){
+            if(stored>=epsilon){const auto inverse=1.L/std::sqrt(static_cast<long double>(stored));
+                for(unsigned axis=0;axis!=3;++axis)direction[axis]=static_cast<float>(direction[axis]*inverse);
+            }else {const auto axis=direction[0]!=0?0u:direction[2]!=0?2u:1u;direction[axis]=direction[axis]<0?-1.f:1.f;}
+        }
+        frames_.physics_replacement_direction(model.get(),direction);frames_.update_scene_object(model.get());
+        auto dira_owner=frames_.retain_actor_frame(dira);auto plot_owner=frames_.retain_actor_frame(plot);
+        frames_.detach_physics_replacement_frame(model.get(),dira);frames_.detach_physics_replacement_frame(model.get(),plot);
+        auto first_owner=frames_.retain_optional_physics_frame(first);
+        if(first)frames_.detach_physics_replacement_frame(model.get(),first);
+        frames_.actor_link_preserving_world(dira,frames_.actor_parent(frame_.get()));
+        frames_.actor_link_preserving_world(plot,frames_.actor_parent(frame_.get()));
+        frames_.add_physics_replacement_frame(dira);frames_.add_physics_replacement_frame(plot);
+        if(first)frames_.add_physics_replacement_frame(first);
+        //214 is a borrower in native code; the retained source loan guards partial failure/retirement.
+        auto& old_data=frames_.actor_frame_data(frame_.get());old_data.words[4]=ActorFrameData::empty_text_token();
+        frames_.object_visible(frame_.get(),false);frames_.update_scene_object(frame_.get());
+        original_frame_=std::move(frame_);frame_=std::move(plot_owner);
+        tipping_.saved=frames_.actor_rotation(frame_.get()); //Native1E0; original1F0 restoration quaternion is preserved.
+        frames_.actor_frame_data(frame_.get()).words[4]=reinterpret_cast<std::uintptr_t>(&handle_);
+        publish_replacement_volumes(model.get());
+        Parameters parameters;parameters.frame=dira;parameters.type=5; //004085C0 defaults, no break/pickup on child.
+        if(!pickup_spawn_)throw std::logic_error("Physics replacement requires SAME manager create/contact receiver");
+        pickup_spawn_(parameters,velocity); //Actual0040FB00 before00410530(kind1), then218 publication.
+        pickup_replacement_=dira;
+    }
+    void publish_replacement_volumes(Frame model){ //00406740; original numbered search stops at the FIRST gap.
+        for(std::uint32_t index=0;;++index){
+            const auto frame=frames_.find_physics_replacement_frame(model,"VOLB0"+std::to_string(index));if(!frame)return;
+            auto retained=frames_.retain_actor_frame(frame);frames_.detach_physics_replacement_frame(model,frame);
+            frames_.actor_link_preserving_world(frame,frames_.actor_parent(frame_.get()));
+            auto volume=std::make_unique<ReplacementVolume>();volume->frame=std::move(retained);
+            const bool dummy=frames_.frame_kind(frame)==6;
+            auto bounds=dummy?frames_.car_dummy_bounds(frame):frames_.car_bounds(frame);
+            Vector centre{};float radius=0;
+            if(dummy){
+                for(unsigned axis=0;axis!=3;++axis){const auto sum=static_cast<float>(static_cast<long double>(bounds.maximum[axis])+bounds.minimum[axis]);
+                    centre[axis]=static_cast<float>(static_cast<long double>(sum)*.5f);}
+                radius=static_cast<float>((static_cast<long double>(bounds.maximum[1])-bounds.minimum[1])*.5f);
+            }else {
+                if(!(bounds.minimum[0]<bounds.maximum[0]))throw std::runtime_error("Physics replacement aggregate has unwritten native centre");
+                const float hx=static_cast<float>((static_cast<long double>(bounds.maximum[0])-bounds.minimum[0])*.5f);
+                const auto hy=(static_cast<long double>(bounds.maximum[1])-bounds.minimum[1])*.5f;
+                const float dz=static_cast<float>(static_cast<long double>(bounds.maximum[2])-bounds.minimum[2]);const auto hz=static_cast<long double>(dz)*.5f;
+                centre={{static_cast<float>(static_cast<long double>(hx)+bounds.minimum[0]),static_cast<float>(hy+bounds.minimum[1]),static_cast<float>(hz+bounds.minimum[2]),0}};
+                radius=static_cast<float>(std::sqrt((hz*hz+hy*hy)+static_cast<long double>(hx)*hx));
+            }
+            auto& descriptor=volume->descriptor;descriptor.flags=0x40;descriptor.mask=0x200000;descriptor.frame=frame;
+            const auto local_scale=frames_.actor_local_scale(frame);
+            for(unsigned axis=0;axis!=3;++axis){
+                if(!std::isfinite(local_scale[axis])||local_scale[axis]==0)throw std::runtime_error("Physics replacement requires finite nonzero local scale");
+                bounds.minimum[axis]=static_cast<float>(static_cast<long double>(bounds.minimum[axis])*local_scale[axis]);
+                bounds.maximum[axis]=static_cast<float>(static_cast<long double>(bounds.maximum[axis])*local_scale[axis]);
+            }
+            descriptor.position=frames_.car_transform(centre,frames_.actor_world_matrix(frame));
+            descriptor.minimum=bounds.minimum;descriptor.maximum=bounds.maximum;
+            volume->world=frames_.actor_world_matrix(frame);
+            for(unsigned row=0;row!=3;++row)for(unsigned axis=0;axis!=3;++axis)
+                volume->world[row*4+axis]=static_cast<float>(volume->world[row*4+axis]*(1.L/local_scale[row])); //00406C30 reciprocal stays extended.
+            volume->inverse=frames_.car_inverse_matrix(volume->world);descriptor.matrix=&volume->world;descriptor.inverse=&volume->inverse;
+            const auto scale=frames_.car_scale(frame);const auto yz=scale[1]<=scale[2]?scale[2]:scale[1];const auto largest=scale[0]<=yz?yz:scale[0];
+            descriptor.radius=static_cast<float>(static_cast<long double>(largest)*radius);
+            descriptor.position=frames_.car_transform(centre,frames_.actor_world_matrix(frame)); //Second fresh world read, native overwrites first centre.
+            replacement_volumes_.push_back(std::move(volume)); //Source safety: own before publishing a borrowed descriptor.
+            collisions_.insert(replacement_volumes_.back()->descriptor);collisions_.move(replacement_volumes_.back()->descriptor);
+            frames_.actor_frame_data(frame).words[4]=reinterpret_cast<std::uintptr_t>(&handle_);
+            if(index==std::numeric_limits<std::uint32_t>::max())throw std::runtime_error("Physics replacement marker sequence exceeds native index");
+        }
+    }
     void initialize_principal_axes() {
         const auto& low=descriptor_.minimum;const auto& high=descriptor_.maximum;Vector centre{};
         std::array<long double,3> extent{};
@@ -263,7 +365,11 @@ private:
     PhysicsObjectTipping tipping_;
     Vector centre170_{},span180_{},endpoint190_{},endpoint1a0_{};
     Vector contact1b0_{};std::array<float,4> rotation1f0_{};
-    Frame pickup_replacement_{}; //Native218 borrower; positive00407BD0 producer remains required, not fabricated.
+    Frame pickup_replacement_{}; //Native218 borrower of SAME manager's spawned type5.
+    FrameOwner original_frame_{nullptr,nullptr}; //Native214, retained safety loan until restoration.
+    PickupSpawn pickup_spawn_;
+    struct ReplacementVolume {FrameOwner frame{nullptr,nullptr};Matrix world{},inverse{};Descriptor descriptor{};};
+    std::vector<std::unique_ptr<ReplacementVolume>> replacement_volumes_; //Native230..238, stable descriptors.
     std::array<Vector,4> principal_axes_{};
     float radius170_=0;
     bool initialized_=false,published_=false,queued_=false,closed_=false,feedback_installed_=false,flag158_=false,flag161_=false,rotation_ready_=false,collision_enabled_=true,pickup_=false;

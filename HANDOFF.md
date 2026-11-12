@@ -10,15 +10,18 @@ Master/other worktrees untouched; no merge/push or original/Windows execution.
 Earlier C labels are historical implementation batches, not new requirements.
 Do not add C labels. Report against the original H4 remaining work directly.
 
-Latest: actual HUMAN_TurnAt opcode3E→005AF660/005904C0 typed1CC/1D0 producer
-and0058DB20 attachment receiver. Native sanitizer PASS42, strict actual World/
-Script/VM/Controls/current-target virtual setter i386 full link and application/
-probe links PASS. [Receipt](analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json).
-Actual A4/98 are present; positive type20/34 owner families remain absent.
+Latest: positive Physics00407BD0 and00406740 numbered replacement volumes now
+concrete over SAME category1 cache/manager/handles. Scene break metadata record1E
+now reaches204; actual child create→contact(kind1) precedes218 publication.
+Native sanitizer PASS173, strict actual World/Physics manager full i386 link and
+application/probe links PASS. [Receipt](analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json).
+Temporary audits fingerprinted/removed; original failure/absence/restoration kept.
+Ground/drop and physical35 completion scope now implemented; type15 Scene2actor91
+owner/factory remains external/absent. No general006F6870 credit.
 
-Prior ground completion/type35 navigation/packet/Script composition verified;
-Physics00407BD0 positive model/cache replacement still required (same current HUM
-guard). Type15 Scene2 actor91/factory absent. No general006F6870/body credit.
+Previous Script TurnAt opcode3E→005AF660/005904C0 typed1CC/1D0 producer and
+0058DB20 receiver verified, nativePASS42 and actual i386/application links.
+Actual A4/98 are present; positive type20/34 owner families remain absent.
 
 Prior timed VM producers/consumers and ordinary AI alignment verified. H5 imports
 remain: target35 human_ai_grenade.h and mounted A8 human_emplacement_position/
@@ -30,7 +33,7 @@ transfer, target-direction/trigger/start/stop workers and prior completion/climb
 formation/event output families; details/receipts linked from implementation.
 
 Next original H4 work: vehicle path00578770/90;
-remaining type5 pickup00407BD0 and type15 owner;
+type15 Scene2 owner/factory;
 Players subgroup formation mode9 producer/retirement AND0059BA70 updater.
 Mode9 native00596D60 positions and005971E0→8AB890 copy found; actual00461290
 producer and00460980 destructor exported. Tick00460A10→0059BA70 is substantial,
@@ -39,7 +42,7 @@ Research locators and raw
 instructions in analysis/work/p22-hum-h4-20261112. Mounted timed geometry now implemented from raw despite broken C aliases.
 Inspect current H3 interfaces through Git; no Runtime absence alone proves a blocker.
 
-Current HUM201adbf/H3/H5 inspected read-only; no imports, base stays e742f84.
+Current HUM46a6cef/H285593e8 and prior H3/H5 inspected read-only; no imports, base stays e742f84.
 All verified temporary audits fingerprinted/removed, concise logs/receipts retained.
 No live mission/engine execution/desktop acceptance claim. Heavy builds/Ghidra
 sequential; inspect other streams' jobs first. Full ledger checker inherits missing
