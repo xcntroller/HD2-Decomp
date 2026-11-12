@@ -4,7 +4,8 @@ User-directed priority is the missing effect families in PACK's review of H8
 `14d59d3`. The clothing checkpoint resolves **command2's active source dependency**.
 The subsequent live-creation checkpoint below resolves **command20's active source dependency**.
 The subsequent pickup checkpoint resolves **command9's source dependency**.
-Commands3/7/8/11/12/18 remain required. PACK must integrate committed
+The supply checkpoint resolves **command11's source effect dependency**.
+Commands3/7/8/12/18 remain required. PACK must integrate committed
 source, reconcile its helpers and run its own affected stream/FIFO/module checks.
 H8, P22-HUM and application/desktop delivery remain open. No original or Windows
 binary was executed. Frozen inventory claims remain partial native adaptations.
@@ -188,3 +189,48 @@ Items, World and clothing/equipment, plus command20. Latest launcher/probe rebui
 passes. Temporary audits are fingerprinted/removed. No Windows execution or
 desktop acceptance. Receipt:
 `analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json`.
+
+
+## Command11 SupplyBox source effect checkpoint
+
+`005A37C0` resolves actual Scene2 SupplyBox9, then rejects zero130, nonzero250
+or inactive124 bit1 BEFORE weapon/side/definition/creation. Default box11C0
+uses actual005A2B10 hand weapon and definition virtual18 ammunition ID; authored
+boxes use actual005A8820 side to choose properties.items[0/1] and the requested
+index. Authority creates an unheld module-owned item, places through007D9B40,
+and destroys the failed created item on ordinary rejection. Successful effect
+freshly checks box state/flags, decrements native DWORD130, triggers depletion
+on SIGNED<1 and refreshes005FD760 visibility before publishing item identity,
+Human178 and the updated non7 packet fields14 slot/10 item identity.
+
+`005A38F0` checks mode1 BEFORE lookup, then box/weapon/definition. It has no
+initial count/availability gate: create directly with received slot/identity,
+ignore ordinary constructor result, freshly consume/update the box and publish
+Human178. State/flag suppresses decrement but still refreshes visibility. An
+empty presentation box can wrap130 toFFFFFFFF and still deplete by signed<1;
+this is retained rather than clamped or silently dropped.
+
+Actual SupplyBox loading owner now exposes its124 flags and consume receiver.
+`005FC860(2)` switches to opposite track with weight0 and crossfade350 when an
+animation is active; otherwise it uses initial track0/weight1 with no crossfade.
+`005FCD80(1)` emits actual positional group1/entry11 sound AFTER animation setup
+and BEFORE closed-clip duration/250 state1 publication. Duration is un-clamped
+closed-clip duration, or native1000 fallback for a NULL clip. Actual loading
+already requires its four clips.005FD760 uses the existing actual authored
+14-frame geometry and FLOAT visibility arithmetic. No second crate owner.
+
+The subsequent full SupplyBox frame state1/crossfade/respawn path remains a
+mandatory **H8 frame** dependency and keeps its existing guard; this effect
+checkpoint does not claim that path or whole SupplyBox delivery. PACK's review
+explicitly distinguishes effect availability from H8's full-frame completion.
+
+Fresh ASan/UBSan/LSan audit: **5100 assertions /100 lifetimes**, actual new
+admission/application/count/depletion policies with explicit definition/item/
+placement/SOUND/visibility/engine endpoints. Native prefixes, mode-before-lookup,
+authority failed-item retirement, presentation count bypass/wrap, exact sound/
+duration/state publication, both track cases and failure-prefix outputs are
+covered. Strict actual i386 FULL LINK instantiates actual packet dispatcher,
+SupplyBox loading/geometry/clip/SOUND/visibility and Items/World/equipment.
+Latest launcher/probe rebuild passes. Audits fingerprinted/removed. No Windows
+fixture or application run. Receipt:
+`analysis/checkpoints/p2.2-human-h8-pack-supply-20261112.json`.

@@ -44,7 +44,7 @@ The preceding Active task/follow work is preserved and verified in the clothing 
 - [x] Command2: active clothing/DD0/equipment/Sight/Players/camera [source checkpoint](human-h8-pack-effects-source.md).
 - [ ] Commands7/8: general inventory validation, transfer/swap and presentation.
 - [x] Command9: actual runtime pickup, automatic placement and handoff [source checkpoint](human-h8-pack-effects-source.md#command9-pickup-and-automatic-unheld-placement-checkpoint).
-- [ ] Command11: source-container validation, creation and application.
+- [x] Command11: SupplyBox validation, creation/application, depletion and visibility [source checkpoint](human-h8-pack-effects-source.md#command11-supplybox-source-effect-checkpoint).
 - [ ] Command12: actual Player validation/application and Remote actions.
 - [ ] Command18: named animation resources, setup and control lifetime.
 - [x] Command20: active Remote equipment/storage replacement and retirement [source checkpoint](human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint).
@@ -84,6 +84,10 @@ current-action12, not4; native order kind4 remains a different family.
 | Order005825C0/0058C5A0, marker EC/collision,0058D6C0/0058C8E0/00582640, Active list insert/update/remove/reset | Bound/verified source; positive route74 and actual command/Human190 producers remain required |
 |005282E0/00529F60 pending processing,00528950 decisions,00536120 follow | Exported/raw evidence; mandatory before navigation |
 | Navigation/aim,0052B810 movement,005276E0 decisions,005325C0 output, command retirement/self-treatment | Reuse existing AI cores, complete Active policy and reached commands |
+
+Required later H8 frame dependency exposed by command11: SupplyBox state1
+closing crossfade and subsequent respawn/falling frame receivers remain guarded.
+PACK effect source availability does not close that frame path.
 
 ## Initial original-call map
 

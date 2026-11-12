@@ -23918,12 +23918,15 @@
       "program": "client",
       "entry": "005fc860",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005fc860: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
-      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "coverage": "P2.2 source reconstruction at original entry 005fc860: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded. Extended: Extend actual closing animation2 selection with opposite-track weight0/350 crossfade or initial track0/weight1 metadata; retain other command/frame guards.",
+      "limitations": "Source-only typed native reconstruction, original object/allocator/virtual ABI excluded. Native endpoint doubles and concrete host link are not application or desktop verification. Only command11 effect boundary and depletion setup added; full SupplyBox state1/crossfade/respawn/falling frame, other PACK effects and H8 remain required.",
       "evidence": [
         "recovered/game/supply_box_loading.h",
         "analysis/animation-supply-loading.md",
-        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json",
+        "recovered/game/supply_box_pickup.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-supply-20261112.json"
       ]
     },
     {
@@ -23954,12 +23957,15 @@
       "program": "client",
       "entry": "005fcd80",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005fcd80: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
-      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "coverage": "P2.2 source reconstruction at original entry 005fcd80: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded. Extended: Extend command1 depletion effect: actual closing clip setup, positional group1 entry11 SOUND, then exact un-clamped duration or NULL1000 and250 state1 publication; later respawn/frame commands remain required.",
+      "limitations": "Source-only typed native reconstruction, original object/allocator/virtual ABI excluded. Native endpoint doubles and concrete host link are not application or desktop verification. Only command11 effect boundary and depletion setup added; full SupplyBox state1/crossfade/respawn/falling frame, other PACK effects and H8 remain required.",
       "evidence": [
         "recovered/game/supply_box_loading.h",
         "analysis/animation-supply-loading.md",
-        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json",
+        "recovered/game/supply_box_pickup.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-supply-20261112.json"
       ]
     },
     {
@@ -45774,6 +45780,30 @@
       ],
       "coverage": "Erase actual frame EC allocation before clearing90 item borrower and releasing20 frame reference; body cleanup belongs to later runtime retirement.",
       "limitations": "Source-only typed native ownership rather than original allocator/object/virtual ABI. Native audits use explicit item/engine/runtime/equipment endpoints; concrete host full link is not actual application or desktop verification. Arbitrary source/cross-Human transfers, swaps, source-container pickup and other PACK effects remain required."
+    },
+    {
+      "program": "client",
+      "entry": "005a37c0",
+      "status": "partial",
+      "evidence": [
+        "recovered/game/human_supply_pickup.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-supply-20261112.json"
+      ],
+      "coverage": "Actual Scene2 SupplyBox availability, actual hand-ammo/side definition, module creation/automatic placement, failed-item retirement, fresh count/depletion/visibility before identity178/packet publication.",
+      "limitations": "Source-only typed native reconstruction, original object/allocator/virtual ABI excluded. Native endpoint doubles and concrete host link are not application or desktop verification. Only command11 effect boundary and depletion setup added; full SupplyBox state1/crossfade/respawn/falling frame, other PACK effects and H8 remain required."
+    },
+    {
+      "program": "client",
+      "entry": "005a38f0",
+      "status": "partial",
+      "evidence": [
+        "recovered/game/human_supply_pickup.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-supply-20261112.json"
+      ],
+      "coverage": "Mode1 before box/weapon selection; actual received slot/identity creation with ordinary result ignored, fresh decrement/depletion and visibility before178; no initial count gate.",
+      "limitations": "Source-only typed native reconstruction, original object/allocator/virtual ABI excluded. Native endpoint doubles and concrete host link are not application or desktop verification. Only command11 effect boundary and depletion setup added; full SupplyBox state1/crossfade/respawn/falling frame, other PACK effects and H8 remain required."
     }
   ]
 }

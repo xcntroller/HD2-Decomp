@@ -74,6 +74,7 @@
 #include "game/session_transmit_targets.h"
 #include "game/prepared_human_loading.h"
 #include "game/human_item_pickup.h"
+#include "game/human_supply_pickup.h"
 #include "game/human_spawn_position.h"
 #include "game/zone_scene_actor.h"
 #include "game/session_human_spawn.h"
@@ -1833,6 +1834,28 @@ public:
             [&](std::int32_t identity){return dynamic_cast<Human*>(dependencies().scene.frames().scene_actor_identity(identity));},
             [&](Human& human,auto& soldier){PreparedHumanLoading<Dependencies> factory(dependencies());factory.populate(human,soldier);});
     }
+    auto* human_supply_box(std::int32_t identity){ //00475D50, actual Scene2 domain.
+        using Supply=SupplyBoxSceneActor<typename Dependencies::ActorFrames>;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(identity);auto* box=dynamic_cast<Supply*>(actor);
+        if(actor&&!box)throw std::logic_error("Human supply command requires actual SupplyBox9");return box;
+    }
+    template<class Box>std::uint32_t human_supply_flags(Box& box){if(!box.loading)throw std::logic_error("Human supply command requires actual loaded SupplyBox");return box.loading->pickup_flags();}
+    template<class Human,class Box>std::optional<std::int32_t> human_supply_definition(Human& human,Box& box,std::int32_t index){
+        auto& d=dependencies();auto& items=d.world_actors.items();
+        if(!box.properties.field11c){
+            FirstPersonHumanItems hand(items);const auto entry=hand.weapon(human);if(!entry)return std::nullopt;
+            return items.runtime_item(entry).definition().ammunition();
+        }
+        const auto side=human_hud_team(human,mode_flags(),human_remote_ai_enabled(),d.startup.game_control_records());
+        return human_frame_signed_word(box.properties.items[side?1u:0u].at(static_cast<std::size_t>(index)));
+    }
+    auto create_unheld_supply_item(std::int32_t definition){return dependencies().world_actors.items().create_unheld_item(definition,-1);}
+    template<class Entry>void release_failed_supply_item(Entry entry){dependencies().world_actors.items().remove_runtime_item(entry);}
+    template<class Entry>std::int32_t human_supply_item_identity(Entry entry){return dependencies().world_actors.items().runtime_item(entry).identity;}
+    template<class Human>void create_received_supply_item(Human& human,std::int32_t definition,std::int32_t slot,std::int32_t identity){
+        (void)dependencies().world_actors.items().create_prepared_human_item(human,definition,slot,identity);
+    }
+    template<class Box>void consume_human_supply_item(Box& box){if(!box.loading)throw std::logic_error("Supply consumption lost actual loaded owner");box.loading->consume_item();}
     auto* human_loose_item(std::int32_t identity){ //004772F0, actual runtime identity domain (not Scene2 slots).
         using Runtime=std::remove_reference_t<decltype(dependencies().world_actors.runtime())>;
         auto* actor=dependencies().world_actors.runtime().identity(identity);
@@ -2000,7 +2023,15 @@ public:
             }else present_human_dropped_item(human,drop);
             return;
         }
-        case 11:throw std::runtime_error(authority?"Human PACK command11 requires item validation005A37C0":"Human PACK command11 requires item apply005A38F0");
+        case 11:{
+            auto slot=f.template get<std::int32_t>(0x14),identity=f.template get<std::int32_t>(0x10);
+            if(authority){
+                if(validate_human_supply_pickup(human,f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),slot,identity,*this)&&(mode_flags()&7u)!=7u){
+                    auto updated=command;updated.fields.set(0x14,slot);updated.fields.set(0x10,identity);state->queue_frame_command(std::move(updated),true);
+                }
+            }else apply_human_supply_pickup(human,f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),slot,identity,*this);
+            return;
+        }
         case 12:throw std::runtime_error(authority?"Human PACK command12 requires Player action validation0053D5D0":player?"Human PACK command12 requires Player action apply0053D870":"Human PACK command12 requires Remote action apply00594110");
         case 14:{
             using PacketHuman=typename Dependencies::Composition::Human;
