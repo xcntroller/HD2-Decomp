@@ -93,7 +93,7 @@ public:
         frame_.pending_words=frame_.pending_bits=0; //Native2F8 scratch cursor reset.
     }
     void clear() { //0072E4E0 queue portion, same430 lock; no implicit decoder/flush.
-        Lock lock(backend_,1);authority_.clear();presentation_.clear();frame_.queue_counts.fill(0);
+        Lock lock(backend_,1);authority_.clear();presentation_.clear();for(auto& count:frame_.queue_counts)count=0;
     }
     void clear_selected(bool authority){ //00731610 chooses BEFORE entering430 and clears ONLY that FIFO.
         Lock lock(backend_,1);auto& queue=authority?authority_:presentation_;
@@ -104,6 +104,7 @@ public:
         }
     }
     const auto& authority_queue()const{return authority_;}const auto& presentation_queue()const{return presentation_;}
+    bool pending()const{return frame_.queue_counts[0].load()!=0||frame_.queue_counts[1].load()!=0;}
 private:
     struct Lock {Backend& backend;unsigned index;Lock(Backend& value,unsigned slot):backend(value),index(slot){backend.enter_control_lock(index);}~Lock(){backend.leave_control_lock(index);}};
     static std::int32_t signed_word(std::uint32_t value){std::int32_t result;std::memcpy(&result,&value,4);return result;}

@@ -7,16 +7,23 @@
 #include <stdexcept>
 #include <vector>
 #include <atomic>
+#include <functional>
 
 namespace hd2::frontend {
 class ControlConnectionStream;
+struct ControlConnectionMessage;
 
 enum class ControlConnectionStorage{unproduced,loader_zero_filled_process};
 
 struct ControlConnectionPump {
+    using Receiver=std::function<void(const std::vector<unsigned char>&,std::uint32_t,std::uint32_t)>;
     virtual ~ControlConnectionPump()=default;
     virtual std::uint32_t connection_clock()=0;
     virtual bool connection_callback_bound()const=0;
+    virtual Receiver connection_receiver(){
+        if(!connection_callback_bound())return {};
+        return [](const auto&,std::uint32_t,std::uint32_t){throw std::logic_error("Connection requires actual process414 payload receiver");};
+    }
     virtual ControlConnectionStream& connection_scratch()=0;
     virtual void connection_send(const std::vector<unsigned char>& bytes,std::uint32_t address,std::uint32_t port,void* context)=0;
 };
@@ -42,13 +49,17 @@ public:
     virtual void receive(ControlConnectionPump&,std::uint32_t,ControlConnectionStream&,std::uint32_t,std::uint32_t){
         throw std::logic_error("Connection receive requires its actual owner");
     }
-    std::uint32_t generation() const {
-        if(!generation08_)throw std::logic_error("Connection generation has no original producer");
-        return *generation08_;
+    virtual std::weak_ptr<ControlConnectionMessage> submit(const std::vector<unsigned char>&,std::uint32_t,std::uint32_t,ControlConnectionPump&){
+        throw std::logic_error("Connection submission requires its actual owner");
     }
-    void generation(std::uint32_t value){generation08_=value;}
+    std::uint32_t generation() const {
+        if(!generation_produced08_.load())throw std::logic_error("Connection generation has no original producer");
+        return generation08_.load();
+    }
+    void generation(std::uint32_t value){generation08_=value;generation_produced08_=true;}
 private:
-    std::optional<std::uint32_t> generation08_;
+    std::atomic<std::uint32_t> generation08_{0}; //Native lockless08 publication versus worker packet reads.
+    std::atomic<bool> generation_produced08_{false}; //Source definedness metadata; backing zero is inaccessible.
     std::shared_ptr<Lifetime> lifetime_=std::make_shared<Lifetime>();
 };
 

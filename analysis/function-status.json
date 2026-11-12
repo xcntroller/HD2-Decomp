@@ -4863,8 +4863,8 @@
       "program": "client",
       "entry": "0072e460",
       "status": "partial",
-      "coverage": "Final standalone control shutdown: run existing cold reset even after status4 reset, reject live optional owners, delete the two initialized startup critical sections in order, clear flag and restore gate7. Actual canonical input-manager retirement after cold final control reset and before control critical sections; acquired-resource fallback preserves required reset failures.",
-      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee.",
+      "coverage": "Final standalone control shutdown: run existing cold reset even after status4 reset, reject live optional owners, delete the two initialized startup critical sections in order, clear flag and restore gate7. Actual canonical input-manager retirement after cold final control reset and before control critical sections; acquired-resource fallback preserves required reset failures. Final source reset-mode publication uses SAME still-live worker B4; worker retirement/dependency lifetime and standalone/non7 guards remain explicit.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "analysis/shutdown-map.json",
         "analysis/shutdown-delivery.md",
@@ -4875,7 +4875,10 @@
         "recovered/game/session_entry_records.h",
         "recovered/host/game_world_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-process-input-20261112.json"
+        "analysis/checkpoints/p2.2-human-process-input-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
+        "recovered/game/session_local_packets.h"
       ]
     },
     {
@@ -21564,24 +21567,32 @@
       "program": "client",
       "entry": "0072c170",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0072c170: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
-      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 0072c170: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded. SAME430 FIFO now receives actual packed worker414 payloads; existing counts are atomic for callback-versus-host observation. World/input drain limits remain.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/game/session_local_packets.h",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
+        "recovered/frontend/control_frame.h",
+        "recovered/host/startup_session.h"
       ]
     },
     {
       "program": "client",
       "entry": "0072c230",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0072c230: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
-      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 0072c230: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded. SAME430 FIFO now receives actual packed worker414 payloads; existing counts are atomic for callback-versus-host observation. World/input drain limits remain.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/game/session_local_packets.h",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
+        "recovered/frontend/control_frame.h",
+        "recovered/host/startup_session.h"
       ]
     },
     {
@@ -35325,8 +35336,8 @@
       "program": "client",
       "entry": "0072e4e0",
       "status": "partial",
-      "coverage": "Reached cold/offline control reset recognizes only its actual owned process14, flushes first, publishes mode7 before registered-input clear, then actual peer/record/queue retirement; retains manager/embedded30/defaults. Live transport branches remain required failures.",
-      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee.",
+      "coverage": "Reached cold/offline control reset recognizes only its actual owned process14, flushes first, publishes mode7 before registered-input clear, then actual peer/record/queue retirement; retains manager/embedded30/defaults. Live transport branches remain required failures. Reached same-owner packet reset now serializes existing mode7 publication with worker B4 before wrapper deletion/stop; observed packet counts are atomic, no second mode or packet owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/game/session_human_inputs.h",
         "recovered/game/session_entry_records.h",
@@ -35334,7 +35345,10 @@
         "recovered/host/startup_session.h",
         "recovered/host/game_world_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-process-input-20261112.json"
+        "analysis/checkpoints/p2.2-human-process-input-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
+        "recovered/game/session_local_packets.h"
       ]
     },
     {
@@ -40744,7 +40758,10 @@
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-entry-connection-source.md",
-        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json",
+        "recovered/frontend/control_connection_queue.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     },
     {
@@ -40756,7 +40773,10 @@
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-entry-connection-source.md",
-        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json",
+        "recovered/frontend/control_connection_queue.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     },
     {
@@ -40768,31 +40788,42 @@
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-entry-connection-source.md",
-        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json",
+        "recovered/frontend/control_connection_queue.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00744fc0",
       "status": "partial",
-      "coverage": "Reached COLD base queue retirement:1C then10 sentinel ownership. Populated tail-message virtual08 release remains required, not bypassed as success.",
-      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "coverage": "Reached COLD base queue retirement:1C then10 sentinel ownership. Populated tail-message virtual08 release remains required, not bypassed as success. Populated outgoing tail record release now precedes1C nodes/head then10 head; source RAII additionally reclaims native unreleased incoming records.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-entry-connection-source.md",
-        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
+        "recovered/frontend/control_connection_queue.h",
+        "recovered/frontend/control_connection_message.h"
       ]
     },
     {
       "program": "client",
       "entry": "00745410",
       "status": "partial",
-      "coverage": "Reached COLD reliable/ordered queue retirement:40 then34 then same base1C/10 owners. Populated message release remains open.",
-      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "coverage": "Reached COLD reliable/ordered queue retirement:40 then34 then same base1C/10 owners. Populated message release remains open. Populated pending34 tail record release precedes40 nodes/head, then34 head and base retirement; source RAII additionally reclaims native unreleased completion records.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-entry-connection-source.md",
-        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
+        "recovered/frontend/control_connection_queue.h",
+        "recovered/frontend/control_connection_message.h"
       ]
     },
     {
@@ -41090,12 +41121,14 @@
       "program": "client",
       "entry": "00746490",
       "status": "partial",
-      "coverage": "Reached cold builder owns actual temporary sentinel BEFORE20, preserves port/force gates, header/ACK/zero message count and shared scratch. Unlock/head retirement precede caller send; no invented populated payload.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Reached cold builder owns actual temporary sentinel BEFORE20, preserves port/force gates, header/ACK/zero message count and shared scratch. Unlock/head retirement precede caller send; no invented populated payload. Populated queue gathering, per-record current generation, count8/full serialization, forced/invalid-port branches and container retirement before send are now source-bound.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     },
     {
@@ -41114,12 +41147,14 @@
       "program": "client",
       "entry": "00747200",
       "status": "partial",
-      "coverage": "Reached EMPTY container payload serializer writes count8=0 after actual cold container/list production. Nonempty message serialization remains open.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Reached EMPTY container payload serializer writes count8=0 after actual cold container/list production. Nonempty message serialization remains open. Nonempty count8 plus every retained record serializer now runs; native count256 truncation is preserved rather than clamped.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     },
     {
@@ -41261,84 +41296,104 @@
       "program": "client",
       "entry": "007450c0",
       "status": "partial",
-      "coverage": "Actual23-bit sequence lifting relative to prior high bits with quarter thresholds and unsigned wrapping; signed old-ACK suppression in containing queue receiver. Native wrap/old-ACK goldens pass.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Actual23-bit sequence lifting relative to prior high bits with quarter thresholds and unsigned wrapping; signed old-ACK suppression in containing queue receiver. Native wrap/old-ACK goldens pass. Same source lifting kernel now serves base/reliable populated receive and ACK lifting without a second sequence implementation.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
+        "recovered/frontend/control_connection_queue.h",
+        "recovered/frontend/control_connection_message.h"
       ]
     },
     {
       "program": "client",
       "entry": "00746390",
       "status": "partial",
-      "coverage": "Reached EMPTY incoming container path: separate20 scope, both ACK decoders/update then count8, before later take/completion rounds. Nonempty count fails after required endpoint/clock/ACK prefix.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Reached EMPTY incoming container path: separate20 scope, both ACK decoders/update then count8, before later take/completion rounds. Nonempty count fails after required endpoint/clock/ACK prefix. Nonempty same container decodes completely before queue admission, then full connection generation filtering and actual queue receivers preserve ACK/partial-failure prefixes.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00745f20",
       "status": "partial",
-      "coverage": "Reached empty received-message extraction branch over actual same queue owner: no synthetic callback or retained packet. Nonempty extraction remains required.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Reached empty received-message extraction branch over actual same queue owner: no synthetic callback or retained packet. Nonempty extraction remains required. Populated extraction detaches bytes and clears record payload before record release; callback owns current bytes after20 unlock and later records remain owned on callback fault.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00745fb0",
       "status": "partial",
-      "coverage": "Reached ascending empty incoming-queue take under20, including actual ordered empty-list branch. No successful fabricated user message.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Reached ascending empty incoming-queue take under20, including actual ordered empty-list branch. No successful fabricated user message. Populated ascending0/1/2 take under20 now reaches base FIFO/ordered next-sequence receivers, unlocking before record detach/callback.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00746630",
       "status": "partial",
-      "coverage": "Actual separate20 completion scope and ascending three cold queue completion receivers, selected by SAME callback414/workerD8 after receive.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Actual separate20 completion scope and ascending three cold queue completion receivers, selected by SAME callback414/workerD8 after receive. Reached populated contiguous completion runs after delivery under its separate20 scope; throwing callbacks skip that final round.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "007457c0",
       "status": "partial",
-      "coverage": "Reached actual empty reliable/ordered completion-list branch against real cold40 sentinel owner. Populated contiguous completion retirement remains open.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Reached actual empty reliable/ordered completion-list branch against real cold40 sentinel owner. Populated contiguous completion retirement remains open. Populated completion40 search advances exact next24+1, unlinks node/count then releases same record until no contiguous match remains.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
+        "recovered/frontend/control_connection_queue.h",
+        "recovered/frontend/control_connection_message.h"
       ]
     },
     {
       "program": "client",
       "entry": "00745920",
       "status": "partial",
-      "coverage": "Reached actual empty ordered incoming1C-list take branch against same real sentinel owner. Populated next-sequence extraction remains open.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Reached actual empty ordered incoming1C-list take branch against same real sentinel owner. Populated next-sequence extraction remains open. Populated ordered incoming1C search admits exact next48+1 only, then unlinks/counts and clears local duplicate flag4 before returning record.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
       "evidence": [
         "recovered/frontend/control_connection_owner.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
+        "recovered/frontend/control_connection_queue.h",
+        "recovered/frontend/control_connection_message.h"
       ]
     },
     {
@@ -41593,6 +41648,174 @@
         "recovered/frontend/control_connection_socket.h",
         "analysis/human-fragment-reassembly-source.md",
         "analysis/checkpoints/p2.2-human-fragment-reassembly-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745ea0",
+      "status": "partial",
+      "coverage": "Actual retained submission: acquire/copy bytes and channel/queue metadata before20, then same selected queue admission under20; weak caller borrow never certifies ownership/readiness.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745130",
+      "status": "partial",
+      "coverage": "Actual base outgoing enqueue increments04 and stamps record14 before retained10 append, preserving one record shared with reliable pending ownership.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_queue.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007451d0",
+      "status": "partial",
+      "coverage": "Actual populated outgoing10 FIFO take: unlink/free node and decrement count before returning same retained record into container.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_queue.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745190",
+      "status": "partial",
+      "coverage": "Actual base incoming1C FIFO take over same record/list; reliable queue1 remains unordered, without an invented contiguous-delivery condition.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_queue.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745210",
+      "status": "partial",
+      "coverage": "Actual23-bit lifting relative08, signed newer-or-more-than9-old update including backwards moves, otherwise local duplicate flag4, then same incoming1C retention.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_queue.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007455a0",
+      "status": "partial",
+      "coverage": "Actual reliable incoming admission: lift sequence, reject completed-or-duplicate40 records, retain completion BEFORE base incoming mutation; same record shared with incoming owner.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_queue.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745b40",
+      "status": "partial",
+      "coverage": "Actual queue2/length16/channel6/sequence23/generation1 serializer followed by raw byte copy/cursor advance using SAME bit kernel, without added padding or protocol length clamps.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_message.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745bf0",
+      "status": "partial",
+      "coverage": "Actual same-field payload decoder with native signed16 length proven by00745C0E movswl; preserve reached field prefix before required negative-length/truncated-copy failure.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_message.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747240",
+      "status": "partial",
+      "coverage": "Actual container count8 decode and retained record parsing BEFORE any connection queue admission, with no partial admission when a later record fails decoding.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007472c0",
+      "status": "partial",
+      "coverage": "Actual populated container tail append/count through a real allocated sentinel owner, sharing the outgoing record instead of copying payload ownership.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_message.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747310",
+      "status": "partial",
+      "coverage": "Actual populated container FIFO take removes node/count before returning SAME record for generation checking and queue admission.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_message.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747130",
+      "status": "partial",
+      "coverage": "Actual consumed populated container retirement releases records from front before unlink/count update, then sentinel retirement, after connection20 unlock and before send.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_message.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072d0e0",
+      "status": "partial",
+      "coverage": "Actual process send submission: client334 without418; authority418 target/all slots,6C-before74 and stage2, no invented active08/local-slot gate; arithmetic-shift channel and low2 queue flags.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/game/session_connection_packets.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072c360",
+      "status": "partial",
+      "coverage": "Actual captured process414 callback packs channel/flags and copies into SAME0072C170/0072C230 process430 authority/presentation FIFO by mode bit1, outside connection20; no immediate World dispatch.",
+      "limitations": "Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "evidence": [
+        "recovered/game/session_connection_packets.h",
+        "analysis/human-retained-message-source.md",
+        "analysis/checkpoints/p2.2-human-retained-messages-20261112.json"
       ]
     }
   ]

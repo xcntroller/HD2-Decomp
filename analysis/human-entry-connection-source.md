@@ -5,6 +5,10 @@ It does not close D6 or H2. [Receipt](checkpoints/p2.2-human-entry-connections-2
 [shared entry](multiplayer-world/shared-world.md), [Human plan](p22-hum-plan.md).
 There is no new successful transport service or enabled application loading.
 
+Current populated queue/retirement and process delivery are recorded in
+[the retained-message contract](human-retained-message-source.md). Earlier cold
+claims below remain historical; they do not describe the full current queue scope.
+
 ## Proven native boundary
 
 Original client SHA256 is

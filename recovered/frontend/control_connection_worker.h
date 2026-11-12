@@ -8,7 +8,7 @@
 namespace hd2::frontend {
 //Actual singleton+33C. Process-static zero fill is explicit; it is NOT a
 //constructor default for arbitrary worker allocations. No DirectPlay service,
-//application load, populated message queue or fragment reassembly is supplied.
+//application load or DirectPlay admission service is supplied.
 template<class Platform>class ControlConnectionWorker final:public ControlConnectionPump {
 public:
     using Owner=ControlConnectionOwner<Platform>;
@@ -127,6 +127,13 @@ public:
     auto clockcc()const{return clockcc_.load();}auto clockd0()const{return clockd0_.load();}
     std::uint32_t connection_clock()override{return os_.control_milliseconds();}
     bool connection_callback_bound()const override{return process_.callback414.has_value();}
+    typename ControlConnectionPump::Receiver connection_receiver()override{
+        const auto callback=process_.callback414;if(!callback)return {};
+        return [this,callback](const auto& bytes,std::uint32_t channel,std::uint32_t flags){
+            if(*callback!=ControlStartupCallback::packed_event_0072c360)throw std::logic_error("Unknown actual process414 callback");
+            os_.receive_control_connection_payload(bytes,channel,flags); //0072C360→SAME process FIFO, not World dispatch.
+        };
+    }
     ControlConnectionStream& connection_scratch()override{return scratch_;}
     void connection_send(const std::vector<unsigned char>& bytes,std::uint32_t address,std::uint32_t port,void* context)override{
         if(context!=&socket_)throw std::logic_error("Connection send lost its actual38 socket owner");

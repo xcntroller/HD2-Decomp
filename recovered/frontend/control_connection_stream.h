@@ -30,6 +30,22 @@ public:
     std::size_t bit_count()const{return bits_.word_position()*32u+bits_.bit_position();}
     void write(std::uint32_t value,unsigned count){if(received_)throw std::logic_error("Write to received control packet");bits_.write(value,count);}
     std::uint32_t read(unsigned count){if(!received_||count>*received_||bit_count()>*received_-count)throw std::runtime_error("Truncated control packet");return bits_.read(count);}
+    void write_bytes(const std::vector<unsigned char>& bytes){ //00745B40's byte copy, then bit cursor advance.
+        if(received_)throw std::logic_error("Write to received control packet");
+        const auto start=bit_count();
+        for(std::size_t n=0;n<bytes.size();++n){
+            const auto at=start/8+n;const auto shift=static_cast<unsigned>(at%4)*8;
+            storage_.reserve_bits(at/4,shift,8);auto& word=storage_.word(at/4);
+            word=(word&~(0xffu<<shift))|(std::uint32_t{bytes[n]}<<shift);
+        }
+        const auto end=start+bytes.size()*8;position(end/32,static_cast<unsigned>(end%32));
+    }
+    std::vector<unsigned char> read_bytes(std::size_t count){ //00745BF0 allocates BEFORE checked native copy.
+        std::vector<unsigned char> bytes(count);const auto start=bit_count();
+        if(!received_||start>*received_||count>(*received_-start)/8)throw std::runtime_error("Truncated message payload");
+        for(std::size_t n=0;n<count;++n){const auto at=start/8+n;bytes[n]=static_cast<unsigned char>(storage_.word(at/4)>>((at%4)*8));}
+        const auto end=start+count*8;position(end/32,static_cast<unsigned>(end%32));return bytes;
+    }
     void receive(const std::vector<unsigned char>& bytes){
         if(bytes.size()>std::numeric_limits<std::uint32_t>::max()/8u)throw std::length_error("Control packet size overflow");
         storage_.words.assign((bytes.size()+3)/4,0);

@@ -6,6 +6,7 @@
 #include "game/session_broadcast_packets.h"
 #include <cstring>
 #include <type_traits>
+#include <atomic>
 
 namespace hd2::frontend {
 
@@ -14,7 +15,7 @@ namespace hd2::frontend {
 // empty. The independent native launch has no network producer. Populated queues,
 // interfaces/peers or a mode change are unsupported, never treated as success.
 struct ColdControlFrameState {
-    std::array<std::uint32_t, 2> queue_counts{}; // +1F8/+204
+    std::array<std::atomic<std::uint32_t>,2> queue_counts{{0u,0u}}; //+1F8/+204, actual callback producer versus host observation.
     std::uint32_t pending_words = 0, pending_bits = 0; // +300/+304
     std::uint32_t saved_graphics_flags = 0; // +4DFC, static zero until mode-switch writer.
     std::uint32_t timer_started = 0;
@@ -59,7 +60,7 @@ public:
         }
         flush(milliseconds);
     }
-    void reset() {reset_impl(false,[&]{flush(1000);},[&]{Lock queues(backend_,1);state_.queue_counts.fill(0);});}
+    void reset() {reset_impl(false,[&]{flush(1000);},[&]{Lock queues(backend_,1);for(auto& count:state_.queue_counts)count=0;});}
     //Actual packet owners flush/reset through the SAME native control fields.
     //Each stage runs ONCE, including1000ms flush; no preliminary cold reset.
     template<class Flush,class Clear>void reset_packets(Flush flush_packets,Clear clear_packets){
@@ -81,7 +82,7 @@ private:
         backend_.restore_cold_firewall(state_.firewall_changed);
         backend_.restore_graphics_flags(state_.saved_graphics_flags);
         flush_packets();
-        startup_.word448=0;startup_.byte4df8=0;startup_.word5044=0;gate_=7;
+        startup_.word448=0;startup_.byte4df8=0;startup_.word5044=0;publish_reset_mode();
         if(startup_.service14)backend_.clear_control_input_records(); //0072E4E0→0073F5A0, manager and embedded30 survive.
         reset_connections(); //00746890→334 clear→00746840, BEFORE418 record retirement.
         {Lock records(backend_,0);startup_.records.clear();}
@@ -97,7 +98,7 @@ private:
             errors.attempt([&]{backend_.delete_control_critical_section(0);});
             errors.attempt([&]{backend_.delete_control_critical_section(1);});startup_.locks5018=0;
         }
-        gate_=7;errors.rethrow();
+        publish_reset_mode();errors.rethrow();
     }
     void require_cold(bool packets=false) const {
         if (gate_ != 7 || state_.server || state_.client || (state_.worker_active&&!owns_worker()) ||
@@ -130,6 +131,15 @@ private:
     template<class T,class=void>struct HasWorker:std::false_type{};
     template<class T>struct HasWorker<T,std::void_t<decltype(std::declval<T&>().reset_control_connections()),decltype(std::declval<const T&>().owns_control_worker())>>:std::true_type{};
     bool owns_worker()const{if constexpr(HasWorker<Backend>::value)return backend_.owns_control_worker();else return false;}
+    template<class T,class=void>struct HasModePublication:std::false_type{};
+    template<class T>struct HasModePublication<T,std::void_t<decltype(std::declval<T&>().publish_control_reset_mode(std::uint32_t{}))>>:std::true_type{};
+    void publish_reset_mode(){
+        if constexpr(HasModePublication<Backend>::value)backend_.publish_control_reset_mode(7);
+        else{
+            if(owns_worker())throw std::logic_error("Actual callback worker requires ordered reset mode publication");
+            gate_=7; //Original cold branch, no concurrent worker callback.
+        }
+    }
     void reset_connections(){if constexpr(HasWorker<Backend>::value)backend_.reset_control_connections();
         else{if(state_.worker_active||startup_.client334)throw std::logic_error("Control reset requires its actual worker owner");Lock peers(backend_,2);}}
     ControlStartupState& startup_;

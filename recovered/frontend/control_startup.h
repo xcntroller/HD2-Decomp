@@ -91,8 +91,8 @@ inline void initialize_control_record(ControlStartupRecord& record) {
 }
 
 // Records the original callback identity, not an executable original-client
-// address. Actual0072C360 routes packed events to0072C170/0072C230; its consumer
-// and those destinations must be reconstructed before enabling that service.
+// address. Actual0072C360 now routes payloads to SAME0072C170/0072C230 process
+// FIFOs. DirectPlay admission/current-application composition remains required.
 enum class ControlStartupCallback { packed_event_0072c360 };
 
 // Consumed fields of singleton0097D070, not its complete constructor or ABI.

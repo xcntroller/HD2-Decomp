@@ -10,10 +10,15 @@ list. Detailed behavior/evidence stays in the linked contracts.
 
 ## Completion boundaries
 
+Labels describe the plan: H = Human milestones, D = required dependencies, and
+S = earlier verified source pieces. Lowercase a/b/c split one dependency into
+reviewable parts. A checkpoint is implemented source with focused verification;
+its JSON receipt records hashes and results. It is not application/desktop acceptance.
+
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3082 partial; joint/clip recovery still
+credit is separate: current source34 complete/3096 partial; joint/clip recovery still
 has deferred credit reconciliation.
 
 The selected **H2 reactions/damage/ragdoll** milestone remains open until its
@@ -206,10 +211,13 @@ closes positive damage and Door visual restoration; D4/D5 remain open.
   Required before containing D6b/D6 closes; not a Phase3 live-session test.
 - [x] D6b2a — Received fragments through SAME socket30/buffer14: retained sorting,
   expiry, contiguous assembly and retirement. [Source](human-fragment-reassembly-source.md).
-- [ ] D6b2b — Retained payload serialization, send/receive queues, retry/ACK order,
-  and SAME process414 delivery/retirement; no synthetic successful callbacks.
+- [x] D6b2b — Retained payload serialization, queues/retry/ACK order and SAME414
+  delivery into actual process430 FIFOs, with ordered retirement/reset.
+  [Verified source](human-retained-message-source.md); application entry stays open.
 - [ ] D6b2c — DirectPlay admission/name/address/record and complete/terminate
   callback composition with SAME client04/server00 and current application11.
+  Reconcile the existing menu-lived discovery client with process lifetime;
+  termination requests status11 on the actual current application state.
 - [ ] D7 — Status9 composition:00730A40→0072E890→00731610(true), retained-game
   restoration BEFORE menu shutdown, SAME00698510/006989B0 owner and actual request.
   Depends on D6 and existing S06/S07; preserve its shutdown/delete failure path.

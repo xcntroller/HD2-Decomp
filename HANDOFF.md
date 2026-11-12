@@ -1,67 +1,78 @@
 # P22-HUM H2 handoff —2026-11-12
 
 Active worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h2`, branch
-`feature/p22-hum-h2`. Latest base1e091a7 (H3 integration), after131e9b4 (worker)/f771a60 (D6a) and fb89d76's move
+`feature/p22-hum-h2`. Latest base1629702 (fragments), after1e091a7 (H3)/131e9b4 (worker)/f771a60 (D6a) and fb89d76's move
 frome742f84. Check HEAD/status; preserve unrelated worktrees and user changes.
 Read AGENTS.md, Phase2 section2 plan.md, [Human plan](analysis/p22-hum-plan.md).
 **H2 remains OPEN.** No agents/push, original EXE/DLL/Proton or Windows output
 execution. Heavy compilation/Ghidra sequential. Actual application/render/user
 desktop acceptance remains P2.2; this checkpoint is source-only.
 
-## Latest — D6b2a retained fragment reassembly
+## Latest — D6b2b retained messages and process delivery
 
-Base1e091a7 integrated verified H3 snapshot10bebe9 atop worker131e9b4, preserving
-D4b/D6a/D6b1. H3's offline seat/mounted source checkbox is complete; D5 occupied/
-non7 Car simulation remains guarded. [Integration receipt](analysis/checkpoints/p2.2-human-h3-integration-20261112.json).
+Base1629702 contains H3 integration1e091a7 and received fragments D6b2a.
+[Retained-message contract](analysis/human-retained-message-source.md),
+[receipt](analysis/checkpoints/p2.2-human-retained-messages-20261112.json).
+**D6b2b source-complete; H2/D6b2/D6 remain OPEN for D6b2c.** Plan now explains
+H/D/S and a/b/c labels; checkpoints mean verified source, not application delivery.
+**34 complete/3096 partial (3091client+5engine)**:14 NEW frozen partials and15
+extensions, no promotions. No new pool/allocator/engine/absent helper credit.
 
-[Fragment contract](analysis/human-fragment-reassembly-source.md),
-[receipt](analysis/checkpoints/p2.2-human-fragment-reassembly-20261112.json).
-**D6b2a complete; H2/D6b2/D6 remain OPEN.** Plan now separates D6b2b retained
-payload/queue/order and D6b2c actual admission/current-application callback
-composition. **34 complete/3082 partial (3077client+5engine)**:2 new frozen
-partials00747CB0/00747DD0, extensions00747A40/007475B0, no promotions.
+- SAME record bytes across outgoing/pending/incoming/completion/container owners.
+  Actual00745EA0 copy-before20, native signed16 message lengths/48-bit prefix,
+  complete-container decode BEFORE admission, full08 generation filtering.
+- Native sequence lifting/last-ten duplication, reliable completion and ordered
+  delivery, strict retries/max7/backoff5000, ACK timing and count256 truncation.
+  Native record/node/head retirement differs: pending/outgoing release tail,
+  40/34/1C/10 heads in native order. Typed RAII reclaims native unreleased incoming/
+  completion payloads; no allocator/refcount/SEH/layout equivalence claim.
+- Actual captured414 callback detaches/free bytes outside20, shares SAME existing
+  process430 authority/presentation FIFO and packed flags. No World decoder under
+  worker B4. Actual0072D0E0 client/authority send selectors preserve6C-before74,
+  stage2, no extra active08/local gate; submission is not network success.
+- Existing C4 counts and connection08 use atomics with original definedness.
+  Source reset-mode publication uses SAME B4, BEFORE wrapper deletion/stop; no mode
+  clone. Other non7 flag/admission/application writers remain D6b2c/D9 scope.
 
-- SAME socket30 retained vector and buffer14: checksum/counter prefix, payload
-  copy then clock/append; unsigned id/index native sort scheme, fresh selection
-  clock AFTER sorting, strict signed20-second candidate expiry, contiguous run.
-- No sender key or deduplication; gaps/duplicates retain native behavior. Output
-  uses THIS triggering datagram's sender. Records survive socket stop/start;
-  storage retires after FIFO4C/40. No new process/input/lock/transport owner.
-- Copy/free/erase is per record; oversized assembly fails after prior consumed
-  prefix. Truncated metadata fails honestly. Portable RAII reclaims native leaked
-  retained buffers; no allocator/layout/SEH or undefined-overwrite equivalence.
+Final ASan/UBSan/LSan PASS100 actual message/queue/connection/worker/reversed-
+fragment→same process FIFO/reset families (including600-byte payload), actual
+source threads; explicit OS/pump endpoints. Includes callback snapshot despite
+414 clear, callback fault/retained later messages, required malformed/queue3/
+negative16 failures, sequence/retry/lifetime/retirement. Prior D6a cold100 regression
+PASS on NEW paths. Strict actual StartupSession send/receive/control-reset i386
+PASS; final launcher/probe compile/link PASS. No Windows/original/network/World/
+application/desktop run. New temporary fixture sources/objects/native binaries
+fingerprinted and removed; frozen original inputs/artifacts untouched. Dedicated
+Windows snapshots/research/logs retained. Ghidra batch ERROR at missing007459B0
+is recorded despite exit0, just like earlier00745520/007456D0; no absent credit.
 
-ASan/UBSan/LSan PASS100 fragment families (six source socket round trips each,
-through32768 bytes/reverse65+ records), TTL/wrap/gaps/duplicates/sender mixing/
-restart/failure prefixes. Prior worker regression adapted on NEW paths passes100
-families/200 same-worker start-reset cycles plus source worker callback ACK
-reassembly onto SAME client. OS endpoints explicit doubles. An initial rapid
-wake audit timed out; final golden drain is deterministic, source wake/reset
-ordering unchanged. Actual StartupSession socket/worker i386 PASS; final launcher/
-probe compile/link PASS. No Windows/original/network/World/desktop execution.
-Temporary new fixture sources/objects/binaries fingerprinted and removed; logs,
-research exports and dedicated Windows snapshots retained. Old frozen inputs/
-artifacts unchanged. First payload export stopped at absent00745520 after four
-exports despite exit0: ERROR preserved, absent helpers receive no new credit.
-
-Earlier source checkpoints remain verified; do not repeat their unchanged audits:
-[worker](analysis/human-worker-control-source.md),
-[H3](analysis/human-seat-interaction-source.md),
-[Car commands](analysis/human-car-target-command-source.md).
+Earlier H3/D6b1/D6b2a verified source stays in linked contracts; do not restart
+unchanged kernels. D5 occupied/non7 Car frame guards remain required.
 
 ## Continue through dependencies
 
 1. H3 dependency integration is complete; do not repeat its unchanged audits.
    Keep D5 occupied/non7 Car simulation required. H3 does not close that frame.
-2. **D6b2b** populated retained payload/queue receivers:00747240 and00745EA0
-   now exported in `human-h2-payload-entry-originals`; reused queue contracts in
-   packet-synchronization.md.00745130 is exported; queue00745520/007456D0 are
-   absent frozen helpers, use existing raw/index and claim no invented credit.
-   `human-h2-fragment-owners-originals` also exports007457C0/00745920/00745190/
-   00745F20/00745FB0/00746630. Preserve actual shared bit/pool/ref ownership,
-   distinct20 lock scopes and SAME callback414. Then **D6b2c** actual DirectPlay
-   admission/name/address/record and completion/termination through same client04/
-   server00/current app11. Callback presence/A4/thread creation is not readiness.
+2. **D6b2c** actual DirectPlay admission/name/address/record and completion/
+   termination through SAME client04/server00/current app11. Index lookup is now
+   `human-h2-admission-callback-index.txt`; reuse candidates before new exports:
+   00723D20/007260A0 in multiplayer-ui-completion-20261101,00724DC0 in multiplayer-
+   bitstream-20261101,00722180 in multiplayer-callbacks-20261101 (same-content copy
+   session-packet-actor-generation). Review raw ABI/provenance; callback presence,
+   A4 and queueing are not admission/readiness. Preserve SAME global mode synchronization
+   when binding newly reached concurrent writers. D6b2a/b need no repeated audit.
+   Initial C review:007260A0 has CREATE7/DESTROY9/ENUM-A/INDICATE-E/ABORT-F/
+   RECEIVE11/RETURN13/LOCAL15 cases. INDICATE-E publishes a one-byte reply BEFORE
+   version/length/capacity/password/record/address/session admission; preserve
+   those failure prefixes.00724DC0 hostname C has misleading stack/sscanf values:
+   raw ABI is required before a new producer claim. Existing numeric sender_ip
+   in host/multiplayer_discovery.cpp is a bounded checked adapter, not full native
+   address equivalence. MultiplayerMenu currently OWNS its discovery client;
+   reconcile that lifetime with native process04, do not create a parallel client.
+   Client TERMINATE16 deletes334/clears5044 BEFORE request11 on actual current
+   application state via006DC940. StartupSession console bindings do not supply
+   that application request owner. Review OWN/LaunchServices controller binding
+   before composition; these are open dependencies, not successful services.
 3. **D7/D8/D9** containing status9/received0/non7 entry/frame/reset stay required:
    same00698510/006989B0, retained game restored BEFORE menu shutdown, real input
    replacement BEFORE old World retirement and distinct failure deletion. OWN has

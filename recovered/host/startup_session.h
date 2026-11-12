@@ -6,6 +6,7 @@
 #include "frontend/control_actor_records.h"
 #include "frontend/control_frame.h"
 #include "game/session_local_packets.h"
+#include "game/session_connection_packets.h"
 #include "game/session_application_commands.h"
 #include "game/session_received_application.h"
 #include "game/session_peer_records.h"
@@ -798,6 +799,15 @@ public:
     }
     auto& game_broadcast_packets(){return broadcast_packets_;}
     auto& game_local_packets(){return local_packets_;}
+    void receive_control_connection_payload(const std::vector<unsigned char>& bytes,std::uint32_t channel,std::uint32_t flags){ //0072C360.
+        game::deliver_session_connection_packet(gate_,bytes,channel,flags,local_packets_);
+    }
+    void publish_control_reset_mode(std::uint32_t mode){
+        enter_control_lock(2);gate_=mode;leave_control_lock(2); //Source synchronization with callback's existing B4 scope.
+    }
+    void send_control_connection_payload(std::uint32_t target,const std::vector<unsigned char>& bytes,std::uint32_t flags){
+        game::submit_session_connection_packet(control_data_,gate_,target,bytes,flags,connection_worker_,*this);
+    }
     void enter_application_command_lock(){application_command_lock_.enter();}
     void leave_application_command_lock()noexcept{application_command_lock_.leave();}
     void queue_application_command(std::uint32_t kind,std::uint32_t target,std::uint32_t first,std::uint32_t second){
@@ -952,7 +962,8 @@ private:
     game::HudCompassShared hud_compass_state_;
     game::HudClickSound<MenuDriver::Owner> hud_click_sound_;
     bool source_packet_path()const{
-        return human_inputs_.present()||packet_world_.bound()||broadcast_packets_.pending()||!local_packets_.authority_queue().empty()||!local_packets_.presentation_queue().empty();
+        return connection_worker_.active()||human_inputs_.present()||packet_world_.bound()||broadcast_packets_.pending()||local_packets_.pending();
+        //Active selects the actual queue owner, not transport or World readiness.
     }
     game::ConsoleVariables game_console_variables_;
     game::TextRenderControls game_text_render_controls_;
