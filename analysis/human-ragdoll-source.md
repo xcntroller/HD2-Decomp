@@ -3,6 +3,16 @@
 P22-HUM's second plan checkbox remains open. Current work continues the same
 body/point owners. Application mission loading and desktop acceptance remain open.
 
+Current status and remaining dependency order are maintained in the
+[revised Human plan](p22-hum-plan.md), through b132e6d. S01–S14 identify verified
+source checkpoints; D0–D12 identify remaining composition/producer dependencies.
+Earlier “in progress”, “continue” and “not yet bound” notes below are dated
+research snapshots, superseded by later checkpoints. In particular007B3C80,
+007B37C0→00787110,0074D510 and Car fuel10/impulse11 are source-recovered; their
+containing-path/application acceptance is still open. Do not restart these
+kernels from an earlier snapshot. Deferred joint/clip inventory reconciliation
+belongs to D12 and does not imply that their implemented bodies are absent.
+
 ## Original evidence
 
 Original client SHA256 remains
@@ -88,11 +98,12 @@ callback doubles. It provides no complete mission/trajectory equivalence claim.
 No function-ledger/tally credit has been added for these unfinished checkbox
 changes. Consolidate credit, receipts and temporary-source removal at completion.
 
-## Continue the full checkbox
+## Earlier dependency snapshot — superseded by later checkpoints
 
-Bind real007A7470 dispatch after completing its required rest-surface and retained-clip branches. The collision, sleep and substep kernels above are in source.
-007B3C80's retained clip path and remaining007B0910 reason/source branches,
-0074D510 and positive obstruction/contact/fall damage remain required.
+The original continuation scope was007A7470,007B3C80,007B0910,0074D510 and
+positive obstruction/contact/fall damage. Later sections below record their
+source recovery. Use the current [D0–D12 plan](p22-hum-plan.md#h2-remaining-dependencies-and-exit-tests)
+for remaining work rather than treating this historical list as unchecked.
 
 007CDE00 emits flags5, source Human, relative bone22/group0/entry44 for6914.
 For6918 it emits relative bone4/group1/entry55 when geometry62B8 is even,
