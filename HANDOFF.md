@@ -31,7 +31,7 @@ Strict actual nested-host i386 and latest launcher/probe rebuild/link PASS.
 Five other Runtime declarations always throw, compile-only. New temporary audit
 sources/binary/object are fingerprinted/removed, logs and dedicated Windows
 snapshots retained. Existing frozen inputs unchanged. Five new frozen partials,
-two extensions, no complete promotions: **34 complete/3250 partial (3245client+5engine)**.
+two extensions, no complete promotions: **34 complete/3254 partial (3249client+5engine)**.
 
 Important contracts: held deadlines are hand HOLDER18 via007D68B0, not item14
 or DD0. Recoil publishes each B0+10 component before the next draw. Local command
@@ -39,27 +39,33 @@ mutations precede pending publication; missing Record fails after them. Original
 007D45B0 proves process0098AFE0 initialization via004374D0; Startup now owns the
 same shared item request across worlds, including reload/empty writers.
 
-## Continue the offline dependencies
+## Latest sound/action checkpoint and next work
 
-1. Finish shared actual item24/28 `007D4FD0/007D5210`, shot-sound and reached
-   projectile producer/retirement. Existing C/ABI candidates are indexed; do not
-   start a broad new export. `007D5C70` creates SOUND frames, not visual flash
-   models: it is a two-slot cache from SOUND category2/primary action sound.
-   Existing actual category2 LoadedResources::load_sound and GameActorServices
-   create_human_sound/parameter/range/attach/volume/cone methods can be reused.
-   Required getter returns cached requested slot, but on population returns80;
-   native field88 becomes min(variant count,2), zero/missing entry remain real.
-   The inline cache C export has misleading reused stack aliases; check bounded
-   raw before fields/ABI claims. RuntimeItem's neutral unused effect_models_
-   slots currently use ModelOwner; actual sound owners must use the matching
-   frame release, separate from recursive ItemFrameTree destruction.
-2. Complete melee00542B80, repair and Player D8 first-command queue producers.
-   Static005A45B0 jumps current B0 virtualD8=0053D340: copy subtype/identity/
-   argument into kind3 FIRST queue, not immediate DC execution. Existing shared
-   DC14 targets Car repair; remaining queued consumers are external H4/H8 where
-   selected. Use actual loaded collision/query owners, preserve source exclusions.
-3. Verify the actual owned Player/item path and consolidate H6. Do not rerun
-   unchanged H2 or broad kernel audits. Full World scheduling/async frame is H8.
+[Sound/action contract](analysis/human-player-item-sound-actions-source.md),
+[receipt](analysis/checkpoints/p2.2-human-player-item-sound-actions-20261112.json).
+Actual RuntimeItem SOUND owners007D5C70, local/authority007D5A80 and following
+007D6330 are implemented, plus melee00542B80, loaded-World repair query and
+PlayerD8/0053D340 first-queue producer. Native100 sanitizers, strict actual nested
+host i386 and launcher/probe rebuild PASS. Explicit engine/query/Look/Human doubles
+are documented; full positive owner graph is not claimed. New temporary audits
+removed after fingerprints; frozen inputs retained. Four new partials, no complete
+promotions:34 complete/3254 partial (3249client+5engine). Native SOUND refill leak
+is retained through source item retirement and then reclaimed, explicitly limited.
+
+Continue shared actual item24/28 `007D4FD0/007D5210`, reached projectile
+producer/retirement on SAME process ShotMgr. Existing C candidates in
+frame-human-shot-and-control-workers, frame-human-live-inventory-and-aim,
+frame-human-shot-projectile-workers and frame-human-shot-bullet-lifetime;
+no broad new exports. `human-h6-projectile-base-index.txt` records boundary lookup.
+Ordinary offline unmounted00450D30 initializes/publishes a bullet without its
+conditional100ms frame. Attached/non7 Player does invoke it. Actual ShotMgr
+RuntimeRecord is still only forward-declared; never install successful fire or
+opaque pointer/pool substitutes. Real body004482A0 initializes shooter/pose/
+direction/payload/damage,0044B030 scales velocity/configures visual;0044B910 is the
+large reached asynchronous damage/collision consumer. Shell0044E5D0/visual and
+flash00453D80 lifetimes also selected in mode2. ShotMgr full World scheduling is
+H8, but producer ownership/retirement must be real. Kind9 grenade and type2
+projectile remain selected dispatcher branches. Do not absorb active H4.
 
 Existing static exports and original assembly are in WORK with `human-h6-`
 prefixes. Successful new005441E0/005AC550/007D5C70 C exports have initially

@@ -37,6 +37,7 @@ C exports with unknown signatures do not establish their ABI.
   reached item virtual24/28, sound/flash/projectile borrowers must be real or
   retain an explicit blocker. Shared projectile/ShotMgr dependencies need an
   ownership decision from the actual call chain, not a fabricated successful fire.
+  Melee/repair/first-queue and shared shot sound are now [source-verified](human-player-item-sound-actions-source.md); projectile producer remains open.
 - [ ] H6.5 — Compose reached item commands with actual input/queue owners.
   Player08 SAME-Record pending production is verified in the controller
   checkpoint. Full non7 history/replay/admission is conditional external

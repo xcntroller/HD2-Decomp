@@ -7,6 +7,7 @@
 #include "game/human_player_item_notification.h"
 #include "game/human_player_shot_direction.h"
 #include "game/human_hud_loading.h"
+#include "game/human_item_shot_sound.h"
 
 #include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
@@ -1019,6 +1020,52 @@ public:
     bool player_recoil_disabled(){return dependencies().startup.game_console_variables().integer(6)!=0;} //00720B80(6).
     bool player_zoom_enabled(){return dependencies().first_person.view().zoom_enabled();}
     auto& player_item_sound_request(){return dependencies().startup.item_sound_request();}
+    template<class Item>auto item_shot_sound_frame(Item& item,unsigned index){
+        auto& d=dependencies();auto lookup=[&]{return d.startup.item_shot_sound_entry(item.primary_action_sound());};
+        return item.shot_sound(index,d.scene.frames(),lookup);
+    }
+    template<class Item,class Human,class Frame>void play_player_item_sound(Item& item,Human& human,Frame parent,bool silent){
+        play_human_item_shot(item,human,parent,silent,*this);
+    }
+    template<class Item,class Human>void play_following_item_sounds(Item& item,Human& human){
+        play_human_following_shot_sounds(item,human,*this);
+    }
+    template<class Player>auto* player_item_melee_target(Player& state){
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=state.human();if(!human)throw std::logic_error("Player melee query requires its actual Human");
+        const auto direction=human_projectile_direction(); //Native camera selector1 BEFORE the FPV58/59 observation.
+        const auto position=human_view_offset_enabled()?human_projectile_position():sight_position(human_command_head(*human));
+        const auto* hit=[&]{
+            auto& owner=human_inline(*human);owner.exclude_query(false);
+            struct Restore{std::remove_reference_t<decltype(owner)>& owner;~Restore(){owner.restore_query(false);}}restore{owner};
+            auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Player melee query requires actual loaded World");
+            auto query=d.scene.door_queries();return query.nearest(position,direction,0,0);
+        }();
+        if(!hit||!hit->actor)return static_cast<Human*>(nullptr);
+        auto& actor=human_pose_actor(hit->actor);if(actor.base().type()!=3)return static_cast<Human*>(nullptr);
+        auto& target=selection_human(actor);if(human_inline(target).frame_posture_mode()!=0)return static_cast<Human*>(nullptr);
+        if(!target.loading_state)throw std::logic_error("Player melee target has no actual B0 direction");
+        const auto facing=target.loading_state->current_direction();
+        const auto dot=(static_cast<long double>(direction[2])*facing[2]+static_cast<long double>(direction[1])*facing[1])+static_cast<long double>(direction[0])*facing[0];
+        return dot>.8f?&target:nullptr;
+    }
+    template<class Player>auto* player_item_repair_target(Player& state){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        auto* human=state.human();if(!human)throw std::logic_error("Player repair requires its actual Human");
+        const auto start=sight_position(human_command_head(*human));
+        const auto hit=human_geometry_ray(start,state.words().template get<HumanVector>(0x10),0,0,true);
+        if(!hit||!(human_geometry_flags(*hit)&0xc0u))return static_cast<Actor*>(nullptr);
+        typename Dependencies::Frame frame{};
+        if(hit->dynamic_identity)frame=hit->dynamic_identity->frame;
+        else if(hit->static_identity&&hit->static_identity->kind){
+            const auto id=*hit->static_identity;frame=dependencies().scene.collision_tree().shapes.at(id.kind-0x80).at(id.index).frame;
+        }
+        if(!frame)return static_cast<Actor*>(nullptr);
+        const auto* data=dependencies().scene.frames().find_actor_frame_data(frame);
+        auto* target=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+        if(!target||target->base().type()!=4||human_command_car_health(*target)==0.f)return static_cast<Actor*>(nullptr);
+        return target;
+    }
     template<class Human>std::int32_t player_shot_stamina(const Human& human){return human_hud_stamina_percent(human);}
     void player_item_fpv_request(std::int32_t animation){dependencies().first_person.view().request(mode_flags(),animation,0);}
     void player_item_reset_zoom(){dependencies().first_person.view().restore_game_zoom(mode_flags());}

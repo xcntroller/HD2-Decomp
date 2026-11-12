@@ -443,6 +443,7 @@ public:
     }
     std::uint32_t game_speech_length(std::int32_t id){return sound_catalog_.speech_sample_size(id);} //SOUND virtual94, SAME catalogue mappings.
     const frontend::CatalogSoundEntry* mounted_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(3,id);} //Actual SOUND+8C; no implicit catalogue load.
+    const frontend::CatalogSoundEntry* item_shot_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(2,id);} //007D5C70, SAME SOUND catalogue.
     const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
     void initialize_game_dubbing(){dubbing_sound_.initialize_loading();}
     void synchronize_game_dubbing(){dubbing_sound_.synchronize_attachments();}

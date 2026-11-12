@@ -6,6 +6,7 @@
 #include "game/human_packet_commands.h"
 #include "game/human_player_empty_weapon.h"
 #include "game/human_player_fire.h"
+#include "game/human_player_actor_actions.h"
 
 namespace hd2::game {
 
@@ -46,7 +47,7 @@ void advance_player_item_frame(Player& player,Inline& control,World& world,Runti
     const auto trigger=[&]{return second->template get<float>(0x18)!=0;};
     switch(kind){
     case 0:
-        if(trigger())runtime.player_unarmed_item(player); //00542B80.
+        if(trigger())advance_player_melee(player,control,world); //00542B80.
         return;
     case 6:
         if(words.template get<std::uint32_t>(0x50)&0xf8u){second->set(0x34,0u);second->set(0x18,0u);}
@@ -89,10 +90,10 @@ void advance_player_item_frame(Player& player,Inline& control,World& world,Runti
         publish_player_held_item_title(player,item);return;
     }
     case 10:
-        if(trigger()&&words.template get<std::int32_t>(0x60)==-1)runtime.player_item_actor_action(player,17u,human->base().id10());
+        if(trigger()&&words.template get<std::int32_t>(0x60)==-1)queue_player_item_action(player,17u,human->base().id10());
         return;
     case 11:
-        if(trigger()&&words.template get<std::int32_t>(0x60)==-1)runtime.player_repair_item(player);
+        if(trigger()&&words.template get<std::int32_t>(0x60)==-1)repair_player_item_target(player,world);
         return;
     default:return;
     }

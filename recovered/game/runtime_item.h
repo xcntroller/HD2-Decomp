@@ -4,6 +4,7 @@
 #include "frontend/pre_mission_data.h"
 #include "game/actor_slot_storage.h"
 #include "game/actor_base.h"
+#include <algorithm>
 #include <cmath>
 #include <limits>
 #include <memory>
@@ -23,6 +24,7 @@ public:
     using Catalogue=frontend::PreMissionItemCatalogue;
     using Frame=typename Backend::Frame;
     using ModelOwner=typename Services::ItemModelOwner;
+    using SoundOwner=decltype(std::declval<Backend&>().create_human_sound());
     enum class Family : std::uint32_t {weapon=0,pack=1,basic=2,other=3}; //007D39C0+08.
     static std::unique_ptr<RuntimeItem> create(Backend& backend,Services& services,
                                               const Catalogue& catalogue,std::int32_t id) {
@@ -35,7 +37,8 @@ public:
     }
     ~RuntimeItem() {
         if(slots_) {slots_->clear_entries();slots_.reset();} //007D38D0 explicitly clears even borrowed slots.
-        effect_models_[1].reset();effect_models_[0].reset(); //007D6300.
+        shot_sounds_[1].reset();shot_sounds_[0].reset(); //007D6300, direct SOUND-frame release, not ItemFrameTree destruction.
+        while(!superseded_shot_sounds_.empty())superseded_shot_sounds_.pop_back();
         auxiliary_model_.reset(); //007D4710's+78, before common cleanup.
         if(kind20_registered_)services_.unregister_item_kind20(this); //007DDA10 swap/pop.
         model_.reset(); //007D3A10→007D3AE0(0), matching native model owner.
@@ -90,6 +93,16 @@ public:
         if(payload.type<1||payload.type>4)throw std::runtime_error("Human action sound requires actual weapon-payload dispatch");
         return frontend::pre_mission_detail::Bytes::integer(payload_word(payload,0x10));
     }
+    std::int32_t last_round_sound()const{ //Payload virtual24:007E03C0 /007E02C0.
+        const auto& payload=definition_.payloads[0];
+        if(payload.type<1||payload.type>4)throw std::runtime_error("Last-round sound requires actual weapon payload");
+        return payload.type==4?frontend::pre_mission_detail::Bytes::integer(payload_word(payload,0x44)):-1;
+    }
+    std::int32_t following_shot_sound()const{ //Payload virtual28:007E03D0 /007E02D0.
+        const auto& payload=definition_.payloads[0];
+        if(payload.type<1||payload.type>4)throw std::runtime_error("Following-shot sound requires actual weapon payload");
+        return payload.type==4?frontend::pre_mission_detail::Bytes::integer(payload_word(payload,0x48)):-1;
+    }
     float loaded_ammunition()const{return real(fields50_54[0]);}
     void loaded_ammunition(float value){fields50_54[0]=bits(value);}
     void magazine_amount(float value){
@@ -143,6 +156,34 @@ public:
             shot_marker=services_.find_item_model_frame(frame,"shdum",0x20);
         }
         return shot_marker;
+    }
+    template<class Frames,class Lookup>Frame shot_sound(unsigned index,Frames& frames,Lookup& lookup){ //007D5C70.
+        if(index>=shot_sounds_.size())throw std::out_of_range("Item shot sound exceeds native two-slot array");
+        if(shot_sounds_[index])return shot_sounds_[index]->get();
+        const auto* entry=lookup();if(!entry)return Frame{};
+        field88=static_cast<std::uint32_t>(std::min<std::size_t>(entry->variants.size(),2));
+        for(unsigned n=0;n<field88;++n){
+            const auto* variant=entry->variants[n].get();
+            if(!variant)throw std::runtime_error("Item shot sound reached native missing catalogue variant");
+            auto sound=frames.create_human_sound();
+            if(!sound)throw std::runtime_error("Item shot sound requires its actual kind4 frame");
+            const auto status=frames.load_item_sound(sound.get(),variant->name);
+            if(status==0){
+                frames.human_sound_parameter7c(sound.get(),1);
+                frames.car_sound_cone(sound.get(),1.5707963705062866f,1.5707963705062866f);
+                frames.human_sound_volume(sound.get(),variant->float14);
+                frames.human_sound_range(sound.get(),real(variant->word08),variant->float0c,.4f,.3f);
+                const auto parent=model();frames.human_sound_attach(sound.get(),parent,{{0,0,1.1f}});
+            }else sound.reset(); //Native releases the failed frame and publishes NULL.
+            if(shot_sounds_[n]){
+                //Native overwrites a still-playing reference when another slot
+                //misses. Preserve that frame through item retirement; RAII then
+                //reclaims the native leak, without stopping it during refill.
+                superseded_shot_sounds_.push_back(std::move(*shot_sounds_[n]));shot_sounds_[n].reset();
+            }
+            if(sound)shot_sounds_[n].emplace(std::move(sound));
+        }
+        return shot_sounds_[0]?shot_sounds_[0]->get():Frame{}; //Population returns80, regardless of requested slot.
     }
     std::uint32_t other_field28() const {return other_field28_;}
     float auxiliary_amount()const{return family_==Family::other?real(other_field28_):-1.f;} //007D41A0/007D3280 virtual20.
@@ -237,7 +278,8 @@ private:
     bool kind20_registered_=false;
     std::unique_ptr<ActorSlotStorage<Backend>> slots_;
     std::optional<ModelOwner> model_,auxiliary_model_;
-    std::array<std::optional<ModelOwner>,2> effect_models_;
+    std::array<std::optional<SoundOwner>,2> shot_sounds_;
+    std::vector<SoundOwner> superseded_shot_sounds_;
     Frame flash_{};
     float amount_=0,capacity_=0;
     std::uint32_t other_field28_=0;

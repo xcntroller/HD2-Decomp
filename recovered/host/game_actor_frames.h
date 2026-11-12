@@ -1054,6 +1054,7 @@ public:
         put(sound,0xe0,(flags&0xfffffedfu)|0x40000000u);
     }
     std::int32_t load_human_sound(Frame sound,const char* name) {return resources_.load_sound(sound,name,0);}
+    std::int32_t load_item_sound(Frame sound,const std::string& name){return resources_.load_sound(sound,name,0x10);} //007D5C70's SAME category2 cache.
     void human_sound_enabled(Frame sound,bool enabled) {call<void>(sound,0x30,std::uint32_t(enabled));}
     void human_sound_parameter7c(Frame sound,std::uint32_t value) {call<void>(sound,0x7c,value);}
     void human_sound_volume(Frame sound,float value) {call<void>(sound,0x8c,value);}
@@ -1063,6 +1064,7 @@ public:
         call<void>(sound,0x38,parent,std::uint32_t{0});
         object_position(sound,position);
     }
+    void human_sound_link(Frame sound,Frame parent){call<void>(sound,0x38,parent,std::uint32_t{0});}
     void human_sound_range(Frame sound,float near_range,float far_range,float first,float second) {call<void>(sound,0x80,near_range,far_range,first,second);}
     void human_sound_parameter90(Frame sound,std::uint32_t value) {call<void>(sound,0x90,value);}
     void human_sound_parameter94(Frame sound,std::uint32_t value) {call<void>(sound,0x94,value);}

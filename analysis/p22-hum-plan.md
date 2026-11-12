@@ -33,7 +33,7 @@ its JSON receipt records hashes and results. It is not application/desktop accep
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3250 partial; [joint/clip kernel inventory
+credit is separate: current source34 complete/3254 partial; [joint/clip kernel inventory
 reconciliation](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json) is complete,
 while full containing-World/application verification and external producer
 limitations remain open.
@@ -65,7 +65,7 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
   release and actual Scene2 actor dispatch. [Completed source](checkpoints/p2.2-human-guard-area-source-20261112.json),
   integrated from completed aggregate201adbf; H8/desktop verification remains separate.
 - [ ] H6 — Player items:00542E20 held item,00545140/005454D0 shots and reached
-  command/FOV/dry-fire/melee/repair/transport consumers. [Active implementation/dependencies](p22-hum-h6-plan.md); [held/math/notification controller checkpoint](human-player-item-controller-source.md). Actual item firing and full H6 verification remain open.
+  command/FOV/dry-fire/melee/repair/transport consumers. [Active implementation/dependencies](p22-hum-h6-plan.md); [held/math/notification controller checkpoint](human-player-item-controller-source.md) and [sound/action checkpoint](human-player-item-sound-actions-source.md). Actual item firing and full H6 verification remain open.
 - [x] H7 — Reached breath/blood particle and rest-footprint source through SAME
   process/module17 lifetime. [Checkpoint](checkpoints/p2.2-human-particle-surface-20261111.json).
 - [ ] H8 — Full Human frame: H2–H6, actual World/control dispatch, positive paths,
