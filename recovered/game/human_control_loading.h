@@ -21,6 +21,7 @@
 #include "game/human_posture_room.h"
 #include "game/human_mount_retirement.h"
 #include "game/human_direction_replay.h"
+#include "game/human_position_replay.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
 #include "game/human_face_control.h"
@@ -146,6 +147,10 @@ public:
     template<class Look>void prepare_direction_replay(Look& look,const HumanVector& requested,std::uint32_t elapsed){ //0076DB30.
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
         prepare_human_direction_replay(*this,look,*human_,requested,human_frame_signed_word(elapsed),publish);
+    }
+    template<class Look>void replay_position(const Look& look,const HumanVector& position){ //00759E20.
+        if(!human_)throw std::logic_error("Human position replay has no actual bound Human");
+        replay_human_control_position(*this,look,*human_,services_,frames_,position);
     }
     void publish_dynamic_ground_position(){ //007646F0 dynamic descriptor publication tail.
         synchronize_control_position(human_->base().world_position());
@@ -686,6 +691,7 @@ private:
         const auto mode=animation_.present_scene_effects(elapsed,human_is_player(),
             [&](std::int32_t event){ //00758D20.
                 switch(event){
+                case 0:apply_human_track_inventory_transfer(*this,equipment_owner,frames_);return true;
                 case 1:equipment_owner.transfers().event(1);return true;
                 case 2:{
                     const auto command=look.state().template get<std::uint32_t>(0x54);

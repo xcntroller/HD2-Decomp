@@ -63,3 +63,15 @@ concrete source binding is missing, with its precise blocking owner/input named.
   continue remaining completion/climb/formation/track families. Full H4 stays open.
 
 [Detailed source and next whole families](p22-hum-h4-implementation.md).
+
+## C2 source and verification
+
+- [x] Bind actual D8 Player-first/Remote-immediate/AI-immediate-then-second policies;
+  preserve00583C30 climb early return and command word copy timing.
+- [x] Supply common DC1F over actual input7C/history1 position and SAME E0/DD0.
+- [x] Implement00759E20 actual mode/attachment/DC4 gates, model/Scene/descriptor
+  publication order, existing markers/shots and final Human position.
+- [x] Bind track0 actual00758170(false) to SAME230 peers and fresh shadow.
+- [x] Focused native sanitizer audits PASS59 and actual physical owner PASS12.
+- [x] Finish C2 strict actual i386 track/World link, application/probe links,
+  evidence/ledger/receipt and commit; continue remaining whole H4 families.

@@ -29620,14 +29620,15 @@
       "program": "client",
       "entry": "00586200",
       "status": "partial",
-      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required.",
+      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. Added subtype1F with actual input7C/history1 position-value30, original local/mode gates, same DD0 replay then E0 movement1E.",
       "limitations": "Only the direct Door branch. Other command cases and Human kind 6 remain required. D4b selected common-command checkpoint; wider commands/occupied/non7 frame and full Human/application acceptance remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-car-target-command-source.md",
-        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json",
+        "analysis/p22-hum-h4-implementation.md"
       ]
     },
     {
@@ -29766,12 +29767,13 @@
       "program": "client",
       "entry": "00583c30",
       "status": "partial",
-      "coverage": "Publish B0 movement vector and E0 movement, stance, posture, jump and stop commands.",
+      "coverage": "Publish B0 movement vector and E0 movement, stance, posture, jump and stop commands. Added actual family virtualD8 climb emission and original early return before jump/stop tail.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_frame_output.h"
+        "recovered/game/human_ai_frame_output.h",
+        "analysis/p22-hum-h4-implementation.md"
       ]
     },
     {
@@ -31013,7 +31015,7 @@
       "program": "client",
       "entry": "00758d20",
       "status": "partial",
-      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved.",
+      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved. Added track0 actual00758170(false) inventory/peer transfer and fresh shadow gate.",
       "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -40771,6 +40773,42 @@
       "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
       "evidence": [
         "recovered/game/human_world_loading_services.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00587540",
+      "status": "partial",
+      "coverage": "Actual Remote virtualD8 tail-dispatch to same common DC without queuing; original distinct Player/AI policies remain distinct.",
+      "limitations": "Source-only typed owners/STL/RAII and native safety guards, not original object/allocator/thiscall/SEH ABI equivalence. Focused native audits use explicit engine/model/collision/Face/audio/World endpoint doubles; strict actual i386 composition links only. Remaining H4 consumers and full mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_common_command.h",
+        "recovered/game/human_loading_state_factory.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00758170",
+      "status": "partial",
+      "coverage": "Original false argument path reached by track0: secondary22/23/24 and A34/A44 gates, actual equipment2/3 transfer and fresh shadow visibility restore.",
+      "limitations": "Source-only typed owners/STL/RAII and native safety guards, not original object/allocator/thiscall/SEH ABI equivalence. Focused native audits use explicit engine/model/collision/Face/audio/World endpoint doubles; strict actual i386 composition links only. Remaining H4 consumers and full mission/desktop execution remain open. True timed-transition branch remains required.",
+      "evidence": [
+        "recovered/game/human_track_equipment_events.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00759e20",
+      "status": "partial",
+      "coverage": "Actual DD0 position replay: DC4/posture/mode/motion/attachment gates, same model frame08/Scene144/frame24, real marker/posture/primary/shot publication and final Human four-lane position; original descriptor flags/masks retained.",
+      "limitations": "Source-only typed owners/STL/RAII and native safety guards, not original object/allocator/thiscall/SEH ABI equivalence. Focused native audits use explicit engine/model/collision/Face/audio/World endpoint doubles; strict actual i386 composition links only. Remaining H4 consumers and full mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_position_replay.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/host/game_actor_frames.h",
         "analysis/p22-hum-h4-implementation.md"
       ]
     }

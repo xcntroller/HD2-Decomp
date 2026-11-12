@@ -1236,6 +1236,16 @@ public:
         throw std::runtime_error("Human PACK command20 requires Remote equipment replacement0059EB60 on actual Items/B0/DD0");
     }
     auto& human_command_frames(){return dependencies().scene.frames();}
+    template<class Human>void replay_human_climb_position(Human& human,const HumanVector& position){
+        auto* control=human_inline(human).control();
+        if(!control)throw std::logic_error("Human climb requires its actual DD0");
+        control->replay_position(human_look_control(human),position);
+    }
+    template<class State>void begin_human_climb_animation(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("Human climb lost its actual Human");
+        auto publish=[&](std::uint32_t flags){state.publish_frame_command_flags(flags);};
+        human_look_control(*human).frame_movement_animation(0x1e,publish,true); //E0 kind4.
+    }
     auto* human_command_actor(std::int32_t identity){return dependencies().scene.frames().scene_actor_command_identity(identity);} //00475D50.
     template<class Entry>std::uint32_t human_command_item_kind(Entry item){return dependencies().world_actors.items().runtime_item(item).definition().kind();}
     template<class Human>auto human_command_head(Human& human){

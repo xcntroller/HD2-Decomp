@@ -51,6 +51,10 @@ public:
         default:throw std::runtime_error("No original Human B0 factory case");
         }
         result->bind_frame_command_packets(services_);
+        result->bind_common_command_receiver([this](Base& state,const HumanPacketCommand& command){
+            dispatch_human_deferred_common_command(state,command,
+                [this](Base& current,const HumanPacketCommand& value){return common_command(current,value);});
+        });
         if(kind==4||kind==8)result->bind_special_music_reference([this](bool enabled){services_.human_special_music_reference(enabled);});
         return result;
     }

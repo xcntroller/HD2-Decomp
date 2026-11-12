@@ -346,6 +346,15 @@ public:
             collisions_.move(descriptor);
         }
     }
+    void publish_replayed_geometry(std::uint32_t posture){ //00759E20, preserves descriptor flags and masks.
+        markers_.snapshot();rebind_posture(posture);
+        for(int index=0;index<primary_count();++index){
+            auto& descriptor=required(primary_,index);descriptor.position=posture_.at(static_cast<std::size_t>(index));
+            descriptor.radius=static_cast<float>(static_cast<long double>(descriptor.position[3])*state_.template get<float>(0x1c8));
+            collisions_.move(descriptor);
+        }
+        shot_spheres();publish_air_shots();
+    }
     void suspend_collisions(bool suspended,std::uint32_t posture) { //0075C2D0.
         if(!human_)throw std::logic_error("Human collision transition has no bound Human");
         if(suspended) {

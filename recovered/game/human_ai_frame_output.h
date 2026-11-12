@@ -79,9 +79,8 @@ template<class AI,class Inline>void apply_human_ai_frame_movement(AI& ai,Inline&
         control.frame_posture(changed?(request&2u?1u:2u):0u,publish);
     }
     if(pressed(*second,0x44)){
-        //00571C10 dispatches subtype1F immediately and appends a separate
-        //kind-three copy to the B0+94 queue for its original deferred consumer.
-        throw std::runtime_error("AI climb output requires its actual B0 deferred command receiver");
+        ai.emit_climb_command(); //Actual virtualD8 family; original early return skips jump/stop tail.
+        return;
     }
     if(pressed(*second,0x30)&&(request&8u)&&human->activation.field14c>10.f){
         animation(0x12);

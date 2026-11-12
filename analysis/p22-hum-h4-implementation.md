@@ -104,3 +104,66 @@ No Windows output is executed.
 
 H4 remains open; C1 alone is not whole H4, H2, H8 or actual mission execution.
 Continue through those families and dependencies after this verified checkpoint.
+
+## C2 — deferred climb, actual position replay and track0
+
+Original vtable checks correct the old assumption that all D8 receivers enqueue
+second90. Actual Player00811848+D8=0053D340 copies only parameter8/C/10 into a
+kind3 command in FIRST80, without calling DC. Remote008112D8+D8=00587540 is an
+8-byte DC tail dispatch, without queuing. All inspected actual derived AI vtables
+use00571C10: immediate DC, ignore its boolean, then allocate/copy the three LIVE
+parameter words and append kind3 in SECOND90. The two allocating wrappers are
+absent from the frozen inventory and receive no credit. Allocation exceptions
+are source safety guards; native allocation failure could append a null pointer.
+The actual state factory now binds that policy for each state;00583C30 calls it
+for second input44 and returns BEFORE the endurance jump/stop tail.
+
+Shared DC00586200 subtype1F uses the SAME B0 input7C only when non-null,
+local-player identity differs, and fresh mode1 is clear, in original order.
+Actual session input membership is checked before dereferencing a possibly retired
+record; missing history1 fails explicitly. Existing position_value virtual2C is
+original0073F9A0 (LEA EAX,[ECX+30]; RET), verified from vtable00816490 and raw
+bytes8D4130C3. Existing non7 AI bind seeds this actual Value owner; the receiver
+reads all four lanes30..3C, without making a new position/default/history.
+After optional replay the same E0 receives movement1E/changed1 and returns true.
+
+New00759E20 uses actual DD0 DC4 first, then samples E0 posture4C BEFORE mode/motion
+gates. Offline7, physical1AC!=1 or attachment kind4/14/15/22 enables native18C
+without moving anything. Ordinary replay resolves the actual model world matrix,
+then frame08(position), SAME Scene144(model), frame24, marker snapshot0075C070,
+posture rebind0075BC80, primary descriptor moves, shot recompute0075B870, shot
+moves, and Human base30..3C LAST. Existing markers/descriptor allocations/buckets/
+shot scale and flags/masks are reused. Original unused distance comparison has no
+consumer; matrix cache resolution is preserved. No new physics/model registry,
+simulation/presentation scheduling or synthetic camera. Exception prefixes retain
+all original completed stores/calls; membership/cold-owner checks are separate
+native safety guards.
+
+Track0 now invokes actual00758170(false): physical secondary22 -> equipment event2,
+23/24 ->3, with native A34=0/1 OR A44=2/4 gates. It samples current shadow A9C
+visibility BEFORE transfers and reads the shadow AGAIN afterwards; a previously
+hidden or missing shadow forces the resulting actual shadow hidden. Existing
+230 departing/arriving peers and model retirement/attachment receivers are reused.
+The true timed-transition branch of00758170 remains separate and unimplemented.
+
+Focused native ASan/UBSan/LSan: PASS59 dispatch/replay/transfer cases, including
+Player/Remote/AI differences, false/throw prefixes, parameter copy AFTER DC,
+actual Value seed/read, local/input/mode/attachment/DC4 gates, replay last-store,
+original climb early return, transfer gates and fresh shadow. A second audit
+PASS12 uses the ACTUAL physics owner, markers/descriptors/posture/shot bodies:
+positive scaled positions/radii, primary BEFORE shot sampling, retained flags/
+masks, every move prefix and matrix failures, retirement/retry/repeated lifetime.
+Engine model/matrix/volume, bucket, Face/audio and World/other subtype endpoints
+are explicitly doubled. These audits do not prove actual mission execution.
+
+C2 strict actual i386 World construction/destruction, factory/Base/common DC1F,
+World/DD0/physics/model replay and PUBLIC containing DD0 present_control_frame
+(including actual track0/230 peers/model receivers) compile and FULL LINK PASS.
+Remaining Runtime debug/visibility/walk/contact/ladder/fall/water/track/attachment
+endpoints are explicitly DEFINED throwing doubles, never production-installed.
+Existing application-launch and startup-probe strict O2 links PASS, never run.
+[C2 receipt](checkpoints/p22-hum-h4-climb-20261112.json) retains source/original/
+log/audit fingerprints; all six temporary audit sources/binaries removed.
+New partials00759E20/00587540/00758170 only;34 complete/3,019 partial
+(3,014 client+5 engine), frozen18,783 unchanged. Focused tracker checks PASS;
+inherited missing0062D880 evidence still blocks its full check. H4 stays OPEN.

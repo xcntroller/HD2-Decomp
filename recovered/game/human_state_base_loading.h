@@ -149,6 +149,21 @@ public:
     const auto& first_frame_commands()const{return first_;}
     const auto& second_frame_commands()const{return second_;}
     void queue_frame_command(FrameCommand command,bool second){(second?second_:first_).push_back(std::move(command));}
+    void bind_common_command_receiver(std::function<void(HumanStateBaseLoading&,const FrameCommand&)> receiver){
+        if(human_)throw std::logic_error("Cannot replace a bound Human common command receiver");
+        common_command_=std::move(receiver);
+    }
+    void emit_climb_command(){ //00583C30 virtualD8; actual family policy is factory-bound.
+        if(!common_command_)throw std::logic_error("Human climb requires its actual B0 command receiver");
+        FrameCommand command;command.kind=2;command.fields.set(8,0x1fu);
+        command.fields.set(0xc,0u);command.fields.set(0x10,0u);common_command_(*this,command);
+    }
+    HumanVector climb_history_position()const{
+        if(!input_||!inputs_.contains(input_))throw std::logic_error("Human climb lost its actual registered input record");
+        const auto* history=input_->history(1);
+        if(!history)throw std::runtime_error("Human climb requires actual history1 position value");
+        return history->position_value.words.template get<HumanVector>(0x30); //0073F9A0: LEA EAX,[ECX+30]; RET.
+    }
     void queue_drop_command(std::int32_t actor,std::int32_t item,const HumanVector& direction,float speed){ //00588EF0.
         FrameCommand command;command.kind=10;auto& f=command.fields;f.set(8,item);f.set(0x10,direction);f.set(0x20,speed);f.set(0x24,actor);
         queue_frame_command(std::move(command),true);
@@ -216,6 +231,7 @@ private:
     HumanFrameInputBuffer* first_frame_inputs_=nullptr;HumanFrameInputBuffer* second_frame_inputs_=nullptr; //Actual74/78 borrowers.
     MissionNavigation* navigation_=nullptr;MissionTableRecord* point_=nullptr;
     std::function<void(bool)> special_music_reference_;
+    std::function<void(HumanStateBaseLoading&,const FrameCommand&)> common_command_;
     std::function<void(std::int32_t,bool,const std::vector<FrameCommand>&)> frame_packets_;
 };
 } //namespace hd2::game
