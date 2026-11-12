@@ -3,11 +3,12 @@
 #include "host/game_session_activation.h"
 #include "game/dynamic_collision_point_queries.h"
 #include "game/collision_ray.h"
+#include "game/human_blast_damage.h"
 namespace hd2::host {
 //Actual fixed-update/finish bridge to SAME Startup008AED48 storage. Constructor
 //does not clear records or invent a World; positive generation uses actual
-//loaded tree/buckets/frame data/camera. Damage/Physics positive receivers still
-//reject at their actual boundary, before publishing an unhandled hit.
+//loaded tree/buckets/frame data/camera and actual Human damage owner. Other
+//derived damage/Physics receivers still reject at their actual boundary.
 class GameBlastWaves final : public GameSessionTransientFinish {
 public:
     using Process=StartupSession::BlastWaves;using Vector=Process::Vector;using Matrix=GameActorServices::Matrix;
@@ -56,16 +57,24 @@ public:
             &d_.scene.collision_tree(),&d_.scene.buckets(),d_.scene.collision_resources(),d_.scene.frames());
         return bool(ray.ray(start,displacement,0xffffffffu,0xb10000u,false)); //B10000 is a MASK, not a pointer.
     }
-    std::int32_t blast_material_index(const Actor&,EngineFrame*){
+    std::int32_t blast_material_index(const Actor& actor,EngineFrame*){
+        if(actor.base().type()==3)return game::human_blast_material; //0059C2A0, absent frozen inventory.
         throw std::runtime_error("Blast damage requires actual actor virtualD8 material receiver");
     }
     std::uint32_t blast_material_absorption(std::int32_t index)const{return d_.startup.car_definitions().materials().at(index).word(0x28);}
-    void blast_actor_damage(Actor&,std::uint32_t,float,const Vector&,const Vector&,std::uint32_t){
+    void blast_actor_damage(Actor& actor,std::uint32_t kind,float amount,const Vector& point,const Vector& impulse,Actor* source){
+        if(actor.base().type()==3){
+            auto& target=d_.world_actors.human_loading_actor(&actor);
+            auto* cause=source?&d_.world_actors.human_loading_actor(source):nullptr;
+            game::apply_human_blast_damage(target,kind,amount,point,impulse,cause);return;
+        }
         throw std::runtime_error("Blast damage requires actual actor virtualD4 receiver");
     }
     void blast_physics_impulse(EngineFrame* frame,std::int32_t,unsigned){
         const auto* data=d_.scene.frames().find_actor_frame_data(frame);
-        if(data&&data->words[5])throw std::runtime_error("Blast force requires actual0043C6A0 Physics owner receiver");
+        //The existing source method name is historical: EC+14 borrows a
+        //Versions group here;0043C6A0 damages its parts, not a rigid-body force.
+        if(data&&data->words[5])throw std::runtime_error("Blast contact requires actual Versions0043C6A0/0043B000 part transitions");
     }
 private:
     static world_loading::Human& human(Actor& actor){

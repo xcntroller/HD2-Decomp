@@ -1598,3 +1598,55 @@ loading and desktop acceptance remain OPEN. Next: actual00730A40 connection6C/33
 producer/worker lifecycle (originals reused read-only and pinned), full status9 /
 received0 game publication/failure protocol; positive runtime kind2/9C links, non7
 zone/frame dependencies and full containing Human failure/re-entry/retirement.
+
+
+### Containing blast-to-Human damage — 2026-11-12
+
+The actual GameBlastWaves bridge now routes Human material/D4 through SAME
+containing World loading lifetime. D8=0059C2A0 is genuine constant66, independent
+of hit frame, and absent frozen: no new credit.006DDD40 raw6DDE52..6DDE72 pushes
+six D4 arguments: kind(NULL-source?4:2), amount, point, impulse, SAME source1C,
+final hit-kindZERO.
+Request/Record source1C was incorrectly represented as uint32; it is now typed
+Actor*, preserving a full-width borrowed Human pointer. No refcount, identity
+lookup, serialized source or new Human allocation is introduced. The source
+outlives its original required native use or the host map guard fails explicitly.
+World validates target/source by comparing actual Human owner-map keys BEFORE
+dereferencing a possibly retired borrower; require actual published lifetime and
+reject in-progress/retired ownership. Invoke existing lifetime.damage→005A1C90,
+which retains all existing health/policy/impulse/B0 command/effect ordering. No new
+health-only damage method or substitute body. The added guard is compile-verified
+in actual World; native fixtures use live valid borrowers.
+
+A concrete terminology correction:006DDD40 frameEC+14 (word5) points to SAME
+Versions Master, as existing VersionModuleLoading::add and original0043C6A0
+confirm.0043C6A0 iterates part14/18, calls0043B000 and rechecks the global master
+registry after callbacks. This is not a rigid-body impulse. The historical source
+endpoint name `blast_physics_impulse` is retained; its positive missing Versions
+part-transition path still throws with a corrected diagnostic. Other derived
+actor material/D4, Versions transitions and full producer/application integration
+remain required. No new credit for these absent bodies or unchanged blast math.
+
+Focused `human-containing-blast-native` ASan/UBSan/LSan PASS actual process policy
+→Human material66→SAME source lifetime gateway→actual005A1C90→real Player B0 command
+queue, sourced and NULL modes1/2/3/7 x100 (800 lifetimes). Check original kind2/4,
+final hit0, pointer identity, material absorption strict threshold, authority gate,
+missing lifetime, failed hit before health/queue mutation, retained-node release,
+record's extra retirement tick. Geometry/ray/Versions/other damage leaves are
+explicit doubles; Player Base bind is not full Player activation. Strict actual
+World source/create/update/material/damage/guard i386 and final launcher/probe
+compile/link PASS. No original/Windows output executes.
+
+[Receipt](checkpoints/p2.2-human-containing-blast-20261112.json) extends4 existing
+entries, adds0:34 complete/2667 partial, no promotions. Full selected Human
+checkbox, application loading/rendering and desktop acceptance remain OPEN.
+Runtime kind2/9C research now identifies original Mine factory005FDE30 allocating
+0x120, ctor005FDEC0/vtable00812F08, actual scene name Actor_mine. Its timer94 arms
+sphere0x42 after signed elapsed reaches2000, with model positionY+.2 and radii
+.4 for item71, .15 otherwise; deactivation unregisters99 BEFORE common cleanup.
+Full owner is NOT implemented or credited. WORK `human-runtime-kind2-*` pins raw
+lifecycle/tick/vtable and final ABI v2 (005FEBB0 takes NO stack args); read-only
+reused originals preserve provenance. The derived005FDFB0 exact index lookup was
+late (after its export); its raw/vtable evidence preceded that export. Do not claim
+that lookup happened before it. Continue actual runtime producers/lifetime, entry
+protocol and containing frame/failure/re-entry/retirement.

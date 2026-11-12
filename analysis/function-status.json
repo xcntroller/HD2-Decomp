@@ -27094,24 +27094,34 @@
       "program": "client",
       "entry": "006df170",
       "status": "partial",
-      "coverage": "Construct actual shared blast record, immediate100ms advance, conditional append and consumed-wave true return.",
-      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "coverage": "Construct actual shared blast record, immediate100ms advance, conditional append and consumed-wave true return. Actual Request source is a typed Actor* borrower forwarded unchanged through construction/advancement; the World Human damage receiver is now bound.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/blast_wave_process.h",
         "analysis/blast-wave-process.md",
-        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json",
+        "recovered/game/human_blast_damage.h",
+        "recovered/host/game_blast_waves.h",
+        "recovered/host/game_world_actors.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-containing-blast-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "006ddfc0",
       "status": "partial",
-      "coverage": "Blast candidate point/radius query, repeated Human child dedup, camera notification, reverse retained-frame node geometry and native tail insertion.",
-      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "coverage": "Blast candidate point/radius query, repeated Human child dedup, camera notification, reverse retained-frame node geometry and native tail insertion. Native source1C now retains the actual typed borrowed Human pointer, without ownership transfer or DWORD truncation.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/blast_wave_process.h",
         "analysis/blast-wave-process.md",
-        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json",
+        "recovered/game/human_blast_damage.h",
+        "recovered/host/game_blast_waves.h",
+        "recovered/host/game_world_actors.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-containing-blast-20261112.json"
       ]
     },
     {
@@ -27166,12 +27176,17 @@
       "program": "client",
       "entry": "006ddd40",
       "status": "partial",
-      "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required.",
-      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required. Reached Human D8=66 and actual D4 through SAME live loading owner, final hit0; record1C is a full-width typed borrowed Human source, not a scalar identity. Other actor/Versions positive receivers remain required.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/blast_wave_process.h",
         "analysis/blast-wave-process.md",
-        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json",
+        "recovered/game/human_blast_damage.h",
+        "recovered/host/game_blast_waves.h",
+        "recovered/host/game_world_actors.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-containing-blast-20261112.json"
       ]
     },
     {
@@ -34390,12 +34405,18 @@
       "program": "client",
       "entry": "005a1c90",
       "status": "partial",
-      "coverage": "Actual authority damage controller, hit/difficulty/death/state/effect/retaliation sequence and nonoffline configuration policy through SAME Human/World owners; required external effects remain explicit.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Actual authority damage controller, hit/difficulty/death/state/effect/retaliation sequence and nonoffline configuration policy through SAME Human/World owners; required external effects remain explicit. Actual containing blast006DDD40 now reaches SAME Human lifetime/damage body with kind2/4, source pointer and final hit0; no separate health-only effect.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/human_damage.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/human_blast_damage.h",
+        "recovered/game/blast_wave_process.h",
+        "recovered/host/game_blast_waves.h",
+        "recovered/host/game_world_actors.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-human-containing-blast-20261112.json"
       ]
     },
     {

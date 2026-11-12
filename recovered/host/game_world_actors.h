@@ -57,6 +57,15 @@ public:
     }
     auto& rigid_bodies(){require_open();return bodies_;}
     using Human=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
+    Human& human_loading_actor(GameSceneActors::Instance* borrowed){
+        require_open();
+        //Compare actual owner keys BEFORE touching a possibly retired source.
+        for(const auto& entry:human_loading_)if(static_cast<GameSceneActors::Instance*>(entry.first)==borrowed){
+            if(!entry.second||entry.first->loading_lifetime!=entry.second.get())break;
+            return *entry.first;
+        }
+        throw std::logic_error("Human borrower has no actual live containing lifetime");
+    }
     template<class Owner>Owner& human_loading_owner(Human& actor){
         require_open();const auto found=human_loading_.find(&actor);
         if(found==human_loading_.end())

@@ -11,7 +11,7 @@ Continue dependencies until the FULL selected checkbox completes or genuinely bl
 explicitly requested returning here. Check HEAD/status before acting. Transfer
 was byte-verified in ignored WORK `human-return-main-20261111`. Other LIFE/UI/PACK/
 research worktrees and `/tmp/hd2-p22-hum-continue` are separate; preserve them and
-external master merges. Latest preceding checkpoint6995623; older checkpoint
+external master merges. Latest preceding checkpoint18196e5; older checkpoint
 hashes may differ after external rebases.
 
 No original EXE/DLL/Proton or Windows fixture execution. Compile/link only.
@@ -21,47 +21,36 @@ loading remains disabled; no mission desktop verification.
 
 ## Latest verified source checkpoint
 
-[Entry input/voice receipt](analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json)
-adds18 partials, extends2, no promotions:34 complete/2667 partial (2662 client+5
-engine) of18783. Actual00731610 uses SAME process14 current records, resets first/
-second pending lists, selects ONE FIFO BEFORE430, then node/count before payload
-release. No flush or other-FIFO clear.0073E5A0/E600/E660/E6E0 actual pending words/
-identity/erase policy are in source. Forced deletion of a shared alias still makes
-later access fail; no deferred refcount cleanup. No-decrement/nonforced positive
-count would spin natively and reports nonprogress. Source allocation RAII reclaims
-unconsumed payloads after native destructor node cleanup, where original leaks.
-Actual packet-history20/B0/Car message producers remain required, not fabricated.
+[Containing blast receipt](analysis/checkpoints/p2.2-human-containing-blast-20261112.json)
+extends4, adds0: still34 complete/2667 partial. Human D8=66 and actual D4 now reach
+SAME lifetime/005A1C90/Player B0 queue. Record/Request1C is a typed borrowed Human
+pointer, not DWORD/serialized identity; final hit-kind0. Actual World compares live
+owner keys before dereferencing target/source. Native mode1/2/3/7 sourced/NULL800
+lifetimes and material/authority/failure/node-retirement checks PASS; geometry/ray/
+Versions and remaining damage endpoints are doubles. Actual World/i386 and latest
+launcher/probe compile/link PASS. No application or desktop execution.
 
-00724110 actual5044/descriptor88/profile38/optional voice/manager replacement prefix
-is Startup-bound, BEFORE old-game retirement.00724370 publishes actual0C before
-window/init; ignored HRESULT retained. Actual COM backend/factory GUIDs and same
-settings/transmit04 view. Raw caller resolves EIGHT00741E20 args: window,server,
-client,connection,mode,compressionGUID,clientConfig,optionalPlaybackInterface.
-**Do not trust older v1/v2 stack aliases.** Final `human-entry-voice-abi-v3` plus raw
-`human-entry-voice-{create,helpers}.asm` pin this. Connect(audio,clientConfig,1),
-optional interface is audio18. Native0x24/0x40 sizes are HEX, not decimal.
-Client Disconnect1/Release/null before server Stop0/Release/null; process0C stays
-published through deletion. Repeated creation native leaks remain represented by
-allocation-only bookkeeping until source final fallback. Cold/non7 reset guard
-still reports unsupported positive networking; no successful teardown placeholder.
+Concrete correction: frameEC+14 word5 is a Versions master, not Physics force;
+0043C6A0/0043B000 part transitions still require real bodies. Historical
+`blast_physics_impulse` endpoint name remains; its required diagnostic is corrected.
+Other actor D8/D4 and full containing frame remain required.
 
-Human delayed/deactivation attachment80 now borrows SAME existing Car004D9A40 /
-StaticWeapon00604630 seats before160/164 clear. Kernels unchanged; added actual
-World binding compile-verified, not full occupied World/frame execution. Both seat
-bodies are absent frozen: no new credit. ASan/UBSan/LSan pending-input/queue and
-voice native checks pass, mode1/2/3/7 x100 and failure prefixes. COM/window/clock/
-locks/replacement endpoints are explicit doubles. Strict actual complete World/
-Human/entry/voice i386 plus final sequential launcher/probe compile/link pass
-`human-entry-input-voice-{host,application}-i386.log`. No Windows output ran.
-Temporary audits stay ignored until full selected checkbox completes.
+Earlier entry checkpoint:
 
-Earlier [authority spawn/map](analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json),
-[presentation spawn](analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json),
-[Car/contact](analysis/checkpoints/p2.2-human-car-contact-20261112.json),
-[process input](analysis/checkpoints/p2.2-human-process-input-20261112.json),
-[application messages](analysis/checkpoints/p2.2-human-application-packets-20261111.json)
-and peer lifecycle remain valid; do not repeat unchanged solver/clip/contact audits.
-Detailed contracts/exclusions live in the active Human analysis.
+[Entry input/voice](analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json)
+18196e5 added18 partials.00731610 resets SAME pending records and clears ONLY
+selected FIFO under430; forced stale aliases/nonprogress fail honestly.00724110
+prefix and actual0C voice owner share existing settings/transmit interface04.
+Final voice ABI is `human-entry-voice-abi-v3`: EIGHT initializer args end with
+clientConfig,optionalPlaybackInterface; Connect(audio,clientConfig,1), interface
+is audio18. Creation publishes before init, ignores HRESULT; client closes before
+server, global0C clears after deletion. Required non7 reset still fails; source
+fallback cleanup is explicitly separate. Attachment80 now borrows existing
+Car/StaticWeapon seat receivers. Detailed safety differences/contracts live in
+[Human source](analysis/human-ragdoll-source.md); no unchanged solver/clip/contact
+audit is needed. Temporary audits stay ignored until the full checkbox completes.
+Earlier authority/presentation spawn, Car/contact, process input, application
+messages and peer lifecycle checkpoints remain valid.
 
 ## Immediate next work
 
@@ -78,7 +67,16 @@ Detailed contracts/exclusions live in the active Human analysis.
    shutdown and initializes SAME00698510/006989B0. Received0 manager replacement
    precedes old game retirement and its failed new game deletion differs from
    status9's explicit shutdown/delete. Preserve these distinctions.
-3. Actual runtime00479700 kind2 Human-reference9C owner is still missing; forward
+3. Actual runtime00479700 kind2 Human-reference9C owner is still missing.
+   Original Mine factory005FDE30 allocates0x120, ctor005FDEC0/vtable00812F08;
+   scene name Actor_mine. Timer94 reaches2000 then005FEBB0 (NO stack args) arms
+   type42/mask40000 sphere at modelY+.2, radius.4 for item71/.15 otherwise;
+   deactivation unregisters99 before common. WORK human-runtime-kind2-* pins
+   lifecycle/tick/vtable, read-only originals and ABI-v2. Some genuine leaves
+   absent frozen, zero credit. Do not use older FEbb0 forced one-arg prototype.
+   Exact005FDFB0 index lookup was late, after its export; do not claim otherwise.
+   The positive9C producer005FE010 and00478B90 still require full Mine owner.
+   The forward
    ownership scan already preserves native increment-after-swap behavior. Non7
    zone decision/frame receivers and full containing Human reaction/frame,
    partial failure/re-entry/ordered teardown remain. Existing actual attachment80
