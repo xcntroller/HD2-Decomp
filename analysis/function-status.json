@@ -8311,7 +8311,9 @@
         "analysis/game-owner-integration.json",
         "analysis/game-owner-integration-map.json",
         "recovered/host/game_owner.h",
-        "recovered/game/table_storage.h"
+        "recovered/game/table_storage.h",
+        "recovered/host/game_ui_scene_callbacks.h",
+        "analysis/checkpoints/p22-render-wiring-20261112.json"
       ]
     },
     {
@@ -40073,7 +40075,9 @@
         "recovered/game/hud_command_loading.h",
         "recovered/host/game_ui_presentation.h",
         "analysis/p22-ui-implementation.md",
-        "analysis/checkpoints/p22-ui-command-controls-20261111.json"
+        "analysis/checkpoints/p22-ui-command-controls-20261111.json",
+        "recovered/host/game_render_stages.h",
+        "analysis/checkpoints/p22-render-wiring-20261112.json"
       ]
     },
     {

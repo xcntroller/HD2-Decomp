@@ -347,3 +347,7 @@ render/callback ownership. No merge/push or application enabling was performed.
 Native register/object/allocator ABI, identical historical heap trajectories and
 engine pixel equivalence remain outside this source-only verification. This does
 not create a new missing history producer or an external allocator workstream.
+
+## Merged UI and application render entry
+
+[Wiring continuation](p22-render-wiring-implementation.md) over merged mastera820e70 connects actual modal cleanup, callback-world/lifetime guards and GameApplicationState.render to the existing bound Scene path. Original source-completion results above remain; old unmerged observations are historical. FRAMEc36bba8 and final OWN activation/input/update installation remain separate.
