@@ -69,3 +69,33 @@ If T7/T8 requires one of those fresh paths and no lawful source producer exists,
 report the exact case as blocked and continue independent required paths. D12
 cannot close H2 with a reached required failure hidden by a double. Application
 loading/render/failure/repeat and user desktop acceptance remain P2.2 gates.
+
+## Source closure blockers
+
+H2 cannot currently pass D12 under the project's no-invented-initialization rule.
+These are concrete reached native state omissions, not a compilation, scheduling
+or desktop-test blocker. Existing verified evidence is reused; no repeated audit
+of unchanged kernels was performed.
+
+- Required T7/T8 positive Car part damage calls694→actual Item12 construction/
+  005FDC50→same RigidBody. On its first authority frame005FDD10 calls004C9000→
+  004CB2B0;004CB2CD reads/toggles5F9 BEFORE gravity or movement.004C84A0,
+  reset004C8980 and actual launch/configuration leave5F9 unwritten. The published
+  Item remains registry-owned and no successful motion frame is reported.
+  [Original evidence and native fresh/warm distinction](human-car-rigid-motion-source.md#confirmed-unproduced-byte-and-verification-limits).
+- Positive wheel detachment calls698→005FDC00. It produces lifetime690 and
+  activation produces fading694, but neither constructor nor launcher produces
+  expiry695. After a successful body frame,005FDD10 stores the elapsed-subtracted
+  lifetime; remaining<=500ms (if not already fading) or remaining<=0 reads695 and
+  fails. No fade/removal is fabricated; the actual actor/body remain owned.
+  [Original Item12 lifetime evidence](human-car-item12-source.md#frame-lifecycle-and-original-unwritten-byte).
+- EXPL record8/smoke14 remain the separately recorded DM producer omissions.
+  They must stay visible when their required positive reset/destruction branch is
+  selected; a cold empty effect pool or a present parsed DM model is not proof
+  that every positive branch has a producer.
+
+Closure requires demonstrated original producers/prior ownership or proof that
+the required native branch cannot be reached. Otherwise it requires an explicit
+change to the reconstruction scope/behavior policy. None is assumed or invented.
+D4a is committed and independently verified; D4b/D5–D10 remain visible unfinished
+source dependencies and do not remove these D11 blockers.

@@ -133,3 +133,33 @@ Reached EXPL8/smoke14 and detached part5F9/wheel695 remain honest D11 failures.
 No unproduced state, positive occupied/mounted reset, AI subtype14 dispatch or
 non7 service is made successful by this checkpoint. D4b/D5/D10–D12 and actual
 application/render/user desktop acceptance remain open.
+
+## D4b caller research after the receiver checkpoint
+
+No additional implementation or function credit. The new index receipt is
+WORK `human-car-target-command-deps-index.txt`. Separate rollback script
+`ExportHumanCarTargetTransformABI.java`→`human-car-target-transform-final` retains
+004DEC60/default00586200; the earlier `target-transform-original` is superseded.
+The frozen D4a script and every receipt fingerprint remain unchanged.
+
+Raw `human-car-target-command-subtype14.asm` verifies0058622E..0058631D:
+refresh actual held item first, resolve target identity, reject NULL target/item
+or definition virtual10!=0B, borrow Human260 head world position and B0 target
+direction, then004DEC60.004DDCF0 is simply actor6A0==0 (the current Car body
+health), not an unknown general admission service. With mode1, zero health
+returns false; otherwise call004DEAD0. Without mode1 call004DEB50 directly.
+
+Raw `human-car-target-transform.asm` verifies004DEC60 RET16: multiply direction
+XYZ by FLOAT10 from bounded0080FA14, call actual scene104(root=target frame20,
+flags08040000). On a hit, native details0 supplies distance and details10/14/18
+normal; position is distance*UNSCALED direction+head, with a separate Z product
+spill, and second output is negative normal. Fourth output lanes copy unproduced
+stack padding; no geometric claim is made for those lanes.
+
+On a MISS the helper leaves BOTH output XYZ vectors unwritten. Caller005862AD
+does not test the returned Boolean:005862B2 immediately tests global mode and
+continues to the receiver. D4b must preserve that missing-output boundary rather
+than choose a guessed attachment point. Actual AI command routing also remains
+open: the supplied packet receiver selects Player/Remote B0 protocols and cannot
+be relabeled as the missing AI virtualDC dispatcher. This research does not
+close D4b or bypass the separate H4/state ownership boundary.

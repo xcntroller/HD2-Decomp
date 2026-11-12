@@ -26,7 +26,7 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
 
 - [x] H1 — Model presentation through actual007A7470 dispatch.
   [Source checkpoint](checkpoints/p2.2-human-model-presentation-20261111.json).
-- [ ] H2 — Reactions, damage and ragdoll through containing owners. **Active**;
+- [ ] H2 — Reactions, damage and ragdoll through containing owners. **Source closure blocked by D11**;
   source achievements and explicit remaining dependencies follow below.
 - [ ] H3 — Positive interaction actions00751480/00755500: occupied Car/StaticWeapon
   entry/exit and mounted receivers, existing seats/mass/cameras/control ownership.
@@ -217,6 +217,12 @@ interface18 and publish0C before initialization. Do not repeat its completed aud
   path, supply a demonstrated original producer, prove native unreachability or
   record a genuine blocker with its exact trigger and retained failure prefix.
   Never invent initialization. A remaining reached required failure blocks H2.
+  **Current closure blockers:** required T7/T8 fresh part launch reaches004CB2CD
+  before any motion with5F9 unproduced; fresh wheel lifetime reaches005FDD10's
+  <=500ms/expiry695 read without a producer. Existing native checks already
+  preserve both failures. [Exact blocking paths](human-reaction-containing-boundary.md#source-closure-blockers).
+  D4b additionally requires a policy for subtype14's ray-miss outputs:004DEC60
+  leaves XYZ unwritten on miss, while005862AD ignores its Boolean result.
 - [ ] D12 — Consolidated containing-path verification and H2 source closure:
   actual dispatch, positive paths, interrupted mutation/cleanup, repeated entry
   and teardown; targeted ASan/UBSan/LSan, strict actual i386 and final launcher.

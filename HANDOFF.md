@@ -17,6 +17,14 @@ complete AI/Car/Human frame from leaf source or compilation. No agents or push.
 No original EXE/DLL/Proton or Windows output execution. Heavy compilation and
 Ghidra sequential; check for other worktrees' heavy builds before starting ours.
 
+**H2 source closure is genuinely blocked by D11**, independently of remaining
+source dependencies. Required T7/T8 fresh detached parts fail at004CB2CD's5F9
+read before gravity/motion; fresh wheels fail at005FDD10's <=500ms/expiry695
+read after body/lifetime mutation. No actual ctor/reset/launcher producer exists
+in the confirmed evidence. Keep registry/body ownership and those failures;
+do not invent a byte/default or count warm seeded fixtures as fresh success.
+[Exact blocking paths](analysis/human-reaction-containing-boundary.md#source-closure-blockers).
+
 ## Latest verified source: D4a
 
 [Contract](analysis/human-car-frame-events-source.md),
@@ -71,6 +79,13 @@ another leaf receiver. D4a is checked; D4 itself remains unchecked.
   Human head260 matrix,005A80E0/004DEC60 transforms and004DDCF0 admission. Mode1
   invokes004DEAD0; presentation-only invokes004DEB50. Actual AI command dispatch
   remains H4/D4b work, not proven by direct GameBlastWaves receiver calls.
+  New bounded caller/transform research is consolidated in the D4a contract's
+  final section: separate ExportHumanCarTargetTransformABI.java→
+  human-car-target-transform-final, raw human-car-target-command-subtype14.asm
+  and human-car-target-transform.asm.004DDCF0 is Car6A0==0.004DEC60's ray miss
+  leaves BOTH output XYZ vectors unwritten, and005862AD ignores its Boolean.
+  Do not replace that missing-output boundary with a guessed attachment point.
+  D4a script and ALL receipt fingerprints remain unchanged. No new source/credit.
 - D5 reached occupied/non7 Car activation/control/frame/reset uses existing
   004D16A0/loading lifetime. Positive mounted004C6620 reset remains guarded AFTER
   its ascending seat removal. No fake driver/input/transport/initialization.
