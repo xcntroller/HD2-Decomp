@@ -53,6 +53,11 @@ struct HumanAIQueryLoading {
         state.set(0x58,std::uint8_t{0});
         state.set(0x24,0u);
     }
+    void request_mode(std::uint32_t mode,std::uint32_t range){ //00560E20.
+        state.set(0x38,mode);state.set(0x3c,range);state.set(0x20,std::uint16_t{0xffff});
+        state.set(0x50,(state.get<std::uint32_t>(0x50)&0x7ff7fff8u)|5u);
+        state.set(0x58,std::uint8_t{0});state.set(0x24,0u);
+    }
     void finish(){ //00560F30.
         door=nullptr;
         state.set(0x50,(state.get<std::uint32_t>(0x50)&0xcfff57ffu)|0x80000000u);

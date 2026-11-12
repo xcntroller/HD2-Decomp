@@ -29890,12 +29890,14 @@
       "program": "client",
       "entry": "00548610",
       "status": "partial",
-      "coverage": "Select and transition supported Guard actions with health, skill, equipment and event gates.",
+      "coverage": "Select and transition supported Guard actions with health, skill, equipment and event gates. H5 panic/vehicle source checkpoint: Complete stated kind1/3 vehicle decision modes and vehicle event gates, distinct idle/fallback policies; exact idle0 decision gate and real armed action4C. Mounted kind6 and full Scene2 runtime remain required.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
@@ -29916,24 +29918,28 @@
       "program": "client",
       "entry": "00548b00",
       "status": "partial",
-      "coverage": "Run Guard kind 1 wait, hostile acquisition, missing-cover and timed attack paths.",
+      "coverage": "Run Guard kind 1 wait, hostile acquisition, missing-cover and timed attack paths. H5 panic/vehicle source checkpoint: Complete stated kind1/3 vehicle decision modes and vehicle event gates, distinct idle/fallback policies; exact idle0 decision gate and real armed action4C. Mounted kind6 and full Scene2 runtime remain required.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00548900",
       "status": "partial",
-      "coverage": "Handle supported Guard kind 1 damage and report events.",
+      "coverage": "Handle supported Guard kind 1 damage and report events. H5 panic/vehicle source checkpoint: Complete stated kind1/3 vehicle decision modes and vehicle event gates, distinct idle/fallback policies; exact idle0 decision gate and real armed action4C. Mounted kind6 and full Scene2 runtime remain required.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
@@ -29966,14 +29972,15 @@
       "program": "client",
       "entry": "0054ac40",
       "status": "partial",
-      "coverage": "Run Guard kind 3 wait and hostile acquisition, and handle its stationary attack state. H5 source checkpoint: Extend ordinary Guard route/attack/chase modes and attached direction/input branch on actual owners. Remaining vehicle/event/panic/mounted workers and H4/H6/H8 boundaries are explicit; no whole Guard closure.",
+      "coverage": "Run Guard kind 3 wait and hostile acquisition, and handle its stationary attack state. H5 source checkpoint: Extend ordinary Guard route/attack/chase modes and attached direction/input branch on actual owners. Remaining vehicle/event/panic/mounted workers and H4/H6/H8 boundaries are explicit; no whole Guard closure. H5 panic/vehicle source checkpoint: Complete stated kind1/3 vehicle decision modes and vehicle event gates, distinct idle/fallback policies; exact idle0 decision gate and real armed action4C. Mounted kind6 and full Scene2 runtime remain required.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
         "recovered/game/human_guard_ai_state_loading.h",
         "analysis/human-guard-area-source.md",
-        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
@@ -30066,12 +30073,14 @@
       "program": "client",
       "entry": "00559610",
       "status": "partial",
-      "coverage": "Apply null and actor-kind gates before the required vehicle seat capability check.",
+      "coverage": "Apply null and actor-kind gates before the required vehicle seat capability check. H5 panic/vehicle source checkpoint: Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     },
     {
@@ -41903,6 +41912,186 @@
         "recovered/game/human_guard_ai_state_loading.h",
         "analysis/human-guard-area-source.md",
         "analysis/checkpoints/p2.2-human-guard-task-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054b8f0",
+      "status": "partial",
+      "coverage": "Guard kind5 idle/surrender/flee/armed modes, actual Inline actions, target/drop/reload requests, original timers and state fallthrough.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558aa0",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558a60",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558980",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558230",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00572c00",
+      "status": "partial",
+      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560e20",
+      "status": "partial",
+      "coverage": "Publish query mode/range, point sentinel, original flags and reset fields on the same query owner.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a2c50",
+      "status": "partial",
+      "coverage": "Reached Guard outer drop: three actual LS3DF random draws and original velocity spills, through proven00587BE0 tail receiver to existing005A3490, then178 publication. Ignored native return value excluded.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559660",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005596d0",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559570",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005525f0",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00555400",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00555ca0",
+      "status": "partial",
+      "coverage": "Actual vehicle seat capability, rocket predicates, reverse alternate hostile selection, point/posture cover and anti-tank/avoidance route geometry on existing navigation; original sentinel/random/mutation policies.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559590",
+      "status": "partial",
+      "coverage": "Equip actual kind6 from hand3/shoulder2 using the same inventory move/swap owners and return the original success policy.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-guard-area-source.md",
+        "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
       ]
     }
   ]

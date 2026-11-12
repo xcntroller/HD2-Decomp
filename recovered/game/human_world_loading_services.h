@@ -888,6 +888,15 @@ public:
     template<class Human>bool human_guard_mounted(Human& human){ //00548590.
         auto* actor=human.field160;if(!actor)return false;switch(actor->base().type()){case 4:case 0x14:case 0x15:case 0x22:return human_pose_actor_has_control(actor,human.field164);default:return false;}
     }
+    template<class Human,class Entry>void human_guard_drop_hand(Human& human,Entry entry,const HumanVector& direction){ //005A2C50→Guard70/00587BE0→005A3490.
+        const auto x=static_cast<float>(static_cast<long double>(human_sound_random())*.20000000298023224f);
+        const auto y=static_cast<float>(static_cast<long double>(human_sound_random())*.10000000149011612f);
+        const auto z=human_sound_random();HumanVector velocity{};
+        velocity[0]=static_cast<float>((static_cast<long double>(x)+direction[0])*2.5f);
+        velocity[1]=static_cast<float>((static_cast<long double>(y)+direction[1])*2.5f);
+        const float last=static_cast<float>(static_cast<long double>(z)*.20000000298023224f+direction[2]);velocity[2]=last*2.5f;
+        drop_human_damage_item(human,entry,velocity);human.activation.flag178=true;
+    }
     template<class State>void human_attachment_frame_inputs(State& state){ //00583BC0, actual Human state virtual00.
         auto& human=*state.human();auto* actor=human.field160;if(!actor)throw std::logic_error("Attached state input requires actual actor");
         if(!human_is_player(human)&&human.field164!=0)return;
@@ -1086,6 +1095,13 @@ public:
         auto* storage=human.base().storage();
         if(!storage||storage->single()||!storage->holder(2))throw std::logic_error("Guard weapon selection requires the actual shoulder holder");
         return storage->holder(2)->entry();
+    }
+    template<class Human>bool human_guard_equip_rocket(Human& human){ //00559590, real hand3 and shoulder2 commands.
+        auto* storage=human.base().storage();if(!storage||!storage->holder(3)||!storage->holder(2))throw std::logic_error("Guard rocket selection requires actual holders3/2");
+        const auto hand=storage->holder(3)->entry(),shoulder=storage->holder(2)->entry();auto& items=dependencies().world_actors.items();
+        if(hand&&items.runtime_item(hand).definition().kind()==6)return true;
+        if(!shoulder||items.runtime_item(shoulder).definition().kind()!=6)return false;
+        auto& inventory=composition(human).inventory();return hand?inventory.swap(hand,3,human,shoulder,2):inventory.move(shoulder,human,2,3,0);
     }
     template<class State>bool prepare_guard_frame_weapon(State& state){ //005594B0.
         state.refresh_item();

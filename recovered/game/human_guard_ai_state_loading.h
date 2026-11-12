@@ -416,14 +416,16 @@ private:
             return resources.current_action_kind()!=0;
         }
         drain_guard_frame_events(world,control); //005A8480, via current Guard F4.
-        if(!can_interrupt_task(control))return true;
+        if(task_animation(control)!=0)return true; //00548610 requires exact idle0, unlike00553CC0 hostile interruption.
         kind=resources.current_action_kind();
         if(!kind)return false;
         const auto skill=signed_stat(*human,3);
         if(kind==5){
-            if(skill>40&&equip_missing_frame_weapon(world))
-                throw std::runtime_error("Guard armed task requires the actual inline weapon command");
-            return true;
+            if(skill>40&&equip_missing_frame_weapon(world)){
+                control.action_command(0x4c);if((world.mode_flags()&7u)!=7u)throw std::runtime_error("Guard armed task requires actual005890D0 non7 transport");
+                if(hostile)select_hostile_action();else select_frame_task(world,control);
+            }
+            return resources.current_action_kind()!=0;
         }
         if(kind==6){
             if(mounted())return true;
@@ -478,16 +480,12 @@ private:
                         if(kind==3){
                             if(!hostile)look(); //0054AB70.
                         }else if(kind==1){
-                            if(damage||code==0x30000001u){
-                                if(const auto* vehicle=source->field160){
-                                    const auto type=vehicle->base().type();
-                                    if(type==4||type==0x15)throw std::runtime_error("Guard event requires the actual target vehicle query");
-                                }
-                                auto& action=resources.template current_action_as<HumanAIAction1Pool>()->state;
-                                const auto mode=action.template get<std::uint32_t>(8);
-                                if(damage&&!hostile)look();
-                                if(mode==0||mode==0x12eu)action.set(8,1u);
-                            }else if(!hostile)look();
+                            auto& action=resources.template current_action_as<HumanAIAction1Pool>()->state;
+                            const auto mode=action.template get<std::uint32_t>(8);const bool vehicle=vehicle_target(source,world);
+                            if(damage){
+                                if(!vehicle||mode==301){if(!hostile)look();if(vehicle_target(source,world)||mode==0||mode==302)action.set(8,1u);}
+                            }else if(code==0x30000001u){if(vehicle||mode==0||mode==302)action.set(8,1u);}
+                            else if(!hostile)look();
                         }else{
                             auto& action=resources.template current_action_as<HumanAIAction5Pool>()->state;
                             const auto mode=action.template get<std::uint32_t>(8);
@@ -525,6 +523,191 @@ private:
             default:break;
             }
         }
+    }
+    template<class Words,class World,class Inline>bool advance_vehicle_action(Words& action,World& world,Inline& control,std::uint32_t idle){ //00548B00/0054AC40 shared vehicle modes.
+        const auto mode=[&]{return action.template get<std::uint32_t>(8);};if(mode()<100)return false;
+        auto& resources=this->resources();auto& query=resources.query();
+        const auto alive=[&]{if(!timer_target_)return false;auto* target=dynamic_cast<Human*>(timer_target_);if(!target)throw std::logic_error("Guard vehicle action requires actual Human target");return human_frame_signed_word(target->properties.stats_ec[0])>0;};
+        const auto finish=[&]{resources.target().bind_actor(nullptr);action.set(8,idle);resources.flag().request(0);};
+        const auto query_mask=[&]{return world.human_guard_root_sector(*this->human())?0x10008u:0x4008u;};
+        if(mode()==100){
+            if(world.human_guard_equip_rocket(*this->human())){
+                if(!preferred_range_status(world)){resources.flag().request(2);action.set(8,102u);action.set(0x10,4000u);return true;}
+                const auto point=vehicle_route_point(timer_target_,false);
+                if(point==0xffff){resources.flag().request(2);action.set(8,102u);action.set(0x10,4000u);return true;}
+                request_posture(4,control,world.mode_flags());resources.flag().request(1);query.request_point(point);query.state.set(0x54,0x4008u);action.set(8,101u);return true;
+            }
+            if(!alive()||!action.template get<std::uint32_t>(0x10)){action.set(8,idle);resources.flag().request(0);}
+        }else if(mode()==101){
+            if(!timer_target_){action.set(8,idle);return true;}
+            if(query.state.template get<std::uint32_t>(0x50)&0x10000000u){
+                if(action.template get<std::uint32_t>(0x10))return true;
+                if(human_ai_actor_distance(*this->human(),*timer_target_,this->state_frames())<8.f)action.set(8,idle);
+                action.set(0x10,1000u);return true;
+            }
+            if(!preferred_range_status(world)){resources.flag().request(2);action.set(8,102u);action.set(0x10,3000u);}else action.set(8,idle);
+            return true;
+        }else if(mode()==102){
+            if(!target_still_hostile()||!this->item()||!action.template get<std::uint32_t>(0x10)){finish();}
+            else if(weapon_kind(world)==6)advance_attack(world,control);else finish(); //00559570.
+        }
+        if(mode()==200)action.set(8,idle);
+        if(mode()==300){
+            if(!timer_target_||this->human()->perception.lists()[0].empty()){action.set(8,idle);return true;}
+            const auto point=vehicle_route_point(timer_target_,true);
+            if(point==0xffff){clear_item_ready(control,world);resources.flag().request(1);query.state.set(0x54,query_mask());query.request_mode(idle?3u:6u,idle?20u:40u);action.set(8,302u);action.set(0x10,1000u);return true;}
+            task_route_stance(true,control,world);query.state.set(0x54,query_mask());query.request_point(point);action.set(8,301u);action.set(0x10,1500u);return true;
+        }
+        if(mode()==301){
+            if(!timer_target_){action.set(8,idle);return true;}
+            if(!(query.state.template get<std::uint32_t>(0x50)&0x10000000u)){
+                if(cover_from_vehicle(timer_target_,control,world)){action.set(0x10,2000u);action.set(8,302u);}else action.set(8,idle);
+                return true;
+            }
+            if(action.template get<std::uint32_t>(0x10))return true;
+            if(human_ai_actor_distance(*this->human(),*timer_target_,this->state_frames())<10.f){action.set(8,idle);action.set(0x10,1000u);return true;}
+            if(human_ai_closest_enemy_distance(*this->human(),this->state_frames())<20.f){if(world.human_guard_root_sector(*this->human())&&!(this->words().template get<std::uint32_t>(0x50)&0x10000u))query.state.set(0x54,0x10008u);}
+            else if(this->words().template get<std::uint32_t>(0x50)&0x10000u)query.state.set(0x54,0x4008u);
+            action.set(0x10,1000u);return true;
+        }
+        if(mode()==302&&!action.template get<std::uint32_t>(0x10))action.set(8,idle);
+        return true;
+    }
+    template<class World>bool vehicle_target(Actor* actor,World& world){ //00559610, AL-only seat flag10.
+        auto* target=dynamic_cast<Human*>(actor);if(!target||!target->field160)return false;const auto type=target->field160->base().type();return (type==4||type==0x15)&&(world.human_reaction_seat_flags(target->field160,target->field164)&0x10u);
+    }
+    template<class World>bool has_rocket(World& world){ //00559660.
+        if(this->item()&&weapon_kind(world)==6)return true;
+        if(world.human_guard_shoulder_weapon(*this->human()))return world.human_frame_output_item(world.human_guard_shoulder_weapon(*this->human())).definition().kind()==6;
+        return false;
+    }
+    template<class World>Actor* other_hostile(World& world){ //005596D0; no added health/availability filter.
+        Actor* selected=nullptr;float best=100000;const auto& enemies=this->human()->perception.lists()[0];
+        for(auto n=enemies.size();n;){auto* actor=enemies[--n];if(actor==timer_target_||vehicle_target(actor,world))continue;const auto distance=human_ai_actor_distance(*this->human(),*actor,this->state_frames());if(distance<best){best=static_cast<float>(distance);selected=actor;}}
+        return selected;
+    }
+    template<class Inline,class World>bool cover_from_vehicle(Actor* actor,Inline& control,World& world){ //005525F0 also retains its detached-target two live hostile passes.
+        const auto* point=this->point();if(!point)return false;auto* target=dynamic_cast<Human*>(actor);
+        if(target&&target->field160){
+            if(human_ai_cover::blocked_toward(*point,frame_position(*target),4))return true;
+            auto* attachment=target->field160;const auto own=frame_position(*this->human());auto origin=frame_position(*attachment);origin[1]=static_cast<float>(static_cast<long double>(origin[1])+1.f);const auto delta=human_ai_cover::difference(own,origin);
+            if((static_cast<long double>(delta[0])*delta[0]+static_cast<long double>(delta[2])*delta[2])+static_cast<long double>(delta[1])*delta[1]>=100.f){
+                if(human_ai_cover::blocked_toward(*point,frame_position(*target),2)){request_posture(2,control,world.mode_flags());return true;}
+                if(human_ai_cover::blocked_toward(*point,frame_position(*target),1)){request_posture(1,control,world.mode_flags());return true;}
+            }
+            return false;
+        }
+        const auto all_blocked=[&]{const auto& enemies=this->human()->perception.lists()[0];for(auto n=enemies.size();n;)if(!human_ai_cover::blocked_toward(*point,frame_position(*enemies[--n]),4))return false;return true;};
+        if(all_blocked())return true;
+        if(all_blocked()){request_posture(2,control,world.mode_flags());return true;}
+        return false;
+    }
+    std::uint16_t vehicle_route_point(Actor* actor,bool avoid){ //00555400 anti-tank /00555CA0 avoidance.
+        auto* target=dynamic_cast<Human*>(actor);if(!target||!target->field160)return 0; //Native AX0, not the FFFF search failure.
+        auto* attachment=target->field160;auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard vehicle route requires actual navigation");
+        auto points=secondary_;if(this->words().template get<std::uint32_t>(0x50)&0x100u){points.clear();(void)navigation->append_reachable(this->point()?navigation->index_of(*this->point()):0xffff,avoid?25.f:15.f,points);}
+        if(avoid&&points.empty())return 0xffff;
+        const auto own=frame_position(*this->human());auto origin=frame_position(*attachment);origin[1]=static_cast<float>(static_cast<long double>(origin[1])+1.f);
+        const auto matrix=this->state_frames().actor_world_matrix(attachment->base().frame());HumanVector forward{{matrix[8],matrix[9],matrix[10],matrix[11]}};
+        const auto x=static_cast<long double>(forward[0])*forward[0],y=static_cast<long double>(forward[1])*forward[1],z=static_cast<long double>(forward[2])*forward[2];normalize_human_ai_shot(forward,avoid?(z+x)+y:(z+y)+x);
+        for(unsigned n=0;n<3;++n)forward[n]=static_cast<float>(static_cast<long double>(forward[n])*10.f);
+        const auto prior=human_ai_cover::filter_points(*navigation,own,origin,points,avoid?0x40000104u:0x40004104u);if(points.empty())return prior;
+        forward[1]=0;normalize_human_ai_shot(forward,static_cast<long double>(forward[0])*forward[0]+static_cast<long double>(forward[2])*forward[2]);
+        for(auto n=points.size();n;){const auto i=--n;const auto* point=navigation->record(points[i]);if(!point)continue;const auto delta=human_ai_cover::difference(human_ai_cover::position(*point),origin);const float square=static_cast<float>(human_ai_cover::square(delta));auto radial=delta;radial[1]=0;normalize_human_ai_shot(radial,static_cast<long double>(radial[0])*radial[0]+static_cast<long double>(radial[2])*radial[2]);
+            const auto dot=(static_cast<long double>(radial[1])*forward[1]+static_cast<long double>(radial[0])*forward[0])+static_cast<long double>(radial[2])*forward[2];bool remove=false;
+            if(!avoid){
+                if(square<225.f||square>1600.f)remove=true;
+                else if(dot<=.7070000171661377f||square>=900.f){auto self=human_ai_cover::difference(own,origin);self[1]=0;normalize_human_ai_shot(self,static_cast<long double>(self[2])*self[2]+static_cast<long double>(self[0])*self[0]);remove=!((static_cast<long double>(self[2])*radial[2]+static_cast<long double>(self[1])*radial[1])+static_cast<long double>(self[0])*radial[0]>=0);}
+                else remove=true;
+            }else if(dot<=.7070000171661377f||square>=1000.f){
+                if((dot>0&&square<dot*100.f+25.f)||square<25.f)remove=true;
+                else{auto self=human_ai_cover::difference(own,origin);self[1]=0;normalize_human_ai_shot(self,static_cast<long double>(self[2])*self[2]+static_cast<long double>(self[0])*self[0]);const auto facing=(static_cast<long double>(self[2])*radial[2]+static_cast<long double>(self[1])*radial[1])+static_cast<long double>(self[0])*radial[0];
+                    if(!(facing>=-.5f))remove=true;
+                    else if(facing>0&&dot>0){const float side=static_cast<float>((static_cast<long double>(radial[1])*0+static_cast<long double>(forward[2])*radial[0])+static_cast<long double>(radial[2])*-forward[0]);const auto own_side=(static_cast<long double>(self[1])*0+static_cast<long double>(forward[2])*self[0])+static_cast<long double>(self[2])*-forward[0];remove=static_cast<long double>(side)*own_side>0;}
+                }
+            }else remove=true;
+            if(remove){points[i]=points.back();points.pop_back();}
+        }
+        if(points.empty())return 0xffff;
+        return points[random_word()%points.size()]; //Both native workers draw even for a single survivor.
+    }
+    template<class World,class Inline>void panic_face_nearest(World&,Inline& control){ //00558A60→00558980.
+        Actor* selected=nullptr;float best=10000000.f;const auto& enemies=this->human()->perception.lists()[0];
+        for(auto n=enemies.size();n;){auto* actor=enemies[--n];const auto origin=frame_position(*this->human());const auto other=frame_position(*actor);const auto x=static_cast<long double>(other[0])-origin[0],y=static_cast<long double>(other[1])-origin[1],z=static_cast<long double>(other[2])-origin[2];const float square=static_cast<float>((y*y+x*x)+z*z);if(square<best){best=square;selected=actor;}}
+        if(!selected)return;
+        auto* human=dynamic_cast<Human*>(selected);if(!human||!human->head_marker)throw std::logic_error("Guard panic facing requires actual hostile head");const auto head=this->state_frames().actor_world_matrix(human->head_marker);(void)face_task_position({{head[12],head[13],head[14],head[15]}},control);
+    }
+    template<class World>void panic_drop_hand(World& world){ //00558AA0.
+        auto* storage=this->human()->base().storage();if(!storage||!storage->holder(3))throw std::logic_error("Guard panic drop requires actual hand3 holder");
+        const auto entry=storage->holder(3)->entry();
+        if(entry==this->item())this->clear_cached_item();
+        if(entry)world.human_guard_drop_hand(*this->human(),entry,this->words().template get<HumanVector>(0x10));
+    }
+    template<class World>bool panic_should_reload(World& world){ //00558230.
+        const auto entry=this->item();if(!entry)return false;auto& item=world.human_frame_output_item(entry);
+        if(item.field14>world.game_word28())return false;
+        const float amount=item.amount();const auto capacity=item.capacity();return capacity!=amount||(item.field60&2u);
+    }
+    void request_panic_reload(){ //00572C00.
+        auto* input=this->second_frame_inputs();if(!input)throw std::logic_error("Guard reload request requires actual78 input");input->set(0x34,1.f);auto& words=this->resources().state();words.set(0xd8,words.template get<std::uint32_t>(0xd8)&~1u);
+    }
+    template<class World,class Inline>void advance_panic_action(World& world,Inline& control){ //0054B8F0, elapsed only forwarded to attack's timer-independent output.
+        auto& resources=this->resources();auto& action=resources.template current_action_as<HumanAIAction5Pool>()->state;auto& query=resources.query();
+        const auto mode=[&]{return action.template get<std::uint32_t>(8);};const auto hostile=[&]{return !this->human()->perception.lists()[0].empty();};
+        const auto distance=[&]{return human_ai_closest_enemy_distance(*this->human(),this->state_frames());};
+        const auto clear=[&]{resources.flag().request(0);resources.target().bind_actor(nullptr);};
+        const auto action_command=[&](std::int32_t id,bool surrendered){control.action_command(id);if((world.mode_flags()&7u)!=7u)throw std::runtime_error(surrendered?"Guard surrender requires actual005890D0 transport":"Guard armed recovery requires actual005890D0 transport");};
+        if(mode()==0x1000000u&&hostile())action.set(8,0x1000001u);
+        if(mode()==0x1000001u){
+            if(!hostile()){resources.flag().request(0);action.set(8,0x1000000u);}
+            else if(!this->item()||!(state_.template get<std::uint32_t>(0x144)&2u)){
+                if((this->words().template get<std::uint32_t>(0x50)&0x400u)||distance()<15.f){clear();action.set(8,0x2000001u);}
+                else{clear();action.set(8,0x4000002u);}
+            }else action.set(8,0x8000001u);
+        }
+        if(mode()==0x2000001u){
+            state_.set(0x1d8,0xffffffffu);if(!hostile()){action.set(8,0x1000001u);return;}
+            clear();query.state.set(0x50,query.state.template get<std::uint32_t>(0x50)|0x2000u);request_posture(4,control,world.mode_flags());panic_drop_hand(world);panic_face_nearest(world,control);action.set(8,0x2000002u);action.set(0x10,300u);
+        }else if(mode()==0x2000002u){
+            if(!action.template get<std::uint32_t>(0x10)){
+                if(this->words().template get<std::uint32_t>(0x50)&4u){action_command(0x34,true);action.set(8,0x2000003u);action.set(0x10,30000u);state_.set(0x1d8,world.game_word28());}
+                else{request_posture(4,control,world.mode_flags());action.set(0x10,300u);}
+            }
+        }else if(mode()==0x2000003u){if(hostile()&&distance()>5.f)panic_face_nearest(world,control);return;}
+        if(mode()==0x4000002u){
+            state_.set(0x1d8,0xffffffffu);if(!hostile()){action.set(8,0x1000001u);return;}
+            resources.flag().request(1);clear_item_ready(control,world);query.state.set(0x54,world.human_guard_root_sector(*this->human())?0x10008u:0x4008u);query.request_mode(2,40);action.set(8,0x4000001u);
+        }else if(mode()==0x4000001u)action.set(8,query.state.template get<std::uint32_t>(0x50)&0x10000000u?0x4000003u:0x2000001u);
+        else if(mode()==0x4000003u){
+            if(query.state.template get<std::uint32_t>(0x50)&0x80000000u){resources.flag().request(0);action.set(8,0x4000004u);action.set(0x10,6000u);}
+            else if(distance()<20.f){if(world.human_guard_root_sector(*this->human())&&!(this->words().template get<std::uint32_t>(0x50)&0x10000u))query.state.set(0x54,0x10008u);}
+            else if(this->words().template get<std::uint32_t>(0x50)&0x10000u)query.state.set(0x54,0x4008u);
+        }else if(mode()==0x4000004u){
+            if(distance()>=20.f){if(!action.template get<std::uint32_t>(0x10)){resources.flag().request(0);action.set(8,0x1000000u);}}
+            else action.set(8,0x4000002u);
+        }
+        if(mode()==0x8000001u){
+            state_.set(0x1d8,0xffffffffu);if(!this->item())(void)equip_missing_frame_weapon(world);
+            request_posture(4,control,world.mode_flags());resources.flag().request(2);action_command(0x4c,false);action.set(8,0x8000002u);return;
+        }
+        if(mode()==0x8000002u){
+            if(!this->item()){action.set(8,0x1000001u);return;}
+            timer_target_=select_human_hostile<Human>(*this,this->state_frames(),world);
+            if(!timer_target_){resources.target().bind_actor(nullptr);action.set(8,0x8000004u);action.set(0x10,6000u);return;}
+            if(human_ai_actor_distance(*this->human(),*timer_target_,this->state_frames())>10.f){request_posture(4,control,world.mode_flags());query.request_position(frame_position(*timer_target_));query.state.set(0x54,0x4008u);}
+            action.set(0x10,6000u);action.set(8,0x8000003u);return;
+        }
+        if(mode()==0x8000004u){
+            if(!hostile()){if(!action.template get<std::uint32_t>(0x10)){resources.flag().request(0);action.set(8,0x1000000u);}}
+            else action.set(8,0x8000002u);
+            if(panic_should_reload(world))request_panic_reload();
+            return;
+        }
+        if(mode()!=0x8000003u)return;
+        if(!this->item()){action.set(8,0x1000001u);return;}
+        if((query.state.template get<std::uint32_t>(0x50)&0x10000000u)&&distance()<10.f)query.state.set(0x50,query.state.template get<std::uint32_t>(0x50)|0x2000u);
+        if(!target_still_hostile()||!action.template get<std::uint32_t>(0x10)){action.set(8,0x8000002u);return;}
+        advance_attack(world,control);
     }
     template<class World,class Inline>bool advance_positive_task_action(World& world,Inline& control){ //00549AE0 positive modes; elapsed is genuinely unused.
         auto& resources=this->resources();
@@ -779,14 +962,14 @@ private:
                         auto* navigation=this->navigation();if(!navigation)throw std::logic_error("Guard emplacement route requires actual navigation");
                         const auto references=navigation->actor_references(emplacement);const auto point=references.empty()?0xffffu:references.front();
                         if(point!=0xffff){selected_emplacement_=emplacement;action.set(8,2u);resources.query().state.set(0x54,0x4008u);resources.query().request_point(point);}
-                        return false;
+                        return true;
                     }
                 }
-                auto& target=static_cast<Human&>(*timer_target_);
-                if(const auto* attachment=target.field160){
-                    const auto type=attachment->base().type();
-                    if(type==4||type==0x15)
-                        throw std::runtime_error("Guard target requires the actual vehicle seat capability");
+                if(vehicle_target(timer_target_,world)){
+                    if(has_rocket(world)){action.set(0x10,1000u);action.set(8,100u);return false;}
+                    //00559650 is genuinely AL0 and has no state effects.
+                    if(auto* other=other_hostile(world))timer_target_=other;
+                    else{if(cover_from_vehicle(timer_target_,control,world)){action.set(0x10,1000u);action.set(8,302u);}else action.set(8,300u);return false;}
                 }
                 action.set(8,kind==1?3u:1u);
                 return false;
@@ -832,6 +1015,7 @@ private:
                     }else advance_attack(world,control);
                     return;
                 }
+                (void)advance_vehicle_action(action,world,control,1);return;
             }else{ //0054AC40.
                 auto& action=resources.template current_action_as<HumanAIAction3Pool>()->state;
                 if(wait_or_retry(action,5,0))return;
@@ -884,18 +1068,10 @@ private:
                     if(!action.template get<std::uint32_t>(0x10)){action.set(8,0u);resources.flag().request(0);}
                 }
                 if(mode()<=6)return;
+                (void)advance_vehicle_action(action,world,control,0);return;
             }
         }
-        if(kind==5&&!hostile){
-            auto& action=resources.template current_action_as<HumanAIAction5Pool>()->state;
-            const auto mode=action.template get<std::uint32_t>(8);
-            if(mode==0x1000000u)return;
-            if(mode==0x1000001u){
-                resources.flag().request(0);
-                action.set(8,0x1000000u);
-                return;
-            }
-        }
+        if(kind==5){advance_panic_action(world,control);return;}
         if(!kind)return;
         throw std::runtime_error("Guard frame requires its actual positive action worker");
     }

@@ -252,3 +252,43 @@ pooled replacement identity, retained re-selection, Ladder exit and no-target
 fallback. Strict actual World i386 instantiation passes. Whole H5 remains open:
 kind1/3 vehicle-target modes, kind5 panic/armed, kind6 mounted action/events,
 actual Scene2 authority/retirement and remaining reached owners are next.
+
+### Panic and vehicle-target decision continuation
+
+0054B8F0 kind5 now implements idle/surrender/flee/armed families1000000..8000004
+on actual action/query/target/input owners. Inline action34/4C reaches existing E0
+005ABB50 action_command; non7 command23 transport remains explicit.00558AA0 reads
+actual HAND3, clears cached A8 only when it matches and calls005A2C50. Bounded
+h5-guard-drop-receiver.asm proves Guard00811730+70=00587BE0 jumps directly to
+005A3490, the already reconstructed loose-item/drop owner. New outer drop retains
+three LS3DF RandFloat draws, original FLOAT spills/.2/.1/2.5 velocity and178
+publication; no successful dropped-item stub.00558980/00558A60 preserve reverse
+strict nearest/head-facing.00558230 tests cooldown before amount/capacity/flags;
+00572C00 writes real78 reload input and clears commonD8 bit1.00560E20 publishes
+actual query mode/range5 request. Flee/armed paths preserve sequential state
+fallthrough and original300/30000/6000 timers. Decision00548610 now uses its
+actual exact DD0 animation0 gate and reaches action4C after successful re-equip;
+00553CC0's distinct animation exclusions remain only at their original callers.
+
+00559610 seat capability now reaches actual Car/StaticWeapon8C flag10.00559660
+uses selected kind6 or repeated actual shoulder query;005596D0 retains reverse
+nearest other hostile without invented health filtering.00559590 equips through
+real hand3/shoulder2 inventory move/swap owners.005525F0 uses actual point cover,
+vehicle pose+1Y and posture, including its repeated live detached-target pass.
+00555400 anti-tank and00555CA0 avoidance use existing secondary/actual reachable
+points, native preliminary filter masks, reverse swap-last geometry, forward/
+radial/own-side tests and CRT draw even for one survivor. Null target/attachment
+returns original AX0; search failure returnsFFFF. Static h5-vehicle-cover-routes.asm
+and corrected h5-routes-abi retain original thresholds;0080FD2C is8, not3.
+00548B00/0054AC40 now execute100/101/102/200/300/301/302 with distinct retry idle
+1/0 and fallback query3,20 versus6,40. Kind1 vehicle damage/Sight events now use
+the actual capability gate. Native no-op unknown modes no longer invent failures.
+
+Native /tmp/h5-panic-native and /tmp/h5-vehicles-native each pass100 families
+under ASan/UBSan/LSan. They exercise real action/query/input/direction/navigation
+and pooled retirement; animation/drop/seat/inventory/World endpoints are explicit
+doubles. Actual nested World i386 instantiation and launcher/startup-probe build
+are compile/link checks, not Windows execution or full Scene2 acceptance. Final
+H5 work remains: kind6 mounted action/events and reached receivers, actual
+Scene2 dispatch/retirement, then consolidated verification/audit cleanup. H4/H6
+continuations remain explicit. Do not close H5 or stop at this checkpoint.
