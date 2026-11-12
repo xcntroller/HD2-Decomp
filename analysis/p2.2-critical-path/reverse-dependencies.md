@@ -28,3 +28,5 @@ The missing movement implementation and missing timer-query/Guard/Area dispatch 
 Focused LIFE review at `f9d5f03` supplies the concrete lifecycle, rollback and file-retirement composition. Application installation remains OWN and user failure/repeat remains REPEAT. `006987E0` returns1. [LIFE verification](evidence/life-verification.json)
 
 Targeted GUARD review at122ef38 resolves its source prerequisite for Steam. Mission application use remains under OWN, and real execution under VIS/REPEAT. [GUARD verification](evidence/guard-verification.json)
+
+Targeted UI review at feature/p22-ui `ebdcbf5` supersedes the historical missing containing-UI source observation: `GameUiPresentation` and `GameUiSceneCallbacks` provide concrete same-World positive receivers. `004909D0` activates FPV; `00491660` advances it. Actual FRAME/RENDER/OWN invocation and required external producers remain pending; the source-closed branch is unmerged into reviewed master `b132e6d`. See [UI verification](evidence/ui-verification.json) for source pins, native/i386 limits and callback-before-World retirement.

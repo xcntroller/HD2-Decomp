@@ -1,0 +1,815 @@
+{
+  "result": "PASS",
+  "source_sha": "ebdcbf59bc6a59880bb664c0a5934e46105669d6",
+  "source_ref": "origin/feature/p22-ui",
+  "reviewed_master_sha": "b132e6d78d9622e63dcfee982e917ad0ac10b64f",
+  "merged_into_reviewed_master": false,
+  "scope": "All UI-owned source receivers, concrete same-World composition and supported positive source behavior; external Human/Actor/Items/PACK/FRAME/RENDER/OWN producers and populated execution remain required, per user completion boundary.",
+  "source_fingerprints": {
+    "recovered/frontend/control_startup.h": {
+      "sha256": "e962b9ca732eb4e4537e764a5d037710bf93c43ca2ebf23b6d4b267a2a4e8429",
+      "bytes": 5909,
+      "retained": true
+    },
+    "recovered/game/actor_occupants_presentation.h": {
+      "sha256": "7f87295ac228b56fb462cfb43c5d04c48738ccbd105e7ae3b5e4d3b397994f10",
+      "bytes": 1062,
+      "retained": true
+    },
+    "recovered/game/actor_seat_presentation.h": {
+      "sha256": "20e8b571868bf50ec4300f5946912a0a8ecc7afa073f7f2ee24543d993b8bdd0",
+      "bytes": 4326,
+      "retained": true
+    },
+    "recovered/game/actor_zone_presentation.h": {
+      "sha256": "be181cabd1ec89bf94c99fb23564643167c17149827fa2796444c0ab182e46a2",
+      "bytes": 964,
+      "retained": true
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "ac1b4fc9432f1c45e576683dde0c76469f6dd31cb0acd568990fb10b6d1a45ce",
+      "bytes": 14096,
+      "retained": true
+    },
+    "recovered/game/console_command_dispatch.h": {
+      "sha256": "2bbefa6369642e5078b75ce31f4ab30eed054a928a15e81289722635f3467ebb",
+      "bytes": 8603,
+      "retained": true
+    },
+    "recovered/game/console_variables.h": {
+      "sha256": "10f7d84fae536859083127008d902a5b5b87a1f61daa8f154c9fe67fd8667943",
+      "bytes": 2505,
+      "retained": true
+    },
+    "recovered/game/first_person_animation_completion.h": {
+      "sha256": "74bfbeeac601897edf7273f9a237274f8e4a01ff97064c143044e317671e75c5",
+      "bytes": 3490,
+      "retained": true
+    },
+    "recovered/game/first_person_frame.h": {
+      "sha256": "fc24695b9ce33c9e9f1368ad54dc2c82d5941596ba05ee9975c487165eb0ef32",
+      "bytes": 8001,
+      "retained": true
+    },
+    "recovered/game/first_person_human_items.h": {
+      "sha256": "6bc2054ab8373b198e80af3fc0b61db7d148eedab676b332ba9f78c6a04cac8b",
+      "bytes": 1952,
+      "retained": true
+    },
+    "recovered/game/first_person_loading_composition.h": {
+      "sha256": "d1f2da832da098d47b9e615f83438117230605223fcb529cf20cb17d3a3c3e7f",
+      "bytes": 3086,
+      "retained": true
+    },
+    "recovered/game/first_person_players_loading.h": {
+      "sha256": "28828ae9b1b8b7fbe158b5ad9c2ed15e4aab838f74219b11a2152cd6b7150723",
+      "bytes": 5016,
+      "retained": true
+    },
+    "recovered/game/first_person_view_loading.h": {
+      "sha256": "cd2d7bd9ec640431ecd97561f1eec2780c6c156dcf53bf4265188e520f86a62a",
+      "bytes": 15420,
+      "retained": true
+    },
+    "recovered/game/hud_actor_retirement.h": {
+      "sha256": "31af088161660f2398a2dd81f3919499eb8529e3d79e11c9ce75437590e31a0b",
+      "bytes": 1248,
+      "retained": true
+    },
+    "recovered/game/hud_artwork_loading.h": {
+      "sha256": "8c89a93e69142b54b9b4047d3eb04bf7114336660afd33f8e6c2f06396868f27",
+      "bytes": 3889,
+      "retained": true
+    },
+    "recovered/game/hud_auxiliary_loading.h": {
+      "sha256": "6a2c116e44057194ce569e13b017b10d2b94cd783690686c596ab71e5ae2c1e1",
+      "bytes": 19679,
+      "retained": true
+    },
+    "recovered/game/hud_car_occupants.h": {
+      "sha256": "9b19bfaa487fffe3245e6ea4a43f19848555777b48febbbcd7579fb8070404b9",
+      "bytes": 1122,
+      "retained": true
+    },
+    "recovered/game/hud_command_frame.h": {
+      "sha256": "a5c9ada1666fab86e889ee5b89e747e7c716562ef62648cb239dbb2809edaa42",
+      "bytes": 5743,
+      "retained": true
+    },
+    "recovered/game/hud_command_highlights.h": {
+      "sha256": "fc9e7c84abd27339d982e35e52e41bc63cd449ecfe2017389f628112d62603b5",
+      "bytes": 7327,
+      "retained": true
+    },
+    "recovered/game/hud_command_input.h": {
+      "sha256": "fa8d2ce2fac9efee4558aa88944cdfe7b53b7805f16069c93d543e0e65708a46",
+      "bytes": 15973,
+      "retained": true
+    },
+    "recovered/game/hud_command_loading.h": {
+      "sha256": "9fe43ab51a7e754b9894a832a4d471ca07e4d2095615e9c353e8b3afbd478adc",
+      "bytes": 23243,
+      "retained": true
+    },
+    "recovered/game/hud_command_presentation.h": {
+      "sha256": "f77567227617042ccfe67f5bf8da1823b8b249de33a9c2b8672e24c535a47902",
+      "bytes": 1495,
+      "retained": true
+    },
+    "recovered/game/hud_compass_loading.h": {
+      "sha256": "8f90e046f910eeccd722977174f33d57a97ad20c14f753d7fce52faa7409ffa3",
+      "bytes": 14718,
+      "retained": true
+    },
+    "recovered/game/hud_controls.h": {
+      "sha256": "048542e89faf9d574e2bfd3113d85f2f0e74b1ae76a0aef5eea560872c7d7dda",
+      "bytes": 6250,
+      "retained": true
+    },
+    "recovered/game/hud_crosshair_loading.h": {
+      "sha256": "e474fce0d7b038af9a3cbf60db213854b8eaeb24379c8f086f22803590a20c85",
+      "bytes": 9733,
+      "retained": true
+    },
+    "recovered/game/hud_crosshair_visibility.h": {
+      "sha256": "60b7f67ae29d477f2ce13b94af4ccdffca226cf36387ee5cb0293727f471832e",
+      "bytes": 1587,
+      "retained": true
+    },
+    "recovered/game/hud_dialogs_loading.h": {
+      "sha256": "d071bada6067ed3970f9c9d4abb9dfb5f1c505eb099b0c77a222c32fbf879cd9",
+      "bytes": 27677,
+      "retained": true
+    },
+    "recovered/game/hud_explosive_timers_loading.h": {
+      "sha256": "edbfdd586cd2ee85e9c851f208c950c2d6c5734e8150a32434585eeeb46ace78",
+      "bytes": 5970,
+      "retained": true
+    },
+    "recovered/game/hud_frame.h": {
+      "sha256": "6ee7c18a657ad914b9bd84af3b1d2a16f190a5646ee2f409d66fa88732336bd3",
+      "bytes": 2802,
+      "retained": true
+    },
+    "recovered/game/hud_hands_loading.h": {
+      "sha256": "eedce845255e2a484f47e216a6c210f41df08060483101f750bd91cbef79ef28",
+      "bytes": 7846,
+      "retained": true
+    },
+    "recovered/game/hud_help_bindings.h": {
+      "sha256": "ac4cdf994d745f0da89d36145f9afb3725d914e8715d1032030e0b3a89e997a3",
+      "bytes": 2468,
+      "retained": true
+    },
+    "recovered/game/hud_info_loading.h": {
+      "sha256": "0d621033b06b1880d7b7ee188b2fb16d254884f45e7c48f451e2d91f08a93c62",
+      "bytes": 6836,
+      "retained": true
+    },
+    "recovered/game/hud_info_presentation.h": {
+      "sha256": "7ff7242af7bb8f18dfe4c715b4422c25a3a959f910aacc4d6ca56defdac4ffc2",
+      "bytes": 10946,
+      "retained": true
+    },
+    "recovered/game/hud_injury_movies_loading.h": {
+      "sha256": "37b94080844e6d0eab436240f86d486b689e7bfc1d525ba6005b2308ba41883a",
+      "bytes": 5697,
+      "retained": true
+    },
+    "recovered/game/hud_inventory_loading.h": {
+      "sha256": "d2d82ba369bde2dff71f48f5dd7f8da1f9f8b1667456384f6a28d2965e33d336",
+      "bytes": 39491,
+      "retained": true
+    },
+    "recovered/game/hud_inventory_presentation.h": {
+      "sha256": "75673676005609ef83c81b340979b366cd7b841c97478b2224ebf35eecc85a45",
+      "bytes": 1301,
+      "retained": true
+    },
+    "recovered/game/hud_map_loading.h": {
+      "sha256": "1b042d72a902698e52657946cc4f7e462df83be68f40f106b1e4872533d42031",
+      "bytes": 25348,
+      "retained": true
+    },
+    "recovered/game/hud_map_presentation.h": {
+      "sha256": "dae0d7ba11981c1d3012258bdcc1741cefafa2b69822a8b3252c8ceebdd74919",
+      "bytes": 2663,
+      "retained": true
+    },
+    "recovered/game/hud_message_edit.h": {
+      "sha256": "367557230843a497ebb3cf100621624b4d44e8ed94391b1658b4c74bafed85f3",
+      "bytes": 6026,
+      "retained": true
+    },
+    "recovered/game/hud_messages_loading.h": {
+      "sha256": "6234f2eb9e17bba9a72ca8e4ebc787606e89737723cd1e4b6900ecf8e2315fa8",
+      "bytes": 13219,
+      "retained": true
+    },
+    "recovered/game/hud_panels_loading.h": {
+      "sha256": "32e03f9321506d002904d281a55a70a11e03f3d3f108f521b69d99218a96a3f6",
+      "bytes": 10186,
+      "retained": true
+    },
+    "recovered/game/hud_process_data.h": {
+      "sha256": "46a7b489f1096a708f3950da6c5ab83882a5d70c7189842218d5d2462e190ae3",
+      "bytes": 4181,
+      "retained": true
+    },
+    "recovered/game/hud_render.h": {
+      "sha256": "b91cf2ad2a76aceb9d60fd4d934ced03e07401760fc41619082542453390a87a",
+      "bytes": 4130,
+      "retained": true
+    },
+    "recovered/game/hud_roll_actions.h": {
+      "sha256": "000f55d57a3083ef6abcc9605b08620f638b1217a97df1b22876ecfe9cbe2fe7",
+      "bytes": 2687,
+      "retained": true
+    },
+    "recovered/game/hud_roll_policy.h": {
+      "sha256": "dc45491ffff5b04a799c8e805ae729051008cbec35879283b6613c7ef57bf159",
+      "bytes": 15757,
+      "retained": true
+    },
+    "recovered/game/hud_scene_loading.h": {
+      "sha256": "ba996a0cd73594a92c23414ef98381e29458e0ec5bdc75269679b6cc06f3ad13",
+      "bytes": 12875,
+      "retained": true
+    },
+    "recovered/game/hud_scoreboard_loading.h": {
+      "sha256": "c9c400b8578e917d205826dc6b5872bfd9e573fdef72b57c593dfe75dfd7f204",
+      "bytes": 7063,
+      "retained": true
+    },
+    "recovered/game/hud_scroll_loading.h": {
+      "sha256": "5f392353c627521b9a03301bf9877e251d1055d331d46755a776f50ba0e55383",
+      "bytes": 13269,
+      "retained": true
+    },
+    "recovered/game/hud_signal_actions.h": {
+      "sha256": "36ad6b31982e02402580a17186de926eabe26e48ed651314c2c2885ac7514b59",
+      "bytes": 3418,
+      "retained": true
+    },
+    "recovered/game/hud_signal_policy.h": {
+      "sha256": "13421aabbd2bf29c6cb3234d415ca0ccaaf4530ff36daf17f8ff9bd9056c6088",
+      "bytes": 8895,
+      "retained": true
+    },
+    "recovered/game/hud_small_panels_loading.h": {
+      "sha256": "b63b06582157567f113b635b52821035235d97f361bf471dd2e37fd5c2d531d0",
+      "bytes": 11349,
+      "retained": true
+    },
+    "recovered/game/hud_soldier_loading.h": {
+      "sha256": "b19611bad07f00cac269c580de365c87b65a32aaaa9500265d1f8bfee840c08b",
+      "bytes": 17861,
+      "retained": true
+    },
+    "recovered/game/hud_target_selection.h": {
+      "sha256": "976665f38f6d6312b1b4f0fd91f3062e73812ec380bd221cf6303c1e1116512e",
+      "bytes": 3759,
+      "retained": true
+    },
+    "recovered/game/hud_vehicle_presentation.h": {
+      "sha256": "a30f320291c01ebd25704de265b73d074797ded240e7bf6e8a2a7d2e4fce2fab",
+      "bytes": 1115,
+      "retained": true
+    },
+    "recovered/game/hud_weapon_selector_loading.h": {
+      "sha256": "a6d879c8aea2ba1481996f92958f40cf22a9062ddb3337325adecd655710cd92",
+      "bytes": 14509,
+      "retained": true
+    },
+    "recovered/game/hud_world_loading.h": {
+      "sha256": "0186475ef0a0e991519bec64ae885a444dfd5ea87c1bffa6008739878f2250f6",
+      "bytes": 2804,
+      "retained": true
+    },
+    "recovered/game/human_hud_loading.h": {
+      "sha256": "0d2cdf8cd264406c395661b717ae1b6abae7ad6517b9e752c9abd1dd3fec7be3",
+      "bytes": 9679,
+      "retained": true
+    },
+    "recovered/game/human_hud_names.h": {
+      "sha256": "24bae237cf6a3ca239563f8d7b0a092b06ea408ea5bc4c2ac480c7a6d7080fe6",
+      "bytes": 2895,
+      "retained": true
+    },
+    "recovered/game/human_inventory_counts.h": {
+      "sha256": "2436f06e70dd0509f339eccc624dca1198ab26bbc72a84c3a3be907442068d7e",
+      "bytes": 3774,
+      "retained": true
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "9959f5e959c3cbddea543e60acbd3ff6cb25be2775f030d53b0a03d2409f9f5d",
+      "bytes": 45713,
+      "retained": true
+    },
+    "recovered/game/item_icon_cache.h": {
+      "sha256": "f3f15d4a6375ace5182aba07d910514f64e3e6163197a1a4d4c1c39aa26819ca",
+      "bytes": 2224,
+      "retained": true
+    },
+    "recovered/game/item_model_cache.h": {
+      "sha256": "ae7679bfa80ec06a55ac9934ff0d7634dbe0a2c22b1f125735b2c49024b8adab",
+      "bytes": 8541,
+      "retained": true
+    },
+    "recovered/game/mission_camera.h": {
+      "sha256": "d03ad5b20b30654e478ff1a9082bbdc3b225376a6b88e8e4e937c6868de28a90",
+      "bytes": 47664,
+      "retained": true
+    },
+    "recovered/game/runtime_item_services.h": {
+      "sha256": "3986d5cb87b2dc5b57d99642e4e46f79a70c9f738db2b3d4588caa667e38fb3e",
+      "bytes": 3931,
+      "retained": true
+    },
+    "recovered/game/static_weapon_actor.h": {
+      "sha256": "8b40252e2bf76f28587f93486527a21fb24af03e736a8ff19ac6708f1dd6443e",
+      "bytes": 1780,
+      "retained": true
+    },
+    "recovered/game/static_weapon_loading.h": {
+      "sha256": "c2e6b39e094568438cc798a9286e06139902bbd5c2f40d25db4ec3405138c09a",
+      "bytes": 13786,
+      "retained": true
+    },
+    "recovered/host/borrowed_input.h": {
+      "sha256": "f03901d9738a7f6b7f0d3ad857a356fd6cb8a8a7676af4b2f947b2aae05a12d8",
+      "bytes": 2732,
+      "retained": true
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "99d78612417c74b4cc02e613594ea2901af34a52a0ff859dc2634ee6f42437c5",
+      "bytes": 80715,
+      "retained": true
+    },
+    "recovered/host/game_mesh_movie.h": {
+      "sha256": "5ee5ef3be11f4b4abe6303c503d44ffaebf0ac399ce6477cc1a50807ea2c1d19",
+      "bytes": 5466,
+      "retained": true
+    },
+    "recovered/host/game_mission_items.h": {
+      "sha256": "6ab7152bdc61c9398b199d1b7982965cf8c62bfc96af359bd535694d052982e5",
+      "bytes": 13862,
+      "retained": true
+    },
+    "recovered/host/game_occupied_actor_presentation.h": {
+      "sha256": "bbccfd303e7230516c9fe6ec760e3fd42ed4c92def272461d33cd2a290e53aec",
+      "bytes": 9530,
+      "retained": true
+    },
+    "recovered/host/game_owner.h": {
+      "sha256": "51bdd200cf018e0075e4e0b1b34f754877c3a31423a982e5142390d1b0132718",
+      "bytes": 17752,
+      "retained": true
+    },
+    "recovered/host/game_ui_presentation.h": {
+      "sha256": "63b8f972fc76f6308b41f74b2554f6c1641cbf2df862257eb88d6659cb3692da",
+      "bytes": 142192,
+      "retained": true
+    },
+    "recovered/host/game_world_loading.h": {
+      "sha256": "492f35390e25595e6c52ddda9848d3c7a785c5726b32a9be12ebe8075834811b",
+      "bytes": 26689,
+      "retained": true
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "5beeb44558436b1dc0c7c926439552eb5903af34560568265d0961e0885a6f72",
+      "bytes": 50792,
+      "retained": true
+    },
+    "recovered/input/binding_consumption.h": {
+      "sha256": "08f2ff4906b2690d75b9ee3a6df9f6ec260fc88e138ebf02e0a9c612a6326de4",
+      "bytes": 2647,
+      "retained": true
+    }
+  },
+  "verified_original_evidence_and_logs": [
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/car-occupants-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/car-occupants-run.log",
+      "sha256": "0401282cca3a0b3d10a4b5dd4660ee38f73f75d16db0a1c7fe1b12d78c6c2f6f",
+      "bytes": 174,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/car-ui-index.txt",
+      "sha256": "86f45db10f63f04340696e5102fd4b8155322953542552a9aa15b04f49a62d07",
+      "bytes": 3743,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/car-ui-receivers-004ddd10.c",
+      "sha256": "5e787fc16ef092baaed57b269097df9e4895f341151dcc9a0d592c0ece8f5ccf",
+      "bytes": 1226,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/car-ui-receivers-004ddd10.json",
+      "sha256": "4d34afdba92c1124d8540e832f59ac5ede53c24ad35706c08a48ae6b05292d9b",
+      "bytes": 5744,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/car-ui-receivers-004dde20.c",
+      "sha256": "a0add2d0687b419fe0a5a25ae8a50c50bfecd226a833de82b506f89ad4feafae",
+      "bytes": 999,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/car-ui-receivers-004dde20.json",
+      "sha256": "eaa656a00d0b473576235b16814013b33e4b2f00dde973a4ab6ad84b035b7cb6",
+      "bytes": 4437,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/car-ui-receivers-console.log",
+      "sha256": "d38694473b5b362b70d7681c22af3bb4a9d6325db7ab0e468412d2f3f1efbeb7",
+      "bytes": 4431,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/composed-final-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/composed-final-run.log",
+      "sha256": "6da6dfd0806dad75f06bb636b18f7aaedfca6fa0b1590490324efeaafc1126f1",
+      "bytes": 258,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/console-audit-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/console-audit-run.log",
+      "sha256": "0d2611aa90e208b7397f640525dc9fe5f1f79c0486e6eebbcf3cce67c3a74633",
+      "bytes": 229,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/final-i386.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/info-bindings-index.txt",
+      "sha256": "00b810726e9efea5b093428ea6337d15adbf911960c0adea902641e1ef02d506",
+      "bytes": 4604,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/info-process-bindings.asm",
+      "sha256": "34b31bfe16427e3be0897ee00b4f4d81f3dd10b1a6a1b41f56959174c6145411",
+      "bytes": 3213,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/master-HANDOFF.md",
+      "sha256": "6e0b7d46fe89f4c6f667016a68f909cb78b04249caa11028f6f798088e1a3898",
+      "bytes": 7475,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/master-composition.json",
+      "sha256": "2fae2c699044d30893d1fff43c576380a07bccb73cbee4069f6e6906ed6500a9",
+      "bytes": 427,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/master-recovered-frontend-control_startup.h",
+      "sha256": "254d25fdcf165fa9cd12e7f384981b7af6a24c5be12b34bd09d5b014080d43ef",
+      "bytes": 6572,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/master-recovered-frontend-game_data.h",
+      "sha256": "15785e00857813d6b856c65583034bd7c249934b47d19f789449296865e68f16",
+      "bytes": 16509,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/master-recovered-game-human_loading_state_view.h",
+      "sha256": "cf548796f12dfd54bfe87afc95f6d019432798bb1fb4d58f54395d384cf719ee",
+      "bytes": 2605,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-deps-index.txt",
+      "sha256": "accb5d4db804615945c8229ee0c1a20dca9bd3d21433df85fbc42a852b72b463",
+      "bytes": 7593,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-00720130.c",
+      "sha256": "5f8a2543cec45ea26749c0c7b5e61cdaf622178d8a59c86dce161e4eebad5be5",
+      "bytes": 4179,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-00720130.json",
+      "sha256": "deb78831905bef26fc30a7a195c79ef30550d3487a2f1489776165e49766c0df",
+      "bytes": 12348,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-00720340.c",
+      "sha256": "4c651c00d13d80c963bbbdfa1357608f7481f265400daac83898fcf5b25d4d88",
+      "bytes": 7174,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-00720340.json",
+      "sha256": "c2ff77b7179d961205db3567953fdba552116a457d08ee3fd6763bf6574a224e",
+      "bytes": 33030,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-console.log",
+      "sha256": "e6381bd5676ce0c5efd0633602dd6a1bff48f5cfb6948c93e8f5b3cf46853967",
+      "bytes": 5838,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-0040aa90.c",
+      "sha256": "49c35acd2bb3ebc1c7181e84270a82494478df43176cc8ff56f6444b5fb697eb",
+      "bytes": 886,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-0040aa90.json",
+      "sha256": "fda6e4f34923c66a6c3f200756d8fb1c8bc59abed4c009ea860f0ea4fbf74e25",
+      "bytes": 3441,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-0045f020.c",
+      "sha256": "228315a07e77a36147d3a45a19fb703ca164a4adffa5b78a789ddc67173dfe2d",
+      "bytes": 368,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-0045f020.json",
+      "sha256": "967e2b60d0661a7eb8c8d67f4e4fa0648ffa14ff5f140e819e978bcd9b1021de",
+      "bytes": 2844,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-007214e0.c",
+      "sha256": "f84a6e3843000f670ef28857ea3ecfbb31ffd9a12d5994fb067933575c19b808",
+      "bytes": 820,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-007214e0.json",
+      "sha256": "2553b31e9a24f920a2a72b87e3b3ed1adc6837fe83dca52924a7dfd1f0639309",
+      "bytes": 2490,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-00721b90.c",
+      "sha256": "e7ab4bd6b8554fd952e3052d2de7334b2e5c22c8b174a3dd3d8a1368b0118e9b",
+      "bytes": 693,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-00721b90.json",
+      "sha256": "d1407df44e7889cf426c86ef9da43086e5a2c32d89452456ed809f9cfcb36648",
+      "bytes": 4156,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-0072b1c0.c",
+      "sha256": "10cc49cfb440332ed95492b2e8d1b00e4a782ed983b209a434d9ea48cd064396",
+      "bytes": 3773,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-0072b1c0.json",
+      "sha256": "2ed2163c261cc9529e4a607998f10174d33105ce8faf55e8a25b4e85083dd687",
+      "bytes": 21748,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-0072ea90.c",
+      "sha256": "87a0547e9d07ea267f166d45583332e2ee978521118b8936b8bc386c9d606f03",
+      "bytes": 415,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-0072ea90.json",
+      "sha256": "99f4e009eccc573748e8ba7e781c7759a3df8cc25cd5e7cf532b8c828565c1f6",
+      "bytes": 2038,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-007422d0.c",
+      "sha256": "46bab2c7faf276e4e53b757b1956697c2d3fb5c25d9212bfe4407a28730f3835",
+      "bytes": 133,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-007422d0.json",
+      "sha256": "b6118a379757967bf985ea9ae21bbc0e583c559cf52a4f8c79fb3ce5f918bfcd",
+      "bytes": 1355,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-00742480.c",
+      "sha256": "02af590eeda119747afe2e3a586cfcc393bcf9343d9b8666eca0343d8ca29446",
+      "bytes": 32993,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-00742480.json",
+      "sha256": "f8e1e392a4382012878782b92423da2ba38f7bbd191037898570f4e208a0d877",
+      "bytes": 162833,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-007d7930.c",
+      "sha256": "0c45d287ffe6d4c59f5bc5aa3eb53e7e0f287c134519b259b9702d6aebd9df9a",
+      "bytes": 2420,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-007d7930.json",
+      "sha256": "b6a92ca3fe571fed46012ee2627b633d1f58404e607bb527f373ec9198d7935c",
+      "bytes": 8218,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-dispatch-deps-console.log",
+      "sha256": "4635f795a7abf10cc8b621ee98ef81b708497898a299ae318b8a2330ebb905e1",
+      "bytes": 5162,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-next-index.txt",
+      "sha256": "c78bb6be43b9dd2c9f98a667902f387be39193e9d639c80e9a4be24e4caf2926",
+      "bytes": 7800,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/message-parser.asm",
+      "sha256": "360cfbc3459bc739e6657559d1ba1a96c100acd27bbd85b2758ad69a1d05d59e",
+      "bytes": 9139,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/process-data-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/process-data-master-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/process-data-master-run.log",
+      "sha256": "acfde5de7e70700b9c03f256f2194c131617c89a5cbf9cc1217d0cdac28637e0",
+      "bytes": 237,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/process-data-run.log",
+      "sha256": "acfde5de7e70700b9c03f256f2194c131617c89a5cbf9cc1217d0cdac28637e0",
+      "bytes": 237,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/source-closed-application.log",
+      "sha256": "e17c02752cb69d4428e5486d2d5c6c32598b897b314db9a1993976e0b22be675",
+      "bytes": 599,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/source-closed-compat.log",
+      "sha256": "d4c480da9a44bff31a1e360cafb38d7224f095cfb81ab4b81970c13c5a1230ba",
+      "bytes": 392,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/source-closed-master-i386.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/zone-owner-final-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/zone-owner-final-run.log",
+      "sha256": "87cdc0eed862dc806e679eff8f91151ff8e6645e80fa0b1653a2bc42605c0de7",
+      "bytes": 176,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/tracker-render.log",
+      "sha256": "3f990b9cf5878cdbaf26e5d1cffd5a212690565c61285efeef226c5071819ace",
+      "bytes": 380,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/tracker-check.log",
+      "sha256": "38281bb176294c081f94a0fe10a041d7922716a0eede2e24cd2272e0ec436d84",
+      "bytes": 437,
+      "retained": true
+    },
+    {
+      "path": "analysis/work/p22-ui-20261112/source-closure/tracker-tests.log",
+      "sha256": "8b2f659099c3d525331665dc15ef749b27dbea4add879f3408d4c6b1f1b11b84",
+      "bytes": 126,
+      "retained": true
+    }
+  ],
+  "checks": {
+    "native_console": "PASS100 ASan/UBSan/LSan actual process-variable/input-limit/roster/HUD editor/TextObject parser policies, native prefixes/status/gates/item order and failure-buffer preservation; action/packet/process endpoints doubled.",
+    "native_car": "PASS100 asymmetric offline observer and nonoffline health/control/suppression/team ordering using actual process records; Actor/Human/seat endpoints doubled.",
+    "native_actor": "PASS100 actual SceneActor/ActorBase/HudWorld zone/occupants data-face lifetimes, registry identity/foreign/retired borrowers and progress; absent Actor family owners/engine doubled.",
+    "native_process": "PASS100 on each active/master layout: actual process records/configuration/team-score fields and actual master GameData mission/objective metadata, locked score/limit-1/failure cleanup; Human/lock endpoints doubled.",
+    "native_composed": "PASS100 actual0049BD50 dispatch into HUD editing/parser/input and004AED20/TextObject/locked process score, offline/nonoffline order, zero/warming and action failure; remaining panel/World/gameplay/engine endpoints doubled. Not actual Windows World execution.",
+    "actual_host_i386": "PASS strict concrete active i386 OBJECT generation of console/full HUD/peer/map/occupied presentation and actual typed World owners.",
+    "latest_master_i386": "PASS fresh76-file composition over05dbdee with same5 documented resolutions; actual master Human damage body and metadata/peer/UI functions generate i386 object, not declaration-only.",
+    "application_link": "PASS existing application-launch sequential strict i386 compile/link; Windows result not executed.",
+    "tracker": "PASS exact frozen fingerprints/inventories/counts/unique statuses/evidence/README and27 tracker tests.",
+    "final_master_readonly": "PASS final git fetch origin master remains05dbdee51cc366476317011b91b1a1863041dcee; no new master mutation/merge/rebase."
+  },
+  "temporary_master_composition": {
+    "master": "05dbdee51cc366476317011b91b1a1863041dcee",
+    "base": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+    "files": 76,
+    "conflicts": [
+      "recovered/game/car_loading_activation.h",
+      "recovered/game/hud_injury_movies_loading.h",
+      "recovered/game/static_weapon_actor.h",
+      "recovered/game/static_weapon_loading.h",
+      "recovered/host/game_mesh_movie.h"
+    ],
+    "directory": "/tmp/p22-ui-master-source-closed"
+  },
+  "integration_resolutions": "Same five pre-existing overlaps: retain Car fuel and master seat methods; both mesh movie methods; full UI injury receiver with master wrappers; preserve master moved mounted state/control, add E0/E4 in moved struct/init; StaticWeapon getters delegate actual control_.failed/view. New happyammo and process data declarations merge with no new conflict.",
+  "remaining_external": [
+    "HUM/Player/Items: typed174/peer3C, orders/path/model0058CCE0/0058CAF0, Human/weapon presentation, action/transfer/Sight/speech/health/live-items/mounted reload.",
+    "Actor/OWN: absent7/20/23/34/37 actual fields/virtuals, Car eligibility, real peer/address/team-count population.",
+    "PACK/application: chat/kill/shared queues and network application console; no fabricated payload target108.",
+    "FRAME: actual scheduling/time/input/camera/realtime and populated World integration.",
+    "RENDER: full scene/volume/procedural/debug/pre-scene/special-model/general presentation.",
+    "OWN/LIFE: install/activate/forward/rollback/finish/unload with callback/UI-before-World lifetime.",
+    "Actual desktop/mission/failure/repeat/second mission observations remain pending."
+  ],
+  "audits_rerun": false,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "independent_checks": [
+    "All76 source fingerprints match reviewed branch.",
+    "All59 retained original evidence/log fingerprints match.",
+    "Actual HUD/prepass/render/FPV/console and same-World occupied bindings inspected.",
+    "Explicit external producer interfaces and application activation boundary retained.",
+    "Feature tip is not merged into reviewed origin/master."
+  ],
+  "date_utc": "2026-11-12T07:13:47.851158+00:00",
+  "checkpoint_receipt": "analysis/checkpoints/p22-ui-source-closure-20261112.json",
+  "initial_reviewed_master_sha": "dcd648994cb25ff85710d304c2f8f19ea05ba4e9",
+  "final_reviewed_master_sha": "b132e6d78d9622e63dcfee982e917ad0ac10b64f",
+  "verification_method": "Read-only source/owner/positive-path inspection and receipt/artifact SHA256 verification. Upstream native sanitizer/i386/link/tracker checks reviewed, not rerun.",
+  "current_master_delta": "b132e6d adds Car fuel/collision-clock/impulse routes. Inspected changed Car owner interfaces and current main HANDOFF. The UI source-closure implementation is not merged; master has only the earlier31b01f9 UI adapter. Current application still deliberately declines loading.",
+  "integration_limit": "The five recorded overlap resolutions were compiled over05dbdee only. No merge or composed build over reviewed masterb132e6d was performed. Preserve newer master Car fuel/collision_clock/optional clock state in any actual merge.",
+  "no_original_execution": true,
+  "research_validation": {
+    "result": "PASS",
+    "date_utc": "2026-11-12T07:14:40.440706+00:00",
+    "nodes": 13,
+    "edges": 17,
+    "source_pins_checked": 85,
+    "checks": [
+      "All other blocker rows and graph nodes unchanged from research HEAD.",
+      "Stable node/edge IDs, typed prerequisite direction and blocking semantics retained.",
+      "Only UI source prerequisite edges marked satisfied; branch integration explicit.",
+      "Blocking DAG acyclic; conditional edges nonblocking; all references resolve.",
+      "All UI source/document/master fingerprints match their exact revision.",
+      "Reported native/i386 checks not rerun; no original/Windows/desktop execution.",
+      "Changes restricted to analysis/p2.2-critical-path/."
+    ]
+  }
+}
