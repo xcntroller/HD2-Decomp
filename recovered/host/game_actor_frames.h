@@ -570,6 +570,13 @@ public:
     }
     void item_auxiliary_link(Frame frame,Frame parent){(void)call<std::int32_t>(frame,0x38,parent,0u);} //007D5380 ignores native status.
     void item_auxiliary_forward(Frame frame){const Vector forward{{0,0,1,0}};call<void>(frame,0x1c,forward.data(),0.f);} //007D5380, THREE native direction lanes.
+    void human_mounted_model_position(Frame model,const Vector& position){call<void>(model,8,position.data());} //00793490, no early24.
+    void human_mounted_model_sector(Frame model,Frame sector){(void)call<std::int32_t>(model,0x38,sector,1u);} //00793490 ignores native status.
+    void human_mounted_model_visibility(Frame model,Frame source){ //79367D..68D retains native ECX upper bytes, masks CL only.
+        const auto argument=(static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(source))&0xffffff00u)|
+            (field<std::uint8_t>(source,0xe0)&1u);
+        call<void>(model,0x30,argument);
+    }
     game::MissionQuaternion human_matrix_rotation(const Matrix& matrix) {
         game::MissionQuaternion result{};
         using Make=void(WINAPI*)(void*,const void*);

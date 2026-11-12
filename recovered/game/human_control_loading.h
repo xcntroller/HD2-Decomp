@@ -732,8 +732,17 @@ private:
                 if((!previous||!next||previous==root||next==root)&&services_.current_human_frame_player()==human_)
                     services_.refresh_human_presentation_camera();
             });
-        if(state.template get<std::int32_t>(0xa30)>0)
-            runtime.present_human_control_attachment(*this,elapsed,mode); //00793490 and attached opacity.
+        if(state.template get<std::int32_t>(0xa30)>0){
+            equipment_owner.present_mounted_frame(elapsed); //00793490 before fresh selected-model/EC query.
+            if(const auto model=equipment_owner.state().selected_model(9)){
+                if(auto* mounted=services_.template human_mounted_model_actor<Human>(model)){
+                    auto* target=services_.human_inline(*mounted).control();
+                    if(!target)throw std::logic_error("Mounted opacity requires its actual target DD0");
+                    target->opacity().inherit_mount_observation(opacity_); //RAW targetDA8/ambientDB8, not field0/applied.
+                    target->opacity().update(model,human_frame_signed_word(elapsed),mode,*target);
+                }
+            }
+        }
         if(animation_.advance_equipment_frame_timer(elapsed))
             equipment_owner.set_frame_weapon_pose(true,false); //00791AC0(1,1,0).
         const auto secondary=state.template get<std::uint32_t>(0x1e8);

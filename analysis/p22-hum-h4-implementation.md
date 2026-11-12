@@ -338,3 +338,35 @@ Scene/Ladder/FPV services i386 FULL LINK PASS; other containing Runtime branches
 are defined throwing doubles. Existing launcher/probe strictO2 links PASS, never
 run. Existing00758D20 only extended; no new counts/promotions. [C7 receipt](checkpoints/p22-hum-h4-track-effects-20261112.json)
 records source/original/log and removed audit fingerprints. H4 remains OPEN.
+
+## C8 — actual mounted230 presentation and target opacity
+
+00793490 now runs over the SAME230 model1C/HW1B4 and DD0 sectorCE4. Legitimate
+null model returns before any other read; populated model requires actual HW1.
+Original sequence is fresh HW1 world position ->model08, fresh HW1 world forward
+with(Y²+Z²)+X² normalization ->model0C(direction,0), model24, SAME Scene144(model),
+frame38(sector,1), original source model visibility, then signed positive elapsed
+and positive FLOAT D0 gate for __ftol((elapsed*D0)+(elapsed*D0)) ->model20. Link
+status is originally ignored. Model/marker reads remain fresh across endpoints;
+replacement is observed rather than publishing through a retired model snapshot.
+Native visibility79367D..68D preserves ECX upper bytes from source model pointer
+and only masks CL bit0; the real frame endpoint forwards that raw32-bit word
+rather than inventing Booleanization. Source checked endpoint/cold-owner guards
+remain separate from original native branches.
+
+00758830's positive A30 branch now calls actual equipment presentation directly,
+then freshly selects model9 and resolves its actual EC-bound Human via existing
+Scene/Sight mapping. Target SAME DD0 opacity copies only RAW targetDA8 and
+ambientDB8 from source, then runs existing00789CD0(model,elapsed,mode). No copied
+applied value, field0, clock/timer or second opacity owner; no Runtime attachment
+placeholder remains. Actual source graph links public DD0->230->frames/Scene->
+model EC Human->target DD0/GEffects, with adjacent unimplemented Runtime branches
+explicit throwing doubles. Native sanitizer PASS34 covers actual equipment state/
+pose policy, all nine endpoint failure prefixes, callback-visible replacement,
+positive/zero/negative rates and elapsed, absence/cold marker, real opacity target/
+ambient inheritance and smoothing. Engine/Scene endpoint doubles are labelled.
+
+C8 strict actual containing i386 FULL LINK and launcher/probe O2 links PASS;
+no Windows output executed. [Receipt](checkpoints/p22-hum-h4-mount-presentation-20261112.json)
+fingerprints source/original/logs and removed audits. Only new00793490 partial;
+34 complete/3,026 partial; no complete promotion or denominator change. H4 OPEN.

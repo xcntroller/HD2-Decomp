@@ -6,7 +6,11 @@ Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`, branch
 
 [H4 plan](analysis/p22-hum-h4-plan.md),
 [implementation/remaining families](analysis/p22-hum-h4-implementation.md).
-**H4 is the selected whole checkbox and remains OPEN. Continue after C7.**
+**H4 is the selected whole checkbox and remains OPEN. Continue after C8.**
+
+C8: actual mounted230 pose/Scene/sector/raw visibility and model-EC target DD0
+opacity/GEffects; sanitizer PASS34 and actual containing i386/launcher links PASS.
+[C8 receipt](analysis/checkpoints/p22-hum-h4-mount-presentation-20261112.json).
 
 C7: track18 particle33 and19/24 exact SOUND/gates/return policy; sanitizer PASS41,
 actual public DD0/World/effects/SOUND/i386/launcher links PASS.
@@ -37,7 +41,7 @@ Native ASan/UBSan/LSan PASS59 policy + PASS12 actual physics failure/retirement/
 retry. Strict actual i386 World/climb/public DD0 presentation/track FULL LINK PASS;
 remaining Runtime endpoints are labelled throwing doubles, not installed services.
 Application/probe links PASS, never executed. [C2 receipt](analysis/checkpoints/p22-hum-h4-climb-20261112.json).
-All temporary audit sources/binaries fingerprinted/removed.34 complete/3,025 partial;
+All temporary audit sources/binaries fingerprinted/removed.34 complete/3,026 partial;
 full tracker inherited missing0062D880 evidence, focused checks PASS.
 
 Next: continue whole H4 families: remaining completion type15 actor91,
@@ -48,11 +52,11 @@ client fingerprint; verify instructions/ABI before implementation. Next formatio
 Original0058D900 setter binds a Players subgroup formation from004603C0; this is
 not auxiliary moduleE8/selection28 and not automatically Human2C8. Inspect actual
 subgroup producer/lifetime before binding. Additional evidence exports retained.
-Next C8: actual00793490 mounted230 model presentation and00758830 target opacity
-copy. Model1, HW1, sameScene144, actual sector/link/visibility and model-bound
-Human EC consumers exist. HumanOpacity target is nativeDA8, ambientDB8; preserve
-raw target/ambient before target.update. Track8/9 still require original action
-model kinds4/8 and0075DF70; do not assume action5..7 covers those families.
+Next C9: track8/9 action model kinds4/8 and0075DF70; inspect original0078DF60
+cases4/8 and00790520 retirement4/8 with corrected ABI/raw x86. Existing kind8
+attachment helper is present but retirement8 and full kind4 are missing. Actual
+kind4 bbox alignment and retirement pose use existing model/face/frame owners;
+no guessed geometry. Other remaining completions/Script/subgroup bodies stay open.
 
 No original EXE/DLL/Proton or Windows output execution. Heavy builds/Ghidra are
 sequential; inspect other workstreams' active jobs before ours. No agents or push.

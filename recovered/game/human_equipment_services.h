@@ -68,6 +68,7 @@ public:
     void set_equipment_command(std::int32_t command,bool changed){look_.equipment_command(command,changed);}
     std::uint32_t game_word28()const{return world_.game_word28();}
     Frame equipment_human_model()const{return human_.base().frame();}
+    Frame equipment_presentation_sector()const{return control_.animation().sector();} //Actual CE4 borrower.
     bool equipment_human_hidden()const{return world_.human_hidden(human_);} //Actual Human150.
     Frame equipment_animation_resource(unsigned table,unsigned row){return world_.human_animation_resource(table,row);}
     auto& equipment_sweep(){return world_.human_geometry_sweep();}

@@ -125,3 +125,12 @@ assume unmerged source is linked here. H4 base remains e742f84.
   against raw bytes; sanitizer policies/failure prefixes and concrete i386 links.
 - [x] Record resource/producer requirements, receipt, audit removal and commit;
   continue track8/9/DD0 attachment and remaining H4 completion/Script families.
+
+## C8 selected mounted equipment presentation
+
+- [x] Implement00793490 actual230 model/HW1 pose, Scene144, sector1/raw source
+  visibility and elapsed*D0*2 native animation advance over existing owners.
+- [x] Replace00758830 attachment Runtime gap with actual model-bound Human EC
+  opacity targetDA8/ambientDB8 copy and SAME target opacity update.
+- [x] Native policy/order/failure/ownership audits and strict actual World/public
+  DD0 composition/i386/application links; receipt/cleanup/commit and continue.

@@ -30929,12 +30929,15 @@
       "program": "client",
       "entry": "00758830",
       "status": "partial",
-      "coverage": "Actual animation event/track ordering, sector sampling, ambient and opacity, equipment timer and face frame; positive attachment, camera and event effects remain required.",
+      "coverage": "Actual animation event/track ordering, sector sampling, ambient and opacity, equipment timer and face frame; positive attachment, camera and event effects remain required. Positive A30 now calls actual00793490 and copies raw targetDA8/ambientDB8 to freshly resolved model-EC Human/DD0 before actual target opacity update; no attachment Runtime replacement.",
       "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
-        "recovered/game/human_control_loading.h"
+        "recovered/game/human_control_loading.h",
+        "recovered/game/human_equipment_mount_presentation.h",
+        "recovered/game/human_opacity_control.h",
+        "analysis/p22-hum-h4-implementation.md"
       ]
     },
     {
@@ -40887,6 +40890,20 @@
         "recovered/game/human_equipment_services.h",
         "recovered/game/human_equipment_transfers.h",
         "recovered/game/human_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00793490",
+      "status": "partial",
+      "coverage": "Actual230 model/HW1 mounted presentation: fresh world position/forward, model08/0C/24 then Scene144, sector1 link, original raw source-model visibility word and signed positive elapsed*D0*2 native conversion/model20. Same resources and borrower replacement semantics.",
+      "limitations": "Source-only typed owners/RAII/STL and checked native safety endpoints, not original object/allocator/thiscall/SEH equivalence. Native frame/Scene endpoints explicit doubles; actual public DD0/230/frame/EC-bound Human opacity/GEffects composition fully links only. Original mounted-action producer and remaining H4/mission/desktop execution stay open.",
+      "evidence": [
+        "recovered/game/human_equipment_mount_presentation.h",
+        "recovered/game/human_equipment_loading.h",
+        "recovered/game/human_equipment_services.h",
         "recovered/host/game_actor_frames.h",
         "analysis/p22-hum-h4-implementation.md"
       ]
