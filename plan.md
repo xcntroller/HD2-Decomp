@@ -248,6 +248,7 @@ preparation, not a standalone audit-only milestone.
   [Mine placement/packet dependency](analysis/checkpoints/p2.2-human-mine-producers-20261112.json) is source-only; full Human reactions/entry/frame remain open.
   [Versions contact dependency](analysis/checkpoints/p2.2-human-versions-transitions-20261112.json) is source-only; actual Human frame/entry and application delivery remain open.
   [Armed Mine/explosion dependency](analysis/checkpoints/p2.2-human-mine-contact-20261112.json) is source-only; derived damage/full entry/frame remain open.
+  [Car blast/DM dependency](analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json) is source-only; terminal damage/presentation/full Human frame remain open.
   [P22-UI implementation](analysis/p22-ui-implementation.md): presentation/text/timer leaves verified; full HUD/FPV updates remain open.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat

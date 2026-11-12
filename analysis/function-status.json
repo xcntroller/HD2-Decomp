@@ -24671,11 +24671,13 @@
       "program": "client",
       "entry": "004fe910",
       "status": "partial",
-      "coverage": "Reset SAME part health/flags; cold reverse alternatives/base visibility restore and actual6B4 callback.",
+      "coverage": "Reset SAME part health/flags; cold reverse alternatives/base visibility restore and actual6B4 callback. Part38 flags are represented as native WORD; byte-low bit clearing preserves the high byte.",
       "limitations": "Positive deformed mesh/glass backups and occupied attachment restore remain excluded.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_deformable_parts.h"
+        "recovered/game/car_deformable_parts.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
       ]
     },
     {
@@ -24759,11 +24761,13 @@
       "program": "client",
       "entry": "004d3970",
       "status": "partial",
-      "coverage": "Actual active camera/model distance and epoch feature flags, destroyed branch and audible transition.",
+      "coverage": "Actual active camera/model distance and epoch feature flags, destroyed branch and audible transition. Destroyed predicate now borrows actual actor254A shared with CarD4.",
       "limitations": "Native object ABI differs; containing world remains unintegrated.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_actor_features.h"
+        "recovered/game/car_actor_features.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
       ]
     },
     {
@@ -24781,13 +24785,15 @@
       "program": "client",
       "entry": "004d16a0",
       "status": "partial",
-      "coverage": "Compose actual offline two-pass common/DM/proximity/runtime initialization, seats/cameras, helper, navigation and settling. Actual100 gun seats now create real shared004C1AD0 owners with the original seat index/model/pivot and publish only genuine successful initialization.",
+      "coverage": "Compose actual offline two-pass common/DM/proximity/runtime initialization, seats/cameras, helper, navigation and settling. Actual100 gun seats now create real shared004C1AD0 owners with the original seat index/model/pivot and publish only genuine successful initialization. Actual actor254A and authority24B0 reset now share the reached damage owner.",
       "limitations": "Unoccupied loading only; mounted/occupied/non7 receivers excluded. Host composition compile-only, no live world/desktop result.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_loading_activation.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
       ]
     },
     {
@@ -36336,6 +36342,126 @@
         "recovered/game/shot_effect.h",
         "analysis/human-mine-contact-source.md",
         "analysis/checkpoints/p2.2-human-mine-contact-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dba10",
+      "status": "partial",
+      "coverage": "Actual Car D4 RET24 gates, source24B0, Scene104 pick, SAME part health/resistance/WORD flags/dirty, native force/velocity and reverse wheel event production, embedded DM dispatch then SAME2350/core22C0 publication.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_actor_damage.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dde20",
+      "status": "partial",
+      "coverage": "Source faction2 admission through reverse SAME Car seats: offline source-observer hostility then health; non7 live/player/suppression and occupant/source side checks in native order.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_actor_damage.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d3b70",
+      "status": "partial",
+      "coverage": "Actual5E0 gate, direct live wheel40 distance or inverse wheel148 local radial Y/Z, FLOAT tiny/near-one/sqrt and radius1D8*.7 region result.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_actor_damage.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004db2b0",
+      "status": "partial",
+      "coverage": "SAME module13 priority3/third stream, identity10 and actual derived damage event writers before finish; only broadcast, with no local presentation application.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e1a20",
+      "status": "partial",
+      "coverage": "Actual24E0 DM owner: type/model/trigger gates, alignment, reverse explosion/seat visibility, nearest blast zone or Scene104 model pick, direct/secondary Human damage, material/zone integer health, destruction/delayed explosion publication ordering.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e1dc0",
+      "status": "partial",
+      "coverage": "Actual Car world/quaternion DM model pose, same scene-root link, reverse HOR/VERT matching short-name local quaternion cache/flags/update, model24.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e18c0",
+      "status": "partial",
+      "coverage": "Reverse SAME occupied DM seat markers, show model/marker, Scene104 pick and Human kind1/final0 using supplied start point, then model hide.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e1820",
+      "status": "partial",
+      "coverage": "Actual reverse EXPL_D marker Scene104 picking and index; successful early return leaves model visible, misses hide and return-1.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e1f40",
+      "status": "partial",
+      "coverage": "Actual kind5 explosion-index event via same Car004DB2B0 and module13 stream after countdown/armed publication.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e1fe0",
+      "status": "partial",
+      "coverage": "Actual DM64 gate, required004DBF00 destruction callback and triggered publication only AFTER successful callback; required missing actual destruction receiver stays explicit.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence promotion. Native repeated100 damage-family lifetimes use actual DM/part/body/wheel/packet owners with explicit engine/geometry/physical-coefficient/containing actor/policy/Human-damage/destruction endpoint doubles. Strict actual full World/Car/Human/Blast i386 and launcher/probe compile/link pass. Terminal004DBF00, Car presentation/timed consumption, deformation/detachment/surface and other derived damage, full entry/frame and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/human-car-blast-damage-source.md",
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
       ]
     }
   ]

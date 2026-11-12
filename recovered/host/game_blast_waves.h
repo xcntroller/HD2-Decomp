@@ -4,6 +4,8 @@
 #include "game/dynamic_collision_point_queries.h"
 #include "game/collision_ray.h"
 #include "game/human_blast_damage.h"
+#include "game/car_actor_damage.h"
+#include "game/mission_script_player_predicates.h"
 namespace hd2::host {
 //Actual fixed-update/finish bridge to SAME Startup008AED48 storage. Constructor
 //does not clear records or invent a World; positive generation uses actual
@@ -14,7 +16,7 @@ public:
     using Process=StartupSession::BlastWaves;using Vector=Process::Vector;using Matrix=GameActorServices::Matrix;
     using Actor=GameSceneActors::Instance;using Descriptor=world_loading::Scene::Descriptor;
     using Request=Process::Request;
-    explicit GameBlastWaves(world_loading::Owners& owners):d_(owners.dependencies()),
+    explicit GameBlastWaves(world_loading::Owners& owners):d_(owners.dependencies()),services_(owners.human_services()),
         points_(d_.scene.buckets(),d_.scene.frames()){
         car_=dynamic_cast<GameCarCallbacks*>(&d_.scene.car_callbacks());
         if(!car_)throw std::logic_error("Explosion binding requires actual scene Car callback owner");
@@ -85,8 +87,31 @@ public:
             auto* cause=source?&d_.world_actors.human_loading_actor(source):nullptr;
             game::apply_human_blast_damage(target,kind,amount,point,impulse,cause);return;
         }
+        if(actor.base().type()==4){
+            auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(&actor);
+            if(!car||!car->geometry)throw std::logic_error("Car blast damage requires actual initialized containing Car owner");
+            game::apply_car_actor_damage(frames(),*this,*car,[&]()->auto&{if(!car->loading)throw std::logic_error("Car damage requires actual loading lifetime");return car->loading->cold_state();},kind,amount,point,impulse,source);return;
+        }
         throw std::runtime_error("Blast damage requires actual actor virtualD4 receiver");
     }
+    std::uint32_t car_damage_mode()const{return mode_flags();}
+    std::uint32_t car_damage_role(Actor* actor){return human(*actor).properties.field19c;}
+    std::int32_t car_damage_health(Actor* actor){return game::car_contact_signed_word(human(*actor).properties.stats_ec[0]);}
+    bool car_damage_hostile(Actor* observer,Actor* target){return d_.sight.human_sight_hostile(observer,target);}
+    bool car_damage_player(Actor* actor){return game::script_human_player_controlled(human(*actor),mode_flags());}
+    bool car_damage_suppressed(Actor* actor){return d_.presentation.human_selected_suppressed(human(*actor));}
+    std::uint32_t car_damage_side(Actor* actor){return services_.human_specialization(human(*actor),false);}
+    Actor* car_damage_occupant(Actor* actor,std::size_t index){
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(actor);
+        if(!car)throw std::logic_error("Car damage seat query requires actual Car owner");
+        return index<car->occupants.size()?car->occupants[index]:nullptr;
+    }
+    void car_damage_human(Actor* target,std::uint32_t kind,float amount,const Vector& point,const Vector& direction,Actor* source){
+        blast_actor_damage(*target,kind,amount,point,direction,source); //SAME guarded Human lifetime and final hit0.
+    }
+    std::uint32_t car_damage_absorption(std::int32_t index){return d_.car_definitions.materials().at(index).word(0x28);}
+    void car_damage_event(Actor* actor,const game::CarDamageEvent& event){game::publish_car_damage(d_.broadcast_packets,actor->base().id10(),event);}
+    void car_damage_destroy(Actor*,bool){throw std::runtime_error("Car destruction requires actual004DBF00 effects/control/occupant receiver");}
     void blast_physics_impulse(EngineFrame* frame,std::int32_t damage,unsigned effects){
         const auto* data=d_.scene.frames().find_actor_frame_data(frame);
         //The existing source method name is historical: EC+14 borrows a
@@ -99,7 +124,7 @@ private:
         if(!value||value->base().type()!=3)throw std::logic_error("Blast Human requires actual containing actor lifetime");return *value;
     }
     void require_loaded()const{if(!d_.session.loaded)throw std::logic_error("Blast process requires actual loaded containing World");}
-    world_loading::Dependencies& d_;
+    world_loading::Dependencies& d_;world_loading::Services& services_;
     GameCarCallbacks* car_=nullptr;
     game::DynamicCollisionPointQueries<Descriptor,world_loading::Scene::Tree::DynamicGrid,GameActorServices> points_;
 };

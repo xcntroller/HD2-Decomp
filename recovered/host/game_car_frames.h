@@ -68,6 +68,22 @@ public:
     bool load_car_ancillary_model(Frame model,const std::string& name) {
         return resources_.load_model(model,recovered::model_resource_key(name),0)==0;
     }
+    Frame car_damage_pick(const Vector& start,const Vector& displacement,Frame root,std::uint32_t flags){
+        if(!root||!scene_.frame())throw std::logic_error("Car damage picking requires actual scene/model owners");
+        using Pick=Frame(WINAPI*)(Frame,const float*,const float*,Frame,void*,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
+        alignas(16) std::array<std::uint8_t,64> details{};
+        return scene_method<Pick>(scene_.frame(),module_,0x104,0x110f0)(scene_.frame(),start.data(),displacement.data(),root,details.data(),flags,0,0,0);
+    }
+    void car_damage_model_pose(Frame model,const Vector& position,const Vector& rotation){call<void>(model,0x18,position.data(),rotation.data());}
+    void car_damage_plane_rotation(Frame target,Frame source){ //004E1DC0's cache publication precedes Make.
+        auto flags=field<std::uint32_t>(source,0xe0);
+        if(!(flags&8u)){
+            put(source,0xe0,flags|8u);using Make=void(WINAPI*)(void*,const void*);
+            exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(address(source,0xc0),address(source,0x80));
+        }
+        object_rotation(target,field<Vector>(source,0xc0));
+    }
+    Frame car_damage_root(){return field<Frame>(scene_.frame(),0x1f8);}
     Vector car_position(Frame frame) const {return field<Vector>(frame,0xb0);}
     Frame car_find(Frame frame,const char* pattern,std::uint32_t mask) {
         return call<Frame>(frame,0x48,pattern,mask);

@@ -1,6 +1,8 @@
 #ifndef HD2_GAME_CAR_ANCILLARY_MODEL_H
 #define HD2_GAME_CAR_ANCILLARY_MODEL_H
 
+#include "game/car_damage_packets.h"
+#include <cmath>
 #include <cstdint>
 #include <cstring>
 #include <cstdlib>
@@ -32,7 +34,7 @@ public:
     using Frame=typename Frames::Frame;
     using Owner=decltype(std::declval<Frames&>().create_car_ancillary_model());
     struct Zone {Frame frame{};std::int32_t hit_points=-1,material=-1;};
-    struct Explosion {Frame frame{};std::int32_t delay=0,part=-1;};
+    struct Explosion {Frame frame{};std::int32_t delay=0,part=-1;bool armed=false;};
     void load(Frames& frames,const std::string& resource,std::size_t seat_count) {
         if(model_)throw std::logic_error("Car ancillary model loaded twice");
         auto model=frames.create_car_ancillary_model();
@@ -55,6 +57,81 @@ public:
         if(triggered_||countdown_==0)return;
         throw std::runtime_error("Car timed DM destruction requires its actual004E1FE0/004DBF00 receiver");
     }
+    //004E1DC0: borrow the actual Car frame twice, then align HOR/VERT markers
+    //by their short names to the matching Car local quaternion. No frame clone.
+    void align_damage_model(Frames& frames,Frame car) {
+        if(!model())return;
+        const auto rotation=frames.human_matrix_rotation(frames.actor_world_matrix(car));
+        const auto world=frames.actor_world_matrix(car);
+        frames.car_damage_model_pose(model(),{{world[12],world[13],world[14],world[15]}},rotation);
+        frames.link_scene_object(model(),frames.car_damage_root());
+        for(auto n=planes_.size();n;){const auto marker=planes_[--n];
+            const auto original=frames.car_find(car,frames.car_short_name(marker).c_str(),0xffff);
+            if(!original)throw std::runtime_error("Car DM plane has no matching actual Car frame");
+            frames.car_damage_plane_rotation(marker,original);
+            frames.update_scene_object(marker);
+        }
+        frames.update_scene_object(model());
+    }
+    //004E1A20 RET20; the containing actor owns the source identity and6F8/FF4
+    //events. This is its separate24E0 DM receiver, never physics00500EB0.
+    template<class Runtime,class Actor>void damage(Frames& frames,Frame car,Runtime& runtime,Actor self,
+            std::uint32_t kind,float amount,const CarContactVector& point,const CarContactVector& direction,Actor source) {
+        if(triggered_||!model()||(kind!=4&&kind!=1&&kind!=7&&kind!=2))return;
+        align_damage_model(frames,car);
+        CarContactVector start=point;
+        for(unsigned a=0;a!=3;++a)start[a]-=direction[a];
+        //Native28 is the EXPL_D record-pointer array;38 is HOR/VERT.
+        for(auto n=explosions_.size();n;)frames.object_visible(explosions_[--n].frame,false);
+        for(auto n=seats_.size();n;){const auto seat=--n;if(seats_[seat])
+            frames.object_visible(seats_[seat],runtime.car_damage_occupant(self,seat)!=nullptr);}
+        Frame hit{};
+        if(kind==2){
+            if(zones_.empty())return;
+            float nearest=1000000.f;
+            for(auto n=zones_.size();n;){const auto frame=zones_[--n].frame;
+                const auto world=frames.actor_world_matrix(frame);
+                const auto x=static_cast<long double>(world[12])-point[0],y=static_cast<long double>(world[13])-point[1],z=static_cast<long double>(world[14])-point[2];
+                const auto square=(z*z+y*y)+x*x;
+                if(!(square>nearest)){nearest=static_cast<float>(square);hit=frame;}
+            }
+        }else{
+            frames.object_visible(model(),true);
+            auto extended=start;for(unsigned a=0;a!=3;++a)extended[a]-=direction[a];
+            hit=frames.car_damage_pick(extended,direction,model(),0x40000);
+            frames.object_visible(model(),false);
+        }
+        if(!hit)return;
+        for(auto n=seats_.size();n;){const auto seat=--n;if(hit==seats_[seat]){
+            const auto occupant=runtime.car_damage_occupant(self,seat);
+            if(occupant)runtime.car_damage_human(occupant,1,amount,point,direction,source);
+            return;
+        }}
+        Zone* zone=nullptr;for(auto n=zones_.size();n;){auto& candidate=zones_[--n];if(candidate.frame==hit){zone=&candidate;break;}}
+        if(!zone){damage_seats(frames,runtime,self,start,direction,amount,source);return;}
+        const auto reduced=static_cast<long double>(amount)-runtime.car_damage_absorption(zone->material);
+        const float stored=static_cast<float>(reduced);
+        if(!(reduced>0))return;
+        zone->hit_points=car_damage_integer(static_cast<long double>(zone->hit_points)-stored);
+        if(zone->hit_points>=0)return;
+        zone->hit_points=0;
+        damage_seats(frames,runtime,self,start,direction,stored,source);
+        if(kind==1){
+            const auto index=find_explosion(frames,start,direction);
+            if(index<0)return;
+            auto& explosion=explosions_.at(static_cast<std::size_t>(index));
+            if(explosion.armed)return;
+            if(explosion.delay!=0){
+                if(countdown_==0||explosion.delay<countdown_)countdown_=explosion.delay;
+                explosion.armed=true; //Publication precedes wire; a wire failure keeps both.
+                runtime.car_damage_event(self,CarDamageEvent::explosion(static_cast<std::uint32_t>(index)));return;
+            }
+        }
+        destroy(runtime,self);
+    }
+    template<class Runtime,class Actor>void destroy(Runtime& runtime,Actor self){ //004E1FE0,64 AFTER004DBF00.
+        if(!triggered_){runtime.car_damage_destroy(self,false);triggered_=true;}
+    }
     std::int32_t countdown()const{return countdown_;}
     Frame model() const {return model_?model_->get():Frame{};}
     const std::vector<Frame>& seats() const {return seats_;}
@@ -66,6 +143,26 @@ public:
     std::int32_t fire() const {return fire_;}
     std::int32_t smoke() const {return smoke_;}
 private:
+    template<class Runtime,class Actor>void damage_seats(Frames& frames,Runtime& runtime,Actor self,
+            const CarContactVector& start,const CarContactVector& direction,float amount,Actor source){ //004E18C0.
+        frames.object_visible(model(),true);
+        for(auto n=seats_.size();n;){const auto seat=--n;const auto marker=seats_[seat];if(!marker)continue;
+            const auto occupant=runtime.car_damage_occupant(self,seat);if(!occupant)continue;
+            frames.object_visible(marker,true);
+            if(frames.car_damage_pick(start,direction,marker,0x40000)==marker)
+                runtime.car_damage_human(occupant,1,amount,start,direction,source);
+        }
+        frames.object_visible(model(),false);
+    }
+    std::int32_t find_explosion(Frames& frames,const CarContactVector& start,const CarContactVector& direction){ //004E1820.
+        frames.object_visible(model(),true);
+        for(auto n=explosions_.size();n;){const auto index=--n;const auto marker=explosions_[index].frame;
+            frames.object_visible(marker,true);
+            //The native successful early return deliberately leaves model visible.
+            if(frames.car_damage_pick(start,direction,marker,0x40000)==marker)return static_cast<std::int32_t>(index);
+        }
+        frames.object_visible(model(),false);return -1;
+    }
     void parse(Frames& frames,std::size_t seat_count){
         for(std::size_t seat=0;seat<seat_count;++seat) {
             const auto number=std::to_string(seat);

@@ -1694,3 +1694,13 @@ actual World composition and final launcher/probe pass. Adds4 partials/extends2:
 34 complete/2701 partial, no promotions. Full selected Human checkbox stays OPEN.
 Continue actual CarD4=004DBA10, other required damage/surface receivers, non7 entry
 and containing Human frame/failure/re-entry/ordered teardown.
+
+
+## Reached Car blast damage dependency —2026-11-12
+
+[Car original/source contract](human-car-blast-damage-source.md) and
+[source checkpoint](checkpoints/p2.2-human-car-blast-damage-20261112.json) bind
+actual004DBA10 to SAME Car part/wheel/DM/body owners, positive zone/occupant
+damage and native shared packet production.004E1A20 is embedded24E0 DM, distinct
+from physics health. Terminal destruction, presentation/timed-DM and containing
+Human frame remain required; this does not close the selected checkbox.

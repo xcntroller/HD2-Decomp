@@ -50,7 +50,8 @@ public:
     }
     void activate(bool authority)override{
         require_mode();require_geometry();
-        destroyed_=false;enemy_notified_=false;damage_target_=damage_template_=-1;
+        actor_.flag254a=false;enemy_notified_=false;damage_target_=damage_template_=-1;
+        if(authority)actor_.source24b0=-1;
         clock2584_=actor_.callback_services().car_clock();camera_setting_=services_.car_camera_setting264();
         actor_.ancillary->reset_loading(frames_,actor_.geometry->auxiliary().seats().size());
         if(authority){if(proximity_!=-1)throw std::logic_error("Car authority activation repeated before proximity retirement");
@@ -104,7 +105,7 @@ public:
         same_epoch_=frames_.vertex_scene_epoch()==frames_.vertex_frame_epoch(actor_.geometry->model());
         update_core(elapsed);(void)finalize_core(elapsed);
         actor_.base().world_direction(initial_->body().pose().forward);actor_.base().world_position(initial_->body().pose().position); //004D38F0.
-        update_car_actor_features(frames_,actor_.geometry->model(),frames_.active_game_camera(),same_epoch_,destroyed_,services_.mode_flags(),
+        update_car_actor_features(frames_,actor_.geometry->model(),frames_.active_game_camera(),same_epoch_,actor_.flag254a,services_.mode_flags(),
             initial_->solver.substeps.flags,initial_->drive,initial_->audio);
         seats_.update(queries_,actor_.base().world_direction(),initial_->body().motion().velocity,initial_->solver.speed,
             services_.car_current_attachment(),resources_.seat_camera);
@@ -162,10 +163,10 @@ private:
         initial_->mass.seat(index,0,initial_->solver.mass_changed);actor_.occupants[index]=nullptr;
         seats_.restore_camera(index);
         if(index==0){actor_.driver24ac=nullptr;
-            if(!destroyed_){ //004F2530(0,!234F), forced shutdown mutates22A0 only in this branch.
+            if(!initial_->finalizer.engine_transition){ //004F2530(0,!234F), distinct from actor254A.
                 initial_->engine_timeout=5000;initial_->health.destroyed=false;
                 initial_->drive.engine_speed=0;initial_->drive.running=false;initial_->finalizer.engine_transition=false;initial_->sounds.stop_all();
-            }else if(initial_->drive.running){
+            }else{
                 initial_->audio.stop_engine_transition(initial_->drive,initial_->finalizer.inside,initial_->finalizer.engine_transition,initial_->health.destroyed);
                 if(!initial_->drive.running){initial_->control_requests.first=initial_->control_requests.second=0;initial_->health.destroyed=false;} //004F2530 tail.
             }
@@ -204,7 +205,7 @@ private:
     std::optional<Initial> initial_;std::optional<CarActorColdState<Frames>> view_;std::optional<Receivers> receivers_;std::optional<BodyCollision> body_collision_;
     Vector initial_position_{},initial_direction_{};std::uint32_t clock2584_=0,navigation_elapsed_=0;
     std::int32_t proximity_=-1,damage_target_=-1,damage_template_=-1;
-    bool ready_=false,destroyed_=false,enemy_notified_=false,camera_setting_=false,same_epoch_=false;
+    bool ready_=false,enemy_notified_=false,camera_setting_=false,same_epoch_=false;
 };
 
 } //namespace hd2::game

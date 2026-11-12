@@ -10,7 +10,7 @@ Continue dependencies until the FULL selected checkbox completes or genuinely bl
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
 explicitly requested returning here; transfer byte-verified in ignored WORK
 `human-return-main-20261111`. Check HEAD/status before acting. Latest preceding
-checkpoint4e96476; older hashes may differ after rebases. Preserve other LIFE/UI/
+checkpointe861ace; older hashes may differ after rebases. Preserve other LIFE/UI/
 PACK/research worktrees, `/tmp/hd2-p22-hum-continue` and external merges.
 
 No original EXE/DLL/Proton or Windows fixture execution. Native own audits only;
@@ -19,6 +19,29 @@ Source-only checkpoints may be committed; interactive acceptance requires user.
 Application mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source
+
+[Car blast damage receipt](analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json)
+adds10 partials/extends3:34 complete/2711 partial(2706client+5engine), no promotions.
+[Full original/source contract](analysis/human-car-blast-damage-source.md).
+Actual004DBA10 RET24 now binds SAME Car/body/wheels/dirty/deformables/24E0 DM through
+GameBlastWaves. Source faction2 reverse-seat policy, actor254A gate, source24B0
+before Scene104 picking(direction*10), part28 resistance/24 health/WORD38 flags,
+native force/velocity and reverse wheel radial regions lead actual shared module13
+priority3 broadcast events. Native glass is kind0, otherpart1, wheel3, destruction4,
+explosion5; writers absent frozen ZERO credit. Body2350 is SAME mass_changed.
+Actual004E1DC0 DM pose/root/short-name plane quaternion alignment;004E1A20 nearest
+blast-zone ties or model pick, actual material/HP, reverse seat rays and SAME
+Human lifetime damage. Zone0HP does not trigger; negativeHP clamps0/occupants
+before destruction. Kind1 EXPL_D search success leaves model visible; minimum
+delay/armed publish before wire.004E1FE0 sets64 only AFTER actual destruction.
+Car feature path shares254A; seat engine shutdown instead uses234F/core22BF
+engine_transition, not254A, including transitiontrue/runningfalse.004D9A40 absent
+frozen ZERO credit. Native100 repeated damage-family lifetimes with actual DM/
+part/body/wheel/streams PASS; engine/geometry/coefficients/actor-policy/Human-damage/
+destruction endpoints are explicit doubles. Strict actual full World i386 and
+final launcher/probe PASS `human-car-damage-*`. **004DBF00 destruction,004DB360
+presentation and positive timed-DM frame remain required failures.** No complete
+Car or Human damage/frame/application claim.
 
 [Armed Mine receipt](analysis/checkpoints/p2.2-human-mine-contact-20261112.json)
 adds4 partials/extends2:34 complete/2701 partial(2696client+5engine), no promotions.
@@ -88,15 +111,17 @@ ignored until full selected Human checkbox completion.
 
 ## Next work
 
-1. Continue positive CarD4 blast damage004DBA10, then other reached derived/surface
-   receivers and full Human frame. Native Car vtable00810778 (ctor004D0B60) has
-   D4=004DBA10,D8=004DBEE0. Blast006DDD40 skips D8 material forCar4 and callsD4
-   directly. Index/reused original WORK `human-containing-car-blast-index.txt`,
-   `car-callback-world-damage-required/004dba10.c`/JSON, pinned vtable
-   `human-containing-car-blast-vtable.json`. Existing C has engine aliases; verify
-   reached ABI/raw before wiring. No new Car exports yet. Preserve actual health,
-   protection, frame hit, part/wheel events, shared owner and packet ordering.
-   Armed Mine/normal creation/Versions now have checkpoints; do not reopen kernels.
+1. Continue terminal004DBF00 and actual Car1C=004DB360 presentation/timed-DM
+   frame, other reached derived/surface receivers and containing Human frame.
+   Index/reused original WORK `human-car-damage-receivers-index.txt`,
+   `human-car-damage-dispatch-index.txt`, `car-actor-dm-water-required/004dbf00.c`
+   and `car-actor-cold-effects-required/004e1fe0.c`. New read-only exports/raw and
+   native exact gates/fields are in full Car blast contract above. Packet reader
+   addresses004E0340/004E0410/004E0630/004E06A0/004E0710 and004DB360 are indexed,
+   not yet exported. PE `human-car-damage-receive-vtable.json` pins1C. Preserve
+   actual event producer/consumer split, health/protection/occupants/Script,
+   part/wheel effects and lifecycle ordering. Do not reopen solver/clip/Mine/
+   Versions kernels without new evidence.
 2. Full status9/received0 entry remains unbound. Read
    `analysis/multiplayer-world/shared-world.md`.00730A40 needs actual peer6C/client334
    wrappers/worker lifecycle, then0072E890, then00731610(true). Reuse pinned WORK

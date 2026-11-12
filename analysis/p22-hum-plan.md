@@ -114,3 +114,8 @@ and explosion producers, full entry and containing Human frame dependencies.
 
 Armed Mine/Human contact and shared explosion now have a [source checkpoint](checkpoints/p2.2-human-mine-contact-20261112.json).
 Continue CarD4/other reached blast damage, entry and full containing frame boundaries.
+
+Reached CarD4/DM zone/seat damage and shared event production now have a
+[source checkpoint](checkpoints/p2.2-human-car-blast-damage-20261112.json).
+Continue terminal destruction/presentation/timed-DM, entry and containing frame;
+full reactions checkbox remains open.

@@ -86,7 +86,8 @@ public:
     std::array<std::unique_ptr<CarMountedWeaponControl>,10> fields24b4{};
     std::array<std::uint32_t,2> fields2474{};
     std::uint32_t clock2470,field24dc=0xffffffffu;
-    bool flag24a1=false;
+    bool flag24a1=false,flag254a=false; //254A reset by actual004D16A0; set by004DBF00.
+    std::optional<std::int32_t> source24b0; //Native24B0 is produced by authority activation or actualD4.
     std::array<std::vector<std::uint32_t>,2> lists2518;
     std::vector<std::uint32_t> lists2528,lists2538,lists258c,lists259c;
 private:
