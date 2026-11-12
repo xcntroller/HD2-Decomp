@@ -77,7 +77,7 @@ public:
                 }
                 for(auto n=count;n;){const auto vertex=--n;const auto current_value=read_current(vertex);
                     const auto x=static_cast<long double>(current_value[0])-local[0],y=static_cast<long double>(current_value[1])-local[1],z=static_cast<long double>(current_value[2])-local[2];
-                    if(!((x*x+y*y)+z*z<square))continue;
+                    if(!((x*x+z*z)+y*y<square))continue;
                     if(!changed&&!part.variants&&(!lod||!result.first)){
                         if(fresh){
                             //Strings precede factory/copy; the record is published
@@ -130,8 +130,9 @@ public:
         }
     }
     //004FE910(0), same parts and retained glass texture exchange as00500DA0.
-    //Seat attachment/nativeFA8+28 repair still requires its actual owner.
-    void restore_cold(Frames& frames,const CarPhysics& physics,const std::function<void()>& callback,const std::string& resource={}) {
+    //The containing geometry supplies actual seat-associated Door repair.
+    void restore_cold(Frames& frames,const CarPhysics& physics,const std::function<void()>& callback,const std::string& resource={},
+            const std::function<void(std::size_t,Frame)>& repair={}) {
         const auto& applied=physics.geometry().parts;
         if(applied.size()!=parts_.size())throw std::logic_error("Car part restore requires the SAME applied geometry");
         for(std::size_t n=0;n<parts_.size();++n){
@@ -143,6 +144,7 @@ public:
                 if(frames.car_exchange_glass_texture(part.mesh,part.glass_texture))frames.update_scene_object(part.frame);
                 part.flags&=0xfff7u; //Native clears8 even when either texture was NULL.
             }
+            if(repair)repair(index,part.frame); //FA8+28 Door20, before variants/visibility.
             for(auto alternative=part.alternatives.rbegin();alternative!=part.alternatives.rend();++alternative){
                 if(!*alternative)throw std::runtime_error("Car deformable variant sequence has a missing frame");
                 frames.object_visible(*alternative,false);frames.update_scene_object(*alternative);
@@ -249,6 +251,14 @@ private:
     std::vector<Part> parts_;
     std::vector<Backup> backups_;
 };
+
+//Both004EC5C0 retirement and004E9DB0 reset call004FE910 on these SAME
+//geometry/resource/Door owners. Keep their containing bindings identical.
+template<class Frames,class Geometry>void restore_car_deformable_parts(Frames& frames,Geometry& geometry,
+        const std::function<void()>& callback){
+    geometry.deformables().restore_cold(frames,geometry.physics(),callback,geometry.resource(),
+        [&geometry](std::size_t index,typename Frames::Frame frame){geometry.auxiliary().restore_part_frame(index,frame);});
+}
 
 } //namespace hd2::game
 #endif

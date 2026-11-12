@@ -24101,14 +24101,16 @@
       "program": "client",
       "entry": "004ec5c0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004ec5c0: Cold descriptor/model-skid retirement subsets; sound owners are separately retired, full Car teardown composition remains. Compose cold runtime retirement with native linked/axle wheel order, per-wheel skids, SAME part visibility/health, lights and receiver/resource cleanup.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "coverage": "P2.2 source reconstruction at original entry 004ec5c0: Cold descriptor/model-skid retirement subsets; sound owners are separately retired, full Car teardown composition remains. Compose cold runtime retirement with native linked/axle wheel order, per-wheel skids, SAME part visibility/health, lights and receiver/resource cleanup. SAME geometry/resource/seat-associated Door restoration is now shared with physical reset; no synthetic occupied attachment owner.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/container/allocator/SEH/virtual ABI, actual engine or trajectory equivalence. Native100 D1 regression and100 positive damage families pass ASan/UBSan/LSan through actual damage/variants/paired lights and Door discovery/binding/restore source, with explicit engine/frame/physical coefficient and glass/detachment endpoints. Independent Decimal100 matches distinct light/wheel rounding. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link only. Authority/presentation containing frames, occupied/non7 control, full Human entry/frame, confirmed unproduced5F9/695/EXPL8/smoke14 and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/car_collision_loading.h",
         "analysis/car-runtime-loading.md",
         "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
         "analysis/car-activation-loading.md",
-        "recovered/game/car_cold_initialization.h"
+        "recovered/game/car_cold_initialization.h",
+        "analysis/human-car-positive-deformation-source.md",
+        "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json"
       ]
     },
     {
@@ -24733,8 +24735,8 @@
       "program": "client",
       "entry": "004fe910",
       "status": "partial",
-      "coverage": "Reset SAME part health/flags; cold reverse alternatives/base visibility restore and actual6B4 callback. Part38 flags are represented as native WORD; byte-low bit clearing preserves the high byte. Reverse glass texture restore now shares actual retained material exchange, frame24 after success and clears8 even on NULL; Actual same-owner backup matching, reverse LOD0/1 XYZ restoration, native rebuild/invalidation/frame24 order, flag4/count/release/erase now precede existing glass/visibility/health. Unmatched resource/part keys genuinely skip mesh restoration and retain4.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/allocator/SEH/virtual ABI, original engine mesh or whole-body equivalence. Native100 repeated mesh families pass ASan/UBSan/LSan through actual impact capture/deformation/restoration with explicit engine/frame/geometry coefficient doubles; only known coefficients seeded with access checks disabled, no manual backup producer. Independent Decimal100 spill golden matches. Strict actual nested World/Car/Human/module13 i386 and new-worktree launcher/probe compile/link pass. Positive light/part-health/variant/glass/wheel consumers, occupied attachment restoration, containing frame/entry and application/desktop acceptance remain required.",
+      "coverage": "Reset SAME part health/flags; cold reverse alternatives/base visibility restore and actual6B4 callback. Part38 flags are represented as native WORD; byte-low bit clearing preserves the high byte. Reverse glass texture restore now shares actual retained material exchange, frame24 after success and clears8 even on NULL; Actual same-owner backup matching, reverse LOD0/1 XYZ restoration, native rebuild/invalidation/frame24 order, flag4/count/release/erase now precede existing glass/visibility/health. Unmatched resource/part keys genuinely skip mesh restoration and retain4. FA8+28 is the already produced seat-associated Door, not an occupant. Its current visual20 is repaired before variant visibility through SAME geometry in both reset and retirement.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/container/allocator/SEH/virtual ABI, actual engine or trajectory equivalence. Native100 D1 regression and100 positive damage families pass ASan/UBSan/LSan through actual damage/variants/paired lights and Door discovery/binding/restore source, with explicit engine/frame/physical coefficient and glass/detachment endpoints. Independent Decimal100 matches distinct light/wheel rounding. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link only. Authority/presentation containing frames, occupied/non7 control, full Human entry/frame, confirmed unproduced5F9/695/EXPL8/smoke14 and application/desktop acceptance remain open.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_deformable_parts.h",
@@ -24744,7 +24746,9 @@
         "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json",
         "recovered/game/car_deform_mesh.h",
         "analysis/human-car-mesh-backup-source.md",
-        "analysis/checkpoints/p2.2-human-car-mesh-backup-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-mesh-backup-20261112.json",
+        "analysis/human-car-positive-deformation-source.md",
+        "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json"
       ]
     },
     {
@@ -24841,14 +24845,16 @@
       "program": "client",
       "entry": "004ff8b0",
       "status": "partial",
-      "coverage": "Actual detached/threshold gates plus positive mesh capture at the first affected LOD0/1 vertex through SAME physical resource/part cache, shared CRT, original-relative displacement clamps and native FLOAT spills. Backup record/count/flag4 and changed-part callback/dirty/rebuild ordering retained. Damage-suppressed mesh and variant hit observations are supplied; later positive light/health/variant/glass/wheel consumers remain required.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/allocator/SEH/virtual ABI, original engine mesh or whole-body equivalence. Native100 repeated mesh families pass ASan/UBSan/LSan through actual impact capture/deformation/restoration with explicit engine/frame/geometry coefficient doubles; only known coefficients seeded with access checks disabled, no manual backup producer. Independent Decimal100 spill golden matches. Strict actual nested World/Car/Human/module13 i386 and new-worktree launcher/probe compile/link pass. Positive light/part-health/variant/glass/wheel consumers, occupied attachment restoration, containing frame/entry and application/desktop acceptance remain required.",
+      "coverage": "Actual detached/threshold gates plus positive mesh capture at the first affected LOD0/1 vertex through SAME physical resource/part cache, shared CRT, original-relative displacement clamps and native FLOAT spills. Backup record/count/flag4 and changed-part callback/dirty/rebuild ordering retained. Damage-suppressed mesh and variant hit observations are supplied; later positive light/health/variant/glass/wheel consumers remain required. Reached positive common light amount/spill, part-health/flags/variants/glass/light/detachment and reverse wheel latch/health/strict-negative detachment now bind SAME actual loading receivers and shared state; native sum association and fresh features are retained.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/container/allocator/SEH/virtual ABI, actual engine or trajectory equivalence. Native100 D1 regression and100 positive damage families pass ASan/UBSan/LSan through actual damage/variants/paired lights and Door discovery/binding/restore source, with explicit engine/frame/physical coefficient and glass/detachment endpoints. Independent Decimal100 matches distinct light/wheel rounding. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link only. Authority/presentation containing frames, occupied/non7 control, full Human entry/frame, confirmed unproduced5F9/695/EXPL8/smoke14 and application/desktop acceptance remain open.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_cold_deformation.h",
         "recovered/game/car_deform_mesh.h",
         "analysis/human-car-mesh-backup-source.md",
-        "analysis/checkpoints/p2.2-human-car-mesh-backup-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-mesh-backup-20261112.json",
+        "analysis/human-car-positive-deformation-source.md",
+        "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json"
       ]
     },
     {
@@ -26768,14 +26774,16 @@
       "program": "client",
       "entry": "004d3ef0",
       "status": "partial",
-      "coverage": "Offline hit58 dispatch: Human force500 using saved model Y/current COM, or actual Car impulse1.2 with destroyed-heavy1.4 impulse/temporary half mass and restoration. Non7 unowned hit58 now invokes actual authority/client1000ms request or same004D3D10 route through SAME2584 and callback borrower bundle.",
-      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
+      "coverage": "Offline hit58 dispatch: Human force500 using saved model Y/current COM, or actual Car impulse1.2 with destroyed-heavy1.4 impulse/temporary half mass and restoration. Non7 unowned hit58 now invokes actual authority/client1000ms request or same004D3D10 route through SAME2584 and callback borrower bundle. Car collision deformation now invokes SAME loading receivers at its original post-velocity point, preserving actual positive damage/variant/glass/wheel borrowers and later passenger ordering.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/container/allocator/SEH/virtual ABI, actual engine or trajectory equivalence. Native100 D1 regression and100 positive damage families pass ASan/UBSan/LSan through actual damage/variants/paired lights and Door discovery/binding/restore source, with explicit engine/frame/physical coefficient and glass/detachment endpoints. Independent Decimal100 matches distinct light/wheel rounding. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link only. Authority/presentation containing frames, occupied/non7 control, full Human entry/frame, confirmed unproduced5F9/695/EXPL8/smoke14 and application/desktop acceptance remain open.",
       "evidence": [
         "analysis/car-callback-world-binding.md",
         "recovered/host/game_car_callbacks.h",
         "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json",
         "analysis/human-car-fuel-impulse-source.md",
-        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json",
+        "analysis/human-car-positive-deformation-source.md",
+        "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json"
       ]
     },
     {
@@ -36841,12 +36849,14 @@
       "program": "client",
       "entry": "004e9db0",
       "status": "partial",
-      "coverage": "Actual live physical reset RET8 through SAME body/wheel/audio/health/control/projector/collision owners, negative/zero speed engine order, native preserved fields and required positive restore boundaries.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "coverage": "Actual live physical reset RET8 through SAME body/wheel/audio/health/control/projector/collision owners, negative/zero speed engine order, native preserved fields and required positive restore boundaries. Concrete D1 integration correction: physical reset now shares the same resource-keyed mesh and Door restoration binding as retirement.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/container/allocator/SEH/virtual ABI, actual engine or trajectory equivalence. Native100 D1 regression and100 positive damage families pass ASan/UBSan/LSan through actual damage/variants/paired lights and Door discovery/binding/restore source, with explicit engine/frame/physical coefficient and glass/detachment endpoints. Independent Decimal100 matches distinct light/wheel rounding. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link only. Authority/presentation containing frames, occupied/non7 control, full Human entry/frame, confirmed unproduced5F9/695/EXPL8/smoke14 and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/car_physical_reset.h",
         "analysis/human-car-physical-reset-source.md",
-        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json",
+        "analysis/human-car-positive-deformation-source.md",
+        "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json"
       ]
     },
     {
@@ -40499,6 +40509,30 @@
         "recovered/host/game_ui_presentation.h",
         "analysis/p22-ui-source-closure.md",
         "analysis/checkpoints/p22-ui-source-closure-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004fefd0",
+      "status": "partial",
+      "coverage": "Actual RET12 index/optional-impulse/allow-detach part variant worker: dead Door child glass, reciprocal/FTOL variant selection, native visibility/position/update/Door-current-visual order, matching light and reverse child retirement through SAME geometry and callbacks.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/container/allocator/SEH/virtual ABI, actual engine or trajectory equivalence. Native100 D1 regression and100 positive damage families pass ASan/UBSan/LSan through actual damage/variants/paired lights and Door discovery/binding/restore source, with explicit engine/frame/physical coefficient and glass/detachment endpoints. Independent Decimal100 matches distinct light/wheel rounding. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link only. Authority/presentation containing frames, occupied/non7 control, full Human entry/frame, confirmed unproduced5F9/695/EXPL8/smoke14 and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_part_variants.h",
+        "analysis/human-car-positive-deformation-source.md",
+        "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00500cb0",
+      "status": "partial",
+      "coverage": "Actual paired-projector lookup/state AND, native remaining1/2 texture selection or zero-mask texture retention, visual24/light power1/light24 through SAME projector and paired-flags owner.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/container/allocator/SEH/virtual ABI, actual engine or trajectory equivalence. Native100 D1 regression and100 positive damage families pass ASan/UBSan/LSan through actual damage/variants/paired lights and Door discovery/binding/restore source, with explicit engine/frame/physical coefficient and glass/detachment endpoints. Independent Decimal100 matches distinct light/wheel rounding. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link only. Authority/presentation containing frames, occupied/non7 control, full Human entry/frame, confirmed unproduced5F9/695/EXPL8/smoke14 and application/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/car_light_receivers.h",
+        "analysis/human-car-positive-deformation-source.md",
+        "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json"
       ]
     }
   ]

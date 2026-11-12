@@ -177,6 +177,14 @@ public:
         smoke_=extract_position(frames,model,body,"SMOKE_MOTOR");
     }
 
+    //Native FA8+28 is the seat-associated Door object, not an occupant.
+    //Its20 current visual and72 part index already belong to this geometry.
+    Door* part_door(std::size_t part){
+        for(auto n=seats_.size();n;){const auto index=seats_[--n].door;
+            if(index!=no_door){auto& door=doors_.at(index);if(door.part==part)return &door;}}
+        return nullptr;
+    }
+    void restore_part_frame(std::size_t part,Frame frame){if(auto* door=part_door(part))door->frame=frame;}
     template<class Parts> void bind_parts(const Parts& parts) {
         for(auto seat=seats_.rbegin();seat!=seats_.rend();++seat) {
             if(seat->door==no_door)continue;

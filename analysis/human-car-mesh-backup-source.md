@@ -1,6 +1,7 @@
 # Car mesh backup capture and restoration —2026-11-12
 
-D1 is complete in source; D2/H2/P2.2 remain OPEN. Worktree
+D1 is complete in source; H2/P2.2 remain OPEN. Later [D2/D3 source](human-car-positive-deformation-source.md)
+closes positive damage/Door restoration and corrects the physical-reset resource binding. Worktree
 `HD2-Decomp-p22-hum`, branch `feature/p22-hum`, created at the user's request from
 clean master2c96a7d. Main and the other worktrees are preserved. No application
 loading, original executable/DLL/Proton execution or desktop acceptance.

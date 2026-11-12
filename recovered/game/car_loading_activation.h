@@ -27,8 +27,8 @@ template<class Frames>struct CarLoadingResources {
 //004D16A0/004D25C0/004D2790/004D3110's actual offline, unoccupied loading
 //lifetime. Services supplies common actor registries, SAME proximity/Players,
 //settings264 and game kind; query/tree/bucket owners outlive this object.
-//Required positive deformation, occupied/gun seats and timed destruction stay
-//explicit errors. Source composition alone does not enable application loading.
+//Occupied/non7 input and wider containing-frame producers remain required.
+//Source composition alone does not enable application loading.
 template<class Frames,class Services,class Collisions,class Queries>class CarLoadingActivation final : public CarLoadingLifetime<Frames> {
 public:
     using Actor=CarSceneActor<Frames>;using Frame=typename Frames::Frame;using Vector=typename Frames::Vector;
@@ -119,6 +119,9 @@ public:
     CarActorColdState<Frames>& cold_state()override{if(!view_)throw std::logic_error("Car callback requires initialized source state");return *view_;}
     std::uint32_t& collision_clock()override{if(!clock2584_)throw std::logic_error("Car2584 collision clock requires actual activation");return *clock2584_;}
     void set_fuel(float amount)override{if(!initial_)throw std::logic_error("Car fuel requires its actual physical owner");(void)initial_->set_fuel(amount);}
+    void deform_hit(const Vector& point,const Vector& direction,float radius,float impulse,unsigned flags=0,const Vector* incoming=nullptr)override{
+        if(!receivers_)throw std::logic_error("Car deformation requires its actual initialized receivers");receivers_->deform(point,direction,radius,impulse,flags,incoming);
+    }
     CarSteeringState& steering_state()override{if(!initial_)throw std::logic_error("Car steering requires initialized source state");return initial_->steering;}
     auto& seats(){return seats_;}
     float fuel_amount()const{if(!initial_)throw std::logic_error("Car HUD fuel requires actual initialized Car state");return initial_->fuel;} //Borrow SAME004F2670 coreF5C/actorFEC; no simulation/ownership change.
@@ -164,7 +167,7 @@ public:
             initial_->engine_timeout=5000;initial_->health.destroyed=false;
             if(!running){initial_->drive.engine_speed=0;initial_->finalizer.engine_transition=false;initial_->drive.running=false;initial_->sounds.stop_all();}
             else{initial_->finalizer.engine_transition=true;initial_->drive.running=true;initial_->engine_timeout=0;}
-        },[&]{actor_.geometry->deformables().restore_cold(frames_,actor_.geometry->physics(),actor_.callbacks->empty6b4);});
+        },[&]{restore_car_deformable_parts(frames_,*actor_.geometry,actor_.callbacks->empty6b4);});
     }
     void destroyed_meshes()override{present_destroyed_car_meshes(frames_,actor_,helper_?helper_->get():Frame{});}
     void glass_damage(std::size_t index,const CarContactVector& direction)override{

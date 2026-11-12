@@ -17,7 +17,7 @@ namespace hd2::host {
 
 //Shared Car callback owner. Frame/EC/Scene2, physics, process flags/clock/CRT,
 //definitions, damage and emitter borrowers come from the containing world.
-//Wider deformation, occupied control and full frame/input dependencies remain
+//Occupied control and full frame/input dependencies remain
 //checked at their actual consumers.
 //Construction supplies no readiness and performs no pool/resource preparation.
 class GameCarCallbacks final : public GameCarCallbackFrames {
@@ -78,9 +78,9 @@ public:
             struct Restore {game::CarPhysics& physics;float mass;bool changed;~Restore(){if(changed)physics.contact_mass(mass);}} restore{physics,original_mass,reduced};
             auto incoming=impulse;
             if(reduced){physics.contact_mass(original_mass*.5f);for(unsigned axis=0;axis!=3;++axis)incoming[axis]*=1.399999976158142f;}
-            auto random=[this]{return static_cast<int>(startup_.random_word());};
-            game::CarColdDeformation<GameActorServices> deformation(frames_,*car.geometry,state.body,state.wheels,
-                state.solver.substeps.flags,state.dirty,random,car.callbacks.value().empty6b0);
+            auto deformation=[&](const Vector& at,const Vector& direction,float radius,float power){
+                if(!car.loading)throw std::logic_error("Car impact deformation requires actual loading lifetime");car.loading->deform_hit(at,direction,radius,power);
+            };
             game::apply_car_contact_impulse(frames_,state,1.2000000476837158f,point,incoming,normal,source!=nullptr,
                 deformation,[&](float magnitude){game::damage_car_health(physics,state.drive,state.health,state.dirty,magnitude);},
                 [&](const Vector& value,const Vector& at,bool collision){if(car.callbacks->passenger690)car.callbacks->passenger690(value,at,collision,nullptr);},[]{});

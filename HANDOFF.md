@@ -26,70 +26,73 @@ Windows compile/link. Heavy compilation and Ghidra MUST run sequentially.
 
 ## Latest verified result
 
-[D1 mesh receipt](analysis/checkpoints/p2.2-human-car-mesh-backup-20261112.json),
-[contract](analysis/human-car-mesh-backup-source.md): actual004FF8B0 first-hit mesh
-capture/deformation and004FE910 reverse restore now share SAME physical part/
-resource/mesh owners. Native654/658 is an owned per-physical-object vector, not
-process global (004E2900 zero initialization,004FC320 ECX=this+654 append).
-Record/count/flag4 ordering, LOD0/1 locks/XYZ-only writes, original-relative clamp,
-shared CRT, callback/dirty/rebuild and flag-clear/count/release/erase are preserved.
-Resource mismatch genuinely skips mesh restore and retains4. Later positive
-light/health/variant/glass/wheel damage still fails honestly at D2; FA8+28 occupied
-attachment repair remains D3. No successful full positive-impact claim.
+[D2/D3 receipt](analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json),
+[contract](analysis/human-car-positive-deformation-source.md): actual004FF8B0
+positive light/part/variant/glass/wheel damage now binds SAME CarColdReceivers,
+initializer/body/geometry/paired flags and694/698. Hit58 deformation invokes the
+actual loading receiver AFTER existing velocity mutation; no parallel graph.
+004FEFD0 RET12 is index/optional impulse/allow-detach;694/698 are FASTCALL/RET8.
+00500CB0 preserves mask/texture/update/power order. New frozen partials4FEFD0/
+500CB0 plus5 extensions: **34 complete/2999 partial(2994client+5engine)**.
+Initial worktree index through external links lacked inventory entries, NOT
+proof of absence. Local copy-on-write research snapshot now validates all evidence.
 
-Native100 focused families PASS ASan/UBSan/LSan: producer→backup→restore, both
-LOD capture branches, repeated/shared-key hits, reverse partial restore, retry/
-release and lock/factory/notification/rebuild failure prefixes. Engine/frame/
-geometry coefficients doubled; access checks disabled only to seed known physical
-fields, no manually seeded backup. Decimal100 golden matches XYZ3FA55876/
-C14A137E/42F7D5D2. Strict actual nested World/Car/Human/module13 i386 and NEW-worktree
-launcher/probe PASS. ONLY extends existing004FF8B0/004FE910 partials: merged total
-34 complete/2997 partial(2992client+5engine), no additions/promotions.
+**Ownership correction:** FA8+28 is the existing seat-associated Door, not an
+occupying Human.004E2E30 discovery/seat association/part72 binding already produces
+it; mutable visual20 changes AFTER selected frame24, and004FE910 restores it
+BEFORE variants/visibility even for unoccupied Cars. D3 has no H3 seat-entry
+prerequisite. Actual occupied Human/control work remains H3/D5.
 
-Earlier b132e6d fuel/impulse, S01–S14 and D0 boundary map remain verified. Source
-progress is not application loading/desktop acceptance. No pending launcher rebuild
-for D1. Preserve confirmed unproduced5F9/695/EXPL8/smoke14 failures.
+**D1 correction:** retirement used the keyed mesh restore, but physical reset's
+lambda still omitted resource. Both004EC5C0/004E9DB0 now share ONE geometry/
+resource/Door restoration helper. Previous603dd1b [D1 source](analysis/human-car-mesh-backup-source.md)
+remains linked. Raw mesh hit sum association is now(X²+Z²)+Y²; lights/wheels
+use(Z²+Y²)+X². Light amount is FLOAT-spilled ONCE before the loop; wheel health
+compares the unspilled result and detaches only when strictly NEGATIVE.
 
-## Next work: D0 completed; implement the reached dependencies
+Native100 D1 regression+100 positive families PASS ASan/UBSan/LSan, actual Door
+producer/variant/restore, child/glass/callback/paired state and failure prefixes.
+Explicit engine/frame/physical coefficient/glass-name/hide/detachment doubles.
+Decimal100 light427F7084 versus wheel427F7083 and previous XYZ golden PASS.
+Strict actual nested World/Car/Human/module13/loading hooks and final new-worktree
+launcher/probe PASS. No application/desktop claim. Temporary audits stay ignored
+until H2 closure. S01–S14 and D0 remain verified; don't restart unchanged kernels.
 
-[D0 boundary map](analysis/human-reaction-containing-boundary.md) records T1–T10,
-actual state producers/retirement and mode/occupancy/entry-specific dependencies.
-Direct ragdoll→Car004F2790 does not require004FF8B0 mesh deformation; positive
-Car→Car/passenger004F2B60 does. Status9/received0 are not callees of every offline
-reaction. UI source is merged/source-closed; Human producers/frame callers remain.
-D1 is source-complete. Next implement reached D2 positive damage, then D3–D5; D10 unmounted
-composition can advance independently of full transport. Check
-and commit each verified checkpoint, then continue. Add newly discovered required
-dependencies to the plan with a caller and exit test before following them.
+## Next work: D4, then reached D5/D10–D12
 
-D2 continuation evidence:
+Follow the [Human plan](analysis/p22-hum-plan.md) and [D0 path map](analysis/human-reaction-containing-boundary.md).
+D0–D3 are source-complete. Continue dependencies/checkpoints until full H2 closes
+or a concrete blocker prevents it; D11 failures must remain honest. No fake
+transport, owner, initialization or successful unknown callee.
 
-- D2:004FE910 original is in WORK `car-initializer-mass-required/004fe910.c`;
-  default C has broken indirect-call/register aliases.004FF8B0 producer default C
-  is `car-impact-typed-required/004ff8b0.c`. Current raw
-  `human-car-part-restore.asm`/`human-car-deformation.asm` is bounded disassembly.
-- Index receipts: `human-car-restore-fuel-checkpoint-index.txt`,
-  `human-car-global-mesh-backup-index.txt`,
-  `human-car-deformation-producer-index.txt`,
-  `human-car-backup-container-index.txt`. Rollback `ExportHumanCarRestoreABI.java`
-  →`human-car-restore-impact-abi`; later `ExportHumanCarImpactDamageABI.java`
-  →`human-car-impact-damage-abi` corrects694/698 to FASTCALL ECXcontext/EDXindex
-  plus TWO stack args(RET8), not initial invented thiscall extra argument.
-  Workers004FEFD0/00500CB0 are indexed in `human-car-positive-deformation-workers-index.txt`;
-  their new export is research only until implemented.
-- D3: actual FA8+28 mesh+20 repair precedes variant/visibility restore. Preserve
-  native reverse matching, LOD lock/unlock, flag4/refcount/release/erase order.
-- D4/D5: Car6/7 grammar, periodic/pending damage/SOUND, occupied driver/mounted
-  state and non7 loading still have genuine required guards.
-- D6–D9: reuse WORK `human-entry-connection-originals` and
-  [shared entry contract](analysis/multiplayer-world/shared-world.md).00730A40
-  needs actual peer6C/client334 wrappers/worker lifecycle. Worker registration
-  underB4 writes connection08=workerD4 before append; swap-last unregister doesn't
-  delete. Client00723D20 publishes334 before port/register; host007260A0 registers
-  after418 unlock. Status9 restore retained game BEFORE menu shutdown; received0
-  manager replacement BEFORE old-game retirement; failure deletion differs.
-  Voice final ABI-v3: EIGHT args, interface18, publish0C before init and client
-  before server close. Live multiplayer acceptance is not a new Phase2 gate.
+- D4 authority frame is **004D2790**, NOT presentation004D3110. Its initial
+  0073EA90 gate publishes event6, conditionally calls004DB2A0 when !mode&2,
+  then clears actor2478. Pending target calls004DEC10 BEFORE water/timed DM.
+  Presentation004D3110 owns other non7 gates/seats/navigation/queued voice.
+- Reuse WORK `human-car-frame-events-index.txt`,
+  `human-car-authority-frame-abi-index.txt`, `human-car-frame-consumers-index.txt`.
+  Existing originals `car-activation-required/004d2790.c`/`004d3110.c` and
+  `human-car-damage-event-readers/004db360.c`. Case6 calls004DB2A0 without a packet
+  argument; case7 invokes004DE1F0(packet,~mode&1). Resolve actual grammar/owners
+  before implementation. No new D4 Ghidra export yet.
+- D2 continuation evidence is preserved: rollback `ExportHumanCarVariantFinalABI.java`
+  →`human-car-variant-final-abi` is current. Earlier impact-damage-abi's004FEFD0
+  one-arg/RET4 and initial restore-impact-abi's694/698 thiscall are WRONG.
+  Use raw `human-car-positive-variant-worker.asm`, `human-car-positive-light-worker.asm`,
+  `human-car-deformation.asm`, `human-car-part-restore.asm`.
+- D5 occupied/non7 Car loading/driver/mounted input remains required. D10
+  unmounted reaction composition can advance independently of full transport.
+  UI source is merged/source-closed; actual Human/Actor producers/frame callers
+  and application activation remain external.
+- D6–D9 remain actual entry-specific work. Reuse `human-entry-connection-originals`
+  and [shared entry contract](analysis/multiplayer-world/shared-world.md).00730A40
+  needs peer6C/client334 wrappers/worker lifecycle. Registration underB4 stores
+  connection08=workerD4 before append; swap-last unregister doesn't delete.
+  Client00723D20 publishes334 before port/register; host007260A0 registers after418
+  unlock. Status9 restores retained game BEFORE menu shutdown; received0 replaces
+  input manager BEFORE old-world retirement; failure deletion differs. Voice final
+  ABI-v3 has EIGHT args/interface18/publish0C before init/client before server close.
+  Live synchronized multiplayer acceptance remains Phase3.
 
 D11 confirmed unproduced states remain honest failures: part5F9, wheel695,
 EXPL record8 and smoke14. Part004CB2CD reads/toggles5F9 before movement; ctor/

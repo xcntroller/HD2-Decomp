@@ -14,10 +14,10 @@ H2 and P2.2 remain OPEN. Existing original evidence is indexed in WORK
 | T3: joint sleep/contact/rest |007C77E0→007CBD50→007CBF90/007CC740; rest007B37C0→00787110→existing ShotMgr/position queue/SOUND | Source S01/S03 complete; D10/D12 compose producers/publication and retire frames/audio before owners. |
 | T4: ragdoll contacts Car | Point/body contact checks004DE800 then calls004F2790 directly through existing Car body410/solver | This is NOT hit58→004F2B60→004FF8B0. It needs initialized Car physical state, not mesh backup or arbitrary Car periodic/transport branches. D5 only where selected mode/owner requires it. |
 | T5: moving Car hits Human |0059C2D0→005A07C0; authority speed>2→Human D4 kind13; current driver is damage source; reread B0 after damage | Requires actual Car speed/current occupants and Human lifetime. Missing B0 initially returns false; loss after damage is a required failure. Occupied producer is H3/D5 where selected. No automatic mesh deformation dependency on this edge. |
-| T6: Car collision with seated Human |004D3EF0 owned Car source→004F2B60; velocity mutates BEFORE deformation, damage and passenger690 | D1/D2 positive004FF8B0 is required before this path can reach passenger damage. D3/H3 provides real occupied attachment/seat state; no synthetic successful occupant producer. |
+| T6: Car collision with seated Human |004D3EF0 owned Car source→004F2B60; velocity mutates BEFORE deformation, damage and passenger690 | D1/D2 positive004FF8B0 is required before this path can reach passenger damage. D3 repairs the seat-associated Door; H3 provides real Human occupancy/seat state; no synthetic successful occupant producer. |
 | T7: blast/Mine/Versions→Human/Car | Existing shared explosion/BlastWave D8/D4/Scene2; Car004DBA10→module13→004DB360→detachment/destruction | S09–S14 source present; D10/D12 compose delivery and retirement. Reached fresh Item12 part5F9/wheel695 and EXPL8/smoke14 are D11 blockers, not defaults to initialize. |
-| T8: positive mesh damage then restoration/re-entry |004FF8B0 captures original mesh by resource/part;004FE910(0) restores; containing004EC5C0 retirement precedes geometry destruction | D1/D2 recover native658 vector owner/retained mesh/count; D3 repairs FA8+28 mesh+20 before variant/visibility. Cannot close restore using a manually seeded cache alone. |
-| T9: authority Car frame after clock expiry |004D3110 reads periodic event6/pending target BEFORE water/timed DM004E1990 | D4 is required for a containing Car authority frame over that elapsed boundary. Passing a direct DM timer fixture does not bypass this earlier failure. Event7/SOUND only when their native producers reach the selected frame. |
+| T8: positive mesh damage then restoration/re-entry |004FF8B0 captures original mesh by resource/part;004FE910(0) restores; containing004EC5C0 retirement precedes geometry destruction | D1/D2 recover native658 vector owner/retained mesh/count; D3 repairs FA8+28 Door visual20 before variant/visibility. Cannot close restore using a manually seeded cache alone. |
+| T9: authority Car frame after clock expiry |Authority004D2790 reads periodic event6/pending target BEFORE water/timed DM004E1990 | D4 is required for a containing Car authority frame over that elapsed boundary. Passing a direct DM timer fixture does not bypass this earlier failure. Event7/SOUND only when their native producers reach the selected frame. |
 | T10: non7 authority/presentation packet and mounted reaction | Existing canonical process inputs/peers/streams→actual Human/Car receivers and same reaction owners | D5 needed for reached non7 Car loading/control, D10 for receiver composition. Use existing real policy/input storage, not fake transport success. |
 
 T1–T10 define source verification cases, not a claim that any has passed over a
@@ -32,7 +32,7 @@ silently added to H2.
 | --- | --- | --- |
 | Human reaction/effect and joint/contact frames | Actual Look hit/0074D510/007B0910 and existing geometry loading → actual frame branch/0079BAC0 before inline/model destruction | D10/D12; existing S01–S04 contracts |
 | Mesh original and usage count |004FF8B0 first affected vertex, keyed by existing resource7B8/part10 →004FE910 reverse restore, flag4/count/release/erase | D1/D2. Native658 sharing still unproved here; no new global owner assumed. |
-| Occupied part attachment | Actual H3 seat/attachment producer →004FE910 FA8+28 matching part72 and mesh+20 repair, seat/actor retirement | D3/H3. Preserve existing Car seats/mass/cameras. |
+| Seat-associated Door visual | Existing004E2E30 Door/seat discovery and part72 binding →004FEFD0 current visual20 →004FE910 restoration before variants | D3 source complete; no occupied Human prerequisite. Actual Human seat behavior remains H3/D5. |
 | Car2584 collision clock |004D16A0 before camera/reset →004D3EF0/004D3D10, same loading lifetime | S14 complete; D5 preserves it during actual activation/re-entry. |
 | Periodic/pending/voice state | Actual clock/target/list producers →004D3110 and derived event6/7 readers, existing SOUND lifetime | D4. Do not skip earlier frame guards to call the recovered timer. |
 | Detached part5F9 / wheel695 | No confirmed producer in reached constructor/reset/launch paths → actual native read/toggle/final500ms | D11. Confirmed source failure; warm seeded fixtures do not resolve it. |
@@ -56,8 +56,8 @@ merged endpoints; do not repeat the completed UI audit.
 
 ## Execution order
 
-D0 is complete. Next implement D1's complete backup capture/restore lifetime,
-then D2's positive impact and D3's reached occupied linkage; D4 follows before
+D0 and D1–D3 are source-complete, with [D2/D3 ownership correction](human-car-positive-deformation-source.md).
+D4 follows before
 claiming a continuing Car authority frame. D5 is mode/occupancy conditional.
 D10 can advance independently for unmounted T1–T4 using actual owners, without
 waiting for all transport work. D6–D9 remain explicitly tracked for their actual

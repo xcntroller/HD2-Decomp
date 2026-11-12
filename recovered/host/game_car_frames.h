@@ -224,6 +224,11 @@ public:
     void car_rebuild_deform_lod(Frame lod){call<void>(lod,0x2c);}
     void car_refresh_deform_mesh(Frame mesh){call<void>(mesh,0x14);}
     void car_invalidate_deform_frame(Frame frame,unsigned lod){call<void>(frame,0xac,lod);}
+    void car_copy_variant_position(Frame destination,Frame source){ //004FEFD0, no update24 here.
+        const auto flags=field<std::uint32_t>(destination,0xe0);if(flags&0x80u)return;
+        for(unsigned axis=0;axis<3;++axis)put(destination,0xb0+axis*4,field<float>(source,0xb0+axis*4));
+        put(destination,0xe0,(flags&0xfffffedfu)|0x40000000u);
+    }
     bool car_exchange_glass_texture(Frame mesh,std::optional<ResourceOwner>& texture){ //00500DA0/004FE910(0).
         const auto lod=call<Frame>(mesh,4,std::uint32_t{0});const auto slot=call<Frame>(lod,0x14,std::uint32_t{0});
         const auto material=field<Frame>(slot,4);

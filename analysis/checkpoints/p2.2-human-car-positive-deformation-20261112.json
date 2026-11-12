@@ -1,0 +1,201 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "603dd1b2a388bc6c6ddd6db12f8a19d09ba22fb9",
+  "branch": "feature/p22-hum",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-hum",
+  "source_only": true,
+  "completed_plan_checkpoints": [
+    "D2",
+    "D3"
+  ],
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "004fefd0",
+    "00500cb0"
+  ],
+  "extended_entries": [
+    "004ff8b0",
+    "004fe910",
+    "004e9db0",
+    "004ec5c0",
+    "004d3ef0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2999,
+  "source_files": {
+    "recovered/game/car_part_variants.h": {
+      "sha256": "86bfb647ebae27a1cc98c7943aabe452988636bd25aed707579de3822508a0bf",
+      "bytes": 4580
+    },
+    "recovered/game/car_deform_damage.h": {
+      "sha256": "33803fc9982919915c6b3e950f94e390e335bbf0097caf7f6b6d88add131cc47",
+      "bytes": 3851
+    },
+    "recovered/game/car_auxiliary_geometry.h": {
+      "sha256": "39e85b20523770e47bd90c119ba727eaad714200eeaf63c4849e8333c069f0ae",
+      "bytes": 12393
+    },
+    "recovered/game/car_cold_deformation.h": {
+      "sha256": "3e4d2483d95ef7b6efae8307e04411fdff46d3559a3769da3f7d5a7b8d9a4e51",
+      "bytes": 5274
+    },
+    "recovered/game/car_cold_initialization.h": {
+      "sha256": "bcef1e234d3db4fab3dbe68b1378a425612baf4ce9a6c4790a2e138e19909a10",
+      "bytes": 9536
+    },
+    "recovered/game/car_cold_receivers.h": {
+      "sha256": "22373ee0a361c6b150aac7faa4079970e9f588397de1e7f29624ac186a5215f0",
+      "bytes": 4474
+    },
+    "recovered/game/car_deformable_parts.h": {
+      "sha256": "807190b6334496b457caeba2eaa6ecdda64f54dd74c3497c801f76cf6c6c6eb8",
+      "bytes": 16285
+    },
+    "recovered/game/car_geometry.h": {
+      "sha256": "67d4c1d3e0cad8afcdf558b08bcfe05ea2c32e7564de8e950436d65bc9262b07",
+      "bytes": 4840
+    },
+    "recovered/game/car_light_receivers.h": {
+      "sha256": "9497ba197c66d564c3b20ca22d3b0e5e8a9419c2368908832f430068ec29b76e",
+      "bytes": 3336
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "bc4f8d91bfacb5c511c891f844b61e3b0fb07801c0b83567085bc873645054c0",
+      "bytes": 20676
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "0c708275f9b403d96169c76c77827e300fb183beb14e406707cccf133f2cb66f",
+      "bytes": 2272
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "3c2bbae5cf5fc06f49b2f8d382ea5b752de7a419901388f3fad48b27bcef7509",
+      "bytes": 12813
+    },
+    "recovered/host/game_car_frames.h": {
+      "sha256": "1ef8bc13559c3cc31599188a67a33dd2e2fd11670ab27fdda0ed503e83ddfe28",
+      "bytes": 26145
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-native.cpp": {
+      "sha256": "77ccbc17332f565d052298d2af819acf9db91ef0068a1a0c8773eaa5311204df",
+      "bytes": 22243
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-native": {
+      "sha256": "fb299213c2412a1a40d4e6a5544c0190f851cd06529526c7671dcde0b49b54e3",
+      "bytes": 4958440
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-native.log": {
+      "sha256": "3d20217b4c137c860b64915a3449c08a044939ae2d848e3a4e51b9c42cacfd68",
+      "bytes": 472
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-host-i386.cpp": {
+      "sha256": "1dd2df82dc6b28ce0c5e650f3181b465858538ada545caee4deb73398e6dd441",
+      "bytes": 381
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-host-i386.o": {
+      "sha256": "2ea8e1d264cab88ebf0b5ca1a69f237a791cebe4288b8cf59a684d7157a5edef",
+      "bytes": 18133575
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-application-i386.log": {
+      "sha256": "db337f5e0b07bd1e8c9601b68bf7eb02db94acb9a7fe5d9b8149f124f5a12e60",
+      "bytes": 796
+    },
+    "analysis/work/mission-world-20261103/human-car-deform-damage-oracle.json": {
+      "sha256": "648c18ee07a4c7f1e6850185e2e3fc879e7beb4dee6105e0d768b42ba60f8f32",
+      "bytes": 514
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-spill-oracle.json": {
+      "sha256": "bf05d9d95772f9c909640ccc1e6b4c59f6f4b5503e9bffa9e23bf8588d8ab2f6",
+      "bytes": 617
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-workers-index.txt": {
+      "sha256": "e69fbc535cb55d249456b7644b2268588ce11c6321dfd69623543eef37402c40",
+      "bytes": 1278
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-frozen-index.txt": {
+      "sha256": "5217802077bf060a4e3e1f280f53ba75a38d056231c6930bf00d2b0c6d5ea85c",
+      "bytes": 7726
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-variant-worker.asm": {
+      "sha256": "7d148b308fcfd8fbb9f6c1913469bb4d93727fbbb981ceb3d28bc2865dd4fef3",
+      "bytes": 38019
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-light-worker.asm": {
+      "sha256": "5da05a48db4d61b59c9886b793e8d8c84ee8a576c159d891959cca6a7080ce13",
+      "bytes": 4880
+    },
+    "analysis/work/mission-world-20261103/human-car-deformation.asm": {
+      "sha256": "2c0bbfe4d44402d3da9f1ae303388ff9727aeace355e1b2cf81c75de586d6d57",
+      "bytes": 88125
+    },
+    "analysis/work/mission-world-20261103/human-car-part-restore.asm": {
+      "sha256": "667b05ecaacb839dee80deb1505bdb2fd8f7c87483775056a98330cc4136fbaa",
+      "bytes": 27962
+    },
+    "analysis/work/mission-world-20261103/ExportHumanCarVariantFinalABI.java": {
+      "sha256": "501cf7037c1584971b5016a69bdb8f0cf343b777206c201988a4f82ff800945e",
+      "bytes": 4870
+    },
+    "analysis/work/mission-world-20261103/human-car-variant-final-abi.log": {
+      "sha256": "5e15921eaac817cd1bac4c5250cf682334bea80751e9284b1871731f6e65a40b",
+      "bytes": 4711
+    },
+    "analysis/work/mission-world-20261103/human-car-variant-final-abi/004fefd0.c": {
+      "sha256": "906921a9f3598cca61de8e1be77b09deb01426850f84ea58e13973253b40248f",
+      "bytes": 14310
+    },
+    "analysis/work/mission-world-20261103/human-car-variant-final-abi/004fefd0.json": {
+      "sha256": "2d3ed2c4de3a1559c2060e35cf1972f7a126a64970e23a0c626682dc8a196ede",
+      "bytes": 22438
+    },
+    "analysis/work/mission-world-20261103/human-car-variant-final-abi/004ff8b0.c": {
+      "sha256": "a9a69788c4cea8843fa167454ddab983a6507427a5b26cc5970a7c3000c5c728",
+      "bytes": 33728
+    },
+    "analysis/work/mission-world-20261103/human-car-variant-final-abi/004ff8b0.json": {
+      "sha256": "f5a764b8a1deed92058131ca0adb5b532886333ec8648d1b8bdc87fc8aed7d9f",
+      "bytes": 46443
+    },
+    "analysis/work/mission-world-20261103/human-car-variant-final-abi/00500cb0.c": {
+      "sha256": "2c18838f2330d85536eca608224ad12a5a8cb578c5442a5eca8ee58343cb6626",
+      "bytes": 1463
+    },
+    "analysis/work/mission-world-20261103/human-car-variant-final-abi/00500cb0.json": {
+      "sha256": "065b5cde3ea40e0260f18db4e4e60fd19c04469e828aa3e6b058742024dac65d",
+      "bytes": 2427
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan100 D1 regression and100 positive damage families PASS through actual source mesh/damage/variants/paired lights and Door discovery/seat association/part binding/current visual/restoration.",
+    "Explicit engine/frame/physical coefficient and glass-name/hide/Item12 detachment endpoints doubled; no manual Door/occupant record producer.",
+    "FTOL thresholds, position locks, child glass/detach and optional impulse/allow-detach, paired masks0/1/2, reverse wheel order/strict zero versus negative health, dirty/latch and failure prefixes.",
+    "Independent Decimal100 distinct light health427F7084/wheel427F7083 PASS; existing XYZ spill golden PASS.",
+    "Strict actual nested World/Car/Human/module13/loading damage hooks and common restore binding i386 PASS; final new-worktree launcher/probe compile/link PASS.",
+    "Heavy compilation and Ghidra sequential. No original EXE/DLL/Proton or Windows output executed.",
+    "Corrected ownership: FA8+28 is a seat-associated Door visual20 produced by existing004E2E30, not an occupying Human.",
+    "Corrected D1 physical reset omission: resource-keyed backup and Door restore share ONE binding with retirement.",
+    "Final ABI corrects004FEFD0 THREE stack args/RET12;694/698 FASTCALL ECX context/EDX index/TWO stack pointers/RET8. Initial worktree index missing entries was not absence proof; actual frozen inventory rechecked after local research snapshot."
+  ],
+  "limitations": [
+    "Typed/template/STL/RAII/checked-frame adaptation, no original object/container/allocator/SEH/virtual ABI or actual engine/trajectory equivalence.",
+    "Source4FF8B0 only claims installed genuine empty6B0; no arbitrary positive callback payload/ABI reconstruction.",
+    "D4 authority004D2790 and presentation004D3110 containing consumers, D5 occupied/non7 control, D10 full Human containing path, D11 unproduced-state boundaries and D12 closure remain required.",
+    "Confirmed5F9/695/EXPL8/smoke14 remain honest failures; application loading/rendering and user desktop acceptance remain open.",
+    "Unchanged glass/Item12 and delegated engine/STL callees receive no new credit."
+  ]
+}

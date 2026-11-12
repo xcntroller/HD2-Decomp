@@ -1792,3 +1792,9 @@ D0 now has an explicit [containing trigger/owner map](human-reaction-containing-
 D1 mesh backup/capture/restoration has a [verified source checkpoint](checkpoints/p2.2-human-car-mesh-backup-20261112.json)
 and [contract](human-car-mesh-backup-source.md). Continue reached D2 positive
 light/health/variant/glass/wheel consumers and D3–D12; H2 remains OPEN.
+
+D2 positive Car deformation and D3 seat-associated Door visual restoration now
+have a [source checkpoint](checkpoints/p2.2-human-car-positive-deformation-20261112.json).
+[Contract](human-car-positive-deformation-source.md) corrects the earlier assumed
+occupied-Human dependency and a missed physical-reset resource binding. Continue
+D4 authority004D2790/presentation004D3110 frame consumers and D5/D10–D12; H2 stays OPEN.
