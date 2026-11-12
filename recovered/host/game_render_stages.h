@@ -9,6 +9,13 @@ namespace hd2::host {
 class GameRenderStages final:public GameUiRenderStages {
 public:
     explicit GameRenderStages(world_loading::World& world):world_(world){}
+    const world_loading::World* render_world_key()const noexcept override{return &world_;}
+    void retire_command_special_model()override{
+        auto& d=world_.owners().dependencies();
+        io::observe_data_operation(d.scene.frames().resource_observations(),"004870A0 command modal special-model retirement",[&]{
+            d.scene.effects().configure_special_model(false,nullptr,true);
+        });
+    }
     void render_before_scene()override{
         (void)world_.owners().dependencies();
         io::observe_data_operation(world_.scene().frames().resource_observations(),"00486BF0 pre-scene render",[&]{

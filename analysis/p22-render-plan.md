@@ -52,11 +52,10 @@ Source-only; application mission loading remains disabled.
 
 ## External integration and later acceptance
 
-- [ ] UI owns importing/binding its unmerged GameUiPresentation consumers.
-  Base command_before_scene rejects004B6720; latest UI implements it. Current
-  GameUiCommandModalSource::retire_command_special_model(World&) must forward
-  to world.scene().effects().configure_special_model(false,nullptr,true).
-  Human/Player/camera/Sight/input/console sources remain their actual owners.
+- [x] User merged current UI; [merged wiring](p22-render-wiring-plan.md) connects
+  modal cleanup to same-World render stages and lifecycle-owned callback loan.
+  Application render forwards original policy to the real bound Scene. Gameplay
+  sources remain required; full activation/input/frame integration is separate.
 - [ ] FRAME supplies original render-before-update scheduling, camera updates and
   effects/module update order. Timed lightning's live weather/network caller is
   outside this RENDER receiver implementation; no positive caller is fabricated.
@@ -85,3 +84,5 @@ an external P22 dependency. The original static findings remain valid; no
 allocator/constructor re-investigation is needed. Native allocation/OS byte-copy
 is a source ABI/safety adaptation, not original engine execution or a guarantee
 of the same heap trajectory across different processes/toolchains.
+
+Merged integration continuation: [current contract](p22-render-wiring-implementation.md), base973b4f4/tree-identical mastera820e70. Earlier original-base/unmerged notes are historical checkpoint observations.

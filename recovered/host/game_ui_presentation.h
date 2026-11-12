@@ -3,6 +3,8 @@
 
 #include "host/game_world_loading.h"
 #include "host/game_effects_fade_render.h"
+#include "host/game_ui_render_binding.h"
+#include "host/game_ui_scene_callbacks.h"
 #include "host/borrowed_input.h"
 #include "game/hud_crosshair_visibility.h"
 #include "game/hud_signal_actions.h"
@@ -88,7 +90,6 @@ class GameUiCommandModalSource:public GameUiCommandInputSource {
 public:
     virtual void enable_command_camera(world_loading::World&,game::DetachedCamera<world_loading::Frames,world_loading::Human>&,bool)=0; //00462AE0; existing camera virtual88 borrower.
     virtual void prepare_command_sight(world_loading::World&)=0; //0045F080→actual Human Sight0046F280, not selection reset.
-    virtual void retire_command_special_model(world_loading::World&)=0; //Actual GEffects0089B770 virtual44=004870A0(false,0,true); restores/releases its2E0 model. RENDER owns that producer.
 };
 //Required external network/typed Human producers. Ordinary peer/name/stat/team
 //reads and sorting use SAME ControlStartupState under its actual lock0. All
@@ -222,7 +223,7 @@ public:
     using RollDialogs=std::remove_reference_t<decltype(std::declval<world_loading::World&>().owners().hud_panels().dialogs())>;
     GameUiPresentation(world_loading::World& world,world_loading::World::Parent& parent,
                        GameOwnerBackend& backend,Graphics& graphics)
-        :world_(world),d_(world.owners().dependencies()),parent_(parent),backend_(backend),graphics_(graphics),fade_(world.owners(),graphics) {
+        :world_(world),d_(world.owners().dependencies()),parent_(parent),backend_(backend),graphics_(graphics),fade_(world.owners(),graphics),render_binding_(world) {
         if(&backend_!=&parent_.backend()||&backend_.presentation_graphics()!=&graphics_||
            &backend_.presentation_startup()!=&d_.startup||!parent_.constructed()||
            d_.scene.frames().world_scene_frame()!=parent_.scene()->frame()||
@@ -237,6 +238,10 @@ public:
     ~GameUiPresentation(){auto& panels=world_.owners().hud_panels();d_.world_actors.items().unbind_ui_retirement(this);panels.inventory().unbind_refresh(this);panels.dialogs().unbind_retirement(this);panels.command_roll().unbind_retirement(this);unbind_signal_sources();}
     GameUiPresentation(const GameUiPresentation&)=delete;
     GameUiPresentation& operator=(const GameUiPresentation&)=delete;
+    void bind_render_stages(const void* callback,GameUiRenderStages& stages){require_open();render_binding_.bind(callback,stages);}
+    void unbind_render_stages(const void* callback)noexcept{render_binding_.unbind(callback);}
+    GameUiRenderStages& render_stages(const void* callback){require_open();return render_binding_.get(callback);}
+    void retire_command_special_model(){require_open();render_binding_.get().retire_command_special_model();}
     void before_hud(){require_open();d_.hud.render_prepass(d_.camera);} //0049B9B0.
     void render_hud(){require_open();d_.hud.render(d_.camera,d_.startup.application_flags(),*this);} //0049B9F0.
     void advance_mission_text(std::uint32_t elapsed){require_open();d_.subtitles.tick(elapsed);} //0048F2D0.
@@ -1067,7 +1072,7 @@ private:
         GameUiCommandModalSource& modal;
         CommandModalQueries(GameUiPresentation& ui,GameUiCommandModalSource& source,GameUiSignalExternalSource* external):CommandInputQueries{ui,source,external},modal(source){}
         void enable_command_camera(bool enabled){modal.enable_command_camera(ui.world_,ui.d_.camera.detached(),enabled);}
-        void prepare_command_sight(){modal.prepare_command_sight(ui.world_);}void retire_command_special_model(){modal.retire_command_special_model(ui.world_);}
+        void prepare_command_sight(){modal.prepare_command_sight(ui.world_);}void retire_command_special_model(){ui.retire_command_special_model();}
         void selection_notifications(bool enabled){ui.d_.players.control().selection().notification_flag()=enabled;}
         void publish_signal_selection(Actor* actor,unsigned mode){SignalQueries queries{RollQueries{CommandQueries{TargetQueries{ui}}}};queries.publish_signal_selection(actor,mode);}
         std::size_t scene_actor_count(){return ui.d_.scene.frames().scene_actor_identity_count();}
@@ -1297,35 +1302,9 @@ private:
     }
     world_loading::World& world_;world_loading::Dependencies& d_;
     world_loading::World::Parent& parent_;GameOwnerBackend& backend_;Graphics& graphics_;GameEffectsFadeRender fade_;
+    GameUiRenderBinding render_binding_;
     GameUiHumanOrderSource* signal_orders_=nullptr;GameUiSignalExternalSource* signal_external_=nullptr;
 };
-//The pre-scene volume/procedural pipeline and debug geometry remain P22-RENDER.
-//A caller must supply the actual receiver; no empty successful service is made.
-class GameUiRenderStages {
-public:
-    virtual ~GameUiRenderStages()=default;
-    virtual void render_before_scene()=0;
-    virtual void render_debug_geometry()=0;
-};
-class GameUiSceneCallbacks final:public GameSceneCallbacks {
-public:
-    GameUiSceneCallbacks(GameUiPresentation& ui,GameUiRenderStages& render)
-        :ui_(ui),render_(render){}
-    std::uint32_t dispatch_game_scene(std::uint32_t stage)override{return game::scene_callback(stage,*this);}
-    bool has_game()const{return ui_.has_game();}auto game_status()const{return ui_.game_status();}
-    auto game_word24()const{return ui_.game_word24();}
-    bool suppress_hud()const{return ui_.suppress_hud();}bool full_viewport()const{return ui_.full_viewport();}
-    bool debug_enabled()const{return ui_.debug_enabled();}bool hud_enabled(){return ui_.hud_enabled();}
-    void before_hud(){ui_.before_hud();}void render_hud(){ui_.render_hud();}
-    auto graphics_viewport(){return ui_.graphics_viewport();}void graphics_viewport(const CursorViewport& value){ui_.graphics_viewport(value);}
-    auto graphics_width(){return ui_.graphics_width();}auto graphics_height(){return ui_.graphics_height();}
-    void render_mission_text(){ui_.render_mission_text();}void render_game_fade(){ui_.render_game_fade();}
-    void render_effects_overlay(){ui_.render_effects_overlay();}
-    void control_before_scene(){render_.render_before_scene();}
-    void control_after_scene(){ui_.control_after_scene();}void render_debug(){render_.render_debug_geometry();}
-    void render_network_overlay()noexcept {} //00724CB0 is an actual RET in the frozen client.
-private:
-    GameUiPresentation& ui_;GameUiRenderStages& render_;
-};
+using GameUiSceneCallbacks=GameUiSceneCallbackBinding<GameUiPresentation>;
 }
 #endif

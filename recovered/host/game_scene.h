@@ -63,6 +63,10 @@ public:
         try{if(!registered_)install_callback();}catch(...){borrowed_callbacks_=previous;throw;}
     }
     void unbind_callbacks(GameSceneCallbacks& callbacks)noexcept{if(borrowed_callbacks_==&callbacks)borrowed_callbacks_=nullptr;}
+    bool has_bound_presentation()const noexcept{return registered_&&active_==this&&borrowed_callbacks_!=nullptr;}
+    bool has_bound_presentation(const GameSceneCallbacks& callbacks)const noexcept{
+        return has_bound_presentation()&&borrowed_callbacks_==&callbacks;
+    }
     void suspend_callback()noexcept{
         if(registered_){set_callback_(scene_.get(),nullptr,0);registered_=false;}
         if(active_==this)active_=nullptr;

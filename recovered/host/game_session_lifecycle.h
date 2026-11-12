@@ -89,6 +89,8 @@ public:
     bool external_loading_progress()const{return startup_.game_configuration().flag170!=0;}
     void render_actual_mission_scene(){
         require_open();
+        if(!callbacks_||!parent_.scene()->has_bound_presentation(*callbacks_))
+            throw std::logic_error("Session presentation is not installed on its actual Scene");
         io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"Scene78 mission render",[&]{parent_.scene()->render();});
     }
     //Pages use the EXISTING process registry/font owner. Retire the real page

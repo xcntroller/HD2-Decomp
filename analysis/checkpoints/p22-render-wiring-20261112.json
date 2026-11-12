@@ -1,0 +1,237 @@
+{
+  "date": "2026-11-12",
+  "branch": "feature/p22-render",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-render",
+  "actual_implementation_base": "973b4f445240ab92df71f62200a71b25e48d8318",
+  "merged_master_observed": "a820e7018a625dc8a31a314706ab2f4122e0f2d8",
+  "base_tree": "629d5e206ec501ee0a791f7108bc748e30dfe28c",
+  "merged_master_tree": "629d5e206ec501ee0a791f7108bc748e30dfe28c",
+  "tree_identical_at_start": true,
+  "merged_sources": {
+    "ui": "7a3f7b786498cca8618a654031ca7191d572982a",
+    "render": "345a390"
+  },
+  "frame_inspected_read_only": "c36bba8c5aa2855a02c11ce832810cebe39e8d10",
+  "frame_ancestor_of_base": false,
+  "source_only": true,
+  "available_merged_ui_render_and_application_render_wiring_complete": true,
+  "application_loading_enabled": false,
+  "application_input_update_forwarding_enabled": false,
+  "application_render_forwarding": "Actual existing policy/Scene path when constructed parent and bound registered/active presentation exist; no readiness or activation success inferred.",
+  "original_code_executed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "push_or_merge_performed": false,
+  "original_client": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "bytes": 6889472
+  },
+  "original_engine": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2/LS3DF.dll",
+    "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+    "bytes": 864256
+  },
+  "source_files": {
+    "recovered/host/game_owner.h": {
+      "sha256": "bd3ab1c2775dac7541a270f691ec23be6fc54866d9d9253265a580f525cba938",
+      "bytes": 19270
+    },
+    "recovered/host/game_render_stages.h": {
+      "sha256": "35b735462d6ab530dfc384b126d050f068ab720fceface90c63cc1994c19c761",
+      "bytes": 2986
+    },
+    "recovered/host/game_scene.h": {
+      "sha256": "b0cb5b54ae89ed8994558f5a14c1872222da0b3dd3283ebeb8847ab2ca2085d2",
+      "bytes": 14443
+    },
+    "recovered/host/game_session_lifecycle.h": {
+      "sha256": "2a4775bb3159a216f575217eb3cad4c6cd8804aaf1787aa2580e8b274dddc041",
+      "bytes": 7991
+    },
+    "recovered/host/game_ui_presentation.h": {
+      "sha256": "cf7dbd526f4de5bdf9e25d1e3337387f9cb101d37c2454fa0613c5f68ab3b03f",
+      "bytes": 140832
+    },
+    "recovered/host/game_ui_render_binding.h": {
+      "sha256": "551bbfd9810b886ca9f4da19e6c63ae1ad06c54ae4ca4a647a10888736fab26b",
+      "bytes": 2145
+    },
+    "recovered/host/game_ui_scene_callbacks.h": {
+      "sha256": "f3c40e9e320fafd3cbfb696c750cba122660bcd8e6b98da92beab257e21e49a0",
+      "bytes": 2260
+    }
+  },
+  "documentation_and_ledger": {
+    "HANDOFF.md": {
+      "sha256": "df2fffa88c3840d19243c51b6a7386112d5b57d1bcfccfccc3a2796e679c1c28",
+      "bytes": 4257
+    },
+    "analysis/function-status.json": {
+      "sha256": "e6ece5595b82bb60f4c4ecf2d3ae2bdf3d51a5ff286ec0102ab0023c17b19c1c",
+      "bytes": 2945740
+    },
+    "analysis/p22-render-implementation.md": {
+      "sha256": "988dc759fd81ee399c8142aa0311874dca3418dbdba7da027e47fbc79580843b",
+      "bytes": 23254
+    },
+    "analysis/p22-render-plan.md": {
+      "sha256": "17fbe413e355c0246a694629bbb2563b06e4209359ab36fc81864d396dbbc969",
+      "bytes": 5861
+    },
+    "analysis/p22-ui-plan.md": {
+      "sha256": "01d04d9623255c51de0bd811e1e4b73aaa2b81540f3c5a4073a8d3d91d935c20",
+      "bytes": 5454
+    },
+    "plan.md": {
+      "sha256": "66f713cf1fd127ef8ac1fc1d05561c44f99f651ee59b7ab13cc6c8c2174d8ff6",
+      "bytes": 26652
+    },
+    "analysis/p22-render-wiring-plan.md": {
+      "sha256": "37925a89ec90615873d40092bdfb7fccc7078460bf657e6a96e974de347380e4",
+      "bytes": 3846
+    },
+    "analysis/p22-render-wiring-implementation.md": {
+      "sha256": "d1017abade619b7fe5c4e1a8e2df421025054c7da0e49723d28d14f14bd4e06e",
+      "bytes": 9155
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/p22-render-wiring-20261112/native-loan-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-render-wiring-20261112/native-loan.log": {
+      "sha256": "aeb25d0ba789c8a406827d547479e2ddd1561d5f066d892afbd50a4f014eb622",
+      "bytes": 133
+    },
+    "analysis/work/p22-render-wiring-20261112/native-scene-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-render-wiring-20261112/native-scene.log": {
+      "sha256": "85c97b00b2c6311c3a0a59f12ed2b5102d3d383aabc73ba964bdf2094909dc2b",
+      "bytes": 149
+    },
+    "analysis/work/p22-render-wiring-20261112/i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-render-wiring-20261112/application.log": {
+      "sha256": "cc787481df22b89e4d709da27543a17909d56390a81dc91c200bf3ddfeb8fe3d",
+      "bytes": 615
+    },
+    "analysis/work/p22-render-wiring-20261112/ledger-focused.log": {
+      "sha256": "ccbcfcd85332fc40c067f9e1f7041215a807ab29a00fe405245e38eecb3075cc",
+      "bytes": 194
+    },
+    "analysis/work/p22-render-wiring-20261112/tracker.log": {
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    "analysis/work/p22-render-wiring-20261112/research-index.log": {
+      "sha256": "fa6a4b912ad3d257e4b0970a1c33e9706157b82dc9fab8a0bc6401309830a1cf",
+      "bytes": 6199
+    },
+    "analysis/work/p22-render-wiring-20261112/products.log": {
+      "sha256": "e87ddd17ca1286b5467ea32f1fbefbe77d6ce27aca854f2b59268c8ed20667ea",
+      "bytes": 222
+    }
+  },
+  "verification": {
+    "native_loan": "PASS ASan/UBSan/LSan100 actual GameUiRenderBinding, GameUiSceneCallbackBinding, scene_callback and EffectsSpecialModel families. Foreign/duplicate/null bind; stage order/full viewport near/far/status14; actual mode/power/hide/release and primary/secondary cleanup error; pre-scene error/retry; unpublished registration unwind; retired/stale tokens and replacement. World/UI/render pre/debug/engine registration are labelled doubles; production GameRenderStages and host UI modal bridge are i386 compile/link verified, not natively executed.",
+    "native_scene": "PASS ASan/UBSan/LSan100 actual GameScene and actual callback-adapter families with engine/platform/World/UI doubles: native SetCallback failure/retry, registered/active/exact-dispatcher admission, Scene78 and real render_session mode/config policy, callback primary versus later engine secondary, suspension/replacement and retirement. Actual application host class is compile/link only.",
+    "i386": "PASS strict -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror full actual World construction/loading/GEffects/UI/render/callback/modal/lifecycle plus GameApplicationState render and app-parent/status-alias lifecycle composition. Modal gameplay boundary double defines required throwing operations and has no render-cleanup method; actual stages supply cleanup. No declarations-only project receiver claim. PE never run.",
+    "application": "PASS existing make -C recovered -j1 application-launch after final source edits, sequential final heavy compilation; PE never run.",
+    "ledger": "Frozen inventory/baseline/full ledger uniqueness and changed evidence validation PASS. Two evidence-link updates only, no coverage/status/count changes or body credit. Full tracker still stops at unrelated missing legacy0062D880 WORK rule-refresh.asm.",
+    "engine_runtime": "NOT RUN",
+    "desktop": "NOT RUN"
+  },
+  "original_sequence_preserved": [
+    "004B5E40 original cleanup gate/position",
+    "006C9260 stage1 HUD/pre-scene/debug and stage2 HUD/full viewport/text/RET network/fade/post/overlay",
+    "0069B870 offline7 always-render and non7 config170 skip",
+    "Application render-before-fixed/update and existing graphics-present ownership",
+    "LIFE stop engine/unbind callback/retract UI loan/destroy render before World resources",
+    "No extra shared random/update/clock ownership from wiring"
+  ],
+  "native_safety_guards": [
+    "SAME World key and stable callback owner token",
+    "Duplicate/null/foreign binding rejection before engine publication",
+    "Idempotent token-safe retirement and stale dispatch rejection",
+    "Actual Scene registered/active/borrowed/exact callback checks",
+    "Constructed SAME application parent accessor; no loaded publication"
+  ],
+  "function_ledger": {
+    "new_credits": 0,
+    "complete_promotions": 0,
+    "count_changes": 0,
+    "evidence_only_entries": [
+      "006c9260",
+      "004b5e40"
+    ],
+    "absent_0069b870_credit": false
+  },
+  "evidence_levels": {
+    "historical_resolver_bytes": "Preserved existing evidence; no new historical original byte/state claims.",
+    "static_requirements": "Original contracts, current merged owner/interfaces and actual native/i386 source composition verified.",
+    "actual_loaded_populations": "No real mission loaded; fixture World/UI/engine/light values explicitly labelled.",
+    "actually_executed_runtime_branches": "Native source guards/policy/callback/special-leaf to boundary doubles only. No original engine draw/present or mission reachability."
+  },
+  "remaining": {
+    "frame_import": "c36bba8 is not merged; game_session_frames.h absent. Import original coordinator then preserve frame_retirement_started_/retire_frames before current presentation retirement.",
+    "own": "Store/close actual lifecycle/state under application, real loading/activation and controller/cutscene services. Actual render forwarding is now available; initialize still declines and input/fixed/update still reject.",
+    "input_views": "Resolve mutable64-word controller provenance for FRAME versus current const ApplicationState input; no arbitrary const_cast.",
+    "gameplay": "Actual typed Human order/path/presentation/selection/Sight/realtime/occupied/PACK producers remain required; no global absence/inactivity claim.",
+    "runtime_desktop": "Real loaded populations, executed engine render/present and user mission/failure/return/repeat workflow."
+  },
+  "resources": "No authored resource changes or new caches/devices/cameras. Borrowed same Scene/effects owners; native special-effect frames are labelled fixtures.",
+  "temporary_audit_sources_binaries_stubs": {
+    "/tmp/p22-render-wiring-native.cpp": {
+      "sha256": "dfe3c0d7fddcf3f7de53d977139e490f715d6455dc970b294d624b5ce3b444d9",
+      "bytes": 6410
+    },
+    "/tmp/p22-render-wiring-native": {
+      "sha256": "e43df511342af9fe592a99e244d1fec088203632e6a69cf1acf81e2d3f3a177c",
+      "bytes": 1013096
+    },
+    "/tmp/p22-render-scene-native.cpp": {
+      "sha256": "347d9b34a1080f888ed47d39760bb4e23036de40e7043ae0f114768892a199c2",
+      "bytes": 3246
+    },
+    "/tmp/p22-render-scene-native": {
+      "sha256": "8a004b1f12962c1c791f3c6caa252f833a121eff1f0cbd0ac028d0166e906d1a",
+      "bytes": 1174448
+    },
+    "/tmp/p22-render-wiring-fixture.hpp": {
+      "sha256": "4455e3ba0378c1f9c7cbef64019fe27d0644433480e946b4d43fb5dc73719169",
+      "bytes": 3823
+    },
+    "/tmp/p22-render-wiring-i386.cpp": {
+      "sha256": "b40bed9603c7ff8f5932798edb046c5cb4eed03a2e4a4c9d5c955f2bf46715b8",
+      "bytes": 4828
+    },
+    "/tmp/p22-render-wiring-i386.exe": {
+      "sha256": "1b7800d4d356f746372b325e41f9930f55458fa244d651e853abf6593f399d4c",
+      "bytes": 11913728
+    },
+    "/tmp/p22-render-wiring-ledger-check.py": {
+      "sha256": "8981d0f9bc9184e3224ee5f42e6ef40db8eb9e554bb052e5d552cef8cefe147e",
+      "bytes": 1286
+    },
+    "/tmp/p22-render-wiring-stubs/host/game_scene.h": {
+      "sha256": "4b0d478323a6274de576026ecc0e447927a272cec459d158268ab3cd692478e4",
+      "bytes": 241
+    },
+    "/tmp/p22-render-scene-stubs/host/graphics_interface.h": {
+      "sha256": "19cf0c83721bd371c35cf6f091b0e3e08241597bfe133ca418ff1acb81f737db",
+      "bytes": 125
+    },
+    "/tmp/p22-render-scene-stubs/host/menu_scene.h": {
+      "sha256": "db7e050a3dc3ee8b293e078c2369b9d988169935b2d988acd466229454342faf",
+      "bytes": 1058
+    }
+  },
+  "temporary_artifacts_removed": true,
+  "permanent_tests_added": false
+}

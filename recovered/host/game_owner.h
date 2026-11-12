@@ -13,6 +13,8 @@
 #include "game/offline_spawn_presentation.h"
 #include "game/session_local_packets.h"
 #include "game/scene_callback.h"
+#include "game/session_render.h"
+#include "io/data_operation.h"
 #include "game/activation_flags.h"
 #include "game/hud_owner.h"
 #include "game/text_state.h"
@@ -262,6 +264,10 @@ public:
         return false; //006989B0 zero=failure; never set running/status5 here.
     }
     const std::string& failure() const { return failure_; }
+    Owner& session_owner(){
+        if(!owner_||!owner_->constructed())throw std::logic_error("Game session owner is not constructed");
+        return *owner_; //OWN composes over this SAME parent, never a replacement owner.
+    }
     void shutdown() override {
         startup_.game_views().unbind(this);
         owner_.reset();
@@ -318,7 +324,17 @@ public:
     void input(const std::uint32_t*, const std::uint32_t*) override { require_world(); }
     void fixed_update(std::uint32_t) override { require_world(); }
     void update(std::uint32_t) override { require_world(); }
-    void render() override { require_world(); }
+    void render() override {
+        (void)session_owner();
+        io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"0069B870 application render policy",[&]{game::render_session(*this);});
+    }
+    bool external_loading_progress()const{return startup_.game_configuration().flag170!=0;}
+    void render_actual_mission_scene(){
+        auto& parent=session_owner();
+        if(!parent.scene()->has_bound_presentation())
+            throw std::logic_error("Game rendering requires its bound session presentation");
+        io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"Scene78 application mission render",[&]{parent.scene()->render();});
+    }
 private:
     [[noreturn]] static void require_world() { throw std::logic_error("Game world is not activated"); }
     inline static Owner::Registry registry_;
