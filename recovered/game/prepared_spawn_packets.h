@@ -76,6 +76,7 @@ public:
     PreparedSpawnPackets(frontend::ControlStartupState& state,SessionBroadcastPackets& streams,
                          Locks& locks,Scene& scene,Direct& direct,std::uint32_t& mode,SessionActivationState& game)
         :state_(state),streams_(streams),locks_(locks),scene_(scene),direct_(direct),mode_(mode),game_(game){}
+    void set_player_generation(std::int32_t identity,std::uint32_t value){scene_.player_generation(identity,value);}
     void bind_spawned_player(std::uint32_t player,std::uint32_t value,const std::string& name) { //0072E940.
         if(!(mode_&2u))return;
         Lock lock(locks_);

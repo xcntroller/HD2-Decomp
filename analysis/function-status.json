@@ -18082,7 +18082,7 @@
       "program": "client",
       "entry": "0046cb20",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0046cb20: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; debug/attached camera simulation remains excluded. Camera/local-dispatch checkpoint: Offline camera commands0/2, including presence/value distinction and actual current-player target refresh. Blast-wave checkpoint: command1 uses actual camera240 matrix, unsigned radius,2B4 amplification and native strict distance/shake284 publication.",
+      "coverage": "P2.2 source reconstruction at original entry 0046cb20: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; debug/attached camera simulation remains excluded. Camera/local-dispatch checkpoint: Offline camera commands0/2, including presence/value distinction and actual current-player target refresh. Blast-wave checkpoint: command1 uses actual camera240 matrix, unsigned radius,2B4 amplification and native strict distance/shake284 publication. Human spawn checkpoint: actual commands0/2 non7 spectator frames via SAME scene virtual7C,26D/26E/index274 ordering, one CRT draw and exact extended-to-DOUBLE floor selection including RAND_MAX.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_camera.h",
@@ -18091,7 +18091,9 @@
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/camera-local-dispatch-loading.md",
         "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
-        "analysis/blast-wave-process.md"
+        "analysis/blast-wave-process.md",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
       ]
     },
     {
@@ -21488,27 +21490,31 @@
       "program": "client",
       "entry": "006125a0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 006125a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application. Actual host presentation/record/packet decoder composition is supplied, borrowing SAME process identities and control records.",
+      "coverage": "P2.2 source reconstruction at original entry 006125a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application. Actual host presentation/record/packet decoder composition is supplied, borrowing SAME process identities and control records. Human spawn checkpoint: client generation-1 before full soldier decode, native twelve-stat defaults and widths/permutation, live record publication and final explicit-stats decision; offline same A8 retained.",
       "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/offline_spawn_presentation.h",
         "analysis/camera-local-dispatch-loading.md",
         "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
         "analysis/world-actor-loading-consumers.md",
-        "recovered/game/prepared_spawn_packets.h"
+        "recovered/game/prepared_spawn_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "006123a0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 006123a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application. Actual source presentation borrows signed process local identity; camera/roster chain now instantiates with real host owners.",
+      "coverage": "P2.2 source reconstruction at original entry 006123a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application. Actual source presentation borrows signed process local identity; camera/roster chain now instantiates with real host owners. Human spawn checkpoint: client actual00612A60 creation, authority Scene identity lookup/offline A8 reuse, live phase/activation/camera/roster ordering, Scene-id side quirk, Player/Remote flags and actual local HUD/voice routing.",
       "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/offline_spawn_presentation.h",
         "analysis/camera-local-dispatch-loading.md",
         "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
-        "analysis/world-actor-loading-consumers.md"
+        "analysis/world-actor-loading-consumers.md",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
       ]
     },
     {
@@ -35043,6 +35049,174 @@
         "recovered/host/game_car_callbacks.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-car-contact-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00475510",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Signed reserved identity0..31 guard and low-BYTE generation setter on SAME actual Scene2 registry, bound before client soldier decode.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/scene_actor_registry.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a8800",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Reached spawn side setter uses actual Human Scene id10 and actual00730140 peer side/pending lock receiver.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069aa50",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Actual match B8 write before HUD phase0/1 or2, B4 reset after HUD1, spectator command after HUD2; other values retain scalar-only behavior.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_spawn_match.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069e290",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Local-peer spawn match/result presentation, B0 suppression, actual HUD phase/primary refresh,90 reset, map hide and style2 suppression hint in native order.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_spawn_match.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049f250",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Actual spawn HUD phases0/1/2/other, same inline component owners, flags-first mutation, duplicate fresh objective-root hides, scoreboard style and final postbind.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_spawn_mode.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049f040",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Reached false body hides SAME map and then reads late center visibility into actual HUDbyte21.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_scene_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004a5630",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Reached false/false body, true absent-center no-op, flag24 before center/map hide and kind-dependent SAME pointer hide.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_map_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004a3920",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Reached false body hides actual inventory/description, clears C4, then hides and updates SAME dragging visual.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_inventory_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004bf4a0",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Reached false/0/0 body writes64/68 before actual controlled-roster selection clear and root hide/update.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_dialogs_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004b27b0",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Reached false body hides actual roll root before clearing flag30.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_dialogs_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00496120",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Reached mode0 stores10/30, optional required offline pause before actual Text hide, then input-disable body on SAME message state.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_messages_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004961e0",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Reached false body clears actual message input68[0] and flagsD387/D386/D385 after visibility.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_messages_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049d340",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Reached(0,5) forward live actual controlled-roster count and SAME soldier set_selected(0), with explicit six-panel invalid-bound failure.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_panels_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00724570",
+      "status": "partial",
+      "coverage": "P2.2 Human presentation spawn source: Actual process4E00 descriptor flag88/authority/local3C/wrapper gate, actual side lookup and418-protected live peer scan, late wrapper COM2C target submission; native sixteen-target overflow fails explicitly with unlock.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_transmit_targets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
       ]
     }
   ]

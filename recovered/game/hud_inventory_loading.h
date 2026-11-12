@@ -96,6 +96,10 @@ public:
         }
         field2e10_=0;
     }
+    void hide(){ //004A3920(false), including the dragging-frame update after clearing C4.
+        show(root_,false);show(description_,false);fieldc4_=0;
+        show(dragging_,false);frames_.update_scene_object(dragging_);
+    }
     void close()noexcept{} //004A1DA0 is an actual RET. Inline text/scroll ownership survives this loaded-panel close.
     void draw(){ //004A41E0: same inline text owners; preserve the repeated1394 call.
         require(root_);if(!frames_.hud_frame_visible(root_))return;

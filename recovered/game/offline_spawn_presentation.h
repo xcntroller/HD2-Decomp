@@ -5,55 +5,70 @@
 
 namespace hd2::game {
 
-//006123A0 offline7: use the SAME SpawnPoint A8 Human already created by
-//authority. Camera commands precede roster append, even for the first player.
-//Decoded pose/stats never create or reposition another offline Human.
-template<class Human,class Control,class Camera,class Refresh>
-class OfflineSpawnPresentation {
+//006123A0 shares the authority's actual Scene2 Human. Only a client creates
+//through00612A60, and only offline authority reads SpawnPoint A8.
+template<class Human,class Runtime>class SessionSpawnPresentation {
 public:
-    OfflineSpawnPresentation(Control& control,Camera& camera,Refresh& refresh,
-                              std::uint32_t& mode,std::int32_t& local_player)
-        :control_(control),camera_(camera),refresh_(refresh),mode_(mode),local_player_(local_player){}
-    template<class Spawn>void present(std::uint32_t player,Spawn& spawn) {
+    explicit SessionSpawnPresentation(Runtime& runtime):r_(runtime){}
+    template<class Spawn>void present(std::uint32_t peer,std::uint32_t identity,Spawn& spawn,
+            const HumanVector& position,const HumanVector& direction,frontend::PreMissionSoldier& soldier,
+            const std::array<std::uint32_t,12>* stats){
         if(!spawn.base().frame())return;
-        if((mode_&7u)!=7u)throw std::runtime_error("Spawn presentation requires actual nonoffline creation/control receivers");
-        if(!spawn.spawned_human)return;
-        auto* human=dynamic_cast<Human*>(spawn.spawned_human);
-        if(!human)throw std::runtime_error("SpawnPoint A8 is not its actual Human");
-        if(player==static_cast<std::uint32_t>(local_player_)&&!spawn.properties.fielda0) {
-            camera_.command_offline(0,true,0,mode_,refresh_); //Param3 presence1, param4NULL, not bool(true).
-            camera_.command_offline(2,true,0,mode_,refresh_); //Native offline7 command2 does nothing.
-            if(!control_.human_roster().contains(human))control_.add_human(human);
+        Human* human=nullptr;
+        if(!(r_.mode_flags()&1u))human=r_.create_session_spawn_human(peer,identity,position,direction,soldier,stats,spawn.properties.fielda0!=0);
+        else if((r_.mode_flags()&7u)==7u){
+            human=dynamic_cast<Human*>(spawn.spawned_human);
+            if(spawn.spawned_human&&!human)throw std::logic_error("SpawnPoint A8 lost its actual Human");
+        }else human=r_.spawn_scene_human(identity);
+        if(!human)return;
+        if((r_.mode_flags()&7u)!=7u&&peer==static_cast<std::uint32_t>(r_.human_current_player_id())&&r_.spawn_result()!=3)
+            r_.set_spawn_match_phase(1);
+        if(!(r_.mode_flags()&1u))human->activate(false);
+        if(peer==static_cast<std::uint32_t>(r_.human_current_player_id())&&!spawn.properties.fielda0){
+            r_.spawn_camera_command(0,true,0);r_.spawn_camera_command(2,true,0);
+            if(!r_.spawn_roster_contains(*human))r_.append_spawn_human(*human);
         }
+        if((r_.mode_flags()&7u)!=7u){
+            const auto kind=r_.spawn_state_kind(*human);
+            if(kind==1){
+                r_.spawn_human_side(*human,static_cast<std::uint32_t>(soldier.specialization)); //005A8800 uses SCENE id, not peer slot.
+                if(r_.human_is_player(*human))r_.select_spawn_human(*human);
+                r_.spawn_selection_suppressed(*human,static_cast<std::uint8_t>(soldier.flag08));
+                r_.spawn_player_flag(*human,static_cast<std::uint8_t>(soldier.flag09));
+                r_.present_local_spawn(peer,*human);
+            }else if(kind==7){
+                r_.spawn_remote_flag(*human,static_cast<std::uint8_t>(soldier.flag09));
+                r_.spawn_selection_suppressed(*human,static_cast<std::uint8_t>(soldier.flag08));
+            }
+        }
+        if((r_.mode_flags()&7u)!=7u&&!(r_.mode_flags()&1u)&&r_.spawn_voice_enabled())r_.update_human_transmit_targets();
     }
-    template<class Spawn>void publish_prepared_spawn(std::uint32_t player,Spawn& spawn,Human&,
-            frontend::PreMissionSoldier&,const HumanVector&,const HumanVector&){present(player,spawn);} //Direct game1C==1 adapter.
-private:
-    Control& control_;Camera& camera_;Refresh& refresh_;std::uint32_t& mode_;const std::int32_t& local_player_;
+    template<class Spawn>void publish_prepared_spawn(std::uint32_t peer,Spawn& spawn,Human& human,
+            frontend::PreMissionSoldier& soldier,const HumanVector& position,const HumanVector& direction){
+        present(peer,static_cast<std::uint32_t>(human.base().id10()),spawn,position,direction,soldier,nullptr);
+    }
+private:Runtime& r_;
 };
 
-//006125A0: actual SpawnPoint virtual1C presentation decoder, ordinary offline
-//subtype0. Full decode/record publication precedes006123A0, including on a
-//SpawnPoint without a frame or without its previously-created A8 Human.
-template<class PacketRecords,class Presentation>
-class OfflineSpawnPacketDecoder {
+//006125A0: generation is written BEFORE soldier decode on clients. Every mode
+//test remains live, including the final decision to pass the explicit stats.
+template<class PacketRecords,class Presentation>class SessionSpawnPacketDecoder {
 public:
-    OfflineSpawnPacketDecoder(PacketRecords& records,Presentation& presentation,std::uint32_t& mode)
+    SessionSpawnPacketDecoder(PacketRecords& records,Presentation& presentation,std::uint32_t& mode)
         :records_(records),presentation_(presentation),mode_(mode){}
-    template<class Spawn>void receive(Spawn& spawn,SessionPacketStream* packet) {
+    template<class Spawn>void receive(Spawn& spawn,SessionPacketStream* packet){
         if(!(mode_&2u)||!packet)return;
-        if((mode_&7u)!=7u)throw std::runtime_error("Spawn decoder requires actual nonoffline generation/stats consumers");
         if(packet->read(2)!=0)return;
-        const auto player=packet->read(8),identity=packet->read(8);
+        const auto peer=packet->read(8),identity=packet->read(8);
         const auto position=packet->read_vector(packet->primary_quantizer(-1),7);
         const auto direction=packet->read_direction(-1);
-        const auto generation=packet->read(8);const auto name=packet->read_string(0xff);const auto value=packet->read(32);
+        const auto generation=packet->read(8);const auto name=packet->read_string(0xff);const auto transport=packet->read(32);
+        if(!(mode_&1u))records_.set_player_generation(static_cast<std::int32_t>(identity),generation-1u);
         frontend::PreMissionSoldier soldier;read_prepared_soldier(*packet,soldier,false);
-        //Native offline authority skips00475510(generation-1) and passes NULL
-        //explicit stats. These decoded locals still consume the original bits.
-        (void)identity;(void)position;(void)direction;(void)generation;
-        if(mode_&2u)records_.bind_spawned_player(player,value,name);
-        presentation_.present(player,spawn);
+        std::array<std::uint32_t,12> stats{{800,80,80,80,80,80,50,30,20,50,0,80}};
+        if((mode_&7u)!=7u)for(auto n:{0u,2u,1u,3u,4u,5u,6u,7u,8u,9u,11u,10u})stats[n]=packet->read(n==0?10:7);
+        if(mode_&2u)records_.bind_spawned_player(peer,transport,name);
+        presentation_.present(peer,identity,spawn,position,direction,soldier,(mode_&7u)!=7u?&stats:nullptr);
     }
 private:
     PacketRecords& records_;Presentation& presentation_;std::uint32_t& mode_;

@@ -858,6 +858,8 @@ public:
     void clear_retired_actor_record(std::int32_t identity){frontend::clear_retired_actor_record(control_data_,lock_services_,identity);}
     void clear_human_player_slot(std::uint32_t identity){frontend::clear_human_player_slot(control_data_,lock_services_,identity);}
     frontend::ControlStartupState& game_control_records(){return control_data_;} //PreparedSpawnPackets borrows SAME1DC storage and acquires lock0 for each access.
+    void submit_human_transmit_targets(void* object,const std::uint32_t* targets,std::uint32_t count){settings_backend_.submit_transmit_targets(object,targets,count);}
+    std::uint32_t peer_human_ticks(){return timeGetTime();} //00612A60 uses the process multimedia clock.
     std::uint32_t control_packet_clock()const {return static_cast<std::uint32_t>(std::clock());} //007E814F CRT clock(), packet timestamps.
     void delete_control_critical_section(unsigned index) noexcept {
         lock_services_.delete_control_critical_section(index);

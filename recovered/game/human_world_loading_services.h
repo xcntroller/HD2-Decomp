@@ -44,6 +44,9 @@
 #include "game/human_peer_removal.h"
 #include "game/human_scene_retirement.h"
 #include "game/session_peer_lifetime.h"
+#include "game/session_spawn_match.h"
+#include "game/session_transmit_targets.h"
+#include "game/prepared_human_loading.h"
 #include <algorithm>
 #include <stdexcept>
 
@@ -73,6 +76,52 @@ public:
     auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
     auto& human_ai_navigation_jobs(){return dependencies().startup.human_ai_navigation_jobs();}
     std::uint32_t human_frame_random_word(){return dependencies().startup.random_word();}
+    auto* create_session_spawn_human(std::uint32_t peer,std::uint32_t identity,const HumanVector& position,const HumanVector& direction,
+            frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats,bool alternate){
+        PreparedHumanLoading<Dependencies> factory(dependencies()); //Only a borrowed adapter; all scene/input/model ownership stays in World/process.
+        return factory.create_session_human(peer,human_frame_signed_word(identity),position,direction,soldier,stats,-1,alternate);
+    }
+    auto* spawn_scene_human(std::uint32_t identity){return dependencies().scene.frames().scene_human_identity(human_frame_signed_word(identity));}
+    std::uint32_t spawn_result(){return dependencies().session.words.template get<std::uint32_t>(0x88);}
+    void set_spawn_match_phase(std::uint32_t phase){set_session_spawn_match_phase(dependencies().session,*this,phase);}
+    void spawn_hud_mode(std::uint32_t phase){
+        dependencies().hud.spawn_mode(phase,[this]{return mode_flags();},[this](bool enabled){spawn_pause(enabled);});
+    }
+    void spawn_pause(bool enabled){ //0069B8B0's scalar prefix; normal non7 spawn does not reach this offline callee.
+        auto& game=dependencies().session;
+        game.words.set(0x64,static_cast<std::uint8_t>(game_word28()>=2500&&(mode_flags()&7u)==7u&&enabled));
+        throw std::runtime_error("Game pause requires actual0071F640/005E8D50/00428F00 propagation");
+    }
+    void spawn_camera_command(std::uint32_t command,bool present,std::uint32_t value){
+        auto refresh=[this](auto&){refresh_human_presentation_camera();};
+        dependencies().camera.command_spawn(command,present,value,mode_flags(),refresh,[this]{return human_frame_random_word();});
+    }
+    template<class Human>bool spawn_roster_contains(Human& human){return dependencies().players.control().human_roster().contains(&human);}
+    template<class Human>void append_spawn_human(Human& human){(void)dependencies().players.control().add_human(&human);}
+    template<class Human>std::uint32_t spawn_state_kind(Human& human){return human.loading_state?human.loading_state->words().template get<std::uint32_t>(0x48):0u;} //005A5FE0 null B0 gate.
+    template<class Human>void spawn_human_side(Human& human,std::uint32_t side){set_session_peer_side(dependencies().startup.game_control_records(),dependencies().startup,static_cast<std::uint32_t>(human.base().id10()),side,false);} //005A8800.
+    template<class Human>void select_spawn_human(Human& human){dependencies().players.control().select_human(human);}
+    template<class Human>void spawn_selection_suppressed(Human& human,std::uint8_t value){
+        if(!human.loading_state)throw std::logic_error("Spawn flags require actual Human B0");
+        human.loading_state->selection_suppressed(value);
+    }
+    template<class Human>void spawn_player_flag(Human& human,std::uint8_t value){
+        using Player=typename Dependencies::Composition::StateFactory::Player;
+        auto* state=dynamic_cast<Player*>(human.loading_state);if(!state)throw std::logic_error("Spawn Player flag requires actual Player B0");
+        state->player_words().set(0x550,value);
+    }
+    template<class Human>void spawn_remote_flag(Human& human,std::uint8_t value){
+        using Remote=typename Dependencies::Composition::StateFactory::Remote;
+        auto* state=dynamic_cast<Remote*>(human.loading_state);if(!state)throw std::logic_error("Spawn Remote flag requires actual Remote B0");
+        state->spawn_remote_flag(value);
+    }
+    template<class Human>void present_local_spawn(std::uint32_t peer,Human& human){present_session_local_spawn(dependencies().session,*this,peer,human);}
+    void spawn_hide_map(){dependencies().hud.hide_map();}
+    template<class Human>bool spawn_selected_suppressed(Human& human){return dependencies().presentation.human_selected_suppressed(human);}
+    bool spawn_voice_enabled(){return dependencies().startup.profile_settings().bytes[0x38]!=0;}
+    std::uint32_t human_transmit_side(void* actor){return human_specialization(human_score_actor(actor),false);}
+    void submit_human_transmit_targets(void* object,const std::uint32_t* ids,std::uint32_t count){dependencies().startup.submit_human_transmit_targets(object,ids,count);}
+    void update_human_transmit_targets(){update_session_transmit_targets(dependencies().startup.game_control_records(),*this);}
     bool human_integrity_matches(std::size_t stage){
         auto& tables=dependencies().startup.mission_integrity_tables();
         return tables.expected(stage)==tables.observed(stage);

@@ -37,6 +37,12 @@ public:
         signals_.fields60.fill(0);signals_.flag6c=1;tables_.select(mode);
         return signals_.root!=Frame{};
     }
+    void hide_roll(){require(roll_.root);frames_.object_visible(roll_.root,false);roll_.flag30=0;} //004B27B0(false).
+    template<class ClearSelection>void hide_signals(ClearSelection&& clear){ //004BF4A0(false,0,0).
+        signals_.fields60[1]=0;signals_.fields60[2]=0;
+        clear(); //0049D340(0,5), before root visibility/update.
+        require(signals_.root);frames_.object_visible(signals_.root,false);frames_.update_scene_object(signals_.root);
+    }
     void close_roll()noexcept {if(roll_.text)roll_.text->text.clear();roll_.text.reset();} //004B0900 clear then release.
     void draw_roll(){ //004B2FA0 checks ROOT0C; the caller separately checks flag30.
         require(roll_.root);if(!frames_.hud_frame_visible(roll_.root))return;

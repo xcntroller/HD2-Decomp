@@ -128,6 +128,7 @@ public:
     std::int32_t player_generation(std::int32_t identity)const { //004754F0 sign-extends native CHAR.
         return identity<0||identity>31?-1:static_cast<std::int8_t>(actors_.generation(static_cast<std::size_t>(identity)));
     }
+    void player_generation(std::int32_t identity,std::uint32_t value){actors_.player_generation(identity,value);} //00475510, exact signed reserved-slot bound.
     std::int32_t first_free_player_identity()const { //004759A0, physical reserved slots0..31 ascending.
         for(std::size_t n=0;n!=32;++n)if(!actors_.identity(n))return static_cast<std::int32_t>(n);
         return -1;

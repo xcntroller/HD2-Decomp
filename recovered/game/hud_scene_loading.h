@@ -79,6 +79,8 @@ public:
     template<class Human>void select_human(Human* human,bool selected,std::uint32_t mode,std::uint32_t difficulty){panels_.select_human(human,selected,mode,difficulty);}
     template<class Human>void retire_dead_human_marker(Human* human){panels_.compass().remove_human(human);} //0049B960, no flags gate.
     void inventory_changed(){panels_.inventory_changed();}
+    template<class Mode,class Pause>void spawn_mode(std::uint32_t phase,Mode&& mode,Pause&& pause){panels_.spawn_mode(phase,mode,pause);}
+    void hide_map(){flags20_[1]=static_cast<std::uint8_t>(panels_.hide_map());} //0049F040(false), after map receiver returns.
     template<class Random>void show_human_damage(Random& random){panels_.show_human_damage(random);}
     void set_hint(bool enabled,std::uint32_t identity){panels_.set_hint(enabled,identity);} //SAME inline small-panel owner.
     void select_objective(unsigned index,std::int32_t side){if(hud_.flags)panels_.select_objective(index,side);} //0049F0C0: any nonzero flags.

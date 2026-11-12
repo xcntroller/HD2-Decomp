@@ -88,6 +88,12 @@ public:
         if(output[3]>state_.height44)output[3]=state_.height44;
         else if(output[3]<0)output[3]=0; //NaN/zero survive both comparisons.
     }
+    template<class Mode,class Pause>void hide(Mode&& mode,Pause&& pause){ //00496120(0) then004961E0(false).
+        state_.field10=0;state_.words30[0]=0;
+        if((mode()&7u)==7u)pause(false); //Required0069B8B0 before visibility, not an optional notification.
+        require(visual_);frames_.object_visible(visual_,false);
+        state_.input68[0]=0;state_.flagd387=0;state_.flagd386=0;state_.flagd385=0;
+    }
     void clear_records()noexcept { //004950C0 destroys owned raw payloads in reverse, retaining vector capacity.
         while(!records_.empty())records_.pop_back();
         state_.fieldd37c=0;fonts_.reset();

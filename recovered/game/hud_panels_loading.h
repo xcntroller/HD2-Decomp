@@ -21,6 +21,7 @@
 #include "game/hud_soldier_loading.h"
 #include "game/hud_player_loading.h"
 #include "game/hud_weapon_selector_loading.h"
+#include "game/hud_spawn_mode.h"
 #include <type_traits>
 namespace hd2::game {
 //0049B730/0049B620/0049B280 and0049B490 source composition. World and
@@ -84,6 +85,18 @@ public:
     void post_bind(std::uint32_t mode,std::uint32_t flags) { //0049F1C0, actual current-Human definition9 lookup.
         update_hud_compass_visibility(frames_,inventory_.root(),crosshair_,command_,players_,items_,compass_,mode,flags);
     }
+    template<class Mode,class Pause>void spawn_mode(std::uint32_t phase,Mode&& mode,Pause&& pause){
+        apply_hud_spawn_mode(frames_,hud_,*this,phase,mode,pause);
+    }
+    void clear_roster_selection(){ //0049D340(0,5), live controlled roster count, no actor selection callback.
+        for(std::size_t n=0;n<players_.human_roster().size();++n){
+            if(n>=soldiers_.size())throw std::logic_error("HUD selection exceeds its six actual soldier panels");
+            soldiers_[n].set_selected(0);
+        }
+    }
+    bool hide_map(){ //0049F040(false)'s004A5630 and late map-center E0 query.
+        map_.hide(auxiliary_);const auto center=map_.center();return center&&frames_.hud_frame_visible(center);
+    }
     template<class Human>bool add_human(Human* human,std::int32_t index,std::uint32_t mode,std::uint32_t difficulty,std::int32_t local_player){
         return add_hud_loading_human(frames_,hud_,soldiers_,compass_,players_,items_,human,index,mode,difficulty,local_player,[&]{post_bind(mode,hud_.flags);});
     }
@@ -114,6 +127,7 @@ public:
     void select_objective(unsigned index,std::int32_t side){objectives_.select(index,side);}
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){compass_.sound_direction(direction,kind,players_);} //0049DE80→004947E0.
     auto& cursor(){return cursor_;} //FPV borrows the SAME HUD2E60 artwork/cursor owner.
+    auto& objectives(){return objectives_;}
     void set_hint(bool enabled,std::uint32_t identity){small_.set_hint(enabled,identity);}
     void set_injury_message(std::uint32_t identity,std::uint32_t time){small_.set_injury_message(identity!=0xffffffffu,identity,time);}
 private:

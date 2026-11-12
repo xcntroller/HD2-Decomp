@@ -88,10 +88,9 @@ using Router=game::HumanSoundStateRouter<Frames,Human,Composition::StateFactory,
 struct Hearing:GameHumanSoundLoading<Services,Router,StartupSession>{using GameHumanSoundLoading::GameHumanSoundLoading;};
 
 using OwnerFactory=game::HumanLoadingOwnerFactory<Composition,Dependencies,Services>;
-using SpawnRefresh=std::function<void(Camera&)>;
-using SpawnPresentation=game::OfflineSpawnPresentation<Human,Control,Camera,SpawnRefresh>;
+using SpawnPresentation=game::SessionSpawnPresentation<Human,Services>;
 using SpawnRecords=game::PreparedSpawnPackets<StartupSession,GameSceneActors,SpawnPresentation>;
-using SpawnDecoder=game::OfflineSpawnPacketDecoder<SpawnRecords,SpawnPresentation>;
+using SpawnDecoder=game::SessionSpawnPacketDecoder<SpawnRecords,SpawnPresentation>;
 struct Dependencies{using Frame=EngineFrame*;using ActorFrames=Frames;using Composition=Composition;StartupSession& startup;const game::MissionRequest& request;game::SessionActivationState& session;Scene& scene;Actors& world_actors;Players& players;FirstPerson& first_person;game::HumanFaceResources<Frames>& faces;GameAnimations& animations;Shared& presentation_shared;Music& music;Sound& sound;Dubbing& dubbing;game::MissionSubtitlesLoading<GameOwnerBackend::DisplayText>& subtitles;Hud& hud;FirstPlayers& first_players;
  GameHumanAudioLoading& audio;Events& animation_events;Presentation& presentation;const frontend::PreMissionItemCatalogue& catalogue;Sweep& sweep;Inputs& inputs;game::MissionTableSet& second_tables;game::MissionNavigation& navigation;game::HumanInputCallbacks& input_callbacks;Contexts& contexts;frontend::HumanStore<HumanPortraits>& profiles;Sight& sight;Hearing& hearing;GameActorProximityLoading& proximity;Camera& camera;OwnerFactory& human_factory;ScriptLink& script_link;game::CarLoadingResources<Frames>& car_resources;game::CarDefinitionTables& car_definitions;game::SessionBroadcastPackets& broadcast_packets;SpawnDecoder& spawn_decoder;FrameClockPlatform& clock;game::MissionWorldBounds& bounds;};
 using Scripts=game::MissionScriptWorldLoading<Composition,ChunkFiles,Services,Players,FirstPlayers,Sight::Source,Hearing,FirstPerson::View,Camera,game::EffectsShadowModels<Frames>,GameHumanAudioLoading::Random,Hud,Scene::Buckets,FrameClockPlatform>;
@@ -152,8 +151,8 @@ public:
          player_modes_(actors_.items(),first_person_.view(),first_players_,session,startup.mission_integrity_tables(),startup.first_person_preference(),startup.game_configuration(),scene.documents().fields().field_of_view,startup.local_player_identity()),
          car_random_([&startup]{return static_cast<int>(startup.random_word());}),
          car_resources_{scene.car_callbacks().car_tyres(),materials,startup.car_sound_receivers(),startup.car_light_receivers(),scene.car_callbacks().car_particle_pool(),startup.car_seat_camera_shared(),car_random_},
-         packets_(startup.game_broadcast_packets()),spawn_refresh_([this](Camera& camera){refresh_camera(camera);}),
-         spawn_presentation_(players_.control(),camera_,spawn_refresh_,mode_,startup.local_player_identity()),
+         packets_(startup.game_broadcast_packets()),
+         spawn_presentation_(bindings.services),
          spawn_records_(startup.game_control_records(),packets_,startup,scene.frames(),spawn_presentation_,mode_,session),
          spawn_decoder_(spawn_records_,spawn_presentation_,mode_),
          presentation_dependencies_{shared_,mode_,startup,startup.local_player_identity(),player_modes_,first_person_,camera_,players_,first_players_,hud_.scene()},
@@ -204,10 +203,6 @@ public:
     }
 private:
     void require_open()const{if(closed_)throw std::logic_error("Containing world owners are retired");}
-    void refresh_camera(Camera& camera){
-        auto& view=first_person_.view();camera.refresh_current_loading_target(players_.control(),view.enabled(),view.secondary_enabled(),
-            [this](Human& human){return first_players_.control_sector(human);},first_players_.camera_retirement());
-    }
     void unbind()noexcept{
         bindings_.consumers.unbind_dependencies(dependencies_);
         bindings_.human_factory.unbind_dependencies(dependencies_);
@@ -222,7 +217,7 @@ private:
     ScriptLink script_link_;Contexts contexts_;Sight sight_;Router router_;Hearing hearing_;GameActorProximityLoading proximity_;
     FirstPlayers first_players_;HudWorld hud_world_;GameHudLoading<Control,Actors::Items,Camera,HudWorld> hud_;
     FirstPerson first_person_;PlayerModes player_modes_;std::function<int()> car_random_;game::CarLoadingResources<Frames> car_resources_;
-    game::SessionBroadcastPackets& packets_;SpawnRefresh spawn_refresh_;SpawnPresentation spawn_presentation_;SpawnRecords spawn_records_;SpawnDecoder spawn_decoder_;
+    game::SessionBroadcastPackets& packets_;SpawnPresentation spawn_presentation_;SpawnRecords spawn_records_;SpawnDecoder spawn_decoder_;
     game::MissionWorldBounds bounds_;
     PresentationDependencies presentation_dependencies_;Dependencies dependencies_;std::unique_ptr<Scripts> scripts_;bool closed_=false;
 };

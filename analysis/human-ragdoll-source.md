@@ -1247,3 +1247,110 @@ Temporary native audits stay ignored until full selected checkbox completion.
 Continue actual non7 spawn/entry/transport and occupied/runtime owners, then the
 full containing Human frame/reaction/failure/teardown. Full Human checkbox,
 application loading/rendering and user desktop acceptance remain OPEN.
+
+
+### Presentation spawn, match/HUD and transmit targets — 2026-11-12
+
+006123A0 now runs through SAME World/Scene2/process owners outside offline7.
+A client alone calls00612A60; authority non7 looks up Scene identity; offline
+reads SpawnPoint A8. A client never stores A8. Missing SpawnPoint frame returns
+before creation, missing Human returns before presentation. Local non7 phase1
+precedes client activation; mode is reread after callbacks. Camera0/2 precede
+roster contains/append. Kind1 writes side through005A8800 using **Human Scene
+id10**, not the peer argument; then actual005A0890/select, B060 flag08, Player550
+flag09 and0069E290. Kind7 writes Remote2C0 flag09 BEFORE B060 flag08. Final client
+voice gate reads CURRENT profile settings byte38, distinct from first-person
+preference and camera-inversion byte39. The existing prepared factory is now a
+dependency-templated borrowed adapter, shared by activation and presentation;
+no model, input, roster or lifecycle owner was duplicated.
+
+006125A0 reads subtype0/peer8/Scene id8/pose/direction/generation8/name/transport32.
+Client00475510 stores generation-1 BEFORE soldier decode. Actual Scene registry
+setter ignores signed ids outside0..31 and stores the low BYTE. Full soldier
+then default stats `[800,80,80,80,80,80,50,30,20,50,0,80]`; non7 reads widths10/7
+in index order0/2/1/3/4/5/6/7/8/9/11/10. Fresh bit2 gates0072E940, and fresh low7
+gates the final explicit-stats pointer. Truncation preserves the already-written
+generation. Authority packet production/00611C90 positioning remain required;
+this decoder is not a substitute for those producers.
+
+0069AA50 writes **B8 match phase**, not result88, before HUD. Phases0/1 call
+0049F250(1), then B4=-1; phase2 calls HUD2 then Camera2(1,1). Other values only
+write B8.0069E290 local peer only: result88==3 suppresses B0 and invokes phase2;
+otherwise HUD0 then actual0049F100(NULL). Only afterward90=0,0049F040(false),
+then style2/actual005A63F0 optional4F57/5000 injury text. Failures keep prefixes.
+
+0049F250 is bound to real inline HUD components, not a flags-only receiver.
+Phase2 flags `(flags&~80)|100` precede inventory hide, speed root, cursor6,
+signals false/0/0 (64/68 stores then0049D340(0,5)), roll false, messages0,
+hands/timers/status hide, map false, pointer(-1), scoreboard visibility, and
+TWO fresh optional objective-root hides.0049F1C0 runs once last. Native owner
+mapping:2E50=speed[0],107E4=hands.root,10820=status.frames[0],6B63C=timers.root,
+6B628/630=scoreboard root/style,6B564=objectives.root. Phase1 hides status/hands,
+shows optional objectives, hides timers; phase0 shows hands/status, scoreboard
+according to style!=-1, optional objectives and timers. Other phases only postbind.
+0049F040(false) hides actual map then reads late center E0&1 into HUDbyte21.
+Map004A5630(false,false) is a real no-op with missing center; otherwise flag24=0,
+center/map hide then kind-dependent pointer hide.0049F250 still hides pointer
+again even if map center is absent. No optional fake panel was supplied.
+
+Reached false bodies:004A3920 hides inventory/description, clears C4, hides and
+updates dragging;004BF4A0 writes64/68 before live controlled-roster selection
+clear, then root hide/update;004B27B0 hides root BEFORE clearing30.00496120(0)
+writes10/30 first, reaches offline0069B8B0 BEFORE visual hide, then004961E0(false)
+clears input and D387/D386/D385. Positive population/input remains excluded.
+Offline pause retains actual64 prefix then REQUIRED0071F640/005E8D50/00428F00
+failure; normal non7 spawn skips that callee. No new0069B8B0 credit. More than six
+controlled soldiers fail at the reached panel instead of native out-of-bounds.
+
+00724570 uses the actual process **MultiplayerServer descriptor4E00.flag88**,
+constructed by0072DE00→00724EE0/00724EF0, distinct from configuration.server17C.
+Condition order is4E88-or-authority, direct local record3C, wrapper0C. Cold absent
+wrapper is a genuine no-op only after the local record access. Query actual
+005A8820 side;0069BFE0 is a proven RET. Under418, scan live peer-vector count,
+nonzero transport00 and Human3C, query side, then reread current transport after
+callback before appending. Unlock BEFORE rereading wrapper0C/object04 and calling
+external COM virtual2C(object, count?targets:NULL,count,0); ignore HRESULT. Native
+stack has16 targets; source throws at the seventeenth reached append and unlocks,
+with no submission. Late missing interface and invalid direct local record also
+fail explicitly. No transport/device/wrapper creator success is invented.
+
+0046CB20 commands0/2 use SAME active scene and borrowed spectator frames. Command0
+writes26D first, optionally copies active world position, restores own camera
+BEFORE clearing26E, otherwise finds literal `spectator` with scene virtual7C
+flags4. Final false refreshes current player. Command2 offline7 is a true no-op;
+non7 writes26E first, false restores own camera; true counts spectator0..missing
+and draws exactly once even if count0, then stores274 before final lookup. Raw
+0080FF64 is FLOAT bits38000100, slightly below1/32767. Native FILD→FMUL→FIMUL→
+DOUBLE spill→007E6368 floor→FTOL matters: RAND32767 selects count-1. A FLOAT
+product incorrectly rounds to count. Source keeps extended product then explicit
+DOUBLE before floor. Spectator frames remain scene-owned, no new camera owner.
+
+Index lookups preceded reuse/exports. WORK `human-normal-spawn-leaves-abi-v4`
+repairs00612A60 fastcall ECXpeer/EDXScene identity and caller signatures in a
+read-only rollback transaction. Some decompiler tail aliases in00611C90 remain
+unreliable; authority work must inspect raw assembly, not substitute SpawnPoint
+pointer for identity.004BF4A0 arg1/2 and00496120 mode are DWORDs despite provisional
+BYTE export parameters; reached all-zero branch is confirmed by underlying raw
+stack expressions. Existing `world-retirement-hud-callees/004b27b0.c` confirms
+false-body order. `human-spawn-hud-owner-offsets.asm`, spectator-selection/round
+assembly/constants JSON, voice-constructor/debug assembly and indexes retain
+exact evidence. No original/DLL/Windows output was executed.
+
+Focused ASan/UBSan/LSan PASS `human-spawn-flow-native`, `human-spawn-hud-native`,
+and earlier unchanged `human-spawn-camera-native`: modes0..7 x100, actual packet
+bitstream/stat permutation/client generation-before-truncation modes2/3/7 x100,
+match/HUD ordering and required-failure prefixes, live peer reallocation/late
+interface/overflow unlock x100, camera RAND_MAX boundary and100x10x5 selections.
+Factory/Scene/engine/HUD endpoint doubles are explicit; actual HUD policy uses
+actual dialog/message TextState leaves, while inventory/map/cursor/postbind are
+doubles. Not a full World/render/transport run. Strict actual World/Human i386 and
+sequential latest launcher/startup-probe compile/link PASS in
+`human-normal-spawn-{host,application}-i386.log`. Temporary audits remain ignored
+until full selected checkbox completes.
+
+[Receipt](checkpoints/p2.2-human-presentation-spawn-20261112.json) adds14 client
+partials and extends3, no promotions:34 complete/2635 partial (2630 client+5 engine)
+of18783. Whole selected Human checkbox, application loading/rendering and desktop
+acceptance remain OPEN. Continue00611C90 authority positioning/publication, normal
+entry/transport, required occupied owners and full containing reaction/frame/
+failure/re-entry/teardown; successful source checkpoint does not end that scope.

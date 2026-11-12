@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_CONTROL_STARTUP_H
 
 #include "frontend/settings_sound.h"
+#include "frontend/multiplayer_server.h"
 #include "game/session_network_parameters.h"
 #include <bitset>
 #include <optional>
@@ -94,6 +95,7 @@ struct ControlStartupState {
     std::array<std::array<std::uint32_t,9>,3> team_statistics464{};
     std::int32_t handle4d3c = 0;
     std::uint8_t byte4df8 = 0;
+    MultiplayerServer server4e00; //0072DE00 constructs this distinct inline descriptor through00724EE0.
     void* object4ee0 = nullptr;
     std::uint8_t locks5018 = 0;
     std::uint32_t word503c = 0, word5044 = 0, word5054 = 0, word5058 = 0;

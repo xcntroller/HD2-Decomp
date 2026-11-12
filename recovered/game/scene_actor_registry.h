@@ -209,6 +209,7 @@ public:
         errors.rethrow();
     }
     std::uint8_t generation(std::size_t index) const {return generations_.at(index);}
+    void player_generation(std::int32_t identity,std::uint32_t value){if(identity>=0&&identity<32)generations_[static_cast<std::size_t>(identity)]=static_cast<std::uint8_t>(value);} //00475510.
     std::size_t size() const {return owners_.size();}
     std::size_t retired_size() const {return pending_.size();}
     template<class Base>Actor* actor_for_base(const Base& base) const {

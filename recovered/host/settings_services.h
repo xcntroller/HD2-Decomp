@@ -97,6 +97,12 @@ public:
         const auto* frame = static_cast<const EngineFrame*>(object);
         return reinterpret_cast<Function>(frame->methods[0x20 / 4])(object, &block);
     }
+    void submit_transmit_targets(void* object,const std::uint32_t* targets,std::uint32_t count)const { //00724570 interface virtual2C, HRESULT ignored.
+        using Function=std::int32_t (WINAPI *)(void*,const std::uint32_t*,std::uint32_t,std::uint32_t);
+        auto* frame=static_cast<EngineFrame*>(object);
+        if(!frame||!frame->methods||!frame->methods[0x2c/4])throw std::logic_error("Transmit targets require the actual external interface");
+        (void)reinterpret_cast<Function>(frame->methods[0x2c/4])(object,targets,count,0);
+    }
 private:
     void movie_operation(void* movie, std::size_t slot, std::uintptr_t rva) const {
         using Function = std::int32_t (WINAPI *)(EngineFrame*);

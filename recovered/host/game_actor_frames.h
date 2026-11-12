@@ -1151,6 +1151,7 @@ public:
         scene_method<MenuDriver::Release>(frame,module_,0,0x1c370)(frame);
     }
     Frame active_game_camera() const {return field<Frame>(scene_.frame(),0x15c);}
+    Frame game_scene_find(const std::string& name,std::uint32_t flags){return scene_.find_frame(name,flags);} //Actual scene virtual7C, not Frame child48.
     float human_face_camera_parameter(Frame camera)const{return field<float>(camera,0x120);} //00781310's original distance gate.
     float sight_view_distance()const{ //00465DE0 via SAME scene+15C camera+128, not controller's saved240 frame.
         const auto camera=active_game_camera();if(!camera)throw std::runtime_error("Sight view distance requires actual active scene camera");

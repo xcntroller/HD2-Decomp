@@ -72,9 +72,13 @@ public:
         else if(kind_==2)bind_zones(world);
         else if(kind_==3||kind_==4){bind_zones(world);bind_goals(world);}
         depth_=hud_map_depth(frames_,scene_,map_);
-        if(center_){flag24_=0;frames_.object_visible(center_,false);require(map_);frames_.object_visible(map_,false);
-            if(kind_!=1&&kind_!=0)pointer.hide_selected_pointer();}
+        hide(pointer);
         return true;
+    }
+    template<class Pointer>void hide(Pointer& pointer){ //004A5630(false,false); missing center is a genuine no-op.
+        if(!center_)return;
+        flag24_=0;frames_.object_visible(center_,false);require(map_);frames_.object_visible(map_,false);
+        if(kind_!=1&&kind_!=0)pointer.hide_selected_pointer();
     }
     void close()noexcept { //004A5190 then shrink dynamic lists, kind-specific records, model LAST.
         for(unsigned n=0;n!=allied_count_;++n){allied_[n].visual.reset();allied_[n].text.reset();allied_[n].flag=0;}
