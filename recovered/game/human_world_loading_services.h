@@ -893,9 +893,8 @@ public:
     template<class Entry>auto& human_frame_output_item(Entry entry){return dependencies().world_actors.items().runtime_item(entry);}
     template<class Item,class Human>bool reload_human_ai_weapon(Item& item,Human& human,
             std::int32_t& ammunition,bool retain_last){
-        //0098B02C starts zero. Its only observed writer is the developer
-        //command at007205E2, outside the ordinary mission runtime.
-        return reload_human_weapon(item,human,ammunition,retain_last,false,*this);
+        //SAME process0098B02C, now also published by console007205E2.
+        return reload_human_weapon(item,human,ammunition,retain_last,dependencies().startup.game_console_variables().happy_ammunition(),*this);
     }
     auto& human_reload_items(){return dependencies().world_actors.items();}
     template<class Human>std::uint32_t human_reload_animation_family(Human& human){ //00791C10, SAME hand holder and lazy Item virtual40.

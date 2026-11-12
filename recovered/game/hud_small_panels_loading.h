@@ -2,6 +2,7 @@
 #define HD2_GAME_HUD_SMALL_PANELS_LOADING_H
 #include "game/hud_text_loading.h"
 #include <memory>
+#include <cstdio>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -58,15 +59,57 @@ public:
     void bind_camera(Frame scene) { //004AF4A0→004AF600(0).
         require_scene(scene);camera_=frames_.hud_find(scene,"camera",0xffff);show_camera(false);camera_time_=0;camera_flag_=false;
     }
+    void refresh_status_geometry(){bind_hud_text_geometry(frames_,required(status_.text),status_.scene,status_.frames[0]);} //004AAD20.
     void show_camera(bool enabled) { //004AF600 updates timer/flag even when artwork absent.
         if(camera_)show(camera_,enabled);
         if(enabled){camera_time_=2000;camera_flag_=true;}
+    }
+    template<class Presentation>void update_camera(std::uint32_t elapsed,Presentation& presentation){ //004AF4F0.
+        if(!camera_time_)return;
+        camera_time_-=elapsed; //Signed comparisons after wrapping DWORD subtraction.
+        if(signed_word(camera_time_)<1000&&camera_flag_){
+            presentation.snapshot_sound();camera_flag_=false; //Flag clears AFTER actual SOUND receiver returns.
+        }
+        if(signed_word(camera_time_)<950&&signed_word(camera_time_)>800)presentation.snapshot_flash();
+        if(signed_word(camera_time_)<=0){camera_time_=0;show_camera(false);}
+    }
+    template<class Players,class Team>void update_status(std::uint32_t elapsed,Players& players,std::uint32_t mode,std::int32_t style,Team&& team){ //004AAD30.
+        auto& words=status_.words28;
+        if(signed_word(words[3])>0){
+            auto& text=required(status_.text);text.text.clear();words[3]-=elapsed;
+            if(signed_word(words[3])>0){
+                const auto seconds=signed_word(words[3])/1000;std::array<char,32> caption{};
+                std::snprintf(caption.data(),caption.size(),"%02d:%02d",seconds/60,seconds%60);
+                text.text.append(std::make_shared<const std::string>(caption.data()),0x3e);
+            }
+        }
+        auto* human=players.current_player();if(!human)return;
+        auto& state=players.state(*human); //Same lifetime-checked Human B0.
+        const auto posture=state.words().template get<std::uint32_t>(0x50)&7u; //005A5D10.
+        if(posture!=words[0]){
+            if(posture&2u)show(status_.frames[1],true);else if(posture&1u)show(status_.frames[2],true);
+            if(words[0]&2u)show(status_.frames[1],false);else if(words[0]&1u)show(status_.frames[2],false);
+            words[0]=posture;
+        }
+        const auto movement=players.state(*human).words().template get<std::uint32_t>(0x5c); //005A5C80, fresh after visibility calls.
+        if(movement!=words[1]){
+            show(status_.frames[3],false);show(status_.frames[4],false);show(status_.frames[5],false);
+            const auto flags=movement&0x1f000u;
+            if(flags==0x10000u)show(status_.frames[5],true);
+            if(flags==0x10000u||flags==0x4000u)show(status_.frames[4],true);
+            if(flags==0x10000u||flags==0x4000u||flags==0x2000u)show(status_.frames[3],true);
+            words[1]=movement;
+        }
+        if((mode&7u)!=7u&&style!=0){const auto faction=team(*human);if(static_cast<std::uint32_t>(faction)!=words[2]){
+            show(status_.frames[7],faction==1);show(status_.frames[6],faction!=1);words[2]=static_cast<std::uint32_t>(faction);
+        }} //Original7=mpallied then6=mpaxis; spectator/unknown uses axis, not a fabricated neutral icon.
     }
     void update_injury_message(std::uint32_t elapsed) { //004B01E0, signed wrapped countdown, -1 is indefinite.
         if(injury_.time==0xffffffffu||injury_.time==0)return;
         injury_.time-=elapsed;
         if(signed_word(injury_.time)<1){injury_.time=0;injury_.enabled=false;}
     }
+    void server_message_visible(bool enabled){server_.enabled=enabled;} //0049BD50 native6B6BC publication, same message drawn by004AFFF0.
     void update_carnage(std::uint32_t count) { //004AFDB0, caller supplies SAME Scene2 summary50.
         if(!carnage_.visual)throw std::logic_error("HUD carnage update before artwork binding");
         if(!frames_.hud_frame_visible(carnage_.visual))return;
@@ -95,6 +138,7 @@ public:
     }
     const auto& hint()const{return hint_;}const auto& voting()const{return voting_;}
     const auto& carnage()const{return carnage_;}const auto& server_message()const{return server_;}
+    auto& status(){return status_;}
     const auto& injury_message()const{return injury_;}const auto& status()const{return status_;}
     Frame camera()const{return camera_;}std::uint32_t camera_time()const{return camera_time_;}bool camera_flag()const{return camera_flag_;}
 private:

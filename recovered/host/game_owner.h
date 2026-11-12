@@ -2,6 +2,7 @@
 #define HD2_HOST_GAME_OWNER_H
 
 #include "frontend/application_states.h"
+#include "host/borrowed_input.h"
 #include "game/session_owner.h"
 #include "game/session_activation.h"
 #include "game/mission_scene_activation.h"
@@ -33,6 +34,7 @@
 #include "game/first_person_view_loading.h"
 #include "game/hud_cursor_loading.h"
 #include "game/hud_artwork_loading.h"
+#include "game/human_hud_names.h"
 #include "game/hud_command_routes.h"
 #include "game/hud_text_loading.h"
 #include "game/hud_small_panels_loading.h"
@@ -134,6 +136,7 @@ public:
         : startup_(startup), driver_(driver), module_(module), graphics_(graphics), callbacks_(callbacks) {}
     Graphics& presentation_graphics()const{return graphics_;}
     StartupSession& presentation_startup()const{return startup_;}
+    BorrowedGraphicsInput presentation_input()const{return BorrowedGraphicsInput(startup_.graphics(),module_);}
     std::shared_ptr<GameFonts> make_hud_fonts() {
         auto fonts=fonts_.lock();
         if(!fonts){fonts=std::make_shared<GameFonts>(startup_.pre_mission_files(),&graphics_,module_);fonts_=fonts;}
@@ -141,11 +144,24 @@ public:
     }
     std::uint8_t hud_crosshair_allowed(){return startup_.hud_crosshair_allowed();}
     std::int32_t hud_style224(){return startup_.game_configuration().hud_style224();}
+    template<class Human>std::uint32_t hud_human_rank(Human& human,std::uint32_t mode){
+        return (mode&7u)==7u?game::offline_human_hud_rank(human):game::human_hud_peer_rank(startup_.game_control_records(),startup_,human.base().id10());
+    }
+    template<class Human>std::string hud_human_short_name(Human& human,std::uint32_t mode){return game::human_hud_short_name(human,mode,startup_.game_control_records());}
+    template<class Human>std::string hud_human_peer_name(Human& human){return game::human_hud_peer_name(startup_.game_control_records(),human.base().id10());}
+    template<class Human>std::uint32_t hud_human_team(Human& human,std::uint32_t mode){return game::human_hud_team(human,mode,startup_.game_configuration().remote_ai_enabled(),startup_.game_control_records());}
+    std::int32_t hud_local_team(){return game::human_hud_local_team(startup_.game_control_records(),startup_.local_player_identity());}
     template<class Human>std::uint32_t hud_network_human_rank(const Human& human){return game::network_human_hud_rank(human,startup_.game_control_records(),startup_);}
     template<class Human>std::string hud_network_human_short_name(const Human& human){return game::network_human_hud_short_name(human,startup_.game_control_records());}
     template<class Human>std::uint32_t hud_network_human_side(const Human& human){return game::network_human_hud_side(human,startup_.game_configuration(),startup_.game_control_records());}
     std::uint32_t hud_teams240(){return startup_.game_configuration().hud_teams240();}
     void hud_binding_mode(std::uint32_t mode){startup_.select_game_binding_mode(mode);}
+    void hud_click(){ //004A8BD0/004B5A20 use SAME0089BB7C sound frame, not a menu sound or a SOUND emission.
+        const auto& owner=startup_.hud_click_sound().owner;
+        if(!owner||!owner->get())throw std::logic_error("HUD command requires its actual process click sound");
+        using Enable=void(WINAPI*)(EngineFrame*,std::uint32_t);
+        scene_method<Enable>(owner->get(),module_,0x30,0x1bb10)(owner->get(),1);
+    }
     std::int32_t hud_no_gi(){return startup_.game_console_variables().integer(10);} //0049BA12→00720B80(10).
     std::int32_t hud_display_height(){return graphics_.methods->height(&graphics_);}
     std::int32_t hud_display_width(){return graphics_.methods->width(&graphics_);}
@@ -167,6 +183,11 @@ public:
     void hud_draw_selection_vertices(const std::array<game::TextGlyphVertex,16>& vertices){
         if(!graphics_.methods->bind_texture(&graphics_,nullptr,0))throw std::runtime_error("Cannot clear HUD selection texture");
         if(graphics_.methods->draw_primitive(&graphics_,1,8,vertices.data(),1)<0)throw std::runtime_error("Cannot draw HUD actor selection");
+    }
+    template<std::size_t N>void hud_draw_command_highlight(const std::array<game::TextGlyphVertex,N>& vertices){
+        static_assert(N==8||N==16,"Original command highlight line counts");
+        (void)graphics_.methods->bind_texture(&graphics_,nullptr,0); //Original ignores Graph44 return here.
+        if(graphics_.methods->draw_primitive(&graphics_,1,N/2,vertices.data(),1)<0)throw std::runtime_error("Cannot draw HUD command highlight");
     }
     std::uint32_t hud_graphics_state(std::uint32_t state){return graphics_.methods->state(&graphics_,state);}
     void hud_graphics_state(std::uint32_t state,std::uint32_t value){

@@ -1,0 +1,330 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "9ff6d0d8e20c6ccbf18f1f973d4ed98ccbe7397b",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "0049c3c0",
+    "0049c110",
+    "0049c1a0",
+    "0049c1d0",
+    "0049c200",
+    "0049c2b0",
+    "0049dce0",
+    "0049dd60",
+    "004bf210",
+    "0049dfe0",
+    "004acf00",
+    "00496120",
+    "004961a0",
+    "004961c0",
+    "004aad20"
+  ],
+  "updated_entries": [
+    "0049ef70",
+    "004ac530",
+    "004ad140",
+    "004ad180"
+  ],
+  "ledger_added_partial_client": 15,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2611,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan100 general-dispatch cases,100 actual message font/state lifetimes,100 actual selector/text/sprite lifetimes,20 actual HUD scene layout/rebind cases;32/33 repeat expiry, current/no-transfer/focused kind13, signed click wrap, warming/nonoffline/paused gates, resource/command failures and actor/item/null retirement. Root panel/Actor/gameplay/engine/font endpoints doubled; actual Messages,Selector,TextState,HudSceneLoading bodies execute.",
+    "actual_host_i386": "PASS strict concrete process_hud_controls/process_weapon_selector/hud_message_mode/say/cycle_hud_layout through actual World owners; no Windows execution.",
+    "application_link": "PASS sequential application-launch strict i386 compile/link; not executed.",
+    "latest_master_source_compatibility": "PASS61-file temporary three-way447e073 source composition from31b01f9, same three documented overlaps/resolutions; no active merge/rebase.",
+    "tracker": "PASS exact frozen fingerprints/full inventories/unique statuses/evidence/README and27 existing tracker tests."
+  },
+  "temporary_master_composition": {
+    "master": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+    "base": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+    "files": 61,
+    "conflicts": [
+      "recovered/game/car_loading_activation.h",
+      "recovered/game/hud_injury_movies_loading.h",
+      "recovered/host/game_mesh_movie.h"
+    ],
+    "resolutions": {
+      "car_loading_activation": "Keep UI fuel getter plus current master Human seat services.",
+      "game_mesh_movie": "Keep both named movie methods.",
+      "hud_injury_movies_loading": "Keep full UI show/update receiver used by master damage wrappers."
+    },
+    "verified_source_directory": "/tmp/p22-ui-master-447e073-general-final"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-general-controls-audit.cpp": {
+      "sha256": "02718a681ebe5732a3596f8d0a2603d0ed46d12161547417c2dd591deabca4cf",
+      "bytes": 23390,
+      "retained": false
+    },
+    "/tmp/p22-ui-general-controls-audit": {
+      "sha256": "b5a8977eddc9a2bfef341a3ca257b98ec5bc9a5ff1b899d3f7469716edff5d22",
+      "bytes": 3245216,
+      "retained": false
+    },
+    "/tmp/p22-ui-general-controls-concrete.cpp": {
+      "sha256": "bc6f9c87e049344094eb692b95cdd34cb5b247b508332cdd7a6b76273effe04b",
+      "bytes": 502,
+      "retained": false
+    },
+    "/tmp/p22-ui-general-controls-compat.py": {
+      "sha256": "20a0135d8312dbe306cc553c8bf84ca02517774dbf494f1b680c3ef948c21c07",
+      "bytes": 1975,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/application.log": {
+      "sha256": "e17c02752cb69d4428e5486d2d5c6c32598b897b314db9a1993976e0b22be675",
+      "bytes": 599,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/audit-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/audit-run.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/compat-composition.log": {
+      "sha256": "e51b971832f8899eb50ca8f8b357d6a2c4a84592e08b7bf4aeae48326ac9cdb0",
+      "bytes": 287,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/compat.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/concrete.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/existing-selector/004acf00.c": {
+      "sha256": "34f6d51037db709861eaa4c6c512f744da67e5e3782423ac781e07d746569947",
+      "bytes": 3836,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/existing-selector/004acf00.json": {
+      "sha256": "f8f6290aa32a56f2560ae521e7d3b2e2306f2929dc6f884085274250a302f20f",
+      "bytes": 9364,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/layout-cycle.asm": {
+      "sha256": "e392a2a2b1798564b6e010658b3433d80781913adc864d6e3ef21ce5e4f1879b",
+      "bytes": 7639,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/leaves/004aad20.c": {
+      "sha256": "d471724d610b7c07a61b604d879b248afa91f773348fece727e41be839c5d2ab",
+      "bytes": 104,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/leaves/004aad20.json": {
+      "sha256": "baa64976313fb00854fe4c4e52ca291fa404234ed0806949ca89cfe2073dc42f",
+      "bytes": 735,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/leaves/004bf210.c": {
+      "sha256": "ef93d35a5aa982dee5680a52d3a1d1d565e269fc2b8434e65a2d1b6fe5b18c38",
+      "bytes": 174,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/leaves/004bf210.json": {
+      "sha256": "36af0c32e3bc744e56c52965d7108618021c24e2c95d1b74b70f5c906cc44318",
+      "bytes": 1208,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/p22-ui-general-controls-tracker-check.log": {
+      "sha256": "4425fad82fe75ab9b01fdd6831e45765858c714b0f0b5ec07afd4f3feca83734",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/p22-ui-general-controls-tracker-render.log": {
+      "sha256": "ff136e2635836abd604d710ce50003afac600d4f909091b38f045da965328503",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/p22-ui-general-controls-tracker-tests.log": {
+      "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f",
+      "bytes": 126,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c110.c": {
+      "sha256": "d72478cf6a44ee8e7e348fc17825f435d3d49c50e4b03f21fe001dd3009d77dd",
+      "bytes": 911,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c110.json": {
+      "sha256": "68294a1ffe1e650031b6331496eff14d090f9d9014c5b4e0f08c99b75619648b",
+      "bytes": 2906,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c1a0.c": {
+      "sha256": "e4cda0aa8ecc7336e4306c685cf7f6b8f29f86783c03244b619972690045d1cb",
+      "bytes": 198,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c1a0.json": {
+      "sha256": "f8f72b80d5f0652b1337873b68b6a0d589be15d50e91738473066f995609bf6e",
+      "bytes": 1339,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c1d0.c": {
+      "sha256": "52a5711ffa8eb7e07dc6723e17abaeaa0e2dcc1ccaa15b46ba9359daecd09d65",
+      "bytes": 316,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c1d0.json": {
+      "sha256": "025a626e4b9502b824b0361fe16e7daf2428b429de1b04328affa9a63726ef14",
+      "bytes": 916,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c200.c": {
+      "sha256": "56e17c4ddc5461a19ba2280153f31606202931db73d4e119d60ebe036d033ed6",
+      "bytes": 616,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c200.json": {
+      "sha256": "ff193fd32755925a6d9755f9ab1dc0722717b76dd153d1de59106218a5a324b6",
+      "bytes": 4273,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c2b0.c": {
+      "sha256": "89e476864ae8da57e7cf2d72c51693e96b3768670a3fe43faf4d815ded24cedb",
+      "bytes": 985,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c2b0.json": {
+      "sha256": "56c1dec4aa94484972e1504d97d822bfe9eb1c1a277f3cc0016139d0d6889f19",
+      "bytes": 5615,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c3c0.c": {
+      "sha256": "8347367bca848fec5ee7245204d12660a0b71133bd1f7cf90793f0e7559fbd00",
+      "bytes": 13186,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/0049c3c0.json": {
+      "sha256": "98aebe38250bc2255d76d521a7084b47aa7dd41cce7d773cc6d15ef1c871b6d7",
+      "bytes": 66026,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/004a2a40.c": {
+      "sha256": "3c630f2015fd08ac1ca76e6a889a7c7dc7eb5b222362596d3bdaad7ba5d2e5db",
+      "bytes": 1756,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/004a2a40.json": {
+      "sha256": "537f7a9398b2b33ea93c7cf5b1f5d7f7921a0dc598160fea7f26e2adc6a685a2",
+      "bytes": 4909,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/004b61a0.c": {
+      "sha256": "c8ade82fbb3dcbfaee348731f64f43455626ecd5292e68b0aa696cd3be485bde",
+      "bytes": 440,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/004b61a0.json": {
+      "sha256": "0c95d36b98ce9badc45620e7edbe4229d7ef810ca6624d8ccb01eed8f1701c46",
+      "bytes": 2709,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/004b6280.c": {
+      "sha256": "59462d322c5f612b15f365fc8e158bd011f12426c956adec6efad15ee91c0647",
+      "bytes": 965,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/root/004b6280.json": {
+      "sha256": "80263b3d52436e63519602f18a7ee859f483d7d63bd42145853965ed8c830b19",
+      "bytes": 7453,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/00496120.c": {
+      "sha256": "ee3d92c85b16f2049a3400259e27567c075ec9db7db9e9c2d3263d4becdd88a2",
+      "bytes": 676,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/00496120.json": {
+      "sha256": "2b0b06a816ad3cdc15cb2f0ec29c5ce9fc70b9c6982507dd8a13bb8bb8196259",
+      "bytes": 3120,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/004961a0.c": {
+      "sha256": "cbb34e265c39080d3505eebcb32aa774c1f939a41820a293e967d19a35c7ed03",
+      "bytes": 166,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/004961a0.json": {
+      "sha256": "8553f62b69bb6d13d3d87383a4ee0f11fc518bb58a0a11c2c498b72b98416b35",
+      "bytes": 901,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/004961c0.c": {
+      "sha256": "6017f99e5d3eff683972a85df15badabc28d13192db1177d4d96ce8cb917a38b",
+      "bytes": 166,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/004961c0.json": {
+      "sha256": "2bfeceabfa295a21d9ec7d5f75e7a3822a947adcf5dded4a2110567b893f5b54",
+      "bytes": 901,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/004961e0.c": {
+      "sha256": "6cee377c4eb4da149d408bafcd69cebe61a3c390e892e8a0aced40d54992538d",
+      "bytes": 455,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/004961e0.json": {
+      "sha256": "69db015b8e24934164937270c34d5cf2d13fc85f8c6bbb9206bc0aa15932631d",
+      "bytes": 1320,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/0049dce0.c": {
+      "sha256": "8b220c81b5ad9adcdcd614a9765d846a509645a6e6947ebcee9228bdf1d9b6e9",
+      "bytes": 480,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/0049dce0.json": {
+      "sha256": "49d545cfcc48a03829794cf7e3555af4a024d5751843a11dbf66f5de22dd96f2",
+      "bytes": 3736,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/0049dd60.c": {
+      "sha256": "974928c918c52a20c0a5594744a27d79d391a07ec14a408d1a7d706f5f864a95",
+      "bytes": 530,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/0049dd60.json": {
+      "sha256": "e97239d7a2064d0a341a45ba0aa35ff960380e8609bf43387a84293fc12cf420",
+      "bytes": 4063,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/0049dfe0.c": {
+      "sha256": "212e815a42f7948f55a6e9ae19efbf1531f64818bda08d3b1e6ea285e8ffef2c",
+      "bytes": 2188,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-general-controls/workers/0049dfe0.json": {
+      "sha256": "364379c35ac76119d4f7096929f41378307b106fa81c488942908ee3150bc583",
+      "bytes": 7323,
+      "retained": true
+    }
+  },
+  "remaining": [
+    "Conditional attached HUD hands004A9530 seat98/B4/A0/9C, FPV actorC4/visibility8C, and nonoffline soldier004B3890/frame status require UI completion or researched P2.2 exclusion.",
+    "Actual Human order0058CCE0/0058CAF0 path/model preparation, mutable records/queues/Players/Sight/camera and populated composed World verification remain pending.",
+    "Latest master console HWND/log/FIFO is distinct from still-required00720130/00720340 execution. FRAME/RENDER/OWN scheduling,activation and desktop acceptance remain separate."
+  ]
+}

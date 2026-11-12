@@ -13,8 +13,8 @@ template<class Panels,class Camera>void hud_render_prepass(Panels& panels,Camera
 }
 //0049B9F0 control flow. Panels are the SAME HudPanelsLoading, camera is the
 //actual current mission camera, mode is actual982100, flags20 are SAME HUD20/21.
-//Unrecovered command-before consumer remains REQUIRED
-//interfaces. This source orchestration cannot activate a world by itself.
+//The command-before consumer is supplied by the concrete World UI adapter.
+//This source orchestration cannot activate a world by itself.
 template<class Frames,class Factory,class Hud,class Panels,class Camera,class Actors,class Consumers>
 void hud_render(Frames& frames,Factory& factory,Hud& hud,typename Frames::Frame scene,Panels& panels,
                 Camera& camera,std::uint32_t mode,const std::array<std::uint8_t,2>& flags20,const Actors& selection_actors,Consumers& consumers){

@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "0789bd3",
+  "initial_origin_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_origin_master": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "research_reference": "ca3b314",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004b3ec0",
+    "005a5ff0",
+    "0075e610",
+    "005a9830",
+    "004ab110",
+    "00494190",
+    "00494590",
+    "00494360",
+    "00494750",
+    "00493860",
+    "00493c60"
+  ],
+  "updated_entries": [
+    "005a62a0"
+  ],
+  "ledger_added_partial_client": 11,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2398,
+  "checks": {
+    "native_soldier": "PASS ASan/UBSan/LSan100 lifetime cycles; health/death latch, dirty caption, rank, health/stamina/disguise/photo, ear/order/distance gates and required resource/borrower failures",
+    "native_compass": "PASS ASan/UBSan/LSan100 cycles; hidden root update, cover/arrow order, old-countdown alpha, live/dead marker positions/retirement, shared random cadence, actual-field DD0 bones0/1 query and invalid borrowers",
+    "native_progress": "PASS ASan/UBSan/LSan100 cycles; actual Human17C/180/184 fields, signed integer ratio precision including16777218/16777217, caption cache/hide, zero denominator, required seat/remote rejection and invalid borrower",
+    "actual_host_i386": "PASS strict GameUiPresentation soldier/compass/progress/message instantiation over concrete World/Human/Players/Items/frames, no absent method declarations",
+    "application_link": "PASS sequential i386 application-launch, never executed",
+    "tracker": "PASS frozen ledger render/check and27 existing tracker tests"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-soldier-audit.cpp": {
+      "sha256": "61cdf8b6eb31d23edde7cce6ecb5d7bcc342839a8e4466a722249944c48a6ceb",
+      "bytes": 8981,
+      "retained": false
+    },
+    "/tmp/p22-ui-soldier-audit": {
+      "sha256": "2279d301b57dc4e92fb75bc91baf6d471dd74c5cf5a63a192ab290d753d40193",
+      "bytes": 1722672,
+      "retained": false
+    },
+    "/tmp/p22-ui-compass-audit.cpp": {
+      "sha256": "b582dce59357a417e9f3bdbc136346c17753fa0c0f6f419999a5e879ef40af55",
+      "bytes": 10122,
+      "retained": false
+    },
+    "/tmp/p22-ui-compass-audit": {
+      "sha256": "277ae03d00ab9b83b8e60aff3db86fb77c7d55532d114dc67b593a269f3906fc",
+      "bytes": 1291280,
+      "retained": false
+    },
+    "/tmp/p22-ui-progress-audit.cpp": {
+      "sha256": "5bb462f35b2f17e404459012137e42bef5133cae6d4859f780951b093648ba65",
+      "bytes": 8327,
+      "retained": false
+    },
+    "/tmp/p22-ui-progress-audit": {
+      "sha256": "5fbe039f75f5d2f0724ceef365cd59ff35b9b956a1fb57bf9786aedc5aacbf33",
+      "bytes": 1330008,
+      "retained": false
+    },
+    "/tmp/p22-ui-soldier-i386.cpp": {
+      "sha256": "c0cbb38b467d621b0eb9fb333b5d4a49a7a52d4003ffc4f97783e1c886e5e81c",
+      "bytes": 240,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-soldier.asm": {
+      "sha256": "3f45c3629e732363a1b51ecbc2efe049e2db557435657bac2cb3875a902327e6",
+      "bytes": 25969,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-compass.asm": {
+      "sha256": "0dbd55a1a5920b875a9613220a48774b15b773deaaead7bff05bd993cc44425f",
+      "bytes": 22196,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-compass-dd0.asm": {
+      "sha256": "39d3a0c5298a04f2451ac882ca7b037c3124874489dcf0336a9154c169821bad",
+      "bytes": 4287,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-compass-samples.asm": {
+      "sha256": "b93f022171e69bf337714d8f6c302c899d9b1a079cd3f300a8357fbdadecb308",
+      "bytes": 1635,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-compass-constants.txt": {
+      "sha256": "b25852a9171d5a88a4c4d850d0ed8f766d589828f98bacf6fed055f68bc2fa9a",
+      "bytes": 70,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-progress.asm": {
+      "sha256": "1d6d252ac0d2bcff6322918941642f58161fadb4adcd568c034c77c31d6a2cb3",
+      "bytes": 3744,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/P22SoldierEvidence.java": {
+      "sha256": "1e4bd8f308b9aef6c3a1e432998524b6f2f5208670a26895b078d4db0850cbb8",
+      "bytes": 1042,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/P22CompConstant.java": {
+      "sha256": "6deb75bb4deeafe94d00e8293e15d523d44cfa6da0970d6c71a177517de50ff6",
+      "bytes": 324,
+      "retained": true,
+      "ignored": true
+    }
+  },
+  "limitations": [
+    "Full0049BD50 common dispatcher,0049D6E0 selection and004AB2E0 order icons remain UI-owned work.",
+    "004B6720 command geometry,004B6420 command frame, active00494D20 message editing and reached map/inventory/camera/objective services remain UI-owned work.",
+    "Populated Active250 orders, actual attachment seat progress and nonoffline progress remain explicit required producers.",
+    "World invokes existing005A59E0 range; positive ground-surface metric depends on its actual Human producer.",
+    "Native tests use explicit frame/math/query doubles; strict concrete host compilation is source integration, not desktop rendering.",
+    "FRAME/RENDER/OWN scheduling, application callback installation and real mission populations remain pending."
+  ]
+}

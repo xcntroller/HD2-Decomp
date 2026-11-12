@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "477c5d1",
+  "initial_origin_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_origin_master": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "research_reference": "ca3b314",
+  "research_tool": "Read tooling/research-index documentation at02f804a in/tmp/hd2-research-index; used read-only find/search/neighbors over actual main research corpus, no merge or copy of tooling/source. Reused existing0064D5F0 encoder after verified source comparison with origin/master.",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "00494d20",
+    "00495190",
+    "004961e0",
+    "004af4f0",
+    "004a9f50",
+    "0049d530",
+    "005a8320"
+  ],
+  "updated_entries": [
+    "00496230",
+    "0049ef70"
+  ],
+  "outside_inventory_no_credit": [
+    "005a9980"
+  ],
+  "ledger_added_partial_client": 7,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2406,
+  "checks": {
+    "native_edit": "PASS ASan/UBSan/LSan100 cycles; real HUD message/font/state owner with input/command/font endpoints; scan/repeat/history, narrow/wide byte limits, malformed deletion, surrogate rejection, actual encoder, negative-double fallback, echo/submission failure and timing",
+    "native_snapshot": "PASS ASan/UBSan/LSan100 cycles; sound/flash exact signed thresholds/order, zero/overshoot/wrapped ticks, repeated show/hide, optional artwork and sound/draw exceptions",
+    "native_targets": "PASS ASan/UBSan/LSan100 lifetimes; actual crosshair/TextState owner with frame/actor query endpoints; actor-kind UI policies, friendly/hostile/dead/roster/Car/StaticWeapon paths, caption/colour/draw/cache gates, null current/target and failure behavior, retirement, actual Human profile/localized caption helper; full-name read precedes fresh roster index, as original instructions require",
+    "native_visibility": "PASS ASan/UBSan/LSan100 cycles; all status/command/camera/current/attachment/weapon/mode gates, original query order and required-seat failure",
+    "actual_host_i386": "PASS strict concrete GameUiPresentation input/snapshot/target/visibility methods over SAME actual World/Startup/HUD/Players/Items/Car/StaticWeapon/Scene/SOUND/fade types; no missing UI declarations",
+    "application_link": "PASS sequential i386 application-launch after final target retirement/order changes; never executed",
+    "tracker": "PASS frozen ledger render/check and27 existing tracker tests"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-edit-audit.cpp": {
+      "sha256": "bab027d3be765b57ba7542dd92cd03acaf6e610e049aec31ec1fa1fdef202d8c",
+      "bytes": 8553,
+      "retained": false
+    },
+    "/tmp/p22-ui-edit-audit": {
+      "sha256": "5606f9bcd392d509d1e5b2a4e6276a394e25792d501b4a4272289c787385fdae",
+      "bytes": 1150608,
+      "retained": false
+    },
+    "/tmp/p22-ui-snapshot-audit.cpp": {
+      "sha256": "c4c17b14a1c500392776c55536a4661f97d48cdeb8cc228756ba1ce809b9804d",
+      "bytes": 3143,
+      "retained": false
+    },
+    "/tmp/p22-ui-snapshot-audit": {
+      "sha256": "af062db6c9ddd86c0dc6bd3d6afe4bb3211100d09a1cd419eb5fd625a32361e0",
+      "bytes": 229656,
+      "retained": false
+    },
+    "/tmp/p22-ui-target-audit.cpp": {
+      "sha256": "2a910453a22b2cd947ac4e7d13e4a0f8b931f64d61b137747b09fe84e23dfad7",
+      "bytes": 8955,
+      "retained": false
+    },
+    "/tmp/p22-ui-target-audit": {
+      "sha256": "7cea964f2246d2731e3ba6c68e2116c77035c943c9e372eb4c5b9d9261051082",
+      "bytes": 1465032,
+      "retained": false
+    },
+    "/tmp/p22-ui-visibility-audit.cpp": {
+      "sha256": "6b030ee50273046d22c772ec1fd1db027bbf83557f9bd6cf1f440687ed950e31",
+      "bytes": 2914,
+      "retained": false
+    },
+    "/tmp/p22-ui-visibility-audit": {
+      "sha256": "ae796947a1c51bc55b0ba8480a4acbe90ac3d1e32171e3ae2a02a9364f806e16",
+      "bytes": 172512,
+      "retained": false
+    },
+    "/tmp/p22-ui-edit-i386.cpp": {
+      "sha256": "8676604f4d1f0bfc19dfc090f19af5bc6a8d5f0fdcff350375c10b27efac2a50",
+      "bytes": 303,
+      "retained": false
+    },
+    "/tmp/p22-ui-target-i386.cpp": {
+      "sha256": "83dc71e07003e89cee4a4a231dd1c81a9c8168d68ed690e5422396903ed6de47",
+      "bytes": 247,
+      "retained": false
+    },
+    "/tmp/p22-ui-control-i386.cpp": {
+      "sha256": "9d9152a8b9c822185f8201cb95b017a9cde375e1e2bbab5be3a2fe8293909287",
+      "bytes": 424,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-message-control.asm": {
+      "sha256": "fb7c20f7bce61dea1c5060aaff1c12002411e772e9251568e4c1c9785168f206",
+      "bytes": 17086,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-edit-constants-effects.asm": {
+      "sha256": "0a2eea159081cb9e3d419a71dd081e784da667e83e59f1a9841f5138fb00f3bc",
+      "bytes": 7451,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-crosshair-target.asm": {
+      "sha256": "f41038247c2beb5427d3f645368418dc4d8be11498b5885516a3514c672e0f50",
+      "bytes": 19850,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-target-virtual04.asm": {
+      "sha256": "74ac8fc52583f2ced1e04382eee1b0b980ede599ff4d532a3f5a678aab9a2297",
+      "bytes": 1497,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-target-caption-owner.asm": {
+      "sha256": "93806956abf4b2bc0f4488e30d072352b3e3badab70e6069a5fb84a00d185be7",
+      "bytes": 3695,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/P22UiEditEvidence.java": {
+      "sha256": "1b2b9988c58232a49e25e807b4ef8ddd0ff051fe71a12c02a91312800f509dee",
+      "bytes": 952,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/P22TargetEvidence.java": {
+      "sha256": "8616ab758747a0df18cc2b57a4ce40e2cdc362fece1eaaea0ac16491a822b1f6",
+      "bytes": 947,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/P22TargetCaptionEvidence.java": {
+      "sha256": "71647d53edf2845cb149e24502c3af0c92b93d08aa2cf3434456e6d900dd28e3",
+      "bytes": 603,
+      "retained": true,
+      "ignored": true
+    }
+  },
+  "limitations": [
+    "Full0049BD50 common UI update dispatch,0049D6E0 ray/roll/signals selection and004B6420/004B6720 command receivers remain UI-owned work.",
+    "Actual console/chat dispatch00720130/00720340 is required through GameUiMessageCommands; no fake successful submit/empty transport callback is supplied. This checkpoint implements editing and echo, not command grammar or gameplay/network side effects.",
+    "Positive Human174 focus pointer, nonoffline name/rank/team and occupied actor seat virtual8C/CC producers remain explicit required interfaces.",
+    "Native positive tests use engine/input/font/actor-query/command doubles. Strict concrete host composition verifies source contracts, not actual desktop rendering or populated mission data.",
+    "General wide/GDI font rendering remains outside the byte-font host boundary; original wide edit-unit handling is implemented and exercised natively.",
+    "FRAME/RENDER/OWN scheduling, application activation/callback forwarding/rollback and actual mission/desktop observations remain pending."
+  ]
+}

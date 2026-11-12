@@ -199,3 +199,27 @@ unimplemented Connect/Host, auxiliary services or the Phase2 game receiver.
 client partials (004AF980,004AFDB0,004B01E0,00491E30), with no complete promotions
 or denominator changes. Totals:34 complete,2,371 partial (2,366 client/five engine).
 P22-UI remains open; full HUD/FPV processing and command geometry are still required.
+
+The HUD animation continuation adds four further client partials:004ABE60,
+004AD350,004AD380,004AD440. Totals:34 complete,2,375 partial (2,370 client/five engine).
+
+FPV completion adds00491C60 as one further client partial:34 complete,2,376 partial
+(2,371 client/five engine). Full P22-UI and desktop acceptance remain open.
+
+FPV frame/status sweep adds00491660,00491E90 and004AAD30 as three client partials.
+Totals:34 complete,2,379 partial (2,374 client/five engine). P22-UI remains open.
+
+Crosshair continuation adds004AA840 and005A8100 as two client partials:34 complete,
+2,381 partial (2,376 client/five engine). P22-UI remains open.
+
+Hands/icon/selector continuation adds six client partials and extends two existing
+rows:34 complete,2,387 partial (2,382 client/five engine). P22-UI remains open.
+
+Command input/modal continuation adds31 frozen client partials:34 complete,
+2,596 partial (2,591 client/five engine). The [receipt](checkpoints/p22-ui-command-controls-20261111.json)
+records source-only verification. General HUD controls, actual Human producers
+and P22-UI closure remain open.
+
+General HUD control continuation adds15 frozen client partials:34 complete,
+2,611 partial (2,606 client/five engine). [Receipt](checkpoints/p22-ui-general-controls-20261111.json).
+Conditional presentation, actual Human producers and P22-UI closure remain open.

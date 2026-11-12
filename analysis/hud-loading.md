@@ -1258,3 +1258,15 @@ Scene2 Base identities, mission.related view, inline6B320 map/inventory pointer
 and game54 navigation datasets now compose in the real GameHudLoading bind.
 The source containing graph uses GameOwnerBackend table identity. Application
 world/first-frame integration remains open; no desktop claim.
+
+
+### Info frame/population source checkpoint — 2026-11-11
+
+P22-UI now implements00499210/00496E70/positive00496E40 and all reached info text,
+objective/help/peer-table formatting consumers over the existing owner, including
+actual localization-ID storage,36-token profile binding expansion, locked peer
+query contracts and same World/mission/Items identity. See
+[P22-UI implementation](p22-ui-implementation.md)
+and[receipt](checkpoints/p22-ui-info-20261111.json). Conditional network/help-ID
+producers and full containing frame remain explicit; no desktop/network-runtime
+acceptance, original ABI equivalence or complete-function promotion is claimed.

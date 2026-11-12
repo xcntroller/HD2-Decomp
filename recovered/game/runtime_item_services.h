@@ -3,6 +3,7 @@
 
 #include "game/session_time_word.h"
 #include "game/item_model_cache.h"
+#include "game/item_icon_cache.h"
 #include "game/item_scuba_models.h"
 #include <algorithm>
 
@@ -19,11 +20,12 @@ public:
     using ItemModelOwner=typename ItemPrimaryModelCache<Frames>::ItemModelOwner;
     RuntimeItemServices(Frames& frames,const frontend::PreMissionItemCatalogue& catalogue,
                         const std::string& suffix,SessionTimeWord game_word28)
-        : frames_(frames),models_(frames,catalogue,suffix),scuba_(frames,catalogue,suffix),game_word28_(game_word28) {}
+        : frames_(frames),models_(frames,catalogue,suffix),icons_(frames,catalogue),scuba_(frames,catalogue,suffix),game_word28_(game_word28) {}
     ~RuntimeItemServices(){clear_model_cache();}
     RuntimeItemServices(const RuntimeItemServices&)=delete;
     RuntimeItemServices& operator=(const RuntimeItemServices&)=delete;
     ItemModelOwner make_item_model(const frontend::PreMissionItem& definition) {return models_.make_item_model(definition);}
+    Frame item_icon(const frontend::PreMissionItem& definition){return icons_.get(definition);}
     Frame first_person_model(const frontend::PreMissionItem& definition) {return models_.first_person(definition);}
     Frame first_person_magazine(const frontend::PreMissionItem& definition) const {return models_.first_person_magazine(definition);}
     const typename ItemScubaModelCache<Frames>::Parts* scuba_parts(const frontend::PreMissionItem& definition) {return scuba_.parts(definition);}
@@ -50,13 +52,14 @@ public:
     void clear_loading_kind20_index()noexcept {kind20_.clear();} //007DCFB0/007D8A90:800=7FC, no item destruction.
     void clear_model_cache() noexcept {
         for(auto index=frontend::PreMissionItemCatalogue::capacity;index!=0;) {
-            models_.clear_definition(--index);
+            --index;models_.clear_first_person_definition(index);icons_.clear_definition(index);models_.clear_primary_definition(index);
             if(index==231)scuba_.clear(); //Same definition's30 closes before its50 part array.
         }
     }
 private:
     Frames& frames_;
     ItemPrimaryModelCache<Frames> models_;
+    ItemIconCache<Frames> icons_;
     ItemScubaModelCache<Frames> scuba_;
     SessionTimeWord game_word28_;
     std::vector<void*> kind20_;

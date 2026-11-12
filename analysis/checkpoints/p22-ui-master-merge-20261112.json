@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-11-12T07:33:57.772692+00:00",
+  "source_only": true,
+  "master_parent": "949282e03af00145ece4ec44dc06d282356d0def",
+  "ui_parent": "ebdcbf59bc6a59880bb664c0a5934e46105669d6",
+  "merge_base": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "conflict_files": [
+    "HANDOFF.md",
+    "README.md",
+    "analysis/function-status.json",
+    "analysis/p2.2-critical-path/HANDOFF.md",
+    "analysis/p2.2-critical-path/blocker-matrix.md",
+    "analysis/p2.2-critical-path/evidence/blockers.json",
+    "analysis/p2.2-critical-path/graph.json",
+    "analysis/p2.2-critical-path/implementation-order.md",
+    "plan.md",
+    "recovered/game/car_loading_activation.h",
+    "recovered/game/hud_auxiliary_loading.h",
+    "recovered/game/hud_injury_movies_loading.h",
+    "recovered/game/hud_map_loading.h",
+    "recovered/game/hud_scene_loading.h",
+    "recovered/game/hud_soldier_loading.h",
+    "recovered/game/hud_world_loading.h",
+    "recovered/game/human_hud_loading.h",
+    "recovered/game/static_weapon_actor.h",
+    "recovered/game/static_weapon_loading.h",
+    "recovered/host/game_mesh_movie.h",
+    "recovered/host/game_owner.h"
+  ],
+  "handoff": {
+    "source_ref": "949282e03af00145ece4ec44dc06d282356d0def",
+    "unchanged": true,
+    "git_blob": "bf565c9cf6d3bcb4e02330cb22070578b8bc9990",
+    "sha256": "57c7dc9fc93bedb57919cdfaa38199e104a411c0b116c8baf3844b6532159821",
+    "bytes": 6850
+  },
+  "function_union": {
+    "unique_records": 3031,
+    "complete": 34,
+    "partial": 2997,
+    "client_partial": 2992,
+    "engine_partial": 5,
+    "new_identities_relative_to_master": 240,
+    "shared_changed_records": 24,
+    "identity_key": [
+      "program",
+      "entry"
+    ],
+    "status_promotions": 0,
+    "unchanged_frozen_denominator": 18783,
+    "policy": "Three-way union; unique identity counted once. Both changed coverage/limitations retain attributed checkpoint scope and evidence union. No new function credit from merge adapters."
+  },
+  "resolutions": [
+    "Master main HANDOFF and independent critical-path research retained exactly; master Human checklist retained with current UI closure link.",
+    "Preserve actual master Car fuel/optional2584 clock/reaction controls; add UI fuel reader over SAME initialized core.",
+    "Retain master checked actual Zone37 map group/side and Human death/objective/peer refresh consumers alongside full UI frame/control policies.",
+    "Use master shared MountedWeaponControlLoading and relocate UI E0/E4 fields/clear there; UI failed/view getters delegate that same owner.",
+    "Keep complete UI injury fade/decode/update with master field04 alias to SAME current movie and actual CRT-range validation; preserve both IShow+30 API names.",
+    "Remove auto-merged duplicate hide_roll/hide methods; map master signal clearing to actual UI target64/human68 typed borrowers before selection and visibility.",
+    "Retain Human network helpers and UI process-query APIs; no second Human/World/peer store.",
+    "Adapt0051A880 sound position to actual three-coordinate frame interface; do not copy the fourth native vector lane."
+  ],
+  "original_addresses": [
+    "004ABAF0",
+    "004BF4A0",
+    "004B27B0",
+    "004AD380",
+    "004AD440",
+    "004A5630",
+    "004A7C60",
+    "005A8380",
+    "0051A880",
+    "004C1AD0",
+    "004C6D90",
+    "004C7670"
+  ],
+  "checks": {
+    "native-build": {
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "/tmp/p22-ui-merge-native-build.log",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-O1",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-Wno-misleading-indentation",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-I",
+        "recovered",
+        "/tmp/p22-ui-merged-audit.cpp",
+        "-L/home/control/Documents/Projects/H&D2 Decomp 4/.tools/hd2-sanitizer-runtime/usr/lib64",
+        "-Wl,-rpath,/home/control/Documents/Projects/H&D2 Decomp 4/.tools/hd2-sanitizer-runtime/usr/lib64",
+        "-o",
+        "/tmp/p22-ui-merged-audit"
+      ]
+    },
+    "concrete-i386": {
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "/tmp/p22-ui-merge-concrete-i386.log",
+      "command": [
+        "/home/control/Documents/Projects/H&D2 Decomp 4/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++",
+        "-std=c++17",
+        "-O0",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Werror",
+        "-I",
+        "recovered",
+        "-c",
+        "/tmp/p22-ui-merged-concrete.cpp",
+        "-o",
+        "/tmp/p22-ui-merged-concrete.o"
+      ]
+    },
+    "launcher-probe": {
+      "result": "PASS",
+      "exit_code": 0,
+      "log": "/tmp/p22-ui-merge-launcher-probe.log",
+      "command": [
+        "make",
+        "-C",
+        "recovered",
+        "-j1",
+        "application-launch",
+        "startup-probe",
+        "BUILD_DIR=/tmp/p22-ui-merged-build",
+        "WINDOWS_CXX=/home/control/Documents/Projects/H&D2 Decomp 4/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++"
+      ]
+    }
+  },
+  "native_run": {
+    "result": "PASS100 ASan/UBSan/LSan",
+    "output": "PASS100 merged injury/current-movie aliases, optional/fade/retirement; signal typed-borrower clearing/order; both real peer rank/name APIs and lock failure cleanup; shared mounted progress/view; pointer mutation prefix; Car sound XYZ/inside/audible gates. Engine/action endpoints doubled; no Windows/desktop execution.",
+    "sandbox_note": "Initial LeakSanitizer run rejected ptrace; final successful native audit executed outside sandbox.",
+    "boundaries": "Native engine/frame/movie/sound/action producers are explicit doubles; no real desktop or Windows execution."
+  },
+  "function_tracker": "PASS exact fingerprints/inventories/frozen counts/unique statuses/evidence/README;27 existing tracker tests pass.",
+  "source_fingerprints": {
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "b328aac1f9677aa6f87d550e8a7cf0ebd3ea3d91b34ed3d545e21e9c5b2a2c23",
+      "bytes": 20392
+    },
+    "recovered/game/car_sound_updates.h": {
+      "sha256": "276f4a949c38d31e51b84a4c5f65c0f57870495d13b03821f52070133ee66123",
+      "bytes": 10701
+    },
+    "recovered/game/hud_auxiliary_loading.h": {
+      "sha256": "65ec0a4b08a1bb5a75628bb2d77c61ff69f4eaf651dfcea73ecaea8670154893",
+      "bytes": 19728
+    },
+    "recovered/game/hud_dialogs_loading.h": {
+      "sha256": "9c13252aa26dc52baa8f212a570c45081f00532c34cb6be3d650662578693bd2",
+      "bytes": 28019
+    },
+    "recovered/game/hud_injury_movies_loading.h": {
+      "sha256": "a9cc0ce68343f7fa13a3bafe35d540c655c68f246617921a42445a91301180ad",
+      "bytes": 5917
+    },
+    "recovered/game/hud_map_loading.h": {
+      "sha256": "2c752dd2a566d2d1a7f0a4203b596da221eae9bcca5f7b50817f2fe3462e2d28",
+      "bytes": 29606
+    },
+    "recovered/game/hud_scene_loading.h": {
+      "sha256": "f4f6d0d7e0dacc966f61cca4529ad048cbe7f7b3bb7bad37343508b121680c15",
+      "bytes": 14214
+    },
+    "recovered/game/hud_soldier_loading.h": {
+      "sha256": "b19611bad07f00cac269c580de365c87b65a32aaaa9500265d1f8bfee840c08b",
+      "bytes": 17861
+    },
+    "recovered/game/hud_world_loading.h": {
+      "sha256": "57eb622fd574adfb0b5a25b3c23a45841f64599eae7fef35ac7e592064561b20",
+      "bytes": 2626
+    },
+    "recovered/game/human_hud_loading.h": {
+      "sha256": "d1e9db945a9f366f770d38e814d2e22f92fa83f74540d703ad50baac74705bc6",
+      "bytes": 12281
+    },
+    "recovered/game/mounted_weapon_control.h": {
+      "sha256": "71a42d83e9b65d79c7feb2e5d50ec7e4b5430e652d2871eaf1abd99ae1fd1fec",
+      "bytes": 1467
+    },
+    "recovered/game/mounted_weapon_control_loading.h": {
+      "sha256": "24eef2e90e519d6c090b75a4325b62f4671c4119c4c40759008fca0f4ceda3e4",
+      "bytes": 9327
+    },
+    "recovered/game/static_weapon_actor.h": {
+      "sha256": "410dd63f3f0f6b699670eea08b571bc7a2a59bedc37d529000f8618035867e61",
+      "bytes": 1150
+    },
+    "recovered/game/static_weapon_loading.h": {
+      "sha256": "8dd2fd026c416c91e2e2795cb28be4e285457b0f140894ccc1b1fafe7365dc68",
+      "bytes": 9492
+    },
+    "recovered/host/game_mesh_movie.h": {
+      "sha256": "e07e830c8429f4cb9b2190ead60a7e8fe19761008fd45e2291fd610ef78d3ea0",
+      "bytes": 5601
+    },
+    "recovered/host/game_owner.h": {
+      "sha256": "e3eb0e0764f20d5d55b65463dfa389a167836bce6a5d8e1ad2a40df93dd102ba",
+      "bytes": 18314
+    },
+    "recovered/host/game_world_loading.h": {
+      "sha256": "fd8203b8dab71a79e7b7e4ffa06bf8486ebd48e1e45a77c582a6eada0b858af7",
+      "bytes": 30398
+    },
+    "recovered/host/game_ui_presentation.h": {
+      "sha256": "63b8f972fc76f6308b41f74b2554f6c1641cbf2df862257eb88d6659cb3692da",
+      "bytes": 142192
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "b02afdcf3f89ac9b62906f04d0197e0be820bfc347a9d138086da52992b02503",
+      "bytes": 119665
+    }
+  },
+  "retained_logs": {
+    "analysis/work/p22-ui-master-merge-20261112/p22-ui-merge-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-ui-master-merge-20261112/p22-ui-merge-concrete-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-ui-master-merge-20261112/p22-ui-merge-launcher-probe.log": {
+      "sha256": "bd02152a1f9669ea7ca2707fd2123429ca7b134c504d9aa3ed29fc6289017f20",
+      "bytes": 920
+    },
+    "analysis/work/p22-ui-master-merge-20261112/p22-ui-merge-native-run.log": {
+      "sha256": "6d434ddcac745ab4da8d1e0aef70da7956c3cd2aa24a70d17fe872b45d2278e6",
+      "bytes": 319
+    }
+  },
+  "temporary_artifacts": {
+    "/tmp/p22-ui-merged-audit.cpp": {
+      "sha256": "d0b541156c660e0bdf15eabdbc46b3e1dfea02efabf1191c54be687886478f50",
+      "bytes": 8511,
+      "retained": false
+    },
+    "/tmp/p22-ui-merged-audit": {
+      "sha256": "d0ccd1ad1a72c9c4b8162fbeeacf6c76f9f80c217ca5fdf5fe95ccef612462d4",
+      "bytes": 2011392,
+      "retained": false
+    },
+    "/tmp/p22-ui-merged-concrete.cpp": {
+      "sha256": "1b8538f705ef40d3469c2f5045339348a6b39213ecd1bb0f03e48a190a9802bd",
+      "bytes": 1466,
+      "retained": false
+    },
+    "/tmp/p22-ui-merged-concrete.o": {
+      "sha256": "eda19adab87226fd32743549da5f92048963249558292f5425663350f5f7c826",
+      "bytes": 9339137,
+      "retained": false
+    },
+    "/tmp/p22-ui-merged-build/application_launch.exe": {
+      "sha256": "10c6089069fd2c3f9394c1bec884e22ca85bc3434b9906e33e1d0aa5504084f4",
+      "bytes": 3915776,
+      "retained": false
+    },
+    "/tmp/p22-ui-merged-build/startup_probe.exe": {
+      "sha256": "81ae59eefffca5f00c496f72836f94b2a92b3e629a04878e44c2d88eaf383ebc",
+      "bytes": 1117696,
+      "retained": false
+    }
+  },
+  "original_execution": false,
+  "windows_execution": false,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "pushed": false,
+  "limitations": [
+    "Source-only merge and concrete compilation are not populated game World execution.",
+    "External gameplay/packet/render/frame/application receivers and desktop failure/repeat/second mission acceptance remain required.",
+    "Historic checkpoint hashes stay pinned to their original source revisions; this receipt records the combined source."
+  ]
+}

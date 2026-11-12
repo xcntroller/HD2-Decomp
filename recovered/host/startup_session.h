@@ -481,6 +481,10 @@ public:
     frontend::ClientModuleRegistration& game_module_registration(std::uint32_t kind){return modules_.registration(kind);}
     input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
     const std::string& profile_name() { return data_.profile().directories.current_name; }
+    std::uint32_t selected_game_mode()const { //006B4670 owner08, SAME route; never allocate preparation from a frame callback.
+        if(!pre_mission_)throw std::logic_error("UI game-mode query requires actual preparation owner");
+        return pre_mission_->route().game_mode();
+    }
     PreMission& pre_mission() {
         if (!pre_mission_) pre_mission_=std::make_unique<PreMission>(data_.humans(),*this);
         return *pre_mission_;
@@ -705,6 +709,7 @@ public:
     std::int32_t query_input(const std::uint32_t*& output, std::uint8_t mode) const {
         return frontend::query_controller_input(input_.state().first, input_.state().second, output, mode);
     }
+    input::BindingInputState& presentation_input_bindings(){return input_.state();} //Borrow SAME process manager; no new input owner/poll.
     std::uint32_t mouse_buttons() const { return input_backend_.mouse_buttons(graphics()); }
     std::int32_t mouse_wheel() const { return input_backend_.mouse_z(graphics()); }
     std::int32_t mouse_x() const { return input_backend_.mouse_x(graphics()); }

@@ -3,6 +3,7 @@
 
 #include "game/hud_actor_identity_view.h"
 #include "game/session_activation.h"
+#include "game/actor_zone_presentation.h"
 
 namespace hd2::game {
 

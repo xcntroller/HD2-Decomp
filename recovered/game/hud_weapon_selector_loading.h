@@ -14,7 +14,8 @@
 namespace hd2::game {
 //004AC440/004AC530/004AC190/004AC990/004ACB70/004AC370/004ACDC0/004AD140.
 //Actual Human storage, Items module and icon cache are required producer inputs.
-//Interactive weapon transfer/selection timing remain separate consumers.
+//Show/hide and expiry/rebuild are bound; interactive weapon transfer and its
+//timer30/34 producers remain separate required input consumers.
 template<class Frames,class Factory>
 class HudWeaponSelectorLoading {
 public:
@@ -35,20 +36,69 @@ public:
         weapon00_=frames_.actor_find(root_,"select_weapon00",1);hide(weapon00_);
         hide(frames_.hud_find(scene,"tabl03",1));hide(frames_.hud_find(scene,"drkr2",1));
         hide(frames_.actor_find(root_,"select_weapon01",1));hide(frames_.actor_find(root_,"select_weapon02",1));
-        hide(root_);human_=nullptr;
+        hide(root_);human_=actor_identity_=nullptr;retired_hide_=false;
+    }
+    template<class Players,class Items,class Icons>void show(bool enabled,std::uint32_t mode,Players& players,Items& items,Icons& icons){ //004ACE20.
+        elapsed38_=0;retired_hide_=false;
+        if(!enabled){human_=actor_identity_=nullptr;close();require(root_);frames_.object_visible(root_,false);return;}
+        auto* human=players.selected_player(mode);human_=human;actor_identity_=human?&human->base():nullptr;
+        if(!human)return;
+        auto& state=players.state(*human);const auto& words=state.words(); //Checked same World lifetime.
+        if((words.template get<std::uint32_t>(0x48)==1&&(state.derived_loading_word(0x4d4)&0xffu)!=0)||
+           words.template get<std::int32_t>(0x60)!=-1)return;
+        populate(*human,items,icons);layout_current(players,items);require(root_);frames_.object_visible(root_,true);
+    }
+    template<class Players,class Items,class Icons>void update(std::uint32_t elapsed,std::uint32_t mode,Players& players,Items& items,Icons& icons){ //004AD180.
+        flush_retired();
+        auto* human=players.selected_player(mode); //Selection query precedes any old borrower read.
+        bool admitted=human_==human&&human;
+        if(admitted){auto& state=players.state(*human);const auto& words=state.words();
+            admitted=!(words.template get<std::uint32_t>(0x48)==1&&(state.derived_loading_word(0x4d4)&0xffu)!=0)&&words.template get<std::int32_t>(0x60)==-1;}
+        if(admitted){
+            elapsed38_+=elapsed;
+            if(signed_word(elapsed38_)<2001){
+                if(human->activation.flag178){close();populate(*human,items,icons);layout_current(players,items);return;}
+                const auto bits=human->properties.stats_ec[0];
+                if(signed_word(bits)>0){
+                    auto* current=players.current_player();if(!current)throw std::runtime_error("HUD selector amount refresh requires actual current Human");
+                    (void)players.inline_control(*current);refresh_amounts(*current,items);
+                    if(signed_word(timer30_)>0){timer30_-=elapsed;if(signed_word(timer30_)<0)timer30_=0;return;}
+                    if(signed_word(timer34_)>0){timer34_-=elapsed;if(signed_word(timer34_)<0)timer34_=0;}
+                    return;
+                }
+            }
+        }
+        show(false,mode,players,items,icons);
+    }
+    template<class Input,class Queries>void process_controls(Input& input,Queries& queries){ //004ACF00; caller supplies actual visible-root gate.
+        if(retired_hide_){flush_retired();return;}
+        if(input.second(19)!=0){auto& human=queries.resolve_human(human_);
+            if(queries.selector_busy(human)||queries.action_active(human))return;
+            if(records_.size()>1){const auto& row=*records_.at(selected_);const auto selected=row.item;const auto slot=row.slot;const auto current=queries.current_weapon(human);
+                if(!selected){if(current)queries.move_weapon(human,current,3,7);}
+                else if(queries.item_kind(selected)==13){if(!queries.focused(human))queries.use_item(human,selected);}
+                else if(selected!=current){if(!current)queries.move_weapon(human,selected,slot,3);else queries.swap_weapon(human,current,selected,slot);}
+            }
+            input.second(19,0);input.first(19,0);queries.hide_selector(); //Native continues held navigation AFTER closing records.
+        }
+        if(input.first(33)==0)timer30_=0xffffffffu;else{if(!timer30_){input.second(33,1);timer30_=200;}elapsed38_=0;}
+        if(input.first(32)==0)timer34_=0xffffffffu;else{if(!timer34_){input.second(32,1);timer34_=200;}elapsed38_=0;}
+        if(input.second(33)!=0){++selected_;if(selected_==records_.size())selected_=0;queries.layout_selector();timer30_=200;elapsed38_=0;return;}
+        if(input.second(32)!=0){--selected_;if(signed_word(selected_)<0)selected_=static_cast<std::uint32_t>(records_.size())-1u;queries.layout_selector();timer34_=200;elapsed38_=0;}
     }
     void close()noexcept { //004ACDC0 reverse records, retain list allocation and frame borrowers.
         while(!records_.empty())records_.pop_back();
     }
     void close_cold()noexcept{close();} //Existing containing source now retires actual populated records too.
     void draw(){ //004AD140 ascending inlineText14; root visibility is reread here.
+        flush_retired();
         require(root_);if(!frames_.hud_frame_visible(root_))return;
         for(auto& record:records_)factory_.hud_draw_text(*record->text);
     }
     template<class Human,class Items,class Icons>void populate(Human& human,Items& items,Icons& icons){ //004AC530.
         auto* storage=human.base().storage();
         if(!storage||storage->single())throw std::runtime_error("HUD selector requires actual Human storage");
-        human_=&human; //Actual selected-Human borrower supplied by containing004ACE20, not a copied inventory.
+        human_=&human;actor_identity_=&human.base(); //Actual selected-Human borrower, not a copied inventory.
         selected_=0;
         const auto holder=[&](unsigned n){auto* value=storage->holder(n);if(!value)throw std::runtime_error("HUD selector required holder is missing");return value->entry();};
         const auto main=holder(3);append_record(main,main?1u:0u,main?3u:7u,items,icons);
@@ -98,11 +148,20 @@ public:
             record.text->text.set(std::make_shared<const std::string>(buffer.data()),0x4b,0);
         }
     }
-    void discard_borrowers()noexcept{scene_=root_=selector_=weapon00_=drkr_=Frame{};human_=nullptr;}
+    void retire_actor(const void* identity)noexcept{if(identity&&actor_identity_==identity)retire_records();}
+    void retire_item(Entry entry)noexcept{if(!entry)return;for(const auto& row:records_)if(row->item==entry){retire_records();return;}}
+    void discard_borrowers()noexcept{scene_=root_=selector_=weapon00_=drkr_=Frame{};human_=actor_identity_=nullptr;retired_hide_=false;}
     Frame scene()const{return scene_;}Frame root()const{return root_;}Frame selector()const{return selector_;}
     Frame weapon00()const{return weapon00_;}Frame darkener()const{return drkr_;}const void* field28()const{return human_;}
     const auto& records()const{return records_;}
 private:
+    void retire_records()noexcept{human_=actor_identity_=nullptr;close();retired_hide_=true;} //Retract all loans before their real Human/Item can die.
+    void flush_retired(){if(retired_hide_){require(root_);frames_.object_visible(root_,false);retired_hide_=false;}}
+    static std::int32_t signed_word(std::uint32_t word){std::int32_t value;std::memcpy(&value,&word,4);return value;}
+    template<class Players,class Items>void layout_current(Players& players,Items& items){
+        auto* current=players.current_player();if(!current)throw std::runtime_error("HUD selector layout requires actual current Human");
+        (void)players.inline_control(*current);layout(*current,items);
+    }
     static void require(Frame frame){if(!frame)throw std::runtime_error("Required HUD weapon-selector artwork is missing");}
     void hide(Frame frame){require(frame);frames_.object_visible(frame,false);}
     template<class Items,class Icons>void append_record(Entry entry,std::uint32_t count,std::uint32_t slot,Items& items,Icons& icons){
@@ -122,7 +181,8 @@ private:
         records_.push_back(std::move(record));
     }
     Frames& frames_;Factory& factory_;HudMaterialLookup<Frames> materials_;Frame scene_{},root_{},selector_{},weapon00_{},drkr_{};
-    const void* human_=nullptr;std::uint32_t selected_=0;std::vector<std::unique_ptr<Record>> records_;
+    const void* human_=nullptr;const void* actor_identity_=nullptr;bool retired_hide_=false;
+    std::uint32_t selected_=0,elapsed38_=0,timer30_=0,timer34_=0;std::vector<std::unique_ptr<Record>> records_;
 };
 } //namespace hd2::game
 #endif

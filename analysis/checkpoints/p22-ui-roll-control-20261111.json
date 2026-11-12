@@ -1,0 +1,269 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "a3de5e1",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "roll_family_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004b2830",
+    "004b2dc0",
+    "004b2f00"
+  ],
+  "ledger_added_partial_client": 3,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2462,
+  "complete_promotions": 0,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan100 actual HudDialogsLoading/TextState lifetimes. Real ordinary policy establishes readiness; native row setter exercises original action packets. Positive cases: ordinary kind13 action3, all kind2 fields, kind3 healing direction/target/sender, occupied seat6/no-occupant, seat8..13/fallback, supply/item delegation, exit without selected Human lookup, previous disabled/absent skipping, digit/wheel/arrow/two-snapshot mutation, nested command early return, invalid actor/missing executor/transfer failure and cleanup. Frame/font/actor/executor endpoints are doubles; action7 rejection is not positive inventory execution.",
+    "actual_host_i386": "PASS strict concrete GameUiPresentation activate_roll/process_roll_controls and required pure GameUiRollCommands over real World/Players/Human/Items/input owners.",
+    "application_link": "PASS sequential application-launch, never executed.",
+    "latest_master_source_compatibility": "PASS temporary verified master494cbee composition plus4 changed files,45 total UI source files, zero three-way conflicts; strict actual i386. No active-branch merge/rebase or other-worktree change.",
+    "tracker": "PASS exact fingerprints/full frozen inventories/unique statuses/evidence/README and27 existing tracker tests."
+  },
+  "artifacts": {
+    "/tmp/p22-ui-roll-control-audit.cpp": {
+      "sha256": "2297d7a67d80718c2ef7ceb978172cd21989c61f83d5cc46d9d242307d21735f",
+      "bytes": 11000,
+      "retained": false
+    },
+    "/tmp/p22-ui-roll-control-audit": {
+      "sha256": "45f198fb03d9c6a90d64f98eba64fa2b7c0cc3c7cd1fe94c5a0f6bf867f8cd79",
+      "bytes": 1944624,
+      "retained": false
+    },
+    "/tmp/p22-ui-roll-control-i386.cpp": {
+      "sha256": "3532f98e5b4ea5de2b84be7c6ff240b7ecc7ea999882d71f22c521f0610e3fd3",
+      "bytes": 234,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-signal-control/004b2830.c": {
+      "sha256": "871b3c1e809f3e39e86f8ce8b7137e75afee58ee72e89c0d3dfaf28733931b1d",
+      "bytes": 4016,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-control/004b2830.json": {
+      "sha256": "762604660666971c5503817ec827156323b7a9814d5cebbccf6d71d88ec92885",
+      "bytes": 18912,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-control/004c0600.c": {
+      "sha256": "717e3c47246e0fecc6c8f4474f29a004e98c26dc99a4d427f1413baec40c0b73",
+      "bytes": 715,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-control/004c0600.json": {
+      "sha256": "12447e1bb3d6a6e58ecddaefbf4569373b190e9a78dbec47504f0a83cfdc46d7",
+      "bytes": 3568,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-control/004c0720.c": {
+      "sha256": "ad839b5f4955808ac71626cc9c21af4e2f1348b05497521eb5a08efa3a8f9f4b",
+      "bytes": 514,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-control/004c0720.json": {
+      "sha256": "c1ebe516d019ea854c4bd3f4b16180689426ce15af47023b41ed27689cf03380",
+      "bytes": 1730,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-control/004c0990.c": {
+      "sha256": "ead6ed10e82f6b5c8f5b6217c860a899eb9653707a550c6a705e479ac5780d3f",
+      "bytes": 6920,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-control/004c0990.json": {
+      "sha256": "1d94105d7532e1811fbdc5601a5c8375a8bca83d86b72b74053c2069b1be24f6",
+      "bytes": 16866,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/004b2dc0.c": {
+      "sha256": "6dd735801adcc2254b9f85fdd26e01efec1c79149b305c22db1c1eb5ef33e2d3",
+      "bytes": 1442,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/004b2dc0.json": {
+      "sha256": "6a6acdb16de91fdf0aa6c73db3c9accec69fe5ca17d47481d9a21b397b921c6d",
+      "bytes": 5960,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/004c0760.c": {
+      "sha256": "ddbbad623d5e9aed171fda097485b8b3deba11e31e394ed41e61502210c93809",
+      "bytes": 1270,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/004c0760.json": {
+      "sha256": "b2b149f801bf69d2fcbb42cc27a45ff66bded06fd7ab5fd9982761ce377a3c27",
+      "bytes": 5385,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/004c08a0.c": {
+      "sha256": "285b8f41cb7045ec6ef96a6a1be91fa2613f39a57207568f3ebdf38712f02e07",
+      "bytes": 1013,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/004c08a0.json": {
+      "sha256": "d04923c85b835c952fe76229f9415ba1a1ed3c0798fc62c700a908075ba0a4e0",
+      "bytes": 3636,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/005a45b0.c": {
+      "sha256": "0b0cb47f4057b628e6bfff853b68c1b2cdc904ba12caf161698b7a930efb0b61",
+      "bytes": 275,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/005a45b0.json": {
+      "sha256": "b52095e2d78513d67662baf9f681a829f66d59aaeb4b04225970712190eb6b94",
+      "bytes": 890,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/005a45e0.c": {
+      "sha256": "55d664cef6f9ee56f2fd63d21ef0ba75fb6672ab1dd243bc271437abab9f19e3",
+      "bytes": 59,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-signal-action/005a45e0.json": {
+      "sha256": "e850512be4ed86f2b91b3bc59d009607a7d7043ab695246444cfd16fdef004e6",
+      "bytes": 803,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/00496ed0.c": {
+      "sha256": "abdd2fac488d2f52d53c78d5318ff8c7a78dec437e6390dc22c5b284606666bc",
+      "bytes": 136,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/00496ed0.json": {
+      "sha256": "73d6a2f575efa6a9db09eaf49a32215959fc23acfc3c004312b8d2e23ccd72f9",
+      "bytes": 1705,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/004970f0.c": {
+      "sha256": "2332c07e2386b92e97fc8524f10b0286e9cdedf1d6729ef9cc4f1170b7cc7c09",
+      "bytes": 172,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/004970f0.json": {
+      "sha256": "818f8d00c02a20b95c40132d9c0d2a780b875b389342c27cb312eaa5f1893fb3",
+      "bytes": 2233,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/00497130.c": {
+      "sha256": "f5bcbacd47695e1e066e82cae63217744daf6aba4f3e3eca3615ff647eda9b1f",
+      "bytes": 154,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/00497130.json": {
+      "sha256": "05d5ab86f66ab32ae31d878181d9583790cbd65a6e0c0ae11824ea1d0d1204bc",
+      "bytes": 1969,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/00497170.c": {
+      "sha256": "8c4ad6e0bb6be224059fb6803f2ffcb27f5cad96e69cc9fc090438b1b6adec30",
+      "bytes": 208,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/00497170.json": {
+      "sha256": "3f3986041e34ef4f3e93472d03861e6c86ff2742d67f2079c4ed5b0966133ccc",
+      "bytes": 2573,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/004971c0.c": {
+      "sha256": "c58d453c01da2d28cdfe2bce3081bb50426cc540dbc8f70cf0f15cbab7fd8e57",
+      "bytes": 227,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/004971c0.json": {
+      "sha256": "63bc941713783a365b16d04df854544168a2bd109b1240737ed36a5dba037e35",
+      "bytes": 2837,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/0049de90.c": {
+      "sha256": "b3cf35b233b5e44c3b1f3315299716857bd6c9b7a739a380567902fb532013da",
+      "bytes": 1068,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/0049de90.json": {
+      "sha256": "88fa3e3dd377611fb9e8a5391f692096370d47e9361378985574aa7792a1c558",
+      "bytes": 8297,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/005a2cf0.c": {
+      "sha256": "ff44f10fbc30158082f3ac6d7d4d282dc9014be31e3793513fc035bdef11818e",
+      "bytes": 223,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/005a2cf0.json": {
+      "sha256": "6ec4b92f8d8be655ee02ce0e1a8b22fd4e3e7e63787323aec77da22e31ebac6c",
+      "bytes": 818,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/005a2d20.c": {
+      "sha256": "fc182aa2967602a1373350e3cbc3b07d08456851416a877572c318965e5f3393",
+      "bytes": 198,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-execution/005a2d20.json": {
+      "sha256": "f5d84cb23f6f2fe9a4e84c1c5956f5c2b4c1e1b7eeea38308cbf7ae55b52ce93",
+      "bytes": 678,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-previous.asm": {
+      "sha256": "2efb1df7939474c35536d75ea819e69ef02d06cc1121fdf8b3794e484c27f907",
+      "bytes": 1770,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-actions.asm": {
+      "sha256": "0557db02f10de74660fa8319a22049ee72dcf96e98f25f36bd7d0d2e985b6e68",
+      "bytes": 11077,
+      "retained": true,
+      "ignored": true
+    }
+  },
+  "limitations": [
+    "P22-UI OPEN; roll family also remains open because inventory action7 still needs UI0049DE90/004A4380/004A3920 and actual positive inventory population/control. No successful replacement callback.",
+    "Actual Human/Player request execution is required through pure typed interfaces; no B0/DD0, weapon, transfer or queue/serializer implementation is duplicated. Pickup producer owns Human178 publication, queued actor borrowers retain their original producer-owned retirement contract.",
+    "Signal request documentation now clarifies0053D910 copies the stack request into its own queue: UI retains no new record/actor owner, and queue owner must preserve original actor lifetimes.",
+    "Ordinary selection0049D6E0, command004B6420, map/inventory/info/scoreboard and full0049BD50 remain UI-owned; FRAME/RENDER/LIFE/OWN integration and real desktop/mission observations remain separate."
+  ]
+}

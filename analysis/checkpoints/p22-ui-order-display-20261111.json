@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "fc75168",
+  "latest_inspected_origin_master": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004ab2e0"
+  ],
+  "ledger_added_partial_client": 1,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2399,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan100 lifetimes; identity/dirty short circuit, all artwork mappings and unknown-kind texture carry, selected scale/world-position/update ordering, repeated fresh counts, zero/ten/excess orders, missing-producer/null/bounds rejection and borrower teardown",
+    "actual_host_i386": "PASS strict concrete GameUiPresentation order display over SAME World/Human/Players/loaded panels, including required typed Human producer",
+    "application_link": "PASS sequential i386 application-launch, never executed",
+    "tracker": "PASS frozen ledger render/check and27 existing tracker tests"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-orders-audit.cpp": {
+      "sha256": "67bfb8f0353fac89a89cc0f89092940d5f3283760951afcad2c8c800de1890d8",
+      "bytes": 4764,
+      "retained": false
+    },
+    "/tmp/p22-ui-orders-audit": {
+      "sha256": "9b50848486a1a9c8a6881c6f10bb28c9892043510cda70a8970985a086d2411f",
+      "bytes": 1147280,
+      "retained": false
+    },
+    "/tmp/p22-ui-orders-i386.cpp": {
+      "sha256": "4b5e79f642e2d3bb93de786e3b72d600ceb0a2686f8357bf971a1a620ddf596f",
+      "bytes": 205,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-order-publication/p22-ui-order-publication.asm": {
+      "sha256": "fab605bf7e908269851c8c0f202fb83eb0d3ee42dc14bfa81ebc8cabe21e3555",
+      "bytes": 8835,
+      "retained": true,
+      "ignored": true
+    }
+  },
+  "limitations": [
+    "GameUiHumanOrderSource is a required external Human read-producer contract, with no empty-list/default callback implementation.",
+    "Real populated B0 orders are not bound or exercised; UI positives use a native query/engine double.",
+    "Full0049BD50,0049D6E0 selection/camera,004B6420/004B6720 command and00494D20 editing plus reached camera/map/inventory/objective workers remain UI-owned work.",
+    "FRAME/RENDER/OWN application invocation and runtime/desktop observations remain pending."
+  ]
+}

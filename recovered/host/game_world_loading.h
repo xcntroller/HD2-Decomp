@@ -45,6 +45,7 @@
 #include "game/human_objective_experience.h"
 #include "game/collision_sweep.h"
 #include "game/human_input_default_receiver.h"
+#include "host/game_occupied_actor_presentation.h"
 
 namespace hd2::host::world_loading {
 struct Dependencies;struct PresentationDependencies;
@@ -79,6 +80,7 @@ using HudWorld=game::HudWorldLoading<Scene::Frames,game::MissionTables<GameOwner
 using Panels=game::HudPanelsLoading<GameSceneActors,GameOwnerBackend,GameOwnerBackend::Hud,Control,Actors::Items,frontend::OpeningTextStyles,Camera,HudWorld>;
 using Hud=game::HudSceneLoading<GameSceneActors,GameOwnerBackend,GameOwnerBackend::Hud,Panels>;
 using FirstPlayers=game::FirstPersonPlayersLoading<Human,Control,Actors,Composition,GameSceneActors>;
+using SeatPresentation=GameOccupiedActorPresentation<Dependencies,Frames,Actors>;
 using Cursor=game::HudCursorLoading<GameSceneActors,Control,Actors::Items>;
 struct FirstPerson:game::FirstPersonLoadingComposition<GameSceneActors,game::SessionOwner<GameOwnerBackend>::Overlay,Actors::Items,FirstPlayers,Camera,GameAnimationResources,AnimationSound,Cursor,game::EffectsShadowModels<Frames>>{using FirstPersonLoadingComposition::FirstPersonLoadingComposition;};
 using PlayerModes=game::HumanPlayerModeLoading<Actors::Items,FirstPerson::View,FirstPlayers>;
@@ -164,6 +166,8 @@ public:
             bindings_.presentation.bind_dependencies(presentation_dependencies_);
             bindings_.human_factory.bind_dependencies(dependencies_);
             bindings_.consumers.bind_dependencies(dependencies_);
+            occupied_presentation_.bind_dependencies(dependencies_);
+            first_players_.bind_seat_presentation(occupied_presentation_);
             auto* callbacks=dynamic_cast<GameCarCallbacks*>(&scene.car_callbacks());
             if(!callbacks)throw std::logic_error("Containing world requires its actual Car callback owner");
             actors_.bind_car_physics(*callbacks);
@@ -205,6 +209,8 @@ public:
 private:
     void require_open()const{if(closed_)throw std::logic_error("Containing world owners are retired");}
     void unbind()noexcept{
+        first_players_.unbind_seat_presentation(occupied_presentation_);
+        occupied_presentation_.unbind_dependencies(dependencies_);
         bindings_.consumers.unbind_dependencies(dependencies_);
         bindings_.human_factory.unbind_dependencies(dependencies_);
         bindings_.presentation.unbind_dependencies(presentation_dependencies_);
@@ -216,7 +222,7 @@ private:
     Shared shared_;Music music_;Players players_;Subtitles subtitles_;Dubbing dubbing_;Sound sound_;
     AnimationActors animation_actors_;AnimationSound animation_sound_;Events events_;Sweep sweep_;
     ScriptLink script_link_;Contexts contexts_;Sight sight_;Router router_;Hearing hearing_;GameActorProximityLoading proximity_;
-    FirstPlayers first_players_;HudWorld hud_world_;GameHudLoading<Control,Actors::Items,Camera,HudWorld> hud_;
+    SeatPresentation occupied_presentation_;FirstPlayers first_players_;HudWorld hud_world_;GameHudLoading<Control,Actors::Items,Camera,HudWorld> hud_;
     FirstPerson first_person_;PlayerModes player_modes_;std::function<int()> car_random_;game::CarLoadingResources<Frames> car_resources_;
     game::SessionBroadcastPackets& packets_;SpawnPresentation spawn_presentation_;SpawnRecords spawn_records_;SpawnDecoder spawn_decoder_;
     game::MissionWorldBounds bounds_;
