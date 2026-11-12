@@ -85,6 +85,12 @@ public:
             throw std::logic_error("Mission render requires a live bound presentation");
         io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"0069B870 render policy",[&]{game::render_session(*this);});
     }
+    std::uint32_t dispatch_scene(std::uint32_t stage){
+        require_open();
+        if(!callbacks_||!parent_.scene()->has_bound_presentation(*callbacks_))
+            throw std::logic_error("Application callback requires its exact live session presentation");
+        return callbacks_->dispatch_game_scene(stage);
+    }
     std::uint32_t mode_flags()const{return startup_.application_flags();}
     bool external_loading_progress()const{return startup_.game_configuration().flag170!=0;}
     void render_actual_mission_scene(){

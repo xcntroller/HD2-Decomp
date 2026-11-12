@@ -7,6 +7,7 @@
 #include "host/application_menu.h"
 #include "host/pre_mission_menu.h"
 #include "host/game_owner.h"
+#include "host/game_application_session.h"
 #include "game/receive_request.h"
 #include "host/multiplayer_connection_menu.h"
 #include "host/engine_video.h"
@@ -334,8 +335,9 @@ private:
 class LaunchServices {
 public:
     LaunchServices(host::StartupSession& startup, host::MenuDriver& driver, HMODULE module,
-                   host::Graphics* graphics, HWND window, host::BorrowedGraphicsInput& keyboard)
-        : startup_(startup), driver_(driver), module_(module), graphics_(graphics), window_(window), keyboard_(keyboard) {}
+                   host::Graphics* graphics, HWND window, host::BorrowedGraphicsInput& keyboard,
+                   host::FrameClockPlatform& clock)
+        : startup_(startup), driver_(driver), module_(module), graphics_(graphics), window_(window), keyboard_(keyboard),clock_(clock) {}
     ~LaunchServices(){startup_.unbind_application_console_owner(this);}
     template<class Controller>void bind_controller_console(Controller& controller){
         startup_.bind_application_console_owner(this,[&controller]{
@@ -424,7 +426,11 @@ public:
             const auto* mission=flow.route().mission();
             if (!mission) throw std::logic_error("Game transition has no selected mission");
             auto game=std::make_unique<host::GameApplicationState>(startup_,driver_,module_,*graphics_,
-                game::copy_mission_request(*flow.game_request(),*mission));
+                game::copy_mission_request(*flow.game_request(),*mission),
+                [this,&controller](host::GameApplicationState& application){
+                    return std::make_unique<host::GameApplicationSession<Controller>>(
+                        application,startup_,driver_,module_,*graphics_,clock_,controller);
+                });
             game::receive_request(controller,std::move(game),*descriptor,[&](const std::string& failure) {
                 if (startup_.mission_active() || startup_.game_views().scene())
                     throw std::logic_error("Failed mission left a published game owner");
@@ -466,6 +472,7 @@ private:
     host::Graphics* graphics_;
     HWND window_;
     host::BorrowedGraphicsInput& keyboard_;
+    host::FrameClockPlatform& clock_;
 };
 
 // Declaration order is also the fallback lifetime: no engine consumer outlives
@@ -477,6 +484,7 @@ struct LaunchOwners {
     std::optional<host::EngineSound> sound;
     std::optional<host::MenuDriver> driver;
     std::optional<host::BorrowedGraphicsInput> keyboard;
+    std::optional<host::FrameClockPlatform> clock;
     std::optional<LaunchServices> services;
     std::optional<Controller> controller;
     std::optional<WindowHook> hook;
@@ -493,7 +501,7 @@ struct LaunchOwners {
     void close_application() {
         frontend::CleanupErrors errors;
         errors.attempt([&] { if (controller) controller->shutdown(); });
-        controller.reset(); services.reset(); keyboard.reset();
+        controller.reset(); services.reset(); clock.reset(); keyboard.reset();
         errors.rethrow();
     }
     void close_consumers() { if (startup) startup->close_consumers(graphics.has_value()); }
@@ -589,12 +597,12 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int widt
         auto& hook = owners.hook.emplace(graphics.window());
         SetWindowTextW(graphics.window(), L"HD2 recovered controller - opening / Main / Exit");
         auto& keyboard = owners.keyboard.emplace(startup.graphics(), module);
-        auto& services = owners.services.emplace(startup, driver, module, graphics.graphics(), graphics.window(), keyboard);
+        auto& clock_platform=owners.clock.emplace();
+        auto& services = owners.services.emplace(startup, driver, module, graphics.graphics(), graphics.window(), keyboard,clock_platform);
         auto& controller = owners.controller.emplace(services);
         services.bind_controller_console(controller);
         if (!controller.start(false)) throw std::runtime_error("Controller application preparation failed");
         startup.complete_steam_controller_integrity();
-        host::FrameClockPlatform clock_platform;
         frontend::FrameClock frame_clock(clock_platform);
         std::uint32_t frames = 0, previous_type = 0, previous_sequence = 0;
         const auto trace = [&] {

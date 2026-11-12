@@ -296,6 +296,7 @@ public:
     EngineFrame* graphics() const { return static_cast<EngineFrame*>(input_setup_.graphics()); }
     std::uint32_t application_flags() const { return gate_; }
     std::uint32_t& application_flags_owner(){return gate_;} //SAME00982100 for source module/runtime borrowers; no per-world mode copy.
+    std::string& item_model_suffix(){return item_model_suffix_;} //0084E8E4 ->00867980 initially empty; borrowed by actual item caches.
     std::int32_t& local_player_identity(){return control_frame_.state().local_peer;} //SAME00982104, not a per-world ID copy.
     const std::int32_t& local_player_identity()const{return control_frame_.state().local_peer;}
     bool application_input_enabled() const { return application_input_enabled_; }
@@ -462,6 +463,7 @@ public:
     bool human_face_quality_enabled(){return profile_settings().quality_byte(3)!=0;} //006B6740→006B33E0(3).
     frontend::GameConfiguration& game_configuration(){return data_.game_configuration();}
     frontend::GameData& game_application_data(){return data_.game();} //SAME application+04, distinct from preparation's reloaded graph.
+    std::uint32_t& game_mode_field4(){return data_.game_mode_field4();} //Actual006B4670 initialized mode04, NOT GameData/application04.
     void read_game_network_map(game::SessionPacketStream& packet){frontend::replace_selected_network_map(packet,game_configuration());}
     void write_game_network_map(game::SessionPacketStream& packet){frontend::write_selected_network_map(packet,game_configuration());}
     void read_game_network_rules(game::SessionPacketStream& packet){frontend::read_network_rules(packet,game_configuration(),game_network_parameters());}
@@ -907,6 +909,7 @@ public:
         }
     }
 private:
+    std::string item_model_suffix_; //Process lifetime, never a temporary per-World suffix.
     GameConsole& game_console(){ //0069F1E0, publish before Win32 CreateWindow re-entry.
         if(!console_)console_=std::make_unique<GameConsole>([this]{
             if(!application_console_close_)throw std::logic_error("Console close requires the actual current application state");

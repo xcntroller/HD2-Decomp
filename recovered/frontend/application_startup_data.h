@@ -48,6 +48,7 @@ public:
     ProfileState& profile() { return *profile_; }
     HumanStore<Graphics>& humans() { return *humans_; }
     std::uint8_t& first_person_preference(){return first_person_preference_;} //006B4A60 application+0C owns one byte initialized0;008AE908.
+    std::uint32_t& game_mode_field4(){return game_mode_field4_;} //006B4670 native mode04;0069B230 reads actual008AE924+4.
 
     template<class Files>
     bool prepare_application(Files& files, const LocalizedTextCache& text, bool wide) {
@@ -62,6 +63,10 @@ public:
                                 input, services, backend, sound, control, input_flag, game_.get(), text);
     }
 private:
+    //Recovered initialized scalar in application+28's mode owner. Mode08's
+    //existing selected route remains authoritative; no second mode/selection.
+    //A future actual save producer writes this word, never a fabricated bool.
+    std::uint32_t game_mode_field4_=0;
     std::uint8_t first_person_preference_=0; //Shared across missions; separate from profile options and live FPV58.
     std::unique_ptr<GameConfiguration> game_configuration_;
     std::unique_ptr<GameData> game_;

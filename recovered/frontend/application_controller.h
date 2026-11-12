@@ -12,6 +12,18 @@
 
 namespace hd2::frontend {
 
+struct WritableControllerInput {std::uint32_t* first;std::uint32_t* second;};
+//Kind1 consumes bindings in the SAME mutable process vectors exposed by
+//006C72B0. Recover writable provenance from their owner, never a const_cast of
+//an arbitrary ApplicationState input argument. No copy/re-poll changes order.
+inline WritableControllerInput writable_controller_input(
+        std::vector<std::uint32_t>& first,std::vector<std::uint32_t>& second,
+        const std::uint32_t* first_view,const std::uint32_t* second_view){
+    if(first.size()<64||second.size()<64||first_view!=first.data()||second_view!=second.data())
+        throw std::invalid_argument("Game input requires the actual two mutable64-word controller views");
+    return {first.data(),second.data()};
+}
+
 // 006c72b0: expose the selected vector's begin pointer without consuming it.
 // An empty vector leaves the caller's output untouched; only the low mode bit
 // selects the second buffer. Native storage replaces the original vector ABI.
@@ -47,6 +59,11 @@ public:
     ApplicationController& operator=(const ApplicationController&) = delete;
 
     State* active() const { return active_.get(); }
+    //Native controller04, initialized0 by006C0750.0069A560 writes2/3
+    //for deferred save/load requests; this is NOT active-state status04,
+    //pending virtual28, phase28, or immediate activation/save success.
+    std::uint32_t requested_application_state()const noexcept{return requested_application_state_;}
+    void request_application_state(std::uint32_t value)noexcept{requested_application_state_=value;}
     void install(std::unique_ptr<State> state) { active_ = std::move(state); }
     std::unique_ptr<State> detach() { return std::move(active_); }
     std::uint32_t phase() const { return phase_; }
@@ -257,6 +274,7 @@ private:
     }
     Services& services_;
     std::unique_ptr<State> active_, retained_;
+    std::uint32_t requested_application_state_=0;
     std::uint32_t accumulated_time_ = 0, delay_ = 0, phase_ = 0, random_seed_ = 0;
     bool reinitialize_ = false, suspended_ = false;
 };

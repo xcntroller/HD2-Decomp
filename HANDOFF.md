@@ -1,61 +1,57 @@
-# Merged UI / RENDER wiring handoff —2026-11-12
+# P22-OWN handoff —2026-11-12
 
-Use `/home/control/Documents/Projects/HD2-Decomp-p22-render`, feature/p22-render.
-Current implementation base973b4f445240ab92df71f62200a71b25e48d8318 has exactly
-mastera820e7018a625dc8a31a314706ab2f4122e0f2d8's tree629d5e206ec501ee0a791f7108bc748e30dfe28c.
-User merged UI7a3f7b7 and RENDER345a390, then authorized completing wiring.
-No master/other checkout writes, reset, merge or push. Do not follow inherited
-HUM/master handoff as this worktree's task. No original/Windows execution.
+Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-own`, branch
+`feature/p22-own`. Fetched origin/master and actual base
+`fa94dee38922a21397289a7b5746819c83b42d89`. No master/other checkout changes,
+merge or push. No original/Windows execution or desktop acceptance.
 
-[Plan](analysis/p22-render-wiring-plan.md),
-[implementation](analysis/p22-render-wiring-implementation.md),
-[receipt](analysis/checkpoints/p22-render-wiring-20261112.json).
+[Plan](analysis/p22-own-plan.md),
+[implementation and exact dependencies](analysis/p22-own-implementation.md),
+[receipt](analysis/checkpoints/p22-own-20261112.json).
 
-**Merged UI/render and available application render wiring is complete.**
--004B5E40 modal cleanup now reaches actual same-World GEffects through UI's
- bound GameRenderStages; Human/order source no longer implements render cleanup.
- Its genuine gameplay/camera/Sight/realtime operations remain required.
-- Actual GameUiSceneCallbacks binds the UI render loan before engine publication,
- rejects wrong World/duplicates and retires via callback token. Old destruction
- cannot retract a replacement; stale dispatch rejects before touching resources.
- Adapter source is in game_ui_scene_callbacks.h, instantiated with actual UI.
-- Existing lifecycle owns UI/render/callback; engine stop/unbind precedes callback
- loan retirement, then render and World/resource destruction. Lifecycle Scene
- entry also verifies its exact owned dispatcher is still installed.
-- GameApplicationState::render now uses original0069B870 mode/config170 policy
- and actual bound Scene78. Scene checks registered/active/borrowed presentation;
- missing/suspended dispatch fails. session_owner() exposes SAME existing parent
- for OWN composition with its backend and status_storage alias, not a new owner.
- No simulation or graphics-present work moved into render. DATA policy/Scene
- observations remain separate; actual RET00724CB0 remains a no-op.
+Available OWN application composition is implemented; **overall OWN is blocked**.
+- Real kind7 factory installs one existing lifecycle/World over SAME parent,
+  status_storage/request/live squad/Startup/device/catalogue and existing clock.
+  Actual006989B0 ->006CA780 replaces the unconditional failed-load lambda.
+- Real UI/RENDER presentation/callback binding, application render forwarding,
+  DATA operation/population observation, primary failure/cleanup-secondary,
+  retry and graph-before-parent teardown. Final destructor retracts game views.
+- Input resolves mutable64-word SAME process vectors without const cast/copy;
+  input/fixed/update forward to the owned boundary but concrete FRAME is absent.
+- Available current controller identity/deferred controller04 request,
+  original0067FAA0 mission save predicate, initialized mode04 saved-state query,
+  actual localized warning ->same HUD/console, persistent item suffix and clock.
+  Mode04 is008AE924+4, NOT GameData/application04 or a descriptor pointer.
+- Actual activation success still throws the explicit missing-FRAME failure,
+  then closes. No successful placeholder coordinator/HUD/producer is installed.
 
-Native ASan/UBSan/LSan PASS100 loan/callback/stage/special-effect families and
-100 actual GameScene registration/rollback/replacement/admission/Scene78/policy
-families. UI/World/engine/platform endpoints are labelled doubles. Actual host UI/
-render/application/lifecycle compile+link i386 and existing application build PASS;
-Windows outputs never run. Defined throwing gameplay modal double has NO render
-cleanup method; actual stages supply it. Temporary audits/stubs fingerprinted/
-removed. Ledger evidence links only, zero new credit/promotions/count changes.
-Full tracker retains unrelated missing legacy0062D880 WORK evidence limitation.
+Native ASan/UBSan/LSan PASS100 ownership/alias/prefix/failure/retirement/retry/
+input provenance/controller04/receiver fallback/objective/warning families;
+World/engine/FRAME/application/parent doubles explicitly labelled. Strict actual
+O0 i386 concrete application/World/loading/activation/UI/render/callback/lifecycle
+link and existing application build compile/link only; final hashes in receipt.
+Only0067FAA0 adds one frozen partial. Base ledger already3,004 partial vs stale
+README2,997; now34 complete/3,005 partial. No complete promotion/denominator change.
+Full tracker still has unrelated missing0062D880 ignored evidence; focused frozen
+fingerprint/baseline/uniqueness/changed evidence checks pass. No fabricated proof.
 
-**Exact next dependencies; no successful activation was enabled:**
-1. FRAMEc36bba8 is NOT merged into this base; game_session_frames.h is absent.
-   Import that owning branch before input/fixed/update integration; do not copy
-   another coordinator. Preserve frame_retirement_started_/retire_frames BEFORE
-   this Scene/callback/render retirement when reconciling lifecycle changes.
-2. OWN installs/owns ONE actual lifecycle and activation state under the application
-   (using session_owner(), parent.backend(), status_storage()), completes genuine
-   loading/activation and controller/cutscene services, then forwards updates/input.
-   Application.initialize still declines; input/fixed_update/update still reject.
-3. FRAME requires mutable original64-word input views; current ApplicationState
-   interface uses const sampled views. Resolve writable controller provenance;
-   do not cast arbitrary read-only storage merely to satisfy types.
-4. Real Human order/path/presentation/selection/Sight/realtime/occupied and PACK
-   producers remain typed UI/Runtime requirements. Interface presence does not
-   prove all callees are missing or that every branch is reached in Tutorial.
-5. Actual loaded populations, engine draw/present and user mission/failure/return/
-   repeat acceptance remain unobserved. No desktop or mission-reachability claim.
-
-RENDER-owned source completion and actual allocation-dependent history from
-345a390 remain preserved. Further full-loop wiring follows the owning FRAME/OWN
-imports/contracts; no remaining merged UI/render cleanup seam is left open.
+Exact next work:
+1. Import FRAMEc36bba8 through user merge workflow. Reconcile its lifecycle with
+   current callbacks; retire_frames/frame_retirement_started BEFORE Scene suspend,
+   UI/render loan retirement or World close. Supply actual GameSessionFrames and
+   its mandatory Runtime; do not copy another coordinator into OWN.
+2. Finish same-World GameSessionFrameExternal with actual UI source producers.
+   HUD input filter0049FC10 and predicates0049F090/0049D300 need UI-owned
+   accessors/state mapping; advance_hud/controls/FPV already exist on merged UI.
+   Current-state/request/save predicate/saved-mode query/warnings are now ready.
+3. P22-FRAME/Script module4 cutscene00423EB0 needs positive camera828/82C/830/834 and
+   frame868/87C/88C owners/producers. Current module's private zeroed824 array
+   lacks this graph. Original929-byte containing body is inspected; do not
+   substitute a flag reset. This OWN integration body remains explicitly open.
+4. Required positive HUM/Player/Items/Dog/Sight/PACK Runtime services remain with
+   their owning parts. Latest inspected HUMb99f088 has Car event source and exact
+   fresh-part5F9/wheel695 source guards; no fixture seeding or guessed defaults.
+   Source presence/contract count does not prove reachability in Tutorial.
+5. Only remove final activation/FRAME guards after these real bindings; then
+   authorized actual mission/resource/frame/present/failure/return/repeat and
+   user desktop acceptance. No further independently available OWN slice selected.

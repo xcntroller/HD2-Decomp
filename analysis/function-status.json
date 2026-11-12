@@ -1596,8 +1596,8 @@
       "program": "client",
       "entry": "006c0ef0",
       "status": "partial",
-      "coverage": "Null-descriptor branch shutdown and fresh-owner release, construction/installation before initialize(nullptr); ignore initializer result. Kind7 now copies the actual mission/squad/equipment, installs type1 before initialization, constructs real native subowners/engine scene, and releases them before the controlled incomplete-loader error UI/Main return.",
-      "limitations": "Native ownership/storage/allocator/SEH ABI remains partial. Game construction/failure path is integrated and native-audited, pending user desktop confirmation; real006CA780 loading, live shutdown/gameplay/save/server/status9 receivers remain unavailable. Preserve other documented console/menu/video/network exclusions; engine/OS/CRT bodies stay delegated.",
+      "coverage": "Null-descriptor branch shutdown and fresh-owner release, construction/installation before initialize(nullptr); ignore initializer result. Kind7 now copies the actual mission/squad/equipment, installs type1 before initialization, constructs real native subowners/engine scene, and releases them before the controlled incomplete-loader error UI/Main return. Kind7 now supplies a mandatory concrete application-session factory and invokes real lifecycle activation; missing FRAME and reached source failures remain explicit, with World retirement before parent/error UI.",
+      "limitations": "Native ownership/storage/allocator/SEH ABI remains partial. Actual loading/lifecycle is now source-bound at kind7, but successful admission requires unmerged FRAME plus genuine Runtime/UI/Script producers. Existing unloaded construction desktop acceptance does not establish loaded mission execution. Gameplay/save/server/wider status9 receivers and documented console/menu/video/network exclusions remain; engine/OS/CRT bodies stay delegated.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
@@ -1610,7 +1610,10 @@
         "analysis/game-owner-integration.json",
         "analysis/game-owner-integration-map.json",
         "recovered/game/receive_request.h",
-        "recovered/host/game_owner.h"
+        "recovered/host/game_owner.h",
+        "analysis/p22-own-implementation.md",
+        "recovered/game/application_mission.h",
+        "recovered/host/game_application_session.h"
       ]
     },
     {
@@ -8246,7 +8249,7 @@
       "entry": "00698510",
       "status": "partial",
       "coverage": "Concrete native HUD/text/table factories, real scene/callback/viewport setup, owned selected-mission request and late global publication now integrated at kind7. SessionOwner borrows the persistent application live squad; the request stays metadata and GameApplicationState.live_squad returns that SAME mutable vector.",
-      "limitations": "Unloaded constructor/error return user-accepted2026-11-03. Native object/allocator/SEH ABI differs; activation/real loading and live shutdown/simulation remain unavailable. No successful world/audio listener.",
+      "limitations": "Unloaded constructor/error return user-accepted2026-11-03. Native object/allocator/SEH ABI differs. Existing lifecycle/loading now composes over this SAME parent under the actual application; final FRAME/Script/positive Runtime bindings still guard successful admission. No executed loaded mission, world/audio listener or simulation/desktop claim.",
       "evidence": [
         "recovered/game/session_owner.h",
         "analysis/game-owner-start.md",
@@ -8257,7 +8260,10 @@
         "analysis/game-owner-integration-map.json",
         "recovered/host/game_owner.h",
         "recovered/game/table_storage.h",
-        "analysis/live-squad-session-ownership.md"
+        "analysis/live-squad-session-ownership.md",
+        "analysis/p22-own-implementation.md",
+        "recovered/game/application_mission.h",
+        "recovered/host/game_application_session.h"
       ]
     },
     {
@@ -8600,8 +8606,8 @@
       "program": "client",
       "entry": "006989b0",
       "status": "partial",
-      "coverage": "Installed unloaded application owner still declines activation. Callable offline activation over the SAME World/request/live squad now records entered/completed resource, light, face, authority/presentation module, HUD/FPV, spawn, dubbing and text prefixes without changing original loaded14/status5 publication. Concrete GameSessionLifecycle supplies rollback, graphics restoration (preserving primary errors), cleanup diagnostics and actual process finalizer. Actual Steam77/13/5 calls now bind descriptor actions, underlying APIs and distinct observation publication.",
-      "limitations": "Source-only offline7 typed/STL/RAII reconstruction and explicit lifetime guards, not native allocator/SEH/object ABI equivalence. Actual application loading and full frame/render/guard/positive Human/UI producers remain separate; native engine/archive/clock endpoints are doubles. Strict actual i386 composition is compile/link only; no mission desktop acceptance. Steam source composition only; retail validation is explicitly skipped as in the supplied executable, not credited. No application/engine/desktop execution.",
+      "coverage": "Actual installed application now owns one concrete lifecycle over the SAME parent/status/request/live squad/process/clock and invokes the existing006989B0 ->006CA780 composition. Original loaded14/status5 and entered/completed activation prefix/rollback policies remain. UI/RENDER callbacks bind before activation; missing FRAME still fails explicitly before successful application admission. Primary initialization errors survive cleanup errors, and actual graphs retire before parent destruction. Steam77/13/5 continue using actual descriptor/actions and process observations.",
+      "limitations": "Source-only offline7 typed/STL/RAII reconstruction and explicit lifetime guards, not native allocator/SEH/object ABI equivalence. Final FRAME external/runtime installation and actual Script cutscene/positive gameplay producers remain blocked; no successful application activation or engine/desktop execution. Native ownership audit uses labelled World/engine/FRAME/application doubles; actual Windows application/World/lifecycle/UI/render compiles and links only. Steam target source remains selected; dormant retail validation is not credited.",
       "evidence": [
         "recovered/host/game_owner.h",
         "analysis/game-owner-integration.md",
@@ -8619,7 +8625,10 @@
         "analysis/checkpoints/p22-life-20261111.json",
         "analysis/p22-guard-implementation.md",
         "analysis/checkpoints/p22-guard-steam-20261111.json",
-        "recovered/game/steam_integrity_calls.h"
+        "recovered/game/steam_integrity_calls.h",
+        "analysis/p22-own-implementation.md",
+        "recovered/game/application_mission.h",
+        "recovered/host/game_application_session.h"
       ]
     },
     {
@@ -18244,7 +18253,10 @@
         "analysis/checkpoints/p22-life-20261111.json",
         "analysis/p22-guard-implementation.md",
         "analysis/checkpoints/p22-guard-steam-20261111.json",
-        "recovered/game/steam_integrity_calls.h"
+        "recovered/game/steam_integrity_calls.h",
+        "analysis/p22-own-implementation.md",
+        "recovered/game/application_mission.h",
+        "recovered/host/game_application_session.h"
       ]
     },
     {
@@ -34348,13 +34360,16 @@
       "program": "client",
       "entry": "0069bf70",
       "status": "partial",
-      "coverage": "Reached actual damage/game zero-argument formatting, rank fixed string formatting, actual rendered HUD or nonrender process console publication.",
+      "coverage": "Reached actual damage/game zero-argument formatting, rank fixed string formatting, actual rendered HUD or nonrender process console publication. OWN session warnings now preserve the2536 zero-INT first pass and existing no-argument second pass, then actual SAME HUD or console publication.",
       "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
       "evidence": [
         "recovered/game/human_world_loading_services.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
-        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json",
+        "recovered/game/session_warning.h",
+        "recovered/host/game_application_session.h",
+        "analysis/p22-own-implementation.md"
       ]
     },
     {
@@ -40594,6 +40609,18 @@
         "recovered/host/game_actor_frames.h",
         "analysis/p22-render-implementation.md",
         "analysis/checkpoints/p22-render-bindings-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067faa0",
+      "status": "partial",
+      "coverage": "Mission objective save/input predicate: fresh forward scans return false for empty/all4 or any0 objective34, true otherwise. Application query reads the SAME retained missionA8 descriptor.",
+      "limitations": "Typed descriptor/STL layout and explicit malformed-pointer guard replace native thiscall/vector/raw-pointer ABI. Native ASan/UBSan/LSan audits cover populated states and failure; actual host application/lifecycle i386 composition is compile/link only. No save producer, mission runtime or desktop acceptance.",
+      "evidence": [
+        "recovered/game/mission_save_predicate.h",
+        "recovered/host/game_owner.h",
+        "analysis/p22-own-implementation.md"
       ]
     }
   ]

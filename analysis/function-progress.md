@@ -223,3 +223,10 @@ and P22-UI closure remain open.
 General HUD control continuation adds15 frozen client partials:34 complete,
 2,611 partial (2,606 client/five engine). [Receipt](checkpoints/p22-ui-general-controls-20261111.json).
 Conditional presentation, actual Human producers and P22-UI closure remain open.
+
+P22-OWN adds0067FAA0 as one frozen client partial (objective save predicate);
+application ownership/bindings and initialized scalar access earn no other new
+body credit. Totals:34 complete/3,005 partial (3,000 client/five engine).
+The inherited README bar was stale at2,997; base ledger already had3,004
+partials. OWN adds one, not eight; the bar now reflects the actual ledger.
+[OWN implementation](p22-own-implementation.md); no successful mission/desktop claim.

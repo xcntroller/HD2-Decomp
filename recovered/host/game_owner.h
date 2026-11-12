@@ -5,6 +5,9 @@
 #include "host/borrowed_input.h"
 #include "game/session_owner.h"
 #include "game/session_activation.h"
+#include "game/application_mission.h"
+#include "game/mission_save_predicate.h"
+#include <functional>
 #include "game/mission_scene_activation.h"
 #include "game/prepared_human_spawn.h"
 #include "game/prepared_human_clothing.h"
@@ -227,21 +230,30 @@ private:
 };
 
 // Kind7's actual type1 game owner,00698510/006987E0, installed by the controller.
-// Construction/teardown are available. Activation006989B0 still cannot succeed:
-// P2.2 supplies its real006CA780 loader and post-load systems. Do not report this
-// constructed scene as a loaded world or render it with a substitute camera.
+//The containing launch factory supplies the actual lifecycle over this SAME
+//parent. Construction alone never publishes loaded14 or native status5.
 class GameApplicationState final : public frontend::ApplicationState, public GameSceneCallbacks {
 public:
     using Owner = game::SessionOwner<GameOwnerBackend>;
+    using SessionFactory=std::function<std::unique_ptr<game::ApplicationMissionSession>(GameApplicationState&)>;
     GameApplicationState(StartupSession& startup, MenuDriver& driver, HMODULE module,
-                         Graphics& graphics, game::MissionRequest request)
+                         Graphics& graphics, game::MissionRequest request,SessionFactory factory)
         : frontend::ApplicationState(1), startup_(startup), graphics_(graphics),
           backend_(startup, driver, module, graphics, *this),
-          request_(std::move(request)) {}
-    ~GameApplicationState() override { shutdown(); }
-    const frontend::GameDataNode* mission_descriptor() const { return request_.mission.get(); }
+          request_(std::move(request)),factory_(std::move(factory)),mission_(status_storage()) {
+        if(!factory_)throw std::invalid_argument("Game application requires its concrete session factory");
+    }
+    ~GameApplicationState() override {
+        try{shutdown();}catch(const std::exception& e){std::fprintf(stderr,"Game application cleanup failed: %s\n",e.what());}
+        catch(...){std::fputs("Game application cleanup failed with a nonstandard exception\n",stderr);}
+        //Explicit shutdown retains views/graph for retry on failure. Final
+        //destruction cannot retain an application borrower to dying storage.
+        //World/parent RAII still unwind in member order after this retraction.
+        startup_.game_views().unbind(this);
+    }
+    const frontend::GameDataNode* mission_descriptor() const { return owner_?owner_->request().mission.get():request_.mission.get(); }
     bool initialize(const void* descriptor) override {
-        if (!descriptor || descriptor != request_.mission.get())
+        if (!descriptor || descriptor != mission_descriptor())
             throw std::logic_error("Game initializer requires its owned mission descriptor");
         if (owner_ || attempted_) throw std::logic_error("Game initialization repeated");
         attempted_ = true;
@@ -253,15 +265,19 @@ public:
                 owner_->request().preparation.mission_resource.c_str(),
                 owner_->live_squad().size(), owner_->hud()->text_owners().size(),
                 static_cast<void*>(owner_->scene()->frame()), status());
-            // Preserve006989B0's graphics-flags restoration on a failed load.
-            game::with_activation_flags(*this, [] { return false; });
-            failure_ = "Mission loading is not implemented in this build.";
-            std::puts("Game activation declined:006CA780 loading pipeline is unavailable; graphics flags restored; loaded=0");
+            mission_.install(factory_(*this));
+            if(mission_.activate())return true; //Only actual006989B0 may publish loaded14/status5.
+            failure_ = "Mission activation returned failure.";
         } catch (const std::exception& error) {
-            failure_ = error.what();
+            initialization_failure_=std::current_exception();
+            try{failure_ = error.what();}catch(...){std::rethrow_exception(initialization_failure_);}
             std::fprintf(stderr, "Game owner initialization failed: %s\n", failure_.c_str());
+        } catch (...) {
+            initialization_failure_=std::current_exception();
+            try{failure_="Mission initialization failed with a nonstandard exception.";}
+            catch(...){std::rethrow_exception(initialization_failure_);}
         }
-        return false; //006989B0 zero=failure; never set running/status5 here.
+        return false;
     }
     const std::string& failure() const { return failure_; }
     Owner& session_owner(){
@@ -269,13 +285,32 @@ public:
         return *owner_; //OWN composes over this SAME parent, never a replacement owner.
     }
     void shutdown() override {
+        mission_.close_preserving(initialization_failure_); //World BEFORE parent/views/status; primary wins.
         startup_.game_views().unbind(this);
         owner_.reset();
         status(0);
     }
     std::uint32_t dispatch_game_scene(std::uint32_t stage) override {
-        return game::scene_callback(stage, *this);
+        return mission_.dispatch_scene(stage);
     }
+    auto& activation_state()noexcept{return mission_.state();}
+    bool mission_save_blocked(){
+        const auto* mission=mission_.state().mission;
+        if(!mission)throw std::logic_error("Mission save query requires its actual retained descriptorA8");
+        return game::mission_save_blocked(*mission);
+    }
+    bool application_saved_state_present(){return startup_.game_mode_field4()!=0;}
+    void show_session_warning(std::uint32_t caption,bool zero_argument){mission_.show_session_warning(caption,zero_argument);}
+    template<class Controller>bool is_current_application_state(const Controller& controller)const noexcept{
+        return controller.active()==this; //Original controller14 identity, not a type-only check.
+    }
+    template<class Controller>void request_application_state(Controller& controller,std::uint32_t value){
+        if(!is_current_application_state(controller))
+            throw std::logic_error("Session request requires its actual current application state");
+        controller.request_application_state(value); //Deferred native controller04; no successful save/load implied.
+    }
+    std::exception_ptr initialization_failure()const noexcept{return initialization_failure_;}
+    std::exception_ptr cleanup_failure()const noexcept{return mission_.cleanup_failure();}
     std::uint32_t activation_flags() const {
         const auto* settings = graphics_.methods->settings(&graphics_);
         if (!settings) throw std::runtime_error("Mission graphics settings are unavailable");
@@ -321,12 +356,15 @@ public:
         if (owner_->text()->drawable(startup_.profile_settings().bytes[0x3a] != 0)) require_world();
         //0048F390's actual disabled/missing-renderer branch requires no draw.
     }
-    void input(const std::uint32_t*, const std::uint32_t*) override { require_world(); }
-    void fixed_update(std::uint32_t) override { require_world(); }
-    void update(std::uint32_t) override { require_world(); }
+    void input(const std::uint32_t* first, const std::uint32_t* second) override {
+        auto& input=startup_.presentation_input_bindings();
+        const auto views=frontend::writable_controller_input(input.first,input.second,first,second);
+        mission_.input(views.first,views.second);
+    }
+    void fixed_update(std::uint32_t elapsed) override { mission_.fixed_update(elapsed); }
+    void update(std::uint32_t elapsed) override { mission_.update(elapsed); }
     void render() override {
-        (void)session_owner();
-        io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"0069B870 application render policy",[&]{game::render_session(*this);});
+        mission_.render(); //Actual lifecycle owns0069B870 and its bound Scene78.
     }
     bool external_loading_progress()const{return startup_.game_configuration().flag170!=0;}
     void render_actual_mission_scene(){
@@ -342,7 +380,10 @@ private:
     Graphics& graphics_;
     GameOwnerBackend backend_;
     game::MissionRequest request_;
+    SessionFactory factory_;
     std::unique_ptr<Owner> owner_;
+    game::ApplicationMission mission_; //Destroyed BEFORE owner_ on every prefix.
+    std::exception_ptr initialization_failure_;
     std::string failure_;
     bool attempted_ = false;
 };
