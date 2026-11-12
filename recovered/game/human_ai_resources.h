@@ -121,6 +121,11 @@ public:
         if(std::abs(static_cast<long double>(speed))>9.99999993922529e-9){clear_flags(4);set_flags(1);state_.set(0x50,destination);state_.set(0x60,0x7fc00000u);state_.set(0x8c,speed);}
         else set_flags(4);
     }
+    void request_vehicle_segment(const HumanVector& destination,const HumanVector& next,float speed){ //0055E1D0.
+        if(std::abs(static_cast<long double>(speed))>9.99999993922529e-9){
+            clear_flags(4);set_flags(1);state_.set(0x50,destination);state_.set(0x60,next);state_.set(0x8c,speed);
+        }else set_flags(4);
+    }
     template<class Restore>void stop_vehicle(Restore&& restore){if(vehicle_)restore(vehicle_);set_flags(4);} //0055E250.
 
     void stop_loading() { //0055E250 on the SAME typed74 borrower.
@@ -195,6 +200,9 @@ public:
     void current_action(HumanAIAction3Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction5Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction6Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction7Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction8Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction12Pool::Lease value){current_action_=std::move(value);}
     template<class Pool>auto* current_action_as()const{
         const auto* lease=std::get_if<typename Pool::Lease>(&current_action_);
         return lease?lease->get():nullptr;
@@ -242,7 +250,8 @@ private:
     std::vector<HumanAINavigationJobPool::Lease> jobs_; //NativeF8.
     HumanAINavigationJobPool::Lease current_job_{nullptr,HumanAINavigationJobPool::Return{}}; //Native104.
     std::variant<std::monostate,HumanAIAction1Pool::Lease,HumanAIAction2Pool::Lease,
-        HumanAIAction3Pool::Lease,HumanAIAction5Pool::Lease,HumanAIAction6Pool::Lease> current_action_;
+        HumanAIAction3Pool::Lease,HumanAIAction5Pool::Lease,HumanAIAction6Pool::Lease,
+        HumanAIAction7Pool::Lease,HumanAIAction8Pool::Lease,HumanAIAction12Pool::Lease> current_action_;
 };
 } //namespace hd2::game
 #endif

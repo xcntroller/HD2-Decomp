@@ -5,6 +5,7 @@
 #include <optional>
 #include "game/human_active_ai_grenade.h"
 #include "game/human_active_ai_presentation.h"
+#include "game/human_active_ai_order_action.h"
 
 namespace hd2::game {
 
@@ -18,7 +19,7 @@ public:
     void sight_enemy_killed(Human&)override{} //005A4350, genuine RET4 Active AI, absent frozen.
     using AI=HumanAIStateLoading<Frames,Human,Inputs>;using Base=typename AI::Base;
     HumanActiveAIStateLoading(Frames& frames,Inputs& inputs,MissionTableSet& second,
-            HumanInputCallbacks& callbacks,HumanAIAction1Pool& actions,Services& services)
+            HumanInputCallbacks& callbacks,HumanAIActionPools& actions,Services& services)
         :AI(frames,inputs,second,callbacks,3),actions_(actions),services_(services) {
         for(auto offset:{0x204u,0x209u})state_.set(offset,std::uint8_t{0});
         for(auto offset:{0x202u,0x206u})state_.set(offset,std::uint8_t{1});
@@ -69,7 +70,7 @@ public:
         reset_action();state_.set(0x184,std::int32_t{-1}); //0052A3B0(NULL).
         const auto matrix=this->state_frames().actor_world_matrix(human.base().frame());
         const HumanVector position{{matrix[12],matrix[13],matrix[14],matrix[15]}};
-        this->resources().current_action(actions_.acquire(position,0xffff,15.f,this->target_direction()));
+        this->resources().current_action(actions_.kind1.acquire(position,0xffff,15.f,this->target_direction()));
         state_.set(0x19c,std::uint32_t{0});state_.set(0x198,std::uint32_t{0});refresh_action_mode();
         control.look_command(0,nullptr);
     }
@@ -102,6 +103,9 @@ public:
     }
     void advance_active_presentation(std::uint32_t elapsed){
         present_human_active_ai(*this,elapsed,this->state_frames(),services_);
+    }
+    template<class Order,class Orders>void activate_pending_order(const Order& order,const Orders& pending){
+        activate_human_ai_order(*this,order,pending,actions_,this->state_frames(),services_);
     }
     std::uint32_t derived_loading_word(unsigned offset)const override {
         if(offset!=0x174&&offset!=0x1d8)throw std::runtime_error("Unrecovered active AI handover word");
@@ -229,7 +233,7 @@ private:
             throw std::runtime_error("Special-hand check requires actual Human inventory owner");
         return human->loading_inventory->special_hand_item(this->item());
     }
-    HumanAIAction1Pool& actions_;Services& services_;HumanJointWords<0x260> state_;std::optional<std::uint32_t> action_mode_;
+    HumanAIActionPools& actions_;Services& services_;HumanJointWords<0x260> state_;std::optional<std::uint32_t> action_mode_;
 };
 } //namespace hd2::game
 #endif

@@ -13444,13 +13444,15 @@
       "program": "client",
       "entry": "00582030",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00582030: Kind1 portion of shared AI action pool, growth, initial record acquisition and release.",
+      "coverage": "P2.2 source reconstruction at original entry 00582030: Kind1 portion of shared AI action pool, growth, initial record acquisition and release. H8 adds SAME process current-action7/8/12 pools, native per-kind acquire fields and actual F0 variant retirement/ageing; pending-order manager+18 remains separate and required.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ai_action_pool.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
       ]
     },
     {
@@ -13483,7 +13485,7 @@
       "program": "client",
       "entry": "00582c50",
       "status": "partial",
-      "coverage": "Return the typed kind 1, 2 and 3 action leases to their matching shared process pools.",
+      "coverage": "Return the typed kind 1, 2 and 3 action leases to their matching shared process pools. H8 adds SAME process current-action7/8/12 pools, native per-kind acquire fields and actual F0 variant retirement/ageing; pending-order manager+18 remains separate and required.",
       "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage. Additional action families still require their actual owners.",
       "evidence": [
         "recovered/game/human_ai_action_pool.h",
@@ -13492,7 +13494,9 @@
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
-        "recovered/game/human_ai_resources.h"
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
       ]
     },
     {
@@ -13830,7 +13834,7 @@
       "program": "client",
       "entry": "00575820",
       "status": "partial",
-      "coverage": "Return and clear typed kind 1, 2 and 3 current actions. Guard returns its kind 2 event clone before this receiver.",
+      "coverage": "Return and clear typed kind 1, 2 and 3 current actions. Guard returns its kind 2 event clone before this receiver. H8 adds SAME process current-action7/8/12 pools, native per-kind acquire fields and actual F0 variant retirement/ageing; pending-order manager+18 remains separate and required.",
       "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage. Additional action families still require their actual owners.",
       "evidence": [
         "recovered/game/human_ai_resources.h",
@@ -13838,7 +13842,10 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json"
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_action_pool.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
       ]
     },
     {
@@ -45242,6 +45249,140 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-active-presentation-source.md",
         "analysis/checkpoints/p2.2-human-h8-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052a1e0",
+      "status": "partial",
+      "coverage": "Actual Active order-to-current-action transition: virtual10C retirement before174 bit2 clear; kinds1/2/4 acquire distinct7/12/8; driver path borrower, next-kind1 lookahead and native fresh target matrix read/publication order.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_order_action.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e1d0",
+      "status": "partial",
+      "coverage": "Actual vehicle-path segment request: strict fabs speed/DOUBLE threshold, clear4/set1 before destination/next vector and signed speed stores; zero/NaN stop4 without overwriting endpoints.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00582920",
+      "status": "partial",
+      "coverage": "Acquire shared current-action12 from manager+168; copy direction20 and separate actor30 borrower, preserving mode/age/lifetime and unwritten words.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_action_pool.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00582ad0",
+      "status": "partial",
+      "coverage": "Acquire shared current-action7 from manager+F0; copy complete position20/direction30 and retain existing mode/age/lifetime.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_action_pool.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00582b50",
+      "status": "partial",
+      "coverage": "Acquire shared current-action8 from manager+108; bind actor14 and clear18/1C while retaining mode/age/lifetime.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_action_pool.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058b2c0",
+      "status": "partial",
+      "coverage": "Eager16 and mutable-batch growth for distinct current-action12 manager+168, native kind12 and mode/age/lifetime initialization.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_action_pool.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058ac90",
+      "status": "partial",
+      "coverage": "Eager16 and mutable-batch growth for distinct current-action7 manager+F0, native kind7 and mode/age/lifetime initialization.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_action_pool.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058ade0",
+      "status": "partial",
+      "coverage": "Eager16 and mutable-batch growth for distinct current-action8 manager+108, native kind8 and mode/age/lifetime initialization.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_action_pool.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004b9240",
+      "status": "partial",
+      "coverage": "Actual HUD command owner748/750 marker model acquire/copy/reuse, fresh material setup, native texture/default priority and8000 creation carry, selector then hidden model update; missing template returns NULL.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_order_marker.h",
+        "recovered/game/hud_command_loading.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004b9b10",
+      "status": "partial",
+      "coverage": "Update actual order marker command/pose/movement/stance textures with native defaults and null replacement differences, fresh per-visual update sequence then hidden model update.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_order_marker.h",
+        "recovered/game/hud_command_loading.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004b9080",
+      "status": "partial",
+      "coverage": "Hide actual checked-out order model before transferring ownership to existing HUD command750 free-model vector; pool released on actual panel close.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual action/resources/path and HUD marker owners verified under native sanitizers with stated endpoint doubles; actual whole World Human/Active/HUD i386 link only. Pending-order producer/collision descriptor/lifecycle, remaining decisions/authority, actual application/engine and desktop acceptance remain required. No original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_command_loading.h",
+        "analysis/human-h8-order-action-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
       ]
     }
   ]

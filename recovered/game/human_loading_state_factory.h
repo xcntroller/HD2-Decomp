@@ -43,7 +43,7 @@ public:
         std::unique_ptr<Base> result;
         switch(kind) {
         case 1:{auto player=std::make_unique<Player>(frames_,inputs_,callbacks_);player->bind_sight_services(services_);result=std::move(player);break;}
-        case 3:result=std::make_unique<Active>(frames_,inputs_,second_,callbacks_,actions_.kind1,services_);break;
+        case 3:result=std::make_unique<Active>(frames_,inputs_,second_,callbacks_,actions_,services_);break;
         case 4:result=std::make_unique<Guard>(frames_,inputs_,second_,callbacks_,actions_,random_,contexts_);break;
         case 5:result=std::make_unique<Script>(frames_,inputs_,second_,callbacks_,contexts_);break;
         case 6:result=std::make_unique<Passive>(frames_,inputs_,second_,callbacks_);break;

@@ -47,6 +47,21 @@ WORK, indexed first. None of these newly exported bodies is implemented or
 credited by H8.1. Complete the task/event/command producer and retirement owners
 rather than replacing this path with an idle success. Presentation00525DA0 and Car camera004D9E10 are now [source-bound and verified](human-h8-active-presentation-source.md); authority00526550 is still required. Its order/task/command dependencies remain the current implementation frontier.
 
+[Order action/marker checkpoint](human-h8-order-action-source.md) adds actual
+current-action7/8/**12** pools,0052A1E0 driver lookahead and existing HUD marker
+model acquisition/update/return. These APIs do not yet produce native orders.
+The next boundary is manager+18 order construction/marker EC/dynamic collision
+registration and retirement, then005282E0/00529F60 decisions.00582920 creates
+current-action12, not4; native order kind4 remains a different family.
+
+| Required Active dependency | Source state |
+| --- | --- |
+| Presentation00525DA0, Car camera004D9E10 | Bound/verified |
+| Order-to-action0052A1E0; shared action7/8/12; HUD marker004B9240/9B10/9080 | Implemented/verified on actual owners; order producer still required |
+| Order005825C0/0058C5A0, marker EC/collision,0058D6C0/0058C8E0/00582640, Active list insert/update/remove/reset | Next required implementation boundary |
+|005282E0/00529F60 pending processing,00528950 decisions,00536120 follow | Exported/raw evidence; mandatory before navigation |
+| Navigation/aim,0052B810 movement,005276E0 decisions,005325C0 output, command retirement/self-treatment | Reuse existing AI cores, complete Active policy and reached commands |
+
 ## Initial original-call map
 
 | Caller | Required boundary / existing source | Immediate remaining work |

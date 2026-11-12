@@ -5,6 +5,7 @@
 #include "game/hud_command_frame.h"
 #include "game/hud_command_input.h"
 #include "game/hud_command_highlights.h"
+#include "game/hud_order_marker.h"
 #include "frontend/cleanup.h"
 #include <array>
 #include <cstdio>
@@ -124,6 +125,24 @@ public:
         }
     }
     std::uint32_t speed_kind()const{return speed_kind_;}Frame model()const{return model_?model_->get():Frame{};}
+    template<class Order>std::optional<Owner> acquire_order_marker(Order& order){ //004B9240, SAME750 pool.
+        if(!model_)return std::nullopt; //Native missing748 returns NULL before any lookup/default flags.
+        std::optional<Owner> result;const bool fresh=route_models_.empty();
+        if(fresh){
+            result.emplace(frames_.create_hud_info_model());
+            if(!result->get())throw std::runtime_error("Order marker model factory returned null");
+            frames_.copy_hud_order_model(result->get(),model_->get()); //Actual frame4C copy.
+        }else{result.emplace(std::move(route_models_.back()));route_models_.pop_back();}
+        present_order_marker(result->get(),order,true,fresh);return result;
+    }
+    template<class Order>void update_order_marker(Frame model,Order& order){ //004B9B10.
+        if(model_)present_order_marker(model,order,false,false);
+    }
+    void recycle_order_marker(Owner& model){ //004B9080: hide BEFORE appending to SAME750 vector.
+        if(!model)throw std::logic_error("Order marker return requires actual owner");
+        frames_.object_visible(model.get(),false);
+        route_models_.push_back(std::move(model));
+    }
     bool visible(){return border_&&frames_.hud_frame_visible(border_);} //004B6180 reads rootE0 bit1; null returns0.
     template<class Pointer>void update_hover_caption(Pointer& pointer){ //004B6280, elapsed argument is unused natively.
         require_bound();const auto tag=pointer.pointer_hit_tag();unsigned index=8;std::uint32_t id=0;
@@ -242,6 +261,12 @@ public:
         for(unsigned n=0;n!=8;++n)factory_.hud_draw_text(inline_text(n));
     }
 private:
+    template<class Order>void present_order_marker(Frame model,Order& order,bool creation,bool fresh){
+        const auto* first=static_cast<const std::array<Frame,20>*>(contexts_[1]);
+        const auto* actions=static_cast<const std::array<Frame,39>*>(contexts_[2]);
+        if(!first||!actions)throw std::logic_error("Order marker requires SAME HUD artwork borrowers");
+        present_hud_order_marker(frames_,model,order,creation,fresh,*first,*actions,textures_);
+    }
     void require_bound()const{if(!bound_)throw std::logic_error("HUD command operation before actual HUD/world binding");}
     void button_state(unsigned tag,bool enabled,bool click){ //004A8BD0.
         if(click)factory_.hud_click();auto& button=buttons_.at(tag-1);

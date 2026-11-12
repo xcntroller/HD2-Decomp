@@ -1206,6 +1206,9 @@ public:
     std::uint32_t hud_driver_state(std::uint32_t state)const{return driver_.render_state(state);}
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}
     MenuDriver::Owner create_hud_info_model(){return driver_.create(9);}
+    void copy_hud_order_model(Frame destination,Frame source){ //004B9240's frame4C, no extra template owner.
+        if(call<std::int32_t>(destination,0x4c,source)<0)throw std::runtime_error("Cannot copy required order marker model");
+    }
     MenuDriver::Owner create_shot_model(){return driver_.create(9);}
     MenuDriver::Owner create_shot_shell(Frame source){
         auto owner=driver_.create(0x5f4a424fu);if(!owner)throw std::runtime_error("Shell requires actual driver object");
