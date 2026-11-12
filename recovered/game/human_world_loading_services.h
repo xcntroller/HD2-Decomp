@@ -4,6 +4,9 @@
 #include "game/car_targeted_placement.h"
 #include "game/car_scene_actor.h"
 #include "game/first_person_human_items.h"
+#include "game/human_player_item_notification.h"
+#include "game/human_player_shot_direction.h"
+#include "game/human_hud_loading.h"
 
 #include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
@@ -1012,6 +1015,54 @@ public:
         return static_cast<std::uint32_t>(dependencies().startup.game_configuration().rules228[10])*1000u;
     }
     bool player_item_controls_available(){return dependencies().first_person.view().item_controls_available();}
+    std::int32_t player_mission_ordinal()const{return dependencies().session.words.template get<std::int32_t>(0x3c);}
+    bool player_recoil_disabled(){return dependencies().startup.game_console_variables().integer(6)!=0;} //00720B80(6).
+    bool player_zoom_enabled(){return dependencies().first_person.view().zoom_enabled();}
+    auto& player_item_sound_request(){return dependencies().startup.item_sound_request();}
+    template<class Human>std::int32_t player_shot_stamina(const Human& human){return human_hud_stamina_percent(human);}
+    void player_item_fpv_request(std::int32_t animation){dependencies().first_person.view().request(mode_flags(),animation,0);}
+    void player_item_reset_zoom(){dependencies().first_person.view().restore_game_zoom(mode_flags());}
+    template<class Player,class Item>void prepare_player_item_shot(Player& state,Item& item,HumanVector& position,HumanVector& direction){
+        if(human_view_offset_enabled()){position=human_projectile_position();direction=human_projectile_direction();return;}
+        auto& d=dependencies();auto shot=item.shot_frame();if(!shot)shot=item.model();else shot=item.shot_frame();
+        if(!shot)throw std::runtime_error("Player fire reached native missing muzzle/model frame");
+        const auto matrix=d.scene.frames().actor_world_matrix(shot);position={{matrix[12],matrix[13],matrix[14],matrix[15]}};
+        HumanVector camera{};
+        if(!d.camera.query_vector(0,camera))throw std::runtime_error("Player fire camera0 output has no native producer");
+        if(!d.camera.query_direction(1,direction))throw std::runtime_error("Player fire camera1 output has no native producer");
+        auto* human=state.human();if(!human)throw std::logic_error("Player shot query requires its actual Human");
+        const auto hit=[&]{
+            auto& owner=human_inline(*human);owner.exclude_query(false);
+            struct Restore{std::remove_reference_t<decltype(owner)>& owner;~Restore(){owner.restore_query(false);}}restore{owner};
+            HumanVector displacement=direction;for(unsigned axis=0;axis!=3;++axis)displacement[axis]=static_cast<float>(static_cast<long double>(direction[axis])*500.f);
+            return human_geometry_ray(camera,displacement,0x8001u,0u,false);
+        }(); //Native restores exclusions BEFORE inspecting the result.
+        if(hit){
+            HumanVector aim=direction;
+            for(unsigned axis=0;axis!=2;++axis)aim[axis]=static_cast<float>(static_cast<long double>(hit->position[axis])-position[axis]);
+            const auto z=static_cast<long double>(hit->position[2])-position[2];aim[2]=static_cast<float>(z);
+            const auto square=(z*aim[2]+static_cast<long double>(aim[1])*aim[1])+static_cast<long double>(aim[0])*aim[0];
+            if(square>9.f){aim[3]=camera[3];normalize_human_ai_shot(aim,static_cast<float>(square));direction=aim;}
+        }
+    }
+    template<class Player>std::uint32_t player_item_reload_duration(Player& state){
+        const auto entry=state.item();if(!entry)throw std::runtime_error("Player reload notification reached native missing cached item");
+        return human_frame_output_item(entry).reload_duration();
+    }
+    template<class Player>void player_item_alignment(Player& state,float amount){
+        auto* human=state.human();if(!human)throw std::logic_error("Player item alignment requires its actual Human");
+        set_human_sight_alignment(*human,amount,mode_flags());
+    }
+    template<class Player>void player_item_first_shot(Player& state){
+        auto* human=state.human();if(!human)throw std::logic_error("First Player shot requires its actual Human");
+        using Factory=std::remove_reference_t<decltype(composition(*human).state_factory())>;
+        auto& d=dependencies();d.startup.players_process().template first_player_shot<typename Factory::Active>(d.players.control(),mode_flags());
+    }
+    template<class Player>void publish_player_item_input(Player& state,const PlayerItemNotification& notification){
+        auto& d=dependencies();auto& items=d.world_actors.items();const auto entry=state.item();
+        auto* item=entry?&items.runtime_item(entry):nullptr;
+        hd2::game::publish_player_item_input(state,d.startup.game_human_inputs(),notification,mode_flags(),item);
+    }
     template<class Player>void set_player_frame_mode(Player& state,std::int32_t mode){
         if(!state.human())throw std::logic_error("Player mode requires the actual bound Human");
         dependencies().presentation.set_player_mode(state,*state.human(),mode,mode_flags());
@@ -1094,10 +1145,10 @@ public:
     template<class Item,class Human>void emit_human_weapon_reload(Item& item,Human& human){
         if(!(mode_flags()&2u))return;
         auto& d=dependencies();
-        frontend::SpatialSoundRequest request;
+        auto& request=d.startup.item_sound_request(); //SAME0098AFE0 as empty/shot writers.
         request.flags=human_is_player(human)&&human_view_offset_enabled()?0x40u:0u;
         request.relative=item.shot_frame();request.source=&human;
-        request.group=3;request.entry=item.reload_sound();
+        request.group=3;request.entry=item.reload_sound();request.position={{0,0,0}};
         const auto voice=d.sound.emit(request);
         item.fielda8=d.startup.game_sound_voice_live(voice)?static_cast<std::uint32_t>(voice):0xffffffffu;
         human.activation.flag178=true;

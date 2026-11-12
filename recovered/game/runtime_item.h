@@ -55,6 +55,18 @@ public:
     std::uint32_t ai_shot_interval()const{ //0058BAF0, native payload+18.
         return weapon_payload_time(0x14);
     }
+    float player_shot_spread()const{ //Payload virtual10:007E0270/007E0310/007E0370.
+        const auto& payload=definition_.payloads[0];
+        if(payload.type==1||payload.type==2)return 0;
+        if(payload.type==3)return real(payload_word(payload,0x40));
+        if(payload.type==4)return real(payload_word(payload,0x3c));
+        throw std::runtime_error("Player shot spread requires actual weapon-payload dispatch");
+    }
+    bool player_secondary_recoil_exception()const{ //005454D0: native secondary4C+08/+0C.
+        const auto& payload=definition_.payloads[1];
+        return payload.type&&payload_kind(payload)==4&&
+            frontend::pre_mission_detail::Bytes::integer(payload_word(payload,8))<4;
+    }
     bool allows_partial_reload()const{ //007E02F0, native payload byte20.
         const auto& payload=definition_.payloads[0];
         if(payload.type<1||payload.type>4)throw std::runtime_error("Weapon reload requires the actual reloadable payload family");

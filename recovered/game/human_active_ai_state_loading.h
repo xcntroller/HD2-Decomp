@@ -121,6 +121,11 @@ public:
             *action_mode_==2?14u+unsigned(alternate):12u; //005385F0, virtual148.
         return {state_.template get<std::uint32_t>(0x174),alternate||state_.template get<std::uint8_t>(0x188)!=0,action}; //00524E00/005385D0.
     }
+    void first_player_shot(){ //00459360: direct1D8 store, NOT005380C0's broader side effects.
+        if(!action_mode_)throw std::runtime_error("First Player shot requires the actual initialized active-AI mode");
+        if(*action_mode_!=0)return;
+        action_mode_=1;state_.set(0x1d8,1u);refresh_action_mode();
+    }
     void notify_nearby_player_damage(){ //0045F110, only prior14/15 modes change.
         const auto action=player_handover().action;
         if(action==14)set_action_mode(16);else if(action==15)set_action_mode(17);

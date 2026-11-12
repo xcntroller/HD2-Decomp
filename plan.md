@@ -251,7 +251,7 @@ preparation, not a standalone audit-only milestone.
   - [ ] OWN/H8 entry integration: complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
   - [x] Complete H2-owned reaction composition, consolidated verification, inventory and audit cleanup ([source receipt](analysis/checkpoints/p2.2-human-h2-source-20261112.json)). External Car producer/entry failures remain guarded; H8 owns full Human-frame assembly.
 
-  Human branch assignments: H1/H3/H5/H7 finished and merged into `feature/p22-hum`; [completed aggregate201adbf is integrated into H2](analysis/human-completed-branch-integration.md). H2 source-complete here; H4 active with another agent; H6/H8 unassigned until H2 or H4 finishes. Keep active H4 separate.
+  Human branch assignments: H1/H3/H5/H7 finished and merged into `feature/p22-hum`; [completed aggregate201adbf is integrated into H2](analysis/human-completed-branch-integration.md). H2 source-complete at85593e8; H4 active with another agent; [H6 active on its new branch](analysis/p22-hum-h6-plan.md); H8 unassigned. Remaining D entries still require the mapped Car/OWN/H8 integration, not automatic completion by H4/H6. Keep active H4 separate.
 
   [P22-UI source-closed](analysis/p22-ui-source-closure.md), [checklist](analysis/p22-ui-plan.md): concrete same-World HUD/FPV/text/overlay/control, occupied/nonoffline presentation and console consumers verified. Human/Actor/packet producers and FRAME/RENDER/OWN execution remain external; no loading activation or desktop claim.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.
