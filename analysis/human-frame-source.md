@@ -892,6 +892,8 @@ required. No integrity result or random draw is invented in these branches.
 Their originals are retained in WORK `human-player-item-action-workers` and
 `human-player-live-frame-workers`.
 
+Later H6 work [recovers held/math/notification/dry-fire and the shot coordinator](human-player-item-controller-source.md). That checkpoint supersedes the corresponding required-leaf statements here; actual item24/projectile, melee/repair and full frame integration remain open.
+
 [Verification receipt](checkpoints/p2.2-human-player-input-20261111.json).
 Focused native ASan/UBSan/LSan covers local/external buffer ownership, the actual
 coordinator, FLOAT load/integer conditioning, NaN/fault guards, weapon readiness,

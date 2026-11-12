@@ -1,65 +1,55 @@
-# P22-HUM H4 source handoff — 2026-11-12
+# P22-HUM H6 handoff — 2026-11-12
 
-Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`, branch
-`feature/p22-hum-h4`. User authorized takeover of its usage-limited agent.
-Preserved the existing subgroup WIP at96356ab, imported only completed HUM46a6cef
-at2854bd5, then recovered actual Active AI grenade response at63de5fb.
-H6 remains untouched at0398a50 plus its recorded shell/capsule/grenade WIP.
-No push/original/Windows/application/desktop execution. Heavy builds/Ghidra
-sequential. Source-only work does not need an invented desktop acceptance.
+Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h6`, branch
+`feature/p22-hum-h6`. H6 source is COMPLETE on existing owners. Parent P22-HUM,
+H8, application and desktop delivery remain OPEN. Preserve all other worktrees/
+user changes; no push/original EXE/DLL/Proton/Windows/application/desktop execution.
+Heavy compilation/Ghidra sequential; no permanent tests.
 
-**H4 common-output source work is complete on existing actor owners.** Read
-AGENTS.md, section2 of plan.md and [source closure / selected-call inventory and
-external limits](analysis/human-h4-source-closure.md),
-[receipt](analysis/checkpoints/p22-hum-h4-source-20261112.json),
-[short plan](analysis/p22-hum-h4-plan.md). The parent Human/P2.2 delivery stays open.
-Historical implementation contracts remain in analysis/p22-hum-h4-implementation.md;
-C labels are historical batches, not additional requirements.
+Read AGENTS.md, section2 of plan.md, [H6 plan](analysis/p22-hum-h6-plan.md) and
+[H6 closure/required external boundaries](analysis/human-h6-source-closure.md).
+[Final source receipt](analysis/checkpoints/p2.2-human-h6-source-20261112.json).
+The selected item/source boundary is finished; do not restart unchanged controller,
+sound, projectile, joint or H4 audits. H8 is the next Human milestone, not implicitly
+implemented by this closure. User priority remains HUM/getting in game.
 
-Latest: actual vehicle00578770/90, native route0055F320, forward/reverse controls,
-typed path74 Car loan, actual initialized Car controls/governor, SECOND dataset,
-VM26/2B producer and fresh live Script context/PC completion. Positive governor
-request adds original0.5 margin. Completion/formation/attachment also instantiate
-with actual World services. Native ASan/UBSan/LSan PASS49 path/navigation/failure,
-PASS18 VM/context and PASS12 name/chase policy. Endpoint doubles explicit. Strict
-actual World/Car/Script/completion/formation/attachment i386 FULL LINK and latest
-launcher/probe rebuild PASS; no Windows output executed. Temporary audits have
-fingerprinted removal in the receipt; original static evidence retained.
+H6 preserves completed H2/aggregate and imports user-merged HUM/H4b9d67aa at
+7e6e019 after shell/capsule/grenade checkpoint93dfe42. User is deleting H4's branch;
+no access/reliance on its old worktree/branch is needed. Actual H4 grenade notice
+is between publication and inventory retirement, with all H4/H6 owners preserved.
 
-34 complete/3324 partial (3319client+5engine);15 new frozen partials and3 existing
-extensions at latest checkpoint, no complete promotions or inventory changes.
-Full checker still FAILS on inherited0062D880 missing ignored rule-refresh.asm;
-all-row scoped checks retain five pre-existing missing artifact rows. Exact frozen
-baseline/schema/unique internal addresses/status totals/available evidence and
-changed rows/README checked separately. Never fabricate/copy missing evidence.
+Latest: ordinary00451230 melee uses actual ray/exclusion lifetime, process
+00455670 hit zones/helmet ordering, H2 damage and exact impact/displacement, actual
+005A5960/B8 AI event pool/queue/roster/script dispatch and ungated material effects.
+Player00546DC0 uses actual RuntimeItem/inventory, integrity/random/damage prefix,
+nonzero initial integer gate, exact amount/cost/clamp order, saved exhaustion,
+offline notification, FIRST90 kind14 and score/retirement. Four-argument completion
+now dispatches this actual body on SAME World instead of an external Runtime.
+005433B0 attachment uses existing H3/UI Actor98(seat). World inline feedback
+supplies actual item24/28. No fabricated native5F9 or successful combat stubs.
 
-## Required next work
+Native medical PASS1600 and hit-zone/melee/B8 PASS2000,100 lifetimes each, with
+explicit engine/actor/state/presentation/damage endpoints as documented; actual
+RuntimeItem/catalogue/storage, ShotMgr hit-zone state and AI pool/queue are used.
+Strict actual World/Player/inline/item/ShotMgr full link instantiates005433B0 and
+feedback/treatment with EMPTY external Runtime; latest launcher/probe rebuild PASS.
+Full ledger/check/README PASS,34 complete/3360 partial. New temporary audits are
+fingerprinted/removed; original exports/raw evidence and logs remain ignored WORK.
 
-- H6's old0045EAB0→00530FF0 required guard can now integrate with H4's actual
-  notifier/Active AI receiver, preserving grenade publication BEFORE notification
-  BEFORE005A7B70 inventory retirement. H6 shell/capsule/grenade WIP still needs its
-  own verification/checkpoint. No unfinished H6 changes were imported here.
-- H6 still owns00546DC0 Player medical/protection/packet policy. H4's actual World
-  composition has an explicit failing3-argument receiver for it; no invented
-  successful service/body credit. Replace at verified H6 integration.
-- H8 assembles full Runtime/World/frame/application activation, Script alarm
-  decision00591550/non7 presentation0056F710, occupied Car frame and packet/input
-  owners. Type15/Scene2 byte91 factory for0060C130, Aircraft20/type34 attachments
-  and formation remain with actual absent owners and required guards. H4 has not
-  implemented or credited those actors. Do not write native offsets into another
-  actor. Known H2 D11 unproduced part/wheel/effect branches remain guarded; do not
-  repeat confirmed kernel/producer audits without new evidence.
-- Actual mission/scene rendering, failure/re-entry/ordered teardown and user
-  desktop acceptance remain P2.2/H8. No running-world or P22-VIS delivery claim.
+H8 must complete/prove-out/report selected async ShotMgr0044B910/0044B400,
+00454360,00449290/00449030,0044D260/0044D240/0044D570 including initial100
+where reached; unsupported actor D8 material/Dog30 factory+D4; non7 bullet/input
+history/feedback/admission; full Runtime/World/control/frame composition. Existing
+Car D4/D5, OWN D6–D9, confirmed D11 and absent H4 actors remain required. No
+application/mission-render/user desktop acceptance follows from H6 source closure.
 
-WORK=`analysis/work/p22-hum-h4-20261112`. Research index before new exports.
-Original vehicle/grenade exports and rollback-only ABI variants, raw disassembly
-and constants are in WORK; all fingerprints match client8c52ce66… verified image.
-Current worktree lacks local full frozen metadata/.tools. Use read-only inventory
-`../HD2-Decomp-p22-hum-h6/analysis/work/function-progress` with --inventory-dir;
-compiler/sanitizer runtime can be borrowed from H6/.tools without copying ignored
-original evidence. Windows compiler is
-`../HD2-Decomp-p22-hum-h6/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
-Standalone World link needs-lwinmm/-lws2_32. `make -C recovered` WINDOWS_CXX uses
-`../../HD2-Decomp-p22-hum-h6/.tools/...`. No compiler/Ghidra job remains at final
-checkpoint. Do not push or execute original/Windows/Proton fixtures.
+Research index BEFORE new exports. WORK=`analysis/work/mission-world-20261103`.
+Original SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+Ghidra `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`, project
+`/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
+hd2.unpacked.exe -readOnly -noanalysis. Read ERROR even on exit0. Attempted B8
+wrapper export starts0052E780/00590380 are absent from the frozen function list;
+use saved exact vtable/raw bytes, not the failed export as C evidence. No types changed.
+Compiler `.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
+`make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
+`python3 -B tools/function_progress.py --render`/`--check`; `git diff --check`.

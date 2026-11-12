@@ -769,6 +769,21 @@ public:
         if(!bones)throw std::logic_error("Human target point requires actual skeletal table");
         return bones;
     }
+    const Frame* shot_hit_bone_table(Frame visual){ //00455670 has a genuine NULL214 returnFF.
+        if(!visual)throw std::logic_error("Shot hit zones require actual a visual");
+        return field<const Frame*>(visual,0x214);
+    }
+    void shot_hit_zone_pose(Frame frame,const Matrix& matrix){
+        if(!frame)throw std::logic_error("Shot hit zones lost actual humanzones frame");
+        human_equipment_local_matrix(frame,matrix); //80/GetScale/dirty prefix; SIMD W is unclaimed padding.
+        for(unsigned axis=0;axis!=3;++axis)put(frame,0xd0+axis*4,1.f);
+        if(!(field<std::uint32_t>(frame,0xe0)&8u)){
+            using Make=void(WINAPI*)(void*,const void*);
+            exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(address(frame,0xc0),address(frame,0x80));
+        }
+        put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+        update_scene_object(frame);
+    }
     void human_seat_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{0});}
     void human_seat_origin(Frame model){car_suspension_position(model,Vector{});call<void>(model,0x1c,Vector{{0,0,1,0}}.data(),0.f);update_scene_object(model);}
     void human_seat_exit_pose(Frame model,const Vector& position,const Vector& direction){call<void>(model,8,position.data());call<void>(model,0x1c,direction.data(),0.f);update_scene_object(model);}
@@ -1102,6 +1117,7 @@ public:
         put(sound,0xe0,(flags&0xfffffedfu)|0x40000000u);
     }
     std::int32_t load_human_sound(Frame sound,const char* name) {return resources_.load_sound(sound,name,0);}
+    std::int32_t load_item_sound(Frame sound,const std::string& name){return resources_.load_sound(sound,name,0x10);} //007D5C70's SAME category2 cache.
     void human_sound_enabled(Frame sound,bool enabled) {call<void>(sound,0x30,std::uint32_t(enabled));}
     void human_sound_parameter7c(Frame sound,std::uint32_t value) {call<void>(sound,0x7c,value);}
     void human_sound_volume(Frame sound,float value) {call<void>(sound,0x8c,value);}
@@ -1111,6 +1127,7 @@ public:
         call<void>(sound,0x38,parent,std::uint32_t{0});
         object_position(sound,position);
     }
+    void human_sound_link(Frame sound,Frame parent){call<void>(sound,0x38,parent,std::uint32_t{0});}
     void human_sound_range(Frame sound,float near_range,float far_range,float first,float second) {call<void>(sound,0x80,near_range,far_range,first,second);}
     void human_sound_parameter90(Frame sound,std::uint32_t value) {call<void>(sound,0x90,value);}
     void human_sound_parameter94(Frame sound,std::uint32_t value) {call<void>(sound,0x94,value);}
@@ -1189,6 +1206,81 @@ public:
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}
     MenuDriver::Owner create_hud_info_model(){return driver_.create(9);}
     MenuDriver::Owner create_shot_model(){return driver_.create(9);}
+    MenuDriver::Owner create_shot_shell(Frame source){
+        auto owner=driver_.create(0x5f4a424fu);if(!owner)throw std::runtime_error("Shell requires actual driver object");
+        call<void>(owner.get(),0x4c,source);return owner;
+    }
+    void shot_projectile_root(Frame frame){human_sound_link(frame,field<Frame>(scene_.frame(),0x1f8));}
+    void shot_grenade_parameter(Frame frame,float value){call<void>(frame,0xa8,value);}
+    void configure_shot_capsule(Frame frame,const Vector& velocity,const Vector& position){
+        human_sound_link(frame,shot_hidden_sector());call<void>(frame,0xc,velocity.data(),std::uint32_t{0});
+        call<void>(frame,8,position.data());object_visible(frame,true);update_scene_object(frame);
+    }
+    void shot_shell_pose(Frame frame,const Vector& position,const Vector& direction){call<void>(frame,0x14,position.data(),direction.data(),std::uint32_t{0});}
+    void place_shot_shell(Frame frame,bool first){
+        if(first){shot_surface_scale(frame,.6f,.6f,.6f);call<void>(frame,0x38,field<Frame>(scene_.frame(),0x204),std::uint32_t{1});}
+        else{const auto matrix=actor_world_matrix(frame);call<void>(scene_.frame(),0xec,frame,matrix.data()+12);}
+    }
+    bool shot_actor_in_scene(Frame frame)const{return field<Frame>(frame,0x11c)==field<Frame>(scene_.frame(),0x11c);}
+    void configure_shot_light(Frame light,Frame parent){ //00453D80.
+        human_sound_link(light,parent);human_equipment_name(light,"WeaponLight");
+        call<void>(light,0x94,std::uint32_t{0x11});call<void>(light,0x74,std::uint32_t{1});
+        const std::array<float,3> white{{1,1,1}};call<void>(light,0x7c,white.data());
+        call<void>(light,0x88,1.5f);call<void>(light,0x80,white.data());call<void>(light,0x8c);
+        car_sound_head(light,Vector{{0,0,0,0}});
+        const auto position=actor_world_matrix(parent);const Vector origin{{position[12],position[13],position[14],position[15]}};
+        const auto sector=human_scene_sector(origin);if(!sector)throw std::runtime_error("Muzzle flash has no actual sector");
+        call<void>(sector,0x74,light);
+        const auto records=field<Frame*>(sector,0x25c);
+        for(std::uint32_t n=0;n<field<std::uint32_t>(sector,0x264);++n){
+            if(!records)throw std::runtime_error("Muzzle flash sector has no portal list");
+            const auto adjacent=field<Frame>(records[n],0x194);
+            if(!adjacent)throw std::runtime_error("Muzzle flash portal has no adjacent sector");
+            const auto p=actor_world_matrix(parent);const auto q=actor_world_matrix(adjacent);
+            const auto x=static_cast<long double>(q[12])-p[12],y=static_cast<long double>(q[13])-p[13],z=static_cast<long double>(q[14])-p[14];
+            const auto square=(z*z+y*y)+x*x;
+            if(!(square>16.f)){call<void>(adjacent,0x74,light);update_scene_object(adjacent);}
+        }
+        call<void>(light,0x98,4.f);hud_unit_scale(light);call<void>(light,0x9c,.99f,std::uint32_t{0},.01f);
+        object_visible(light,true);update_scene_object(light);
+    }
+    void shot_light_intensity(Frame light,float value){call<void>(light,0x88,value);}
+    void shot_light_range(Frame light,float value){call<void>(light,0x98,value);}
+    void remove_shot_light_sectors(Frame light){ //00454120 captures list/count, then removes in reverse.
+        const auto sectors=field<Frame*>(light,0x120);auto count=field<std::uint32_t>(light,0x128);
+        if(count&&!sectors)throw std::runtime_error("Muzzle flash has no actual sector list");
+        while(count)call<void>(sectors[--count],0x78,light);
+    }
+    MenuDriver::Owner create_shot_trace(Frame source,const Vector& position){ //0044B030, nonzero trace branch.
+        auto owner=driver_.create(0x44524242u);const auto frame=owner.get();
+        if(!frame)throw std::runtime_error("Bullet trace requires actual driver visual");
+        call<void>(frame,0x4c,source);
+        const auto mesh=field<Frame>(frame,0x1e0);
+        if(!mesh)throw std::runtime_error("Bullet trace has no actual mesh");
+        const auto lod=call<Frame>(mesh,4,std::uint32_t{0});
+        if(!lod)throw std::runtime_error("Bullet trace has no actual first LOD");
+        const auto group=call<Frame>(lod,0x14,std::uint32_t{0});
+        if(!group)throw std::runtime_error("Bullet trace has no actual material group");
+        const auto material=field<Frame>(group,4);
+        if(!material)throw std::runtime_error("Bullet trace has no actual material");
+        put(material,8,field<std::uint32_t>(material,8)|0x8000000u);
+        const std::array<float,3> white{{1,1,1}},black{{0,0,0}};
+        call<void>(material,0xc,white.data());call<void>(material,0x10,black.data());
+        call<void>(material,8,black.data());call<void>(material,0x14,std::uint32_t{0});
+        human_sound_link(frame,shot_hidden_sector());car_sound_head(frame,position);
+        object_visible(frame,false);update_scene_object(frame);return owner;
+    }
+    MenuDriver::Owner create_shot_flare(const Vector& position){ //0044B030, no trace and definition265.
+        auto owner=create_shot_model();const auto frame=owner.get();
+        if(!frame)throw std::runtime_error("Bullet flare requires actual driver model");
+        (void)load_shot_model(frame,"m_w_flare");human_sound_link(frame,shot_hidden_sector());
+        object_visible(frame,true);update_scene_object(frame);car_sound_head(frame,position);
+        shot_surface_scale(frame,.5f,.5f,.5f);update_scene_object(frame);
+        if(const auto flare=actor_find(frame,"flare",0xffffu)){
+            put(flare,0x1e0,.1f);put(flare,0x1e4,.1f);put(flare,0x244,.1f);update_scene_object(flare);
+        }
+        return owner;
+    }
     MenuDriver::Owner create_shot_surface(){return driver_.create(0x4a4f5250u);} //004546E0, PROJ driver extension.
     void shot_surface_texture(Frame frame,Frame texture){call<void>(frame,0x9c,texture);}
     void shot_surface_scale(Frame frame,float x,float y,float z){

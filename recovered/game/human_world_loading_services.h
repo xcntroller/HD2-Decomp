@@ -8,6 +8,16 @@
 #include "game/car_targeted_placement.h"
 #include "game/car_scene_actor.h"
 #include "game/first_person_human_items.h"
+#include "game/human_player_item_notification.h"
+#include "game/human_player_shot_direction.h"
+#include "game/human_hud_loading.h"
+#include "game/human_item_shot_sound.h"
+#include "game/human_item_fire.h"
+#include "game/human_item_melee.h"
+#include "game/shot_human_hit_zones.h"
+#include "game/shot_bullet_production.h"
+#include "game/shot_shell_production.h"
+#include "game/shot_grenade_record.h"
 
 #include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
@@ -44,6 +54,7 @@
 #include "game/human_damage_policy.h"
 #include "game/human_damage_messages.h"
 #include "game/human_damage_score.h"
+#include "game/human_player_treatment.h"
 #include "game/human_packet_receiver.h"
 #include "game/human_packet_notifications.h"
 #include "game/human_script_loading_controls.h"
@@ -1090,6 +1101,214 @@ public:
         return static_cast<std::uint32_t>(dependencies().startup.game_configuration().rules228[10])*1000u;
     }
     bool player_item_controls_available(){return dependencies().first_person.view().item_controls_available();}
+    template<class Human>bool player_attachment_blocks_item(Human& human){ //005433B0 Actor98(seat), SAME H3/UI owner.
+        return dependencies().first_players.seat_presentation().has_control(human_pose_actor(human.field160),human.field164);
+    }
+    std::int32_t player_mission_ordinal()const{return dependencies().session.words.template get<std::int32_t>(0x3c);}
+    bool player_recoil_disabled(){return dependencies().startup.game_console_variables().integer(6)!=0;} //00720B80(6).
+    bool player_zoom_enabled(){return dependencies().first_person.view().zoom_enabled();}
+    auto& player_item_sound_request(){return dependencies().startup.item_sound_request();}
+    template<class Item>auto item_shot_sound_frame(Item& item,unsigned index){
+        auto& d=dependencies();auto lookup=[&]{return d.startup.item_shot_sound_entry(item.primary_action_sound());};
+        return item.shot_sound(index,d.scene.frames(),lookup);
+    }
+    template<class Item,class Human,class Frame>void play_player_item_sound(Item& item,Human& human,Frame parent,bool silent){
+        play_human_item_shot(item,human,parent,silent,*this);
+    }
+    template<class Item,class Human>void play_following_item_sounds(Item& item,Human& human){
+        play_human_following_shot_sounds(item,human,*this);
+    }
+    void stop_shot_particle(std::int32_t identity){dependencies().startup.mission_effects_process().stop(identity);}
+    template<class Bullet>unsigned advance_shot_bullet_authority(Bullet&,std::uint32_t){
+        throw std::runtime_error("ShotMgr bullet requires actual0044B910 collision/damage receiver");
+    }
+    template<class Bullet>void advance_shot_bullet_presentation(Bullet&,std::uint32_t){
+        throw std::runtime_error("ShotMgr bullet requires actual0044B400 visual receiver");
+    }
+    template<class Item,class Human>std::uint32_t fire_human_item(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,std::uint32_t argument,bool primary){
+        return fire_human_weapon_item(item,human,position,direction,argument,primary,*this);
+    }
+    template<class Item,class Human>void emit_item_bullet(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,bool trace,bool silent){ //00451100.
+        auto& d=dependencies();typename Dependencies::Frame shell{},muzzle{};
+        if(mode_flags()&2u){
+            if(human_is_player(human)&&human_view_offset_enabled()){
+                if(const auto model=d.first_person.models().model())shell=d.scene.frames().actor_find(model,"cardum",0x20);
+                if(const auto model=d.first_person.models().model())muzzle=d.scene.frames().actor_find(model,"blsdum",0x20);
+            }else{shell=item.shell_frame();muzzle=item.projectile_effect_frame();}
+        }
+        produce_item_bullet(d.startup.shot_manager_process(),d.scene.frames(),*this,item,human,position,direction,muzzle,shell,trace,silent);
+    }
+    template<class Item,class Frame>void emit_item_muzzle_particle(Item& item,Frame muzzle){
+        const auto& payload=item.definition().payloads[0];
+        if(payload.bytes.size()<0x1c)throw std::runtime_error("Muzzle particle requires complete native primary payload1C");
+        const auto id=frontend::pre_mission_detail::Bytes::word(payload.bytes.data()+0x18);auto& d=dependencies();
+        (void)d.startup.mission_effects_process().emit(id,d.scene.frames().actor_world_matrix(muzzle),muzzle,true,false);
+    }
+    template<class Human>bool shot_actor_in_scene(Human& human){return dependencies().scene.frames().shot_actor_in_scene(human.base().frame());}
+    template<class Human>const HumanVector& shot_human_velocity(Human& human){return human.activation.vector1b0;}
+    template<class Shell>unsigned advance_shot_shell(Shell&,std::uint32_t){
+        throw std::runtime_error("ShotMgr shell requires actual00454360 collision/motion receiver");
+    }
+    template<class Human,class Frame>void emit_item_shell(Human& human,Frame marker,std::uint32_t command){
+        auto& d=dependencies();produce_item_shell(d.startup.shot_manager_process(),d.scene.frames(),*this,human,marker,command);
+    }
+    template<class Item,class Human>void emit_item_grenade(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,std::uint32_t argument){
+        auto& d=dependencies();auto& state=d.startup.shot_manager_process();
+        if(!state.world)throw std::logic_error("Grenade requires actual world-bound ShotMgr");
+        using Body=typename std::remove_reference_t<decltype(d.world_actors)>::Body;
+        using Record=ShotGrenadeRecord<typename Dependencies::ActorFrames,Body>;
+        auto factory=[&]{return std::make_unique<Body>(d.scene.frames(),d.scene.buckets(),d.world_actors.rigid_bodies());};
+        auto record=std::make_unique<Record>(d.scene.frames(),factory);record->initialize(*this,item,human,position,direction,argument);
+        state.transient[0].push_back(std::move(record));
+        if((mode_flags()&7u)==7u)notify_item_grenade(human,position,direction);
+        remove_human_inventory_item(human,d.world_actors.items(),item.identity,true,*this); //005A7B70 AFTER notification.
+    }
+    template<class Record>unsigned advance_shot_grenade_authority(Record&,std::uint32_t){throw std::runtime_error("Grenade requires actual0044D260 combat frame");}
+    template<class Record>void advance_shot_grenade_presentation(Record&,std::uint32_t){throw std::runtime_error("Grenade requires actual0044D240 presentation frame");}
+    template<class Record,class Event>int shot_grenade_contact(Record&,unsigned,Event*){throw std::runtime_error("Grenade requires actual0044D570 rigid contact receiver");}
+    template<class Item,class Human,class Frame>void emit_item_capsule(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,Frame model,std::uint32_t argument){
+        auto& d=dependencies();auto& state=d.startup.shot_manager_process();
+        if(!state.world)throw std::logic_error("Capsule requires actual world-bound ShotMgr");
+        auto record=std::make_unique<typename std::remove_reference_t<decltype(state)>::Capsule>();
+        record->initialize(d.scene.frames(),*this,human,position,direction,item.definition().payloads[0],model,(argument&0xffu)!=0);
+        state.transient[0].push_back(std::move(record));
+    }
+    template<class Capsule>unsigned advance_shot_capsule_authority(Capsule&,std::uint32_t){throw std::runtime_error("Capsule requires actual00449290 frame/damage receiver");}
+    template<class Capsule>void advance_shot_capsule_presentation(Capsule&,std::uint32_t){throw std::runtime_error("Capsule requires actual00449030 presentation receiver");}
+    void stop_capsule_camera(){spawn_camera_command(9,false,0);}
+    template<class Item,class Human>void apply_item_melee(Item& item,Human& human,const HumanVector& start,const HumanVector& direction){
+        strike_human_item(item,human,start,direction,*this);
+    }
+    template<class Human>void item_melee_exclude(Human& human){human_inline(human).exclude_query(false);}
+    template<class Human>void item_melee_restore(Human& human){human_inline(human).restore_query(false);}
+    template<class Hit>auto* item_melee_actor(const Hit& hit){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        return hit.dynamic_identity?static_cast<Actor*>(hit.dynamic_identity->actor):nullptr; //Actual descriptor48, not frameEC.
+    }
+    template<class Actor>auto* item_melee_human(Actor& actor){
+        using Human=typename Dependencies::Composition::Human;
+        if(actor.base().type()==3)return &selection_human(actor);
+        auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!weapon||!weapon->loading)throw std::logic_error("Melee requires actual StaticWeapon seat owner");
+        auto* occupant=weapon->loading->seat_occupant(0);
+        return occupant?&selection_human(human_pose_actor(occupant)):static_cast<Human*>(nullptr);
+    }
+    template<class Human>unsigned item_melee_hit_zone(Human& human,const HumanVector& start,const HumanVector& displacement){
+        auto& d=dependencies();return shot_human_hit_zone(d.startup.shot_manager_process(),human,start,displacement,d.world_actors.items(),d.scene.frames());
+    }
+    template<class Human>void item_melee_miss(Human& target,Human& source,const HumanVector& displacement){ //005A5960.
+        auto* state=composition(target).states().get();if(!state)throw std::logic_error("Melee miss requires target's actual B0");
+        if((state->words().template get<std::uint32_t>(0x50)&0x40000000u)||human_is_player(target))return;
+        auto& d=dependencies();auto& factory=composition(target).state_factory();
+        HumanSoundStateCallbacks<typename Dependencies::ActorFrames,Human,std::remove_reference_t<decltype(factory)>>
+            callbacks(d.scene.frames(),factory);
+        callbacks.b8(*state,&source,displacement);
+    }
+    template<class Actor,class Frame>std::uint32_t item_melee_material(Actor& actor,Frame){
+        if(actor.base().type()==12){
+            using Item=typename std::remove_reference_t<decltype(dependencies().world_actors)>::Runtime::DetachedItem;
+            if(!dynamic_cast<Item*>(&actor))throw std::logic_error("Melee material requires actual Item12");
+            return 11; //005FDDC0.
+        }
+        if(actor.base().type()==2){
+            using Mine=typename std::remove_reference_t<decltype(dependencies().world_actors)>::Runtime::Mine;
+            auto* mine=dynamic_cast<Mine*>(&actor);if(!mine)throw std::logic_error("Melee material requires actual Mine");
+            return static_cast<std::uint32_t>(mine->material());
+        }
+        throw std::runtime_error("Melee requires actual actor D8 material receiver (H8)");
+    }
+    template<class Actor,class Human>void item_melee_dog_damage(Actor&,float,const HumanVector&,const HumanVector&,Human&){
+        throw std::runtime_error("Melee requires actual type30 Dog factory/D4 damage receiver (H8)");
+    }
+    void item_melee_material_effect(std::uint32_t material,const HumanVector& point,const HumanVector& normal){
+        if(material==0xffffffffu)return;
+        const auto effect=dependencies().car_definitions.materials().at(material).word(0x3c);
+        if(effect)(void)emit_human_particle(effect,point,normal,typename Dependencies::Frame{},true,false); //No00451C00 camera visibility gate.
+    }
+    template<class Player>auto* player_item_melee_target(Player& state){
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=state.human();if(!human)throw std::logic_error("Player melee query requires its actual Human");
+        const auto direction=human_projectile_direction(); //Native camera selector1 BEFORE the FPV58/59 observation.
+        const auto position=human_view_offset_enabled()?human_projectile_position():sight_position(human_command_head(*human));
+        const auto* hit=[&]{
+            auto& owner=human_inline(*human);owner.exclude_query(false);
+            struct Restore{std::remove_reference_t<decltype(owner)>& owner;~Restore(){owner.restore_query(false);}}restore{owner};
+            auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Player melee query requires actual loaded World");
+            auto query=d.scene.door_queries();return query.nearest(position,direction,0,0);
+        }();
+        if(!hit||!hit->actor)return static_cast<Human*>(nullptr);
+        auto& actor=human_pose_actor(hit->actor);if(actor.base().type()!=3)return static_cast<Human*>(nullptr);
+        auto& target=selection_human(actor);if(human_inline(target).frame_posture_mode()!=0)return static_cast<Human*>(nullptr);
+        if(!target.loading_state)throw std::logic_error("Player melee target has no actual B0 direction");
+        const auto facing=target.loading_state->current_direction();
+        const auto dot=(static_cast<long double>(direction[2])*facing[2]+static_cast<long double>(direction[1])*facing[1])+static_cast<long double>(direction[0])*facing[0];
+        return dot>.8f?&target:nullptr;
+    }
+    template<class Player>auto* player_item_repair_target(Player& state){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        auto* human=state.human();if(!human)throw std::logic_error("Player repair requires its actual Human");
+        const auto start=sight_position(human_command_head(*human));
+        const auto hit=human_geometry_ray(start,state.words().template get<HumanVector>(0x10),0,0,true);
+        if(!hit||!(human_geometry_flags(*hit)&0xc0u))return static_cast<Actor*>(nullptr);
+        typename Dependencies::Frame frame{};
+        if(hit->dynamic_identity)frame=hit->dynamic_identity->frame;
+        else if(hit->static_identity&&hit->static_identity->kind){
+            const auto id=*hit->static_identity;frame=dependencies().scene.collision_tree().shapes.at(id.kind-0x80).at(id.index).frame;
+        }
+        if(!frame)return static_cast<Actor*>(nullptr);
+        const auto* data=dependencies().scene.frames().find_actor_frame_data(frame);
+        auto* target=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+        if(!target||target->base().type()!=4||human_command_car_health(*target)==0.f)return static_cast<Actor*>(nullptr);
+        return target;
+    }
+    template<class Human>std::int32_t player_shot_stamina(const Human& human){return human_hud_stamina_percent(human);}
+    void player_item_fpv_request(std::int32_t animation){dependencies().first_person.view().request(mode_flags(),animation,0);}
+    void player_item_reset_zoom(){dependencies().first_person.view().restore_game_zoom(mode_flags());}
+    template<class Player,class Item>void prepare_player_item_shot(Player& state,Item& item,HumanVector& position,HumanVector& direction){
+        if(human_view_offset_enabled()){position=human_projectile_position();direction=human_projectile_direction();return;}
+        auto& d=dependencies();auto shot=item.shot_frame();if(!shot)shot=item.model();else shot=item.shot_frame();
+        if(!shot)throw std::runtime_error("Player fire reached native missing muzzle/model frame");
+        const auto matrix=d.scene.frames().actor_world_matrix(shot);position={{matrix[12],matrix[13],matrix[14],matrix[15]}};
+        HumanVector camera{};
+        if(!d.camera.query_vector(0,camera))throw std::runtime_error("Player fire camera0 output has no native producer");
+        if(!d.camera.query_direction(1,direction))throw std::runtime_error("Player fire camera1 output has no native producer");
+        auto* human=state.human();if(!human)throw std::logic_error("Player shot query requires its actual Human");
+        const auto hit=[&]{
+            auto& owner=human_inline(*human);owner.exclude_query(false);
+            struct Restore{std::remove_reference_t<decltype(owner)>& owner;~Restore(){owner.restore_query(false);}}restore{owner};
+            HumanVector displacement=direction;for(unsigned axis=0;axis!=3;++axis)displacement[axis]=static_cast<float>(static_cast<long double>(direction[axis])*500.f);
+            return human_geometry_ray(camera,displacement,0x8001u,0u,false);
+        }(); //Native restores exclusions BEFORE inspecting the result.
+        if(hit){
+            HumanVector aim=direction;
+            for(unsigned axis=0;axis!=2;++axis)aim[axis]=static_cast<float>(static_cast<long double>(hit->position[axis])-position[axis]);
+            const auto z=static_cast<long double>(hit->position[2])-position[2];aim[2]=static_cast<float>(z);
+            const auto square=(z*aim[2]+static_cast<long double>(aim[1])*aim[1])+static_cast<long double>(aim[0])*aim[0];
+            if(square>9.f){aim[3]=camera[3];normalize_human_ai_shot(aim,static_cast<float>(square));direction=aim;}
+        }
+    }
+    template<class Player>std::uint32_t player_item_reload_duration(Player& state){
+        const auto entry=state.item();if(!entry)throw std::runtime_error("Player reload notification reached native missing cached item");
+        return human_frame_output_item(entry).reload_duration();
+    }
+    template<class Player>void player_item_alignment(Player& state,float amount){
+        auto* human=state.human();if(!human)throw std::logic_error("Player item alignment requires its actual Human");
+        set_human_sight_alignment(*human,amount,mode_flags());
+    }
+    template<class Player>void player_item_first_shot(Player& state){
+        auto* human=state.human();if(!human)throw std::logic_error("First Player shot requires its actual Human");
+        using Factory=std::remove_reference_t<decltype(composition(*human).state_factory())>;
+        auto& d=dependencies();d.startup.players_process().template first_player_shot<typename Factory::Active>(d.players.control(),mode_flags());
+    }
+    template<class Player>void publish_player_item_input(Player& state,const PlayerItemNotification& notification){
+        auto& d=dependencies();auto& items=d.world_actors.items();const auto entry=state.item();
+        auto* item=entry?&items.runtime_item(entry):nullptr;
+        hd2::game::publish_player_item_input(state,d.startup.game_human_inputs(),notification,mode_flags(),item);
+    }
     template<class Player>void set_player_frame_mode(Player& state,std::int32_t mode){
         if(!state.human())throw std::logic_error("Player mode requires the actual bound Human");
         dependencies().presentation.set_player_mode(state,*state.human(),mode,mode_flags());
@@ -1172,10 +1391,10 @@ public:
     template<class Item,class Human>void emit_human_weapon_reload(Item& item,Human& human){
         if(!(mode_flags()&2u))return;
         auto& d=dependencies();
-        frontend::SpatialSoundRequest request;
+        auto& request=d.startup.item_sound_request(); //SAME0098AFE0 as empty/shot writers.
         request.flags=human_is_player(human)&&human_view_offset_enabled()?0x40u:0u;
         request.relative=item.shot_frame();request.source=&human;
-        request.group=3;request.entry=item.reload_sound();
+        request.group=3;request.entry=item.reload_sound();request.position={{0,0,0}};
         const auto voice=d.sound.emit(request);
         item.fielda8=d.startup.game_sound_voice_live(voice)?static_cast<std::uint32_t>(voice):0xffffffffu;
         human.activation.flag178=true;
@@ -1253,6 +1472,12 @@ public:
         if(!state)throw std::logic_error("Human feedback requires actual current B0");
         HumanFrameFeedbackReceivers<HumanWorldLoadingServices,Fire> receivers{*this,fire};
         owner.state_factory().apply_inline_feedback(*state,flags,receivers);
+    }
+    template<class Human>void apply_human_frame_feedback(Human& human,std::uint32_t flags){
+        auto fire=[this](auto& item,auto& actor,const HumanVector& position,const HumanVector& direction,std::uint32_t argument,bool primary){
+            return this->fire_human_item(item,actor,position,direction,argument,primary);
+        };
+        apply_human_frame_feedback(human,flags,fire);
     }
     template<class Human,class Runtime>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed,Runtime& runtime){
         game::advance_human_scene_frame(human,authority,elapsed,*this,runtime,dependencies().scene.frames());
@@ -1332,12 +1557,15 @@ public:
         auto& d=dependencies();receive_human_offline_notification(human,&target,d.scene.frames(),
             d.startup.text(),d.hud,mode_flags(),human_current_player_id()); //00588870 virtual10, offline branch.
     }
-    template<class State>void finish_human_treatment(State&,std::int32_t,std::int32_t){
-        throw std::runtime_error("Player medical completion requires actual H6 00546DC0 protection/packet receiver");
+    void award_human_treatment_score(std::int32_t identity,std::uint32_t amount){
+        add_human_score_points(dependencies().startup.game_control_records(),static_cast<std::uint32_t>(identity),amount,*this);
     }
-    template<class State,class Runtime>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item,Runtime& runtime){
+    template<class State>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item){
+        (void)complete_human_player_treatment(state,identity,item,dependencies().world_actors.items(),*this);
+    }
+    template<class State,class Runtime>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item,Runtime&){
         if(state.words().template get<std::uint32_t>(0x48)==1){
-            runtime.finish_human_treatment(state,identity,item);return; //Separate00546DC0 Player/H6/protection/packet policy.
+            finish_human_treatment(state,identity,item);return; //Separate00546DC0 on this SAME World/Player.
         }
         (void)complete_human_base_treatment(state,identity,item,dependencies().world_actors.items(),*this);
     }

@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
 #include "game/human_state_damage.h"
 #include "game/human_common_command.h"
+#include "game/human_player_item_notification.h"
 
 #include "game/human_active_ai_state_loading.h"
 #include "game/human_guard_ai_state_loading.h"
@@ -135,15 +136,13 @@ public:
         }
     }
     void notify_inline_frame_command(Base& state,std::uint32_t command){ //Actual virtual08 subset reached by+80 feedback.
+        if(state.words().template get<std::uint32_t>(0x48)==1){
+            PlayerItemNotification notification;notification.command=command;
+            notify_player_item(static_cast<Player&>(state),notification,services_);return;
+        }
         if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Human feedback command requires actual0073E5A0 packet receiver");
         switch(state.words().template get<std::uint32_t>(0x48)){
         case 3:case 4:case 5:case 6:case 8:return; //005785B0 genuinely does nothing in offline7, AFTER actual item execution.
-        case 1:
-            if(command==1){static_cast<Player&>(state).player_words().set(0x534,10000u);return;} //00542920, exact readiness command.
-            if(command==0)return; //Actual default branch, before nonoffline transport.
-            if(command==8){auto* human=state.human();if(!human)throw std::logic_error("Player feedback command has no bound Human");set_human_sight_alignment(*human,-10.f,services_.mode_flags());return;} //00542920→005A6250.
-            if(command==4||command==6||command==7)return; //Actual default branch of00542920, no offline packet.
-            throw std::runtime_error("Other player command requires its actual00542920 effects");
         default:throw std::runtime_error("Human command08 requires its actual current B0 receiver");
         }
     }

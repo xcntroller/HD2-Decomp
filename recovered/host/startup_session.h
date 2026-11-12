@@ -373,6 +373,7 @@ public:
     auto& car_light_receivers(){return car_light_receivers_;} //0089C0A4,004E2810 initializes the actual process list empty.
     auto& car_sound_receivers(){return car_sound_receivers_;} //0089C0B4, separate sound registrations.
     auto& players_process(){return players_process_;} //Actual CRT0089AC30; module reset, not a per-world copy.
+    auto& item_sound_request(){return item_sound_request_;} //007D45B0→004374D0, process0098AFE0, shared across worlds.
     auto& delayed_player_speech(){return delayed_player_speech_;} //Separate0089AC20, survives00456440 reset.
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(EngineFrame* frame,void* callback,Resolve&& resolve,Type&& type) {
         return frontend::add_sound_listener(sound_data_.runtime,gate_,frame,callback,
@@ -442,6 +443,7 @@ public:
     }
     std::uint32_t game_speech_length(std::int32_t id){return sound_catalog_.speech_sample_size(id);} //SOUND virtual94, SAME catalogue mappings.
     const frontend::CatalogSoundEntry* mounted_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(3,id);} //Actual SOUND+8C; no implicit catalogue load.
+    const frontend::CatalogSoundEntry* item_shot_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(2,id);} //007D5C70, SAME SOUND catalogue.
     const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
     void initialize_game_dubbing(){dubbing_sound_.initialize_loading();}
     void synchronize_game_dubbing(){dubbing_sound_.synchronize_attachments();}
@@ -986,6 +988,7 @@ private:
     game::CarSeatCameraShared car_seat_camera_;
     std::vector<EngineFrame*> car_light_receivers_,car_sound_receivers_;
     game::PlayersProcess<PlayerHuman> players_process_;
+    frontend::SpatialSoundRequest item_sound_request_; //Original CRT initialization; item writers preserve unmodified fields.
     std::vector<game::PlayersProcess<PlayerHuman>::DelayedSpeech> delayed_player_speech_;
     game::HumanMorphTables human_morph_tables_;
     float camera_breathing_=0x1.47ae14p-8f; //Original00839268 bytes0A D7 A3 3B, retained across worlds.

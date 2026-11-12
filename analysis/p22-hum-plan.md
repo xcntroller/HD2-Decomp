@@ -1,21 +1,21 @@
 # P22-HUM implementation and dependency plan
 
 Revised 2026-11-12; D0 confirmed against merged master **415e850**. Worktree:
-`/home/control/Documents/Projects/HD2-Decomp-p22-hum-h2`, branch `feature/p22-hum-h2`
-(created from Human checkpoint e742f84 at the user's request; prior Human
-worktree/branch preserved). P22-HUM and both P2.2 delivery
+`/home/control/Documents/Projects/HD2-Decomp-p22-hum-h6`, branch `feature/p22-hum-h6`
+(created from completed H2 `85593e8` at the user's request; prior Human
+worktrees/branches preserved). P22-HUM and both P2.2 delivery
 checkboxes remain OPEN. Application loading still declines; no mission desktop
 acceptance has occurred. This plan replaces the former chronological next-work
 list. Detailed behavior/evidence stays in the linked contracts.
 
 ## Branch ownership — user clarification 2026-11-12
 
-H1, H3, H5 and H7 are finished and merged into `feature/p22-hum`. Completed
-aggregate201adbf is merged into this H2 worktree; [integration evidence](human-completed-branch-integration.md). H2 is assigned to
-this worktree/agent. H4 is active with another agent on its separate branch;
-do not import or implement its work here. H6 and H8 are unassigned and will be
-started after H2 or H4 finishes. Finished status does not assert that a branch's
-source is present in this checkout or add function-inventory credit.
+H1/H2/H3/H4/H5/H7 source work is completed and merged into `feature/p22-hum`.
+Completed HUM/H4b9d67aa is imported into H6 at7e6e019. H6 source is now complete
+on the existing owners; [H6 closure and external limits](human-h6-source-closure.md),
+[dependency plan](p22-hum-h6-plan.md). H8 remains open/unassigned. H4's branch may
+be deleted; no continued dependency on its old worktree or branch is required.
+Source completion does not add function-inventory credit or application delivery.
 
 H2 completes its reactions/damage/ragdoll source and verifies its own owner,
 producer and retirement boundaries. Reached H4/H6 contracts remain explicit
@@ -34,7 +34,7 @@ its JSON receipt records hashes and results. It is not application/desktop accep
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3245 partial; [joint/clip kernel inventory
+credit is separate: current source34 complete/3360 partial; [joint/clip kernel inventory
 reconciliation](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json) is complete,
 while full containing-World/application verification and external producer
 limitations remain open.
@@ -66,8 +66,7 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
 - [x] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9
   release and actual Scene2 actor dispatch. [Completed source](checkpoints/p2.2-human-guard-area-source-20261112.json),
   integrated from completed aggregate201adbf; H8/desktop verification remains separate.
-- [ ] H6 — Player items:00542E20 held item,00545140/005454D0 shots and reached
-  command/FOV/dry-fire/melee/repair/transport consumers.
+- [x] H6 — Player item controller, firing/sound/projectile producers and retirement, melee/repair, medical and actual input/queue composition on existing owners. **Source-only**: [closure/required H8 boundaries](human-h6-source-closure.md), [receipt](checkpoints/p2.2-human-h6-source-20261112.json).
 - [x] H7 — Reached breath/blood particle and rest-footprint source through SAME
   process/module17 lifetime. [Checkpoint](checkpoints/p2.2-human-particle-surface-20261111.json).
 - [ ] H8 — Full Human frame: H2–H6, actual World/control dispatch, positive paths,
@@ -164,7 +163,7 @@ readiness or continuing occupied/non7 Car frame is implied.
 The completed H2 source boundary is [recorded separately](human-h2-source-closure.md).
 Unchecked D4–D9/D11 entries below are retained containing-world/Car/entry
 integration obligations. Their exact guards remain; none is silently marked
-resolved or imported from active H4. Full World integration remains H8's work.
+resolved by the completed H4/H6 source imports. Full World integration remains H8's work.
 
 ### Car state producers, damage and retirement
 
@@ -294,7 +293,7 @@ selection/control/geometry-double gap. D11's original omissions and D4–D9
 integration remain visible on their actual callers; H2 completion does not turn
 their required failures into successful services. H8 verifies the entire Human
 behavior set in the actual containing World/application, and P2.2 requires
-application/desktop delivery. H4 stays separate; H6/H8 remain unassigned.
+application/desktop delivery. H4 is integrated and H6 is source-complete on its own branch; H8 remains open.
 
 ## External integration and acceptance
 
