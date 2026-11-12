@@ -1,8 +1,11 @@
-# P22-RENDER source checkpoint — 2026-11-11
+# P22-RENDER implementation —2026-11-12
 
-Implementation is **partial**, not complete P22-RENDER delivery. No application
-activation, original engine execution, graphics present or desktop acceptance.
-[Plan](p22-render-plan.md), [receipt](checkpoints/p22-render-containing-20261111.json).
+RENDER-owned implementation is **source complete** at the allocation-history
+continuation below. Application integration, engine execution, graphics present
+and desktop acceptance remain separate. Earlier checkpoint sections are source
+history; their old strict-history rejection is superseded by the current owned
+allocation read. [Plan](p22-render-plan.md),
+[completion receipt](checkpoints/p22-render-allocation-20261112.json).
 
 ## Current concrete call graph
 
@@ -49,12 +52,11 @@ with the inspected instructions at the following boundaries:
 -00482DCD..00482DE9 resets owner phase10 and previous direction18/1C=(1,0).
  Existing load/read clear reaches this reset. No random calls were added.
 
-**History blocker:**00481320..00481372 initializes44 via shared RandFloat*2pi
- but never writes3C/40. Existing read/refresh do not write them either. Source
- represents these lanes as unknown optional state and fails at the first reached
- visible/in-range history read. This is an explicit safety rejection, not original
- successful first-frame behavior. Audit-only known history is not a production
- producer. Do not infer initialization from allocator reuse or captured field2C=0.
+**Original history rule:**00481320..00481372 initializes44 via shared
+RandFloat*2pi but leaves3C/40 unwritten; read/refresh do not write them. Current
+source preserves actual current allocation bytes and the original subsequent
+stores. The former optional-unknown rejection has been removed. See the
+[allocation contract](p22-render-history.md#current-resolution-2026-11-12).
 
 ## Positive procedural process —00482E50/00483E50/00483DE0
 
@@ -143,14 +145,14 @@ overload remains available; no automatic application activation was introduced.
 
 ## Remaining boundary and external dependencies
 
-The original per-volume3C/40 first-read state remains the sole OPEN RENDER body
-boundary. No constructor/read/refresh producer is established. Existing source
-rejects a reached read. A native fixture with known seeded history is only a
-bounded source audit, never actual initialization or mission reachability.
+The per-volume3C/40 first read is implemented from the Volume's own raw allocation.
+No unknown-history exception, initialized direction or extra randomness is used.
+The native allocator/sidecar/OS-copy adaptation preserves the allocation-dependent
+rule and does not promise the same initial numerical bits across different heaps.
 
-UI base GameUiPresentation::command_before_scene rejects004B6720. UI74220d4
+UI base GameUiPresentation::command_before_scene rejects004B6720. UIebdcbf5
 contains later command geometry/full HUD dispatch; inspected through Git only,
-still unmerged. Its GameUiRenderStages seam is unchanged. UI's remaining Human
+still unmerged. Its GameUiRenderStages seam is unchanged. UI source is complete on that branch; its remaining external Human
 order, occupied actor/FPV and console producers remain its own contracts. No UI
 code copied, receivers suppressed or successful replacements installed.
 The exact base failure is stage2→render_hud→HudSceneLoading::render→hud_render:
@@ -218,7 +220,7 @@ module still owns process.world. Retry binds the same service again.
 
 ### Special2E0 service required by current UI
 
-UI87d92dc first exposed the requirement; latest inspected UI74220d4 retains
+UI87d92dc first exposed the requirement; latest inspected UIebdcbf5 retains
 GameUiCommandModalSource::retire_command_special_model(World&). Its native
 operation is GEffects44/004870A0(false,0,true). The source now provides the full
 positive receiver, not only a null-state success. The historical label “special
@@ -308,10 +310,40 @@ are retained in ignored WORK. Ledger adds one **partial** frozen004871A0 entry
 and expands existing00416E10/00487240 coverage. Absent004870A0/004888C0, borrowed
 engine calls and diagnostic/exception guards receive no new function credit.
 
-No other independently actionable RENDER item remains in this required call
-graph. P22-RENDER is **blocked, source incomplete** at the original per-volume
-unwritten3C/40 first read. This is a retained RENDER boundary; it is not reassigned
-to UI/FRAME/OWN. UI's unmerged consumers, FRAME scheduling/camera/effects order,
-OWN activation and later runtime/desktop evidence remain external. The user's
-strict original-behavior decision rules out synthetic history. Continue the newly
-authorized P22-FRAME work separately; do not enable application mission loading.
+## Allocation-history completion —2026-11-12
+
+The prior stop condition was an unnecessary demand for a particular historical
+heap's values. Current `Volume` owns a raw0x48-byte payload, allocated before the
+typed sidecar and original random call. Default initialization deliberately
+omits parentheses/value initialization. The payload does not become a second
+render pipeline or registry; it is storage within the existing Volume lifetime.
+Only native3C/40 lanes are semantically used by this storage adaptation.
+
+Actual GameActorServices.volume_allocation_history copies those live bytes using
+ReadProcessMemory into initialized word objects. It neither evaluates unknown
+C++ floats nor chooses numeric initial state. At the original reached history
+gate,00482260 computes wrapped delta/44, writes current3C/40 and continues to
+existing sorted draw leaves. Raw NaNs, signed zero and finite values are retained
+until their original arithmetic. DATA population diagnostics report prior stores
+without reading the payload; executed-branch observations record actual bits.
+No fixture value, successful substitute or historical capture is installed.
+
+[Contract/evidence](p22-render-history.md),
+[receipt](checkpoints/p22-render-allocation-20261112.json). Native sanitizers pass
+100 unseeded-first-read/positive draw/repeated store/ordering/failure/restoration/
+retirement families, with real POSIX memory copying as the labelled platform
+replacement and explicit engine/procedural doubles. Known-bit fixtures are
+separate from unseeded first allocation. Actual strict i386 full World/render/
+callback/lifecycle compile/link binds KERNEL32 ReadProcessMemory; application
+link also passes. No Windows product or original code ran. Temporary sources/
+binaries are fingerprinted/removed and concise logs retained.
+
+RENDER-owned source scope is **complete**. Remaining checkboxes belong to UI
+import/gameplay producers, FRAME scheduling, OWN/LIFE installation and engine/
+desktop acceptance. UI source is already complete on unmergedebdcbf5; FRAME
+c36bba8 has its containing coordinator but those branches are not assumed present
+in this base. OWN must compose their lifecycle retirement with this branch's
+render/callback ownership. No merge/push or application enabling was performed.
+Native register/object/allocator ABI, identical historical heap trajectories and
+engine pixel equivalence remain outside this source-only verification. This does
+not create a new missing history producer or an external allocator workstream.

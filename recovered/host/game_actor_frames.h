@@ -965,6 +965,16 @@ public:
         observe_data("resource","00483E50 load status",name,static_cast<std::uint32_t>(result));
         return ResourceOwner(texture,ResourceRelease{module_}); //Original ignores status; retain actual out pointer.
     }
+    std::array<std::uint32_t,2> volume_allocation_history(const void* address){
+        //Read only the live Volume-owned allocation's3C/40 bytes. The OS copy
+        //initializes result without evaluating indeterminate C++ scalar values.
+        //This native safety endpoint is not an original engine/client call.
+        std::array<std::uint32_t,2> result;
+        SIZE_T copied=0;
+        if(!::ReadProcessMemory(::GetCurrentProcess(),address,result.data(),sizeof result,&copied)||copied!=sizeof result)
+            throw std::runtime_error("Cannot read live volumetric allocation history");
+        return result;
+    }
     Frame volume_render_camera(){
         const auto camera=field<Frame>(scene_.frame(),0x15c);
         if(!camera)throw std::runtime_error("Volumetrics require actual Scene15C render camera");

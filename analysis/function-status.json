@@ -19948,13 +19948,15 @@
       "program": "client",
       "entry": "00482a00",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00482a00: Actual volumetric light/particle owner initialization, refresh geometry and cleanup source.",
+      "coverage": "P2.2 source reconstruction at original entry 00482a00: Actual volumetric light/particle owner initialization, refresh geometry and cleanup source. Original-sized0x48-byte payload is default-initialized without clearing3C/40, before typed sidecar/random work; the SAME Volume owns its retirement and partial construction cleanup.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/volumetric_lights.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/p22-render-history.md",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
       ]
     },
     {
@@ -34562,12 +34564,13 @@
       "program": "client",
       "entry": "00482260",
       "status": "partial",
-      "coverage": "Containing pre-scene procedural call, actual camera/visibility/hemisphere/distance traversal, angular update, retained pairwise sorting/draw and state restoration; reached unknown initial volume history explicitly rejects.",
-      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Original volume3C/40 initial state remains unresolved and rejects; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "coverage": "Containing pre-scene procedural call, actual camera/visibility/hemisphere/distance traversal, actual allocation-residual3C/40 read through a concrete native byte-copy endpoint, wrapped angular update/current-direction stores, retained pairwise sorting/draw and state restoration. No invented initial angle or unknown-history rejection.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/volumetric_lights.h",
         "analysis/p22-render-implementation.md",
-        "analysis/checkpoints/p22-render-services-20261111.json"
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
       ]
     },
     {
@@ -34575,11 +34578,12 @@
       "entry": "00482e50",
       "status": "partial",
       "coverage": "Positive camera-centred procedural lattice, original sin/cos geometry, distance alpha, billboard transforms, exact quads/two texture batches over retained process resources.",
-      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Original volume3C/40 initial state remains unresolved and rejects; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/procedural_clouds.h",
         "analysis/p22-render-implementation.md",
-        "analysis/checkpoints/p22-render-services-20261111.json"
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
       ]
     },
     {
@@ -34587,11 +34591,12 @@
       "entry": "00483e50",
       "status": "partial",
       "coverage": "Clear then ordered real texture requests flags502/null secondary and both original-sized geometry buffers; partial initialization retained for clear/retry.",
-      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Original volume3C/40 initial state remains unresolved and rejects; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/procedural_clouds.h",
         "analysis/p22-render-implementation.md",
-        "analysis/checkpoints/p22-render-services-20261111.json"
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
       ]
     },
     {
@@ -34599,11 +34604,12 @@
       "entry": "00483de0",
       "status": "partial",
       "coverage": "Ordered process texture0/1 and buffer0/1 retirement, bound before C4 volume clear and process shutdown.",
-      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Original volume3C/40 initial state remains unresolved and rejects; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/procedural_clouds.h",
         "analysis/p22-render-implementation.md",
-        "analysis/checkpoints/p22-render-services-20261111.json"
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
       ]
     },
     {
@@ -34611,11 +34617,12 @@
       "entry": "0079ac40",
       "status": "partial",
       "coverage": "Twenty original skeleton bone-pair lines over actual frame world matrices including fourth lane; sequential WORD indices/count.",
-      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Original volume3C/40 initial state remains unresolved and rejects; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/render_debug_skeleton.h",
         "analysis/p22-render-implementation.md",
-        "analysis/checkpoints/p22-render-services-20261111.json"
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
       ]
     },
     {
@@ -34623,11 +34630,12 @@
       "entry": "0079b760",
       "status": "partial",
       "coverage": "Lazy aligned process buffers, reverse actual registry/Human/suspension/model epoch gates, max21 skeletons and actual identity/driver30 draw with original colour policy.",
-      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Original volume3C/40 initial state remains unresolved and rejects; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/render_debug_skeleton.h",
         "analysis/p22-render-implementation.md",
-        "analysis/checkpoints/p22-render-services-20261111.json"
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
       ]
     },
     {

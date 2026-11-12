@@ -2,9 +2,65 @@
 
 The user chose **preserve original behavior**. No first-visible initialization,
 zero-history policy, ignored delta, extra randomness or successful replacement
-has been introduced. The current source guard is explicitly a reconstruction
-safety boundary, not behavior attributed to the original executable.
+has been introduced. The earlier checkpoint used a reconstruction safety guard; the current resolution
+below replaces that guard with actual allocation-state behavior.
 [Plan](p22-render-plan.md), [receipt](checkpoints/p22-render-history-20261111.json).
+
+## Current resolution —2026-11-12
+
+The original static findings below remain correct. The previous stop condition
+was too strict: source reconstruction does not need to reproduce the bytes of
+one historical heap. It must preserve the original rule that3C/40 are unwritten
+until consumed and replaced with the current direction. That rule is now
+implemented; the old unknown-state rejection described below is superseded.
+
+The existing Volume now owns an original-sized0x48-byte payload allocated with
+`new NativePayload` WITHOUT value initialization. Allocation happens before the
+typed metadata sidecar and before the original RandFloat call. No initializer
+writes its3C/40 lanes. The raw payload belongs to this SAME Volume, is retired
+with it after particle borrowers, and adds no registry, camera, clock, cache or
+custom allocator. Other native volume fields remain represented by the existing
+typed metadata; this is not a claim of a complete binary-compatible object image.
+
+At exactly the reached original visible/in-range read, GameActorServices uses
+ReadProcessMemory(GetCurrentProcess(),payload+3C,out,8,&copied). The OS writes
+initialized uint32_t result words without C++ evaluating indeterminate float
+lvalues. Failure/short read throws a native safety error and preserves primary
+failure/restoration. There is no numerical fallback. The words are copied into
+FLOAT representations, passed through the existing007885B0 delta and44 update,
+then the original current-direction stores write3C/40 in that payload. This is
+repeated for each reached read; there is no special first-visible angle, random
+draw or field2C shortcut. NaNs remain NaNs through multiplication even when a
+coefficient is zero. Population observations only report whether the original
+stores have occurred; the allocation is read only in the executed render branch.
+
+The added native OS byte-copy endpoint is a portability/safety adaptation, not an
+original client or engine call. The port's CRT allocator, sidecar allocations,
+instrumentation and heap layout differ from the original executable. Its first
+numerical result therefore need not match a historical process. That uncertainty
+is part of preserving the original allocation-dependent bug, rather than an
+unimplemented producer or a dependency assigned to another P22 component.
+Historical heap bytes and pixel/trajectory equivalence are not claimed.
+
+Native ASan/UBSan/LSan passes100 repeat families using actual decoder, Volume,
+retained particle/texture leaves and actual live POSIX process-memory copying as
+the explicitly labelled platform replacement for Win32. First allocation history
+is unseeded. Separate known-bit fixtures cover signed zero, finite, infinity,
+quiet/signalling NaN, raw-bit preservation and propagation; they are not mission
+populations or a production initial-state producer. Positive visibility/sorting/
+draw, repeated history stores, legit missing texture/light, malformed input,
+raw/sidecar allocation failure, retirement/retry and reached render-failure
+prefixes/restoration/primary precedence are covered. Strict actual i386 World/
+RENDER/callback/lifecycle construction and link binds ReadProcessMemory from
+KERNEL32; application link passes. No Windows output/original code executes.
+
+[Completion receipt](checkpoints/p22-render-allocation-20261112.json).
+
+## Historical strict-boundary analysis
+
+The rest of this document records the earlier guard and the still-valid original
+instruction proof. Its requirement for historical-byte provenance is superseded
+by the current allocation-rule implementation above.
 
 ## Original path and allocator evidence
 

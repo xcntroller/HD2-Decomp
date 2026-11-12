@@ -12,16 +12,19 @@ Source-only; application mission loading remains disabled.
   Absent0069B870/00486BF0 and actual RET00724CB0 receive no invented credit.
 - [x] Inspect research/p22 through Git; verify source/evidence and SAME C4 volume
   owner versus224 clock. Scene15C render camera differs from Sight's128.
-- [x] Inspect latest UI74220d4 through Git; full HUD/command/modal consumers have
+- [x] Inspect latest UIebdcbf5 through Git; full HUD/command/modal consumers have
   advanced. Record its exact unmerged receivers and special-model requirement.
 
 ## RENDER-owned implementation
 
-- [ ] **BLOCKED:** complete00482260's original per-volume3C/40 first read. Actual
-  allocator-residual bytes have no provenance; constructor/read/refresh do not
-  initialize them. User requires original behavior: no invented first sample.
-  All containing camera/visibility/hemisphere/distance/history-update/order/draw/
-  restoration source around this read is implemented. Keep this whole item OPEN.
+- [x] Complete00482260's original per-volume3C/40 read from actual owned,
+  unwritten allocation payload. Preserve allocator dependence, not the exact
+  heap bytes of a historical run. Use an original-sized48-byte payload under
+  the existing Volume owner, explicit native byte-copy endpoint (no C++
+  indeterminate float evaluation), and original current-direction stores.
+  No initialized angle, randomness, fixture scalar or first-visible policy.
+  Verified first/repeated draw, raw bits including nonfinite, partial allocation,
+  endpoint failures, state restoration and retirement; focused native/i386/application checks pass.
 - [x] Bind00486BF0 over SAME GEffects C4/224 and actual frame/graphics endpoints.
 - [x] Implement positive00482E50 and00483E50/00483DE0 process resources, geometry,
   graphics calls, absence/failure gates, ordered retirement and retry.
@@ -44,9 +47,8 @@ Source-only; application mission loading remains disabled.
   special-frame behavior, Scene gates/order/failures/retirement. Strict concrete
   i386 World construction/render/VM/callback link and application link. Fingerprint
   and remove temporary sources/binaries; retain logs and checkpoint receipts.
-- [x] Reconcile remaining scope: no other independently actionable RENDER item
-  found in the inspected required call graph. RENDER remains source-INCOMPLETE
-  only at the confirmed residual-history boundary above; do not relabel it UI.
+- [x] Reconcile remaining scope: RENDER-owned implementation source complete;
+  external UI/FRAME/OWN/LIFE composition and engine/desktop acceptance remain.
 
 ## External integration and later acceptance
 
@@ -67,8 +69,19 @@ Source-only; application mission loading remains disabled.
 [strict history proof](p22-render-history.md),
 [latest checkpoint](checkpoints/p22-render-bindings-20261111.json).
 
-Current stop condition: independently implementable RENDER work is done; further
-RENDER closure is genuinely blocked by missing original-state provenance for the
-first3C/40 read. Do not rerun the confirmed allocator investigation without new
-evidence or relax the user's original-behavior decision. Continue P22-FRAME in
-its separately authorized worktree after this verified checkpoint.
+Current status: **RENDER implementation scope source complete**. The previous
+history stop condition is superseded below. External integration and actual
+engine/desktop observation remain open and are not claimed by source audits.
+[Completion receipt](checkpoints/p22-render-allocation-20261112.json).
+
+## Ownership correction and current work
+
+The prior stop condition demanded provenance for values from a particular
+historical original heap. That exceeds the source-level behavior contract:
+00481320 leaves the allocation lanes untouched;00482260 reads the actual current
+allocation then stores the current direction. Preserve that allocation-dependent
+bug without prescribing its numerical result. This is RENDER-owned work, not
+an external P22 dependency. The original static findings remain valid; no
+allocator/constructor re-investigation is needed. Native allocation/OS byte-copy
+is a source ABI/safety adaptation, not original engine execution or a guarantee
+of the same heap trajectory across different processes/toolchains.

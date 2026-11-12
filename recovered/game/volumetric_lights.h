@@ -44,11 +44,31 @@ public:
         std::array<std::array<float,2>,3> ribbon_uv{};
     };
     struct Volume {
+        using NativePayload=std::array<unsigned char,0x48>;
+    private:
+        //Declared first so payload retirement follows all typed metadata and
+        //particle storage, like the native object's final operator_delete.
+        std::unique_ptr<NativePayload> native_payload_;
+        bool history_written_=false;
+    public:
+        explicit Volume(std::unique_ptr<NativePayload> payload):native_payload_(std::move(payload)){
+            if(!native_payload_)throw std::logic_error("Volumetric allocation payload is missing");
+        }
         Frame light{};
         std::string light_name; //Owning diagnostic copy of the actual serialized reference; no native field claim.
         float field18=10,field1c=0,field20=0,field28=0,field2c=0,field30=30,field34=25,plane38=0,distance44=0;
-        //00481320 leaves3C/40 unwritten. No invented first-frame direction.
-        std::optional<std::array<float,2>> history3c;
+        //00481320 leaves3C/40 unwritten. Their actual allocation bytes are
+        //consumed through the platform endpoint, never as indeterminate C++
+        //float lvalues. No historical heap values or first angle are assumed.
+        std::array<std::uint32_t,2> history_words(Frames& frames)const{
+            return frames.volume_allocation_history(native_payload_->data()+0x3c);
+        }
+        void history_direction(const std::array<float,2>& direction)noexcept{
+            std::memcpy(native_payload_->data()+0x3c,&direction[0],4);
+            std::memcpy(native_payload_->data()+0x40,&direction[1],4);
+            history_written_=true;
+        }
+        bool history_written()const noexcept{return history_written_;} //Source provenance only.
         float render_distance14=0;bool visible24=false;
         std::vector<std::unique_ptr<Particle>> particles;
         ~Volume() {while(!particles.empty())particles.pop_back();} //004813D0/00480D00.
@@ -129,8 +149,8 @@ public:
         return true;
     }
     //00482260 containing traversal. Procedural is the SEPARATE process0089B63C
-    //receiver, called even with no volumes. Missing history is an explicit native
-    //safety boundary, not original successful behavior or an initial-angle policy.
+    //receiver, called even with no volumes. Original unwritten initial history
+    //uses this Volume's actual allocation, preserving allocator dependence.
     template<class Draw,class Procedural>void render(std::int32_t time,Draw& draw,Procedural& procedural){
         const auto driver=std::uint32_t(draw.hud_driver_state(3)!=0);
         const auto graph14=std::uint32_t(draw.volume_graphics_state(14)!=0);
@@ -180,15 +200,14 @@ public:
                             observe_float("00482260 volume","field2C bits",volume.field2c);
                             observe_float("00482260 volume","current direction X bits",direction[0]);
                             observe_float("00482260 volume","current direction Z bits",direction[2]);
-                            io::observe_bound_data(frames_,"execution","00482260 volume","history3C40 known",volume.history3c.has_value());
-                            if(!volume.history3c){
-                                io::observe_bound_data(frames_,"source-guard","00482260 unknown initial history",volume.light_name.c_str());
-                                throw std::runtime_error("00482260 requires original volume3C/40 angular history");
-                            }
-                            observe_float("00482260 volume","previous direction3C bits",(*volume.history3c)[0]);
-                            observe_float("00482260 volume","previous direction40 bits",(*volume.history3c)[1]);
-                            volume.distance44=static_cast<float>(static_cast<long double>(volume.distance44)+angle_delta(*volume.history3c,{direction[0],direction[2]}));
-                            volume.history3c=std::array<float,2>{direction[0],direction[2]};
+                            const auto history=volume.history_words(frames_);
+                            io::observe_bound_data(frames_,"execution","00482260 volume","history3C40 previously written",volume.history_written());
+                            io::observe_bound_data(frames_,"execution","00482260 volume","previous direction3C bits",history[0]);
+                            io::observe_bound_data(frames_,"execution","00482260 volume","previous direction40 bits",history[1]);
+                            std::array<float,2> previous;
+                            std::memcpy(previous.data(),history.data(),sizeof previous);
+                            volume.distance44=static_cast<float>(static_cast<long double>(volume.distance44)+angle_delta(previous,{direction[0],direction[2]}));
+                            volume.history_direction({direction[0],direction[2]});
                         }else volume.visible24=false;
                     }
                 }
@@ -214,7 +233,10 @@ public:
         clear();auto root=next_mission_chunk(bytes);
         if(!root||root->id!=1)return false;
         while(auto record=next_mission_chunk(root->bytes)) {
-            auto volume=std::make_unique<Volume>();
+            //00482BB8: allocate48 WITHOUT value initialization, before typed
+            //sidecar construction. make_unique<NativePayload>() would zero it.
+            auto payload=std::unique_ptr<typename Volume::NativePayload>(new typename Volume::NativePayload);
+            auto volume=std::make_unique<Volume>(std::move(payload));
             volume->distance44=static_cast<float>(static_cast<long double>(frames_.volume_random_unit())*6.2831854820251465f);
             read_volume(record->bytes,*volume);volumes_.push_back(std::move(volume));
         }
