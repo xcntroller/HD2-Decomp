@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
 #define HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
 #include "game/human_state_damage.h"
+#include "game/human_common_command.h"
 
 #include "game/human_active_ai_state_loading.h"
 #include "game/human_guard_ai_state_loading.h"
@@ -151,6 +152,11 @@ public:
         if((services_.mode_flags()&7u)==7u)return;
         auto* input=state.input();if(!input)throw std::runtime_error("Human suspension requires its actual input record");
         input->word38=value?0u:7u;
+    }
+    bool common_command(Base& state,const HumanPacketCommand& command){ //Actual shared DC00586200.
+        const auto kind=state.words().template get<std::uint32_t>(0x48);
+        if(kind!=1&&(kind<3||kind>8))throw std::runtime_error("Human common command has no proven B0 receiver");
+        return execute_human_common_command(state,command,services_);
     }
     void script_context(Base& state,typename Contexts::Context* context){
         auto* script=dynamic_cast<Script*>(&state);

@@ -1809,3 +1809,15 @@ actual navigation tail observations. Nine new frozen partials, six extensions,
 no promotions:34 complete/3008 partial. D4b actual AI subtype14 admission and
 reached D5 occupied/non7 consumers remain open. D10–D12, D11 producer failures
 and application/desktop acceptance remain required; no full Car/Human frame claim.
+
+
+## Common Human command and Car placement —2026-11-12
+
+[D4b contract](human-car-target-command-source.md) and
+[receipt](checkpoints/p2.2-human-car-target-command-20261112.json) connect actual
+Player authority/Remote presentation command3 to shared B0 DC00586200 subtype14,
+head/target query004DEC60 and SAME Car/Items/Human retirement. Native vtables
+correct the earlier AI-only inference. Missing placement is deferred to a real
+presentation read; busy/dead/mode2-clear branches retain their original behavior.
+Three frozen partials and three extensions:34 complete/3011 partial, no promotions.
+D5 occupied/non7 and full containing composition/application acceptance remain open.

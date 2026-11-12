@@ -12,7 +12,7 @@ list. Detailed behavior/evidence stays in the linked contracts.
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3008 partial; joint/clip recovery still
+credit is separate: current source34 complete/3011 partial; joint/clip recovery still
 has deferred credit reconciliation.
 
 The selected **H2 reactions/damage/ragdoll** milestone remains open until its
@@ -152,9 +152,11 @@ D10 unmounted composition can advance without waiting for all transport work.
 - [x] D4a — Verify event6/reset, incremental event7/Items storage and pending
   damage source receivers over SAME physical/inventory owners, including failure prefixes.
   [Verified source checkpoint](checkpoints/p2.2-human-car-frame-events-20261112.json); [contract](human-car-frame-events-source.md).
-- [ ] D4b — Compose the remaining reached callers:00586200 subtype14's actual
-  AI/item/target/transform admission and occupied/non7 reset/frame consumers from D5.
-  D4a alone does not establish that an AI command or a complete Car frame runs.
+- [x] D4b — Compose common B0/00586200 subtype14 item/target/transform admission
+  through actual Player authority and Remote presentation command3 receivers.
+  Original Player/Remote/AI vtables share DC; keep Player presentation consume-only.
+  Occupied/non7 Car reset/frame consumers remain D5; neither checkpoint closes D4 alone.
+  [Verified source](checkpoints/p2.2-human-car-target-command-20261112.json); [contract](human-car-target-command-source.md).
 - [ ] D5 — Reached occupied/non7 Car activation/control/frame through existing
   004D16A0/loading lifetime. Resolve actual driver/input/mounted borrowers;
   retain offline7 gates. Verify any reached non-Car9A8/4A0 physical mapping in
@@ -221,8 +223,8 @@ interface18 and publish0C before initialization. Do not repeat its completed aud
   before any motion with5F9 unproduced; fresh wheel lifetime reaches005FDD10's
   <=500ms/expiry695 read without a producer. Existing native checks already
   preserve both failures. [Exact blocking paths](human-reaction-containing-boundary.md#source-closure-blockers).
-  D4b additionally requires a policy for subtype14's ray-miss outputs:004DEC60
-  leaves XYZ unwritten on miss, while005862AD ignores its Boolean result.
+  D4b now preserves absent subtype14 placement lazily: zero-health/busy rejection
+  and mode2-clear authority do not read it; reached presentation XYZ still fails honestly.
 - [ ] D12 — Consolidated containing-path verification and H2 source closure:
   actual dispatch, positive paths, interrupted mutation/cleanup, repeated entry
   and teardown; targeted ASan/UBSan/LSan, strict actual i386 and final launcher.

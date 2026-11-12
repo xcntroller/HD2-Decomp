@@ -1207,6 +1207,21 @@ public:
         if(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=7u)return;
         throw std::runtime_error("Human PACK command20 requires Remote equipment replacement0059EB60 on actual Items/B0/DD0");
     }
+    auto& human_command_frames(){return dependencies().scene.frames();}
+    auto* human_command_actor(std::int32_t identity){return dependencies().scene.frames().scene_actor_command_identity(identity);} //00475D50.
+    template<class Entry>std::uint32_t human_command_item_kind(Entry item){return dependencies().world_actors.items().runtime_item(item).definition().kind();}
+    template<class Human>auto human_command_head(Human& human){
+        if(!human.head_marker)throw std::logic_error("Human common command requires actual260 head marker");return human.head_marker;
+    }
+    template<class Human>HumanVector human_command_direction(Human& human){
+        if(!human.loading_state)throw std::logic_error("Human common command lost current B0 direction receiver");
+        return human.loading_state->target_direction(); //005A80E0, fresh Human+B0/4C.
+    }
+    template<class Actor>float human_command_car_health(Actor& target){return dependencies().scene.car_callbacks().car_field6a0(&target);} //004DDCF0.
+    template<class Actor,class Entry,class Human>bool human_command_targeted(Actor& target,Entry item,Human& human,
+            const std::optional<CarTargetedPlacement>& placement,bool authority){
+        return dependencies().scene.car_callbacks().car_targeted_command(&target,item,&human,placement,authority);
+    }
     template<class Human>void apply_human_packet_command(Human& human,const HumanPacketCommand& command,HumanPacketGrammar grammar){
         using Factory=typename Dependencies::Composition::StateFactory;
         const bool authority=grammar==HumanPacketGrammar::authority_player;
@@ -1272,9 +1287,18 @@ public:
             present_human_damage(human,human_damage_command_value(command),*this,dependencies().scene.frames());return;
         }
         case 2:throw std::runtime_error(authority?"Human PACK command2 requires active clothing005A6930":"Human PACK command2 requires active clothing005A6A00");
-        case 3:
-            if(!authority&&player)return; //Presentation Player mode1 skips B0+DC.
-            throw std::runtime_error("Human PACK command3 requires actual B0+DC/00586200 typed control receiver");
+        case 3:{
+            const auto identity=human.base().id10();
+            receive_human_common_command(*state,command,authority,player,*this,
+                [&](auto& current,const auto& value){return owner.state_factory().common_command(current,value);},
+                [&](const auto& value){ //00540DB0 only after success and fresh non7 mode.
+                    auto* current=dependencies().scene.frames().scene_human_identity(identity);
+                    if(current!=&human||current->loading_state!=state)
+                        throw std::logic_error("Human command3 forwarding lost its actual Human/B0");
+                    composition(*current).states().get()->queue_frame_command(value,true);
+                });
+            return;
+        }
         case 7:throw std::runtime_error(authority?"Human PACK command7 requires inventory validation005A2D50":"Human PACK command7 requires inventory apply005A2E10");
         case 8:throw std::runtime_error(authority?"Human PACK command8 requires inventory swap005A2E90":"Human PACK command8 requires inventory swap apply005A2F50");
         case 9:throw std::runtime_error(authority?"Human PACK command9 requires item validation005A39D0":"Human PACK command9 requires item apply005A3A40");

@@ -93,7 +93,8 @@ the actual existing module dependencies.
 
 00586200 subtype14 is the original caller of004DEAD0. It first performs AI/item/
 target admission, actual transform generation004DEC60 and004DDCF0 gating. These
-containing command consumers remain D4b/H4 work, not completion from a direct call.
+containing command consumers were pending at D4a; selected common DC/command3
+now follows in the [D4b checkpoint](human-car-target-command-source.md).
 The exposed GameBlastWaves receiver uses actual Human and Items borrowers.
 
 004DEAD0 RET16 returns false for NULL item/Human or an already armed countdown.
@@ -136,7 +137,8 @@ application/render/user desktop acceptance remain open.
 
 ## D4b caller research after the receiver checkpoint
 
-No additional implementation or function credit. The new index receipt is
+This section is the pre-D4b research snapshot. The [D4b contract](human-car-target-command-source.md)
+supersedes its caller interpretation and records verified source. The index receipt is
 WORK `human-car-target-command-deps-index.txt`. Separate rollback script
 `ExportHumanCarTargetTransformABI.java`→`human-car-target-transform-final` retains
 004DEC60/default00586200; the earlier `target-transform-original` is superseded.
@@ -159,7 +161,7 @@ stack padding; no geometric claim is made for those lanes.
 On a MISS the helper leaves BOTH output XYZ vectors unwritten. Caller005862AD
 does not test the returned Boolean:005862B2 immediately tests global mode and
 continues to the receiver. D4b must preserve that missing-output boundary rather
-than choose a guessed attachment point. Actual AI command routing also remains
-open: the supplied packet receiver selects Player/Remote B0 protocols and cannot
-be relabeled as the missing AI virtualDC dispatcher. This research does not
-close D4b or bypass the separate H4/state ownership boundary.
+than choose a guessed attachment point. The earlier inference that this requires an AI-only dispatcher was wrong: bounded
+vtable reads prove the same00586200 DC on Player, Remote and AI. D4b now connects
+the actual selected command3 callers and defers missing coordinates until their
+real read. Other H4 commands and occupied/non7 Car D5 remain open.

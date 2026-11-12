@@ -2,6 +2,7 @@
 #define HD2_GAME_CAR_FRAME_EVENTS_H
 
 #include "game/car_damage_packets.h"
+#include "game/car_targeted_placement.h"
 
 namespace hd2::game {
 
@@ -50,16 +51,20 @@ template<class Car,class Destroy>void update_car_targeted_damage(Car& car,
 
 //004DEAD0, RET16. Item and Human are borrowed actual owners. The presentation
 //prefix (mode2) completes before15000/source publication; item retirement follows.
-template<class Car,class Entry,class Human,class Runtime>bool begin_car_targeted_damage(
-        Car& car,Entry item,Human* human,const CarContactVector& first,
-        const CarContactVector& second,Runtime& runtime){
+template<class Car,class Entry,class Human,class Placement,class Runtime>bool begin_car_targeted_damage_lazy(
+        Car& car,Entry item,Human* human,Placement&& placement,Runtime& runtime){
     if(!item||!human)return false;
     if(!car.damage2550)throw std::logic_error("Car pending damage requires actual activation");
     if(*car.damage2550!=-1)return false;
-    if(runtime.car_damage_mode()&2u)runtime.car_targeted_presentation(car,item,*human,first,second);
+    if(runtime.car_damage_mode()&2u){const auto value=placement();runtime.car_targeted_presentation(car,item,*human,value.position,value.direction);}
     car.damage2550=15000;car.source2554=human->base().id10();
     if(!(runtime.car_damage_mode()&2u))runtime.car_targeted_consume(*human,item);
     return true;
+}
+template<class Car,class Entry,class Human,class Runtime>bool begin_car_targeted_damage(
+        Car& car,Entry item,Human* human,const CarContactVector& first,
+        const CarContactVector& second,Runtime& runtime){
+    return begin_car_targeted_damage_lazy(car,item,human,[&]{return CarTargetedPlacement{first,second};},runtime);
 }
 
 //004DEB50: save BOTH transforms before template lookup/factory. Publish254C

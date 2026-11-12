@@ -156,6 +156,14 @@ public:
             world_loading::Human* human,const Vector& first,const Vector& second){
         return game::begin_car_targeted_damage(car,item,human,first,second,*this);
     }
+    bool car_targeted_command(Actor* target,GameActorServices::Entry item,Actor* human,const std::optional<game::CarTargetedPlacement>& placement,bool authority){
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(target);
+        if(!car)throw std::logic_error("Human subtype14 requires its actual Car target");
+        auto& source=d_.world_actors.human_loading_actor(human);
+        const auto required=[&]{if(!placement)throw std::runtime_error("Human subtype14 ray miss has no native attachment XYZ producer");return *placement;};
+        if(authority)return game::begin_car_targeted_damage_lazy(*car,item,&source,required,*this);
+        const auto value=required();car_targeted_presentation(*car,item,source,value.position,value.direction);return true;
+    }
     void car_receive_collision_impulse(game::CarSceneActor<GameActorServices>& car,std::uint32_t identity,const Vector& point){
         game::receive_car_collision_impulse(*this,car,identity,point);
     }

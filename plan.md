@@ -244,10 +244,10 @@ preparation, not a standalone audit-only milestone.
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
   [Full boundary/source progress](analysis/mission-world-loading.md), [frame/render](analysis/frame-render-source.md), [module/actor frames](analysis/module-actor-frame-source.md), [projection process](analysis/human-projection-frame-process.md), [Physics frames](analysis/physics-object-frame-motion.md), [Sight frames](analysis/sight-shot-frame-source.md), [Human frames](analysis/human-frame-source.md), [shared movement](analysis/human-scene-movement.md). The containing module facade, ground collision/water/fall coordination, Human contacts, Look/posture collision and Player frame/input state are in source. Positive actor, rendering, integrity and application integration remain.
-  [P22-HUM dependency plan](analysis/p22-hum-plan.md): H2 reactions/damage/ragdoll remains OPEN. S01–S14, D1–D3 and D4a record completed source checkpoints through positive Car damage, Door restoration and frame-event receivers; full reactions/frame delivery remains open.
+  [P22-HUM dependency plan](analysis/p22-hum-plan.md): H2 reactions/damage/ragdoll remains OPEN. S01–S14, D1–D3 and D4a/D4b record completed source checkpoints through positive Car damage, Door restoration and frame-event/common-command receivers; full reactions/frame delivery remains open.
 
   - [x] Record verified reaction/damage, peer/input/entry-prefix, Mine/Versions and Car source checkpoints with their limits ([S01–S14](analysis/p22-hum-plan.md#h2-source-checkpoints-already-achieved)).
-  - [ ] Finish the remaining required containing path (boundary established in [D0](analysis/p22-hum-plan.md#d0--confirm-the-remaining-containing-path-boundary)); D1–D3/D4a source is complete; finish actual AI/frame callers D4b and reached occupied/non7 dependencies D5.
+  - [ ] Finish the remaining required containing path (boundary established in [D0](analysis/p22-hum-plan.md#d0--confirm-the-remaining-containing-path-boundary)); D1–D3/D4a/D4b source is complete; finish reached occupied/non7 dependencies D5 and containing Car frame D4.
   - [ ] Complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
   - [ ] Complete actual Human composition, required producer resolution and consolidated verification D10–D12; then close H2. H3–H6 and the full Human-frame H8 gate remain separately visible.
 

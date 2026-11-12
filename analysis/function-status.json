@@ -29618,12 +29618,14 @@
       "program": "client",
       "entry": "00586200",
       "status": "partial",
-      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor.",
-      "limitations": "Only the direct Door branch. Other command cases and Human kind 6 remain required.",
+      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required.",
+      "limitations": "Only the direct Door branch. Other command cases and Human kind 6 remain required. D4b selected common-command checkpoint; wider commands/occupied/non7 frame and full Human/application acceptance remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
-        "recovered/game/human_world_loading_services.h"
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-car-target-command-source.md",
+        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
       ]
     },
     {
@@ -31773,8 +31775,8 @@
       "program": "client",
       "entry": "00540db0",
       "status": "partial",
-      "coverage": "Player authority command-list kind6 decoder, actual Scene2 Ladder identity resolution and existing DD0007861A0 invocation with ignored result, through terminator24. Shared grammar now admits actual non7 reaction17/damage and drop10 bodies, non7 Ladder6 forwarding after action, and native copy-before-command-insertion input0 order. Other required positive effects still reject.",
-      "limitations": "Source-only native typed ownership/dispatch replaces original object/allocator/SEH ABI. Focused actual Look/selection/selected-retirement and packet/policy/damage/Player B0 source runs under native sanitizers with explicit component/engine/geometry boundaries; actual World i386 and launcher/probe link are not application or desktop tests. Normal non7 metadata/peer3C/transport and containing World/frame admission/retirement remain required; no complete equivalence or application-loading claim.",
+      "coverage": "Player authority command-list kind6 decoder, actual Scene2 Ladder identity resolution and existing DD0007861A0 invocation with ignored result, through terminator24. Shared grammar now admits actual non7 reaction17/damage and drop10 bodies, non7 Ladder6 forwarding after action, and native copy-before-command-insertion input0 order. Other required positive effects still reject. Command3 now invokes SAME actual state factory/DC subtype14 and forwards only accepted commands after fresh non7 observation, preserving received parameter10 and actual Scene2/B0 lifetime before existing second-queue publication.",
+      "limitations": "Source-only native typed ownership/dispatch replaces original object/allocator/SEH ABI. Focused actual Look/selection/selected-retirement and packet/policy/damage/Player B0 source runs under native sanitizers with explicit component/engine/geometry boundaries; actual World i386 and launcher/probe link are not application or desktop tests. Normal non7 metadata/peer3C/transport and containing World/frame admission/retirement remain required; no complete equivalence or application-loading claim. D4b selected common-command checkpoint; wider commands/occupied/non7 frame and full Human/application acceptance remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-contact-player-20261111.json",
@@ -31785,7 +31787,9 @@
         "recovered/game/session_broadcast_packets.h",
         "recovered/host/game_loading_modules.h",
         "recovered/game/human_packet_receiver.h",
-        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json"
+        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json",
+        "analysis/human-car-target-command-source.md",
+        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
       ]
     },
     {
@@ -40645,13 +40649,15 @@
       "program": "client",
       "entry": "004dead0",
       "status": "partial",
-      "coverage": "Actual RET16 item/Human/already-pending guards, mode2 presentation before15000/source publication, fresh mode2 observation before actual Human identity retirement, Boolean result and interrupted prefix. AI00586200 subtype14 admission remains D4b/H4.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "coverage": "Actual RET16 item/Human/already-pending guards, mode2 presentation before15000/source publication, fresh mode2 observation before actual Human identity retirement, Boolean result and interrupted prefix. AI00586200 subtype14 admission remains D4b/H4. Placement is now borrowed lazily: NULL/busy returns precede any coordinate read; mode2-clear authority never reads missing ray outputs, while reached presentation XYZ fails honestly on a miss. Existing explicit-vector entry delegates without changing produced state.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim. D4b selected common-command checkpoint; wider commands/occupied/non7 frame and full Human/application acceptance remain open.",
       "evidence": [
         "recovered/game/car_frame_events.h",
         "recovered/host/game_blast_waves.h",
         "analysis/human-car-frame-events-source.md",
-        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json",
+        "analysis/human-car-target-command-source.md",
+        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
       ]
     },
     {
@@ -40666,6 +40672,45 @@
         "recovered/host/game_blast_waves.h",
         "analysis/human-car-frame-events-source.md",
         "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dec60",
+      "status": "partial",
+      "coverage": "Actual target-model scene104 placement RET16, direction*FLOAT10, flags08040000, returned distance/negative normal, extended X/Y and separate Z product spill; absent outputs on miss, initialized nongeometric padding only.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH/virtual ABI, whole-body equivalence or running Human/Car frame. Native100 B0/holder/packet/common-command/Car entry/identity-retirement families use explicit Scene/engine/Car activation/Items registry/input endpoints, with Decimal100 placement oracle and focused D4a regression. Strict actual nested World/Car/Human/module13/Items packet and targeted receivers plus launcher/probe compile/link are separate checks, never Windows execution. Other DC subtypes, occupied/non7 Car activation/frame, D10/D12 composition and D11 producer failures remain open; no application/desktop acceptance.",
+      "evidence": [
+        "recovered/game/car_targeted_placement.h",
+        "recovered/host/game_car_frames.h",
+        "analysis/human-car-target-command-source.md",
+        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ddcf0",
+      "status": "partial",
+      "coverage": "Actual Car6A0==0 admission after common subtype14 scene query, through SAME current physical health. No guessed positive-health, readiness or AI policy gate.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH/virtual ABI, whole-body equivalence or running Human/Car frame. Native100 B0/holder/packet/common-command/Car entry/identity-retirement families use explicit Scene/engine/Car activation/Items registry/input endpoints, with Decimal100 placement oracle and focused D4a regression. Strict actual nested World/Car/Human/module13/Items packet and targeted receivers plus launcher/probe compile/link are separate checks, never Windows execution. Other DC subtypes, occupied/non7 Car activation/frame, D10/D12 composition and D11 producer failures remain open; no application/desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_common_command.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-car-target-command-source.md",
+        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005406c0",
+      "status": "partial",
+      "coverage": "Reached Remote presentation command3 payload-before-effect and fresh mode1 suppression, then SAME DC00586200 subtype14/state/Car receiver. Player presentation remains decode-only; other reached source remains bounded by existing contracts.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH/virtual ABI, whole-body equivalence or running Human/Car frame. Native100 B0/holder/packet/common-command/Car entry/identity-retirement families use explicit Scene/engine/Car activation/Items registry/input endpoints, with Decimal100 placement oracle and focused D4a regression. Strict actual nested World/Car/Human/module13/Items packet and targeted receivers plus launcher/probe compile/link are separate checks, never Windows execution. Other DC subtypes, occupied/non7 Car activation/frame, D10/D12 composition and D11 producer failures remain open; no application/desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_common_command.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-car-target-command-source.md",
+        "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
       ]
     }
   ]

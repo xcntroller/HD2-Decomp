@@ -4,6 +4,7 @@
 #include "host/game_scene_objects.h"
 #include "game/car_geometry_math.h"
 #include "game/car_particles.h"
+#include "game/car_targeted_placement.h"
 
 namespace hd2::host {
 
@@ -86,6 +87,16 @@ public:
         using Pick=Frame(WINAPI*)(Frame,const float*,const float*,Frame,void*,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
         alignas(16) std::array<std::uint8_t,64> details{};
         return scene_method<Pick>(scene_.frame(),module_,0x104,0x110f0)(scene_.frame(),start.data(),displacement.data(),root,details.data(),flags,0,0,0);
+    }
+    std::optional<game::CarTargetedPick> car_targeted_pick(const Vector& start,const Vector& displacement,Frame root){
+        if(!root||!scene_.frame())throw std::logic_error("Car targeted pick requires actual scene/target model");
+        using Pick=Frame(WINAPI*)(Frame,const float*,const float*,Frame,void*,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
+        alignas(16) std::array<std::uint8_t,64> details{};
+        const auto hit=scene_method<Pick>(scene_.frame(),module_,0x104,0x110f0)(scene_.frame(),start.data(),displacement.data(),root,details.data(),0x8040000u,0,0,0);
+        if(!hit)return std::nullopt;
+        game::CarTargetedPick result{};std::memcpy(&result.distance,details.data(),4);
+        for(unsigned axis=0;axis!=3;++axis)std::memcpy(&result.normal[axis],details.data()+0x10+axis*4,4);
+        return result;
     }
     void car_damage_model_pose(Frame model,const Vector& position,const Vector& rotation){call<void>(model,0x18,position.data(),rotation.data());}
     void car_damage_plane_rotation(Frame target,Frame source){ //004E1DC0's cache publication precedes Make.

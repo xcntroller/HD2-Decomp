@@ -7,6 +7,7 @@
 #include "game/car_tyres.h"
 #include "game/session_packet_stream.h"
 #include "game/car_damage_packets.h"
+#include "game/car_targeted_placement.h"
 #include <memory>
 
 namespace hd2::game {
@@ -40,6 +41,7 @@ public:
     virtual void receive_damage_request(Actor,SessionPacketStream&)=0;
     virtual void car_timed_destroy(Actor)=0;
     virtual void car_periodic_event(Actor,const CarDamageEvent&)=0;
+    virtual bool car_targeted_command(Actor,typename Backend::Entry,Actor,const std::optional<CarTargetedPlacement>&,bool)=0;
     virtual void car_retire_particle(std::int32_t)=0;
     virtual std::size_t car_active_particles()const=0;
     virtual Actor car_actor_from_frame(Frame)=0;
