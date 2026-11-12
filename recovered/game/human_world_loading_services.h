@@ -1522,6 +1522,27 @@ public:
         auto& items=dependencies().world_actors.items();const auto id=items.runtime_item(state.item()).definition().ammunition();
         return count_human_ammunition(*human,items,id,false); //005A6C50, original include-pack0.
     }
+    template<class Human>bool human_script_has_weapon(Human& human){
+        FirstPersonHumanItems hand(dependencies().world_actors.items());return static_cast<bool>(hand.weapon(human)); //005A2B10.
+    }
+    template<class Human>std::uint32_t human_script_target_flags(Human& human){
+        if(!human.loading_state)throw std::logic_error("Script target posture requires actual B0");
+        return human.loading_state->words().template get<std::uint32_t>(0x50);
+    }
+    HumanVector human_script_mounted_position(void*,std::uint32_t){
+        //H5 supplies actual human_emplacement_position→Actor A8→004C5800
+        //on HUM201adbf. This base lacks that mounted lifetime API.
+        throw std::runtime_error("Script mounted A8 position requires H5 human_emplacement_position/004C5800 import from feature/p22-hum");
+    }
+    bool human_script_mounted_precise(void* actor,std::int32_t seat){
+        const auto* definition=dependencies().first_players.seat_presentation().definition(human_pose_actor(actor),seat); //Actual B4, already in this base.
+        if(!definition||!definition->payloads[0].type)return false;
+        const auto& payload=definition->payloads[0];
+        if(payload.type==10&&payload.bytes.empty())return false; //Native kind9 has a zero-byte serializer.
+        if(payload.bytes.size()<8)throw std::logic_error("Script mounted B4 payload kind is truncated");
+        return frontend::pre_mission_detail::Bytes::word(payload.bytes.data()+4)==2u;
+    }
+    std::uint32_t human_script_mounted_ammunition(void* actor,std::int32_t seat){return dependencies().first_players.seat_presentation().current(human_pose_actor(actor),seat);} //Actual9C.
     template<class State>std::uint32_t human_ai_reload_time(State& state){
         if(!state.item())throw std::logic_error("AI reload time requires actual item");
         return dependencies().world_actors.items().runtime_item(state.item()).reload_duration();

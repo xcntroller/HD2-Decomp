@@ -622,3 +622,69 @@ Item/ammunition/DD0/sphere/frame/Sight receivers without selected endpoint doubl
 Existing launcher/probe links pass; Windows outputs are not executed. Receipt
 records exact source/original evidence and removed temporary-audit fingerprints.
 Source-callable composition does not establish a live mission, engine or desktop.
+
+## Script timed attacks and real VM producers
+
+0058F1F0/0058F260 now produce the actual Script1C4 actor/1C8 frame loans,
+1C0 duration, B4 ill-fire byte and1DC parked context PC. They clear1BD before
+admission; attached4/21 must pass actual98 control, while unattached admission
+uses SAME Human hand005A2B10. Attached acceptance publishes1BD/clears1D0 before
+timer/target writes. Actor requests preserve the old frame; frame requests clear
+only the actor before writing their frame. Typed borrowers live on the existing
+Script state and retire at bind/close before Scene/frame destruction, never as
+native pointers packed into DWORDs or a separate registry.
+
+Actual00421C00 op21(HUMAN_Attack)/30(HUMAN_IllFire) use real context frame slots,
+the frame EC actor identity if present, actual integer duration and current PC,
+through existing005AF230/250 Script5 selection. The instruction stays parked,
+including admission rejection or non-Script state. Completion00416D70 reuses the
+existing same-context PC-match advance receiver; no fake VM event or automatic
+advance. Strict actual World/Controls/Script/VM linkage verifies that producer,
+not a manually seeded target collection.
+
+0058E500 refreshes actual hand state FIRST. Ordinary paths use SAME actual
+resources, target/frame direction, virtual54 and start/trigger/stop workers.
+Script's D0 assignment deliberately preserves D4, unlike00576350's dual actor
+publication. Actor/frame D8 policies differ (clear versus OR2). Original timer
+subtraction wraps DWORD then clamps by signed result; expiry stops aim before
+optional live context completion and1DC=-1. Endpoint failures preserve reached
+D8/aim/timer/PC changes. Original RandFloat*400+300 is conditional on exhausted
+C4, and subsequent D8 reload request observes the stop worker's mutations.
+
+0058E8B0 now reconstructs the actual mounted target vector from raw instructions,
+correcting the default C export's invalid stack aliases. It selects the target
+model before actual A8 origin, then freshly reads Human posture and head/model
+position. Flags2/4 subtract FLOAT.3 from260; Human1B0 velocity lead is.125,
+with Z's separate FLOAT spill. Non-Human/frame targets use worldY+.75. Native
+(Z²+Y²)+X² distance, signed-bit epsilon and FLOAT distance*.06 radius precede
+three shared CRT draws in Z,Y,X order only when spread is requested. The last
+subtraction returns XYZ; native W has no writer and source W0 is only a guard.
+No synthetic camera/origin, guessed geometry or independent random stream.
+
+0058EBD0 captures actual actor/seat, calls the target worker, actual A4 direction,
+B4 payload-kind2 precision policy and9C ammunition. It preserves different
+normalization sum orders and strict.9998(precise)/.985(ordinary) alignment. Empty
+ammunition writes first34; aligned populated input recomputes target (ordinary
+spread only), then writes first18 followed by second18. This is input production;
+H6's actual firing/reload is separate. Original PE constants and bounded raw
+instructions are fingerprinted in the receipt; no Ghidra project mutation.
+
+**Exact integration boundary:** this base already supplies actual Actor A4/98/
+B4/9C receivers. H5's newer HUM201adbf supplies A8 via
+`human_emplacement_position` and mounted lifetime `mounted_position()`004C5800;
+that lifetime API is unimported here. The concrete World adapter currently throws
+at that exact A8 request. After importing H5, bind it to SAME
+`human_emplacement_position(actor,seat)`; no H5 owner/body/ledger copied. Mounted
+H4 algorithms are implemented and positively audited with explicit endpoint
+doubles, but actual mounted execution remains blocked at A8. Ordinary VM→typed
+producer→timed consumer composition is callable concrete source now.
+
+Verification: strictO1 ASan/UBSan/LSan PASS66 over actual AI resources/target/
+inputs with explicit Script/Item/World/engine endpoint doubles, positive ordinary
+and mounted input families, producer rejection, target-change timing, D4
+preservation, timer expiry, context failure, target poses/lead, CRT order,
+precision/ammunition gates, failed prefixes and retry. Strict actual i386 FULL
+LINK includes World/Script target producers, complete timed consumer and actual
+VM/Controls opcode receiver; application-launch/startup-probe links PASS, no
+Windows execution. Temporary audits fingerprinted/removed. No actual mission,
+engine execution, full vehicle path/attachment or whole-H4 completion claim.

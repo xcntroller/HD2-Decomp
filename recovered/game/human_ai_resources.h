@@ -149,6 +149,7 @@ public:
         aimed_actor_=actor;
         if(actor)selected_actor_=actor;
     }
+    void publish_script_aimed_actor(Actor* actor){aimed_actor_=actor;} //0058E5DF writes D0 only, preserving D4.
     auto& navigation_jobs(){return jobs_;}
     const HumanAINavigationJob* current_navigation_job()const{return current_job_.get();}
     void advance_navigation_job(){

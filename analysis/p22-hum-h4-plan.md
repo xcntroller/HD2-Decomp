@@ -203,3 +203,21 @@ in this older implementation base; do not duplicate its body/ledger.
 Ordinary alignment/friendly-line composition verified: native PASS54, actual
 i386 World/Script/Guard/Area full link and application/probe links.
 [Receipt](checkpoints/p22-hum-h4-ai-alignment-20261112.json).
+
+Script completion boundary selected before implementation: recover0058E500's
+ordinary and mounted0058EBD0/0058E8B0 behavior, actual0058F1F0/0058F260 target
+producers and005AF230/250→00421C00 op21/30 binding. Preserve real typed actor/
+frame loans, same context PC completion00416D70, shared random call order,
+actual elapsed and failed prefixes. Current base already has actual A4/98/9C/B4
+presentation endpoints; do not repeat a missing-9C claim. Mounted A8/004C5800
+exists on newer HUM/H5 through human_emplacement_position but its lifetime API
+is unimported here. Finish H4 containing math/ordinary binding independently;
+record that exact mounted integration dependency, without duplicating H5 owner.
+
+
+Script timed source and real opcode21/30 producers verified:0058E500 ordinary,
+0058F1F0/260,0058E8B0/0058EBD0 math and input publication. Native PASS66,
+actual World/Controls/Script/VM full i386 link and application/probe links pass.
+Mounted concrete A8 binding remains blocked on the unimported H5 lifetime API;
+A4/98/B4/9C are present. Vehicle path00578790 and attachment0058DB20 remain H4
+work, not implied complete by this result.

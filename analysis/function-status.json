@@ -25312,12 +25312,14 @@
       "program": "client",
       "entry": "00421c00",
       "status": "partial",
-      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension.",
+      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion.",
       "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
       "evidence": [
         "recovered/game/human_script_loading_controls.h",
         "analysis/mission-script-initial-controls.md",
-        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "analysis/p22-hum-h4-implementation.md"
       ]
     },
     {
@@ -41065,6 +41067,118 @@
         "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
         "recovered/game/human_ai_alignment.h",
         "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058e500",
+      "status": "partial",
+      "coverage": "Actual refresh-first ordinary and mounted Script timed attack composition, same input/target/trigger workers, actual elapsed countdown, stop-before-context completion and preserved failure prefix.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058e8b0",
+      "status": "partial",
+      "coverage": "Actual mounted target geometry, Human stance/velocity lead, FLOAT boundaries, distance epsilon and shared CRT Z/Y/X spread draws. Concrete A8 position reaches explicit H5 import boundary in this base.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058ebd0",
+      "status": "partial",
+      "coverage": "Actual mounted A4/B4/9C normalization, precision/alignment/ammunition gates and first/second input publication. Positive engine endpoints doubled in native audit; concrete A8 origin remains H5 import.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f1b0",
+      "status": "partial",
+      "coverage": "Actual attached4/21 and virtual98 control admission over same Human attachment owner.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f1f0",
+      "status": "partial",
+      "coverage": "Actual actor-target Script timed request admission, timer, typed1C4 loan, ill-fire byte and parked context PC.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f260",
+      "status": "partial",
+      "coverage": "Actual frame-target Script timed request admission, timer, actor clear/typed1C8 loan, ill-fire byte and parked context PC.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af230",
+      "status": "partial",
+      "coverage": "Actual Script5 guard and actor-target attack forwarding on SAME Human/B0.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af250",
+      "status": "partial",
+      "coverage": "Actual Script5 guard and frame-target attack forwarding on SAME Human/B0.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
       ]
     }
   ]

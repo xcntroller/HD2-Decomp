@@ -10,21 +10,22 @@ Master/other worktrees untouched; no merge/push or original/Windows execution.
 Earlier C labels are historical implementation batches, not new requirements.
 Do not add C labels. Report against the original H4 remaining work directly.
 
-Latest: ordinary00575D50/00576350 alignment and005762B0 continuation use actual
-World/Item/target/inputs/elapsed; Guard00558E50 friendly-line and005AC1D0 actual
-DD0 primary/posture sphere query. Native sanitizer PASS54; strict actual i386
-World/Script/Guard/Area full links and application/probe links PASS.
-[Receipt](analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json).
-Target35 remains precise H5 import: current HUM201adbf has00572DE0 in
-human_ai_grenade.h; this base does not. E0 publication precedes explicit failure.
-No H5 source/ledger copied or successful placeholder installed.
+Latest: real HUMAN_Attack/IllFire VM opcode21/30→actual Script typed actor/frame
+producer0058F1F0/260→ordinary0058E500 source composition; mounted0058E8B0/
+0058EBD0 target math/input production implemented. Native sanitizer PASS66;
+strict actual World/Controls/Script/VM i386 full link and application/probe PASS.
+[Receipt](analysis/checkpoints/p22-hum-h4-script-timed-20261112.json).
+Mounted World A8 origin remains exact H5 import: current HUM201adbf supplies
+human_emplacement_position/004C5800/mounted_position lifetime; this base lacks it.
+A4/98/B4/9C already exist here. Bind SAME H5 position after import; no H5 body
+or ledger copied. Separately target35 still requires H5 human_ai_grenade.h.
+Both reached imports fail explicitly, without successful placeholders.
 
 Preserved completed track0..24, mounted assignment/retirement, timed inventory
 transfer, target-direction/trigger/start/stop workers and prior completion/climb/
 formation/event output families; details/receipts linked from implementation.
 
-Next original H4 work: Script timed0058E500/special0058EBD0, vehicle00578770/90
-and attachment0058DB20; completion type15/91, physical35/type5 pickup/drop;
+Next original H4 work: vehicle path00578770/90 and attachment0058DB20; completion type15/91, physical35/type5 pickup/drop;
 Players subgroup formation mode9 producer/retirement. Research locators and raw
 instructions in analysis/work/p22-hum-h4-20261112. Bad stack aliases in the
 0058EBD0 C export require raw/ABI correction before implementing its geometry.

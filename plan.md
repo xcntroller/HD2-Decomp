@@ -354,3 +354,5 @@ H4: timed inventory transfer and actual slot3 notification source-bound; [receip
 H4 common target/aim input and stop workers verified over current World owners; alignment/Script/completion/subgroup still open. [Receipt](analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json).
 
 H4 ordinary AI alignment/friendly-line and actual elapsed composition verified; H5 target35 import and remaining original H4 work stay open. [Receipt](analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json). Historical C labels are implementation batches only.
+
+H4 actual Script attack VM producers and timed consumers verified; mounted A8 needs the unimported H5 position API. Vehicle/attachment/completion/subgroup remain open. [Receipt](analysis/checkpoints/p22-hum-h4-script-timed-20261112.json).

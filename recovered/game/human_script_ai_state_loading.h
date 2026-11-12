@@ -3,6 +3,7 @@
 
 #include "game/human_ai_state_loading.h"
 #include "game/human_script_formation_output.h"
+#include "game/human_script_timed_output.h"
 #include "game/human_ai_frame_metrics.h"
 
 namespace hd2::game {
@@ -15,6 +16,7 @@ class HumanScriptAIStateLoading : public HumanAIStateLoading<Frames,Human,Inputs
 public:
     using AI=HumanAIStateLoading<Frames,Human,Inputs>;
     using Base=typename AI::Base;using Context=typename Contexts::Context;
+    using Actor=SceneActor<Frames>;using Frame=typename Frames::Frame;
     HumanScriptAIStateLoading(Frames& frames,Inputs& inputs,MissionTableSet& second,
             HumanInputCallbacks& callbacks,Contexts& contexts)
         :AI(frames,inputs,second,callbacks,5),contexts_(contexts) {
@@ -34,11 +36,12 @@ public:
         state_.set(0x1c0,std::uint32_t{0});state_.set(0x1d4,std::int32_t{-1});
         for(auto offset:{0x1d2u,0x18cu,0x1bdu})state_.set(offset,std::uint8_t{0});
         for(auto offset:{0x1c8u,0x1c4u,0x1ccu})state_.set(offset,std::uint32_t{0});
+        attack_actor_=nullptr;attack_frame_=Frame{};
         formation_=nullptr; //Native1E0 typed borrower, never a pointer in DWORD storage.
         state_.set(0x1d0,std::uint8_t{0});state_.set(0x150,std::uint8_t{0});
         return context_!=nullptr; //Native factory ignores this return; absence is not a successful script bind.
     }
-    void close_loading(){AI::close_loading();this->clear_human_reference();alarm_target_=nullptr;} //0058D8E0.
+    void close_loading(){AI::close_loading();this->clear_human_reference();alarm_target_=nullptr;attack_actor_=nullptr;attack_frame_=Frame{};} //0058D8E0.
     template<class World,class Runtime>void advance_script_presentation(std::uint32_t elapsed,World& world,Runtime& runtime){ //0058E1C0.
         if(!(this->words().template get<std::uint32_t>(0x50)&0x800u)){
             if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(runtime);
@@ -82,7 +85,7 @@ public:
             if(!(posture&flags()&7u))this->request_navigation_posture(posture&7u,control,world.mode_flags());
             if(this->human()->field160&&resources.path().state().template get<std::uint32_t>(0x74))
                 runtime.advance_script_vehicle_path(*this,elapsed); //00578770→00578790, actual path+74 gate.
-            if(state_.template get<std::uint32_t>(0x1c0))runtime.advance_script_timed_action(*this,elapsed); //0058E500.
+            if(state_.template get<std::uint32_t>(0x1c0))advance_script_timed_action(elapsed,world); //0058E500.
             this->apply_frame_movement(control);
             this->apply_frame_items(control,world,runtime,elapsed,this->words().template get<std::uint8_t>(0xb4));
         }
@@ -144,6 +147,14 @@ public:
         return state_.template get<std::uint32_t>(offset);
     }
     auto& state(){return state_;}const auto& state()const{return state_;}
+    Actor* script_attack_actor()const{return attack_actor_;}
+    Frame script_attack_frame()const{return attack_frame_;}
+    void publish_script_attack_actor(Actor* actor){attack_actor_=actor;}
+    void publish_script_attack_frame(Frame frame){attack_frame_=frame;}
+    template<class World>void request_actor_attack(Actor* actor,std::uint32_t duration,bool ill_fire,std::int32_t pc,World& world){request_human_script_actor_attack(*this,actor,duration,ill_fire,pc,world);}
+    template<class World>void request_frame_attack(Frame frame,std::uint32_t duration,bool ill_fire,std::int32_t pc,World& world){request_human_script_frame_attack(*this,frame,duration,ill_fire,pc,world);}
+    template<class World>void advance_script_timed_action(std::uint32_t elapsed,World& world){advance_human_script_timed_attack(*this,elapsed,world);}
+    void finish_script_attack_context(std::int32_t pc){if(context_)contexts_.finish_human_script_navigation(*context_,pc);} //00416D70, same existing PC-match receiver.
     using Formation=std::remove_reference_t<decltype(*std::declval<Human&>().formation)>;
     Formation* script_formation()const{return formation_;}
     void script_formation(Formation* formation){ //0058D900, actual producer004603C0 / retirement00460850.
@@ -153,6 +164,7 @@ public:
     }
 private:
     Formation* formation_=nullptr;
+    Actor* attack_actor_=nullptr;Frame attack_frame_{}; //Native1C4/1C8 loans, retired before Scene/frame destruction.
     bool alarm_enabled()const{return state_.template get<std::uint8_t>(0x198)!=0;}
     template<class Runtime>void update_script_attachment(Runtime& runtime){ //0058DB20.
         const auto* attachment=this->human()->field160;
