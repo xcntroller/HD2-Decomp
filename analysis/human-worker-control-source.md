@@ -4,7 +4,8 @@ This completes **D6b1's source worker/socket/control lifetime**, not the contain
 D6b/D6/H2 checkbox or a live multiplayer session. [Plan](p22-hum-plan.md),
 [receipt](checkpoints/p2.2-human-worker-control-20261112.json),
 [prior cold owner](human-entry-connection-source.md). Actual DirectPlay admission,
-callback routing, populated messages and received fragments remain D6b2.
+callback routing and populated messages remain D6b2; received fragments now have
+[D6b2a source](human-fragment-reassembly-source.md).
 
 ## Storage and shared ownership
 
@@ -130,7 +131,8 @@ claim; it is unavailable in the local sanitizer runtime.
 **D6b2 remains:** compose actual DirectPlay admission/name/address/record and
 completion/termination callbacks with current application11, preserving one
 client04/server00 owner. Finish reached00747240 retained message/payload receivers,
-queue resend/ordering and00747A40 fragment reassembly before received entry/frame
-can rely on them. Callback414 presence, A4 or thread creation cannot mean world
+queue resend/ordering before received entry/frame can rely on them.
+00747A40 retained fragment reassembly is now D6b2a source-verified;
+[its contract](human-fragment-reassembly-source.md) records lifetime/failure limits. Callback414 presence, A4 or thread creation cannot mean world
 or transport readiness. D7/D8/D9 actual entry remains open. Known D11 fresh-part5F9,
 wheel695, EXPL8 and smoke14 blockers are unchanged; no defaults were added.

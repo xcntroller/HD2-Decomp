@@ -40895,12 +40895,15 @@
       "program": "client",
       "entry": "007475b0",
       "status": "partial",
-      "coverage": "Reached cold socket storage retirement:54 then buffers14/18,4C/40 FIFO storage and empty reassembly storage. No populated incoming reassembly retirement claim.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Reached cold socket storage retirement:54 then buffers14/18,4C/40 FIFO storage and empty reassembly storage. No populated incoming reassembly retirement claim. Source socket30 capacity and populated retained byte owners retire AFTER4C/40 FIFO storage; stop/start does not clear them.",
+      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance. Populated typed fragment ownership is now covered by the fragment receiver checkpoint; native leaked buffers are reclaimed by source RAII.",
       "evidence": [
         "recovered/frontend/control_connection_socket.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "recovered/frontend/control_connection_fragments.h",
+        "analysis/human-fragment-reassembly-source.md",
+        "analysis/checkpoints/p2.2-human-fragment-reassembly-20261112.json"
       ]
     },
     {
@@ -41243,12 +41246,15 @@
       "program": "client",
       "entry": "00747a40",
       "status": "partial",
-      "coverage": "Reached unfragmented checksum/decode receiver; malformed carrier and high-bit fragment reach honest required ownership guards. No successful reassembly or retained payload receiver claim.",
-      "limitations": "Source-only typed/template/STL/RAII/atomic/checked-span reconstruction, not original layout/allocator/SEH/virtual ABI equivalence. Native100 actual source worker/socket/connection/process/cold-reset families with200 same-worker start/reset cycles run source callbacks on real native C++ threads; OS/graphics endpoints explicitly doubled. Targeted ACK/ping/deadline/wrap/checksum/fragment/prefix/timeout/exceptional acquisition checks and D6a100 regression; actual StartupSession i386 and launcher/probe compile/link only. DirectPlay admission/callback routing/current-application11, populated payload/queue/reassembly and D7-D12 remain open. No Windows/original run, live network/session/world or desktop acceptance.",
+      "coverage": "Reached unfragmented checksum/decode receiver; malformed carrier and high-bit fragment reach honest required ownership guards. No successful reassembly or retained payload receiver claim. Reached fragment branch now retains id/index/final/payload/fresh clock, assembles through actual sort/selector and buffer14, and publishes THIS arriving sender address/port even for cross-sender runs. Retained fragments survive socket stop/start; checksum failures do not append/read clocks.",
+      "limitations": "Source-only typed/template/vector/RAII/checked-buffer adaptation, not native32-byte record layout, packet-pool/allocator/SEH or sort-helper ABI equivalence. Native expiration/vector destruction does not release overwritten payloads; portable owners reclaim them. Native logical-end id probe has no effect on returned selection and is bounded in source. Malformed metadata and assembly beyond buffer14 fail rather than emulate undefined memory access; prior counter/copy/erase prefixes remain. Focused100-family ASan/UBSan/LSan socket/reassembly and prior worker regression with actual source callbacks; OS endpoints doubled. Strict actual StartupSession i386 and launcher/probe compile/link only. No original/Windows execution, live network/session/World or desktop acceptance. Queue payload/retry/order and DirectPlay/current-app callback composition remain D6b2b/c; H2/D5/D7-D12 remain open.",
       "evidence": [
         "recovered/frontend/control_connection_socket.h",
         "analysis/human-worker-control-source.md",
-        "analysis/checkpoints/p2.2-human-worker-control-20261112.json"
+        "analysis/checkpoints/p2.2-human-worker-control-20261112.json",
+        "recovered/frontend/control_connection_fragments.h",
+        "analysis/human-fragment-reassembly-source.md",
+        "analysis/checkpoints/p2.2-human-fragment-reassembly-20261112.json"
       ]
     },
     {
@@ -41561,6 +41567,32 @@
         "recovered/game/human_control_loading.h",
         "analysis/human-seat-interaction-source.md",
         "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747cb0",
+      "status": "partial",
+      "coverage": "Actual retained-fragment candidate selection over SAME socket30 storage: signed fresh-clock20-second expiry, unsigned id/index runs starting at0, contiguous next index, terminal publication and source-owned erasure. Nonfirst members retain native candidate-only expiry behavior.",
+      "limitations": "Source-only typed/template/vector/RAII/checked-buffer adaptation, not native32-byte record layout, packet-pool/allocator/SEH or sort-helper ABI equivalence. Native expiration/vector destruction does not release overwritten payloads; portable owners reclaim them. Native logical-end id probe has no effect on returned selection and is bounded in source. Malformed metadata and assembly beyond buffer14 fail rather than emulate undefined memory access; prior counter/copy/erase prefixes remain. Focused100-family ASan/UBSan/LSan socket/reassembly and prior worker regression with actual source callbacks; OS endpoints doubled. Strict actual StartupSession i386 and launcher/probe compile/link only. No original/Windows execution, live network/session/World or desktop acceptance. Queue payload/retry/order and DirectPlay/current-app callback composition remain D6b2b/c; H2/D5/D7-D12 remain open.",
+      "evidence": [
+        "recovered/frontend/control_connection_fragments.h",
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-fragment-reassembly-source.md",
+        "analysis/checkpoints/p2.2-human-fragment-reassembly-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00747dd0",
+      "status": "partial",
+      "coverage": "Actual retained-fragment sort/select/assemble receiver: unsigned id/index comparator, native partition/insertion scheme including equal keys, fresh selector clock AFTER sort, SAME32768-byte buffer14, per-record copy/free/erase and late failing overflow prefix.",
+      "limitations": "Source-only typed/template/vector/RAII/checked-buffer adaptation, not native32-byte record layout, packet-pool/allocator/SEH or sort-helper ABI equivalence. Native expiration/vector destruction does not release overwritten payloads; portable owners reclaim them. Native logical-end id probe has no effect on returned selection and is bounded in source. Malformed metadata and assembly beyond buffer14 fail rather than emulate undefined memory access; prior counter/copy/erase prefixes remain. Focused100-family ASan/UBSan/LSan socket/reassembly and prior worker regression with actual source callbacks; OS endpoints doubled. Strict actual StartupSession i386 and launcher/probe compile/link only. No original/Windows execution, live network/session/World or desktop acceptance. Queue payload/retry/order and DirectPlay/current-app callback composition remain D6b2b/c; H2/D5/D7-D12 remain open.",
+      "evidence": [
+        "recovered/frontend/control_connection_fragments.h",
+        "recovered/frontend/control_connection_socket.h",
+        "analysis/human-fragment-reassembly-source.md",
+        "analysis/checkpoints/p2.2-human-fragment-reassembly-20261112.json"
       ]
     }
   ]

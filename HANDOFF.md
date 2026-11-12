@@ -1,54 +1,67 @@
 # P22-HUM H2 handoff —2026-11-12
 
 Active worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h2`, branch
-`feature/p22-hum-h2`. Latest base131e9b4 (worker), after f771a60 (D6a) and fb89d76's move
+`feature/p22-hum-h2`. Latest base1e091a7 (H3 integration), after131e9b4 (worker)/f771a60 (D6a) and fb89d76's move
 frome742f84. Check HEAD/status; preserve unrelated worktrees and user changes.
 Read AGENTS.md, Phase2 section2 plan.md, [Human plan](analysis/p22-hum-plan.md).
 **H2 remains OPEN.** No agents/push, original EXE/DLL/Proton or Windows output
 execution. Heavy compilation/Ghidra sequential. Actual application/render/user
 desktop acceptance remains P2.2; this checkpoint is source-only.
 
-## Latest — H3 dependency integrated on H2
+## Latest — D6b2a retained fragment reassembly
 
-Integrated committed H3 snapshot10bebe9 atop131e9b4, preserving D4b/D6a/D6b1.
-[H3 contract](analysis/human-seat-interaction-source.md),
-[integration receipt](analysis/checkpoints/p2.2-human-h3-integration-20261112.json).
-H3's offline seat/mounted source checkbox is complete. **H2/D4/D5 remain OPEN**:
-occupied/non7 Car simulation guards are unchanged. Actual004C6620 now owns
-mounted reset instead of the earlier required receiver.
+Base1e091a7 integrated verified H3 snapshot10bebe9 atop worker131e9b4, preserving
+D4b/D6a/D6b1. H3's offline seat/mounted source checkbox is complete; D5 occupied/
+non7 Car simulation remains guarded. [Integration receipt](analysis/checkpoints/p2.2-human-h3-integration-20261112.json).
 
-**34 complete/3080 partial (3075client+5engine)**: union of17 new H3 partials
-and8 extensions with all42 worker partials; no promotions. Source merged without
-conflicts; documentation/ledger conflicts resolved as a union.51 H3 evidence/log
-files copied to a new ignored `h2-h3-evidence-10bebe9` directory after SHA/byte
-validation; no sibling worktree or frozen dedicated artifact changed.
+[Fragment contract](analysis/human-fragment-reassembly-source.md),
+[receipt](analysis/checkpoints/p2.2-human-fragment-reassembly-20261112.json).
+**D6b2a complete; H2/D6b2/D6 remain OPEN.** Plan now separates D6b2b retained
+payload/queue/order and D6b2c actual admission/current-application callback
+composition. **34 complete/3082 partial (3077client+5engine)**:2 new frozen
+partials00747CB0/00747DD0, extensions00747A40/007475B0, no promotions.
 
-Strict actual nested Human/Car/World and StartupSession i386 instantiation PASS.
-The temporary seat fixture explicitly throws at three unresolved frame-runtime
-endpoints; it is compile-only and does not close D10. Launcher/probe compile/link
-PASS; no Windows execution. Actual prior D4b source with H3 merged passes100
-ASan/UBSan/LSan command/packet/Car timer/holder/retirement families; named engine/
-Scene/Car activation/registry/input endpoints remain doubled. New temporary
-integration fixture/object/native executable fingerprinted and removed.
+- SAME socket30 retained vector and buffer14: checksum/counter prefix, payload
+  copy then clock/append; unsigned id/index native sort scheme, fresh selection
+  clock AFTER sorting, strict signed20-second candidate expiry, contiguous run.
+- No sender key or deduplication; gaps/duplicates retain native behavior. Output
+  uses THIS triggering datagram's sender. Records survive socket stop/start;
+  storage retires after FIFO4C/40. No new process/input/lock/transport owner.
+- Copy/free/erase is per record; oversized assembly fails after prior consumed
+  prefix. Truncated metadata fails honestly. Portable RAII reclaims native leaked
+  retained buffers; no allocator/layout/SEH or undefined-overwrite equivalence.
 
-Earlier worker/socket source checkpoint131e9b4 remains verified:
-[contract](analysis/human-worker-control-source.md),
-[receipt](analysis/checkpoints/p2.2-human-worker-control-20261112.json).
-Actual source callbacks/ACK/ping/client prefixes/reverse-delete/stop/storage,
-PE singleton zero-fill, SAME process414 callback and input bits are preserved.
-100 worker families/200 source start-reset cycles and100 D6a regression PASS;
-strict i386/launcher/probe PASS. No live transport or containing application claim.
-D6b2 populated payload/fragment/admission receivers remain required.
+ASan/UBSan/LSan PASS100 fragment families (six source socket round trips each,
+through32768 bytes/reverse65+ records), TTL/wrap/gaps/duplicates/sender mixing/
+restart/failure prefixes. Prior worker regression adapted on NEW paths passes100
+families/200 same-worker start-reset cycles plus source worker callback ACK
+reassembly onto SAME client. OS endpoints explicit doubles. An initial rapid
+wake audit timed out; final golden drain is deterministic, source wake/reset
+ordering unchanged. Actual StartupSession socket/worker i386 PASS; final launcher/
+probe compile/link PASS. No Windows/original/network/World/desktop execution.
+Temporary new fixture sources/objects/binaries fingerprinted and removed; logs,
+research exports and dedicated Windows snapshots retained. Old frozen inputs/
+artifacts unchanged. First payload export stopped at absent00745520 after four
+exports despite exit0: ERROR preserved, absent helpers receive no new credit.
+
+Earlier source checkpoints remain verified; do not repeat their unchanged audits:
+[worker](analysis/human-worker-control-source.md),
+[H3](analysis/human-seat-interaction-source.md),
+[Car commands](analysis/human-car-target-command-source.md).
 
 ## Continue through dependencies
 
 1. H3 dependency integration is complete; do not repeat its unchanged audits.
    Keep D5 occupied/non7 Car simulation required. H3 does not close that frame.
-2. **D6b2** actual DirectPlay admission/name/address/record and callback composition
-   with same client04/server00/current application11, plus reached retained message/
-   queue/reassembly receivers. Relevant next bodies00747240/00745EA0/00747DD0;
-   use index before exports. Current helper prefixes are not a complete live
-   00723D20/007260A0/00722180 service. Thread creation/A4/callback414 is not readiness.
+2. **D6b2b** populated retained payload/queue receivers:00747240 and00745EA0
+   now exported in `human-h2-payload-entry-originals`; reused queue contracts in
+   packet-synchronization.md.00745130 is exported; queue00745520/007456D0 are
+   absent frozen helpers, use existing raw/index and claim no invented credit.
+   `human-h2-fragment-owners-originals` also exports007457C0/00745920/00745190/
+   00745F20/00745FB0/00746630. Preserve actual shared bit/pool/ref ownership,
+   distinct20 lock scopes and SAME callback414. Then **D6b2c** actual DirectPlay
+   admission/name/address/record and completion/termination through same client04/
+   server00/current app11. Callback presence/A4/thread creation is not readiness.
 3. **D7/D8/D9** containing status9/received0/non7 entry/frame/reset stay required:
    same00698510/006989B0, retained game restored BEFORE menu shutdown, real input
    replacement BEFORE old World retirement and distinct failure deletion. OWN has
@@ -56,8 +69,9 @@ D6b2 populated payload/fragment/admission receivers remain required.
 4. **D10** actual unmounted0077DE30→0074D510→007B0910→007A7470 can advance without
    all live transport. Existing earlier audits still separate containing control/
    selection/geometry endpoints; they do not close real containing-owner composition.
-   H4 committedf3788fd common completion/equipment receivers, but now has additional
-   uncommitted script-event work: integrate only reviewed committed dependencies.
+   H4 has advanced through committed7191915 (held action geometry/retirement),
+   38108c3 (mounted equipment/opacity) and0f904f4 (particle/SOUND events). Review
+   its latest committed contract/receipt before integration; preserve sibling edits.
 
 **D11 genuine closure blockers unchanged:** fresh part004CB2CD reads/toggles
 unproduced5F9 BEFORE motion; wheel005FDD10 reads unproduced695 after body/lifetime

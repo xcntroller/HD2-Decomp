@@ -1,6 +1,7 @@
 #ifndef HD2_FRONTEND_CONTROL_CONNECTION_SOCKET_H
 #define HD2_FRONTEND_CONTROL_CONNECTION_SOCKET_H
 #include "frontend/control_connection_owner.h"
+#include "frontend/control_connection_fragments.h"
 #include <functional>
 #include <list>
 #include <optional>
@@ -77,7 +78,7 @@ public:
         if(closed_)return;
         if(thread_)throw std::logic_error("Socket storage still owns a callback");
         lock_.reset();receive_buffer_.reset();fragment_buffer_.reset();
-        immediate_.reset();deferred_.reset();closed_=true;
+        immediate_.reset();deferred_.reset();fragments_.release_storage();closed_=true;
     }
     void send(std::vector<unsigned char> payload,std::uint32_t address,std::uint32_t port){ //00747860.
         if(payload.size()<500){enqueue({encode(payload,key28_),address,port});return;}
@@ -98,7 +99,7 @@ public:
         if(connection_signed(shared_clock)>=connection_signed(now))return;
         auto value=std::move(deferred_->front());shared_clock=now;deferred_->pop_front();enqueue(std::move(value));
     }
-    std::optional<ControlDatagram> receive(){ //00747F50→00747A40, reached unfragmented receiver.
+    std::optional<ControlDatagram> receive(){ //00747F50→00747A40, SAME buffer/vector across stop/start.
         if(!receive_buffer_)throw std::logic_error("UDP receive requires its actual14 buffer");
         auto packet=os_.control_udp_receive(socket_,receive_buffer_.get(),32768,20000);
         if(!packet||packet->bytes.empty())return {};
@@ -108,7 +109,17 @@ public:
         const auto mask=static_cast<std::uint32_t>(length)*0x800u+key28_;std::uint32_t sum=0;
         for(std::size_t n=0;n<length/4;++n){auto* p=data.data()+3+n*4;const auto word=connection_load32(p)^mask;connection_store32(p,word);sum+=word;}
         if(((connection_load32(data.data())^sum)&0xffffffu)!=0)return {};
-        if(data[3]&0x80u)throw std::logic_error("Received fragment requires actual00747A40 reassembly owner");
+        if(data[3]&0x80u){
+            if(length<5)throw std::runtime_error("Truncated fragment metadata");
+            const auto id=connection_load32(data.data()+4);
+            std::vector<unsigned char> payload(data.begin()+8,data.end());
+            const auto clock=os_.control_milliseconds(); //After the native payload copy.
+            fragments_.append(id&0x7fffffffu,data[3]&0x7fu,(id&0x80000000u)!=0,std::move(payload),clock);
+            const auto size=fragments_.assemble(receive_buffer_.get(),32768,[&]{return os_.control_milliseconds();});
+            if(!size)return {};
+            data.assign(receive_buffer_.get(),receive_buffer_.get()+*size);
+            return packet; //Address/port are from THIS arriving datagram, not the retained run.
+        }
         data.erase(data.begin(),data.begin()+3);return packet;
     }
     void drain(){ //00748180: pop under54, unlock for send/free, relock, preserving FIFO.
@@ -142,6 +153,7 @@ public:
     auto native_socket()const{return socket_;}
     auto received_bytes()const{return received1c_;}auto sent_bytes()const{return sent20_;}
     auto fragment_id()const{return fragment_id24_;}
+    auto retained_fragment_count()const{return fragments_.size();}
     bool has_buffers()const{return receive_buffer_&&fragment_buffer_;}
     std::size_t immediate_count()const{return immediate_->size();}std::size_t deferred_count()const{return deferred_->size();}
 private:
@@ -152,6 +164,7 @@ private:
     }
     static constexpr std::uintptr_t invalid_socket=0xffffffffu;
     Platform& os_;std::unique_ptr<Queue> deferred_,immediate_;
+    ControlConnectionFragments fragments_;
     std::unique_ptr<unsigned char[]> receive_buffer_,fragment_buffer_;
     std::unique_ptr<ControlConnectionLock> lock_;
     std::uintptr_t socket_=invalid_socket;
