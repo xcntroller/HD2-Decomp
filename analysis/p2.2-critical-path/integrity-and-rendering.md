@@ -34,6 +34,49 @@ Validation11 at00994DF0 alternates indexed00B3BD8C checks against the00B52F6C/00
 
 Offline7 does reach meaningful guard consumers. The loader/activation uses the original wrapped APIs. The retained0069BA60 objective path compares stage13 and draws only on mismatch, conditional on a real objective call. The initializer itself precedes mission selection. The exact subset of descriptor validations reached on the selected first-frame path remains unresolved. Preserve real validation and shared CRT ordering. Do not synthesize healthy observations or convert raw API returns into observed values.
 
+## Targeted RENDER closure at345a390
+
+The historical missing containing-render/history observations below are superseded
+for RENDER-owned source by feature/p22-render `345a390`, not merged into reviewed
+master `2c96a7d`. Original allocation48/constructor00481320, loader00481810, refresh
+00480FA0 and allocator proof leave3C/40 unwritten.00482843/4E consumes their old
+bytes;00482862/64 stores current direction afterward. We independently compared
+13 retained static ranges (9,413 instruction bytes) with the fingerprinted client.
+
+Current Volume owns48 raw bytes allocated without value initialization before
+metadata/random work. At the original visible/in-range gate, the actual platform
+endpoint copies live3C/40 through ReadProcessMemory, then existing angular44 and
+current-direction stores execute. There is no initialized first angle, zero delta,
+extra draw or historical-heap producer requirement. OS-copy failure remains an
+explicit source safety failure. Different CRT/metadata allocations and raw-sidecar
+ABI do not reproduce a historical heap trajectory or guarantee pixel equivalence.
+
+Positive00482260 traversal, procedural00482E50/resources00483E50/00483DE0, actual
+Scene15C and graphics calls, debug0079B760/0079AC40 and GEffects special-light
+004870A0/004871A0/update/restore source are present. Actual compiler/context
+opcodeAD CSC_RunCLouder binds the SAME process configuration; opcodeBB binds the
+special light. Procedural rendering precedes visibility traversal; driver3 and
+graphics13/14 restore through primary-error-preserving cleanup. Special flicker
+uses the SAME engine random before time224 update, with deferred expiry ordering.
+
+`GameRenderStages` binds the existing World. The lifecycle owns stages and Scene
+callbacks, exposes original render policy→actual Scene78, and retires callbacks
+before stages before World. Its native Scene bridge handles failed registration,
+borrower renewal and primary callback errors. Current master already has full UI
+7a3f7b7; that source and FRAME must be composed with these lifecycle changes.
+Actual GameApplicationState still declines loading. Conditional water/weather/
+game64/colour updates retain required guards in their owning frame/update path.
+
+All36 receipt source/document observations and70 retained evidence entries match.
+Upstream native100-family sanitizer/full World-lifecycle i386/application-link
+results were reviewed, not rerun; engine/UI endpoints are doubles, and no Windows
+or original output ran. Full tracker reports legacy0062D880 missing ignored WORK
+evidence, with focused ledger checks passing. Actual selected populations,
+Scene15C state, Scene completion, present/fade, repeat and second mission remain
+runtime/user acceptance requirements. [RENDER verification](evidence/render-verification.json)
+
+## Historical render observations at799a793
+
 ## Corrected render owner and clock
 
 Original instructions00486BF0..00486C02 read GEffects+224 into EAX, addC4 to ECX, push EAX, then call00482260. **The volume owner is GEffects+C4 and the argument is clock224.** Our previous volume224 wording incorrectly described the receiver. Current EffectsModuleLoading already owns volumes and EffectsLoadingProcess.field224 separately, and the latter advances with loading updates. No current source mismatch is asserted for those owners.
@@ -48,4 +91,4 @@ Driver3 and graphics13/14 restoration must follow the native save/restore semant
 
 Original0069B870 calls actual Scene+78(scene,0) unconditionally in offline7.006C9260 callbacks stage1/2 perform their original control/HUD/text/fade/overlay operations with status and visibility gates. Application rendering occurs before fixed/variable updates, and graphics present follows them. Startup opacity is black for about three seconds and fades during the fourth while real updates must continue.
 
-Boundary A may stop at an actual validation/stage/receiver failure with coherent cleanup. A successful first frame requires original resources and actors, real active camera, completed scene rendering and actual presentation. Full P2.2 acceptance requires user observation after fade, failure return, repeat and second mission coverage. The remaining private environment and camera/history questions are explicit original-code unknowns. [Implementation order](implementation-order.md)
+Boundary A may stop at an actual validation/stage/receiver failure with coherent cleanup. A successful first frame requires original resources and actors, real active camera, completed scene rendering and actual presentation. Full P2.2 acceptance requires user observation after fade, failure return, repeat and second mission coverage. These historical questions are superseded within the later supported Steam/RENDER source scopes above. Actual selected engine and desktop outcomes remain unobserved. [Implementation order](implementation-order.md)

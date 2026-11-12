@@ -2918,5 +2918,240 @@
     ],
     "verification_record": "analysis/p2.2-critical-path/evidence/ui-verification.json",
     "scope": "Only UI source status refreshed; all other blocker source revisions retained. Temporary composed i386 verification is reported at05dbdee only."
+  },
+  "render_targeted_review": {
+    "source_sha": "345a390809297b7d267db67445f6993ee39812ac",
+    "source_ref": "origin/feature/p22-render",
+    "reviewed_master_sha": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+    "merged_into_master": false,
+    "implementation_base": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+    "source_inputs": [
+      {
+        "path": "recovered/game/volumetric_lights.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+        "sha256": "8cf058b505c35dcdb38023c3004362ca864308607b58a53b93f532e10fa0ebf2",
+        "bytes": 26386
+      },
+      {
+        "path": "recovered/game/effects_module_loading.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "sha256": "0523738c4ffe3e28e71ddaaa3799080fa02ca5c31e0b4d47bed3a66741f7b1d3",
+        "bytes": 10287
+      },
+      {
+        "path": "recovered/host/game_actor_frames.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+        "sha256": "ea1e8b762af84c332b077e33e0bccdf6a7f4bdae53618e8cd0f09887b486843c",
+        "bytes": 98405
+      },
+      {
+        "path": "recovered/host/game_session_lifecycle.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+        "sha256": "8bc9633d8a0b6d95d6772ca143c992e40ecbe251836aaa98194b5df6288ff2c5",
+        "bytes": 7815
+      },
+      {
+        "path": "recovered/game/procedural_clouds.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+        "sha256": "42ddf06b2718f86bdd94dcbf4c16e449c353ce4894b91929d13cbfc427abe6aa",
+        "bytes": 7791
+      },
+      {
+        "path": "recovered/game/render_debug_skeleton.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+        "sha256": "a162575d74a27045d54ff0d0f9cfd1ae2babcf7eb2bd1234f07c684ca3e68407",
+        "bytes": 3010
+      },
+      {
+        "path": "recovered/host/game_render_stages.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+        "sha256": "625f0e0553fdbd30f6dfe88753b7cdfbcebc40511949b144f5fd1cdd1dedf0a7",
+        "bytes": 2574
+      },
+      {
+        "path": "recovered/host/startup_session.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+        "sha256": "91e69fc9f5077f6baef3239f9c7febe61402333ce1c4fc2d9a2fe1ef82151578",
+        "bytes": 60431
+      },
+      {
+        "path": "recovered/host/game_data_observations.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+        "sha256": "8789407ab66f5cb3c3d4f2884208fab454acc32db11d8f8b66291fab37e27cf0",
+        "bytes": 2894
+      },
+      {
+        "path": "recovered/game/effects_special_model.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "sha256": "83a6148865f9d6135609dea9646c6e80c9aa3af4cc893f55596e79c5a4900fa1",
+        "bytes": 5342
+      },
+      {
+        "path": "recovered/game/mission_script_render_commands.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "sha256": "e34a000252477df919858ec7240b54d7ce838c18c05ae49f28d95de169b8bc54",
+        "bytes": 1168
+      },
+      {
+        "path": "recovered/game/effects_shadow_models.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "sha256": "bb6e690740f167bcd90fe081e1f74c2da9229df8c5d8fd9683f4b9ba9de6470e",
+        "bytes": 12270
+      },
+      {
+        "path": "recovered/game/effects_loading_update.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "sha256": "287f5859819927de4e1435f1a3cce72164e865dac841b76f57235713cecd7ff5",
+        "bytes": 2606
+      },
+      {
+        "path": "recovered/game/mission_script_loading_runtime.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "sha256": "58fed4457a5e167ba8352b15bfb45257cc7fcfd87c818fcb15d1263d253118f8",
+        "bytes": 8654
+      },
+      {
+        "path": "recovered/host/game_scene.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "sha256": "2516368e0dda209ebde31cbbba24f7b9e92558cab28b799232d3e115db60e335",
+        "bytes": 14165
+      },
+      {
+        "path": "recovered/host/game_world_scene.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "sha256": "c40a09d77451390c9fb0eb2229d267804e0b11f4f90bf7727e4107546565e0db",
+        "bytes": 6942
+      },
+      {
+        "path": "recovered/game/session_render.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "ebf8ffdd0cf66ba621d0f1e56fef2d12feccab95fb52409fdd6a87ee01e60ddb",
+        "bytes": 555
+      },
+      {
+        "path": "recovered/game/scene_callback.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "61632a5d1809a2cd4aa1f6d479d4ca131837a211fbcd0d45823dab4ef075c61d",
+        "bytes": 2146
+      },
+      {
+        "path": "recovered/host/game_ui_presentation.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "d1b8d4653d24925b3f1515403265de4f5f572a8315244a5ab660492121bdc5e6",
+        "bytes": 7051
+      },
+      {
+        "path": "recovered/host/game_owner.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "0f628ff205477dd98cb32a8505e2cc168f9a12d6e97ba55be81a4660c275da10",
+        "bytes": 15764
+      },
+      {
+        "path": "recovered/host/game_world_loading.h",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "83bcc8b697ebd7c4cfcc71fa2a9d19c9f35d016e5db6f48947f929c94982f4ca",
+        "bytes": 26647
+      }
+    ],
+    "review_documents": [
+      {
+        "path": "analysis/checkpoints/p22-render-containing-20261111.json",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "3500d805a7cd24a2b80383075e18caea71ed861c0c8946a09151f31f97f18df3",
+        "bytes": 5150
+      },
+      {
+        "path": "analysis/checkpoints/p22-render-services-20261111.json",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "351fd1ceb3d8f0544170993cc31ad6771e3a3e563152dfb1bc40c0a19f4c0f7b",
+        "bytes": 9274
+      },
+      {
+        "path": "analysis/checkpoints/p22-render-history-20261111.json",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "d5b2ee24a63e94dd61ef0ebb626572be6f99c681e5eddce0ec47d52b7651c81a",
+        "bytes": 8599
+      },
+      {
+        "path": "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "6c970208a3a2224611f6caf2e53682621c2b4c07c0c587d52720036d6225920a",
+        "bytes": 14637
+      },
+      {
+        "path": "analysis/checkpoints/p22-render-allocation-20261112.json",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "0536ecbcd5cbaccf86ed64a273f90e30cfbff74186139efd8a25db090ec3e893",
+        "bytes": 10526
+      },
+      {
+        "path": "HANDOFF.md",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "48da7577c436c79066126886160f3abb62a2c6d1cacb501bfa58a91b7d3d9f93",
+        "bytes": 4234
+      },
+      {
+        "path": "analysis/p22-render-plan.md",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "5ebefc7a0752bae256c1dd60a01f8b35bf03c24bf9c4a12e07830841b3600c62",
+        "bytes": 5713
+      },
+      {
+        "path": "analysis/p22-render-history.md",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "304c93c3cfc238e80cacd6a3a2fbbb3b7504f3dc8ee3d9fd111435a70e0b7e94",
+        "bytes": 11133
+      },
+      {
+        "path": "analysis/p22-render-implementation.md",
+        "revision": "345a390809297b7d267db67445f6993ee39812ac",
+        "sha256": "67f082a6b7ed48be5d43305faf113c864b26ef65ed654a14446583d1cfa13e87",
+        "bytes": 22825
+      }
+    ],
+    "master_inputs": [
+      {
+        "path": "HANDOFF.md",
+        "revision": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+        "sha256": "01d401d8142be0aeef0495a040cc266957af087165b69ab41b6e9b3f908d4a71",
+        "bytes": 7130
+      },
+      {
+        "path": "recovered/host/game_owner.h",
+        "revision": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+        "sha256": "e3eb0e0764f20d5d55b65463dfa389a167836bce6a5d8e1ad2a40df93dd102ba",
+        "bytes": 18314
+      },
+      {
+        "path": "recovered/host/game_ui_presentation.h",
+        "revision": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+        "sha256": "63b8f972fc76f6308b41f74b2554f6c1641cbf2df862257eb88d6659cb3692da",
+        "bytes": 142192
+      },
+      {
+        "path": "recovered/host/game_session_lifecycle.h",
+        "revision": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+        "sha256": "f588f97628e5e64c5c1ea73c3528b627b44dc8782d56309eca0ee9605024d5fd",
+        "bytes": 6515
+      }
+    ],
+    "verification_record": "analysis/p2.2-critical-path/evidence/render-verification.json",
+    "scope": "Only RENDER-owned source status and scoped master UI/application availability refreshed. All other blocker rows retain their exact prior source observations."
   }
 }
