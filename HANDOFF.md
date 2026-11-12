@@ -1,11 +1,14 @@
-# P22-HUM handoff —2026-11-12
+# P22-HUM H2 handoff —2026-11-12
 
-Worktree **`/home/control/Documents/Projects/HD2-Decomp-p22-hum`**, branch
-**`feature/p22-hum`**, created from clean master2c96a7d at user request. Latest
+Worktree **`/home/control/Documents/Projects/HD2-Decomp-p22-hum-h2`**, branch
+**`feature/p22-hum-h2`**, created at user request from Human checkpoint
+**e742f84**. Prior Human worktree/branch remains unchanged and clean. Latest
 checkpoint below follows b99f088/5711792 (D4a),47e0706 (D2/D3),603dd1b (D1).
 Check HEAD/status before acting; preserve unrelated changes and other worktrees.
 Main/OWN/LIFE/UI/FRAME/etc have advanced independently: no blind reset/merge.
-Ignored WORK is LOCAL copy-on-write research; .tools/ghidra link installations.
+Ignored WORK is a LOCAL copy-on-write snapshot of the prior Human research,
+including latest D5 investigation; .tools/ghidra link existing installations.
+Use this H2 worktree for subsequent work; preserve other Human worktrees.
 
 Read AGENTS.md, Phase2 section2 plan.md, [Human plan](analysis/p22-hum-plan.md),
 [ragdoll contracts](analysis/human-ragdoll-source.md). **H2 remains OPEN**; S01–S14,

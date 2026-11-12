@@ -1,8 +1,9 @@
 # P22-HUM implementation and dependency plan
 
 Revised 2026-11-12; D0 confirmed against merged master **415e850**. Worktree:
-`/home/control/Documents/Projects/HD2-Decomp-p22-hum`, branch `feature/p22-hum`
-(created from clean master2c96a7d at the user's request). P22-HUM and both P2.2 delivery
+`/home/control/Documents/Projects/HD2-Decomp-p22-hum-h2`, branch `feature/p22-hum-h2`
+(created from Human checkpoint e742f84 at the user's request; prior Human
+worktree/branch preserved). P22-HUM and both P2.2 delivery
 checkboxes remain OPEN. Application loading still declines; no mission desktop
 acceptance has occurred. This plan replaces the former chronological next-work
 list. Detailed behavior/evidence stays in the linked contracts.
