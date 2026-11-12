@@ -46,6 +46,12 @@ struct HumanAIQueryLoading {
         state.set(0x58,std::uint8_t{0});
         state.set(0x24,0u);
     }
+    void request_point_position(std::uint16_t index,const HumanVector& position){ //00560E50.
+        if(index==0xffff)return;
+        state.set(0x10,position);state.set(0x20,index);
+        state.set(0x50,(state.get<std::uint32_t>(0x50)&0x7ff7fffcu)|3u);
+        state.set(0x58,std::uint8_t{0});state.set(0x24,0u);
+    }
     void request_point(std::uint16_t index){ //00560F00.
         if(index==0xffff)return;
         state.set(0x20,index);

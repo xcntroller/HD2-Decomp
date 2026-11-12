@@ -6,7 +6,12 @@ Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`, branch
 
 [H4 plan](analysis/p22-hum-h4-plan.md),
 [implementation/remaining families](analysis/p22-hum-h4-implementation.md).
-**H4 is the selected whole checkbox and remains OPEN. Continue after C4.**
+**H4 is the selected whole checkbox and remains OPEN. Continue after C5.**
+
+C5: actual callable Script formation binding/getter/query/output, sanitizer PASS54;
+track22 reads shared animation scale, timing PASS6; actual i386/launcher links PASS.
+[C5 receipt](analysis/checkpoints/p22-hum-h4-formation-20261112.json). Subgroup
+producer/mode9/retirement remains open; Human2C8/auxiliary selection are distinct.
 
 C4: Script0058FD30 actual FIRST/perception pools, existing2AC list and owning/group
 B4 callbacks; PASS43 native sanitizer and actual World/Script/B4/i386/application
@@ -24,7 +29,7 @@ Native ASan/UBSan/LSan PASS59 policy + PASS12 actual physics failure/retirement/
 retry. Strict actual i386 World/climb/public DD0 presentation/track FULL LINK PASS;
 remaining Runtime endpoints are labelled throwing doubles, not installed services.
 Application/probe links PASS, never executed. [C2 receipt](analysis/checkpoints/p22-hum-h4-climb-20261112.json).
-All temporary audit sources/binaries fingerprinted/removed.34 complete/3,020 partial;
+All temporary audit sources/binaries fingerprinted/removed.34 complete/3,024 partial;
 full tracker inherited missing0062D880 evidence, focused checks PASS.
 
 Next: continue whole H4 families: remaining completion type15 actor91,
@@ -35,7 +40,10 @@ client fingerprint; verify instructions/ABI before implementation. Next formatio
 Original0058D900 setter binds a Players subgroup formation from004603C0; this is
 not auxiliary moduleE8/selection28 and not automatically Human2C8. Inspect actual
 subgroup producer/lifetime before binding. Additional evidence exports retained.
-Do not stop at C2 or treat missing Runtime methods as external blockers alone.
+Next C6: RuntimeItem virtual3C=007D5380 attach/restore actual lazy magazine clone,
+then equipment16/17/18 and track15/16/17. Export/raw/vtable817018 evidence in WORK.
+Reuse actual item services and existing frame position/quaternion/direction/link
+endpoints. Do not stop at this checkpoint or install successful endpoints.
 
 No original EXE/DLL/Proton or Windows output execution. Heavy builds/Ghidra are
 sequential; inspect other workstreams' active jobs before ours. No agents or push.

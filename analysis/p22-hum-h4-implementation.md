@@ -226,3 +226,58 @@ retained for further boundary investigation. New frozen0058FD30 partial only;
 34 complete/3,020 partial. No credit for delegated vector insertion00591F00.
 [C4 receipt](checkpoints/p22-hum-h4-script-event-20261112.json) records source,
 original/raw evidence and removed audit fingerprints. H4 remains OPEN.
+
+## C5 — actual formation binding/getter/query/output
+
+New00598320 reads actual existing formation slots in original reverse membership
+order. Null member/leader/storage or absent member returns false without outputs;
+found member writes all four position20 and optional ushort7E EVEN when changed88
+is false. A true changed flag is cleared before return. No fabricated target.
+New00560E50 rejects FFFF without changes; otherwise stores all four position words,
+point20, flags50=(old&7FF7FFFC)|3, byte58=0 and24=0 in native order.
+
+Script1E0 is now a typed Formation borrower, distinct from scalar words and
+Human2C8.0058D900 invokes actual alarm helper00591ED0 (only enabled198 sets19C=80),
+then publishes the borrower even for NULL. Non-null active query10000000 sets2000
+before actual VM navigation completion (if context1AC exists), then clears1D8=-1
+and requests flag1. Callback failure retains that prefix. Factory exposes actual
+Script kind/type-checked binding; producer must unbind before formation destruction.
+0058D970 resolves real member changed position, updates model world matrix EVEN
+on unchanged/no-member output, requests point+position or ordinary position using
+actual E0 water-mode5, computes distance with x87 extended differences and
+(Z²+Y²)+X² then one FLOAT store. Strict thresholds144/64/16/4/1 select query54.
+The far branch invokes SAME E0 ready-clear and actual B0 command0 BEFORE54 store;
+non7 required transport retains its explicit failure. Same World/inline/factory/
+query/navigation owners are reused, without a private target or initial angle.
+
+Native sanitizer PASS54: ACTUAL formation/add/leader/slot/getter/query owners,
+false-output writes, changed consumption, native boundary thresholds, no-change
+matrix update, point/position requests, marker/callback failures, binding NULL/
+non-null/alarm/query/VM failure prefixes and repeated teardown. Engine transforms,
+E0/World/VM/readiness endpoints are explicit doubles. Concrete actual i386
+World/Script binding/output/getter/query/E0/B0 FULL LINK PASS. Containing DD0
+presentation also links using defined throwing adjacent Runtime endpoint doubles.
+
+A targeted timing check corrected track22's initial fixed500 to read the SAME
+live0084E80C via existing services and convert700/scale with the shared guarded
+__ftol helper. The defaultFLOAT1.4 still yields500; altered scales and invalid
+conversion retain byte9C9-before-failure behavior. Additional sanitizer PASS6.
+Historical C3 receipt remains unchanged; this correction is documented here.
+
+**Exact remaining producer:** original004603C0 on a Players subgroup checks
+Script kind5, roster admission00461AA0, adds to subgroup-owned formation+28,
+then passes that owner to0058D900.00460850 removes the member then unbinds Script.
+Original004608A0 constructs this subgroup's actual005949C0 formation, forces8C,
+selects leader and then mode9. Current PlayersSubgroup is an abstract tick/destroy
+contract with no actual subgroup creation/admission/tick/destruction source;
+current HumanFormation implements mode3 loading. Auxiliary moduleE8 selection28
+is a separate owner and is NOT used as a substitute. These positive producer,
+mode9/update and borrower-retirement bodies remain required; callable binding
+and fixture slots do not establish loaded subgroup population or mission reachability.
+
+C5 application-launch/startup-probe strictO2 links PASS, never executed.
+[C5 receipt](checkpoints/p22-hum-h4-formation-20261112.json) retains exact source/
+original/log and removed audit fingerprints. Four new frozen partials only;
+34 complete/3,024 partial (3,019 client+5 engine), denominator18,783 unchanged.
+Full tracker inherited missing0062D880 ignored evidence; focused checks PASS.
+Formation callable source is implemented; subgroup producer dependency stays open.

@@ -97,3 +97,21 @@ assume unmerged source is linked here. H4 base remains e742f84.
   identity lookup, actual clock and pool/list lifetimes; record producer limits.
 - [x] Focused sanitizer failure/ordering/repeated-owner audit and actual i386
   World/Script output/B4 full link; retain receipt, remove temporary audits/commit.
+
+## C5 selected formation output
+
+- [x] Implement actual00598320 changed-position getter,00560E50 point-position
+  request, Script0058D900 typed binding and0058D970 containing path over same owners.
+- [x] Verify output-before-changed flag, no-change cache update, native distance
+  thresholds, item-readiness callback failure order and query publication.
+- [x] Strict World/Script/getter/query i386 linkage, sanitizer audit, receipt and
+  precise subgroup producer/mode9/lifetime dependency. No Human2C8 substitution.
+
+## C6 selected inventory attachment events (next)
+
+- [ ] Implement actual RuntimeItem virtual3C=007D5380 over existing lazy
+  projectile-marker clone/pose, then bind equipment events16/17/18 and track15/16/17.
+- [ ] Preserve holder-to-runtime wrapper, absent clone/marker, attach/restore
+  native flags/quaternion/direction/visibility/update order and resource lifetime.
+- [ ] Focused positive/failure/absence/retry sanitizer and concrete i386 World/
+  item/track binding; original fingerprints/ABI, receipt, audit removal and commit.

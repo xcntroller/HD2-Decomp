@@ -40826,6 +40826,52 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/p22-hum-h4-implementation.md"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00598320",
+      "status": "partial",
+      "coverage": "Actual same-formation member-position getter: gates/member lookup, four-lane output and optional point even on unchanged, changed88 clear only on true.",
+      "limitations": "Source-only typed borrowers/RAII/STL/native safety guards, not original native object/vector/allocator/thiscall/SEH equivalence. Actual World/Script/formation/query/E0/B0 graph links only; native engine/World/VM/readiness endpoints explicit doubles. Players subgroup004603C0/004608A0 mode9 producer/update and00460850 borrower retirement remain required; no Human2C8/auxiliary selection substitution or mission/desktop claim.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560e50",
+      "status": "partial",
+      "coverage": "Actual point+position query:FFFF no-change gate, four-lane position/point, original flags50 and58/24 reset.",
+      "limitations": "Source-only typed borrowers/RAII/STL/native safety guards, not original native object/vector/allocator/thiscall/SEH equivalence. Actual World/Script/formation/query/E0/B0 graph links only; native engine/World/VM/readiness endpoints explicit doubles. Players subgroup004603C0/004608A0 mode9 producer/update and00460850 borrower retirement remain required; no Human2C8/auxiliary selection substitution or mission/desktop claim.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058d900",
+      "status": "partial",
+      "coverage": "Actual Script formation binding: conditional alarm, typed1E0 publication, active query2000 before optional VM completion,1D8 retirement and flag1.",
+      "limitations": "Source-only typed borrowers/RAII/STL/native safety guards, not original native object/vector/allocator/thiscall/SEH equivalence. Actual World/Script/formation/query/E0/B0 graph links only; native engine/World/VM/readiness endpoints explicit doubles. Players subgroup004603C0/004608A0 mode9 producer/update and00460850 borrower retirement remain required; no Human2C8/auxiliary selection substitution or mission/desktop claim.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_formation_output.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058d970",
+      "status": "partial",
+      "coverage": "Containing Script formation output over actual getter/query/E0/model owners, extended distance calculation/thresholds and far readiness before query54 publication.",
+      "limitations": "Source-only typed borrowers/RAII/STL/native safety guards, not original native object/vector/allocator/thiscall/SEH equivalence. Actual World/Script/formation/query/E0/B0 graph links only; native engine/World/VM/readiness endpoints explicit doubles. Players subgroup004603C0/004608A0 mode9 producer/update and00460850 borrower retirement remain required; no Human2C8/auxiliary selection substitution or mission/desktop claim.",
+      "evidence": [
+        "recovered/game/human_script_formation_output.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
     }
   ]
 }

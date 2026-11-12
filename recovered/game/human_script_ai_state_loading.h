@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_SCRIPT_AI_STATE_LOADING_H
 
 #include "game/human_ai_state_loading.h"
+#include "game/human_script_formation_output.h"
 #include "game/human_ai_frame_metrics.h"
 
 namespace hd2::game {
@@ -32,7 +33,8 @@ public:
         this->words().set(0x50,this->words().template get<std::uint32_t>(0x50)&0x7fffffffu);
         state_.set(0x1c0,std::uint32_t{0});state_.set(0x1d4,std::int32_t{-1});
         for(auto offset:{0x1d2u,0x18cu,0x1bdu})state_.set(offset,std::uint8_t{0});
-        for(auto offset:{0x1c8u,0x1c4u,0x1e0u,0x1ccu})state_.set(offset,std::uint32_t{0});
+        for(auto offset:{0x1c8u,0x1c4u,0x1ccu})state_.set(offset,std::uint32_t{0});
+        formation_=nullptr; //Native1E0 typed borrower, never a pointer in DWORD storage.
         state_.set(0x1d0,std::uint8_t{0});state_.set(0x150,std::uint8_t{0});
         return context_!=nullptr; //Native factory ignores this return; absence is not a successful script bind.
     }
@@ -61,7 +63,7 @@ public:
             auto& resources=this->resources();
             resources.reconcile_direction_flags();
             if(!this->human()->field160){
-                const bool formation=state_.template get<std::uint32_t>(0x1e0)&&runtime.advance_script_formation_path(*this);
+                const bool formation=formation_&&runtime.advance_script_formation_path(*this);
                 auto& query=resources.query().state;
                 const auto before=query.template get<std::uint32_t>(0x50);
                 this->advance_frame_query(control,world,elapsed);
@@ -142,7 +144,15 @@ public:
         return state_.template get<std::uint32_t>(offset);
     }
     auto& state(){return state_;}const auto& state()const{return state_;}
+    using Formation=std::remove_reference_t<decltype(*std::declval<Human&>().formation)>;
+    Formation* script_formation()const{return formation_;}
+    void script_formation(Formation* formation){ //0058D900, actual producer004603C0 / retirement00460850.
+        bind_human_script_formation(*this,formation_,formation,[&](std::int32_t pc){
+            if(context_)contexts_.finish_human_script_navigation(*context_,pc);
+        });
+    }
 private:
+    Formation* formation_=nullptr;
     bool alarm_enabled()const{return state_.template get<std::uint8_t>(0x198)!=0;}
     template<class Runtime>void update_script_attachment(Runtime& runtime){ //0058DB20.
         const auto* attachment=this->human()->field160;

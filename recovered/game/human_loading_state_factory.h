@@ -168,6 +168,12 @@ public:
             throw std::logic_error("Script binding notification requires the actual current state5");
         script->script_context(context);
     }
+    void script_formation(Base& state,typename Script::Formation* formation){
+        auto* script=dynamic_cast<Script*>(&state);
+        if(!script||state.words().template get<std::uint32_t>(0x48)!=5u)
+            throw std::logic_error("Formation binding requires actual Script B0");
+        script->script_formation(formation); //0058D900; producer owns borrower retirement before formation destruction.
+    }
     void retire_dead_state(Base& state){ //Virtual84:005836E0, with Player0053BD00 tail.
         retire_human_dead_state(state,services_,frames_);
         if(state.words().template get<std::uint32_t>(0x48)==1){

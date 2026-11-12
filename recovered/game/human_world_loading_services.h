@@ -713,6 +713,15 @@ public:
     template<class State,class Queue>void dispatch_script_ai_event(State& state,Queue& queue,std::size_t index){
         dispatch_human_script_event(state,queue,index,*this);
     }
+    template<class State,class Inline>void clear_script_formation_item_ready(State& state,Inline& control){ //0058C400.
+        auto* human=state.human();if(!human)throw std::logic_error("Script formation readiness lost actual Human");
+        control.clear_frame_item_ready([&](std::uint32_t value){human_frame_first_person_state(*human,value);});
+        human_state_factory(*human).notify_inline_frame_command(state,0); //AFTER E0, including its deferral.
+    }
+    template<class State>bool advance_script_formation_path(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("Script formation output lost actual Human");
+        return advance_human_script_formation(state,human_inline(*human),*this,dependencies().scene.frames());
+    }
     bool human_face_quality_enabled(){return dependencies().startup.human_face_quality_enabled();}
     bool human_geometry_effect_quality(){return dependencies().startup.profile_settings().quality_byte(5)!=0;}
     bool human_surface_quality_enabled(){return dependencies().startup.profile_settings().quality_byte(2)!=0;}

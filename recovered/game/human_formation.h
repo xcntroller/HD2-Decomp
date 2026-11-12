@@ -62,6 +62,15 @@ public:
         for(std::size_t n=slots.size();n;)if(slots[--n].member==human){if(index)*index=static_cast<std::int32_t>(n);return true;}
         return false;
     }
+    bool consume_member_position(Human* human,HumanVector& position,std::uint16_t* point=nullptr){ //00598320.
+        if(!human||!leader_||!slots_)return false;
+        std::int32_t index=0;if(!contains(human,&index))return false;
+        auto& slot=slots_->at(static_cast<std::size_t>(index));
+        position=slot.vector(0x20); //Outputs are written even when changed88 is false.
+        if(point)*point=slot.words.template get<std::uint16_t>(0x7e);
+        if(!slot.words.template get<std::uint8_t>(0x88))return false;
+        slot.words.set(0x88,std::uint8_t{0});return true;
+    }
     void select_loading_mode() { //00597420(3), original allocation precedes all six writes.
         changed_=true;if(!slots_)slots_=std::make_unique<std::array<Slot,6>>();mode_=3;
         for(unsigned n=6;n;) {--n;auto& s=(*slots_)[n];s.vector(0,human_formation_loading_positions[n]);s.vector(0x50,normalize_formation_vector(human_formation_loading_directions[n]));}
