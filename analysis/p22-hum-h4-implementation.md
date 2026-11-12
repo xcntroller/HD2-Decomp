@@ -870,3 +870,13 @@ exit query is not exposed by the older base; completed H3 must supply it without
 using an exit action as a query. Aircraft/type20/type34 and type15/Scene2actor91
 stay precise other-owner requirements. Full Human/World/mission/H8/user acceptance
 is separate; no new numbered implementation batches.
+
+## Final common-output source boundary — 2026-11-12
+
+Takeover preserved the subgroup WIP96356ab, merged completed HUM46a6cef at2854bd5
+and added actual Active AI grenade response at63de5fb. Vehicle/VM/route/controls
+now use the same actual owners; [final selected-call inventory, contract and
+external limits](human-h4-source-closure.md) supersede historical open-slice notes.
+[Final receipt](checkpoints/p22-hum-h4-source-20261112.json). H4 is source-complete
+on existing actor owners; H6/H8, absent Scene2 actors and actual application/
+desktop delivery stay open. No historical C label adds another requirement.

@@ -3,7 +3,8 @@
 Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`, branch
 `feature/p22-hum-h4`, originally based on HUMe742f84. The user authorized takeover
 of this existing branch/worktree after its previous agent reached usage limits.
-Preserve its work and H6's separate worktree. H4 remains OPEN.
+Preserve its work and H6's separate worktree. H4 common-output source work is
+complete on existing actor owners; [closure and external limits](human-h4-source-closure.md).
 
 Complete original common00584E30 outputs, B0 action/navigation/formation and
 track/DD0 consumers on their actual owners. H3/H5 provide completed dependencies;
@@ -22,21 +23,20 @@ no permanent tests or new numbered implementation batches.
 - [x] Climb/DC1F/DD0 replay, all track0..24 receivers, held/mounted presentation,
   timed inventory transfer, target/trigger/aim start-stop and ordinary alignment.
 - [x] Script timed attacks and actual VM target producers; TurnAt/attachment
-  direction producer/consumer. Vehicle is still open below.
+  direction producer/consumer; vehicle producer/frame is completed below.
 - [x] Actual Players subgroup producer/admission/retirement, mode9/static layouts,
   formation frame and base VM formation commands. Focused native55+16, actual
-  i386 full link and application/probe links. Attached Car query remains an H3
-  interface dependency. [Contract](human-players-subgroup-source.md).
+  i386 full link and application/probe links. Actual H3 Car query is now integrated. [Contract](human-players-subgroup-source.md).
 
 Earlier contracts and verified receipts are in
 [implementation history](p22-hum-h4-implementation.md). Historical C labels are
 past implementation batches, not additional requirements. Do not restart their
 unchanged audits or repeat stale missing A4/98/B4/9C claims.
 
-## Remaining original H4 work
+## Final source boundaries
 
-- [ ] Finish vehicle00578770/00578790 on actual seat/aim/control/input owners;
-  research its complete producer, frame and retirement boundary before changing it.
+- [x] Vehicle00578770/00578790: actual typed Car/path, native route/controllers,
+  VM26/2B producer and live-context completion. Native49+18+12, actual i386 link.
 - [x] Integrate completed H3/H5 interfaces where selected: Car exit-pose query,
   mounted A8/004C5800 position lifetime and target35 grenade aiming. Inspect the
   current completed HUM graph; an abstract Runtime guard alone proves no absence.
@@ -44,9 +44,9 @@ unchanged audits or repeat stale missing A4/98/B4/9C claims.
 - [x] Resolve Active AI00530FF0 reached by H6 grenade notification0045EAB0 on H4,
   preserving actual navigation/formation owners and current state policy.
   [Source contract](human-active-ai-grenade-source.md); no task mutation occurs.
-- [ ] Reconcile the final selected Runtime/call inventory and concrete source
-  bindings; verify newly reached positive/failure/retirement paths once, publish
-  consolidated ledger/receipt/handoff, remove temporary audits and close H4.
+- [x] Reconcile selected calls and actual bindings; focused verification,
+  consolidated ledger/receipt/handoff and temporary audit cleanup.
+  [Source closure](human-h4-source-closure.md); full Human/application remains H8.
 
 ## External boundaries and honest failures
 

@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_ai_target_output.h"
 #include "game/human_ai_alignment.h"
+#include "game/human_vehicle_path.h"
 #include "game/human_inventory_counts.h"
 #include "game/car_actor_authority.h"
 #include "game/car_targeted_placement.h"
@@ -1331,6 +1332,9 @@ public:
         auto& d=dependencies();receive_human_offline_notification(human,&target,d.scene.frames(),
             d.startup.text(),d.hud,mode_flags(),human_current_player_id()); //00588870 virtual10, offline branch.
     }
+    template<class State>void finish_human_treatment(State&,std::int32_t,std::int32_t){
+        throw std::runtime_error("Player medical completion requires actual H6 00546DC0 protection/packet receiver");
+    }
     template<class State,class Runtime>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item,Runtime& runtime){
         if(state.words().template get<std::uint32_t>(0x48)==1){
             runtime.finish_human_treatment(state,identity,item);return; //Separate00546DC0 Player/H6/protection/packet policy.
@@ -1775,6 +1779,36 @@ public:
         auto* human=state.human();if(!human||!state.item())throw std::logic_error("AI ammunition query requires actual Human/item");
         auto& items=dependencies().world_actors.items();const auto id=items.runtime_item(state.item()).definition().ammunition();
         return count_human_ammunition(*human,items,id,false); //005A6C50, original include-pack0.
+    }
+    auto& human_vehicle_car(void* actor){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Vehicle path requires actual initialized Car owner");return car;}
+    float human_vehicle_maximum(void* actor){return human_vehicle_car(actor).geometry->physics().scalars().get(0x6f0);} //Native780.
+    float human_vehicle_speed(void* actor){return human_vehicle_car(actor).loading->cold_state().solver.speed;} //Native958.
+    HumanVector human_vehicle_velocity(void* actor){return human_vehicle_car(actor).loading->cold_state().body.motion().velocity;} //Native4A0.
+    HumanVector human_vehicle_direction(void* actor){return human_vehicle_car(actor).base().world_direction();}
+    HumanVector human_vehicle_position(void* actor){auto& object=human_pose_actor(actor);const auto m=dependencies().scene.frames().actor_world_matrix(object.base().frame());return {{m[12],m[13],m[14],m[15]}};}
+    void human_vehicle_governor(void* actor,float value){human_vehicle_car(actor).loading->path_governor(value);}
+    void human_vehicle_drive(void* actor,float value){human_vehicle_car(actor).loading->path_drive(value);}
+    void human_vehicle_brake(void* actor,float value){human_vehicle_car(actor).loading->path_brake(value);}
+    void human_vehicle_steering(void* actor,float value){request_car_steering(human_vehicle_car(actor).loading->steering_state(),value);}
+    void human_vehicle_emergency(void* actor,bool enabled,bool held){human_vehicle_car(actor).loading->path_emergency(enabled,held);}
+    void human_vehicle_driver_input(void* actor,float pedal,float steering){human_vehicle_car(actor).loading->driver_input(pedal,steering);}
+    auto human_vehicle_navigation(HumanAIPathLoading& path){return MissionNavigation(path.table());} //SAME SECOND table set at native70.
+    template<class Human>std::uint32_t human_vehicle_human_kind(Human& human){if(!human.loading_state)throw std::logic_error("Vehicle finish requires actual B0");return human.loading_state->words().template get<std::uint32_t>(0x48);}
+    template<class State>void human_vehicle_finish_script(State& state,std::int32_t pc){
+        using Script=typename Dependencies::Composition::StateFactory::Script;
+        auto* script=dynamic_cast<Script*>(&state);if(!script)throw std::logic_error("Vehicle Script completion requires actual state5");script->finish_script_vehicle_context(pc); //00416D90 and00416D50 have the same PC-match/advance body.
+    }
+    template<class State>bool advance_script_vehicle_path(State& state,std::uint32_t elapsed){return human_vehicle::advance(state,elapsed,*this);}
+    auto& human_vehicle_roster(){return dependencies().players.control().human_roster();}
+    auto& human_vehicle_second_tables(){return dependencies().second_tables;}
+    std::uint16_t human_vehicle_named_point(const std::string& name){return human_vehicle::named_point(dependencies().second_tables,name);}
+    template<class Human,class Frame>std::optional<std::uint16_t> human_vehicle_chase_point(Human&,Frame frame){return human_vehicle::chase_point(frame,*this);}
+    template<class State>bool request_human_vehicle_point(State& state,std::uint16_t point,float speed,std::int32_t pc){ //00577A60.
+        auto* human=state.human();if(!human||!human->field160||human->field160->base().type()!=4)return false;
+        auto& path=state.resources().path();if(point==0xffff){path.stop_loading();return true;}
+        MissionNavigation navigation(path.table());if(!navigation.record(point))return true;
+        path.bind_vehicle(human->field160,[this](void* car){human_vehicle_governor(car,human_vehicle_maximum(car));});
+        const auto p=navigation.position(point);path.request_vehicle_position({{p[0],p[1],p[2],0}},speed);path.state().set(0x94,pc);return true;
     }
     void human_grenade_navigation_probe(const HumanVector& position){ //0052D720(position,0,NULL) still observes actual navigation first.
         (void)dependencies().navigation.nearest_volume({{position[0],position[1],position[2]}},5.f,-1.f);

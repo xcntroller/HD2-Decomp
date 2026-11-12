@@ -29,6 +29,18 @@ public:
         if(actor)state->request_actor_attack(actor,duration,ill_fire,pc,lookup_);
         else state->request_frame_attack(target,duration,ill_fire,pc,lookup_);
     }
+    bool vehicle_path(Human& human,const std::string& name,float speed,std::int32_t pc){ //00421C00 op26→00577A60.
+        if(!human.field160||human.field160->base().type()!=4)return false;
+        const auto point=lookup_.human_vehicle_named_point(name);
+        if(auto* state=script(human))(void)lookup_.request_human_vehicle_point(*state,point,speed,point==0xffff?-1:pc);
+        return point!=0xffff; //A missing named point stops the path then advances; valid point parks PC.
+    }
+    bool vehicle_chase(Human& human,typename Frames::Frame frame,float speed,std::int32_t pc){ //00421C00 op2B.
+        if(!human.field160||human.field160->base().type()!=4||human.field164!=0)return false;
+        const auto point=lookup_.human_vehicle_chase_point(human,frame);if(!point)return false;
+        if(auto* state=script(human))(void)lookup_.request_human_vehicle_point(*state,*point,speed,*point==0xffff?-1:pc);
+        return *point!=0xffff;
+    }
     void turn_at(Human& human,typename Frames::Frame frame){if(auto* state=script(human))state->turn_at_frame(frame,lookup_);} //005AF660→005904C0.
     void working_mode(Human& human,std::int32_t mode) { //005AF5C0→0058FCC0.
         if(auto* state=script(human)){
@@ -104,13 +116,25 @@ private:
 //actual base00416E10 receiver first, then this derived Human receiver.
 template<class Frames,class Human,class Controls,class Runtime>std::optional<bool> execute_human_loading_script_command(
         MissionScriptContext<Frames>& context,const MissionScriptInstruction& instruction,Controls& controls,Runtime& runtime){
-    switch(instruction.opcode){case 0x1d:case 0x21:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:case 0x44:break;default:return std::nullopt;}
+    switch(instruction.opcode){case 0x1d:case 0x21:case 0x26:case 0x2b:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:case 0x44:break;default:return std::nullopt;}
     if(context.family()!=1)return std::nullopt;
     if(!runtime.script_authority())return false;
     auto* derived=dynamic_cast<ActorMissionScriptContext<Frames,1>*>(&context);
     auto* human=derived?dynamic_cast<Human*>(&derived->actor()):nullptr;
     if(!human)throw std::logic_error("Human script command requires the actual actor10C");
     switch(instruction.opcode){
+    case 0x2b:{
+        const auto bits=context.program().integers.at(instruction.operands.at(0)).value;std::int32_t speed;std::memcpy(&speed,&bits,4);
+        const auto value=static_cast<float>(static_cast<long double>(static_cast<float>(speed))*.2800000011920929f);
+        if(controls.vehicle_chase(*human,context.frame(),value,context.pc()))return true;
+        break;
+    }
+    case 0x26:{
+        const auto bits=context.program().integers.at(instruction.operands.at(1)).value;std::int32_t speed;std::memcpy(&speed,&bits,4);
+        const auto value=static_cast<float>(static_cast<long double>(static_cast<float>(speed))*.2800000011920929f);
+        if(controls.vehicle_path(*human,context.program().strings.at(instruction.operands.at(0)),value,context.pc()))return true;
+        break;
+    }
     case 0x3e:controls.turn_at(*human,context.slot(instruction.operands.at(0)));break;
     case 0x21:case 0x30:
         controls.attack(*human,context.slot(instruction.operands.at(0)),context.program().integers.at(instruction.operands.at(1)).value,instruction.opcode==0x30,context.pc());

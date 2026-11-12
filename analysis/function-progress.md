@@ -237,3 +237,15 @@ Car/StaticWeapon entry/exit and mounted aim/reset/casing use existing owners;
 full occupied Car frame/non7 inputs, Human frame and desktop delivery stay open.
 004D99D0/004D9A40/004D9BE0/00604630/006034D0/004C1990/004DA1D0/00604DA0 and
 B0 direction setter wrappers are absent from the frozen inventory: no new credit.
+
+### H4 common outputs — source boundary, 2026-11-12
+
+[Source closure](human-h4-source-closure.md) and
+[receipt](checkpoints/p22-hum-h4-source-20261112.json) consolidate H4 on existing
+actor owners. Completed-HUM keyed integration preserves both branches' credit;
+Active AI grenade response added3 partials; vehicle source adds15 and extends3.
+Current34 complete/3324 partial (3319client+5engine), unchanged18783 baseline and
+no complete promotions. Full checker still fails on inherited unavailable ignored
+evidence; exact baseline/schema/address/status/totals/available evidence, changed
+rows and README checked separately. H6/H8/absent actor/application/desktop remain
+required; no delegated engine/helper bodies or external actor credit added.

@@ -85,8 +85,8 @@ public:
             const auto alarm_posture=state_.template get<std::uint32_t>(0x1a4);
             const auto posture=alarm_enabled()&&alarm_posture?alarm_posture:state_.template get<std::uint32_t>(0x1b0);
             if(!(posture&flags()&7u))this->request_navigation_posture(posture&7u,control,world.mode_flags());
-            if(this->human()->field160&&resources.path().state().template get<std::uint32_t>(0x74))
-                runtime.advance_script_vehicle_path(*this,elapsed); //00578770→00578790, actual path+74 gate.
+            if(this->human()->field160&&resources.path().vehicle())
+                world.advance_script_vehicle_path(*this,elapsed); //00578770→00578790, actual path+74 gate.
             if(state_.template get<std::uint32_t>(0x1c0))advance_script_timed_action(elapsed,world); //0058E500.
             this->apply_frame_movement(control);
             this->apply_frame_items(control,world,runtime,elapsed,this->words().template get<std::uint8_t>(0xb4));
@@ -161,6 +161,7 @@ public:
     template<class World>void request_frame_attack(Frame frame,std::uint32_t duration,bool ill_fire,std::int32_t pc,World& world){request_human_script_frame_attack(*this,frame,duration,ill_fire,pc,world);}
     template<class World>void advance_script_timed_action(std::uint32_t elapsed,World& world){advance_human_script_timed_attack(*this,elapsed,world);}
     void finish_script_attack_context(std::int32_t pc){if(context_)contexts_.finish_human_script_navigation(*context_,pc);} //00416D70, same existing PC-match receiver.
+    void finish_script_vehicle_context(std::int32_t pc){auto* human=this->human();if(!human)throw std::logic_error("Vehicle completion lost actual Human");if(auto* context=contexts_.human_script_context(*human))contexts_.finish_human_script_navigation(*context,pc);} //00416D90, actual PC-match advance.
     using Formation=std::remove_reference_t<decltype(*std::declval<Human&>().formation)>;
     Formation* script_formation()const{return formation_;}
     void script_formation(Formation* formation){ //0058D900, actual producer004603C0 / retirement00460850.

@@ -39,6 +39,10 @@ public:
     virtual bool exit_seat(std::int32_t index)=0;
     virtual bool seat_exit_pose(std::size_t index,CarContactVector& position,CarContactVector& direction)=0;
     virtual void driver_input(float pedal,float steering)=0;
+    virtual void path_governor(float)=0;
+    virtual void path_drive(float)=0;
+    virtual void path_brake(float)=0;
+    virtual void path_emergency(bool,bool)=0;
     virtual void driver_frame_inputs(const HumanFrameInputBuffer&,const HumanFrameInputBuffer&)=0;
     virtual bool seat_claimed(std::int32_t)const=0;
     virtual void claim_seat(std::int32_t,bool)=0;

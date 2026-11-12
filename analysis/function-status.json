@@ -13735,13 +13735,15 @@
       "program": "client",
       "entry": "0055f2c0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0055f2c0: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0055f2c0: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded. Actual typed native30-byte route owner clears while retaining allocation capacity.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ai_resources.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
       ]
     },
     {
@@ -13774,13 +13776,15 @@
       "program": "client",
       "entry": "0055e250",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0055e250: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0055e250: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded. Positive typed Car borrower now restores same governor before requesting stop4.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ai_resources.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
       ]
     },
     {
@@ -25360,7 +25364,7 @@
       "program": "client",
       "entry": "00421c00",
       "status": "partial",
-      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion. Actual op3E TurnAt frame-slot forwarding through SAME Script5 controls, original normal instruction advance. Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer.",
+      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion. Actual op3E TurnAt frame-slot forwarding through SAME Script5 controls, original normal instruction advance. Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer. Actual vehicle op26 named SECOND point and op2B live-roster/reachable selection, numeric signed speed0.28 and PC park/advance policy.",
       "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
       "evidence": [
         "recovered/game/human_script_loading_controls.h",
@@ -25370,7 +25374,9 @@
         "analysis/p22-hum-h4-implementation.md",
         "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json",
         "analysis/human-guard-area-source.md",
-        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
       ]
     },
     {
@@ -44533,6 +44539,186 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-active-ai-grenade-source.md",
         "analysis/checkpoints/p22-hum-h4-active-grenade-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00578770",
+      "status": "partial",
+      "coverage": "Actual Script vehicle frame wrapper reaches00578790 on same path130/Car74 owner.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00578790",
+      "status": "partial",
+      "coverage": "Actual stop/start/running flags, driver gate, route construction, predicted motion, stuck reversal/progress, segment/Hermite sampling, signed speed controls and endpoint finish.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005796d0",
+      "status": "partial",
+      "coverage": "Clear running then restore actual Car governor, fresh current Script context/PC match before advancing; nonScript current Player brake policy.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00579760",
+      "status": "partial",
+      "coverage": "Forward steering/blend, clamped side-product acos, signed/current speed/governor and native drive-before-brake output order.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00579d50",
+      "status": "partial",
+      "coverage": "Reverse steering/blend and native brake-before-drive order, shared actual Car controls/governor and emergency reset.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055f320",
+      "status": "partial",
+      "coverage": "Same typed route allocation, native start/navigation constraints/terminal fallback and tangent recomputation including exact quiet-NaN sentinel.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00577a60",
+      "status": "partial",
+      "coverage": "Attached Car gate, actual SECOND point lookup, bind typed Car borrower, destination/signed-speed request and current PC publication. FFFF restores governor and requests stop.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e0e0",
+      "status": "partial",
+      "coverage": "Restore old Car governor on unbind before replacing typed74 loan and clearing88.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e160",
+      "status": "partial",
+      "coverage": "Native tiny-speed stop gate; otherwise clear4/set1 then full destination50, exact quiet-NaN60 and signed speed8C publication.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e2c0",
+      "status": "partial",
+      "coverage": "Clear requested bits of same path40 flags.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e2e0",
+      "status": "partial",
+      "coverage": "Query overlap of requested flags and same path40.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e120",
+      "status": "partial",
+      "coverage": "Borrow actual typed Car74 reference without truncating native pointer into DWORD fields.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051e1a0",
+      "status": "partial",
+      "coverage": "Forward16-byte case-insensitive ASCII name lookup in actual SECOND18-byte name records, first match and FFFF miss.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416d90",
+      "status": "partial",
+      "coverage": "Fresh live-frame context, current-PC match and actual shared VM advance policy.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2630",
+      "status": "partial",
+      "coverage": "Actual initialized Car governor request; store requested value and positive-only half-unit margin. Return value unused on reached callers.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
       ]
     }
   ]
