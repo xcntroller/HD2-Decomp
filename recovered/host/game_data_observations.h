@@ -16,6 +16,7 @@ inline void observe_world_data(world_loading::World& world){
     frames.observe_data("population","ShotMgr render","80",shots.render.size());
     frames.observe_data("population","ShotMgr render","B0",shots.muzzle_flashes.size());
     for(unsigned n=0;n<shots.transient.size();++n)frames.observe_data("population","ShotMgr transient",n==0?"114":n==1?"124":"134",shots.transient[n].size());
+    frames.observe_data("population","ShotMgr transient","134",shots.shells.size());
     const auto& particles=d.startup.mission_effects_process();
     frames.observe_data("population","Particles","active1014",particles.active_particles());
     frames.observe_data("population","Particles","placed1034",particles.placed_particles());

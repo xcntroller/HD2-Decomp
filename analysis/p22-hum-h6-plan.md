@@ -2,7 +2,7 @@
 
 Active worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h6`, branch
 `feature/p22-hum-h6`, created from completed H2 `85593e8` at the user's request.
-H2 and completed aggregate201adbf are present. Active H4 remains separate; H8
+H2 and completed aggregate201adbf are present. Completed H4 is merged into HUMb9d67aa and awaits H6 integration; H8
 is unassigned. H6 is OPEN. No application activation or desktop claim.
 
 ## Current priority and completion boundary
@@ -40,7 +40,8 @@ C exports with unknown signatures do not establish their ABI.
   ownership decision from the actual call chain, not a fabricated successful fire.
   Melee/repair/first-queue and shared shot sound are [source-verified](human-player-item-sound-actions-source.md).
   [Ordinary bullet/light ownership](human-item-bullet-production-source.md) is implemented;
-  shell/capsule/grenade/immediate melee producers remain open. Full asynchronous
+  [Shell/capsule/grenade producers](human-item-projectile-production-source.md) are source-verified;
+  completed H4 notification import and immediate melee remain open. Full asynchronous
   module14 collision/visual/combat-frame assembly remains H8, preserving selected
   initial100 requirements. Do not expand non7 replay as an offline H6 dependency.
 - [ ] H6.5 — Compose reached item commands with actual input/queue owners.

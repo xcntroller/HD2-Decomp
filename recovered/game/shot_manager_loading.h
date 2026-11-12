@@ -8,6 +8,8 @@
 #include "game/shot_blood_marks.h"
 #include "game/shot_bullet_record.h"
 #include "game/shot_muzzle_flash.h"
+#include "game/shot_shell_record.h"
+#include "game/shot_capsule_record.h"
 #include "frontend/spatial_sound.h"
 #include <array>
 #include <list>
@@ -22,10 +24,6 @@ namespace hd2::game {
 //0044D920's cold reusable decal records. Unknown bytes are defined zero for
 //source safety and earn no native initialization credit. Bullet records now
 //use the actual typed mark pool below; decal positive fields remain unavailable.
-struct alignas(16) ShotColdDecal {
-    ShotColdDecal(){for(auto offset:{0x20u,0x24u,0x28u})words.set(offset,std::uint32_t{0});} //0044DB10, empty resource/vector fields only.
-    HumanJointWords<0x40> words;
-};
 template<class Record>class ShotColdPool {
 public:
     ShotColdPool(){for(unsigned n=0;n!=16;++n)push(std::make_unique<Record>());} //Native pool limit18=16; original aligned allocation.
@@ -51,8 +49,9 @@ template<class Frames>struct ShotManagerLoadingState {
     using Frame=typename Frames::Frame;
     using ModelOwner=decltype(std::declval<Frames&>().create_shot_model());
     using TextureOwner=typename Frames::ResourceOwner;
-    using Bullet=ShotBulletRecord<Frames>;using RuntimeRecord=ShotRuntimeRecord<Frames>;
-    ShotColdPool<Bullet> marks;ShotColdPool<ShotColdDecal> decals;
+    using Bullet=ShotBulletRecord<Frames>;using RuntimeRecord=ShotRuntimeRecord<Frames>;using Shell=ShotShellRecord<Frames>;
+    using Capsule=ShotCapsuleRecord<Frames>;
+    ShotColdPool<Bullet> marks;ShotColdPool<Shell> decals; //Native0C/64; historical cold labels retained.
     std::vector<RuntimeRecord*> render; //Native80, positive producer remains required.
     using MuzzleFlash=ShotMuzzleFlash<Frames>;
     std::vector<std::unique_ptr<MuzzleFlash>> muzzle_flashes; //NativeB0/B4/B8, SAME process owner.
@@ -60,7 +59,8 @@ template<class Frames>struct ShotManagerLoadingState {
     std::vector<std::unique_ptr<BloodMark>> blood_marks; //Native90/94/98, SAME ShotMgr owner.
     using SurfaceMark=ShotSurfaceMark<Frames>;
     std::vector<std::unique_ptr<SurfaceMark>> surfaces; //Native A0/A4/A8, SAME actual ShotMgr pool.
-    std::array<std::vector<std::unique_ptr<RuntimeRecord>>,3> transient; //114/124/134, actual owned records.
+    std::array<std::vector<std::unique_ptr<RuntimeRecord>>,2> transient; //114/124.
+    std::vector<std::unique_ptr<Shell>> shells; //Native134/138/13C, actual owned shell records.
     std::optional<ModelOwner> hit_zones,odds;
     std::array<Frame,10> hit_frames{}; //BSS cold zero;00455520 deliberately does not clear these borrowers.
     inline static constexpr std::array<const char*,10> hit_names{{"c","f","l","m","h","i","s","t","o","p"}};
@@ -92,6 +92,7 @@ public:
         require_empty(state_.surfaces);
         require_empty(state_.blood_marks);
         for(const auto& rows:state_.transient)require_empty(rows);
+        require_empty(state_.shells);
         state_.world=this;
     }
     ~ShotManagerLoading(){close();}
@@ -104,6 +105,7 @@ public:
             for(std::size_t n=0;n<rows.size();){
                 if(!rows[n])throw std::logic_error("ShotMgr active record has no owner");
                 if(rows[n]->authority_tick(elapsed)!=1u){++n;continue;}
+                if(rows[n]->kind()==3u||rows[n]->kind()==4u){rows[n]->retire();rows.erase(rows.begin()+static_cast<std::ptrdiff_t>(n));continue;}
                 if(rows[n]->kind()!=1u)throw std::runtime_error("ShotMgr requires actual selected non-bullet retirement");
                 auto* bullet=dynamic_cast<typename State::Bullet*>(rows[n].get());
                 if(!bullet)throw std::logic_error("ShotMgr kind1 must use its actual bullet record");
@@ -124,7 +126,11 @@ public:
             if(!record)throw std::logic_error("ShotMgr presentation record has no owner");
             record->presentation_tick(elapsed); //Reload vector/count after callbacks, no retirement in this pass.
         }
-        require_empty(state_.transient[2]);
+        for(std::size_t n=0;n<state_.shells.size();){
+            if(state_.shells[n]->tick(elapsed)!=2u){++n;continue;}
+            state_.shells[n]->retire();state_.decals.recycle(state_.shells[n]);
+            state_.shells.erase(state_.shells.begin()+static_cast<std::ptrdiff_t>(n));
+        }
         for(std::size_t n=0;n<state_.muzzle_flashes.size();){ //Native B0 pass precedes A0, then90.
             if(state_.muzzle_flashes[n]->tick(elapsed)!=2u){++n;continue;}
             state_.muzzle_flashes[n]->clear();state_.muzzle_flashes.erase(state_.muzzle_flashes.begin()+static_cast<std::ptrdiff_t>(n));
@@ -165,7 +171,8 @@ public:
         require_open();
         if(authority){state_.hit_zones.reset();authority_started_=false;} //00455520 leaves borrowed marker entries intact.
         else{
-            require_empty(state_.transient[2]);require_empty(state_.render);
+            while(!state_.shells.empty()){state_.shells.back()->retire();state_.shells.pop_back();}
+            require_empty(state_.render);
             while(!state_.blood_marks.empty()){state_.blood_marks.back()->clear();state_.blood_marks.pop_back();}
             //0044E110 retires A0 in reverse before B0, BEFORE texture60 and Scene retirement.
             while(!state_.surfaces.empty()){state_.surfaces.back()->clear();state_.surfaces.pop_back();}
@@ -184,7 +191,7 @@ public:
     }
     void close()noexcept{
         if(state_.world!=this)return;
-        const bool had_runtime=authority_started_||presentation_started_||!state_.transient[0].empty()||!state_.muzzle_flashes.empty();
+        const bool had_runtime=authority_started_||presentation_started_||!state_.transient[0].empty()||!state_.muzzle_flashes.empty()||!state_.shells.empty();
         frontend::CleanupErrors errors;
         if(authority_started_)errors.attempt([&]{finish(true);});
         if(presentation_started_)errors.attempt([&]{finish(false);});
@@ -198,7 +205,10 @@ public:
         while(!state_.muzzle_flashes.empty()){
             errors.attempt([&]{state_.muzzle_flashes.back()->clear();});state_.muzzle_flashes.pop_back();
         }
-        if(had_runtime)state_.marks.clear();
+        while(!state_.shells.empty()){
+            errors.attempt([&]{state_.shells.back()->retire();});state_.shells.pop_back();
+        }
+        if(had_runtime){state_.marks.clear();state_.decals.clear();}
         state_.world=nullptr;
         if(errors.failed())try{errors.rethrow();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
     }

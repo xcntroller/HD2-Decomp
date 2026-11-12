@@ -1143,6 +1143,21 @@ public:
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}
     MenuDriver::Owner create_hud_info_model(){return driver_.create(9);}
     MenuDriver::Owner create_shot_model(){return driver_.create(9);}
+    MenuDriver::Owner create_shot_shell(Frame source){
+        auto owner=driver_.create(0x5f4a424fu);if(!owner)throw std::runtime_error("Shell requires actual driver object");
+        call<void>(owner.get(),0x4c,source);return owner;
+    }
+    void shot_projectile_root(Frame frame){human_sound_link(frame,field<Frame>(scene_.frame(),0x1f8));}
+    void shot_grenade_parameter(Frame frame,float value){call<void>(frame,0xa8,value);}
+    void configure_shot_capsule(Frame frame,const Vector& velocity,const Vector& position){
+        human_sound_link(frame,shot_hidden_sector());call<void>(frame,0xc,velocity.data(),std::uint32_t{0});
+        call<void>(frame,8,position.data());object_visible(frame,true);update_scene_object(frame);
+    }
+    void shot_shell_pose(Frame frame,const Vector& position,const Vector& direction){call<void>(frame,0x14,position.data(),direction.data(),std::uint32_t{0});}
+    void place_shot_shell(Frame frame,bool first){
+        if(first){shot_surface_scale(frame,.6f,.6f,.6f);call<void>(frame,0x38,field<Frame>(scene_.frame(),0x204),std::uint32_t{1});}
+        else{const auto matrix=actor_world_matrix(frame);call<void>(scene_.frame(),0xec,frame,matrix.data()+12);}
+    }
     bool shot_actor_in_scene(Frame frame)const{return field<Frame>(frame,0x11c)==field<Frame>(scene_.frame(),0x11c);}
     void configure_shot_light(Frame light,Frame parent){ //00453D80.
         human_sound_link(light,parent);human_equipment_name(light,"WeaponLight");

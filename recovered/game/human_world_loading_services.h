@@ -10,6 +10,8 @@
 #include "game/human_item_shot_sound.h"
 #include "game/human_item_fire.h"
 #include "game/shot_bullet_production.h"
+#include "game/shot_shell_production.h"
+#include "game/shot_grenade_record.h"
 
 #include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
@@ -1061,11 +1063,50 @@ public:
         (void)d.startup.mission_effects_process().emit(id,d.scene.frames().actor_world_matrix(muzzle),muzzle,true,false);
     }
     template<class Human>bool shot_actor_in_scene(Human& human){return dependencies().scene.frames().shot_actor_in_scene(human.base().frame());}
-    template<class Human,class Frame>void emit_item_shell(Human&,Frame,std::uint32_t){
-        throw std::runtime_error("ShotMgr shell requires actual0044E5D0 producer and00454190/00454360 lifetime");
+    template<class Human>const HumanVector& shot_human_velocity(Human& human){return human.activation.vector1b0;}
+    template<class Shell>unsigned advance_shot_shell(Shell&,std::uint32_t){
+        throw std::runtime_error("ShotMgr shell requires actual00454360 collision/motion receiver");
     }
-    template<class... Args>void emit_item_grenade(Args&&...){throw std::runtime_error("Item grenade requires actual00450400/0044CFF0 producer");}
-    template<class... Args>void emit_item_capsule(Args&&...){throw std::runtime_error("Item projectile requires actual00451670/00448CE0 producer");}
+    template<class Human,class Frame>void emit_item_shell(Human& human,Frame marker,std::uint32_t command){
+        auto& d=dependencies();produce_item_shell(d.startup.shot_manager_process(),d.scene.frames(),*this,human,marker,command);
+    }
+    template<class Item,class Human>void emit_item_grenade(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,std::uint32_t argument){
+        auto& d=dependencies();auto& state=d.startup.shot_manager_process();
+        if(!state.world)throw std::logic_error("Grenade requires actual world-bound ShotMgr");
+        using Body=typename std::remove_reference_t<decltype(d.world_actors)>::Body;
+        using Record=ShotGrenadeRecord<typename Dependencies::ActorFrames,Body>;
+        auto factory=[&]{return std::make_unique<Body>(d.scene.frames(),d.scene.buckets(),d.world_actors.rigid_bodies());};
+        auto record=std::make_unique<Record>(d.scene.frames(),factory);record->initialize(*this,item,human,position,direction,argument);
+        state.transient[0].push_back(std::move(record));
+        if((mode_flags()&7u)==7u)notify_item_grenade(human,position,direction);
+        remove_human_inventory_item(human,d.world_actors.items(),item.identity,true,*this); //005A7B70 AFTER notification.
+    }
+    template<class Human>void notify_item_grenade(Human& source,const HumanVector&,const HumanVector&){ //0045EAB0; H4 recipient remains required.
+        auto& roster=dependencies().players.control().human_roster();
+        for(auto n=roster.size();n;){
+            auto* target=roster.at(static_cast<std::int32_t>(--n));
+            if(!target)throw std::runtime_error("Grenade notification lost actual roster Human");
+            if(human_frame_signed_word(target->properties.stats_ec[0])<=0)continue;
+            if(!target->loading_state)throw std::runtime_error("Grenade notification requires actual target B0");
+            if(target->loading_state->words().template get<std::uint32_t>(0x48)!=3u||target==&source)continue;
+            throw std::runtime_error("Grenade notification requires H4 Active AI00530FF0 receiver");
+        }
+    }
+    template<class Record>unsigned advance_shot_grenade_authority(Record&,std::uint32_t){throw std::runtime_error("Grenade requires actual0044D260 combat frame");}
+    template<class Record>void advance_shot_grenade_presentation(Record&,std::uint32_t){throw std::runtime_error("Grenade requires actual0044D240 presentation frame");}
+    template<class Record,class Event>int shot_grenade_contact(Record&,unsigned,Event*){throw std::runtime_error("Grenade requires actual0044D570 rigid contact receiver");}
+    template<class Item,class Human,class Frame>void emit_item_capsule(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,Frame model,std::uint32_t argument){
+        auto& d=dependencies();auto& state=d.startup.shot_manager_process();
+        if(!state.world)throw std::logic_error("Capsule requires actual world-bound ShotMgr");
+        auto record=std::make_unique<typename std::remove_reference_t<decltype(state)>::Capsule>();
+        record->initialize(d.scene.frames(),*this,human,position,direction,item.definition().payloads[0],model,(argument&0xffu)!=0);
+        state.transient[0].push_back(std::move(record));
+    }
+    template<class Capsule>unsigned advance_shot_capsule_authority(Capsule&,std::uint32_t){throw std::runtime_error("Capsule requires actual00449290 frame/damage receiver");}
+    template<class Capsule>void advance_shot_capsule_presentation(Capsule&,std::uint32_t){throw std::runtime_error("Capsule requires actual00449030 presentation receiver");}
+    void stop_capsule_camera(){spawn_camera_command(9,false,0);}
     template<class... Args>void apply_item_melee(Args&&...){throw std::runtime_error("Item melee requires actual00451230 damage receiver");}
     template<class Player>auto* player_item_melee_target(Player& state){
         using Human=typename Dependencies::Composition::Human;

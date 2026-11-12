@@ -26156,13 +26156,15 @@
       "program": "client",
       "entry": "0044db10",
       "status": "partial",
-      "coverage": "Known cold40-byte decal record zero fields20/24/28, aligned source allocation; no populated runtime resource producer.",
+      "coverage": "Known cold40-byte decal record zero fields20/24/28, aligned source allocation; no populated runtime resource producer. Actual typed shell record lifetime now retains/reuses its visual across same64 pool cycles.",
       "limitations": "Source-only typed/STL/RAII ownership replaces native vtable/container/allocation/SEH ABI. Cold loading only; projectile/decal producers, live row cleanup, damage and rendering excluded. Engine/frame/clock/cache endpoints doubled in native checks; actual host composition compile-only. No containing application world or desktop equivalence claim.",
       "evidence": [
         "recovered/game/shot_manager_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/shot-manager-loading.md",
-        "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json"
+        "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
       ]
     },
     {
@@ -43973,6 +43975,126 @@
         "recovered/host/game_actor_frames.h",
         "analysis/human-item-bullet-production-source.md",
         "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044e5d0",
+      "status": "partial",
+      "coverage": "Actual current-Player/marker/source gates, three LS3DF velocity draws before same64 pool acquisition, typed134 publication.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_shell_production.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00454190",
+      "status": "partial",
+      "coverage": "Actual retained clone reuse, pose/view placement/visibility/update, source and command, native completion guard.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_shell_record.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004546c0",
+      "status": "partial",
+      "coverage": "Hide/update shell visual while retaining it on the same cold pool; actual source lifetime guard.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_shell_record.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00451670",
+      "status": "partial",
+      "coverage": "Actual selected weapon capsule construction and stable114 publication after complete initialization.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_capsule_record.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00448ce0",
+      "status": "partial",
+      "coverage": "Selected weapon capsule velocity/payload/model/particle91 initialization with actual module17/camera borrowers; incoming sound and special mode false.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_capsule_record.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00448fc0",
+      "status": "partial",
+      "coverage": "Selected capsule particle stop while model lives, model release, camera policy and source/payload retirement.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_capsule_record.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00450400",
+      "status": "partial",
+      "coverage": "Actual grenade allocation/Body factory and114 publication before offline notification and inventory removal; H4 recipient still required here.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_grenade_record.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044cff0",
+      "status": "partial",
+      "coverage": "Actual selected grenade payload/speed/minimum/fuse/model and same World rigid Body bind/configure/reset/callback context.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_grenade_record.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044d210",
+      "status": "partial",
+      "coverage": "Actual rigid close before visual release and common projectile loan retirement.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_grenade_record.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004505b0",
+      "status": "partial",
+      "coverage": "Actual grenade owned rigid body destruction/unregistration after retirement; typed destructor partial cleanup.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/container/allocator/SEH ABI. Explicit engine/particle/Body/async endpoint doubles in native audits; strict actual host composition compiled without execution. H4 notification import, immediate melee/Player medical and H8 async/full World/application/desktop remain required. No native5F9 seed or complete equivalence promotion.",
+      "evidence": [
+        "recovered/game/shot_grenade_record.h",
+        "analysis/human-item-projectile-production-source.md",
+        "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
       ]
     }
   ]
