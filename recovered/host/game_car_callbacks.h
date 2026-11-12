@@ -84,7 +84,7 @@ public:
         //Known Scene2 nonHuman5C entries and runtime Mine00812F08 bind
         //00611070, genuine AL0/RET28. Unknown runtime families are not assumed.
         switch(actor_type(actor)){
-        case 2:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:return;
+        case 2:case 4:case 6:case 8:case 9:case 10:case 12:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:return;
         default:throw std::runtime_error("Car contact requires its actual derived actor5C receiver");
         }
     }
@@ -129,14 +129,14 @@ public:
     void emit_car_contact_fragments(Frame frame,float area)override{ //00485BA0, actual GEffects+B4.
         game::emit_car_mesh_fragments(frames_,physics_contact_,frame,area);
     }
-    Actor clone_car_contact_item(Frame,const Vector&,const Vector&)override{
-        throw std::runtime_error("Car detachment requires actual00479450 runtime Item12 constructor");
+    Actor clone_car_contact_item(Frame frame,const Vector& position,const Vector& direction)override{
+        return runtime_contact_.clone(frame,position,direction);
     }
-    void launch_car_contact_item(Actor,const game::CarDetachedPartRequest&,unsigned)override{
-        throw std::runtime_error("Car detached part requires actual005FDC50 Item12 movement owner");
+    void launch_car_contact_item(Actor actor,const game::CarDetachedPartRequest& request,unsigned mode)override{
+        runtime_contact_.launch(actor,request,mode);
     }
-    void launch_car_contact_item(Actor,const game::CarDetachedWheelRequest&,unsigned)override{
-        throw std::runtime_error("Car detached wheel requires actual005FDC00 Item12 movement owner");
+    void launch_car_contact_item(Actor actor,const game::CarDetachedWheelRequest& request,unsigned mode)override{
+        runtime_contact_.launch(actor,request,mode);
     }
 private:
     const void* damage_owner_=nullptr;std::function<void(Actor,game::SessionPacketStream&)> damage_packet_;

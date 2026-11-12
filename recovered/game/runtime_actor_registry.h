@@ -11,6 +11,11 @@
 
 namespace hd2::game {
 
+//00479450's separate module74 word; the caller borrows its actual storage.
+inline std::int32_t consume_runtime_detached_identity(std::uint32_t& counter){
+    const auto old=counter++;const auto value=old+1000000u;std::int32_t result;std::memcpy(&result,&value,4);return result;
+}
+
 //004770B0/00477190/004772F0/00477330/00477430. This is the runtime
 //registry, not Scene2's reserved identity array. Backend supplies real matching
 //factories, activation/deactivation, presentation-reference removal and frame

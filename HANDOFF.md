@@ -2,98 +2,77 @@
 
 FULL P2.2 / **second Human checkbox: reactions/damage/ragdoll remains OPEN**.
 Read `AGENTS.md`, Phase2 section2 of `plan.md`, [Human plan](analysis/p22-hum-plan.md),
-[Human contracts](analysis/human-ragdoll-source.md), and the relevant linked notes.
+[Human contracts](analysis/human-ragdoll-source.md) and relevant linked contracts.
 Continue dependencies/checkpoints until the FULL selected checkbox completes or
 is genuinely blocked. Source progress does not close application/desktop work.
 
 ## Checkout and boundaries
 
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
-explicitly requested transferring back here; transfer evidence is ignored WORK
-`human-return-main-20261111`. Preceding checkpoint **a29033d**. Check current
-HEAD/status before acting. Preserve other LIFE/UI/PACK/research worktrees,
-`/tmp/hd2-p22-hum-continue` and unrelated changes.
-
-No original EXE/DLL/Proton or Windows fixture execution. Native own audits only;
-Windows compile/link only. Heavy compilation/Ghidra **sequentially**. No push.
-Commit completed source checkpoints and continue; interactive acceptance requires
-the user. Mission loading remains disabled; no mission desktop verification.
+requested transferring back here; transfer evidence is ignored WORK
+`human-return-main-20261111`. Preceding checkpoint **9ebacae**; check current
+HEAD/status. Preserve LIFE/UI/PACK/research worktrees, `/tmp/hd2-p22-hum-continue`
+and unrelated changes. No agents were spawned. No push. No original EXE/DLL/
+Proton or Windows fixture execution; native own audits only, Windows compile/link.
+Heavy compilation and Ghidra MUST remain sequential. Mission loading remains
+blocked; no mission desktop acceptance. Source-only checkpoint commits authorized.
 
 ## Latest verified source
 
-[Mesh-fragment receipt](analysis/checkpoints/p2.2-human-car-fragments-20261112.json)
-adds1 partial/extends00500DA0: **34 complete/2733 partial(2728client+5engine)**,
-no promotions. [Full contract](analysis/human-car-fragments-source.md).
-Actual Car69C→GEffectsB4 now binds00485BA0 (absent frozen ZERO credit)→00484F60
-FASTCALL+RET40 to SAME actual PhysicsContactLink/module2/type4/fade owner.
-Keep longest-edge tie/child order, UVs, A/B/C/C/B/A six vertices with SAME normal,
-mesh material POINTER distinct from Physics material10 ZERO, six ENGINE draws
-only after valid handle and LOD→mesh→visual factory-reference retirement after
-impulse. No new Physics registry or successful unbound receiver. Native100
-subdivision/link/parameter families PASS ASan/UBSan/LSan with engine/buffer/Physics
-endpoint doubles; strict actual nested World/Car/Physics/Human and final launcher/
-probe compile/link PASS `human-car-fragments-*`. No trajectory/desktop claim.
+[Item12 receipt](analysis/checkpoints/p2.2-human-car-item12-20261112.json) adds7
+partials/extends4: **34 complete/2740 partial(2735client+5engine)**, no promotions.
+[Full contract](analysis/human-car-item12-source.md). Actual00479450 clone and
+005FDA20/005FDAB0 type12 owner bind SAME runtime registry/body list/buckets;
+005FDC00/005FDC50 lifetime→bind→configure→reset→actor ordering and004CD550 wheel
+fields are in source. Use EXISTING GameRuntimeActors.field74_, reset both passes,
+not a parallel counter. Actual D8 material11/D4 empty/5C AL0 confirmed, absent
+leaves ZERO credit. No inventory/Physics substitute. Native400 wheel/300 part
+lifetimes and failure/expiry PASS ASan/UBSan/LSan; strict nested actual World/Car/
+Item12/Physics/Human and final launcher/probe PASS `human-car-item12-*`.
+Engine/frame/math/activation/reset/authority simulation/effect endpoints are
+explicit doubles; no original trajectory or containing-frame claim.
 
-Preceding **a29033d** [Queued physical/mesh/glass receipt](analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json)
-adds6 partials/extends3: **34 complete/2732 partial(2727client+5engine)**, no
-promotions. [Full contract](analysis/human-car-physical-reset-source.md).
-Actual event4 now binds004DC780→004E9DB0, controls, authority004F2790,
-004DCD10 immediate004DCDE0 mesh traversal,004DD040 mesh refresh, reverse parts,
-model254C release and actual seated Human DD0 opacity. Preserve max6 saved wheel
-bits, transient speed-dependent engine reset, mass*3 impulse at MODEL POSITION
-actor350/core2C0 (not centre), separate ENGINE/CRT draws and failed prefixes.
-00500DA0 shares SAME actual retained glass texture exchange with004FE910 restore;
-69C=004D4A10 genuinely ignores direction/name but selected name is still read.
-Mesh fragments are now supplied by the latest checkpoint above. Item12,
-deformed/global backup/occupied restore and timed-DM remain required. Native100 reset/mesh/glass/opacity and100
-queued families PASS ASan/UBSan/LSan, strict nested actual World/control/Car/Human
-and final launcher/probe compile/link PASS `human-car-physical-reset-*`.
-Native engine/math/Scene/bucket/mesh/material/fragment/physical-control endpoints
-are doubles as detailed in contract. No full checkbox/application/desktop claim.
+**Actual004C9000 body frame still REQUIRED**: GameWorldActors::update_detached_body
+throws BEFORE even lifetime reads. No stationary/lifetime-only success.695 is
+confirmed unwritten by ctor/alignedmalloc/activation/wheel launcher; only part
+launcher writes it. Keep optional produced state; no invented wheel expiry bool.
+Do not re-audit this without new evidence. Fade starts final500ms; expiry60 is
+00486E90→camera amount0→frame54(1), NOT fade cancellation.64 is existing fade-out.
 
-Preceding **5f7aa6d** [authority destruction](analysis/human-car-destruction-source.md)
-binds004DBF00/004DC580/0073EAC0. Preserve254A/wire/Script/source/wheel/experience/
-area order, water current driver, victim hostility observer, radius5 small negative
-damage and static-only ray output-pointer ABI. Previously verified kernels stand.
-
-Preceding **e6f08b7** [Car packets/DM lifetimes](analysis/human-car-dm-presentation-source.md)
-binds actual004DB360 to SAME parts/wheels/DM/streams/module17/SOUND. Actual
-00445740/00445800 signed binary lookup/immediate stable deletion (no pooling),
-DM explosion/fire/smoke/SID/clear/reset/dtor and puncture9EC/CBC are in source.
-Record8 is genuinely unwritten by004E09D0/malloc: require produced handle or
-actual empty-list proof; otherwise fail. Constructor smoke14 is also unwritten
-without actual DM parse. **Confirmed omissions; no repeated audit needed.**
-Preceding **cfd8aa3** [Car blast](analysis/human-car-blast-damage-source.md) binds
-004DBA10 to actual body/parts/wheels/embedded24E0 DM. Car254A differs from seat
-engine234F/core22BF transition. Event glass0/part1/puncture3/destruction4/explosion5.
-Event writers and004D9A40 absent frozen ZERO credit. Earlier focused audits pass.
-
-Preceding verified dependencies (contracts retain evidence/order details):
-- **e861ace** [armed Mine/shared explosion](analysis/human-mine-contact-source.md):
-  actual item70/71 type2/radii5/8/power2500/25000/sound2; Mine may self-retire during
-  Human source damage. Retained local runtime reference preserves global access.
-- **4e96476** [Versions](analysis/version-damage-transitions.md): SAME Master/Part,
-  d+model category5 cache open10, effects/Script/Physics/material10, slot retirement.
-- **59fee6f** [Mine producers](analysis/human-runtime-mine-source.md): actual model/
-  pose/load→create/activate→bind→factory release→inventory→late optional packet.
-- Earlier source contracts/checkpoints for solver/clip/rest/reactions, authority,
-  policy/death, PACK/session/spawn/map/entry/voice remain valid. Do not reopen
-  unchanged kernels. Temporary native audits remain ignored until full closure.
+Preceding checkpoints remain verified; don't reopen unchanged kernels:
+- **9ebacae** [glass fragments](analysis/human-car-fragments-source.md): actual
+  69C→00485BA0 (absent frozen0credit)→00484F60 FASTCALL/RET40, SAME Physics/type4/
+  fade borrower, six ENGINE draws, LOD→mesh→visual factory reference retirement.
+- **a29033d** [physical reset/mesh/glass](analysis/human-car-physical-reset-source.md):
+  004DC780→004E9DB0/004DCD10, immediate mesh enum, actual retained texture exchange/
+  restore, seated Human DD0 opacity. Max6 saved wheel bits; mass*3 impulse at
+  MODEL POSITION actor350/core2C0.004066C0 is SCALE, not decompiler subtraction.
+- **5f7aa6d** [authority destruction](analysis/human-car-destruction-source.md):
+  preserve254A/wire/Script/source/wheel/experience/area ordering, water current
+  driver, victim hostility observer, radius5 negative amount, static-only ray ABI.
+- **e6f08b7/cfd8aa3** [Car DM](analysis/human-car-dm-presentation-source.md)/
+  [blast](analysis/human-car-blast-damage-source.md): SAME part/wheel/embedded24E0
+  DM/packets/particle/SOUND. Confirmed unwritten EXPL record8 and unparsed smoke14
+  remain honest failures, not repeated-audit targets.
+- Earlier [Mine](analysis/human-mine-contact-source.md),
+  [Versions](analysis/version-damage-transitions.md), clip/rest/reaction selection/
+  damage/session checkpoints remain linked from the Human contract.
 
 ## Next work
 
-1. Continue Item12 **00479450→005FDC00/005FDC50**, then timed-DM and other
-   required effects. WORK `human-car-item12-index.txt` locates existing
-   `car-contact-item-dependencies/{00479450,005fdc00,005fdc50}.c`; defaults lose
-   stack arguments. Validate raw/rollback ABI before implementing. Existing
-   GameRuntimeActors only supports Mine2/LooseItem11/PlacedItem35; add actual
-   type12 owner through SAME registry/lifecycle, not a substitute Physics Item.
-   00479450 increments separate module74 clone counter, explicitID=old+1000000;
-   retain native pose/factory/publication/release order and investigate counter
-   constructor/reset. Existing callback launch structs are shared requests.
-   Read new fragment contract before changing prior verified fragment kernel.
-   WORK `human-car-fragments-abi` remains imperfect C; raw is authoritative.
-   Focused temporary audits remain ignored until full checkbox closure.
+1. Finish actual **004C9000→004C8EE0→wheel004C94B0/part004CB2B0** simulation/contact
+   and sleep004CF440/frame004CEAA0 through SAME RigidBody registry/fields/buckets.
+   Read Item12 contract and WORK `human-car-item12-next-motion-index.txt` before
+   exporting kernels (they are already indexed but still unexported). Existing
+   `human-car-item12-motion-workers/{004c9000,004cdfe0,004cef00}.c` and
+   `human-car-item12-motion-additional/{004c8ee0,004c9480,005fdd10,...}.c` are default
+   aliases; raw/rollback ABI required before implementation. **004C9480 is only
+   37-byte wake helper, not integration kernel**, absent frozen0credit. Initial
+   plain export stopped there; rollback-only ExportHumanCarItem12Motion created
+   temporary missing boundaries and succeeded. Original table00810700 maps body
+   00bind/04CDFE0/08CE5F0/0CCEC60/10CEF00/14C9480/18reset/1Cclose/20C8EE0/24C9000.
+   Continue Car event2/timed-DM/deformed mesh and other reached receivers, then
+   full Human entry/frame. Keep temporary focused audits ignored until closure.
 2. Full status9/received0 entry remains unbound. Read
    [shared world](analysis/multiplayer-world/shared-world.md).00730A40 needs actual
    peer6C/client334 wrappers/worker lifecycle→0072E890→00731610(true). Reuse WORK
@@ -108,6 +87,7 @@ Preceding verified dependencies (contracts retain evidence/order details):
    Non7 zone decisions/frame and full Human containing frame/failure/re-entry/
    ordered teardown remain required. Actual loading/render/user acceptance remain
    separate. No fake transport/service wrappers.
+
 
 ## Commands
 

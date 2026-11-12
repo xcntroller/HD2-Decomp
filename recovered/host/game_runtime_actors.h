@@ -4,6 +4,7 @@
 #include "host/game_actor_services.h"
 #include "game/placed_item_actor.h"
 #include "game/dynamic_item_actor.h"
+#include "game/detached_item_actor.h"
 #include "game/runtime_actor_registry.h"
 #include "game/mine_scene_actor.h"
 #include "game/shot_effect.h"
@@ -27,6 +28,7 @@ public:
     using ActorOwner=std::unique_ptr<Instance>;
     using ItemActor=game::PlacedItemActor<GameActorServices,Activation>;
     using LooseItemActor=game::DynamicItemActor<GameActorServices,Activation,Collisions,Items>;
+    using DetachedItem=game::DetachedItemActor<GameActorServices,GameRuntimeActors,Collisions>;
     using Mine=game::MineSceneActor<GameActorServices,GameRuntimeActors,Collisions>;
     using Body=typename LooseItemActor::Body;
     using Descriptor=typename Body::Descriptor;
@@ -39,6 +41,7 @@ public:
         if(type==2)return std::make_unique<Mine>(frames_,*this,collisions_);
         if(type==35)return std::make_unique<ItemActor>(frames_,activation_,navigation_,frontend::lookup_localized_text(text_,0x1bf6));
         if(type==11)return std::make_unique<LooseItemActor>(frames_,activation_,collisions_,bodies_,items_);
+        if(type==12)return std::make_unique<DetachedItem>(frames_,*this,collisions_,bodies_);
         throw std::runtime_error("Required runtime actor constructor is not reconstructed: "+std::to_string(type));
     }
     ItemActor* create_item(Frame frame,std::int32_t identity=-1) {
@@ -48,6 +51,22 @@ public:
         return static_cast<LooseItemActor*>(registry_.create(11,frame,identity));
     }
     Mine* create_mine(Frame frame,std::int32_t identity=-1){return static_cast<Mine*>(registry_.create(2,frame,identity));}
+    Instance* clone_car_detached(Frame source,const GameActorServices::Vector& position,const GameActorServices::Vector& direction){ //00479450.
+        auto visual=frames_.create_car_detached_clone(source,position,direction);if(!visual)return nullptr;
+        const auto identity=game::consume_runtime_detached_identity(field74_);auto* actor=registry_.create(12,visual.get(),identity);
+        visual.reset();return actor; //Factory reference release AFTER registry/activation.
+    }
+    void launch_car_detached(Instance* actor,const game::CarDetachedPartRequest& request,unsigned mode){
+        if(mode!=1)throw std::runtime_error("Detached part launch requires native mode1");
+        required_detached(actor).launch(request,true);
+    }
+    void launch_car_detached(Instance* actor,const game::CarDetachedWheelRequest& request,unsigned mode){
+        if(mode!=0)throw std::runtime_error("Detached wheel launch requires native mode0");
+        required_detached(actor).launch(request);
+    }
+    void update_detached_body(Body& body,std::uint32_t elapsed){activation_.update_detached_body(body,elapsed);}
+    void restore_detached_camera_amount(Frame frame){activation_.restore_detached_camera_amount(frame);}
+    void fade_detached(Frame frame,std::int32_t remaining){activation_.fade_detached(frame,remaining);}
     GameActorServices& frames(){return frames_;}
     void contact_mine(Instance* borrowed,Instance* touching,std::uint32_t slot){
         if(!registry_.owns(borrowed))throw std::logic_error("Mine contact borrower has no actual live runtime owner");
@@ -79,11 +98,12 @@ public:
     }
     bool receive_packet(game::SessionPacketStream& packet,bool authority){return game::receive_runtime_actor_packet(*this,packet,authority);}
     void receive_runtime_authority(Instance& actor,game::SessionPacketStream&){
-        if(actor.base().type()==2)return; //005FEBA0, actual Mine vtable20 RET4.
+        if(actor.base().type()==2||actor.base().type()==12)return; //005FEBA0/005FDCF0 genuine RET4.
         throw std::runtime_error("Required runtime actor authority packet leaf is unavailable");
     }
     void receive_runtime_presentation(Instance& actor,game::SessionPacketStream& packet){
         if(actor.base().type()==2){static_cast<Mine&>(actor).receive(packet);return;}
+        if(actor.base().type()==12)return; //005FDCE0 genuine RET4, no payload.
         throw std::runtime_error("Required runtime actor presentation packet leaf is unavailable");
     }
     void set_runtime_actor_active(Base& base,bool value){set_active(base,value);}
@@ -100,13 +120,13 @@ public:
         activation_.emit_mine_effect(position,direction,effect.particle,effect.sound);
     }
     void set_active(Base& base,bool value) {registry_.active(registry_.actor_for_base(base),value);}
-    void begin_activation(bool authority) {registry_.begin_activation(authority);}
+    void begin_activation(bool authority) {registry_.begin_activation(authority);field74_=0;}
     void queue_static_item(Frame frame,void* object,Descriptor& descriptor) { //00479540, three borrowed handles.
         if(!frame||!object)throw std::runtime_error("Static item queue requires actual frame and physics object");
         static_items_.push_back(StaticItem{frame,object,&descriptor});
     }
     void activate(bool authority) { //00477660/004794D0/00479530, required mission branches.
-        registry_.begin_activation(authority);field74_=0;
+        begin_activation(authority);
         if(authority||!(mode_flags()&1)) {
             for(std::size_t index=0;index!=static_items_.size();++index) {
                 const auto queued=static_items_[index];
@@ -173,6 +193,7 @@ public:
             frames_.observe_data("execution","Runtime actor frame",authority?"authority":"presentation",actor.base().type());
             if(actor.base().type()==35)return; //00611050/60 genuine RET4 in00812750.
             if(actor.base().type()==2){static_cast<Mine&>(actor).update(authority,elapsed);return;}
+            if(actor.base().type()==12){static_cast<DetachedItem&>(actor).update(authority,elapsed);return;}
             if(actor.base().type()==11){derived.update_loose_item(static_cast<LooseItemActor&>(actor),authority,elapsed);return;}
             throw std::runtime_error("Required runtime actor frame receiver is unavailable");
         });
@@ -183,11 +204,13 @@ public:
     void unbind_runtime_actor_frame(Frame frame) noexcept {frames_.unbind_scene_actor_frame(frame);}
     void activate_runtime_actor(Instance& actor,bool authority) {
         if(actor.base().type()==2)static_cast<Mine&>(actor).activate(authority);
+        else if(actor.base().type()==12)static_cast<DetachedItem&>(actor).activate(authority);
         else if(actor.base().type()==11)static_cast<LooseItemActor&>(actor).activate(authority);
         else item(actor).activate(authority);
     }
     void deactivate_runtime_actor(Instance& actor,bool authority) {
         if(actor.base().type()==2)static_cast<Mine&>(actor).deactivate(authority);
+        else if(actor.base().type()==12)static_cast<DetachedItem&>(actor).deactivate(authority);
         else if(actor.base().type()==11)static_cast<LooseItemActor&>(actor).deactivate(authority);
         else {
             for(auto& queued:static_items_)if(queued.actor==&actor) {
@@ -199,6 +222,10 @@ public:
     void remove_actor_presentation_references(Instance& actor) {activation_.remove_actor_presentation_references(actor);}
     void record_actor_cleanup_failure(std::exception_ptr failure) noexcept {frames_.record_actor_cleanup_failure(std::move(failure));}
 private:
+    DetachedItem& required_detached(Instance* actor){
+        if(!registry_.owns(actor))throw std::logic_error("Detached Car item has no actual live registry owner");
+        auto* detached=dynamic_cast<DetachedItem*>(actor);if(!detached)throw std::logic_error("Car launch requires its actual runtime type12");return *detached;
+    }
     static ItemActor& item(Instance& actor) {
         if(actor.base().type()!=35)throw std::runtime_error("Runtime actor activation receiver is unavailable");
         return static_cast<ItemActor&>(actor);

@@ -48,6 +48,9 @@ public:
     ~GameWorldActors(){close();}
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
+    void update_detached_body(Body&,std::uint32_t){throw std::runtime_error("Detached Item authority requires actual004C9000 rigid-body simulation/contact publication");}
+    void restore_detached_camera_amount(GameActorServices::Frame frame){(void)scene_.effects().model_camera_amount(frame,0.f);} //00486E90, NOT fade cancellation.
+    void fade_detached(GameActorServices::Frame frame,std::int32_t remaining){scene_.effects().frame_fades().fade_out(frame,remaining,false);}
     void emit_mine_effect(const GameActorServices::Vector& position,const GameActorServices::Vector& direction,std::uint32_t particle,std::int32_t sound){consumers_.emit_mine_effect(position,direction,particle,sound);}
     bool consume_mine_inventory(typename Runtime::Instance* human,std::int32_t definition){return consumers_.consume_mine_inventory(human,definition);}
     auto* mine_scene_actor(std::int32_t identity){require_open();return scene_.frames().scene_actor_identity(identity);}

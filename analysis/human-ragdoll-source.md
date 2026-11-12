@@ -1742,3 +1742,15 @@ and full Human entry/frame remain required; selected checkbox stays OPEN.
 Physics/fade lifetime. Engine/math/buffer/Physics endpoints are native-audit doubles;
 actual host composition and launcher compile/link pass. Item12/timed/entry/full
 Human frame remain required; selected checkbox remains OPEN.
+
+
+## Detached Car Item12 launch/lifecycle —2026-11-12
+
+[Contract](human-car-item12-source.md) and
+[checkpoint](checkpoints/p2.2-human-car-item12-20261112.json) add actual Item12
+factory/clone/launch, same rigid-body registry/buckets and expiry source. The
+containing004C9000 authority simulation still fails before clock processing;
+no lifetime-only success. Wheel695 is confirmed unwritten without a real
+producer and remains a required read failure. Native owner/launch sanitizers
+and actual World/i386/launcher pass. Continue actual wheel/part motion/contact,
+Car timed-DM and full Human entry/frame; selected checkbox remains OPEN.

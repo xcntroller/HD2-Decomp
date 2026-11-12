@@ -1,0 +1,173 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "9ebacae9292a90f7a4f9f89ab642fad6ec036133",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "00479450",
+    "005fda20",
+    "005fdab0",
+    "005fdbd0",
+    "005fdc00",
+    "005fdc50",
+    "004cd550"
+  ],
+  "extended_entries": [
+    "004770b0",
+    "004c8980",
+    "004d4ca0",
+    "004d4eb0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2740,
+  "source_files": {
+    "recovered/game/explosion_contact_link.h": {
+      "sha256": "28bd8c8d1ee0a10f0f916c4362f628dae89883b2296dd5957bf948ba7f98c34b",
+      "bytes": 4152
+    },
+    "recovered/game/rigid_body.h": {
+      "sha256": "4a77ab62feea5770871618226f4f6d3757460e7091a10ed3ed22876a0f61891d",
+      "bytes": 12055
+    },
+    "recovered/game/runtime_actor_registry.h": {
+      "sha256": "b097b9c4d1a9958dae1459a294834daf6faac0d86344c119fe3dfff832a48de8",
+      "bytes": 9098
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "6f7fb887047d7d360778b5322167ebec8bf098b9ec129325af1e7032b71262a0",
+      "bytes": 105434
+    },
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "39d64e9deb19feb249e525fd1693733dfc8f3198d2594cd29f5ddf303d1dd859",
+      "bytes": 16808
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "06cadf30cb05ab270ff2396f1ddcbf929f6cb0cfea2c9e8c36590cba12dc2344",
+      "bytes": 11612
+    },
+    "recovered/host/game_runtime_actors.h": {
+      "sha256": "00b114870a920ab4dac70987ac4fb06c64c91546fe6b7f42187b056c06b1f04b",
+      "bytes": 16331
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "9acce52bbedddd89f5a9cd21d24c8173ee99dd471a34a4acf37de7c2984f5276",
+      "bytes": 25446
+    },
+    "recovered/game/detached_item_actor.h": {
+      "sha256": "6d6b2a71ea7d8f8ed8efd9bba70572b3b41dad78d813113f57540406958ea834",
+      "bytes": 4096
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-item12-native.cpp": {
+      "sha256": "bdae9a4673852128b2959dc40f64d7ba2e3280aeda2ee44609f9d55843a3eaa9",
+      "bytes": 8381
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-native": {
+      "sha256": "f2688ef772f988c248c117ef829082b91d7a365188a1100cf26f194899422490",
+      "bytes": 3203048
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-native.log": {
+      "sha256": "6c7559c1582b1e9fe93a15d838ef3b78b8f7d35796c799815b6d603c0c4ef664",
+      "bytes": 281
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-host-i386.o": {
+      "sha256": "3f89fb7a1b12c9e1d360ffa5482898214937c337b43744106d64568a973f3c13",
+      "bytes": 17544070
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-host-i386.cpp": {
+      "sha256": "d087697a5e700db17075229c3410d186457d318d3698cb222993649e8ceb0755",
+      "bytes": 688
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-car-item12-clone.asm": {
+      "sha256": "ce3c92e0785183b3272bda645f5ded1d3ae3b3f3b8b22a5a2a51068aa4991df5",
+      "bytes": 3474
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-registry.asm": {
+      "sha256": "ba53684b9972fbc56baa25d07a3cfc768b295b46bb31cc79fb9b82d283a2a868",
+      "bytes": 4425
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-owner.asm": {
+      "sha256": "4ea2e7f1a158b9f99d25663f54d2b2e9c5aca5d800b39658c262ae6e9310fad6",
+      "bytes": 41603
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-frame.asm": {
+      "sha256": "f3c5a5ab66a275a4d535e918033a6122ed8dc216b2732e935e7fd6ff8f5c8262",
+      "bytes": 6463
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-fade.asm": {
+      "sha256": "858847e5fe72e17739d7e993f543002dcdefd90d7b345760c82c4d67176ce81c",
+      "bytes": 1441
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-derived-slots.txt": {
+      "sha256": "ea011ccf82d6efd4baed28a9f1f1df7f71728d6324c92cd2f2ef571cdc16c331",
+      "bytes": 72
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-lifetime-workers/005fda20.c": {
+      "sha256": "6cfe7e182ddcc2921498d9949d4942f8423f83cea896996b15b5c08446c4a02c",
+      "bytes": 470
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-lifetime-workers/005fdab0.c": {
+      "sha256": "26739ccc2fce4bb0c12692826708a90fb7e2aed5e830a38ef4c07b383107b025",
+      "bytes": 371
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-lifetime-workers/005fdbd0.c": {
+      "sha256": "18f4dcf33cb2a398be3d2aab50ddd7bcccc58a0568826189e6d193fc54ed5394",
+      "bytes": 155
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-lifetime-workers/004cd550.c": {
+      "sha256": "6d2f33246ec33a4597fb87045166814ec8e80f87a2d667c822d0ffc7e2ee1c78",
+      "bytes": 2024
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-lifetime-workers/00477660.c": {
+      "sha256": "f1bfc5b1926096ed532ebefab868663b7c936e8989bf86bb93369e81d1c08bbc",
+      "bytes": 6170
+    },
+    "analysis/work/mission-world-20261103/dynamic-item-loading-receivers/004cd6e0.c": {
+      "sha256": "043c07d83230f2744348eee968ddd99889066815aaf4c41ff92080d33bf88e1e",
+      "bytes": 8463
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-motion-additional/005fdd10.c": {
+      "sha256": "42b8ab12d89e3a1d08fd5ae1045e0e05b498305a109665e39a52c61c83c284fe",
+      "bytes": 1104
+    },
+    "analysis/work/mission-world-20261103/supply-shared-owners-required/00486e90.c": {
+      "sha256": "7e527c96d3eab1a5af817489b5c0fd568298928b6227d879cf2dffde1c2cf3c0",
+      "bytes": 165
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-derived-index.txt": {
+      "sha256": "6a53ca4034594ab0fc8424a8bab8a7abb74be151b42e3ec84efd29404ead78e8",
+      "bytes": 3835
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-next-motion-index.txt": {
+      "sha256": "ddd23ced7e85ef81792997c1659d8d91518f3fa32e49e96dc3beea99a079e1f1",
+      "bytes": 3575
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan400 wheel+300 part actual owner/registry/rigid body/dynamic bucket lifetimes PASS, with native prefix/expiry/counter invariants and explicit frame/simulation/effect doubles.",
+    "Strict actual nested World/Car/Item12/Physics/Human i386 and final launcher/probe compile/link PASS; heavy jobs sequential."
+  ],
+  "limitations": [
+    "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 simulation/contact/frame remains required and containing authority update throws BEFORE clock processing; no stationary/lifetime-only success. Fresh wheel695 has no defined native producer and fails at reached read. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+    "No new credit for absent frozen Item12 packet/activation/tick/material/empty damage leaves or implicit scalar-destructor wrappers. No original EXE/DLL/Proton/Windows output execution."
+  ]
+}

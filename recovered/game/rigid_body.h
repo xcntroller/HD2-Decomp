@@ -45,6 +45,7 @@ public:
         void* callback_context=nullptr;
         bool flag40=false,flag41=false;
     };
+    struct WheelParameters {Vector motion{};float radius,width,mass,coefficient,field594;Callback callback;bool flag4c=false;};
     RigidBody(Frames& frames,Collisions& collisions,Registry& registry)
         : frames_(frames),collisions_(collisions),registry_(registry) {
         //Only original cold writes are initialized. Unwritten scalar reads
@@ -97,8 +98,26 @@ public:
         real(0x584,g.coefficient584);real(0x588,g.radius588);word(0x560,g.mode560);
     }
     void actor(void* value) {actor_=value;descriptor_.actor=value;} //004C8250: body88 and descriptor48.
+    void configure_wheel(const WheelParameters& parameters){ //004CD550, same body and motion fields.
+        if(!frame_)throw std::logic_error("Rigid wheel parameters require actual bound frame");
+        real(0x56c,parameters.mass);real(0x590,parameters.radius);real(0x58c,parameters.width);
+        if(!std::isfinite(parameters.radius)||parameters.radius<=0||!std::isfinite(parameters.mass)||parameters.mass<=0)
+            throw std::runtime_error("Invalid rigid wheel radius/mass");
+        const auto radius=static_cast<long double>(real(0x590));
+        const float inverse=static_cast<float>(1.L/(((radius*radius)*real(0x56c))*.5f));
+        copy_xyz(0x1f0,{{inverse,inverse,inverse}});copy_vector(0x200,parameters.motion);
+        if(length_squared(parameters.motion)<9.99999974737875163555145263671875e-6f)state(1);
+        real(0x570,parameters.coefficient);
+        const float zero=static_cast<float>(static_cast<long double>(real(0x56c))*0.f),negative=-real(0x56c);
+        copy_xyz(0x220,{{zero*real(0x580),negative*real(0x580),zero*real(0x580)}});
+        const auto gravity=static_cast<long double>(real(0x580))*real(0x56c);
+        real(0x594,parameters.field594);real(0x578,.029999999329447746f);real(0x574,1.0499999523162842f);
+        word(0x560,1);real(0x57c,static_cast<float>(gravity*37.03704071044922f));
+        callback_=parameters.callback;callback_context_=nullptr;flag4c_=parameters.flag4c;flag4d_=true;wheel_configured_=true;
+        //Native does not clear5FB/old geometry when reconfiguring a prior part.
+    }
     void reset() { //004C8980.
-        if(!frame_||!geometry_)throw std::logic_error("Rigid body reset requires frame and actual geometry");
+        if(!frame_||(!geometry_&&!wheel_configured_))throw std::logic_error("Rigid body reset requires frame and actual configured geometry");
         if(descriptor_.bucket)throw std::logic_error("Rigid body reset requires prior collision removal");
         actor(nullptr);
         for(unsigned i=0;i!=14;++i) {word(0x84-i*4,0);flags550_[i]=0;flags5ea_[i]=0;}
@@ -177,6 +196,7 @@ private:
     std::array<std::uint8_t,14> flags550_{},flags5ea_{};
     std::uint16_t field5e8_=0;
     bool flag4c_=false,flag4d_=false,flag4e_=false,flag5fa_=false,flag5fb_=false;
+    bool wheel_configured_=false;
 };
 
 } //namespace hd2::game

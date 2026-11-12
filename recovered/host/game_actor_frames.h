@@ -331,6 +331,12 @@ public:
         MenuDriver::Owner visual;ResourceOwner mesh,lod;
         void retire(){lod.reset();mesh.reset();visual.reset();}
     };
+    MenuDriver::Owner create_car_detached_clone(Frame source,const Vector& position,const Vector& direction){ //00479450 prefix.
+        if(!visual_type(source))return MenuDriver::Owner{nullptr,nullptr};
+        auto visual=create_visual(visual_type(source));if(!visual)throw std::runtime_error("Cannot create actual detached Car visual");
+        call<void>(visual.get(),0x4c,source);call<void>(visual.get(),8,position.data());
+        call<void>(visual.get(),0xc,direction.data(),std::uint32_t{0});update_scene_object(visual.get());return visual;
+    }
     CarFragmentResources create_car_fragment(Frame source,const std::array<game::CarFragmentVertex,6>& vertices,Frame material){
         CarFragmentResources result{create_visual(0x5f4a424fu),ResourceOwner(call<Frame>(driver_.frame(),0x6c),ResourceRelease{module_}),
             ResourceOwner(call<Frame>(driver_.frame(),0x68),ResourceRelease{module_})};

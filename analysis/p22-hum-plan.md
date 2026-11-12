@@ -135,3 +135,7 @@ Continue actual mesh fragments, Item12 detachment, timed-DM and full entry/frame
 Car glass fragments now have a
 [source checkpoint](checkpoints/p2.2-human-car-fragments-20261112.json).
 Continue actual Item12 detachment, timed-DM and full entry/frame.
+
+Detached Car Item12 clone/launch/lifecycle now has a
+[source checkpoint](checkpoints/p2.2-human-car-item12-20261112.json).
+Continue actual rigid-body authority motion/contact, timed-DM and entry/full frame.
