@@ -117,6 +117,8 @@ public:
         frames_.supply_model_tick(actor_.geometry->model(),elapsed); //Actual model+20,004D3110's final call.
     }
     CarActorColdState<Frames>& cold_state()override{if(!view_)throw std::logic_error("Car callback requires initialized source state");return *view_;}
+    std::uint32_t& collision_clock()override{if(!clock2584_)throw std::logic_error("Car2584 collision clock requires actual activation");return *clock2584_;}
+    void set_fuel(float amount)override{if(!initial_)throw std::logic_error("Car fuel requires its actual physical owner");(void)initial_->set_fuel(amount);}
     CarSteeringState& steering_state()override{if(!initial_)throw std::logic_error("Car steering requires initialized source state");return initial_->steering;}
     auto& seats(){return seats_;}
     std::uint32_t reaction_seat_flags(std::int32_t index)const override{ //004D9FC0.
@@ -238,7 +240,7 @@ private:
     //Keep their addresses stable across reactivation: other wheels can retain
     //these primitive identities even while registration is temporarily absent.
     std::optional<Initial> initial_;std::optional<CarActorColdState<Frames>> view_;std::optional<Receivers> receivers_;std::optional<BodyCollision> body_collision_;
-    Vector initial_position_{},initial_direction_{};std::uint32_t clock2584_=0,navigation_elapsed_=0;
+    Vector initial_position_{},initial_direction_{};std::optional<std::uint32_t> clock2584_;std::uint32_t navigation_elapsed_=0;
     std::int32_t proximity_=-1,damage_target_=-1,damage_template_=-1;
     bool ready_=false,camera_setting_=false,same_epoch_=false;
 };

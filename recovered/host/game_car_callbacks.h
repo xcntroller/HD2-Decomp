@@ -15,10 +15,10 @@
 
 namespace hd2::host {
 
-//Actual unoccupied offline loading callback owner. Frame/EC/Scene2, physics,
-//process flags/clock/CRT, definitions and emitter frames are shared with the
-//containing world. Required positive Human damage, tipping, Versions changes,
-//blast/surface effects and detached Items remain explicit unrecovered branches.
+//Shared Car callback owner. Frame/EC/Scene2, physics, process flags/clock/CRT,
+//definitions, damage and emitter borrowers come from the containing world.
+//Wider deformation, occupied control and full frame/input dependencies remain
+//checked at their actual consumers.
 //Construction supplies no readiness and performs no pool/resource preparation.
 class GameCarCallbacks final : public GameCarCallbackFrames {
 public:
@@ -34,6 +34,7 @@ public:
         next->wheel=[&receiver](Actor actor,const game::CarWheelDamageEvent& event,bool request){receiver.car_contact_event(actor,event,request);};
         next->human=[&receiver](Actor actor,const game::CarHumanDamageEvent& event){receiver.car_contact_request(actor,event);};
         next->destroy=[&receiver](Actor actor){receiver.car_damage_destroy(actor,false);};
+        next->hit=[&receiver](Car& car,Actor source,const Vector& point){return receiver.car_collision_hit(car,source,point);};
         damage_=std::move(next); //All borrowers publish together; preparation failures leave no live endpoint.
     }
     template<class Receiver>void unbind_damage_packets(Receiver& receiver)noexcept{if(damage_&&damage_->owner==&receiver)damage_.reset();}
@@ -63,8 +64,7 @@ public:
             const Vector& normal,float mass,Frame contact_frame)override{ //004D3EF0 /0059C2D0.
         if(actor_type(actor)!=4){car_actor_hit5c(actor,source,point,impulse,normal,mass,contact_frame,nullptr);return;}
         auto& car=car_actor(actor);
-        if((car_mode_flags()&7u)!=7u)
-            throw std::runtime_error("Car hit58 requires actual004DE800/004D3D10 nonoffline ownership and impulse publication");
+        if((car_mode_flags()&7u)!=7u&&required_damage().hit(car,source,point))return;
         //004DE800 is unconditionally true offline.00611080 is genuine RET4.
         auto& state=car_state(actor);
         if(actor_type(source)==3){
@@ -152,6 +152,7 @@ private:
         std::function<void(Actor,const game::CarWheelDamageEvent&,bool)> wheel;
         std::function<void(Actor,const game::CarHumanDamageEvent&)> human;
         std::function<void(Actor)> destroy;
+        std::function<bool(Car&,Actor,const Vector&)> hit;
     };
     DamageReceivers& required_damage(){if(!damage_)throw std::runtime_error("Car damage requires its actual containing damage owner");return *damage_;}
     std::unique_ptr<DamageReceivers> damage_;

@@ -5,6 +5,7 @@
 #include "game/collision_ray.h"
 #include "game/human_blast_damage.h"
 #include "game/car_actor_damage.h"
+#include "game/car_collision_impulse.h"
 #include "game/car_destruction.h"
 #include "game/human_objective_experience.h"
 #include "game/mission_script_player_predicates.h"
@@ -127,6 +128,34 @@ public:
         if(!actor||actor->base().type()!=4)throw std::logic_error("Car Human publication requires its actual Car owner");
         const auto identity=actor->base().id10();const auto mode=mode_flags();game::request_car_contact(d_.broadcast_packets,mode,identity,event);
     }
+    void car_contact_event(Actor* actor,const game::CarDamageEvent& event,bool request){
+        if(!actor||actor->base().type()!=4)throw std::logic_error("Car publication requires its actual Car owner");
+        const auto identity=actor->base().id10();
+        if(request){const auto mode=mode_flags();game::request_car_contact(d_.broadcast_packets,mode,identity,event);}
+        else game::publish_car_damage(d_.broadcast_packets,identity,event);
+    }
+    void car_set_fuel(game::CarSceneActor<GameActorServices>& car,float amount){
+        if(!car.loading)throw std::logic_error("Car fuel requires its actual physical lifetime");car.loading->set_fuel(amount);
+    }
+    void car_receive_collision_impulse(game::CarSceneActor<GameActorServices>& car,std::uint32_t identity,const Vector& point){
+        game::receive_car_collision_impulse(*this,car,identity,point);
+    }
+    bool car_collision_hit(game::CarSceneActor<GameActorServices>& car,Actor* source,const Vector& point){return game::route_car_collision_hit(*this,car,source,point);}
+    std::int32_t car_collision_identity(Actor* actor){if(!actor)throw std::logic_error("Car collision identity requires an actor");return actor->base().id10();}
+    std::int32_t car_collision_local_identity()const{return d_.startup.local_player_identity();}
+    std::uint32_t car_collision_now(){return d_.startup.control_milliseconds();}
+    std::uint32_t& car_collision_clock(game::CarSceneActor<GameActorServices>& car){
+        if(!car.loading)throw std::logic_error("Car collision clock requires its actual loading lifetime");return car.loading->collision_clock();
+    }
+    Actor* car_collision_source(std::uint32_t identity){return identity>0x7fffffffu?nullptr:d_.scene.frames().scene_actor_identity(static_cast<std::int32_t>(identity));}
+    float car_collision_mass(Actor* actor){
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(actor);
+        if(!car||!car->geometry)throw std::logic_error("Car collision mass requires actual Car physical fields");return car->geometry->physics().scalars().get(0x918);
+    }
+    Vector car_collision_velocity(Actor* actor){
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(actor);
+        if(!car||!car->loading)throw std::logic_error("Car collision velocity requires actual integration state");return car->loading->cold_state().body.motion().velocity;
+    }
     Actor* car_request_target(std::int32_t identity){return d_.scene.frames().scene_actor_command_identity(identity);} //00475D50.
     void car_damage_destroy(Actor* actor,bool water){
         auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(actor);
@@ -175,7 +204,7 @@ public:
     }
     void receive_car_damage(Actor& actor,game::SessionPacketStream& packet){ //004DB360, actual actor1C; no early mode gate.
         auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(&actor);
-        if(!car||!car->geometry||!car->ancillary)throw std::logic_error("Car packet requires actual Car/DM/geometry owners");
+        if(!car)throw std::logic_error("Car packet requires its actual Car owner");
         game::receive_car_damage_packet(frames(),*this,*car,[&]()->auto&{
             if(!car->loading)throw std::logic_error("Car packet requires actual initialized loading lifetime");return car->loading->cold_state();
         },packet);

@@ -10,7 +10,7 @@ is genuinely blocked. Source progress does not close application/desktop work.
 
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
 requested transferring back here; transfer evidence is ignored WORK
-`human-return-main-20261111`. Preceding checkpoint **c1908cf**; check current
+`human-return-main-20261111`. Preceding checkpoint **dcd6489**; check current
 HEAD/status. Preserve LIFE/UI/PACK/research worktrees, `/tmp/hd2-p22-hum-continue`
 and unrelated changes. No agents were spawned. No push. No original EXE/DLL/
 Proton or Windows fixture execution; native own audits only, Windows compile/link.
@@ -18,6 +18,24 @@ Heavy compilation and Ghidra MUST remain sequential. Mission loading remains
 blocked; no mission desktop acceptance. Source-only checkpoint commits authorized.
 
 ## Latest verified source
+
+[Fuel/impulse receipt](analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json)
+adds3 client partials/extends6: **34 complete/2757 partial(2752client+5engine)**.
+[Contract](analysis/human-car-fuel-impulse-source.md). Actual004E0040 fuel16 decode
+and004E0800 impulse point/identity grammar now feed BOTH004DB360/004DB760 through
+SAME fuel setter/physical body/Scene2/packets.004D3D10 preserves fresh driver/local
+identity/mode gates, signed1000ms and SECOND clock store BEFORE relay.004D3EF0
+unowned route requests11 or invokes SAME consumer. Native2584 belongs to existing
+CarLoadingActivation, produced by004D16A0 before camera/reset; optional marks absent
+producer without rejecting produced0. No duplicate owner. Fuel5000 encodes65534;
+capacity clamp precedes rebroadcast of ORIGINAL event. Distinct raw x87 XYZ spills
+match independent Decimal100 golden457E4C41/42/43. Non-Car9A8/4A0 remains an honest
+required mapping, not fabricated mass/velocity. Writers4E00F0/4E0830 absent frozen0.
+Expanded fixture caught004E0180 reader's uninitialized fourth lanes; now value
+initialized, six wire FLOAT components unchanged. Native100 request regression
++100 fuel/impulse families PASS ASan/UBSan/LSan with explicit actor/clock/physics/
+damage endpoints. Strict actual nested World/i386 and final launcher/probe PASS.
+No application/desktop claim. Evidence WORK `human-car-fuel-impulse-*`.
 
 [Contact request/timer receipt](analysis/checkpoints/p2.2-human-car-contact-request-20261112.json)
 adds3 client partials/extends2: **34 complete/2754 partial(2749client+5engine)**.
@@ -77,19 +95,16 @@ Preceding checkpoints remain verified; don't reopen unchanged kernels:
 
 ## Next work
 
-1. Continue Car authority requests **10 fuel/11 impulse** (current explicit required
-   failures BEFORE their payload readers), then deformed/global backup/occupied
-   restore and containing frames. Kind10 calls004F2670 FUEL, not body health.
-   Reuse WORK `human-car-authority-extra-branches-index.txt`:004E0040/004E00F0
-   fuel grammar,004E0800 impulse reader unexported;004D3D10 already has default C
-   `car-callback-body-world-required/004d3d10.c`, still needs raw/corrected ABI.
-   004D3D10 performs ownership/current driver/local-ID decisions,1000ms rebroadcast
-   and actual Car→Car impulse; preserve same fields/clock/request owners. Callback
-   hit58 non7 still requires004DE800/004D3D10. New raw
-   `human-car-damage-request-receiver.asm`, `human-car-human-damage-packets.asm`
-   and event vtable metadata are indexed. Use research index BEFORE more exports.
-   `car_deformable_parts.h` reverse restore still requires actual mesh backup on
-   flag4. Don't reopen confirmed clip/solver/reset/fragment/rigid kernels.
+1. Continue Car events6/7, deformed/global mesh backup and occupied restore,
+   then containing frames. `car_deformable_parts.h` reverse restore still requires
+   actual backup on flag4. Indexed original004FE910 is in
+   `car-initializer-mass-required/004fe910.c`; default decompiler has broken
+   indirect calls/register aliases, so recover raw/correct ABI before implementing.
+   Current indexed lookup `human-car-restore-fuel-checkpoint-index.txt` includes
+   004FE910/004FE6B0/00500DA0; use index before new exports. Preserve global658
+   shared name/part matching, reverse restore/refcount/erase order, occupiedFA8+28
+   mesh pointer repair BEFORE variants/visibility. Inspect actual producers before
+   choosing ownership. Don't reopen confirmed clip/solver/reset/fragment/rigid kernels.
 2. Full status9/received0 entry remains unbound. Read
    [shared world](analysis/multiplayer-world/shared-world.md).00730A40 needs actual
    peer6C/client334 wrappers/worker lifecycle→0072E890→00731610(true). Reuse WORK

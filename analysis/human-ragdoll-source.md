@@ -1771,3 +1771,8 @@ Car wheel2/Human9 publication, actual Scene2 actor20 authority routing and timed
 004E1990 now have a [source checkpoint](checkpoints/p2.2-human-car-contact-request-20261112.json),
 with [contract/limits](human-car-contact-request-source.md). Fuel10/impulse11,
 deformed restore and the full Human entry/frame remain required; no checkbox closure.
+
+Car fuel10/collision impulse11 now have a [source checkpoint](checkpoints/p2.2-human-car-fuel-impulse-20261112.json)
+through SAME packet/physical/activation clock owners. [Contract/limits](human-car-fuel-impulse-source.md).
+Continue Car6/7/deformed/global backup/occupied restore, full entry and Human frame;
+the selected reactions checkbox remains OPEN.

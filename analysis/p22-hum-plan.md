@@ -144,3 +144,8 @@ Fresh part5F9 remains an honest required read. Car wheel2/Human9 requests,
 module13 authority routing and timed-DM now have a
 [source checkpoint](checkpoints/p2.2-human-car-contact-request-20261112.json).
 Continue fuel10/impulse11, deformed restore and entry/full frame.
+
+Car fuel10/collision impulse11 now have a [source checkpoint](checkpoints/p2.2-human-car-fuel-impulse-20261112.json)
+through SAME packet/physical/activation clock owners. [Contract/limits](human-car-fuel-impulse-source.md).
+Continue Car6/7/deformed/global backup/occupied restore, full entry and Human frame;
+the selected reactions checkbox remains OPEN.

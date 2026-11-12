@@ -26712,12 +26712,14 @@
       "program": "client",
       "entry": "004d3ef0",
       "status": "partial",
-      "coverage": "Offline hit58 dispatch: Human force500 using saved model Y/current COM, or actual Car impulse1.2 with destroyed-heavy1.4 impulse/temporary half mass and restoration.",
-      "limitations": "Nonoffline004DE800/004D3D10 ownership/packet routes and required positive Human/deformation consumers remain unavailable; typed native dispatch replaces binary virtual ABI.",
+      "coverage": "Offline hit58 dispatch: Human force500 using saved model Y/current COM, or actual Car impulse1.2 with destroyed-heavy1.4 impulse/temporary half mass and restoration. Non7 unowned hit58 now invokes actual authority/client1000ms request or same004D3D10 route through SAME2584 and callback borrower bundle.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
       "evidence": [
         "analysis/car-callback-world-binding.md",
         "recovered/host/game_car_callbacks.h",
-        "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json"
+        "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json",
+        "analysis/human-car-fuel-impulse-source.md",
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
       ]
     },
     {
@@ -36417,14 +36419,16 @@
       "program": "client",
       "entry": "004db2b0",
       "status": "partial",
-      "coverage": "SAME module13 priority3/third stream, identity10 and actual derived damage event writers before finish; only broadcast, with no local presentation application. Reached wheel2 writer now shares the actual broadcast payload grammar.",
-      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and complete network/trajectory equivalence excluded. Native100 focused families use actual packet buffers/quantizers/streams, Scene2 routing and Car request/countdown source with explicit actor/frame/math, Human damage, detachment/glass, particle and final destruction doubles. Strict actual module13/World/Car/Human i386 and launcher/probe compile/link only. Authority request10 fuel and11 impulse explicitly require their actual readers/consumers; wider Car deformation/occupied frame, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate required failures.",
+      "coverage": "SAME module13 priority3/third stream, identity10 and actual derived damage event writers before finish; only broadcast, with no local presentation application. Reached wheel2 writer now shares the actual broadcast payload grammar. Fuel10/impulse11 writers now share the actual broadcast stream and retained failure prefix.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
       "evidence": [
         "recovered/game/car_damage_packets.h",
         "analysis/human-car-blast-damage-source.md",
         "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json",
         "analysis/human-car-contact-request-source.md",
-        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json",
+        "analysis/human-car-fuel-impulse-source.md",
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
       ]
     },
     {
@@ -36529,14 +36533,16 @@
       "program": "client",
       "entry": "004db360",
       "status": "partial",
-      "coverage": "Actual Car actor1C shared module13 dispatch: complete known event decode before part/wheel mutation, native authority cursor/policy, zero-health callbacks, puncture and DM effects ordering; genuine empty defaults and required remaining event/effect branches. Actual event4 now invokes SAME physical/mesh/Human-opacity transition after DM presentation; event0 invokes actual shared glass state/material/name/callback ordering.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "coverage": "Actual Car actor1C shared module13 dispatch: complete known event decode before part/wheel mutation, native authority cursor/policy, zero-health callbacks, puncture and DM effects ordering; genuine empty defaults and required remaining event/effect branches. Actual event4 now invokes SAME physical/mesh/Human-opacity transition after DM presentation; event0 invokes actual shared glass state/material/name/callback ordering. Kinds10/11 now decode fully and use actual fuel/collision impulse consumers without unrelated DM/geometry preflight.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
       "evidence": [
         "recovered/game/car_actor_damage.h",
         "analysis/human-car-dm-presentation-source.md",
         "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json",
         "analysis/human-car-physical-reset-source.md",
-        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json",
+        "analysis/human-car-fuel-impulse-source.md",
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
       ]
     },
     {
@@ -36999,36 +37005,78 @@
       "program": "client",
       "entry": "004db2e0",
       "status": "partial",
-      "coverage": "SAME module13 authority-request stream selection/priority3/identity10, actual wheel2 or Human9 writer and target0 finish; no local damage substitute.",
-      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and complete network/trajectory equivalence excluded. Native100 focused families use actual packet buffers/quantizers/streams, Scene2 routing and Car request/countdown source with explicit actor/frame/math, Human damage, detachment/glass, particle and final destruction doubles. Strict actual module13/World/Car/Human i386 and launcher/probe compile/link only. Authority request10 fuel and11 impulse explicitly require their actual readers/consumers; wider Car deformation/occupied frame, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate required failures.",
+      "coverage": "SAME module13 authority-request stream selection/priority3/identity10, actual wheel2 or Human9 writer and target0 finish; no local damage substitute. Impulse11 now shares actual authority-request envelope/quantizer/finish.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
       "evidence": [
         "recovered/game/car_damage_packets.h",
         "analysis/human-car-contact-request-source.md",
-        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json",
+        "analysis/human-car-fuel-impulse-source.md",
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "004db760",
       "status": "partial",
-      "coverage": "Actual actor20 authority kinds2 wheel health/detachment,8 water destruction prefix,9 signed/raw Human request and reverse/current seat/driver order; original defaults and explicit required10/11.",
-      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and complete network/trajectory equivalence excluded. Native100 focused families use actual packet buffers/quantizers/streams, Scene2 routing and Car request/countdown source with explicit actor/frame/math, Human damage, detachment/glass, particle and final destruction doubles. Strict actual module13/World/Car/Human i386 and launcher/probe compile/link only. Authority request10 fuel and11 impulse explicitly require their actual readers/consumers; wider Car deformation/occupied frame, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate required failures.",
+      "coverage": "Actual actor20 authority kinds2 wheel health/detachment,8 water destruction prefix,9 signed/raw Human request and reverse/current seat/driver order; original defaults. Authority10 now stores fuel BEFORE rebroadcast of original event;11 invokes actual collision impulse consumer.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
       "evidence": [
         "recovered/game/car_actor_damage.h",
         "analysis/human-car-contact-request-source.md",
-        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json",
+        "analysis/human-car-fuel-impulse-source.md",
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "004e0180",
       "status": "partial",
-      "coverage": "Actual Human contact request reader: signed16 target/amount and six raw32 FLOAT component bit patterns, preserving field order and initialized unproduced fourth lanes.",
-      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and complete network/trajectory equivalence excluded. Native100 focused families use actual packet buffers/quantizers/streams, Scene2 routing and Car request/countdown source with explicit actor/frame/math, Human damage, detachment/glass, particle and final destruction doubles. Strict actual module13/World/Car/Human i386 and launcher/probe compile/link only. Authority request10 fuel and11 impulse explicitly require their actual readers/consumers; wider Car deformation/occupied frame, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate required failures.",
+      "coverage": "Actual Human contact request reader: signed16 target/amount and six raw32 FLOAT component bit patterns, preserving field order and initialized unproduced fourth lanes. Concrete correction: value-initialize the local record so both unproduced fourth lanes satisfy the documented source invariant.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
       "evidence": [
         "recovered/game/car_damage_packets.h",
         "analysis/human-car-contact-request-source.md",
-        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-contact-request-20261112.json",
+        "analysis/human-car-fuel-impulse-source.md",
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0040",
+      "status": "partial",
+      "coverage": "Actual kind10 unsigned16 fuel decode using native width,65535 normalization,5000 range and FLOAT store.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-fuel-impulse-source.md",
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0800",
+      "status": "partial",
+      "coverage": "Actual kind11 shared primary(-1)/mask7 collision point then10-bit physical source identity reader.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
+      "evidence": [
+        "recovered/game/car_damage_packets.h",
+        "analysis/human-car-fuel-impulse-source.md",
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d3d10",
+      "status": "partial",
+      "coverage": "Actual current-driver/local-ID/mode policy; signed1000ms relay through SAME2584 and broadcast; physical Scene2 lookup, fresh mass ratio and native XYZ FLOAT spills before SAME004F2790 impulse.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
+      "evidence": [
+        "recovered/game/car_collision_impulse.h",
+        "analysis/human-car-fuel-impulse-source.md",
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
       ]
     }
   ]

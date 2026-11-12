@@ -96,19 +96,24 @@ template<class Frames,class Runtime,class Car,class StateFactory,class Actor>voi
 template<class Frames,class Runtime,class Car,class StateFactory>void receive_car_damage_packet(
         Frames& frames,Runtime& r,Car& car,StateFactory&& get_state,SessionPacketStream& packet){
     const auto event=read_car_damage_event(packet,packet.read(4));
+    if(event.kind==10){r.car_set_fuel(car,event.scalar);return;}
+    if(event.kind==11){r.car_receive_collision_impulse(car,event.index,event.first);return;}
     if(event.kind>5)return; //Genuine native default, before any state access.
-    if(event.kind==5){car.ancillary->present_explosion(frames,car.base().frame(),r,event.index);return;}
-    if(event.kind==4){car.ancillary->present_destruction(frames,car.base().frame(),r);r.car_present_destroyed(car);return;}
+    if(event.kind==5){if(!car.ancillary)throw std::logic_error("Car explosion packet requires actual DM owner");car.ancillary->present_explosion(frames,car.base().frame(),r,event.index);return;}
+    if(event.kind==4){if(!car.ancillary)throw std::logic_error("Car destruction packet requires actual DM owner");car.ancillary->present_destruction(frames,car.base().frame(),r);r.car_present_destroyed(car);return;}
     auto& state=get_state();
     if(event.kind==0||event.kind==1){
-        state.dirty|=2u;auto& part=car.geometry->deformables().parts().at(event.index);part.flags|=2u;part.health=static_cast<float>(event.health);
+        state.dirty|=2u;if(!car.geometry)throw std::logic_error("Car part packet requires its actual physical owner");
+        auto& part=car.geometry->deformables().parts().at(event.index);part.flags|=2u;part.health=static_cast<float>(event.health);
         if(event.kind==0)r.car_present_glass(car,event.index,event.first);
         else if(part.health<=0)(void)car.callbacks.value().part694(event.index,event.first,&event.second);
     }else if(event.kind==2){
         if(!(r.car_damage_mode()&1u)&&state.wheels.at(event.index).scalars.get(0x230)>0){
             state.dirty|=2u;auto& wheel=state.wheels.at(event.index);wheel.flags|=0x10000000u;wheel.scalars.set(0x230,static_cast<float>(event.health));
-            if(wheel.scalars.get(0x230)<=0&&car.geometry->physics().scalars().get(0x550)==0)
-                (void)car.callbacks.value().wheel698(event.index,event.first,nullptr);
+            if(wheel.scalars.get(0x230)<=0){
+                if(!car.geometry)throw std::logic_error("Car wheel packet requires its actual physical owner");
+                if(car.geometry->physics().scalars().get(0x550)==0)(void)car.callbacks.value().wheel698(event.index,event.first,nullptr);
+            }
         }
     }else if(event.kind==3){state.wheels.at(event.index).flags|=0x80000000u;r.car_puncture_sound(car,event.index);}
     //00611080(0) is genuine empty; no2350 change is made here.
@@ -139,7 +144,8 @@ template<class Runtime,class Car,class StateFactory>void receive_car_contact_req
             }
         }else if(auto* target=runtime.car_request_target(event.target))
             runtime.car_damage_human(target,5,amount,event.point,event.impulse,runtime.car_damage_occupant(&car,0));
-    }else if(kind==10||kind==11)throw std::runtime_error("Car authority request requires its actual scalar-fuel/impulse reader and consumer");
+    }else if(kind==10){const auto event=read_car_damage_event(packet,kind);runtime.car_set_fuel(car,event.scalar);runtime.car_damage_event(&car,event);}
+    else if(kind==11){const auto event=read_car_damage_event(packet,kind);runtime.car_receive_collision_impulse(car,event.index,event.first);}
 }
 
 }

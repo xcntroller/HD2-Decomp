@@ -29,6 +29,8 @@ public:
     virtual void update(bool authority,std::uint32_t milliseconds)=0;
     virtual CarActorColdState<Frames>& cold_state()=0;
     virtual CarSteeringState& steering_state()=0;
+    virtual std::uint32_t& collision_clock()=0;
+    virtual void set_fuel(float amount)=0;
     virtual void remove_reaction_seat(std::int32_t index)=0;
     virtual std::uint32_t reaction_seat_flags(std::int32_t index)const=0;
     virtual void dead_human_controls()=0;
