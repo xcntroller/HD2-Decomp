@@ -41,8 +41,9 @@ unchanged audits or repeat stale missing A4/98/B4/9C claims.
   mounted A8/004C5800 position lifetime and target35 grenade aiming. Inspect the
   current completed HUM graph; an abstract Runtime guard alone proves no absence.
   [Verified integration](human-h4-completed-integration.md).
-- [ ] Resolve Active AI00530FF0 reached by H6 grenade notification0045EAB0 on H4,
-  preserving actual task/navigation/formation owners and current state policy.
+- [x] Resolve Active AI00530FF0 reached by H6 grenade notification0045EAB0 on H4,
+  preserving actual navigation/formation owners and current state policy.
+  [Source contract](human-active-ai-grenade-source.md); no task mutation occurs.
 - [ ] Reconcile the final selected Runtime/call inventory and concrete source
   bindings; verify newly reached positive/failure/retirement paths once, publish
   consolidated ledger/receipt/handoff, remove temporary audits and close H4.

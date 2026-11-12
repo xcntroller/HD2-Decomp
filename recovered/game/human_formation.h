@@ -76,6 +76,12 @@ public:
         if(!slot.words.template get<std::uint8_t>(0x88))return false;
         slot.words.set(0x88,std::uint8_t{0});return true;
     }
+    void request_member_position(Human* human,const HumanVector& position){ //00599040, reset point/changed only on membership.
+        std::int32_t index=0;if(!contains(human,&index))return;
+        auto& s=slot(static_cast<unsigned>(index));s.vector(0x20,position);
+        s.words.set(0x7e,std::uint16_t{0xffff});s.words.set(0x88,std::uint8_t{1});
+    }
+    void update_member_route(unsigned index){advance_member_route(index);} //0059AF30, same cache and point guards.
     void select_loading_mode(){select_mode(3);}
     void select_subgroup_mode(){select_mode(9);}
     void select_mode(std::int32_t requested){ //00597420, SAME slots; cycle12 and close13 policies.

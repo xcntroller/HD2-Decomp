@@ -348,7 +348,8 @@ P22-HUM H4 remains open: [current dependency plan](analysis/p22-hum-h4-plan.md).
 Common outputs/tracks, Script attacks/attachment, positive Physics replacement and
 Players subgroup/formation are source-verified. Completed H3/H5 interfaces now
 compose through actual Car exit-pose, mounted position and grenade aiming owners;
-[integration contract](analysis/human-h4-completed-integration.md). Vehicle and
-Active AI grenade reaction remain, followed by the final selected-call inventory.
+[integration contract](analysis/human-h4-completed-integration.md). [Active AI grenade reaction](analysis/human-active-ai-grenade-source.md) now
+reaches the same navigation/formation owners. Vehicle and the final selected-call
+inventory remain.
 Historical checkpoint details remain in the linked H4 implementation history;
 source verification does not establish application or desktop delivery.

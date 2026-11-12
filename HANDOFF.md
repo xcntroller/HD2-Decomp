@@ -11,29 +11,32 @@ No push/original/Windows/desktop execution. Heavy builds/Ghidra sequential.
 [implementation contracts](analysis/p22-hum-h4-implementation.md). Do not add
 numbered C requirements or restart unchanged historical audits.
 
-Latest verified: subgroup checkpoint96356ab and completed aggregate46a6cef
-integration on H4. [Integration contract](analysis/human-h4-completed-integration.md),
-[receipt](analysis/checkpoints/p22-hum-h4-completed-integration-20261112.json).
-Preserved newer H4 aim/trigger/deferred/climb/VM implementations alongside H3/H5;
-Car nonmutating exit-pose, Script mountedA8 and grenade35 worker now bound.
-Native sanitizers PASS27 new integration/failure checks; strict actual World/
-Script/Car i386 full link and launcher/probe links PASS, no Windows execution.
-34 complete/3306 partial. Full checker FAILS on inherited0062D880 missing ignored
-rule-refresh.asm; scoped all-row validation reports four other pre-existing
-ignored evidence gaps. Exact frozen baseline/schema/address uniqueness/totals
-and available evidence checked separately. Never fabricate/copy missing artifacts.
+Latest verified: completed-HUM merge2854bd5 plus actual Active AI00530FF0
+grenade notice/0045EAB0 roster/00599040 formation source.
+[Contract](analysis/human-active-ai-grenade-source.md),
+[receipt](analysis/checkpoints/p22-hum-h4-active-grenade-20261112.json).
+Native ASan/UBSan/LSan PASS24 geometry/query/failure/member-position checks,
+actual World/Players/Active AI/formation strict i386 FULL LINK and latest launcher/
+probe rebuild PASS. No Windows/original/desktop execution. Temporary audits
+fingerprinted/removed; originals retained.34 complete/3309 partial;3 new partials.
+Full ledger checker still FAILS on inherited0062D880 missing ignored rule-refresh;
+scoped schema/baseline/address/status checks preserve five known missing evidence
+rows without fabricating/copying artifacts.
 
-Continue original H4: vehicle00578770/90 and Active AI00530FF0, then final concrete
-selected-call inventory. The new exact original exports (after index lookup)
-are WORK/vehicle-grenade-takeover-original, matching the verified client SHA.
-Vehicle main3894 bytes, grenade reaction2247; investigate actual path/control/
-task/navigation/formation dependency boundary before implementation.
+Continue H4 vehicle00578770/90 then final selected-call inventory. Original
+WORK/vehicle-grenade-takeover-original/00578790.c main3894 bytes; existing
+formation-frame-original/0055F320 route2877 and00579760/00579D50 controls1515/1517
+bytes; vehicle-producers-original has actual74 borrower/route request/stop helpers.
+Research index receipts for related addresses are in WORK. VM00421C00 op26 calls
+00577A60(point,signedInteger*0080F71C,currentPC); op2B is its roster-derived variant.
+Do not infer route48-byte layout from DWORD pointers or write a native Car pointer
+into the portable path74 scalar. Required concrete Car/input/Script owners exist
+after completed HUM merge; preserve call/lifecycle ordering.
 
-H6 additionally reaches0045EAB0→Active AI00530FF0 after real grenade publication
-and before inventory removal. That receiver remains open here; resolve it on H4
-under the user's takeover authorization. Do not move unfinished H4 into H6 by
-inference. H6's ignored `human-h6-grenade-notification/0045eab0.c` is original
-static evidence, not an implemented AI body. H6 handoff has exact pending state.
+Grenade geometry no longer needs hypothetical task ownership.0052D720(0) only
+observes navigation nearest5/-1, then returns; actual query publishes before18C
+and formation. H6 remains separate at0398a50+uncommitted shell/capsule/grenade WIP,
+with its old00530FF0 guard pending verified cross-branch integration.
 
 Type15/Scene2actor91 and Aircraft20/34 owners remain external/absent. Existing
 A4/98/B4/9C are real; do not repeat stale missing claims. Ground/drop/type35 and

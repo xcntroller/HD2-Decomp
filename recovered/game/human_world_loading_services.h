@@ -1776,6 +1776,28 @@ public:
         auto& items=dependencies().world_actors.items();const auto id=items.runtime_item(state.item()).definition().ammunition();
         return count_human_ammunition(*human,items,id,false); //005A6C50, original include-pack0.
     }
+    void human_grenade_navigation_probe(const HumanVector& position){ //0052D720(position,0,NULL) still observes actual navigation first.
+        (void)dependencies().navigation.nearest_volume({{position[0],position[1],position[2]}},5.f,-1.f);
+    }
+    template<class Human>void human_grenade_formation_position(Human& human,const HumanVector& position){
+        auto* leader=human.formation_leader;if(!leader)return; //005A9100.
+        leader=human.formation_leader;auto* formation=leader?leader->formation.get():nullptr; //Fresh005A9100→005A9110.
+        if(!formation)return;
+        formation->request_member_position(&human,position);std::int32_t index=0;
+        if(formation->contains(&human,&index))formation->update_member_route(static_cast<unsigned>(index));
+    }
+    template<class Human>void notify_item_grenade(Human& source,const HumanVector& position,const HumanVector& direction){ //0045EAB0.
+        using Active=typename Dependencies::Composition::StateFactory::Active;
+        auto& roster=dependencies().players.control().human_roster();
+        for(auto n=roster.size();n;){auto* target=roster.at(static_cast<std::int32_t>(--n));
+            if(!target)throw std::logic_error("Grenade notification lost actual roster Human");
+            if(human_frame_signed_word(target->properties.stats_ec[0])<=0)continue;
+            if(!target->loading_state)throw std::logic_error("Grenade notification requires actual B0");
+            if(target->loading_state->words().template get<std::uint32_t>(0x48)!=3u||target==&source)continue;
+            auto* active=dynamic_cast<Active*>(target->loading_state);if(!active)throw std::logic_error("Grenade recipient kind3 has no actual Active AI owner");
+            active->react_to_grenade(position,direction,&source);
+        }
+    }
     template<class Human>bool human_script_has_weapon(Human& human){
         FirstPersonHumanItems hand(dependencies().world_actors.items());return static_cast<bool>(hand.weapon(human)); //005A2B10.
     }

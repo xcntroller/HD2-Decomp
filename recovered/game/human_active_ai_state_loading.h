@@ -3,6 +3,7 @@
 
 #include "game/human_ai_state_loading.h"
 #include <optional>
+#include "game/human_active_ai_grenade.h"
 
 namespace hd2::game {
 
@@ -130,6 +131,7 @@ public:
         if(action==12||action==14)set_action_mode(16);
         else if(action==13||action==15)set_action_mode(17);
     }
+    void react_to_grenade(const HumanVector& position,const HumanVector& direction,Human* source){react_human_active_ai_grenade(*this,position,direction,source,services_);} //00530FF0.
     auto& state(){return state_;}const auto& state()const{return state_;}
     std::int32_t hud_first_mode()const override { //00538590, virtual13C: pending1CC unless-1, else current1C8.
         const auto pending=state_.template get<std::int32_t>(0x1cc);

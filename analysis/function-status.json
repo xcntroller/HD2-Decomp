@@ -44498,6 +44498,42 @@
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00530ff0",
+      "status": "partial",
+      "coverage": "Actual grenade notice admission, planar geometry/native stores, navigation probe before query and pending18C, then same formation position/cache output.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/vtable/allocator/SEH ABI. Explicit World/Human/frame endpoint doubles in native verification; actual World composition fully linked without Windows execution. H6 producer integration, H8/full application and desktop acceptance remain open; no whole-body ABI equivalence claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_grenade.h",
+        "analysis/human-active-ai-grenade-source.md",
+        "analysis/checkpoints/p22-hum-h4-active-grenade-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00599040",
+      "status": "partial",
+      "coverage": "Actual reverse membership lookup, full vector20 publication,7E reset and88 changed flag; missing member leaves slots unchanged.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/vtable/allocator/SEH ABI. Explicit World/Human/frame endpoint doubles in native verification; actual World composition fully linked without Windows execution. H6 producer integration, H8/full application and desktop acceptance remain open; no whole-body ABI equivalence claim.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-active-ai-grenade-source.md",
+        "analysis/checkpoints/p22-hum-h4-active-grenade-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045eab0",
+      "status": "partial",
+      "coverage": "Actual Players reverse live roster, positive signed health/current B0kind3/nonself gates before concrete00530FF0 recipient.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/vtable/allocator/SEH ABI. Explicit World/Human/frame endpoint doubles in native verification; actual World composition fully linked without Windows execution. H6 producer integration, H8/full application and desktop acceptance remain open; no whole-body ABI equivalence claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-active-ai-grenade-source.md",
+        "analysis/checkpoints/p22-hum-h4-active-grenade-20261112.json"
+      ]
     }
   ]
 }
