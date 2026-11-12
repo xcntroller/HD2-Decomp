@@ -33,6 +33,10 @@ public:
         }
         if(layout_.capacity()<10)layout_.reserve(10); //Native54/58 reserve0x50 without constructing records.
     }
+    void position(const std::array<float,4>& value){ //004AF900, protected XYZ write then update, ten geometry/inset writes ascending.
+        require(root_);frames_.hud_message_position(root_,value[0],value[1],value[2]);frames_.update_scene_object(root_);
+        for(unsigned n=0;n!=10;++n){if(!texts2c_[n])throw std::logic_error("Timer position requires actual ten text owners");bind_hud_text_geometry(frames_,*texts2c_[n],scene_,frames4_[n]);texts2c_[n]->text.inset=0;}
+    }
     void close()noexcept { //004AF8B0: clear actor borrowers retaining capacity, then slots0..9, then5C=0.
         actors_.clear();for(unsigned n=0;n!=10;++n){frames4_[n]=Frame{};texts2c_[n].reset();}field5c_=0;started_=false;
     }

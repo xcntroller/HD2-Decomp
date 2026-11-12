@@ -1,0 +1,615 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "66889df20212c62adee7f6be8a448d792817b49e",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "60f43dcc8aa6c4249a94817712324a9e18d8e6ae",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004b79c0",
+    "004ba2d0",
+    "004ba390",
+    "004ba660",
+    "004bad50",
+    "004bad80",
+    "004bb210",
+    "004bb230",
+    "004bb250",
+    "004b7e50",
+    "004b81a0",
+    "004b8470",
+    "004b87b0",
+    "004b8de0",
+    "004b8e00",
+    "004b8e30",
+    "004b8ee0",
+    "004b8ff0",
+    "004ba360",
+    "004ac090",
+    "004ab700",
+    "004ab610",
+    "004b2be0",
+    "004b2ca0",
+    "004c10d0",
+    "004b5e40",
+    "0049f410",
+    "0049e1b0",
+    "004b47a0",
+    "004a9730",
+    "004af900"
+  ],
+  "updated_entries": [
+    "004ab2e0",
+    "0049ef70",
+    "0049d530"
+  ],
+  "ledger_added_partial_client": 31,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2596,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan100 actual command/HUD77-text/pointer/order-selector lifetimes,100 modal lifetimes,20 actual HUD scene/soldier/hands/dialog layout lifetimes, actual populated roll choice/geometry and ten timer TextStates; input64/57 separation, original gates/order, queue/camera failures, borrow/clip/drag retirement. Engine/font/Actor/order/camera/gameplay endpoints doubled.",
+    "actual_host_i386": "PASS strict concrete process_command_controls,show_command_panel,show_command,refresh_hud_layout through actual World/session composition; no Windows execution.",
+    "latest_master_source_compatibility": "PASS fresh60-file temporary three-way composition against pinned60f43dc with same three explicitly resolved overlaps; no active merge/rebase.",
+    "application_link": "PASS sequential existing application-launch strict i386 compile/link; never executed.",
+    "tracker": "PASS exact frozen fingerprints/full inventories/unique statuses/evidence/README and27 existing tracker tests."
+  },
+  "temporary_master_composition": {
+    "master": "60f43dcc8aa6c4249a94817712324a9e18d8e6ae",
+    "base": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+    "files": 60,
+    "conflicts": [
+      "recovered/game/car_loading_activation.h",
+      "recovered/game/hud_injury_movies_loading.h",
+      "recovered/host/game_mesh_movie.h"
+    ],
+    "resolutions": {
+      "car_loading_activation": "Keep UI fuel getter and current master Human seat services.",
+      "game_mesh_movie": "Keep both named movie methods.",
+      "hud_injury_movies_loading": "Keep full verified UI show/update receiver, used by master damage wrappers."
+    }
+  },
+  "artifacts": {
+    "/tmp/p22-ui-command-audit.cpp": {
+      "sha256": "76ab2948e913f367666cf427b33179f73600e12118d86c2dfa5d8d37fa822a3e",
+      "bytes": 34373,
+      "retained": false
+    },
+    "/tmp/p22-ui-command-audit": {
+      "sha256": "f83fe1b90b1e65dc9e2b38c9143c44bde784855d8c98da6defba289face4b738",
+      "bytes": 4232440,
+      "retained": false
+    },
+    "/tmp/p22-ui-command-concrete.cpp": {
+      "sha256": "f63083f0de116de5049484aebb100420b15d3c944f92a3febd02341f6a1a13a4",
+      "bytes": 554,
+      "retained": false
+    },
+    "/tmp/p22-ui-command-compat.py": {
+      "sha256": "ef4d9449f7c7644dcdd8bb8489b3d6ff7ea7b9fc0ec1207c540619f8749ef133",
+      "bytes": 1640,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/application.log": {
+      "sha256": "e17c02752cb69d4428e5486d2d5c6c32598b897b314db9a1993976e0b22be675",
+      "bytes": 599,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/audit-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/audit-run.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/compat.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/concrete.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/effects-module-owner/004860b0.c": {
+      "sha256": "63154426de3ee265e80ae83cc8efdb3f877a96185e6d65ce9243c3c07d2a9921",
+      "bytes": 2203,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/effects-module-owner/004860b0.json": {
+      "sha256": "c62ba9531a49fd52f797126d1065c5cf030cd2cff0eff05fe986cc8819b039b8",
+      "bytes": 5119,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/frame-human-live-inventory-and-aim/005a8190.c": {
+      "sha256": "1be64fb77e155743edf1d4015891efe36ae92755ce54746a3c575cba2c0985d6",
+      "bytes": 152,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/frame-human-live-inventory-and-aim/005a8190.json": {
+      "sha256": "1d6f8f5e9827c9e70b7b3b9c4020fe1d809b176dd025b28ba038b0314c3e5cf4",
+      "bytes": 1512,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/geffects-finish-scalar-receivers/004870a0.c": {
+      "sha256": "e46b6983e4d4b15bfc659a9c51bc80de055b9e9e3d993145d582344daae7bf8a",
+      "bytes": 1457,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/geffects-finish-scalar-receivers/004870a0.json": {
+      "sha256": "f9ed40ac9eadaddf63dc155441dce9d9392fffb42e8ac730e7de77cb44623300",
+      "bytes": 1240,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/human-first-person-loading/00486510.c": {
+      "sha256": "6dd33b8cfce364c2c4ec1355a087a81f626e670ac5bfe64d16bbde2f8b2ccde5",
+      "bytes": 62,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/human-first-person-loading/00486510.json": {
+      "sha256": "be33b17fe2b6095ad4f2b72155af7a40e2554e3721c80f97e61dd5cfc8db6446",
+      "bytes": 3592,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/human-player-mode-endpoints/0069a4a0.c": {
+      "sha256": "3fc722c9c14d940c5424c01bbe1e42e2e9d9f360ce1c7a4b0045dd9f29546cb4",
+      "bytes": 59,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/existing-evidence/human-player-mode-endpoints/0069a4a0.json": {
+      "sha256": "cb6abf2dd08f40744bfe3e6535272477456f151dead8016c6a55b0ee2c1f0858",
+      "bytes": 1705,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004632c0.c": {
+      "sha256": "1a79e542df913bba490862503ba04ce59249476b5e2318eb406e16a07a5fc815",
+      "bytes": 1185,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004632c0.json": {
+      "sha256": "15406ebd8b25f58260da735f38c9d8af42a5b5da735c6cc91c728cc174bc9ae0",
+      "bytes": 4161,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004633a0.c": {
+      "sha256": "ba6cc26488bf7eea9344f3f51b3a2eb312f8554e883d624b483e4b7ad338adee",
+      "bytes": 187,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004633a0.json": {
+      "sha256": "30920deb03c87f66e8761e216d154145d6f67f6261a25579e3a5377710fedd65",
+      "bytes": 749,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004ab610.c": {
+      "sha256": "4086f998976221b9af745e465e1457c07235f7e2f9419151e00af232dd2b97e7",
+      "bytes": 1432,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004ab610.json": {
+      "sha256": "f7258ba3dc0e35431b9b00de29aa215c26d482e78a0cb3bf7f534357ebd09e12",
+      "bytes": 3249,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004ab700.c": {
+      "sha256": "7a14a80891fae0077fca1c1da86bcd24a253d3f9c254344f6400fd8ffd49b004",
+      "bytes": 1358,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004ab700.json": {
+      "sha256": "a335642d3185520c5939fcd50fe4f8f78de29707bbf0c28d414a9df62afac503",
+      "bytes": 2679,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004ac090.c": {
+      "sha256": "283eb2ec87b931ff17055d57a69ab38200106455e6ed8824a44854430193b688",
+      "bytes": 1389,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004ac090.json": {
+      "sha256": "3ebcc5855127a4360968197d39b91138a251972f336f57dfe0e388231da462e9",
+      "bytes": 4159,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004b8470.c": {
+      "sha256": "0e43cca929bf697b7cb537b6cc7a5dc534bc63487198af87098cbc41a0ec7fb2",
+      "bytes": 1836,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004b8470.json": {
+      "sha256": "004144a4743a288ea5193cc98d86e2fde2d3d28ba673048c4245baf21360f13c",
+      "bytes": 8924,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004b87b0.c": {
+      "sha256": "849bfe56a63f34bb7b9393293ef95ba5dfa627328db216871747db0e3d8e1a17",
+      "bytes": 7805,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004b87b0.json": {
+      "sha256": "2264b9cee6f712290bed95d653455032bfa42465d12053d1a0cb17e2bcebc45e",
+      "bytes": 36451,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004b8e30.c": {
+      "sha256": "a682d5e42d7f61a32045f06c894fca36c5558b01259f0762bc4932fdceba3b73",
+      "bytes": 779,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004b8e30.json": {
+      "sha256": "24da144cae383306ec63e891ccbc9b4260115fcb1cb40d75cc3ad103e9c33c74",
+      "bytes": 3974,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004ba360.c": {
+      "sha256": "18555a2371fd08e728beec293b66ce8aba55f26cfebb64f3a0ba0707630ba05f",
+      "bytes": 213,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-actions/004ba360.json": {
+      "sha256": "dec761ee0ea1d2045f65fd8d8d89f8e602c27bc094e75377b9aa454d0fd16771",
+      "bytes": 1637,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-policies/004b8de0.c": {
+      "sha256": "dc5a7ed968f2dc7b0d33ee7ea08606e49557e96ea7a4bbd9df1f22a20bcd69a9",
+      "bytes": 95,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-policies/004b8de0.json": {
+      "sha256": "28a26e2210932c988130f224d64331d793eb52fc9a4cea264d5f9eefa3e23b1c",
+      "bytes": 1428,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-policies/004b8e00.c": {
+      "sha256": "6b8258b9d6c33ced4333af3399a15bf37fd5b7497262b8b6d390a9d75751e72a",
+      "bytes": 172,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-policies/004b8e00.json": {
+      "sha256": "4ccd30a2a63842a609b0c389de26ac1be36b169dce42b7685925595386113f9c",
+      "bytes": 1850,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-policies/004b8ee0.c": {
+      "sha256": "cb9cf18d4aa8cbc0754c07dc5a8289f751462a89b7d6e550670b37f95602e6fa",
+      "bytes": 1424,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-policies/004b8ee0.json": {
+      "sha256": "f673b0c69f8df52123071bff2288d499ac4b66776939be81a08313d85a04f9df",
+      "bytes": 6339,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/0049e1b0.c": {
+      "sha256": "a08a854a43bb9cc39918208c6b7fedabf3a1195864d08f784852c0c523ba25f2",
+      "bytes": 806,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/0049e1b0.json": {
+      "sha256": "9b0adc24e7f3b00f597e5038b7c4cb1ca35c41675772655208ebfa77a35a57ad",
+      "bytes": 3676,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004b5e40.c": {
+      "sha256": "be634d1b6a467814946e2d4be180309c404d380a01947db59c8db8321223e163",
+      "bytes": 4718,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004b5e40.json": {
+      "sha256": "d75d195af52ad050f132a939dbc69ae77ff948bcbeb73e4146bff1a1fb4f1da2",
+      "bytes": 18535,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004b7e50.c": {
+      "sha256": "1a488df2f37c6a31a23b30b8e62de580b4d2b3cf1525729350c1690b6225695f",
+      "bytes": 3494,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004b7e50.json": {
+      "sha256": "c0997400334193b1862d8451141be91d855bdb8cc18f0160139bdfffb945f001",
+      "bytes": 13549,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004b81a0.c": {
+      "sha256": "cc831d993408aed35240fe1c7613b136a02f013a0343715caa77857c43cfe4ea",
+      "bytes": 3528,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004b81a0.json": {
+      "sha256": "f7f37f956716fa6174a7a75e0cf6739b65afb4d52d97506027db6e24e79db193",
+      "bytes": 15474,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004b8ff0.c": {
+      "sha256": "7e8e06f8edaeb422f8020487bc9edcb6a01cc128394470a1c0e76db26e81105a",
+      "bytes": 661,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004b8ff0.json": {
+      "sha256": "02b31576dc819c0900c594dba287de134ec244ebe42f7ea0670ba2fa13242d71",
+      "bytes": 3394,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004ba2d0.c": {
+      "sha256": "a04cba6acd271c60190208f0a1c4c3bb6a21da5143bcf453dd8bce34a32589d6",
+      "bytes": 686,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004ba2d0.json": {
+      "sha256": "282f014ba3d33575dbd266489c9d8926f5ea45d631563a09222cf84fb928b3a4",
+      "bytes": 3662,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004ba390.c": {
+      "sha256": "bbd3b59050987c9114b13fa2e6adb944d84394efcb0947782a67e29919375b0f",
+      "bytes": 3822,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004ba390.json": {
+      "sha256": "091687b395ffcbb8dbf2f18d1faa5dc2406cda2ea7a07c7937d4591397121027",
+      "bytes": 12097,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004ba660.c": {
+      "sha256": "224a19e54e4dd8c32e6a7ee97cc68cf0d8fafed077cd273958be7c2d49926bb3",
+      "bytes": 8587,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004ba660.json": {
+      "sha256": "b59af8a96f006b47f5deee3d9650c62ed4decf0073676ba3d2f00e58e21c6e87",
+      "bytes": 18407,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bad50.c": {
+      "sha256": "3d6367aae2dd1159e790353d5d1f4418f04102d3afc5d518cd1c792d9b72262b",
+      "bytes": 344,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bad50.json": {
+      "sha256": "20e8521b35a83bf8d6d235645970d33028d64d3b3009c93d0563fba01ce7a53b",
+      "bytes": 735,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bad80.c": {
+      "sha256": "d6807b015d30d86f577c28b2cab6f44819226cada7c67a7219b77d920f1c2531",
+      "bytes": 4102,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bad80.json": {
+      "sha256": "5774e4fa11614140e722e946d22b85192fffebdd35a5ebe2f6b9f51c92110f81",
+      "bytes": 15304,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb200.c": {
+      "sha256": "b97a1d2b92ffc1e94ab15ece111a22317d69ceaa8e199c007f2363ad43f3d2ee",
+      "bytes": 41,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb200.json": {
+      "sha256": "3398ecbdb36b26c08194b6eca3fe85c4fcf0a553932543de692ea4cf99bc9193",
+      "bytes": 466,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb210.c": {
+      "sha256": "6e805b68886e4c16bda09e3524a118a57e95f2377f99076ea4c8fc05d6aeafcb",
+      "bytes": 204,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb210.json": {
+      "sha256": "287a558fa223327e32673ebb436cd87f200d349588e35308290645abfc2bde25",
+      "bytes": 735,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb230.c": {
+      "sha256": "99d2e896dd3c84935310ba781159a46c5572ab02582b11112d14f065a8819dbf",
+      "bytes": 101,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb230.json": {
+      "sha256": "da273babb170f0e103f596c3e260d3b9225815b2ce8178857f2963c8e0cc4ab9",
+      "bytes": 466,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb240.c": {
+      "sha256": "fcfebc7a2756b1c0d7f873c00a20a96b0dcf6bf036c102eea46a502324b48015",
+      "bytes": 41,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb240.json": {
+      "sha256": "1a3e0b78aabcf424404fbf62680d35927fb9fc7d957f441e45f6f0f0c27cc3a8",
+      "bytes": 466,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb250.c": {
+      "sha256": "7cf7fe6da087ed7187dde92c26b1313f245805f6575af621b1c44d2996c5c8b2",
+      "bytes": 101,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/input-workers/004bb250.json": {
+      "sha256": "81a5b603b91eb4455fa7e42ca4ac304c8a16052ecc5639201163ca67b5dc57fe",
+      "bytes": 466,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/0045f080.c": {
+      "sha256": "4800e8b3ac601710b18d5f3e20d4fedf40695d66712ad90467b0c6cba2cff95e",
+      "bytes": 667,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/0045f080.json": {
+      "sha256": "a6c2fe9eae249fe45ef063cb29d2b9b6afd7d60225a89841c9d15c48a8bcb20f",
+      "bytes": 4003,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/004a9730.c": {
+      "sha256": "cdf8014add296bf4d6085101b2cb27e87640ef82fa502875facab27eaccf9f41",
+      "bytes": 104,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/004a9730.json": {
+      "sha256": "4c881e55a9eb81dc9ca1d4466a354f6ce52efd865567856ec328eb7fa05c1527",
+      "bytes": 804,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/004af900.c": {
+      "sha256": "1d108ad0547fa1d5a1cb7043d32462f0eaf79c349b6058320c387ab017228dcd",
+      "bytes": 699,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/004af900.json": {
+      "sha256": "e0719cd2f110fe4a713f68d7a5a583f282ebc7d5ba9109587a7d0a8f6d952eaa",
+      "bytes": 1417,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/004b47a0.c": {
+      "sha256": "b129719c5e897689fb4cb5864c756620295a8916195817292cb901576ffba9e8",
+      "bytes": 143,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/004b47a0.json": {
+      "sha256": "81091363900a4b3d2b2686d42101249bcedbc5917aeb4f84beef94c719c82075",
+      "bytes": 974,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/004c10d0.c": {
+      "sha256": "5b8d5a31093510b98d18da3da3775bf006d79c46f7238a853f1bc8a4a1065dc1",
+      "bytes": 134,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/modal-leaves/004c10d0.json": {
+      "sha256": "7a5231bd321f9aaabfb7fecb8006e4fb6d06bf5369fd3fb7ec7f5e5c81635259",
+      "bytes": 804,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-compat-composition.log": {
+      "sha256": "c8cc07c7385fc0d0e07ecb61ab4c346236ed4bede70dbe977285653bc2a5888c",
+      "bytes": 287,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-compat.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-down-panel.asm": {
+      "sha256": "f8ebc558c2a18c4f37546332fca7acf1cd9496a13295748938964367ef9f1778",
+      "bytes": 3158,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-drag-normalize.asm": {
+      "sha256": "cfed8de10b32ea23255ea1e38d8912990c015b6d7547117c424d901cad6d6e4a",
+      "bytes": 5064,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-drag-start.asm": {
+      "sha256": "50172faaf85cb19f3e4e0564f7395c6e7fc0b8790b1b28d119b71643f0ed187a",
+      "bytes": 13891,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-effects-vtable.txt": {
+      "sha256": "8d90661565e06632aa82b156ca98fad022afbb44422dad39947ce1ed70b85a0e",
+      "bytes": 506,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-fpv-enable-query.asm": {
+      "sha256": "bc16be4e07523c43fbd89f3f29e36290dfd1642165f5dcde72f2c65bee1191b5",
+      "bytes": 1159,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-normalize.asm": {
+      "sha256": "ed2f683ac35cf317940b7963106b613e9441673ffb65386da44f48eaa0a8b025",
+      "bytes": 5676,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-order-buttons.asm": {
+      "sha256": "85f0b8f3cde6980f50b9e56a1851f25ef328489613f80637428d54ca54e5e16e",
+      "bytes": 24957,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-pointer-filter.asm": {
+      "sha256": "7ee494f2e24670eda1be530a956d7888b2ba8a9056b04613106ca59f9d61c921",
+      "bytes": 4362,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-right-press.asm": {
+      "sha256": "08709995e591cb879a1f0b5ca3317f97153313befdac48e9e27f3dd9878da82c",
+      "bytes": 7231,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-tracker-check.log": {
+      "sha256": "b82c5078ace85f72ea4e7602767e4d278d16c9337206dff9a88d2f345e5d0c39",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-tracker-render.log": {
+      "sha256": "9a43d29ba64e232aea1a3d9a4e67c60dfffa50fa472e7cc5cede0c515ef5c021",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/p22-ui-command-tracker-tests.log": {
+      "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f",
+      "bytes": 126,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/roll-control/004b2be0.c": {
+      "sha256": "98aca0d93166e0a1fc96ce53fc2ae01f4889ec4f84343a7b44a0b2e87d0e7ba5",
+      "bytes": 888,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/roll-control/004b2be0.json": {
+      "sha256": "16f5681947df05224982d9da6cd1c245fbfd2b74534bd51f86bb9d16744abd3d",
+      "bytes": 3892,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/roll-control/004b2ca0.c": {
+      "sha256": "a0ceae440510fb630e4dfa94b29193ddaf12c9ee864006a0778da5101ba797c2",
+      "bytes": 336,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/roll-control/004b2ca0.json": {
+      "sha256": "bd2760a9daf22ec54d15a87728ed941365e7d9ed0086f46af0042380bbfd8f88",
+      "bytes": 1539,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/roots/0049f410.c": {
+      "sha256": "cff87b2149aa180998aa959022e09ef34bc07ccf1a723af29d7420917ffdeaec",
+      "bytes": 1644,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/roots/0049f410.json": {
+      "sha256": "7f1af2641690d8b08bbc339f5f3ca05ecdd0f2a331b9a91e3c186cd4930129e6",
+      "bytes": 9507,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/roots/004b79c0.c": {
+      "sha256": "9f300ecd4bf54468fcef50d8e5fb461f684dc8c165b44a6463293f589c50c87c",
+      "bytes": 6644,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-controls/roots/004b79c0.json": {
+      "sha256": "2ac9f8e12527cb180a2b1d3fd1113323f21904b59c159334aa231ca674e488b1",
+      "bytes": 26430,
+      "retained": true
+    }
+  },
+  "remaining": [
+    "General HUD0049C3C0 and required ordinary message/selector/soldier UI controls.",
+    "Actual Human order0058CCE0/0058CAF0 path/model preparation and mutable order/queue producer, Players0045DD40/Sight0045F080 and camera00462AE0/004632C0/004633A0.",
+    "Actual GEffects2E0 special-model004870A0 lifecycle, FRAME/RENDER/OWN application forwarding and desktop/runtime population."
+  ],
+  "inspected_masters": [
+    "50f919348b3a3daec32b111153f2b4c129963801",
+    "e9697146c0512fcaf2db977f2b24c310a9f37218",
+    "c374fff088baf9202fdeb0cc549b44d8210f2ef3",
+    "60f43dcc8aa6c4249a94817712324a9e18d8e6ae"
+  ]
+}

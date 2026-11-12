@@ -14,7 +14,15 @@ public:
         : graphics_(graphics), module_(module) {}
     void poll_keyboard() const { scalar<std::int32_t>(0x9c, 0x6f190); }
     std::uint32_t next_scan() const { return scalar<std::uint32_t>(0xa0, 0x6f320); }
+    std::uint32_t scan_character(std::uint32_t scan,std::uint32_t modifiers=0)const{
+        using Function=std::uint32_t(WINAPI*)(EngineFrame*,std::uint32_t,std::uint32_t);
+        return scene_method<Function>(graphics_,module_,0xcc,0x6f660)(graphics_,scan,modifiers);
+    }
     std::uint32_t take_text_character() const { return scalar<std::uint32_t>(0xa8, 0x6f2d0); }
+    void clear_text_characters() const { //Original32-DWORD queue, no device ownership/poll or return value.
+        using Function=void(WINAPI*)(EngineFrame*);
+        scene_method<Function>(graphics_,module_,0xac,0x6f300)(graphics_);
+    }
     bool shift_down() const { return scalar<std::uint8_t>(0xbc, 0x6f550) != 0; }
     bool control_down() const { return scalar<std::uint8_t>(0xc0, 0x6f570) != 0; }
     bool alt_down() const { return scalar<std::uint8_t>(0xc4, 0x6f590) != 0; }

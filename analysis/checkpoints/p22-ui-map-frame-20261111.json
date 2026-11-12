@@ -1,0 +1,543 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "af7b0c8dcda8677df077c177088f8f7d5a835d54",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "e1a94952c805966a7cf3937e58cc84e50ab005f3",
+  "compatible_code_master": "683cb7b9646ce580b67252228212329c3e629a76",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004a6fa0",
+    "004a5b50",
+    "004a6de0",
+    "004a65b0",
+    "004a51d0",
+    "004a5400",
+    "004a5690",
+    "004a5970",
+    "004a7180",
+    "004a78e0",
+    "004a7940",
+    "004a7a20",
+    "004a7a70",
+    "004a7c60",
+    "004a7f50",
+    "004a7010",
+    "004a7050",
+    "0045ed10",
+    "0069e070"
+  ],
+  "updated_entries": [
+    "004a5630",
+    "0049bd50",
+    "004aad30",
+    "0049ef70"
+  ],
+  "ledger_added_partial_client": 19,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2530,
+  "checks": {
+    "native_map": "PASS ASan/UBSan/LSan100 groups/all5 kinds (500 actual panel/TextState/TextObject/shared-font lifetimes), current/allied/enemy/VIP/item/speech/goal/zone/click policies, grow/shrink, signed/unclamped opacity, retirement, absent-map and resource/query failures. Engine/data endpoints are doubles.",
+    "native_hud_frame": "PASS ASan/UBSan/LSan100 groups: exact offline/nonoffline/command order, captured Human despite changed roster, zero/warming/visibility/status/mask gates and required-callback failure propagation. Panel leaf/query endpoints are doubles.",
+    "native_status": "PASS ASan/UBSan/LSan100 actual small-panel groups: team/posture/movement/cache/null/failure/server flag policy with real TextState/shared-font lifetime; engine/B0/team endpoints doubled.",
+    "actual_host_i386": "PASS strict concrete GameUiPresentation advance_hud/map/show/control methods and actual owner/member/borrower contracts; no Windows execution.",
+    "latest_master_source_compatibility": "PASS57-file temporary three-way source composition. Three explicit temporary resolutions retained UI full injury show/update, both mesh-movie methods, and Car UI fuel getter plus master Human/seat services. No active branch/reference/worktree merge or edits. Latest e1a9495 changes README only from compiled683cb7b.",
+    "application_link": "PASS sequential existing application-launch link with strict i386 compiler, never executed.",
+    "tracker": "PASS exact frozen fingerprints/inventories/status uniqueness/evidence/README and27 existing tracker tests."
+  },
+  "temporary_master_composition": {
+    "master": "683cb7b9646ce580b67252228212329c3e629a76",
+    "base": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+    "files": 57,
+    "conflicts": [
+      "recovered/game/car_loading_activation.h",
+      "recovered/game/hud_injury_movies_loading.h",
+      "recovered/host/game_mesh_movie.h"
+    ],
+    "temporary_resolutions": {
+      "recovered/game/car_loading_activation.h": "retain UI fuel getter and all master Human/Car additions",
+      "recovered/host/game_mesh_movie.h": "retain both independent named methods",
+      "recovered/game/hud_injury_movies_loading.h": "retain complete verified UI show/update implementation (same show signature); master show_human_damage wrappers call this same owner; original raw30(0) retained"
+    }
+  },
+  "artifacts": {
+    "/tmp/p22-ui-map-audit.cpp": {
+      "sha256": "89bbf697d18657dd5f338eb62579d478e242110fd9028f02bc4f41b292079f14",
+      "bytes": 13601,
+      "retained": false
+    },
+    "/tmp/p22-ui-map-audit": {
+      "sha256": "0a24c5d34ba88900dd03c94d3071ad602ae876d10429f15aa3ff21a5ee8ad3ce",
+      "bytes": 3314360,
+      "retained": false
+    },
+    "/tmp/p22-ui-map-i386.cpp": {
+      "sha256": "3b89ad79f5ff717ebcc5c89bfc441c4934751e3a6f76e634898310a37560f4da",
+      "bytes": 329,
+      "retained": false
+    },
+    "/tmp/p22-ui-hud-frame-audit.cpp": {
+      "sha256": "5389bfdad20164dd9157786ec5c761143fb26b7ec16f6a0ecac4032a59db642e",
+      "bytes": 6214,
+      "retained": false
+    },
+    "/tmp/p22-ui-hud-frame-audit": {
+      "sha256": "34c20c50bae9035639f4a27e4eb7f5214985abcf583ec719fb6bd6fd64051ce4",
+      "bytes": 561320,
+      "retained": false
+    },
+    "/tmp/p22-ui-hud-status-audit.cpp": {
+      "sha256": "71da91a91023ed505c56562fd2efc8985c325043955ce55f1300cf568f7946c7",
+      "bytes": 9536,
+      "retained": false
+    },
+    "/tmp/p22-ui-hud-status-audit": {
+      "sha256": "349798325885878cfc128b16d1b23719c4c86152bb76ea11b7d7e2e91fd6c74d",
+      "bytes": 1463744,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/0049bd50.c": {
+      "sha256": "8b564c108ada5905b241ba8379d80f3f3b34b9352a7518ad2bd8ba0753e9eb3f",
+      "bytes": 3769,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/004aad30.c": {
+      "sha256": "d879fbd80d93de000294954c3216a496ba843023c7655a9425a8eb062b18b64e",
+      "bytes": 2972,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a51d0.c": {
+      "sha256": "dc6a0691f755f80f0c78e84fc7b5f10ae7570bdbd19057c40a6bf6c30470e9da",
+      "bytes": 3340,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a51d0.txt": {
+      "sha256": "7a2a69d6d6ae1c4676f92c8e215cd4815a9e2007b330189bd68ff59dca949d97",
+      "bytes": 224,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a5400.c": {
+      "sha256": "da3014feebda2ef88d5021097a28b60aaeeec27590ebb6ec6db8126da705f525",
+      "bytes": 3311,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a5400.txt": {
+      "sha256": "595a92346245321ee9cb6ed0c555d1ee06968010db3dfcca7355e99946b3bdaf",
+      "bytes": 224,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a5690.c": {
+      "sha256": "59154b01918ba36015bd62ea398917c33b1df83850681611e247b3fef8b7ec5f",
+      "bytes": 3115,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a5690.txt": {
+      "sha256": "ad83b1412778750ba5980012fd22455f815f888c68729c13c19c7f8058238aee",
+      "bytes": 200,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a5970.c": {
+      "sha256": "692ccd7c13278383949c33c7ebceac37d46e2204720978bbfaadc2804f48bd59",
+      "bytes": 2262,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a5970.txt": {
+      "sha256": "d0adb4467e41d7542e2327f1ab97a3fe59952dc1f218cfe1736ca41f8cfa20c0",
+      "bytes": 200,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a5b50.c": {
+      "sha256": "ff55364e1e09db3fffdebe941190b0ad30a6c6a8662993002a37d0c61e9d1e50",
+      "bytes": 12117,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a5b50.txt": {
+      "sha256": "b04649e9cb08a9ab85f162e7489da9771e776089ddb6e17be1e57f4f63cc0b6b",
+      "bytes": 224,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a65b0.c": {
+      "sha256": "9c6aa42ac51978834e88e6dc80a16f77ed657c8c9ac646c39f468647c3344671",
+      "bytes": 10704,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a65b0.txt": {
+      "sha256": "ec43acc328f1ad2572a228bb793d168fdc1bd5c5ac114c44777308f7e8f932c1",
+      "bytes": 224,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a6de0.c": {
+      "sha256": "5b39e05f1039cb27b568f882132f9a89b1afa13daf90b8ed643348cb5ebc858e",
+      "bytes": 1820,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a6de0.txt": {
+      "sha256": "95fa97ead6f55896f8dc0e2d574cbf5dae09d0d08064a39e163a075eae00b086",
+      "bytes": 224,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a7010.c": {
+      "sha256": "6ce678a9fd85fbb8cdc4e6223600d353fc98d711748731334afbbba55df85a18",
+      "bytes": 268,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a7010.txt": {
+      "sha256": "207931a5733b281e2aa95011dc81fea8e43ff6ca6c55bb461815925f08957e3e",
+      "bytes": 200,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a7180.c": {
+      "sha256": "d266b3630871c9462a13713f2d246b8d7055ffc905fcd9b6b4364e3ecd95f5f6",
+      "bytes": 2018,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a7180.txt": {
+      "sha256": "a4f7c9f21e69d2399bfc3b8dfa7a3de57ec775e6d0e949533d0b410b5112afbe",
+      "bytes": 200,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a78e0.c": {
+      "sha256": "3f20a1458f083aa072dde49843a8e192e6652ceaf2e3c39ebee8322555999211",
+      "bytes": 256,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a78e0.txt": {
+      "sha256": "2db1a706eaa11a3cd1cee4ddf573d5bcc2842927b5193c400b845a66107323d5",
+      "bytes": 200,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a7940.c": {
+      "sha256": "e0744a05b7de3b34191e01ec8e131b4ef411470a226e9780367f7bc7e06c4b52",
+      "bytes": 265,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/abi/004a7940.txt": {
+      "sha256": "9193a66afb760efe066ce8d596b4c8bdf8738e0558040f301ea9507951089f54",
+      "bytes": 200,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/application-link.log": {
+      "sha256": "e17c02752cb69d4428e5486d2d5c6c32598b897b314db9a1993976e0b22be675",
+      "bytes": 599,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/command-prepare/0058caf0.c": {
+      "sha256": "b99b319f2a404514dee8ee506246686cd7419b3665ec07d0b36f6fe0cb3b48c4",
+      "bytes": 3221,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/command-prepare/0058caf0.json": {
+      "sha256": "64bf1de5841e10332a004aaf91693ec895a3d9fe280238a7af599d770e6e2f5b",
+      "bytes": 9983,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/command-prepare/0058cce0.c": {
+      "sha256": "f563773a3c1e56f43cf6f36690031bbd8f6442a38e2c9f81320cb8b10dc975ea",
+      "bytes": 13964,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/command-prepare/0058cce0.json": {
+      "sha256": "dbf87b48347e03cad587bfb39f69bda0a8d18c6cce31b2042a33434a4f7bf63c",
+      "bytes": 50569,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c110.c": {
+      "sha256": "d72478cf6a44ee8e7e348fc17825f435d3d49c50e4b03f21fe001dd3009d77dd",
+      "bytes": 911,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c110.json": {
+      "sha256": "68294a1ffe1e650031b6331496eff14d090f9d9014c5b4e0f08c99b75619648b",
+      "bytes": 2906,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c1a0.c": {
+      "sha256": "e4cda0aa8ecc7336e4306c685cf7f6b8f29f86783c03244b619972690045d1cb",
+      "bytes": 198,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c1a0.json": {
+      "sha256": "f8f72b80d5f0652b1337873b68b6a0d589be15d50e91738473066f995609bf6e",
+      "bytes": 1339,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c1d0.c": {
+      "sha256": "52a5711ffa8eb7e07dc6723e17abaeaa0e2dcc1ccaa15b46ba9359daecd09d65",
+      "bytes": 316,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c1d0.json": {
+      "sha256": "025a626e4b9502b824b0361fe16e7daf2428b429de1b04328affa9a63726ef14",
+      "bytes": 916,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c200.c": {
+      "sha256": "56e17c4ddc5461a19ba2280153f31606202931db73d4e119d60ebe036d033ed6",
+      "bytes": 616,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c200.json": {
+      "sha256": "ff193fd32755925a6d9755f9ab1dc0722717b76dd153d1de59106218a5a324b6",
+      "bytes": 4273,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c2b0.c": {
+      "sha256": "89e476864ae8da57e7cf2d72c51693e96b3768670a3fe43faf4d815ded24cedb",
+      "bytes": 985,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c2b0.json": {
+      "sha256": "56c1dec4aa94484972e1504d97d822bfe9eb1c1a277f3cc0016139d0d6889f19",
+      "bytes": 5615,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c3c0.c": {
+      "sha256": "8347367bca848fec5ee7245204d12660a0b71133bd1f7cf90793f0e7559fbd00",
+      "bytes": 13186,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/0049c3c0.json": {
+      "sha256": "98aebe38250bc2255d76d521a7084b47aa7dd41cce7d773cc6d15ef1c871b6d7",
+      "bytes": 66026,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/004a2a40.c": {
+      "sha256": "3c630f2015fd08ac1ca76e6a889a7c7dc7eb5b222362596d3bdaad7ba5d2e5db",
+      "bytes": 1756,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/004a2a40.json": {
+      "sha256": "537f7a9398b2b33ea93c7cf5b1f5d7f7921a0dc598160fea7f26e2adc6a685a2",
+      "bytes": 4909,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/004b61a0.c": {
+      "sha256": "c8ade82fbb3dcbfaee348731f64f43455626ecd5292e68b0aa696cd3be485bde",
+      "bytes": 440,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/004b61a0.json": {
+      "sha256": "0c95d36b98ce9badc45620e7edbe4229d7ef810ca6624d8ccb01eed8f1701c46",
+      "bytes": 2709,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/004b6280.c": {
+      "sha256": "59462d322c5f612b15f365fc8e158bd011f12426c956adec6efad15ee91c0647",
+      "bytes": 965,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/controls-root/004b6280.json": {
+      "sha256": "80263b3d52436e63519602f18a7ee859f483d7d63bd42145853965ed8c830b19",
+      "bytes": 7453,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/0045ed10.c": {
+      "sha256": "de504559d5129a25a156497dd578f800a080185f0713e640577c52f19ca54fab",
+      "bytes": 2473,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/0045ed10.json": {
+      "sha256": "6982a20bddabff0ca375c2bee6817a449bb59031f08407ea7800a9527eefeeb9",
+      "bytes": 8790,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a5630.c": {
+      "sha256": "0cef52c5e7f742c02ca0f7dd88751e654767a42a7eec35b700b47a528d3ccaad",
+      "bytes": 613,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a5630.json": {
+      "sha256": "25e7732bf14ffd2eea8018e8facf23dfa912f1543539033861013d10110cb95f",
+      "bytes": 2721,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a7050.c": {
+      "sha256": "d320db63ab3c07896c343029d23b9357932332a16b0f6a379ea2203f08770711",
+      "bytes": 1939,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a7050.json": {
+      "sha256": "27487ea903d507126950479349222432cbc70b9889cdafa694672043e9e49396",
+      "bytes": 4672,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a7a70.c": {
+      "sha256": "f01e5487c8bf1a413fad8feb155af632fa72e9e267fdf360461f1d597314e03f",
+      "bytes": 200,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a7a70.json": {
+      "sha256": "7d9f88b6643cae518fe701c3bde779155ba05b1aeaef015cd4d3036ed459b85d",
+      "bytes": 901,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a7c60.c": {
+      "sha256": "170f65314126f074bec716246649701d5e88a954ee66081fa82b4b6652ea69bc",
+      "bytes": 2930,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a7c60.json": {
+      "sha256": "703e9590c64abc30cf6b79be33e047d6c44c16093f8175013807f26b6a600396",
+      "bytes": 7192,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a7f50.c": {
+      "sha256": "daf401706b8d856a60fa133f68213238c52537978521bd75ce7c3aee88365489",
+      "bytes": 1265,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/004a7f50.json": {
+      "sha256": "e6ba4c23aa4ef2f977a86768981d1e5c8a1d6809f00feb263dd3bcaac2aea101",
+      "bytes": 2303,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/0069e070.c": {
+      "sha256": "0b0cb56aa9794d787ff99149558bb7c7ebfa4ae8d4c941f40c11281a59bcce3a",
+      "bytes": 303,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/leaves/0069e070.json": {
+      "sha256": "a906384da56943a0e02bccc680a738f49d92438680793677f6edf9609d76c5fa",
+      "bytes": 1528,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/master-composition.json": {
+      "sha256": "e6bc2a24689e8cd01024a24b4229f3165133e4dbb10053af8284c5ce992bb138",
+      "bytes": 721,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-hud-frame-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-hud-frame-native-run.log": {
+      "sha256": "26d454b360cb4b2e01c3b6b9f8b529ad584b85a7b8a68bf329cfb4e8f731ee11",
+      "bytes": 146,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-hud-frame.asm": {
+      "sha256": "f6ab01be2b5d560770e740542fd737f8ec980a25a600c19fcf85458d8eca9195",
+      "bytes": 14216,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-hud-status-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-hud-status-native-run.log": {
+      "sha256": "7d1eb59ac5ea9e55d0ff0b60ad5703a348395bfa499aefded7006a12b1483718",
+      "bytes": 92,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-globals-console.log": {
+      "sha256": "119631f1a5e19e6f6a4ade376002d5bbe45382c91a31567f5ecd86ff6f048651",
+      "bytes": 4868,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-grow.asm": {
+      "sha256": "2b4f43535a7e102cdaef5b0cc80002b0807c999491649312611b2c2f64899d31",
+      "bytes": 5059,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-master-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-native-run.log": {
+      "sha256": "7563a05dbef5e5f787d7ac1ec9cd85843fd546372c2aeb1eeaaeb092e5d9bd47",
+      "bytes": 133,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-network.asm": {
+      "sha256": "f2c96f32192cb845e1f1a9a64cdf0edd06b2f2b01c29766a857366fa0d46c735",
+      "bytes": 32237,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-offline.asm": {
+      "sha256": "acee28cd45e08277772e6a701d066503084e7487e565dddd5e09c2045e9cfdc2",
+      "bytes": 40783,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/scripts/ExportFunctions.java": {
+      "sha256": "8b64ff824c6d5421f29714d860e8129c277427eec922aad289af4b63ba82bbb5",
+      "bytes": 6442,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/scripts/ExportMapABI.java": {
+      "sha256": "fd31119c297e019ad5622a4b9e0c5155a72615bda8581a986505cc2e6751c6e2",
+      "bytes": 2933,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/scripts/ExportMapZone.java": {
+      "sha256": "491f8b6ad67bdacf7723d6b9f1a7d43af66c7edf4f35d023a0079d4d03dd448e",
+      "bytes": 54,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/scripts/MapGlobals.java": {
+      "sha256": "39747bbaba459ded3206266f987adb29635534308fdd4c5a7194298a15ee6ce9",
+      "bytes": 414,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/zone/004a7a20.c": {
+      "sha256": "440755249dc69c90dd5570eb17e0e5b169ba1700228ed296fa6932f83aa9a240",
+      "bytes": 720,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/zone/004a7a20.json": {
+      "sha256": "eff6fb1c6c69961041e7e9c8e04351b60fe4240b5101c35976663150ad28b8a8",
+      "bytes": 1107,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/zone/00644b80.c": {
+      "sha256": "7e8edc2d8a2a773889f5571b4aec4a87ee161bfad687dfb14e5e88c4b5c304a2",
+      "bytes": 367,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/zone/00644b80.json": {
+      "sha256": "2525e6eef3996ca94ef8d2a4a27442c6d031fc5d10f849addd91b3abf8ee3ebe",
+      "bytes": 885,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-ledger-check.log": {
+      "sha256": "82417a595a9868406a224ac928fc1ceb39932f72a57940c0481c987dd56a1076",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-ledger-render.log": {
+      "sha256": "ed8f72880b2ca417ae1e06076f6baaf69d5a7ed9d6d02ee221153e43454d2471",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-map-frame/p22-ui-map-tracker-tests.log": {
+      "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f",
+      "bytes": 126,
+      "retained": true
+    }
+  },
+  "limitations": [
+    "P22-UI remains OPEN: general HUD/modal0049C3C0, command004B79C0/projection and inventory004A3420 transfer/drag controls remain UI work, including their required positive callees.",
+    "Mandatory actual Human order/path/model producer0058CCE0/0058CAF0 is not implemented by an interface or UI straight line. Latest master still lacks matching populated typed order owner; no duplicate Human/order/World is allocated.",
+    "Conditional network team/local-team/objective18/1C/20, full Human214 speech and kind37 zone/group population remain explicit/unbound. Native positives are policy verification, not real population.",
+    "Host validation source is strictly compiled/inspected; native fixtures do not construct or execute invalid Windows actor/camera objects or a real Windows World. Composed positive runtime verification remains pending.",
+    "FRAME/RENDER/OWN application scheduling, original/Windows fixture execution, desktop/rendered-frame acceptance, merge/rebase/push and loading activation are not claimed."
+  ]
+}

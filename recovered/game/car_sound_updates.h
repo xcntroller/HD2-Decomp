@@ -35,7 +35,7 @@ public:
         if(const auto sound=sounds_.sound(slot)){
             frames_.human_sound_enabled(sound,true);
             frames_.human_sound_volume(sounds_.sound(slot),1.f); //Read-only0083BEC4=1.
-            if(!inside)frames_.object_position(sounds_.sound(slot),wheel_position);
+            if(!inside)frames_.object_position(sounds_.sound(slot),{{wheel_position[0],wheel_position[1],wheel_position[2]}});
         }
     }
     void suspension(float volume,bool audible,bool inside){ //0051B560.

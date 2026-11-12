@@ -494,6 +494,31 @@ public:
             throw std::runtime_error("Cannot project HUD actor corners through the actual world scene");
         return projected;
     }
+    Vector hud_project_world_point(Frame scene,const Vector& point){
+        if(scene!=scene_.frame())throw std::logic_error("HUD pointer requires SAME actual world scene");
+        Vector projected{};using Project=std::int32_t(WINAPI*)(Frame,const void*,void*,std::uint32_t);
+        if(scene_method<Project>(scene_.frame(),module_,0x98,0x476a0)(scene_.frame(),point.data(),projected.data(),1)<0)
+            throw std::runtime_error("Cannot project HUD pointer through actual world scene");
+        return projected;
+    }
+    std::uint32_t hud_pointer_hit_tag(Frame hud_scene,const Vector& origin,const Vector& direction){
+        //Scene1009B798+FC ->10010C20, RET40, including six trailing zeroes.
+        using Pick=Frame(WINAPI*)(Frame,const void*,const void*,std::uint32_t,void*,void*,std::uint32_t,std::uint32_t,void*,std::uint32_t);
+        const auto hit=scene_method<Pick>(hud_scene,module_,0xfc,0x10c20)(hud_scene,origin.data(),direction.data(),0x4040000,nullptr,nullptr,0,0,nullptr,0);
+        return hit?field<std::uint32_t>(hit,0xec):0;
+    }
+    std::pair<Frame,std::uint32_t> hud_inventory_hit(Frame hud_scene,const Vector& origin,const Vector& direction){ //004A39B0 uses40000, no4040000 interaction mask.
+        using Pick=Frame(WINAPI*)(Frame,const void*,const void*,std::uint32_t,void*,void*,std::uint32_t,std::uint32_t,void*,std::uint32_t);
+        const auto hit=scene_method<Pick>(hud_scene,module_,0xfc,0x10c20)(hud_scene,origin.data(),direction.data(),0x40000,nullptr,nullptr,0,0,nullptr,0);
+        return {hit,hit?field<std::uint32_t>(hit,0xec):0};
+    }
+    std::pair<Vector,Vector> hud_world_screen_ray(Frame world,std::int32_t x,std::int32_t y){
+        if(world!=scene_.frame())throw std::logic_error("HUD command ray requires SAME actual World scene");
+        std::pair<Vector,Vector> result{};
+        using Ray=std::int32_t(WINAPI*)(Frame,std::int32_t,std::int32_t,void*,void*);
+        (void)scene_method<Ray>(world,module_,0x94,0x47250)(world,x,y,result.first.data(),result.second.data()); //004BA070, RET20; original ignores status.
+        return result;
+    }
     Matrix rigid_matrix_product(const Matrix& first,const Matrix& second) {
         Matrix result{};
         using Product=Matrix*(WINAPI*)(const void*,void*,const void*);
@@ -1132,6 +1157,7 @@ public:
     }
     void hud_active_camera(Frame scene,Frame camera){call<void>(scene,0x90,camera);}
     void hud_camera_direction(Frame camera){const std::array<float,4> direction{{0,0,1,0}};call<void>(camera,0x1c,direction.data(),std::uint32_t{0});}
+    void hud_pointer_direction(Frame frame,const Vector& direction,float angle){call<void>(frame,0x1c,direction.data(),angle);}
     void hud_camera88(Frame camera,std::uint32_t value){call<void>(camera,0x88,value);}
     void hud_camera84(Frame camera,float value){call<void>(camera,0x84,value);}
     void hud_light_colour(Frame light,const std::array<float,4>& value){call<void>(light,0x84,value.data());}
@@ -1146,6 +1172,11 @@ public:
         //00496450 copies an unwritten fourth stack lane; preserve known DC.
         (void)car_rotation(frame);
         put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+    }
+    void hud_inventory_slot_opacity(Frame frame,float value){call<void>(frame,0xa8,value);} //004A2010 uses visual A8, distinct from equipment A4.
+    ResourceOwner load_item_icon_texture(const std::string& name){ //007DF650, success is EXACTLY zero.
+        Frame texture=nullptr;const auto status=graphics_.methods->load_texture(&graphics_,name.c_str(),nullptr,0,&texture);
+        ResourceOwner owner(texture,ResourceRelease{module_});if(status!=0)owner.reset();return owner;
     }
     ResourceOwner load_hud_death_texture() { //Original ignores loader result; required returned owner remains authoritative.
         Frame texture=nullptr;
@@ -1168,6 +1199,11 @@ public:
     void hud_material14(Frame material,float value){call<void>(material,0x14,value);}
     void hud_visual_a4(Frame visual,float value){call<void>(visual,0xa4,value);}
     bool hud_frame_visible(Frame frame)const{return (field<std::uint32_t>(frame,0xe0)&1u)!=0;}
+    void hud_crosshair_axis_position(Frame frame,unsigned axis,float value){ //004AA840 direct parent-position lane.
+        const auto flags=field<std::uint32_t>(frame,0xe0);if(flags&0x80u)return;
+        if(axis>1)throw std::logic_error("Invalid HUD crosshair position axis");
+        put(frame,0xb0+axis*4,value);put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);
+    }
     void hud_crosshair_name_scale(Frame frame) {
         for(unsigned axis=0;axis!=3;++axis)put(frame,0xd0+axis*4,2.f);
         //004A9740 copies an unwritten fourth stack lane; preserve known frame padding.
@@ -1201,6 +1237,9 @@ public:
             exported<Update>("?UpdateWBoundProc@I3D_visual@@AAGXXZ",0x571b0)(visual);
         }
         return field<std::array<float,8>>(visual,0x170);
+    }
+    const void* hud_text_world_bounds_borrower(Frame visual){ //004BA390, original pointer78 borrows actual visual170 until HUD scene retirement.
+        (void)hud_text_world_bounds(visual);return reinterpret_cast<const unsigned char*>(visual)+0x170;
     }
     Frame hud_find(Frame scene,const char* name,std::uint32_t mask) {return call<Frame>(scene,0x7c,name,mask);}
     Frame hud_first_texture(Frame visual) { //0049B730/0049B620 follow actual LOD0+5C first group.
@@ -1382,6 +1421,8 @@ public:
         using Active=void(WINAPI*)(Frame,Frame);
         scene_method<Active>(scene_.frame(),module_,0x90,0x471a0)(scene_.frame(),camera);
     }
+    float game_camera_fov_value(Frame camera){return field<float>(camera,0x120);} //00465E80.
+    float game_camera_parameter78_value(Frame camera){return field<float>(camera,0x12c);} //00465E30.
     void game_camera_fov(Frame camera,float value) {
         using Fov=void(WINAPI*)(Frame,float);
         scene_method<Fov>(camera,module_,0x74,0x09e30)(camera,value);

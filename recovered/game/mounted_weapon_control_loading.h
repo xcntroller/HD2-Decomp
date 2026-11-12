@@ -52,7 +52,7 @@ public:
         if(control_.flag104)throw std::logic_error("Retire actual StaticWeapon control before reinitializing");
         if(!model||!pivot)return false;
         model_=model;control_.flag104=true;failed_=false;control_occupant_=nullptr;
-        auto& c=control_;c.fieldc8=index;c.field13c=c.field140=c.field144=c.field14c=0;
+        auto& c=control_;c.fielde0=c.fielde4=0;c.fieldc8=index;c.field13c=c.field140=c.field144=c.field14c=0;
         root_=frames_.actor_parent(pivot);
         if(!root_||frames_.actor_short_name(root_).compare(0,6,indexed("HORT%02u",index))!=0)root_=pivot;
         view_=frames_.actor_find(model,indexed("VIEW%02u",index).c_str(),0x10001);

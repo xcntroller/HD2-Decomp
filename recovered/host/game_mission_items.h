@@ -57,10 +57,15 @@ public:
         if(!owner||&owner->module!=this)throw std::runtime_error("Item belongs to a different native module");
         return owner->value.item();
     }
+    Native& runtime_item_identity(const void* identity){ //Read-only UI loan of SAME kind20 registry, membership BEFORE dereference.
+        for(auto* entry:tracked_){auto& item=runtime_item(entry);if(&item==identity)return item;}
+        throw std::logic_error("Map item borrower is absent from actual Items owner");
+    }
     std::uint32_t human_entry_alignment(Entry entry){return runtime_item(entry).definition().fields38[3];} //005A84F0 descriptor44.
     const auto* scuba_parts(const frontend::PreMissionItem& definition) {
         return models_.scuba_parts(definition); //230 borrows the SAME module's definition231 cache.
     }
+    auto item_icon(const frontend::PreMissionItem& definition){return models_.item_icon(definition);}
     auto first_person_model(const frontend::PreMissionItem& definition) {return models_.first_person_model(definition);}
     auto first_person_magazine(const frontend::PreMissionItem& definition) const {return models_.first_person_magazine(definition);}
     void register_loaded_item(Entry entry) {if(entry)registered_.push_back(entry);} //007DC6E0 appends, no deduplication.
@@ -159,6 +164,12 @@ public:
     const std::vector<Placed>& placed_items() const {return placed_;}
     void consume_placed_items() noexcept {placed_.clear();} //00477660 calls after its actual actor/effect consumers.
     const std::vector<Entry>& registered_items() const {return registered_;}
+    //Source lifetime guard for actual UI borrowers; no second item owner or
+    //virtual game operation. UI detaches before module/World retirement.
+    using UiRetirement=void(*)(void*,Entry)noexcept;
+    void check_ui_retirement_binding()const{if(ui_retirement_owner_)throw std::logic_error("Items already has its actual UI retirement borrower");}
+    void bind_ui_retirement(void* owner,UiRetirement receiver){check_ui_retirement_binding();if(!owner||!receiver)throw std::invalid_argument("Items UI retirement requires owner/receiver");ui_retirement_owner_=owner;ui_retirement_=receiver;}
+    void unbind_ui_retirement(void* owner)noexcept{if(ui_retirement_owner_==owner){ui_retirement_=nullptr;ui_retirement_owner_=nullptr;}}
     bool equipment_notifications_enabled()const{return enabled_;} //Actual module7E4, shared with record-loading guard.
     bool dynamic_item_server_policy() const {return consumers_.dynamic_item_server_policy();}
     float dynamic_item_random_unit() {return consumers_.dynamic_item_random_unit();}
@@ -186,6 +197,7 @@ private:
         GameMissionItems& module;RuntimeEntry value;
     };
     void forget(Entry entry) noexcept {
+        if(ui_retirement_)ui_retirement_(ui_retirement_owner_,entry); //Before actual RuntimeItem/pack contents destruction.
         const auto remove=[&](auto& list) {
             for(auto i=list.size();i!=0;)if(list[--i]==entry) {list[i]=list.back();list.pop_back();}
         };
@@ -198,6 +210,7 @@ private:
     const frontend::PreMissionItemCatalogue& catalogue_;ChunkFiles& files_;FrameClockPlatform& clock_;
     game::SessionTimeWord game_word28_;Consumers& consumers_;
     std::vector<Entry> tracked_,registered_;
+    void* ui_retirement_owner_=nullptr;UiRetirement ui_retirement_=nullptr;
     std::vector<Placed> placed_;
     std::int32_t current_identity_=-1;
     std::deque<game::PendingItemIdentity> pending_identities_;

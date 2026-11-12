@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "31b01f9",
+  "latest_inspected_origin_master": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004abe60",
+    "004ad350",
+    "004ad380",
+    "004ad440"
+  ],
+  "ledger_added_partial_client": 4,
+  "complete_promotions": 0,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan 100 repeated injury/pointer lifetimes; engine/movie endpoints are doubles",
+    "actual_host_i386": "PASS strict concrete GameUiPresentation positive method instantiation",
+    "application": "PASS i386 link; never executed",
+    "tracker": "PASS render/check and27 existing tests"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-frame-audit.cpp": {
+      "sha256": "823d1c64a224c4cbd211b6ee0fcc35b07a65f07268cb79946f0287ac8443c0ad",
+      "bytes": 3610,
+      "retained": false
+    },
+    "/tmp/p22-ui-frame-audit": {
+      "sha256": "c7b71049cb5cd35d2d4f4e71cb395435a2f16c9fb957c2ff91c9b16939abcbc3",
+      "bytes": 464088,
+      "retained": false
+    },
+    "/tmp/p22-ui-next-i386.cpp": {
+      "sha256": "84f840fd43d6a8de16eee1e9de8a3185557d86b2a2ae2a487124a854ba4e499b",
+      "bytes": 434,
+      "retained": false
+    }
+  },
+  "evidence_directory": "analysis/work/p22-ui-20261111",
+  "remaining": "Complete ordinary0049BD50 panel/selection/input receivers,00491660 FPV and00491C60 completion,004B6720 command geometry; frame/render/application binding remains separate.",
+  "ledger_complete": 34,
+  "ledger_partial": 2375
+}

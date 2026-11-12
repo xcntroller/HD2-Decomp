@@ -5,13 +5,14 @@
 #include "game/human_hud_loading.h"
 #include "game/human_inventory_lookup.h"
 #include "game/first_person_human_items.h"
+#include "game/human_speech_loading.h"
 #include <memory>
 #include <utility>
 namespace hd2::game {
 //004B30E0/004B3840/004B3E70: one of six HUD soldier panels. Main HUD binds
 //indices5..0, sharing the SAME first/second artwork tables. Actual Human/photo/
-//caption/initial command binding is supplied; later health/command simulation
-//remains a separate receiver, not a successful loading replacement.
+//caption and actual offline frame presentation use SAME Human/Items/metrics.
+//The UI query receiver must borrow the existing per-Human lifetime and Sight owners.
 template<class Frames,class Factory>
 class HudSoldierLoading {
 public:
@@ -76,14 +77,21 @@ public:
     }
     template<class Human,class Items>void update_name(Human& human,Items& items,std::uint32_t mode) { //004B3890.
         require_human(human);
-        if((mode&7u)!=7u){
-            bind_network_hud_human_name(human,items,factory_,*text_,field8c_);return;
-        }
-        field8c_=offline_human_hud_rank(human);const auto name=offline_human_hud_name(frames_,human);
-        auto value=name;
-        if(human.properties.field19c!=4&&human.properties.field19c!=5){
+        field8c_=factory_.hud_human_rank(human,mode);std::string value;
+        if((mode&7u)==7u){
+            const auto name=offline_human_hud_name(frames_,human);value=name;
+            if(human.properties.field19c!=4&&human.properties.field19c!=5){
             if(field8c_>=8)throw std::runtime_error("HUD Human rank exceeds actual eight localization rows");
             const auto rank=factory_.hud_localized(0x27a6u+field8c_);value=(rank?*rank:std::string{})+" "+name;
+            }
+        }else{
+            bool first=false;
+            if(factory_.hud_style224()==0){ //Human74+10 is pointer-array index4, CLOTHING, not the hand.
+                FirstPersonHumanItems<Items> holders(items);const auto clothing=holders.clothing(human);
+                first=clothing&&items.runtime_item(clothing).definition().fields38[3]==0;
+            }else first=factory_.hud_human_team(human,mode)==1;
+            const auto rank=factory_.hud_localized(field8c_+(first?0x27a6u:0x27b0u));
+            value=(rank?*rank:std::string{})+" "+factory_.hud_human_short_name(human,mode);
         }
         text_->text.set(std::make_shared<const std::string>(std::move(value)),0x3a,0);
     }
@@ -110,6 +118,70 @@ public:
         }
         material_texture(art_.mind_material,art_.universal_texture);
     }
+    template<class Human,class Items,class Queries>void update(Human& human,Items& items,Queries& queries,std::uint32_t mode,std::int32_t local_player){ //004B3EC0.
+        require_human(human);queries.validate_human(human);
+        if(field8c_!=factory_.hud_human_rank(human,mode))update_name(human,items,mode);
+        if(human.activation.flag178){
+            const bool special=find_human_inventory_definition(human,items,0x16)||find_human_inventory_definition(human,items,7)||find_human_inventory_definition(human,items,0x104);
+            show(art_.silence,special);
+            FirstPersonHumanItems<Items> held(items);
+            if(held.weapon(human)){
+                const auto entry=held.weapon(human);if(!entry)throw std::logic_error("Soldier weapon vanished between original holder queries");
+                text_->text.set(factory_.hud_localized(items.runtime_item(entry).definition().caption),0x3b,1);
+            }else text_->text.set(std::make_shared<const std::string>(),0x3b,1);
+        }
+        if(!flagb0_)return; //Dirty-inventory/name updates still run after the dead latch closes.
+        if((mode&7u)!=7u&&art_.vip)show(art_.vip,static_cast<std::uint32_t>(human.base().id10())==queries.selected_objective_identity());
+        const auto health=human_hud_health_percent(human);const float stored_health=static_cast<float>(health);
+        if(static_cast<long double>(health)!=field7c_){
+            field7c_=stored_health;
+            if(health<=0){
+                set_selected(0);show(art_.player,false);show(art_.ai,false);show(art_.ear,false);
+                set_bar(art_.health_bar,1.f);set_bar(art_.stamina_bar,1.f);set_bar(art_.disguise_bar,1.f);
+                material_texture(art_.photo_material,death_.get());
+                frames_.hud_material_vector(art_.photo_material,4,{{1,1,1,0}});frames_.update_scene_object(art_.photo);
+                visibility_text_->text.clear();if((mode&7u)==7u||queries.remote_ai_enabled())publish_visibility(human,queries);
+                update_first_mode(human,mode,local_player);update_second_mode(human,mode,local_player);
+                flagb0_=false;return;
+            }
+            const bool cross=health<50;
+            if(frames_.hud_frame_visible(art_.health_cross)!=cross)show(art_.health_cross,cross);
+            if(frames_.hud_frame_visible(art_.health_zero)==cross)show(art_.health_zero,!cross);
+            frames_.update_scene_object(art_.health_cross);frames_.update_scene_object(art_.health_zero);
+            const auto amount=1.L-static_cast<long double>(field7c_)*.01f;
+            set_bar(art_.health_bar,static_cast<float>(amount>.95f?.95f:amount));
+        }
+        const auto stamina=human_hud_stamina_percent(human);
+        if(fields80_!=static_cast<std::uint32_t>(stamina)){
+            fields80_=static_cast<std::uint32_t>(stamina);set_bar(art_.stamina_bar,static_cast<float>(1.L-static_cast<long double>(stamina)*.01f));
+        }
+        if((mode&7u)==7u){const auto disguise=human_speech_readiness(human); //005A6280, offline ONLY.
+            if(fields84_!=static_cast<std::uint32_t>(disguise)){
+                fields84_=static_cast<std::uint32_t>(disguise);set_bar(art_.disguise_bar,static_cast<float>(1.L-static_cast<long double>(disguise)*.01f));
+            }
+        }
+        const auto& colour=human.activation.colour1e0;
+        if(colour_a0_[0]!=colour[0]||colour_a0_[1]!=colour[1]||colour_a0_[2]!=colour[2]){
+            frames_.hud_material_vector(art_.photo_material,4,colour);
+            colour_a0_=human.activation.colour1e0;frames_.update_scene_object(art_.photo);
+        }
+        update_first_mode(human,mode,local_player);update_second_mode(human,mode,local_player);
+        if((mode&7u)==7u||queries.remote_ai_enabled()){visibility_text_->text.clear();publish_visibility(human,queries);}
+        if((mode&7u)!=7u)return; //Current-player/AI/ear/distance tail is offline ONLY.
+        auto* current=queries.current_player();
+        show(art_.player,current==&human);show(art_.ai,!human_camera_is_player(human,mode,local_player));
+        if(queries.has_orders(human)){show(art_.ear,true);return;}
+        if(!current)throw std::logic_error("Soldier ear-distance publication requires actual current Human");
+        queries.validate_human(*current);
+        const auto soldier=frames_.actor_world_matrix(human.base().frame());
+        const auto player=frames_.actor_world_matrix(current->base().frame());
+        const auto x=static_cast<long double>(player[12])-soldier[12],y=static_cast<long double>(player[13])-soldier[13],z=static_cast<long double>(player[14])-soldier[14];
+        show(art_.ear,(z*z+y*y)+x*x<1600.f); //Strict40 metres; no invented HUD distance cache.
+    }
+    void refresh_geometry(){ //004B47A0, primary then visibility text on SAME scene/artwork.
+        if(!text_||!visibility_text_)throw std::logic_error("Soldier geometry requires actual text owners");
+        bind_hud_text_geometry(frames_,*text_,scene_,art_.root);bind_hud_text_geometry(frames_,*visibility_text_,scene_,art_.visibility);
+    }
     void close()noexcept { //004B3840: death FIRST, then primary/visibility text; no preceding record clear.
         death_.reset();text_.reset();visibility_text_.reset();art_.root=Frame{};
     }
@@ -131,6 +203,12 @@ public:
     float field98()const{return field98_;}const auto& colour_a0()const{return colour_a0_;}std::uint32_t field8c()const{return field8c_;}
     const void* human_borrower()const{return human74_;}std::int32_t first_mode()const{return first_mode_;}std::int32_t second_mode()const{return second_mode_;}
 private:
+    void set_bar(Frame frame,float value){require(frame);frames_.hud_info_scale(frame,1.f,1.f,value);frames_.update_scene_object(frame);}
+    template<class Human,class Queries>void publish_visibility(Human& human,Queries& queries){
+        std::array<char,128> caption{};const auto range=static_cast<double>(queries.visibility_range(human));
+        std::snprintf(caption.data(),caption.size(),"%.0fm",range);
+        visibility_text_->text.append(std::make_shared<const std::string>(caption.data()),0x3c);
+    }
     static std::int32_t signed_word(std::uint32_t value){std::int32_t result;std::memcpy(&result,&value,4);return result;}
     template<class Human>static bool alive(const Human& human){return signed_word(human.properties.stats_ec[0])>0;}
     template<class Human>void require_human(const Human& human)const{if(human74_!=&human||!text_)throw std::logic_error("HUD soldier update requires its SAME bound Human/text");}

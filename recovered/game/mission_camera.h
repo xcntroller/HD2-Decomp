@@ -189,6 +189,8 @@ public:
         apply_spawn_camera_command(state_,services_,[this]{return frame();},command,parameter_present,parameter,mode,
             [&]{refresh(*this);},std::forward<Random>(random));
     }
+    float fov(){const auto camera=frame();if(!camera)throw std::logic_error("FPV interpolation requires actual mission camera240");return services_.game_camera_fov_value(camera);}
+    float parameter78(){const auto camera=frame();if(!camera)throw std::logic_error("FPV interpolation requires actual mission camera240");return services_.game_camera_parameter78_value(camera);}
     bool set_fov(float value) { //00465E50, virtual50.
         const auto camera=frame();if(!camera)return false;
         services_.game_camera_fov(camera,value);services_.update_scene_object(camera);return true;

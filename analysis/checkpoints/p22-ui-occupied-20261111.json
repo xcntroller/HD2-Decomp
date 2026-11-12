@@ -1,0 +1,239 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "19f049b3c28b7d5229acf14db8d54a766a35ac97",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "83e77da320a256e64dd517e33154efdeeb566753",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "application_loading_enabled": false,
+  "added_entries": [
+    "0045dac0",
+    "00604a10",
+    "00604e30",
+    "004c57b0",
+    "004c6550",
+    "004c6d90",
+    "004c7670"
+  ],
+  "updated_entries": [
+    "004a9530",
+    "005a9830",
+    "00491fd0",
+    "0049d530"
+  ],
+  "ledger_added_partial_client": 7,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2618,
+  "checks": {
+    "native": "PASS100 occupied HUD/FPV/progress lifetimes: real HudHandsLoading/TextObject/ActorBase/ActorStorageOwner, presentation readers and actual FirstPersonPlayersLoading binding methods; engine/item/roster/occupied Actor dispatch endpoints doubled. Controlled timer suppression, A0-before9C, ordinary fallthrough, shoulder/holsters, Car/static visibility, signed amount/progress, stale actors/items, unbound/repeated bindings, visibility errors and texture/font failure cleanup. ASan/UBSan/LSan clean.",
+    "actual_host_i386": "PASS strict i386 object code generation of complete concrete same-World SeatPresentation vtable and all8 receiver families, active branch and latest-master source composition; no Windows execution.",
+    "application_link": "PASS sequential existing application-launch strict i386 compile/link; not executed.",
+    "latest_master_source_compatibility": "PASS66-file temporary three-way source composition from31b01f9 onto83e77da, with5 documented conflicts. No active merge/rebase.",
+    "tracker": "PASS exact frozen fingerprints/full inventories/unique statuses/evidence/README and27 existing tracker tests."
+  },
+  "temporary_master_composition": {
+    "master": "83e77da320a256e64dd517e33154efdeeb566753",
+    "base": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+    "files": 66,
+    "conflicts": [
+      "recovered/game/car_loading_activation.h",
+      "recovered/game/hud_injury_movies_loading.h",
+      "recovered/host/game_mesh_movie.h",
+      "recovered/game/static_weapon_actor.h",
+      "recovered/game/static_weapon_loading.h"
+    ],
+    "resolutions": {
+      "existing_three": "Same previous verified Car fuel getter plus master seat services; both mesh movie methods; UI full injury show/update used by master damage wrappers. These three files are unchanged between447e073 and83e77da.",
+      "static_weapon_actor": "Preserve master actual StaticWeapon actor; transplant E0/E4 into its MOVED mounted_weapon_control.h, not a duplicate struct.",
+      "static_weapon_loading": "Preserve master shared control_ lifetime; implement presentation_failed through control_.failed(), presentation_view through control_.view(). Move E0/E4 zero-on-initialize to actual MountedWeaponControlLoading."
+    },
+    "verified_source_directory": "/tmp/p22-ui-master-83e77da-occupied"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-occupied-audit.cpp": {
+      "sha256": "2151f1891e3b7342e91edf66ecf991a8e91586edc37f72e60716d5dac293e071",
+      "bytes": 15376,
+      "retained": false
+    },
+    "/tmp/p22-ui-occupied-audit": {
+      "sha256": "c05fd2c69a89cbbe039ce9369dad28ae65a9914d786429969043c825c8fe3634",
+      "bytes": 2733432,
+      "retained": false
+    },
+    "/tmp/p22-ui-occupied-concrete.cpp": {
+      "sha256": "4a973abd7292f6fb743afc354d852222ceccb7ff68a100b209f6b524208def99",
+      "bytes": 952,
+      "retained": false
+    },
+    "/tmp/p22-ui-occupied-concrete.o": {
+      "sha256": "8c670682e1b318793f6dee966704b1c18b4733e7b0e37ed29c77232049989d8a",
+      "bytes": 566223,
+      "retained": false
+    },
+    "/tmp/p22-ui-occupied-compat.o": {
+      "sha256": "3625001de0b6a3f05742409764ed684913496f6cc7183b74f4aca04b501a0188",
+      "bytes": 575708,
+      "retained": false
+    },
+    "/tmp/p22-ui-occupied-compat.py": {
+      "sha256": "dd1705f70e3ca7ccba2c1dcfb7dd9fcd444c2a46c8f2bea300db1cfbf4cf16a8",
+      "bytes": 1507,
+      "retained": false
+    },
+    "/tmp/p22-ui-occupied-compat-resolve.py": {
+      "sha256": "e46eb21f6198a861982015a01f3ac232cc8419d759edfea9f973560d8b210b38",
+      "bytes": 2069,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/car-vtable.txt": {
+      "sha256": "6d9e5bb8f16d3915dc2ab80821926247cd161d7e51f75de2a53f9b034909dfc3",
+      "bytes": 940,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/common-ammunition.asm": {
+      "sha256": "93d3cf3a5f69fff50ed88ba9908762202be08ebbf137ce8200f49fdb5cb5f638",
+      "bytes": 3213,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/compat-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/mounted-progress.asm": {
+      "sha256": "bf573f40bad91187c85e6a8c268829fab060fb74425b855d60ec2499c8895c52",
+      "bytes": 933,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/p22-ui-occupied-application.log": {
+      "sha256": "e17c02752cb69d4428e5486d2d5c6c32598b897b314db9a1993976e0b22be675",
+      "bytes": 599,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/p22-ui-occupied-audit-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/p22-ui-occupied-audit-run.log": {
+      "sha256": "2ae56b84186fb933e4cd8e00d1612b1094b12698ccebd1eb23c2fa10dc41822f",
+      "bytes": 135,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/p22-ui-occupied-car.asm": {
+      "sha256": "bc1d27c9acfbe2d21d7bed0db9588a89d32aafb194b357cd2872f70bd2eb8f27",
+      "bytes": 14095,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/p22-ui-occupied-compat.log": {
+      "sha256": "f17e8dca27443ba4272a71140a735012c1685b182a246a8cf2e16ba1279b4e39",
+      "bytes": 3556,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/p22-ui-occupied-hands.asm": {
+      "sha256": "7fe8a1080323553bd8acef615c637130cc80c540c526e2a801e7bb41fd1c2ac3",
+      "bytes": 9219,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/receivers/004c1ad0.c": {
+      "sha256": "c567624196c83b1543884975535a109482de4b3fd5e4913f004e3f857381842f",
+      "bytes": 10620,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/receivers/004c57b0.c": {
+      "sha256": "5bc5e473d2e9cf632f4077985adba019f92ed7e6f90d30352abc838a09d14e4a",
+      "bytes": 174,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/receivers/004c57b0.json": {
+      "sha256": "769c4f80abfe07e3008d2c9edddc08d90fcba14e712c63170d954f10cb7f90aa",
+      "bytes": 911,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/receivers/004c6550.c": {
+      "sha256": "36dab8f3346cefb335c5240e4b8fc3a7588ea608a9c1c390b19ffdc4a9ae7963",
+      "bytes": 125,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/receivers/004c6550.json": {
+      "sha256": "c5f2add1836f023ebd087bfaf0d553c3549ee133c3c42725061a7af202a55100",
+      "bytes": 869,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/receivers/005a9830.c": {
+      "sha256": "3f7bb8a07437b0d975f2dd1b3847168fbeddd1859f57eb7e62cc250cd7b5390c",
+      "bytes": 981,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/receivers/005a9830.json": {
+      "sha256": "2758ee9d7cede55bacd4babe16703458fb43414a825c133b74fd993aeca94a0f",
+      "bytes": 3814,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/receivers/00604e30.c": {
+      "sha256": "dcdde82b87458567f52044528b6e900268c9c272d204881ac3905999cd65db9b",
+      "bytes": 465,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/receivers/00604e30.json": {
+      "sha256": "7e1eb5dc55dbbf9703e0c39f6007e378a9b42d9fcd34f8239074427d34f2389c",
+      "bytes": 1793,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/static-seat-flags.asm": {
+      "sha256": "5463f783925c0fa71393abaf753a1b52edf1e69d4bcbcbfa702660c8aef37330",
+      "bytes": 2598,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/static-vtable.txt": {
+      "sha256": "e102be9104312fd0a183f9dfb5d1da0f71f8e1caa0f520be4456a92988a09187",
+      "bytes": 940,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/audit-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/audit-run.log": {
+      "sha256": "2ae56b84186fb933e4cd8e00d1612b1094b12698ccebd1eb23c2fa10dc41822f",
+      "bytes": 135,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/tracker-render.log": {
+      "sha256": "88c9a3e618303bddfac9f24bbe12465b8399627905193d04dc358c4eae0a6d02",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/tracker-check.log": {
+      "sha256": "9ddd9d4a50c5d961771e61346938568b47c664d4458f8043d3725cb8717d9260",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/tracker-tests.log": {
+      "sha256": "32123c06afaa22405df0ae455b2a9957a73a7a30732623e89bdb1eee75d7e097",
+      "bytes": 126,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-occupied/application.log": {
+      "sha256": "e17c02752cb69d4428e5486d2d5c6c32598b897b314db9a1993976e0b22be675",
+      "bytes": 599,
+      "retained": true
+    }
+  },
+  "remaining": [
+    "Active branch has opaque Car control tokens; positive mounted Car readouts require actual committed master control owners and the recorded minimal shared-field/getter integration. Full real master getters instantiate in the verified temporary composition.",
+    "Human174 remains raw with no typed publisher; target UI now consumes the existing explicit typed producer. Latest master supplies real sight surface material query; no duplicate implementation. Actor20/34 owners are absent from current/master factories.",
+    "Actual reload E0/E4 publication, Human order/path/model/mutation, nonoffline soldier UI completion, console/chat execution and populated composition verification remain open. FRAME/RENDER/OWN remain external."
+  ]
+}

@@ -109,7 +109,7 @@ public:
     void inventory_changed(){ //0049FBF0; hidden inventory is a genuine RET, not a successful refresh substitute.
         const auto root=inventory_.root();if(!root)throw std::logic_error("Inventory notification requires its actual loaded HUD root");
         if(!frames_.hud_frame_visible(root))return;
-        throw std::runtime_error("Visible inventory refresh requires actual004A49F0/004A26D0 actor/slot consumers");
+        inventory_.notify_changed(); //004A49F0→004A26D0, actual UI receiver over SAME actor/Items owners.
     }
     template<class Random>void show_human_damage(Random& random){movies_.show(true,random);} //0049F0B0, no flags gate.
     bool hide_cold_soldiers(){return hide_hud_loading_humans(frames_,hud_,soldiers_,compass_);} //0049B900 also retires populated marker amounts.
@@ -124,9 +124,11 @@ public:
     auto& artwork(){return artwork_;}auto& compass(){return compass_;}auto& soldiers(){return soldiers_;}auto& command(){return command_;}
     auto& messages(){return messages_;}auto& crosshair(){return crosshair_;}auto& hands(){return hands_;}auto& small(){return small_;}
     auto& dialogs(){return dialogs_;}auto& timers(){return timers_;}auto& inventory(){return inventory_;}auto& map(){return map_;}
+    auto& command_roll(){return command_roll_;} //SAME command590 nested dialog, not ordinary HUD roll2F00.
     auto& info(){return info_;}auto& selector(){return selector_;}auto& auxiliary(){return auxiliary_;}auto& scoreboard(){return scoreboard_;}
     void select_objective(unsigned index,std::int32_t side){objectives_.select(index,side);}
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){compass_.sound_direction(direction,kind,players_);} //0049DE80→004947E0.
+    auto& injury_movies(){return movies_;}
     auto& cursor(){return cursor_;} //FPV borrows the SAME HUD2E60 artwork/cursor owner.
     auto& objectives(){return objectives_;}
     void set_hint(bool enabled,std::uint32_t identity){small_.set_hint(enabled,identity);}

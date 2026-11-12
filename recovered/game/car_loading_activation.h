@@ -121,6 +121,7 @@ public:
     void set_fuel(float amount)override{if(!initial_)throw std::logic_error("Car fuel requires its actual physical owner");(void)initial_->set_fuel(amount);}
     CarSteeringState& steering_state()override{if(!initial_)throw std::logic_error("Car steering requires initialized source state");return initial_->steering;}
     auto& seats(){return seats_;}
+    float fuel_amount()const{if(!initial_)throw std::logic_error("Car HUD fuel requires actual initialized Car state");return initial_->fuel;} //Borrow SAME004F2670 coreF5C/actorFEC; no simulation/ownership change.
     std::uint32_t reaction_seat_flags(std::int32_t index)const override{ //004D9FC0.
         return index<0||static_cast<std::size_t>(index)>=seats_.seats().size()?0u:seats_.seats()[static_cast<std::size_t>(index)].flags;
     }
