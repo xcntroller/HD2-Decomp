@@ -2,13 +2,15 @@
 #define HD2_GAME_HUD_INFO_LOADING_H
 #include "game/hud_info_style_data.h"
 #include "game/hud_text_loading.h"
+#include "game/hud_info_presentation.h"
+#include "frontend/main_menu_state.h"
 #include <memory>
 #include <stdexcept>
 #include <vector>
 namespace hd2::game {
 //00496450/00496DC0: category1 cached ingame_info model, scene-owned after
 //publication;73 style handles in the SAME process catalogue as opening movies.
-//00496E40(false) only hides the root. Its true/population path is not exposed.
+//Frame/population services consume the actual mission/peer/input sources.
 template<class Frames,class Factory,class Styles>
 class HudInfoLoading {
 public:
@@ -63,6 +65,22 @@ public:
         for(auto& id:ids_){if(id>=0)styles_.remove(id);id=-1;}
         text_.reset(); //00496DC0 deletes text AFTER unregistering every style.
     }
+    void hide(){require(root_);frames_.object_visible(root_,false);} //00496E40(false), no positive population substitute.
+    template<class Queries>void refresh(Queries& queries){require_text();HudInfoPresentation<HudInfoLoading,Queries>(*this,queries).refresh();}
+    template<class Queries>void show(bool enabled,Queries& queries){if(enabled)refresh(queries);require(root_);frames_.object_visible(root_,enabled);} //00496E40.
+    template<class Queries>void update(std::uint32_t elapsed,Queries& queries){ //00499210, signed wrapped500ms test BEFORE visibility.
+        word140_+=elapsed;std::int32_t value;std::memcpy(&value,&word140_,4);
+        if(value>500){require(root_);if(frames_.hud_frame_visible(root_)){refresh(queries);word140_=0;}}
+    }
+    auto& help_ids(){return records_;}const auto& help_ids()const{return records_;} //Native04 is localization IDs, not frame pointers.
+    void clear_text(){require_text();text_->text.clear();}
+    void append_shared(std::shared_ptr<const std::string> value,std::uint32_t offset){require_text();text_->text.append(std::move(value),style(offset));}
+    void append_string(const std::string& value,std::uint32_t offset){append_shared(std::make_shared<const std::string>(value),offset);}
+    void append_localized(std::uint32_t id,std::uint32_t offset){
+        require_text();const auto handle=style(offset);
+        text_->text.set_localized(id,handle,-1,[&](std::uint32_t caption){return factory_.hud_localized(caption);},
+            [](const auto& format){return std::make_shared<const std::string>(frontend::main_version_text(format?*format:std::string{}));});
+    }
     void draw(){ //00496E00 changes Graph74/78 state4, not I3D driver state4.
         const auto previous=factory_.hud_graphics_state(4);factory_.hud_graphics_state(4,4);
         try{if(text_)factory_.hud_draw_text(*text_);}
@@ -74,9 +92,11 @@ public:
     const auto& style_ids()const{return ids_;}std::int32_t kind()const{return kind_;}
     std::uint32_t word140()const{return word140_;}
 private:
+    void require_text()const{if(!text_)throw std::logic_error("HUD info operation before actual text initialization");}
+    std::uint32_t style(std::uint32_t offset)const{if(offset<0x1c||offset>0x13c||(offset&3))throw std::out_of_range("HUD info style offset");const auto id=ids_.at((offset-0x1c)/4);if(id<0)throw std::logic_error("HUD info style has been retired");return static_cast<std::uint32_t>(id);}
     static void require(Frame frame){if(!frame)throw std::runtime_error("Required HUD info artwork is missing");}
     Frames& frames_;Factory& factory_;Styles& styles_;
-    Frame root_{};std::vector<Frame> records_;std::unique_ptr<Text> text_;
+    Frame root_{};std::vector<std::uint32_t> records_;std::unique_ptr<Text> text_;
     std::array<std::int32_t,73> ids_;std::int32_t kind_=0;std::uint32_t word140_=0;bool bound_=false;
 };
 } //namespace hd2::game

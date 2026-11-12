@@ -7,6 +7,15 @@
 #include "frontend/control_frame.h"
 #include "game/session_local_packets.h"
 #include "game/session_application_commands.h"
+#include "game/session_received_application.h"
+#include "game/session_peer_records.h"
+#include "game/session_human_inputs.h"
+#include "game/session_entry_packets.h"
+#include "game/session_entry_inputs.h"
+#include "game/session_entry_records.h"
+#include "game/human_peer_removal.h"
+#include "game/network_mission_metadata.h"
+#include "game/session_owner.h"
 #include "host/application_command_lock.h"
 #include "host/game_console.h"
 #include "game/session_packet_world.h"
@@ -92,6 +101,7 @@ class StartupSession {
 public:
     using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>,StartupSession>;
     using PlayerHuman=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
+    using HumanInputs=game::SessionHumanInputs<StartupSession,game::HumanInputCallbacks>;
     std::optional<frontend::MultiplayerLaunchRequest>& multiplayer_request() { return multiplayer_request_; }
     StartupSession(HMODULE engine, HMODULE rw_data, HMODULE joy,const std::string& selected_language={})
         : engine_(engine), files_(rw_data), text_files_(rw_data), directory_(platform_), language_(platform_),
@@ -105,7 +115,8 @@ public:
           sound_backend_(engine, game_views_.sound), sound_catalog_(sound_backend_),
           dubbing_sound_(sound_backend_,files_),
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
-          control_frame_(control_data_, gate_, *this,broadcast_packets_),
+          session_voice_(control_data_.wrapper0c,settings_backend_),
+          human_inputs_(*this,human_input_shared_,control_data_.service14),control_frame_(control_data_, gate_, *this,broadcast_packets_),
           local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_) {
         if (!selected_language.empty()) language_.select(selected_language);
         menu_cursor_={menu_width()*.5f,menu_height()*.5f};
@@ -242,6 +253,8 @@ public:
             }
         });
         // Also reclaim partial0072E1A0 initialization/unsupported native errors.
+        errors.attempt([&]{session_voice_.retire_all();}); //Actual0C borrowed through close/Release; fallback before inputs/locks.
+        human_inputs_.retire(); //Acquired process14 fallback, before locks even when a required reset receiver failed.
         lock_services_.delete_control_critical_section(0);
         lock_services_.delete_control_critical_section(1);
         control_data_.locks5018 = 0;
@@ -313,6 +326,34 @@ public:
     GameAnimations& game_animations() { return game_animations_; }
     game::HumanSoundVariants& human_sound_variants() {return human_sound_variants_;}
     game::HumanInputShared& human_input_shared() {return human_input_shared_;}
+    std::uint64_t performance_frequency()const{
+        LARGE_INTEGER frequency{};
+        if(!QueryPerformanceFrequency(&frequency)||frequency.QuadPart<=0)throw std::runtime_error("Human input performance frequency failed");
+        return static_cast<std::uint64_t>(frequency.QuadPart);
+    }
+    std::uint64_t performance_counter()const{
+        LARGE_INTEGER counter{};if(!QueryPerformanceCounter(&counter))throw std::runtime_error("Human input performance counter failed");
+        return static_cast<std::uint64_t>(counter.QuadPart);
+    }
+    HumanInputs& game_human_inputs(){return human_inputs_;}
+    game::HumanInputCallbacks& game_human_input_callbacks(){return human_input_callbacks_;}
+    void replace_game_human_inputs(){ //00723000, SAME process14; no old-World receiver captured.
+        human_inputs_.replace([this]{return application_flags();},[this]{return local_player_identity();},
+            [this](std::int32_t identity){return packet_world_.input_default_receiver(identity,false);},
+            [this](std::int32_t identity){return packet_world_.input_default_receiver(identity,true);});
+    }
+    HumanInputs& prepare_game_human_inputs(){
+        if(!human_inputs_.present())replace_game_human_inputs(); //Cold source graph acquisition; full entry chooses native replacement explicitly.
+        if(!human_inputs_.configured())throw std::logic_error("Human process input setup has an incomplete published prefix");
+        return human_inputs_;
+    }
+    bool owns_control_input_manager(const void* owner)const noexcept{return human_inputs_.owns(owner);}
+    void clear_control_input_records(){
+        if(!human_inputs_.owns(control_data_.service14))throw std::logic_error("Control input reset lost actual process14 owner");
+        human_inputs_.clear();
+    }
+    void retire_control_input_manager()noexcept{human_inputs_.retire();}
+    void reset_game_entry_records(){game::reset_session_entry_records(control_data_,*this);}
     const game::HumanMorphTables& human_morph_tables() {human_morph_tables_.load(files_);return human_morph_tables_;}
     const float& human_animation_time_scale()const{return human_animation_time_scale_;} //0084E80C initial FLOAT1.4; original direct references are reads.
     game::HumanPhysicsGlobals& human_physics_globals(){return human_physics_globals_;}
@@ -420,6 +461,14 @@ public:
     frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
     bool human_face_quality_enabled(){return profile_settings().quality_byte(3)!=0;} //006B6740→006B33E0(3).
     frontend::GameConfiguration& game_configuration(){return data_.game_configuration();}
+    frontend::GameData& game_application_data(){return data_.game();} //SAME application+04, distinct from preparation's reloaded graph.
+    void read_game_network_map(game::SessionPacketStream& packet){frontend::replace_selected_network_map(packet,game_configuration());}
+    void write_game_network_map(game::SessionPacketStream& packet){frontend::write_selected_network_map(packet,game_configuration());}
+    void read_game_network_rules(game::SessionPacketStream& packet){frontend::read_network_rules(packet,game_configuration(),game_network_parameters());}
+    void write_game_network_rules(game::SessionPacketStream& packet){frontend::write_network_rules(packet,game_configuration(),game_network_parameters());}
+    game::SessionNetworkParameters& game_network_parameters(){return game_control_records().network_parameters;}
+    bool rebuild_game_network_mission(){return game::populate_network_mission(data_.game(),game_configuration());}
+    game::MissionRequest make_game_network_request(){return game::make_network_mission_request(data_.game(),game_configuration(),gate_,pre_mission().route());}
     frontend::SoundApplicationMode game_sound_application(){
         const auto& configuration=game_configuration();
         //006B66B0 tests this opaque native DWORD for nonzero only; it is never dereferenced.
@@ -438,6 +487,10 @@ public:
     frontend::ClientModuleRegistration& game_module_registration(std::uint32_t kind){return modules_.registration(kind);}
     input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
     const std::string& profile_name() { return data_.profile().directories.current_name; }
+    std::uint32_t selected_game_mode()const { //006B4670 owner08, SAME route; never allocate preparation from a frame callback.
+        if(!pre_mission_)throw std::logic_error("UI game-mode query requires actual preparation owner");
+        return pre_mission_->route().game_mode();
+    }
     PreMission& pre_mission() {
         if (!pre_mission_) pre_mission_=std::make_unique<PreMission>(data_.humans(),*this);
         return *pre_mission_;
@@ -662,6 +715,7 @@ public:
     std::int32_t query_input(const std::uint32_t*& output, std::uint8_t mode) const {
         return frontend::query_controller_input(input_.state().first, input_.state().second, output, mode);
     }
+    input::BindingInputState& presentation_input_bindings(){return input_.state();} //Borrow SAME process manager; no new input owner/poll.
     std::uint32_t mouse_buttons() const { return input_backend_.mouse_buttons(graphics()); }
     std::int32_t mouse_wheel() const { return input_backend_.mouse_z(graphics()); }
     std::int32_t mouse_x() const { return input_backend_.mouse_x(graphics()); }
@@ -752,6 +806,46 @@ public:
         application_commands_.enqueue({kind,first,second,target},gate_,*this);
     }
     void drain_application_commands(){application_commands_.drain(*this);}
+    std::uint32_t application_mode_flags()const{return gate_;}
+    bool has_application_game()const{return game_views_.owner()!=nullptr;}
+    std::int32_t application_local_peer()const{return local_player_identity();}
+    std::string application_localize(std::uint32_t id){return frontend::lookup_localized_text(text(),static_cast<std::int32_t>(id));}
+    std::optional<std::string> application_peer_name(std::uint32_t transport){
+        const auto slot=game::find_session_peer_transport(control_data_,*this,transport);
+        //0072EBD0 checks bounds after EC90 unlock; empty native char-array name is still nonnull.
+        return slot<control_data_.records.size()?std::optional<std::string>(control_data_.records[slot].name()):std::nullopt;
+    }
+    void prepare_application_packet_phase(bool authority){
+        if(authority&&game_configuration().field174==1)
+            throw std::runtime_error("Authority packet phase requires actual007239F0 domain service pump");
+    }
+    void dispatch_application_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority){
+        game::receive_session_application_packet(kind,packet,authority,*this);
+    }
+    void receive_application_objective(std::uint32_t identity,std::uint32_t status){packet_world_.receive_application_objective(identity,status);}
+    void receive_application_peer_departure(std::uint32_t transport){
+        if(!has_application_game())throw std::runtime_error("Departure receiver lost its actual current game");
+        packet_world_.receive_application_peer_departure(transport);
+    }
+    void receive_application_local_removal(std::uint32_t reason){packet_world_.receive_application_local_removal(reason);}
+    void receive_application_spawn_rejection(std::uint32_t reason){packet_world_.receive_application_spawn_rejection(reason);}
+    void receive_application_peer_removal(std::uint32_t reason,std::uint32_t identity){
+        struct Services{
+            StartupSession& startup;
+            std::uint32_t mode_flags(){return startup.application_flags();}
+            void queue_human_peer_removal(std::uint32_t why,std::uint32_t slot){startup.queue_application_command(17,0,why,slot);}
+            std::string human_damage_localize(std::uint32_t id){return startup.application_localize(id);}
+            void emit_human_peer_removal_log(const std::string& text){startup.emit_application_log(text);}
+        }services{*this};
+        game::remove_human_peer(control_data_,identity,reason,services);
+    }
+    void emit_application_log(const std::string& text){ //006C4B40→0069BF70, SAME application/current World owners.
+        if(application_log_to_console()){append_game_console(text);return;}
+        if(!has_application_game())return;
+        const auto message=game::format_human_game_message(text);
+        if(!(gate_&2u)){append_game_console(message);return;}
+        packet_world_.append_application_message(message);
+    }
     void bind_application_console_owner(void* owner,std::function<bool()> route,std::function<void()> close){
         if(application_console_owner_||!owner||!route||!close)throw std::logic_error("Invalid application console owner binding");
         application_console_route_=std::move(route);application_console_close_=std::move(close);application_console_owner_=owner;
@@ -780,6 +874,13 @@ public:
     void clear_retired_actor_record(std::int32_t identity){frontend::clear_retired_actor_record(control_data_,lock_services_,identity);}
     void clear_human_player_slot(std::uint32_t identity){frontend::clear_human_player_slot(control_data_,lock_services_,identity);}
     frontend::ControlStartupState& game_control_records(){return control_data_;} //PreparedSpawnPackets borrows SAME1DC storage and acquires lock0 for each access.
+    void reset_control_entry_packets(bool reset_inputs){game::reset_session_entry_packets(human_inputs_,local_packets_,reset_inputs,[this]{return gate_;});}
+    bool session_voice_enabled(){return profile_settings().bytes[0x38]!=0;}
+    void create_session_voice(bool authority){session_voice_.create(authority,control_frame_.state().server,control_frame_.state().client);}
+    void retire_session_voice(){session_voice_.retire();}
+    void begin_received_game_inputs(){game::begin_received_session_inputs(control_data_,*this);}
+    void submit_human_transmit_targets(void* object,const std::uint32_t* targets,std::uint32_t count){settings_backend_.submit_transmit_targets(object,targets,count);}
+    std::uint32_t peer_human_ticks(){return timeGetTime();} //00612A60 uses the process multimedia clock.
     std::uint32_t control_packet_clock()const {return static_cast<std::uint32_t>(std::clock());} //007E814F CRT clock(), packet timestamps.
     void delete_control_critical_section(unsigned index) noexcept {
         lock_services_.delete_control_critical_section(index);
@@ -838,7 +939,7 @@ private:
     game::HudCompassShared hud_compass_state_;
     game::HudClickSound<MenuDriver::Owner> hud_click_sound_;
     bool source_packet_path()const{
-        return packet_world_.bound()||broadcast_packets_.pending()||!local_packets_.authority_queue().empty()||!local_packets_.presentation_queue().empty();
+        return human_inputs_.present()||packet_world_.bound()||broadcast_packets_.pending()||!local_packets_.authority_queue().empty()||!local_packets_.presentation_queue().empty();
     }
     game::ConsoleVariables game_console_variables_;
     game::TextRenderControls game_text_render_controls_;
@@ -905,6 +1006,9 @@ private:
     frontend::SoundManagerData sound_data_;
     frontend::StartupModules modules_;
     frontend::ControlStartupState control_data_;
+    frontend::SessionVoice<SettingsServices> session_voice_; //Actual0C creator; settings/transmit borrow SAME native04 interface.
+    game::HumanInputCallbacks human_input_callbacks_; //Stateless native process callback labels, never a retired World borrower.
+    HumanInputs human_inputs_; //ONE canonical process14 allocation; profiles/getters and B0 handle survive World retirement.
     ControlStartupServices lock_services_;
     ApplicationCommandLock application_command_lock_;
     game::SessionApplicationCommands application_commands_; //SAME process lifetime, survives World unbind.

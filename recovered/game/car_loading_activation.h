@@ -2,6 +2,9 @@
 #define HD2_GAME_CAR_LOADING_ACTIVATION_H
 
 #include "game/car_actor_features.h"
+#include "game/car_destruction.h"
+#include "game/car_physical_reset.h"
+#include "game/car_glass_damage.h"
 #include "game/car_body_collision_controller.h"
 #include "game/car_cold_receivers.h"
 #include "game/car_loading_seats.h"
@@ -50,7 +53,8 @@ public:
     }
     void activate(bool authority)override{
         require_mode();require_geometry();
-        destroyed_=false;enemy_notified_=false;damage_target_=damage_template_=-1;
+        actor_.flag254a=false;actor_.flag2548=false;actor_.model254c.reset();damage_target_=damage_template_=-1;
+        if(authority)actor_.source24b0=-1;
         clock2584_=actor_.callback_services().car_clock();camera_setting_=services_.car_camera_setting264();
         actor_.ancillary->reset_loading(frames_,actor_.geometry->auxiliary().seats().size());
         if(authority){if(proximity_!=-1)throw std::logic_error("Car authority activation repeated before proximity retirement");
@@ -94,7 +98,7 @@ public:
             if(actor_.clock_expired())throw std::runtime_error("Car periodic event6 requires its actual event receiver");
             if(damage_target_!=-1)throw std::runtime_error("Car targeted damage requires its actual pending damage owner");
             update_car_loading_water(frames_,actor_.geometry->model(),queries_,initial_->health,actor_.occupants,actor_.callback_services(),services_.mode_flags());
-            actor_.ancillary->update_cold(elapsed);
+            actor_.ancillary->update(elapsed,[&]{actor_.callback_services().car_timed_destroy(&actor_);});
             if(initial_->health.body!=0&&initial_->solver.speed<.10000000149011612f)
                 (void)car_support_checks(initial_->health,initial_->fuel,initial_->solver.speed,initial_->wheels,initial_->body().pose().up,2);
             return; //All actual occupied control/exit/UI producers are null here.
@@ -104,7 +108,7 @@ public:
         same_epoch_=frames_.vertex_scene_epoch()==frames_.vertex_frame_epoch(actor_.geometry->model());
         update_core(elapsed);(void)finalize_core(elapsed);
         actor_.base().world_direction(initial_->body().pose().forward);actor_.base().world_position(initial_->body().pose().position); //004D38F0.
-        update_car_actor_features(frames_,actor_.geometry->model(),frames_.active_game_camera(),same_epoch_,destroyed_,services_.mode_flags(),
+        update_car_actor_features(frames_,actor_.geometry->model(),frames_.active_game_camera(),same_epoch_,actor_.flag254a,services_.mode_flags(),
             initial_->solver.substeps.flags,initial_->drive,initial_->audio);
         seats_.update(queries_,actor_.base().world_direction(),initial_->body().motion().velocity,initial_->solver.speed,
             services_.car_current_attachment(),resources_.seat_camera);
@@ -113,8 +117,11 @@ public:
         frames_.supply_model_tick(actor_.geometry->model(),elapsed); //Actual model+20,004D3110's final call.
     }
     CarActorColdState<Frames>& cold_state()override{if(!view_)throw std::logic_error("Car callback requires initialized source state");return *view_;}
+    std::uint32_t& collision_clock()override{if(!clock2584_)throw std::logic_error("Car2584 collision clock requires actual activation");return *clock2584_;}
+    void set_fuel(float amount)override{if(!initial_)throw std::logic_error("Car fuel requires its actual physical owner");(void)initial_->set_fuel(amount);}
     CarSteeringState& steering_state()override{if(!initial_)throw std::logic_error("Car steering requires initialized source state");return initial_->steering;}
     auto& seats(){return seats_;}
+    float fuel_amount()const{if(!initial_)throw std::logic_error("Car HUD fuel requires actual initialized Car state");return initial_->fuel;} //Borrow SAME004F2670 coreF5C/actorFEC; no simulation/ownership change.
     std::uint32_t reaction_seat_flags(std::int32_t index)const override{ //004D9FC0.
         return index<0||static_cast<std::size_t>(index)>=seats_.seats().size()?0u:seats_.seats()[static_cast<std::size_t>(index)].flags;
     }
@@ -135,6 +142,38 @@ public:
     void release_presented_driver_pedal()override{ //0053BE10 invokes only004F2100(0,1).
         if(!initial_||!ready_)throw std::logic_error("Presented dead driver requires actual initialized Car controls");
         auto& state=*initial_;request_car_drive_pedal(state.control_requests,state.drive,actor_.geometry->physics().scalars(),state.solver.substeps,0.f,true);
+    }
+    void destruction_controls()override{ //004DBF00/004DC780, actual core flags/control/fuel/health.
+        if(!initial_)throw std::logic_error("Car destruction requires its actual initialized control owner");
+        clear_destroyed_car_lights(initial_->finalizer.lights.flags,[this]{
+            if(actor_.callbacks->state6a4)actor_.callbacks->state6a4();
+        });
+        //004F2530(false,true) publishes these fields BEFORE0051B8F0.
+        initial_->engine_timeout=5000;initial_->health.destroyed=false;initial_->drive.engine_speed=0;
+        initial_->finalizer.engine_transition=false;initial_->drive.running=false;initial_->sounds.stop_all();
+        initial_->set_fuel(0);initial_->health.body=0;
+    }
+    void puncture_sound(std::size_t index)override{
+        if(!initial_)throw std::logic_error("Car puncture sound requires initialized actual sound/wheel owners");
+        initial_->audio.puncture(initial_->drive.audible,initial_->finalizer.inside,initial_->wheels.at(index).vectors.at(0x30));
+    }
+    void physical_reset(float speed,bool restore)override{
+        if(!initial_)throw std::logic_error("Car physical reset requires its actual initialized runtime");
+        reset_car_physics(frames_,*actor_.geometry,*initial_,speed,restore,[&](bool running){
+            //004F2530(running,true). Keep22BF/22A2 separate from2293.
+            initial_->engine_timeout=5000;initial_->health.destroyed=false;
+            if(!running){initial_->drive.engine_speed=0;initial_->finalizer.engine_transition=false;initial_->drive.running=false;initial_->sounds.stop_all();}
+            else{initial_->finalizer.engine_transition=true;initial_->drive.running=true;initial_->engine_timeout=0;}
+        },[&]{actor_.geometry->deformables().restore_cold(frames_,actor_.geometry->physics(),actor_.callbacks->empty6b4);});
+    }
+    void destroyed_meshes()override{present_destroyed_car_meshes(frames_,actor_,helper_?helper_->get():Frame{});}
+    void glass_damage(std::size_t index,const CarContactVector& direction)override{
+        if(!initial_)throw std::logic_error("Car glass damage requires actual initialized runtime");
+        auto& geometry=*actor_.geometry;
+        damage_car_glass(frames_,geometry.deformables().parts().at(index),geometry.physics().geometry().parts.at(index).scalars.get(0x20),direction,
+            [&]{const auto& parameters=geometry.physics().applied_parameters();if(!parameters)throw std::logic_error("Car glass sound name requires actual applied parameters");
+                return parameters->name(initial_->finalizer.inside?0x299:0x3c0);},
+            [&](const auto&,const char*){actor_.callbacks->hide69c(index);}); //004D4A10 genuinely ignores both extra arguments.
     }
 private:
     void require_mode()const{if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Car loading requires actual non7 network/input owners");}
@@ -162,10 +201,10 @@ private:
         initial_->mass.seat(index,0,initial_->solver.mass_changed);actor_.occupants[index]=nullptr;
         seats_.restore_camera(index);
         if(index==0){actor_.driver24ac=nullptr;
-            if(!destroyed_){ //004F2530(0,!234F), forced shutdown mutates22A0 only in this branch.
+            if(!initial_->finalizer.engine_transition){ //004F2530(0,!234F), distinct from actor254A.
                 initial_->engine_timeout=5000;initial_->health.destroyed=false;
                 initial_->drive.engine_speed=0;initial_->drive.running=false;initial_->finalizer.engine_transition=false;initial_->sounds.stop_all();
-            }else if(initial_->drive.running){
+            }else{
                 initial_->audio.stop_engine_transition(initial_->drive,initial_->finalizer.inside,initial_->finalizer.engine_transition,initial_->health.destroyed);
                 if(!initial_->drive.running){initial_->control_requests.first=initial_->control_requests.second=0;initial_->health.destroyed=false;} //004F2530 tail.
             }
@@ -202,9 +241,9 @@ private:
     //Keep their addresses stable across reactivation: other wheels can retain
     //these primitive identities even while registration is temporarily absent.
     std::optional<Initial> initial_;std::optional<CarActorColdState<Frames>> view_;std::optional<Receivers> receivers_;std::optional<BodyCollision> body_collision_;
-    Vector initial_position_{},initial_direction_{};std::uint32_t clock2584_=0,navigation_elapsed_=0;
+    Vector initial_position_{},initial_direction_{};std::optional<std::uint32_t> clock2584_;std::uint32_t navigation_elapsed_=0;
     std::int32_t proximity_=-1,damage_target_=-1,damage_template_=-1;
-    bool ready_=false,destroyed_=false,enemy_notified_=false,camera_setting_=false,same_epoch_=false;
+    bool ready_=false,camera_setting_=false,same_epoch_=false;
 };
 
 } //namespace hd2::game

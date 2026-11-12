@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_FIRST_PERSON_HUMAN_ITEMS_H
 #define HD2_GAME_FIRST_PERSON_HUMAN_ITEMS_H
 #include <cstddef>
+#include "game/human_holster_lookup.h"
 #include <stdexcept>
 #include <utility>
 namespace hd2::game {
@@ -20,6 +21,7 @@ public:
     }
     const auto& definition(Entry entry) {return items_.runtime_item(entry).definition();}
     const auto* definition_by_id(std::int32_t id)const{return items_.catalogue().item(id);}
+    template<class Human>Entry kind9_holster(Human& human,std::uint32_t now){return find_player_mode_holster(human,items_,9,now);}
     float amount(Entry entry) {return items_.runtime_item(entry).amount();}
     auto model(Entry entry) {return items_.first_person_model(definition(entry));}
     auto magazine(Entry entry) {return items_.first_person_magazine(definition(entry));}

@@ -40,5 +40,18 @@ template<class Human,class Items>std::int32_t count_human_ammunition(Human& huma
     }
     std::int32_t result;std::memcpy(&result,&count,4);return result;
 }
+//005A6D10: reverse holster stacks, FRONT definition/cooldown, sum stack counts
+//for actual kind9 only. No hand/shoulder/pack or ammunition amount filter.
+template<class Human,class Items>std::uint32_t count_human_kind9_holsters(Human& human,Items& items,std::uint32_t now){
+    auto* storage=human.base().storage();
+    if(!storage||storage->single()||!storage->slots(1))throw std::runtime_error("HUD holster count requires actual Human storage");
+    auto* holsters=storage->slots(1);std::uint32_t count=0;
+    for(auto n=holsters->occupied_stacks();n;){const auto& stack=holsters->slots().at(--n);
+        if(stack.entries.empty())throw std::runtime_error("HUD holster count encountered empty occupied stack");
+        auto& item=items.runtime_item(stack.entries.front());
+        if(item.field14<=now&&item.definition().kind()==9)count+=static_cast<std::uint32_t>(stack.entries.size());
+    }
+    return count;
+}
 } //namespace hd2::game
 #endif

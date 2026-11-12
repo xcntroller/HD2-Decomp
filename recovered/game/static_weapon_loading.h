@@ -26,6 +26,8 @@ public:
     ~StaticWeaponLoading()override{try{retire();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}}
     const auto& seats()const{return seats_;}const auto& barrels()const{return control_.barrels();}
     const Descriptor& descriptor()const{return descriptor_;}Entry weapon_item()const{return control_.weapon_item();}
+    bool presentation_failed()const{return control_.failed();} //004C57B0, SAME shared mounted owner.
+    void presentation_view(bool enabled){control_.view(enabled);} //004C6D90.
     void activate(bool authority)override { //006036D0 common-first; once guard covers derived pass only.
         actor_.base().activate_frame(authority,services_);
         if(actor_.flag159){if(!ready_)throw std::logic_error("Retire partial StaticWeapon activation before retry");return;}

@@ -155,6 +155,7 @@ public:
     }
     std::size_t identity_count() const {return identity_count_;}
     const std::vector<Actor*>& active_actors() const {return active_;}
+    const std::vector<Actor*>& identity_actors()const{return identities_;} //Actual Scene2+10/+14, including reserved slots and holes.
     template<class Visit>void visit_active(Visit&& visit) { //00476080/+18 and00476160/+14, FORWARD.
         if(visiting_||clearing_)throw std::logic_error("Nested Scene2 actor traversal");
         visiting_=true;frontend::CleanupErrors errors;
@@ -209,6 +210,7 @@ public:
         errors.rethrow();
     }
     std::uint8_t generation(std::size_t index) const {return generations_.at(index);}
+    void player_generation(std::int32_t identity,std::uint32_t value){if(identity>=0&&identity<32)generations_[static_cast<std::size_t>(identity)]=static_cast<std::uint8_t>(value);} //00475510.
     std::size_t size() const {return owners_.size();}
     std::size_t retired_size() const {return pending_.size();}
     template<class Base>Actor* actor_for_base(const Base& base) const {

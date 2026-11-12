@@ -244,8 +244,14 @@ preparation, not a standalone audit-only milestone.
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
   [Full boundary/source progress](analysis/mission-world-loading.md), [frame/render](analysis/frame-render-source.md), [module/actor frames](analysis/module-actor-frame-source.md), [projection process](analysis/human-projection-frame-process.md), [Physics frames](analysis/physics-object-frame-motion.md), [Sight frames](analysis/sight-shot-frame-source.md), [Human frames](analysis/human-frame-source.md), [shared movement](analysis/human-scene-movement.md). The containing module facade, ground collision/water/fall coordination, Human contacts, Look/posture collision and Player frame/input state are in source. Positive actor, rendering, integrity and application integration remain.
-  [P22-HUM remaining sequence](analysis/p22-hum-plan.md) tracks the active Human blocker.
-  [P22-UI implementation](analysis/p22-ui-implementation.md): presentation/text/timer leaves verified; full HUD/FPV updates remain open.
+  [P22-HUM dependency plan](analysis/p22-hum-plan.md): H2 reactions/damage/ragdoll remains OPEN. S01–S14 record completed source checkpoints through Car fuel/impulse (b132e6d); clip collision, rest surfaces and0074D510 are already source-recovered.
+
+  - [x] Record verified reaction/damage, peer/input/entry-prefix, Mine/Versions and Car source checkpoints with their limits ([S01–S14](analysis/p22-hum-plan.md#h2-source-checkpoints-already-achieved)).
+  - [ ] Finish the remaining required containing path (boundary established in [D0](analysis/p22-hum-plan.md#d0--confirm-the-remaining-containing-path-boundary)); complete reached Car backup/deformation/occupied/event/frame dependencies D1–D5.
+  - [ ] Complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
+  - [ ] Complete actual Human composition, required producer resolution and consolidated verification D10–D12; then close H2. H3–H6 and the full Human-frame H8 gate remain separately visible.
+
+  [P22-UI source-closed](analysis/p22-ui-source-closure.md), [checklist](analysis/p22-ui-plan.md): concrete same-World HUD/FPV/text/overlay/control, occupied/nonoffline presentation and console consumers verified. Human/Actor/packet producers and FRAME/RENDER/OWN execution remain external; no loading activation or desktop claim.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.

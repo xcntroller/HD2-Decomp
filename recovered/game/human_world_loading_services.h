@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
+#include "game/car_actor_authority.h"
 
 #include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
@@ -13,6 +14,7 @@
 #include "game/human_frame_feedback.h"
 #include "game/human_item_frame_execution.h"
 #include "game/human_scene_frame.h"
+#include "game/human_mine_contact.h"
 #include "game/human_state_action_completion.h"
 #include "game/human_objective_experience.h"
 #include "game/human_ai_shot_direction.h"
@@ -41,6 +43,14 @@
 #include "game/human_score_presentation.h"
 #include "game/human_death_objective.h"
 #include "game/human_peer_removal.h"
+#include "game/human_scene_retirement.h"
+#include "game/session_peer_lifetime.h"
+#include "game/session_spawn_match.h"
+#include "game/session_transmit_targets.h"
+#include "game/prepared_human_loading.h"
+#include "game/human_spawn_position.h"
+#include "game/zone_scene_actor.h"
+#include "game/session_human_spawn.h"
 #include <algorithm>
 #include <stdexcept>
 
@@ -70,6 +80,106 @@ public:
     auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
     auto& human_ai_navigation_jobs(){return dependencies().startup.human_ai_navigation_jobs();}
     std::uint32_t human_frame_random_word(){return dependencies().startup.random_word();}
+    auto* create_session_spawn_human(std::uint32_t peer,std::uint32_t identity,const HumanVector& position,const HumanVector& direction,
+            frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats,bool alternate){
+        PreparedHumanLoading<Dependencies> factory(dependencies()); //Only a borrowed adapter; all scene/input/model ownership stays in World/process.
+        return factory.create_session_human(peer,human_frame_signed_word(identity),position,direction,soldier,stats,-1,alternate);
+    }
+    auto* spawn_scene_human(std::uint32_t identity){
+        using Human=typename Dependencies::Composition::Human;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(human_frame_signed_word(identity)); //Actual00475D50 reserved-hole retirement fallback.
+        auto* human=dynamic_cast<Human*>(actor);if(actor&&!human)throw std::logic_error("Presentation spawn identity is not its actual Human");return human;
+    }
+    template<class Spawn>void spawn_authority_human(Spawn& spawn,std::uint32_t peer,frontend::PreMissionSoldier* soldier,const std::array<std::uint32_t,12>* stats){spawn_session_human(spawn,peer,soldier,stats,*this);}
+    std::int32_t first_free_spawn_identity(){return dependencies().scene.frames().first_free_player_identity();}
+    template<class Spawn>void initial_spawn_pose(Spawn& spawn,HumanVector& position,HumanVector& direction){read_prepared_spawn_pose(dependencies().scene.frames(),spawn,position,direction);}
+    bool spawn_cycle_enabled(){return dependencies().startup.game_configuration().rules228[6]!=0;}
+    void reject_session_spawn(std::uint32_t peer){dependencies().startup.queue_application_command(15,0,peer,1);}
+    auto* select_authority_spawn_point(std::uint32_t kind,std::uint32_t side){return dependencies().scene.frames().select_session_spawn(kind,side,[this]{return human_frame_random_word();});}
+    template<class Spawn>void prepare_authority_spawn_soldier(Spawn& spawn,frontend::PreMissionSoldier& soldier){
+        if(soldier.equipment[1].item==-1)(void)frontend::transfer_pre_mission_equipment(soldier,dependencies().catalogue,2,{-1,prepared_identity_word(human_frame_signed_word(spawn.properties.fielda4)),1});
+        soldier.split_spawn_stacks();
+    }
+    auto* create_authority_spawn_human(std::uint32_t peer,std::int32_t identity,const HumanVector& position,const HumanVector& direction,
+            frontend::PreMissionSoldier* soldier,const std::array<std::uint32_t,12>* stats,std::int32_t clothing,bool alternate){
+        if(!soldier)throw std::logic_error("Authority Human factory requires its actual soldier argument");
+        PreparedHumanLoading<Dependencies> factory(dependencies());return factory.create_session_human(peer,identity,position,direction,*soldier,stats,clothing,alternate);
+    }
+    template<class Spawn>auto* require_authority_spawn_human(Spawn& spawn){
+        using Human=typename Dependencies::Composition::Human;auto* human=dynamic_cast<Human*>(spawn.spawned_human);
+        if(!human)throw std::logic_error("Authority spawn lost its actual A8 Human borrower");return human;
+    }
+    void bind_authority_spawn_record(std::uint32_t peer){dependencies().spawn_records.bind_spawned_player(peer,0,"");}
+    template<class Spawn>void publish_authority_spawn(std::uint32_t peer,std::int32_t identity,Spawn& spawn,frontend::PreMissionSoldier* soldier,
+            const std::array<std::uint32_t,12>* stats,const HumanVector& position,const HumanVector& direction){dependencies().spawn_records.publish_session_spawn(peer,identity,spawn,soldier,stats,position,direction);}
+    template<class Spawn>void notify_authority_spawn_created(Spawn& spawn){PreparedHumanLoading<Dependencies> factory(dependencies());factory.spawn_model_created(spawn.base().frame());}
+    auto spawn_position_sweep(const HumanVector& start,const HumanVector& displacement,float radius){return dependencies().sweep.sweep(start,displacement,radius,0,0,false);} //007184C0, no output normal.
+    bool spawn_position_occupied(const HumanVector& position){return human_spawn_position_occupied(*this,position);}
+    std::int32_t zone_style(){return dependencies().startup.game_configuration().style224;}
+    bool zone_next_spawn_pose(std::int32_t identity,HumanVector& position,HumanVector& direction,bool cycle){
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(identity);
+        auto* zone=dynamic_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(actor);
+        if(!zone)throw std::logic_error("Team spawn requires its actual type37 zone actor");
+        return zone->next_spawn_pose(position,direction,cycle,*this);
+    }
+    template<class Zone>void publish_zone_owner(Zone& zone,std::uint32_t command){ //005ED320 through SAME module13 stream.
+        auto& packet=dependencies().broadcast_packets.begin(13,0);packet.write(static_cast<std::uint32_t>(zone.base().id10()),10);
+        packet.write(command,2);if(command==2)packet.write(zone.field98,2);packet.finish_broadcast();
+    }
+    void orient_spawn_toward_zone(HumanVector& direction,const HumanVector& position,std::uint32_t side){ //0069E0A0.
+        auto& scene=dependencies().scene.frames();std::int32_t selected=0,best=0;
+        for(std::size_t n=0;n<scene.scene_actor_identity_count();++n){
+            if(n>static_cast<std::size_t>(std::numeric_limits<std::int32_t>::max()))throw std::length_error("Zone orientation exceeds native signed identity");
+            auto* zone=dynamic_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(scene.scene_actor_command_identity(static_cast<std::int32_t>(n)));
+            if(!zone)continue;
+            const auto value=human_frame_signed_word(zone->field90);
+            if((side==0&&best<value)||(side==1&&value==0)){best=value;selected=static_cast<std::int32_t>(n);}
+        }
+        auto* zone=dynamic_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(scene.scene_actor_command_identity(selected));if(!zone)return;
+        const auto& target=zone->base().world_position();
+        for(unsigned n=0;n!=3;++n)direction[n]=static_cast<float>(static_cast<long double>(target[n])-position[n]);
+        direction[1]=0;direction=normalize_zone_spawn_direction(direction); //Fourth native output lane was unwritten; preserve known caller lane.
+    }
+    std::uint32_t spawn_result(){return dependencies().session.words.template get<std::uint32_t>(0x88);}
+    void set_spawn_match_phase(std::uint32_t phase){set_session_spawn_match_phase(dependencies().session,*this,phase);}
+    void spawn_hud_mode(std::uint32_t phase){
+        dependencies().hud.spawn_mode(phase,[this]{return mode_flags();},[this](bool enabled){spawn_pause(enabled);});
+    }
+    void spawn_pause(bool enabled){ //0069B8B0's scalar prefix; normal non7 spawn does not reach this offline callee.
+        auto& game=dependencies().session;
+        game.words.set(0x64,static_cast<std::uint8_t>(game_word28()>=2500&&(mode_flags()&7u)==7u&&enabled));
+        throw std::runtime_error("Game pause requires actual0071F640/005E8D50/00428F00 propagation");
+    }
+    void spawn_camera_command(std::uint32_t command,bool present,std::uint32_t value){
+        auto refresh=[this](auto&){refresh_human_presentation_camera();};
+        dependencies().camera.command_spawn(command,present,value,mode_flags(),refresh,[this]{return human_frame_random_word();});
+    }
+    template<class Human>bool spawn_roster_contains(Human& human){return dependencies().players.control().human_roster().contains(&human);}
+    template<class Human>void append_spawn_human(Human& human){(void)dependencies().players.control().add_human(&human);}
+    template<class Human>std::uint32_t spawn_state_kind(Human& human){return human.loading_state?human.loading_state->words().template get<std::uint32_t>(0x48):0u;} //005A5FE0 null B0 gate.
+    template<class Human>void spawn_human_side(Human& human,std::uint32_t side){set_session_peer_side(dependencies().startup.game_control_records(),dependencies().startup,static_cast<std::uint32_t>(human.base().id10()),side,false);} //005A8800.
+    template<class Human>void select_spawn_human(Human& human){dependencies().players.control().select_human(human);}
+    template<class Human>void spawn_selection_suppressed(Human& human,std::uint8_t value){
+        if(!human.loading_state)throw std::logic_error("Spawn flags require actual Human B0");
+        human.loading_state->selection_suppressed(value);
+    }
+    template<class Human>void spawn_player_flag(Human& human,std::uint8_t value){
+        using Player=typename Dependencies::Composition::StateFactory::Player;
+        auto* state=dynamic_cast<Player*>(human.loading_state);if(!state)throw std::logic_error("Spawn Player flag requires actual Player B0");
+        state->player_words().set(0x550,value);
+    }
+    template<class Human>void spawn_remote_flag(Human& human,std::uint8_t value){
+        using Remote=typename Dependencies::Composition::StateFactory::Remote;
+        auto* state=dynamic_cast<Remote*>(human.loading_state);if(!state)throw std::logic_error("Spawn Remote flag requires actual Remote B0");
+        state->spawn_remote_flag(value);
+    }
+    template<class Human>void present_local_spawn(std::uint32_t peer,Human& human){present_session_local_spawn(dependencies().session,*this,peer,human);}
+    void spawn_hide_map(){dependencies().hud.hide_map();}
+    template<class Human>bool spawn_selected_suppressed(Human& human){return dependencies().presentation.human_selected_suppressed(human);}
+    bool spawn_voice_enabled(){return dependencies().startup.profile_settings().bytes[0x38]!=0;}
+    std::uint32_t human_transmit_side(void* actor){return human_specialization(human_score_actor(actor),false);}
+    void submit_human_transmit_targets(void* object,const std::uint32_t* ids,std::uint32_t count){dependencies().startup.submit_human_transmit_targets(object,ids,count);}
+    void update_human_transmit_targets(){update_session_transmit_targets(dependencies().startup.game_control_records(),*this);}
     bool human_integrity_matches(std::size_t stage){
         auto& tables=dependencies().startup.mission_integrity_tables();
         return tables.expected(stage)==tables.observed(stage);
@@ -160,13 +270,32 @@ public:
         remove_human_peer(dependencies().startup.game_control_records(),identity,reason,*this);
     }
     void queue_human_peer_removal(std::uint32_t reason,std::uint32_t identity){dependencies().startup.queue_application_command(17,0,reason,identity);}
+    const void* peer_hud_human(){return dependencies().hud.peer_human();}
+    void refresh_peer_hud_human(){
+        using Human=typename Dependencies::Composition::Human;
+        dependencies().hud.refresh_peer_human(static_cast<Human*>(nullptr),mode_flags(),dependencies().startup.local_player_identity());
+    }
+    void* peer_override_human(){return dependencies().players.control().override_player();}
+    void clear_peer_override_human(){dependencies().players.control().override_player(nullptr);}
+    void* local_peer_human(){return local_session_peer_human(dependencies().startup.game_control_records(),dependencies().startup.local_player_identity());}
+    bool peer_human_has_state(void* actor){return human_score_actor(actor).loading_state!=nullptr;}
+    void remove_peer_auxiliary_human(void* actor){(void)dependencies().players.auxiliary().human_roster().remove(&human_score_actor(actor));} //0045FDF0→00461C70, no selection release.
+    void remove_peer_runtime_links(void* actor){dependencies().world_actors.runtime().remove_human_links(human_score_actor(actor));}
+    void retire_peer_scene_human(void* actor){dependencies().world_actors.retire_scene_human(human_score_actor(actor));}
+    void retire_session_peer(std::uint32_t transport){
+        auto& d=dependencies();game::retire_session_peer(d.startup.game_control_records(),d.session,transport,*this);
+    }
+    template<class Human>void retire_scene_human(Human& human){
+        auto& d=dependencies();auto& owner=composition(human);
+        game::retire_scene_human(human,d.sight.source(),d.hearing,d.proximity,owner.control(),
+            [this]{return mode_flags();},[this](auto& actor,std::int32_t slot){this->detach_human_attachment(actor,slot);},
+            [&owner](auto& state,bool second){
+                auto* actual=owner.states().get();if(actual!=&state)throw std::logic_error("Scene retirement lost SAME actual B0 owner");
+                owner.state_factory().flush_scene_retirement_commands(*actual,second);
+            });
+    }
     void emit_human_peer_removal_log(const std::string& text){ //006C4B40, called with SAME current World owner.
-        auto& startup=dependencies().startup;
-        if(startup.application_log_to_console()){startup.append_game_console(text);return;}
-        if(!startup.game_views().owner())return; //Native00698500 genuine absent-game gate.
-        const auto message=format_human_game_message(text);
-        if(!(mode_flags()&2u)){startup.append_game_console(message);return;}
-        dependencies().hud.append_message(message.c_str(),{{255,255,255}});
+        dependencies().startup.emit_application_log(text);
     }
     template<class Human>void human_damage_score(Human& human,std::int32_t source){score_human_death(dependencies().startup.game_control_records(),static_cast<std::uint32_t>(human.base().id10()),static_cast<std::uint32_t>(source),*this);}
     std::string human_score_rank_label(frontend::ControlStartupRecord& record){ //00725B00, SAME holder4 and definition44.
@@ -446,6 +575,15 @@ public:
         }
         if(slot==3){state.words().set(0xd4,std::int32_t{-10000});state.model(0,typename Dependencies::ActorFrames::Frame{});
             state.words().set(0x30,std::int32_t{-1});state.words().set(0x34,std::int32_t{-1});}
+    }
+    template<class Human>bool consume_human_mine_inventory(Human& human,std::int32_t definition){ //00478B90/00478D30 after factory frame release.
+        auto& items=dependencies().world_actors.items();
+        const auto entry=find_human_inventory_definition(human,items,definition);
+        if(!entry)return false;
+        //Native performs a SECOND identity lookup005A7B70. Preserve holder
+        //priority/duplicate-identity behavior rather than retiring this entry directly.
+        const auto identity=items.runtime_item(entry).identity;
+        remove_human_inventory_item(human,items,identity,true,*this);return true;
     }
     template<class Human,class Entry>void drop_human_damage_item(Human& human,Entry requested,const HumanVector& velocity){ //005A3490→00478EE0.
         drop_human_damage_item_identity(human,dependencies().world_actors.items().runtime_item(requested).identity,velocity);
@@ -755,9 +893,8 @@ public:
     template<class Entry>auto& human_frame_output_item(Entry entry){return dependencies().world_actors.items().runtime_item(entry);}
     template<class Item,class Human>bool reload_human_ai_weapon(Item& item,Human& human,
             std::int32_t& ammunition,bool retain_last){
-        //0098B02C starts zero. Its only observed writer is the developer
-        //command at007205E2, outside the ordinary mission runtime.
-        return reload_human_weapon(item,human,ammunition,retain_last,false,*this);
+        //SAME process0098B02C, now also published by console007205E2.
+        return reload_human_weapon(item,human,ammunition,retain_last,dependencies().startup.game_console_variables().happy_ammunition(),*this);
     }
     auto& human_reload_items(){return dependencies().world_actors.items();}
     template<class Human>std::uint32_t human_reload_animation_family(Human& human){ //00791C10, SAME hand holder and lazy Item virtual40.
@@ -849,6 +986,17 @@ public:
     }
     template<class Human,class Runtime>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed,Runtime& runtime){
         game::advance_human_scene_frame(human,authority,elapsed,*this,runtime,dependencies().scene.frames());
+    }
+    template<class Human>void human_frame_contact(Human& human){ //0059FFD0's reached006FCB60→005FEFB0.
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Human Mine contact query requires actual loaded World");
+        if(!d.scene.buckets().bound())throw std::logic_error("Loaded Human Mine contact requires actual World collision grid");
+        using Scene=std::remove_reference_t<decltype(d.scene)>;
+        DynamicCollisionPointQueries<typename Scene::Descriptor,typename Scene::Tree::DynamicGrid,typename Dependencies::ActorFrames>
+            query(d.scene.buckets(),d.scene.frames());
+        dispatch_human_mine_contact(human,d.scene.frames(),query,[&](void* borrowed,auto* touching,std::uint32_t slot){
+            using Actor=typename std::remove_reference_t<decltype(d.world_actors)>::Runtime::Instance;
+            d.world_actors.runtime().contact_mine(static_cast<Actor*>(borrowed),touching,slot);
+        });
     }
     template<class Human,class Actor>void human_action_completion_command(Human& human,std::uint32_t subtype,Actor* target){
         //005ABD90 kind6→005ABCC0. The completion subtypes reach E0 without
@@ -998,6 +1146,12 @@ public:
     template<class Human,class Actor,class Runtime>bool human_actor_collision(Human& human,Actor& actor,const HumanVector& point,Runtime& runtime){
         return receive_human_actor_contact(human,actor,point,*this,runtime);
     }
+    template<class Human>bool human_loading_actor_contact(Human& human,void* source,const HumanVector& point){
+        if(!human.loading_state)return false;
+        if(!source)throw std::logic_error("Human contact requires its actual source actor");
+        auto& actor=*static_cast<SceneActor<typename Dependencies::ActorFrames>*>(source);
+        return receive_human_actor_contact(human,actor,point,*this,*this);
+    }
     template<class Commands>
     void publish_human_frame_commands(std::int32_t identity,bool second,const Commands& commands){
         for(const auto& command:commands)dependencies().scene.frames().observe_data("execution","Human command publication attempted",second?"broadcast stream0":"request stream0",command.kind);
@@ -1033,7 +1187,6 @@ public:
         receive_human_process_packet(actor,packet,false,reserved);
     }
     template<class Actor>void receive_human_process_packet(Actor* actor,SessionPacketStream& packet,bool authority,bool reserved){
-        if(authority&&(mode_flags()&7u)!=7u)throw std::runtime_error("Human authority commands require actual nonoffline forwarding");
         using Human=typename Dependencies::Composition::Human;
         const auto identity=actor?actor->base().id10():-1;
         const auto resolve=[&]()->Human*{
@@ -1070,10 +1223,20 @@ public:
             if(!authority&&!player)state->words().set(0x10,f.template get<HumanVector>(0x30)); //00583120, Remote virtual54 copies direction only.
             return; //Player/authority only decode this payload.
         case 6:{
+            const auto identity=human.base().id10();
             auto& control_owner=owner.control();auto* control=control_owner.control();auto* look=control_owner.look();
             if(!control||!look)throw std::logic_error("Human Ladder command requires the actual DD0/E0 owners");
             auto* target=dependencies().scene.frames().scene_actor_identity(command.actor_identity);
-            (void)control->request_frame_ladder(target,*look,*this);return; //00540DB0/005406C0/00592FE0 ignore result.
+            (void)control->request_frame_ladder(target,*look,*this); //00540DB0/005406C0/00592FE0 ignore result.
+            if(authority&&(mode_flags()&7u)!=7u){ //00547600 only AFTER action; even when its result is false.
+                auto* current=dependencies().scene.frames().scene_human_identity(identity);
+                if(current!=&human||current->loading_state!=state)
+                    throw std::logic_error("Ladder authority forwarding lost its actual Human/B0 during action");
+                auto* live=composition(*current).states().get();
+                if(live!=state)throw std::logic_error("Ladder authority forwarding requires SAME B0 owner");
+                live->queue_frame_command(command,true);
+            }
+            return;
         }
         case 13:if(!(mode_flags()&1u))throw std::runtime_error("Human inventory diagnostic requires actual005B2340 nonauthority receiver");return;
         case 15:
@@ -1175,8 +1338,11 @@ public:
     }
     template<class Actor>bool human_ragdoll_car_authority(Actor& actor){
         if(actor.base().type()!=4)throw std::logic_error("Human ragdoll Car query requires its actual Car actor");
-        if((mode_flags()&7u)==7u)return true; //004DE800's actual offline branch.
-        throw std::runtime_error("Human ragdoll Car query requires actual nonoffline004DE800 authority");
+        auto& callbacks=dependencies().scene.car_callbacks();
+        return car_actor_authority([this]{return mode_flags();},[&]{return callbacks.car_occupant(&actor,0);},
+            [this]{using Human=typename Dependencies::Composition::Human;
+                return static_cast<SceneActor<typename Dependencies::ActorFrames>*>(static_cast<Human*>(local_peer_human()));},
+            [&](auto* occupant){return callbacks.car_human_role(occupant);});
     }
     template<class Actor>void human_ragdoll_car_impulse(Actor& actor,const HumanVector& impulse,const HumanVector& point){
         dependencies().scene.car_callbacks().human_ragdoll_car_impulse(&actor,impulse,point);
@@ -1285,12 +1451,12 @@ public:
         (void)speech.request(state,category,delay,1,false); //005882F0.
     }
     void record_state_cleanup_failure(std::exception_ptr failure)noexcept{dependencies().scene.frames().record_actor_cleanup_failure(std::move(failure));}
-    //These reached branches require populated nonoffline/attachment producers.
-    //The normal offline, freshly unattached loading path never invokes them.
-    std::int32_t human_respawn_delay_seconds(){throw std::runtime_error("Human respawn requires its actual nonoffline configuration consumer");}
-    void hud_human_respawn(std::uint32_t,std::uint32_t){throw std::runtime_error("Human respawn requires its actual live HUD message consumer");}
+    std::int32_t human_spawn_protection_seconds(){return dependencies().startup.game_configuration().rules228[10];} //Actual configuration250.
+    void hud_human_spawn_protection(std::uint32_t identity,std::uint32_t duration){dependencies().hud.set_injury_message(identity,duration);} //0049DE50, before local initialization.
     template<class Human>void human_initial_dead_notification(Human& human){HumanDamageCommand command;command.kind=14;present_human_damage(human,command,*this,dependencies().scene.frames());}
-    template<class Actor>void detach_human_attachment(Actor&,std::int32_t){throw std::runtime_error("Occupied Human attachment requires its actual actor virtual80 receiver");}
+    template<class Actor>void detach_human_attachment(Actor& actor,std::int32_t seat){
+        remove_human_reaction_seat(&actor,seat); //SAME actor+80: Car004D9A40 / StaticWeapon00604630, before Human160/164 clear.
+    }
 private:
     template<class Actor>auto& selection_human(Actor& actor){
         using Human=typename Dependencies::Composition::Human;

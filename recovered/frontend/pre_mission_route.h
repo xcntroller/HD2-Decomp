@@ -69,6 +69,8 @@ inline std::unique_ptr<GameDataNode> copy_pre_mission_node(const GameDataNode &s
     result->words40 = source.words40;
     result->entries = source.entries;
     result->items = source.items;
+    result->network_objective = source.network_objective;
+    result->network_mission = source.network_mission;
     for (const auto &child : source.children)
         result->children.push_back(copy_pre_mission_node(*child));
     for (const auto &child : source.related)

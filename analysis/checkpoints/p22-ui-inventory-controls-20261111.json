@@ -1,0 +1,634 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "acbd4893a7ae09e64995711f1236d655c39a975c",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004a2a40",
+    "004a2bb0",
+    "004a2cc0",
+    "004a2d60",
+    "004a2de0",
+    "004a31f0",
+    "004a3280",
+    "004a3420",
+    "004a34d0",
+    "004a35d0",
+    "004a3790",
+    "004a3830",
+    "004a3870",
+    "004a38f0",
+    "004ae640",
+    "004ae6a0",
+    "004ae6f0",
+    "004ae730",
+    "004ae760",
+    "004adbe0",
+    "004ae250",
+    "004ae2d0",
+    "004ae620",
+    "004ae5b0",
+    "004adc10",
+    "004ae260",
+    "004ae230",
+    "004adbc0",
+    "004adf40",
+    "004ae3b0",
+    "004ae470",
+    "004ae0b0",
+    "004a2590",
+    "004abc50",
+    "004ab960"
+  ],
+  "updated_entries": [
+    "004a2640",
+    "004a4150",
+    "0049ef70"
+  ],
+  "ledger_added_partial_client": 35,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2565,
+  "checks": {
+    "native_inventory": "PASS ASan/UBSan/LSan100 actual HUD/77 TextState/shared-font/slot/scroll/drag lifetimes; every body/array tag range on both sides, same/opposite-Actor quick routing,250ms/drag threshold/material/health/uniform/stage25/drop/swap/move/same-holder policies, asymmetric scrollbar callback mapping, required command failure and item/source retirement. Engine/Actor/Item/B0/command endpoints doubled.",
+    "native_scroll_pointer": "PASS ASan/UBSan/LSan100 groups: actual sliders/buttons on both axes, half-step floor rounding,64-bit FISTP NaN low word, disabled/zero-motion/callback/engine failures, actual pointer XYZ delta/motion/clip/first-buffer-only writes/hidden/null/rotation/NaN gates. Engine/font endpoints doubled.",
+    "actual_host_i386": "PASS strict concrete process_inventory_controls/process_hud_pointer/advance_inventory using actual World/Items/Human loading owner and required producer interface; no Windows execution.",
+    "latest_master_source_compatibility": "PASS57-file temporary three-way122ef38 source composition from31b01f9, same three explicitly resolved overlaps; no active merge/rebase/reference/other-worktree edit.",
+    "application_link": "PASS sequential existing application-launch strict i386 link, never executed.",
+    "tracker": "PASS exact frozen fingerprints/full inventories/unique statuses/evidence/README and27 existing tracker tests."
+  },
+  "temporary_master_composition": {
+    "master": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+    "base": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+    "files": 57,
+    "conflicts": [
+      "recovered/game/car_loading_activation.h",
+      "recovered/game/hud_injury_movies_loading.h",
+      "recovered/host/game_mesh_movie.h"
+    ],
+    "temporary_resolutions": {
+      "car_loading_activation": "retain UI fuel getter plus master Human seat services",
+      "hud_injury_movies_loading": "retain full verified UI show/update policy, used by master damage wrappers",
+      "game_mesh_movie": "retain both named movie methods"
+    }
+  },
+  "artifacts": {
+    "/tmp/p22-ui-inventory-input-audit.cpp": {
+      "sha256": "5d3be26f15fb4aa90f5991fb48ae4aeaf15d2e282eff269121e4d066aef31784",
+      "bytes": 13559,
+      "retained": false
+    },
+    "/tmp/p22-ui-inventory-input-audit": {
+      "sha256": "b675d67941ccf3f11ee7bb180d5ed73c8a883f0f4a719fe5fff317b40b82253b",
+      "bytes": 2974128,
+      "retained": false
+    },
+    "/tmp/p22-ui-scroll-pointer-audit.cpp": {
+      "sha256": "45ab7ac2127d0359aa36862f58a7109823c8f2d6d7287f576d37890efb43c884",
+      "bytes": 12244,
+      "retained": false
+    },
+    "/tmp/p22-ui-scroll-pointer-audit": {
+      "sha256": "dd3b269921e45582028c08134db13ca75779f77d28f898b6c74641d19c76fdc9",
+      "bytes": 1610816,
+      "retained": false
+    },
+    "/tmp/p22-ui-inventory-input-i386.cpp": {
+      "sha256": "35dc3deda6616b0eba454d074d90aa58eac2e3f2df16c768a08a3027dadf395b",
+      "bytes": 279,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/application-link.log": {
+      "sha256": "e17c02752cb69d4428e5486d2d5c6c32598b897b314db9a1993976e0b22be675",
+      "bytes": 599,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a2bb0.c": {
+      "sha256": "cabcbf44396dc6929056bd20eb4bf83928d2c721644f04f6aa08f5decec250f9",
+      "bytes": 1472,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a2bb0.json": {
+      "sha256": "bd4f37762501153d429e525275cc29e17c15e4290c8e87f8220d71f59620f7ac",
+      "bytes": 2641,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a2cc0.c": {
+      "sha256": "f996a950e768d6e7a8f7440546dafd671a3e4af85cfd52777a6b6b023c8a4645",
+      "bytes": 827,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a2cc0.json": {
+      "sha256": "9a3c188e224248d5277705aef34d29224e7898ffb5b37bf788363d9df8ae8c8b",
+      "bytes": 1167,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a2d60.c": {
+      "sha256": "9e9868132c0784f511c7795842d3ea7bbf04107d6ec5fdf51e148b6e1a8b7209",
+      "bytes": 584,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a2d60.json": {
+      "sha256": "047f2c2518882a6e3db30dc9e2820ff169d72edc959f0522e5e1a7f582119409",
+      "bytes": 1722,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a2de0.c": {
+      "sha256": "6c168fd6b2f2222d0b7e4390fd3dd4f9fccf940f586c316bd455d9a1c96d8323",
+      "bytes": 2753,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a2de0.json": {
+      "sha256": "aadc6f0f61fbd69f69efbaaa1ca897694be2a1f599f8afa9de297d586790eb23",
+      "bytes": 8432,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a31f0.c": {
+      "sha256": "f717b982e4f3f480a7391b01e1e0ad5ce417f9cc8fe74bb0020d07bbdb8bf8bd",
+      "bytes": 902,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a31f0.json": {
+      "sha256": "bee7a5849bebf2d0d5f45ffe52aa8b119fa68aa335d9c008c69bd37221c59e6b",
+      "bytes": 970,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3280.c": {
+      "sha256": "218b6ee6f66fc07aa80ee509af8d31dc656d60ab1d81e4727683f261c3856543",
+      "bytes": 2011,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3280.json": {
+      "sha256": "a5e6810436c0321fe5735b6769d14a5c5aab006c4e4bd73697413ff45a420d7d",
+      "bytes": 6572,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a34d0.c": {
+      "sha256": "2b981358b54316f54adad36c4f90131932ec81e93e4378ffdb89becd1b76a72f",
+      "bytes": 979,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a34d0.json": {
+      "sha256": "01f053627875381bab3048c8e12d993f22dcf5bb2e31bed38464f9d73ae17517",
+      "bytes": 3979,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a35d0.c": {
+      "sha256": "866a3ca441f067ae89e62187e48e18b6a64ef31ae31498cdd93a010ec1dfd8b2",
+      "bytes": 2370,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a35d0.json": {
+      "sha256": "d705cd2f3724d28a1f8f403a795fbe15141d837c4556c99b1a38fb739a8ad43f",
+      "bytes": 6043,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3790.c": {
+      "sha256": "c923f9ffd1c8a393cf83a74850a1c0cd0ce9441ea3f93cbd3e0a6fd1ad3ddc42",
+      "bytes": 833,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3790.json": {
+      "sha256": "11769560b8a853559288927c99866f017fceff7bcb3ce0dc2e4d16bf0cd96e52",
+      "bytes": 1763,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3830.c": {
+      "sha256": "08ef54646b96f0e35ddb876d9c395d324b148d34e3df5987b1968f4fdd762f1e",
+      "bytes": 260,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3830.json": {
+      "sha256": "08bc06b9815c67186a3e3cd438cd059af782c3d1000002df018da015799d797b",
+      "bytes": 1332,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3870.c": {
+      "sha256": "aaccc64da2a1c22a6ac8559686406aaeda089745782f91dafaf0fc3bd2320d3d",
+      "bytes": 508,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3870.json": {
+      "sha256": "53783c8b3b16618d49efdee50c5a79b78af3a635f3b9d96f46d15d9e1766b162",
+      "bytes": 2261,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a38f0.c": {
+      "sha256": "8217c998890b5fba6c3192d3225dc689bbd6421b5d7070f8ec3068d294306d6a",
+      "bytes": 173,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a38f0.json": {
+      "sha256": "a53d6605415e997359da79c1e57fe812a973bbb78e1478e732175a89830a7d15",
+      "bytes": 900,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3910.c": {
+      "sha256": "b0cca0b1341d308bd386236e326568ef2ca7b0217654620618002583f4a9394b",
+      "bytes": 41,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/inventory/004a3910.json": {
+      "sha256": "37b44ac5e60a34738b61a44c83105147cac92bcb5d9abcde085a962ce84421f3",
+      "bytes": 466,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/master-composition.json": {
+      "sha256": "9f8b3ef605a271fb5a44a67b04b1d10697855ebc632098b79a46c0ba4897649e",
+      "bytes": 575,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-inventory-input-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-inventory-input-master-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-inventory-input-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-inventory-input-native-run.log": {
+      "sha256": "eb9d0fb4d64f290a1c69ffc5f1f68b646ced1878245c29fa4d3361d6c28c3396",
+      "bytes": 111,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-inventory-input.asm": {
+      "sha256": "9bd61d8b544567cc86adb521621ea5e8b478f1053189fc2d26dc508da4387a0f",
+      "bytes": 65540,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-pointer-input.asm": {
+      "sha256": "7e0b658a13d172c9a3a9151393ca48cde5d970b3f970c4ac19600ebcbd352361",
+      "bytes": 6581,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-scroll-pointer-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-scroll-pointer-native-run.log": {
+      "sha256": "202fe95387d4bd648846db4013c8bf2a296aff39393cde8d6adfec312d991f78",
+      "bytes": 148,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-slider-floor-control.asm": {
+      "sha256": "6a5235f632a7983dd6c24c80d15d8a8fc90c65879c7c1c0805420e12ef9556f5",
+      "bytes": 6202,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-slider-ftol.asm": {
+      "sha256": "d5745f39c0f88a724a2b9db77d18d36ff75b0b14e4570c3f26253f4ae2efd768",
+      "bytes": 1791,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-slider-input.asm": {
+      "sha256": "4e9404a3adc538845d0f563caad9fc95efb5f123ba284e3c11c2155bd9b3bd50",
+      "bytes": 8514,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-slider-round.asm": {
+      "sha256": "0548247866367d88b5988e746893ce1e4c7ce7887834dc227ae66ae324dc03ad",
+      "bytes": 1955,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/00496120.c": {
+      "sha256": "ee3d92c85b16f2049a3400259e27567c075ec9db7db9e9c2d3263d4becdd88a2",
+      "bytes": 676,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/00496120.json": {
+      "sha256": "9255ff7deb8aa4c93c1427c50cc589684e81cea62ca18296cec251aa66e0de7e",
+      "bytes": 3120,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004961a0.c": {
+      "sha256": "cbb34e265c39080d3505eebcb32aa774c1f939a41820a293e967d19a35c7ed03",
+      "bytes": 166,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004961a0.json": {
+      "sha256": "8553f62b69bb6d13d3d87383a4ee0f11fc518bb58a0a11c2c498b72b98416b35",
+      "bytes": 901,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004961c0.c": {
+      "sha256": "6017f99e5d3eff683972a85df15badabc28d13192db1177d4d96ce8cb917a38b",
+      "bytes": 166,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004961c0.json": {
+      "sha256": "2bfeceabfa295a21d9ec7d5f75e7a3822a947adcf5dded4a2110567b893f5b54",
+      "bytes": 901,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/0049dce0.c": {
+      "sha256": "8b220c81b5ad9adcdcd614a9765d846a509645a6e6947ebcee9228bdf1d9b6e9",
+      "bytes": 480,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/0049dce0.json": {
+      "sha256": "8fbe8a6d43c78f69f3c8b9f3a5ce263184179d82028cc8646c5b3b0dd037b9d1",
+      "bytes": 3736,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/0049dd60.c": {
+      "sha256": "974928c918c52a20c0a5594744a27d79d391a07ec14a408d1a7d706f5f864a95",
+      "bytes": 530,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/0049dd60.json": {
+      "sha256": "a680a5f7b36478fc660473cf14604280dc4f70af00eb7061b6852700fab21aa8",
+      "bytes": 4063,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/0049dfe0.c": {
+      "sha256": "212e815a42f7948f55a6e9ae19efbf1531f64818bda08d3b1e6ea285e8ffef2c",
+      "bytes": 2188,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/0049dfe0.json": {
+      "sha256": "7e39d3c55608725f8a6e3ff4d51021bfcde373d935b590138e2755008bf044aa",
+      "bytes": 7323,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/0049f410.c": {
+      "sha256": "cff87b2149aa180998aa959022e09ef34bc07ccf1a723af29d7420917ffdeaec",
+      "bytes": 1644,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/0049f410.json": {
+      "sha256": "7f1af2641690d8b08bbc339f5f3ca05ecdd0f2a331b9a91e3c186cd4930129e6",
+      "bytes": 9507,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004a3420.c": {
+      "sha256": "0c1a12c31f170ce309a918ab97d9ede9c802ae313db0d804a92fbd029dd28079",
+      "bytes": 703,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004a3420.json": {
+      "sha256": "ed973736fa05c2a87e053a24ada3b8a9b2e794e855a14c50b79504596150ee3a",
+      "bytes": 3844,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004abc50.c": {
+      "sha256": "890484f77cc53160424340d8409df2cc5030ce4707ae86702b5a0646a9e9ee55",
+      "bytes": 1951,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004abc50.json": {
+      "sha256": "3201b8543af29de8e6b03f39be3b348f124440411a5216be70d3487c6fcc8187",
+      "bytes": 4966,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004af900.c": {
+      "sha256": "1d108ad0547fa1d5a1cb7043d32462f0eaf79c349b6058320c387ab017228dcd",
+      "bytes": 699,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004af900.json": {
+      "sha256": "6da9bb99cada6a018282ee02c03eb4cdb5d6148fbf78f2508f9fe85c022c853f",
+      "bytes": 1417,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004b79c0.c": {
+      "sha256": "9f300ecd4bf54468fcef50d8e5fb461f684dc8c165b44a6463293f589c50c87c",
+      "bytes": 6644,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/roots/004b79c0.json": {
+      "sha256": "2ac9f8e12527cb180a2b1d3fd1113323f21904b59c159334aa231ca674e488b1",
+      "bytes": 26430,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae640.c": {
+      "sha256": "150090c35c652e2f02504f91e5e211e0cdd02adcf7e099bf101a030044c21d09",
+      "bytes": 491,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae640.json": {
+      "sha256": "87aed4ff1ddd3663767eb754a93def550b0617abfc6b1176d4788817aa84b3f2",
+      "bytes": 2309,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae6a0.c": {
+      "sha256": "2c7d5d9b8f33ddc7b164e651cf6a8a578267fac86541b1420caf69c1f62d06cd",
+      "bytes": 489,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae6a0.json": {
+      "sha256": "bb7b5845dea5a1989b7bd822ed14bdfd9b4e457df801b96a4c20b9da15da797a",
+      "bytes": 2335,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae6f0.c": {
+      "sha256": "dd03dbd56e6efb4a313f0b921342de6243807b8fb308f6c24b8cb52331376d50",
+      "bytes": 328,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae6f0.json": {
+      "sha256": "7213231a478b14358489df637ddf2ae60a1b3e633ddf14cc7284b6d11a0e2cd7",
+      "bytes": 1405,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae730.c": {
+      "sha256": "c923ea2abee1e1c1e416f5ec294625f2d6496c32b746c2db7da209ed1bc07d31",
+      "bytes": 239,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae730.json": {
+      "sha256": "456d1e04ef7115243454e300909ec8950ddeeb87850bc3162c3c124fa08f5026",
+      "bytes": 1067,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae760.c": {
+      "sha256": "9c7d32369ddc7ee59e8f552876eb33f79250ffbfdf570e5e8b2ffd5177d16074",
+      "bytes": 230,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll/004ae760.json": {
+      "sha256": "ca191a615486224d226bd369f1e90e38faafac022f2a933a63e8761ee9221f83",
+      "bytes": 1201,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-final/004a2590.c": {
+      "sha256": "8c0d0ddfc93536277fb76c8e37626c38df5b2e2e0fffcd8f8ba305f78a2f242a",
+      "bytes": 730,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-final/004a2590.json": {
+      "sha256": "0079335de2b6a203cb343776fdcd7640486e08ccc7b05790b9d769841f9f7445",
+      "bytes": 2683,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-final/004ae0b0.c": {
+      "sha256": "da92bea3e6dabca9191753b81c59392448dc7e97a729f6741caf493519cd5364",
+      "bytes": 825,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-final/004ae0b0.json": {
+      "sha256": "b27085abe532d4c9ac3c9311d80e6a923675dbb1495feec5623fddb17f61db7e",
+      "bytes": 1412,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004adbe0.c": {
+      "sha256": "38e4149c161b1ab23dd5b63e5febe081960141796c49a5ca28d5f3af0b2d3cd4",
+      "bytes": 198,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004adbe0.json": {
+      "sha256": "03557cb665cce8c1b18e678e0412cd294ab41a755c710b2462602e5a19863ccf",
+      "bytes": 1071,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004adc10.c": {
+      "sha256": "490f6745c205159c4db0ffd1f29a22f823a74056d65baf7f142cc61ea201ae56",
+      "bytes": 175,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004adc10.json": {
+      "sha256": "de08d53eace39f58ae18144a9b5853c837092e927a761003f8781641d3c5e594",
+      "bytes": 901,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae230.c": {
+      "sha256": "89d47a187a457ec65cd7e34a4e7a113520d6a9570a37bf7057d540d5fde2d64a",
+      "bytes": 136,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae230.json": {
+      "sha256": "3e4be094efb00eae30c042a6eddc6d92db336f33702cd95ca86667ecfb7df18e",
+      "bytes": 902,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae250.c": {
+      "sha256": "32c4de0f1a9b164d30b6cd842af3ffa52c826a93b75e464f9896f693794699e7",
+      "bytes": 70,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae250.json": {
+      "sha256": "ab7b38dd527da0570643c9d02edb8002856ccd31dfcbe71050afc83241250acf",
+      "bytes": 735,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae260.c": {
+      "sha256": "96b40b98d629e822be434ca144471e7c88b410a124568535006836d85190c0da",
+      "bytes": 241,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae260.json": {
+      "sha256": "6b0b75be18f95cd281730f1c205e967813e69af0e721f5aa3ead3960697fd5ae",
+      "bytes": 1445,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae2d0.c": {
+      "sha256": "6151310a24b65bdc7be4ebd07216a6b95b93ea818497e8e79232225b0ec2d1e2",
+      "bytes": 63,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae2d0.json": {
+      "sha256": "3c6087c88bce6d4ca883a92f767f0de9e5b7d797eb579da1920f469b7ae9925b",
+      "bytes": 747,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae5b0.c": {
+      "sha256": "d8e769ae39cda0b7b74253666578e611eaf7a6f6550f32643f78d5ccf0a2416e",
+      "bytes": 649,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae5b0.json": {
+      "sha256": "8ced0e348b9babec81d56597a60385c2d439d96c239dce6fbb7a0d7bc4f72eda",
+      "bytes": 2935,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae620.c": {
+      "sha256": "8f0e761004f6e7900528d5b0b1dd0ce958d7b217653b390fb327f24462b62eca",
+      "bytes": 114,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-leaves/004ae620.json": {
+      "sha256": "176998af0d7e7bdeff2b6f070cb000392d396c8eae06a6c204c62eff59a3b951",
+      "bytes": 1012,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-workers/004adbc0.c": {
+      "sha256": "5b9ce1a3d936416f5dcb786fccff172d61f708976c06c1cf58d3f42a75fead54",
+      "bytes": 152,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-workers/004adbc0.json": {
+      "sha256": "28c4cc84e91387e04149e6fd1fb9743b056d4a371885d4daed84924e7595264a",
+      "bytes": 901,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-workers/004adf40.c": {
+      "sha256": "e3e0a29a4b3016e7cd1d44f7d22e9fc314715bbeee530d362c95a588daf00e84",
+      "bytes": 2713,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-workers/004adf40.json": {
+      "sha256": "8c08dfc5f9cafbfdf96b674ef439adfdc4da1b1f4e6d4db2b076074e31f8c73b",
+      "bytes": 6569,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-workers/004ae3b0.c": {
+      "sha256": "393a4ec45c29590271e80fc3f5604ce0f1b6adb47cdedd79570f449f87422b25",
+      "bytes": 996,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-workers/004ae3b0.json": {
+      "sha256": "4330d373e6657d1875a4ad4eb8a984fd3bd2f3c7cd6f75e86e589bfff9c09afe",
+      "bytes": 3010,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-workers/004ae470.c": {
+      "sha256": "a915532aa68b6c2fd697027fbb4219a4e5a86e15a8adb4d4fe998188645ef2c7",
+      "bytes": 524,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/scroll-workers/004ae470.json": {
+      "sha256": "5b3bebe9c7e37ee97f415249a1fd562c1d6baa572a9d32e15318d440e7ca8fb8",
+      "bytes": 2022,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-inventory-input-ledger-check.log": {
+      "sha256": "903cde52ca93abc12b9e85cf0b04adba2e964cf47d24d92858be58de08942f6a",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-inventory-input-ledger-render.log": {
+      "sha256": "d554d878fd961f19fa4a890987d82c0c099a51e9d142112aa0e00ceacca44023",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-controls/p22-ui-inventory-input-tracker-tests.log": {
+      "sha256": "e6003b583cb2a86a68695abe02a47c7e996ee2aaf2b27c3a8b337ad86d844097",
+      "bytes": 126,
+      "retained": true
+    }
+  },
+  "limitations": [
+    "P22-UI remains OPEN: general HUD/modal0049C3C0 and command004B79C0/projection controls and required positive callees remain UI work. Inventory control policy is implemented and connected.",
+    "Existing actual Human loading move/swap subset is reused, not expanded. Cross-Actor/Player/remote move/swap/drop still requires the genuine Human command/queue producer; native request doubles do not establish real command execution.",
+    "Uniform gate reads genuine existing GUARD stage25 expected/observed values; unavailable process population must fail, not become equality or a healthy default. No GUARD producer changed.",
+    "Actual Human order/path/model producer and populated composed runtime/FRAME/RENDER/OWN activation are separate dependencies. Native audits do not construct a Windows World or demonstrate desktop rendering.",
+    "No original/Windows fixture execution, reference-branch/worktree edit, automatic active merge/rebase, push or loading activation. Native fixtures fingerprinted then removed."
+  ],
+  "excluded_genuine_ret": [
+    "004a3910"
+  ]
+}

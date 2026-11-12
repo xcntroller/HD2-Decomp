@@ -40,6 +40,15 @@ public:
         for(unsigned n=0;n!=3;++n)speed_[n+1]=frames_.actor_find(speed_[0],names[n],0xffff);
         frames_.object_visible(speed_[0],false);
     }
+    void show_vehicle(bool enabled){require_scene(speed_[0]);frames_.object_visible(speed_[0],enabled);}
+    void update_vehicle(float speed,float rpm,float fuel){ //004A8DF0, upper clamps only, each needle publishes immediately.
+        constexpr float radians=.01745329238474369f;
+        if(speed>180.f)speed=180.f;
+        require_scene(speed_[1]);frames_.static_weapon_restore_axis(speed_[1],{{0,0,1,0}},static_cast<float>(static_cast<long double>(speed)*radians));
+        if(rpm>9000.f)rpm=9000.f;
+        require_scene(speed_[2]);frames_.static_weapon_restore_axis(speed_[2],{{0,0,1,0}},static_cast<float>(static_cast<long double>(rpm)*.019999999552965164f*radians));
+        require_scene(speed_[3]);frames_.static_weapon_restore_axis(speed_[3],{{0,0,1,0}},static_cast<float>(static_cast<long double>(fuel)*180.f*radians));
+    }
     const auto& actions()const{return actions_;}const auto& first_states()const{return first_;}
     const auto& second_states()const{return second_;}const auto& speed()const{return speed_;}
     void clear()noexcept{actions_.fill(Frame{});first_.fill(Frame{});second_.fill(Frame{});speed_.fill(Frame{});}

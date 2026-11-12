@@ -1,8 +1,10 @@
 #ifndef HD2_GAME_HUD_SCENE_LOADING_H
 #define HD2_GAME_HUD_SCENE_LOADING_H
 #include "game/hud_actor_retirement.h"
+#include "game/hud_target_selection.h"
 #include "game/hud_text_loading.h"
 #include "game/hud_render.h"
+#include "game/hud_frame.h"
 #include "frontend/cleanup.h"
 #include <memory>
 #include <optional>
@@ -12,7 +14,7 @@
 namespace hd2::game {
 //0089BB7C: ONE process click-sound owner shared across HUD lifetimes. Signal/
 //compass/style owners are passed separately to the SAME panel composition.
-template<class Owner>struct HudClickSound {std::optional<Owner> owner;};
+template<class Owner>struct HudClickSound {std::optional<Owner> owner;std::uint32_t soldier_click_ticks=0;}; //Adjacent process0089BB80 persists across HUD lifetimes.
 //0049A940/0049B5E0/0049B1B0 source. Actual scene13/cache/model/camera/light/
 //click-sound ownership, SAME77 inline TextStates and concrete HudPanelsLoading.
 //No world-load/readiness or rendering success can be inferred from this owner.
@@ -66,11 +68,9 @@ public:
         }catch(...){frontend::CleanupErrors errors(std::current_exception());errors.attempt([&]{retire();});errors.rethrow();}
         return false;
     }
-    void update_loading(std::uint32_t elapsed){ //0049BD50's native zero/warming HUD prefix.
-        if(!hud_.flags)return;
-        if(!(hud_.flags&4u)){panels_.messages().update(elapsed);panels_.crosshair().show(0);return;}
-        throw std::runtime_error("Active full HUD update requires actual0049BD50 panel/player/equipment receivers");
-    }
+    //0049BD50 requires the concrete UI producers even though zero/warming gates
+    //may return before using them. No positive rejection or no-op frame receiver.
+    template<class Queries>void update_loading(std::uint32_t elapsed,Queries& queries){advance_hud_frame(frames_,hud_,panels_,elapsed,queries);}
     bool close(){if(!hud_.flags)return false;retire();return true;} //Native0049B1B0 zero-flags gate; destructor also reclaims failed prefix.
     template<class Human>bool add_human(Human* human,std::int32_t index,std::uint32_t mode,std::uint32_t difficulty,std::int32_t local_player){
         return panels_.add_human(human,index,mode,difficulty,local_player);
@@ -79,6 +79,11 @@ public:
     template<class Human>void select_human(Human* human,bool selected,std::uint32_t mode,std::uint32_t difficulty){panels_.select_human(human,selected,mode,difficulty);}
     template<class Human>void retire_dead_human_marker(Human* human){panels_.compass().remove_human(human);} //0049B960, no flags gate.
     void inventory_changed(){panels_.inventory_changed();}
+    template<class Mode,class Pause>void spawn_mode(std::uint32_t phase,Mode&& mode,Pause&& pause){panels_.spawn_mode(phase,mode,pause);}
+    void hide_map(){flags20_[1]=static_cast<std::uint8_t>(panels_.hide_map());} //0049F040(false), after map receiver returns.
+    template<class Mode,class Pause>void show_map(Mode&& mode,Pause&& pause){ //0049F040(true): map then byte21 then message mode0.
+        flags20_[1]=static_cast<std::uint8_t>(panels_.show_map());panels_.messages().hide(mode,pause);
+    }
     template<class Random>void show_human_damage(Random& random){panels_.show_human_damage(random);}
     void set_hint(bool enabled,std::uint32_t identity){panels_.set_hint(enabled,identity);} //SAME inline small-panel owner.
     void select_objective(unsigned index,std::int32_t side){if(hud_.flags)panels_.select_objective(index,side);} //0049F0C0: any nonzero flags.
@@ -91,12 +96,39 @@ public:
         hud_render(frames_,factory_,hud_,scene(),panels_,camera,mode,flags20_,fields6b8f8_,consumers);
     }
     auto& selection_actors(){return fields6b8f8_;} //SAME original6B8F8/FC borrowed actor pair.
+    auto& saved_command_flags(){return fields10_[2];} //Actual HUD18, distinct from inventory-relative18.
+    auto& control_latches(){return flags20_;}auto& soldier_click_ticks(){return click_.soldier_click_ticks;}
+    void refresh_layout(std::uint32_t mode){ //0049E1B0, descending six soldiers then hands/signals/ordinary roll/current-Human refresh.
+        if(!down_panel_)throw std::logic_error("HUD layout requires actual down_panel");const auto flags=hud_.flags;
+        const auto real=[](std::uint32_t bits){float value;std::memcpy(&value,&bits,4);return value;};
+        if(flags&0x38u)frames_.hud_scroll_position(down_panel_,{{real(0x3ee71fbc),real(flags&0x10u?0xbfa91687u:flags&0x20u?0xbfb00000u:0xbfa5158cu),0,0}});
+        frames_.update_scene_object(down_panel_);refresh_panel_geometry();panels_.post_bind(mode,hud_.flags);
+    }
+    void cycle_layout(std::uint32_t mode,unsigned game_mode){ //0049DFE0, position BEFORE flags, native8→10→20→8 priority.
+        if(!down_panel_)throw std::logic_error("HUD layout cycle requires actual down_panel");
+        const auto real=[](std::uint32_t bits){float value;std::memcpy(&value,&bits,4);return value;};bool show=false,changed=false;
+        if(hud_.flags&8u){frames_.hud_scroll_position(down_panel_,{{real(0x3ee71fbc),real(0xbfa91687),0,0}});hud_.flags=(hud_.flags&~8u)|0x10u;changed=true;}
+        else if(hud_.flags&0x10u){frames_.hud_scroll_position(down_panel_,{{real(0x3ee71fbc),real(0xbfb00000),0,0}});hud_.flags=(hud_.flags&~0x10u)|0x20u;}
+        else if(hud_.flags&0x20u){frames_.hud_scroll_position(down_panel_,{{real(0x3ee71fbc),real(0xbfa5158c),0,0}});hud_.flags=(hud_.flags&~0x20u)|8u;show=changed=true;}
+        if(changed){if((mode&7u)==7u){if(game_mode==3){const auto root=panels_.small().carnage().visual;if(!root)throw std::logic_error("HUD layout cycle lost carnage artwork");frames_.object_visible(root,show);}}
+            else {const auto root=panels_.scoreboard().root();if(!root)throw std::logic_error("HUD layout cycle lost scoreboard artwork");frames_.object_visible(root,show&&panels_.scoreboard().style()!=-1);}}
+        frames_.update_scene_object(down_panel_);refresh_panel_geometry();panels_.small().refresh_status_geometry();panels_.post_bind(mode,hud_.flags);
+    }
+    template<class Queries>void update_selection(std::uint32_t elapsed,Queries& queries){advance_hud_target_selection(fields10_[0],fields10_[1],fields6b8f8_,elapsed,queries);}
+    const void* peer_human(){return hud_.flags?panels_.soldiers()[0].human_borrower():nullptr;} //0049F0E0: HUD10394, NOT6B8F8/FC.
+    template<class Human>void refresh_peer_human(Human* human,std::uint32_t mode,std::int32_t local){panels_.refresh_peer_human(human,mode,local);} //0049F100, no flags gate.
     template<class Actor>void remove_actor_references(std::uint32_t mode,unsigned kind,Actor* actor) { //0049EF70.
+        if(kind==1&&actor)panels_.auxiliary().retire_order_actor(actor); //Actual order-info Human loan retracts before its B0/order list can retire.
+        if(kind==1&&actor)panels_.selector().retire_actor(actor); //Selector controls never borrow the retiring Human/Items on their next input call.
+        if(kind==1&&actor)panels_.inventory().retire_actor(actor); //Defined source lifetime guard before Actor/Items retirement.
+        if(kind==1&&actor)panels_.map().retire_actor(actor); //Map zone records must not retain the retiring ActorBase.
+        if(kind==1&&actor)panels_.crosshair().retire_target(actor); //Actual caller supplies &Actor::base(); retract target identity before actor lifetime ends.
         retire_hud_actor(hud_,fields6b8f8_,panels_.dialogs(),panels_.command(),mode,kind,actor);
     }
     Frame scene()const{return scene_?scene_->get():Frame{};}Frame camera()const{return camera_?camera_->get():Frame{};}
     Frame model()const{return model_?model_->get():Frame{};}Frame down_panel()const{return down_panel_;}
 private:
+    void refresh_panel_geometry(){for(unsigned n=6;n;)panels_.soldiers()[--n].refresh_geometry();panels_.hands().refresh_geometry();panels_.dialogs().refresh_signal_geometry();panels_.dialogs().refresh_roll_geometry();}
     Text& debug_text(){for(const auto& owner:hud_.text_owners())if(owner.original_offset==0x6b85c)return *owner.text;throw std::logic_error("HUD lost SAME inline debug text");}
     void retire(){
         if(!scene_&&!model_&&!camera_&&!panels_started_&&!click_owned_)return;

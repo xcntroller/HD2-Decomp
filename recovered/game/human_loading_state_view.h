@@ -16,6 +16,7 @@ public:
     virtual HumanJointWords<0xc0>& words()=0;
     virtual const HumanJointWords<0xc0>& words()const=0;
     bool selection_suppressed()const{return words().template get<std::uint8_t>(0x70)!=0;} //B064:005A4240/005A4400/00524D40, all read SAME byte.
+    void selection_suppressed(std::uint8_t value){words().set(0x70,value);} //B060:005A4230/005A43F0/00524D30, same BYTE store in every proven family; absent frozen.
     virtual HumanVector current_direction()const=0;
     virtual HumanVector target_direction()const=0;
     virtual std::uint32_t derived_loading_word(unsigned)const=0;

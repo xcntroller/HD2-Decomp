@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "18d1809",
+  "latest_inspected_origin_master": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "00491c60"
+  ],
+  "ledger_added_partial_client": 1,
+  "complete_promotions": 0,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan, 100 repeated animation completion lifetimes; explicit model/item/receiver endpoint doubles",
+    "actual_host_i386": "PASS strict GameUiPresentation completion through actual FPV, Human, Items, camera, model, playback and cursor types; no missing-method declarations",
+    "application_link": "PASS i386 application launcher, never executed",
+    "tracker": "PASS render/check and27 existing tests"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-completion-audit.cpp": {
+      "sha256": "bbc007674a0f2a536306d308bb272506d8e97212d425bd236d47eae608367959",
+      "bytes": 4386,
+      "retained": false
+    },
+    "/tmp/p22-ui-completion-audit": {
+      "sha256": "e3c61d63724c596368526c80aeed86c8cb10774b7ccc12e39f527170b675c5e3",
+      "bytes": 791224,
+      "retained": false
+    },
+    "/tmp/p22-ui-completion-i386.cpp": {
+      "sha256": "03710d3ed2799da3b803517623e3f39bb0060c8de9b471a14424d3fc51a6234d",
+      "bytes": 359,
+      "retained": false
+    }
+  },
+  "remaining_ui": [
+    "00491660 motion and00491E90 full wrapper",
+    "0049BD50 full HUD frame receivers",
+    "004B6720 command geometry and reached input/edit workers"
+  ],
+  "ledger_complete": 34,
+  "ledger_partial": 2376
+}

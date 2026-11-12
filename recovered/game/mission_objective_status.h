@@ -44,6 +44,7 @@ public:
         }
         apply(identity,status);
     }
+    void receive_status(std::int32_t identity,std::int32_t status){apply(identity,status);} //00728450→0069BC40; no0069BA60 score/FIFO producer.
     void fail_all(bool special) { //0069BED0; hint notification precedes descriptor mutation.
         session_.words.set(0x6f,std::uint8_t{1});result(special?0x1cf0u:0x1ce9u);
         const auto* mission=session_.mission;

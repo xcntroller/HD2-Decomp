@@ -1,0 +1,249 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "8881fdddb9030b341c8fb2a9eb33bc16babe442a",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "004c9000",
+    "004c94b0",
+    "004cb2b0",
+    "004cc520",
+    "004cccc0",
+    "004ce990",
+    "004ce7a0",
+    "004cf440",
+    "004ceaa0",
+    "004cd4f0",
+    "004cd520"
+  ],
+  "extended_entries": [
+    "004c84a0",
+    "004c8980",
+    "004c8ea0"
+  ],
+  "absent_frozen_zero_credit": [
+    "004c8ee0",
+    "004c9480"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2751,
+  "source_files": {
+    "recovered/game/rigid_body.h": {
+      "sha256": "9eb7deb580dce798b6084268ab751288c2069a07224cbe1872b2679a8cb045c6",
+      "bytes": 39021
+    },
+    "recovered/game/rigid_body_motion_math.h": {
+      "sha256": "e8f9ea84731db0501f2020aa9460e0915e26e3643d8652bb8b40a35d7e4dcf64",
+      "bytes": 2958
+    },
+    "recovered/game/dynamic_item_actor.h": {
+      "sha256": "70a9e9caefafe246e3c657a52dd99fa59f634713edf92796d5aa0b8eafe51d5a",
+      "bytes": 5400
+    },
+    "recovered/game/world_actor_loading_consumers.h": {
+      "sha256": "176150624d976e76ab95c491c10957221b0852f4e118e55ec6e5440dc6e257eb",
+      "bytes": 8984
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "e7828719cfb988400e724d3da058bc4282f71870a2a562ff5ba7f8921cd8c87d",
+      "bytes": 106844
+    },
+    "recovered/host/game_runtime_actors.h": {
+      "sha256": "d03331b09b86c2c6e326f2121d296d001a413adaec823e4a8c7a5123ae900f6b",
+      "bytes": 16404
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "76120f9ba0135bf7c2d461292abe861265bf4d1054bfc387911306cf769f64e2",
+      "bytes": 27690
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-native.cpp": {
+      "sha256": "d63d895bc827bdc88b08c9e1f064d6c1a67b467ee579be208b67fc9f670a58b2",
+      "bytes": 10697
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-native": {
+      "sha256": "ad94cf60e75ac1bc82d6b016e21cf846ffa1e3a96891b16a447f957e7f814c63",
+      "bytes": 2744104
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-native.log": {
+      "sha256": "f197d14a4fcfc4ab97ab38c6019d228aace03a69887a49c58b4967ad6a0814a1",
+      "bytes": 82
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-host-i386.cpp": {
+      "sha256": "345452ada62b1b3668072ddc47abf3dcccd2897f3e40f87cfa007d7cc92b4ac0",
+      "bytes": 303
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-host-i386.o": {
+      "sha256": "3966530a84f2575b44dfee9a95f1a80d55b94269f176d7430b5627e924326374",
+      "bytes": 17785847
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-item12-regression-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-item12-regression.log": {
+      "sha256": "6c7559c1582b1e9fe93a15d838ef3b78b8f7d35796c799815b6d603c0c4ef664",
+      "bytes": 281
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/ExportHumanRigidMotionABI.java": {
+      "sha256": "05aa8bdd6fbefbe6cf0dabe5ea3721d716499b84de9c0dfc1b737c47d9b14444",
+      "bytes": 4268
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi.log": {
+      "sha256": "6354d1bd8f92650cbb0f3cae45faba14cb0a1846acf61fb8296b8367e4a4dd97",
+      "bytes": 5338
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion.asm": {
+      "sha256": "a69aed6520d9eba97e5c747f7da38bc5fac7875e9e8dcc74df7c99859ee16364",
+      "bytes": 316717
+    },
+    "analysis/work/mission-world-20261103/human-car-item12-substeps.asm": {
+      "sha256": "006af0143af77e9d76e917d2302f98ea4dc822a5d5f00d8443b19fcfdcdfc2cb",
+      "bytes": 5543
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-sleep.asm": {
+      "sha256": "6f6a3486b5ce2bb46de3fb5c77892472162f3265fecc71e274a198603a5275f7",
+      "bytes": 44212
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-impulse-filter-refresh.asm": {
+      "sha256": "1cea1dfd8d1cc7c67494c642d1fa797663c5c4d81b5baddd050badab3a2682ac",
+      "bytes": 20242
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-constructor.asm": {
+      "sha256": "ac441fe65fe69575939bc48a8485777c2b4787468a94dcdd349b1dcc41ef6174",
+      "bytes": 12651
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-math-add.asm": {
+      "sha256": "af77f6520cf2e03038123416c9115ab87d37a265bf78a08caa0a7dc92667de26",
+      "bytes": 1424
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-math-multiply.asm": {
+      "sha256": "2ae904c16d907b143ff3276f617166057d9eb400612a89000fd27df82e37ba5d",
+      "bytes": 1424
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-constants.json": {
+      "sha256": "543984bdcfcc72d870bf34d771e0f9bb1aa673146612cee0e80ca1e256101e13",
+      "bytes": 2764
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-engine-rva.txt": {
+      "sha256": "762396dc9435587d9774c9dab5bdcf0d76208d60b9def66f02ce97c9d9e4b4bd",
+      "bytes": 143
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-index.txt": {
+      "sha256": "c19d4f743d36d55d7ba357d4e3dad15f9b3b4cbd168c266a64ebfb211d61e390",
+      "bytes": 36580
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004c8ee0.c": {
+      "sha256": "91d1d6b4da5f47b2399580aef6450aecfe1c3361e52b3c95f1f3b81e42208801",
+      "bytes": 1252
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004c8ee0.json": {
+      "sha256": "6bd2361b30baa20420f61f8426420c2a3068d44518e866287fc694c5e4c9af3f",
+      "bytes": 3721
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004c9000.c": {
+      "sha256": "6c73a2e1fd7a01646e039dc51d0a0665c689c801b44dd64e371d471460de537c",
+      "bytes": 7229
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004c9000.json": {
+      "sha256": "6f118514bc27431050579b2019e6871d6a1c6b1852007c59c015fc91b8a800d5",
+      "bytes": 10593
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004c94b0.c": {
+      "sha256": "d825ade125fab744403890090cbfe0b889638d6df227ed7ae30702f872a7479d",
+      "bytes": 28738
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004c94b0.json": {
+      "sha256": "d007e1183c6815f5072c54a503221c11f1ba9fa026aa926db4acac4c747e4526",
+      "bytes": 119541
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004cb2b0.c": {
+      "sha256": "329f4e75cf1401089cf1ba648d7256448bbd3d710f0548e597717ba688d9cd59",
+      "bytes": 26268
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004cb2b0.json": {
+      "sha256": "9829541d38dc4c2bc6f3c8420ad7e59e4e4facca93812ed9ad843ba8b1cac765",
+      "bytes": 74454
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004cc520.c": {
+      "sha256": "62af7d7fc1aeff8c215fe90f06cb2b97753d31b09401b3b2f1e0899abe05e318",
+      "bytes": 8703
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004cc520.json": {
+      "sha256": "a7ff0eb6b5ad23f1cc84489d7e41e24d1674863b0ca81729fa54134f49be6a29",
+      "bytes": 46835
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004cccc0.c": {
+      "sha256": "2c2954974c2377df1c0ad6ac7030d7804635ad1450a97681135060e5b2420140",
+      "bytes": 8153
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004cccc0.json": {
+      "sha256": "f2bdd554c4971b8d049a7de42dc2307926307ff43c8b8b627abe0fd9b33a402b",
+      "bytes": 52542
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004ce7a0.c": {
+      "sha256": "f754227b5889017c52334597298ffc07b48da392492a4aacfc2e348040cd2f76",
+      "bytes": 1762
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004ce7a0.json": {
+      "sha256": "5ad3f7114aaf449d0e787cbc30dcb7d0cd474b9fb03795c1322dbeb3b02b4988",
+      "bytes": 4357
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004ce990.c": {
+      "sha256": "466bbb15b5735c71b52b5f07fb8879541cbd7729303c2c924cffb24f72325a56",
+      "bytes": 1547
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004ce990.json": {
+      "sha256": "e4a6e3dd9d2820fdf5c728d56a3fa5590f47fc39371f3d5d717efa1018749036",
+      "bytes": 4740
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004ceaa0.c": {
+      "sha256": "ac83364aec2e78f57c72d135fbba31c2914e45a17e7fba16503a3ad9de5b1483",
+      "bytes": 3878
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004ceaa0.json": {
+      "sha256": "02c128f2f96f1d0c9cdff6e78f200c693bab8a26b0ee7eb52d83833c5e96e9ed",
+      "bytes": 2967
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004cf440.c": {
+      "sha256": "79e6dbb6d7ded6fc964f188c58ca7bc08c6333db0e6ddf092e6ea18839d6c303",
+      "bytes": 9490
+    },
+    "analysis/work/mission-world-20261103/human-car-rigid-motion-final-abi/004cf440.json": {
+      "sha256": "74a02442b12f66d37083d64b5517719577abe40aa918dabb0f42863c0fc239b1",
+      "bytes": 75801
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan100 repeated families through actual RigidBody/geometry/buckets/exclusions; explicit frame/engine math, ray/actor lookup and particle doubles.",
+    "Unproduced fresh-part5F9 fails before gravity/movement; warm part branches explicitly seed a known prior byte. No default invented.",
+    "Item12 native400 wheel/300 part lifetime and runtime registry regression PASS; authority endpoint remains doubled in that historical fixture.",
+    "Strict actual nested World/Human/Car/Item12/Physics i386 explicit004C9000 and impulse instantiation PASS.",
+    "Launcher and startup probe compile/link PASS, heavy compilation and Ghidra sequential. No original or Windows output execution.",
+    "Extended square-root sleep threshold retains ST0 precision; focused FLOAT .3 boundary regression PASS."
+  ],
+  "limitations": [
+    "Typed/template/STL/RAII adaptation excludes original layout/allocator/SEH/virtual ABI and original trajectory/convergence equivalence.",
+    "Fresh part5F9 and wheel695 have no defined native cold producers. Reads remain required errors.",
+    "Car event2/request serialization, timed-DM/deformed restore, full Human entry/frame and application/desktop acceptance remain open."
+  ]
+}

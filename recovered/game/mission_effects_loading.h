@@ -28,6 +28,25 @@ template<class Frames>struct MissionEffectsProcess {
         if(!particle_world_||!place_)throw std::logic_error("Placed particles require actual module17 ownership");
         place_(definition,transform,parent);
     }
+    Record* particle_record(std::int32_t identity,std::int32_t& index){ //00445740, signed native binary lookup.
+        if(active_.size()>0x7fffffffu)throw std::length_error("Particle identity vector exceeds native signed range");
+        std::int32_t low=0,high=static_cast<std::int32_t>(active_.size())-1,span=high+1;
+        while(low<=high){
+            const auto half=span/2;
+            if(!half){if(span&&active_[static_cast<std::size_t>(low)].identity==identity){index=low;return &active_[static_cast<std::size_t>(low)];}return nullptr;}
+            const bool odd=(span&1)!=0;const auto middle=low+half-(odd?0:1);
+            auto& record=active_[static_cast<std::size_t>(middle)];
+            if(record.identity==identity){index=middle;return &record;}
+            if(record.identity>identity){high=middle-1;span=odd?half:half-1;}
+            else{low=middle+1;span=half;}
+        }
+        return nullptr; //Native out index remains unchanged on a miss.
+    }
+    void stop(std::int32_t identity){ //00445800, delete actual instance BEFORE stable vector erase; no reuse pool.
+        std::int32_t index=0;auto* record=particle_record(identity,index);if(!record)return;
+        if(record->instance){record->instance->close();record->instance.reset();}
+        active_.erase(active_.begin()+index);
+    }
     std::size_t active_particles()const{return active_.size();}std::size_t placed_particles()const{return placed_.size();}
     const auto& point_pool()const{return points_;}
 private:

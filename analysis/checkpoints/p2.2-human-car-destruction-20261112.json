@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "e6f08b7293f4616fb243224677a88c115681d402",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "004dbf00",
+    "004dc580",
+    "0073eac0"
+  ],
+  "extended_entries": [
+    "004dba10",
+    "004d16a0",
+    "004e1fe0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2726,
+  "source_files": {
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "40ba4f4ba81504ed847f6d509cf64589b081f2fc44ba9cce861f4bc7c2b1f6a7",
+      "bytes": 15049
+    },
+    "recovered/game/car_scene_actor.h": {
+      "sha256": "e3ae7f1abbc7fb91e8a2ced4ef6ada5a00c8416344a4b2b1e00d7a0248fe424d",
+      "bytes": 8807
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "baf0c19fee4d5b65cf4e50cb5db9ca85c8f0a618a92d0add375309eb742805b5",
+      "bytes": 18007
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "07d6ed93845b4eff50723b886976717116782b48e34fc93d973e5e1380b91873",
+      "bytes": 1814
+    },
+    "recovered/game/car_destruction.h": {
+      "sha256": "1f4e626c556720175c9e06c1944b114074d1a6b8720a2b5a2c12c2d6fbfa6042",
+      "bytes": 6635
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-destruction-native.cpp": {
+      "sha256": "1de2c0143cf85179fe006bca4fcbc880db034265cbdee1df6d864f9e586d8105",
+      "bytes": 16816
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-native": {
+      "sha256": "6e31b2bf9b9c68711043d635bffc3dadab34e2f8997700b8ffcbe22ada9b300d",
+      "bytes": 3938208
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-native.log": {
+      "sha256": "0883b518d8d520a1aa936e0d26f4b36fc0f2da1ab65a65bd79fe8c1852a7ec8c",
+      "bytes": 384
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-host-i386.o": {
+      "sha256": "847466b458348f5a4a176e162fa2361efcdda6dea597badcd14b8dea0d19d46b",
+      "bytes": 17498245
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-host-i386.cpp": {
+      "sha256": "d087697a5e700db17075229c3410d186457d318d3698cb222993649e8ceb0755",
+      "bytes": 688
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/car-actor-dm-water-required/004dbf00.c": {
+      "sha256": "1dbfd2d011b1a078c8e63c877621accfb46ec79ab6a459a10f0d64149e7a2b1b",
+      "bytes": 7575
+    },
+    "analysis/work/mission-world-20261103/car-actor-dm-water-required/004dbf00.json": {
+      "sha256": "57d4d504c369ea1315eaa3c9095534080c3ed6869c23e0d124763cb7602f86a9",
+      "bytes": 20944
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004dc580.c": {
+      "sha256": "ca142ebd2a24f3ceede945a054199714a0f2a0d82fbfadbcb6cb91fbd0d5a371",
+      "bytes": 2187
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004dc580.json": {
+      "sha256": "ea0c57cf5768604835e220fb1e73e23982014c038ca904153b4c0e1525ba91aa",
+      "bytes": 11870
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction.asm": {
+      "sha256": "19a94746aa62048147a45119d5fa4eb775582714afdc473c4ce34ec8c16ba14e",
+      "bytes": 27107
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-human-area.asm": {
+      "sha256": "c1ff517e8a1597567f4b4a6c2900a9f1516937601d0fe03360d99c6145bad5e1",
+      "bytes": 8752
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-constants.json": {
+      "sha256": "31f97a8515337acb91e10b3b9100207346e66b88838ee49cbbfb7438efd26995",
+      "bytes": 141
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-dependencies-index.txt": {
+      "sha256": "ffa03484d6b56eaf970ae82fa975b1882a213c48dd0feb41744aebc33514d2e1",
+      "bytes": 13482
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-inner-index.txt": {
+      "sha256": "0539497622a79e0754f8fdc16f3cc665029a8c48a98af20b3d3ba9b4cabcb5b8",
+      "bytes": 5070
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-clock-index.txt": {
+      "sha256": "4d4f13d5aa1b0d78a154903fd454bdd7e8f16e50184edbe71da800f124f5a566",
+      "bytes": 1640
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-clock.asm": {
+      "sha256": "6cf8b9f6898d4e9d8c49d1b2ce51af5bb2023babfbb1ce3472302b9cbd2c6a85",
+      "bytes": 1070
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-ray-index.txt": {
+      "sha256": "5a3d85a0d45d499c246347d255c9a991623ea6aedd1b5360c705de5c19567bb6",
+      "bytes": 3598
+    },
+    "analysis/work/mission-world-20261103/human-car-destruction-ray-worker-index.txt": {
+      "sha256": "b0dffd5f351a2590b02fb3e39d5e789797cbff2ab0deddf0d8568453c1022e89",
+      "bytes": 3983
+    },
+    "analysis/work/mission-world-20261103/fowl-loading-required/007183a0.c": {
+      "sha256": "9a6e773502f611c85dd7950d45fd0b90dfb6b1f7482930edcc32e8de144c351e",
+      "bytes": 233
+    },
+    "analysis/work/mission-world-20261103/camera-ray-narrow-required/006f5890.c": {
+      "sha256": "ebbfa55ea9333a9fa140e2dfca09132abbd88e8d0d3f1237783de68e1d750329",
+      "bytes": 5471
+    },
+    "analysis/work/mission-world-20261103/actor-activation/004d16a0.c": {
+      "sha256": "93524572f753fc9ead4097ddf972c7d0d2574a4c120cdf1ef260b5d8bff026ff",
+      "bytes": 17510
+    },
+    "analysis/work/mission-world-20261103/car-actor-cold-state-required/004f2530.c": {
+      "sha256": "8f6e7e871f18c88127b94bcf807052ef56d46d7ad3f08eeb9c30e6fb66870da6",
+      "bytes": 1660
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan100 repeated actual authority/area families and direct DM entry PASS, including modes1/2/3/7, water/source/Script/base-point reads, native model/wheel/random/experience/flags/area order and failure/retry prefixes.",
+    "Actual callback-dependent light-flag mutation gates, native radius5 negative amount, dead/far/blocked Humans and post-ray current-slot reload PASS.",
+    "Strict actual full World/Car/DM/Human/control/Script/ray i386 instantiation and final launcher/probe compile/link PASS; heavy jobs sequential."
+  ],
+  "limitations": [
+    "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI, whole-body equivalence or complete Car/selected-Human closure. Native100 repeated authority/area families and direct DM entry use actual body/wheel/DM/packet source with explicit Scene/engine/control/Script/Human-damage/clock/detachment endpoint doubles. Strict actual full World/control/Script/ray/Car/DM/Human i386 and launcher/probe compile/link pass. Car physical/mesh presentation004E9DB0/004DCD10/004DC780, positive Item12/glass/timed consumers, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+    "No original EXE/DLL/Proton/Windows output execution, actual application loading, live transport or desktop acceptance. Wider004F2530 and delegated engine/callee bodies receive no new credit."
+  ]
+}

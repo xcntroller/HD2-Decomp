@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "353f244",
+  "latest_inspected_origin_master": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004a93e0",
+    "004a9420",
+    "004a9530",
+    "007df650",
+    "005a6d10",
+    "004ad180"
+  ],
+  "updated_entries": [
+    "004a9320",
+    "004ace20"
+  ],
+  "ledger_added_partial_client": 6,
+  "complete_promotions": 0,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan100 repeats; positive hands/shoulder/count/icons/selector population/layout/expiry/dirty/death/selection teardown; explicit engine/material endpoints",
+    "actual_host_i386": "PASS strict GameUiPresentation hands/selector methods over actual World/Items/Players/panels, no missing-method declarations",
+    "application_link": "PASS i386 launcher, never executed",
+    "tracker": "PASS render/check and27 existing tests"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-hands-native.cpp": {
+      "sha256": "3fa86f6a0c904d29bd1c9f8eb8fb466beae38e986f5f3ec6707c0505d74dffe3",
+      "bytes": 8205,
+      "retained": false
+    },
+    "/tmp/p22-ui-hands-native": {
+      "sha256": "f80a6b5140d7ea466ea0b53f0e133dc83082a9f3b651049f6e9688bb1a5a9f6d",
+      "bytes": 2952760,
+      "retained": false
+    },
+    "/tmp/p22-ui-hands-i386.cpp": {
+      "sha256": "7df0c7ce1ad9d3e45d71307df27be6c389cee1f331dcc25c989e7632505f09c8",
+      "bytes": 249,
+      "retained": false
+    }
+  },
+  "limitations": [
+    "Mounted-seat hands98/B4/A0/9C remain explicit required receivers.",
+    "Full0049BD50 soldier/selection/compass/map/inventory/objective update still required.",
+    "004B6720 command geometry and active00494D20 editing/control remain UI-owned work.",
+    "Existing selector input timer30/34 producers are not fabricated."
+  ],
+  "ledger_complete": 34,
+  "ledger_partial": 2387
+}

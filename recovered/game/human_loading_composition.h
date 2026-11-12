@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_HUMAN_LOADING_COMPOSITION_H
 #define HD2_GAME_HUMAN_LOADING_COMPOSITION_H
+#include "game/human_loading_retirement.h"
 
 #include "game/human_inline_loading_factory.h"
 #include "game/human_loading_activation.h"
@@ -40,10 +41,12 @@ public:
         human_.loading_lifetime=this;
     }
     ~HumanLoadingComposition()override{
+        closing_=true;
         frontend::CleanupErrors errors;
         if(started_){
-            if(!(retired_&1u))errors.attempt([&]{deactivate(false);});
-            if(!(retired_&2u))errors.attempt([&]{deactivate(true);});
+            retire_human_mode_passes([this]{return factory_.mode_flags();},[this](bool authority){
+                if(!(retired_&(authority?2u:1u)))deactivate(authority);
+            },errors);
         }
         //Retain inventory while any failed B0 close is retired. Inline clear
         //follows B0 even when a real endpoint throws, before member destruction.
@@ -54,6 +57,7 @@ public:
     HumanLoadingComposition(const HumanLoadingComposition&)=delete;
     HumanLoadingComposition& operator=(const HumanLoadingComposition&)=delete;
     void activate(bool authority)override{
+        if(closing_)throw std::logic_error("Human activation during containing owner destruction");
         if(human_.loading_lifetime!=this)throw std::logic_error("Human loading lifetime binding changed before activation");
         started_=true;retired_=0;activation_.activate(authority);
     }
@@ -64,12 +68,13 @@ public:
     void damage(std::uint32_t kind,float amount,const HumanVector& point,const HumanVector& impulse,void* source,std::uint32_t hit_kind)override{
         activation_.damage(kind,amount,point,impulse,source,hit_kind);
     }
+    bool actor_contact(void* source,const HumanVector& point)override{return activation_.actor_contact(source,point);}
     Inline& control(){return control_;}States& states(){return states_;}Inventory& inventory(){return inventory_;}
     StateFactory& state_factory(){return state_factory_;}
 private:
     Frames& frames_;Human& human_;
     InlineFactory factory_;Inline control_;StateFactory state_factory_;States states_;Inventory inventory_;Activation activation_;
-    unsigned retired_=0;bool started_=false;
+    unsigned retired_=0;bool started_=false,closing_=false;
 };
 
 } //namespace hd2::game

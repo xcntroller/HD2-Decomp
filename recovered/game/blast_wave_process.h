@@ -21,12 +21,12 @@ public:
         Owner frame;Vector offset{};float threshold=0;std::unique_ptr<Node> next;
     };
     struct Record {
-        Vector centre{};float progress10=0,power14=0,radius18=0;std::uint32_t source1c=0;
+        Vector centre{};float progress10=0,power14=0,radius18=0;Actor* source1c=nullptr; //Borrowed Human passed to virtualD4, never a serialized identity/DWORD.
         bool same_sector24=false;Frame sector28{};std::unique_ptr<Node> head;
         std::vector<Actor*> hit_actors;
         ~Record(){head.reset();hit_actors.clear();} //006DDEE0: nodes before raw vector storage.
     };
-    struct Request {Vector centre{};float radius=0,power=0;bool same_sector=false;std::uint32_t source=0;};
+    struct Request {Vector centre{};float radius=0,power=0;bool same_sector=false;Actor* source=nullptr;};
     ~BlastWaveProcess(){clear();}
     BlastWaveProcess()=default;BlastWaveProcess(const BlastWaveProcess&)=delete;BlastWaveProcess& operator=(const BlastWaveProcess&)=delete;
     void clear()noexcept{while(!records_.empty())records_.pop_back();} //006DF390(0,true), retain capacity.

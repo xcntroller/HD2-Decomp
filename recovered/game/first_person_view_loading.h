@@ -1,6 +1,8 @@
 #ifndef HD2_GAME_FIRST_PERSON_VIEW_LOADING_H
 #define HD2_GAME_FIRST_PERSON_VIEW_LOADING_H
 #include "game/first_person_hands_material.h"
+#include "game/first_person_animation_completion.h"
+#include "game/first_person_frame.h"
 #include "game/first_person_animation_table.h"
 #include "frontend/cleanup.h"
 #include <cstring>
@@ -93,6 +95,17 @@ public:
         }catch(...) {
             frontend::CleanupErrors errors(std::current_exception());errors.attempt([&]{models_.close(mode);});errors.rethrow();
         }
+    }
+    void advance(std::uint32_t mode,std::uint32_t elapsed){ //00491E90.
+        advance_first_person_frame(mode,elapsed,view_,models_,frames_,players_,playback_,*this);
+    }
+    void advance_motion(std::uint32_t mode,std::uint32_t elapsed){ //00491660.
+        advance_first_person_motion(mode,elapsed,frames_,view_,models_,items_,players_,camera_,playback_,*this,
+                                   state60_,field9c_,bob64_,field68_,fov30_,parameter34_);
+    }
+    void complete_animation(std::uint32_t mode,std::uint32_t elapsed){
+        complete_first_person_animation(mode,elapsed,frames_,view_,models_,items_,players_,cursor_,playback_,*this,
+                                        state60_,argument98_,bob64_);
     }
     void update_opacity(std::uint32_t mode) { //00491E30, separate from camera/model simulation.
         if(!(mode&2u)||!view_.byte3c||!player()||!models_.model())return;
@@ -228,11 +241,12 @@ public:
     }
 private:
     void update_bob(){bob64_=state60_==1?real(0xbe99999a):0.f;}
+    static std::int32_t signed_word(std::uint32_t bits){std::int32_t value;std::memcpy(&value,&bits,4);return value;}
     static float real(std::uint32_t bits){float value;std::memcpy(&value,&bits,4);return value;}
     Frames& frames_;View& view_;Models& models_;Items& items_;Players& players_;Camera& camera_;Playback& playback_;Cursor& cursor_;Effects& effects_;
     const float& game_fov_;FirstPersonHandsMaterial<Frames> materials_;
     //Defined cold guards.004909D0 owns original activation stores; no constructor credit.
-    std::uint32_t state60_=0,argument98_=0,field9c_=0;float bob64_=0,fov30_=0,parameter34_=0,scale6c_=0;
+    std::uint32_t state60_=0,argument98_=0;float field9c_=0,field68_=0,bob64_=0,fov30_=0,parameter34_=0,scale6c_=0;
     std::array<float,4> position00_{},rotation10_{},offset20_{};
 };
 } //namespace hd2::game

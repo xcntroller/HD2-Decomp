@@ -1,0 +1,192 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "4519039",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004b6420",
+    "004b9e80",
+    "004ab820",
+    "004b86d0"
+  ],
+  "ledger_added_partial_client": 4,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2485,
+  "checks": {
+    "native_command": "PASS ASan/UBSan/LSan100 actual HudCommandLoading/HudAuxiliaryLoading bind/frame/routes/controls/close lifetimes. Positive populated route strips/model selectors, actual selected-index receiver after order display publication, target chaining, auxiliary retention/zero-order clear, changed/force/visibility/5C gates, indexed Human call order, actual pointer direction/rotation, wrapping signed timers,200ms feedback/options/speed/realtime controls. Missing model/selector/empty path/capacity, preparation/camera/realtime failure propagation. Engine/font/actor/order/camera/time endpoints are doubles; no original Human route generation or Windows host construction claim.",
+    "actual_host_i386": "PASS strict actual GameUiPresentation::advance_command/advance_command_routes/activate_command_misc_button instantiation; real World/Players/control/camera/GEffects and required typed producer calls.",
+    "application_link": "PASS sequential make application-launch with strict actual i386 compiler, never executed.",
+    "latest_master_source_compatibility": "PASS temporary archive494cbee plus52 UI source files, three-way composition from31b01f9 with zero conflicts and strict actual UI command frame/routes/control instantiation; no branch merge/rebase/reference-worktree edit.",
+    "tracker": "PASS exact fingerprints/frozen inventories/unique statuses/evidence/README and27 existing tracker tests."
+  },
+  "shared_changes": {
+    "recovered/host/game_actor_frames.h": "One borrowed frame virtual1C pointer-direction endpoint; no movement/Human/camera simulation rewrite.",
+    "recovered/host/game_ui_presentation.h": "Concrete UI command frame/routes/misc-control binding; typed required Human order path/model preparation and005AC470/detached00463BA0/realtime0069B8B0 external producer contracts. GEffects receives actual Players.control()."
+  },
+  "artifacts": {
+    "/tmp/p22-ui-command-audit.cpp": {
+      "sha256": "f1aa38a8a4dca0543538427211541f2235cec443df183bbc1571f04e691e807f",
+      "bytes": 12056,
+      "retained": false
+    },
+    "/tmp/p22-ui-command-audit": {
+      "sha256": "62d092c585f3243700018bd0279923b9ccd560ad98fca192f071b02f3d90823b",
+      "bytes": 1985384,
+      "retained": false
+    },
+    "/tmp/p22-ui-command-i386.cpp": {
+      "sha256": "7075247f6f63a5dfed6a2599cbcb152bacf216a5257c05e2015c4d78be3964a8",
+      "bytes": 383,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/00463ba0.c": {
+      "sha256": "1b6d705f62eb63e6a5ff41a1be59ad887c7b28e5e7e89c87f80bafb4dc4b3ff1",
+      "bytes": 15457,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/00463ba0.json": {
+      "sha256": "796ce94cdb8115ff5e9184787b97ac5612213a875665eaa1937d1a77c943d3c2",
+      "bytes": 47541,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004ab700.c": {
+      "sha256": "7a14a80891fae0077fca1c1da86bcd24a253d3f9c254344f6400fd8ffd49b004",
+      "bytes": 1358,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004ab700.json": {
+      "sha256": "a781274eb500e6c5552fdfb00356f6f9378f48c855bd2732fb2a67d7142d0f19",
+      "bytes": 2679,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004b8470.c": {
+      "sha256": "0e43cca929bf697b7cb537b6cc7a5dc534bc63487198af87098cbc41a0ec7fb2",
+      "bytes": 1836,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004b8470.json": {
+      "sha256": "004144a4743a288ea5193cc98d86e2fde2d3d28ba673048c4245baf21360f13c",
+      "bytes": 8924,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004b86d0.c": {
+      "sha256": "bbefe6c1cb7b2e49e102079dafef391db9a03d453f6cc837788fc64969bf7c5f",
+      "bytes": 1003,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004b86d0.json": {
+      "sha256": "1843e6f7e19367aed6edb745f8fef4a8c592d85b77a90161fb00f3cbd5cb7c42",
+      "bytes": 3097,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004b87b0.c": {
+      "sha256": "849bfe56a63f34bb7b9393293ef95ba5dfa627328db216871747db0e3d8e1a17",
+      "bytes": 7805,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004b87b0.json": {
+      "sha256": "b6267318264347309ca47c1c52690e68e81819d51e270294be7364ecd6a45aa6",
+      "bytes": 36451,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004ba2d0.c": {
+      "sha256": "a04cba6acd271c60190208f0a1c4c3bb6a21da5143bcf453dd8bce34a32589d6",
+      "bytes": 686,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004ba2d0.json": {
+      "sha256": "1745e03393ad9c9a6c2d03c1f4d868cdb4dbba87346410f0952160790263774a",
+      "bytes": 3662,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004ba360.c": {
+      "sha256": "18555a2371fd08e728beec293b66ce8aba55f26cfebb64f3a0ba0707630ba05f",
+      "bytes": 213,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004ba360.json": {
+      "sha256": "8d0635bf57f85770e46bc4582100424b21b1c09697d6debe33d98e678608c9b6",
+      "bytes": 1637,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004ba390.c": {
+      "sha256": "bbd3b59050987c9114b13fa2e6adb944d84394efcb0947782a67e29919375b0f",
+      "bytes": 3822,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/004ba390.json": {
+      "sha256": "bf92beff8457a7cc888d168a38a1492c7648128aa980339f5dd11c8c9d90d81f",
+      "bytes": 12097,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/0058caf0.c": {
+      "sha256": "b99b319f2a404514dee8ee506246686cd7419b3665ec07d0b36f6fe0cb3b48c4",
+      "bytes": 3221,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/0058caf0.json": {
+      "sha256": "c6a9110ef8ce3266e203c2f60b3f8335c1a964cd776a5132070ad9d79520f841",
+      "bytes": 9983,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/0058cce0.c": {
+      "sha256": "f563773a3c1e56f43cf6f36690031bbd8f6442a38e2c9f81320cb8b10dc975ea",
+      "bytes": 13964,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/0058cce0.json": {
+      "sha256": "dbf87b48347e03cad587bfb39f69bda0a8d18c6cce31b2042a33434a4f7bf63c",
+      "bytes": 50569,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/005ac470.c": {
+      "sha256": "600ec01ddf69cf349745763c16d28defc5ac77c1199a8d2ca19f7cac94527adf",
+      "bytes": 170,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/005ac470.json": {
+      "sha256": "2391242987e851c174780942f9f9018446be3ef3a86bcbf9e00078654e740e55",
+      "bytes": 1305,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/frame.asm": {
+      "sha256": "98f9a08063312f3c7ca48634f8e86fceeaac96dae642edf2907383dce67ce275",
+      "bytes": 12711,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/misc-controls.asm": {
+      "sha256": "f218658b256e654adaaf43ab5510becc01e1927a82c42d0dfe89cd2057e90bc1",
+      "bytes": 4176,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/realtime.asm": {
+      "sha256": "eb0fd1ede56a5aa63009a7ec155e421fa211a92995a29e08015d0d3dc9aea945",
+      "bytes": 1632,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/routes.asm": {
+      "sha256": "4cea7bb0e234a8e1eb25256b06f3a824e64f279961eac776739cfd76e6625bdb",
+      "bytes": 8784,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-dependencies/selected-index.asm": {
+      "sha256": "4e6ee6a5403f77034ce3a0cb734697dac8559a0ed8df532616bd26f13901209b",
+      "bytes": 1716,
+      "retained": true
+    }
+  },
+  "limitations": [
+    "UI-owned0058CCE0/0058CAF0 preparation remains open until actual typed Human order/path/model/descriptor state exists; interface is not credited as its body.",
+    "Remaining command controls and5A7BB projection publication, map/info/scoreboard/inventory input/full0049BD50 remain UI work.",
+    "Human/Player order/queue/action/transport/seat producers and containing FRAME/RENDER/OWN execution remain required; existing GEffects positive limitations propagate.",
+    "No original or Windows fixture execution, active-branch merge/rebase, Agent1/research worktree mutation, push, live loading activation, rendered frame or desktop acceptance."
+  ]
+}

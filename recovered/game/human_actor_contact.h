@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_ACTOR_CONTACT_H
 
 #include "game/human_joint_owners.h"
+#include "game/human_loading_lifetime.h"
 
 namespace hd2::game {
 
@@ -13,7 +14,7 @@ bool receive_human_actor_contact(Human& human,Actor& source,const HumanVector& p
         Services& services,Runtime&){
     if(!human.loading_state)return false;
     const auto mode=services.mode_flags();
-    if((mode&1u)&&source.base().type()==4&&services.human_collision_car_speed(source)>2.f){
+    if((mode&1u)&&source.base().type()==4&&!(services.human_collision_car_speed(source)<=2.f)){ //Native x87 unordered also enters damage.
         if((mode&7u)==7u){
             const auto& occupants=services.human_collision_car_occupants(source);
             for(std::size_t reverse=occupants.size();reverse!=0;){
@@ -25,7 +26,15 @@ bool receive_human_actor_contact(Human& human,Actor& source,const HumanVector& p
     }
     auto* state=human.loading_state;
     if(!state)throw std::runtime_error("Human contact lost its actual B0 receiver after damage");
-    return state->frame_actor_contact(source.base().type(),source.base().id10(),mode);
+    return state->frame_actor_contact(source.base().type(),source.base().id10(),services.mode_flags()); //Actual C8 family reads current mode AFTER damage.
+}
+
+//Actual0059C2D0/005A07C0 callback binding to this SAME containing Human owner.
+//The absent-B0 return precedes any source/lifetime requirement, as in original.
+template<class Human,class Actor>bool dispatch_human_actor_contact(Human& human,Actor* source,const HumanVector& point){
+    if(!human.loading_state)return false;
+    if(!human.loading_lifetime)throw std::logic_error("Human contact requires its actual containing lifetime");
+    return human.loading_lifetime->actor_contact(source,point);
 }
 
 } //namespace hd2::game

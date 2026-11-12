@@ -3,12 +3,14 @@
 #include <array>
 #include <cstdint>
 #include <string_view>
+#include <optional>
 namespace hd2::game {
 //Process descriptors00844468..00844570, stride24. Name00/word04/type08/
 //variableBYTE0C/domain10/value14.00720B80 indexes TYPE at00844470, not the
 //record beginning. The three actual variables are integer/domain"0,1";
 //type2 rows are commands, so0071FE70 allocates NO string-variable owners.
-//Console command parser/dispatch, dictionary and side effects remain separate.
+//The fixed dictionary is a view of these SAME descriptors, not a second set
+//of variables. Command execution borrows this process owner.
 class ConsoleVariables {
 public:
     struct Descriptor {std::string_view name;std::uint32_t word4,type;bool variable;std::string_view domain;};
@@ -22,6 +24,13 @@ public:
         const auto& d=descriptors.at(index);
         return d.variable&&d.type==1?values_.at(index):-1;
     }
+    std::optional<std::size_t> command(std::string_view name)const{
+        //0071FE70 registers these exact byte strings.0040AA90 is case-sensitive.
+        for(std::size_t n=0;n<descriptors.size();++n)if(descriptors[n].name==name)return n;
+        return std::nullopt;
+    }
+    bool happy_ammunition()const noexcept{return happy_ammunition_;}
+    void happy_ammunition(bool enabled)noexcept{happy_ammunition_=enabled;} //007205E2→0098B02C, separate from descriptor value14.
     std::uint32_t set_integer_variable(std::size_t index,std::int32_t value) {
         const auto& d=descriptors.at(index);
         //Reached variable branch00720A80→00721B90 validates literal"0,1"
@@ -31,6 +40,7 @@ public:
     }
 private:
     std::array<std::int32_t,11> values_{}; //All original static value14 DWORDs start0; persist across mission loads.
+    bool happy_ammunition_=false; //Actual separate process BSS0098B02C; no per-World copy.
 };
 } //namespace hd2::game
 #endif

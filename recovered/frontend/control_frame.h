@@ -81,6 +81,7 @@ private:
         backend_.restore_graphics_flags(state_.saved_graphics_flags);
         flush_packets();
         startup_.word448=0;startup_.byte4df8=0;startup_.word5044=0;gate_=7;
+        if(startup_.service14)backend_.clear_control_input_records(); //0072E4E0→0073F5A0, manager and embedded30 survive.
         {Lock peers(backend_,2);}
         {Lock records(backend_,0);startup_.records.clear();}
         clear_packets();state_.local_peer=0;
@@ -90,6 +91,7 @@ private:
         require_cold(packets);
         if(startup_.object4ee0)throw std::logic_error("Control final resource owner is not reconstructed");
         closed_=true;CleanupErrors errors;errors.attempt(reset_control);
+        if(startup_.service14)backend_.retire_control_input_manager(); //0072E460→00723220, BEFORE critical sections retire.
         if(startup_.locks5018){
             errors.attempt([&]{backend_.delete_control_critical_section(0);});
             errors.attempt([&]{backend_.delete_control_critical_section(1);});startup_.locks5018=0;
@@ -99,7 +101,8 @@ private:
     void require_cold(bool packets=false) const {
         if (gate_ != 7 || state_.server || state_.client || state_.worker_active ||
                 state_.firewall_changed || startup_.wrapper0c || startup_.wrapper10 ||
-                startup_.service14 || startup_.handle4d3c != -1 || state_.timer_enabled)
+                (startup_.service14&&(!packets||!backend_.owns_control_input_manager(startup_.service14))) ||
+                startup_.handle4d3c != -1 || state_.timer_enabled)
             throw std::logic_error("Only standalone cold control lifetime is reconstructed");
         if(!packets&&broadcasts_.pending())throw std::logic_error("Control streams require their actual packet pump");
         if(!packets&&(state_.queue_counts[0]||state_.queue_counts[1]))

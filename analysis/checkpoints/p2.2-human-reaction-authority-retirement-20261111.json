@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "0074d510"
+  ],
+  "extended_entries": [
+    "00540db0",
+    "00475530",
+    "00475570",
+    "0077de30"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2593,
+  "source_files": {
+    "recovered/game/human_control_loading.h": {
+      "sha256": "868b4dc0f24941962cb03a4cdd2b5bc87e900a15b9289ff9a66cb90337c4797d",
+      "bytes": 55223
+    },
+    "recovered/game/human_frame_commands.h": {
+      "sha256": "eb56d084e6c2a1ab1aa3b7b28092370ba90fe0fd6d434f7ee7fe424eaa346974",
+      "bytes": 4006
+    },
+    "recovered/game/human_packet_receiver.h": {
+      "sha256": "9e0f5c6a8236f77c2a264552036c31b729b5d5165c6d3b15e597f824cc27a499",
+      "bytes": 2761
+    },
+    "recovered/game/human_player_state_loading.h": {
+      "sha256": "7772bb221252735978c1afd462361fb7d409efa9636dd01b0b5ca22adc859dd4",
+      "bytes": 18864
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "f9a99a061a1e1916263cad12ac3fba103e1c280c1904d76c6e575822b148a196",
+      "bytes": 105417
+    },
+    "recovered/game/human_reaction_retirement.h": {
+      "sha256": "b686d7a0569b25c3a6261000633d8c3a716be1e7f15584172a35d4ff64dc89ee",
+      "bytes": 5037
+    }
+  },
+  "temporary_audits": {
+    "human-authority-damage-native": {
+      ".cpp": {
+        "sha256": "67a9c161f68a6fb677ec0cacdc50a7ebc666dadd4cc0d4b2d5e304165e0bfd8e",
+        "bytes": 13665
+      },
+      "": {
+        "sha256": "5d440cd332febfc955add8ea479a4c66292f56c933d51bef423b9f5c5b312d96",
+        "bytes": 3494864
+      },
+      ".log": {
+        "sha256": "41ee460f28b984a3ab6f42c49cac60b5b5e81a2523b5e08278213e798b47f68c",
+        "bytes": 294
+      },
+      "removed": false
+    },
+    "human-reaction-retirement-native": {
+      ".cpp": {
+        "sha256": "d4bde467d92c070282b9c9acc3e53bf7c39af98e34bed1815173c4278fc0012f",
+        "bytes": 11569
+      },
+      "": {
+        "sha256": "e1e4a0746b95b6308526507e11140eae97e3aba2583e433fc0a4daf52363f22a",
+        "bytes": 946952
+      },
+      ".log": {
+        "sha256": "5e780227ec6d856628358f7e087eac9af714a80358f9bf3c5104e364da2c6d88",
+        "bytes": 249
+      },
+      "removed": false
+    }
+  },
+  "checks": {
+    "authority_native": "PASS human-authority-damage-native.log ASan/UBSan/LSan actual packet/policy/damage/Player B0/input registry/queue/serializer/presentation;100 retirements, failing allocation and motion groups. Access control disabled only for inspecting actual private input buffers; base bind alone is not complete Player activation. Other World/engine endpoints are doubles.",
+    "retirement_native": "PASS human-reaction-retirement-native.log ASan/UBSan/LSan actual Look hit/selection/selected-retirement body;100 lifetimes, seat failure/re-entry, pool/equipment/audio ordering, mounted draw order and velocity sentinel. Component/engine/geometry endpoints are doubles.",
+    "actual_i386": "PASS human-reaction-containing-host-i386.log compile only, actual authority and presentation World/Control composition",
+    "launcher_probe": "PASS human-reaction-containing-application-i386.log compile/link only; sequential",
+    "original_or_windows_execution": false
+  },
+  "research": [
+    "human-authority-command-routing.asm",
+    "human-remote-authority-empty.asm",
+    "human-contact-static-missing/00540db0.c",
+    "human-contact-static-missing/00577b30.c",
+    "human-player-command-drain/0053f370.c",
+    "human-reaction-selection-full.asm",
+    "human-reaction-selection-abi/0074d510.c"
+  ],
+  "remaining": [
+    "Normal non7 selected metadata/admission, ordinary peer3C spawn/lifecycle and remote transport",
+    "Other required PACK clothing/item/typed-control/action receivers retain failures",
+    "Full containing mission/World/frame/re-entry/retirement integration and user desktop acceptance"
+  ],
+  "excluded_credit": [
+    "Absent frozen0053F370/00577B30/00583220/005A4240 getters: no credit",
+    "Previously verified solver/clip/contact/particle bodies not re-audited or given new credit",
+    "Engine/geometry and callback component boundary doubles are not application/desktop execution"
+  ]
+}

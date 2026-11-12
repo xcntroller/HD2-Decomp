@@ -1,0 +1,128 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "a29033d5f8fc43a7e3fff8e9370ebc380531babf",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "00484f60"
+  ],
+  "extended_entries": [
+    "00500da0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2733,
+  "source_files": {
+    "recovered/game/car_mesh_fragments.h": {
+      "sha256": "1151dfb90f2aa42745283fff32734862847ec6bd65ebe57997620e4fc6e796c6",
+      "bytes": 7236
+    },
+    "recovered/game/physics_contact_link.h": {
+      "sha256": "8281d0438e9369c261c9bf38d1bb284b720da9eff9874e9cf0a26edea3eac469",
+      "bytes": 3062
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "f82be40e82e9e1a0c7a6a971c2a1216bfbdd816993b9b5ad995fa5acfc92f635",
+      "bytes": 104879
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "d0d1d7128795a0ae84f637cc716d31fdd64cad0941843b9b55ac8303c2d15a8b",
+      "bytes": 11676
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-fragments-native.cpp": {
+      "sha256": "79fdf2c9ca64de42a6768974cd67652ef0c1cf89a77f97d9b8b26634b5773fe3",
+      "bytes": 6335
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-native": {
+      "sha256": "a1b4c22558e15ca6c5281b968ce8fa76f394dda5a9eea931b9b6c1f068cf2d6a",
+      "bytes": 1063632
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-native.log": {
+      "sha256": "d5e4259a6f4e8efc4e433c3bd055990cc47e46345cbf22818f09831432139ca3",
+      "bytes": 256
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-host-i386.o": {
+      "sha256": "1a673c0cff586a48c75f81b595bd0a2aa4db6da9e676611fe09853010621ef1e",
+      "bytes": 17517720
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-host-i386.cpp": {
+      "sha256": "d087697a5e700db17075229c3410d186457d318d3698cb222993649e8ceb0755",
+      "bytes": 688
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/ExportHumanCarFragmentsABI.java": {
+      "sha256": "762c6ff52954ca52ffa9955b9368ecae23dc92dfab4e6d4fe0cbbb5cfe013c74",
+      "bytes": 3602
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-abi-export.log": {
+      "sha256": "c58a06727321fdb5147ff525984c71ce1b3e7d93246bbb76fcb6e28099cc8025",
+      "bytes": 4595
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-abi/00484f60.c": {
+      "sha256": "1c7934867594f050639ea53534d4069465953cbcf65debb400bd9a16ac83a43f",
+      "bytes": 13683
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-abi/00484f60.json": {
+      "sha256": "cb5d62db3a979f8ee0778c4b4f79033a918a6a99fb33cc3e2a81cc732e58dce5",
+      "bytes": 51805
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-abi/00485ba0.c": {
+      "sha256": "0ab6de35a286e3d54b5c5a75e7bea0a75633d84115138af4aab7db8c6f26de9b",
+      "bytes": 1419
+    },
+    "analysis/work/mission-world-20261103/human-car-fragments-abi/00485ba0.json": {
+      "sha256": "7f6d8572de6acb90c81ae698a93b6434c7873f7587b4c4fe3a039787f9e6d5df",
+      "bytes": 1190
+    },
+    "analysis/work/mission-world-20261103/human-car-fragment-triangle.asm": {
+      "sha256": "02a77e789dfc9a28e2b2e0519153f197c418526ce83189240f2a907e16873df2",
+      "bytes": 51139
+    },
+    "analysis/work/mission-world-20261103/human-car-fragment-parameters.asm": {
+      "sha256": "d6a1addbba1d598542dca92e7390ea85fe1c50b102f2743b7703d3c69fcfa43b",
+      "bytes": 3178
+    },
+    "analysis/work/mission-world-20261103/human-car-glass-fragment-index.txt": {
+      "sha256": "d8d3471e13e493e4b8faa542259a84cbe33985afb0095170c99c136ff4570ad1",
+      "bytes": 6048
+    },
+    "analysis/work/mission-world-20261103/human-car-fragment-math-index.txt": {
+      "sha256": "75a566bd36ac0c70b718a242c238cf4a2f0080a36bfc3c9f439dbab888c0b4ba",
+      "bytes": 9955
+    },
+    "analysis/work/mission-world-20261103/car-world-part-mesh-effect.asm": {
+      "sha256": "3ce487e90384461c4b77ce235a74840882a370642b524e0117dc1449c1671b23",
+      "bytes": 4681
+    },
+    "analysis/work/mission-world-20261103/door-vector-length.asm": {
+      "sha256": "fe47c4862e2f86632ca11d77e5a43bfd278c145c59c760b9b85d8571a69409ae",
+      "bytes": 2592
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan100 subdivision/Physics-link/parameter families PASS, including64-shard area conservation, exact child UV order, same normals, native engine random/create/impulse/release sequence and failed publication.",
+    "Strict actual nested World/Car/Physics/DM/Human i386 and final launcher/probe compile/link PASS; memory-heavy jobs sequential."
+  ],
+  "limitations": [
+    "Source-only typed/template/STL/RAII/checked-engine adaptation. Native100 families use actual subdivision/PhysicsContactLink/parameters with explicit vertex/engine-factory/Physics create/impulse doubles; no actual engine mesh, Physics trajectory/fade or whole-body equivalence claim. Strict actual nested World/Car/Physics/DM/Human i386 and launcher/probe compile/link pass. Item12 detachment, timed-DM, full Human entry/frame/failure/re-entry/retirement and application loading/desktop acceptance remain required.",
+    "Absent frozen00485BA0/004D4A10, delegated engine/math and unchanged Physics/type4/fade bodies receive no new credit. No original EXE/DLL/Proton/Windows output execution."
+  ]
+}

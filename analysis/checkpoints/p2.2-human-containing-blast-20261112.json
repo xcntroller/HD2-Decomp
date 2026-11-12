@@ -1,0 +1,134 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "18196e5b5924b1289d1ce04de6b02676efe68211",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [],
+  "extended_entries": [
+    "006ddd40",
+    "006ddfc0",
+    "006df170",
+    "005a1c90"
+  ],
+  "implemented_absent_frozen_zero_credit": [
+    "0059c2a0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2667,
+  "source_files": {
+    "recovered/game/blast_wave_process.h": {
+      "sha256": "51bcb6c52d35486fd3dc580a1db3ad0ca5bdaf27d7ab5c203dc953ccaba6e299",
+      "bytes": 9710
+    },
+    "recovered/game/human_blast_damage.h": {
+      "sha256": "b50b69d13b8b403609a2d9143a461b3f00fb21aa6ce48137fd1d2eca22f8a18c",
+      "bytes": 817
+    },
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "7f249ca48f68cae9b11c79ddaa58f552e9de906628a66fdc72c4ab50c4d4f18b",
+      "bytes": 6667
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "e663a3dbe09e14a42ff2c716895b2f0a8a323c1171337277f48ece20b2babda3",
+      "bytes": 22184
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-containing-blast-native.cpp": {
+      "sha256": "790e53d56207d0b41baaf90da6d67c10dce61b369055049a8f16c2b3cd888055",
+      "bytes": 13213
+    },
+    "analysis/work/mission-world-20261103/human-containing-blast-native": {
+      "sha256": "6a4d4f49409406aab180fa81c048f1e1bd4057920e2ccaca57655724b3cec315",
+      "bytes": 3265464
+    },
+    "analysis/work/mission-world-20261103/human-containing-blast-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-containing-blast-native.log": {
+      "sha256": "8a5eb034fd36a8b0169d1d80d839de258ffbbf0b061424cc3bed64fdc00cc17e",
+      "bytes": 343
+    },
+    "analysis/work/mission-world-20261103/human-containing-blast-host-i386.cpp": {
+      "sha256": "3fc7c5eb8233db029b63bd942e7ad527853b943cea758af0e03a4a55f2f0bffa",
+      "bytes": 586
+    },
+    "analysis/work/mission-world-20261103/human-containing-blast-host-i386.o": {
+      "sha256": "81cde80fc6d5fcfaebb428639dc712a6218248f64d4ce13b3746a4abb0d841e9",
+      "bytes": 16635857
+    },
+    "analysis/work/mission-world-20261103/human-containing-blast-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-containing-blast-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/shared-blast-hit-dispatch.asm": {
+      "sha256": "4957ba10d49953ac391ac1c2afaa45d01b762b939905cfcd1b855f48f8b6abf0",
+      "bytes": 7780
+    },
+    "analysis/work/mission-world-20261103/shared-trajectory-query-contracts/006ddd40.c": {
+      "sha256": "6f80f896ced8e5c48732138144e1bbaf8303dc56bfb0a58bcc40fa7cfdefdd2a",
+      "bytes": 2258
+    },
+    "analysis/work/mission-world-20261103/shared-trajectory-query-contracts/006ddd40.json": {
+      "sha256": "a2d9ef03bfdfc399b6d1632e06f8dd613ba6a1c26dc786692466ae794567236b",
+      "bytes": 6754
+    },
+    "analysis/work/mission-world-20261103/frame-shared-records-and-ticks/006ddfc0.c": {
+      "sha256": "e49e31f85dfdad631635d09cead9150488253b11bced266664a20a8914320abd",
+      "bytes": 6546
+    },
+    "analysis/work/mission-world-20261103/frame-shared-records-and-ticks/006ddfc0.json": {
+      "sha256": "07dc87d756c95fd97b3c619090294b4dc28be44db66139d53d6bef87bd204826",
+      "bytes": 19201
+    },
+    "analysis/work/mission-world-20261103/session-finish-transient-producers/006df170.c": {
+      "sha256": "bba7243f3a7862da2bf7a360315345e2d6da6ddf08df832caf6729002f35dca0",
+      "bytes": 2282
+    },
+    "analysis/work/mission-world-20261103/session-finish-transient-producers/006df170.json": {
+      "sha256": "d0cfc3e184a0db652e7012fc2f98ae85ccc7d90326af0059a91556669348a7c6",
+      "bytes": 13258
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/0043c6a0.c": {
+      "sha256": "49071f304a4719464315b0ceffc24922a5ec2599a704aa7dc8519bd74666ef02",
+      "bytes": 724
+    },
+    "analysis/work/mission-world-20261103/car-callback-versions-contact-required/0043b000.c": {
+      "sha256": "e81738531df3d0f23134aaee8cb1adb46b5771c2b33a344177653db490689793",
+      "bytes": 1807
+    },
+    "analysis/work/mission-world-20261103/human-containing-blast-index.txt": {
+      "sha256": "17101fa3ccb81c171329680367d0edc43e5361844f26509f479b43f134fa044b",
+      "bytes": 10259
+    },
+    "analysis/work/mission-world-20261103/human-blast-physics-force-index.txt": {
+      "sha256": "e5516c54afd910219948d35427a4ca73fe0b6622fa465d79c1b965046b8e5d50",
+      "bytes": 4449
+    }
+  },
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan actual BlastWaveProcess -> Human material66 -> same lifetime gateway ->005A1C90 -> actual Player Base/B0 queue, mode1/2/3/7 sourced/NULL x100=800 lifetimes, typed full-width source identity, final hit0, kind2/4, material strict threshold/authority gates, missing-lifetime and failed hit prefixes, retained node/one-extra-tick retirement. Geometry/ray/Versions (historically named Physics endpoint)/other damage endpoints are doubles. No full Player activation.",
+    "actual_i386": "PASS strict actual complete World/Human source/lifetime guard/create/update/material/damage composition compile only. Source owner-map key guard is compile-verified in actual host, not exercised by native full World.",
+    "launcher_probe": "PASS final sequential strict application-launch/startup-probe compile/link, no Windows outputs executed.",
+    "original_or_windows_execution": false
+  },
+  "temporary_audits_removed": false,
+  "exclusions": [
+    "Full containing Human/game/application frame, failure/re-entry/ordered teardown and desktop acceptance remain required.",
+    "Other derived actor D8/D4 and actual0043C6A0/0043B000 Versions part transitions remain required; no successful stand-ins or new credit.",
+    "Historical blast_physics_impulse source name retained, but actual frameEC+14 points to Versions master, not a rigid-body force. Required diagnostic corrected.",
+    "Source1C is borrowed without AddRef/identity conversion; host rejects missing/deleting owner before dereferencing source. No original class/allocator/SEH/register ABI or complete-function promotion.",
+    "Runtime Mine kind2/9C and full controller entry remain unrecovered; separate ignored research is not implementation credit."
+  ]
+}

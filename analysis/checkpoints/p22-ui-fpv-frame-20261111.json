@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "ce03fb8",
+  "latest_inspected_origin_master": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "00491660",
+    "00491e90",
+    "004aad30"
+  ],
+  "ledger_added_partial_client": 3,
+  "complete_promotions": 0,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan, 100 repetitions, motion/state/holster/camera/wrapper/death/flash/status/countdown paths; explicit endpoint doubles",
+    "actual_host_i386": "PASS strict concrete GameUiPresentation advance_first_person and status bodies using actual existing World types",
+    "application_link": "PASS i386 application launcher, not executed",
+    "tracker": "PASS render/check and27 existing tests"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-frame-native.cpp": {
+      "sha256": "e15cd461a32acd13d4cf0cd7f296a060fe1ee37a8a1aa131d183693b480d1b89",
+      "bytes": 7265,
+      "retained": false
+    },
+    "/tmp/p22-ui-frame-native": {
+      "sha256": "9f733e56c25995e5ce14ef0c4b4c8d3a1b45ab33774a912fc85b4832011b022f",
+      "bytes": 1680176,
+      "retained": false
+    },
+    "/tmp/p22-ui-sweep-i386.cpp": {
+      "sha256": "fdf8c9bbf6647e99d2a0d519ef035657062ed8e213d2d28871f7b5ee09b99afd",
+      "bytes": 163,
+      "retained": false
+    }
+  },
+  "limitations": [
+    "Standard-library long-double sine implements native FSIN mathematics; no bit-identical engine/desktop claim.",
+    "Unusable camera/model/Human and invalid FTOL phase fail explicitly rather than simulate unwritten native outputs.",
+    "Nonoffline status/team and existing FPV attached-actor guards remain; no successful placeholders.",
+    "Full HUD0049BD50,004B6720 command and reached input/edit workers remain UI-owned work."
+  ],
+  "ledger_complete": 34,
+  "ledger_partial": 2379
+}

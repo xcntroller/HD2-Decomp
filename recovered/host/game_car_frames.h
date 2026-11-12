@@ -68,6 +68,22 @@ public:
     bool load_car_ancillary_model(Frame model,const std::string& name) {
         return resources_.load_model(model,recovered::model_resource_key(name),0)==0;
     }
+    Frame car_damage_pick(const Vector& start,const Vector& displacement,Frame root,std::uint32_t flags){
+        if(!root||!scene_.frame())throw std::logic_error("Car damage picking requires actual scene/model owners");
+        using Pick=Frame(WINAPI*)(Frame,const float*,const float*,Frame,void*,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
+        alignas(16) std::array<std::uint8_t,64> details{};
+        return scene_method<Pick>(scene_.frame(),module_,0x104,0x110f0)(scene_.frame(),start.data(),displacement.data(),root,details.data(),flags,0,0,0);
+    }
+    void car_damage_model_pose(Frame model,const Vector& position,const Vector& rotation){call<void>(model,0x18,position.data(),rotation.data());}
+    void car_damage_plane_rotation(Frame target,Frame source){ //004E1DC0's cache publication precedes Make.
+        auto flags=field<std::uint32_t>(source,0xe0);
+        if(!(flags&8u)){
+            put(source,0xe0,flags|8u);using Make=void(WINAPI*)(void*,const void*);
+            exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(address(source,0xc0),address(source,0x80));
+        }
+        object_rotation(target,field<Vector>(source,0xc0));
+    }
+    Frame car_damage_root(){return field<Frame>(scene_.frame(),0x1f8);}
     Vector car_position(Frame frame) const {return field<Vector>(frame,0xb0);}
     Frame car_find(Frame frame,const char* pattern,std::uint32_t mask) {
         return call<Frame>(frame,0x48,pattern,mask);
@@ -189,6 +205,25 @@ public:
         return assigned;
     }
     Frame car_mesh(Frame visual) const {return field<Frame>(visual,0x1e0);}
+    bool car_exchange_glass_texture(Frame mesh,std::optional<ResourceOwner>& texture){ //00500DA0/004FE910(0).
+        const auto lod=call<Frame>(mesh,4,std::uint32_t{0});const auto slot=call<Frame>(lod,0x14,std::uint32_t{0});
+        const auto material=field<Frame>(slot,4);
+        if(field<std::uint32_t>(material,8)&0x4000000u)call<void>(material,0x44);
+        const auto previous=field<Frame>(material,0xc);
+        if(!previous||!texture||!texture->get())return false;
+        put(previous,0x14,field<std::uint32_t>(previous,0x14)+1u);
+        auto retained=own_car_resource(previous);
+        call<void>(material,0x1c,texture->get());
+        texture.reset();texture.emplace(std::move(retained));return true;
+    }
+    void car_reset_link(Frame frame,Frame parent){call<std::uint32_t>(frame,0x38,parent,std::uint32_t{0});}
+    void car_reaction_mesh_link(Frame frame,Frame parent){call<std::uint32_t>(frame,0x38,parent,std::uint32_t{1});}
+    void car_destroyed_meshes(Frame model,Frame helper){
+        DestroyedMeshes context{this,helper,{}};
+        using Enumerate=std::int32_t(WINAPI*)(Frame,std::int32_t(WINAPI*)(Frame,void*),void*,std::uint32_t,const char*);
+        scene_method<Enumerate>(model,module_,0x44,0x1de40)(model,&replace_destroyed_mesh,&context,1,nullptr);
+        if(context.failure)std::rethrow_exception(context.failure);
+    }
     void car_projector_scale(Frame frame,const Vector& scale) { //004F4E40, no frame24 call.
         for(unsigned axis=0;axis!=3;++axis)put(frame,0xd0+axis*4,scale[axis]);
         car_rotation(frame);
@@ -351,6 +386,21 @@ public:
         call<void>(model,0x80,part);
     }
 private:
+    struct DestroyedMeshes {GameCarFrames* frames;Frame helper;std::exception_ptr failure;};
+    static std::int32_t WINAPI replace_destroyed_mesh(Frame frame,void* opaque)noexcept{ //004DCDE0.
+        auto& context=*static_cast<DestroyedMeshes*>(opaque);if(context.failure)return 0;
+        try{
+            auto& frames=*context.frames;
+            if(!context.helper)throw std::logic_error("Destroyed Car visual requires its actual camera/helper model");
+            //The original uses name+signedE6, or an empty string for NULL E8.
+            const auto* name=field<const char*>(frame,0xe8);const char* short_name="";
+            if(name)short_name=name+field<std::int16_t>(frame,0xe6);
+            if(const auto replacement=frames.car_find(context.helper,short_name,0xffff)){
+                frames.call<void>(frame,0x9c,frames.car_mesh(replacement),std::uint32_t{1});frames.update_scene_object(frame);
+            }
+        }catch(...){context.failure=std::current_exception();}
+        return 0;
+    }
     ResourceOwner own_car_resource(Frame frame) const {return ResourceOwner(frame,ResourceRelease{module_});}
     struct PartEnumeration {std::vector<Frame> frames;std::exception_ptr failure;};
     static std::int32_t WINAPI collect_part(Frame frame,void* opaque) noexcept {

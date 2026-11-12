@@ -29,10 +29,17 @@ public:
     virtual void update(bool authority,std::uint32_t milliseconds)=0;
     virtual CarActorColdState<Frames>& cold_state()=0;
     virtual CarSteeringState& steering_state()=0;
+    virtual std::uint32_t& collision_clock()=0;
+    virtual void set_fuel(float amount)=0;
     virtual void remove_reaction_seat(std::int32_t index)=0;
     virtual std::uint32_t reaction_seat_flags(std::int32_t index)const=0;
     virtual void dead_human_controls()=0;
     virtual void release_presented_driver_pedal()=0;
+    virtual void puncture_sound(std::size_t)=0;
+    virtual void destruction_controls()=0;
+    virtual void physical_reset(float speed,bool restore)=0;
+    virtual void destroyed_meshes()=0;
+    virtual void glass_damage(std::size_t index,const CarContactVector& direction)=0;
 };
 
 } //namespace hd2::game

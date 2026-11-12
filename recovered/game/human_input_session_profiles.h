@@ -10,7 +10,8 @@ namespace hd2::game {
 //receiver getters. These profiles never replace those required receivers.
 class HumanInputSessionProfiles {
 public:
-    HumanInputSessionProfiles() {
+    HumanInputSessionProfiles(){reset();}
+    void reset() { //00723000 rebuilds all three inline profiles on manager replacement.
         using Shared=HumanInputShared;
         profiles_[0]=Shared::make_quantizer(uniform(0xc47a0000),uniform(0x453b8000),uniform(0x3c23d70a));
         profiles_[1]=Shared::make_quantizer(uniform(0xbe99999a),uniform(0x3f19999a),

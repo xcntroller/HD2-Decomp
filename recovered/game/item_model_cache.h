@@ -134,8 +134,10 @@ public:
     }
     void clear_definition(std::size_t index) noexcept {
         //007E0560 releases derived64 before007DF430 destroys20, then30.
-        magazines_[index].reset();first_person_[index].reset();primary_[index].reset();
+        clear_first_person_definition(index);clear_primary_definition(index);
     }
+    void clear_first_person_definition(std::size_t index)noexcept{magazines_[index].reset();first_person_[index].reset();}
+    void clear_primary_definition(std::size_t index)noexcept{primary_[index].reset();}
     void clear() noexcept {for(auto i=primary_.size();i!=0;)clear_definition(--i);}
 private:
     void validate(const Definition& definition) const {

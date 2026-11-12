@@ -167,8 +167,9 @@ public:
     bool project_ground_position(HumanVector&)override{return false;} //00583140, genuine AL0/RET4, absent frozen.
     bool frame_actor_contact(std::uint32_t,std::int32_t,std::uint32_t)override{return true;} //00583230, genuine AL1/RET28, absent frozen.
     template<class Services>void bind_frame_command_packets(Services& services){
-        frame_packets_=[&services](std::int32_t identity,bool second,const std::vector<FrameCommand>& commands){
-            services.publish_human_frame_commands(identity,second,commands);
+        frame_packets_=[this,&services](std::int32_t identity,bool second,const std::vector<FrameCommand>& commands){
+            const HumanFrameCommandRange<std::vector<FrameCommand>> range(commands,words_.template get<std::uint32_t>(0x48)==7);
+            services.publish_human_frame_commands(identity,second,range);
         };
     }
     void process_first_frame_commands(){process_frame_commands(false);} //00577B30(0), actual B0+84.

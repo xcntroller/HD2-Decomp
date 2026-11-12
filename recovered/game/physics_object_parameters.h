@@ -18,6 +18,7 @@ template<class Frame>struct PhysicsObjectParameters {
     std::uint32_t type=5;
     bool flag14=false,flag15=false,first_list=false,sight_pass=true;
     std::uint32_t field18=0;
+    std::uint32_t material10=0; //Native+10→common object150; Versions fragment producer supplies part material.
     bool free_axis=false,tree=false,breakable=false,pickup=false;
     float angle=1.57079637050628662109375f;
     std::string break_model;

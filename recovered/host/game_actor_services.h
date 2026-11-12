@@ -71,6 +71,19 @@ public:
     void unbind_scene_actor_frame(Frame frame) noexcept {frame_data_.unbind(frame);}
     game::ActorFrameData& actor_frame_data(Frame frame) {return frame_data_.ensure(frame);}
     const game::ActorFrameData* find_actor_frame_data(Frame frame) const {return frame_data_.find(frame);}
+    template<class Part>void replace_version_part(Part& part,Frame variant){ //0043BA60, SAME metadata and retained frame owner.
+        const auto old=part.frame.get();if(!old)return;
+        auto next=make_version_replacement(old,variant);if(!next)return;
+        actor_frame_data(next.get()).words[5]=reinterpret_cast<std::uintptr_t>(part.master);
+        actor_frame_data(next.get()).words[6]=reinterpret_cast<std::uintptr_t>(&part);
+        actor_frame_data(old).words[5]=0;actor_frame_data(old).words[6]=0;
+        const bool attached=frame_model_owner(old)!=nullptr;attach_version_replacement(old,next.get());
+        //Native no-model-owner branch returns after its metadata mutations,
+        //leaking the new visual. Source releases its factory reference; the
+        //shared frame-data store retains its allocation until sidecar retirement.
+        if(!attached)return;
+        part.frame.reset();part.frame=std::move(next);finish_version_replacement(part.frame.get());
+    }
     void erase_actor_frame_data(Frame frame){
         (void)frame_data_.find(frame); //Reject foreign opaque allocations; never free an unknown producer's data.
         frame_data_.erase(frame); //006E9B20, retract opaque pointer before releasing its actual allocation/frame.

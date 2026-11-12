@@ -6,6 +6,9 @@
 #include "game/session_packet_stream.h"
 #include "frontend/localized_text.h"
 #include "frontend/spatial_sound.h"
+#include "game/shot_effect.h"
+#include "game/mission_particle_emission.h"
+#include "game/runtime_actor_packets.h"
 #include <limits>
 
 namespace hd2::game {
@@ -48,11 +51,15 @@ public:
     auto door_current_player_frame(){auto* human=d().players.control().current_player();return human?human->base().frame():typename Dependencies::Frame{};}
     std::uint32_t session_mission_ordinal()const{return d().session.words.template get<std::uint32_t>(0x3c);}
     auto& session_broadcast_packets(){return d().broadcast_packets;}
+    std::int32_t zone_style(){return d().startup.game_configuration().style224;}
+    bool zone_remote_ai(){return d().startup.human_remote_ai_enabled();}
+    void zone_hud_objective(std::uint32_t index,std::int32_t side){d().hud.select_objective(index,side);}
     auto& spawn_packet_decoder(){return d().spawn_decoder;}
     template<class Actor>void receive_human_presentation_packet(Actor* actor,SessionPacketStream& packet){d().human_factory.world_services().receive_human_presentation_packet(actor,packet,false);}
     auto& actor_proximity(){return d().proximity;}
     void clear_retired_actor_record(std::int32_t identity){d().startup.clear_retired_actor_record(identity);}
     void clear_human_player_slot(std::uint32_t identity){d().startup.clear_human_player_slot(identity);}
+    template<class Human>void retire_scene_human(Human& human){d().human_factory.world_services().retire_scene_human(human);}
     template<class Actor>void remove_actor_presentation_references(Actor& actor){d().hud.remove_actor_references(mode_flags(),1,&actor.base());}
     auto car_loading_resources(){return d().car_resources;}
     auto& car_definitions(){return d().car_definitions;}
@@ -76,6 +83,23 @@ public:
     void emit_supply_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_fowl_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_animation_actor_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
+    void emit_mine_effect(const HumanVector& position,const HumanVector& direction,std::uint32_t particle,std::int32_t sound){
+        auto& world=d();emit_shot_effect_without_material(world.startup.shot_manager_process(),world.sound,
+            world.startup.mission_effects_process(),world.scene.frames(),position,direction,particle,sound);
+    }
+    void rigid_water_particle(const HumanVector& position){
+        auto& world=d();
+        (void)emit_mission_particle(world.startup.mission_effects_process(),world.scene.frames(),45,position,
+            HumanVector{{0,1,0,0}},typename Dependencies::Frame{},false,false);
+    }
+    template<class Actor>bool consume_mine_inventory(Actor* borrowed,std::int32_t definition){
+        auto& world=d();auto& human=world.world_actors.human_loading_actor(borrowed);
+        return world.human_factory.world_services().consume_human_mine_inventory(human,definition);
+    }
+    void publish_mine(std::int32_t identity,std::int32_t human,std::int32_t definition,const HumanVector& position,const HumanVector& direction){
+        publish_runtime_mine(d().broadcast_packets,identity,human,definition,position,direction);
+    }
+    void publish_mine_contact(std::int32_t identity,std::uint32_t command){publish_runtime_mine_contact(d().broadcast_packets,identity,command);}
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(typename Dependencies::Frame frame,void* callback,Resolve&& resolve,Type&& type){
         return d().startup.add_game_sound_listener(frame,callback,std::forward<Resolve>(resolve),std::forward<Type>(type));
     }

@@ -30,7 +30,8 @@ public:
         frame_.queue_counts[authority?0u:1u]=checked_count(queue.size());
     }
     void phase(bool authority) { //0072C3B0: drain selected queue, unlock BEFORE any decoder call.
-        require_offline();if(authority&&!(mode_&1u))return;
+        if(authority&&!(mode_&1u))return;
+        backend_.prepare_application_packet_phase(authority); //Native authority domain174==1 service pump precedes queue lock.
         for(;;) {
             std::optional<Packet> packet;
             {Lock lock(backend_,1);auto& queue=authority?authority_:presentation_;
@@ -42,7 +43,11 @@ public:
             while(reader.bit_count()<reader.received_bit_count()) {
                 const auto module=reader.read(5); //0072C0B0, native20 message-kind bound→5bits.
                 if(module==19)break;
-                if(module==20)throw std::runtime_error("Local packet requires actual application control-message decoder");
+                if(module==20){
+                    const auto command=reader.read(32);
+                    backend_.dispatch_application_packet(command,reader,authority);
+                    continue;
+                }
                 if(!dispatcher_.world_loaded())break; //Native missing/unloaded game returnsfalse.
                 if(!dispatcher_.dispatch_packet(module,reader,authority))break; //0048DC50/70; absent module genuinelyfalse.
             }
@@ -89,6 +94,14 @@ public:
     }
     void clear() { //0072E4E0 queue portion, same430 lock; no implicit decoder/flush.
         Lock lock(backend_,1);authority_.clear();presentation_.clear();frame_.queue_counts.fill(0);
+    }
+    void clear_selected(bool authority){ //00731610 chooses BEFORE entering430 and clears ONLY that FIFO.
+        Lock lock(backend_,1);auto& queue=authority?authority_:presentation_;
+        while(!queue.empty()){
+            auto bytes=std::move(queue.front().bytes);queue.pop_front();
+            frame_.queue_counts[authority?0u:1u]=checked_count(queue.size());
+            (void)bytes; //Payload allocation retires AFTER node unlink/count update, still under430.
+        }
     }
     const auto& authority_queue()const{return authority_;}const auto& presentation_queue()const{return presentation_;}
 private:

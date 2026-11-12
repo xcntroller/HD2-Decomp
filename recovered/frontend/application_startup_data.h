@@ -20,6 +20,7 @@ public:
     template<class Files, class Directory>
     ApplicationStartupData(Graphics& graphics, Files& files, Directory& directory) {
         game_ = std::make_unique<GameData>();
+        game_->construct_multiplayer_mission(); //006B4AE4→006B5620, before configuration loading.
         configuration_ = std::make_unique<StartupConfiguration>();
         configuration_->load(files, directory);
         profile_ = std::make_unique<ProfileState>();

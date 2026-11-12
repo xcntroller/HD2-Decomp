@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "6fe6f6e",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004aed20",
+    "0069ae80",
+    "0069aeb0"
+  ],
+  "ledger_added_partial_client": 3,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2488,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan100 repeated scoreboard/TextState/TextObject/shared-font lifetimes across all styles/teams/visibility/disabled gates, populated scores/counts/fractions, exact records/styles/formats and ordering, signed/invalid float conversion, negative/overflow timers, retained stale rows/limit-1, font/root/score/team/peer failures. Font/frame/actor/network endpoints are doubles.",
+    "actual_host_i386": "PASS strict concrete GameUiPresentation::advance_scoreboard with/without required network source, actual panel/session/configuration/Players/physical reserved identities/Human suppression composition.",
+    "latest_master_source_compatibility": "PASS temporary git archive494cbee plus53 UI source files, three-way composition from31b01f9, zero conflicts; strict actual scoreboard UI method compiles. No active branch merge/rebase/reference worktree mutation.",
+    "application_link": "PASS sequential application-launch link with strict actual i386 compiler; never executed.",
+    "tracker": "PASS exact fingerprints/full frozen inventories/unique statuses/evidence/README and27 existing tracker tests."
+  },
+  "artifacts": {
+    "/tmp/p22-ui-scoreboard-audit.cpp": {
+      "sha256": "1876d8df2310d44eb2298cc43e304f140378946de361e2786b1902a540e51979",
+      "bytes": 5753,
+      "retained": false
+    },
+    "/tmp/p22-ui-scoreboard-audit": {
+      "sha256": "1d33a32f4f32dd43579890e2cf71d8dda2c1864c000355bcbf6bfde86b011415",
+      "bytes": 1330200,
+      "retained": false
+    },
+    "/tmp/p22-ui-scoreboard-i386.cpp": {
+      "sha256": "3dc96e34a7f9eb8561377c86084b493268d818d432b3d0989cfd7509db3bbf7c",
+      "bytes": 195,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-scoreboard/004aed20.c": {
+      "sha256": "0165d8fffac5feb87783300a0c0299de8339d85b56ea78a937d2cfd05ae7f8fc",
+      "bytes": 5494,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-scoreboard/004aed20.json": {
+      "sha256": "1d303fa6c8417f2eaaaba7b33bddd125e123a9af7addb9cd71a43d8d06514ed8",
+      "bytes": 29172,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-scoreboard/formats.txt": {
+      "sha256": "dd70ff950bcfb5296747b2f3e8128c5cbe49406f93ad6dd1541ef0501fa5b2d5",
+      "bytes": 215,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-scoreboard/human-team.asm": {
+      "sha256": "67c7a9c3406f41e2dd32be95ad27bc3a4bbf4cc617370934cfb5fb4420fb3219",
+      "bytes": 2541,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-scoreboard/scoreboard.asm": {
+      "sha256": "5eb7be68dd388828e7fd81a1cb2cb2d967d0e37d2d60e2f88818f4456154def2",
+      "bytes": 23648,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-scoreboard/text-set-wrapper.asm": {
+      "sha256": "b89e3f8b7674f1d91a3cb7b13af626fdb4d6ea7c83e959747e96431b6342c7aa",
+      "bytes": 2834,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-scoreboard/timers.asm": {
+      "sha256": "8a08f43d0c16fe4e552126f57459e5f58c15cb7fc6b47190f013a1b5753f799c",
+      "bytes": 1592,
+      "retained": true
+    }
+  },
+  "limitations": [
+    "Process scores/nonoffline team/locked peer records require actual network producers. No successful defaults or menu-discovery data used.",
+    "Remaining command preparation/controls/projection, map/info/inventory controls/full HUD plus Human/Player/FRAME/RENDER/OWN dependencies stay open.",
+    "No original/Windows fixture execution, desktop acceptance, rendered frame, loading activation, reference worktree mutation, merge/rebase or push."
+  ]
+}

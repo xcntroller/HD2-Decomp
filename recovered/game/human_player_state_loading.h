@@ -271,8 +271,8 @@ public:
         this->process_second_frame_commands(); //FC(1), AFTER actual model direction publication.
     }
     void receive_packet_inputs(const HumanPacketCommand& command){ //00540DB0 case0, SAME C4/1C4 buffers.
-        this->queue_frame_command(command,true); //Allocate before publishing, for source allocation-failure retry.
         local_inputs_=command.inputs;
+        this->queue_frame_command(command,true); //Native C4/1C4 stores precede00547460 insertion; allocation failure retains those stores.
     }
     //Dead00583190 genuinely inherits the base RET4 receiver.
 private:

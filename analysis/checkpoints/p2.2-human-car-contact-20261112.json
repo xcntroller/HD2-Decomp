@@ -1,0 +1,188 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "e77c8330f9e5b47ca5d81433b5f15c8c8ca9c79c",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "004de800"
+  ],
+  "extended_entries": [
+    "0059f2c0",
+    "0049de50"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2621,
+  "source_files": {
+    "recovered/game/human_actor_contact.h": {
+      "sha256": "2772396b6879ead26c77cb713fb52f955822524fef119ebf2de8be380a6642f9",
+      "bytes": 2141
+    },
+    "recovered/game/human_loading_activation.h": {
+      "sha256": "73f79f6d17cc610f53345200ecc9da77da910f4aa513753e84ef81f903bc2872",
+      "bytes": 10461
+    },
+    "recovered/game/human_loading_composition.h": {
+      "sha256": "03c3ad929860f166ac9796cd866db881754016fbff9a21565b9602c411cd8c8d",
+      "bytes": 5176
+    },
+    "recovered/game/human_loading_lifetime.h": {
+      "sha256": "b43ab2536c211ab43cc9867fadc951de696dcbfac28adad13081be2f5e073749",
+      "bytes": 724
+    },
+    "recovered/game/human_loading_stats.h": {
+      "sha256": "a4456dd2185f5bca69164f5e9683c1b6e9033f0b209ef57c5614add975d53ba3",
+      "bytes": 3914
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "ef0299bd32e5943d49fb0610652731f153fbf80a39d966e52088d0cf6488d48c",
+      "bytes": 107737
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "bf0160dbfad8a58557a4f65e110035b56693616fd629fa27989778334997d0e6",
+      "bytes": 9556
+    },
+    "recovered/game/car_actor_authority.h": {
+      "sha256": "937bc1e220b07e2c63142c7aae1a5d90e2e5eeaca5caae12af98f42e42c71db7",
+      "bytes": 770
+    }
+  },
+  "verification_artifacts": {
+    "human-ragdoll-car-authority-native.cpp": {
+      "sha256": "2573e9c40f813dcb78390ac0c3e30cdf1e8e0a299b24c52e8905ad29fabb925e",
+      "bytes": 3810
+    },
+    "human-ragdoll-car-authority-native": {
+      "sha256": "d1054a948f7355b538d41bcff05c9023391c78a87fdab103e90cc42162037ff3",
+      "bytes": 1186368
+    },
+    "human-ragdoll-car-authority-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-ragdoll-car-authority-native.log": {
+      "sha256": "a913f017b1f57b0d391a6848eb379ef7fe7b220ad40136578b48522dd328bf69",
+      "bytes": 337
+    },
+    "human-car-contact-binding-native.cpp": {
+      "sha256": "2205aea702db02e032b13727773aaae61d30bf619e3b4862db98900f6e18d309",
+      "bytes": 5624
+    },
+    "human-car-contact-binding-native": {
+      "sha256": "2e5e70602d54eb1605b57fe0880a8b9db8722f3a4f7d11dab90943f7fc48b100",
+      "bytes": 1486952
+    },
+    "human-car-contact-binding-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-car-contact-binding-native.log": {
+      "sha256": "359a0c1c66bbb6bca36a42794c21952a79857179cad802ddae5375232b3a2819",
+      "bytes": 360
+    },
+    "human-spawn-protection-native.cpp": {
+      "sha256": "09e555cdf7a484852551f9b29c7ad71f21a238d31e415d97de2e65792dd3c966",
+      "bytes": 3946
+    },
+    "human-spawn-protection-native": {
+      "sha256": "6c1b059d9ded535a707f1dff9fe3b62d85026b43c25dddacb5b826260de729d7",
+      "bytes": 1067368
+    },
+    "human-spawn-protection-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-spawn-protection-native.log": {
+      "sha256": "15f42f196ad2bae20031dd5ca09238df5fe54a00b5d86a829d06fb5e8d95bb7c",
+      "bytes": 364
+    },
+    "human-peer-owner-retirement-native.cpp": {
+      "sha256": "73b055f5cb949bd2ac84867410b9a95abd73f01904afa119f80800d9d94cce74",
+      "bytes": 9230
+    },
+    "human-peer-owner-retirement-native": {
+      "sha256": "1cdf97379a299cf6a68830cd467367997023ce7d1d158b065d24d53d7f18c709",
+      "bytes": 3062080
+    },
+    "human-peer-owner-retirement-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-peer-owner-retirement-native.log": {
+      "sha256": "c6ca10d9316641340deffc06a4133db2c6203234edc70e4c9817667c1aa2a293",
+      "bytes": 356
+    },
+    "human-ragdoll-car-authority-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-ragdoll-car-authority-host-i386.o": {
+      "sha256": "1f8a0c58dab67895439bdc6c01fdb072cec079cd9d81f0ef94f5da39d334502e",
+      "bytes": 15916859
+    },
+    "human-ragdoll-car-authority-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    }
+  },
+  "original_evidence": {
+    "car-callback-body-world-required/004de800.c": {
+      "sha256": "c8c288df7c56af6360ef83cde141e7f5403a06bb06c35dbc57cc62f57f005a5b",
+      "bytes": 583
+    },
+    "car-callback-body-world-required/004de800.json": {
+      "sha256": "d3424f25a035bb8ec5fddf5f00f82c925f81dda7b5f2900739db3ffa3a5f1e81",
+      "bytes": 3045
+    },
+    "human-ragdoll-car-authority.asm": {
+      "sha256": "732e3a756fa723dbdda8856108f5b59212d924b8fc76ac97120d5fcc92d3a98b",
+      "bytes": 3273
+    },
+    "human-contact-005a07c0.asm": {
+      "sha256": "5f3691475cc1debb326726a99312a63c2eff785bc4c75251f6b18b8407087c77",
+      "bytes": 4246
+    },
+    "human-contact-static-missing/005a07c0.c": {
+      "sha256": "ee7c984364e6457ee787d4d2448345dac4da391b31b387ceae60058011bcdf7f",
+      "bytes": 1160
+    },
+    "human-ragdoll-collision-final-abi/007cbf90.c": {
+      "sha256": "8176c25316f98f860891ae0d1dca0ff0e9b9e97d40ff43df6ec84c176b0c0bc2",
+      "bytes": 9295
+    },
+    "human-ragdoll-collision-final-abi/007cc740.c": {
+      "sha256": "22dc961830f8851ac64044d55d4c27a26244d8e98347f43a0f3ad6a23607a7a9",
+      "bytes": 13503
+    },
+    "human-containing-listeners/0059f2c0.c": {
+      "sha256": "0b2e2fd51ffbc918e5b08994c90af7fd22edfef632d3f3a056ee9831ab99a7e4",
+      "bytes": 10629
+    },
+    "human-damage-policy-abi-v3/0049de50.c": {
+      "sha256": "96fb06a60fcf3c414095dbc525fa399159e44586f27b1441eb850c8ade7ba592",
+      "bytes": 188
+    }
+  },
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan ownership all mode0..7/seat0/local/kind cases and repeated getter/late mode failures; actual Car direct impulse100x4; callback binding/shared005A07C0/Base/Player C8 and damage/reentry/failure100 lifetimes; spawn-protection config250 and actual injury TextState100 panel lifetimes; containing-owner retirement regression modes1/2/3/7x100 after source interface update. Explicit policy/frame/damage/lifetime/geometry/fonts/localization doubles, not full World/activation.",
+    "actual_i386": "PASS final strict actual World/factory/Car callbacks/Human lifetime/contact composition compile only.",
+    "launcher_probe": "PASS latest sequential strict application-launch/startup-probe compile/link only; no Windows output executed.",
+    "research": "Research index before reuse; raw004DE800 and005A07C0 plus corrected collision ABI and actual activation/HUD C retained. No new Ghidra exports.",
+    "original_or_windows_execution": false
+  },
+  "temporary_audits_removed": false,
+  "excluded_credit": [
+    "005A07C0/0059C2D0 and B0 C8 bodies absent frozen: ZERO new credit",
+    "Existing uncredited007CBF90/007CC740/004F2790 kernels were reused; no new credit in this focused integration checkpoint",
+    "Source-only lifetime contact forwarding has no separate original ABI credit"
+  ],
+  "exclusions": [
+    "Wider Car hit58 non7 ownership/004D3D10 event publication remains required",
+    "Positive6A4 callback producer remains outside actual cold-null state",
+    "Normal non7 spawn/entry/transport/input histories and occupied Human attachment remain required",
+    "Full containing reaction/frame/failure/retirement, application loading/rendering and desktop acceptance remain open"
+  ]
+}
