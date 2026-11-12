@@ -721,6 +721,9 @@ public:
     void refresh_dynamic_human_model(Frame model){call<void>(scene_.frame(),0x144,model);} //007646F0/00755500, original scene receiver.
     void detach_human_effect_model(Frame model){(void)call<std::int32_t>(model,0x38,Frame{},std::uint32_t{5});} //007B0910 ignores native LinkTo return.
     void human_reaction_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{1});} //0074D510/occupied seat removal ignore LinkTo status.
+    void human_seat_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{0});}
+    void human_seat_origin(Frame model){car_suspension_position(model,Vector{});call<void>(model,0x1c,Vector{{0,0,1,0}}.data(),0.f);update_scene_object(model);}
+    void human_seat_exit_pose(Frame model,const Vector& position,const Vector& direction){call<void>(model,8,position.data());call<void>(model,0x1c,direction.data(),0.f);update_scene_object(model);}
     Frame human_visual_bone(Frame visual,unsigned index){ //005A3CC0, actual borrowed skeletal frame table214.
         if(!visual)throw std::logic_error("Human damage point requires its actual skeletal visual");
         const auto* bones=field<const Frame*>(visual,0x214);
@@ -876,6 +879,18 @@ public:
         }
         return direction;
     }
+    Vector mounted_local_forward(Frame frame){ //004C2580/004C3120, same lazy local matrix protocol.
+        const bool cached=(field<std::uint32_t>(frame,0xe0)&0x10u)!=0;
+        if(!cached){put(frame,0xe0,field<std::uint32_t>(frame,0xe0)|0x10u);
+            using Normalize=void(WINAPI*)(void*);exported<Normalize>("?Normalize@S_quat@@QAGXXZ",0x30540)(address(frame,0xc0));
+            using Set=void(WINAPI*)(void*,const void*);exported<Set>("?SetRot3@S_matrix@@QAGXABUS_quat@@@Z",0x2d450)(address(frame,0x80),address(frame,0xc0));}
+        Vector direction=field<Vector>(frame,0xa0);
+        if(cached){const float square=static_cast<float>((static_cast<long double>(direction[0])*direction[0]+static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[1])*direction[1]);game::normalize_human_ai_shot(direction,square);}
+        return direction;
+    }
+    void mounted_local_direction(Frame frame,const Vector& direction){call<void>(frame,0x1c,direction.data(),std::uint32_t{0});}
+    MenuDriver::Owner mounted_shell_visual(Frame source){auto result=create_visual(0x5f4a424fu);if(!result)throw std::runtime_error("Cannot create mounted casing visual");call<void>(result.get(),0x4c,source);human_seat_link(result.get(),camera_root_sector());place_human_reaction_model(result.get());return result;}
+    void mounted_shell_position(Frame frame,const Vector& position){auto flags=field<std::uint32_t>(frame,0xe0);if(!(flags&0x80u)){for(unsigned axis=0;axis!=3;++axis)put(frame,0xb0+axis*4,position[axis]);put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);}}
     void human_control_set_position(Frame frame,const Vector& position){ //007599F0.
         call<void>(frame,0x08,position.data());
         call<void>(scene_.frame(),0x144,frame);
@@ -960,6 +975,7 @@ public:
     bool car_sound_state(Frame sound){return call<std::uint8_t>(sound,0x78,std::uint32_t{0})!=0;}
     float car_sound_volume(Frame sound)const{return field<float>(sound,0x16c);} //0051B560.
     std::uint32_t car_sound_elapsed(Frame sound){return call<std::uint32_t>(sound,0xa4);} //0051A950.
+    std::uint32_t car_sound_duration(Frame sound){return call<std::uint32_t>(sound,0xa8);} //00518710.
     void car_sound_stop(Frame sound){call<void>(sound,0xac,std::uint32_t{0},std::uint32_t{1});} //0051B8F0.
     void car_sound_parameter98(Frame sound,float value){call<void>(sound,0x98,value);}
     void car_sound_cone(Frame sound,float first,float second){call<void>(sound,0x84,first,second);}

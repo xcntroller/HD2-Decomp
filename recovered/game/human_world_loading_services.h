@@ -763,6 +763,43 @@ public:
         return *car;
     }
     std::uint32_t human_pose_actor_type(void* actor){return human_pose_actor(actor).base().type();}
+    auto* human_seat_occupant(void* actor,std::int32_t seat){
+        using Human=typename Dependencies::Composition::Human;using Frames=typename Dependencies::ActorFrames;
+        SceneActor<Frames>* occupant=nullptr;
+        if(human_pose_actor_type(actor)==4){const auto& seats=human_pose_car(actor).occupants;if(seat>=0&&static_cast<std::size_t>(seat)<seats.size())occupant=seats[static_cast<std::size_t>(seat)];}
+        else{auto* weapon=dynamic_cast<StaticWeaponSceneActor<Frames>*>(&human_pose_actor(actor));if(!weapon||!weapon->loading)throw std::logic_error("Seat query requires actual StaticWeapon lifetime");occupant=static_cast<SceneActor<Frames>*>(weapon->loading->seat_occupant(seat));}
+        auto* human=dynamic_cast<Human*>(occupant);if(occupant&&!human)throw std::logic_error("Seat occupant is not an actual Human");return human;
+    }
+    template<class Human>void human_seat_assign(void* actor,std::int32_t seat,Human* human){
+        if(human_pose_actor_type(actor)==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Seat entry requires actual Car lifetime");car.loading->assign_seat(seat,human);return;}
+        auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Seat entry requires actual StaticWeapon lifetime");weapon->loading->assign_seat(seat,human);
+    }
+    bool human_seat_exit(void* actor,std::int32_t seat){
+        if(human_pose_actor_type(actor)==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Seat exit requires actual Car lifetime");return car.loading->exit_seat(seat);}
+        auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Seat exit requires actual StaticWeapon lifetime");return weapon->loading->exit_seat(seat);
+    }
+    std::optional<std::uint32_t> human_seat_weapon_kind(void* actor,std::int32_t seat){
+        if(human_pose_actor_type(actor)==4){const auto& slot=human_pose_car(actor).fields24b4.at(static_cast<std::size_t>(seat));return slot?slot->loading->weapon_kind():std::nullopt;}
+        auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Seat item query requires actual StaticWeapon lifetime");return weapon->loading->seat_weapon_kind();
+    }
+    template<class Human>std::int32_t human_seat_health(const Human& human){return human_frame_signed_word(human.properties.stats_ec[0]);}
+    template<class Human>void human_seat_clear_frame_command(Human& human){auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Seat entry requires actual B0");state->publish_frame_command_flags(state->words().template get<std::uint32_t>(0x50)&0xffffff07u);}
+    template<class Human,class Actor,class Runtime>void human_seat_displace(Human& human,Actor* actor,std::uint32_t flags,std::uint32_t seat,Runtime& runtime){
+        auto& owner=human_inline(human);auto* control=owner.control();if(!control)throw std::logic_error("Seat displacement requires actual DD0");
+        control->apply_look_interaction(human_look_control(human),actor,flags,seat,runtime);
+    }
+    template<class Human>void human_seat_retire_dead(Human& human,const HumanVector& position){auto* control=human_inline(human).control();if(!control)throw std::logic_error("Dead seat displacement requires actual DD0");control->retire_dead_seat(position);}
+    void refresh_human_seat_visibility(){dependencies().presentation.refresh_first_person_visibility();}
+    void seat_human_direction(void* actor,const HumanVector& direction){auto& human=human_score_actor(actor);auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Seat direction requires actual B0");state->set_target_direction(direction);state=human_state_owner(human).get();if(!state)throw std::logic_error("Seat direction lost actual B0");state->set_current_direction(direction);}
+    HumanVector mounted_human_target(void* actor){auto* state=human_state_owner(human_score_actor(actor)).get();if(!state)throw std::logic_error("Mounted aim requires actual B0");return state->target_direction();}
+    void mounted_human_target(void* actor,const HumanVector& value){auto* state=human_state_owner(human_score_actor(actor)).get();if(!state)throw std::logic_error("Mounted aim requires actual B0");state->set_target_direction(value);}
+    bool mounted_human_is_player(void* actor){return human_is_player(human_score_actor(actor));}
+    std::uint32_t seat_human_state_kind(void* actor){return human_score_state_kind(actor);}
+    std::int32_t seat_human_health(void* actor){return human_seat_health(human_score_actor(actor));}
+    void seat_human_proximity_kind(void* actor,unsigned kind){(void)dependencies().proximity.speed_kind(human_score_actor(actor).field188,kind);}
     void remove_human_reaction_seat(void* actor,std::int32_t seat){
         if(human_pose_actor_type(actor)==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Human reaction requires actual Car seat owner");car.loading->remove_reaction_seat(seat);return;}
         using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;

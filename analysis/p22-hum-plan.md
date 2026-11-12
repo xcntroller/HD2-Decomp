@@ -1,8 +1,8 @@
 # P22-HUM implementation and dependency plan
 
 Revised 2026-11-12; D0 confirmed against merged master **415e850**. Worktree:
-`/home/control/Documents/Projects/HD2-Decomp-p22-hum`, branch `feature/p22-hum`
-(created from clean master2c96a7d at the user's request). P22-HUM and both P2.2 delivery
+`/home/control/Documents/Projects/HD2-Decomp-p22-hum-h3`, branch `feature/p22-hum-h3`
+(created from feature/p22-hum b99f088 at the user's request). P22-HUM and both P2.2 delivery
 checkboxes remain OPEN. Application loading still declines; no mission desktop
 acceptance has occurred. This plan replaces the former chronological next-work
 list. Detailed behavior/evidence stays in the linked contracts.
@@ -12,10 +12,10 @@ list. Detailed behavior/evidence stays in the linked contracts.
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3008 partial; joint/clip recovery still
+credit is separate: current source34 complete/3025 partial; joint/clip recovery still
 has deferred credit reconciliation.
 
-The selected **H2 reactions/damage/ragdoll** milestone remains open until its
+The **H2 reactions/damage/ragdoll** milestone remains open until its
 required producer→dispatch→reaction/damage→contact/effect→retirement path works
 through the actual containing owners, including positive branches, failures and
 re-entry. Leaf fixtures and compile/link alone do not close H2. Full Human frame
@@ -28,8 +28,8 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
   [Source checkpoint](checkpoints/p2.2-human-model-presentation-20261111.json).
 - [ ] H2 — Reactions, damage and ragdoll through containing owners. **Source closure blocked by D11**;
   source achievements and explicit remaining dependencies follow below.
-- [ ] H3 — Positive interaction actions00751480/00755500: occupied Car/StaticWeapon
-  entry/exit and mounted receivers, existing seats/mass/cameras/control ownership.
+- [x] H3 — Offline Car/StaticWeapon entry/exit and mounted receivers on existing owners.
+  [Verified source checkpoint](checkpoints/p2.2-human-seat-interaction-20261112.json); [contract](human-seat-interaction-source.md).
 - [ ] H4 — Common AI outputs: reached00584E30 completions, B0 action/navigation/
   formation, track events and DD0 transition/attachment consumers.
 - [ ] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9

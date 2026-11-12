@@ -46,6 +46,8 @@ void advance_human_control_actions(Control& control,Look& look,std::uint32_t ela
     const auto flags=words.template get<std::uint32_t>(0xa34);
     const auto timer=words.template get<std::int32_t>(0xa38);
     if(!flags||timer==-10000)return;
+    const auto action=flags&0x3ffu;
+    if(action==2||action==3||action==4||action==5||action==6||action==7||action==11||action==12||action==13){control.advance_seat_action(look,elapsed,runtime);return;}
     if((flags&0x3ffu)>=8u&&(flags&0x3ffu)<=10u){control.advance_model_action(look,elapsed);return;}
     if((flags&0x3ffu)!=1u){runtime.advance_human_control_motion(control,elapsed);return;} //Other required positive action cases.
     if(timer>0)words.set(0xa38,static_cast<std::uint32_t>(timer)-elapsed);
