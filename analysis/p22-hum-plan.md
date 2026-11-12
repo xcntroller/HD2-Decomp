@@ -1,6 +1,6 @@
 # P22-HUM implementation and dependency plan
 
-Revised 2026-11-12 against **b132e6d** and current source guards. Worktree:
+Revised 2026-11-12; D0 confirmed against merged master **415e850**. Worktree:
 `/home/control/Documents/Projects/H&D2 Decomp 4`. P22-HUM and both P2.2 delivery
 checkboxes remain OPEN. Application loading still declines; no mission desktop
 acceptance has occurred. This plan replaces the former chronological next-work
@@ -114,15 +114,17 @@ and leave a nonreached wider feature with its explicit required guard.
 
 ### D0 — Confirm the remaining containing-path boundary
 
-- [ ] D0 — Produce a short trigger/caller/guard map for the remaining H2 path,
+- [x] D0 — Record the trigger/caller/guard map for the remaining H2 path,
   linking the source contracts and native evidence below. Distinguish mandatory
   dependencies, mode-specific branches and neighboring H3–H6/Phase3 work. Include
   the original producer and retirement boundary for every state used by a new body.
 
-**Exit:** a concrete list of paths to exercise at D12; no open-ended “full Car” or
-“full transport” task. This is a focused dependency decision, not a new broad
-solver/clip audit. Next work starts here using the existing indexed restore and
-entry evidence; then implement the reached D1–D11 boundary in dependency order.
+[Completed boundary map](human-reaction-containing-boundary.md) names T1–T10,
+actual producers/retirement, mandatory versus mode/occupancy dependencies and
+merged UI limits. Direct ragdoll→Car004F2790 does not imply mesh deformation;
+Car→Car/passenger004F2B60 does. Status9/received0 are entry-specific, not callees
+of every offline reaction. Next: D1 capture/restore lifetime, then reached D2–D5;
+D10 unmounted composition can advance without waiting for all transport work.
 
 ### Car state producers, damage and retirement
 
@@ -218,8 +220,9 @@ are not silently included in a Car leaf checkpoint or claimed by a source fixtur
 
 - [ ] P22-OWN/FRAME — Actual application loading and scheduling over SAME World,
   scene, modules, request and actor graph; required positive integration borrowers.
-- [ ] P22-UI/RENDER — Actual HUD/FPV/camera/input/render consumers used by the loaded
-  mission. Preserve the other worktrees' changes and their ownership boundaries.
+- [ ] P22-UI/RENDER integration — UI-owned source consumers are now merged and
+  [source-closed](p22-ui-source-closure.md). Bind real Human/Actor producers and
+  containing frame/render callers; preserve the existing UI ownership boundaries.
 - [ ] P22-LIFE integration — Compose the already verified offline lifecycle source
   with newly enabled positive owners and the application failure/re-entry path.
   [LIFE source plan](p22-life-plan.md) remains source-closed, not desktop-accepted.

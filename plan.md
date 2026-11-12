@@ -247,7 +247,7 @@ preparation, not a standalone audit-only milestone.
   [P22-HUM dependency plan](analysis/p22-hum-plan.md): H2 reactions/damage/ragdoll remains OPEN. S01–S14 record completed source checkpoints through Car fuel/impulse (b132e6d); clip collision, rest surfaces and0074D510 are already source-recovered.
 
   - [x] Record verified reaction/damage, peer/input/entry-prefix, Mine/Versions and Car source checkpoints with their limits ([S01–S14](analysis/p22-hum-plan.md#h2-source-checkpoints-already-achieved)).
-  - [ ] Establish the remaining required containing-path boundary ([D0](analysis/p22-hum-plan.md#d0--confirm-the-remaining-containing-path-boundary)); complete reached Car backup/deformation/occupied/event/frame dependencies D1–D5.
+  - [ ] Finish the remaining required containing path (boundary established in [D0](analysis/p22-hum-plan.md#d0--confirm-the-remaining-containing-path-boundary)); complete reached Car backup/deformation/occupied/event/frame dependencies D1–D5.
   - [ ] Complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
   - [ ] Complete actual Human composition, required producer resolution and consolidated verification D10–D12; then close H2. H3–H6 and the full Human-frame H8 gate remain separately visible.
 

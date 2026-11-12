@@ -1,7 +1,7 @@
 # P22-HUM handoff —2026-11-12
 
 **Worktree `/home/control/Documents/Projects/H&D2 Decomp 4`, master.** Latest
-source checkpoint **b132e6d**. Check HEAD/status; preserve all unrelated changes,
+source checkpoint **b132e6d**; resumed at merged master **415e850**. Check HEAD/status; preserve all unrelated changes,
 LIFE/UI/PACK/research worktrees and `/tmp/hd2-p22-hum-continue`. Transfer evidence
 is ignored WORK `human-return-main-20261111`.
 
@@ -46,12 +46,15 @@ joint solver/substeps,007B3C80 clip collision, actual007B37C0→00787110 rest ch
 Don't reopen unchanged kernels. Deferred joint/clip inventory reconciliation and
 full containing verification remain D12 work; source checks are not delivery.
 
-## Next work: follow D0 before expanding another subsystem
+## Next work: D0 completed; implement the reached dependencies
 
-D0 records the actual selected trigger/caller/required guard and owner for the
-remaining H2 path. Existing Car and entry failures are known; determine which
-are mandatory, mode-specific or neighboring H3–H6/Phase3 work. Then implement
-the reached D1–D11 dependencies in order, with the exit tests in the plan. Check
+[D0 boundary map](analysis/human-reaction-containing-boundary.md) records T1–T10,
+actual state producers/retirement and mode/occupancy/entry-specific dependencies.
+Direct ragdoll→Car004F2790 does not require004FF8B0 mesh deformation; positive
+Car→Car/passenger004F2B60 does. Status9/received0 are not callees of every offline
+reaction. UI source is merged/source-closed; Human producers/frame callers remain.
+Next implement D1 capture/restore lifetime, then reached D2–D5; D10 unmounted
+composition can advance independently of full transport. Check
 and commit each verified checkpoint, then continue. Add newly discovered required
 dependencies to the plan with a caller and exit test before following them.
 
