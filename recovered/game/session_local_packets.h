@@ -95,6 +95,14 @@ public:
     void clear() { //0072E4E0 queue portion, same430 lock; no implicit decoder/flush.
         Lock lock(backend_,1);authority_.clear();presentation_.clear();frame_.queue_counts.fill(0);
     }
+    void clear_selected(bool authority){ //00731610 chooses BEFORE entering430 and clears ONLY that FIFO.
+        Lock lock(backend_,1);auto& queue=authority?authority_:presentation_;
+        while(!queue.empty()){
+            auto bytes=std::move(queue.front().bytes);queue.pop_front();
+            frame_.queue_counts[authority?0u:1u]=checked_count(queue.size());
+            (void)bytes; //Payload allocation retires AFTER node unlink/count update, still under430.
+        }
+    }
     const auto& authority_queue()const{return authority_;}const auto& presentation_queue()const{return presentation_;}
 private:
     struct Lock {Backend& backend;unsigned index;Lock(Backend& value,unsigned slot):backend(value),index(slot){backend.enter_control_lock(index);}~Lock(){backend.leave_control_lock(index);}};

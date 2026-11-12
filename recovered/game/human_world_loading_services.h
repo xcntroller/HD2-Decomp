@@ -1434,7 +1434,9 @@ public:
     std::int32_t human_spawn_protection_seconds(){return dependencies().startup.game_configuration().rules228[10];} //Actual configuration250.
     void hud_human_spawn_protection(std::uint32_t identity,std::uint32_t duration){dependencies().hud.set_injury_message(identity,duration);} //0049DE50, before local initialization.
     template<class Human>void human_initial_dead_notification(Human& human){HumanDamageCommand command;command.kind=14;present_human_damage(human,command,*this,dependencies().scene.frames());}
-    template<class Actor>void detach_human_attachment(Actor&,std::int32_t){throw std::runtime_error("Occupied Human attachment requires its actual actor virtual80 receiver");}
+    template<class Actor>void detach_human_attachment(Actor& actor,std::int32_t seat){
+        remove_human_reaction_seat(&actor,seat); //SAME actor+80: Car004D9A40 / StaticWeapon00604630, before Human160/164 clear.
+    }
 private:
     template<class Actor>auto& selection_human(Actor& actor){
         using Human=typename Dependencies::Composition::Human;

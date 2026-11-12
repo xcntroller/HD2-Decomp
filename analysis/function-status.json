@@ -15483,13 +15483,21 @@
       "program": "client",
       "entry": "0073df70",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0073df70: Actual input quantizers, history rings and record owner lookup/creation/default binding/retirement; populated pending packets excluded.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Actual input record children reverse cleanup then second/first pending-node cleanup, with explicit source-only allocation-owner fallback AFTER node retirement; original destructor does not delete pending payloads.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
       "evidence": [
         "recovered/game/human_input_records.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
       ]
     },
     {
@@ -19428,7 +19436,7 @@
       "program": "client",
       "entry": "005a7fe0",
       "status": "partial",
-      "coverage": "Actual Scene2 retained-Human retirement body: attachment, observer/target/listener/proximity invalidation in order, SAME DD0 collision/visibility disable, late B0 FC queue chosen by current low mode bit, then20C=false. This schedules/cancels without deleting Human or its shared input.",
+      "coverage": "Actual Scene2 retained-Human retirement body: attachment, observer/target/listener/proximity invalidation in order, SAME DD0 collision/visibility disable, late B0 FC queue chosen by current low mode bit, then20C=false. This schedules/cancels without deleting Human or its shared input. Existing required attachment80 now binds SAME Car/StaticWeapon seat retirement before Human160/164 invalidation; integration compile-verified only.",
       "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "recovered/game/scene_actor_registry.h",
@@ -19438,7 +19446,8 @@
         "recovered/game/human_scene_retirement.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
       ]
     },
     {
@@ -35396,6 +35405,330 @@
         "recovered/game/session_spawn_match.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00724110",
+      "status": "partial",
+      "coverage": "Actual received entry prefix5044=1, descriptor4E88 then live profile38 conditional voice, THEN canonical destructive process14 replacement; source bound Startup method.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00724370",
+      "status": "partial",
+      "coverage": "Actual process0C owner publication before window lookup and eight-argument initializer; selected SAME existing server00/client04, original config block and ignored HRESULT, real COM backend.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00724450",
+      "status": "partial",
+      "coverage": "Actual owned process0C deleting retirement with borrower published through client/server close and allocation deletion, then global null.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00731610",
+      "status": "partial",
+      "coverage": "Actual process14 current registered records first/second forced resets, followed by pre-lock mode-selected owned FIFO clear under430, node/count before payload; no flush or other queue clear.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073e5a0",
+      "status": "partial",
+      "coverage": "SAME Record pending lists: actual payload20 timestamp and wrapping24 increment precede selected-list node allocation; typed live allocation ownership.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073e600",
+      "status": "partial",
+      "coverage": "SAME selected pending list: empty returnNULL, wrapping24 decrement before front unlink, return SAME live payload without deleting it.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073e660",
+      "status": "partial",
+      "coverage": "Actual selected pending reset policy: optional24 decrement, force/signed-count deleting receiver BEFORE node unlink; retained SAME node repeats; stale alias/nonprogress fail honestly.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073e6e0",
+      "status": "partial",
+      "coverage": "Reached pending-node erase/count/iterator advance via SAME typed list, after actual payload retirement where caller requires it.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00741dc0",
+      "status": "partial",
+      "coverage": "Typed actual process0C wrapper cold04/08/14 defaults, stateless actual00722140 callback and NULL context; SAME client04 view for settings/transmit.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00741df0",
+      "status": "partial",
+      "coverage": "Reached scalar-deleting lifetime: client/server destructor close before owned wrapper allocation retirement; typed ownership adaptation.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00741e10",
+      "status": "partial",
+      "coverage": "Reached destructor invokes SAME client/server close before owned allocation retirement; native vtable rewrite adapted to C++ lifetime.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00741e20",
+      "status": "partial",
+      "coverage": "Original RET32 eight-stack-argument policy: optional server first, optional audio test/client, first negative HRESULT retained, success normalized0; actual config and device-pointer final arguments.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00741e80",
+      "status": "partial",
+      "coverage": "SAME wrapper04 client disconnect/Release/null before server08 stop/Release/null; deleting receiver retains process publication until completion.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00741ef0",
+      "status": "partial",
+      "coverage": "Temporary real VoiceTest CoCreate, pinned default playback/capture GUIDs, flags2 and only80150183 retry10, exact HRESULT return and Release.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00741fe0",
+      "status": "partial",
+      "coverage": "Actual server COM creation/publication, Initialize(connection,context,NULL,NULL,0), original0x24-byte mode/compression session, first negative result otherwise0.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00742090",
+      "status": "partial",
+      "coverage": "Actual client COM publication/Initialize,0x40-byte audio fields, Connect(audio,clientConfig,1), targets{0}, two config queries and late half-duplex14 bit; failures retain owner prefix.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00742240",
+      "status": "partial",
+      "coverage": "Actual client04 Disconnect(1), reread borrower, Release then null; ignored external HRESULT, genuine zero result.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00742270",
+      "status": "partial",
+      "coverage": "Actual server08 StopSession(0), reread borrower, Release then null; ignored external HRESULT, genuine zero result.",
+      "limitations": "Source-only typed/STL/RAII adaptation, no original object/container/allocator/SEH/virtual ABI or full-function equivalence. Focused native sanitizers use explicit COM/window/clock/lock endpoints; actual host COM/World composition and launcher compile/link only. Actual input-history/B0/Car pending producers, full controller status9/received0 game protocols, connection/worker/network lifetime, containing full Human frame/application loading and desktop acceptance remain required. Native stale aliases/nonprogress/undersized COM buffers fail explicitly; source RAII reclaims native leaked message/query/abandoned-wrapper allocations only at documented boundaries. No new delegated engine or absent-function credit.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/session_entry_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_entry_inputs.h",
+        "recovered/frontend/session_voice.h",
+        "recovered/host/settings_services.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-entry-input-voice-20261112.json"
       ]
     }
   ]

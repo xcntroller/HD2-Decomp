@@ -10,6 +10,8 @@
 #include "game/session_received_application.h"
 #include "game/session_peer_records.h"
 #include "game/session_human_inputs.h"
+#include "game/session_entry_packets.h"
+#include "game/session_entry_inputs.h"
 #include "game/session_entry_records.h"
 #include "game/human_peer_removal.h"
 #include "game/network_mission_metadata.h"
@@ -111,6 +113,7 @@ public:
           sound_backend_(engine, game_views_.sound), sound_catalog_(sound_backend_),
           dubbing_sound_(sound_backend_,files_),
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
+          session_voice_(control_data_.wrapper0c,settings_backend_),
           human_inputs_(*this,human_input_shared_,control_data_.service14),control_frame_(control_data_, gate_, *this,broadcast_packets_),
           local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_) {
         if (!selected_language.empty()) language_.select(selected_language);
@@ -248,6 +251,7 @@ public:
             }
         });
         // Also reclaim partial0072E1A0 initialization/unsupported native errors.
+        errors.attempt([&]{session_voice_.retire_all();}); //Actual0C borrowed through close/Release; fallback before inputs/locks.
         human_inputs_.retire(); //Acquired process14 fallback, before locks even when a required reset receiver failed.
         lock_services_.delete_control_critical_section(0);
         lock_services_.delete_control_critical_section(1);
@@ -859,6 +863,11 @@ public:
     void clear_retired_actor_record(std::int32_t identity){frontend::clear_retired_actor_record(control_data_,lock_services_,identity);}
     void clear_human_player_slot(std::uint32_t identity){frontend::clear_human_player_slot(control_data_,lock_services_,identity);}
     frontend::ControlStartupState& game_control_records(){return control_data_;} //PreparedSpawnPackets borrows SAME1DC storage and acquires lock0 for each access.
+    void reset_control_entry_packets(bool reset_inputs){game::reset_session_entry_packets(human_inputs_,local_packets_,reset_inputs,[this]{return gate_;});}
+    bool session_voice_enabled(){return profile_settings().bytes[0x38]!=0;}
+    void create_session_voice(bool authority){session_voice_.create(authority,control_frame_.state().server,control_frame_.state().client);}
+    void retire_session_voice(){session_voice_.retire();}
+    void begin_received_game_inputs(){game::begin_received_session_inputs(control_data_,*this);}
     void submit_human_transmit_targets(void* object,const std::uint32_t* targets,std::uint32_t count){settings_backend_.submit_transmit_targets(object,targets,count);}
     std::uint32_t peer_human_ticks(){return timeGetTime();} //00612A60 uses the process multimedia clock.
     std::uint32_t control_packet_clock()const {return static_cast<std::uint32_t>(std::clock());} //007E814F CRT clock(), packet timestamps.
@@ -984,6 +993,7 @@ private:
     frontend::SoundManagerData sound_data_;
     frontend::StartupModules modules_;
     frontend::ControlStartupState control_data_;
+    frontend::SessionVoice<SettingsServices> session_voice_; //Actual0C creator; settings/transmit borrow SAME native04 interface.
     game::HumanInputCallbacks human_input_callbacks_; //Stateless native process callback labels, never a retired World borrower.
     HumanInputs human_inputs_; //ONE canonical process14 allocation; profiles/getters and B0 handle survive World retirement.
     ControlStartupServices lock_services_;

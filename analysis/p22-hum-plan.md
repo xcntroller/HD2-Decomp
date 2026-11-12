@@ -93,7 +93,9 @@ Presentation spawn, match/HUD, spectator camera and transmit targets now have a
 [source checkpoint](checkpoints/p2.2-human-presentation-spawn-20261112.json).
 Authority spawn, actual zone loading and rejection/map now have a
 [source checkpoint](checkpoints/p2.2-human-authority-spawn-map-20261112.json).
-Continue full control entry/transport and the full containing frame/failure,
-re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
+Entry pending inputs/selected FIFO, optional process voice owner and received
+manager prefix now have an [entry source checkpoint](checkpoints/p2.2-human-entry-input-voice-20261112.json).
+Attachment80 retirement borrows the existing Car/StaticWeapon seats. Continue full
+control entry/transport, runtime links and the containing frame/failure/re-entry/teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
 The full selected checkbox, P22-HUM and P2.2 remain open; no application or desktop
 acceptance is claimed.

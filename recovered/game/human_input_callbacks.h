@@ -55,27 +55,6 @@ private:
     Storage& storage_;std::size_t word_=0;unsigned bit_=0;
 };
 
-//0073F770 and the three allocation branches in0053B760. Common profile
-//pointers are typed borrowers; unknown derived bytes remain unclaimed. Value
-//serialization/dispatch is not exposed until its concrete consumers are ready.
-class HumanInputMessage {
-public:
-    explicit HumanInputMessage(std::uint32_t kind):kind_(kind) {
-        if(kind>2)throw std::out_of_range("Unknown Human input message kind");
-        for(auto offset:{0x24u,0x20u,0x28u})words_.set(offset,std::uint32_t{0});
-        words_.set(0x1c,kind);words_.set(0x2c,std::uint8_t{0});
-        if(kind==0)words_.set(0x54,0.f);
-        if(kind==2)words_.set(0x30,std::uint8_t{0});
-    }
-    std::uint32_t kind()const{return kind_;}
-    bool expired()const{return words_.get<std::int32_t>(0x20)==-1;} //0073F7B0.
-    bool elapsed()const{return words_.get<float>(0x28)>1.f;} //0073F7C0.
-    auto& words(){return words_;}const auto& words()const{return words_;}
-    HumanInputHistory::Profiles primary{},secondary{};
-private:
-    std::uint32_t kind_;HumanJointWords<0x70> words_;
-};
-
 //The actual three callbacks installed by0056F200: factory64, read54 and
 //write58. The second pair reads/writes B0+54 through its owner5C; these are
 //not history coordinates, and the factory does not use owner60.

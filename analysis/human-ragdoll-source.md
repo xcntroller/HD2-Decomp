@@ -1498,3 +1498,103 @@ engine calls receive no new credit. Full selected Human checkbox, application
 loading/rendering and user desktop acceptance remain OPEN. Continue full control
 entry/transport, non7 zone/runtime/occupied owners and containing reaction/frame/
 failure/re-entry/teardown; this verified source cohort does not finish that scope.
+
+### Entry pending-input reset and optional voice owner — 2026-11-12
+
+00731610 now borrows SAME process14, registered records and local packet FIFOs.
+When requested, reread the current registry/count for each forward record and
+reset its first then second list through0073E660(1,0,1)/(1,1,1). Absent/unconfigured
+manager fails BEFORE queue selection/lock. A false reset byte never reads14.
+Select authority FIFO only when mode bit1 is set, otherwise presentation, BEFORE
+430. Unlink/free each node and update its selected count BEFORE releasing payload
+bytes, still under430. No flush, other-FIFO clear, manager replacement, record
+removal or embedded30 reset is introduced. Startup binds this distinct method;
+full controller status9 remains unbound.
+
+The SAME input Record now owns typed pending nodes/messages.0073E5A0 writes20
+stamp and increments24 BEFORE node allocation.0073E600 decrements24, unlinks the
+front node and returns SAME payload, without deleting it.0073E660 repeats the
+SAME retained node until count<1; force deletes irrespective of count, then
+0073E6E0 unlinks/advances. The three actual Human message deleting receivers
+0053B940/0053B8D0/0053B900 have no resource tail or refcount guard; no new credit
+for those bodies. Original0073E4C0 can append SAME allocation to both lists, but
+bound Player/AI flag40=false normally prevents the second-list alias. Forced
+first-list deletion leaves a stale second-list pointer natively. Source lifetime
+tokens reject that later access before UAF, preserving the failing prefix instead
+of deferring first deletion. Positive-count reset without decrement would loop
+forever natively; source reports this nonprogress with the node intact. Counters
+remain wrapping DWORDs. Canonical RAII allocation bookkeeping is not another
+native input queue or refcount: source destruction reclaims unconsumed allocations
+AFTER native children/second-list/first-list node cleanup, where original0073DF70
+would leak payloads. This explicit safety adaptation receives no equivalence claim.
+No B0/Car decoder producer was invented: flag20 packet history still requires the
+actual decoder and fails.
+
+00724110 now has its separate actual process prefix:5044=1, descriptor4E88 gate,
+THEN current profile byte38 gate, optional00724370(false), THEN destructive
+00723000 manager replacement. Startup borrows server/client from the EXISTING
+ColdControlFrameState native00/04 fields; no parallel transport owners. It is not
+yet invoked from received application0's full game/configuration protocol.
+
+00724370 creates actual process0C wrapper00741DC0 with callback00722140/contextNULL
+and publishes BEFORE graphics window lookup/initialization. Actual GetIGraph+48
+uses existing engine6A240 binding. The initializer HRESULT is deliberately ignored.
+Raw caller724418..724429 and RET32 resolve00741E20's EIGHT explicit arguments:
+window,server-enable,client-enable,connection,session-mode,compression-GUID,
+client-config-pointer,optional-playback-interface. The last two were incorrectly
+inferred from decompiler stack aliases in earlier exports; only the v3 ABI export
+and raw assembly establish the final source binding. The process creator passes
+(0,1,selected00-or04,3,NULL,&[20,28,1,0,FFFFFFFE,0,0,0],NULL) after window.
+Source uses actual CoCreateInstance(CLSCTX_INPROC_SERVER=1), pinned original GUIDs
+and external COM vtables, with no success service or original execution.
+
+00741EF0 creates temporary VoiceTest, tests default voice playback00819488 and
+capture00819478 with flags2, retries only80150183 with10, then Release. SDK dsound.h
+confirms DEF00002 playback / DEF00003 capture.00741FE0 publishes server08 before
+Initialize(connection,context10,NULL,NULL,0); its0x24-byte session contains actual
+mode and supplied compression GUID.00742090 publishes client04 before
+Initialize(connection,callback0C,window,NULL,0). Build actual0x40-byte audio config:
+playback GUID at08, optional interface18, capture GUID1C, zero2C,window30,zero34..3C.
+Connect(audio,clientConfig,1), then SetTransmitTargets({0},1,0), then two AudioConfig
+queries at40. Accept first8015001E, zero returned allocation, set its header40,
+query again and store wrapper14=(word04>>2)&1 ONLY on success. Keep every failed
+COM acquisition prefix for later retirement. Source RAII frees the temporary query
+buffer even on negative second query, which leaks natively; undersized result is
+an explicit required guard. No settings/config pointer is retained after Connect.
+
+00724450→00741DF0/00741E10/00741E80 retire actual current0C.00742240 calls client
+Disconnect(1), rereads04, Release, THEN null04;00742270 follows for server08 with
+StopSession(0). Global0C stays published through this deleting receiver and clears
+AFTER it. Existing settings00742210 and transmit00724570 now borrow SAME client04.
+Repeated creation natively overwrites/leaks old0C; source retains only allocation
+bookkeeping and reclaims abandoned wrappers at final process fallback, never an
+atomic replacement or early native close. Startup's required cold/non7 reset guard
+is unchanged: a live network/voice prefix still reports required unsupported reset;
+explicit fallback closes acquired voice allocations before inputs/locks. Full
+0072E4E0 positive networking retirement is not claimed.00722140 is actual XOR/RET12
+no-op HRESULT0 and ABSENT frozen inventory: zero credit.
+
+Human delayed/deactivation attachment80 now calls the existing SAME Car004D9A40 /
+StaticWeapon00604630 seat receiver, before160/164 invalidation. This closes the
+previous unconditional service throw without copying occupants/control/cameras.
+Existing seat bodies and their native signed bounds/failed-prefix checks are
+unchanged; this added containing binding is compile-verified, not a new complete
+occupied World/frame audit. Both seat bodies are absent frozen: zero new credit.
+
+Focused native ASan/UBSan/LSan PASS actual process input reset/owned queues across
+modes1/2/3/7 x100, pre-lock mode capture, absent-manager gates, same payload take,
+wrapping/repeated-node/forced-alias/nonprogress failures. Optional voice PASS x100
+and all HRESULT prefixes, test retry, shared settings view, required window failure,
+ignored initializer before replacement, both-interface retirement and repeated
+publication fallback. COM/window/clock/locks/replacement endpoints are explicit
+doubles; existing real manager replacement was verified earlier. Strict full actual
+World/Human, entry/reset/voice/retirement i386 source and sequential final launcher/
+probe compile/link PASS; Windows outputs were not run. The receipt pins final logs.
+
+[Entry-input/voice receipt](checkpoints/p2.2-human-entry-input-voice-20261112.json)
+adds18 frozen client partials, extends0073DF70 and005A7FE0, no promotions:34 complete/
+2667 partial (2662 client+5 engine) of18783. Full selected Human checkbox, application
+loading and desktop acceptance remain OPEN. Next: actual00730A40 connection6C/334
+producer/worker lifecycle (originals reused read-only and pinned), full status9 /
+received0 game publication/failure protocol; positive runtime kind2/9C links, non7
+zone/frame dependencies and full containing Human failure/re-entry/retirement.

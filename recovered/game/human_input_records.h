@@ -129,6 +129,27 @@ private:
     Profiles primary_{},secondary_{};std::uint32_t flags_=199;
 };
 
+//0073F770 and the three allocation branches in0053B760. Common profile
+//pointers are typed borrowers; unknown derived bytes remain unclaimed. Value
+//serialization/dispatch is not exposed until its concrete consumers are ready.
+class HumanInputMessage {
+public:
+    explicit HumanInputMessage(std::uint32_t kind):kind_(kind) {
+        if(kind>2)throw std::out_of_range("Unknown Human input message kind");
+        for(auto offset:{0x24u,0x20u,0x28u})words_.set(offset,std::uint32_t{0});
+        words_.set(0x1c,kind);words_.set(0x2c,std::uint8_t{0});
+        if(kind==0)words_.set(0x54,0.f);
+        if(kind==2)words_.set(0x30,std::uint8_t{0});
+    }
+    std::uint32_t kind()const{return kind_;}
+    bool expired()const{return words_.get<std::int32_t>(0x20)==-1;} //0073F7B0.
+    bool elapsed()const{return words_.get<float>(0x28)>1.f;} //0073F7C0.
+    auto& words(){return words_;}const auto& words()const{return words_;}
+    HumanInputHistory::Profiles primary{},secondary{};
+private:
+    std::uint32_t kind_;HumanJointWords<0x70> words_;
+};
+
 //0073DDC0/0073DF70 and0073F2B0/0073F5F0/0073F530 ordinary loading ownership.
 //The containing manager supplies actual defaults/receivers and real QPC clock.
 //No runtime packet/interpolation command or network transport is supplied here.
@@ -158,6 +179,39 @@ public:
             for(const auto& child:children)if(child->id==id)return child.get();
             return nullptr;
         }
+        HumanInputMessage* adopt_pending(std::unique_ptr<HumanInputMessage> message){
+            if(!message)throw std::invalid_argument("Human input pending requires its actual message");
+            if(!next_pending_identity_)throw std::length_error("Human input pending lifetime identity exhausted");
+            auto* result=message.get();pending_owners_.push_back({std::move(message),next_pending_identity_++});return result;
+        }
+        void append_pending(HumanInputMessage& message,std::uint32_t stamp,bool second){ //0073E5A0: payload stores BEFORE list allocation.
+            auto& owner=live_pending(&message);message.words().set(0x20,stamp);
+            message.words().set(0x24,message.words().template get<std::uint32_t>(0x24)+1u);
+            (second?second_pending_:first_pending_).push_back({&message,owner.identity});
+        }
+        HumanInputMessage* take_pending(bool second){ //0073E600 decrements before unlink and returns the SAME payload.
+            auto& pending=second?second_pending_:first_pending_;if(pending.empty())return nullptr;
+            const auto node=pending.front();auto& message=checked_pending(node);
+            message.words().set(0x24,message.words().template get<std::uint32_t>(0x24)-1u);
+            pending.pop_front();return &message;
+        }
+        void retire_pending_message(HumanInputMessage* message){ //Actual three Human message virtual10 deleting bodies have no resource tail.
+            for(auto it=pending_owners_.begin();it!=pending_owners_.end();++it)if(it->message.get()==message){
+                it->message.reset();pending_owners_.erase(it);return; //Payload BEFORE caller's pending-node unlink.
+            }
+            throw std::logic_error("Human input pending retirement requires its actual live message");
+        }
+        void reset_pending(bool decrement,bool second,bool force){ //0073E660/0073E6E0; retained node repeats while its count remains positive.
+            auto& pending=second?second_pending_:first_pending_;
+            for(auto it=pending.begin();it!=pending.end();){
+                auto& message=checked_pending(*it);
+                if(decrement)message.words().set(0x24,message.words().template get<std::uint32_t>(0x24)-1u);
+                if(force||message.words().template get<std::int32_t>(0x24)<1){
+                    retire_pending_message(&message);it=pending.erase(it);
+                }else if(!decrement)throw std::logic_error("Human input pending reset would repeat an unchanged native node");
+            }
+        }
+        std::size_t pending_count(bool second)const{return (second?second_pending_:first_pending_).size();}
         const auto& primary_profiles()const{return primary_;}const auto& secondary_profiles()const{return secondary_;}
         std::int32_t id; //Native1C; containing manager assigns its embedded record's player ID after construction.
         std::uint64_t timestamp=0;
@@ -167,7 +221,19 @@ public:
         void* first_owner=nullptr;void* second_owner=nullptr; //Native60/5C; native58 is the auxiliary receiver.
         std::vector<std::unique_ptr<HumanInputHistory>> children;
     private:
-        struct Pending;std::list<Pending*> first_pending_,second_pending_; //Native6C/78; producers remain unexposed.
+        struct Pending {HumanInputMessage* message;std::uint64_t identity;};
+        struct OwnedPending {std::unique_ptr<HumanInputMessage> message;std::uint64_t identity;};
+        std::list<Pending> first_pending_,second_pending_; //Native6C/78 borrowed payload nodes.
+        std::list<OwnedPending> pending_owners_;std::uint64_t next_pending_identity_=1; //Typed allocation ownership, not another native packet queue.
+        OwnedPending& live_pending(HumanInputMessage* message){
+            for(auto& owner:pending_owners_)if(owner.message.get()==message)return owner;
+            throw std::logic_error("Human input pending payload has no actual live owner");
+        }
+        HumanInputMessage& checked_pending(const Pending& node){
+            auto& owner=live_pending(node.message);
+            if(owner.identity!=node.identity)throw std::logic_error("Human input pending node refers to a retired/reused payload");
+            return *owner.message;
+        }
         Profiles primary_{},secondary_{};
     };
     HumanInputRecords(Clock& clock,HumanInputShared& shared,Defaults& defaults)
