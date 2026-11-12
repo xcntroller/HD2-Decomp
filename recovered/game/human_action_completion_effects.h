@@ -4,8 +4,27 @@
 #include "game/human_inventory_retirement.h"
 #include "game/human_packet_commands.h"
 #include "game/human_state_frame_timers.h"
+#include "game/human_ai_shot_direction.h"
 
 namespace hd2::game {
+//00584E30 action11. The containing query is006F6870, whose guaranteed
+//vertical displacement delegates006F5890 with every dynamic layer excluded.
+template<class State,class Human,class Frames,class World>
+void complete_human_ground_drop(State& state,Human& human,Frames& frames,World& world){
+    if(!human.head_marker)throw std::logic_error("Human ground drop requires actual260 marker");
+    auto matrix=frames.actor_world_matrix(human.head_marker);
+    HumanVector position{{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    if(!human.head_marker)throw std::logic_error("Human ground drop lost actual260 marker");
+    matrix=frames.actor_world_matrix(human.head_marker);
+    HumanVector direction{{matrix[8],matrix[9],matrix[10],matrix[11]}};
+    normalize_human_ai_shot(direction,(static_cast<long double>(direction[0])*direction[0]+static_cast<long double>(direction[1])*direction[1])+static_cast<long double>(direction[2])*direction[2]);
+    for(unsigned n:{0u,2u})position[n]=static_cast<float>(static_cast<long double>(direction[n])*.5f+position[n]);
+    const auto hit=world.human_completion_ground_ray(position,HumanVector{{0,-2,0,0}});
+    if(!hit)return;
+    if(!state.item())throw std::logic_error("Human ground drop lost its actual item after query");
+    const auto definition=world.human_frame_output_item(state.item()).definition().identifier;
+    (void)world.human_completion_place_mine(human,definition,hit->position,hit->normal);
+}
 //00588AA0 shared virtual14 (Player00546DC0 has a separate policy).
 //FLOAT medicine amounts convert through native __ftol; initial skill*maximum
 //stays extended until that conversion. All life additions wrap native DWORDs.

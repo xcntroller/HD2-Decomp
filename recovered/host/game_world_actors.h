@@ -88,6 +88,19 @@ public:
         return query.ray(start,displacement,0,0,true); //006F7C90: SAME World, both exclusion masks0, actual hit normal.
     }
     auto& physics(){require_open();return physics_;}auto& item_models(){require_open();return models_;}
+    bool placed_physics_contact(void* object,const GameActorServices::Vector& direction){require_open();return physics_.placed_contact(object,direction);}
+    void hide_placed_replacement(void* object){require_open();physics_.hide_placed_replacement(object);}
+    void publish_placed_motion(std::int32_t identity,const GameActorServices::Vector& direction){
+        auto& packet=game::begin_runtime_actor_message(session_broadcast_packets(),identity,true);
+        packet.write_yaw(direction,-1);packet.finish_broadcast();
+    }
+    void placed_script_use(GameActorServices::Frame frame){
+        const auto* data=scene_.frames().find_actor_frame_data(frame);
+        if(!data||!data->words[1])return;
+        auto* context=consumers_.script_context_for_frame(frame);
+        if(!context)throw std::logic_error("Placed item Script EC loan disagrees with SAME context owner");
+        context->use(true); //005E2588 uses literal1 independently of late process authority.
+    }
     template<class Versions>void bind_versions(Versions& versions){require_open();versions_contact_.bind(versions);}
     template<class Versions>void unbind_versions(Versions& versions)noexcept{versions_contact_.unbind(versions);}
     bool version_contact(std::uintptr_t handle,std::int32_t damage,std::uint32_t effects){require_open();return versions_contact_.contact(handle,damage,effects);}

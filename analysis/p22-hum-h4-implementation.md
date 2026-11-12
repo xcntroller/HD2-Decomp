@@ -688,3 +688,63 @@ LINK includes World/Script target producers, complete timed consumer and actual
 VM/Controls opcode receiver; application-launch/startup-probe links PASS, no
 Windows execution. Temporary audits fingerprinted/removed. No actual mission,
 engine execution, full vehicle path/attachment or whole-H4 completion claim.
+
+## Ground completion and containing type35 motion
+
+00584E30 action11 now samples actual Human260 world position and then a fresh
+260 forward, normalizes in native(X²+Y²)+Z² order, offsets only X/Z by*.5 and
+casts(0,-2,0). Original006F6870 immediately delegates006F5890 for that vertical
+input, with dynamic layersFFFFFFFF and flags0. The binding uses that same
+existing CollisionRay/tree/resources/buckets; a dynamic descriptor cannot
+replace the static floor hit. Miss creates nothing. Hit reads the current item
+AFTER query, then calls SAME module12 `place_mine`/00478B90 with hit position/
+normal and publish=true. Existing factory/ref-release/inventory/packet semantics
+are preserved. General006F6870 is not implemented or credited by this adapter;
+normal action E0/refetch/clear tail remains in the existing dispatcher.
+
+Action10 now resolves the actual live type35 from existing runtime registry and
+calls containing005E2510 over the SAME borrowed Physics90. Direct Physics
+virtual14(3,motion,0) is distinct from manager contact (no wake/event migration).
+False returns before later effects. Optional hide00408750, offline005E2480
+navigation and packet publication precede optional fresh modelEC Script use(true),
+then actual motionA0..AC publication. Script uses literal1 independently of a late
+mode change. The existing packet owner gained0073D760's **yaw-only** secondary
+quantizer/mask1 write, atan2(Z,X); full0073D6C0 yaw+pitch would be incorrect.
+Original native W is only written by motion, not activation.
+
+0051F280 now uses the SAME MissionTableSet begin30/end34/limit38 and TableStorage
+allocation/release. It marks first→second before second→first; a rejected second
+mark preserves the first mutation and does not append a pair.005248C0 requires
+borrowed400/40, no80, different points, no existing link, count!=32, actual
+FFFF/0 sentinel; the actual distance uses native(X²+Y²)+Z² and byte12 sum*.0009765625
+attenuation. Extended upper250 and stored FLOAT lower.001 tests precede256/ftol
+weight, count increment/80. Runtime pair growth follows original1-or-current-size
+policy and preserves capacity through reset.005E2480 writes actual point16=7
+even if pair insertion returns false. No new navigation/ownership registry.
+
+**Remaining producer:** Physics type5 contact retains its explicit00407BD0
+failure after native204 clear. Current HUM201adbf still has the same guard.
+Original2504-byte worker replaces tree/pickup models through process cache,
+geometry/frame/Scene/Physics construction, then publishes218. This is not a
+successful native contact supplied by the containing reconstruction.00408750
+null218 is proven by constructor004079A8, and its positive hide/update body now
+uses a typed218 borrower; no fake populated replacement or pickup collection.
+Positive005E2510 policy audit labels its Physics endpoint as a double. No new
+00407BD0 credit. H4 remains open on that required positive producer, as well as
+remaining vehicle/attachment/subgroup bodies. Type15 Scene2 actor factory is
+absent here (and current HUM); action3 fails explicitly at required0060C13091
+owner rather than writing a raw offset into an unrelated typed object. That
+11-byte original body receives no implementation credit.
+
+Verification: native strictO1 ASan/UBSan/LSan PASS51 uses actual CollisionRay,
+loaded-shape fixture tree/buckets, MissionNavigation/TableStorage lifetime,
+PlacedItemActor and packet stream/quantizers. Explicit engine/Mine factory/
+Physics/packet/Script endpoint doubles remain labelled. Positive floor hit,
+dynamic exclusion, miss, late item replacement, missing marker/query failure,
+link success/partial rejection/distance/reset/reuse, motion false/failure prefixes/
+retry and yaw-only publication were checked. One audit-fixture flags error was
+corrected: borrowed stack payload must retain400 when clearing its40 gate.
+Strict actual i386 World→drop→ray→Mine and World→registry→type35→Physics/
+navigation/packet/Script FULL LINK, plus launcher/probe links PASS. Outputs are
+never executed. Source callable binding is distinct from actual mission or
+engine execution/desktop acceptance.

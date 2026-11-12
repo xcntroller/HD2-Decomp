@@ -47,6 +47,12 @@ public:
     ItemActor* create_item(Frame frame,std::int32_t identity=-1) {
         return static_cast<ItemActor*>(registry_.create(35,frame,identity));
     }
+    bool move_human_placed_item(Instance& borrowed,const game::HumanVector& direction){
+        if(!registry_.owns(&borrowed))throw std::logic_error("Human motion target requires SAME live runtime registry");
+        auto* actor=dynamic_cast<ItemActor*>(&borrowed);
+        if(!actor)throw std::logic_error("Human motion target requires actual type35 owner");
+        return actor->apply_motion(direction,false,activation_);
+    }
     LooseItemActor* create_loose_item(Frame frame,std::int32_t identity=-1) {
         return static_cast<LooseItemActor*>(registry_.create(11,frame,identity));
     }

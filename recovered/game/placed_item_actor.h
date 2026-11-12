@@ -30,6 +30,20 @@ public:
     void physics_object(void* value) {physics_object_=value;} //004794D0 publishes90 after runtime construction/activation.
     const std::array<std::uint16_t,2>& navigation_points() const {return points_;}
     const std::array<float,3>& motion() const {return motion_;}
+    template<class Services>bool apply_motion(const std::array<float,4>& motion,bool hide,Services& services){ //005E2510.
+        if(!physics_object_)throw std::logic_error("Placed motion requires actual Physics90 borrower");
+        if(!services.placed_physics_contact(physics_object_,motion))return false;
+        if(hide)services.hide_placed_replacement(physics_object_); //00408750, independent of pickup branch.
+        if((activation_.mode_flags()&7u)==7u){ //005E2480, no authority gate.
+            (void)navigation_.connect_runtime_points(points_[0],points_[1]);
+            for(auto point:points_)if(point!=0xffff)navigation_.point_byte(point,7); //005E2420, pair failure still marks.
+        }
+        services.publish_placed_motion(this->base_.id10(),motion);
+        services.placed_script_use(this->base_.frame()); //Fresh EC/context after packet finish, optional native absence.
+        for(unsigned n=0;n!=3;++n)motion_[n]=motion[n];
+        motion_w_=motion[3];
+        return true;
+    }
     void activate(bool authority) { //005E2260.
         this->base_.activate_frame(authority,activation_);
         motion_.fill(0); //A0/A4/A8; the original unwritten fourth lane has no value contract.
@@ -62,6 +76,7 @@ private:
     void* physics_object_=nullptr; //Borrowed00407390 object, NOT a007D instance or actor entry.
     std::array<std::uint16_t,2> points_{{0xffff,0xffff}};
     std::array<float,3> motion_{};
+    float motion_w_=0; //Written by005E2510; original activation writes only XYZ, W is unclaimed until motion.
 };
 
 } //namespace hd2::game

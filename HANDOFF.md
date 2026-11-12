@@ -10,25 +10,30 @@ Master/other worktrees untouched; no merge/push or original/Windows execution.
 Earlier C labels are historical implementation batches, not new requirements.
 Do not add C labels. Report against the original H4 remaining work directly.
 
-Latest: real HUMAN_Attack/IllFire VM opcode21/30→actual Script typed actor/frame
-producer0058F1F0/260→ordinary0058E500 source composition; mounted0058E8B0/
-0058EBD0 target math/input production implemented. Native sanitizer PASS66;
-strict actual World/Controls/Script/VM i386 full link and application/probe PASS.
-[Receipt](analysis/checkpoints/p22-hum-h4-script-timed-20261112.json).
-Mounted World A8 origin remains exact H5 import: current HUM201adbf supplies
-human_emplacement_position/004C5800/mounted_position lifetime; this base lacks it.
-A4/98/B4/9C already exist here. Bind SAME H5 position after import; no H5 body
-or ledger copied. Separately target35 still requires H5 human_ai_grenade.h.
-Both reached imports fail explicitly, without successful placeholders.
+Latest: action11 actual260→static-only vertical floor ray→SAME runtime Mine
+factory; action10 actual runtime type35→Physics90→navigation/packet/Script/motion
+composition. Actual0051F280/005248C0 table link marking and0073D760 yaw-only
+packet writer supplied. Native ASan/UBSan/LSan PASS51; concrete actual i386
+World/ray/Mine/type35/Physics/packet/Script full links and application/probe PASS.
+[Receipt](analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json).
+Physics00407BD0 positive model/cache replacement remains an explicit required
+failure, also absent on current HUM201adbf; containing motion is not successful
+production pickup. Type15 Scene2 actor91/factory remains absent/explicit.
+No new credit for those missing bodies or general006F6870.
+
+Prior timed VM producers/consumers and ordinary AI alignment verified. H5 imports
+remain: target35 human_ai_grenade.h and mounted A8 human_emplacement_position/
+004C5800/mounted_position lifetime. Base has actual A4/98/B4/9C; do not repeat
+stale missing-receiver claims. No H5 source/ledger copied or success placeholders.
 
 Preserved completed track0..24, mounted assignment/retirement, timed inventory
 transfer, target-direction/trigger/start/stop workers and prior completion/climb/
 formation/event output families; details/receipts linked from implementation.
 
-Next original H4 work: vehicle path00578770/90 and attachment0058DB20; completion type15/91, physical35/type5 pickup/drop;
+Next original H4 work: vehicle path00578770/90 and attachment0058DB20;
+remaining type5 pickup00407BD0 and type15 owner;
 Players subgroup formation mode9 producer/retirement. Research locators and raw
-instructions in analysis/work/p22-hum-h4-20261112. Bad stack aliases in the
-0058EBD0 C export require raw/ABI correction before implementing its geometry.
+instructions in analysis/work/p22-hum-h4-20261112. Mounted timed geometry now implemented from raw despite broken C aliases.
 Inspect current H3 interfaces through Git; no Runtime absence alone proves a blocker.
 
 Current HUM201adbf/H3/H5 inspected read-only; no imports, base stays e742f84.

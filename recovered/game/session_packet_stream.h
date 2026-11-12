@@ -101,6 +101,10 @@ public:
             static_cast<float>(std::asin(static_cast<long double>(value[1]))),0,0}};
         (void)write_vector(angles,secondary_quantizer(index),3);
     }
+    void write_yaw(const HumanVector& value,std::int32_t index){ //0073D760, atan2(Z,X), secondary quantizer, mask1 ONLY.
+        const HumanVector angle{{static_cast<float>(std::atan2(static_cast<long double>(value[2]),static_cast<long double>(value[0]))),0,0,0}};
+        (void)write_vector(angle,secondary_quantizer(index),1);
+    }
     HumanVector read_vector(const Quantizer* quantizer,std::uint8_t mask) { //0073D530, signed FILD and strict dead-zone comparison.
         if(!quantizer)throw std::runtime_error("Received vector has no actual quantizer");
         const auto& q=*quantizer;HumanVector value{};

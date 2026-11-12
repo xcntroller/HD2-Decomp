@@ -30626,13 +30626,15 @@
       "program": "client",
       "entry": "00584e30",
       "status": "partial",
-      "coverage": "Dispatch the actual B0 action completion sequence, including item refresh, reset, ordered E0 and required actor effects. Positive Mine disarm/ExplosivePlace placement and shared AI/Remote medicine now bind actual World owners; authority mode and target are read after original E0 callbacks, preserving failure prefixes.",
+      "coverage": "Dispatch the actual B0 action completion sequence, including item refresh, reset, ordered E0 and required actor effects. Positive Mine disarm/ExplosivePlace placement and shared AI/Remote medicine now bind actual World owners; authority mode and target are read after original E0 callbacks, preserving failure prefixes. Actual action11 static-only vertical floor ray and same runtime Mine factory plus action10 type35 motion bindings now supplied; positive Physics pickup and type15 owner remain required.",
       "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
         "recovered/game/human_state_action_completion.h",
-        "analysis/p22-hum-h4-implementation.md"
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json",
+        "recovered/game/human_action_completion_effects.h"
       ]
     },
     {
@@ -41179,6 +41181,94 @@
         "recovered/game/human_script_timed_output.h",
         "recovered/game/human_script_ai_state_loading.h",
         "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005e2510",
+      "status": "partial",
+      "coverage": "Actual type35 containing motion: same Physics90 direct contact, optional hide, offline navigation pair/point marking, yaw-only process packet, fresh optional Script use, final A0..AC motion write. Required positive Physics00407BD0 still explicitly fails in concrete base.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005e2480",
+      "status": "partial",
+      "coverage": "Actual offline7 same-navigation link pairing followed by both valid point16=7 writes even if pairing returns false.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051f280",
+      "status": "partial",
+      "coverage": "Actual same-table runtime link pair insertion with ordered two-sided mutation, preserved failed prefix and original vector growth/reuse.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005248c0",
+      "status": "partial",
+      "coverage": "Actual borrowed payload/sentinel/flag/count/admission, distance attenuation, FLOAT/extended gates and native256 conversion, index/weight/count80 publication.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005247a0",
+      "status": "partial",
+      "coverage": "Actual ordered existing-link search over current point flags count and same payload.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005247e0",
+      "status": "partial",
+      "coverage": "Actual 3D extended distance and byte12 sum attenuation on same records.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00408750",
+      "status": "partial",
+      "coverage": "Actual218 optional frame visibility false/update; native cold NULL proven by004079A8. Positive218 producer00407BD0 remains unimplemented.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d760",
+      "status": "partial",
+      "coverage": "Actual yaw-only atan2(Z,X) FLOAT angle, same secondary quantizer and vector mask1; no Y/asin/pitch lane.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
       ]
     }
   ]

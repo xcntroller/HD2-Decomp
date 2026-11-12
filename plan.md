@@ -356,3 +356,5 @@ H4 common target/aim input and stop workers verified over current World owners; 
 H4 ordinary AI alignment/friendly-line and actual elapsed composition verified; H5 target35 import and remaining original H4 work stay open. [Receipt](analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json). Historical C labels are implementation batches only.
 
 H4 actual Script attack VM producers and timed consumers verified; mounted A8 needs the unimported H5 position API. Vehicle/attachment/completion/subgroup remain open. [Receipt](analysis/checkpoints/p22-hum-h4-script-timed-20261112.json).
+
+H4 ground completion and containing type35 motion/navigation/packet/Script source verified; positive Physics pickup and type15 owner remain open alongside vehicle/attachment/subgroup. [Receipt](analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json).

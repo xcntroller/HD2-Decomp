@@ -221,3 +221,28 @@ actual World/Controls/Script/VM full i386 link and application/probe links pass.
 Mounted concrete A8 binding remains blocked on the unimported H5 lifetime API;
 A4/98/B4/9C are present. Vehicle path00578790 and attachment0058DB20 remain H4
 work, not implied complete by this result.
+
+Completion boundary selected: finish00584E30 action11 using actual260 pose,
+its X/Y/Z normalization order, X/Z*.5 offset, static-only vertical006F6870→
+006F5890(layersFFFFFFFF,flags0), actual hit normal and SAME runtime Mine factory.
+No general006F6870 implementation/credit or substituted dynamic Mine ground ray.
+Action10 will bind actual type35/physics90,005E2510,005E2480/0051F280 marked
+navigation pair and actual packet/Script use before motion publication. Investigate
+Physics00407BD0 positive model/cache replacement before claiming complete motion.
+Type15 action3 needs its absent Scene2 actor owner; no raw native-offset write
+into an unrelated typed actor. Keep that exact owner boundary explicit.
+
+The type35 containing005E2510 path and actual Physics90 borrowing are now
+implemented, including0051F280/005248C0 on SAME table storage and marked link
+order. Physics type5 contact still explicitly reaches missing00407BD0 model/cache
+replacement before positive completion; current HUM201adbf has the same guard.
+No claim that a fixture positive contact is a production pickup. Keep remaining
+Physics producer separate from completed type35 containing policy and ground/drop.
+
+
+Ground/drop action11 is implemented with concrete static-only vertical ray and
+Mine factory binding; containing type35 motion/navigation/packet/Script is
+implemented and verified. Positive Physics00407BD0 model/cache producer remains
+open; type15 Scene2 owner/factory remains absent/explicit. Native PASS51 and
+actual full i386/application/probe links; no source closure from endpoint doubles.
+[Receipt](checkpoints/p22-hum-h4-ground-placed-motion-20261112.json).

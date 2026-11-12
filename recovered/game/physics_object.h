@@ -229,6 +229,10 @@ public:
         return true;
     }
     const Vector& centre170() const {return centre170_;}
+    void hide_pickup_replacement(){ //00408750, native218 cold NULL at004079A8.
+        if(!pickup_replacement_)return;
+        frames_.object_visible(pickup_replacement_,false);frames_.update_scene_object(pickup_replacement_);
+    }
     const Vector& span180() const {return span180_;}
     const auto& principal_axes()const{return principal_axes_;} //Type3 native170/180/190/1A0, XYZ only.
     bool inverse_flag170()const{return ground_stop_.enabled;} //Type4 native inverse-matrix+2C comparison.
@@ -259,6 +263,7 @@ private:
     PhysicsObjectTipping tipping_;
     Vector centre170_{},span180_{},endpoint190_{},endpoint1a0_{};
     Vector contact1b0_{};std::array<float,4> rotation1f0_{};
+    Frame pickup_replacement_{}; //Native218 borrower; positive00407BD0 producer remains required, not fabricated.
     std::array<Vector,4> principal_axes_{};
     float radius170_=0;
     bool initialized_=false,published_=false,queued_=false,closed_=false,feedback_installed_=false,flag158_=false,flag161_=false,rotation_ready_=false,collision_enabled_=true,pickup_=false;

@@ -1063,6 +1063,28 @@ public:
     template<class Actor>void finish_human_runtime_pickup(Actor& actor){
         dependencies().world_actors.runtime().disarm_human_action_mine(&actor);
     }
+    template<class State,class Human>void finish_human_action_drop(State& state,Human& human){
+        complete_human_ground_drop(state,human,dependencies().scene.frames(),*this);
+    }
+    template<class Actor,class State>void finish_human_actor_motion(Actor& actor,State& state){
+        (void)dependencies().world_actors.runtime().move_human_placed_item(actor,state.words().template get<HumanVector>(0x10));
+    }
+    auto human_completion_ground_ray(const HumanVector& start,const HumanVector& displacement){
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Human ground completion requires actual loaded World/tree");
+        //Only the proven vertical006F6870→006F5890 branch is used here.
+        if(displacement[0]!=0.f||displacement[2]!=0.f)throw std::logic_error("Human completion requires original vertical static ray");
+        auto& scene=d.scene;using Scene=std::remove_reference_t<decltype(scene)>;
+        using Resources=std::remove_reference_t<decltype(scene.collision_resources())>;
+        CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
+            ray(&scene.collision_tree(),&scene.buckets(),scene.collision_resources(),scene.frames());
+        return ray.ray(start,displacement,0xffffffffu,0,true);
+    }
+    template<class Human>auto human_completion_place_mine(Human& human,std::uint32_t definition,const HumanVector& position,const HumanVector& normal){
+        return dependencies().world_actors.runtime().place_mine(&human,static_cast<std::int32_t>(definition),position,normal,true);
+    }
+    template<class Actor,class Human>void finish_human_timed_type15(Actor&,Human&){
+        throw std::runtime_error("Human action3 completion0060C130 requires actual type15 Scene2 actor91 owner/factory");
+    }
     template<class Actor,class Human>void finish_human_explosive_placement(Actor& actor,Human& human){
         auto& d=dependencies();
         (void)complete_human_explosive_placement(action_explosive_place(actor),human,
