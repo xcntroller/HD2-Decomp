@@ -21,6 +21,7 @@ public:
     RuntimeItemServices(Frames& frames,const frontend::PreMissionItemCatalogue& catalogue,
                         const std::string& suffix,SessionTimeWord game_word28)
         : frames_(frames),models_(frames,catalogue,suffix),icons_(frames,catalogue),scuba_(frames,catalogue,suffix),game_word28_(game_word28) {}
+    const std::string& resource_suffix()const{return models_.resource_suffix();}
     ~RuntimeItemServices(){clear_model_cache();}
     RuntimeItemServices(const RuntimeItemServices&)=delete;
     RuntimeItemServices& operator=(const RuntimeItemServices&)=delete;

@@ -45804,6 +45804,30 @@
       ],
       "coverage": "Mode1 before box/weapon selection; actual received slot/identity creation with ordinary result ignored, fresh decrement/depletion and visibility before178; no initial count gate.",
       "limitations": "Source-only typed native reconstruction, original object/allocator/virtual ABI excluded. Native endpoint doubles and concrete host link are not application or desktop verification. Only command11 effect boundary and depletion setup added; full SupplyBox state1/crossfade/respawn/falling frame, other PACK effects and H8 remain required."
+    },
+    {
+      "program": "client",
+      "entry": "0077ce10",
+      "status": "partial",
+      "evidence": [
+        "recovered/game/human_special_animation.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-special-20261112.json"
+      ],
+      "coverage": "Actual DD01AC/name gate, same mutable suffix/category3 clip loan, genuine missing-clip fade, fourth setup and SAME process outgoing request update(1,true) before loan release.",
+      "limitations": "Source-only typed reconstruction. Native temporary allocator/reference-counted diagnostic strings and original object/virtual ABI excluded; no new credit for delegated engine bodies or forwarding wrappers. Actual track-owner native audits terminate engine/cache/callback endpoints; concrete host linking is not application/desktop verification. Remaining PACK inventory/actions/common commands and H8 frame remain required."
+    },
+    {
+      "program": "client",
+      "entry": "007757e0",
+      "status": "partial",
+      "evidence": [
+        "recovered/game/human_special_animation.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-special-20261112.json"
+      ],
+      "coverage": "Actual four-argument fourth-track setup: native selector, clip duration/flags, slot7 weight0 or slot6 weight1, ordered selected-lane metadata/byte stores and loop/fade224.",
+      "limitations": "Source-only typed reconstruction. Native temporary allocator/reference-counted diagnostic strings and original object/virtual ABI excluded; no new credit for delegated engine bodies or forwarding wrappers. Actual track-owner native audits terminate engine/cache/callback endpoints; concrete host linking is not application/desktop verification. Remaining PACK inventory/actions/common commands and H8 frame remain required."
     }
   ]
 }

@@ -927,6 +927,8 @@ public:
     const auto& presentation_mission_name()const{return dependencies().request.preparation.mission_resource;}
     auto& human_face_resources(){return dependencies().faces;}
     std::int32_t human_face_camouflage(){return static_cast<std::int32_t>(dependencies().presentation_shared.settings().terrain);} //Actual0098A6B0.
+    auto load_human_special_animation(const std::string& name){return dependencies().animations.named_clip(name);}
+    const std::string& human_animation_suffix(){return dependencies().world_actors.item_models().resource_suffix();}
     auto human_animation_resource(unsigned table,unsigned row){return dependencies().animations.resource(table,row);}
     const auto& human_animation_row(unsigned table,unsigned row){return dependencies().animations.row(table,row);}
     auto& human_animation_arbitration(){return dependencies().animations.arbitration_process();}
@@ -2043,7 +2045,10 @@ public:
             damage_human(human,f.template get<std::uint32_t>(8),static_cast<float>(f.template get<std::int32_t>(0x10)),
                 HumanVector{},HumanVector{},source,f.template get<std::uint32_t>(0xc),*this,dependencies().scene.frames());return;
         }
-        case 18:throw std::runtime_error("Human PACK command18 requires Remote special-animation005A9C20/005AC4A0/0077CE10 loading and007757E0/00775970 control receivers");
+        case 18:{ //Only Remote presentation grammar has this effect payload.
+            auto* control=owner.control().control();if(!control)throw std::logic_error("Named animation packet requires actual DD0/C00");
+            control->special_animation(command.text.c_str(),f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),f.template get<std::uint32_t>(0x10)!=0);return;
+        }
         default:throw std::logic_error("Human command dispatched outside original grammar");
         }
     }

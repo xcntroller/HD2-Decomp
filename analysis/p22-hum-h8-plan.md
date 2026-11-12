@@ -46,7 +46,7 @@ The preceding Active task/follow work is preserved and verified in the clothing 
 - [x] Command9: actual runtime pickup, automatic placement and handoff [source checkpoint](human-h8-pack-effects-source.md#command9-pickup-and-automatic-unheld-placement-checkpoint).
 - [x] Command11: SupplyBox validation, creation/application, depletion and visibility [source checkpoint](human-h8-pack-effects-source.md#command11-supplybox-source-effect-checkpoint).
 - [ ] Command12: actual Player validation/application and Remote actions.
-- [ ] Command18: named animation resources, setup and control lifetime.
+- [x] Command18: named cache resources, fourth-track setup and control lifetime [source checkpoint](human-h8-pack-effects-source.md#command18-named-special-animation-source-effect-checkpoint).
 - [x] Command20: active Remote equipment/storage replacement and retirement [source checkpoint](human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint).
 - [ ] Command3: remaining selected common-command subtypes and effects.
 - [ ] Verify actual owners, packet positive/failure/lifetime paths, concrete host

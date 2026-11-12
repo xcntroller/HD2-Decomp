@@ -105,6 +105,9 @@ public:
         }
         geometry_.bind_loading(human.base().frame(),&human,this,mode_flags(),offline);
     }
+    void special_animation(const char* name,std::int32_t blend,std::int32_t fade,bool loop){ //Human005A9C20→inline005AC4A0→C00/0077CE10.
+        play_human_special_animation(*this,name,blend,fade,loop,services_);
+    }
     void rebind_clothing_model(){ //00786C20, same actual DD0/bone leases.
         if(!human_||!active_)throw std::logic_error("Clothing refresh requires actual active DD0");
         rebind_human_clothing_control(*this,*human_,frames_);

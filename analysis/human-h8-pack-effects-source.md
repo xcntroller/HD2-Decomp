@@ -5,7 +5,8 @@ User-directed priority is the missing effect families in PACK's review of H8
 The subsequent live-creation checkpoint below resolves **command20's active source dependency**.
 The subsequent pickup checkpoint resolves **command9's source dependency**.
 The supply checkpoint resolves **command11's source effect dependency**.
-Commands3/7/8/12/18 remain required. PACK must integrate committed
+The named-animation checkpoint resolves **command18's source effect dependency**.
+Commands3/7/8/12 remain required. PACK must integrate committed
 source, reconcile its helpers and run its own affected stream/FIFO/module checks.
 H8, P22-HUM and application/desktop delivery remain open. No original or Windows
 binary was executed. Frozen inventory claims remain partial native adaptations.
@@ -234,3 +235,53 @@ SupplyBox loading/geometry/clip/SOUND/visibility and Items/World/equipment.
 Latest launcher/probe rebuild passes. Audits fingerprinted/removed. No Windows
 fixture or application run. Receipt:
 `analysis/checkpoints/p2.2-human-h8-pack-supply-20261112.json`.
+
+
+## Command18 named special-animation source effect checkpoint
+
+Remote command18 follows actual Human005A9C20→inline005AC4A0→DD0/C00/0077CE10
+through the SAME containing owner. Native001AC must equal1 and the name must be
+nonempty; otherwise existing00775970 fades the fourth track using blendMS. A
+nonempty name appends the SAME mutable0084E8E4 suffix already borrowed by actual
+RuntimeItemServices/ItemPrimaryModelCache. GameAnimations resolves an owned loan
+from actual category3 cache0041FC10, without loading tables as a side effect.
+No returned clip genuinely fades fourth. A returned clip is used regardless of
+status, matching native's pointer test. Actual cache exceptions propagate.
+
+The original apparent diagnostics were verified:005D7070 is a reference-counted
+string append, not logging.0077CE10 builds/frees an unused temporary error string.
+No invented diagnostic service or successful missing-asset clip was added. Those
+allocator/string temporaries and their ABI are excluded from source equivalence.
+
+Raw007757E0 takes `(clip,blendMS,fadeOutMS,boolLoop)`; its decompilation misses the
+fourth argument. Reset98/94 before selecting90: prior−1/0 chooses lane1/slot7 at
+weight0; other prior values choose lane0/slot6 at weight1. Resolve clip durationB4,
+clear BYTE B8, call actual model/clip flags1+loop and initialize only the selected
+lane metadata in native order. Initial lane7 sets BYTE1C4, later lane7 clears it;
+lane6 clears BYTE1A0. Neighbor bytes/other lane remain intact.224 is−1 for loop,
+else fadeOutMS. Actual track owner exposes this setup without restarting tracks.
+
+After setup, actual GameAnimations.arbitration_process().outgoing (native009834A0)
+receives animation pointers0..2 NULL and3=clip; other request fields survive. Then
+actual tracks.update(1,true,&outgoing) corresponds to native007724E0(0,1,1,...):
+first DWORD0 is unused, **elapsed is1**, not0. The owned cache loan releases AFTER
+update, including exception unwinding; actual model/cache references preserve
+clip lifetime. The process request array is not copied into local scratch.
+
+Fresh ASan/UBSan/LSan audit: **5300 assertions /100 lifetimes**, actual
+HumanAnimationTracks initialization/setup/update/fade/teardown with explicit
+engine/cache/animation-callback endpoints. All selector branches, exact byte
+preservation, shared request field retention, suffix changes, missing/empty/gated
+fade, cache exception, update failure/loan cleanup and retained model references
+are covered. Strict actual i386 FULL LINK instantiates the actual full packet
+path, DD0/tracks, GameAnimations/category3 resources and shared suffix owners.
+Latest launcher/probe rebuild passes. Audits fingerprinted/removed. No Windows
+execution or desktop acceptance. Receipt:
+`analysis/checkpoints/p2.2-human-h8-pack-special-20261112.json`.
+
+PACK source work remaining: general command7/8 source/cross-Human inventory
+validation/application and native swap/preflight/fallback, plus command12 Player
+validation/presentation and Remote action effects through remaining common3
+subtypes. H8 stays open; SourceBox later frame work and other H8.2+ dependencies
+remain as recorded in the plan. PACK integration/stream/FIFO/module verification
+is still separate from the source availability checkpoints above.

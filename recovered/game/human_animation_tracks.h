@@ -4,6 +4,7 @@
 #include "game/human_joint_owners.h"
 #include "game/human_ai_shot_direction.h"
 #include "game/human_animation_requests.h"
+#include "game/human_special_animation.h"
 #include <cmath>
 #include <limits>
 
@@ -543,6 +544,10 @@ public:
             for(unsigned axis=0;axis!=3;++axis)
                 words_.set(0x270+4*axis,static_cast<float>(static_cast<long double>(fraction)*real(0x2c0+4*axis)+real(0x270+4*axis)));
         }
+    }
+    void setup_fourth(Frame clip,std::int32_t blend,std::int32_t fade,bool loop){ //007757E0.
+        require_model();if(!clip)throw std::logic_error("Special track requires actual clip loan");
+        setup_human_fourth_track(words_,frames_,[this]{return model_;},clip,blend,fade,loop);
     }
     void fade_fourth(std::int32_t duration) { //00775970.
         const auto lane=integer(0x90);if(lane==-1)return;

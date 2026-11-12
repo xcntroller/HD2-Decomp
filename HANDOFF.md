@@ -2,127 +2,77 @@
 
 Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8`, branch
 `feature/p22-hum-h8`. All H1–H7 source is present, including merged H4b9d67aa.
-H8/P22-HUM remain OPEN. Read AGENTS.md, section2 of plan.md and
-[H8 dependency plan](analysis/p22-hum-h8-plan.md). Preserve other worktrees.
-No push/original EXE/DLL/Proton/Windows/application/desktop execution. Heavy
-compilation/Ghidra sequential. No permanent tests. User priority: getting in game.
+Read AGENTS.md, section2 of plan.md and [H8 plan](analysis/p22-hum-h8-plan.md).
+H8/P22-HUM/application remain OPEN. Preserve all other worktrees. No push,
+original EXE/DLL/Proton/Windows/application execution or invented desktop test.
+Heavy compilation/Ghidra sequential. No permanent tests.
 
-**CURRENT USER PRIORITY:** finish PACK's actual Human effect dependencies in
-`../HD2-Decomp-p22-pack/analysis/p22-pack-hum-h8-review.md` BEFORE returning to
-ordinary H8 Active/frame work. PACK does not require H8 as a whole to close.
-Do not edit/import its agent's worktree. The review at H8 `14d59d3` is the baseline.
+**USER PRIORITY:** finish the actual Human effect dependencies from PACK's
+`../HD2-Decomp-p22-pack/analysis/p22-pack-hum-h8-review.md`, baseline14d59d3,
+BEFORE ordinary Active/frame work. Do not edit its agent's worktree. PACK does
+not require all H8 to close; it still must integrate/test its stream/FIFO/modules.
 
-Latest [PACK supply checkpoint](analysis/human-h8-pack-effects-source.md#command11-supplybox-source-effect-checkpoint),
-[receipt](analysis/checkpoints/p2.2-human-h8-pack-supply-20261112.json): **command11
-source effect resolved**, actual SupplyBox9 availability/current-weapon ammo or
-side definitions, item creation/placement, failed-item cleanup, fresh count/
-depletion/visibility and identity178/packet publication. Actual loaded Box owns
-005FC860(2)/005FCD80(1) close setup/SOUND/duration/state1; next full Box state1/
-crossfade/respawn/falling frame remains a REQUIRED H8 guard. Native ASan/UBSan/
-LSan PASS5100/100 lifetimes with explicit endpoints; strict actual packet/Box/
-Items/World/equipment i386 FULL LINK and launcher/probe rebuild PASS. Two new
-partials, no completes;34 complete/3404 partial. Audits fingerprinted/removed.
+[Consolidated effect contracts](analysis/human-h8-pack-effects-source.md): now
+source-bound/verified **commands2/9/11/18/20** on SAME actual owners. Checkpoints:
+- 5460739: active clothing/DD0/25 bone pose/geometry/equipment/Players/camera/Sight.
+Native25C guard but258 target index retained. Also preserved/verified preceding
+Active task/follow/cancel/regroup and shared delayed speech00455AF0 work.
+- 447d5d8: Remote20 live no-source Items creation/notifications and storage/pack6
+reset. Cold API guard remains; no-source live creation has actual230/HUD/B0/FPV.
+- cd1473e: runtime9 pickup/007D9B40 automatic placement.005B6980 EC→entry90→frame20
+handoff precedes runtime/body retirement; presentation ignores admission result.
+- e14d9c6: SupplyBox11 admission/ammo/side/creation/count/depletion/SOUND/visibility.
+Later full Box state1/crossfade/respawn/falling frame remains required H8 guard.
+- Latest named18: actual suffix/category3 loan,007757E0 four arguments, actual
+fourth-track metadata and SAME GameAnimations process outgoing009834A0, then
+tracks.update(1,true), loan release AFTER update.005D7070 is string append, not
+logging; no extra wrapper/string/engine credit. [Latest receipt](analysis/checkpoints/p2.2-human-h8-pack-special-20261112.json).
 
-Prior [PACK pickup checkpoint](analysis/human-h8-pack-effects-source.md#command9-pickup-and-automatic-unheld-placement-checkpoint),
-[receipt](analysis/checkpoints/p2.2-human-h8-pack-pickup-20261112.json): **command9
-source dependency resolved**, actual runtime lookup,007D9B40 automatic unheld
-placement and005A39D0/005A3A40 validation/application. Native005B6980 erases EC
-BEFORE entry90 clear/frame20 release; actual runtime retirement/body cleanup
-follows. Presentation intentionally retires loose actor even after ordinary
-placement rejection. Notify0 retains native HUD/B0/timer effects. Native
-ASan/UBSan/LSan PASS6300/100 lifetimes with explicit endpoints; strict actual
-packet/World/Items/runtime loose actor/registry/body/equipment/clothing i386
-FULL LINK and latest launcher/probe rebuild PASS. Three new partials, no complete
-promotions;34 complete/3402 partial. Audits fingerprinted/removed.
+Five focused ASan/UBSan/LSan audits PASS14800/9900/6300/5100/5300 assertions,
+100 lifetimes each, with explicitly documented endpoints. Each checkpoint has
+strict actual host i386 FULL LINK and launcher/probe rebuild PASS; no Windows
+fixture was run. Temporary audits fingerprinted/removed, fresh logs retained.
+Ledger now34 complete/3406 partial (3401 client+5 engine); no complete promotions.
 
-Prior [PACK live equipment checkpoint](analysis/human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint),
-[receipt](analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json): **command20
-active source dependency resolved**, including Remote-only admission and reserved/
-discard routes. SAME storage reset/pack6 retirement, actual no-source live Items
-creation,230 added/HUD/B0/FPV and final fresh-clock expiry now compose with active
-clothing. Cold transfer API retains its guard; a distinct live kernel handles the
-real empty-holder/stack population boundary. Native ASan/UBSan/LSan PASS9900/100
-lifetimes with explicit endpoints, strict actual command20/packet/Items/World/
-DD0/equipment/clothing i386 FULL LINK and latest launcher/probe rebuild PASS.
-One new partial, no completes;34 complete/3399 partial. Temporary audits removed.
-This does not complete general cross-Human/source moves/swaps/pickup.
+**NEXT PACK:** commands7/8 general inventory005A2D50/005A2E10 and005A2E90/005A2F50:
+actual arbitrary source/destination007D8B40, automatic source007DA3F0, swap
+007D9DE0/preflight007DA5E0 and paired equipment/FPV/clothing notifications. The
+new no-source live insertion/automatic placement is a prerequisite, not a full
+source move/swap implementation. Existing weapon-only kernels stay scoped.
+Research whole boundary first, preserve target/source ownership and live
+validation/result/publication order; never route received commands back through
+queued request producers. WORK `human-h8-pack-general-transfer-index.txt`,
+`human-inventory-immediate-transfer`, `human-inventory-weapon-swap`,
+`human-inventory-swap-dependencies`, `human-inventory-command-receivers` and
+`human-h8-pack-effects` contain current original C. Some decompilation signatures
+lose ECX/argument identity; inspect raw before generalizing existing kernels.
 
-Prior [PACK clothing/Active dependency checkpoint](analysis/human-h8-pack-effects-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json): **command2
-active source dependency resolved**, actual005A6930/005A6A00/0048A780 through SAME
-DD0/25 bone capture-release-rebind-restore-retain, geometry face2, physical/tracks/
-equipment holsters and markers, Players frame collection/current camera and
-Sight target refresh. Native guard25C but target INDEX258 is preserved. Mode1
-precedes presentation lookup; authority queues only after success/fresh non7.
-Native ASan/UBSan/LSan PASS14800/100 lifetimes with explicit endpoints; actual
-packet/clothing/DD0/physical/geometry/face/tracks/equipment/Sight/Players/camera/
-Active task/follow/whole Human i386 FULL LINK and launcher/probe rebuild PASS.
-Temporary audits fingerprinted/removed. Thirteen new partials, no completes;
-34 complete/3398 partial. Source-only; PACK still must integrate/test its stream.
+Also remaining PACK12 Player0053D5D0/0053D870 and Remote00594110, plus shared
+common3's remaining00586200 subtypes. Original12 action tables0083C348/0083C4A0
+and0053D520/005467C0 effects need binding. C in `human-h8-pack-effects`; these
+still fail honestly. Finish these PACK effect families before returning to H8.
 
-The prior uncommitted Active work is preserved/verified in that checkpoint:
-00534340 actual1E0 task/224,00535730 cancel,005377F0 positive follow,005357E0
-regroup,00538390 empty-order callback and005982D0 formation change. Callback
-00455AF0 uses SAME process delayed speech vector0089AC20, native reverse duplicate
-scan/RandFloat200+300/truncate/game2C-after-draw; absent frozen start, no credit.
-Active posture observes actual name then verified retail logger RET. Full
-pending/decision/authority remains guarded; positive follow is not whole AI.
-
-**NEXT PACK:** commands7/8 general validation/application005A2D50/005A2E10 and
-005A2E90/005A2F50. The new no-source live creation does NOT complete arbitrary
-source/destination transfer007D8B40, automatic007DA3F0 placement,007D9DE0 swap/
-007DA5E0 preflight and fallback007D9B40. Reuse verified source, extend actual
-cross-actor/equipment owners, retain validation/result/publication ordering.
-Commands9/11/20 source effects now resolved; Player/Remote12 requires0053D5D0/0053D870/
-00594110; named-animation18 requires005A9C20/005AC4A0/0077CE10/007757E0; common3
-remaining subtypes. Those effects remain required guards. Indexed original C exports are
-now in WORK `human-h8-pack-effects`, and existing inventory/swap/peer lifecycle
-contracts; index before new exports.005B2A90 C/JSON is now exported in `human-h8-pack-equipment-command`.
-
-After PACK effects, resume005282E0/00529F60 pending processing,00528950 decisions,
-00536120 follow BEFORE ordinary navigation/aim/movement/command retirement in
-00526550; retain native first pointer slot after regroup resets pending list.
-Existing C/raw/source map in WORK and contracts. Human190/route74 producers and
-actor target lifetime remain required. Other H8.2 Script00591550,00751480/00755500,
-Player delayed/camera, hazard00451900 and water005A97C0/00585A60 remain open;
-H8.3+ async combat, Car/OWN/D11/absent actors, actual FRAME/render/application
-composition and user desktop acceptance remain open. No idle success substitution.
-
-Prior verified source contracts: [process order/marker/Active250](analysis/human-h8-order-owner-source.md)
-`14d59d3`, [actions7/8/12 and actual HUD marker model](analysis/human-h8-order-action-source.md)
-`1509bb6`, [frame composition](analysis/human-h8-frame-composition-source.md),
+After PACK:005282E0/00529F60 pending,00528950 decisions,00536120 follow before
+full00526550 authority. Retained first slot survives regroup resetting list;
+Human190/route74 producers/actor target lifetime remain required. Active positive
+follow is not whole AI. Other offline Script/Player/DD0/hazard/water, SupplyBox
+frames, async combat, Car/OWN/D11/absent actors, completed FRAME/render/application
+composition and actual user desktop acceptance remain required. Masterfa94dee
+render is not imported. Prior contracts: [orders](analysis/human-h8-order-owner-source.md),
+[actions](analysis/human-h8-order-action-source.md), [frame](analysis/human-h8-frame-composition-source.md),
 [presentation](analysis/human-h8-active-presentation-source.md), [H6](analysis/human-h6-source-closure.md).
-Do not re-audit unchanged H1–H7 kernels. Masterfa94dee render is not imported.
+Do not re-audit unchanged H1–H7.
 
-Recovery from accidental deletion preserved committed source at31c436e. Tools
-link to shared master .tools; WORK independently reflink-copied from surviving
-HUM. Some old ignored H6/H8 audit logs were lost; historical receipts are not
-reruns. Recovery record `analysis/work/human-h8-worktree-recovery-20261112.json`.
-Latest checkpoints have fresh verification logs.
+Accidental deletion recovery preserved committed source31c436e. Tools link to
+shared master; WORK independently reflink-copied from surviving HUM. Lost old
+ignored audit logs are historical receipts, not reruns; latest checkpoints have
+fresh logs. Recovery `analysis/work/human-h8-worktree-recovery-20261112.json`.
 
 WORK=`analysis/work/mission-world-20261103`. Index BEFORE new exports:
 `python3 -B tools/research_index.py find ADDRESS...`. OriginalSHA
 8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307. Ghidra
 `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`, project
 `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
-hd2.unpacked.exe -readOnly -noanalysis. Check ERROR even exit0. No types changed.
+hd2.unpacked.exe -readOnly -noanalysis. Check ERROR even exit0; no types changed.
 Build: `make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
 Ledger: `python3 -B tools/function_progress.py --render`/`--check`; `git diff --check`.
-
-Focused next research: named special animation18 existing C in WORK
-`human-h8-pack-effects` plus `human-reaction-selection-dependencies/0077ce10.c`.
-Raw `human-h8-special-track-setup.asm` proves007757E0 receives(clip,blendMS,
-fadeOutMS,boolLoop): reset94/98, selector90(-1/0→1,other→0), actual slot7 weight0
-or slot6 weight1, flags1+loop stored in clip8, durationB4, byteB8, exact metadata,
-224=loop?-1:fadeOutMS. Native0077CE10 appends SAME mutable0084E8E4 suffix (initial
-empty, already borrowed by RuntimeItemServices/ItemPrimaryModelCache), gets real
-category3 cache via0041FC10; failed/missing clip or DD01AC!=1 fades fourth. After
-success it writes process009834A0 outgoing request animation fields0..2 NULL and
-3=clip, calls007724E0(0,1,1,&requests) = tracks.update(1,true,...), then releases
-clip loan. Use SAME GameAnimations.arbitration_process().outgoing, no local copy.
-Rawcaller in `human-h8-special-track-caller.asm`. Existing GameAnimationResources
-resolve_animation can supply actual owned loan. `005D7070` calls appear to be
-local string building; confirm before inventing diagnostic services. No new18
-source implemented/claimed yet. General transfer/swap boundary is indexed in
-`human-h8-pack-general-transfer-index.txt`; automatic unheld placement now resolves
-one prerequisite, not full source/swap policy.
