@@ -131,3 +131,7 @@ Continue queued visual/physical reset, detachment and full timed/entry/frame pat
 Queued Car physical/mesh/glass transitions now have a
 [source checkpoint](checkpoints/p2.2-human-car-physical-reset-20261112.json).
 Continue actual mesh fragments, Item12 detachment, timed-DM and full entry/frame.
+
+Car glass fragments now have a
+[source checkpoint](checkpoints/p2.2-human-car-fragments-20261112.json).
+Continue actual Item12 detachment, timed-DM and full entry/frame.

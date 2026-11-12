@@ -1732,3 +1732,13 @@ visual/physical reset, detachment, timed-DM and full containing Human paths rema
 texture exchange/restore and seated Human opacity. Native focused sanitizers and
 actual World/i386/launcher pass. Positive fragments/Item12/deformed mesh/timed-DM
 and full Human entry/frame remain required; selected checkbox stays OPEN.
+
+
+## Car glass fragments through actual Physics —2026-11-12
+
+[Contract](human-car-fragments-source.md) and
+[checkpoint](checkpoints/p2.2-human-car-fragments-20261112.json) bind actual
+69C→GEffectsB4→00485BA0/00484F60 mesh subdivision/publication through SAME module2
+Physics/fade lifetime. Engine/math/buffer/Physics endpoints are native-audit doubles;
+actual host composition and launcher compile/link pass. Item12/timed/entry/full
+Human frame remain required; selected checkbox remains OPEN.

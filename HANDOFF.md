@@ -10,7 +10,7 @@ is genuinely blocked. Source progress does not close application/desktop work.
 
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
 explicitly requested transferring back here; transfer evidence is ignored WORK
-`human-return-main-20261111`. Preceding checkpoint **5f7aa6d**. Check current
+`human-return-main-20261111`. Preceding checkpoint **a29033d**. Check current
 HEAD/status before acting. Preserve other LIFE/UI/PACK/research worktrees,
 `/tmp/hd2-p22-hum-continue` and unrelated changes.
 
@@ -21,7 +21,20 @@ the user. Mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source
 
-[Queued physical/mesh/glass receipt](analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json)
+[Mesh-fragment receipt](analysis/checkpoints/p2.2-human-car-fragments-20261112.json)
+adds1 partial/extends00500DA0: **34 complete/2733 partial(2728client+5engine)**,
+no promotions. [Full contract](analysis/human-car-fragments-source.md).
+Actual Car69C→GEffectsB4 now binds00485BA0 (absent frozen ZERO credit)→00484F60
+FASTCALL+RET40 to SAME actual PhysicsContactLink/module2/type4/fade owner.
+Keep longest-edge tie/child order, UVs, A/B/C/C/B/A six vertices with SAME normal,
+mesh material POINTER distinct from Physics material10 ZERO, six ENGINE draws
+only after valid handle and LOD→mesh→visual factory-reference retirement after
+impulse. No new Physics registry or successful unbound receiver. Native100
+subdivision/link/parameter families PASS ASan/UBSan/LSan with engine/buffer/Physics
+endpoint doubles; strict actual nested World/Car/Physics/Human and final launcher/
+probe compile/link PASS `human-car-fragments-*`. No trajectory/desktop claim.
+
+Preceding **a29033d** [Queued physical/mesh/glass receipt](analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json)
 adds6 partials/extends3: **34 complete/2732 partial(2727client+5engine)**, no
 promotions. [Full contract](analysis/human-car-physical-reset-source.md).
 Actual event4 now binds004DC780→004E9DB0, controls, authority004F2790,
@@ -31,8 +44,8 @@ bits, transient speed-dependent engine reset, mass*3 impulse at MODEL POSITION
 actor350/core2C0 (not centre), separate ENGINE/CRT draws and failed prefixes.
 00500DA0 shares SAME actual retained glass texture exchange with004FE910 restore;
 69C=004D4A10 genuinely ignores direction/name but selected name is still read.
-Positive mesh fragments00485BA0→00484F60, Item12, deformed/global backup/occupied
-restore and timed-DM remain required. Native100 reset/mesh/glass/opacity and100
+Mesh fragments are now supplied by the latest checkpoint above. Item12,
+deformed/global backup/occupied restore and timed-DM remain required. Native100 reset/mesh/glass/opacity and100
 queued families PASS ASan/UBSan/LSan, strict nested actual World/control/Car/Human
 and final launcher/probe compile/link PASS `human-car-physical-reset-*`.
 Native engine/math/Scene/bucket/mesh/material/fragment/physical-control endpoints
@@ -69,16 +82,18 @@ Preceding verified dependencies (contracts retain evidence/order details):
 
 ## Next work
 
-1. Continue positive **00485BA0→00484F60** mesh fragments and Item12
-   **00479450→005FDC00/005FDC50**, then timed-DM and other required reached effects.
-   Read `human-car-physical-reset-source.md` before changing reset/presentation.
-   WORK `human-car-glass-fragment-index.txt` locates existing bounded original
-   00485BA0 assembly and00484F60 C; both absent/unfinished dependencies have zero
-   new credit.69C raw/source is confirmed ignoring extra args; don't invent use.
-   New reset export `human-car-physical-reset-abi` still has decompiler alias errors;
-   use raw `human-car-physical-reset.asm` and math evidence (004066C0 SCALE, not
-   subtraction). Preserve actual model/helper/seats/body/wheel/material owners.
-   Focused temporary audits remain ignored until full selected checkbox closure.
+1. Continue Item12 **00479450→005FDC00/005FDC50**, then timed-DM and other
+   required effects. WORK `human-car-item12-index.txt` locates existing
+   `car-contact-item-dependencies/{00479450,005fdc00,005fdc50}.c`; defaults lose
+   stack arguments. Validate raw/rollback ABI before implementing. Existing
+   GameRuntimeActors only supports Mine2/LooseItem11/PlacedItem35; add actual
+   type12 owner through SAME registry/lifecycle, not a substitute Physics Item.
+   00479450 increments separate module74 clone counter, explicitID=old+1000000;
+   retain native pose/factory/publication/release order and investigate counter
+   constructor/reset. Existing callback launch structs are shared requests.
+   Read new fragment contract before changing prior verified fragment kernel.
+   WORK `human-car-fragments-abi` remains imperfect C; raw is authoritative.
+   Focused temporary audits remain ignored until full checkbox closure.
 2. Full status9/received0 entry remains unbound. Read
    [shared world](analysis/multiplayer-world/shared-world.md).00730A40 needs actual
    peer6C/client334 wrappers/worker lifecycle→0072E890→00731610(true). Reuse WORK

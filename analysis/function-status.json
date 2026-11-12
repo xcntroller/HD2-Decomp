@@ -36726,12 +36726,29 @@
       "program": "client",
       "entry": "00500da0",
       "status": "partial",
-      "coverage": "Actual threshold/flag8 glass material/retained-texture exchange and zero-health flag1/name/callback order; SAME owner restoration and actual packet0/event4 invocation. Positive fragment receiver remains required.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "coverage": "Actual threshold/flag8 glass material/retained-texture exchange and zero-health flag1/name/callback order; SAME owner restoration and actual packet0/event4 invocation. Positive fragment receiver remains required. Its actual69C now invokes recovered00485BA0/00484F60 mesh fragments through SAME Physics borrower before hiding; no successful fragment placeholder.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-engine adaptation. Native100 families use actual subdivision/PhysicsContactLink/parameters with explicit vertex/engine-factory/Physics create/impulse doubles; no actual engine mesh, Physics trajectory/fade or whole-body equivalence claim. Strict actual nested World/Car/Physics/DM/Human i386 and launcher/probe compile/link pass. Item12 detachment, timed-DM, full Human entry/frame/failure/re-entry/retirement and application loading/desktop acceptance remain required.",
       "evidence": [
         "recovered/game/car_glass_damage.h",
         "analysis/human-car-physical-reset-source.md",
-        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json",
+        "analysis/human-car-fragments-source.md",
+        "analysis/checkpoints/p2.2-human-car-fragments-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00484f60",
+      "status": "partial",
+      "coverage": "Actual FASTCALL/RET40 triangle subdivision, native longest-edge ties/child UV order, six reverse vertices/shared normals, real engine shard construction and SAME Physics type4 publication, six ENGINE draws/impulse and ordered factory-reference retirement. Reached through actual Car69C/GEffectsB4 mesh traversal.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-engine adaptation. Native100 families use actual subdivision/PhysicsContactLink/parameters with explicit vertex/engine-factory/Physics create/impulse doubles; no actual engine mesh, Physics trajectory/fade or whole-body equivalence claim. Strict actual nested World/Car/Physics/DM/Human i386 and launcher/probe compile/link pass. Item12 detachment, timed-DM, full Human entry/frame/failure/re-entry/retirement and application loading/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_mesh_fragments.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/game/physics_contact_link.h",
+        "recovered/host/game_car_callbacks.h",
+        "analysis/human-car-fragments-source.md",
+        "analysis/checkpoints/p2.2-human-car-fragments-20261112.json"
       ]
     }
   ]

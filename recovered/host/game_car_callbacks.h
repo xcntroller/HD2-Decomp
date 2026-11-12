@@ -8,6 +8,7 @@
 #include "game/car_cold_deformation.h"
 #include "game/car_particle_pool.h"
 #include "game/car_definition_tables.h"
+#include "game/car_mesh_fragments.h"
 #include "game/physics_contact_link.h"
 #include "game/version_contact_link.h"
 #include "game/explosion_contact_link.h"
@@ -125,9 +126,8 @@ public:
     void car_surface_effect(const Vector&,const Vector&,unsigned,unsigned,unsigned)override{
         throw std::runtime_error("Car surface impact requires actual GEffects particle producer");
     }
-    void emit_car_contact_fragments(Frame frame,float)override{ //00485BA0, GEffects+B4, mesh-fragment generation.
-        if(!(frames_.actor_visual_flags(frame)&0x800u))return; //Native genuine nonmesh gate.
-        throw std::runtime_error("Car contact fragments require actual00485BA0/00484F60 mesh/effect owners");
+    void emit_car_contact_fragments(Frame frame,float area)override{ //00485BA0, actual GEffects+B4.
+        game::emit_car_mesh_fragments(frames_,physics_contact_,frame,area);
     }
     Actor clone_car_contact_item(Frame,const Vector&,const Vector&)override{
         throw std::runtime_error("Car detachment requires actual00479450 runtime Item12 constructor");

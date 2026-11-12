@@ -1,5 +1,6 @@
 #ifndef HD2_HOST_GAME_ACTOR_FRAMES_H
 #define HD2_HOST_GAME_ACTOR_FRAMES_H
+#include "game/car_mesh_fragments.h"
 
 #include "game/mission_script_rotations.h"
 #include "game/door_rotation_loading.h"
@@ -325,6 +326,50 @@ public:
             exported<Get>("?GetScale@S_matrix@@QBG?AUS_vector@@XZ",0x2db20)(matrix.data(),scale.data());}
         put(frame,0xd0,scale);(void)car_rotation(frame);put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
         update_scene_object(frame);place_human_reaction_model(frame);update_scene_object(frame);return result;
+    }
+    struct CarFragmentResources {
+        MenuDriver::Owner visual;ResourceOwner mesh,lod;
+        void retire(){lod.reset();mesh.reset();visual.reset();}
+    };
+    CarFragmentResources create_car_fragment(Frame source,const std::array<game::CarFragmentVertex,6>& vertices,Frame material){
+        CarFragmentResources result{create_visual(0x5f4a424fu),ResourceOwner(call<Frame>(driver_.frame(),0x6c),ResourceRelease{module_}),
+            ResourceOwner(call<Frame>(driver_.frame(),0x68),ResourceRelease{module_})};
+        if(!result.visual||!result.mesh||!result.lod)throw std::runtime_error("Cannot create actual mesh-fragment visual/mesh/LOD");
+        const auto lod=result.lod.get();call<void>(lod,0x28,std::uint32_t{6});auto* data=call<unsigned char*>(lod,4,std::uint32_t{0});
+        if(!data)throw std::runtime_error("Cannot write actual fragment vertices");
+        for(std::size_t n=0;n!=vertices.size();++n){const auto& vertex=vertices[n];const std::array<float,8> values{{
+            vertex.position[0],vertex.position[1],vertex.position[2],vertex.normal[0],vertex.normal[1],vertex.normal[2],vertex.uv[0],vertex.uv[1]}};
+            std::memcpy(data+n*32,values.data(),32);
+        }
+        call<void>(lod,8);
+        const auto group=call<Frame>(driver_.frame(),0x64);if(!group)throw std::runtime_error("Cannot create actual fragment face group");
+        //This group uses SetMaterial at0, not resource Release. Preserve the
+        //driver/LOD face-group transfer; do not give it a COM-style deleter.
+        call<void>(group,0,material);auto* indices=call<std::uint16_t*>(group,8,std::uint32_t{2});
+        if(!indices)throw std::runtime_error("Cannot write actual fragment face indices");
+        for(std::uint16_t n=0;n!=6;++n)indices[n]=n;
+        call<void>(lod,0x1c,group);call<void>(lod,0x2c);call<void>(result.mesh.get(),8,lod,std::uint32_t{0});
+        const auto visual=result.visual.get();call<void>(visual,0x9c,result.mesh.get(),std::uint32_t{0});
+        const auto root=field<Frame>(scene_.frame(),0x1f8);if(!root)throw std::logic_error("Fragment requires actual containing Scene root");
+        call<void>(visual,0x38,root,std::uint32_t{0});const auto position=actor_world_matrix(source);
+        call<void>(visual,8,position.data()+12);car_steering_rotation(visual,human_matrix_rotation(actor_world_matrix(source)));
+        call<void>(visual,0xb0);update_scene_object(visual);return result;
+    }
+    template<class Visit>void car_fragment_triangles(Frame frame,Visit&& visit){ //00485BA0.
+        if(!(actor_visual_flags(frame)&0x800u))return;
+        const auto mesh=car_mesh(frame);const auto first=call<Frame>(mesh,4,std::uint32_t{0});
+        const auto group=call<Frame>(first,0x14,std::uint32_t{0});const auto count=field<std::uint32_t>(group,8);
+        const auto lod=call<Frame>(mesh,4,std::uint32_t{0});const auto* vertices=call<const unsigned char*>(lod,4,std::uint32_t{0});
+        const auto material=field<Frame>(group,4);const auto vertex_count=field<std::uint32_t>(lod,0x54);
+        if(field<std::uint32_t>(lod,0x64)!=32)throw std::runtime_error("Fragment source requires original32-byte vertex format");
+        for(auto n=count;n;){const auto* indices=call<const std::uint16_t*>(group,0xc,std::uint32_t{0});
+            if(!indices||!vertices)throw std::runtime_error("Fragment source has no actual face/vertex data");
+            const auto triangle=--n;std::array<game::CarFragmentVertex,3> input;
+            for(unsigned corner=0;corner!=3;++corner){const auto index=indices[triangle*3+corner];if(index>=vertex_count)throw std::out_of_range("Fragment source vertex index");
+                const auto* data=vertices+index*32;std::memcpy(input[corner].position.data(),data,12);std::memcpy(input[corner].uv.data(),data+24,8);
+            }
+            visit(input,material);
+        }
     }
     Frame human_face_lod(Frame visual) {
         const auto mesh=field<Frame>(visual,0x1e0);
