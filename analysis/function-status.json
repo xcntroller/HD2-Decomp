@@ -20651,12 +20651,14 @@
       "program": "client",
       "entry": "00597420",
       "status": "partial",
-      "coverage": "Required loading mode3 allocation, actual six position/direction rows and normalization; mode13 closes storage.",
-      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "coverage": "Required loading mode3 allocation, actual six position/direction rows and normalization; mode13 closes storage. Runtime mode0..11 static layouts, actual subgroup mode9, cycle12 and close13 now use same slots/data.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
       "evidence": [
         "recovered/game/human_formation.h",
         "analysis/human-state-loading.md",
-        "analysis/checkpoints/p2.2-formation-20261109.json"
+        "analysis/checkpoints/p2.2-formation-20261109.json",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
       ]
     },
     {
@@ -22632,8 +22634,8 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime.",
-      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations. Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate. Source runtime/objective/look update verified separately; containing world remains unintegrated.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Base opcodes2..C now bind actual Players subgroup create/delete/add/remove/modes/percent scale before derived Human/Dog PC policy.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_context.h",
@@ -22646,7 +22648,9 @@
         "analysis/mission-script-initial-controls.md",
         "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/mission_script_loading_runtime.h"
+        "recovered/game/mission_script_loading_runtime.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
       ]
     },
     {
@@ -41338,6 +41342,186 @@
         "recovered/host/game_physics_objects.h",
         "analysis/p22-hum-h4-implementation.md",
         "analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004603c0",
+      "status": "partial",
+      "coverage": "Script5 admission before actual roster/formation/binding, source reference guard and failed-prefix ordering.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_players_subgroup.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00460850",
+      "status": "partial",
+      "coverage": "Actual subgroup roster removal before formation removal and current Script5 loan clearing.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_players_subgroup.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004608a0",
+      "status": "partial",
+      "coverage": "Actual subgroup roster and formation ownership, force8C, admission, independent leader selection and mode9; separate leader lifetime guard.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_players_subgroup.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00460980",
+      "status": "partial",
+      "coverage": "Reverse subgroup member removal and Script loan retirement before formation destruction/context release.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_players_subgroup.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00461240",
+      "status": "partial",
+      "coverage": "First reverse subgroup membership match and actual removal, without deduplication or clearing every group.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00461290",
+      "status": "partial",
+      "coverage": "Actual reverse leader lookup, count identity, concrete subgroup construction then same module vector publication.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00461390",
+      "status": "partial",
+      "coverage": "Actual reverse subgroup deletion and native swap/pop order with retained allocation retirement.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059ba70",
+      "status": "partial",
+      "coverage": "Same formation owner frame dispatch: leader/slots, smoothing first, ordinary/attached/navigation selection with actual state and current inputs.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059bb60",
+      "status": "partial",
+      "coverage": "Signed elapsed six-slot smoothing with native tiny-length and normalization/step/FLOAT store order.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005990c0",
+      "status": "partial",
+      "coverage": "Actual leader velocity/direction, navigation route, slot output, changed flags, separation/avoidance and cached route composition.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059a2e0",
+      "status": "partial",
+      "coverage": "Actual navigation84 records/links and six-member navigation stage/position/direction output with required-input guards.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00598550",
+      "status": "partial",
+      "coverage": "Reverse close-member separation and original changed/projection publication order on same six slots.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00598810",
+      "status": "partial",
+      "coverage": "Actual leader/member motion, native x87 avoidance direction and explicit amount argument applied to same slot.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059af30",
+      "status": "partial",
+      "coverage": "Actual same-table cached member navigation route and remaining distance/position publication.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005957d0",
+      "status": "partial",
+      "coverage": "Actual attached formation dispatch/seat assignment/pose output with Car/Aircraft receiver requirements preserved.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
       ]
     }
   ]

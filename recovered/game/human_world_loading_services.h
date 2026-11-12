@@ -722,6 +722,34 @@ public:
         control.clear_frame_item_ready([&](std::uint32_t value){human_frame_first_person_state(*human,value);});
         human_state_factory(*human).notify_inline_frame_command(state,0); //AFTER E0, including its deferral.
     }
+    template<class Formation>void advance_human_formation(Formation& formation,std::uint32_t elapsed){formation.advance(elapsed,*this);} //0059BA70, actual Human2C8.
+    template<class Human>HumanVector formation_target_direction(Human& human){return human_camera_target_direction(human);} //005A80E0, SAME B0.
+    template<class Human>std::uint32_t formation_direction_gate(Human& human){ //005AC2B0, SAME actual DD0 action1D8.
+        auto* control=human_inline(human).control();if(!control)throw std::logic_error("Formation direction gate requires actual DD0");
+        const auto action=control->physical().control_frame_words().template get<std::uint32_t>(0x1d8);
+        return action>=106&&action<=108?1u:action==8||action==14?2u:0u;
+    }
+    template<class Human,class Formation>void bind_players_subgroup_formation(Human& human,Formation* formation){
+        using Script=typename Dependencies::Composition::StateFactory::Script;
+        auto* state=dynamic_cast<Script*>(human.loading_state);
+        if(!state||state->human()!=&human)throw std::logic_error("Players subgroup requires SAME actual current Script5 B0");
+        state->script_formation(formation);
+    }
+    template<class Actor>std::size_t formation_seat_count(Actor& actor){
+        if(actor.base().type()==4)return human_pose_car(&actor).occupants.size(); //Actual virtual88, same Car roster.
+        throw std::runtime_error("Formation type20 seat count requires its actual Aircraft Scene2 owner");
+    }
+    template<class Actor>bool formation_seat_occupied(Actor& actor,std::size_t index){
+        if(actor.base().type()==4)return human_pose_car(&actor).occupants.at(index)!=nullptr; //Actual virtual78.
+        throw std::runtime_error("Formation type20 occupancy requires its actual Aircraft Scene2 owner");
+    }
+    template<class Actor>bool formation_seat_pose(Actor& actor,std::size_t,HumanVector&,HumanVector&){
+        if(actor.base().type()==4)throw std::runtime_error("Formation requires H3 CarLoadingActivation::exit_pose / actual004DA420 query exposure; exit_seat changes occupants and cannot substitute");
+        throw std::runtime_error("Formation type20 paired005E0530 requires its actual Aircraft Scene2 owner");
+    }
+    template<class Actor>const std::vector<SceneActor<typename Dependencies::ActorFrames>*>& formation_linked_actors(Actor&){
+        throw std::runtime_error("Formation005DE7B0 requires actual type20 linked Aircraft owner");
+    }
     template<class State>bool advance_script_formation_path(State& state){
         auto* human=state.human();if(!human)throw std::logic_error("Script formation output lost actual Human");
         return advance_human_script_formation(state,human_inline(*human),*this,dependencies().scene.frames());

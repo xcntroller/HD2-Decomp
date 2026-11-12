@@ -364,3 +364,9 @@ H4 Script TurnAt VM producer and original attachment consumer now concrete; vehi
 H4 positive Physics replacement/numbered-volume and SAME-manager child contact
 source verified; remaining H4 bodies are vehicle and Players subgroup formation.
 Type15 owner/imports and live acceptance stay separate. [Receipt](analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json).
+
+
+H4 actual Players subgroup/mode9/formation frame and base VM commands are source-verified;
+[receipt](analysis/checkpoints/p22-hum-h4-subgroup-20261112.json). Vehicle output,
+completed H3/H5 interface integration and H6's reached Active AI grenade recipient
+remain open; no containing mission or desktop acceptance claim.

@@ -843,3 +843,30 @@ Two implemented inventory bodies add partial credit (34 complete/3058 partial);
 helpers,00410B40 (absent frozen), cache delegation and instrumentation gain none.
 H4 still requires vehicle and subgroup formation output; type15 Scene2 owner and
 H3/H5 unimported APIs remain exact other-owner integration boundaries.
+
+
+## Players subgroup, formation frame and VM completion boundary
+
+The preserved subgroup work now supplies concrete module11 roster/formation28,
+mode9/static layouts,0059BA70 frame workers and base00416E10 opcodes2..C.
+Actual World binds the factory and retracts Script loans before Human retirement.
+A takeover correction tracks the independently selected formation leader even
+when B0kind prevents subgroup admission; original004608A0 still selects it.
+[Consolidated contract](human-players-subgroup-source.md),
+[receipt](checkpoints/p22-hum-h4-subgroup-20261112.json).
+
+Native ASan/UBSan/LSan PASS55 formation/subgroup/module/navigation and PASS16
+VM/context cases; explicit Human/B0/engine/seat/VM Players endpoint doubles are
+recorded. Strict actual World/formation/subgroup/VM i386 full link and latest
+application/probe links pass. New audit sources/binaries/i386 output were
+fingerprinted and removed. Fifteen new frozen partials, two extensions, no
+complete promotion:34 complete/3073 partial. Full checker still reports unchanged
+0062D880's missing ignored rule-refresh.asm; changed rows/frozen baseline/totals/
+README pass separately. No artifact was invented/copied or Windows execution made.
+
+H4 remains open: vehicle00578770/90, actual H3/H5 API integration, and H6's
+reached Active AI00530FF0 grenade recipient. Car attached formation's nonmutating
+exit query is not exposed by the older base; completed H3 must supply it without
+using an exit action as a query. Aircraft/type20/type34 and type15/Scene2actor91
+stay precise other-owner requirements. Full Human/World/mission/H8/user acceptance
+is separate; no new numbered implementation batches.
