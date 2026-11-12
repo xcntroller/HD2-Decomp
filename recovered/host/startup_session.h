@@ -49,6 +49,8 @@
 #include "game/shot_manager_loading.h"
 #include "game/heavy_fire_module_loading.h"
 #include "game/effects_loading_process.h"
+#include "game/procedural_clouds.h"
+#include "game/render_debug_skeleton.h"
 #include "game/item_hand_models.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
@@ -267,6 +269,8 @@ public:
         multiplayer_request_.reset();
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
         errors.attempt([&] { modules_.shutdown(gate_,human_projection_process_); }); //0048DA80, after data; actual Items3 pool retirement.
+        render_debug_skeleton_.clear(); //Source process-buffer fallback, no frame borrowers.
+        procedural_clouds_.clear(); //00483DE0 process fallback before graphics/module retirement.
         frame_text_overlay_.reset(); //006E85A0, after module retirement and before driver/device shutdown.
         item_hand_models_.clear();
         game_animations_.close();
@@ -310,6 +314,8 @@ public:
     game::ShotManagerLoadingState<GameActorServices>& shot_manager_process(){return shot_manager_process_;}
     game::HeavyFireLoadingState& heavy_fire_process(){return heavy_fire_process_;}
     auto& effects_loading_process(){return effects_loading_process_;}
+    auto& procedural_clouds(){return procedural_clouds_;}
+    auto& render_debug_skeleton(){return render_debug_skeleton_;}
     using BlastWaves=game::BlastWaveProcess<MenuDriver::Owner,GameSceneActors::Instance>;
     BlastWaves& blast_wave_process(){return blast_wave_process_;} //SAME fixed-update and finish owner.
     auto& human_projection_process(){return human_projection_process_;} //0098AD28/38/44, SAME records/pool and process timers.
@@ -971,6 +977,8 @@ private:
     game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;
     game::HeavyFireLoadingState heavy_fire_process_;
     game::EffectsLoadingProcess<EngineFrame*> effects_loading_process_;
+    game::ProceduralClouds<GameActorServices::ResourceOwner> procedural_clouds_;
+    game::RenderDebugSkeleton render_debug_skeleton_;
     BlastWaves blast_wave_process_;
     game::HumanProjectionProcess<MenuDriver::Owner> human_projection_process_;
     game::ItemHandModels<GameActorServices> item_hand_models_;

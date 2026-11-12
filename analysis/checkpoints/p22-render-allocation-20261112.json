@@ -1,0 +1,163 @@
+{
+  "date": "2026-11-12",
+  "branch": "feature/p22-render",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-render",
+  "fetched_sha": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "actual_implementation_base": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "previous_checkpoint": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+  "render_owned_source_complete": true,
+  "remaining_render_owned_checkboxes": [],
+  "source_only": true,
+  "application_loading_enabled": false,
+  "original_code_executed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "push_or_merge_performed": false,
+  "original_client": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "bytes": 6889472
+  },
+  "original_engine": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2/LS3DF.dll",
+    "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+    "bytes": 864256
+  },
+  "source_files": {
+    "recovered/game/volumetric_lights.h": {
+      "sha256": "8cf058b505c35dcdb38023c3004362ca864308607b58a53b93f532e10fa0ebf2",
+      "bytes": 26386
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "ea1e8b762af84c332b077e33e0bccdf6a7f4bdae53618e8cd0f09887b486843c",
+      "bytes": 98405
+    },
+    "recovered/host/game_data_observations.h": {
+      "sha256": "8789407ab66f5cb3c3d4f2884208fab454acc32db11d8f8b66291fab37e27cf0",
+      "bytes": 2894
+    }
+  },
+  "documentation_and_ledger": {
+    "HANDOFF.md": {
+      "sha256": "48da7577c436c79066126886160f3abb62a2c6d1cacb501bfa58a91b7d3d9f93",
+      "bytes": 4234
+    },
+    "analysis/function-status.json": {
+      "sha256": "6ee890f8fc6ae30c9ef24bbf5a1c3ba7ad4940448d3b3c25be5cf0d25586c221",
+      "bytes": 2400320
+    },
+    "analysis/p22-render-history.md": {
+      "sha256": "304c93c3cfc238e80cacd6a3a2fbbb3b7504f3dc8ee3d9fd111435a70e0b7e94",
+      "bytes": 11133
+    },
+    "analysis/p22-render-implementation.md": {
+      "sha256": "67f082a6b7ed48be5d43305faf113c864b26ef65ed654a14446583d1cfa13e87",
+      "bytes": 22825
+    },
+    "analysis/p22-render-plan.md": {
+      "sha256": "5ebefc7a0752bae256c1dd60a01f8b35bf03c24bf9c4a12e07830841b3600c62",
+      "bytes": 5713
+    },
+    "plan.md": {
+      "sha256": "4fadf0f82581ee4f48538fe5e2fcfff06cef4012880075fd2e54f580867490f5",
+      "bytes": 25089
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/p22-render-allocation-20261112/native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-render-allocation-20261112/native.log": {
+      "sha256": "6c479b5de300756ffaeea433f97c23eb91b22a06759685e5bcb5f07a2dc6b506",
+      "bytes": 192
+    },
+    "analysis/work/p22-render-allocation-20261112/i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-render-allocation-20261112/imports.log": {
+      "sha256": "0f07b526fcf77383878d8334bb509768a5e988567ee6621e05a25f47f5f42ef7",
+      "bytes": 643
+    },
+    "analysis/work/p22-render-allocation-20261112/application.log": {
+      "sha256": "b4896cf991f69bb4547b29751314f7a8a0c5f8bcf2d5258c6cab3fa94c91ced4",
+      "bytes": 632
+    },
+    "analysis/work/p22-render-allocation-20261112/ledger-focused.log": {
+      "sha256": "b59d27354f273ee98407c40f5b1fc4c978950299db69095ffda0e751468ac523",
+      "bytes": 615
+    },
+    "analysis/work/p22-render-allocation-20261112/tracker.log": {
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    "analysis/work/p22-render-allocation-20261112/products.log": {
+      "sha256": "49e7ba69301473f1e9bceaf5fb3b6150deb92cb2c9098528bd2287bb3edff130",
+      "bytes": 222
+    },
+    "analysis/work/p22-render-allocation-20261112/compiled-read-prefix.asm": {
+      "sha256": "0a846aea91a50f84d5d14b1321c364061ceefa1c1e23eed92b4f85b070b0afc6",
+      "bytes": 30232
+    }
+  },
+  "preserved_original_proof": {
+    "path": "analysis/checkpoints/p22-render-history-20261111.json",
+    "sha256": "d5b2ee24a63e94dd61ef0ebb626572be6f99c681e5eddce0ec47d52b7651c81a",
+    "bytes": 8599,
+    "findings": "00482BB8 allocates48;00481320/read/refresh leave3C/40 unwritten;00482843..64 consumes previous bytes then writes current direction. Those original findings remain valid; requiring a historical heap snapshot was the erroneous completion condition."
+  },
+  "behavior": {
+    "allocation": "SAME Volume owns default-initialized new NativePayload, original size0x48, no parentheses/value initialization. Raw payload allocated before typed metadata/random; declared first and retired after all metadata/particle storage. No new heap registry or custom production allocator. Other native fields remain typed metadata, not a binary-compatible whole-object image.",
+    "read": "At the original reached visible/in-range gate, actual GameActorFrames endpoint ReadProcessMemory(GetCurrentProcess(),payload+3C,out,8,&copied) initializes two uint32_t values without indeterminate C++ float evaluation. Copy failure/short read throws native safety failure; no value fallback.",
+    "arithmetic": "Actual allocation words copied to float representations; existing wrapped atan2 delta/44 update then current3C/40 stores. No initialized angle, first-visible rule, added shared randomness, zero-delta or field2C bypass. Numerical first result remains dependent on current allocation contents.",
+    "observation": "Population records only prior-store flag; actual reached read records raw bits. No extra scene/camera/random reads and no manual observer invocation claimed as production binding.",
+    "abi_limit": "Port CRT/sidecar allocations/instrumentation/OS-copy differ from original allocator/object ABI; identical historical heap bytes, pixel output and trajectory are not claimed. This does not require a missing gameplay producer or another P22 dependency."
+  },
+  "verification": {
+    "native": "PASS ASan/UBSan/LSan100 repeat families: actual decoder, owned raw allocation, unseeded first history, positive sorted volume/particle leaves, repeat current-direction stores, refresh/reconstruction, missing texture/light, malformed data, raw/sidecar allocation failures, read/render failures and all state restoration attempts with original primary precedence. Actual POSIX process_vm_readv is a labelled platform replacement for Win32; engine/procedural endpoints are doubles. Separate known-prior fixtures verify raw signed-zero/finite/infinity/quiet/signalling-NaN and NaN propagation; not mission state or a production first-sample initializer.",
+    "i386": "PASS strict -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror actual full World construction, GEffects finish_loading(false) including real files/decode/raw allocation/refresh, GameRenderStages, actual Scene/callback/lifecycle render and close compile/link. Actual KERNEL32 ReadProcessMemory import verified. Controller boundary double is defined throwing; existing unavailable UI body remains explicit. PE not run.",
+    "compiled_allocation": "Actual instantiated production VolumetricLights<GameSceneActors>::read disassembly shows operator new(0x48) before typed sidecar construction and existing volume_random_unit. No raw history clear; prefix retained in ignored WORK.",
+    "application": "PASS existing make -B -C recovered -j1 application-launch after final source change; PE not run. Heavy final native/i386/application work sequential.",
+    "ledger": "PASS frozen client/engine inventory/baseline/full ledger uniqueness and changed-entry/evidence validation. No new inventory entries or complete promotions. Existing coverage expanded00482A00/00482260; stale shared render limitation text corrected on five other existing partials. Full tracker still limited by unrelated legacy missing0062D880 WORK rule-refresh.asm; counts unchanged.",
+    "engine_runtime": "NOT RUN",
+    "desktop": "NOT RUN"
+  },
+  "evidence_levels": {
+    "historical_resolver_bytes": "Existing DATA/proof receipts preserved; no new historical heap-byte claim.",
+    "static_requirements": "Original allocator/constructor/read/store instructions plus actual current source/compiled allocation/API contracts verified.",
+    "actual_loaded_populations": "No real mission loaded. Native decoded names/geometry/resources are labelled fixture populations.",
+    "actually_executed_runtime_branches": "Native allocation/traversal/draw-to-doubles only. No original engine draw/present, actual mission reachability or desktop acceptance."
+  },
+  "new_resources": "No authored assets modified or new textures selected; existing same-owner texture/geometry/resource services preserved. Raw payload is Volume-owned state storage.",
+  "external_remaining": {
+    "ui": "Unmerged source-complete ebdcbf59bc6a59880bb664c0a5934e46105669d6 GameUiPresentation consumers with actual Human/order/Sight/console loans and special-model retirement forwarding.",
+    "frame": "c36bba8c5aa2855a02c11ce832810cebe39e8d10 coordinator/scheduling integration and actual updates, with its existing external Runtime contracts.",
+    "own_life": "Actual application activation/install/forwarding; combine source frame/render borrower retirement before Scene/World/camera/texture destruction. No application enabling here.",
+    "runtime_desktop": "Actual loaded resources/populations, executed engine branches, first-frame/present and user failure/return/repeat acceptance."
+  },
+  "temporary_audit_sources_binaries": {
+    "/tmp/p22-render-allocation-native.cpp": {
+      "sha256": "c6406c87262aa487f5e4ee17149d07ff6209e74d8c43c7f27867851a5b1e66c4",
+      "bytes": 8238
+    },
+    "/tmp/p22-render-allocation-native": {
+      "sha256": "fc29c966f9224b42cb044bc4cd14b6567d157be6f0122fa6e4a665732ce6bd84",
+      "bytes": 2190552
+    },
+    "/tmp/p22-render-allocation-i386.cpp": {
+      "sha256": "11641527271fa99306d985f56ec6ce90ecb689a76fe530b48288cfdc140cbca8",
+      "bytes": 1271
+    },
+    "/tmp/p22-render-allocation-i386.exe": {
+      "sha256": "d32f24fb71b2746b523ea1d4ff4c686312db21e00ab5991bc880a457a16a41b1",
+      "bytes": 8501248
+    },
+    "/tmp/p22-render-allocation-ledger.py": {
+      "sha256": "cf06bb397286fc3a61af705915b0d50cd6e58dcc36f4ed966c21a9cb31ca19d6",
+      "bytes": 1399
+    }
+  },
+  "temporary_artifacts_removed": true,
+  "permanent_tests_added": false
+}

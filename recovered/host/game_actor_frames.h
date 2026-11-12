@@ -786,6 +786,10 @@ public:
         if(call<std::int32_t>(frame,0x34,name.c_str())<0)throw std::runtime_error("Cannot name Human equipment");
     }
     void effects_model_opacity(Frame model,float opacity) {call<void>(model,0x50,opacity);} //00486DF0, distinct from OBJ_+A4.
+    std::uint32_t effects_special_mode(Frame frame)const{return field<std::uint32_t>(frame,0x160);}
+    void effects_special_mode(Frame frame,std::uint32_t mode){call<void>(frame,0x94,mode);}
+    float effects_special_power(Frame frame)const{return field<float>(frame,0x168);}
+    void effects_special_power(Frame frame,float power){call<void>(frame,0x88,power);} //004870A0 kind2 frame, not model animation88.
     void effects_frame_fade_alpha(Frame frame,float alpha){call<void>(frame,0xa8,alpha);} //00486E60, distinct from both model+50 and visual+A4.
     void effects_model_camera_amount(Frame model,float value) {call<void>(model,0x54,value);} //00486D30; distinct from model+50 opacity.
     float effects_human_fade_amount(Frame visual)const{return field<float>(visual,0x1ec);} //00489180 reads actual child a/flag-mask1.
@@ -1107,6 +1111,49 @@ public:
         (void)car_rotation(frame);
         put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
     }
+    void debug_skeleton_lines(const void* vertices,std::uint32_t count,const std::uint16_t* indices,
+            const std::array<float,3>& rgb,std::uint32_t alpha){
+        using Draw=void(WINAPI*)(Frame,const void*,std::uint32_t,const std::uint16_t*,std::uint32_t,const float*,std::uint32_t,std::uint32_t);
+        checked_engine_method<Draw>(driver_.frame(),module_,0x30)(driver_.frame(),vertices,count,indices,count,rgb.data(),0x10,alpha);
+        observe_data("execution","0079B760 debug lines drawn","vertices",count);
+    }
+    Matrix procedural_cloud_matrix(const Vector& direction,const Vector& up){
+        Matrix matrix{1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1};
+        using Set=void(WINAPI*)(void*,const void*,const void*);
+        exported<Set>("?SetDir@S_matrix@@QAGXABUS_vector@@0@Z",0x2ced0)(matrix.data(),direction.data(),up.data());
+        return matrix;
+    }
+    ResourceOwner load_procedural_cloud_texture(const char* name){
+        Frame texture=nullptr;
+        const auto result=graphics_.methods->load_texture(&graphics_,name,nullptr,0x502,&texture);
+        observe_data("resource","00483E50 procedural texture",name,texture?1:0);
+        observe_data("resource","00483E50 load status",name,static_cast<std::uint32_t>(result));
+        return ResourceOwner(texture,ResourceRelease{module_}); //Original ignores status; retain actual out pointer.
+    }
+    std::array<std::uint32_t,2> volume_allocation_history(const void* address){
+        //Read only the live Volume-owned allocation's3C/40 bytes. The OS copy
+        //initializes result without evaluating indeterminate C++ scalar values.
+        //This native safety endpoint is not an original engine/client call.
+        std::array<std::uint32_t,2> result;
+        SIZE_T copied=0;
+        if(!::ReadProcessMemory(::GetCurrentProcess(),address,result.data(),sizeof result,&copied)||copied!=sizeof result)
+            throw std::runtime_error("Cannot read live volumetric allocation history");
+        return result;
+    }
+    Frame volume_render_camera(){
+        const auto camera=field<Frame>(scene_.frame(),0x15c);
+        if(!camera)throw std::runtime_error("Volumetrics require actual Scene15C render camera");
+        observe_data("execution","selected Scene15C render camera","flagsE0",field<std::uint32_t>(camera,0xe0));
+        return camera;
+    }
+    Frame volume_visibility_relation(Frame light)const{
+        if(!light)throw std::runtime_error("Null light borrower in00482260");
+        return field<Frame>(light,0x108);
+    }
+    bool volume_relation_visible(Frame relation)const{
+        return field<std::uint16_t>(relation,0xf8)==5&&(field<std::uint8_t>(relation,0x160)&1)!=0;
+    }
+    std::uint32_t volume_graphics_state(std::uint32_t state)const{return graphics_.methods->state(&graphics_,state);}
     bool volume_visible(Frame frame)const{return car_frame_visible(frame);}
     void volume_bind_texture(Frame texture){(void)graphics_.methods->bind_texture(&graphics_,texture,0);}
     void volume_set_dir3(Matrix& matrix,const Vector& forward,const Vector& up){
@@ -1462,8 +1509,11 @@ public:
         }
         call<void>(frame,0xb0); //00473960 invalidates the visual after unlocking.
     }
-    float volume_random_unit() {
-        using Random=float(__cdecl*)();
+    long double volume_random_unit() {
+        //Capture the SAME RandFloat/x87-ST0 before the caller's first FSTS:
+        //1002C450 leaves FILD*FLOAT extended,0048134E and00487429 multiply it.
+        //Both i386 cdecl result types use ST0; no extra draw/stream is created.
+        using Random=long double(__cdecl*)();
         return exported<Random>("RandFloat",0x2c450)();
     }
     std::uint32_t actor_child_count(Frame frame) {

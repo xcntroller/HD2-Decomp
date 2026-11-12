@@ -20114,13 +20114,15 @@
       "program": "client",
       "entry": "00482a00",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00482a00: Actual volumetric light/particle owner initialization, refresh geometry and cleanup source.",
+      "coverage": "P2.2 source reconstruction at original entry 00482a00: Actual volumetric light/particle owner initialization, refresh geometry and cleanup source. Original-sized0x48-byte payload is default-initialized without clearing3C/40, before typed sidecar/random work; the SAME Volume owns its retirement and partial construction cleanup.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/volumetric_lights.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/p22-render-history.md",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
       ]
     },
     {
@@ -22615,7 +22617,7 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Adds original opcodeAD CSC_RunCLouder through SAME module/process0089B63C configuration loan, and opcodeBB THUNDERSTORM_SetOn integer/frame-kind2 filtering to SAME GEffects2E0 deferred service, before the original advance gate.",
       "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations. Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate. Source runtime/objective/look update verified separately; containing world remains unintegrated.",
       "evidence": [
         "analysis/mission-script-loading.md",
@@ -22629,7 +22631,9 @@
         "analysis/mission-script-initial-controls.md",
         "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/mission_script_loading_runtime.h"
+        "recovered/game/mission_script_loading_runtime.h",
+        "recovered/game/mission_script_render_commands.h",
+        "analysis/checkpoints/p22-render-bindings-20261111.json"
       ]
     },
     {
@@ -23313,7 +23317,7 @@
       "program": "client",
       "entry": "00487240",
       "status": "partial",
-      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded. Also source Human228 pass: reverse borrowed-Human updates, signed elapsed/FLOAT stores, native completion/NaN and ordered erase after actual model call; other passes remain excluded. Actual bounded loading update now composes same fade/time224, frame200/Human228 queues, current-camera sun, shared borrowed-Bird motion, profile4/empty-decoration gates and mesh movie update, in native order. Positive water/game64 weather/rain/grass/colour and unproduced pose304/special2E0/fade-in210 remain excluded. Fade uses signed FILD elapsed, FLOAT .001 and extended post-FSTS overshoot/sentinel semantics.",
+      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded. Also source Human228 pass: reverse borrowed-Human updates, signed elapsed/FLOAT stores, native completion/NaN and ordered erase after actual model call; other passes remain excluded. Actual bounded loading update now composes same fade/time224, frame200/Human228 queues, current-camera sun, shared borrowed-Bird motion, profile4/empty-decoration gates and mesh movie update, in native order. Positive water/game64 weather/rain/grass/colour and unproduced pose304/fade-in210 remain excluded. Fade uses signed FILD elapsed, FLOAT .001 and extended post-FSTS overshoot/sentinel semantics. Adds actual special2E0 pass before fade/time224: SAME extended RandFloat result, stored FLOAT power, native visible/update gates, deferred restoration and signed wrapping timer expiry for next update.",
       "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
       "evidence": [
         "recovered/game/effects_frame_fades.h",
@@ -23323,7 +23327,9 @@
         "recovered/game/effects_loading_update.h",
         "recovered/game/effects_fade.h",
         "analysis/mission-loading-integration.md",
-        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json",
+        "recovered/game/effects_special_model.h",
+        "analysis/checkpoints/p22-render-bindings-20261111.json"
       ]
     },
     {
@@ -40493,6 +40499,97 @@
         "recovered/host/game_ui_presentation.h",
         "analysis/p22-ui-source-closure.md",
         "analysis/checkpoints/p22-ui-source-closure-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00482260",
+      "status": "partial",
+      "coverage": "Containing pre-scene procedural call, actual camera/visibility/hemisphere/distance traversal, actual allocation-residual3C/40 read through a concrete native byte-copy endpoint, wrapped angular update/current-direction stores, retained pairwise sorting/draw and state restoration. No invented initial angle or unknown-history rejection.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/volumetric_lights.h",
+        "analysis/p22-render-implementation.md",
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00482e50",
+      "status": "partial",
+      "coverage": "Positive camera-centred procedural lattice, original sin/cos geometry, distance alpha, billboard transforms, exact quads/two texture batches over retained process resources.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/procedural_clouds.h",
+        "analysis/p22-render-implementation.md",
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00483e50",
+      "status": "partial",
+      "coverage": "Clear then ordered real texture requests flags502/null secondary and both original-sized geometry buffers; partial initialization retained for clear/retry.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/procedural_clouds.h",
+        "analysis/p22-render-implementation.md",
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00483de0",
+      "status": "partial",
+      "coverage": "Ordered process texture0/1 and buffer0/1 retirement, bound before C4 volume clear and process shutdown.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/procedural_clouds.h",
+        "analysis/p22-render-implementation.md",
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0079ac40",
+      "status": "partial",
+      "coverage": "Twenty original skeleton bone-pair lines over actual frame world matrices including fourth lane; sequential WORD indices/count.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/render_debug_skeleton.h",
+        "analysis/p22-render-implementation.md",
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0079b760",
+      "status": "partial",
+      "coverage": "Lazy aligned process buffers, reverse actual registry/Human/suspension/model epoch gates, max21 skeletons and actual identity/driver30 draw with original colour policy.",
+      "limitations": "Source-only typed owner reconstruction; native register/object/allocator ABI differs and engine endpoints are delegated. Native positive audits use explicit engine/Human doubles. Initial history preserves actual allocation residuals; identical historical heap bytes/trajectory are not claimed; actual VM/UI/FRAME/OWN integration and desktop acceptance remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/render_debug_skeleton.h",
+        "analysis/p22-render-implementation.md",
+        "analysis/checkpoints/p22-render-services-20261111.json",
+        "analysis/checkpoints/p22-render-allocation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004871a0",
+      "status": "partial",
+      "coverage": "Resolve actual MP_Lightning with maskFFFF and kind2, retain WORD-E4 frame through SAME GEffects special2E0 owner, save raw mode160/power168 after native mode11/show/update, clear deferred2EC and store exact signed timer2F0 bits. Shared00487240 special pass handles actual flicker, next-update expiry and restore/release.",
+      "limitations": "Source-only typed C++ frame owner and checked engine endpoints replace original object/allocator/SEH ABI. Explicit source guards reject repeated timed replacement and wrong-kind retained pointer prefixes rather than reproduce native unsafe overwrite/leak. Missing frame legitimately returns. No live weather/network caller, engine execution, original memory layout or desktop acceptance claim. Original004870A0/004888C0 entries absent from frozen inventory receive no new credit.",
+      "evidence": [
+        "recovered/game/effects_special_model.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/p22-render-implementation.md",
+        "analysis/checkpoints/p22-render-bindings-20261111.json"
       ]
     }
   ]

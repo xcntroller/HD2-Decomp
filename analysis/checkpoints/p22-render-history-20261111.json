@@ -1,0 +1,170 @@
+{
+  "date": "2026-11-11",
+  "branch": "feature/p22-render",
+  "fetched_implementation_base": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "previous_checkpoint": "c1bbd09d5c56130290fe3db224d118340898899d",
+  "reviewed_ui_read_only": "19f049b3c28b7d5229acf14db8d54a766a35ac97",
+  "observed_master_not_imported": "83e77da320a256e64dd517e33154efdeeb566753",
+  "source_only": true,
+  "render_implementation_complete": false,
+  "history_policy_decision": "User: We should preserve the original behavior. No first-visible sampling or successful initial-history substitute authorized/implemented.",
+  "original_code_executed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "ledger_delta": 0,
+  "ledger_reason": "Diagnostic bindings and allocator research receive no new function credit; prior six partial entries unchanged.",
+  "ledger_fingerprint": {
+    "sha256": "bfd5d3f28c619fd140c14b59c65e8871309145c480ca3a01d7052b3a60e8df22",
+    "bytes": 2397382
+  },
+  "source_fingerprints": {
+    "recovered/game/volumetric_lights.h": {
+      "sha256": "2e99bd9bb7c560b679ef6119e0ba900c2c81d11f1d03a8a74c0ec4f29a23635a",
+      "bytes": 25028
+    },
+    "recovered/host/game_data_observations.h": {
+      "sha256": "d32cea2cfba7dd8daac36bc3b6c5891a17744f890e8b1b24df3d0e83f79323ef",
+      "bytes": 2500
+    },
+    "recovered/host/game_render_stages.h": {
+      "sha256": "625f0e0553fdbd30f6dfe88753b7cdfbcebc40511949b144f5fd1cdd1dedf0a7",
+      "bytes": 2574
+    },
+    "recovered/host/game_session_lifecycle.h": {
+      "sha256": "8bc9633d8a0b6d95d6772ca143c992e40ecbe251836aaa98194b5df6288ff2c5",
+      "bytes": 7815
+    }
+  },
+  "original_client": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "bytes": 6889472
+  },
+  "original_evidence_paths": {
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/loading-module-dependencies/00482a00.c": {
+      "sha256": "db12d4d1fe2c918957d8b7ddfcb66242fcb860980be39882e253f5d3e1673413",
+      "bytes": 3873
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/effects-loading-owners/00481320.c": {
+      "sha256": "e342b762138bc2c917cc9b59172d9636349e550ef58940c5f83bd8c33358e1e8",
+      "bytes": 643
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/effects-loading-owners/00481810.c": {
+      "sha256": "628ffc51c0dffd733223d6d453672bd7e679cfe6e8113409d84c00a0e937445c",
+      "bytes": 5746
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/volumetric-runtime-dependencies/00480fa0.c": {
+      "sha256": "05bbc724ed42324c7df1f0299fe4febd2bfc0c96376e1be5f18ed6b73077cea7",
+      "bytes": 1232
+    }
+  },
+  "static_findings": {
+    "allocation": "00482BB8 size48 ->00482BBA ordinary new007E520F ->007E81D9 ->007E8205. Handler flag1 is not zero-fill.",
+    "heap": "007E82E4 pushes flags0 to HeapAlloc via IAT0080F130. Small-block007F02FB..007F0336 tags block header/footer then returns block+4, without payload3C/40 initialization.",
+    "constructor_read_refresh": "00481320/00481810/00480FA0 leave3C/40 unwritten. Serialized chunk3C writes field30, not field3C.",
+    "first_read": "00482843 forms volume+3C;0048284E calls007885B0 before current history stores00482862/64. Actual original residual bytes remain unknown."
+  },
+  "implemented_diagnostics": [
+    "Actual decoded light-reference name retained as owning diagnostic metadata, no native field claim",
+    "Reached clock/camera/distance/angular base/coefficient/current and known prior direction bits through existing DATA store",
+    "Unknown history source-guard event without reading or initializing those lanes",
+    "Actual pre-scene/debug/policy/Scene78 operation scopes with original primary exception preserved"
+  ],
+  "evidence_levels": {
+    "historical_resolver_bytes": "Unchanged; no new capture",
+    "static_requirements": "Allocator-to-first-read instruction proof only",
+    "actual_loaded_populations": "No live mission; audit uses decoded explicit fixture, not production population",
+    "executed_runtime_branches": "Native source audit with engine/procedural doubles only; no original engine branch or desktop claim"
+  },
+  "verification": {
+    "native": "PASS ASan/UBSan/LSan. Actual decoder/render guard; enabled/disabled/saturated diagnostics, exact bits/reference/coefficient, no extra frame reads, unknown state retained, primary guard error survives cleanup failure.",
+    "i386": "PASS strict concrete World/GEffects/Scene/UI/RENDER/lifecycle/DATA compile+link; actual service bodies, no rendering substitutes. ControllerDouble only unused type parameter. Not executed.",
+    "application": "PASS existing application-launch compile+link; not executed.",
+    "diff_check": "PASS",
+    "tracker": "Prior known missing ignored0062D880 rule-refresh.asm evidence remains; ledger unchanged, broad audit not repeated."
+  },
+  "remaining_render_boundary": "Original per-volume3C/40 initial bytes lack provenance on reached first render. Strict source guard remains; all other independently implementable RENDER services preserved.",
+  "remaining_external": [
+    "OWN activation/install and FRAME scheduling/camera updates",
+    "Unmerged UI positive receivers/producers and actual VM/configuration caller to GEffectsB8",
+    "Fresh real resource selection/population/branch evidence and authorized user desktop acceptance"
+  ],
+  "artifacts": {
+    "analysis/work/p22-render-history-20261111/allocator.asm": {
+      "sha256": "3e695005b9e9fc0b997dc629c7a95e4156c1616cc23bd0453a5524faed58c72e",
+      "bytes": 5515,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/application.log": {
+      "sha256": "cc787481df22b89e4d709da27543a17909d56390a81dc91c200bf3ddfeb8fe3d",
+      "bytes": 615,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/native.log": {
+      "sha256": "b7fcf14ab5916bd3e220a921a007dabd141d2c70c02c86e40acda3125d2929e9",
+      "bytes": 237,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/operator-new.asm": {
+      "sha256": "158a5e4fa8e052307b9a27a4feac5c4f8e883c670b80dd3304eebab9af7ce353",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/small-block-allocator.asm": {
+      "sha256": "7dbe44747fe88b42291e3ae5c4a4a17176ab615fe9bc03f2eef6bd910eb6f020",
+      "bytes": 15214,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/volume-allocation.asm": {
+      "sha256": "7842a43aa03fb7a12f8c74030793afa9e9ab99419e9f5a44fec9112e3a64cf93",
+      "bytes": 2012,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/volume-constructor.asm": {
+      "sha256": "ef849ede13ed5dfaa942c4fb51cc79615505b770800f886605a0008e85570e09",
+      "bytes": 1656,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/volume-reader.asm": {
+      "sha256": "852531666a56d3f51a6528af9c8291b3ad4a22a50078a04b27db6c13788b8ac7",
+      "bytes": 17329,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/volume-refresh.asm": {
+      "sha256": "238206081069ed2497a8a3c66f3370e854ed63ddab4628b5921fc4bff62f788d",
+      "bytes": 4421,
+      "retained": true
+    },
+    "analysis/work/p22-render-history-20261111/volume-renderer.asm": {
+      "sha256": "2eafbc0972980b0b45bfe9bd9214ae11ec900a777ea3909247662edb64c4c5bc",
+      "bytes": 29154,
+      "retained": true
+    },
+    "/tmp/p22-history-diagnostics.cpp": {
+      "sha256": "a37f5822af7d301a9e051be3110bd90d9705027db08a179ac52bf03f2813291e",
+      "bytes": 4222,
+      "retained": false
+    },
+    "/tmp/p22-history-diagnostics": {
+      "sha256": "a61d1264b303450cebc44a6550184e369c396f818a948d3d6d9c943edee320cb",
+      "bytes": 1961368,
+      "retained": false
+    },
+    "/tmp/p22-history-diagnostics-i386.cpp": {
+      "sha256": "adfd808d159511a38288cdcf144a5032beeb7c5995a9716d3885a983df396836",
+      "bytes": 549,
+      "retained": false
+    },
+    "/tmp/p22-history-diagnostics-i386.exe": {
+      "sha256": "efcdaba9a592c27b2feb9d07f875f14998eac4aec675eec8bfbceaaedb1d9d5f",
+      "bytes": 554496,
+      "retained": false
+    }
+  }
+}

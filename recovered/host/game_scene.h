@@ -5,6 +5,8 @@
 #include "host/graphics_interface.h"
 #include <exception>
 #include <map>
+#include <type_traits>
+#include <utility>
 
 namespace hd2::host {
 
@@ -43,13 +45,22 @@ public:
     void install_callback() {
         if (active_ || registered_) throw std::logic_error("A game scene callback is already registered");
         active_ = this;
-        set_callback_(scene_.get(), &callback, 6);
-        registered_ = true;
+        try {
+            set_callback_(scene_.get(), &callback, 6);
+            registered_ = true;
+        } catch (...) {
+            //Source endpoint guards can fail before publication. The checked
+            //10046820 body only stores registration fields; it has no positive
+            //callee/failure path. Do not strand the source singleton on retry.
+            active_ = nullptr;
+            throw;
+        }
     }
     void bind_callbacks(GameSceneCallbacks& callbacks){
         if(borrowed_callbacks_&&borrowed_callbacks_!=&callbacks)throw std::logic_error("Game scene already has a borrowed dispatcher");
+        auto* previous=borrowed_callbacks_;
         borrowed_callbacks_=&callbacks;
-        try{if(!registered_)install_callback();}catch(...){borrowed_callbacks_=nullptr;throw;}
+        try{if(!registered_)install_callback();}catch(...){borrowed_callbacks_=previous;throw;}
     }
     void unbind_callbacks(GameSceneCallbacks& callbacks)noexcept{if(borrowed_callbacks_==&callbacks)borrowed_callbacks_=nullptr;}
     void suspend_callback()noexcept{
@@ -81,29 +92,23 @@ public:
             ~Reset() { owner.progress_ = nullptr; owner.loading_ = nullptr; }
         } reset{*this};
         const auto path = std::string("missions\\") + resource + "\\Scene";
-        const auto result = open(scene_.get(), path.c_str(), 7, &loading_callback, 0);
-        rethrow_callback_failure();
-        return result;
+        return invoke_scene([&]{return open(scene_.get(), path.c_str(), 7, &loading_callback, 0);});
     }
     void advance(std::uint32_t elapsed){ //0069AF10/0069B230, actual engine scene virtual20.
         using Advance=void(WINAPI*)(EngineFrame*,std::uint32_t);
-        checked_engine_method<Advance>(scene_.get(),module_,0x20)(scene_.get(),elapsed);
-        rethrow_callback_failure();
+        invoke_scene([&]{checked_engine_method<Advance>(scene_.get(),module_,0x20)(scene_.get(),elapsed);});
     }
     void render(){ //0069B870/Scene78(scene,0), actual checked LS3DF target.
         using Render=void(WINAPI*)(EngineFrame*,std::uint32_t);
-        scene_method<Render>(scene_.get(),module_,0x78,0x46860)(scene_.get(),0);
-        rethrow_callback_failure();
+        invoke_scene([&]{scene_method<Render>(scene_.get(),module_,0x78,0x46860)(scene_.get(),0);});
     }
     void refresh() {
         using Refresh = void (WINAPI *)(EngineFrame*);
-        scene_method<Refresh>(scene_.get(), module_, 0xf0, 0x4be10)(scene_.get());
-        rethrow_callback_failure();
+        invoke_scene([&]{scene_method<Refresh>(scene_.get(), module_, 0xf0, 0x4be10)(scene_.get());});
     }
     void reset_mission_scene() {
         using Reset = void (WINAPI *)(EngineFrame*);
-        scene_method<Reset>(scene_.get(), module_, 0xf8, 0x47db0)(scene_.get());
-        rethrow_callback_failure();
+        invoke_scene([&]{scene_method<Reset>(scene_.get(), module_, 0xf8, 0x47db0)(scene_.get());});
     }
     EngineFrame* find_frame(const std::string& name, std::uint32_t mask = 0xcffff) const {
         using Find = EngineFrame* (WINAPI *)(EngineFrame*, const char*, std::uint32_t);
@@ -181,6 +186,19 @@ public:
         if (active_ == this) active_ = nullptr;
     }
 private:
+    template<class Call>auto invoke_scene(Call&& call)->decltype(call()){
+        //Never unwind a client exception through the engine's C callback. If
+        //the endpoint subsequently throws too, the already-latched callback
+        //error is primary and must be consumed HERE, not poison a later frame
+        //or retirement. These C++ safety guards are not original engine SEH.
+        try {
+            if constexpr(std::is_void_v<decltype(call())>){
+                call();rethrow_callback_failure();
+            }else{
+                auto result=call();rethrow_callback_failure();return result;
+            }
+        }catch(...){rethrow_callback_failure();throw;}
+    }
     using LoadingCallback = void (WINAPI *)(std::uint32_t, float, std::uint32_t, std::uint32_t);
     using NameCallback = std::uint32_t (WINAPI *)(EngineFrame*, void*);
     struct NameEnumeration { Names& names; std::exception_ptr failure; };

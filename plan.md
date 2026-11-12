@@ -341,3 +341,5 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Interactive commits require user desktop confirmation; no pushes without instruction.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
+
+P22-RENDER: [implementation plan](analysis/p22-render-plan.md) **source complete (RENDER-owned scope)**. Original unwritten history now reads actual owned allocation bytes, preserving allocator dependence without an initial-angle policy. Positive procedural/debug/special-frame/VM/callback services and native/i386/application checks pass. UI/FRAME/OWN integration, engine runtime observation and desktop acceptance remain separate; [completion receipt](analysis/checkpoints/p22-render-allocation-20261112.json).
