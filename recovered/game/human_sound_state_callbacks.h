@@ -70,6 +70,16 @@ public:
         auto& script=as<Script>(state);const auto mask=record.kind==0?4u:record.kind==1?8u:record.kind==2?2u:record.kind==6?0x10u:0u;
         if(mask&&script_gate(script,mask)){begin_interrupt(script,mask);script.state().set(0x140,record.position);interrupt(script);}
     }
+    void b8(Base& state,Actor source,const HumanVector&) { //00574CB0, active0052E780, script00590380.
+        const auto kind=state_kind(state);if(kind==1||kind==6||kind==7)return; //005831F0/005A43A0 genuine RET8.
+        const auto point=position(source); //Fresh source matrix BEFORE shared-pool acquisition.
+        queue(state,0x40000010u,nullptr,source,&point);
+        if(kind==3&&factory_.services().human_roster().live_count()>1)
+            factory_.services().queue_active_ai_speech(as<typename Factory::Active>(state),0x64u,true,5000,false);
+        if(kind==5){auto& script=as<Script>(state);if(script_gate(script,1)){
+            begin_interrupt(script,1);script.state().set(0x140,position(source));interrupt(script);
+        }}
+    }
 private:
     template<class T>static T& as(Base& state){auto* result=dynamic_cast<T*>(&state);if(!result)throw std::logic_error("Human sound state kind/type disagree");return *result;}
     static std::uint32_t state_kind(Base& state){return state.words().template get<std::uint32_t>(0x48);}

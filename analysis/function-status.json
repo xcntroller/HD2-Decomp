@@ -28204,12 +28204,14 @@
       "program": "client",
       "entry": "005839d0",
       "status": "partial",
-      "coverage": "Base/player inline feedback BYTE writes, flags preservation, actual hand refresh/readiness, post-write nonplayer gate and prioritized item execution/command/cache ordering.",
+      "coverage": "Base/player inline feedback BYTE writes, flags preservation, actual hand refresh/readiness, post-write nonplayer gate and prioritized item execution/command/cache ordering. Actual World overload now supplies item24/28 through the existing feedback bridge before B0/08 notification and cached-item invalidation.",
       "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-frame-20261110.json",
-        "recovered/game/human_frame_feedback.h"
+        "recovered/game/human_frame_feedback.h",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
       ]
     },
     {
@@ -28228,12 +28230,14 @@
       "program": "client",
       "entry": "0058b6c0",
       "status": "partial",
-      "coverage": "Actual item-execution gate, raw B0/player-camera directions, head/shdum/model/FPV positions, kind9 adjustment and required actual item virtual24/28 return propagation.",
+      "coverage": "Actual item-execution gate, raw B0/player-camera directions, head/shdum/model/FPV positions, kind9 adjustment and required actual item virtual24/28 return propagation. Actual World feedback supplies real weapon24/28 dispatch on the SAME RuntimeItem/Human/ShotMgr owners; external async/non7 policies remain guarded.",
       "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-frame-20261110.json",
-        "recovered/game/human_item_frame_execution.h"
+        "recovered/game/human_item_frame_execution.h",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
       ]
     },
     {
@@ -30731,7 +30735,7 @@
       "program": "client",
       "entry": "00584e30",
       "status": "partial",
-      "coverage": "Dispatch the actual B0 action completion sequence, including item refresh, reset, ordered E0 and required actor effects. Positive Mine disarm/ExplosivePlace placement and shared AI/Remote medicine now bind actual World owners; authority mode and target are read after original E0 callbacks, preserving failure prefixes. Actual action11 static-only vertical floor ray and same runtime Mine factory plus action10 type35 motion bindings now supplied; positive Physics pickup and type15 owner remain required.",
+      "coverage": "Dispatch the actual B0 action completion sequence, including item refresh, reset, ordered E0 and required actor effects. Positive Mine disarm/ExplosivePlace placement and shared AI/Remote medicine now bind actual World owners; authority mode and target are read after original E0 callbacks, preserving failure prefixes. Actual action11 static-only vertical floor ray and same runtime Mine factory plus action10 type35 motion bindings now supplied; positive Physics pickup and type15 owner remain required. Actual Player medical completion now dispatches00546DC0 on the SAME World/Player instead of requiring an external Runtime method.",
       "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -30739,7 +30743,9 @@
         "recovered/game/human_state_action_completion.h",
         "analysis/p22-hum-h4-implementation.md",
         "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json",
-        "recovered/game/human_action_completion_effects.h"
+        "recovered/game/human_action_completion_effects.h",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
       ]
     },
     {
@@ -32083,8 +32089,8 @@
       "program": "client",
       "entry": "005433b0",
       "status": "partial",
-      "coverage": "Actual Player gates/family dispatch now invokes held completion/title, forced-reload/dry-fire/command05 and the positive shot coordinator with real payload math, World muzzle/camera/ray query bindings, late A8 refreshes, Look/FPV/cooldown/notification and integrity/drop ordering. The required item24 projectile effect, melee/repair and actor-action consumers remain explicit. Reached kind0 melee, kind10 first-queue action17 and kind11 actual repair target/queue14 now have source bindings. H6 extends actual weapon/bullet/light producer and owned retirement composition; selected special-effect and asynchronous frame guards remain explicit.",
-      "limitations": "Source-only typed/STL/RAII adaptation with authored data and explicit Inline/FPV/engine/OS observations. Selected native checks use an explicit item24 projectile-effect double; actual shared item24/28/projectile delivery, melee/repair and full World/Player frame integration remain required. Original object/container/allocator/SEH ABI, unwritten W lanes and solver/trajectory equivalence are excluded. Strict actual host i386 and launcher/probe compile/link are not Windows/application/desktop execution.",
+      "coverage": "Actual Player item dispatch composes held/dryfire/reload/FPV/shot math/notification and weapon primary/secondary producers, immediate Human melee and repair on existing owners. Attachment Actor98 uses the actual H3/UI seat owner; no Runtime item receiver declaration is required. Async combat and unsupported actor/non7 receivers remain required H8 boundaries.",
+      "limitations": "Source-only typed ownership/STL/RAII replaces native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan with explicit engine/Human/state/damage/notification endpoint doubles and actual-host i386 full link verify the stated subset; no original/Windows/application/desktop execution. Full World/Runtime/async combat, conditional non7 admission/replay and absent actor/material receivers remain required H8/OWN dependencies. Unwritten SIMD lanes receive no ABI credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-player-input-20261111.json",
@@ -32100,7 +32106,9 @@
         "analysis/human-player-item-sound-actions-source.md",
         "analysis/checkpoints/p2.2-human-player-item-sound-actions-20261112.json",
         "analysis/human-item-bullet-production-source.md",
-        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
       ],
       "verification": "Native100 ASan/UBSan/LSan actual Player/Human/input/holder/RuntimeItem controller checks with declared component/engine/item24 boundaries; actual nested host i386 and launcher/probe compile/link PASS."
     },
@@ -43886,13 +43894,15 @@
       "program": "client",
       "entry": "007d4fd0",
       "status": "partial",
-      "coverage": "Shared weapon primary receiver with counter/signed tracer dispatch, actual ordinary bullet/sound/ammo/clocks, type2 prefix and required selected special projectile/melee bodies.",
-      "limitations": "Source-only typed/STL/RAII owners replace original vtable/container/allocator/SEH ABI. Native actual bullet pool/active lifetime verified with explicit engine/item/World-frame/effect doubles; actual host signatures compile-only. Selected shell/capsule/grenade/melee and full asynchronous ShotMgr/Human/application/desktop remain required. No delegated LS3DF body credit.",
+      "coverage": "Actual primary weapon dispatch, counter/tracer, bullet/sound/ammunition/clocks, capsule and grenade producers/retirement and ordinary Human/StaticWeapon-occupant melee/hit zones/H2 damage. Generic absent actor/material and async/non7 guards remain explicit.",
+      "limitations": "Source-only typed ownership/STL/RAII replaces native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan with explicit engine/Human/state/damage/notification endpoint doubles and actual-host i386 full link verify the stated subset; no original/Windows/application/desktop execution. Full World/Runtime/async combat, conditional non7 admission/replay and absent actor/material receivers remain required H8/OWN dependencies. Unwritten SIMD lanes receive no ABI credit.",
       "evidence": [
         "recovered/game/human_item_fire.h",
         "recovered/host/game_actor_frames.h",
         "analysis/human-item-bullet-production-source.md",
-        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json"
+        "analysis/checkpoints/p2.2-human-item-bullet-production-20261112.json",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
       ]
     },
     {
@@ -45119,6 +45129,72 @@
         "recovered/game/car_loading_activation.h",
         "analysis/human-h4-source-closure.md",
         "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00451230",
+      "status": "partial",
+      "coverage": "Ordinary undercut=false item melee: payload damage, exact1.2 displacement, actual ray/exclusion restoration before descriptor48 inspection, Human/StaticWeapon seat0 hit zones and H2 damage, miss/B8 and ungated material3C particle output. Existing Item12/Mine material owners are bound.",
+      "limitations": "Source-only typed ownership/STL/RAII replaces native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan with explicit engine/Human/state/damage/notification endpoint doubles and actual-host i386 full link verify the stated subset; no original/Windows/application/desktop execution. Full World/Runtime/async combat, conditional non7 admission/replay and absent actor/material receivers remain required H8/OWN dependencies. Unwritten SIMD lanes receive no ABI credit. Undercut=true is not selected by007D4FD0 and is excluded; Dog30 factory/D4 and other actor D8 materials retain required H8 guards.",
+      "evidence": [
+        "recovered/game/human_item_melee.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00455670",
+      "status": "partial",
+      "coverage": "Actual process ShotMgr humanzones, fixed ten-bone mapping, fresh per-zone bone matrix/unit scale/quaternion/update, ordered picks and head-holder helmet-first11, missing-model/bone-tableFF and early-exit mutation order.",
+      "limitations": "Source-only typed ownership/STL/RAII replaces native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan with explicit engine/Human/state/damage/notification endpoint doubles and actual-host i386 full link verify the stated subset; no original/Windows/application/desktop execution. Full World/Runtime/async combat, conditional non7 admission/replay and absent actor/material receivers remain required H8/OWN dependencies. Unwritten SIMD lanes receive no ABI credit. LS3DF transform/pick endpoints remain delegated; original SIMD W scratch is unclaimed.",
+      "evidence": [
+        "recovered/game/shot_human_hit_zones.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json",
+        "recovered/host/game_actor_frames.h",
+        "recovered/game/shot_manager_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00546dc0",
+      "status": "partial",
+      "coverage": "Distinct Player treatment integrity19/random/D4 prefix and fresh target lookup, real Human inventory/RuntimeItem medicine, initial nonzero integer gate, exact FLOAT/cost/health clamp/store order, pre-notification exhaustion snapshot, offline skill/notification, FIRST90 kind14, late retirement and actual nonself score receiver.",
+      "limitations": "Source-only typed ownership/STL/RAII replaces native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan with explicit engine/Human/state/damage/notification endpoint doubles and actual-host i386 full link verify the stated subset; no original/Windows/application/desktop execution. Full World/Runtime/async combat, conditional non7 admission/replay and absent actor/material receivers remain required H8/OWN dependencies. Unwritten SIMD lanes receive no ABI credit. Packet producer is not transport/admission. Actual damage/presentation/score are separately recovered owners, not native policy-fixture execution.",
+      "evidence": [
+        "recovered/game/human_player_treatment.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00574cb0",
+      "status": "partial",
+      "coverage": "Common near-shot B8 producer reads source world position before actual shared AI pool acquisition, fills40000010/lifetime10000/handles/position/word12 and publishes on SAME first event queue, preserving unwritten pooled words.",
+      "limitations": "Source-only typed ownership/STL/RAII replaces native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan with explicit engine/Human/state/damage/notification endpoint doubles and actual-host i386 full link verify the stated subset; no original/Windows/application/desktop execution. Full World/Runtime/async combat, conditional non7 admission/replay and absent actor/material receivers remain required H8/OWN dependencies. Unwritten SIMD lanes receive no ABI credit. Native displacement argument is unused; containing event consumption/frame remains external.",
+      "evidence": [
+        "recovered/game/human_sound_state_callbacks.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5960",
+      "status": "partial",
+      "coverage": "Actual target B0 flags40000000 and player suppression precede B8 dispatch; common/Active/Script/passive policies are bound to SAME target factory, actual shared event queue, controlled LIVE roster and script interrupt context.",
+      "limitations": "Source-only typed ownership/STL/RAII replaces native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan with explicit engine/Human/state/damage/notification endpoint doubles and actual-host i386 full link verify the stated subset; no original/Windows/application/desktop execution. Full World/Runtime/async combat, conditional non7 admission/replay and absent actor/material receivers remain required H8/OWN dependencies. Unwritten SIMD lanes receive no ABI credit. Absent frozen Active/Script wrappers earn no separate body credit.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h6-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
       ]
     }
   ]

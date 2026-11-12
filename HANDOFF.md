@@ -1,60 +1,55 @@
 # P22-HUM H6 handoff — 2026-11-12
 
 Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h6`, branch
-`feature/p22-hum-h6`, from H2 source85593e8. H6 remains OPEN. Preserve all other
-worktrees/user changes. No push/original EXE/DLL/Proton/Windows/application or
-desktop execution. Heavy compilation/Ghidra sequential; no permanent tests.
-User priority is finishing HUM/getting in game, not unrelated non7/async research.
+`feature/p22-hum-h6`. H6 source is COMPLETE on existing owners. Parent P22-HUM,
+H8, application and desktop delivery remain OPEN. Preserve all other worktrees/
+user changes; no push/original EXE/DLL/Proton/Windows/application/desktop execution.
+Heavy compilation/Ghidra sequential; no permanent tests.
 
-Read AGENTS.md, section2 of plan.md and [H6 plan](analysis/p22-hum-h6-plan.md).
-Latest [projectile producer contract](analysis/human-item-projectile-production-source.md),
-[receipt](analysis/checkpoints/p2.2-human-projectile-production-20261112.json) saves
-preserved shell/capsule/grenade WIP after0398a50. Native shell PASS100 and capsule/
-grenade PASS2505 with explicit engine/particle/Body/async endpoint doubles; strict
-actual nested-host World/item/Human/ShotMgr/RigidBody i386 compile and latest
-launcher/probe builds PASS. New temporary audit sources/binaries/object removed
-with fingerprints. Actual record/pool/retirement owners are used; native5F9 is not
-invented. Full async0044B910/0044B400/00454360/00449290/00449030/0044D260 and rigid
-contact remain required H8 receivers. No successful combat simulation stubs.
+Read AGENTS.md, section2 of plan.md, [H6 plan](analysis/p22-hum-h6-plan.md) and
+[H6 closure/required external boundaries](analysis/human-h6-source-closure.md).
+[Final source receipt](analysis/checkpoints/p2.2-human-h6-source-20261112.json).
+The selected item/source boundary is finished; do not restart unchanged controller,
+sound, projectile, joint or H4 audits. H8 is the next Human milestone, not implicitly
+implemented by this closure. User priority remains HUM/getting in game.
 
-Completed HUMb9d67aa (H4 merged by user) is now imported into H6 after93dfe42.
-[Integration receipt](analysis/checkpoints/p2.2-human-h6-completed-hum-20261112.json).
-Actual H4 grenade notifier/Active AI response replaces H6's guard, maintaining
-publication→notification→inventory removal. H4's newer AI/VM/seat/formation/vehicle
-and H6 item/fire/ShotMgr bodies are preserved. Strict actual World/Human/item fire
-and grenade notice i386 FULL LINK plus launcher/probe rebuild PASS, no execution.
-Full ledger/check/README PASS in H6,34 complete/3355 partial. One unavailable
-imported ignored00572C00 C link was removed from ledger evidence in favor of its
-already retained tracked source/contracts/receipts; nothing was fabricated/copied.
-User is deleting H4's branch; do not access/rely on old H4 worktree or branch.
+H6 preserves completed H2/aggregate and imports user-merged HUM/H4b9d67aa at
+7e6e019 after shell/capsule/grenade checkpoint93dfe42. User is deleting H4's branch;
+no access/reliance on its old worktree/branch is needed. Actual H4 grenade notice
+is between publication and inventory retirement, with all H4/H6 owners preserved.
 
-Remaining H6: immediate melee00451230 via actual queries, hit-zone00455670/
-004558A0 and existing H2 damage; Player medical00546DC0 exact offline policy;
-then final selected005433B0/00542920 input/owner composition and focused audit/
-ledger/launcher/checkpoint cleanup. H4's World3-argument medical method is an
-explicit required guard to replace. Its base treatment helper is not identical:
-Player has the positive integer-amount gate and protection prefix.
+Latest: ordinary00451230 melee uses actual ray/exclusion lifetime, process
+00455670 hit zones/helmet ordering, H2 damage and exact impact/displacement, actual
+005A5960/B8 AI event pool/queue/roster/script dispatch and ungated material effects.
+Player00546DC0 uses actual RuntimeItem/inventory, integrity/random/damage prefix,
+nonzero initial integer gate, exact amount/cost/clamp order, saved exhaustion,
+offline notification, FIRST90 kind14 and score/retirement. Four-argument completion
+now dispatches this actual body on SAME World instead of an external Runtime.
+005433B0 attachment uses existing H3/UI Actor98(seat). World inline feedback
+supplies actual item24/28. No fabricated native5F9 or successful combat stubs.
 
-Research index BEFORE new exports. Current indexed exact C:00451230 in
-`frame-human-shot-and-control-workers`,00546DC0 in`frame-human-item-positive-workers`.
-Hit-zone helpers have no C candidates at last lookup; bounded new export needed.
-Do not mistake unknown C stack/register aliases for exact ABI. Shell/capsule/fuse/
-Body original assembly and exports under WORK `human-h6-*` retained. Shell pool64
-and active134 reuse the same retained visual; payload bytes omit native first4
-bytes, so native38→bytes34 and fuse4C→bytes48. Capsule sound=false/special=false.
+Native medical PASS1600 and hit-zone/melee/B8 PASS2000,100 lifetimes each, with
+explicit engine/actor/state/presentation/damage endpoints as documented; actual
+RuntimeItem/catalogue/storage, ShotMgr hit-zone state and AI pool/queue are used.
+Strict actual World/Player/inline/item/ShotMgr full link instantiates005433B0 and
+feedback/treatment with EMPTY external Runtime; latest launcher/probe rebuild PASS.
+Full ledger/check/README PASS,34 complete/3360 partial. New temporary audits are
+fingerprinted/removed; original exports/raw evidence and logs remain ignored WORK.
 
-Earlier controller/sound/bullet contracts/receipts remain verified atcb0ebfa,
-1c11dd1,0398a50. Full D4/D5 Car, D6–D9 OWN/entry, confirmed D11 gaps and actual
-Runtime/frame/application/user acceptance remain H8/P2.2; do not repeat unchanged
-kernel searches or claim their completion from an H6 producer.
+H8 must complete/prove-out/report selected async ShotMgr0044B910/0044B400,
+00454360,00449290/00449030,0044D260/0044D240/0044D570 including initial100
+where reached; unsupported actor D8 material/Dog30 factory+D4; non7 bullet/input
+history/feedback/admission; full Runtime/World/control/frame composition. Existing
+Car D4/D5, OWN D6–D9, confirmed D11 and absent H4 actors remain required. No
+application/mission-render/user desktop acceptance follows from H6 source closure.
 
-WORK=`analysis/work/mission-world-20261103`. Local .tools and frozen function
-inventories/evidence are present. Original SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+Research index BEFORE new exports. WORK=`analysis/work/mission-world-20261103`.
+Original SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
 Ghidra `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`, project
 `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
-hd2.unpacked.exe -readOnly -noanalysis. Read ERROR even on exit0, rollback types.
+hd2.unpacked.exe -readOnly -noanalysis. Read ERROR even on exit0. Attempted B8
+wrapper export starts0052E780/00590380 are absent from the frozen function list;
+use saved exact vtable/raw bytes, not the failed export as C evidence. No types changed.
 Compiler `.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
-Native g++17/O0/warnings-as-errors/ASan/UBSan/LSan with -L and rpath to
-`.tools/hd2-sanitizer-runtime/usr/lib64`.
 `make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
 `python3 -B tools/function_progress.py --render`/`--check`; `git diff --check`.

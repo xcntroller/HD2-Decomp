@@ -2,8 +2,10 @@
 
 Active worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h6`, branch
 `feature/p22-hum-h6`, created from completed H2 `85593e8` at the user's request.
-H2 and completed aggregate201adbf are present. Completed H4 is merged into HUMb9d67aa and awaits H6 integration; H8
-is unassigned. H6 is OPEN. No application activation or desktop claim.
+H2 and completed aggregate201adbf are present. Completed HUM/H4b9d67aa is
+integrated at7e6e019. H6 source is complete on the existing owners;
+[closure and external limits](human-h6-source-closure.md). H8 remains open.
+No application activation or desktop claim.
 
 ## Current priority and completion boundary
 
@@ -30,28 +32,14 @@ C exports with unknown signatures do not establish their ABI.
 - [x] H6.2 — Shot basis00544D20, spread00545140 and recoil005454D0 with exact
   random/gate/store order and existing integrity/difficulty/FPV observations.
   [Controller checkpoint and limits](human-player-item-controller-source.md).
-- [ ] H6.3 — Positive005433B0 firing/dry-fire/reload, command00542920 effects,
-  FPV animation/FOV duration and post-shot inventory refresh/cooldowns. Source
-  coordinator/dry-fire/reload notification are verified; shared item24 and ordinary
-  bullet/light production are in source, with selected projectile/effect guards open.
-- [ ] H6.4 — Melee00542B80, actor actions/repair query and actual command routing;
-  reached item virtual24/28, sound/flash/projectile borrowers must be real or
-  retain an explicit blocker. Shared projectile/ShotMgr dependencies need an
-  ownership decision from the actual call chain, not a fabricated successful fire.
-  Melee/repair/first-queue and shared shot sound are [source-verified](human-player-item-sound-actions-source.md).
-  [Ordinary bullet/light ownership](human-item-bullet-production-source.md) is implemented;
-  [Shell/capsule/grenade producers](human-item-projectile-production-source.md) are source-verified;
-  completed H4 notification import and immediate melee remain open. Full asynchronous
-  module14 collision/visual/combat-frame assembly remains H8, preserving selected
-  initial100 requirements. Do not expand non7 replay as an offline H6 dependency.
-- [ ] H6.5 — Compose reached item commands with actual input/queue owners.
-  Player08 SAME-Record pending production is verified in the controller
-  checkpoint. Full non7 history/replay/admission is conditional external
-  D/OWN/H8/Phase3 integration, not an offline H6 detour.
-- [ ] H6.6 — Actual-owner positive/failure/re-entry/teardown verification,
-  focused native sanitizers, strict host i386, launcher/probe rebuild, temporary
-  audit removal and consolidated contracts/ledger/handoff. Continue through
-  dependencies until H6 is complete or genuinely blocked.
+- [x] H6.3 — Actual firing/dry-fire/reload, command00542920/FPV and item24/28 producer/retirement composition. **Source-only**; async combat remains H8.
+- [x] H6.4 — Melee/repair/actions, sound/projectiles and Player medical00546DC0 on existing owners. **Source-only**; absent actor/material/async guards remain H8.
+- [x] H6.5 — Actual Player input Record, FIRST90 commands and item notification/feedback producer composition. Full non7 admission/history/replay remains OWN/H8/Phase3.
+- [x] H6.6 — Focused actual-owner lifetime/failure checks, native sanitizers, strict actual-host full link, launcher/probe rebuild and consolidated ledger/temporary-audit cleanup. [Closure receipt](checkpoints/p2.2-human-h6-source-20261112.json).
+
+H6 closes its source producers/receivers, not a runnable combat frame. Keep the
+explicit selected async/Dog/material/non7 failures named in the closure contract.
+Full Human/World/application/user acceptance remains H8/P2.2.
 
 ## Remaining D ownership
 
@@ -70,4 +58,4 @@ H8 is an integration milestone, not a declaration that these failures are
 unimportant. The required subset must be completed, proven outside the selected
 native path, or reported with its exact blocker before claiming the containing
 World/P22-VIS path works. Reuse confirmed evidence; do not repeat unchanged
-producer searches without new evidence. H6 proceeds with its independent work.
+producer searches without new evidence. H6 source closure preserves these H8 obligations.

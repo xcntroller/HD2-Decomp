@@ -13,6 +13,8 @@
 #include "game/human_hud_loading.h"
 #include "game/human_item_shot_sound.h"
 #include "game/human_item_fire.h"
+#include "game/human_item_melee.h"
+#include "game/shot_human_hit_zones.h"
 #include "game/shot_bullet_production.h"
 #include "game/shot_shell_production.h"
 #include "game/shot_grenade_record.h"
@@ -52,6 +54,7 @@
 #include "game/human_damage_policy.h"
 #include "game/human_damage_messages.h"
 #include "game/human_damage_score.h"
+#include "game/human_player_treatment.h"
 #include "game/human_packet_receiver.h"
 #include "game/human_packet_notifications.h"
 #include "game/human_script_loading_controls.h"
@@ -1098,6 +1101,9 @@ public:
         return static_cast<std::uint32_t>(dependencies().startup.game_configuration().rules228[10])*1000u;
     }
     bool player_item_controls_available(){return dependencies().first_person.view().item_controls_available();}
+    template<class Human>bool player_attachment_blocks_item(Human& human){ //005433B0 Actor98(seat), SAME H3/UI owner.
+        return dependencies().first_players.seat_presentation().has_control(human_pose_actor(human.field160),human.field164);
+    }
     std::int32_t player_mission_ordinal()const{return dependencies().session.words.template get<std::int32_t>(0x3c);}
     bool player_recoil_disabled(){return dependencies().startup.game_console_variables().integer(6)!=0;} //00720B80(6).
     bool player_zoom_enabled(){return dependencies().first_person.view().zoom_enabled();}
@@ -1174,7 +1180,55 @@ public:
     template<class Capsule>unsigned advance_shot_capsule_authority(Capsule&,std::uint32_t){throw std::runtime_error("Capsule requires actual00449290 frame/damage receiver");}
     template<class Capsule>void advance_shot_capsule_presentation(Capsule&,std::uint32_t){throw std::runtime_error("Capsule requires actual00449030 presentation receiver");}
     void stop_capsule_camera(){spawn_camera_command(9,false,0);}
-    template<class... Args>void apply_item_melee(Args&&...){throw std::runtime_error("Item melee requires actual00451230 damage receiver");}
+    template<class Item,class Human>void apply_item_melee(Item& item,Human& human,const HumanVector& start,const HumanVector& direction){
+        strike_human_item(item,human,start,direction,*this);
+    }
+    template<class Human>void item_melee_exclude(Human& human){human_inline(human).exclude_query(false);}
+    template<class Human>void item_melee_restore(Human& human){human_inline(human).restore_query(false);}
+    template<class Hit>auto* item_melee_actor(const Hit& hit){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        return hit.dynamic_identity?static_cast<Actor*>(hit.dynamic_identity->actor):nullptr; //Actual descriptor48, not frameEC.
+    }
+    template<class Actor>auto* item_melee_human(Actor& actor){
+        using Human=typename Dependencies::Composition::Human;
+        if(actor.base().type()==3)return &selection_human(actor);
+        auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!weapon||!weapon->loading)throw std::logic_error("Melee requires actual StaticWeapon seat owner");
+        auto* occupant=weapon->loading->seat_occupant(0);
+        return occupant?&selection_human(human_pose_actor(occupant)):static_cast<Human*>(nullptr);
+    }
+    template<class Human>unsigned item_melee_hit_zone(Human& human,const HumanVector& start,const HumanVector& displacement){
+        auto& d=dependencies();return shot_human_hit_zone(d.startup.shot_manager_process(),human,start,displacement,d.world_actors.items(),d.scene.frames());
+    }
+    template<class Human>void item_melee_miss(Human& target,Human& source,const HumanVector& displacement){ //005A5960.
+        auto* state=composition(target).states().get();if(!state)throw std::logic_error("Melee miss requires target's actual B0");
+        if((state->words().template get<std::uint32_t>(0x50)&0x40000000u)||human_is_player(target))return;
+        auto& d=dependencies();auto& factory=composition(target).state_factory();
+        HumanSoundStateCallbacks<typename Dependencies::ActorFrames,Human,std::remove_reference_t<decltype(factory)>>
+            callbacks(d.scene.frames(),factory);
+        callbacks.b8(*state,&source,displacement);
+    }
+    template<class Actor,class Frame>std::uint32_t item_melee_material(Actor& actor,Frame){
+        if(actor.base().type()==12){
+            using Item=typename std::remove_reference_t<decltype(dependencies().world_actors)>::Runtime::DetachedItem;
+            if(!dynamic_cast<Item*>(&actor))throw std::logic_error("Melee material requires actual Item12");
+            return 11; //005FDDC0.
+        }
+        if(actor.base().type()==2){
+            using Mine=typename std::remove_reference_t<decltype(dependencies().world_actors)>::Runtime::Mine;
+            auto* mine=dynamic_cast<Mine*>(&actor);if(!mine)throw std::logic_error("Melee material requires actual Mine");
+            return static_cast<std::uint32_t>(mine->material());
+        }
+        throw std::runtime_error("Melee requires actual actor D8 material receiver (H8)");
+    }
+    template<class Actor,class Human>void item_melee_dog_damage(Actor&,float,const HumanVector&,const HumanVector&,Human&){
+        throw std::runtime_error("Melee requires actual type30 Dog factory/D4 damage receiver (H8)");
+    }
+    void item_melee_material_effect(std::uint32_t material,const HumanVector& point,const HumanVector& normal){
+        if(material==0xffffffffu)return;
+        const auto effect=dependencies().car_definitions.materials().at(material).word(0x3c);
+        if(effect)(void)emit_human_particle(effect,point,normal,typename Dependencies::Frame{},true,false); //No00451C00 camera visibility gate.
+    }
     template<class Player>auto* player_item_melee_target(Player& state){
         using Human=typename Dependencies::Composition::Human;
         auto* human=state.human();if(!human)throw std::logic_error("Player melee query requires its actual Human");
@@ -1419,6 +1473,12 @@ public:
         HumanFrameFeedbackReceivers<HumanWorldLoadingServices,Fire> receivers{*this,fire};
         owner.state_factory().apply_inline_feedback(*state,flags,receivers);
     }
+    template<class Human>void apply_human_frame_feedback(Human& human,std::uint32_t flags){
+        auto fire=[this](auto& item,auto& actor,const HumanVector& position,const HumanVector& direction,std::uint32_t argument,bool primary){
+            return this->fire_human_item(item,actor,position,direction,argument,primary);
+        };
+        apply_human_frame_feedback(human,flags,fire);
+    }
     template<class Human,class Runtime>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed,Runtime& runtime){
         game::advance_human_scene_frame(human,authority,elapsed,*this,runtime,dependencies().scene.frames());
     }
@@ -1497,12 +1557,15 @@ public:
         auto& d=dependencies();receive_human_offline_notification(human,&target,d.scene.frames(),
             d.startup.text(),d.hud,mode_flags(),human_current_player_id()); //00588870 virtual10, offline branch.
     }
-    template<class State>void finish_human_treatment(State&,std::int32_t,std::int32_t){
-        throw std::runtime_error("Player medical completion requires actual H6 00546DC0 protection/packet receiver");
+    void award_human_treatment_score(std::int32_t identity,std::uint32_t amount){
+        add_human_score_points(dependencies().startup.game_control_records(),static_cast<std::uint32_t>(identity),amount,*this);
     }
-    template<class State,class Runtime>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item,Runtime& runtime){
+    template<class State>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item){
+        (void)complete_human_player_treatment(state,identity,item,dependencies().world_actors.items(),*this);
+    }
+    template<class State,class Runtime>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item,Runtime&){
         if(state.words().template get<std::uint32_t>(0x48)==1){
-            runtime.finish_human_treatment(state,identity,item);return; //Separate00546DC0 Player/H6/protection/packet policy.
+            finish_human_treatment(state,identity,item);return; //Separate00546DC0 on this SAME World/Player.
         }
         (void)complete_human_base_treatment(state,identity,item,dependencies().world_actors.items(),*this);
     }

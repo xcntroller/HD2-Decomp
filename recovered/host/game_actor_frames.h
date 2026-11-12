@@ -769,6 +769,21 @@ public:
         if(!bones)throw std::logic_error("Human target point requires actual skeletal table");
         return bones;
     }
+    const Frame* shot_hit_bone_table(Frame visual){ //00455670 has a genuine NULL214 returnFF.
+        if(!visual)throw std::logic_error("Shot hit zones require actual a visual");
+        return field<const Frame*>(visual,0x214);
+    }
+    void shot_hit_zone_pose(Frame frame,const Matrix& matrix){
+        if(!frame)throw std::logic_error("Shot hit zones lost actual humanzones frame");
+        human_equipment_local_matrix(frame,matrix); //80/GetScale/dirty prefix; SIMD W is unclaimed padding.
+        for(unsigned axis=0;axis!=3;++axis)put(frame,0xd0+axis*4,1.f);
+        if(!(field<std::uint32_t>(frame,0xe0)&8u)){
+            using Make=void(WINAPI*)(void*,const void*);
+            exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(address(frame,0xc0),address(frame,0x80));
+        }
+        put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+        update_scene_object(frame);
+    }
     void human_seat_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{0});}
     void human_seat_origin(Frame model){car_suspension_position(model,Vector{});call<void>(model,0x1c,Vector{{0,0,1,0}}.data(),0.f);update_scene_object(model);}
     void human_seat_exit_pose(Frame model,const Vector& position,const Vector& direction){call<void>(model,8,position.data());call<void>(model,0x1c,direction.data(),0.f);update_scene_object(model);}

@@ -13,7 +13,7 @@ namespace hd2::game {
 //005433B0's real gates and item-family dispatch. Held completion and command05
 //use their actual owners; shot/dry-fire/repair receivers remain required below.
 template<class Player,class Inline,class World,class Runtime>
-void advance_player_item_frame(Player& player,Inline& control,World& world,Runtime& runtime,std::uint32_t elapsed){
+void advance_player_item_frame(Player& player,Inline& control,World& world,Runtime&,std::uint32_t elapsed){
     auto& words=player.words();words.set(0xb0,words.template get<std::uint32_t>(0xb0)+elapsed);
     auto* first=player.first_frame_inputs();auto* second=player.second_frame_inputs();
     if(!first||!second)return;
@@ -22,7 +22,7 @@ void advance_player_item_frame(Player& player,Inline& control,World& world,Runti
     if((world.mode_flags()&7u)!=7u&&human_frame_signed_word(human->field208)<human_frame_signed_word(world.player_item_spawn_delay_ms()))return;
     auto& state=player.player_words();
     if(state.template get<std::int32_t>(0x52c)==1)return;
-    if(human->field160&&(human->field164==0||runtime.player_attachment_blocks_item(*human)))return;
+    if(human->field160&&(human->field164==0||world.player_attachment_blocks_item(*human)))return;
     if(!world.player_item_controls_available()||control.first_person_weapon_suppressed())return;
     player.refresh_item();
     const auto moving_crouched=[&]{const auto flags=words.template get<std::uint32_t>(0x50);return (flags&1u)&&(flags&0xf8u);};
