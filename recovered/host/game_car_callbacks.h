@@ -34,6 +34,7 @@ public:
         next->wheel=[&receiver](Actor actor,const game::CarWheelDamageEvent& event,bool request){receiver.car_contact_event(actor,event,request);};
         next->human=[&receiver](Actor actor,const game::CarHumanDamageEvent& event){receiver.car_contact_request(actor,event);};
         next->destroy=[&receiver](Actor actor){receiver.car_damage_destroy(actor,false);};
+        next->periodic=[&receiver](Actor actor,const game::CarDamageEvent& event){receiver.car_damage_event(actor,event);};
         next->hit=[&receiver](Car& car,Actor source,const Vector& point){return receiver.car_collision_hit(car,source,point);};
         damage_=std::move(next); //All borrowers publish together; preparation failures leave no live endpoint.
     }
@@ -43,6 +44,7 @@ public:
     }
     void receive_damage_request(Actor actor,game::SessionPacketStream& packet)override{required_damage().packet(actor,packet,true);}
     void car_timed_destroy(Actor actor)override{required_damage().destroy(actor);}
+    void car_periodic_event(Actor actor,const game::CarDamageEvent& event)override{required_damage().periodic(actor,event);}
     bool initialize(const std::vector<game::CarParticleDefinition>& definitions){
         if(&definitions!=&car_particle_definitions())throw std::logic_error("Car particles require SAME actual definition owner");
         return initialize_particles();
@@ -154,6 +156,7 @@ private:
         std::function<void(Actor,const game::CarWheelDamageEvent&,bool)> wheel;
         std::function<void(Actor,const game::CarHumanDamageEvent&)> human;
         std::function<void(Actor)> destroy;
+        std::function<void(Actor,const game::CarDamageEvent&)> periodic;
         std::function<bool(Car&,Actor,const Vector&)> hit;
     };
     DamageReceivers& required_damage(){if(!damage_)throw std::runtime_error("Car damage requires its actual containing damage owner");return *damage_;}

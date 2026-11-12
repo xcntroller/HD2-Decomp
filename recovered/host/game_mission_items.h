@@ -67,8 +67,20 @@ public:
     }
     auto item_icon(const frontend::PreMissionItem& definition){return models_.item_icon(definition);}
     auto first_person_model(const frontend::PreMissionItem& definition) {return models_.first_person_model(definition);}
+    auto primary_model(const frontend::PreMissionItem& definition){return models_.primary_model(definition);}
     auto first_person_magazine(const frontend::PreMissionItem& definition) const {return models_.first_person_magazine(definition);}
     void register_loaded_item(Entry entry) {if(entry)registered_.push_back(entry);} //007DC6E0 appends, no deduplication.
+    Entry create_unheld_item(std::int32_t definition,std::int32_t identity){ //007D7810(NULL actor,slot0).
+        if(definition<0||definition>=500||!catalogue_.item(definition))return nullptr;
+        const auto entry=create_item(definition);auto& item=runtime_item(entry);
+        item.identity=identity<0?game::allocate_item_identity(current_identity_,pending_identities_,clock_):identity;
+        //007D8B40 no-source/no-destination slot0 has no holder/weight/model
+        //transition or module178 notification. New constructors publish1C=0;
+        //the all-slots expiry store remains, even with equipment7E4 disabled.
+        if(item.flag1c)throw std::logic_error("New unheld item unexpectedly has a placed-model owner");
+        item.field14=static_cast<std::uint32_t>(game_word28_)+0x398u;
+        register_loaded_item(entry);return entry;
+    }
     template<class Human>Entry create_prepared_human_item(Human& human,std::int32_t definition,std::int32_t slot,std::int32_t identity) { //007D7810, cold no-source loading.
         if(!catalogue_.item(definition))return nullptr;
         if(slot<0||slot>6)return nullptr;

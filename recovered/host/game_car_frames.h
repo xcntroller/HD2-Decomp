@@ -43,6 +43,14 @@ public:
         return matches.empty()?nullptr:matches.back(); //004F9CB0 writes every match, returns0.
     }
     MenuDriver::Owner retain_car_frame(Frame frame) {return retain(frame);}
+    MenuDriver::Owner create_car_targeted_frame(Frame source){
+        if(!source)throw std::logic_error("Car targeted item has no actual primary template visual");
+        const auto frame=call<Frame>(driver_.frame(),0x50,call<std::uint32_t>(source,4));
+        if(!frame)return {nullptr,nullptr}; //004DEB50 publishes NULL before its required copy dereference.
+        return {frame,scene_method<MenuDriver::Release>(frame,module_,0,0x1c370)};
+    }
+    void copy_car_targeted_frame(Frame destination,Frame source){(void)call<std::int32_t>(destination,0x4c,source);}
+    void car_targeted_pose(Frame frame,const Vector& first,const Vector& second){call<void>(frame,0x14,first.data(),second.data(),std::uint32_t{0});}
     std::string car_user_data(Frame frame) const {
         const auto* data=field<const char*>(frame,0xf0);
         return data?data:"";
@@ -65,6 +73,11 @@ public:
         return name.substr(static_cast<std::size_t>(offset));
     }
     MenuDriver::Owner create_car_ancillary_model() {return driver_.create(9);}
+    MenuDriver::Owner create_car_restore_model(){ //004DCE40 genuinely returns on a NULL factory.
+        const auto frame=call<Frame>(driver_.frame(),0x54,std::uint32_t{9});
+        if(!frame)return {nullptr,nullptr};
+        return {frame,scene_method<MenuDriver::Release>(frame,module_,0,0x1c370)};
+    }
     bool load_car_ancillary_model(Frame model,const std::string& name) {
         return resources_.load_model(model,recovered::model_resource_key(name),0)==0;
     }
@@ -411,7 +424,7 @@ public:
     }
 private:
     struct DestroyedMeshes {GameCarFrames* frames;Frame helper;std::exception_ptr failure;};
-    static std::int32_t WINAPI replace_destroyed_mesh(Frame frame,void* opaque)noexcept{ //004DCDE0.
+    static std::int32_t WINAPI replace_destroyed_mesh(Frame frame,void* opaque)noexcept{ //004DCDE0/004DCFE0, same mesh assignment body.
         auto& context=*static_cast<DestroyedMeshes*>(opaque);if(context.failure)return 0;
         try{
             auto& frames=*context.frames;

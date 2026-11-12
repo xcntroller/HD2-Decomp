@@ -17732,8 +17732,8 @@
       "program": "client",
       "entry": "007d8b40",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007d8b40: Verified source/no-source same-Human weapon-slot transfer, cooldown/expiry/dry-run/displacement/retain accounting; containing swap/drop and other families excluded. Exact no-source loading transfer with module notifications disabled; general runtime exchanges excluded. Offline activation/prepared-spawn checkpoint: Cold no-source prepared Human placement retains enabled-module178/hand cooldown and all-slot game28+920 expiry, explicitly excluding active B0/A8/displaced transfers.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. New source-only subset requires actual containing world/local packet decoder/camera wiring; no mission desktop acceptance.",
+      "coverage": "P2.2 source reconstruction at original entry 007d8b40: Verified source/no-source same-Human weapon-slot transfer, cooldown/expiry/dry-run/displacement/retain accounting; containing swap/drop and other families excluded. Exact no-source loading transfer with module notifications disabled; general runtime exchanges excluded. Offline activation/prepared-spawn checkpoint: Cold no-source prepared Human placement retains enabled-module178/hand cooldown and all-slot game28+920 expiry, explicitly excluding active B0/A8/displaced transfers. Added reached no-source/no-destination slot0 branch for a newly constructed item: no holder/model/weight/module178 mutation, final game28+920 expiry remains.",
+      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. New source-only subset requires actual containing world/local packet decoder/camera wiring; no mission desktop acceptance. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
       "evidence": [
         "recovered/game/human_weapon_transfer.h",
         "recovered/game/loading_item_transfer.h",
@@ -17743,7 +17743,9 @@
         "analysis/checkpoints/p2.2-20261109.json",
         "recovered/game/prepared_item_transfer.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
       ]
     },
     {
@@ -21278,12 +21280,14 @@
       "program": "client",
       "entry": "007d7810",
       "status": "partial",
-      "coverage": "Cold prepared-Human item allocation, actual identity assignment, real transfer, rejected entry release and SAME Items registration.",
-      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "coverage": "Cold prepared-Human item allocation, actual identity assignment, real transfer, rejected entry release and SAME Items registration. Null actor/slot0 factory now follows actual no-source/no-destination transfer, identity/expiry and SAME module registration for Car event7; no fake Human or dynamic actor.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
       "evidence": [
         "recovered/host/game_mission_items.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
       ]
     },
     {
@@ -24878,35 +24882,41 @@
       "program": "client",
       "entry": "004d25c0",
       "status": "partial",
-      "coverage": "Actual offline derived/common retirement order, repeated seats/cameras/runtime, navigation/proximity cleanup and acquired-prefix guards. Actual acquired gun-control owners retire in reverse order before the seats/cameras, preserving cleanup failures and shared resource ownership.",
-      "limitations": "Occupied/mounted/non7 teardown excluded; engine/model/frame operations delegated.",
+      "coverage": "Actual offline derived/common retirement order, repeated seats/cameras/runtime, navigation/proximity cleanup and acquired-prefix guards. Actual acquired gun-control owners retire in reverse order before the seats/cameras, preserving cleanup failures and shared resource ownership. Actual004DCE40 restore prefix now shared with event6 before helper/seat/runtime retirement; positive original-mesh restoration uses same frame enumeration.",
+      "limitations": "Occupied/mounted/non7 teardown excluded; engine/model/frame operations delegated. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_loading_activation.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "004d2790",
       "status": "partial",
-      "coverage": "Actual offline cold authority update gates, water damage, post-reset DM and support checks using SAME owners.",
-      "limitations": "Unoccupied loading only; periodic event, targeted damage, occupied control/UI and non7 paths excluded.",
+      "coverage": "Actual offline cold authority update gates, water damage, post-reset DM and support checks using SAME owners. Reached frame prefix now publishes event6, rereads mode after publication, conditionally resets and clears2478 only after success; actual pending2550 expiry precedes water/timed DM on the same activation.",
+      "limitations": "Unoccupied loading only; periodic event, targeted damage, occupied control/UI and non7 paths excluded. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_loading_activation.h"
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "004d3110",
       "status": "partial",
-      "coverage": "Actual offline cold presentation clamp, epoch/steering threshold, core/finalizer/base pose/features, seat cameras, navigation and model tick.",
-      "limitations": "Unoccupied loading only; mounted/non7/positive queued SOUND receivers excluded; no application binding.",
+      "coverage": "Actual offline cold presentation clamp, epoch/steering threshold, core/finalizer/base pose/features, seat cameras, navigation and model tick. Corrected259C reverse tail as game54 navigation0051D5A0 observations with unused result, over SAME retained navigation identities before final model tick; no invented SOUND consumer.",
+      "limitations": "Unoccupied loading only; mounted/non7/positive queued SOUND receivers excluded; no application binding. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_loading_activation.h"
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
       ]
     },
     {
@@ -36689,8 +36699,8 @@
       "program": "client",
       "entry": "004db360",
       "status": "partial",
-      "coverage": "Actual Car actor1C shared module13 dispatch: complete known event decode before part/wheel mutation, native authority cursor/policy, zero-health callbacks, puncture and DM effects ordering; genuine empty defaults and required remaining event/effect branches. Actual event4 now invokes SAME physical/mesh/Human-opacity transition after DM presentation; event0 invokes actual shared glass state/material/name/callback ordering. Kinds10/11 now decode fully and use actual fuel/collision impulse consumers without unrelated DM/geometry preflight.",
-      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures.",
+      "coverage": "Actual Car actor1C shared module13 dispatch: complete known event decode before part/wheel mutation, native authority cursor/policy, zero-health callbacks, puncture and DM effects ordering; genuine empty defaults and required remaining event/effect branches. Actual event4 now invokes SAME physical/mesh/Human-opacity transition after DM presentation; event0 invokes actual shared glass state/material/name/callback ordering. Kinds10/11 now decode fully and use actual fuel/collision impulse consumers without unrelated DM/geometry preflight. Event6 no-payload reset precedes any physical/DM graph access; event7 captures authority application mode and mutates actual Items/Car inventory incrementally rather than decoding a transactional list.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and full network/trajectory equivalence excluded. Native100 request/timer regression and100 fuel/impulse families pass ASan/UBSan/LSan using actual shared packets/quantizers/routing/source consumers with explicit actor/clock/physics/damage endpoints; independent Decimal100 golden proves distinct XYZ spills. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link pass. Non-Car9A8/4A0 remains required; non7 activation, Car6/7/deformation/occupied restore, full Human entry/frame and application/desktop acceptance remain open. Confirmed unproduced5F9/695/EXPL8/smoke14 remain honest failures. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
       "evidence": [
         "recovered/game/car_actor_damage.h",
         "analysis/human-car-dm-presentation-source.md",
@@ -36698,7 +36708,9 @@
         "analysis/human-car-physical-reset-source.md",
         "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json",
         "analysis/human-car-fuel-impulse-source.md",
-        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
       ]
     },
     {
@@ -40533,6 +40545,127 @@
         "recovered/game/car_light_receivers.h",
         "analysis/human-car-positive-deformation-source.md",
         "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004db2a0",
+      "status": "partial",
+      "coverage": "Actual event6 receiver invokes SAME Car loading virtual44 reset(true), without packet payload or prior physical/DM decode.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "evidence": [
+        "recovered/game/car_actor_damage.h",
+        "recovered/host/game_blast_waves.h",
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dd0d0",
+      "status": "partial",
+      "coverage": "Offline7 true reset over SAME activation/body/wheel/mesh/Door/collision/skid/particle/navigation owners: restore prefix, late proximity overwrite, ascending seat removal, suspend, saved pose, settings/special collision, body flag1, physical reset,5ms settle/finalize, fuel, source/driver/latch/navigation/model/pending retirement. Positive mounted004C6620 and non7 consumers remain required.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "evidence": [
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dce40",
+      "status": "partial",
+      "coverage": "DM reset then254A clear, optional original basename model load with NULL/rejected early return, reverse current seat detachment/relink, actual visual enumeration,2548 clear before reverse part mesh refresh, same physical restore; shared by reset and deactivation.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "evidence": [
+        "recovered/game/car_physical_reset.h",
+        "recovered/game/car_loading_activation.h",
+        "recovered/host/game_car_frames.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dcfe0",
+      "status": "partial",
+      "coverage": "Original-mesh restore callback reuses exact short-name lookup, immediate matching mesh9C(mesh,1)/update24 body over actual enumeration and source model; checked required helper boundary.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "evidence": [
+        "recovered/host/game_car_frames.h",
+        "recovered/game/car_physical_reset.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e95b0",
+      "status": "partial",
+      "coverage": "Reached flags2 reset suspension: ascending wheels/reverse skid active-clear/first-hide, angular then linear inverse-rotation transform, reverse projectors unlink, wheel/exhaust/damage retirement, collision disable, contact buffer free, reverse impact retirement and81-slot stop. Flags1 permanent detach caller excluded.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "evidence": [
+        "recovered/game/car_physical_reset.h",
+        "recovered/game/car_skid_models.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004de1f0",
+      "status": "partial",
+      "coverage": "Incremental unsigned identity16/definition8/FFFF grammar; consume-only authority branch; actual unheld factory before rereading Car first storage, ignored insertion return and preserved registered ownership on NULL/full/truncated/failing entries.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "evidence": [
+        "recovered/game/car_frame_events.h",
+        "recovered/game/car_actor_damage.h",
+        "recovered/host/game_blast_waves.h",
+        "recovered/host/game_mission_items.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dec10",
+      "status": "partial",
+      "coverage": "Actual2550 signed-wrapping countdown and expiry before water/timed DM; publish -1/source24B0/flag2544 before existing authority destruction, preserving interrupted failure/no replay.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "evidence": [
+        "recovered/game/car_frame_events.h",
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dead0",
+      "status": "partial",
+      "coverage": "Actual RET16 item/Human/already-pending guards, mode2 presentation before15000/source publication, fresh mode2 observation before actual Human identity retirement, Boolean result and interrupted prefix. AI00586200 subtype14 admission remains D4b/H4.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "evidence": [
+        "recovered/game/car_frame_events.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004deb50",
+      "status": "partial",
+      "coverage": "Both stored transforms precede SAME definition template/visual factory;254C publication including NULL before copy with ignored status; actual Human identity retirement before Car link/pose. Same reference retired by reset/destruction.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/container/SEH/virtual ABI or whole-body equivalence. Native100 event/presentation,100 actual event6/7 dispatch plus100 fuel regression and100 reset-block families use actual packet/storage/body/skid/light/particle/contact source with named item/clock/reset/damage/visual/DM/model/frame/collision endpoint doubles. Strict actual nested World/Car/Human/module13/Items i386 and launcher/probe compile/link are separate checks, never Windows execution. D4b actual AI subtype14 admission and reached D5 occupied/non7 frame/reset, D10/D12 composition and D11 required producer failures remain open; no application/desktop claim.",
+      "evidence": [
+        "recovered/game/car_frame_events.h",
+        "recovered/host/game_car_frames.h",
+        "recovered/host/game_blast_waves.h",
+        "analysis/human-car-frame-events-source.md",
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
       ]
     }
   ]

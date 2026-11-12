@@ -4,7 +4,7 @@ P22-HUM's second plan checkbox remains open. Current work continues the same
 body/point owners. Application mission loading and desktop acceptance remain open.
 
 Current status and remaining dependency order are maintained in the
-[revised Human plan](p22-hum-plan.md), through b132e6d. S01–S14 identify verified
+[revised Human plan](p22-hum-plan.md), including D1–D3 and D4a source checkpoints. S01–S14 identify verified
 source checkpoints; D0–D12 identify remaining composition/producer dependencies.
 Earlier “in progress”, “continue” and “not yet bound” notes below are dated
 research snapshots, superseded by later checkpoints. In particular007B3C80,
@@ -1798,3 +1798,14 @@ have a [source checkpoint](checkpoints/p2.2-human-car-positive-deformation-20261
 [Contract](human-car-positive-deformation-source.md) corrects the earlier assumed
 occupied-Human dependency and a missed physical-reset resource binding. Continue
 D4 authority004D2790/presentation004D3110 frame consumers and D5/D10–D12; H2 stays OPEN.
+
+
+## Car frame-event receiver checkpoint —2026-11-12
+
+[D4a contract](human-car-frame-events-source.md) and
+[receipt](checkpoints/p2.2-human-car-frame-events-20261112.json) record event6/reset,
+incremental event7 on SAME Items/Car storage, pending damage/presentation and
+actual navigation tail observations. Nine new frozen partials, six extensions,
+no promotions:34 complete/3008 partial. D4b actual AI subtype14 admission and
+reached D5 occupied/non7 consumers remain open. D10–D12, D11 producer failures
+and application/desktop acceptance remain required; no full Car/Human frame claim.

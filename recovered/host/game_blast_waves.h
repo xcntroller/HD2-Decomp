@@ -137,6 +137,25 @@ public:
     void car_set_fuel(game::CarSceneActor<GameActorServices>& car,float amount){
         if(!car.loading)throw std::logic_error("Car fuel requires its actual physical lifetime");car.loading->set_fuel(amount);
     }
+    auto car_inventory_item(std::uint32_t definition,std::uint32_t identity){
+        return d_.world_actors.items().create_unheld_item(static_cast<std::int32_t>(definition),static_cast<std::int32_t>(identity));
+    }
+    void car_reset_event(game::CarSceneActor<GameActorServices>& car){
+        if(!car.loading)throw std::logic_error("Car reset event requires its actual loading lifetime");car.loading->reset_event();
+    }
+    auto car_targeted_model(GameActorServices::Entry entry){auto& items=d_.world_actors.items();return items.primary_model(items.runtime_item(entry).definition());}
+    void car_targeted_consume(world_loading::Human& human,GameActorServices::Entry entry){
+        auto& items=d_.world_actors.items();const auto identity=items.runtime_item(entry).identity;
+        game::remove_human_inventory_item(human,items,identity,true,services_);
+    }
+    void car_targeted_presentation(game::CarSceneActor<GameActorServices>& car,GameActorServices::Entry item,
+            world_loading::Human& human,const Vector& first,const Vector& second){
+        game::present_car_targeted_damage(frames(),car,item,human,first,second,*this);
+    }
+    bool car_begin_targeted_damage(game::CarSceneActor<GameActorServices>& car,GameActorServices::Entry item,
+            world_loading::Human* human,const Vector& first,const Vector& second){
+        return game::begin_car_targeted_damage(car,item,human,first,second,*this);
+    }
     void car_receive_collision_impulse(game::CarSceneActor<GameActorServices>& car,std::uint32_t identity,const Vector& point){
         game::receive_car_collision_impulse(*this,car,identity,point);
     }

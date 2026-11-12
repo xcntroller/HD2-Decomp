@@ -5,6 +5,57 @@
 
 namespace hd2::game {
 
+//004E95B0(2), reached by004DD0D0. This suspends the SAME live physical graph;
+//it does not retire/reconstruct its owners. Bit1's permanent skid detachment
+//belongs to other callers and is not implied by this reset entry.
+template<class Frames,class Geometry,class State,class Pool,class Contacts>
+void suspend_car_for_reset(Frames& frames,Geometry& geometry,State& state,Pool& pool,Contacts& contacts){
+    state.skids.hide_first();
+    frames.car_transform_in_place(state.body().motion().angular_velocity,state.body().pose().inverse_rotation);
+    frames.car_transform_in_place(state.body().motion().velocity,state.body().pose().inverse_rotation);
+    for(auto n=geometry.lighting().lights().size();n;){const auto& light=geometry.lighting().lights()[--n];
+        if(light.projector==CarLighting<Frames>::none||(light.flags10&0x80000000u))continue;
+        const auto& projector=geometry.lighting().projectors().at(light.projector);
+        if(projector.visual){frames.car_reset_link(projector.visual.get(),typename Frames::Frame{});
+            if(projector.light)frames.car_reset_link(projector.light.get(),typename Frames::Frame{});}
+    }
+    for(auto n=geometry.lighting().projectors().size();n;){const auto index=--n;const auto& projector=geometry.lighting().projectors()[index];
+        bool paired=false;for(const auto& light:geometry.lighting().lights())if(light.shared&&light.projector==index){paired=true;break;}
+        if(!paired)continue;
+        frames.car_reset_link(projector.visual.get(),typename Frames::Frame{});
+        if(projector.light)frames.car_reset_link(projector.light.get(),typename Frames::Frame{});
+    }
+    for(auto& wheel:state.wheels)if(wheel.effect>=0){retire_car_particle(pool,wheel.effect);wheel.effect=-1;}
+    for(auto n=state.finalizer.particles.exhausts.size();n;){auto& slot=state.finalizer.particles.exhausts[--n];if(slot>=0){retire_car_particle(pool,slot);slot=-1;}}
+    if(state.finalizer.particles.damage>=0){retire_car_particle(pool,state.finalizer.particles.damage);state.finalizer.particles.damage=-1;}
+    state.collision.set_enabled(false,false);
+    std::vector<CarBodyContactRecord>().swap(contacts.records); //Native798/79C/7A0; preserve other BODYCOL state.
+    for(auto n=state.finalizer.particles.impacts.size();n;){auto& slot=state.finalizer.particles.impacts[--n];if(slot>=0){retire_car_particle(pool,slot);slot=-1;}}
+    state.sounds.stop_all();
+}
+
+//004DCE40: DM reset and254A precede the optional original-mesh restore. Missing
+//factory/rejected load returns before physical reset, matching native behavior.
+template<class Frames,class Car,class PhysicalReset>void restore_car_actor(Frames& frames,Car& car,PhysicalReset&& reset){
+    car.ancillary->reset_loading(frames,car.geometry->auxiliary().seats().size());car.flag254a=false;
+    if(car.flag2548){
+        auto model=frames.create_car_restore_model();if(!model)return;
+        auto resource=frames.car_model_resource(car.base().frame());const auto slash=resource.rfind('\\');
+        if(slash!=std::string::npos)resource=resource.substr(slash+1);
+        if(!frames.load_car_ancillary_model(model.get(),resource))return;
+        for(auto n=car.occupants.size();n;){if(auto* occupant=car.occupants[--n])frames.car_reaction_mesh_link(occupant->base().frame(),typename Frames::Frame{});}
+        //004DCFE0 uses the same name/mesh/update sequence as004DCDE0.
+        frames.car_destroyed_meshes(car.base().frame(),model.get());frames.update_scene_object(car.base().frame());
+        for(auto n=car.occupants.size();n;){const auto index=--n;if(auto* occupant=car.occupants[index]){
+            frames.car_reaction_mesh_link(occupant->base().frame(),car.geometry->auxiliary().seats().at(index).frame);
+            frames.update_scene_object(car.occupants[index]->base().frame());
+        }}
+        car.flag2548=false;
+        auto& parts=car.geometry->deformables().parts();for(auto n=parts.size();n;){auto& part=parts[--n];part.mesh=frames.car_mesh(part.frame);}
+    }
+    reset();
+}
+
 //004E9DB0, RET8. Engine and part restore receivers borrow the SAME initialized
 //Car. A failing prefix stays published; this is not a new cold initialization.
 template<class Frames,class Geometry,class State,class Engine,class Restore>

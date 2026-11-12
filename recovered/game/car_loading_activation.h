@@ -12,6 +12,7 @@
 #include "game/car_settling.h"
 #include "game/car_support_checks.h"
 #include "game/car_water_loading.h"
+#include "game/car_frame_events.h"
 
 namespace hd2::game {
 
@@ -53,12 +54,12 @@ public:
     }
     void activate(bool authority)override{
         require_mode();require_geometry();
-        actor_.flag254a=false;actor_.flag2548=false;actor_.model254c.reset();damage_target_=damage_template_=-1;
+        actor_.flag254a=false;actor_.flag2548=false;actor_.flag2549=false;actor_.model254c.reset();actor_.damage2550=actor_.source2554=-1;
         if(authority)actor_.source24b0=-1;
         clock2584_=actor_.callback_services().car_clock();camera_setting_=services_.car_camera_setting264();
         actor_.ancillary->reset_loading(frames_,actor_.geometry->auxiliary().seats().size());
         if(authority){if(proximity_!=-1)throw std::logic_error("Car authority activation repeated before proximity retirement");
-            proximity_=services_.add_car_proximity(actor_,4);}
+            proximity_=services_.add_car_proximity(actor_,4);actor_.field24dc=static_cast<std::uint32_t>(proximity_);}
         actor_.base().activate_frame(authority,services_);
         initial_position_=actor_.base().world_position();initial_direction_=actor_.base().world_direction();actor_.fields2474[0]=38000;
         if(authority)return; //Actual offline first pass precedes004EA780.
@@ -83,7 +84,7 @@ public:
     }
     void deactivate(bool authority)override{
         require_mode();frontend::CleanupErrors errors;
-        if(actor_.flag24a1)errors.attempt([&]{actor_.ancillary->reset_loading(frames_,actor_.geometry->auxiliary().seats().size());});
+        if(actor_.flag24a1)errors.attempt([&]{restore_car_actor(frames_,actor_,[&]{physical_reset(0,true);});});
         helper_.reset();
         retire_seats(errors);
         if(!authority||actor_.flag24a1)errors.attempt([&]{retire_runtime();});
@@ -95,8 +96,8 @@ public:
         require_mode();if(!ready_||!initial_)throw std::logic_error("Car update requires completed loading");
         require_unoccupied();
         if(authority){ //004D2790: offline authority does not run00509AA0.
-            if(actor_.clock_expired())throw std::runtime_error("Car periodic event6 requires its actual event receiver");
-            if(damage_target_!=-1)throw std::runtime_error("Car targeted damage requires its actual pending damage owner");
+            update_car_periodic_event(actor_,[&]{return services_.mode_flags();},[&](const CarDamageEvent& event){actor_.callback_services().car_periodic_event(&actor_,event);},[&]{reset_event();});
+            update_car_targeted_damage(actor_,elapsed,[&]{actor_.callback_services().car_timed_destroy(&actor_);});
             update_car_loading_water(frames_,actor_.geometry->model(),queries_,initial_->health,actor_.occupants,actor_.callback_services(),services_.mode_flags());
             actor_.ancillary->update(elapsed,[&]{actor_.callback_services().car_timed_destroy(&actor_);});
             if(initial_->health.body!=0&&initial_->solver.speed<.10000000149011612f)
@@ -113,7 +114,7 @@ public:
         seats_.update(queries_,actor_.base().world_direction(),initial_->body().motion().velocity,initial_->solver.speed,
             services_.car_current_attachment(),resources_.seat_camera);
         if(initial_->solver.speed!=0||navigation_elapsed_>0){navigation_elapsed_+=elapsed;if(navigation_elapsed_>500){navigation_elapsed_=initial_->solver.speed!=0;refresh_navigation();}}
-        if(!actor_.lists259c.empty())throw std::runtime_error("Car queued voice updates require their actual SOUND receiver");
+        navigation_.observe_loading_marks();
         frames_.supply_model_tick(actor_.geometry->model(),elapsed); //Actual model+20,004D3110's final call.
     }
     CarActorColdState<Frames>& cold_state()override{if(!view_)throw std::logic_error("Car callback requires initialized source state");return *view_;}
@@ -168,6 +169,33 @@ public:
             if(!running){initial_->drive.engine_speed=0;initial_->finalizer.engine_transition=false;initial_->drive.running=false;initial_->sounds.stop_all();}
             else{initial_->finalizer.engine_transition=true;initial_->drive.running=true;initial_->engine_timeout=0;}
         },[&]{restore_car_deformable_parts(frames_,*actor_.geometry,actor_.callbacks->empty6b4);});
+    }
+    void reset_event()override{ //004DB2A0→004DD0D0(true), selected offline7 entry.
+        require_mode();require_geometry();
+        if(!initial_||!body_collision_)throw std::logic_error("Car reset requires its actual physical owner");
+        restore_car_actor(frames_,actor_,[&]{physical_reset(0,true);}); //004DCE40 BEFORE proximity/seats.
+        if(services_.mode_flags()&1u){
+            //Native does not remove a prior proximity row here. The process
+            //owns all rows; overwrite24DC only after successful registration.
+            proximity_=services_.add_car_proximity(actor_,4);actor_.field24dc=static_cast<std::uint32_t>(proximity_);
+        }
+        for(std::size_t index=0;index<actor_.geometry->auxiliary().seats().size();++index){
+            remove_seat(index);
+            if(index<actor_.fields24b4.size()&&actor_.fields24b4[index])
+                throw std::runtime_error("Car reset requires actual mounted004C6620 receiver");
+        }
+        suspend_car_for_reset(frames_,*actor_.geometry,*initial_,resources_.particles,body_collision_->state());
+        actor_.base().world_position(initial_position_);actor_.base().world_direction(initial_direction_);
+        frames_.car_suspension_position(actor_.geometry->model(),initial_position_);
+        frames_.car_direction(actor_.geometry->model(),initial_direction_);frames_.update_scene_object(actor_.geometry->model());
+        camera_setting_=services_.car_camera_setting264();initial_->collision.use_special(true);
+        initial_->drive.body_flags=1; //Actor690/core600; no6A4 callback here.
+        physical_reset(0,false);
+        settle_car_loading(frames_,initial_->body(),initial_->wheels,initial_->drive,initial_->solver,initial_->update_hold,5,0,0,
+            [&](std::uint32_t elapsed){update_core(elapsed);},[&](std::uint32_t elapsed){(void)finalize_core(elapsed);});
+        initial_->set_fuel(1000);
+        actor_.source24b0=-1;actor_.driver24ac=nullptr;actor_.flag2549=false;
+        refresh_navigation();actor_.model254c.reset();actor_.source2554=actor_.damage2550=-1;
     }
     void destroyed_meshes()override{present_destroyed_car_meshes(frames_,actor_,helper_?helper_->get():Frame{});}
     void glass_damage(std::size_t index,const CarContactVector& direction)override{
@@ -245,7 +273,7 @@ private:
     //these primitive identities even while registration is temporarily absent.
     std::optional<Initial> initial_;std::optional<CarActorColdState<Frames>> view_;std::optional<Receivers> receivers_;std::optional<BodyCollision> body_collision_;
     Vector initial_position_{},initial_direction_{};std::optional<std::uint32_t> clock2584_;std::uint32_t navigation_elapsed_=0;
-    std::int32_t proximity_=-1,damage_target_=-1,damage_template_=-1;
+    std::int32_t proximity_=-1;
     bool ready_=false,camera_setting_=false,same_epoch_=false;
 };
 

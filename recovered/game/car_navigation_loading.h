@@ -21,7 +21,7 @@ public:
     CarNavigationLoading& operator=(const CarNavigationLoading&)=delete;
     void close()noexcept{
         clear_moving();
-        for(auto row=loading_.rbegin();row!=loading_.rend();++row)(*row)->flags&=0xfdffu;
+        for(auto row=loading_.rbegin();row!=loading_.rend();++row)row->record->flags&=0xfdffu;
         loading_.clear();
     }
     void load(Frame model,Frame body,std::uint32_t mode,float speed,const Vector& velocity){ //004DB060.
@@ -40,7 +40,7 @@ public:
                 (void)frames_.car_transform(Vector{{position[0],position[1],position[2],0}},inverse);
                 auto* record=navigation_.record(*point);
                 if(!record)throw std::runtime_error("Car navigation references an unavailable point");
-                loading_.push_back(record);record->flags|=0x200u;
+                loading_.push_back({*point,record});record->flags|=0x200u;
             }
         }
         refresh_moving(model,mode,speed,velocity);
@@ -70,6 +70,9 @@ public:
         }
     }
     std::size_t loading_marks()const{return loading_.size();}
+    void observe_loading_marks()const{ //004D3336..335D: reverse game54/0051D5A0; result unused.
+        for(auto row=loading_.rbegin();row!=loading_.rend();++row)(void)navigation_.record(row->identity);
+    }
     std::size_t moving_marks()const{return moving_.size();}
 private:
     void clear_moving()noexcept{
@@ -77,7 +80,8 @@ private:
         moving_.clear();
     }
     Frames& frames_;MissionNavigation& navigation_;
-    std::vector<MissionTableRecord*> loading_,moving_;
+    struct LoadingMark{std::uint16_t identity;MissionTableRecord* record;};
+    std::vector<LoadingMark> loading_;std::vector<MissionTableRecord*> moving_;
 };
 } //namespace hd2::game
 #endif

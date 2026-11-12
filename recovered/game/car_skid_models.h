@@ -49,6 +49,9 @@ public:
         auto& wheel=wheels_.at(index);
         while(!wheel.empty()){wheel.back().first.reset();wheel.back().second.reset();wheel.pop_back();}
     }
+    void hide_first(){ //004E95B0 bit2: ascending wheels, reverse pairs, first visual only.
+        for(auto& pairs:wheels_)for(auto n=pairs.size();n;){auto& pair=pairs[--n];pair.active=false;frames_.object_visible(pair.first.get(),false);}
+    }
     void clear(){ //004EC5C0: ascending wheels, reverse pairs, first then second release.
         for(std::size_t n=0;n<wheels_.size();++n)clear_wheel(n);
         initialized_=false;

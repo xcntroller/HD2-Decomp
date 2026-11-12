@@ -39,6 +39,7 @@ public:
     virtual void puncture_sound(std::size_t)=0;
     virtual void destruction_controls()=0;
     virtual void physical_reset(float speed,bool restore)=0;
+    virtual void reset_event()=0; //004DB2A0→Car virtual44/004DD0D0(true).
     virtual void destroyed_meshes()=0;
     virtual void glass_damage(std::size_t index,const CarContactVector& direction)=0;
 };

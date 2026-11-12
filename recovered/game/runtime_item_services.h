@@ -25,6 +25,7 @@ public:
     RuntimeItemServices(const RuntimeItemServices&)=delete;
     RuntimeItemServices& operator=(const RuntimeItemServices&)=delete;
     ItemModelOwner make_item_model(const frontend::PreMissionItem& definition) {return models_.make_item_model(definition);}
+    Frame primary_model(const frontend::PreMissionItem& definition){return models_.primary(definition);} //007DF750, borrowed definition cache.
     Frame item_icon(const frontend::PreMissionItem& definition){return icons_.get(definition);}
     Frame first_person_model(const frontend::PreMissionItem& definition) {return models_.first_person(definition);}
     Frame first_person_magazine(const frontend::PreMissionItem& definition) const {return models_.first_person_magazine(definition);}

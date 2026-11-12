@@ -12,7 +12,7 @@ list. Detailed behavior/evidence stays in the linked contracts.
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/2999 partial; joint/clip recovery still
+credit is separate: current source34 complete/3008 partial; joint/clip recovery still
 has deferred credit reconciliation.
 
 The selected **H2 reactions/damage/ragdoll** milestone remains open until its
@@ -140,9 +140,21 @@ D10 unmounted composition can advance without waiting for all transport work.
 - [x] D3 — Seat-associated Door visual restore: repair actual FA8+28 Door20 before
   variant visibility through existing geometry discovery/binding, including unoccupied Cars.
   [Source/corrected ownership](human-car-positive-deformation-source.md). Actual Human occupancy remains H3/D5.
-- [ ] D4 — Containing Car frame: periodic event6, event7 grammar/consumers, pending
-  targeted damage and reached queued SOUND updates. Bind actual producers through
+- [ ] D4 — Containing Car frame: periodic event6/reset, incremental event7 inventory,
+  pending targeted damage and reached navigation observations. Bind actual producers through
   authority004D2790, presentation004D3110 and004DB360; preserve timer/water/earlier-failure ordering.
+  Required internal dependencies:004DB2A0→virtual44/004DD0D0 reset→004DCE40,
+  004E95B0(2), SAME physical/collision/skid/particle owners and saved pose;
+  004DE1F0→007D7810(NULL destination)→007D8B40→actual Car storage;
+  004DEAD0 pending producer→004DEC10→existing004DBF00. Non7 presentation/occupied
+  reset consumers compose with D5. Raw004D3336..335D proves259C's reverse
+  observations call navigation0051D5A0 via game54, with unused results, not SOUND.
+- [x] D4a — Verify event6/reset, incremental event7/Items storage and pending
+  damage source receivers over SAME physical/inventory owners, including failure prefixes.
+  [Verified source checkpoint](checkpoints/p2.2-human-car-frame-events-20261112.json); [contract](human-car-frame-events-source.md).
+- [ ] D4b — Compose the remaining reached callers:00586200 subtype14's actual
+  AI/item/target/transform admission and occupied/non7 reset/frame consumers from D5.
+  D4a alone does not establish that an AI command or a complete Car frame runs.
 - [ ] D5 — Reached occupied/non7 Car activation/control/frame through existing
   004D16A0/loading lifetime. Resolve actual driver/input/mounted borrowers;
   retain offline7 gates. Verify any reached non-Car9A8/4A0 physical mapping in
