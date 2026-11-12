@@ -6,7 +6,7 @@ Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`, branch
 
 [H4 plan](analysis/p22-hum-h4-plan.md),
 [implementation/remaining families](analysis/p22-hum-h4-implementation.md).
-**H4 is the selected whole checkbox and remains OPEN. Continue after C8.**
+**H4 is the selected whole checkbox and remains OPEN. Continue after C9a.**
 
 C8: actual mounted230 pose/Scene/sector/raw visibility and model-EC target DD0
 opacity/GEffects; sanitizer PASS34 and actual containing i386/launcher links PASS.
@@ -52,11 +52,15 @@ client fingerprint; verify instructions/ABI before implementation. Next formatio
 Original0058D900 setter binds a Players subgroup formation from004603C0; this is
 not auxiliary moduleE8/selection28 and not automatically Human2C8. Inspect actual
 subgroup producer/lifetime before binding. Additional evidence exports retained.
-Next C9: track8/9 action model kinds4/8 and0075DF70; inspect original0078DF60
-cases4/8 and00790520 retirement4/8 with corrected ABI/raw x86. Existing kind8
-attachment helper is present but retirement8 and full kind4 are missing. Actual
-kind4 bbox alignment and retirement pose use existing model/face/frame owners;
-no guessed geometry. Other remaining completions/Script/subgroup bodies stay open.
+C9a: actual held attachment/retirement4/8 and230 events4/5/12/13; track9 original
+1400/liveScale timer, signed refcount gate and4F/5A release counts, selection and
+feedback/mode exit. Sanitizer PASS156; actual containing i386 World/DD0/230/frame/
+Scene full link. [Receipt](analysis/checkpoints/p22-hum-h4-action-held-20261112.json).
+Next C9: track8 containing0075DF70 assignment and attachment9. Index/raw original
+already located. Actual target zero-motion0075E250 and DC0 reset007B30B0 need
+checked existing owners; original target occupied-release branch depends on
+H3's actual seat interfaces available only on newer HUM, not this base.
+Other H4 completion/Script/subgroup/attachment families stay OPEN. Continue.
 
 No original EXE/DLL/Proton or Windows output execution. Heavy builds/Ghidra are
 sequential; inspect other workstreams' active jobs before ours. No agents or push.

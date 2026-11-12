@@ -16,7 +16,7 @@ public:
     HumanEquipmentState(){reset();}
     void reset() {
         for(auto& frame:models_)frame=Frame{};
-        field4_=nullptr;field0c_=nullptr;
+        field4_=nullptr;field0c_=nullptr;action_rotation_written_=false;
         for(auto offset:{0x34u,0x38u,0x3cu})words_.set(offset,std::int32_t{-1});
         for(auto offset:{0x30u,0x40u,0x44u,0x48u,0x50u,0xd0u,0xbcu,0xc0u,0xccu})words_.set(offset,std::uint32_t{0});
         for(auto offset:{0x6cu,0x70u,0x54u,0xd4u})words_.set(offset,std::int32_t{-10000});
@@ -51,6 +51,8 @@ public:
         }
     }
     void model(unsigned index,Frame frame){models_.at(index)=frame;}
+    void action_rotation_written(){action_rotation_written_=true;}
+    bool has_action_rotation()const{return action_rotation_written_;}
     auto& words(){return words_;}
     const auto& words() const{return words_;}
     const auto& markers() const{return markers_;}
@@ -61,6 +63,7 @@ public:
     void departing(HumanEquipmentTransferPeer<Frame>* value){field4_=value;}
     void arriving(HumanEquipmentTransferPeer<Frame>* value){field0c_=value;}
 private:
+    bool action_rotation_written_=false; //Native safety: do not invent an unwritten saved90 pose.
     HumanJointWords<0xd8> words_;
     HumanEquipmentTransferPeer<Frame>* field4_=nullptr; //Actual Human230 peer borrowers, not native DWORDs.
     HumanEquipmentTransferPeer<Frame>* field0c_=nullptr;

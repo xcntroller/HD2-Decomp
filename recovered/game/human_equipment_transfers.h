@@ -27,7 +27,8 @@ public:
         if(slot==1||(slot==3&&human_item_holster_group(item.definition())==0))holsters_.hide_items(item.definition(),1);
     }
     void refresh_inventory_holster_animation(){services_.refresh_inventory_holster_animation();}
-    void remove_inventory_model(unsigned kind)override { //00790520 inventory0..3, hand actions5..7 and mounted action9.
+    void remove_inventory_model(unsigned kind)override { //00790520 inventory0..3, held/hand actions4..8 and mounted action9.
+        if(kind==4||kind==8){retire_human_equipment_held_action(frames_,state_,services_,kind);return;}
         if(kind==9){retire_human_equipment_mount(frames_,state_,services_);return;}
         if(kind==5){retire_human_equipment_hand_action(frames_,state_,kind);return;}
         if(kind==6||kind==7){
@@ -170,6 +171,10 @@ public:
             }
             if(state_.model(0))attachments_.attach(back(*this)?10u:3u);
             return;
+        case 4:remove_inventory_model(4);return;
+        case 5:attachments_.attach(4);return;
+        case 12:remove_inventory_model(8);return;
+        case 13:attachments_.attach(8);return;
         case 14:remove_inventory_model(9);return;
         case 6:remove_inventory_model(5);return;
         case 7:attachments_.attach(5);return;

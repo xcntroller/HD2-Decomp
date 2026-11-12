@@ -186,6 +186,7 @@ public:
     }
     Shadow& shadow(){return shadow_;}
     const Links& links() const{return links_;}const auto& motion() const{return motion_;}
+    auto& animation(){return animation_;}
     const auto& animation() const{return animation_;}const auto& opacity() const{return opacity_;}
     auto& opacity(){return opacity_;}
     Human** human_slot_address(){return physical_.human_slot_address();}
@@ -707,6 +708,11 @@ private:
                     present_footstep_track_sound(look);
                     return true;
                 case 7:apply_human_track_door(*this,*human_,services_);return true;
+                case 9:{
+                    auto& current=services_.human_look_control(*human_);
+                    auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+                    apply_human_track_action_retirement(*this,current,equipment_owner,frames_,services_,publish);return true;
+                }
                 case 10:equipment_owner.set_frame_weapon_pose(false,true);return true;
                 case 0x0b:case 0x0c:
                     if(event==0x0c||!animation_.equipment_frame_timer_active())equipment_owner.set_frame_weapon_pose(false,true);

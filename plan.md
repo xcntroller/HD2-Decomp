@@ -344,3 +344,5 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 
 P22-HUM H4: [isolated implementation plan](analysis/p22-hum-h4-plan.md) selects common outputs/completions, B0 navigation/formation and track/DD0 consumers from HUMe742f84; H2/H3/H5/H6 and desktop acceptance remain separate.
 H4 C2: actual family climb/DC1F/DD0 replay and track0 source verified; sanitizer59+12 and concrete World/DD0 presentation/i386/application links PASS. H4 remains open; [receipt](analysis/checkpoints/p22-hum-h4-climb-20261112.json).
+
+H4 C9a: actual held4/8 attachment/retirement and track9 verified; [receipt](analysis/checkpoints/p22-hum-h4-action-held-20261112.json). H4 stays open; continue track8/mounted assignment and remaining completions/Script.

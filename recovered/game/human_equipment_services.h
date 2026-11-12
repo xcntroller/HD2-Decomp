@@ -67,6 +67,8 @@ public:
     void reset_equipment_command(){control_.reset_equipment_command();}
     void set_equipment_command(std::int32_t command,bool changed){look_.equipment_command(command,changed);}
     std::uint32_t game_word28()const{return world_.game_word28();}
+    auto equipment_human_direction()const{return human_.base().world_direction();}
+    const void* equipment_human_identity()const{return &human_;}
     Frame equipment_human_model()const{return human_.base().frame();}
     Frame equipment_presentation_sector()const{return control_.animation().sector();} //Actual CE4 borrower.
     bool equipment_human_hidden()const{return world_.human_hidden(human_);} //Actual Human150.

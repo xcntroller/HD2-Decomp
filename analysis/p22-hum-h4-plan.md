@@ -134,3 +134,22 @@ assume unmerged source is linked here. H4 base remains e742f84.
   opacity targetDA8/ambientDB8 copy and SAME target opacity update.
 - [x] Native policy/order/failure/ownership audits and strict actual World/public
   DD0 composition/i386/application links; receipt/cleanup/commit and continue.
+
+## C9 selected action-model track consumers (in progress)
+
+- [ ] Recover full original boundary of track8/9, action-model attachment4/8,
+  retirement4/8, mounted assignment0075DF70 and event9 hand-model retirement;
+  verify corrected thiscall/stdcall ABI and raw values before implementing.
+- [ ] Complete independently available bodies over actual model/box/HW markers/
+  face/Item/geometry owners. Preserve source/raw visibility, reference counts,
+  failure prefixes and exact action completion flags; label true dependencies.
+- [ ] Focused temporary sanitizer audits and actual i386 containing World/DD0/
+  model/Items linkage, application links, ledger/receipt/cleanup/commit.
+
+### C9a verified held-model family
+
+- [x] Complete actual attachment4/8 and retirement4/8,230 events4/5/12/13 and
+  track9 original timer/model refs/selection/feedback, with native sanitizer and
+  concrete actual containing i386 linkage.
+- [ ] Finish remaining C9 track8/mounted assignment0075DF70 and attachment9;
+  continue other H4 families after the held-family receipt/commit.

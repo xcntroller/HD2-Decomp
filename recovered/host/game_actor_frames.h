@@ -644,6 +644,12 @@ public:
         put(frame,0xb8,static_cast<float>(static_cast<long double>(field<float>(frame,0xb8))+amount));
         put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);
     }
+    void human_equipment_action_link(Frame frame,Frame parent,std::uint32_t flags){(void)call<std::int32_t>(frame,0x38,parent,flags);} //0078DF60/00790520 ignore status.
+    void human_equipment_action_visibility(Frame frame,const void* human,bool hidden){
+        const auto argument=(static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(human))&0xffffff00u)|std::uint32_t(!hidden);
+        call<void>(frame,0x30,argument);
+    }
+    Bounds human_equipment_bounds_data(Frame frame)const{return field<Bounds>(frame,0x10);}
     void human_equipment_link(Frame frame,Frame parent,std::uint32_t flags) {
         if(call<std::int32_t>(frame,0x38,parent,flags)<0)
             throw std::runtime_error("Cannot attach required Human equipment frame");

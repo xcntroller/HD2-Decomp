@@ -370,3 +370,51 @@ C8 strict actual containing i386 FULL LINK and launcher/probe O2 links PASS;
 no Windows output executed. [Receipt](checkpoints/p22-hum-h4-mount-presentation-20261112.json)
 fingerprints source/original/logs and removed audits. Only new00793490 partial;
 34 complete/3,026 partial; no complete promotion or denominator change. H4 OPEN.
+
+## C9a — held action4/8 and track9 source checkpoint
+
+0078DF60 cases4/8 now use the same230 model1C, markersB4/B8 and Human40.
+Case4 publishesB0=4 and retainsE4 before the strict ordered internal-box X gate.
+The box is frame10 after lazy frame58, not driver+AC Car bounds. Valid geometry
+saves actual WORLD quaternion90/positionA0, places the box centre at HW1/HW2
+midpoint plus Human40 X/Z *FLOAT.1, retains the normalized WORLD forward, links
+HW1 with flags3, raw Human-pointer visibility, frame24 then secondary/primary
+face2. Case8 saves the same pose, unlinks0/linksHW1 flags2, raw visibility then
+localXYZ0/update/opacity. No guessed box, camera or model producer.
+
+00790520 cases4/8 set54=-10000, unlink1/root3, SAME SceneEC before saved90
+quaternion normalization/dirty flags, then actual Human model forward*.6 and
+fresh world position. Native keeps normalized X extended and spills Z. After
+frame08/24, lazy internal bounds supply minY. The original correction is exactly
+`FLOAT((extended(destinationY)-minY)+destinationY)`, followed by08/24/release,
+clear1C, secondary/primary face0. Only8 writesB0=11;4 retains4. Native negative
+frame38 status is ignored. A native safety guard explicitly fails at saved90
+read if no original writer ran; no manufactured initial quaternion.
+
+Track9 uses live shared animation scale (1400/scale ->native integer), SAMECD0
+1C timer, actual230 selected7 and native signed16-bitE4.4F releases1 or2;
+5A releases2 or3, then actual00791290(NULL,7,-1,-10000,-1), E0CC feedback4000/
+8000.46/4C/4D produce20000/1000/2000. Fresh E0B8=4 exits movement kind3.
+No producer, clock, cache or ownership registry is added. Native safety guards
+and engine endpoint doubles are distinguished from recovered behavior.
+
+Original client fingerprint unchanged. Corrected thiscall0078DF60 export and
+raw78F1xx..78F6xx,790695..790904,790AB2..790D36,7590E7..75921x establish
+ABI, constants and call order; old00790520 decompiler stack aliases are not used
+as geometry proof. Original constants80F550=0x3DCCCCCD(.1),80FAA0=0x3F19999A(.6),
+816738=0x44AF0000(1400), verified from original PE sections.
+
+Verification: native strict ASan/UBSan/LSan PASS156 over actual230 state with
+explicit engine/Scene endpoints: positive4/8 geometry, every reached failure
+prefix, invalid/NaN bounds, saved-pose guard, absence, retry/repeat construction,
+track9 actual timer/refcount/selection/feedback policy and invalid live scale.
+Strict actual i386 World/public DD0/230/Items/frame/Scene composition full link;
+selected held paths have no Runtime double. Other DD0 Runtime branches remain
+labelled throwing endpoint doubles. Launcher/probe compile/link separately; no
+Windows execution or actual mission/desktop claim. No new ledger bodies or
+promotions; four existing partial rows extended. Receipt records fingerprints
+and temporary audit cleanup.
+
+C9 remains open: track8 containing mount assignment0075DF70 and mounted
+attachment9 are not supplied by these held-model paths. H4's other completion,
+Script, subgroup and attachment families remain open. Continue after C9a.
