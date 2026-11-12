@@ -46,3 +46,19 @@ RuntimeItem/Human/ShotMgr/RigidBody i386 compile and latest launcher/probe build
 PASS. This is compile-only integration, not full application execution. Temporary
 new sources/native binaries/object are fingerprinted/removed in the
 [receipt](checkpoints/p2.2-human-projectile-production-20261112.json).
+
+## Completed-H4 integration
+
+Merged HUMb9d67aa into H6 after saving projectile checkpoint93dfe42. H4's actual
+0045EAB0/00530FF0 receiver replaces H6's old guard; actual grenade publication,
+notification and inventory removal retain their order. H4 AI/VM/common command/
+formation/vehicle and H6 item/fire/ShotMgr changes coexist. H4 branch/worktree is
+not required. Source remains separate from full asynchronous/application delivery.
+
+Actual World/Human/item primary+secondary fire and grenade notification compile
+and FULL LINK as strict i386 against the real H4/H6 owner types; latest launcher/
+probe rebuild PASS, no execution. Full ledger validation passes in H6. Its ignored
+menu/network evidence already exists locally. One imported00572C00 ignored C link
+was unavailable; the ledger retains its existing tracked source/contract/receipts
+and their original evidence fingerprints instead. No missing artifact was copied,
+created or credited as a new body. [Integration receipt](checkpoints/p2.2-human-h6-completed-hum-20261112.json).

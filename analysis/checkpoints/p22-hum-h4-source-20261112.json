@@ -1,0 +1,494 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 common-output source boundary on existing actor owners",
+  "implementation_base": "63de5fb",
+  "branch": "feature/p22-hum-h4",
+  "source_only": true,
+  "H4_common_outputs_source_complete": true,
+  "H4_scope": "Existing actor owners, common outputs, available completions, tracks/DD0, Script/vehicle, subgroup/formation and reached Active AI grenade notice; external absent actors and full Runtime/application remain required.",
+  "P22_HUM_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "contract": "analysis/human-h4-source-closure.md",
+  "source_files": [
+    {
+      "path": "recovered/game/car_loading_activation.h",
+      "bytes": 24433,
+      "sha256": "1f1bfdf34d67a8a3719c5fc8337f7f51655bd4aadbf17b0df71e0dfab0b0f7e5"
+    },
+    {
+      "path": "recovered/game/car_loading_lifetime.h",
+      "bytes": 3088,
+      "sha256": "fd6d7571668ea2c665eb778f025ca2168f347a3d30e41da4ed9e44a9a097f69c"
+    },
+    {
+      "path": "recovered/game/human_ai_resources.h",
+      "bytes": 14091,
+      "sha256": "6aa159717e83b21ad20fa17244dc9418b596134ce583441d5b75fda1582cf73d"
+    },
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "bytes": 16423,
+      "sha256": "ff19d7cd22e9cd98ff7fd8dc63dc8a5f8f2ee883f97374fa42093cb1aca4b4da"
+    },
+    {
+      "path": "recovered/game/human_script_loading_controls.h",
+      "bytes": 10556,
+      "sha256": "1b59efde5a394245cb5b74c0a2333f365826fe98e863b3849222f578266389a6"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 164601,
+      "sha256": "820ef583a9c99a26227e0a56cf5273a7a8c6262febe4d82a18c238fadb078c16"
+    },
+    {
+      "path": "recovered/game/human_vehicle_path.h",
+      "bytes": 20489,
+      "sha256": "434ebf930a5bf78e3a72fd4cb115c31ae8d1a7ed73ceb24398f06216603a3505"
+    }
+  ],
+  "verification": {
+    "native": "PASS49 actual path/route/navigation/forward/reverse/failure; PASS18 actual VM/context; PASS12 actual named/chase selection. Human/Car/World/roster/frame/control endpoints explicitly doubled as named by logs.",
+    "i386": "PASS strict actual World/Car/Script/positive completion/formation/attachment FULL LINK without adjacent Runtime doubles; external required guards preserved. Not executed.",
+    "application": "PASS latest launcher/probe rebuild/link; not executed.",
+    "ledger": "Full checker FAIL inherited ignored evidence; exact frozen baseline/all-row schema/address/status/available evidence and changed18 rows/README checked separately."
+  },
+  "ledger": {
+    "added_partial": [
+      "00578770",
+      "00578790",
+      "005796d0",
+      "00579760",
+      "00579d50",
+      "0055f320",
+      "00577a60",
+      "0055e0e0",
+      "0055e160",
+      "0055e2c0",
+      "0055e2e0",
+      "0055e120",
+      "0051e1a0",
+      "00416d90",
+      "004f2630"
+    ],
+    "extended_partial": [
+      "0055e250",
+      "0055f2c0",
+      "00421c00"
+    ],
+    "complete": 34,
+    "partial": 3324,
+    "client_partial": 3319,
+    "engine_partial": 5,
+    "complete_promotions": 0,
+    "no_credit": [
+      "Absent type15/20/34 actors",
+      "Player medical00546DC0 guard",
+      "CRT/engine/vector helpers",
+      "H8 containing alarm/frame/application"
+    ]
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-native-run.log",
+      "bytes": 116,
+      "sha256": "56c6c3b9bae330c02bfec05bf8851db158731872eb2be63b188b0077c4561834"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-vm-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-vm-native-run.log",
+      "bytes": 124,
+      "sha256": "df3a93f45343f062f701117d24e3740fe9cacc5690ada3297f1b462fb59c84a0"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-selection-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-selection-native-run.log",
+      "bytes": 126,
+      "sha256": "3550997b38d2fa9a32ee19a8b385876346d423469a0f90878b59dbf7bd21d4b7"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-host-i386.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-application-link.log",
+      "bytes": 870,
+      "sha256": "17bc46c791ed45977d375eb6bde5cd96d52e6fb21f58c0e08d26f2cf5e674162"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-ledger-focused.log",
+      "bytes": 670,
+      "sha256": "7f48ec2e4f61246070338aa5601b9d01c5fa48fa2670bf82aa14d2cb94a5228b"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-ledger-full.log",
+      "bytes": 109,
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-frame.asm",
+      "bytes": 52199,
+      "sha256": "2dad3cf3cb73749ea98317ed840b79fc8746d0bf884e1a1de2c512ba6e612b02"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-route.asm",
+      "bytes": 38946,
+      "sha256": "17728798b059d3901c3222aa33e584e6dce0d3142af99a81253e543f78b3adad"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-controls.asm",
+      "bytes": 42427,
+      "sha256": "b88cabb8f2417777b32db2ce567c2bbc49b2ba42942013d5b77968ccf276c4ad"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-governor.asm",
+      "bytes": 2073,
+      "sha256": "953d7189728d1b8272be8be74865f4c9cec9e8ad514d3b00ee354cf347ae1aa5"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-point-request.asm",
+      "bytes": 4398,
+      "sha256": "6512af4369cfdf4ff3911726ed004767d7e482c1c5ec39ac07935748ec4d0d33"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-name-compare.asm",
+      "bytes": 2717,
+      "sha256": "f7655e4fbedcef9385252279addc18273bdf92cc01d56b539b9b79c587680738"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-name-crt.asm",
+      "bytes": 3333,
+      "sha256": "a2e0beea85a600fc10458b9eaff9c91192e5d75b61533af974d2328480d8b177"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-constants.json",
+      "bytes": 817,
+      "sha256": "ab7959e18e27312bcde2b676b22b018619b423d048170800178ae83f5a44473d"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ExportH4VehicleABI.java",
+      "bytes": 2995,
+      "sha256": "a96f8bd5fb0886facbf780d5edfc82aad75cd83ceb044f76b7e24313c5d195cd"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-takeover-original/00530ff0.c",
+      "bytes": 8023,
+      "sha256": "6b9c1fa3d6b8c5f7be0ee82b1c70fe3a19ecc55ce0019f710ddb8001da0e59bb"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-takeover-original/00578770.c",
+      "bytes": 80,
+      "sha256": "e0bedfde1f9aedce50db8ec5b3591b9f4e38bbf2f43d33c3a3e65750bd997e13"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-takeover-original/00578790.c",
+      "bytes": 15739,
+      "sha256": "95008e87f5b3ead69ebc16dff6dbfde91884040865b68e3cc434e7279efa2082"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-takeover-original/00530ff0.json",
+      "bytes": 59118,
+      "sha256": "b0733b522cdff62a694c9c29b933bec0c33d84cc80547db224576fec1456d096"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-takeover-original/00578770.json",
+      "bytes": 944,
+      "sha256": "d9b84806b49e8776b6567228e9b088342a28076a7e45018329ffa4eee274fb01"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-takeover-original/00578790.json",
+      "bytes": 72714,
+      "sha256": "c1692332100d2aca361aeb4dd8fe70dcbc83d6f25dde81272eb714abdae9bf04"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0052d720.c",
+      "bytes": 4645,
+      "sha256": "d1f7ffa2898531d221e232cbfb736022afe6861f3fd5fc9bd05e52ae6b164f76"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e030.c",
+      "bytes": 1131,
+      "sha256": "8aae19c34b3ff26fef1806ffe15aa182d37647d5a253953fe47377d0d5b634db"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e120.c",
+      "bytes": 97,
+      "sha256": "72ffb91c481f19a33caf67f3a61f5e618e2d39b0b66b66a679fe9aff7aa9d0c5"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e130.c",
+      "bytes": 121,
+      "sha256": "163517623ffd6ff923c29b755ce5367d67f0611935baab347aaca57377cea41d"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e2b0.c",
+      "bytes": 139,
+      "sha256": "2ecb3ac42e6aa0cbcab63784618f224c19d046bbb8f8e2f11c141535a8bd4a41"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e2c0.c",
+      "bytes": 140,
+      "sha256": "8aa2cc29c69105610915a25794f91fb23bdb75260939b605598121de5210278f"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e2e0.c",
+      "bytes": 115,
+      "sha256": "e51c3f1ff171c856e47f931e91b25d81e043a4e0b5494728424f3a64777630f4"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055f2b0.c",
+      "bytes": 80,
+      "sha256": "d3a99bcdde73ee017e0a306e61e30ea60f1eb854a0668226867bace889eab3a8"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/00599040.c",
+      "bytes": 541,
+      "sha256": "f87f8c5e66f0c41f74fae6e988faf89c7ce86cf601aaa3040f5e4c1c526edc5f"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0052d720.json",
+      "bytes": 32167,
+      "sha256": "cd0898d68dccc1c9b682bd85d55f20cdd6b822ab27dfdcfb5965a9daf407c12b"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e030.json",
+      "bytes": 2501,
+      "sha256": "4dafd3af34ace0888463593a7fe74030d4b41cabd1eb40619a9470a95a36bc83"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e120.json",
+      "bytes": 466,
+      "sha256": "9eb1499d1adf4c9d3938ceee9057313f8e077a4c83b1c5490f2a1dee0e9755b2"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e130.json",
+      "bytes": 747,
+      "sha256": "c5395c5740a303ae0c8a1ca6668c8f0b410e1d1e9cd56ced5847d4524e7d93f9"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e2b0.json",
+      "bytes": 816,
+      "sha256": "49a3ec4bc7bfbb4243f2e8fe6e2f801b43ce328156f8abd8595d9b49ab3971d3"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e2c0.json",
+      "bytes": 816,
+      "sha256": "0799449d2b6b88b5775fbe3b8f81846d962eefbd9f30d74eff2f5edc3ec541d6"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055e2e0.json",
+      "bytes": 609,
+      "sha256": "19ad59e621f0f357ea6ec9814f7941622e6622f23e200ad6dcff9735951eae50"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0055f2b0.json",
+      "bytes": 466,
+      "sha256": "5c9870759efe1610dd2f6e7a64a2ce37ea80114a962c9c4a1c8a7c48075fab1a"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/00599040.json",
+      "bytes": 1801,
+      "sha256": "33f8ec8451a4658a9a9fe8aa86c222f643a9222f1498028b132732f6e2d939f8"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055e0e0.c",
+      "bytes": 280,
+      "sha256": "627b0792d68b5d60c58e549d2f202fbbd615821c3129367ade61ffd1fff8c7f3"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055e160.c",
+      "bytes": 633,
+      "sha256": "01ca50a6e9868f5276c61c1050899e8f8fa79c32b97b29a764f31b33d29b56fe"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055e1d0.c",
+      "bytes": 800,
+      "sha256": "e90e55f40ae84b14f4f2165b6b759a5aef3ac91afb693bdcc6994b11a9703f2f"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055e250.c",
+      "bytes": 190,
+      "sha256": "8400a22cfcbd2889ace562a8b2e879266f4252f2ec44d774d9e3f1e6716a19ad"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055ffb0.c",
+      "bytes": 2801,
+      "sha256": "5d860fa4d121d2e037a3a705c8e08316fe3432698fbad94a5b644fce5748d3ac"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055e0e0.json",
+      "bytes": 1478,
+      "sha256": "4740de6f43ff1fc0220440467e9ab9320d07410b8966ca1be7746557e35f4006"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055e160.json",
+      "bytes": 2060,
+      "sha256": "cd8804527b4a73dc0638257344cb9c7612cd7c8ead542b94ff5d1b4c23328168"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055e1d0.json",
+      "bytes": 2065,
+      "sha256": "9d3e43b20f5caca54e579f2e59d3e0ad928994d25d4c3413cb8d482ac3540c47"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055e250.json",
+      "bytes": 1573,
+      "sha256": "9ee4379adfca7f5db2c37949d8dcddff25b3a1f27583226fe4f7a20a3e0786b6"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-producers-original/0055ffb0.json",
+      "bytes": 7129,
+      "sha256": "ca891e92530223434cc859296e6a3557b3223608396e6bd160699b98e85206aa"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-vm-leaves/00416d90.c",
+      "bytes": 140,
+      "sha256": "96c67fef49535fc57adba34e7750a79a316fb4cfced2156a12304f2bb857ef2c"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-vm-leaves/0051e1a0.c",
+      "bytes": 419,
+      "sha256": "109164844fe2df242b9fdb8b9dc0db87dbb9ec3e26a1d86d9bc1226011d06f27"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-vm-leaves/00416d90.json",
+      "bytes": 1042,
+      "sha256": "acd5df8f9c873d0283d2145753a04d6ac6a72431d4ca5a92b6d92753b7099d67"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-vm-leaves/0051e1a0.json",
+      "bytes": 1720,
+      "sha256": "99765ea517488d28e6ec094bfada1c2e0946376e658aefe098914009c58926b4"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-abi/0055f320.c",
+      "bytes": 12592,
+      "sha256": "0790aa585a4378483350430417f6723b9a37ab0f99ec3bb345ac20e35f3eb482"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-abi/00578790.c",
+      "bytes": 15896,
+      "sha256": "ab60a8e6ebe748b52f97670ba3d47df7757e92b237fb9ad79c5c17a1140f20ec"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-abi/00579760.c",
+      "bytes": 5242,
+      "sha256": "0f65bf76ec4d6b8386918e1e2c6cfc4584864c07e85b1bdc84326aadddc42ce8"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-abi/00579d50.c",
+      "bytes": 5240,
+      "sha256": "b734975af0c81453dea345b05c5d52adb1904fa3adf592a96c2b389726b4790d"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-abi/0055f320.txt",
+      "bytes": 122,
+      "sha256": "6bdfeea969c80bb9a34d5e2277f1c54a40a3452c1cb9c1cffe8a2f2950130cc6"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-abi/00578790.txt",
+      "bytes": 122,
+      "sha256": "9b84058b6642cf2a9bf47106097399fc5326d9c0dad79b93f4d6332c89f9e9c1"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-abi/00579760.txt",
+      "bytes": 122,
+      "sha256": "74567d6514cb8f4091389f6ee7746c6c770eae2a812e4990c901234f65683629"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-abi/00579d50.txt",
+      "bytes": 122,
+      "sha256": "72f271e266b4e7ea03b652cfa99594d350417703c482db318c7152b91ae5444e"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/0055f320.c",
+      "bytes": 10999,
+      "sha256": "e6a91bd867393d93c1ed906e6386238cd63279771c9ec4387f3138a240cc46b7"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/00577a60.c",
+      "bytes": 815,
+      "sha256": "9a6e5c651b72f60d79541ad4cdb7f0ec8c0d7430d1987ea15a1f3c1eda89b58d"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/005796d0.c",
+      "bytes": 520,
+      "sha256": "40206cd8ff82fc4078df00ae517b0c908d8d419ef862f402fbc27cfa98b2f7af"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/00579760.c",
+      "bytes": 4825,
+      "sha256": "28fa3b0b8bded3326fd16248f2a853bd402e488a1ad4fe3b5c9a975f2e94ee00"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/00579d50.c",
+      "bytes": 4823,
+      "sha256": "911004261ca89ca836ea486f4e65e4a09b8b61dca1b07efb0c449d35d4baa3e0"
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-native.cpp",
+      "bytes": 6101,
+      "sha256": "9363831bdac19ac29756d8c5d1fb1868523a7ff37e94f36a71672cc4273517ff"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-native",
+      "bytes": 1117552,
+      "sha256": "42e7eb15b9236940f44800e2ddb29138bd0aa8b3fa4a6c3e577fea0c60f00a88"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-vm-native.cpp",
+      "bytes": 2805,
+      "sha256": "1f164d180e8d370559a46686dc17b137db491a12488a2410ca900337ec216127"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-vm-native",
+      "bytes": 1452736,
+      "sha256": "165c8c082b5e810a42150759214c2d38bf8612a609a2786f31e18395e91b7c92"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-selection-native.cpp",
+      "bytes": 2465,
+      "sha256": "73bf6715d592a508737032c599512e49b10a8ef07a6c0a3f6415a0d0bc01dcfd"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-selection-native",
+      "bytes": 682816,
+      "sha256": "265b152aa74ffc9ced31c957bff65f853e5c288d17044c00bec9a33a1686bbf3"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-host-i386.cpp",
+      "bytes": 712,
+      "sha256": "b3370a2a252d27c6c38dc7952366eb02c0bbf23fedcee63571f71fe1d590729d"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-host-i386.exe",
+      "bytes": 2188288,
+      "sha256": "89a34f50febd2962c44199ebc68052558107e96a5e5b5785dc788d175e92447b"
+    }
+  ],
+  "required_next": [
+    "H6 producer integration and Player medicine; preserve separate WIP",
+    "H8 actual type15/20/34 owners, full Runtime/occupied Car/packet/input and known H2 guards",
+    "Actual application activation/render/failure/re-entry/teardown/user desktop acceptance"
+  ]
+}

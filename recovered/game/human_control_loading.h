@@ -1,5 +1,8 @@
 #ifndef HD2_GAME_HUMAN_CONTROL_LOADING_H
 #define HD2_GAME_HUMAN_CONTROL_LOADING_H
+#include "game/human_track_equipment_events.h"
+#include "game/human_track_control_events.h"
+#include "game/human_track_effect_events.h"
 
 #include "game/human_action_control.h"
 #include "game/human_control_action_queue.h"
@@ -20,7 +23,9 @@
 #include "game/human_lateral_stride.h"
 #include "game/human_posture_room.h"
 #include "game/human_mount_retirement.h"
+#include "game/human_mount_assignment.h"
 #include "game/human_direction_replay.h"
+#include "game/human_position_replay.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
 #include "game/human_face_control.h"
@@ -147,6 +152,10 @@ public:
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
         prepare_human_direction_replay(*this,look,*human_,requested,human_frame_signed_word(elapsed),publish);
     }
+    template<class Look>void replay_position(const Look& look,const HumanVector& position){ //00759E20.
+        if(!human_)throw std::logic_error("Human position replay has no actual bound Human");
+        replay_human_control_position(*this,look,*human_,services_,frames_,position);
+    }
     void publish_dynamic_ground_position(){ //007646F0 dynamic descriptor publication tail.
         synchronize_control_position(human_->base().world_position());
         synchronize_control_position(human_->base().world_position());
@@ -202,6 +211,7 @@ public:
     }
     Shadow& shadow(){return shadow_;}
     const Links& links() const{return links_;}const auto& motion() const{return motion_;}
+    auto& animation(){return animation_;}
     auto& motion_words(){return action_.frame_words();}
     const auto& animation() const{return animation_;}const auto& opacity() const{return opacity_;}
     auto& opacity(){return opacity_;}
@@ -437,6 +447,9 @@ public:
     std::uint32_t human_scene_epoch(){return frames_.human_scene_epoch();}
     int equipment_current_mode() const{return physical_.state().template get<std::int32_t>(0xa20);}
     int equipment_command_identity() const{return action_.state().template get<std::int32_t>(0x38);}
+    template<class Transfers,class Look>void finish_inventory_added_transfer(Transfers& transfers,Look& look){
+        apply_human_timed_inventory_transfer(*this,transfers,frames_,look,services_); //00792590→00758170(true).
+    }
     void reset_equipment_command(){action_.reset_equipment_command();}
     void equipment_transfer_mode(std::uint32_t command,std::uint32_t mode,bool moved) {
         if(moved)field_dc8_=3;
@@ -678,7 +691,7 @@ public:
         }
         if(state.template get<std::uint8_t>(0x18c))synchronize_presentation_direction(look,runtime);
         animation_.present_position(elapsed); //007587F0→007585C0.
-        present_control_effects(look,elapsed,runtime);
+        present_control_effects(look,elapsed);
         if(human_frame_signed_word(word(0x950))>0){
             const auto remaining=word(0x950)-elapsed;
             state.set(0x950,human_frame_signed_word(remaining)<0?0u:remaining);
@@ -704,12 +717,13 @@ private:
             else if(variant==1||variant==3||variant==4||(variant==0&&chance()))play_presentation_track_sound(8);}
         else if(posture==2&&(variant==2||variant==5||variant==1||variant==3||variant==4||(variant==0&&chance())))play_presentation_track_sound(7);
     }
-    template<class Look,class Runtime>void present_control_effects(const Look& look,std::uint32_t elapsed,Runtime& runtime){ //00758830.
+    template<class Look>void present_control_effects(const Look& look,std::uint32_t elapsed){ //00758830.
         auto& equipment_owner=services_.human_presentation_equipment(*human_);
         auto& state=physical_.control_frame_words();
         const auto mode=animation_.present_scene_effects(elapsed,human_is_player(),
             [&](std::int32_t event){ //00758D20.
                 switch(event){
+                case 0:apply_human_track_inventory_transfer(*this,equipment_owner,frames_);return true;
                 case 1:equipment_owner.transfers().event(1);return true;
                 case 2:{
                     const auto command=look.state().template get<std::uint32_t>(0x54);
@@ -722,13 +736,33 @@ private:
                     present_footstep(look,event==5);
                     present_footstep_track_sound(look);
                     return true;
+                case 7:apply_human_track_door(*this,*human_,services_);return true;
+                case 8:{
+                    auto& current=services_.human_look_control(*human_);
+                    apply_human_track_action_transition(*this,current,*human_,equipment_owner,services_,frames_);return true;
+                }
+                case 9:{
+                    auto& current=services_.human_look_control(*human_);
+                    auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+                    apply_human_track_action_retirement(*this,current,equipment_owner,frames_,services_,publish);return true;
+                }
                 case 10:equipment_owner.set_frame_weapon_pose(false,true);return true;
                 case 0x0b:case 0x0c:
                     if(event==0x0c||!animation_.equipment_frame_timer_active())equipment_owner.set_frame_weapon_pose(false,true);
                     animation_.clear_equipment_frame_timer();
                     return true;
+                case 0x0d:case 0x0e:
+                    apply_human_track_hand_transfer(event,tracks_,*this,equipment_owner);
+                    return true;
+                case 0x0f:case 0x10:case 0x11:equipment_owner.transfers().event(static_cast<unsigned>(event)+1u);return true;
+                case 0x12:apply_human_track_particle(*this,services_,frames_);return true;
+                case 0x13:return apply_human_track_ladder_sound(*this,*human_,services_);
                 case 0x15:state.set(0x9c8,std::uint8_t{1});return true;
-                default:return runtime.apply_human_track_event(*this,look,event);
+                case 0x14:apply_human_track_action_light(*this,equipment_owner);return true;
+                case 0x16:apply_human_track_deceleration(*this,*human_,services_);return true;
+                case 0x17:apply_human_track_motion_reset(*this);return true;
+                case 0x18:apply_human_track_presentation_sound(*this,*human_,services_);return true;
+                default:return true; //758D6B..74: unsigned event>24 skips to next event.
                 }
             },
             [&](Frame previous,Frame next){
@@ -737,8 +771,17 @@ private:
                 if((!previous||!next||previous==root||next==root)&&services_.current_human_frame_player()==human_)
                     services_.refresh_human_presentation_camera();
             });
-        if(state.template get<std::int32_t>(0xa30)>0)
-            runtime.present_human_control_attachment(*this,elapsed,mode); //00793490 and attached opacity.
+        if(state.template get<std::int32_t>(0xa30)>0){
+            equipment_owner.present_mounted_frame(elapsed); //00793490 before fresh selected-model/EC query.
+            if(const auto model=equipment_owner.state().selected_model(9)){
+                if(auto* mounted=services_.template human_mounted_model_actor<Human>(model)){
+                    auto* target=services_.human_inline(*mounted).control();
+                    if(!target)throw std::logic_error("Mounted opacity requires its actual target DD0");
+                    target->opacity().inherit_mount_observation(opacity_); //RAW targetDA8/ambientDB8, not field0/applied.
+                    target->opacity().update(model,human_frame_signed_word(elapsed),mode,*target);
+                }
+            }
+        }
         if(animation_.advance_equipment_frame_timer(elapsed))
             equipment_owner.set_frame_weapon_pose(true,false); //00791AC0(1,1,0).
         const auto secondary=state.template get<std::uint32_t>(0x1e8);

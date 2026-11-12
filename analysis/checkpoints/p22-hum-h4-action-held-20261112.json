@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 C9a actual held4/8 attachment/retirement and track9",
+  "implementation_base": "38108c3",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_animation_state.h",
+      "sha256": "510725727df3d17f8005cbcd50a9031645577a73b905ff554c2f7e53697ea925",
+      "bytes": 15992
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "sha256": "de78267a90541ca13845a02125733589911c241793588d968ed183ad98d83db0",
+      "bytes": 57715
+    },
+    {
+      "path": "recovered/game/human_equipment_action.h",
+      "sha256": "f47a11a63b347b1e91c940b79455d92846774d7e2471057c42cab6488162cd4b",
+      "bytes": 12464
+    },
+    {
+      "path": "recovered/game/human_equipment_attachments.h",
+      "sha256": "e54f4a619629f2c463c9c2330c55b0c598a7a59bef76e1e7b68637d861535125",
+      "bytes": 15316
+    },
+    {
+      "path": "recovered/game/human_equipment_services.h",
+      "sha256": "c0aff9218949b0491946f791b4f5a0a24432329af3c0fc66802a5eca9e60ea19",
+      "bytes": 6288
+    },
+    {
+      "path": "recovered/game/human_equipment_state.h",
+      "sha256": "52d0bc3b4777466e57cf28be56837e74ff350b040a425b0ef3db11e91eeddfb3",
+      "bytes": 4692
+    },
+    {
+      "path": "recovered/game/human_equipment_transfers.h",
+      "sha256": "bcaed53aa05edc8fbb61566538dd1c293cce7d79a3bdd09f4437d1288ea300a4",
+      "bytes": 12097
+    },
+    {
+      "path": "recovered/game/human_track_equipment_events.h",
+      "sha256": "e626d2613221df939798fc226d40b26b2f128c2ff21a051073edee32f95406c8",
+      "bytes": 3708
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "sha256": "b507163a469d83dd2683478c4a5cba69eabd77f8bd74e2f133bb31c72ad5ffcd",
+      "bytes": 112058
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-retire4.asm",
+      "sha256": "a1e7d0fc3959778c3925b107bb674756e613791a18086dcd1322c78b11113537",
+      "bytes": 9332
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-retire8.asm",
+      "sha256": "8820457ec0e7267e43a6cd1b17cff4367800c852eb87d71c0460954e3f0e49f6",
+      "bytes": 9417
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-original.asm",
+      "sha256": "7c19ad26d0935d74fc83425deda73eb31979fef8fd4789c0a0c12c4bc2a861de",
+      "bytes": 40733
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/c9-index.log",
+      "sha256": "3cb334b9281b19fa580d175753650119667f846c31b57ae9fc4c8dbbd23bd1af",
+      "bytes": 9156
+    }
+  ],
+  "external_original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-equipment-geometry-abi/0078df60.c",
+      "sha256": "e4484dc694201c6772d7eda345688931982a9a2542b31df3e49d8ed863b6a18f",
+      "bytes": 53743
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-equipment-geometry-abi/0078df60.json",
+      "sha256": "c0b2bc3ab35bfcfc47fce0bd561a2952baa91bea25df37dd27722e12b1ae484b",
+      "bytes": 66543
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-equipment-attachment.asm",
+      "sha256": "5044422091fcd1d2e5c72014ca82213c7cd64971c1d2b82da2b7e4bfdcc0be11",
+      "bytes": 141639
+    }
+  ],
+  "verification": {
+    "native": "PASS156 strictO1 ASan/UBSan/LSan actual230 state and policy with explicit engine/Scene doubles. Positive, every reached prefix, bounds absence/NaN, retry/repeat, timer conversion/refcounts/selection/feedback.",
+    "i386": "PASS strictO0 FULL LINK actual public DD0/World/230/Items/frame/Scene, held attachment4/8,retirement4/8/events4,5,12,13 and event9 source bindings. Other Runtime branches explicitly throwing doubles.",
+    "application": "PASS existing launcher/probe strictO2 full links; no execution.",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-held-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-held-native-run.log",
+      "sha256": "3016a71f41efe8ddb19571767b01c4e9731a89846451ebdce4e5fddfb74a24b9",
+      "bytes": 99
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-held-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-held-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-held-audit.cpp",
+      "sha256": "7b61de25469fa1d5210fcedc4f7e2a806803fb96a1076527f3025b18cba18c35",
+      "bytes": 7417
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-held-audit",
+      "sha256": "1e51ae69357a349c423eb6056f107379feb03d0d4673e94b5beafe1f757f1900",
+      "bytes": 1178400
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-held-host.cpp",
+      "sha256": "5387ce262b0e913e65323f79e05fc8ec41f329da460f3bbb8afef2794bca0388",
+      "bytes": 1222
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/action-held-host.exe",
+      "sha256": "aad7c953a15f46966ab548966e26b324c8fd8cab842030ba8f00753313f2825a",
+      "bytes": 4303872
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [],
+    "extended": [
+      "0078df60",
+      "00790520",
+      "007913d0",
+      "00758d20"
+    ],
+    "complete": 34,
+    "partial": 3026,
+    "client_partial": 3021,
+    "engine_partial": 5,
+    "denominator": 18783
+  },
+  "remaining": "C9 track8/mounted assignment0075DF70 and attachment9 remain open. Other H4 completions/Script/subgroup/attachment families remain open. No actual mission reachability from audit invocation."
+}

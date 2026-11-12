@@ -211,6 +211,11 @@ public:
     void bind_animation_tracks(HumanJointWords<0x3a4>& tracks){frame_words_.bind(tracks);}
     void unbind_animation_tracks()noexcept{frame_words_.unbind();}
     auto& control_action_queue(){return queue_;} //DD0+A4C, SAME deque retired by0075B6C0.
+    void set_frame_motion_mode(std::uint32_t mode,bool copy){ //0075E250, native flag BEFORE face callback.
+        state_.set(0x1ac,mode);if(copy)state_.set(0x1b0,mode);
+        if(mode!=1u)state_.set(0x18c,std::uint8_t{1});
+        if(!mode)face_.activate_air_pose();
+    }
     void rebind_frame_posture(std::uint32_t posture){rebind_posture(posture);} //0075BC80.
     float control_projection_height(float model_height)const{ //00770100, unscaled marker DD0+6E0.
         const auto count=primary_count();
@@ -345,6 +350,15 @@ public:
             descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(index?0x1d0:0x1cc))*descriptor.position[3]);
             collisions_.move(descriptor);
         }
+    }
+    void publish_replayed_geometry(std::uint32_t posture){ //00759E20, preserves descriptor flags and masks.
+        markers_.snapshot();rebind_posture(posture);
+        for(int index=0;index<primary_count();++index){
+            auto& descriptor=required(primary_,index);descriptor.position=posture_.at(static_cast<std::size_t>(index));
+            descriptor.radius=static_cast<float>(static_cast<long double>(descriptor.position[3])*state_.template get<float>(0x1c8));
+            collisions_.move(descriptor);
+        }
+        shot_spheres();publish_air_shots();
     }
     void suspend_collisions(bool suspended,std::uint32_t posture) { //0075C2D0.
         if(!human_)throw std::logic_error("Human collision transition has no bound Human");

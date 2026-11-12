@@ -17,6 +17,24 @@ namespace hd2::game {
 class MissionNavigation {
 public:
     explicit MissionNavigation(MissionTableSet& table) : table_(table) {}
+    bool connect_runtime_points(std::uint16_t first,std::uint16_t second){ //0051F280; first mark survives a rejected second mark.
+        auto* a=record(first);auto* b=record(second);
+        if(!a||!b||!mark_runtime_link(*a,second,*b)||!mark_runtime_link(*b,first,*a))return false;
+        auto* begin=static_cast<std::uint32_t*>(table_.begin30);auto* end=static_cast<std::uint32_t*>(table_.end34);
+        auto* limit=static_cast<std::uint32_t*>(table_.limit38);
+        if((!begin&&(end||limit))||(begin&&(!end||!limit||end<begin||limit<end)))throw std::logic_error("Navigation runtime pair vector is malformed");
+        const auto size=begin?static_cast<std::size_t>(end-begin):0;
+        if(end==limit){
+            const auto growth=size>1?size:1;
+            if(size>(std::numeric_limits<std::size_t>::max()/4)-growth)throw std::length_error("Navigation runtime pair capacity exceeds bounds");
+            const auto capacity=size+growth;
+            auto* next=static_cast<std::uint32_t*>(TableStorage::allocate_table_storage(capacity*4));
+            if(size)std::memcpy(next,begin,size*4);
+            TableStorage::release_table_storage(begin);begin=next;end=next+size;
+            table_.begin30=begin;table_.end34=end;table_.limit38=begin+capacity;
+        }
+        *end=std::uint32_t(first)|(std::uint32_t(second)<<16);table_.end34=end+1;return true;
+    }
     void reset_runtime_links(){ //0051F230 via00523E30: FIRST dataset only; retains vector capacity.
         table_.end34=table_.begin30;
         for(std::uint32_t n=0;n<table_.count0;++n){
@@ -234,6 +252,24 @@ public:
         return nearest_volume_impl(point,radius,minimum,true);
     }
 private:
+    static bool mark_runtime_link(MissionTableRecord& from,std::uint16_t index,const MissionTableRecord& to){ //005248C0/005247A0/005247E0.
+        if(!(from.flags&0x400u)||!(from.flags&0x40u)||(from.flags&0x80u)||&from==&to)return false;
+        const auto count=from.flags&0x3fu;
+        auto* bytes=static_cast<unsigned char*>(from.payload);
+        if(!bytes)throw std::logic_error("Navigation synthesized link requires actual borrowed payload");
+        for(unsigned n=0;n<count;++n){std::uint16_t value;std::memcpy(&value,bytes+n*4,2);if(value==index)return false;}
+        if(count==32)return false;
+        auto* last=bytes+count*4;std::uint32_t sentinel;std::memcpy(&sentinel,last,4);
+        if(sentinel!=0xffffu)return false;
+        const auto x=static_cast<long double>(real(to,0))-real(from,0),y=static_cast<long double>(real(to,4))-real(from,4),z=static_cast<long double>(real(to,8))-real(from,8);
+        const auto length=std::sqrt((x*x+y*y)+z*z)*(1.L-(static_cast<unsigned>(to.prefix[0x12])+from.prefix[0x12])*.0009765625f);
+        const float stored=static_cast<float>(length);
+        if(length>250.f||!(stored>.0010000000474974513f))return false;
+        const auto encoded=static_cast<long double>(stored)*256.f;
+        if(!std::isfinite(encoded)||encoded<0||encoded>std::numeric_limits<std::int32_t>::max())throw std::logic_error("Navigation synthesized link conversion exceeds native range");
+        const auto weight=static_cast<std::uint16_t>(static_cast<std::int32_t>(encoded));
+        std::memcpy(last,&index,2);std::memcpy(last+2,&weight,2);from.flags=static_cast<std::uint16_t>((from.flags+1u)|0x80u);return true;
+    }
     static std::uint32_t route_integer(long double value){
         if(!(value<0x1p63L))return 0; //Low DWORD of the x87 indefinite.
         return static_cast<std::uint32_t>(static_cast<std::int64_t>(value));

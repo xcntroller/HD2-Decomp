@@ -13735,13 +13735,15 @@
       "program": "client",
       "entry": "0055f2c0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0055f2c0: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0055f2c0: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded. Actual typed native30-byte route owner clears while retaining allocation capacity.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ai_resources.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
       ]
     },
     {
@@ -13774,13 +13776,15 @@
       "program": "client",
       "entry": "0055e250",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0055e250: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0055e250: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded. Positive typed Car borrower now restores same governor before requesting stop4.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ai_resources.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
       ]
     },
     {
@@ -14395,13 +14399,16 @@
       "program": "client",
       "entry": "0078df60",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0078df60: Equipment attachment cases0/1/2/3/10 and four-root retirement with original geometry/math; action cases4..9 excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0078df60: Equipment attachment cases0/1/2/3/10 and four-root retirement with original geometry/math; action cases4..9 excluded. C9a adds actual held4/8 internal bounds/HW midpoint and Human40 geometry, WORLD saved pose, native raw visibility/link flags and face order. Actual mounted attachment9/230 event15 and containing track8 now bound; original unsigned events>24 skip, all0..24 actual dispatch consumers available.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_equipment_attachments.h",
         "analysis/human-equipment-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
       ]
     },
     {
@@ -14512,13 +14519,15 @@
       "program": "client",
       "entry": "00792590",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00792590: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 00792590: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded. Actual timed00758170(true) now bound from00792590 slot3 after selection/mode/forced command, preserving150/liveScale __ftol, peer/shadow gates and late E0 equipment2/6 tail; previous event1-only substitute removed.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_equipment_transfers.h",
         "analysis/human-equipment-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-timed-transfer-20261112.json"
       ]
     },
     {
@@ -14551,7 +14560,7 @@
       "program": "client",
       "entry": "00790520",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00790520: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded. Actual mounted-equipment case9 now uses the shared inventory/model and typed Human control receivers.",
+      "coverage": "P2.2 source reconstruction at original entry 00790520: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded. Actual mounted-equipment case9 now uses the shared inventory/model and typed Human control receivers. C9a adds actual4/8 SceneEC-before-quaternion, Human-model forward .6 placement, internal bounds repeated-Y correction, release and branch-specific B0 tail.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_equipment_transfers.h",
@@ -14560,20 +14569,25 @@
         "analysis/checkpoints/p2.2-20261109.json",
         "recovered/game/human_equipment_mount.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "007913d0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007913d0: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 007913d0: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded. Actual magazine attachment16/17/18 and track15/16/17 now bind same hand RuntimeItem clone/marker, HW2/HW1/null restore. C9a binds events4/5/12/13 to actual230 held4/8 attachment/retirement. Actual mounted attachment9/230 event15 and containing track8 now bound; original unsigned events>24 skip, all0..24 actual dispatch consumers available.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_equipment_transfers.h",
         "analysis/human-equipment-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
       ]
     },
     {
@@ -18857,13 +18871,16 @@
       "program": "client",
       "entry": "004079f0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004079f0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 004079f0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded. Replacement230 descriptor/frame loans retire in reverse;214 original frame quaternion/visibility restored before base feedback and actual handle retraction.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/physics_object.h",
         "analysis/item-transfer-physics-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/host/game_physics_objects.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json"
       ]
     },
     {
@@ -20663,12 +20680,14 @@
       "program": "client",
       "entry": "00597420",
       "status": "partial",
-      "coverage": "Required loading mode3 allocation, actual six position/direction rows and normalization; mode13 closes storage.",
-      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "coverage": "Required loading mode3 allocation, actual six position/direction rows and normalization; mode13 closes storage. Runtime mode0..11 static layouts, actual subgroup mode9, cycle12 and close13 now use same slots/data.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
       "evidence": [
         "recovered/game/human_formation.h",
         "analysis/human-state-loading.md",
-        "analysis/checkpoints/p2.2-formation-20261109.json"
+        "analysis/checkpoints/p2.2-formation-20261109.json",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
       ]
     },
     {
@@ -22652,8 +22671,8 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime.",
-      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations. Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate. Source runtime/objective/look update verified separately; containing world remains unintegrated.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Base opcodes2..C now bind actual Players subgroup create/delete/add/remove/modes/percent scale before derived Human/Dog PC policy.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_context.h",
@@ -22666,7 +22685,9 @@
         "analysis/mission-script-initial-controls.md",
         "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/mission_script_loading_runtime.h"
+        "recovered/game/mission_script_loading_runtime.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
       ]
     },
     {
@@ -25343,14 +25364,19 @@
       "program": "client",
       "entry": "00421c00",
       "status": "partial",
-      "coverage": "Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer.",
+      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion. Actual op3E TurnAt frame-slot forwarding through SAME Script5 controls, original normal instruction advance. Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer. Actual vehicle op26 named SECOND point and op2B live-roster/reachable selection, numeric signed speed0.28 and PC park/advance policy.",
       "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
       "evidence": [
         "recovered/game/human_script_loading_controls.h",
         "analysis/mission-script-initial-controls.md",
         "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json",
         "analysis/human-guard-area-source.md",
-        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
       ]
     },
     {
@@ -26787,7 +26813,7 @@
       "program": "client",
       "entry": "00408780",
       "status": "partial",
-      "coverage": "Actual non-tree contact seeds tipping/oscillation from same frame, locked/free axis and targets, native active/progress gates, angle-based descriptor disable and kind3 semantics. Pickup204 clears before required notification; tree kind0 preserves unwritten202; positive tree parent-kind9 replacement remains required.",
+      "coverage": "Actual non-tree contact seeds tipping/oscillation from same frame, locked/free axis and targets, native active/progress gates, angle-based descriptor disable and kind3 semantics. Pickup204 clears before required notification; tree kind0 preserves unwritten202; positive tree parent-kind9 replacement remains required. Kind3/204 now calls actual00407BD0; scene breakable/pickup record1E flag is mapped to SAME204, no successful missing receiver.",
       "limitations": "Source-only typed frame/Physics adaptation. Pickup notification/model replacement/cache/proximity branch remains required and throws; no invented success. Unknown constructor202 remains optional until actual contact seeds it. Original ABI/SEH and full x87 precision excluded; no desktop mission acceptance.",
       "evidence": [
         "analysis/car-callback-world-binding.md",
@@ -26798,7 +26824,10 @@
         "recovered/host/game_actor_frames.h",
         "recovered/host/game_physics_frames.h",
         "analysis/physics-object-frame-motion.md",
-        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json",
+        "recovered/host/game_physics_objects.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json"
       ]
     },
     {
@@ -28490,7 +28519,9 @@
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
         "recovered/game/human_state_frame_timers.h",
-        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json"
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "analysis/p22-hum-h4-implementation.md",
+        "recovered/game/human_state_action_completion.h"
       ]
     },
     {
@@ -29672,7 +29703,7 @@
       "program": "client",
       "entry": "00586200",
       "status": "partial",
-      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. H5 source checkpoint: Reached Door1B/Ladder1E and Car/StaticWeapon subtype3 command admission, actual seat claim/E0 interaction and independent deferred kind3 copy. Other selected actors and non7 transport remain required. Final H5: shared subtype5 reaches actual Car/StaticWeapon exit and separate deferred copy.",
+      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. Added subtype1F with actual input7C/history1 position-value30, original local/mode gates, same DD0 replay then E0 movement1E. Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. H5 source checkpoint: Reached Door1B/Ladder1E and Car/StaticWeapon subtype3 command admission, actual seat claim/E0 interaction and independent deferred kind3 copy. Other selected actors and non7 transport remain required. Final H5: shared subtype5 reaches actual Car/StaticWeapon exit and separate deferred copy.",
       "limitations": "Only the direct Door branch. Other command cases and Human kind 6 remain required. D4b selected common-command checkpoint; wider commands/occupied/non7 frame and full Human/application acceptance remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -29680,6 +29711,7 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-car-target-command-source.md",
         "analysis/checkpoints/p2.2-human-car-target-command-20261112.json",
+        "analysis/p22-hum-h4-implementation.md",
         "recovered/game/human_common_command.h",
         "analysis/human-guard-area-source.md",
         "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
@@ -29764,36 +29796,46 @@
       "program": "client",
       "entry": "00572c20",
       "status": "partial",
-      "coverage": "Clear ordinary aim state and resolve the original stop delay against actual item deadlines.",
+      "coverage": "Clear ordinary aim state and resolve the original stop delay against actual item deadlines. Actual arbitrary-frame direction and common aim-stop positive inline/feedback branches now supplied, preserving fresh separate deadline-clock reads and native failure prefixes.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_state_loading.h"
+        "recovered/game/human_ai_state_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "00575d50",
       "status": "partial",
-      "coverage": "Evaluate the empty-hand, weapon-deadline, and reaction gates before geometry and line-of-fire work.",
-      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "coverage": "Actual separate game28 deadline samples, signed reaction/active aim gates, actual target/frame geometry and direction setter, two-pass model-forward alignment, friendship/derived114 and dead-target status.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_state_loading.h"
+        "recovered/game/human_ai_state_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
       ]
     },
     {
       "program": "client",
       "entry": "00576350",
       "status": "partial",
-      "coverage": "Publish typed aim target and selection, evaluate supported statuses, and stop the existing aim state.",
-      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "coverage": "Ordinary actual target/D0/D4/start/trigger/continuation composition using original elapsed and status masks; special34 request and late status publication. Target35 E0 publication reaches explicit unimported H5 grenade receiver failure.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_state_loading.h"
+        "recovered/game/human_ai_state_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
       ]
     },
     {
@@ -29824,12 +29866,13 @@
       "program": "client",
       "entry": "00583c30",
       "status": "partial",
-      "coverage": "Publish B0 movement vector and E0 movement, stance, posture, jump and stop commands.",
+      "coverage": "Publish B0 movement vector and E0 movement, stance, posture, jump and stop commands. Added actual family virtualD8 climb emission and original early return before jump/stop tail.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_frame_output.h"
+        "recovered/game/human_ai_frame_output.h",
+        "analysis/p22-hum-h4-implementation.md"
       ]
     },
     {
@@ -30137,12 +30180,14 @@
       "program": "client",
       "entry": "00575670",
       "status": "partial",
-      "coverage": "Compute the normalized direction between actual Human head markers.",
+      "coverage": "Compute the normalized direction between actual Human head markers. Actual arbitrary-frame direction and common aim-stop positive inline/feedback branches now supplied, preserving fresh separate deadline-clock reads and native failure prefixes.",
       "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
       ]
     },
     {
@@ -30686,12 +30731,15 @@
       "program": "client",
       "entry": "00584e30",
       "status": "partial",
-      "coverage": "Dispatch the actual B0 action completion sequence, including item refresh, reset, ordered E0 and required actor effects.",
+      "coverage": "Dispatch the actual B0 action completion sequence, including item refresh, reset, ordered E0 and required actor effects. Positive Mine disarm/ExplosivePlace placement and shared AI/Remote medicine now bind actual World owners; authority mode and target are read after original E0 callbacks, preserving failure prefixes. Actual action11 static-only vertical floor ray and same runtime Mine factory plus action10 type35 motion bindings now supplied; positive Physics pickup and type15 owner remain required.",
       "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
-        "recovered/game/human_state_action_completion.h"
+        "recovered/game/human_state_action_completion.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json",
+        "recovered/game/human_action_completion_effects.h"
       ]
     },
     {
@@ -31011,12 +31059,15 @@
       "program": "client",
       "entry": "00758830",
       "status": "partial",
-      "coverage": "Actual animation event/track ordering, sector sampling, ambient and opacity, equipment timer and face frame; positive attachment, camera and event effects remain required.",
+      "coverage": "Actual animation event/track ordering, sector sampling, ambient and opacity, equipment timer and face frame; positive attachment, camera and event effects remain required. Positive A30 now calls actual00793490 and copies raw targetDA8/ambientDB8 to freshly resolved model-EC Human/DD0 before actual target opacity update; no attachment Runtime replacement.",
       "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
-        "recovered/game/human_control_loading.h"
+        "recovered/game/human_control_loading.h",
+        "recovered/game/human_equipment_mount_presentation.h",
+        "recovered/game/human_opacity_control.h",
+        "analysis/p22-hum-h4-implementation.md"
       ]
     },
     {
@@ -31098,12 +31149,19 @@
       "program": "client",
       "entry": "00758d20",
       "status": "partial",
-      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies.",
+      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved. Added track0 actual00758170(false) inventory/peer transfer and fresh shadow gate. Added actual track7 Door A3C/authority/argument,20 action/lens,22 Human40 deceleration and23 physical/movement reset receivers. Actual magazine attachment16/17/18 and track15/16/17 now bind same hand RuntimeItem clone/marker, HW2/HW1/null restore. Track18 actual bone4/particle33,19 Ladder174/bone16 SOUND with whole-dispatch return,24 actual mode/FPV/player-gated SOUND now bound. C9a binds event9 actual CD0 timer1400/liveScale, signed frameE4 reference gate, original4F/5A release counts, NULL selection and E0 feedback/mode exit. Actual mounted attachment9/230 event15 and containing track8 now bound; original unsigned events>24 skip, all0..24 actual dispatch consumers available.",
       "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
-        "recovered/game/human_control_loading.h"
+        "recovered/game/human_control_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "recovered/game/human_state_action_completion.h",
+        "recovered/game/human_track_equipment_events.h",
+        "recovered/game/human_track_control_events.h",
+        "recovered/game/human_track_effect_events.h",
+        "analysis/checkpoints/p22-hum-h4-action-held-20261112.json",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
       ]
     },
     {
@@ -42930,9 +42988,12 @@
       "program": "client",
       "entry": "00572c00",
       "status": "partial",
-      "coverage": "Actual hand3 panic drop caller, reverse nearest/head-facing and cooldown/amount/capacity reload predicate/input output.",
-      "limitations": "Source-only typed owners/STL replace original object/vtable/allocator/SEH ABI. Only the described branches are credited; external engine and explicit endpoint doubles do not establish whole-body equivalence, integrated Scene2 or desktop acceptance. Mounted and separate H4/H6/H8 continuations remain required; H5 stays open.",
+      "coverage": "Write actual second input34 before clearing common AI D8 bit1. Imported H5 hand-drop/reload caller coverage is not a body of00572C00 and earns no additional claim here.",
+      "limitations": "Source-only typed borrowers/STL/RAII; original object/allocator/SEH ABI and containing application/desktop verification remain excluded.",
       "evidence": [
+        "recovered/game/human_ai_trigger_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json",
         "recovered/game/human_guard_ai_state_loading.h",
         "analysis/human-guard-area-source.md",
         "analysis/checkpoints/p2.2-human-guard-panic-vehicles-progress-20261112.json"
@@ -44095,6 +44156,969 @@
         "recovered/game/shot_grenade_record.h",
         "analysis/human-item-projectile-production-source.md",
         "analysis/checkpoints/p2.2-human-projectile-production-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060d6f0",
+      "status": "partial",
+      "coverage": "Positive ExplosivePlace placement over actual target/Human/Items:94 gate, C4 publication before definition lookup, actual item identity removal, state1/collision/visual, module13 command2 packet with fresh C4 and retained item identity.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_action_completion_effects.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00588aa0",
+      "status": "partial",
+      "coverage": "Shared AI/Remote B0 medical completion: actual Human target, seven-slot kind13/identity lookup, extended skill*maximum/amount conversion, integer cap/wrapping, FLOAT item cost, life and medical modifier, offline notification and zero-amount retirement; concretely bound under same World.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_action_completion_effects.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a7810",
+      "status": "partial",
+      "coverage": "Actual seven-receiver forward kind lookup; holder or occupied stack query per receiver, optional slot output only on match, actual Items definitions without cooldown/amount filtering.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_inventory_lookup.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a7770",
+      "status": "partial",
+      "coverage": "Holder versus stack kind query: nullable receiver, holder single entry, arrays forward occupied stacks with reverse entries, first match and legitimate absence. Used by actual005A7810 completion lookup.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_inventory_lookup.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a9560",
+      "status": "partial",
+      "coverage": "Actual offline medical FLOAT modifierD8 addition and cap5 over same Human fieldC0, preserving extended compare and FLOAT store; retail debug formatter ending in real0069BFE0 RET omitted as existing source convention.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00587540",
+      "status": "partial",
+      "coverage": "Actual Remote virtualD8 tail-dispatch to same common DC without queuing; original distinct Player/AI policies remain distinct.",
+      "limitations": "Source-only typed owners/STL/RAII and native safety guards, not original object/allocator/thiscall/SEH ABI equivalence. Focused native audits use explicit engine/model/collision/Face/audio/World endpoint doubles; strict actual i386 composition links only. Remaining H4 consumers and full mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_common_command.h",
+        "recovered/game/human_loading_state_factory.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00758170",
+      "status": "partial",
+      "coverage": "Original false argument path reached by track0: secondary22/23/24 and A34/A44 gates, actual equipment2/3 transfer and fresh shadow visibility restore. Actual timed00758170(true) now bound from00792590 slot3 after selection/mode/forced command, preserving150/liveScale __ftol, peer/shadow gates and late E0 equipment2/6 tail; previous event1-only substitute removed.",
+      "limitations": "Source-only typed owners/STL/RAII and native safety guards, not original object/allocator/thiscall/SEH ABI equivalence. Focused native audits use explicit engine/model/collision/Face/audio/World endpoint doubles; strict actual i386 composition links only. Remaining H4 consumers and full mission/desktop execution remain open. True timed-transition branch remains required.",
+      "evidence": [
+        "recovered/game/human_track_equipment_events.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-timed-transfer-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00759e20",
+      "status": "partial",
+      "coverage": "Actual DD0 position replay: DC4/posture/mode/motion/attachment gates, same model frame08/Scene144/frame24, real marker/posture/primary/shot publication and final Human four-lane position; original descriptor flags/masks retained.",
+      "limitations": "Source-only typed owners/STL/RAII and native safety guards, not original object/allocator/thiscall/SEH ABI equivalence. Focused native audits use explicit engine/model/collision/Face/audio/World endpoint doubles; strict actual i386 composition links only. Remaining H4 consumers and full mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_position_replay.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058fd30",
+      "status": "partial",
+      "coverage": "Selected FIRST10000017 output: existing signed Scene2 identity, actual clock/perception pool, event return before compaction, same Human2AC append, actual owning B4 and reverse group kind3 B4 receivers.00591F00 is SAME2A8 vector insertion, not a VM callback.",
+      "limitations": "Source-only typed pool/deque/vector owners and native safety guards, not native allocator/object/thiscall/SEH equivalence. Native Scene/time/B4 endpoints are explicit doubles; actual i386 World/Script/event/perception/factory/hearing graph fully links only. Positive original producer005CC8D0 and populated group admission are not claimed from fixture events or direct calls. Remaining H4 and mission/desktop execution stay open.",
+      "evidence": [
+        "recovered/game/human_script_event_output.h",
+        "recovered/game/human_ai_event_queue.h",
+        "recovered/game/human_perception_records.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00598320",
+      "status": "partial",
+      "coverage": "Actual same-formation member-position getter: gates/member lookup, four-lane output and optional point even on unchanged, changed88 clear only on true.",
+      "limitations": "Source-only typed borrowers/RAII/STL/native safety guards, not original native object/vector/allocator/thiscall/SEH equivalence. Actual World/Script/formation/query/E0/B0 graph links only; native engine/World/VM/readiness endpoints explicit doubles. Players subgroup004603C0/004608A0 mode9 producer/update and00460850 borrower retirement remain required; no Human2C8/auxiliary selection substitution or mission/desktop claim.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560e50",
+      "status": "partial",
+      "coverage": "Actual point+position query:FFFF no-change gate, four-lane position/point, original flags50 and58/24 reset.",
+      "limitations": "Source-only typed borrowers/RAII/STL/native safety guards, not original native object/vector/allocator/thiscall/SEH equivalence. Actual World/Script/formation/query/E0/B0 graph links only; native engine/World/VM/readiness endpoints explicit doubles. Players subgroup004603C0/004608A0 mode9 producer/update and00460850 borrower retirement remain required; no Human2C8/auxiliary selection substitution or mission/desktop claim.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058d900",
+      "status": "partial",
+      "coverage": "Actual Script formation binding: conditional alarm, typed1E0 publication, active query2000 before optional VM completion,1D8 retirement and flag1.",
+      "limitations": "Source-only typed borrowers/RAII/STL/native safety guards, not original native object/vector/allocator/thiscall/SEH equivalence. Actual World/Script/formation/query/E0/B0 graph links only; native engine/World/VM/readiness endpoints explicit doubles. Players subgroup004603C0/004608A0 mode9 producer/update and00460850 borrower retirement remain required; no Human2C8/auxiliary selection substitution or mission/desktop claim.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_formation_output.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058d970",
+      "status": "partial",
+      "coverage": "Containing Script formation output over actual getter/query/E0/model owners, extended distance calculation/thresholds and far readiness before query54 publication.",
+      "limitations": "Source-only typed borrowers/RAII/STL/native safety guards, not original native object/vector/allocator/thiscall/SEH equivalence. Actual World/Script/formation/query/E0/B0 graph links only; native engine/World/VM/readiness endpoints explicit doubles. Players subgroup004603C0/004608A0 mode9 producer/update and00460850 borrower retirement remain required; no Human2C8/auxiliary selection substitution or mission/desktop claim.",
+      "evidence": [
+        "recovered/game/human_script_formation_output.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d5380",
+      "status": "partial",
+      "coverage": "Actual same RuntimeItem lazy clone78/marker74 attach/restore: family/cache/absence gates; original ignored link status; direct guarded position, native direction or saved quaternion normalization; clone/marker visibility and update order; existing resource retirement. Equipment16/17/18 and track15/16/17 concretely bind actual hand/Items/Runtime receiver.",
+      "limitations": "Source-only typed/RAII/STL and checked engine endpoints, not original object/allocator/thiscall/SEH ABI. Native resource/engine endpoints explicitly doubled; actual i386 composition/equipment/Items/Runtime/frame/public DD0 graph links only. Other H4 outputs/mission runtime/desktop acceptance remain open.",
+      "evidence": [
+        "recovered/game/runtime_item.h",
+        "recovered/game/runtime_item_services.h",
+        "recovered/game/human_equipment_services.h",
+        "recovered/game/human_equipment_transfers.h",
+        "recovered/game/human_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00793490",
+      "status": "partial",
+      "coverage": "Actual230 model/HW1 mounted presentation: fresh world position/forward, model08/0C/24 then Scene144, sector1 link, original raw source-model visibility word and signed positive elapsed*D0*2 native conversion/model20. Same resources and borrower replacement semantics.",
+      "limitations": "Source-only typed owners/RAII/STL and checked native safety endpoints, not original object/allocator/thiscall/SEH equivalence. Native frame/Scene endpoints explicit doubles; actual public DD0/230/frame/EC-bound Human opacity/GEffects composition fully links only. Original mounted-action producer and remaining H4/mission/desktop execution stay open.",
+      "evidence": [
+        "recovered/game/human_equipment_mount_presentation.h",
+        "recovered/game/human_equipment_loading.h",
+        "recovered/game/human_equipment_services.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075df70",
+      "status": "partial",
+      "coverage": "Actual mounted Human assignment over SAME source/target DD0/230/physical/DC0/Scene/Car/StaticWeapon/SOUND/GEffects; original ordered mutations, gates and reached failures.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation, native safety guards distinct from original ABI. Delegated engine/SOUND endpoints and missing actor20/34 factories excluded. No actual mission execution or desktop acceptance, no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_mount_assignment.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075e250",
+      "status": "partial",
+      "coverage": "Actual motion1AC/optional1B0, enable18C and zero-motion face activation ordering over SAME physical/face owners.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation, native safety guards distinct from original ABI. Delegated engine/SOUND endpoints and missing actor20/34 factories excluded. No actual mission execution or desktop acceptance, no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_physics_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b30b0",
+      "status": "partial",
+      "coverage": "Actual DC0 mount geometry exit: clear6304 bit200, ordered6914/6918 SOUND stops/sentinels and existing contact-frame retirement without clearing effect storage.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation, native safety guards distinct from original ABI. Delegated engine/SOUND endpoints and missing actor20/34 factories excluded. No actual mission execution or desktop acceptance, no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-mounted-assignment-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a3ab0",
+      "status": "partial",
+      "coverage": "Select actual target skeletal point from SAME Sight mask, live model matrices, original role/distance weighting and CRT order, reusing actual zero-mask/no-observer fallback.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation and explicit native exception guards; original object/allocator/SEH ABI and delegated engine/Sight/Item/Inline endpoints excluded. Callable World composition verified; containing alignment/Script and actual mission/desktop execution remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_target_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00575450",
+      "status": "partial",
+      "coverage": "Emit normalized actual source260-to-target Human skeletal point or non-Human20 direction with native stored XYZ/extended order.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation and explicit native exception guards; original object/allocator/SEH ABI and delegated engine/Sight/Item/Inline endpoints excluded. Callable World composition verified; containing alignment/Script and actual mission/desktop execution remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_target_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00571a40",
+      "status": "partial",
+      "coverage": "Actual common aim admission/duration/second-input/byteC0/flag publication, late query/stance/point gate, existing inline2 and command11 receivers.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation and explicit native exception guards; original object/allocator/SEH ABI and delegated engine/Sight/Item/Inline endpoints excluded. Callable World composition verified; containing alignment/Script and actual mission/desktop execution remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_trigger_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00572af0",
+      "status": "partial",
+      "coverage": "Actual C4 countdown, same Item amount/flags, conditional RandFloat hold and Sight visibility/count gates producing SAME first/second inputs.",
+      "limitations": "Source-only typed borrower/STL/RAII adaptation and explicit native exception guards; original object/allocator/SEH ABI and delegated engine/Sight/Item/Inline endpoints excluded. Callable World composition verified; containing alignment/Script and actual mission/desktop execution remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_trigger_output.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558e50",
+      "status": "partial",
+      "coverage": "Actual reverse Human friendly278 list, source260 origin, front-plane rejection and actual primary698/posture6E0 sphere query; native infinite-line geometry, FLOAT spills, epsilon and strict radius policy.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005762b0",
+      "status": "partial",
+      "coverage": "Actual aim continuation over D8/C4, shared random stop duration, RuntimeItem reload time, stop-before-kind3 ammunition gate and second34 request.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac1d0",
+      "status": "partial",
+      "coverage": "Actual existing DD0 physical primary698 count and posture6E0 sphere loan; no scaled collision-descriptor substitution.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058e500",
+      "status": "partial",
+      "coverage": "Actual refresh-first ordinary and mounted Script timed attack composition, same input/target/trigger workers, actual elapsed countdown, stop-before-context completion and preserved failure prefix.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058e8b0",
+      "status": "partial",
+      "coverage": "Actual mounted target geometry, Human stance/velocity lead, FLOAT boundaries, distance epsilon and shared CRT Z/Y/X spread draws. Concrete A8 position reaches explicit H5 import boundary in this base.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058ebd0",
+      "status": "partial",
+      "coverage": "Actual mounted A4/B4/9C normalization, precision/alignment/ammunition gates and first/second input publication. Positive engine endpoints doubled in native audit; concrete A8 origin remains H5 import.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f1b0",
+      "status": "partial",
+      "coverage": "Actual attached4/21 and virtual98 control admission over same Human attachment owner.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f1f0",
+      "status": "partial",
+      "coverage": "Actual actor-target Script timed request admission, timer, typed1C4 loan, ill-fire byte and parked context PC.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f260",
+      "status": "partial",
+      "coverage": "Actual frame-target Script timed request admission, timer, actor clear/typed1C8 loan, ill-fire byte and parked context PC.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af230",
+      "status": "partial",
+      "coverage": "Actual Script5 guard and actor-target attack forwarding on SAME Human/B0.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af250",
+      "status": "partial",
+      "coverage": "Actual Script5 guard and frame-target attack forwarding on SAME Human/B0.",
+      "limitations": "Source-only typed/template/STL borrowers and safety guards, not native thiscall/object/allocator/SEH equivalence. Native Script/Item/World/engine endpoints explicitly doubled; actual i386 World/Script/VM producers/consumers link only. Mounted A8 requires unimported H5 lifetime API. Remaining H4 families, actual mission/engine/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-timed-20261112.json",
+        "recovered/game/human_script_timed_output.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005e2510",
+      "status": "partial",
+      "coverage": "Actual type35 containing motion: same Physics90 direct contact, optional hide, offline navigation pair/point marking, yaw-only process packet, fresh optional Script use, final A0..AC motion write. Required positive Physics00407BD0 still explicitly fails in concrete base.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005e2480",
+      "status": "partial",
+      "coverage": "Actual offline7 same-navigation link pairing followed by both valid point16=7 writes even if pairing returns false.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051f280",
+      "status": "partial",
+      "coverage": "Actual same-table runtime link pair insertion with ordered two-sided mutation, preserved failed prefix and original vector growth/reuse.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005248c0",
+      "status": "partial",
+      "coverage": "Actual borrowed payload/sentinel/flag/count/admission, distance attenuation, FLOAT/extended gates and native256 conversion, index/weight/count80 publication.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005247a0",
+      "status": "partial",
+      "coverage": "Actual ordered existing-link search over current point flags count and same payload.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005247e0",
+      "status": "partial",
+      "coverage": "Actual 3D extended distance and byte12 sum attenuation on same records.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00408750",
+      "status": "partial",
+      "coverage": "Actual218 optional frame visibility false/update; native cold NULL proven by004079A8. Positive218 producer00407BD0 remains unimplemented.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d760",
+      "status": "partial",
+      "coverage": "Actual yaw-only atan2(Z,X) FLOAT angle, same secondary quantizer and vector mask1; no Y/asin/pitch lane.",
+      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005904c0",
+      "status": "partial",
+      "coverage": "Actual TurnAt target-frame geometry/current50 then target54 publication, fresh supported attachment/98 admission, typed1CC/1D0 producer and failed-prefix behavior.",
+      "limitations": "Source-only typed borrowers/STL/native safety adaptations, not native thiscall/object/allocator/SEH equivalence. Native actual AI direction owners with explicit Human/matrix/seat endpoint doubles; actual i386 World/Script/VM/Controls composition links only. Type20/34 factories, vehicle/subgroup/Physics pickup H4 bodies and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json",
+        "recovered/game/human_script_attachment_output.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058db20",
+      "status": "partial",
+      "coverage": "Actual Script1CC non-null raw displacement/A4 dot threshold and flag clearing, null attached-model forward with distinct normalization/.99999 retain gate, current50 then target54 writes.",
+      "limitations": "Source-only typed borrowers/STL/native safety adaptations, not native thiscall/object/allocator/SEH equivalence. Native actual AI direction owners with explicit Human/matrix/seat endpoint doubles; actual i386 World/Script/VM/Controls composition links only. Type20/34 factories, vehicle/subgroup/Physics pickup H4 bodies and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json",
+        "recovered/game/human_script_attachment_output.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af660",
+      "status": "partial",
+      "coverage": "Actual SAME Human Script5 guard and TurnAt005904C0 forwarding, concretely bound from actual VM opcode3E.",
+      "limitations": "Source-only typed borrowers/STL/native safety adaptations, not native thiscall/object/allocator/SEH equivalence. Native actual AI direction owners with explicit Human/matrix/seat endpoint doubles; actual i386 World/Script/VM/Controls composition links only. Type20/34 factories, vehicle/subgroup/Physics pickup H4 bodies and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-script-attachment-20261112.json",
+        "recovered/game/human_script_attachment_output.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00407bd0",
+      "status": "partial",
+      "coverage": "Actual type5 replacement over SAME category1 cache: collision disable, plot/dira detach/reparent, actual140 replacement/214 restoration, numbered VOLB0 descriptors, SAME manager create and contact before218 publication; native absent resource/marker and failed-prefix policy.",
+      "limitations": "Source-only typed borrowers/STL/RAII and explicit safety guards, not native allocator/object/SEH ABI equivalence. Native actual Physics/parser/cache audited with explicit engine/collision/manager endpoint doubles; actual i386 World/Physics manager create/contact composition full link. Tree nonzero contact00408780, type6, mission execution and desktop acceptance remain separate.",
+      "evidence": [
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00406740",
+      "status": "partial",
+      "coverage": "Actual numbered VOLB0 marker detachment, dummy/aggregate bounds and native FLOAT math, local-scale normalization/world inverse, SAME dynamic descriptor insertion/move and matching reverse retirement; stable typed descriptor ownership.",
+      "limitations": "Source-only typed borrowers/STL/RAII and explicit safety guards, not native allocator/object/SEH ABI equivalence. Native actual Physics/parser/cache audited with explicit engine/collision/manager endpoint doubles; actual i386 World/Physics manager create/contact composition full link. Tree nonzero contact00408780, type6, mission execution and desktop acceptance remain separate.",
+      "evidence": [
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-physics-replacement-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004603c0",
+      "status": "partial",
+      "coverage": "Script5 admission before actual roster/formation/binding, source reference guard and failed-prefix ordering.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_players_subgroup.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00460850",
+      "status": "partial",
+      "coverage": "Actual subgroup roster removal before formation removal and current Script5 loan clearing.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_players_subgroup.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004608a0",
+      "status": "partial",
+      "coverage": "Actual subgroup roster and formation ownership, force8C, admission, independent leader selection and mode9; separate leader lifetime guard.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_players_subgroup.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00460980",
+      "status": "partial",
+      "coverage": "Reverse subgroup member removal and Script loan retirement before formation destruction/context release.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_players_subgroup.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00461240",
+      "status": "partial",
+      "coverage": "First reverse subgroup membership match and actual removal, without deduplication or clearing every group.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00461290",
+      "status": "partial",
+      "coverage": "Actual reverse leader lookup, count identity, concrete subgroup construction then same module vector publication.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00461390",
+      "status": "partial",
+      "coverage": "Actual reverse subgroup deletion and native swap/pop order with retained allocation retirement.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059ba70",
+      "status": "partial",
+      "coverage": "Same formation owner frame dispatch: leader/slots, smoothing first, ordinary/attached/navigation selection with actual state and current inputs.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059bb60",
+      "status": "partial",
+      "coverage": "Signed elapsed six-slot smoothing with native tiny-length and normalization/step/FLOAT store order.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005990c0",
+      "status": "partial",
+      "coverage": "Actual leader velocity/direction, navigation route, slot output, changed flags, separation/avoidance and cached route composition.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059a2e0",
+      "status": "partial",
+      "coverage": "Actual navigation84 records/links and six-member navigation stage/position/direction output with required-input guards.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00598550",
+      "status": "partial",
+      "coverage": "Reverse close-member separation and original changed/projection publication order on same six slots.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00598810",
+      "status": "partial",
+      "coverage": "Actual leader/member motion, native x87 avoidance direction and explicit amount argument applied to same slot.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059af30",
+      "status": "partial",
+      "coverage": "Actual same-table cached member navigation route and remaining distance/position publication.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005957d0",
+      "status": "partial",
+      "coverage": "Actual attached formation dispatch/seat assignment/pose output with Car/Aircraft receiver requirements preserved.",
+      "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-players-subgroup-source.md",
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00530ff0",
+      "status": "partial",
+      "coverage": "Actual grenade notice admission, planar geometry/native stores, navigation probe before query and pending18C, then same formation position/cache output.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/vtable/allocator/SEH ABI. Explicit World/Human/frame endpoint doubles in native verification; actual World composition fully linked without Windows execution. H6 producer integration, H8/full application and desktop acceptance remain open; no whole-body ABI equivalence claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_grenade.h",
+        "analysis/human-active-ai-grenade-source.md",
+        "analysis/checkpoints/p22-hum-h4-active-grenade-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00599040",
+      "status": "partial",
+      "coverage": "Actual reverse membership lookup, full vector20 publication,7E reset and88 changed flag; missing member leaves slots unchanged.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/vtable/allocator/SEH ABI. Explicit World/Human/frame endpoint doubles in native verification; actual World composition fully linked without Windows execution. H6 producer integration, H8/full application and desktop acceptance remain open; no whole-body ABI equivalence claim.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-active-ai-grenade-source.md",
+        "analysis/checkpoints/p22-hum-h4-active-grenade-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045eab0",
+      "status": "partial",
+      "coverage": "Actual Players reverse live roster, positive signed health/current B0kind3/nonself gates before concrete00530FF0 recipient.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/vtable/allocator/SEH ABI. Explicit World/Human/frame endpoint doubles in native verification; actual World composition fully linked without Windows execution. H6 producer integration, H8/full application and desktop acceptance remain open; no whole-body ABI equivalence claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-active-ai-grenade-source.md",
+        "analysis/checkpoints/p22-hum-h4-active-grenade-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00578770",
+      "status": "partial",
+      "coverage": "Actual Script vehicle frame wrapper reaches00578790 on same path130/Car74 owner.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00578790",
+      "status": "partial",
+      "coverage": "Actual stop/start/running flags, driver gate, route construction, predicted motion, stuck reversal/progress, segment/Hermite sampling, signed speed controls and endpoint finish.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005796d0",
+      "status": "partial",
+      "coverage": "Clear running then restore actual Car governor, fresh current Script context/PC match before advancing; nonScript current Player brake policy.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00579760",
+      "status": "partial",
+      "coverage": "Forward steering/blend, clamped side-product acos, signed/current speed/governor and native drive-before-brake output order.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00579d50",
+      "status": "partial",
+      "coverage": "Reverse steering/blend and native brake-before-drive order, shared actual Car controls/governor and emergency reset.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055f320",
+      "status": "partial",
+      "coverage": "Same typed route allocation, native start/navigation constraints/terminal fallback and tangent recomputation including exact quiet-NaN sentinel.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00577a60",
+      "status": "partial",
+      "coverage": "Attached Car gate, actual SECOND point lookup, bind typed Car borrower, destination/signed-speed request and current PC publication. FFFF restores governor and requests stop.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e0e0",
+      "status": "partial",
+      "coverage": "Restore old Car governor on unbind before replacing typed74 loan and clearing88.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e160",
+      "status": "partial",
+      "coverage": "Native tiny-speed stop gate; otherwise clear4/set1 then full destination50, exact quiet-NaN60 and signed speed8C publication.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e2c0",
+      "status": "partial",
+      "coverage": "Clear requested bits of same path40 flags.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e2e0",
+      "status": "partial",
+      "coverage": "Query overlap of requested flags and same path40.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055e120",
+      "status": "partial",
+      "coverage": "Borrow actual typed Car74 reference without truncating native pointer into DWORD fields.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051e1a0",
+      "status": "partial",
+      "coverage": "Forward16-byte case-insensitive ASCII name lookup in actual SECOND18-byte name records, first match and FFFF miss.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_vehicle_path.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416d90",
+      "status": "partial",
+      "coverage": "Fresh live-frame context, current-PC match and actual shared VM advance policy.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2630",
+      "status": "partial",
+      "coverage": "Actual initialized Car governor request; store requested value and positive-only half-unit margin. Return value unused on reached callers.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace native object/container/allocator/SEH ABI. Finite/native-defined inputs; zero elapsed/invalid adjacent records retain explicit required guards, unwritten scratch lanes remain guards. Native Human/Car/World endpoint doubles explicit; actual World/Car/Script composition linked without execution. ASCII names selected, wider CRT locale behavior excluded. Full H6/H8/frame/application and desktop acceptance remain open; no complete body/ABI equivalence promotion.",
+      "evidence": [
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-h4-source-closure.md",
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
       ]
     }
   ]

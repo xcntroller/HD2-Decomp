@@ -112,6 +112,14 @@ public:
         std::array<Matrix,23> saved_local{},saved_world{}; //Native bone13C/17C.
         std::vector<Vector> contact_positions; //Actual6840 allocation, three or seven entries.
     };
+    template<class Services>void retire_mount_geometry_effect(Services& services){ //007B30B0; keep effect storage/clip, native clears only flag200.
+        movement_.field6304&=~0x200u;
+        if(joints_.field6914!=-1)services.stop_human_contact_voice(joints_.field6914);
+        joints_.field6914=-1;
+        if(joints_.field6918>=0)services.stop_human_contact_voice(joints_.field6918);
+        joints_.field6918=-2;
+        if(joints_.field690c)joints_.retire_contact_frames();
+    }
     const auto& geometry_effect()const{return geometry_effect_;}
     template<class Human,class Control,class Services>void present_retained_clip(Human& human,Control& control,Services& services){
         if(!geometry_effect_)throw std::logic_error("Human retained clip requires its actual effect entry");

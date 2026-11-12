@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "Original H4 Script timed attacks and actual VM target producers",
+  "branch": "feature/p22-hum-h4",
+  "implementation_base": "74352d0f716ab16860227368be87d24db5a54753",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_script_timed_output.h",
+      "sha256": "8e63e80ecd91215e534590b5fb03b8c6467d8a2d9ca6e6fd6c44a1b9678064e2",
+      "bytes": 9065
+    },
+    {
+      "path": "recovered/game/human_ai_resources.h",
+      "sha256": "3eff7cfb8ae258a1701becf9977c695d74ff1f94a52d2e9ba78076ae9b595bcb",
+      "bytes": 11954
+    },
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "sha256": "e85e3ce18e26fd4d13869998468603537838e44fe787de6d171e6ad42247ed1f",
+      "bytes": 15833
+    },
+    {
+      "path": "recovered/game/human_script_loading_controls.h",
+      "sha256": "bc4af59757eaf05942fed36e6e23c385f5c07c6b93356fe6fd9ade82a5ac6b50",
+      "bytes": 7793
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "f1e0e1ab589d823079bc55babbf627469b18eba3b4d1b66a5e5b1ef07c6604dd",
+      "bytes": 132190
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-timed.asm",
+      "sha256": "caa64f7a3eb551aa77217cf96d6ebd30fc0947c3cf7867c0b79d091e60db2999",
+      "bytes": 4745
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-mounted-target.asm",
+      "sha256": "8572bcfa4889cbdfaa8586d42675768d038441ce69a17b23903320c5ee256d97",
+      "bytes": 11081
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-mounted-trigger.asm",
+      "sha256": "6ce83a2b4c3d9410bb8bef79d6e1cd2db4cd3f8dd900eb55e0a1a0276c69abcd",
+      "bytes": 21064
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-target-producer.asm",
+      "sha256": "6273feb680280f7cc8f2835df910f6fe8c0d203a5adb290ab1080955fd2eeb7a",
+      "bytes": 5481
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-aim-constants.json",
+      "sha256": "2a5ebd8a6177ca5dfc04f135187d596108bc4ad7d83a7f103ca9202796ef61b2",
+      "bytes": 804
+    }
+  ],
+  "external_original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-script-and-active-workers/0058e500.json",
+      "sha256": "cd4a22f88a1ea7168b9051ddddd0e331135344d38462efd76eea5968ec0513ad",
+      "bytes": 6423
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/script-actor-command-typed-required/00421c00.json",
+      "sha256": "d9610406f8e23cfe6b5a319cbbb75ad5e726203df8582a316c15515ebb6b0f49",
+      "bytes": 141233
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/script-signal-flags-required/00416d70.json",
+      "sha256": "a04a7dfc21e5e60cb8e38fff1f6b439213d04edf3ccbbac285c4876646b62a76",
+      "bytes": 1042
+    }
+  ],
+  "verification": {
+    "native": "PASS66 strictO1 ASan/UBSan/LSan actual AI resources/target/input owners; Script/Item/World/engine endpoints explicit doubles. Positive admission and ordinary/mounted inputs, PC failure prefix, actual target request producers, D4 preservation, timer/geometry/CRT/precision/ammunition, failure and retry.",
+    "i386": "PASS strictO0 FULL LINK actual World/Script typed-target producers/timed consumer plus actual Controls/VM opcode receiver. Actual mounted A8 explicitly fails at unimported H5 contract; no selected ordinary endpoint double.",
+    "application": "PASS existing application-launch/startup-probe links, never executed.",
+    "actual_mission_reachability": false,
+    "actual_engine_execution": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-timed-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-timed-native-run.log",
+      "sha256": "f4d298fc1094ab7cdf92b2c4f141a0095d568c6f89ad73e321e7a83c91362c83",
+      "bytes": 123
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-timed-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-timed-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-timed-audit.cpp",
+      "sha256": "ac32e1f3c73deace553527eff0d465ff17b317c753cd81aa63d8b464b0c901fb",
+      "bytes": 9306
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-timed-audit",
+      "sha256": "38e232363aaf7c771dc277bdf5ea4ece1d5519425d5d523eaea2be27c48ed291",
+      "bytes": 2080552
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-timed-host.cpp",
+      "sha256": "ce225d9116ed6b02ab1f9c8e127dece7908f08ecbdc5192e6c07dd8a03fcb23d",
+      "bytes": 852
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-timed-host.exe",
+      "sha256": "970091b4090191b7e03b76c5ac63ef88d5b419f9e65a1b8bac1c5e3d67cbfebd",
+      "bytes": 1567744
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "0058e500",
+      "0058e8b0",
+      "0058ebd0",
+      "0058f1b0",
+      "0058f1f0",
+      "0058f260",
+      "005af230",
+      "005af250"
+    ],
+    "extended": [
+      "00421c00"
+    ],
+    "counts": {
+      "client": {
+        "partial": 3040,
+        "complete": 34
+      },
+      "engine": {
+        "partial": 5
+      }
+    },
+    "denominator": 18783
+  },
+  "remaining": "Mounted A8 requires current HUM201adbf/H5 human_emplacement_position\u2192004C5800 and mounted_position lifetime import; bind SAME World source after import. Actual A4/98/B4/9C exist in this base. No H5 body/ledger copied. H4 vehicle path/attachment, completion and subgroup source remains open; source callable versus actual mission/engine/desktop separate."
+}

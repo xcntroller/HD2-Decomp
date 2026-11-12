@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 original common AI target and aim/trigger output workers",
+  "implementation_base": "bb33790",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_ai_target_output.h",
+      "sha256": "22c91348e513b5e329ec7bac5780332199791044725909d6772bee168b191b23",
+      "bytes": 4702
+    },
+    {
+      "path": "recovered/game/human_ai_trigger_output.h",
+      "sha256": "08334133bad53543dc874935842f0075992b0360c26ed58fa6c91b1a4f476c92",
+      "bytes": 5864
+    },
+    {
+      "path": "recovered/game/human_ai_state_loading.h",
+      "sha256": "ec13067e6b429aea73b38edc8f271f73c3c92b000a1dde41266f3ce567d2c2f8",
+      "bytes": 33276
+    },
+    {
+      "path": "recovered/game/human_state_base_loading.h",
+      "sha256": "bb546f76eb97aded134937f32af0e07a4b8efcc0e1ac5c92c1541aeca304e179",
+      "bytes": 16272
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "70dad190458bf29dea14898c20cabc0349db4b418d093ccd10e39ac64208a77a",
+      "bytes": 128693
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "sha256": "fd04745294f1c01ddf4de48d0e1edccda5a20734cc17d9e6372dc1fb7c6341a8",
+      "bytes": 113467
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-actor.asm",
+      "sha256": "24c0919c9f6e8d1c1aa3bdc8720ee578202f68c4e133e44f1e5aec7e0221e9dd",
+      "bytes": 7763
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-frame.asm",
+      "sha256": "533635c9ce099b6c507be41799892777b9837a9ee59c5ff79fe3054327f196f2",
+      "bytes": 6167
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-human.asm",
+      "sha256": "90f1167c85989356e39ca6ef7d106d416f4f2048cb1cd173d2b4078f16d64ee4",
+      "bytes": 9170
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-virtual-setter.asm",
+      "sha256": "2024c48f721e2928bb9a7dd561336edf50005c32d8581de028fdb6499ab5f1c8",
+      "bytes": 449
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-aim-begin.asm",
+      "sha256": "56a346b5eee713d7f7dc919f95d06bace619346cca9d294fbd8d81ea99f1d9d8",
+      "bytes": 6299
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-aim-duration.asm",
+      "sha256": "51c48d63662112f82a0ff23247edf43d0d5c30fb34329b36a7e1f40ace7f36f2",
+      "bytes": 683
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-aim-stop.asm",
+      "sha256": "b5ad80e3b45015a08bba5c83da2ff631d040548cfa96e6901f2fbbbe96eb8c7b",
+      "bytes": 7057
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/common-aim-original/005a3ab0.json",
+      "sha256": "faa88e6ea8ef949abc09c681e5ebe8fad55686348405e0d11f559c43668c33c9",
+      "bytes": 7464
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/common-aim-original/00571a40.json",
+      "sha256": "56256ae2c3876b267ce2cdc6145b5ab73f4cf7eb3c3fabcd96e0ad3e6451704d",
+      "bytes": 5152
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/common-aim-original/00572c00.json",
+      "sha256": "356512e282ac4d26e4f3ec8c7f07aefdbe1125fb1a862415918076e4719571b9",
+      "bytes": 674
+    }
+  ],
+  "external_original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-script-action-edges/00575450.c",
+      "sha256": "5d1047c78e43eb99a173c39a15fa02c30acd16faf4b40be21467e6348992381f",
+      "bytes": 2170
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-script-action-edges/00575670.c",
+      "sha256": "c1976df4e88c5554006be1fe180c630ee70d5f6a582f58e3d58387879854c5c7",
+      "bytes": 1635
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-positive-aim/00572af0.c",
+      "sha256": "c83f67f618bbc68e63e0101967ce70ef686528dab93ad6120298873d8f724536",
+      "bytes": 1556
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-guard-authority-workers/00572c20.c",
+      "sha256": "7b4c4f452eb913b4c5537e61894d38197b79641bd4f9f6c809766f557c351b32",
+      "bytes": 2234
+    }
+  ],
+  "verification": {
+    "target": "PASS173 strictO1 ASan/UBSan/LSan with literal native candidate-list oracle, thresholds/player roles/mixed masks/random order, live matrix/table borrowers, absence/malformed mask/bone/failure-prefix guards. Sight/CRT/engine endpoints explicit doubles.",
+    "trigger": "PASS212 strictO1 ASan/UBSan/LSan actual HumanAIResources/target/query/direction/shared input buffers. Item/Sight/RandFloat/Inline/clock endpoints explicit doubles. Admission, conditional random order, feedback/input order, late query, stop failure/retry, four clock samples, native conversion guard prefix.",
+    "i386": "PASS strictO0 FULL LINK concrete Script/World/Scene/Sight/RNG/Item/Inline/factory/target/trigger/stop and virtual target-setter composition; no selected endpoint double.",
+    "application": "PASS existing application-launch/startup-probe strictO2 full links, no execution.",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-native-run.log",
+      "sha256": "3b9baf6f9319c30bd7aa24d4719e5af92adbcfb2990ffb7c033a72091b6cbfb1",
+      "bytes": 110
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-trigger-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-trigger-native-run.log",
+      "sha256": "e884cd23bd22daa15a95901c36d78d465ebdbe250d1a92ace77504f8bc62cdfe",
+      "bytes": 114
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-output-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/common-aim-export.log",
+      "sha256": "83dc4108157a1e2da13501ed37b2f67d559a36e8df6dded89956f5b42ce5508f",
+      "bytes": 4755
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-audit.cpp",
+      "sha256": "0aad4767181ccd57df123e3ef5631d36640d443b08de41c9571ff577364fb223",
+      "bytes": 6054
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-audit",
+      "sha256": "c41428c5bddb3c423712717274c47bac262b31f65a23afd05baf579c230f586f",
+      "bytes": 928248
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-trigger-audit.cpp",
+      "sha256": "f4cb20e1c2531ae3aef001258fb04fd6ba723bf692369f9e9e41f1c791fcf3e8",
+      "bytes": 6419
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-trigger-audit",
+      "sha256": "4ea60a7b9e5d439182df52634ea0a4d21c6da9dc1b3aadad6d14c66db6b508cc",
+      "bytes": 2248176
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-host.cpp",
+      "sha256": "4617b7e3800c264d6554a98a7ba1faf35e70b425383d5636f875529040e377c0",
+      "bytes": 1002
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-target-host.exe",
+      "sha256": "055e112e6c789da27b02201f8deef3e32463a797b2ab888cf59e0d39094b34ac",
+      "bytes": 564224
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "005a3ab0",
+      "00575450",
+      "00571a40",
+      "00572af0",
+      "00572c00"
+    ],
+    "extended": [
+      "00575670",
+      "00572c20"
+    ],
+    "complete": 34,
+    "partial": 3034,
+    "client_partial": 3029,
+    "engine_partial": 5,
+    "denominator": 18783
+  },
+  "remaining": "Containing alignment00575D50/00576350 and Script timed/special paths, completions, subgroup remain OPEN. Callable output workers are distinct from actual VM/actor producer population, engine execution and desktop delivery. Reused005A3CC0/inlined parameter reads/RET comment/absent0056FC20 receive no new credit."
+}

@@ -24,6 +24,7 @@
 #include "host/game_actor_proximity_loading.h"
 #include "game/human_loading_owner_factory.h"
 #include "game/players_module_loading.h"
+#include "game/human_players_subgroup.h"
 #include "game/human_presentation_shared.h"
 #include "game/mission_subtitles_loading.h"
 #include "game/human_world_loading_services.h"
@@ -69,7 +70,7 @@ using InlineFactory=game::HumanInlineLoadingFactory<Frames,Human,Scene::Buckets,
 using ScriptLink=game::MissionScriptWorldLink<Frames>;
 using Contexts=game::HumanScriptContextServices<Frames,Human,ScriptLink,ScriptLink,GameHumanAudioLoading::Random,Services>;
 
-using Group=game::PlayersSubgroup;
+using Group=game::PlayersSubgroup<Human>;
 using Active=game::HumanActiveAIStateLoading<Frames,Human,Inputs,Services>;
 using Players=game::PlayersModuleLoading<GameSceneActors,Human,Presentation,Active,Services,Group>;
 using Sight=GameSightLoading<Services>;
@@ -171,6 +172,9 @@ public:
             auto* callbacks=dynamic_cast<GameCarCallbacks*>(&scene.car_callbacks());
             if(!callbacks)throw std::logic_error("Containing world requires its actual Car callback owner");
             actors_.bind_car_physics(*callbacks);
+            players_.bind_subgroup_factory([this](Human* leader,std::int32_t identity){
+                return std::make_unique<game::HumanPlayersSubgroup<Frames,Human,Services>>(scene_.frames(),navigation_,bindings_.services,leader,identity);
+            });
             scripts_=std::make_unique<Scripts>(startup.game_module_registry(),startup.game_module_registration(4),
                 scene.frames(),startup.pre_mission_files(),bindings.services,players_,first_players_,sight_.source(),hearing_,
                 first_person_.view(),camera_,scene.effects(),audio_.random_source(),hud_.scene(),scene.buckets(),clock,session,
@@ -200,6 +204,7 @@ public:
         errors.attempt([&]{first_person_.close(mode_);});
         errors.attempt([&]{camera_.clear();});
         errors.attempt([&]{startup_.clear_game_dubbing();});
+        players_.retire_subgroup_loans(); //Source guard: retire subgroup Script loans before Human owners, including native finish-dropped groups.
         actors_.close(); //Retracts Human lifetimes BEFORE binding aggregates.
         errors.attempt([&]{hud_.close();});
         shared_.clear(); //Input records/embedded30 belong to process14; actual B0 retirement detaches its own borrowers.

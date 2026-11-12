@@ -17,14 +17,16 @@ with fingerprints. Actual record/pool/retirement owners are used; native5F9 is n
 invented. Full async0044B910/0044B400/00454360/00449290/00449030/0044D260 and rigid
 contact remain required H8 receivers. No successful combat simulation stubs.
 
-Next import **merged HUMb9d67aa**, fetched from origin after user confirmed H4
-merge and said its branch is being deleted. Do not access/rely on old H4 worktree
-or branch. Completed H4 source b2b1c1a supplies real00530FF0/0045EAB0 notification
-and common output/formation/vehicle; replace H6's old notification guard on merge,
-keeping record publication BEFORE notification BEFORE inventory removal. Preserve
-H6 shot/item methods and H4's newer AI/VM/seat/common-command methods in overlaps.
-H6 HEAD0398a50 previously had exactly the pending files now verified; no unrelated
-uncommitted work was discarded. Do not import unfinished H6 elsewhere implicitly.
+Completed HUMb9d67aa (H4 merged by user) is now imported into H6 after93dfe42.
+[Integration receipt](analysis/checkpoints/p2.2-human-h6-completed-hum-20261112.json).
+Actual H4 grenade notifier/Active AI response replaces H6's guard, maintaining
+publication→notification→inventory removal. H4's newer AI/VM/seat/formation/vehicle
+and H6 item/fire/ShotMgr bodies are preserved. Strict actual World/Human/item fire
+and grenade notice i386 FULL LINK plus launcher/probe rebuild PASS, no execution.
+Full ledger/check/README PASS in H6,34 complete/3355 partial. One unavailable
+imported ignored00572C00 C link was removed from ledger evidence in favor of its
+already retained tracked source/contracts/receipts; nothing was fabricated/copied.
+User is deleting H4's branch; do not access/rely on old H4 worktree or branch.
 
 Remaining H6: immediate melee00451230 via actual queries, hit-zone00455670/
 004558A0 and existing H2 damage; Player medical00546DC0 exact offline policy;

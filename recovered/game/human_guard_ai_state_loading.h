@@ -118,7 +118,7 @@ public:
             this->resources().reconcile_direction_flags();
             this->advance_frame_query(control,world,elapsed,runtime);
             const auto was_firing=this->words().template get<std::uint32_t>(0x50)&0x200000u;
-            this->advance_frame_aim(world); //00548080 ->00576350.
+            this->advance_frame_aim(elapsed,world); //00548080 ->00576350.
             if(was_firing&&!(this->words().template get<std::uint32_t>(0x50)&0x200000u))
                 finish_frame_aim_stop(world);
             this->advance_frame_direction(elapsed,control);

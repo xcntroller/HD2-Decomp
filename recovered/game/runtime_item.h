@@ -151,6 +151,24 @@ public:
         if(field7c==1)classify_projectile_marker();
         return field7c;
     }
+    void attach_reload_auxiliary(Frame parent){ //Actual Item virtual3C007D5380; other families RET4.
+        if(family_!=Family::weapon)return;
+        if(field7c==1)classify_projectile_marker();
+        const auto auxiliary=auxiliary_model_?auxiliary_model_->get():Frame{};
+        if(!auxiliary||!projectile_marker)return;
+        services_.link_item_auxiliary(auxiliary,parent?parent:model()); //Native link38 status is ignored.
+        if(parent){
+            services_.position_item_auxiliary(auxiliary,{{0,0,0}});
+            services_.direct_item_auxiliary(auxiliary); //Frame1C(+Z,0), not quaternion identity.
+            services_.item_model_visible(auxiliary,true);
+        }else{
+            services_.position_item_auxiliary(auxiliary,{{projectile_position[0],projectile_position[1],projectile_position[2]}});
+            services_.rotate_item_auxiliary(auxiliary,projectile_rotation); //Direct quaternion+Normalize, original flags.
+            services_.item_model_visible(auxiliary,false);
+        }
+        services_.item_model_visible(projectile_marker,!parent);
+        services_.update_item_auxiliary(auxiliary);services_.update_item_auxiliary(projectile_marker);
+    }
     Frame shot_frame() { //0058BA80: absent shdum is NOT cached as a successful fallback.
         if(!shot_marker){
             const auto frame=model();if(!frame)throw std::runtime_error("Item shot marker requires actual primary model");
