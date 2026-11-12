@@ -13,6 +13,7 @@
 #include "game/session_entry_packets.h"
 #include "game/session_entry_inputs.h"
 #include "game/session_entry_records.h"
+#include "game/session_entry_connections.h"
 #include "game/human_peer_removal.h"
 #include "game/network_mission_metadata.h"
 #include "game/session_owner.h"
@@ -869,6 +870,11 @@ public:
     void clear_human_player_slot(std::uint32_t identity){frontend::clear_human_player_slot(control_data_,lock_services_,identity);}
     frontend::ControlStartupState& game_control_records(){return control_data_;} //PreparedSpawnPackets borrows SAME1DC storage and acquires lock0 for each access.
     void reset_control_entry_packets(bool reset_inputs){game::reset_session_entry_packets(human_inputs_,local_packets_,reset_inputs,[this]{return gate_;});}
+    void begin_game_entry_connections(){game::toggle_session_entry_connections(control_data_,gate_,control_frame_.state().local_peer,*this);}
+    std::unique_ptr<frontend::ControlConnectionLock> create_connection_lock(){return std::make_unique<ControlConnectionLock>();}
+    auto make_game_connection(std::uint32_t identity,std::uint32_t address,void* context){
+        return std::make_unique<frontend::ControlConnectionOwner<StartupSession>>(*this,identity,address,context);
+    }
     bool session_voice_enabled(){return profile_settings().bytes[0x38]!=0;}
     void create_session_voice(bool authority){session_voice_.create(authority,control_frame_.state().server,control_frame_.state().client);}
     void retire_session_voice(){session_voice_.retire();}

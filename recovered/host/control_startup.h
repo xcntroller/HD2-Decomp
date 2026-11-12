@@ -2,9 +2,20 @@
 #define HD2_HOST_CONTROL_STARTUP_H
 
 #include "frontend/control_startup.h"
+#include "frontend/control_connection_owner.h"
 #include <windows.h>
 
 namespace hd2::host {
+
+class ControlConnectionLock final:public frontend::ControlConnectionLock {
+public:
+    ControlConnectionLock(){InitializeCriticalSection(&lock_);}
+    ~ControlConnectionLock()override{DeleteCriticalSection(&lock_);}
+    void enter()override{EnterCriticalSection(&lock_);}
+    void leave()noexcept override{LeaveCriticalSection(&lock_);}
+private:
+    CRITICAL_SECTION lock_;
+};
 
 // Native storage for two startup locks and the peer-owner Win32 lock.
 // The remaining original control owner/device/interface shutdown is separate;

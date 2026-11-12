@@ -40712,6 +40712,126 @@
         "analysis/human-car-target-command-source.md",
         "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00744ed0",
+      "status": "partial",
+      "coverage": "Cold unreliable queue: two real owned empty linked-list sentinels and consumed003FFFFF sequence fields. No populated send/receive/destructor message release claim.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745350",
+      "status": "partial",
+      "coverage": "Cold reliable queue extends same base sentinel owners with native34/40 empty lists,003FFFFF24/28 and timeout200. No protocol/packet-pool claim.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007458d0",
+      "status": "partial",
+      "coverage": "Cold ordered queue extends same reliable owner with native48=003FFFFF. No ordered packet receiver claim.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00744fc0",
+      "status": "partial",
+      "coverage": "Reached COLD base queue retirement:1C then10 sentinel ownership. Populated tail-message virtual08 release remains required, not bypassed as success.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745410",
+      "status": "partial",
+      "coverage": "Reached COLD reliable/ordered queue retirement:40 then34 then same base1C/10 owners. Populated message release remains open.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745d20",
+      "status": "partial",
+      "coverage": "Actual cold connection scalar, distinct first44 and second3C/40 clock reads, ascending three queue acquisitions including NULL continuation, then OS20 critical section. Same typed08 identity borrowed by entry and registry.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00745e40",
+      "status": "partial",
+      "coverage": "Cold connection retirement destroys20 critical section BEFORE ascending14/18/1C queue owners, skipping NULL.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_owner.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746b50",
+      "status": "partial",
+      "coverage": "Actual borrowed worker registry append under SAME B4 lock, publish workerD4 to wrapper08 BEFORE reserve/allocation, preserve geometric growth and duplicates. Cold D4 remains unproduced until actual native writer.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_records.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00746d20",
+      "status": "partial",
+      "coverage": "Actual borrowed worker registry removal under SAME B4, first matching entry swap-last/pop; no connection deletion or08 clear. Registry retirement also owns no entries.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/frontend/control_connection_records.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00730a40",
+      "status": "partial",
+      "coverage": "Actual process authority/client entry generation publication through typed peer6C/client334, full-word AC XOR1 and original mode/active08/stage74/lock418 gates. Missing wrapper failure retains native AC mutation and earlier-row prefix; actual StartupSession route.",
+      "limitations": "Source-only typed/template/STL/RAII adaptation, no original layout/allocator/SEH/vtable equivalence. Native100 ASan/UBSan/LSan uses actual cold connection/queue/record/registry/entry owners with explicit OS clock/lock/allocation doubles; only prior workerD4 seeded. Strict actual StartupSession i386 and launcher/probe compile/link, never execution. Populated protocol queues, containing worker/socket/thread start/stop, client/host caller publication/disconnect, D7-D12 and full H2 remain open. No successful transport, application or desktop claim.",
+      "evidence": [
+        "recovered/game/session_entry_connections.h",
+        "analysis/human-entry-connection-source.md",
+        "analysis/checkpoints/p2.2-human-entry-connections-20261112.json"
+      ]
     }
   ]
 }

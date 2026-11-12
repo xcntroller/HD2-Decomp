@@ -162,6 +162,8 @@ D10 unmounted composition can advance without waiting for all transport work.
   004D16A0/loading lifetime. Resolve actual driver/input/mounted borrowers;
   retain offline7 gates. Verify any reached non-Car9A8/4A0 physical mapping in
   004D3D10 or prove that the selected branch cannot produce it.
+  H3 worktree has uncommitted mounted-control/Car owner changes; preserve them
+  and integrate its verified checkpoint before duplicating these receivers.
 
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,
@@ -183,10 +185,17 @@ closes positive damage and Door visual restoration; D4/D5 remain open.
 
 ### Shared entry and process lifetime
 
-- [ ] D6 — Actual peer6C/client334 wrappers and worker lifecycle used by00730A40.
-  Recover00745D20/00746B50/00746D20 queue/critical-section/clock owners, registration
-  publication underB4 and swap-last unregister without deletion. Client00723D20
-  publishes334 before port/register; host007260A0 registers after418 unlock.
+- [ ] D6 — Actual peer6C/client334 and containing worker/caller lifecycle.
+  D6a closes cold connection/registry/entry receivers only; D6b remains required.
+- [x] D6a — Cold00745D20 queue/clock/lock ownership and retirement,00746B50/
+  00746D20 registry and typed00730A40 entry mutation. No live worker/protocol claim.
+  [Verified source](checkpoints/p2.2-human-entry-connections-20261112.json);
+  [contract/remaining boundary](human-entry-connection-source.md).
+- [ ] D6b — Actual007466E0/007474E0 worker/socket storage,007467B0/00747690
+  start callbacks and00746840/00747750 stop/retirement; client334/peer6C
+  publication, port/register and disconnect deletion through SAME owner.
+  Client00723D20 publishes334 before port/register; host007260A0 registers
+  after418 unlock. Preserve cold unproducedD4 and populated queue failures.
 - [ ] D7 — Status9 composition:00730A40→0072E890→00731610(true), retained-game
   restoration BEFORE menu shutdown, SAME00698510/006989B0 owner and actual request.
   Depends on D6 and existing S06/S07; preserve its shutdown/delete failure path.

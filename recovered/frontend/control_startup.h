@@ -3,6 +3,7 @@
 
 #include "frontend/settings_sound.h"
 #include "frontend/multiplayer_server.h"
+#include "frontend/control_connection_records.h"
 #include "game/session_network_parameters.h"
 #include <bitset>
 #include <optional>
@@ -31,11 +32,16 @@ public:
             if(value)throw std::logic_error("Control Human borrower cannot be manufactured from a DWORD");
             human3c_=nullptr;
         }
+        if(offset==0x6c){
+            if(value)throw std::logic_error("Control connection cannot be manufactured from a DWORD");
+            connection6c_=nullptr;
+        }
         for (unsigned i = 0; i != 4; ++i) byte(offset + i, static_cast<std::uint8_t>(value >> (i * 8)));
     }
     std::uint32_t word(std::size_t offset)const {
         if(offset>size-4)throw std::out_of_range("Original control record word");
         if(offset==0x3c&&human3c_)throw std::logic_error("Control Human borrower requires its typed access");
+        if(offset==0x6c&&connection6c_)throw std::logic_error("Control connection requires its typed access");
         std::uint32_t value=0;
         for(unsigned n=0;n!=4;++n){const auto v=byte(offset+n);
             if(!v)throw std::runtime_error("Control record word has no original producer");
@@ -44,6 +50,12 @@ public:
     }
     void* human_actor()const{(void)byte(0x3c).value();return human3c_;}
     void human_actor(void* actor){word(0x3c,0);human3c_=actor;} //00612A60 borrows;0059E3E0/reset clears, never owns.
+    ControlConnectionRecord* connection()const{
+        for(unsigned n=0;n<4;++n)if(byte(0x6c+n).value())
+            throw std::logic_error("Control connection requires its actual typed owner");
+        return connection6c_;
+    }
+    void connection(ControlConnectionRecord* value){word(0x6c,0);connection6c_=value;}
     std::string name()const {
         std::string value;
         for(std::size_t n=8;n!=size;++n){const auto c=byte(n);
@@ -56,6 +68,7 @@ private:
     std::array<std::uint8_t, size> bytes_{};
     std::bitset<size> defined_;
     void* human3c_=nullptr;
+    ControlConnectionRecord* connection6c_=nullptr;
 };
 
 // 00725A50 via00725A40: only these bytes are written; reset preserves the rest.
@@ -87,6 +100,7 @@ struct ControlStartupState {
     void* wrapper10 = nullptr;
     void* service14 = nullptr;
     std::vector<ControlStartupRecord> records; // +1DC, elements at+1E0
+    ControlConnectionRecord* client334=nullptr; //Distinct from transport client04 and voice0C. Original process BSS; borrowed here.
     std::optional<ControlStartupCallback> callback414;
     std::uint32_t word448 = 0, word4e4 = 0;
     //0097D070+44C/464 lie beyond .data's raw extent in the original image:
