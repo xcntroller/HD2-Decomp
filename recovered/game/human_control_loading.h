@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_HUMAN_CONTROL_LOADING_H
 #define HD2_GAME_HUMAN_CONTROL_LOADING_H
+#include "game/human_track_equipment_events.h"
 
 #include "game/human_action_control.h"
 #include "game/human_control_action_queue.h"
@@ -701,6 +702,9 @@ private:
                 case 0x0b:case 0x0c:
                     if(event==0x0c||!animation_.equipment_frame_timer_active())equipment_owner.set_frame_weapon_pose(false,true);
                     animation_.clear_equipment_frame_timer();
+                    return true;
+                case 0x0d:case 0x0e:
+                    apply_human_track_hand_transfer(event,tracks_,*this,equipment_owner);
                     return true;
                 case 0x15:state.set(0x9c8,std::uint8_t{1});return true;
                 default:return runtime.apply_human_track_event(*this,look,event);

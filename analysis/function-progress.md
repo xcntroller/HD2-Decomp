@@ -223,3 +223,8 @@ and P22-UI closure remain open.
 General HUD control continuation adds15 frozen client partials:34 complete,
 2,611 partial (2,606 client/five engine). [Receipt](checkpoints/p22-ui-general-controls-20261111.json).
 Conditional presentation, actual Human producers and P22-UI closure remain open.
+
+H4 C1 adds five frozen client partials0060D6F0/00588AA0/005A7770/005A7810/005A9560;
+source bindings/track coverage extend existing rows, no promotions or inventory
+changes.34 complete/3,016 partial (3,011client/fiveengine). Full H4 remains open.
+[Contract](p22-hum-h4-implementation.md).

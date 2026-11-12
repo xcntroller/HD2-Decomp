@@ -97,6 +97,12 @@ public:
         activation_.publish_mine(identity,human,definition,position,direction);
     }
     bool receive_packet(game::SessionPacketStream& packet,bool authority){return game::receive_runtime_actor_packet(*this,packet,authority);}
+    void disarm_human_action_mine(Instance* actor){
+        if(!registry_.owns(actor))throw std::logic_error("Human completion Mine has no actual live Runtime owner");
+        auto* mine=dynamic_cast<Mine*>(actor);
+        if(!mine)throw std::logic_error("Human pickup completion requires its actual Mine target");
+        mine->disarm(); //005FEEE0:98 clear, command1, fresh mode2 then possible retirement.
+    }
     void receive_runtime_authority(Instance& actor,game::SessionPacketStream&){
         if(actor.base().type()==2||actor.base().type()==12)return; //005FEBA0/005FDCF0 genuine RET4.
         throw std::runtime_error("Required runtime actor authority packet leaf is unavailable");

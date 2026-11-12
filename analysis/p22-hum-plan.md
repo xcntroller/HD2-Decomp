@@ -30,7 +30,7 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
   source achievements and explicit remaining dependencies follow below.
 - [ ] H3 — Positive interaction actions00751480/00755500: occupied Car/StaticWeapon
   entry/exit and mounted receivers, existing seats/mass/cameras/control ownership.
-- [ ] H4 — Common AI outputs: reached00584E30 completions, B0 action/navigation/
+- [ ] H4 — [Isolated implementation plan](p22-hum-h4-plan.md): common AI outputs: reached00584E30 completions, B0 action/navigation/
   formation, track events and DD0 transition/attachment consumers.
 - [ ] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9
   release and actual Scene2 actor dispatch.

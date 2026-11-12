@@ -16,6 +16,7 @@
 #include "game/human_scene_frame.h"
 #include "game/human_mine_contact.h"
 #include "game/human_state_action_completion.h"
+#include "game/human_action_completion_effects.h"
 #include "game/human_objective_experience.h"
 #include "game/human_ai_shot_direction.h"
 #include "game/human_weapon_reload.h"
@@ -1018,6 +1019,33 @@ public:
     template<class Actor>void finish_human_explosive_disarm(Actor& actor){
         auto& d=dependencies();
         action_explosive_place(actor).disarm(d.world_actors,d.scene.buckets());
+    }
+    template<class Actor>void finish_human_runtime_pickup(Actor& actor){
+        dependencies().world_actors.runtime().disarm_human_action_mine(&actor);
+    }
+    template<class Actor,class Human>void finish_human_explosive_placement(Actor& actor,Human& human){
+        auto& d=dependencies();
+        (void)complete_human_explosive_placement(action_explosive_place(actor),human,
+            d.world_actors.items(),d.world_actors,d.scene.buckets(),*this);
+    }
+    auto* human_treatment_target(std::int32_t identity){return human_damage_source(identity);} //00475E00 actual Human lookup.
+    template<class Human>void advance_human_medical_skill(Human& human,float amount){ //005A9560.
+        if((mode_flags()&7u)!=7u)return;
+        auto& bits=human.fieldc0.at(6);float value;std::memcpy(&value,&bits,4);
+        const auto sum=static_cast<long double>(value)+amount;
+        value=sum>5.f?5.f:static_cast<float>(sum);std::memcpy(&bits,&value,4);
+        //0069BFE0 is the existing actual retail RET; no extra logger callback.
+    }
+    template<class Human>void human_treatment_notification(Human& human,Human& target,
+            std::int32_t,std::int32_t,std::int32_t){
+        auto& d=dependencies();receive_human_offline_notification(human,&target,d.scene.frames(),
+            d.startup.text(),d.hud,mode_flags(),human_current_player_id()); //00588870 virtual10, offline branch.
+    }
+    template<class State,class Runtime>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item,Runtime& runtime){
+        if(state.words().template get<std::uint32_t>(0x48)==1){
+            runtime.finish_human_treatment(state,identity,item);return; //Separate00546DC0 Player/H6/protection/packet policy.
+        }
+        (void)complete_human_base_treatment(state,identity,item,dependencies().world_actors.items(),*this);
     }
     template<class State,class Human>void finish_human_action_unavailability(State& state,Human& human){
         //All observed B0 families use 00524D50/60 for virtual8C/90.

@@ -341,3 +341,5 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Interactive commits require user desktop confirmation; no pushes without instruction.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
+
+P22-HUM H4: [isolated implementation plan](analysis/p22-hum-h4-plan.md) selects common outputs/completions, B0 navigation/formation and track/DD0 consumers from HUMe742f84; H2/H3/H5/H6 and desktop acceptance remain separate.

@@ -1,0 +1,65 @@
+# P22-HUM H4 — common outputs
+
+Isolated worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4`,
+branch `feature/p22-hum-h4`, created from the inspected current
+`feature/p22-hum` **e742f84e9c73f871d1d6658cc13f99857023af16**.
+Inspected branches, worktrees, clean status and history before creation. No prior
+H4 checkout/branch existed. No master/other worktree edits, merge or push.
+
+The user selects the whole H4 checkbox, independently of H2/H3/H5/H6. Original
+behavior and same existing owners are required; no successful missing receiver,
+invented state/default, seeded population or declaration-only binding claim.
+
+## Preserve completed source
+
+- [x] Read AGENTS, HANDOFF, current milestone/HUM plan and index; compare current
+  common completion, AI movement/items/navigation/formation and track owners.
+- [x] Preserve00584E30 dispatcher and E0 command order, existing timer/query/
+  navigation paths, shared B0/DC command admission (e742f84), DD0 queue/animation,
+  actual formation/model/attachment, resources/clock/random and retirement owners.
+
+## H4 implementation boundary
+
+- [ ] Inventory common completion Runtime calls against actual World bindings;
+  research original positive pickup/type15/placement/treatment/motion/drop workers,
+  their producer/action IDs and retirement before implementing each whole family.
+- [ ] Complete independently available00584E30 positive consumers and concrete
+  actual B0/World dispatch, preserving failed-prefix mutations and late mode reads.
+- [ ] Resolve B0 common movement/navigation outputs, deferred climb and formation
+  consumers with original command/queue and live state; preserve existing H5
+  Guard/Area decision boundaries and H6 item-fire ownership.
+- [ ] Complete reached track-event and DD0 transition/attachment consumers using
+  their existing actual animation/control/actor owners; no new control/model owner.
+- [ ] Focused temporary native ASan/UBSan/LSan positive/failure/order/retirement
+  audits; strict actual i386 World/Human/Runtime composition and launcher/probe
+  link. Label unavailable endpoints as doubles; fingerprint/remove this task's
+  temporary audits and retain concise evidence/receipts.
+- [ ] Update H4/HUM plan, implementation/evidence, frozen ledger only for actual
+  implemented inventory bodies, short plan note and latest HANDOFF; commit verified
+  whole families and continue until the full H4 boundary is complete or blocked.
+
+## External and later boundaries
+
+- [ ] Record exact H3 interaction/occupied, H5 decision, H6 weapon/Items,
+  PACK/non7, FRAME/OWN or actual engine dependencies when reached. An abstract
+  Runtime method alone does not establish that its body is missing elsewhere.
+- [ ] Keep H2 D11 confirmed unproduced part/wheel/effect guards visible without
+  repeating their completed research or assigning them to every H4 branch.
+- [ ] H8 actual full containing Human frame, live application/mission resources,
+  engine execution, failure/repeat and user desktop acceptance remain separate.
+
+Plan created before implementation. This checklist will be refined from exact
+current source/original evidence; H4 stays open while any required H4 body or
+concrete source binding is missing, with its precise blocking owner/input named.
+
+## C1 verified source checkpoint
+
+- [x] Bind actual runtime Mine disarm and ExplosivePlace placement, shared AI/
+  Remote treatment and lookup over same owners; preserve Player-specific policy.
+- [x] Correct original late completion mode/target reads and preserve failure tail.
+- [x] Bind DD0 hand-transfer track13/14 to actual existing230 models/receivers.
+- [x] Native focused sanitizer families PASS100 with labelled endpoint doubles.
+- [x] Finish strict actual i386 links, application/probe and receipt/commit, then
+  continue remaining completion/climb/formation/track families. Full H4 stays open.
+
+[Detailed source and next whole families](p22-hum-h4-implementation.md).

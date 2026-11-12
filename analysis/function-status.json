@@ -28442,7 +28442,9 @@
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
         "recovered/game/human_state_frame_timers.h",
-        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json"
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "analysis/p22-hum-h4-implementation.md",
+        "recovered/game/human_state_action_completion.h"
       ]
     },
     {
@@ -30598,12 +30600,13 @@
       "program": "client",
       "entry": "00584e30",
       "status": "partial",
-      "coverage": "Dispatch the actual B0 action completion sequence, including item refresh, reset, ordered E0 and required actor effects.",
+      "coverage": "Dispatch the actual B0 action completion sequence, including item refresh, reset, ordered E0 and required actor effects. Positive Mine disarm/ExplosivePlace placement and shared AI/Remote medicine now bind actual World owners; authority mode and target are read after original E0 callbacks, preserving failure prefixes.",
       "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
-        "recovered/game/human_state_action_completion.h"
+        "recovered/game/human_state_action_completion.h",
+        "analysis/p22-hum-h4-implementation.md"
       ]
     },
     {
@@ -31010,12 +31013,15 @@
       "program": "client",
       "entry": "00758d20",
       "status": "partial",
-      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies.",
+      "coverage": "Consume retained track event groups in original order with actual equipment events1/2/10/11/12 and DD0 event21; remaining positive events require runtime bodies. Track13/14 now query current lane2 metadata and route actual hand-action model transfers; event13-only secondary4F/5A fallback preserved.",
       "limitations": "Source-only typed owners and delegated engine calls. Focused native fixtures use frame/audio doubles and seeded running/recovery state. Actual motion producers, positive animation events, attachment/camera effects, geometry and application/desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
-        "recovered/game/human_control_loading.h"
+        "recovered/game/human_control_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "recovered/game/human_state_action_completion.h",
+        "recovered/game/human_track_equipment_events.h"
       ]
     },
     {
@@ -40711,6 +40717,61 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-car-target-command-source.md",
         "analysis/checkpoints/p2.2-human-car-target-command-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060d6f0",
+      "status": "partial",
+      "coverage": "Positive ExplosivePlace placement over actual target/Human/Items:94 gate, C4 publication before definition lookup, actual item identity removal, state1/collision/visual, module13 command2 packet with fresh C4 and retained item identity.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_action_completion_effects.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00588aa0",
+      "status": "partial",
+      "coverage": "Shared AI/Remote B0 medical completion: actual Human target, seven-slot kind13/identity lookup, extended skill*maximum/amount conversion, integer cap/wrapping, FLOAT item cost, life and medical modifier, offline notification and zero-amount retirement; concretely bound under same World.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_action_completion_effects.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a7810",
+      "status": "partial",
+      "coverage": "Actual seven-receiver forward kind lookup; holder or occupied stack query per receiver, optional slot output only on match, actual Items definitions without cooldown/amount filtering.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_inventory_lookup.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a7770",
+      "status": "partial",
+      "coverage": "Holder versus stack kind query: nullable receiver, holder single entry, arrays forward occupied stacks with reverse entries, first match and legitimate absence. Used by actual005A7810 completion lookup.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_inventory_lookup.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a9560",
+      "status": "partial",
+      "coverage": "Actual offline medical FLOAT modifierD8 addition and cap5 over same Human fieldC0, preserving extended compare and FLOAT store; retail debug formatter ending in real0069BFE0 RET omitted as existing source convention.",
+      "limitations": "Source-only typed/STL/RAII reconstruction and explicit native safety guards, not original thiscall/object/vector/allocator/SEH ABI equivalence. Focused native ASan/UBSan/LSan audits use explicitly labelled World/Human/Items/transport/graphics endpoints; actual i386 World/Human/completion composition compiles/links only. Separate Player medical/protection/packets, remaining H4 outputs and actual mission/desktop execution remain open.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-hum-h4-implementation.md"
       ]
     }
   ]
