@@ -191,3 +191,38 @@ Runtime paths are DEFINED throwing doubles. Existing launcher/probe strictO2
 links PASS, never run. No new ledger rows: only00758D20 coverage extended.
 H3 committed source10bebe9 is now on feature/p22-hum520b03e, inspected through
 Git only; its seat/aim graph is an import dependency, not assumed linked here.
+
+## C4 — Script event output0058FD30
+
+The original raw tail fixes a misleading decompilation:00591F00 is vector insert
+on ECX=Human+2A8, at its END+2B0, not a VM callback or a separate perception
+list. New output reuses actual list2AC and process008AB048+48 perception pool.
+For each selected FIRST event10000017 in the existing reverse traversal, resolve
+word10 with existing signed005ACA50/00475DD0, sample actual timeGetTime, acquire
+kind2 at event.position20, return the actual event to process008AC320 BEFORE
+compacting FIRST, append perception record before own B4, then reverse command78
+members and B4 only actual kind3 Humans. The native getter005AE230 has typed
+actor identity adaptation in existing command.lists[0]; actual Scene2 resolves
+those identities before typed dispatch. No new list, private cache, clock or
+forced empty collection. Existing actual HumanSoundStateCallbacks and hearing
+B4 receivers are concretely bound; own callback receives THIS actual Script.
+
+Native ASan/UBSan/LSan PASS43: actual pools/deque/list, positive record fields,
+reverse notifications, legitimate negative handle, no-match, clock/pool/own/group
+failure prefixes, pool return before callbacks, wrong-owner guard, retirement,
+retry and repeat construction. Scene/time/B4 endpoints are explicitly doubled.
+Strict actual i386 World construction and direct Script->World->actual event/
+perception pools->actual owning/group B4->actual factory/hearing/Scene composition
+FULL LINK PASS with no endpoint doubles in this selected family. This does not
+establish the10000017 producer or populated group is reached by a loaded mission.
+The only original positive producer immediate found in inspected .text is inside
+005CC8D0; original export is being investigated rather than manufactured.
+
+C4 existing application-launch/startup-probe strictO2 links PASS, never run.
+Original .text producer005CC8D0 uses its selected actor88/owner10 and virtual34
+command queue, then005A8B30 distribution. That containing controller/source
+admission is separate from this callable Human event consumer; its export is
+retained for further boundary investigation. New frozen0058FD30 partial only;
+34 complete/3,020 partial. No credit for delegated vector insertion00591F00.
+[C4 receipt](checkpoints/p22-hum-h4-script-event-20261112.json) records source,
+original/raw evidence and removed audit fingerprints. H4 remains OPEN.

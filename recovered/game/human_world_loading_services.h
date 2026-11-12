@@ -40,6 +40,8 @@
 #include "game/human_packet_receiver.h"
 #include "game/human_packet_notifications.h"
 #include "game/human_script_loading_controls.h"
+#include "game/human_script_event_output.h"
+#include "game/human_sound_state_callbacks.h"
 #include "game/human_squad_snapshot.h"
 #include "game/human_score_presentation.h"
 #include "game/human_death_objective.h"
@@ -690,6 +692,27 @@ public:
     }
     template<class Actor>bool human_scene_actor_matches(Actor& actor){return dependencies().scene.frames().scene_actor_identity(actor.base().id10())==&actor;} //00475DD0.
     auto& human_perception_record_pool(){return dependencies().startup.human_perception_record_pool();}
+    std::uint32_t human_script_event_ticks(){return dependencies().hearing.human_sound_ticks();} //SAME timeGetTime.
+    template<class State,class Record>void human_script_event_own_callback(State& state,Record& record){
+        using Factory=typename Dependencies::Composition::StateFactory;
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=state.human();if(!human)throw std::logic_error("Script record callback lost its actual Human");
+        HumanSoundStateCallbacks<typename Dependencies::ActorFrames,Human,Factory>
+            callbacks(dependencies().scene.frames(),human_state_factory(*human));
+        callbacks.b4(state,record);
+    }
+    template<class Record>void human_script_event_group_callback(std::uint32_t identity,Record& record){
+        auto* actor=dependencies().scene.frames().scene_actor_identity(human_frame_signed_word(identity));
+        if(!actor)throw std::logic_error("Script event group lost its actual actor borrower");
+        if(actor->base().type()!=3u)return;
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=dynamic_cast<Human*>(actor);
+        if(!human)throw std::logic_error("Script event group kind3 has no actual Human receiver");
+        dependencies().hearing.human_sound_state_b4(*human,record);
+    }
+    template<class State,class Queue>void dispatch_script_ai_event(State& state,Queue& queue,std::size_t index){
+        dispatch_human_script_event(state,queue,index,*this);
+    }
     bool human_face_quality_enabled(){return dependencies().startup.human_face_quality_enabled();}
     bool human_geometry_effect_quality(){return dependencies().startup.profile_settings().quality_byte(5)!=0;}
     bool human_surface_quality_enabled(){return dependencies().startup.profile_settings().quality_byte(2)!=0;}

@@ -88,3 +88,12 @@ Current HUM/H3 refs inspected read-only: H3 source checkpoint10bebe9 is merged
 on feature/p22-hum520b03e, unavailable in this implementation base. Preserve its
 actual seat/aim contracts as an import dependency; do not duplicate its ledger or
 assume unmerged source is linked here. H4 base remains e742f84.
+
+## C4 selected Script event output
+
+- [x] Implement0058FD30 over existing FIRST event/perception pools and SAME
+  Human2AC list; return event before erase, append before B4, reverse group B4.
+- [x] Bind actual World/Scene/hearing/state callback services, preserving signed
+  identity lookup, actual clock and pool/list lifetimes; record producer limits.
+- [x] Focused sanitizer failure/ordering/repeated-owner audit and actual i386
+  World/Script output/B4 full link; retain receipt, remove temporary audits/commit.

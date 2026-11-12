@@ -40812,6 +40812,20 @@
         "recovered/host/game_actor_frames.h",
         "analysis/p22-hum-h4-implementation.md"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0058fd30",
+      "status": "partial",
+      "coverage": "Selected FIRST10000017 output: existing signed Scene2 identity, actual clock/perception pool, event return before compaction, same Human2AC append, actual owning B4 and reverse group kind3 B4 receivers.00591F00 is SAME2A8 vector insertion, not a VM callback.",
+      "limitations": "Source-only typed pool/deque/vector owners and native safety guards, not native allocator/object/thiscall/SEH equivalence. Native Scene/time/B4 endpoints are explicit doubles; actual i386 World/Script/event/perception/factory/hearing graph fully links only. Positive original producer005CC8D0 and populated group admission are not claimed from fixture events or direct calls. Remaining H4 and mission/desktop execution stay open.",
+      "evidence": [
+        "recovered/game/human_script_event_output.h",
+        "recovered/game/human_ai_event_queue.h",
+        "recovered/game/human_perception_records.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-hum-h4-implementation.md"
+      ]
     }
   ]
 }

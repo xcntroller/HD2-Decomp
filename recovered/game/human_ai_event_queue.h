@@ -87,6 +87,10 @@ public:
         push(std::move(event));
     }
     const HumanAIEvent* at(std::size_t index)const{return events_?events_->at(index).get():nullptr;}
+    void retire_at(std::size_t index){ //00533850 then00533880; record returned BEFORE compaction.
+        if(!events_||index>=events_->size())throw std::out_of_range("Human event retirement lost its actual deque entry");
+        events_->at(index).reset();events_->erase(events_->begin()+static_cast<std::ptrdiff_t>(index));
+    }
     std::size_t size()const{return events_?events_->size():0;}
     const HumanAIEvent* strongest_at(const std::array<float,4>& position)const { //005AE310, processed deque.
         if(!events_)return nullptr;
