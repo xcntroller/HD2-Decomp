@@ -137,6 +137,7 @@ public:
         requested=true;
     }
     float skid_amount()const{return skid_;}
+    void reset_skid(){skid_=0;} //004E9DB0's5F0, without stopping/releasing voices.
 private:
     void stop(unsigned slot){if(const auto sound=sounds_.sound(slot))frames_.human_sound_enabled(sound,false);}
     void rate(Frame sound,const CarPhysicsScalars& fields,unsigned offset,float speed){

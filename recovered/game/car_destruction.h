@@ -97,5 +97,41 @@ template<class Frames,class Runtime,class Car,class StateFactory>void destroy_ca
     if(!(r.car_damage_mode()&2u))car.flag2548=true;
     damage_car_nearby_humans(frames,r,car,state);
 }
+
+//004DC780, received event4 presentation, after004E2000. Reuse the SAME
+//physical lifetime and callbacks; missing positive glass/Item12 still fail at
+//their actual call site, after the native prefix has already been published.
+template<class Frames,class Runtime,class Car,class StateFactory>void present_destroyed_car(
+        Frames& frames,Runtime& r,Car& car,StateFactory&& get_state){
+    auto& state=get_state();std::array<bool,6> detached{};
+    for(std::size_t n=0;n<state.wheels.size()&&n<detached.size();++n)detached[n]=(state.wheels[n].flags&0x40000000u)!=0;
+    r.car_physical_reset(car,state.solver.speed,true);
+    for(std::size_t n=0;n<state.wheels.size()&&n<detached.size();++n)if(detached[n]){
+        state.wheels[n].flags|=0x40000000u;frames.object_visible(state.wheels[n].frame,false);frames.update_scene_object(state.wheels[n].frame);
+    }
+    r.car_destruction_controls(car);
+    if(r.car_presentation_authority(car)){
+        CarContactVector impulse{{0,car.geometry->physics().scalars().get(0x918)*3.f,0,0}};
+        r.car_presentation_impulse(car,impulse,state.body.pose().position); //Actor350/core2C0.
+    }
+    r.car_destroyed_meshes(car);
+    auto& parts=car.geometry->deformables().parts();
+    for(auto n=parts.size();n;){const auto index=--n;auto& part=parts[index];if(part.flags&1u)continue;
+        const auto world=frames.actor_world_matrix(part.frame);auto force=state.body.pose().position;
+        force[0]=world[12]-force[0];force[1]=world[13]-force[1];const auto z=static_cast<long double>(world[14])-force[2];force[2]=static_cast<float>(z);
+        force=normalize_car_destruction_vector(force,(z*force[2]+static_cast<long double>(force[0])*force[0])+static_cast<long double>(force[1])*force[1]);
+        const auto gain=(static_cast<long double>(r.car_destruction_random_float())-.5f)*10.f+20.f;
+        force[0]=static_cast<float>(force[0]*gain);force[2]=static_cast<float>(force[2]*gain);force[1]=static_cast<float>(std::abs(force[1]*gain));
+        if(force[1]<5.f)force[1]=5.f;
+        if(part.type==3){
+            part.health=0;auto glass=force;for(unsigned a=0;a!=3;++a)glass[a]*=.10000000149011612f;
+            r.car_present_glass(car,index,glass);
+        }else if(r.car_destruction_random_word()&1u){
+            part.health=0;const CarContactVector velocity{{0,0,0,0}};(void)car.callbacks.value().part694(index,velocity,&force);
+        }
+    }
+    car.model254c.reset();
+    for(std::size_t n=0;n<car.occupants.size();++n)if(auto* occupant=r.car_damage_occupant(&car,n))r.car_present_occupant(occupant);
+}
 }
 #endif

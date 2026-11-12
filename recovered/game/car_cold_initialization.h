@@ -11,6 +11,14 @@
 
 namespace hd2::game {
 
+//004E9DB0's additional mutable runtime words, separate from coefficients.
+//Wider driving/plane-cache consumers remain required at their existing gates.
+struct CarPhysicalResetFields {
+    float field780=0,field78c=0,fieldf68=0;
+    std::array<std::uint32_t,4> fields4f0{};
+    bool field22c1=false,signal2294=false,signal2295=false;
+};
+
 //004EA780 and004EC5C0's cold, unoccupied source owner. The containing actor
 //must supply its SAME geometry, callbacks, shared buckets, process receiver
 //lists and particle pool. No query/solver/activation backend is manufactured.
@@ -124,6 +132,7 @@ public:
     CarSoundLoading<Frames> sounds;CarSoundUpdates<Frames> audio;
     Wheels wheels;CarDrivetrainState drive;CarHealthState health;CarSteeringState steering;
     CarControlRequests control_requests;
+    CarPhysicalResetFields reset_fields;
     CarColdSolverState<Frames> solver;CarColdFinalizerState<Frames> finalizer;
     std::vector<std::uint16_t> paired_flags;std::int32_t update_hold=0;float fuel=0;
     float engine_timeout=0,brake_ramp=0,brake_amount=0;bool brake_latch=false; //F48/710/740/22C7.

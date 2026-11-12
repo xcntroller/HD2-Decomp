@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "5f7aa6df2187819b711af1d245df58ff47e5bd89",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "004e9db0",
+    "004dcd10",
+    "004dcde0",
+    "004dd040",
+    "004dc780",
+    "00500da0"
+  ],
+  "extended_entries": [
+    "004fe910",
+    "004db360",
+    "00789cd0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2732,
+  "source_files": {
+    "recovered/host/game_car_frames.h": {
+      "sha256": "78d99c001a8da4d74c34b2df1f3bd952ddb737efbfcc4447ce0f5c33fe903834",
+      "bytes": 24394
+    },
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "05f2cab5a52bd6e7b7623f15920c39788d247b7ef1dd79fd2d3b1c5382f3cdcf",
+      "bytes": 16473
+    },
+    "recovered/game/car_deformable_parts.h": {
+      "sha256": "be0baf424d118f92f93d3017b2f4e36cd988ca610ab6452ecd74d147ac63e6a6",
+      "bytes": 9363
+    },
+    "recovered/game/car_body_integration.h": {
+      "sha256": "cc5879cfa1078d65f63b22a50d36f2446fabb9c6e77624fbc0ab4a221e5a647a",
+      "bytes": 9182
+    },
+    "recovered/game/human_opacity_control.h": {
+      "sha256": "e32855fa1f749169f9708b036e8262fc403804d1b16c3817ea89b851287488f6",
+      "bytes": 5838
+    },
+    "recovered/game/car_cold_initialization.h": {
+      "sha256": "becbbec7b6ddf6064414194331bd97721a4a72a6596cae09156668304f9134f8",
+      "bytes": 9556
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "c6bc2a78fb4637d908493df47c9a99bea48c8f271ca3c22f0e365dc7858b89ba",
+      "bytes": 19779
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "9f0d5be1d152c878776f2192cc63aa017f560092fad063054d752b0054908335",
+      "bytes": 2000
+    },
+    "recovered/game/car_sound_updates.h": {
+      "sha256": "346cf114a8a0d12757d83eb5ae5f8003fb21d429899b64f74e366285d10159cb",
+      "bytes": 10658
+    },
+    "recovered/game/car_actor_damage.h": {
+      "sha256": "6c2a2e6b38230e1f4847e44c441b4eccd046b7b23023c025cdc16bc67fd10d1f",
+      "bytes": 8655
+    },
+    "recovered/game/car_destruction.h": {
+      "sha256": "7da14a8dc5b2eec00e797150ee19f677a63539bd903e5c8ca268d3e24df88283",
+      "bytes": 9199
+    },
+    "recovered/game/car_physical_reset.h": {
+      "sha256": "5811b6772bed90eb77e2c1e964851f067eb07cdd7a94cc4e58537c4538333e89",
+      "bytes": 8246
+    },
+    "recovered/game/car_glass_damage.h": {
+      "sha256": "0133131eb2ed29e2dcec34cc730fd11c374a5e4133a2480345de4ff98668084b",
+      "bytes": 840
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-physical-reset-native.cpp": {
+      "sha256": "185261101b0705b267068b512e3a03c16d1a71d904b84196dacd4909b5837dcf",
+      "bytes": 10732
+    },
+    "analysis/work/mission-world-20261103/human-car-physical-reset-native": {
+      "sha256": "18a31cea8f39a8df24f987107670a17bee5236d5ffa145c5cafba42bb6105cce",
+      "bytes": 2958632
+    },
+    "analysis/work/mission-world-20261103/human-car-physical-reset-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-physical-reset-native.log": {
+      "sha256": "823949e1b0d0bf0322c39c29b162400356d78f0061652d8ca8c2c48ef139af3f",
+      "bytes": 202
+    },
+    "analysis/work/mission-world-20261103/human-car-queued-presentation-native.cpp": {
+      "sha256": "1419da1aa98379793cc1e805b37cc8db72a97271e3dd26e80839ab00c7ab0197",
+      "bytes": 14653
+    },
+    "analysis/work/mission-world-20261103/human-car-queued-presentation-native": {
+      "sha256": "68bef228a290c1e2859e088d01c63fbfc0f8ed8ca73f462d0d27d1e3bd896e60",
+      "bytes": 3569592
+    },
+    "analysis/work/mission-world-20261103/human-car-queued-presentation-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-queued-presentation-native.log": {
+      "sha256": "f6f988ba65307ad805aef5c5b2fe0f91f094c014a76e4e97a1c7578500f61419",
+      "bytes": 222
+    },
+    "analysis/work/mission-world-20261103/human-car-physical-reset-host-i386.o": {
+      "sha256": "9c326077ba0fe255637a7d0e61fb0cf2d355115591e4ec0bf230a06a172835a0",
+      "bytes": 17517720
+    },
+    "analysis/work/mission-world-20261103/human-car-physical-reset-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-physical-reset-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-host-i386.cpp": {
+      "sha256": "d087697a5e700db17075229c3410d186457d318d3698cb222993649e8ceb0755",
+      "bytes": 688
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-car-physical-reset.asm": {
+      "sha256": "9fd46f5c1ef32b7008a9d555d17285b2c3eafa71fe0daffc99d8164e98b15518",
+      "bytes": 40356
+    },
+    "analysis/work/mission-world-20261103/human-car-queued-presentation.asm": {
+      "sha256": "3a2394c10d871ef4a9effdac7c8a00adbc2dde909bdffff4189d89b95229dfa2",
+      "bytes": 29819
+    },
+    "analysis/work/mission-world-20261103/human-car-glass-transition.asm": {
+      "sha256": "bc78a19e7294a146e52b9ddc7daabf7a512e25bbc1ee83256f22a16ef071abdf",
+      "bytes": 5376
+    },
+    "analysis/work/mission-world-20261103/ExportHumanCarResetABI.java": {
+      "sha256": "059a82b32e6c8b0a5611ff0405309d442051d3d74cd52dda2aba420d1888592f",
+      "bytes": 3509
+    },
+    "analysis/work/mission-world-20261103/human-car-physical-reset-abi-export.log": {
+      "sha256": "2f661e61ab6c1ff8c8e3e52086f4b092b9900fabbcbb878342eda862d2628854",
+      "bytes": 4500
+    },
+    "analysis/work/mission-world-20261103/human-car-physical-reset-abi/004e9db0.c": {
+      "sha256": "7b1347a9dac8c62115639e71d494e79e117b28f2819dc5b3ead3cd7b3dfd813e",
+      "bytes": 15104
+    },
+    "analysis/work/mission-world-20261103/human-car-physical-reset-abi/004e9db0.json": {
+      "sha256": "9454cc55b58ec7a1a2788dc453a47d2d7806d8cdab43886f5bdccae5ae57f140",
+      "bytes": 17272
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-inner/004dcde0.c": {
+      "sha256": "011df3c3d11ef6ed09df42e6b1942ec13428953f7bf1d118d11680dc4e7b982e",
+      "bytes": 476
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-inner/004dcde0.json": {
+      "sha256": "1c4c3682beac67e8b45921e44c1746bbe07bbfd87bfe61b2c1e171ba2b322915",
+      "bytes": 1485
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-inner/004dd040.c": {
+      "sha256": "135a7028cdd8c0c7c00b0f98a422fe924bea9d6fbc2ab8028a052ddf13baa3e9",
+      "bytes": 462
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-inner/004dd040.json": {
+      "sha256": "46895f23af47588eb658aa8c78d6af509ad587bca62047fbe004a7c12b7d81cd",
+      "bytes": 1037
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004dc780.c": {
+      "sha256": "c10ad200cbe6bc46c6154700f1e05dcd6800f6e0b8c0b335758fe5108e0174b8",
+      "bytes": 6470
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/00500da0.c": {
+      "sha256": "5dfb18fad6f2ddc9368d4e1f07dedeac0f0190dfe7c7079d9a6dd01295aa25ee",
+      "bytes": 2071
+    },
+    "analysis/work/mission-world-20261103/script-animation-bounds-half.asm": {
+      "sha256": "f24bc059d47e99cd82e41a9c3ca1b29da36e41a3df7f8ad795b5ec3f1a47851a",
+      "bytes": 796
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan100 physical-reset/mesh/glass/opacity families PASS.",
+    "ASan/UBSan/LSan100 queued event4 families and actual shared DM/packet order PASS.",
+    "Strict actual nested World/Car/Human/control/DM/frame i386 instantiation and launcher/probe compile/link PASS; heavy jobs sequential."
+  ],
+  "limitations": [
+    "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+    "No original EXE/DLL/Proton/Windows output execution. Delegated engine, absent004D4A10/00485BA0, unfinished00484F60 and wider unchanged helpers receive no new credit."
+  ]
+}

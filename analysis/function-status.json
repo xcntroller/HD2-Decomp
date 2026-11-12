@@ -16316,13 +16316,15 @@
       "program": "client",
       "entry": "00789cd0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00789cd0: Actual opacity reset/smoothing/sector ambient selection and original change notification.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 00789cd0: Actual opacity reset/smoothing/sector ambient selection and original change notification. Reached Car destruction now writes SAME targetDA8=.2/appliedDAC=.3 before actual model/500/mode0 update through containing Human DD0.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
       "evidence": [
         "recovered/game/human_opacity_control.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-car-physical-reset-source.md",
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
       ]
     },
     {
@@ -24677,13 +24679,15 @@
       "program": "client",
       "entry": "004fe910",
       "status": "partial",
-      "coverage": "Reset SAME part health/flags; cold reverse alternatives/base visibility restore and actual6B4 callback. Part38 flags are represented as native WORD; byte-low bit clearing preserves the high byte.",
-      "limitations": "Positive deformed mesh/glass backups and occupied attachment restore remain excluded.",
+      "coverage": "Reset SAME part health/flags; cold reverse alternatives/base visibility restore and actual6B4 callback. Part38 flags are represented as native WORD; byte-low bit clearing preserves the high byte. Reverse glass texture restore now shares actual retained material exchange, frame24 after success and clears8 even on NULL; missing positive mesh backups fail at their per-part point, preserving reverse restore prefixes.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_deformable_parts.h",
         "analysis/human-car-blast-damage-source.md",
-        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-blast-damage-20261112.json",
+        "analysis/human-car-physical-reset-source.md",
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
       ]
     },
     {
@@ -36504,12 +36508,14 @@
       "program": "client",
       "entry": "004db360",
       "status": "partial",
-      "coverage": "Actual Car actor1C shared module13 dispatch: complete known event decode before part/wheel mutation, native authority cursor/policy, zero-health callbacks, puncture and DM effects ordering; genuine empty defaults and required remaining event/effect branches.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+      "coverage": "Actual Car actor1C shared module13 dispatch: complete known event decode before part/wheel mutation, native authority cursor/policy, zero-health callbacks, puncture and DM effects ordering; genuine empty defaults and required remaining event/effect branches. Actual event4 now invokes SAME physical/mesh/Human-opacity transition after DM presentation; event0 invokes actual shared glass state/material/name/callback ordering.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
       "evidence": [
         "recovered/game/car_actor_damage.h",
         "analysis/human-car-dm-presentation-source.md",
-        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-dm-presentation-20261112.json",
+        "analysis/human-car-physical-reset-source.md",
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
       ]
     },
     {
@@ -36654,6 +36660,78 @@
         "recovered/game/car_scene_actor.h",
         "analysis/human-car-destruction-source.md",
         "analysis/checkpoints/p2.2-human-car-destruction-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e9db0",
+      "status": "partial",
+      "coverage": "Actual live physical reset RET8 through SAME body/wheel/audio/health/control/projector/collision owners, negative/zero speed engine order, native preserved fields and required positive restore boundaries.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_physical_reset.h",
+        "analysis/human-car-physical-reset-source.md",
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dcd10",
+      "status": "partial",
+      "coverage": "Actual guarded reverse occupant detach, immediate original visual mesh enumeration, reverse current-seat reattachment, SAME part mesh refresh and final2548 publication.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_physical_reset.h",
+        "analysis/human-car-physical-reset-source.md",
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dcde0",
+      "status": "partial",
+      "coverage": "Actual engine enumeration callback: short-name helper lookup, mesh1E0 assignment through9C(mesh,1) and frame24, with checked exception boundary.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/host/game_car_frames.h",
+        "analysis/human-car-physical-reset-source.md",
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dd040",
+      "status": "partial",
+      "coverage": "Reverse SAME deformable records refresh mesh8 from current frame1E0 after destroyed visual transition.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_physical_reset.h",
+        "analysis/human-car-physical-reset-source.md",
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dc780",
+      "status": "partial",
+      "coverage": "Actual queued event4 presentation: max6 detached wheel capture, live physical reset, controls, authority mass*3/model-position impulse, mesh transition, reverse ENGINE/CRT part/glass dispatch, model254C retirement and current seated-Human opacity.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_destruction.h",
+        "analysis/human-car-physical-reset-source.md",
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00500da0",
+      "status": "partial",
+      "coverage": "Actual threshold/flag8 glass material/retained-texture exchange and zero-health flag1/name/callback order; SAME owner restoration and actual packet0/event4 invocation. Positive fragment receiver remains required.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no original allocator/object/SEH ABI or whole-body equivalence. Native100 reset/mesh/glass/opacity and100 queued event4 families use actual source with explicit engine/math/Scene/bucket/physical-control/fragment endpoint doubles; known coefficients seeded, not real geometry loading. Strict actual nested World/Car/Human/control/DM/frame i386 and launcher/probe compile/link pass. Positive mesh fragments00485BA0/00484F60, Item12 detachment, deformed-mesh/global backup/occupied restore, timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/car_glass_damage.h",
+        "analysis/human-car-physical-reset-source.md",
+        "analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json"
       ]
     }
   ]

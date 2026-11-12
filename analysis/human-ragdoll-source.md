@@ -1722,3 +1722,13 @@ producer/empty-list proof; terminal authority/visual/frame consumers remain open
 004DBF00/004DC580 to SAME Car/Script/Scene2/Human/random/packet owners, with
 native partial-failure, water/source, wheel and radius-edge ordering. Queued
 visual/physical reset, detachment, timed-DM and full containing Human paths remain.
+
+
+## Queued Car physical/mesh/glass dependency —2026-11-12
+
+[Contract](human-car-physical-reset-source.md) and
+[checkpoint](checkpoints/p2.2-human-car-physical-reset-20261112.json) bind actual
+004DC780→004E9DB0/004DCD10, immediate engine mesh callback, SAME retained glass
+texture exchange/restore and seated Human opacity. Native focused sanitizers and
+actual World/i386/launcher pass. Positive fragments/Item12/deformed mesh/timed-DM
+and full Human entry/frame remain required; selected checkbox stays OPEN.

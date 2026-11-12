@@ -71,17 +71,21 @@ public:
             //A rejected graphics status leaves this part empty and continues.
         }
     }
-    //004FE910(0), for the actual cold unoccupied lifetime. Mesh backup and
-    //glass swaps are produced only by later positive deformation. No seat
-    //attachment/nativeFA8+28 owner may be installed through this entry.
+    //004FE910(0), same parts and retained glass texture exchange as00500DA0.
+    //Positive mesh backup and seat attachment/nativeFA8+28 restore still
+    //require their actual owners.
     void restore_cold(Frames& frames,const CarPhysics& physics,const std::function<void()>& callback) {
         const auto& applied=physics.geometry().parts;
         if(applied.size()!=parts_.size())throw std::logic_error("Car part restore requires the SAME applied geometry");
         for(std::size_t n=0;n<parts_.size();++n){
             if(parts_[n].type!=applied[n].type)throw std::logic_error("Car part restore ordering differs from applied geometry");
-            if(parts_[n].flags&0xcu)throw std::runtime_error("Car part restore requires its actual deformed mesh/glass backup owner");
         }
         for(auto n=parts_.size();n;){const auto index=--n;auto& part=parts_[index];
+            if(part.flags&4u)throw std::runtime_error("Car part restore requires its actual deformed mesh backup owner");
+            if(part.type==3&&(part.flags&8u)){
+                if(frames.car_exchange_glass_texture(part.mesh,part.glass_texture))frames.update_scene_object(part.frame);
+                part.flags&=0xfff7u; //Native clears8 even when either texture was NULL.
+            }
             for(auto alternative=part.alternatives.rbegin();alternative!=part.alternatives.rend();++alternative){
                 if(!*alternative)throw std::runtime_error("Car deformable variant sequence has a missing frame");
                 frames.object_visible(*alternative,false);frames.update_scene_object(*alternative);

@@ -127,3 +127,7 @@ Continue terminal Car destruction/visual/timed consumers and full entry/frame.
 Authority Car destruction and nearby Human damage now have a
 [source checkpoint](checkpoints/p2.2-human-car-destruction-20261112.json).
 Continue queued visual/physical reset, detachment and full timed/entry/frame paths.
+
+Queued Car physical/mesh/glass transitions now have a
+[source checkpoint](checkpoints/p2.2-human-car-physical-reset-20261112.json).
+Continue actual mesh fragments, Item12 detachment, timed-DM and full entry/frame.

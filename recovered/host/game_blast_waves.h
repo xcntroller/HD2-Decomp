@@ -165,8 +165,24 @@ public:
             if(!car->loading)throw std::logic_error("Car packet requires actual initialized loading lifetime");return car->loading->cold_state();
         },packet);
     }
-    void car_present_destroyed(game::CarSceneActor<GameActorServices>&){
-        throw std::runtime_error("Car destroyed presentation requires actual004DC780 physical/mesh/occupant receivers");
+    void car_present_destroyed(game::CarSceneActor<GameActorServices>& car){
+        game::present_destroyed_car(frames(),*this,car,[&]()->auto&{
+            if(!car.loading)throw std::logic_error("Destroyed Car presentation requires actual initialized physical lifetime");return car.loading->cold_state();
+        });
+    }
+    void car_physical_reset(game::CarSceneActor<GameActorServices>& car,float speed,bool restore){car.loading->physical_reset(speed,restore);}
+    bool car_presentation_authority(game::CarSceneActor<GameActorServices>& car){return services_.human_ragdoll_car_authority(car);}
+    void car_presentation_impulse(game::CarSceneActor<GameActorServices>& car,const Vector& impulse,const Vector& point){
+        auto& state=car.loading->cold_state();game::apply_car_direct_impulse(frames(),state,impulse,point,0,Vector{{1,1,1,0}},[&]{if(car.callbacks->state6a4)car.callbacks->state6a4();});
+    }
+    void car_destroyed_meshes(game::CarSceneActor<GameActorServices>& car){car.loading->destroyed_meshes();}
+    void car_present_glass(game::CarSceneActor<GameActorServices>& car,std::size_t index,const Vector& direction){
+        if(!car.loading)throw std::logic_error("Car glass presentation requires actual initialized lifetime");car.loading->glass_damage(index,direction);
+    }
+    void car_present_occupant(Actor* actor){
+        auto& human=d_.world_actors.human_loading_actor(actor);
+        auto* control=d_.world_actors.template human_loading_owner<world_loading::Composition>(human).control().control();
+        if(control)control->opacity().car_destruction(human.base().frame(),*control);
     }
     void car_puncture_sound(game::CarSceneActor<GameActorServices>& car,std::size_t index){car.loading->puncture_sound(index);}
     void blast_physics_impulse(EngineFrame* frame,std::int32_t damage,unsigned effects){

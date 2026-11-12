@@ -19,6 +19,9 @@ public:
     }
     float opacity() const{return target_>1?1.f:target_;}
     float applied() const{return applied_;}
+    template<class Frame,class Services>void car_destruction(Frame model,Services& services){ //004DCCC8..004DCCF5.
+        target_=.20000000298023224f;applied_=.30000001192092896f;update(model,500,0,services);
+    }
     void target(float value){target_=value;} //Borrowed producers write native+04.
     template<class Frames,class Services,class Changed>
     void observe(Frames& frames,Services& services,typename Frames::Frame sector,

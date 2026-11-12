@@ -3,6 +3,8 @@
 
 #include "game/car_actor_features.h"
 #include "game/car_destruction.h"
+#include "game/car_physical_reset.h"
+#include "game/car_glass_damage.h"
 #include "game/car_body_collision_controller.h"
 #include "game/car_cold_receivers.h"
 #include "game/car_loading_seats.h"
@@ -151,6 +153,24 @@ public:
     void puncture_sound(std::size_t index)override{
         if(!initial_)throw std::logic_error("Car puncture sound requires initialized actual sound/wheel owners");
         initial_->audio.puncture(initial_->drive.audible,initial_->finalizer.inside,initial_->wheels.at(index).vectors.at(0x30));
+    }
+    void physical_reset(float speed,bool restore)override{
+        if(!initial_)throw std::logic_error("Car physical reset requires its actual initialized runtime");
+        reset_car_physics(frames_,*actor_.geometry,*initial_,speed,restore,[&](bool running){
+            //004F2530(running,true). Keep22BF/22A2 separate from2293.
+            initial_->engine_timeout=5000;initial_->health.destroyed=false;
+            if(!running){initial_->drive.engine_speed=0;initial_->finalizer.engine_transition=false;initial_->drive.running=false;initial_->sounds.stop_all();}
+            else{initial_->finalizer.engine_transition=true;initial_->drive.running=true;initial_->engine_timeout=0;}
+        },[&]{actor_.geometry->deformables().restore_cold(frames_,actor_.geometry->physics(),actor_.callbacks->empty6b4);});
+    }
+    void destroyed_meshes()override{present_destroyed_car_meshes(frames_,actor_,helper_?helper_->get():Frame{});}
+    void glass_damage(std::size_t index,const CarContactVector& direction)override{
+        if(!initial_)throw std::logic_error("Car glass damage requires actual initialized runtime");
+        auto& geometry=*actor_.geometry;
+        damage_car_glass(frames_,geometry.deformables().parts().at(index),geometry.physics().geometry().parts.at(index).scalars.get(0x20),direction,
+            [&]{const auto& parameters=geometry.physics().applied_parameters();if(!parameters)throw std::logic_error("Car glass sound name requires actual applied parameters");
+                return parameters->name(initial_->finalizer.inside?0x299:0x3c0);},
+            [&](const auto&,const char*){actor_.callbacks->hide69c(index);}); //004D4A10 genuinely ignores both extra arguments.
     }
 private:
     void require_mode()const{if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Car loading requires actual non7 network/input owners");}

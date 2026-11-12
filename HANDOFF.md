@@ -10,7 +10,7 @@ is genuinely blocked. Source progress does not close application/desktop work.
 
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
 explicitly requested transferring back here; transfer evidence is ignored WORK
-`human-return-main-20261111`. Preceding checkpoint **e6f08b7**. Check current
+`human-return-main-20261111`. Preceding checkpoint **5f7aa6d**. Check current
 HEAD/status before acting. Preserve other LIFE/UI/PACK/research worktrees,
 `/tmp/hd2-p22-hum-continue` and unrelated changes.
 
@@ -21,24 +21,27 @@ the user. Mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source
 
-[Authority destruction receipt](analysis/checkpoints/p2.2-human-car-destruction-20261112.json)
-adds3 partials/extends3: **34 complete/2726 partial(2721client+5engine)**, no
-promotions. [Full contract](analysis/human-car-destruction-source.md).
-Actual004DBF00 RET4 binds SAME Car/DM/body/wheels/controls/Script/Scene2/random/
-streams:254A→wire4→late clock→flags/engine/fuel/health→Script→source lookup→reverse
-Human kind5→model254C release→forward max6 wheels→experience600→late2548→area.
-Car734/core6A4 callback remains coldNULL. Normal hostility observer is VICTIM;
-water source24AC and base30 point reread per occupant. Engine RandFloat is
-separate from CRT. Clock0073EAC0 timestamp BEFORE enabled. Original failed-prefix
-retry may return on254A without replaying tail; DM64 still publishes afterreturn.
-Actual004DC580 traverses SAME Scene2/head260, cached centreY+.5/radius25,
-**static-only** ray `(start,offset,NULL,NULL,-1,0)` (zero args are output pointers),
-post-ray slot reload, actual random bone point and HumanD4kind2. Radius5's small
-negative damage is preserved. Human map-key guards precede source dereference.
-Native100 repeated authority/area families PASS with explicit endpoint doubles;
-strict actual World/control/Script/ray/Car/Human i386 and launcher/probe PASS
-`human-car-destruction-*`. **Queued visual/physical reset, Item12 detachment and
-full timed/frame paths remain required; no full Car/Human/application claim.**
+[Queued physical/mesh/glass receipt](analysis/checkpoints/p2.2-human-car-physical-reset-20261112.json)
+adds6 partials/extends3: **34 complete/2732 partial(2727client+5engine)**, no
+promotions. [Full contract](analysis/human-car-physical-reset-source.md).
+Actual event4 now binds004DC780→004E9DB0, controls, authority004F2790,
+004DCD10 immediate004DCDE0 mesh traversal,004DD040 mesh refresh, reverse parts,
+model254C release and actual seated Human DD0 opacity. Preserve max6 saved wheel
+bits, transient speed-dependent engine reset, mass*3 impulse at MODEL POSITION
+actor350/core2C0 (not centre), separate ENGINE/CRT draws and failed prefixes.
+00500DA0 shares SAME actual retained glass texture exchange with004FE910 restore;
+69C=004D4A10 genuinely ignores direction/name but selected name is still read.
+Positive mesh fragments00485BA0→00484F60, Item12, deformed/global backup/occupied
+restore and timed-DM remain required. Native100 reset/mesh/glass/opacity and100
+queued families PASS ASan/UBSan/LSan, strict nested actual World/control/Car/Human
+and final launcher/probe compile/link PASS `human-car-physical-reset-*`.
+Native engine/math/Scene/bucket/mesh/material/fragment/physical-control endpoints
+are doubles as detailed in contract. No full checkbox/application/desktop claim.
+
+Preceding **5f7aa6d** [authority destruction](analysis/human-car-destruction-source.md)
+binds004DBF00/004DC580/0073EAC0. Preserve254A/wire/Script/source/wheel/experience/
+area order, water current driver, victim hostility observer, radius5 small negative
+damage and static-only ray output-pointer ABI. Previously verified kernels stand.
 
 Preceding **e6f08b7** [Car packets/DM lifetimes](analysis/human-car-dm-presentation-source.md)
 binds actual004DB360 to SAME parts/wheels/DM/streams/module17/SOUND. Actual
@@ -66,19 +69,16 @@ Preceding verified dependencies (contracts retain evidence/order details):
 
 ## Next work
 
-1. Finish **004DC780** presentation and **004E9DB0** physical reset/
-   **004DCD10** mesh/occupant transitions, then Item12 detach/positive glass,
-   timed-DM and other reached effects. Original WORK already indexed/exported:
-   `human-car-destruction-mesh-workers/{004e9db0,004dcd10}.{c,json}`;
-   `human-car-damage-presentation-workers/{004dc780,00500da0}.c`;
-   `human-car-reset-dependencies-index.txt` for4C8140/4CCC60/4EA760/507A40/4F5840.
-   Current default C aliases in4E9DB0 are badly corrupted by engine math ABIs;
-   use raw or a rollback ABI-corrected export before implementation. Entire body
-   is2474bytes; includes wheel pose/frame publication, SAME body/cache/motion/
-   solver/wheel resets, optional4FEEA0/4FE910 and receiver relinks. Reuse actual
-   existing owners. Actual native4DC780 first invokes4E9DB0(speed958,true).
-   Keep4DBF00/area/packet/DM checkpoints; no kernel re-audit needed. Use research
-   index before further exports, and memory-sequential compilation/Ghidra.
+1. Continue positive **00485BA0→00484F60** mesh fragments and Item12
+   **00479450→005FDC00/005FDC50**, then timed-DM and other required reached effects.
+   Read `human-car-physical-reset-source.md` before changing reset/presentation.
+   WORK `human-car-glass-fragment-index.txt` locates existing bounded original
+   00485BA0 assembly and00484F60 C; both absent/unfinished dependencies have zero
+   new credit.69C raw/source is confirmed ignoring extra args; don't invent use.
+   New reset export `human-car-physical-reset-abi` still has decompiler alias errors;
+   use raw `human-car-physical-reset.asm` and math evidence (004066C0 SCALE, not
+   subtraction). Preserve actual model/helper/seats/body/wheel/material owners.
+   Focused temporary audits remain ignored until full selected checkbox closure.
 2. Full status9/received0 entry remains unbound. Read
    [shared world](analysis/multiplayer-world/shared-world.md).00730A40 needs actual
    peer6C/client334 wrappers/worker lifecycle→0072E890→00731610(true). Reuse WORK
