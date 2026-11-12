@@ -155,6 +155,7 @@ public:
     }
     std::size_t identity_count() const {return identity_count_;}
     const std::vector<Actor*>& active_actors() const {return active_;}
+    const std::vector<Actor*>& identity_actors()const{return identities_;} //Actual Scene2+10/+14, including reserved slots and holes.
     template<class Visit>void visit_active(Visit&& visit) { //00476080/+18 and00476160/+14, FORWARD.
         if(visiting_||clearing_)throw std::logic_error("Nested Scene2 actor traversal");
         visiting_=true;frontend::CleanupErrors errors;

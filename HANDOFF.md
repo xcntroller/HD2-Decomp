@@ -11,7 +11,7 @@ Continue dependencies until the FULL selected checkbox completes or genuinely bl
 explicitly requested returning here. Check HEAD/status before acting. Transfer
 was byte-verified in ignored WORK `human-return-main-20261111`. Other LIFE/UI/PACK/
 research worktrees and `/tmp/hd2-p22-hum-continue` are separate; preserve them and
-external master merges. Latest preceding checkpoint60df3cc; older externally
+external master merges. Latest preceding checkpoint5a1a98d; older externally
 rebased checkpoint hashes may differ from earlier handoffs.
 
 No original EXE/DLL/Proton or Windows fixture execution. Compile/link only.
@@ -21,55 +21,67 @@ loading remains disabled; no mission desktop verification.
 
 ## Latest verified source checkpoint
 
-[Presentation spawn receipt](analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json)
-adds14 partials and extends3:34 complete/2635 partial (2630 client+5 engine) of18783;
-no promotions. Detailed contracts/evidence/exclusions are consolidated in the
-active Human analysis.006123A0 client creates through SAME factory, authority
-looks up Scene id/offlineA8; camera before roster, Scene-id side setter quirk,
-actual Player/Remote flags and local match/HUD/voice.006125A0 client generation-1
-BEFORE soldier decode, exact twelve-stat widths/permutation and late mode gates.
-Match B8 is distinct from result88. HUD phases use SAME inline components,
-flags before calls, objectives twice, actual message/dialog false bodies. Offline
-pause keeps required propagation failure, positive menu/input bodies excluded.
-00724570 uses actual process descriptor4E00.flag88 and wrapper0C; live peer count/
-side/transport under418 then unlock→late COM2C. Native16-target overflow fails
-explicitly. Camera0/2 uses actual scene virtual7C/flags4 and exact x87→DOUBLE→
-floor random spectator selection, including RAND_MAX last-candidate boundary.
-Prepared factory is now dependency-templated borrowed adapter, no second owners.
+[Authority spawn/map receipt](analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json)
+adds14 partials/extends7, no promotions:34 complete/2649 partial (2644 client+5 engine)
+of18783. Full original contracts/evidence/exclusions are consolidated in the active
+Human analysis.00611C90 now uses actual zone/identity/occupancy selection, supplied
+ARG2 stats, same factory/A8/activation, late mode/A8 reads, match/flags/voice,
+direct versus wire and final Script event. Actual activation borrows this policy.
+Direct NULL stats, recursive418 and original captured identity (even-1) retained.
+00475840 scans IDENTITY10/14 slots, NOT active list.005ED700 preserves cursor,
+modulo, neutral-owner packet before occupancy,32-attempt/style2 quirks. Actual
+shared downward sphere query, no collision stand-in.
 
-Focused native ASan/UBSan/LSan PASS spawn/match/packet/voice/HUD and prior unchanged
-camera cases. Engine/Scene/factory/HUD endpoint doubles are explicit, not a full
-World/render/transport run. Strict actual World/Human/factory/HUD i386 and latest
-launcher/probe compile/link PASS `human-normal-spawn-{host,application}-i386.log`.
-Temporary audits stay ignored until full checkbox completion. No Windows output ran.
+Actual type37 zone now loads/retains/releases its flags/spawn group and vertex
+instance in SAME Scene2/module9 lifetime. Release callbacks see native borrowers
+until AFTER release.005EC8B0 uses same flags/HUD/vertex registry;00475D50 command
+lookup correction preserves reserved-hole pending fallback.005EBFD0/005EDA60/
+005ED110/005ED260 are ABSENT frozen: zero new credit. Non7 zone005EC060/005EC540
+still fail at required decision/containment receivers; genuine mode7 returns kept.
 
-Earlier checkpoints remain valid: [Car/contact](analysis/checkpoints/p2.2-human-car-contact-20261112.json),
+Rejection0F scalar FIFO(peer5/reason1) reaches actual00728450→00699620,90 write and
+first live-squad spawn identity clear before HUD map show. Actual map show/pointer/
+zone selection/goal captions borrow SAME process squad/peer64 and zone98. Status2
+goal intentionally retains faction visibility. Missing/retired owners still fail.
+Latest focused ASan/UBSan/LSan authority/zone/packet/map/received rejection and spawn
+regression PASS. Engine/factory/geometry/HUD/vertex endpoints are explicit doubles,
+not full World/render/transport. Strict complete actual World/authority factory/
+HUD i386 and sequential latest launcher/probe compile/link PASS
+`human-authority-spawn-{host,application}-i386.log`. No Windows output ran.
+Temporary audits stay ignored until full checkbox completion.
+
+Earlier [presentation spawn](analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json)
+5a1a98d, [Car/contact](analysis/checkpoints/p2.2-human-car-contact-20261112.json),
 [process input](analysis/checkpoints/p2.2-human-process-input-20261112.json),
-[application messages](analysis/checkpoints/p2.2-human-application-packets-20261111.json),
-[peer lifecycle](analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json).
-One process input owner;0072E890 record CLEAR differs from received-start
+[application messages](analysis/checkpoints/p2.2-human-application-packets-20261111.json)
+and [peer lifecycle](analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json)
+remain valid. One process input owner;0072E890 record CLEAR differs from received
 00723000 manager REPLACEMENT. Input link stays published through B0 retirement.
 Presentation2 retires peer/Human;17 sets result/hint/log, not retirement.
 
 ## Immediate next work
 
-1. Finish00611C90 normal authority positioning/publication. Next indexed functions:
-   005ED700/0069E0A0/00475840/0069D6A0. WORK
-   `human-authority-spawn-position-index.txt`; focused Ghidra
-   `ExportHumanSpawnPositionABI.java`/`human-authority-spawn-position-abi` and log
-   may be active at checkpoint; check process/log before starting another heavy
-   tool. Signatures provisional;0069D6A0 needs raw register/stack inspection.
-   Raw occupancy/position assembly retained.00611C90 v4 decomp tail aliases still
-   unreliable: use raw for Scene identity/pose locals, not SpawnPoint pointer.
-   Writer non7 stats come from original ARG2, not copied Human properties; direct
-   presentation passes NULL stats. Existing offline producer is unchanged.
-2. Full entry: status9 needs00730A40/00731610 around implemented0072E890; received0
-   needs00724110 optional service/current-state/map/load/sync around canonical
-   replacement. Cold World manager acquisition remains a source-only lazy adapter.
-   Positive00479700 kind2/9C and occupied attachment80 remain required.
-3. Finish full containing reaction/frame, failure/re-entry and ordered teardown.
+1. Full control entry/status9. Read `analysis/multiplayer-world/shared-world.md`
+   and WORK `human-control-entry-next-index.txt`. Read-only research checkout has
+   `analysis/work/future-dependencies/p28-entry-handoff/00730a40.c` and00731610.c;
+   not yet copied/pinned in MAIN.00730A40 toggles peerAC then actual peer6C/client334
+   wrapper08 (authority named stage74==2 peers under418; client direct local slot).
+   These actual wrapper producers/owners remain required: do not fabricate them.
+   Then implemented0072E890, then00731610(true): requires manager14, resets each
+   input twice via0073E660(1,0,1)/(1,1,1), clears ONLY authority queue ifbit1,
+   otherwise ONLY presentation queue under430. Need original0073E660 and typed
+   wrapper source before claiming complete entry. Current source only clears both
+   queues at distinct cold reset; do not reuse that method here.
+2. Received0 is distinct:00724110 sets5044=1, optional descriptor4E88/profile38
+   service00724370(false), then canonical manager REPLACEMENT00723000 BEFORE old
+   game retirement. Existing original C in `human-process-input-originals`.
+   Still requires current-state/map/load/sync/request9 owner boundaries. Actual
+   controller status9/received0 integration must retain original state publication/
+   failure order. Source World input acquisition stays an explicit lazy adapter.
+3. Non7 zone frame/decision, occupied attachment80 and00479700 kind2/9C runtime
+   links, then full containing reaction/frame, failure/re-entry/ordered teardown.
    Application loading/rendering/user desktop acceptance remain separate.
-   Commit larger verified checkpoints and consolidate docs; do not stop at one slice.
+   Commit larger verified checkpoints, consolidate docs, continue the FULL checkbox.
 
 ## Commands and evidence
 

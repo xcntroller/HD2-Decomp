@@ -101,6 +101,10 @@ public:
     void stop_actor_sound_voice(std::int32_t& handle){consumers_.stop_actor_sound_voice(handle);}
     std::uint32_t session_mission_ordinal()const{return consumers_.session_mission_ordinal();}
     auto& session_broadcast_packets(){return consumers_.session_broadcast_packets();}
+    void activate_zone(game::ZoneSceneActor<GameActorServices>& actor,bool authority){require_open();actor.activate(authority,*this,vertices_);}
+    std::int32_t zone_style(){return consumers_.zone_style();}
+    bool zone_remote_ai(){return consumers_.zone_remote_ai();}
+    void zone_hud_objective(std::uint32_t index,std::int32_t side){consumers_.zone_hud_objective(index,side);}
     void door_script_use(GameActorServices::Frame frame,std::uint32_t command){consumers_.door_script_use(frame,command);}
     auto door_current_player_frame(){return consumers_.door_current_player_frame();}
     std::int32_t emit_door_sound(const frontend::SpatialSoundRequest& request){return consumers_.emit_door_sound(request);}

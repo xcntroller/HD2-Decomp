@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUD_MAP_LOADING_H
 #define HD2_GAME_HUD_MAP_LOADING_H
 #include "game/hud_text_loading.h"
+#include "game/human_death_objective.h"
 #include <array>
 #include <cstdio>
 #include <cstdlib>
@@ -27,7 +28,7 @@ template<class Frames>float hud_map_depth(Frames& frames,typename Frames::Frame 
 //004A4AE0/004A4F60 and loading record helpers. HUD scene and actual world
 //registry/objective producers must outlive borrowers. MapWorld supplies the
 //SAME0089B3B0 hud_actor_identities(), type37 groupA4, and missionA8 objective vector;
-//no empty successful world service is supplied. Runtime map interactions absent.
+//no empty successful world service is supplied. Populated map clicks remain required.
 template<class Frames,class Factory,class Actor,class Objective>
 class HudMapLoading {
 public:
@@ -80,6 +81,36 @@ public:
         flag24_=0;frames_.object_visible(center_,false);require(map_);frames_.object_visible(map_,false);
         if(kind_!=1&&kind_!=0)pointer.hide_selected_pointer();
     }
+    template<class World,class Pointer>void show(World& world,Pointer& pointer){ //004A5630(true,false).
+        if(!center_)return;
+        flag24_=0;frames_.object_visible(center_,true);require(map_);frames_.object_visible(map_,true);
+        if(kind_!=1&&kind_!=0){pointer.select_pointer(0);refresh_zones(world);refresh_goals(world);}
+    }
+    template<class World>void refresh_zones(World& world){ //004A7180/004A7A70/004A7A20, fresh actual side and marker borrowers.
+        for(std::size_t n=0;n<zones_.size();++n){
+            auto* actor=zones_[n].actor;if(!actor)throw std::logic_error("HUD map zone lost its actual actor");
+            const auto side=world.map_zone_side(*actor);if(zones_[n].state==side)continue;
+            zones_[n].state=side;
+            if(const auto allied=zones_[n].allied){frames_.object_visible(allied,side==1);require(zones_.at(n).allied);frames_.update_scene_object(zones_[n].allied);}
+            if(const auto axis=zones_.at(n).axis){frames_.object_visible(axis,zones_[n].state==0);require(zones_.at(n).axis);frames_.update_scene_object(zones_[n].axis);}
+        }
+        bool selected=false;
+        if(!world.live_squad().empty()&&world.live_squad().at(0).network_identity>0){
+            for(auto n=zones_.size();n;){--n;auto* actor=zones_[n].actor;if(!actor)throw std::logic_error("HUD zone selection requires actual actor");
+                if(actor->id10()!=world.live_squad().at(0).network_identity)continue;
+                if(world.live_squad().at(0).specialization!=2&&static_cast<std::uint32_t>(world.live_squad().at(0).specialization)==zones_[n].state){
+                    require(zones_[n].root);const auto matrix=frames_.actor_world_matrix(zones_[n].root);require(select_zone_);
+                    frames_.hud_position(select_zone_,{{matrix[12],matrix[13],static_cast<float>(static_cast<long double>(matrix[14])-.5f)}});
+                    frames_.hud_frame_tag(select_zone_,zones_.at(n).tag);selected=true;
+                }else world.live_squad().at(0).network_identity=-1;
+                break;
+            }
+        }
+        require(select_zone_);frames_.object_visible(select_zone_,selected);require(select_zone_);frames_.update_scene_object(select_zone_);
+    }
+    template<class World>void refresh_goals(World& world){ //004A78E0, live forward count.
+        for(std::size_t n=0;n<goals_.size();++n)refresh_goal(n,world);
+    }
     void close()noexcept { //004A5190 then shrink dynamic lists, kind-specific records, model LAST.
         for(unsigned n=0;n!=allied_count_;++n){allied_[n].visual.reset();allied_[n].text.reset();allied_[n].flag=0;}
         while(!enemy_models_.empty())enemy_models_.pop_back();
@@ -102,6 +133,33 @@ public:
     std::int32_t kind()const{return kind_;}unsigned allied_count()const{return allied_count_;}
     const auto& allied()const{return allied_;}const auto& zones()const{return zones_;}const auto& goals()const{return goals_;}const auto& editor_goals()const{return editor_goals_;}
 private:
+    template<class World>void refresh_goal(std::size_t n,World& world){ //004A7C60: local side reads stay separate across callbacks.
+        if(world.map_local_side()==2)return;
+        if(!goals_.at(n).objective)throw std::logic_error("HUD map goal lost its actual descriptor");
+        if(goals_[n].state0c==goals_[n].objective->word10&&goals_[n].state10==world.map_local_side())return;
+        goals_[n].state0c=goals_[n].objective->word10;goals_[n].state10=world.map_local_side();
+        const auto show=[&](unsigned part,bool visible){auto& goal=goals_.at(n);const auto frame=part==0?goal.root:part==1?goal.allied:goal.axis;require(frame);frames_.object_visible(frame,visible);};
+        const auto caption=[&](std::uint32_t id,bool append){const auto label=factory_.hud_localized(id);auto* text=goals_.at(n).text.get();if(!text)throw std::logic_error("HUD goal text owner disappeared");text->text.set(label,0x2d,append?1:0);};
+        switch(goals_[n].state0c){
+        case 0:case 1:case 2:{
+            const auto status=goals_[n].state0c;show(0,true);
+            if(status!=2){show(1,status==1);show(2,status==0);}
+            if(goals_[n].text){
+                if(goals_[n].state10==1)caption(human_death_objective_fields(goals_[n].objective).field1c,false);
+                else if(goals_[n].state10==0)caption(human_death_objective_fields(goals_[n].objective).field20,false);
+                if(status!=0){
+                    const bool same=goals_[n].state10==human_death_objective_fields(goals_[n].objective).side18;
+                    caption((status==1?same:!same)?0xb63u:0xb64u,true);
+                }
+            }
+            break;
+        }
+        case 4:show(0,false);show(1,false);show(2,false);if(goals_[n].text)goals_[n].text->text.clear();break;
+        default:break;
+        }
+        require(goals_.at(n).allied);frames_.update_scene_object(goals_[n].allied);
+        require(goals_.at(n).axis);frames_.update_scene_object(goals_[n].axis);
+    }
     static void require(Frame frame){if(!frame)throw std::runtime_error("Required HUD map artwork is missing");}
     std::unique_ptr<Text> make_text(){auto owner=factory_.make_hud_text();if(!owner)throw std::runtime_error("HUD map text factory returned null");return owner;}
     void bind_allied(){ //004A4FD0 always looks up template even when count0; no retain/template mutation.

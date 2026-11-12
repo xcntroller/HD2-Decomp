@@ -81,6 +81,9 @@ public:
     void inventory_changed(){panels_.inventory_changed();}
     template<class Mode,class Pause>void spawn_mode(std::uint32_t phase,Mode&& mode,Pause&& pause){panels_.spawn_mode(phase,mode,pause);}
     void hide_map(){flags20_[1]=static_cast<std::uint8_t>(panels_.hide_map());} //0049F040(false), after map receiver returns.
+    template<class Mode,class Pause>void show_map(Mode&& mode,Pause&& pause){ //0049F040(true): map then byte21 then message mode0.
+        flags20_[1]=static_cast<std::uint8_t>(panels_.show_map());panels_.messages().hide(mode,pause);
+    }
     template<class Random>void show_human_damage(Random& random){panels_.show_human_damage(random);}
     void set_hint(bool enabled,std::uint32_t identity){panels_.set_hint(enabled,identity);} //SAME inline small-panel owner.
     void select_objective(unsigned index,std::int32_t side){if(hud_.flags)panels_.select_objective(index,side);} //0049F0C0: any nonzero flags.

@@ -37,6 +37,11 @@ template<class Runtime>void receive_session_application_packet(std::uint32_t kin
         if(!(runtime.application_mode_flags()&1u))runtime.receive_application_peer_removal(reason,identity);
         return;
     }
+    case 15:{
+        const auto peer=packet.read(5),reason=packet.read(1);
+        if(peer==static_cast<std::uint32_t>(runtime.application_local_peer()))runtime.receive_application_spawn_rejection(reason);
+        return;
+    }
     default:throw std::runtime_error("Required application presentation command is not reconstructed");
     }
 }

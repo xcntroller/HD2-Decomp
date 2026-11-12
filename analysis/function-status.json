@@ -11354,13 +11354,15 @@
       "program": "client",
       "entry": "004abaf0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004abaf0: Actual HUD world-pointer/info/progress artwork/text lifetimes and reached visibility/draw methods.",
+      "coverage": "P2.2 source reconstruction at original entry 004abaf0: Actual HUD world-pointer/info/progress artwork/text lifetimes and reached visibility/draw methods. Authority spawn checkpoint adds positive pointer hide/store/borrow/conditional position/show/update, unchanged-index no-op and invalid-index prefix.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_auxiliary_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
       ]
     },
     {
@@ -21075,12 +21077,15 @@
       "program": "client",
       "entry": "00611c90",
       "status": "partial",
-      "coverage": "Offline authority prepared spawn with actual identity/default clothing/split/model producer, activation passes and required real packet/event publication.",
+      "coverage": "Offline authority prepared spawn with actual identity/default clothing/split/model producer, activation passes and required real packet/event publication. Authority spawn checkpoint: actual normal style-dependent zone/identity selection,31 fallback attempts, supplied stats, same factory/A8, late mode/A8 activation, match/flags/voice, direct-versus-wire publication and final Script event; actual session activation now invokes this same policy.",
       "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
       "evidence": [
         "recovered/game/prepared_human_spawn.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "recovered/game/session_human_spawn.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
       ]
     },
     {
@@ -21506,7 +21511,7 @@
       "program": "client",
       "entry": "006123a0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 006123a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application. Actual source presentation borrows signed process local identity; camera/roster chain now instantiates with real host owners. Human spawn checkpoint: client actual00612A60 creation, authority Scene identity lookup/offline A8 reuse, live phase/activation/camera/roster ordering, Scene-id side quirk, Player/Remote flags and actual local HUD/voice routing.",
+      "coverage": "P2.2 source reconstruction at original entry 006123a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application. Actual source presentation borrows signed process local identity; camera/roster chain now instantiates with real host owners. Human spawn checkpoint: client actual00612A60 creation, authority Scene identity lookup/offline A8 reuse, live phase/activation/camera/roster ordering, Scene-id side quirk, Player/Remote flags and actual local HUD/voice routing. Authority spawn checkpoint corrects concrete lookup to actual00475D50 command identity, preserving only reserved-hole pending fallback instead of00475E00 Human search.",
       "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/offline_spawn_presentation.h",
@@ -21514,7 +21519,9 @@
         "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
         "analysis/world-actor-loading-consumers.md",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
       ]
     },
     {
@@ -34485,12 +34492,13 @@
       "program": "client",
       "entry": "0072a0b0",
       "status": "partial",
-      "coverage": "Process-lifetime scalar FIFO kinds10/17, distinct application2C enqueue lock only in non7, separate explicit drain, flush1000 before each native envelope and unlink after finalization. Offline false appends without draining.",
+      "coverage": "Process-lifetime scalar FIFO kinds10/17, distinct application2C enqueue lock only in non7, separate explicit drain, flush1000 before each native envelope and unlink after finalization. Offline false appends without draining. Authority spawn checkpoint adds scalar rejection0F peer5/reason1 through SAME process FIFO and native lock/drain ordering.",
       "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
       "evidence": [
         "recovered/game/session_application_commands.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
       ]
     },
     {
@@ -34937,7 +34945,7 @@
       "program": "client",
       "entry": "00728450",
       "status": "partial",
-      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication.",
+      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication. Authority spawn checkpoint adds0F peer5/reason1 and local-only actual00699620, without inventing an absent-game or authority-mode bypass.",
       "limitations": "Source-only typed/STL/RAII replaces original object/allocator/SEH/virtual ABI; native ASan/UBSan/LSan fixtures use explicit platform/log/HUD/Scene endpoint doubles. Strict actual World and launcher compile/link only. Authority00727800 uses different grammar and remains a required failure; unknown presentation commands, domain1 service pump, input-history decoder, non7 flush/transport, full entry/canonical input ownership and application/desktop acceptance remain required. No full-function promotion.",
       "evidence": [
         "recovered/game/session_received_application.h",
@@ -34947,7 +34955,8 @@
         "recovered/host/startup_session.h",
         "recovered/host/game_world_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-application-packets-20261111.json"
+        "analysis/checkpoints/p2.2-human-application-packets-20261111.json",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
       ]
     },
     {
@@ -35115,24 +35124,26 @@
       "program": "client",
       "entry": "0049f040",
       "status": "partial",
-      "coverage": "P2.2 Human presentation spawn source: Reached false body hides SAME map and then reads late center visibility into actual HUDbyte21.",
+      "coverage": "P2.2 Human presentation spawn source: Reached false body hides SAME map and then reads late center visibility into actual HUDbyte21. Authority spawn checkpoint adds true body map show -> late byte21 -> message mode0, bound to same HUD and required pause branch.",
       "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_scene_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
       ]
     },
     {
       "program": "client",
       "entry": "004a5630",
       "status": "partial",
-      "coverage": "P2.2 Human presentation spawn source: Reached false/false body, true absent-center no-op, flag24 before center/map hide and kind-dependent SAME pointer hide.",
+      "coverage": "P2.2 Human presentation spawn source: Reached false/false body, true absent-center no-op, flag24 before center/map hide and kind-dependent SAME pointer hide. Authority spawn checkpoint adds true/false present-center show, shared pointer0 and actual zone/goal refresh, retaining missing-center no-op.",
       "limitations": "Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_map_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+        "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
       ]
     },
     {
@@ -35217,6 +35228,174 @@
         "recovered/game/session_transmit_targets.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-presentation-spawn-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ebed0",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual bounded type37 constructor fields and SAME Scene2-owned actor, retaining undefined padding/pointer guards separately.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/zone_scene_actor.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ec8b0",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual owner-side change with optional SAME HUD objective, flag frame visibility/update, retained borrower rereads, SAME shared vertex definition/registry bind/reset/register and late98 commit.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/zone_scene_actor.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ed550",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual retained zone spawn-frame child pose and distinct extended (Y2+X2)+Z2 normalization/extended inverse stores.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/zone_scene_actor.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ed700",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual cursor/child/cycling/neutral-owner publication/occupancy sequence, noncycling end and exact32-attempt/style2 outcomes.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/zone_scene_actor.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ed320",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual SAME module13 zone identity command/owner two-bit packet producer and normal finish.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069d6a0",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual downward0.2 shared sweep loop with height/distance+.01 mutation before hit flags and actual frameEC Human/Car kind query.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_spawn_position.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069e0a0",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual live zone identity/rank scan and signed-side choice, command identity lookup, flattened direction normalization; undefined fourth lane guarded.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00475840",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual captured Scene2 identity-slot count/two scans/type10 eligibility/single CRT draw with extended FTOL product, preserving reserved holes and zero candidates.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_spawn_position.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004a7180",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual zone-marker updates then reverse selection against SAME first live soldier, same map marker position/tag/visibility and mismatched side invalidation.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_map_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004a78e0",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Live forward SAME map goal update list bound to actual goal/status receiver.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_map_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004a7a70",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual zone98 query and change-only marker-side receiver.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_map_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004a7a20",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Store changed side before optional allied/axis visibility/update, with current borrower rereads.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_map_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004a7c60",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Actual local peer side/status change gates and same kind12 descriptor metadata, goal TextState caption/outcome and faction visibility; status2 retains faction visibility.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_map_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699620",
+      "status": "partial",
+      "coverage": "P2.2 authority spawn/map source: Result88 zero/3 gate,90 before required first live-squad network identity clear and actual HUD show-map receiver, preserving failure prefixes.",
+      "limitations": "Source-only typed/STL/RAII adaptation and bounded native invalid-input guards. Non7 zone decision/presentation, full control entry/transport, occupied runtime and whole Human/application/desktop delivery remain open. Original object/allocator/SEH ABI, undefined padding and delegated engine/vertex/sweep/interface bodies excluded; no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_spawn_match.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
       ]
     }
   ]

@@ -143,6 +143,25 @@ auto create_session_human(Frames& frames,Models& models,Scene& scene,Setup& setu
         [&](auto& human){setup.configure_session(human,soldier,alternate?4u:1u,1u,stats,peer);setup.publish_peer_human(peer,human);});
 }
 
+//00611C90 actual initial authored pose, shared by both spawn modes.
+template<class Frames,class Spawn>void read_prepared_spawn_pose(Frames& frames,Spawn& spawn,HumanVector& position,HumanVector& direction){
+    const auto model=spawn.base().frame();
+    const auto p=frames.actor_world_matrix(model),d=frames.actor_world_matrix(model);
+    position={{p[12],p[13],p[14],p[15]}};
+    //00611C90 stores(Y²+Z²)+X² but keeps the x87 value for the unit comparison.
+    direction={{d[8],d[9],d[10],d[11]}};
+    const auto extended_square=(static_cast<long double>(direction[1])*direction[1]+
+        static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[0])*direction[0];
+    const float square=static_cast<float>(extended_square);
+    if(!std::isfinite(square))throw std::runtime_error("Non-finite prepared spawn direction");
+    if(std::abs(extended_square-1)>=9.99999993922529e-09f) {
+        if(square>=9.99999993922529e-09f) {
+            const float scale=static_cast<float>(1/std::sqrt(static_cast<long double>(square)));
+            for(unsigned axis=0;axis!=3;++axis)direction[axis]=static_cast<float>(static_cast<long double>(direction[axis])*scale);
+        }else {const auto axis=direction[0]!=0?0u:direction[2]!=0?2u:1u;direction[axis]=direction[axis]<0?-1.f:1.f;}
+    }
+}
+
 //00611C90 offline authority spawn, including its actual initial identity and
 //default clothing producers. Runtime/nonoffline positioning/packet branches are
 //separate; Packet must supply the real local record/serialization receivers.
@@ -154,21 +173,7 @@ void spawn_prepared_human(Frames& frames,Scene& scene,const Catalogue& catalogue
     if(!(mode&1u))return;
     if((mode&7u)!=7u)throw std::runtime_error("Prepared spawn requires actual nonoffline positioning/transport");
     spawn.flag9c=false;const auto identity=scene.first_free_player_identity(); //May be-1; native appends then.
-    const auto model=spawn.base().frame();
-    const auto p=frames.actor_world_matrix(model),d=frames.actor_world_matrix(model);
-    const HumanVector position{{p[12],p[13],p[14],p[15]}};
-    //00611C90 stores(Y²+Z²)+X² but keeps the x87 value for the unit comparison.
-    auto direction=HumanVector{{d[8],d[9],d[10],d[11]}};
-    const auto extended_square=(static_cast<long double>(direction[1])*direction[1]+
-        static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[0])*direction[0];
-    const float square=static_cast<float>(extended_square);
-    if(!std::isfinite(square))throw std::runtime_error("Non-finite prepared spawn direction");
-    if(std::abs(extended_square-1)>=9.99999993922529e-09f) {
-        if(square>=9.99999993922529e-09f) {
-            const float scale=static_cast<float>(1/std::sqrt(static_cast<long double>(square)));
-            for(unsigned axis=0;axis!=3;++axis)direction[axis]=static_cast<float>(static_cast<long double>(direction[axis])*scale);
-        }else {const auto axis=direction[0]!=0?0u:direction[2]!=0?2u:1u;direction[axis]=direction[axis]<0?-1.f:1.f;}
-    }
+    HumanVector position,direction;read_prepared_spawn_pose(frames,spawn,position,direction);
     if(soldier.equipment[1].item==-1) {
         const auto clothing=static_cast<std::int16_t>(spawn.properties.fielda4&0xffffu);
         (void)frontend::transfer_pre_mission_equipment(soldier,catalogue,2,{-1,clothing,1});

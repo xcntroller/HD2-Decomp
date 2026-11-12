@@ -6,6 +6,8 @@
 #include "game/scene_actor_registry.h"
 #include "game/scene_actor_frame.h"
 #include "game/simple_scene_actors.h"
+#include "game/human_spawn_position.h"
+#include "game/zone_scene_actor.h"
 #include "game/geometry_scene_actors.h"
 #include "game/model_scene_actors.h"
 #include "game/static_weapon_actor.h"
@@ -57,10 +59,11 @@ public:
         return human;
     }
     bool has_scene_actor_factory(std::uint32_t type) const {
-        switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:return true;default:return false;}
+        switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:case 37:return true;default:return false;}
     }
     ActorOwner make_scene_actor(std::uint32_t type) {
         switch(type) {
+        case 37:return std::make_unique<game::ZoneSceneActor<GameActorServices>>(*this);
         case 3:return std::make_unique<game::HumanSceneActor<GameActorServices,Runtime>>(*this,runtime_);
         case 4:
             if(!cars_)throw std::runtime_error("Car construction requires the actual shared callback owner");
@@ -146,6 +149,21 @@ public:
         }
         return nullptr;
     }
+    template<class Random>Spawn* select_session_spawn(std::uint32_t kind,std::uint32_t side,Random&& random){
+        auto* actor=game::select_session_spawn_point<Spawn>([this]()->const std::vector<Actor>&{return actors_.identity_actors();},kind,side,std::forward<Random>(random));
+        return actor?static_cast<Spawn*>(actor):nullptr;
+    }
+    std::int32_t zone_map_group(const GameActorServices::Actor& base)const{
+        auto* actor=actors_.actor_for_base(base);
+        if(!actor||actor->base().type()!=37)throw std::logic_error("HUD zone group requires its SAME type37 actor");
+        const auto value=static_cast<game::ZoneSceneActor<GameActorServices>*>(actor)->fielda4;
+        std::int32_t out;std::memcpy(&out,&value,4);return out;
+    }
+    std::uint32_t zone_map_side(const GameActorServices::Actor& base)const{
+        auto* actor=actors_.actor_for_base(base);
+        if(!actor||actor->base().type()!=37)throw std::logic_error("HUD zone side requires its SAME type37 actor");
+        return static_cast<game::ZoneSceneActor<GameActorServices>*>(actor)->field98;
+    }
     void set_scene_actor_active(GameActorServices::Actor& base,bool value) {
         auto* actor=actors_.actor_for_base(base);
         if(!actor)throw std::runtime_error("Scene actor active-list receiver has no matching owner");
@@ -156,11 +174,12 @@ public:
             //Reject an unavailable family BEFORE recording entry to a derived
             //receiver. Cold actors later in a failed pass own no such prefix.
             switch(actor.base().type()){
-            case 3:case 4:case 6:case 8:case 10:case 13:case 22:case 9:case 21:case 25:case 28:case 29:case 33:break;
+            case 3:case 4:case 6:case 8:case 10:case 13:case 22:case 9:case 21:case 25:case 28:case 29:case 33:case 37:break;
             default:throw std::runtime_error("Required Scene2 actor activation is unavailable: "+std::to_string(actor.base().type()));
             }
             actor.loading_activation_passes|=authority?1u:2u;
             switch(actor.base().type()) {
+            case 37:activation.activate_zone(static_cast<game::ZoneSceneActor<GameActorServices>&>(actor),authority);break;
             case 3:activation.activate_human(static_cast<game::HumanSceneActor<GameActorServices,Runtime>&>(actor),authority);break;
             case 4:activation.activate_car(static_cast<game::CarSceneActor<GameActorServices>&>(actor),authority);break;
             case 6:static_cast<game::DoorSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
@@ -188,6 +207,7 @@ public:
     template<class Activation,class Collisions>void deactivate_scene_actor(Instance& actor,bool authority,Activation& activation,Collisions& collisions) {
         if(!actor.loading_activation_passes)return; //Source guard: no derived receiver was entered, including rejected Dog/cold tail actors.
         switch(actor.base().type()) {
+        case 37:static_cast<game::ZoneSceneActor<GameActorServices>&>(actor).deactivate(authority);break;
         case 3:activation.deactivate_human(static_cast<game::HumanSceneActor<GameActorServices,Runtime>&>(actor),authority);break;
         case 4:activation.deactivate_car(static_cast<game::CarSceneActor<GameActorServices>&>(actor),authority);break;
         case 6:static_cast<game::DoorSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;

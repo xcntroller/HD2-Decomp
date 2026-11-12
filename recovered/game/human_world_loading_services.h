@@ -47,6 +47,9 @@
 #include "game/session_spawn_match.h"
 #include "game/session_transmit_targets.h"
 #include "game/prepared_human_loading.h"
+#include "game/human_spawn_position.h"
+#include "game/zone_scene_actor.h"
+#include "game/session_human_spawn.h"
 #include <algorithm>
 #include <stdexcept>
 
@@ -81,7 +84,61 @@ public:
         PreparedHumanLoading<Dependencies> factory(dependencies()); //Only a borrowed adapter; all scene/input/model ownership stays in World/process.
         return factory.create_session_human(peer,human_frame_signed_word(identity),position,direction,soldier,stats,-1,alternate);
     }
-    auto* spawn_scene_human(std::uint32_t identity){return dependencies().scene.frames().scene_human_identity(human_frame_signed_word(identity));}
+    auto* spawn_scene_human(std::uint32_t identity){
+        using Human=typename Dependencies::Composition::Human;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(human_frame_signed_word(identity)); //Actual00475D50 reserved-hole retirement fallback.
+        auto* human=dynamic_cast<Human*>(actor);if(actor&&!human)throw std::logic_error("Presentation spawn identity is not its actual Human");return human;
+    }
+    template<class Spawn>void spawn_authority_human(Spawn& spawn,std::uint32_t peer,frontend::PreMissionSoldier* soldier,const std::array<std::uint32_t,12>* stats){spawn_session_human(spawn,peer,soldier,stats,*this);}
+    std::int32_t first_free_spawn_identity(){return dependencies().scene.frames().first_free_player_identity();}
+    template<class Spawn>void initial_spawn_pose(Spawn& spawn,HumanVector& position,HumanVector& direction){read_prepared_spawn_pose(dependencies().scene.frames(),spawn,position,direction);}
+    bool spawn_cycle_enabled(){return dependencies().startup.game_configuration().rules228[6]!=0;}
+    void reject_session_spawn(std::uint32_t peer){dependencies().startup.queue_application_command(15,0,peer,1);}
+    auto* select_authority_spawn_point(std::uint32_t kind,std::uint32_t side){return dependencies().scene.frames().select_session_spawn(kind,side,[this]{return human_frame_random_word();});}
+    template<class Spawn>void prepare_authority_spawn_soldier(Spawn& spawn,frontend::PreMissionSoldier& soldier){
+        if(soldier.equipment[1].item==-1)(void)frontend::transfer_pre_mission_equipment(soldier,dependencies().catalogue,2,{-1,prepared_identity_word(human_frame_signed_word(spawn.properties.fielda4)),1});
+        soldier.split_spawn_stacks();
+    }
+    auto* create_authority_spawn_human(std::uint32_t peer,std::int32_t identity,const HumanVector& position,const HumanVector& direction,
+            frontend::PreMissionSoldier* soldier,const std::array<std::uint32_t,12>* stats,std::int32_t clothing,bool alternate){
+        if(!soldier)throw std::logic_error("Authority Human factory requires its actual soldier argument");
+        PreparedHumanLoading<Dependencies> factory(dependencies());return factory.create_session_human(peer,identity,position,direction,*soldier,stats,clothing,alternate);
+    }
+    template<class Spawn>auto* require_authority_spawn_human(Spawn& spawn){
+        using Human=typename Dependencies::Composition::Human;auto* human=dynamic_cast<Human*>(spawn.spawned_human);
+        if(!human)throw std::logic_error("Authority spawn lost its actual A8 Human borrower");return human;
+    }
+    void bind_authority_spawn_record(std::uint32_t peer){dependencies().spawn_records.bind_spawned_player(peer,0,"");}
+    template<class Spawn>void publish_authority_spawn(std::uint32_t peer,std::int32_t identity,Spawn& spawn,frontend::PreMissionSoldier* soldier,
+            const std::array<std::uint32_t,12>* stats,const HumanVector& position,const HumanVector& direction){dependencies().spawn_records.publish_session_spawn(peer,identity,spawn,soldier,stats,position,direction);}
+    template<class Spawn>void notify_authority_spawn_created(Spawn& spawn){PreparedHumanLoading<Dependencies> factory(dependencies());factory.spawn_model_created(spawn.base().frame());}
+    auto spawn_position_sweep(const HumanVector& start,const HumanVector& displacement,float radius){return dependencies().sweep.sweep(start,displacement,radius,0,0,false);} //007184C0, no output normal.
+    bool spawn_position_occupied(const HumanVector& position){return human_spawn_position_occupied(*this,position);}
+    std::int32_t zone_style(){return dependencies().startup.game_configuration().style224;}
+    bool zone_next_spawn_pose(std::int32_t identity,HumanVector& position,HumanVector& direction,bool cycle){
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(identity);
+        auto* zone=dynamic_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(actor);
+        if(!zone)throw std::logic_error("Team spawn requires its actual type37 zone actor");
+        return zone->next_spawn_pose(position,direction,cycle,*this);
+    }
+    template<class Zone>void publish_zone_owner(Zone& zone,std::uint32_t command){ //005ED320 through SAME module13 stream.
+        auto& packet=dependencies().broadcast_packets.begin(13,0);packet.write(static_cast<std::uint32_t>(zone.base().id10()),10);
+        packet.write(command,2);if(command==2)packet.write(zone.field98,2);packet.finish_broadcast();
+    }
+    void orient_spawn_toward_zone(HumanVector& direction,const HumanVector& position,std::uint32_t side){ //0069E0A0.
+        auto& scene=dependencies().scene.frames();std::int32_t selected=0,best=0;
+        for(std::size_t n=0;n<scene.scene_actor_identity_count();++n){
+            if(n>static_cast<std::size_t>(std::numeric_limits<std::int32_t>::max()))throw std::length_error("Zone orientation exceeds native signed identity");
+            auto* zone=dynamic_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(scene.scene_actor_command_identity(static_cast<std::int32_t>(n)));
+            if(!zone)continue;
+            const auto value=human_frame_signed_word(zone->field90);
+            if((side==0&&best<value)||(side==1&&value==0)){best=value;selected=static_cast<std::int32_t>(n);}
+        }
+        auto* zone=dynamic_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(scene.scene_actor_command_identity(selected));if(!zone)return;
+        const auto& target=zone->base().world_position();
+        for(unsigned n=0;n!=3;++n)direction[n]=static_cast<float>(static_cast<long double>(target[n])-position[n]);
+        direction[1]=0;direction=normalize_zone_spawn_direction(direction); //Fourth native output lane was unwritten; preserve known caller lane.
+    }
     std::uint32_t spawn_result(){return dependencies().session.words.template get<std::uint32_t>(0x88);}
     void set_spawn_match_phase(std::uint32_t phase){set_session_spawn_match_phase(dependencies().session,*this,phase);}
     void spawn_hud_mode(std::uint32_t phase){

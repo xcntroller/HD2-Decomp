@@ -59,9 +59,17 @@ public:
     }
     void close_pointer()noexcept{} //004AB950 actual RET.
     void hide_selected_pointer() { //004ABAF0(-1), reached by004A5630(false,false) on multiplayer map bind.
-        if(pointer_.field0c==-1)return;
+        select_pointer(-1);
+    }
+    void select_pointer(std::int32_t index){ //004ABAF0, hide/store/borrow/position/show/update order.
+        if(pointer_.field0c==index)return;
         if(pointer_.field00)frames_.object_visible(pointer_.field00,false);
-        pointer_.field0c=-1; //Original retains field00; no update on this branch.
+        pointer_.field0c=index;
+        if(index==-1)return; //Original retains field00; no update on this branch.
+        if(index<0||static_cast<std::size_t>(index)>=pointer_.frames30.size())throw std::out_of_range("HUD pointer index exceeds native artwork table");
+        pointer_.field00=pointer_.frames30[static_cast<std::size_t>(index)];require(pointer_.field00);
+        frames_.hud_pointer_position(pointer_.field00,pointer_.position20);
+        frames_.object_visible(pointer_.field00,true);require(pointer_.field00);frames_.update_scene_object(pointer_.field00);
     }
     void close_info()noexcept{} //004AB2D0 actual RET; texture tables are borrowed.
     void close_progress() { //004AB0F0 hides before releasing text, with defined failure cleanup.

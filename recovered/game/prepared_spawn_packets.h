@@ -67,7 +67,7 @@ void read_prepared_soldier(Bits& bits,frontend::PreMissionSoldier& soldier,bool 
     }
 }
 
-//00611C90's actual offline publication, sharing the startup record owner and
+//00611C90's ordinary publication, sharing the startup record owner and
 //session locks. Direct is the genuine006123A0 receiver for game1C==1; the normal
 //new-session value0 appends the kind13 message without inventing queue dispatch.
 template<class Locks,class Scene,class Direct>
@@ -93,27 +93,32 @@ public:
     template<class Spawn,class Human>
     void publish_prepared_spawn(Spawn& spawn,Human& human,frontend::PreMissionSoldier& soldier,
                                 const HumanVector& position,const HumanVector& direction) {
-        if((mode_&7u)!=7u)throw std::runtime_error("Prepared packet requires actual nonoffline stat serialization");
-        if(game_.words.template get<std::uint32_t>(0x1c)==1) {
+        publish_session_spawn(0,human.base().id10(),spawn,&soldier,nullptr,position,direction);
+    }
+    template<class Spawn>void publish_session_spawn(std::uint32_t peer,std::int32_t identity,Spawn& spawn,frontend::PreMissionSoldier* soldier,
+            const std::array<std::uint32_t,12>* stats,const HumanVector& position,const HumanVector& direction){
+        if(game_.words.template get<std::uint32_t>(0x1c)==1){
             Lock lock(locks_);
-            const auto record=state_.records.at(0); //0072EC70 lock remains held through direct receiver.
-            if(mode_&2u)bind_spawned_player(0,record.word(0),record.name()); //Native recursive critical section.
-            direct_.publish_prepared_spawn(0,spawn,human,soldier,position,direction);
+            if(mode_&2u){const auto record=state_.records.at(peer);bind_spawned_player(peer,record.word(0),record.name());}
+            if(!soldier)throw std::logic_error("Direct spawn requires its actual soldier argument");
+            direct_.present(peer,static_cast<std::uint32_t>(identity),spawn,position,direction,*soldier,nullptr); //Native direct stats are NULL, independent of ARG2.
             return;
         }
-        auto& packet=streams_.begin(13,0); //00475530(spawn identity,true).
+        auto& packet=streams_.begin(13,0);
         packet.write(static_cast<std::uint32_t>(spawn.base().id10()),10);
-        packet.write(0,2);packet.write(0,8);
-        const auto identity=human.base().id10();
-        packet.write(static_cast<std::uint32_t>(identity),8);
-        (void)packet.write_vector(position,packet.primary_quantizer(-1),7);
-        packet.write_direction(direction,-1);
+        packet.write(0,2);packet.write(peer,8);packet.write(static_cast<std::uint32_t>(identity),8);
+        (void)packet.write_vector(position,packet.primary_quantizer(-1),7);packet.write_direction(direction,-1);
         packet.write(static_cast<std::uint32_t>(scene_.player_generation(identity)),8);
-        {Lock lock(locks_);const auto& record=state_.records.at(0);
-            packet.write_string(record.name());packet.write(record.word(0),32);}
-        write_prepared_soldier(packet,soldier,false);
-        packet.finish_broadcast(); //004755B0→0072BF90(target0), leaves bits pending.
+        {Lock lock(locks_);const auto& record=state_.records.at(peer);packet.write_string(record.name());packet.write(record.word(0),32);}
+        if(!soldier)throw std::logic_error("Spawn writer requires its actual soldier argument");
+        write_prepared_soldier(packet,*soldier,false);
+        if((mode_&7u)!=7u){
+            if(!stats)throw std::logic_error("Network spawn writer requires actual ARG2 stats after soldier serialization");
+            for(auto n:{0u,2u,1u,3u,4u,5u,6u,7u,8u,9u,11u,10u})packet.write((*stats)[n],n==0?10:7);
+        }
+        packet.finish_broadcast();
     }
+
 private:
     struct Lock {
         Locks& locks;explicit Lock(Locks& value):locks(value){locks.enter_control_lock(0);}

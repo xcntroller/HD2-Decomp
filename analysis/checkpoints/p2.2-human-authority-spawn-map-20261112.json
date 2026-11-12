@@ -1,0 +1,551 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "5a1a98daf3d8397b35b7c8c001dede622f4d7b15",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "005ebed0",
+    "005ec8b0",
+    "005ed550",
+    "005ed700",
+    "005ed320",
+    "0069d6a0",
+    "0069e0a0",
+    "00475840",
+    "004a7180",
+    "004a78e0",
+    "004a7a70",
+    "004a7a20",
+    "004a7c60",
+    "00699620"
+  ],
+  "extended_entries": [
+    "00611c90",
+    "0072a0b0",
+    "00728450",
+    "004a5630",
+    "0049f040",
+    "004abaf0",
+    "006123a0"
+  ],
+  "implemented_absent_frozen_zero_credit": [
+    "005ebfd0",
+    "005eda60",
+    "005ed110",
+    "005ed260"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2649,
+  "source_files": {
+    "recovered/game/hud_auxiliary_loading.h": {
+      "sha256": "3b610f893b45c36863b73825489ee96abdf995e3fdccd64b7a53fa4c8f770bce",
+      "bytes": 6197
+    },
+    "recovered/game/hud_map_loading.h": {
+      "sha256": "36897f14533e8ea4da95d4aad170e0f2c1568d130e9f581c392a90a189ce2899",
+      "bytes": 16690
+    },
+    "recovered/game/hud_panels_loading.h": {
+      "sha256": "f7cbbcec48a591a46482f11c45a7cd1ca732f592f60ecb352d47b011bcc6da7e",
+      "bytes": 11556
+    },
+    "recovered/game/hud_scene_loading.h": {
+      "sha256": "e4c723081c7021e247dc9171743ab499def34de093aed0444fc653be7e21bf76",
+      "bytes": 10718
+    },
+    "recovered/game/hud_world_loading.h": {
+      "sha256": "23e78e0f805de583bbf168ea8411d60cf7193b263b9d3a5de6a4f9e162cc7293",
+      "bytes": 2584
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "65db4fe23f123d7b07d00de8b28d3378355f5cc059f74dd2f2e48466c374b673",
+      "bytes": 118000
+    },
+    "recovered/game/prepared_human_spawn.h": {
+      "sha256": "a0654c666eba41e9b0a5f927eb5366fa74ed02977e468c7f2aa4983aabd96c07",
+      "bytes": 12577
+    },
+    "recovered/game/prepared_spawn_packets.h": {
+      "sha256": "2762fb0c825cef800f295ede68a462f49c09f9b111282ab7eba65c746e645ca9",
+      "bytes": 8429
+    },
+    "recovered/game/scene_actor_frame.h": {
+      "sha256": "79c858259aa66e888c60ac83f0bc8c604f22ac6e3584ee3e2f4717a487347efc",
+      "bytes": 4161
+    },
+    "recovered/game/scene_actor_registry.h": {
+      "sha256": "07bb2b73059fd867a6befb83ec61ab4788bc2e26babe805c8017aae206515a2f",
+      "bytes": 14416
+    },
+    "recovered/game/session_application_commands.h": {
+      "sha256": "c7af881009ae21dbbe768bac839866fb72b6ecca465dc81a0d215e8ee6d0295c",
+      "bytes": 2411
+    },
+    "recovered/game/session_packet_world.h": {
+      "sha256": "7b969e0874ca38964f974e6e0e04dffc3d339a5298a076a6f221bc668c4c41c9",
+      "bytes": 2451
+    },
+    "recovered/game/session_received_application.h": {
+      "sha256": "5cbee4e78902c0f57787bfe931dd316f77c5d5e40a9d3f29c65cd28250095dcd",
+      "bytes": 3061
+    },
+    "recovered/game/session_spawn_match.h": {
+      "sha256": "d80f5f868093a7c7f0d1cf4019c26c3e7941d72b237a4f9aae268fa3035d367d",
+      "bytes": 1515
+    },
+    "recovered/game/world_actor_loading_consumers.h": {
+      "sha256": "ab1bda11fbf860624c83445b4b372a7c470383a463e7a2b9c70a151cdf078846",
+      "bytes": 7556
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "67027d382fbff84fceeb17474f332a5ec5a25b4adf45643f72f2a7bf7e560b2a",
+      "bytes": 95451
+    },
+    "recovered/host/game_scene_actors.h": {
+      "sha256": "399017b67d09ebd61cd0060731d69dcbd6faffdcd0b2331c1a2531a908fe9e22",
+      "bytes": 19252
+    },
+    "recovered/host/game_session_activation.h": {
+      "sha256": "eb133d14e0e1921d827ee45b4de24fc931eac35128c0286576e26a99d3930621",
+      "bytes": 9564
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "59cee01e45b69e5d3ab52091aee45f306083202d8483b1128b6f38c82c6cf497",
+      "bytes": 21674
+    },
+    "recovered/host/game_world_loading.h": {
+      "sha256": "1c9f111f5a2b4c214c47651b7d8d2d3858e6cd2278527b52917156e8c372ac80",
+      "bytes": 27298
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "54bdfff48a9b4e865f932d0548a59ac824fe81cc2b55081dca620c0ea13f03e4",
+      "bytes": 67002
+    },
+    "recovered/game/human_spawn_position.h": {
+      "sha256": "cc1d9b093eed0a4a7e7c304c022a08f945a246d1ad65f8ab4a4b76297dacb1ca",
+      "bytes": 3883
+    },
+    "recovered/game/session_human_spawn.h": {
+      "sha256": "84f79a25b17a247df9343e3ae8e16f84cf9d4a0ada5d3b5cc184257b33c5b12d",
+      "bytes": 3412
+    },
+    "recovered/game/zone_scene_actor.h": {
+      "sha256": "618b45a7857e5e9ffe08efa75f49a13ac679abbc885b48a7f8a2d4ede19f380e",
+      "bytes": 7339
+    }
+  },
+  "verification_artifacts": {
+    "human-authority-spawn-native.cpp": {
+      "sha256": "cc97c97104ac3064bab2c3bcc09a37fb5e5034952b803b5d34d72392ff93b666",
+      "bytes": 16394
+    },
+    "human-authority-spawn-native": {
+      "sha256": "e940cdebe808bae400be6babd03716ef064d70374940250ee8f34beb91ee05ab",
+      "bytes": 4173680
+    },
+    "human-authority-spawn-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-authority-spawn-native.log": {
+      "sha256": "c0d1cde1c298e3a02183b3f558d2458abe1f7b6030f2f0d6b538f9234088cb21",
+      "bytes": 595
+    },
+    "human-spawn-map-native.cpp": {
+      "sha256": "b35f6f356e6a746350e7da4be568b568ead3d5b4b8906314df48e0ba5b8fba99",
+      "bytes": 6692
+    },
+    "human-spawn-map-native": {
+      "sha256": "f268553231e3c50c23ea5a0ffb7c9d335ca4b4183faae195e0db0194b6d36aa8",
+      "bytes": 2663720
+    },
+    "human-spawn-map-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-spawn-map-native.log": {
+      "sha256": "7f43021acff607d13aae131e2608a33fd974bd017f16554c58c7768cb1ebd224",
+      "bytes": 381
+    },
+    "human-spawn-rejection-packets-native.cpp": {
+      "sha256": "6e549153898893c367a5678f2cf8fe12d495fcb7529fc977d6baa82a9ee4146c",
+      "bytes": 11625
+    },
+    "human-spawn-rejection-packets-native": {
+      "sha256": "86e9cb31fd4e6589229a00975d52f08d30efb6f2ad24b9e976a148c13cd7ab0c",
+      "bytes": 2424336
+    },
+    "human-spawn-rejection-packets-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-spawn-rejection-packets-native.log": {
+      "sha256": "a93e30820c9acfccc7de430adc0b77f677230afc477df72e75ea77a762be9ea1",
+      "bytes": 414
+    },
+    "human-authority-spawn-host-i386.cpp": {
+      "sha256": "096df9375951abf37de5fcbbd8ec2beaf9aba86881084038063bf30a6c4c6627",
+      "bytes": 427
+    },
+    "human-authority-spawn-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-authority-spawn-host-i386.o": {
+      "sha256": "d0d05c50212b0787403e1d837362554c73801f46987e7dc67e6db59aeccaa025",
+      "bytes": 16221429
+    },
+    "human-authority-spawn-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    },
+    "human-authority-spawn-flow-regression.log": {
+      "sha256": "e80b7d7f52215473cef550a152e1c9c9622d4807fd8f2f8fab9b5d630385676c",
+      "bytes": 338
+    },
+    "human-spawn-flow-native.cpp": {
+      "sha256": "a3c19e8c68f916fb51216a332070333f0e1d30cd0e022e1457e5fb56357d95b0",
+      "bytes": 10069
+    },
+    "human-spawn-flow-native": {
+      "sha256": "64ea26922908b278385ab3d0158eeff77a466c5a2b4b7d41f6624b4b07c993c4",
+      "bytes": 1983312
+    },
+    "human-spawn-flow-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-authority-spawn-caller.asm": {
+      "sha256": "25a0ef153b04d3ccc6c99ed6f44dedf638c9e1e9bc176bc9b358d0384e16c75f",
+      "bytes": 33045
+    },
+    "human-authority-spawn-position.asm": {
+      "sha256": "31bb5dca9c2f2ae99a4137a3cd411fc234e5ced5dd1c149b93aba07423c3e507",
+      "bytes": 4390
+    },
+    "human-authority-spawn-occupancy.asm": {
+      "sha256": "ad7482afbdbe309a7cb1645959e17ba0dadf30687f56ad484b4bd3ba0493ecc0",
+      "bytes": 4405
+    },
+    "human-zone-cold-owner.asm": {
+      "sha256": "5c68ab87d7013e8e64743e5eb9af759d0cd2f6da8c3fa5720a8289b0b755d0ab",
+      "bytes": 61240
+    },
+    "human-zone-vtable.json": {
+      "sha256": "dd768707f60d2e4b36a9b6e7f82db7bd49602813182c67b6b55c5497d4018e4a",
+      "bytes": 643
+    },
+    "human-zone-spawn-pose.asm": {
+      "sha256": "88b8c1249eb5c54c7b15bd232f7e3873655e62c42cc86289b7c188b5429dba81",
+      "bytes": 7563
+    },
+    "human-zone-owner-packet.asm": {
+      "sha256": "3ab6b2172e9e49bd2d82dda9f95bfa0dac588b8d444c952ddc74c52e6f5ab032",
+      "bytes": 2456
+    },
+    "human-authority-spawn-constants.json": {
+      "sha256": "648cf99e08dd3d75a1c8fb2458543b45a8d093ec60ac078e2ebd00341a9b9473",
+      "bytes": 294
+    },
+    "human-spawn-rejection-receiver.asm": {
+      "sha256": "9f8056b4890a926504093667c00cb3ff0dd0505cef031d96f09c413ff5b5e9bc",
+      "bytes": 1867
+    },
+    "human-spawn-map-zone-side.asm": {
+      "sha256": "bf659db58c6a3053fb0d692505bc02dd8a79e762026df4ef9614f3b9e8e72b2e",
+      "bytes": 2102
+    }
+  },
+  "originals": {
+    "human-authority-spawn-position-abi-v3/00475840.c": {
+      "sha256": "9857acb5ee366a61d6a6e55f1c7e040f664accb580fb13d1095519834d04349f",
+      "bytes": 1030
+    },
+    "human-authority-spawn-position-abi-v3/00475840.json": {
+      "sha256": "d1a8a83ba41629381746a9a8f998ab98bde2f2abc19878009cf0e134d9b0f077",
+      "bytes": 5975
+    },
+    "human-authority-spawn-position-abi-v3/005ebed0.c": {
+      "sha256": "cc83f475b74ac5f3483b30f31d8b7455eccc92320ce7bb1b68c2ad512549ccd5",
+      "bytes": 1140
+    },
+    "human-authority-spawn-position-abi-v3/005ebed0.json": {
+      "sha256": "6bf1d1c8979a9c8e3f49fb7f5691e2ab7271137229b196001d8823b8b9907794",
+      "bytes": 927
+    },
+    "human-authority-spawn-position-abi-v3/005ebfd0.c": {
+      "sha256": "dd1e5d5d595147b3eb8c29c2277cefebc8a66c6cc8233cca8010785e361cef8d",
+      "bytes": 170
+    },
+    "human-authority-spawn-position-abi-v3/005ebfd0.json": {
+      "sha256": "38f3d5f204d7899377fb977e7a2281b08e4df4fb37534e414b9ba64d2ccc82ba",
+      "bytes": 860
+    },
+    "human-authority-spawn-position-abi-v3/005ec8b0.c": {
+      "sha256": "9bd4c402d0c95c378ea08295c2d8f3313dc82675d852ff7447a8a26af823ef3f",
+      "bytes": 2851
+    },
+    "human-authority-spawn-position-abi-v3/005ec8b0.json": {
+      "sha256": "68f72aa650ebb05336c9fe9a84a79e0286df35227d00f518602c36eed466e876",
+      "bytes": 8308
+    },
+    "human-authority-spawn-position-abi-v3/005ecf20.c": {
+      "sha256": "54f0201d8937ef82c5bb8984fc0be42b9f315ad4db895db031537339575e2c40",
+      "bytes": 2639
+    },
+    "human-authority-spawn-position-abi-v3/005ecf20.json": {
+      "sha256": "9efe1025496305977d7bb4aaba0c72abbe2be7bb0e2fc9c80f430cb25e5a7194",
+      "bytes": 7392
+    },
+    "human-authority-spawn-position-abi-v3/005ed110.c": {
+      "sha256": "20f9f85d7fe3a5e0c1d1ec2c036f1ece4011e13a7309d79dd30e01359f1437d5",
+      "bytes": 2001
+    },
+    "human-authority-spawn-position-abi-v3/005ed110.json": {
+      "sha256": "db87afa4abdb4f3f7e981e5e3adf90825c72971e92ca233c129f0331555edc15",
+      "bytes": 3791
+    },
+    "human-authority-spawn-position-abi-v3/005ed220.c": {
+      "sha256": "68e1da17a25766cf88f17908cd0ca632bab847f089ec9469a308a3c18a9ee7df",
+      "bytes": 485
+    },
+    "human-authority-spawn-position-abi-v3/005ed220.json": {
+      "sha256": "d1cc8703ab51b4b85321b121b62d2dcc31f1dd952dbd6988592e0a31ffc44094",
+      "bytes": 901
+    },
+    "human-authority-spawn-position-abi-v3/005ed260.c": {
+      "sha256": "7fd90bd01c8698d4c0a58d5c60820dd4e6b54b297671b15258bf8be314bce782",
+      "bytes": 738
+    },
+    "human-authority-spawn-position-abi-v3/005ed260.json": {
+      "sha256": "8c7b3a08dd5967e185a45f0964782a49e92887a7e736a8df0a3f5feed3fa2383",
+      "bytes": 1515
+    },
+    "human-authority-spawn-position-abi-v3/005ed2f0.c": {
+      "sha256": "dea92869a42c1af88a569c6b6f86817c3782ed7281c76030b68a439f88a36009",
+      "bytes": 237
+    },
+    "human-authority-spawn-position-abi-v3/005ed2f0.json": {
+      "sha256": "1cda25f8bbde3327ccd4c457d5f5f20bc1529bfeab00f9cb86f023ee7791d791",
+      "bytes": 1068
+    },
+    "human-authority-spawn-position-abi-v3/005ed320.c": {
+      "sha256": "e4a030782eb70befb0aa352481b9b2e6c9cc5592dca174207f1252819c92e2d6",
+      "bytes": 443
+    },
+    "human-authority-spawn-position-abi-v3/005ed320.json": {
+      "sha256": "841f50493914b5180ebb6d5bbd92b8b424aa9a7aeff5659a3529e7dfd10965b2",
+      "bytes": 2879
+    },
+    "human-authority-spawn-position-abi-v3/005ed390.c": {
+      "sha256": "af2212af726d652aa87bc39f6a640aa2bd2ae4ed1b0f84e474c668c500dae4a9",
+      "bytes": 2157
+    },
+    "human-authority-spawn-position-abi-v3/005ed390.json": {
+      "sha256": "af5c38addc69a90fcf147cd3369a0c1ba767aeebbbe7e028353aee7d3c2d470a",
+      "bytes": 8085
+    },
+    "human-authority-spawn-position-abi-v3/005ed550.c": {
+      "sha256": "393f00b92654a4592b9e5e9af9529e7a34785442bc502d52f14137a680d36fe9",
+      "bytes": 2023
+    },
+    "human-authority-spawn-position-abi-v3/005ed550.json": {
+      "sha256": "7d81077dbad83c47447b3314e57a548772a21433631d5ae4810cdc0bde3ae0f1",
+      "bytes": 6141
+    },
+    "human-authority-spawn-position-abi-v3/005ed700.c": {
+      "sha256": "a87d96fff8fee9a318668536b5703270b15e48b634dc284d2209b6c35b354896",
+      "bytes": 1147
+    },
+    "human-authority-spawn-position-abi-v3/005ed700.json": {
+      "sha256": "00dad2964f4d6905bdd0276bcd7af29979caba9a266ca3befd127f74d5bc8520",
+      "bytes": 3162
+    },
+    "human-authority-spawn-position-abi-v3/005ed8b0.c": {
+      "sha256": "bb920da0de92e653ca33993e35f0e1838c9acaebe80eab31eb6d4cd8d1bb07d8",
+      "bytes": 421
+    },
+    "human-authority-spawn-position-abi-v3/005ed8b0.json": {
+      "sha256": "d3c64eeabb2e93ab5393cdc7c7c95aab489a24758d1cf8ad77d89e191bf32eb9",
+      "bytes": 693
+    },
+    "human-authority-spawn-position-abi-v3/005ed900.c": {
+      "sha256": "481e52d1e41451ed38edcc76a1dc79f23d5ded29bfb6d2a278be5e98b367f14e",
+      "bytes": 182
+    },
+    "human-authority-spawn-position-abi-v3/005ed900.json": {
+      "sha256": "dc304629efa29cc1d08a846678aaeeeff0b281f2561d783298159b155a5dc826",
+      "bytes": 1139
+    },
+    "human-authority-spawn-position-abi-v3/005ed920.c": {
+      "sha256": "11daab54e21f020cd9ff133b08f874e6b2ea324a826031cae58497d0e1b30cd2",
+      "bytes": 1822
+    },
+    "human-authority-spawn-position-abi-v3/005ed920.json": {
+      "sha256": "25d31b0c38f7736708ba60f5fc1e5cbe09ba26e788bea80a2d731f3d730b232f",
+      "bytes": 5119
+    },
+    "human-authority-spawn-position-abi-v3/005eda60.c": {
+      "sha256": "bead139f699a17b4bfa07fa612f2a07f97197e2a6b148706744115dfa5992501",
+      "bytes": 3938
+    },
+    "human-authority-spawn-position-abi-v3/005eda60.json": {
+      "sha256": "0fc0727cb565341e38058de13bc7b10c2429f5171c6140a85417a274f7d2561a",
+      "bytes": 8837
+    },
+    "human-authority-spawn-position-abi-v3/0069d6a0.c": {
+      "sha256": "dd171aad9f57cd3f56eaf7ee7e4986b58201cca9dee2f52d6fc35a7efa54ccff",
+      "bytes": 1178
+    },
+    "human-authority-spawn-position-abi-v3/0069d6a0.json": {
+      "sha256": "e5d50af435a33a1dbf4a8546659be143a36581fd8a1336253634b0feb40262b5",
+      "bytes": 5261
+    },
+    "human-authority-spawn-position-abi-v3/0069e0a0.c": {
+      "sha256": "f9fbf60848f35f1067309eaa847825297fd6f3fa8faf4a24143d6fd59579a2fb",
+      "bytes": 2331
+    },
+    "human-authority-spawn-position-abi-v3/0069e0a0.json": {
+      "sha256": "093d33aa3cad231f5e314e66309527a7ddd3572e3fb0f6d3b282c9567510bc4b",
+      "bytes": 10240
+    },
+    "human-authority-spawn-position-abi-v3/007184c0.c": {
+      "sha256": "c782db432821208fc41cbad755df86f9629614277d017543f2e5e52e14dae729",
+      "bytes": 513
+    },
+    "human-authority-spawn-position-abi-v3/007184c0.json": {
+      "sha256": "b59c8a21d5ace7f9083c7774dcca35286670a3427ff8ac7d0b4dfb4d96f9297b",
+      "bytes": 3118
+    },
+    "human-spawn-rejection-abi/00699620.c": {
+      "sha256": "0eee20c6d0db5c59c4cc3108d75d1d5cc3ff4f607491276bb60e325a94beaf29",
+      "bytes": 538
+    },
+    "human-spawn-rejection-abi/00699620.json": {
+      "sha256": "b0daacc00faa5169bcd92fe0fff0ff73c8158f42d92382b8879ccc978c037618",
+      "bytes": 2179
+    },
+    "human-spawn-map-zone-frame-abi/004a7180.c": {
+      "sha256": "313423142c367506898c28fae409df2240fd4d4c6f18a00a9f666733fb1de52e",
+      "bytes": 2176
+    },
+    "human-spawn-map-zone-frame-abi/004a7180.json": {
+      "sha256": "fb893a0b62498952e5513a6478f616e26b445954ab582075c3949b7193de20ea",
+      "bytes": 5100
+    },
+    "human-spawn-map-zone-frame-abi/004a78e0.c": {
+      "sha256": "f4dd66f7db968e060d44931e3ee3b1a69c62c038291138ba5385d7f00cc3fd7c",
+      "bytes": 272
+    },
+    "human-spawn-map-zone-frame-abi/004a78e0.json": {
+      "sha256": "44cd8189aedd280ecfc5b9c0d0d2a08c17f4874b16b5cee1134ab34999a59910",
+      "bytes": 1322
+    },
+    "human-spawn-map-zone-frame-abi/004abaf0.c": {
+      "sha256": "8b155b30d87e0915bf0913e675b73db7ea4b86e04e0a7cc467dbad43f5f31d8b",
+      "bytes": 902
+    },
+    "human-spawn-map-zone-frame-abi/004abaf0.json": {
+      "sha256": "8290eb2cd28eecf641912e9a48aa96d116c386ec26c12a6bd2831c09669c43ad",
+      "bytes": 1991
+    },
+    "human-spawn-map-zone-frame-abi/005ec060.c": {
+      "sha256": "b2b8560d0f96acca4ada38d24aba0ca7e0277b836a661b8fa163c812194a3f91",
+      "bytes": 2946
+    },
+    "human-spawn-map-zone-frame-abi/005ec060.json": {
+      "sha256": "b4df044aa0c70c11a73af51e94e976c8e1c73497959f21231720a3a71c5cd51b",
+      "bytes": 9900
+    },
+    "human-spawn-map-zone-frame-abi/005ec540.c": {
+      "sha256": "a4aef1a3118a8427db6e7bc5592e94eb0815671cdb284b72994a686ea734444a",
+      "bytes": 4716
+    },
+    "human-spawn-map-zone-frame-abi/005ec540.json": {
+      "sha256": "8508f2fa697273ac884a9de984964ef4353e8a5dab3832a3270567685c718723",
+      "bytes": 15209
+    },
+    "human-spawn-map-show-receivers-abi/004a7a70.c": {
+      "sha256": "4a4daac2e3097781beca6775db99364256510e82923af713520618a043888114",
+      "bytes": 203
+    },
+    "human-spawn-map-show-receivers-abi/004a7a70.json": {
+      "sha256": "3fe3360e6313bcf487930eb8bff10bbcb8f80a239104d9aca1c5a1a465ce4bb4",
+      "bytes": 917
+    },
+    "human-spawn-map-show-receivers-abi/004a7c60.c": {
+      "sha256": "b61cafd9041c7e44e4c3bc4722c39f983df6b261ab6303976a74d5b7e95f0521",
+      "bytes": 3586
+    },
+    "human-spawn-map-show-receivers-abi/004a7c60.json": {
+      "sha256": "c505ead62ed71131b0ae16b29797c995835ab85921a2e5d6d48f3345a74c3488",
+      "bytes": 7208
+    },
+    "ExportHumanSpawnPositionABI.java": {
+      "sha256": "b323637e4766f0aaa687d64ae252cbbb46dbd4c3675082e8c07d796fd54937d1",
+      "bytes": 1856
+    },
+    "ExportHumanSpawnRejectionABI.java": {
+      "sha256": "7f23501c5ba0755e954d5769fe70b31209965d8440a901aeefa50d25d1e620bb",
+      "bytes": 997
+    },
+    "ExportHumanSpawnMapABI.java": {
+      "sha256": "9e91121a7ff395442904fd91f124e5edcad7ebe13bd6eb378d6bef812a97f450",
+      "bytes": 1370
+    },
+    "ExportHumanSpawnMapReceiversABI.java": {
+      "sha256": "dfe8d352a9501c23e863e9299457c462bb45b276ff8011b06d4fd6e667ad8c7e",
+      "bytes": 1286
+    },
+    "human-authority-spawn-position-export-v3.log": {
+      "sha256": "27c6ecea3898a282a476c8c50fcf8b37a61deb8a76acae2f4f59f77dd5764622",
+      "bytes": 6267
+    },
+    "human-spawn-rejection-export.log": {
+      "sha256": "a642be824799be7913a5f3682de42e077ea563215d4932c80f6fa423289a3863",
+      "bytes": 4509
+    },
+    "human-spawn-map-zone-frame-export.log": {
+      "sha256": "a6f63d5a9ea64c0fde7947d66342234e9e4f9904579323f6a8ad5eb8a315e60c",
+      "bytes": 4870
+    },
+    "human-spawn-map-show-receivers-export.log": {
+      "sha256": "6c167c785b3dddf5af2f61fa89f1ece586d390f7f54472546efdfe2769a811cb",
+      "bytes": 4616
+    },
+    "analysis/work/mission-world-20261103/human-objective-reused-originals/0072a0b0.c": {
+      "sha256": "750ebf26932e6924479b95fd1b3a13090f986afaee20024f24bcaa500c12967d",
+      "bytes": 19150
+    },
+    "analysis/work/mission-world-20261103/session-finish-required/00475d50.c": {
+      "sha256": "d01ffc6039c687c51446e48158ecc4cc1eea2ef9d75ed0e23a33433353391a25",
+      "bytes": 949
+    },
+    "analysis/work/mission-world-20261103/hud-map-command-dependencies/004a5630.c": {
+      "sha256": "0cef52c5e7f742c02ca0f7dd88751e654767a42a7eec35b700b47a528d3ccaad",
+      "bytes": 613
+    },
+    "analysis/work/menu-route-extra-20261031/00728450.c": {
+      "sha256": "b9c8016db7a09c41f356be16f9dbb10905e2d7263dfecb5bbaef86bd46eedbc2",
+      "bytes": 32585
+    }
+  },
+  "verification": [
+    "PASS native ASan/UBSan/LSan actual zone lifecycle/property/vertex-registration/cursor/32-attempts/late flag retirement/release borrower publication x100",
+    "PASS native actual shared-sweep occupancy policy, identity-slot selection holes/RANDMAX and31-exhausted authority spawning/late A8/mode x100",
+    "PASS native actual packet writer modes1/3/7 x100, supplied ARG2 stats after soldier, required missing stats prefix, direct NULL stats/recursive locks and rejection scalar FIFO5/1",
+    "PASS native map show/pointer/zone selection/kind12 objective TextState transitions x100; actual process2/10/15/17 packet rejection/failure paths and spawn decoder regression",
+    "PASS strict complete actual World/authority Human/factory/HUD/source lifecycle i386 and sequential latest launcher/startup-probe compile/link; no Windows outputs executed"
+  ],
+  "limitations": [
+    "Frames, vertex-registry, factory, geometry, localization, HUD and peer endpoints are doubles, not a full World/application/render/transport run",
+    "Non7 zone005EC060/005EC540 decision/containment bodies remain required failures; only genuine offline7 returns supplied, ZERO new function credit",
+    "Normal control entry/status9/received0 transport/service owners and positive runtime/occupied Human lifetime/frame/teardown still required",
+    "Native malformed bounds/strings/null soldier/missing stats and undefined pointer/padding behavior use explicit checked guards; source ABI is typed/STL/RAII",
+    "No new credit for existing sweep/vertex bodies or delegated engine/interface calls; full selected checkbox/application/desktop remains open"
+  ]
+}

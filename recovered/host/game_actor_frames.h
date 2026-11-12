@@ -901,6 +901,11 @@ public:
         call<void>(material,0x1c,texture);
     }
     void hud_position(Frame frame,const std::array<float,3>& position) {call<void>(frame,8,position.data());}
+    void hud_pointer_position(Frame frame,const Vector& position){ //004ABAF0's client-inline B0/E0 stores; sign bit of low BYTE gates them.
+        auto flags=field<std::uint32_t>(frame,0xe0);if(flags&0x80u)return;
+        for(unsigned n=0;n!=3;++n)put(frame,0xb0+n*4,position[n]);
+        put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);
+    }
     void hud_group18(Frame visual) { //004AB230 calls first LOD0 group's actual+18; no material substitution.
         const auto lod=first_person_material_lod(visual);
         if(!lod)throw std::runtime_error("HUD info visual has no actual LOD0");

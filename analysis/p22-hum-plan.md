@@ -1,6 +1,6 @@
 # P22-HUM implementation plan
 
-Updated 2026-11-12 through the presentation-spawn source checkpoint. P22-HUM remains OPEN.
+Updated 2026-11-12 through the authority-spawn/map source checkpoint. P22-HUM remains OPEN.
 Both P2.2 checkboxes in `plan.md` remain OPEN. Mission loading still declines,
 and no mission desktop acceptance has occurred.
 
@@ -91,7 +91,9 @@ Reached Car authority/impulses, actual Human contact callback and spawn-protecti
 HUD now have a [source checkpoint](checkpoints/p2.2-human-car-contact-20261112.json).
 Presentation spawn, match/HUD, spectator camera and transmit targets now have a
 [source checkpoint](checkpoints/p2.2-human-presentation-spawn-20261112.json).
-Continue authority spawn/entry/transport and the full containing frame/failure,
+Authority spawn, actual zone loading and rejection/map now have a
+[source checkpoint](checkpoints/p2.2-human-authority-spawn-map-20261112.json).
+Continue full control entry/transport and the full containing frame/failure,
 re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
 The full selected checkbox, P22-HUM and P2.2 remain open; no application or desktop
 acceptance is claimed.

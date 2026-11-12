@@ -48,6 +48,9 @@ public:
     auto door_current_player_frame(){auto* human=d().players.control().current_player();return human?human->base().frame():typename Dependencies::Frame{};}
     std::uint32_t session_mission_ordinal()const{return d().session.words.template get<std::uint32_t>(0x3c);}
     auto& session_broadcast_packets(){return d().broadcast_packets;}
+    std::int32_t zone_style(){return d().startup.game_configuration().style224;}
+    bool zone_remote_ai(){return d().startup.human_remote_ai_enabled();}
+    void zone_hud_objective(std::uint32_t index,std::int32_t side){d().hud.select_objective(index,side);}
     auto& spawn_packet_decoder(){return d().spawn_decoder;}
     template<class Actor>void receive_human_presentation_packet(Actor* actor,SessionPacketStream& packet){d().human_factory.world_services().receive_human_presentation_packet(actor,packet,false);}
     auto& actor_proximity(){return d().proximity;}

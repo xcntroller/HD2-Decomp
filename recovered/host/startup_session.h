@@ -813,6 +813,7 @@ public:
         packet_world_.receive_application_peer_departure(transport);
     }
     void receive_application_local_removal(std::uint32_t reason){packet_world_.receive_application_local_removal(reason);}
+    void receive_application_spawn_rejection(std::uint32_t reason){packet_world_.receive_application_spawn_rejection(reason);}
     void receive_application_peer_removal(std::uint32_t reason,std::uint32_t identity){
         struct Services{
             StartupSession& startup;

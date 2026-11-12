@@ -97,6 +97,7 @@ public:
     bool hide_map(){ //0049F040(false)'s004A5630 and late map-center E0 query.
         map_.hide(auxiliary_);const auto center=map_.center();return center&&frames_.hud_frame_visible(center);
     }
+    bool show_map(){map_.show(world_,auxiliary_);const auto center=map_.center();return center&&frames_.hud_frame_visible(center);}
     template<class Human>bool add_human(Human* human,std::int32_t index,std::uint32_t mode,std::uint32_t difficulty,std::int32_t local_player){
         return add_hud_loading_human(frames_,hud_,soldiers_,compass_,players_,items_,human,index,mode,difficulty,local_player,[&]{post_bind(mode,hud_.flags);});
     }

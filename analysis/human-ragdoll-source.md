@@ -1354,3 +1354,147 @@ of18783. Whole selected Human checkbox, application loading/rendering and deskto
 acceptance remain OPEN. Continue00611C90 authority positioning/publication, normal
 entry/transport, required occupied owners and full containing reaction/frame/
 failure/re-entry/teardown; successful source checkpoint does not end that scope.
+
+
+### Authority spawn, actual zone owner and rejection/map delivery — 2026-11-12
+
+00611C90 now has ordinary authority source, bound from actual session activation
+through World services. Offline7 clears SpawnPoint9C, allocates first free reserved
+identity and uses authored A4 clothing. Non7 keeps peer as the Scene identity and
+clothing=-1. Initial authored pose/normalization is shared with the earlier verified
+offline body. Styles1/2/3 use soldier.network_identity's actual **type37 zone**
+005ED700, with config240/rule6 cycling. Failure queues real application0F(peer,1)
+and returns before clothing/factory. Style1 applies0069E0A0. Other styles attempt
+up to31 actual00475840 positions, ending at the last pose even when all are occupied.
+Missing selected SpawnPoint is an explicit native required-dereference failure.
+Default clothing transfer and stack splitting precede SAME00612A60; A8 publication
+precedes local match phase, authority activation, late presentation activation,
+Player side/flags, voice, packet/direct presentation and final late Script context
+Use(false). A8/mode are reread between receivers; no rollback is invented.
+
+The captured Scene identity is retained for packet/direct publication, even if
+native first-free returned-1 and the registry appended an ordinary actor. Do not
+replace this local with the resulting Human's id10. Raw caller evidence resolves
+Ghidra's misleading tail `this`/stack/vector aliases. Normal wire stats are original
+ARG2, after soldier serialization, NOT current Human properties; missing ARG2
+fails there with active stream/prefix retained. Direct game1C==1 instead holds418,
+optionally invokes0072E940 recursively, then006123A0 with **NULL stats**, irrespective
+of ARG2. Peer name/transport are read under418; stream remains actual process-owned
+module13. Focused policy tests cover late A8 replacement and fresh mode after
+activation,31 exhausted choices, direct recursive lock and required stat failure.
+
+00475840 scans SAME **Scene2 identity10/14 vector**, including32 reserved slots and
+holes; it does not scan active actors. Capture count once, count eligible type10/
+kind90/flag9C/(side94==side or2), draw once even with no candidates, scan again.
+FILD CRT→FMUL FLOAT38000100→FIMUL candidate count→FTOL keeps the product extended,
+unlike spectator camera's DOUBLE/floor step. RAND32767 selects the last candidate.
+0069D6A0 uses actual shared00715510/007184C0 downward sphere sweep: height2,radius.2,
+start at pose.y+height, decrement height by returned distance+.01 BEFORE hit checks.
+Continue past other surfaces until no hit/height<=.01; actual frameEC actor kind3/4
+with descriptor flags40/C0 reports occupancy. No synthetic empty collision query.
+0069E0A0 scans live identities, selects highest signed zone90 for side0, last zero
+zone90 for side1, default identity0 otherwise; then flattens and normalizes direction
+toward that actual zone. Fourth uninitialized native output lane stays a defined
+caller guard. No broad zone simulation is implied.
+
+**Lookup correction:** original00475D50 command lookup differs from00475E00 Human
+lookup and00475DD0 physical slot lookup. Presentation spawn and authority zone/
+orientation adapters now call SAME existing command resolver, retaining its reverse
+pending-retirement fallback for empty reserved slots only. A non-Human result in
+presentation or non-zone result for a team spawn fails explicitly, instead of
+silently searching another registry. Existing resolver body was already verified;
+no additional00475D50 credit or repeat audit was taken.
+
+The actual zone owner005EBED0 is now constructed by the SAME Scene2 factory and
+loads native005EDA60 legacy/version8001 fields:90/94/98/A0,three16-byte namesAE,
+A4/A8, optionalAC, then E4/9C from98. Bounded invalid strings/truncated files fail.
+005ED110 common activation FIRST;118 set before acquiring three scene7C/flags80
+named flag frames, actual005ED220-shaped vertex instance, then scene7C/flags20
+`<shortname>spawn` frame group. F0/F1 reset after acquisition; presentation sets
+98=-1/AD=0 then005EC8B0. No second Scene, animation definitions or vertex registry.
+005ED260 clears118, releases flags0..2, unregisters/frees actor-owned vertex, then
+releases spawn group; it **does not** invoke common00610510. Separate typed borrowers
+stay published through frame-release callbacks and clear AFTER release. Typed null
+vertex/borrower guards replace native dangling/unwritten pointers only after their
+valid lifetime; they are not additional original constructor defaults/ABI credit.
+
+005EC8B0 optional actual HUD objective gate precedes forward flag visibility/update.
+Reread the flag borrower after callbacks. Matching side uses SAME `vlajka` definition/
+OBJ_ child and actual MissionVertexInstances: finished→reset geometry→unregister→
+bind→register→ping_pong=false, maxLOD=definition.sizes.size-1,duration210,start0,
+repeat=true,finished=false. Commit98=E4 LAST. Frame retirement during visibility
+fails at the next required borrower instead of using a released cached frame.
+005ED550 reads actual retained spawn-group child position then direction WORLD
+caches; normalization keeps(Y²+X²)+Z² extended, reloads stored FLOAT for sqrt, keeps
+inverse extended for all stores.005ED700 noncycling end returns before child read;
+otherwise pose→cursor++→optional modulo fresh count→if exhausted publish neutral
+owner98=2 through actual005ED320 module13 subtype2/side2bits→occupancy. At32 attempts
+returnfalse even if that last pose was free; style2 stops after one probe and returns
+true even if occupied. Native branch ordering and failure prefixes are retained.
+
+Zone non7 decision/presentation005EC060/005EC540 still REQUIRE their containment/
+score/frame receivers. Both original functions genuinely return immediately in
+mode7; containing actor dispatch now preserves that guard and throws explicitly
+for the unrecovered non7 bodies. No005EC060/005EC540 credit. Type37 simulation was
+not replaced with a successful generic actor tick. HUD map group/side now borrow
+this SAME zone A4/98 through its Scene2 base identity.
+
+Application0F is a scalar FIFO producer: enqueue under actual application2C in non7,
+drain writes peer5/reason1 after normal20/command32 envelope.00728450 reads those
+fields before comparing local identity, with no mode/game gate before a matching
+00699620. Result88 outside0/3 is a real no-op. Otherwise90=2-reason precedes required
+first live soldier.network_identity=-1 and0049F040(true). Absent current World,
+empty live squad, missing map/HUD/input services and map failure keep their reached
+prefixes. This does not enable transport/entry or create substitute live records.
+
+0049F040(true) now calls actual004A5630(true,false), then late center E0&1→HUD21,
+then message mode0 (including required offline pause). Missing map center remains
+an original no-op inside004A5630, not a fabricated loaded map. Present center:
+24=0, show center/map, and kindnot0/1 select SAME004ABAF0 pointer0→004A7180→004A78E0.
+004ABAF0 hides old pointer BEFORE index store, publishes actual table borrower,
+conditionally stores position20 XYZ/E0 maskFFFFFEDF|40000000 when low-byte sign bit
+clear, then shows/updates; -1 retains field00/no update, equal index returns.
+Invalid indices fail after the original index mutation. No new pointer/frame owner.
+
+004A7180 forward-updates actual zone markers004A7A70/004A7A20 from SAME zone98:
+store changed side before optional allied(side1) hide/show/update and axis(side0)
+hide/show/update. Then reverse-match actual first live soldier's positive network
+identity; matching nonneutral side positions/tags/shows selection marker, mismatched
+owner clears that soldier's network identity; final marker hide/show/update always
+requires its actual artwork.004A78E0 updates live goals forward.004A7C60 queries
+actual local peer64 separately (neutral2 returns), stores changed descriptor status/
+side before visibility/text. Status0 shows root/axis,1 root/allied,2 shows root while
+RETAINING faction visibility;4 hides all and clears text. Captions use actual kind12
+metadata1C/20 and B63/B64 success/failure append with native45 flags. Missing owner/
+artwork/local peer and localization failures remain explicit. SAME process live
+squad and control records are borrowed by HudWorld, with no HUD copy of either.
+
+Index preceded every new export or original reuse. WORK
+`human-authority-spawn-position-abi[-v2,-v3]`, `human-spawn-rejection-abi`,
+`human-spawn-map-zone-frame-abi`, `human-spawn-map-show-receivers-abi` are read-only
+rollback exports with no ERROR. ABI caveats:007184C0 arg5 is a normal-output pointer
+(provisional DWORD type, reachedNULL), and only Scene/raw evidence resolves caller
+stack aliases. Raw authority caller/zone constructor/vtable/pose/owner packet/
+occupancy/rejection receiver/map-zone side and PE constant JSON pin exact claims.
+0083E564=`spawn`,0080F574=.01,0080F748=DOUBLE2 and0080FB00=DOUBLE1 establish the
+neutral-owner command's two-bit width. Existing menu-route-extra00728450 C,
+human-objective-reused-originals0072A0B0 C and session-finish-required00475D50 C
+were reused. No original/DLL/Windows output ran.
+
+Focused ASan/UBSan/LSan PASS authority/zone/occupancy/packet source x100, map/
+pointer/goal TextState x100, actual process FIFO/received rejection and prior
+application messages, plus spawn decoder/presentation regression after packet
+extension. Frame/vertex-registry/factory/geometry/HUD/localization/peer endpoints
+are explicit doubles, not full World/transport/render. Strict actual complete World/
+authority Human/factory/HUD/source lifecycle i386 and sequential latest launcher/
+probe compile/link PASS `human-authority-spawn-{host,application}-i386.log`.
+Temporary audits remain ignored until selected checkbox completion.
+
+[Receipt](checkpoints/p2.2-human-authority-spawn-map-20261112.json) adds14 partials
+and extends7, no promotions:34 complete/2649 partial (2644 client+5 engine) of18783.
+005EBFD0/005EDA60/005ED110/005ED260 are ABSENT from the frozen inventory: ZERO
+new credit despite implemented source. Existing sweep/vertex bodies and delegated
+engine calls receive no new credit. Full selected Human checkbox, application
+loading/rendering and user desktop acceptance remain OPEN. Continue full control
+entry/transport, non7 zone/runtime/occupied owners and containing reaction/frame/
+failure/re-entry/teardown; this verified source cohort does not finish that scope.

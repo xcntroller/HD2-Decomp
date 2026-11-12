@@ -2,6 +2,12 @@
 #define HD2_GAME_SESSION_SPAWN_MATCH_H
 #include "game/session_activation.h"
 namespace hd2::game {
+template<class Squad,class ShowMap>void receive_session_spawn_rejection(SessionActivationState& game,Squad& squad,std::uint32_t reason,ShowMap&& show){ //00699620.
+    const auto result=game.words.template get<std::uint32_t>(0x88);if(result!=0&&result!=3)return;
+    game.words.set(0x90,reason?1u:2u);
+    if(squad.empty())throw std::logic_error("Spawn rejection requires the actual first live soldier");
+    squad.at(0).network_identity=-1;show();
+}
 template<class Runtime>void set_session_spawn_match_phase(SessionActivationState& game,Runtime& r,std::uint32_t phase){ //0069AA50.
     game.words.set(0xb8,phase);
     if(phase<2){r.spawn_hud_mode(1);game.words.set(0xb4,0xffffffffu);}

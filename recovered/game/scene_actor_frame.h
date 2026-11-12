@@ -56,6 +56,9 @@ template<class Frames,class World,class Derived>void update_loading_scene_actor(
         if(authority)value.update_authority(elapsed,world.mode_flags());else value.update_presentation(elapsed);return;}
     case 29:world.update_fowl(static_cast<FowlGeneratorSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 30:derived.update_dog(actor,authority,elapsed);return;
+    case 37:
+        if((world.mode_flags()&7u)==7u)return; //005EC060/005EC540 both have this genuine initial RET.
+        throw std::runtime_error(authority?"Zone authority frame requires actual005EC060 decision receivers":"Zone presentation frame requires actual005EC540 containment receivers");
     default:throw std::runtime_error("Required Scene2 actor frame receiver is unavailable");
     }
 }
