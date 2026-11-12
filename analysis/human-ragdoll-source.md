@@ -1679,3 +1679,18 @@ launcher compile/link pass, with explicit endpoint doubles and no engine/desktop
 claim. Adds12 partials/extends8:34 complete/2697 partial. Full selected Human
 checkbox stays OPEN. Continue actual armed Mine005FEFB0 and00451990 explosion
 producer, full entry and containing Human frame/failure/re-entry/ordered teardown.
+
+### Armed Mine and actual explosion producer — 2026-11-12
+
+[Full contract](human-mine-contact-source.md) now binds Human first-candidate
+contact, Car wheel trigger, native source/family gates, unregister/wire/explosion
+ordering and actual00451990→shared BlastWave initial damage→reused SOUND. Source
+Human9C retirement during the explosion can delete the Mine before its contact
+returns; local containing-runtime borrower preserves the original global access
+without delaying destruction. Original70/71 data is type2/40bytes with radii5/8,
+power2500/25000 and sound2. Source fixtures pass800 armed contacts and separately
+800 explosion-to-Human/Player command paths with explicit endpoint doubles; strict
+actual World composition and final launcher/probe pass. Adds4 partials/extends2:
+34 complete/2701 partial, no promotions. Full selected Human checkbox stays OPEN.
+Continue actual CarD4=004DBA10, other required damage/surface receivers, non7 entry
+and containing Human frame/failure/re-entry/ordered teardown.

@@ -7,6 +7,13 @@ namespace hd2::game {
 template<class Packets>auto& begin_runtime_actor_command(Packets& packets,std::uint32_t command,bool priority){
     auto& packet=packets.begin(12,priority?0:3);packet.write(1,2);packet.write(command,2);return packet;
 }
+template<class Packets>auto& begin_runtime_actor_message(Packets& packets,std::int32_t identity,bool priority){ //00478780.
+    auto& packet=packets.begin(12,priority?0:3);packet.write(0,2);packet.write(static_cast<std::uint32_t>(identity),10);return packet;
+}
+template<class Packets>void publish_runtime_mine_contact(Packets& packets,std::int32_t identity,std::uint32_t command){ //005FEFB0/005FEEE0.
+    auto& packet=begin_runtime_actor_message(packets,identity,true);
+    packet.write(command,2);packet.finish_broadcast();
+}
 template<class Packets>void publish_runtime_mine(Packets& packets,std::int32_t identity,std::int32_t human,
         std::int32_t definition,const HumanVector& position,const HumanVector& direction){
     auto& packet=begin_runtime_actor_command(packets,0,true);

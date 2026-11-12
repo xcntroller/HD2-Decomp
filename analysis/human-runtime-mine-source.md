@@ -192,3 +192,7 @@ Versions transitions, save/replay and actual application/desktop acceptance rema
 The subsequent [Versions transition checkpoint](version-damage-transitions.md)
 now supplies positive Car/blast frameEC5 contacts. Continue actual armed Mine
 contact005FEFB0 and explosion00451990 producer; full Human entry/frame remains open.
+
+Armed contact005FEFB0, disarm005FEEE0, actual moving-Human first-candidate query
+and shared00451990 explosion now have a [source checkpoint](human-mine-contact-source.md).
+Positive Car/other derived blast damage and full entry/frame remain required.

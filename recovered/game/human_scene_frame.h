@@ -62,7 +62,7 @@ void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed
     sample_human_frame_motion(human,frames,elapsed);
     const auto& velocity=human.activation.vector1b0;
     const auto square=(static_cast<long double>(velocity[2])*velocity[2]+static_cast<long double>(velocity[1])*velocity[1])+static_cast<long double>(velocity[0])*velocity[0];
-    if(square>=1.0000000168623835e-16f&&(state().words().template get<std::uint32_t>(0x5c)&0x16000u))runtime.human_frame_contact(human); //005A5C80 returns5C;006FCB60 radius.5/maskFFFBFFFF and actual actor005FEFB0.
+    if(square>=1.0000000168623835e-16f&&(state().words().template get<std::uint32_t>(0x5c)&0x16000u))world.human_frame_contact(human); //005A5C80 returns5C;006FCB60 radius.5/maskFFFBFFFF and actual actor005FEFB0.
     if((world.mode_flags()&7u)==7u&&human.properties.field19c==1)world.advance_human_periodic_stats(human,elapsed); //005A88F0.
     if(human.formation)runtime.advance_human_formation(*human.formation,elapsed); //Actual2C8 receiver0059BA70.
 }

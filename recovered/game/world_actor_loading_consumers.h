@@ -93,6 +93,7 @@ public:
     void publish_mine(std::int32_t identity,std::int32_t human,std::int32_t definition,const HumanVector& position,const HumanVector& direction){
         publish_runtime_mine(d().broadcast_packets,identity,human,definition,position,direction);
     }
+    void publish_mine_contact(std::int32_t identity,std::uint32_t command){publish_runtime_mine_contact(d().broadcast_packets,identity,command);}
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(typename Dependencies::Frame frame,void* callback,Resolve&& resolve,Type&& type){
         return d().startup.add_game_sound_listener(frame,callback,std::forward<Resolve>(resolve),std::forward<Type>(type));
     }

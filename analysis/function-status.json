@@ -9992,13 +9992,15 @@
       "program": "client",
       "entry": "004d4b50",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004d4b50: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory.",
+      "coverage": "P2.2 source reconstruction at original entry 004d4b50: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Reached Mine contact and explosion callbacks now borrow SAME actual runtime/Blast/ShotMgr/SOUND owners; later Car surface/derived damage receivers remain required.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/car_contact_callbacks.h",
         "analysis/car-geometry-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-mine-contact-source.md",
+        "analysis/checkpoints/p2.2-human-mine-contact-20261112.json"
       ]
     },
     {
@@ -28244,12 +28246,14 @@
       "program": "client",
       "entry": "0059ffd0",
       "status": "partial",
-      "coverage": "Containing authority order over SAME current state/inline owners: registered gate, item/timer/perception/queues, fresh B0 directions, control/feedback then alive motion/contact/stats/formation.",
+      "coverage": "Containing authority order over SAME current state/inline owners: registered gate, item/timer/perception/queues, fresh B0 directions, control/feedback then alive motion/contact/stats/formation. Actual moving-Human Mine contact now binds SAME World model centre/radius.5/maskFFFBFFFF and FIRST descriptor only, actual runtime contact/ownership; other containing receivers remain required.",
       "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-frame-20261110.json",
-        "recovered/game/human_scene_frame.h"
+        "recovered/game/human_scene_frame.h",
+        "analysis/human-mine-contact-source.md",
+        "analysis/checkpoints/p2.2-human-mine-contact-20261112.json"
       ]
     },
     {
@@ -36284,6 +36288,54 @@
         "recovered/game/version_module_loading.h",
         "analysis/version-damage-transitions.md",
         "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fefb0",
+      "status": "partial",
+      "coverage": "Armed Mine source/family gates,98 clear/99 unregister before source/catalogue/prefix/wire, actual blast definition/retained centre+.2, SAME explosion producer and late-mode owner removal; local environment borrower preserves reentrant Human9C retirement.",
+      "limitations": "Source-only native typed/template/STL/RAII/frame adaptations; no original allocator/object/SEH ABI or whole-body promotion. Focused sanitizer fixtures verify800 armed Mine lifetimes with actual runtime/buckets/streams and original item data, and separately800 actual explosion->wave->Human damage/Player queue paths, with explicit endpoint doubles. Strict actual full World/Car/Human/Blast source and launcher/probe compile/link pass. Positive other derived damage including CarD4, surface effects, full entry/frame, application loading and desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "analysis/human-mine-contact-source.md",
+        "analysis/checkpoints/p2.2-human-mine-contact-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005feee0",
+      "status": "partial",
+      "coverage": "Actual98 clear/module12 command1/late-mode removal; binding fields unread, collision unregister deferred to actual deactivation/presentation leaf.",
+      "limitations": "Source-only native typed/template/STL/RAII/frame adaptations; no original allocator/object/SEH ABI or whole-body promotion. Focused sanitizer fixtures verify800 armed Mine lifetimes with actual runtime/buckets/streams and original item data, and separately800 actual explosion->wave->Human damage/Player queue paths, with explicit endpoint doubles. Strict actual full World/Car/Human/Blast source and launcher/probe compile/link pass. Positive other derived damage including CarD4, surface effects, full entry/frame, application loading and desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/mine_scene_actor.h",
+        "analysis/human-mine-contact-source.md",
+        "analysis/checkpoints/p2.2-human-mine-contact-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00478780",
+      "status": "partial",
+      "coverage": "SAME process module12 broadcast priority0/3, selector0 two bits/runtime token10, existing caller leaf bits and real stream finish; native source message prefix.",
+      "limitations": "Source-only native typed/template/STL/RAII/frame adaptations; no original allocator/object/SEH ABI or whole-body promotion. Focused sanitizer fixtures verify800 armed Mine lifetimes with actual runtime/buckets/streams and original item data, and separately800 actual explosion->wave->Human damage/Player queue paths, with explicit endpoint doubles. Strict actual full World/Car/Human/Blast source and launcher/probe compile/link pass. Positive other derived damage including CarD4, surface effects, full entry/frame, application loading and desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/runtime_actor_packets.h",
+        "analysis/human-mine-contact-source.md",
+        "analysis/checkpoints/p2.2-human-mine-contact-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00451990",
+      "status": "partial",
+      "coverage": "Strict positive power/radius request into SAME process006DF170 initial100ms wave, same-sectorfalse/full borrowed source, late offline reused ShotMgr D0 SOUND group6/flags22/entry/source/position, preserved remaining fields and ignored results.",
+      "limitations": "Source-only native typed/template/STL/RAII/frame adaptations; no original allocator/object/SEH ABI or whole-body promotion. Focused sanitizer fixtures verify800 armed Mine lifetimes with actual runtime/buckets/streams and original item data, and separately800 actual explosion->wave->Human damage/Player queue paths, with explicit endpoint doubles. Strict actual full World/Car/Human/Blast source and launcher/probe compile/link pass. Positive other derived damage including CarD4, surface effects, full entry/frame, application loading and desktop acceptance remain required.",
+      "evidence": [
+        "recovered/game/shot_effect.h",
+        "analysis/human-mine-contact-source.md",
+        "analysis/checkpoints/p2.2-human-mine-contact-20261112.json"
       ]
     }
   ]

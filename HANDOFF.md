@@ -10,7 +10,7 @@ Continue dependencies until the FULL selected checkbox completes or genuinely bl
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
 explicitly requested returning here; transfer byte-verified in ignored WORK
 `human-return-main-20261111`. Check HEAD/status before acting. Latest preceding
-checkpoint59fee6f; older hashes may differ after rebases. Preserve other LIFE/UI/
+checkpoint4e96476; older hashes may differ after rebases. Preserve other LIFE/UI/
 PACK/research worktrees, `/tmp/hd2-p22-hum-continue` and external merges.
 
 No original EXE/DLL/Proton or Windows fixture execution. Native own audits only;
@@ -19,6 +19,23 @@ Source-only checkpoints may be committed; interactive acceptance requires user.
 Application mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source
+
+[Armed Mine receipt](analysis/checkpoints/p2.2-human-mine-contact-20261112.json)
+adds4 partials/extends2:34 complete/2701 partial(2696client+5engine), no promotions.
+[Full contact/explosion contract](analysis/human-mine-contact-source.md). Actual
+005FEFB0 RET8 gates source/family, clears98/unregisters99, source9C/Human/Car24AC,
+catalogue pointer→wire→late payload read→retained baseY+.2 explosion→late removal.
+Actual table70/71 is type2/40bytes: radii5/8,power2500/25000,sound2.005FEEE0 disarm
+wire1 does not read binding or unregister until removal. Human0059FFD0 uses SAME
+radius.5/FFFBFFFF query and ONLY first candidate. Car and World borrow actual runtime/
+GameBlastWaves; constructor failure and retirement unbind links in owner order.
+00451990 performs actual positive wave initial100ms BEFORE late offline reused D0
+SOUND(flags22/source/group6); later Mine visual effect retains its lower Y centre.
+Human9C retirement during initial explosion may delete the Mine: local runtime
+borrower preserves native global access without retaining/delaying actor lifetime.
+Native800 contact lifetimes and separately800 actual producer→wave→Human/B0 queue
+PASS with explicit endpoint doubles; strict actual World i386/final launcher/probe
+PASS `human-mine-contact-*` /`human-mine-explosion-damage-native.*`. No Windows run.
 
 [Versions receipt](analysis/checkpoints/p2.2-human-versions-transitions-20261112.json)
 adds12 partials/extends8, no promotions:34 complete/2697 partial(2692client+5engine).
@@ -71,14 +88,15 @@ ignored until full selected Human checkbox completion.
 
 ## Next work
 
-1. Continue actual armed Mine005FEFB0 contact (Human movement and Car wheels) and
-   00451990 explosion producer through SAME damage/blast/particle/Versions owners.
-   Index saved WORK `human-mine-contact-transition-index.txt`; reused originals
-   `car-contact-trigger-dependencies/005fefb0.c`/`frame-human-actor-tail/005fefb0.c`.
-   Purge8 despite old C exposing Mine+contact Actor only: verify raw reached ABI.
-   It clears98/unregisters99 before packet/explosion, excludes own Human9C and
-   differing item70/71 actor families. Actual source selection may call004D11F0.
-   00479700 and normal Mine placement/module12 producers are already verified.
+1. Continue positive CarD4 blast damage004DBA10, then other reached derived/surface
+   receivers and full Human frame. Native Car vtable00810778 (ctor004D0B60) has
+   D4=004DBA10,D8=004DBEE0. Blast006DDD40 skips D8 material forCar4 and callsD4
+   directly. Index/reused original WORK `human-containing-car-blast-index.txt`,
+   `car-callback-world-damage-required/004dba10.c`/JSON, pinned vtable
+   `human-containing-car-blast-vtable.json`. Existing C has engine aliases; verify
+   reached ABI/raw before wiring. No new Car exports yet. Preserve actual health,
+   protection, frame hit, part/wheel events, shared owner and packet ordering.
+   Armed Mine/normal creation/Versions now have checkpoints; do not reopen kernels.
 2. Full status9/received0 entry remains unbound. Read
    `analysis/multiplayer-world/shared-world.md`.00730A40 needs actual peer6C/client334
    wrappers/worker lifecycle, then0072E890, then00731610(true). Reuse pinned WORK

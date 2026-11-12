@@ -10,6 +10,7 @@
 #include "game/car_definition_tables.h"
 #include "game/physics_contact_link.h"
 #include "game/version_contact_link.h"
+#include "game/explosion_contact_link.h"
 
 namespace hd2::host {
 
@@ -23,7 +24,7 @@ public:
     using Car=game::CarSceneActor<GameActorServices>;
     GameCarCallbacks(GameActorServices& actors,StartupSession& startup,game::CarDefinitionTables& definitions,const game::CarTyres& tyres)
         :GameCarCallbackFrames(actors,startup.application_flags_owner(),startup.local_player_identity(),
-            tyres,[&startup]{return startup.control_milliseconds();}),startup_(startup),definitions_(definitions),particles_(actors,*this),physics_contact_(actors),versions_contact_(actors){}
+            tyres,[&startup]{return startup.control_milliseconds();}),startup_(startup),definitions_(definitions),particles_(actors,*this),physics_contact_(actors),versions_contact_(actors),runtime_contact_(actors),explosion_contact_(actors){}
     bool initialize(const std::vector<game::CarParticleDefinition>& definitions){
         if(&definitions!=&car_particle_definitions())throw std::logic_error("Car particles require SAME actual definition owner");
         return initialize_particles();
@@ -102,11 +103,13 @@ public:
     void car_timed_contact(std::uintptr_t handle,unsigned damage,unsigned effects)override{
         std::int32_t amount;std::memcpy(&amount,&damage,4);(void)versions_contact_.contact(handle,amount,effects);
     }
-    void car_item_contact(Actor,Actor,unsigned)override{
-        throw std::runtime_error("Car trigger contact requires actual005FEFB0 runtime trigger owner");
-    }
-    void car_collision_blast(Actor,const Vector&,float,float,unsigned)override{
-        throw std::runtime_error("Car blast requires actual00451990 explosion/damage owner");
+    template<class Runtime>void bind_runtime(Runtime& runtime){runtime_contact_.bind(runtime);}
+    template<class Runtime>void unbind_runtime(Runtime& runtime)noexcept{runtime_contact_.unbind(runtime);}
+    template<class Blast>void bind_explosion(Blast& blast){explosion_contact_.bind(blast);}
+    template<class Blast>void unbind_explosion(Blast& blast)noexcept{explosion_contact_.unbind(blast);}
+    void car_item_contact(Actor actor,Actor touching,unsigned slot)override{runtime_contact_.contact(actor,touching,slot);}
+    void car_collision_blast(Actor source,const Vector& position,float radius,float power,unsigned sound)override{
+        std::int32_t entry;std::memcpy(&entry,&sound,4);explosion_contact_.explode(source,position,radius,power,entry);
     }
     void car_surface_effect(const Vector&,const Vector&,unsigned,unsigned,unsigned)override{
         throw std::runtime_error("Car surface impact requires actual GEffects particle producer");
@@ -128,6 +131,8 @@ private:
     StartupSession& startup_;game::CarDefinitionTables& definitions_;game::CarParticlePool<GameActorServices,GameCarCallbacks> particles_;
     game::PhysicsContactLink<GameActorServices> physics_contact_;
     game::VersionContactLink<GameActorServices> versions_contact_;
+    game::RuntimeActorContactLink<GameActorServices,game::SceneActor<GameActorServices>> runtime_contact_;
+    game::ExplosionContactLink<GameActorServices,game::SceneActor<GameActorServices>> explosion_contact_;
 };
 
 inline auto make_game_car_callback_factory(StartupSession& startup,game::CarDefinitionTables& definitions,const game::CarTyres& tyres){

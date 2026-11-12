@@ -1,0 +1,194 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "4e96476c70503f0f76a05e9df2317649e51d2f61",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "005fefb0",
+    "005feee0",
+    "00478780",
+    "00451990"
+  ],
+  "extended_entries": [
+    "0059ffd0",
+    "004d4b50"
+  ],
+  "unchanged_reused_body_zero_new_credit": [
+    "004d11f0",
+    "006df170",
+    "006ddd40",
+    "005feb50"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2701,
+  "source_files": {
+    "recovered/game/human_mine_contact.h": {
+      "sha256": "6e4bc6d70f3135b59a54d928e863df971fce576f8c6910d5b0b863d5dc0e4343",
+      "bytes": 796
+    },
+    "recovered/game/explosion_contact_link.h": {
+      "sha256": "3d20a9f3691d26b2808db43c5d7cc3c41af8084281c9e244261f973ecffe0a76",
+      "bytes": 2419
+    },
+    "recovered/game/human_scene_frame.h": {
+      "sha256": "66b063673c16747865336d3cd359b5b9f99cb1b4650a4ab42e36652300e8dda7",
+      "bytes": 4688
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "9eb8b0d83dcdead10b3b0032e45c93a5d4df458b7c491eec35c6af235bfbf5a7",
+      "bytes": 119675
+    },
+    "recovered/game/mine_scene_actor.h": {
+      "sha256": "5eaad0e1dda786ce18c97fb36df1a621e83b87d0b0ede4f49987a9753c3c8373",
+      "bytes": 8707
+    },
+    "recovered/game/runtime_actor_packets.h": {
+      "sha256": "43a77bbee07737ca8274550ed0b1b124ae0dd06a9677fff266b36fddc5728515",
+      "bytes": 2964
+    },
+    "recovered/game/runtime_actor_registry.h": {
+      "sha256": "1a79622e4a5539b4f925954befea549275acd97b0ef565e5b632b611da77eb1e",
+      "bytes": 8816
+    },
+    "recovered/game/shot_effect.h": {
+      "sha256": "f8cc4b74e44022b92b9c72b753421634391feda3927948fa1e6ea29fd18bd9e5",
+      "bytes": 3287
+    },
+    "recovered/game/world_actor_loading_consumers.h": {
+      "sha256": "c8483ffba9ee9f3c8d91fd042c69a8dc568bb2d9863d26ac7cf4d4c1baa90362",
+      "bytes": 8659
+    },
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "cb14296ba4180caebd00a6874c9d5aebbd932d8939adf8ca62d3987a8331ab51",
+      "bytes": 7873
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "c7f348fc025efafb165a75c0d95950d31d4935474cabbef3bfbea183acc4abd5",
+      "bytes": 10658
+    },
+    "recovered/host/game_runtime_actors.h": {
+      "sha256": "967a092fe56e254d9d10a435aebab305e05455be4f16fa72bdb3abe8883ec242",
+      "bytes": 14060
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "bd9813b281de540c9742392766b3e6668bf4255da14d534f062cf869f69761d2",
+      "bytes": 24869
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-mine-contact-native.cpp": {
+      "sha256": "3e23d6a3c47fe4cb590a12e7ddfaefa4451207bfbe9f8ad741adb158160c32ed",
+      "bytes": 27924
+    },
+    "analysis/work/mission-world-20261103/human-mine-contact-native": {
+      "sha256": "b972a24757cdf1a4365bbed13f71c5a26334958fb36d3b71d9fdafc8acf3dafe",
+      "bytes": 4758424
+    },
+    "analysis/work/mission-world-20261103/human-mine-contact-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-mine-contact-native.log": {
+      "sha256": "cfd5b0e50eaa01f94b01fe540c00bf0b7f1a4565bf0da25c1e339bb82512cb1f",
+      "bytes": 409
+    },
+    "analysis/work/mission-world-20261103/human-mine-contact-host-i386.cpp": {
+      "sha256": "60d5ddf8cf7961a0fab47fe670db51195a3e107d936f316464b54d2cb9ea9a47",
+      "bytes": 614
+    },
+    "analysis/work/mission-world-20261103/human-mine-contact-host-i386.o": {
+      "sha256": "eb68410251f1dd4e9e68900e712aa0d8cdfcf00f0fa628dc305ad7835400f409",
+      "bytes": 17321300
+    },
+    "analysis/work/mission-world-20261103/human-mine-contact-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-mine-contact-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    },
+    "analysis/work/mission-world-20261103/human-mine-explosion-damage-native.cpp": {
+      "sha256": "f1d19b8c10ab6b7aae25430a7395b6a43aeb128837921849342cf61286e88b43",
+      "bytes": 16136
+    },
+    "analysis/work/mission-world-20261103/human-mine-explosion-damage-native": {
+      "sha256": "4a75a64bece08a82c89de02122567c64c6c5fad4559797759a4dc382eb105c0b",
+      "bytes": 3390264
+    },
+    "analysis/work/mission-world-20261103/human-mine-explosion-damage-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-mine-explosion-damage-native.log": {
+      "sha256": "013c8895edc7e839f2f71a13692609a77cbd54960c829ef66f225e290ac0abd1",
+      "bytes": 293
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-mine-contact.asm": {
+      "sha256": "2ff579d5baf018f06560c0483a3dcb84371255df28c4284604c2390014663b6d",
+      "bytes": 7066
+    },
+    "analysis/work/mission-world-20261103/human-mine-contact-envelope.asm": {
+      "sha256": "1e7d083c36e3f65618577844da0ea23ef36b13d2b23fb3686e423b407b2ef05f",
+      "bytes": 2369
+    },
+    "analysis/work/mission-world-20261103/human-mine-explosion-producer.asm": {
+      "sha256": "22b70834afe96039aef494edde6452c8af79fe1bc9ef8ebeb6f1556e7da794eb",
+      "bytes": 4489
+    },
+    "analysis/work/mission-world-20261103/human-mine-explosion-producer/00451990.c": {
+      "sha256": "3edce97116ccf8c8955ff7060edfd83114d4325746a049b2542126efc6c98407",
+      "bytes": 953
+    },
+    "analysis/work/mission-world-20261103/human-mine-explosion-producer/00451990.json": {
+      "sha256": "65ba85e9833d692f35b8b962f1b2284147ce3897efb60a21b6141383c9776848",
+      "bytes": 4966
+    },
+    "analysis/work/mission-world-20261103/car-contact-trigger-dependencies/005fefb0.c": {
+      "sha256": "8fb2c3a54a0f3cf11096181c945b4018045a5310fa2ea945e94d3ea75a386683",
+      "bytes": 1662
+    },
+    "analysis/work/mission-world-20261103/frame-human-action-completion-workers/005feee0.c": {
+      "sha256": "6c5d0377df4efde5237f04f7a1d58f75eec04fd7be17052f2324d3da5c3f08a2",
+      "bytes": 456
+    },
+    "analysis/work/mission-world-20261103/car-actor-cold-required/004d11f0.c": {
+      "sha256": "8734ae6b30617bd0885b232a08e23186b835a938336d63b5a4558b5f8d4d4e83",
+      "bytes": 99
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers/0059ffd0.c": {
+      "sha256": "ad5213e9c3d2c3d59692562194eed278f1c9537daaf21d271917044a13dfd041",
+      "bytes": 2645
+    },
+    "analysis/work/mission-world-20261103/human-mine-contact-original-items.json": {
+      "sha256": "4044f44d62dd703662be6b1b4b5c40448ae2d70b2405c4f13474fa741299cf1b",
+      "bytes": 1526
+    },
+    "analysis/work/mission-world-20261103/human-containing-car-blast-vtable.json": {
+      "sha256": "325a6975ad524669b569df970bdd162e99406199171364e5460a8ac3226d39e1",
+      "bytes": 161
+    }
+  },
+  "original_readonly_inputs": {
+    "analysis/work/single-pipeline-data-20261031/items.sav": {
+      "sha256": "9e82e40543e3c5b65d6004f2d45fac656d1e4f5a8df5259a3a0db2520c5983b6",
+      "bytes": 128520
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan800 armed contact lifetimes actual70/71 mode1/2/3/7 x100, actual Mine/runtime/buckets/ShotMgr/stream/envelope/leaf, same source/family/unregister/order/failure/late-mode, first-result query and Human9C self-retirement PASS, plus earlier owner/producer checks.",
+    "Separate ASan/UBSan/LSan800 actual00451990 producer->actual BlastWaveProcess100ms->SAME source/NULL Human lifetime->005A1C90->Player B0 queue->late reused SOUND, plus800 earlier direct wave checks PASS.",
+    "Strict actual full World/Human first-contact/Car/runtime/Blast/Versions/VM/SOUND/module i386 compile and final application-launch/startup-probe compile/link PASS."
+  ],
+  "limitations": [
+    "Contact fixture frame/localization/Car-driver/explosion endpoints are explicit doubles; explosion/damage fixture geometry/ray/material/Versions/SOUND and reusable sound-value storage are explicit doubles. These are separate fixtures, not a native full World composition.",
+    "No original EXE/DLL/Proton/Windows output execution, live transport, application loading or desktop acceptance. Source typed/STL/RAII/guard adaptations exclude original allocator/object/SEH ABI and whole-body equivalence.",
+    "Positive CarD4/other derived blast damage, surface effects, full non7 entry and containing Human frame/failure/re-entry/ordered teardown remain required; current guards are retained."
+  ]
+}

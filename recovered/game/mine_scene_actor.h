@@ -3,6 +3,7 @@
 #include "game/scene_actor.h"
 #include "game/rigid_body.h"
 #include "game/actor_activation_math.h"
+#include "game/shot_effect.h"
 #include <optional>
 #include <vector>
 namespace hd2::game {
@@ -74,6 +75,28 @@ public:
         const auto command=packet.read(2);
         if(command==0){require_binding();active98_=false;environment_.mine_effect(definition90_,this->base_.world_position(),this->base_.world_direction());environment_.remove(this);}
         else if(command==1){active98_=false;environment_.remove(this);} //005FEEC0; no binding read before removal.
+    }
+    void contact(SceneActor<Frames>* touching,std::uint32_t){ //005FEFB0 RET8; second stack word is genuinely unused.
+        auto& environment=environment_; //Native uses globals after explosion callbacks, even if this Mine retires during damage.
+        require_binding();if(!active98_||human9c_==touching)return;
+        if(!touching)throw std::logic_error("Armed Mine contact requires actual touching actor");
+        const auto kind=touching->base().type();
+        if((kind==3&&definition90_==71)||(kind==4&&definition90_==70))return;
+        active98_=false;
+        if(!registered99_defined_)throw std::logic_error("Armed Mine contact requires actual99 producer");
+        if(registered99_)collisions_.remove(descriptor_);
+        auto* source=human9c_;registered99_=false;
+        if(!source)source=kind==3?touching:environment_.mine_contact_source(touching);
+        const auto& definition=environment_.mine_contact_definition(definition90_); //Pointer lookup BEFORE wire; fields read AFTER.
+        environment_.publish_mine_contact(this->base_.id10(),0);
+        auto position=this->base_.world_position();position[1]=static_cast<float>(static_cast<long double>(position[1])+.20000000298023224f);
+        const auto blast=mine_blast_definition(definition);
+        environment.mine_explosion(source,position,blast.radius,blast.power,blast.sound);
+        if(!(environment.mode_flags()&2u))environment.remove(this);
+    }
+    void disarm(){ //005FEEE0: no binding read; collision unregister waits for actual removal.
+        active98_=false;environment_.publish_mine_contact(this->base_.id10(),1);
+        if(!(environment_.mode_flags()&2u))environment_.remove(this);
     }
     bool active()const{require_binding();return active98_;}
     bool collision_registered()const{if(!registered99_defined_)throw std::logic_error("Mine99 has no actual producer");return registered99_;}

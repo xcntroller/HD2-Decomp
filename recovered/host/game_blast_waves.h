@@ -13,8 +13,19 @@ class GameBlastWaves final : public GameSessionTransientFinish {
 public:
     using Process=StartupSession::BlastWaves;using Vector=Process::Vector;using Matrix=GameActorServices::Matrix;
     using Actor=GameSceneActors::Instance;using Descriptor=world_loading::Scene::Descriptor;
+    using Request=Process::Request;
     explicit GameBlastWaves(world_loading::Owners& owners):d_(owners.dependencies()),
-        points_(d_.scene.buckets(),d_.scene.frames()){}
+        points_(d_.scene.buckets(),d_.scene.frames()){
+        car_=dynamic_cast<GameCarCallbacks*>(&d_.scene.car_callbacks());
+        if(!car_)throw std::logic_error("Explosion binding requires actual scene Car callback owner");
+        try{d_.world_actors.bind_explosion(*this);car_->bind_explosion(*this);}
+        catch(...){d_.world_actors.unbind_explosion(*this);car_->unbind_explosion(*this);throw;}
+    }
+    ~GameBlastWaves()override{d_.world_actors.unbind_explosion(*this);if(car_)car_->unbind_explosion(*this);}
+    GameActorServices& frames(){return d_.scene.frames();}
+    void explode(Actor* source,const Vector& position,float radius,float power,std::int32_t sound){
+        game::emit_shot_explosion(d_.startup.shot_manager_process(),d_.sound,*this,source,position,radius,power,sound);
+    }
     bool create(const Process::Request& request){require_loaded();return d_.startup.blast_wave_process().create(request,*this);}
     void update(std::uint32_t elapsed){require_loaded();d_.startup.blast_wave_process().update(elapsed,*this);}
     void clear_all_shared_records()override{d_.startup.blast_wave_process().clear();} //006DF390(0,true), including positive linked records.
@@ -89,6 +100,7 @@ private:
     }
     void require_loaded()const{if(!d_.session.loaded)throw std::logic_error("Blast process requires actual loaded containing World");}
     world_loading::Dependencies& d_;
+    GameCarCallbacks* car_=nullptr;
     game::DynamicCollisionPointQueries<Descriptor,world_loading::Scene::Tree::DynamicGrid,GameActorServices> points_;
 };
 } //namespace hd2::host

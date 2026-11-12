@@ -7,6 +7,7 @@
 #include "game/runtime_actor_registry.h"
 #include "game/mine_scene_actor.h"
 #include "game/shot_effect.h"
+#include "game/car_scene_actor.h"
 #include "game/runtime_mine_creation.h"
 #include "game/runtime_actor_packets.h"
 #include "frontend/localized_text.h"
@@ -47,6 +48,24 @@ public:
         return static_cast<LooseItemActor*>(registry_.create(11,frame,identity));
     }
     Mine* create_mine(Frame frame,std::int32_t identity=-1){return static_cast<Mine*>(registry_.create(2,frame,identity));}
+    GameActorServices& frames(){return frames_;}
+    void contact_mine(Instance* borrowed,Instance* touching,std::uint32_t slot){
+        if(!registry_.owns(borrowed))throw std::logic_error("Mine contact borrower has no actual live runtime owner");
+        auto* mine=dynamic_cast<Mine*>(borrowed);if(!mine)throw std::runtime_error("Required nonMine trigger contact receiver is unavailable");
+        mine->contact(touching,slot);
+    }
+    Instance* mine_contact_source(Instance* touching){
+        //004D11F0 is direct Car24AC, distinct from seat0/current occupant.
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(touching);
+        if(!car)throw std::logic_error("Mine fallback source requires actual touching Car24AC owner");
+        return car->driver24ac;
+    }
+    const auto& mine_contact_definition(std::int32_t identity){
+        const auto* definition=items_.catalogue().item(identity);
+        if(!definition)throw std::logic_error("Mine contact requires actual item definition48");return *definition;
+    }
+    void publish_mine_contact(std::int32_t identity,std::uint32_t command){activation_.publish_mine_contact(identity,command);}
+    void mine_explosion(Instance* source,const game::HumanVector& position,float radius,float power,std::int32_t sound){activation_.mine_explosion(source,position,radius,power,sound);}
     Mine* place_mine(Instance* human,std::int32_t definition,const game::HumanVector& position,const game::HumanVector& direction,bool publish){
         return game::create_runtime_mine(frames_,*this,items_.catalogue(),human,definition,position,direction,publish);
     }

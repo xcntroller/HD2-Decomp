@@ -2,6 +2,7 @@
 #define HD2_HOST_GAME_WORLD_ACTORS_H
 #include "game/human_loading_retirement.h"
 #include "game/version_contact_link.h"
+#include "game/explosion_contact_link.h"
 
 #include "game/session_time_word.h"
 #include "host/game_world_scene.h"
@@ -53,6 +54,10 @@ public:
     void publish_mine(std::int32_t identity,std::int32_t human,std::int32_t definition,const game::HumanVector& position,const game::HumanVector& direction){
         consumers_.publish_mine(identity,human,definition,position,direction);
     }
+    void publish_mine_contact(std::int32_t identity,std::uint32_t command){consumers_.publish_mine_contact(identity,command);}
+    void mine_explosion(typename Runtime::Instance* source,const game::HumanVector& position,float radius,float power,std::int32_t sound){explosion_contact_.explode(source,position,radius,power,sound);}
+    template<class Blast>void bind_explosion(Blast& blast){require_open();explosion_contact_.bind(blast);}
+    template<class Blast>void unbind_explosion(Blast& blast)noexcept{explosion_contact_.unbind(blast);}
     auto mine_ground_ray(const game::HumanVector& start,const game::HumanVector& displacement){
         require_open();
         game::CollisionRay<GameActorServices::Frame,typename Scene::Descriptor,GameCollisionResources,GameActorServices>
@@ -66,10 +71,13 @@ public:
     template<class Callbacks>void bind_car_physics(Callbacks& callbacks){
         require_open();
         static_assert(noexcept(callbacks.unbind_physics(physics_)),"Car physics retirement must not throw");
+        static_assert(noexcept(callbacks.unbind_runtime(runtime_)),"Car runtime contact retirement must not throw");
         if(car_physics_unbind_||static_cast<typename Scene::CarServices*>(&callbacks)!=&scene_.car_callbacks())
             throw std::logic_error("Car physics must bind the containing scene's actual callback owner once");
-        std::function<void()> unbind=[this,&callbacks]()noexcept{callbacks.unbind_physics(physics_);};
-        callbacks.bind_physics(physics_);car_physics_unbind_=std::move(unbind);
+        std::function<void()> unbind=[this,&callbacks]()noexcept{callbacks.unbind_runtime(runtime_);callbacks.unbind_physics(physics_);};
+        callbacks.bind_physics(physics_);
+        try{callbacks.bind_runtime(runtime_);}catch(...){callbacks.unbind_physics(physics_);throw;}
+        car_physics_unbind_=std::move(unbind);
     }
     auto& rigid_bodies(){require_open();return bodies_;}
     using Human=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
@@ -298,6 +306,7 @@ private:
     typename Body::Registry bodies_;GameRuntimeItemServices models_;
     std::map<Human*,std::unique_ptr<game::HumanLoadingLifetime>> human_loading_;
     game::VersionContactLink<GameActorServices> versions_contact_{scene_.frames()};
+    game::ExplosionContactLink<GameActorServices,typename Runtime::Instance> explosion_contact_{scene_.frames()};
     Items items_;Runtime runtime_;Physics physics_;std::function<void()> car_physics_unbind_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false,closing_=false;
 };
 } //namespace hd2::host

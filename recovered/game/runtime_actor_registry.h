@@ -121,6 +121,7 @@ public:
         for(std::size_t index=0;index<owners_.size();++index){auto* actor=owners_[index].owner.get();if(matches(*actor))remove(actor);}
     }
     std::size_t size() const {return owners_.size();}
+    bool owns(const Actor* actor)const{for(const auto& record:owners_)if(record.owner.get()==actor)return true;return false;}
 private:
     struct Record {ActorOwner owner;bool authority_started=false,presentation_started=false,removing=false;};
     Record* find(Actor* actor) {

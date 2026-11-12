@@ -14,6 +14,7 @@
 #include "game/human_frame_feedback.h"
 #include "game/human_item_frame_execution.h"
 #include "game/human_scene_frame.h"
+#include "game/human_mine_contact.h"
 #include "game/human_state_action_completion.h"
 #include "game/human_objective_experience.h"
 #include "game/human_ai_shot_direction.h"
@@ -986,6 +987,17 @@ public:
     }
     template<class Human,class Runtime>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed,Runtime& runtime){
         game::advance_human_scene_frame(human,authority,elapsed,*this,runtime,dependencies().scene.frames());
+    }
+    template<class Human>void human_frame_contact(Human& human){ //0059FFD0's reached006FCB60→005FEFB0.
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Human Mine contact query requires actual loaded World");
+        if(!d.scene.buckets().bound())throw std::logic_error("Loaded Human Mine contact requires actual World collision grid");
+        using Scene=std::remove_reference_t<decltype(d.scene)>;
+        DynamicCollisionPointQueries<typename Scene::Descriptor,typename Scene::Tree::DynamicGrid,typename Dependencies::ActorFrames>
+            query(d.scene.buckets(),d.scene.frames());
+        dispatch_human_mine_contact(human,d.scene.frames(),query,[&](void* borrowed,auto* touching,std::uint32_t slot){
+            using Actor=typename std::remove_reference_t<decltype(d.world_actors)>::Runtime::Instance;
+            d.world_actors.runtime().contact_mine(static_cast<Actor*>(borrowed),touching,slot);
+        });
     }
     template<class Human,class Actor>void human_action_completion_command(Human& human,std::uint32_t subtype,Actor* target){
         //005ABD90 kind6→005ABCC0. The completion subtypes reach E0 without
