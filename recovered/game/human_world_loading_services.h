@@ -7,6 +7,7 @@
 #include "game/car_actor_authority.h"
 #include "game/car_targeted_placement.h"
 #include "game/car_scene_actor.h"
+#include "game/car_seat_frame.h"
 #include "game/first_person_human_items.h"
 #include "game/human_player_item_notification.h"
 #include "game/human_player_shot_direction.h"
@@ -1108,6 +1109,12 @@ public:
     template<class Human>std::uint32_t player_attachment_control_flags(Human& human){ //005457E0 Actor8C(seat).
         return dependencies().first_players.seat_presentation().flags(human_pose_actor(human.field160),human.field164);
     }
+    template<class Car>bool human_car_seat_hides_cursor(Car& car,std::int32_t seat){
+        return dependencies().first_players.seat_presentation().hides_cursor(car,seat);
+    }
+    auto human_car_seat_frame(void* actor,std::uint32_t seat){
+        return car_seat_camera_frame(human_pose_car(actor),human_frame_signed_word(seat),dependencies().scene.frames(),*this);
+    }
     template<class State>void notify_player_selected_item(State& state){ //0053F9B0's expired530, secondary payload4C+10.
         const auto entry=state.item();if(!entry)throw std::logic_error("Player delayed zoom lost actual cached A8 item");
         const auto& payload=human_frame_output_item(entry).definition().payloads[1];
@@ -1613,6 +1620,7 @@ public:
             dependencies().scene.frames().observe_data("execution","Human DD0 frame","field184",control->physical().control_frame_words().template get<std::uint32_t>(0x184));
         if(kind==6)return; //Actual005A4330/005A4340 are RET4.
         auto& factory=owner.state_factory();
+        if(kind==3&&!authority){factory.advance_active_presentation(*state,elapsed);return;}
         if(kind==5&&!authority){factory.advance_script_presentation(*state,elapsed,runtime);return;}
         if(kind!=1&&kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
         using Actor=SceneActor<typename Dependencies::ActorFrames>;

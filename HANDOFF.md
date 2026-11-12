@@ -24,7 +24,9 @@ outer Runtime, plus launcher/probe rebuild PASS. Full ledger/check/README PASS,
 34 complete/3360 partial; no new function claims. Temporary audits fingerprinted/
 removed; original static evidence and logs retained.
 
-NEXT H8.2: actual Active AI frame +24=00525DA0/+28=00526550 at final008109F8.
+H8.2 presentation checkpoint: [00525DA0/Car004D9E10](analysis/human-h8-active-presentation-source.md) is source-bound to SAME World/state/direction/H3/UI. Native PASS5800/100 lifetimes; actual whole Human frame i386 FULL LINK and latest launcher/probe rebuild pass. Two new partial claims; no complete promotions. H8.2 remains OPEN.
+
+NEXT H8.2: Active authority +28=00526550 at final008109F8.
 Research-index receipt and existing exact C are in WORK `human-h8-active-frame-index.txt`,
 `frame-human-state-common-updates/00525da0.c`,
 `frame-human-script-and-active-workers/00526550.c`. Preserve full completion
@@ -33,7 +35,7 @@ Bounded Active worker export completed in `human-h8-active-frame-workers`:
 00526400 self-treatment cadence,005328A0 actual attachment98,00537690/005376C0
 paired mode expiry,00528570→query-update,005282E0 pending-task gate,
 00528950 event/decision processing,00536120 follow/formation decision and actual
-RET4 005335E0. No bodies from that export are implemented/credited yet. Index
+RET4 005335E0. Those authority workers are not implemented/credited yet. Index
 receipt `human-h8-active-prefix-index.txt`; full saved Active raw assembly now
 available.00526550 requires these decisions BEFORE ordinary navigation/aim;
 do not turn the current guard into an idle/early-success frame.00526400's
@@ -57,6 +59,8 @@ H8.3+ still actual async ShotMgr0044B910/0044B400/00454360/00449290/00449030/
 OWN D6–D9 and confirmed D11. FRAME/OWN have separate active worktrees. Completed
 masterfa94dee render work is not yet imported here; compose as required later.
 No full application/render/user acceptance from this source checkpoint.
+
+Order dependency exports are retained in WORK `human-h8-active-task-workers` and `human-h8-order-seat-owners`:00529F60/0052A1E0/00531F60/0052D460 and0052EE60/0052EFA0/0052F110/005825C0. Native order manager+18 is DISTINCT from current-action kind1+60; do not substitute one pool for the other. Fresh lifecycle index: `human-h8-order-lifecycle-index.txt`; use existing00583980 and locate0058C5A0/0058A3F0/0058D720 and current-action4/7/8 initializers before implementing the order path.
 
 WORK=`analysis/work/mission-world-20261103`, independently reflink-copied from H6.
 Tools copied symlinks to shared existing compiler/Ghidra/sanitizer installation.

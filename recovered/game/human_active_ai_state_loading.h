@@ -4,6 +4,7 @@
 #include "game/human_ai_state_loading.h"
 #include <optional>
 #include "game/human_active_ai_grenade.h"
+#include "game/human_active_ai_presentation.h"
 
 namespace hd2::game {
 
@@ -98,6 +99,9 @@ public:
     void sight_dead_acquired(Human& actor)override{(void)services_.player_knows_enemy(actor);} //0052E6D0; NO common dead event.
     bool scene_movement_enabled()const override{ //00532880.
         return !(state_.template get<std::uint32_t>(0x174)&1u)&&AI::scene_movement_enabled();
+    }
+    void advance_active_presentation(std::uint32_t elapsed){
+        present_human_active_ai(*this,elapsed,this->state_frames(),services_);
     }
     std::uint32_t derived_loading_word(unsigned offset)const override {
         if(offset!=0x174&&offset!=0x1d8)throw std::runtime_error("Unrecovered active AI handover word");

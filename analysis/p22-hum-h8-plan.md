@@ -45,8 +45,7 @@ End helper00526400 drives self-treatment cadence/skill/health/random and subtype
 command. Existing C and bounded new worker exports/raw bytes are retained in
 WORK, indexed first. None of these newly exported bodies is implemented or
 credited by H8.1. Complete the task/event/command producer and retirement owners
-rather than replacing this path with an idle success. Presentation00525DA0 also
-has real occupied-Car direction and on-foot pose gates, not a generic RET.
+rather than replacing this path with an idle success. Presentation00525DA0 and Car camera004D9E10 are now [source-bound and verified](human-h8-active-presentation-source.md); authority00526550 is still required. Its order/task/command dependencies remain the current implementation frontier.
 
 ## Initial original-call map
 

@@ -125,6 +125,7 @@ public:
     bool human_remote_ai_enabled(){return services_.human_remote_ai_enabled();} //006B66B0.
     void record_state_cleanup_failure(std::exception_ptr error)noexcept{services_.record_state_cleanup_failure(error);}
     auto& services(){return services_;}auto& contexts(){return contexts_;} //SAME owners for derived sound dispatch.
+    void advance_active_presentation(Base& state,std::uint32_t elapsed){static_cast<Active&>(state).advance_active_presentation(elapsed);}
     auto& control(){return control_;}
     template<class FrameServices>void apply_inline_feedback(Base& state,std::uint32_t flags,FrameServices& frames){
         const auto kind=state.words().template get<std::uint32_t>(0x48);

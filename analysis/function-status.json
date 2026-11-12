@@ -45217,6 +45217,32 @@
         "analysis/human-h6-source-closure.md",
         "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00525da0",
+      "status": "partial",
+      "coverage": "Active AI presentation bit800/timer prefix; exact on-foot timer-only, occupied-Car control/camera gates, two fresh normalized frame reads through actual direction owner, raw10/160 publication, controlled target/velocity/230/198 gates and final wrapped timer clamp.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual scalar/direction owners audited with explicit Human/Car/engine/World endpoint doubles; actual whole World Human frame i386 link only. Existing finite direction-owner constraints and invalid-owner failures remain. Active authority and full application/engine/desktop acceptance are open; no original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_presentation.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-h8-presentation-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d9e10",
+      "status": "partial",
+      "coverage": "Actual Car Actor90 seat-camera lookup: seat bounds/8C/98, occupant-vs-marker lookup, FPV/CC short circuit, fallback re-evaluation, temporary unlink and fresh occupant relink/update before returning even NULL.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Actual scalar/direction owners audited with explicit Human/Car/engine/World endpoint doubles; actual whole World Human frame i386 link only. Existing finite direction-owner constraints and invalid-owner failures remain. Active authority and full application/engine/desktop acceptance are open; no original/Windows execution or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/car_seat_frame.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-presentation-source.md",
+        "analysis/checkpoints/p2.2-human-h8-presentation-20261112.json"
+      ]
     }
   ]
 }
