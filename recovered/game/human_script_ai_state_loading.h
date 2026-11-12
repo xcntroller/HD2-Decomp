@@ -75,7 +75,7 @@ public:
                     if(alarm_enabled())state_.set(0x19c,0x80u); //00591ED0.
                 }
             }else if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(runtime);
-            if(alarm_enabled())this->advance_frame_aim(world);
+            if(alarm_enabled())this->advance_frame_aim(elapsed,world);
             this->advance_frame_direction(elapsed,control);
             const auto alarm_posture=state_.template get<std::uint32_t>(0x1a4);
             const auto posture=alarm_enabled()&&alarm_posture?alarm_posture:state_.template get<std::uint32_t>(0x1b0);

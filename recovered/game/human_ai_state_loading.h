@@ -13,6 +13,7 @@
 #include "game/human_ai_ground_projection.h"
 #include "game/human_ai_light_observation.h"
 #include "game/human_ai_trigger_output.h"
+#include "game/human_ai_alignment.h"
 
 namespace hd2::game {
 
@@ -133,43 +134,7 @@ public:
         if(!animation)throw std::logic_error("AI authority input gate requires actual DD0");
         input->word38=animation->animation_state_word(0x1ac)||animation->animation_state_word(0x9c0)?7u:0u;
     }
-    template<class World>void advance_frame_aim(World& world){ //00576350.
-        auto& target=resources_.target();
-        const auto delta=target.state.template get<std::array<float,3>>(0x10);
-        if(target.state.template get<std::uint8_t>(0x35)||target.state.template get<std::uint8_t>(0x34))
-            throw std::runtime_error("AI aim frame requires its actual special-item target receiver");
-        const bool firing=(this->words().template get<std::uint32_t>(0x50)&0x200000u)!=0;
-        if(!target.actor&&human_scene_steering_square(delta)<1.e-16f){
-            if(firing)stop_frame_aim(100,world);
-            target.state.set(0x38,8u);
-            return;
-        }
-        if(!firing){
-            resources_.publish_aimed_actor(target.actor);
-            resources_.state().set(0xd8,target.actor?0u:2u);
-        }
-        std::uint32_t result;
-        if(!this->item()){
-            if(firing){stop_frame_aim(400,world);stop_frame_aim(100,world);} //00575D50, then 00576350's status-10 mask.
-            result=0x10;
-        }else{
-            const auto& item=world.human_frame_output_item(this->item());
-            const auto now=world.game_word28();
-            if(now<item.field14||human_frame_signed_word(now-item.field58)<0)result=0x40;
-            else if(now<item.field5c)result=1;
-            else if(resources_.state().template get<std::int32_t>(0xc8)>0)result=4;
-            else if(firing&&!resources_.state().template get<std::uint32_t>(0xc4)){
-                stop_frame_aim(static_cast<std::uint32_t>(static_cast<long double>(world.human_sound_random())*400.f+300.f),world);
-                result=4;
-            }
-            else throw std::runtime_error("AI aim frame requires actual weapon alignment and line-of-fire receivers");
-            if(firing){
-                if(result==1)stop_frame_aim(100,world);
-                else if(target.actor!=resources_.aimed_actor()){stop_frame_aim(100,world);result=0x80;}
-            }
-        }
-        target.state.set(0x38,result);
-    }
+    template<class World>std::uint32_t advance_frame_aim(std::uint32_t elapsed,World& world){return advance_human_ai_aim(*this,elapsed,world);} //00576350.
     template<class World>bool begin_frame_aim(World& world){return begin_human_ai_aim(*this,world);} //00571A40.
     template<class World>void advance_frame_trigger(std::uint32_t elapsed,World& world){advance_human_ai_trigger(*this,elapsed,world);} //00572AF0.
     void finish_frame_trigger(){finish_human_ai_trigger(*this);} //00572C00.

@@ -576,3 +576,49 @@ Only five newly implemented inventoried bodies receive partial rows005A3AB0,
 00575450,00571A40,00572AF0,00572C00; existing00575670/00572C20 extend. Existing
 reused005A3CC0, inlined target parameter reads, RET comment and absent0056FC20
 receive no new credit. The remaining original H4 checklist stays open.
+
+## Common AI alignment and friendly line checks
+
+00575D50 now completes actual item14/58/5C deadline gates with three fresh,
+ordered game28 samples, signedC8 and liveC4 gates, actual target/frame direction,
+124 setter rejection, actual lazy item model forward alignment, friendship,
+derived114 and dead-target status. The original two normalization passes and
+576202 FLOAT inverse spill are preserved. A missing model legitimately skips its
+angle gate; missing required Human/frame/physical inputs fail explicitly.
+
+00558E50 checks the SAME Human friendly278 list in reverse using actual260
+origin and actual DD0 primary698 count/posture6E0 spheres through005AC1D0.
+The original uses a direction scaled by200 and an infinite line, so an ally
+beyond200 still blocks. Front-plane rejection precedes sphere access; tangency
+is clear. Extended/store boundaries, residual signed-bit epsilon quantization
+and degenerate00810BA8 negative fallback are retained, rather than replacing the
+native math with a conventional segment/sphere helper. A malformed primary count
+has a distinct native safety guard. Actual Guard4 dispatch uses this worker;
+Script5/Passive6/Area8 virtual114 are verified AL1/RET4, not unavailable receivers
+or invented successful stubs. Native vtable addresses811730/811500/8113E8/811618
+and bounded instructions distinguish those tables from the separate item tables.
+
+005762B0 consumes actual D8/C4, shared RandFloat and actual RuntimeItem reload
+and Human ammunition owners. It preserves stop-before-kind3-ammunition-query and
+second34 request order.00576350 composes alignment/start/trigger/continuation
+with the actual caller elapsed, original status masks1B19/C6, actual D0/D4 loans,
+special34 and late status publication. Active and inactive zero-vector tests
+retain their different native addition orders. Actual Script/Guard/Area callers
+now forward their elapsed; no synthetic clock, input owner or random stream.
+
+Target35 publishes E0 then fails explicitly: completed H5's00572DE0
+`human_ai_grenade.h` exists on current HUM201adbf but is not imported into this
+base. Integration must call `aim_human_ai_grenade(state,world)` and then clear
+35 as the original57638B..398. No H5 implementation/ledger copied, no success
+placeholder and no whole-H4 completion claim. Other H4 families remain open.
+
+Verification: native strictO1 ASan/UBSan/LSan PASS54 with actual AI resources,
+input buffers and perception lists; Item/World/Scene endpoints are explicit
+doubles. Checks cover deadline gates, positive input/status production, missing
+models, target35 import failure, failed endpoint prefixes/retry, actual friendly
+population, dead/behind/tangent/beyond200 cases, epsilon and malformed counts.
+StrictO0 i386 FULL LINK instantiates actual World/Script/Guard/Area alignment,
+Item/ammunition/DD0/sphere/frame/Sight receivers without selected endpoint doubles.
+Existing launcher/probe links pass; Windows outputs are not executed. Receipt
+records exact source/original evidence and removed temporary-audit fingerprints.
+Source-callable composition does not establish a live mission, engine or desktop.

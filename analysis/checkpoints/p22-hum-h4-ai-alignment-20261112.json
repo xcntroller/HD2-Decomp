@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "Original H4 ordinary AI alignment and actual friendly line checks",
+  "branch": "feature/p22-hum-h4",
+  "implementation_base": "882a69ebac87aaa37a6e11310ce71cd2823dea41",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_ai_alignment.h",
+      "sha256": "046b2fd11dfe7c5deec0ff8c373d82941af2619d551a0cc30b9632bc2b7e7bca",
+      "bytes": 11864
+    },
+    {
+      "path": "recovered/game/human_ai_state_loading.h",
+      "sha256": "9bc67a2efc820c222f0455998f3c815db9654ccf0535a083a0c5981c2eee5c45",
+      "bytes": 31447
+    },
+    {
+      "path": "recovered/game/human_guard_ai_state_loading.h",
+      "sha256": "845783506c971c9a77ed3d14c71a845118521b8050d4e5e3dbfa75da0886410b",
+      "bytes": 37033
+    },
+    {
+      "path": "recovered/game/human_area_ai_state_loading.h",
+      "sha256": "7651769351e7ee49d14ba14ff7b7dbd6c1b037138df5964581aa22d2c1a9d612",
+      "bytes": 11272
+    },
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "sha256": "0b44a22c4a19efdc0875a477f70e1c715d65862db12e702caa383ec99a928142",
+      "bytes": 14511
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "a064e557ccea3d5be5e760160778ce57e2987d4f761d0d9aad14ef3da722a97a",
+      "bytes": 130518
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-friendly-line.asm",
+      "sha256": "f3a022ba325aabc176e8b4d3ea4ecbfc897edb2ce63cc4bceb12de5636108a0a",
+      "bytes": 17302
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-alignment.asm",
+      "sha256": "235e327c168bfdef320f08a2f72807bb1596128d9bdae665b5358e1b8545aea2",
+      "bytes": 20800
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-aim-continuation.asm",
+      "sha256": "363f1a2c63ad700ba2bb362df8267aa552aaeec6b0891f15629a4a206e0783c5",
+      "bytes": 2522
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-aim-composition.asm",
+      "sha256": "00afa9cd781eca920fe13c01d40cc67382b3839fa668a9cec940985b47348a87",
+      "bytes": 11209
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-friendly-spheres.asm",
+      "sha256": "2985350190caf4b22e84eea02a293f5ba6afc7a86a9ca6a31092747635a98e31",
+      "bytes": 475
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-line-original/00558e50.json",
+      "sha256": "dd1261d88748a7119d1d558ea9f7fc18947aaa5760b1c45419b4054e85afb521",
+      "bytes": 28869
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-line-original/005a0ab0.json",
+      "sha256": "28f8d075699d17b24e96d7d3b808756794e393a07e7087c6784675d76a7f81ff",
+      "bytes": 7874
+    }
+  ],
+  "verification": {
+    "native": "PASS54 strictO1 ASan/UBSan/LSan actual HumanAIResources/input/perception owners; explicit Item/World/Scene endpoint doubles. Deadline/status/input gates, repeated call/failure/retry, target35 import guard, positive friendly geometry and edge cases.",
+    "i386": "PASS strictO0 FULL LINK actual World/Script/Guard/Area target/alignment/continuation/Item/ammunition/DD0 sphere/frames receivers; no selected endpoint doubles.",
+    "application": "PASS existing strict application-launch/startup-probe links; never executed.",
+    "actual_mission_reachability": false,
+    "engine_execution": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-alignment-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-alignment-native-run.log",
+      "sha256": "f09018a0d34c4ff2fa9a8a6b90aa81232848e0c62653835e2a788b519ff65802",
+      "bytes": 126
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-alignment-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-alignment-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-alignment-audit.cpp",
+      "sha256": "26f6fddecdcd1ca8f950182cfc4ee269473b936ed62ea1629e6e94745f83a260",
+      "bytes": 8167
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-alignment-audit",
+      "sha256": "5523421c6e38038d14185f1d0f4b6fe30489551cd6cafb9bda4a966ddc4ba9f7",
+      "bytes": 2600888
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-alignment-host.cpp",
+      "sha256": "87e3e33a5c4224ce4988db08072d5b4626a14feaa3d8d591ef2fd4a7bdeebc66",
+      "bytes": 531
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-alignment-host.exe",
+      "sha256": "edaed8ab58517698e7430275755f9c06cdf1466f4132eab9092b6c448f738ff0",
+      "bytes": 737280
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "00558e50",
+      "005762b0",
+      "005ac1d0"
+    ],
+    "extended": [
+      "00575d50",
+      "00576350"
+    ],
+    "complete": 34,
+    "partial": 3037,
+    "client_partial": 3032,
+    "engine_partial": 5,
+    "denominator": 18783
+  },
+  "remaining": "Target35 requires completed H5 aim_human_ai_grenade in unimported current HUM201adbf; E0 published before explicit required-receiver failure. Script/completion/subgroup H4 families remain open; no new numbered milestone. Native constant derived114 bodies are absent frozen and receive no credit."
+}

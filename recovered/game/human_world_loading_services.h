@@ -1,6 +1,8 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_ai_target_output.h"
+#include "game/human_ai_alignment.h"
+#include "game/human_inventory_counts.h"
 #include "game/car_actor_authority.h"
 
 #include "game/world_loading_dependency_link.h"
@@ -1514,6 +1516,27 @@ public:
         std::int32_t health;const auto bits=human.properties.stats_ec[0];std::memcpy(&health,&bits,4);
         if(health<1||!human.loading_state||human.properties.field19c==1)return false;
         return (human.loading_state->words().template get<std::uint32_t>(0x50)&0x4000000u)!=0;
+    }
+    template<class State>std::int32_t human_ai_ammunition_count(State& state){
+        auto* human=state.human();if(!human||!state.item())throw std::logic_error("AI ammunition query requires actual Human/item");
+        auto& items=dependencies().world_actors.items();const auto id=items.runtime_item(state.item()).definition().ammunition();
+        return count_human_ammunition(*human,items,id,false); //005A6C50, original include-pack0.
+    }
+    template<class State>std::uint32_t human_ai_reload_time(State& state){
+        if(!state.item())throw std::logic_error("AI reload time requires actual item");
+        return dependencies().world_actors.items().runtime_item(state.item()).reload_duration();
+    }
+    template<class Actor>auto human_ai_actor_aim_frame(Actor& actor){return actor.base().type()==3u?human_ai_target_human(actor).head_marker:actor.base().frame();}
+    template<class Human>const HumanVector* human_ai_friendly_spheres(Human& human,std::int32_t& count){ //005AC1D0.
+        auto* control=human_inline(human).control();if(!control)throw std::logic_error("Friendly aim requires actual DD0");
+        auto& physical=control->physical();count=physical.primary_count();return physical.posture_spheres().data();
+    }
+    template<class State>bool human_ai_line_of_fire(State& state,const HumanVector& direction){
+        switch(state.words().template get<std::uint32_t>(0x48)){
+        case 4:return human_ai_friendly_line_clear(state,direction,dependencies().scene.frames(),*this); //00558E50.
+        case 5:case 6:case 8:return true; //005A4290/005A42E0/005A4510: actual MOV AL,1;RET4, absent frozen.
+        default:throw std::runtime_error("AI aim line requires its actual derived virtual114 receiver");
+        }
     }
     template<class State>void stop_human_ai_look(State& state){auto* human=state.human();if(!human)throw std::logic_error("AI look stop requires actual Human");state.look_command(0,human_inline(*human));}
     template<class State>void begin_human_ai_inline_action(State& state){

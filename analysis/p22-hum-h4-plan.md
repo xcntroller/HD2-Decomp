@@ -187,6 +187,19 @@ current HUM/H5 source contract201adbf (read-only), not new scope. Preserve H5's
 completed decisions and H6's held/mounted firing; share existing inputs/target/
 Sight/VM owners. Implement available complete families before recording blockers.
 
-Common target/trigger/aim start-stop workers now implemented and verified over
-actual owners. Alignment00575D50/00576350 and containing Script outputs remain
-open. Continue those original bodies; no new milestone or whole-H4 closure.
+Common target/trigger/aim start-stop and ordinary alignment00575D50/00576350
+workers now implemented and verified over actual owners. Target35 needs the
+unimported H5 grenade worker; containing Script outputs remain open. Continue
+original H4 work; no new milestone or whole-H4 closure.
+
+Alignment boundary verified next:00575D50/00576350/005762B0 use actual target/
+Item/input owners and derived114. Original Script5/Passive6/Area8 virtual114 are
+actual AL=1/RET4 (not missing successful receivers); Guard4 uses00558E50 over
+actual friendly278 Human list and005AC1D0's physical698/posture6E0 spheres.
+Recover raw arithmetic and actual getters before implementation. Target35 grenade
+worker belongs to completed H5 on HUM and remains an import/integration dependency
+in this older implementation base; do not duplicate its body/ledger.
+
+Ordinary alignment/friendly-line composition verified: native PASS54, actual
+i386 World/Script/Guard/Area full link and application/probe links.
+[Receipt](checkpoints/p22-hum-h4-ai-alignment-20261112.json).

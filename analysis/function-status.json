@@ -29731,24 +29731,32 @@
       "program": "client",
       "entry": "00575d50",
       "status": "partial",
-      "coverage": "Evaluate the empty-hand, weapon-deadline, and reaction gates before geometry and line-of-fire work.",
-      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "coverage": "Actual separate game28 deadline samples, signed reaction/active aim gates, actual target/frame geometry and direction setter, two-pass model-forward alignment, friendship/derived114 and dead-target status.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_state_loading.h"
+        "recovered/game/human_ai_state_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
       ]
     },
     {
       "program": "client",
       "entry": "00576350",
       "status": "partial",
-      "coverage": "Publish typed aim target and selection, evaluate supported statuses, and stop the existing aim state.",
-      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "coverage": "Ordinary actual target/D0/D4/start/trigger/continuation composition using original elapsed and status masks; special34 request and late status publication. Target35 E0 publication reaches explicit unimported H5 grenade receiver failure.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
-        "recovered/game/human_ai_state_loading.h"
+        "recovered/game/human_ai_state_loading.h",
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
       ]
     },
     {
@@ -41018,6 +41026,45 @@
         "recovered/game/human_ai_trigger_output.h",
         "analysis/p22-hum-h4-implementation.md",
         "analysis/checkpoints/p22-hum-h4-common-ai-output-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558e50",
+      "status": "partial",
+      "coverage": "Actual reverse Human friendly278 list, source260 origin, front-plane rejection and actual primary698/posture6E0 sphere query; native infinite-line geometry, FLOAT spills, epsilon and strict radius policy.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005762b0",
+      "status": "partial",
+      "coverage": "Actual aim continuation over D8/C4, shared random stop duration, RuntimeItem reload time, stop-before-kind3 ammunition gate and second34 request.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac1d0",
+      "status": "partial",
+      "coverage": "Actual existing DD0 physical primary698 count and posture6E0 sphere loan; no scaled collision-descriptor substitution.",
+      "limitations": "Source-only typed owners/STL/native safety guards, not original object/allocator/thiscall/SEH equivalence. Native Item/World/Scene endpoints explicitly doubled; actual i386 World/Script/Guard/Area composition links only. Target35 H5 import, remaining H4 families and actual mission/desktop execution remain open.",
+      "evidence": [
+        "analysis/p22-hum-h4-implementation.md",
+        "analysis/checkpoints/p22-hum-h4-ai-alignment-20261112.json",
+        "recovered/game/human_ai_alignment.h",
+        "recovered/game/human_world_loading_services.h"
       ]
     }
   ]
