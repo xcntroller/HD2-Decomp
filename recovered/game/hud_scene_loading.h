@@ -127,6 +127,7 @@ public:
     }
     Frame scene()const{return scene_?scene_->get():Frame{};}Frame camera()const{return camera_?camera_->get():Frame{};}
     Frame model()const{return model_?model_->get():Frame{};}Frame down_panel()const{return down_panel_;}
+    auto& command_owner(){return panels_.command();} //Borrow SAME actual command pool for0058C5A0/0058D6C0.
 private:
     void refresh_panel_geometry(){for(unsigned n=6;n;)panels_.soldiers()[--n].refresh_geometry();panels_.hands().refresh_geometry();panels_.dialogs().refresh_signal_geometry();panels_.dialogs().refresh_roll_geometry();}
     Text& debug_text(){for(const auto& owner:hud_.text_owners())if(owner.original_offset==0x6b85c)return *owner.text;throw std::logic_error("HUD lost SAME inline debug text");}

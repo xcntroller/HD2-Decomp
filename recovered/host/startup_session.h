@@ -54,6 +54,7 @@
 #include "game/item_hand_models.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
+#include "game/human_ai_order_pool.h"
 #include "game/human_ai_navigation_jobs.h"
 #include "game/human_frame_inputs.h"
 #include "game/human_scene_movement.h"
@@ -359,6 +360,8 @@ public:
     game::HumanAIEventPool& human_ai_event_pool(){return human_ai_events_;}
     game::HumanAIFrameInputs& human_ai_frame_inputs(){return human_ai_frame_inputs_;}
     game::HumanAIActionPools& human_ai_action_pools(){return human_ai_actions_;}
+    using HumanAIOrders=game::HumanAIOrderPool<GameActorServices,GameSceneActors::Instance>;
+    HumanAIOrders& human_ai_order_pool(){return human_ai_orders_;}
     game::HumanAINavigationJobPool& human_ai_navigation_jobs(){return human_ai_navigation_jobs_;}
     auto& human_scene_movement_process(){return human_scene_movement_process_;} //008AADD0, shared by Scene2 owners.
     auto& human_perception_record_pool(){return human_perception_records_;}
@@ -1013,6 +1016,7 @@ private:
         game::CarSceneActor<GameActorServices>> human_scene_movement_process_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIActionPools human_ai_actions_;
+    HumanAIOrders human_ai_orders_; //SAME008AB048 manager+18, distinct from current-action pools.
     game::HumanAINavigationJobPool human_ai_navigation_jobs_;
     ResourceDirectoryPlatform directory_platform_;
     JoystickBackend joysticks_backend_;

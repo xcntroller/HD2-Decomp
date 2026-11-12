@@ -8,6 +8,7 @@
 #include "game/car_targeted_placement.h"
 #include "game/car_scene_actor.h"
 #include "game/car_seat_frame.h"
+#include "game/human_ai_order_marker.h"
 #include "game/first_person_human_items.h"
 #include "game/human_player_item_notification.h"
 #include "game/human_player_shot_direction.h"
@@ -101,6 +102,20 @@ public:
     std::uint32_t game_frame_serial()const{return dependencies().session.words.template get<std::uint32_t>(0x2c);}
     auto& human_ai_event_pool(){return dependencies().startup.human_ai_event_pool();}
     auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
+    auto& human_ai_order_pool(){return dependencies().startup.human_ai_order_pool();}
+    template<class Order>void initialize_human_ai_order_marker(Order& order){
+        auto& d=dependencies();game::initialize_human_ai_order_marker(order,d.scene.frames(),d.scene.buckets(),d.hud.command_owner());
+    }
+    template<class Order>bool human_ai_order_navigation(const Order& order){ //0052ECA0.
+        auto position=order.state.template get<HumanVector>(0x30);
+        if(order.target){const auto matrix=dependencies().scene.frames().actor_world_matrix(order.target->base().frame());position={{matrix[12],matrix[13],matrix[14],matrix[15]}};}
+        return dependencies().navigation.nearest_volume({{position[0],position[1],position[2]}},5.f,-1.f)!=0xffff;
+    }
+    template<class State>void restore_active_order_formation(State& state){ //0052F0E0→005A91A0, selected28 (not current2C).
+        auto& d=dependencies();auto* leader=d.players.control().selected_player(mode_flags());if(!leader)return;
+        auto* human=state.human();if(!human)throw std::logic_error("Active order formation requires bound Human44");
+        set_human_formation<typename Dependencies::ActorFrames>(d.scene.frames(),d.navigation,d.startup.players_process().formation_scale(),*human,leader);
+    }
     auto& human_ai_navigation_jobs(){return dependencies().startup.human_ai_navigation_jobs();}
     std::uint32_t human_frame_random_word(){return dependencies().startup.random_word();}
     auto* create_session_spawn_human(std::uint32_t peer,std::uint32_t identity,const HumanVector& position,const HumanVector& direction,

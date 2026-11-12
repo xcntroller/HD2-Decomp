@@ -1209,6 +1209,12 @@ public:
     void copy_hud_order_model(Frame destination,Frame source){ //004B9240's frame4C, no extra template owner.
         if(call<std::int32_t>(destination,0x4c,source)<0)throw std::runtime_error("Cannot copy required order marker model");
     }
+    void human_order_marker_data(Frame model,void* order){put(model,0xec,order);} //Actual native marker EC, not Actor frame-data registration.
+    void human_order_marker_link(Frame model){ //0058C5A0 links to World18+200 with mode1, NOT camera root1F8.
+        const auto root=field<Frame>(scene_.frame(),0x200);
+        if(!root)throw std::logic_error("AI order marker requires actual World root200");
+        call<void>(model,0x38,root,std::uint32_t{1});
+    }
     MenuDriver::Owner create_shot_model(){return driver_.create(9);}
     MenuDriver::Owner create_shot_shell(Frame source){
         auto owner=driver_.create(0x5f4a424fu);if(!owner)throw std::runtime_error("Shell requires actual driver object");

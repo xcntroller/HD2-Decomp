@@ -7,31 +7,39 @@ H8/P22-HUM remain OPEN. Read AGENTS.md, section2 of plan.md and
 No push/original EXE/DLL/Proton/Windows/application/desktop execution. Heavy
 compilation/Ghidra sequential. No permanent tests. User priority: getting in game.
 
-Latest [order/action/marker source checkpoint](analysis/human-h8-order-action-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-order-action-20261112.json): actual
-Active0052A1E0→SAME process action7/8/**12** leases/resources/vehicle path and
-SAME HUD command model748/free750 acquire/update/return are implemented.
-00582920 creates action12, NOT4. Native order manager+18 remains separate.
-Driver lookahead resolves NEXT target then freshly CURRENT; native texture8000
-creation/update difference is preserved. Native ASan/UBSan/LSan PASS5900 actions,
-PASS23500 markers, each100 lifetimes with explicit endpoints; strict actual
-whole Human/Scene2/Active/HUD i386 FULL LINK and launcher/probe rebuild pass.
-Eleven new partial claims, no complete promotions;34 complete/3373 partial.
-Temporary audit sources/binaries fingerprinted/removed; fresh logs retained.
-Actual pending-order production and full Active authority are NOT enabled.
+Latest [process order/marker/Active list checkpoint](analysis/human-h8-order-owner-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json): actual
+Startup manager+18 order pool, SAME HUD marker/World200-mode1 link/EC/dynamic
+buckets and full Active250 insertion/update/retire/reset/hold/recent query now
+use typed owners. Cleanup preserves callback-visible borrowers, removes buckets
+BEFORE EC/model return and releases route allocation BEFORE free-list return.
+Native merge accepts unordered; index0 publishes REQUEST direction, distinct
+from stored order. Native hold uses retained first-slot scalar storage after
+erase, not current B050. Positive route74 layout remains required. Native
+ASan/UBSan/LSan PASS84400/100 lifetimes with explicit endpoint doubles; strict
+actual process/Active/list/HUD/buckets/formation/entire Human i386 FULL LINK and
+latest launcher/probe rebuild PASS. Twelve new partials, no complete promotions;
+34 complete/3385 partial. Temporary audits fingerprinted/removed; fresh logs
+retained. Full Active authority is NOT enabled.
 
-NEXT H8.2: implement order owner005825C0/0058C5A0 and its complete marker EC/
-World-root/dynamic descriptor→0058D6C0/0058C8E0/00582640 retirement; typed Active
-250 sequence insert/update/remove/reset0052EE60/0052EFA0/0052EF20, hold00531F60.
-Use actual Startup process order pool and existing HUD command marker methods;
-no per-Human replacement pool or missing-marker successful placeholder.
-Native descriptor removal BEFORE EC clear/model return; route allocation free
-BEFORE process free-list return. Resolve actual Human190 borrower/ownership when
-its producer is reached. HUD command close must follow retirement of live loans.
-Then005282E0/00529F60 pending processing,00528950 decisions and00536120 follow
-BEFORE ordinary navigation/aim/movement/trigger/command retirement/self-treatment.
-Do not turn required00526550 into an idle success. Full dependency table is in
-H8 plan; original helper/ABI/raw evidence is in the checkpoint contract.
+Prior [action/HUD marker checkpoint](analysis/human-h8-order-action-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-order-action-20261112.json): SAME
+process current-action7/8/**12**,0052A1E0 driver lookahead and HUD marker model
+acquisition/update/return;00582920 creates12, NOT4. This source checkpoint is
+committed as1509bb6. No per-Human replacement pool.
+
+NEXT H8.2:005282E0 pending processing and00529F60 setup,00534340 action-state
+command,00528950 decisions and00536120 follow BEFORE ordinary navigation/aim/
+movement/trigger/command retirement/self-treatment in00526550. Do not replace
+this mandatory receiver with idle success. Existing C/raw/source map in WORK and
+contracts; index before exports.0052EE60 raw proves it publishes REQUEST kind2
+and REQUEST20 after merging the stored order;0058D720 unordered copies. Native
+0052ED00/0052EB20/0052ECA0/0052F130/0052F150 are recovered from raw, absent frozen
+starts and receive no extra credit.0052F0E0 restores formation to selected28.
+Reconcile actual command callers, Human190 ownership/reference producers and
+native route74 producer/frame when selected; raw190 remains guarded. Preserve
+order teardown before HUD close and actor/target lifetimes. H8 plan records
+completed source dependencies separately from the still-open parent checkbox.
 
 Earlier source checkpoints: [frame composition](analysis/human-h8-frame-composition-source.md)
 Scene2→SAME World→borrowed Runtime→B0/inline/DD0/geometry with required guards;

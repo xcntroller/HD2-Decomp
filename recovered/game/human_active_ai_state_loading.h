@@ -6,25 +6,27 @@
 #include "game/human_active_ai_grenade.h"
 #include "game/human_active_ai_presentation.h"
 #include "game/human_active_ai_order_action.h"
+#include "game/human_active_ai_orders.h"
 
 namespace hd2::game {
 
 //00524C60/00524E70/00525110, actual initial offline B0kind3. Equipment selection
 //00530D40/00530A40 use the SAME typed inventory owner. Players/Speech and
 //0089AC30 consumers are mandatory Services methods.
-//Runtime task/formation producers are not exposed by this loading owner.
+//Runtime authority decisions remain separate from the actual pending-order owner.
 template<class Frames,class Human,class Inputs,class Services>
 class HumanActiveAIStateLoading : public HumanAIStateLoading<Frames,Human,Inputs> {
 public:
     void sight_enemy_killed(Human&)override{} //005A4350, genuine RET4 Active AI, absent frozen.
     using AI=HumanAIStateLoading<Frames,Human,Inputs>;using Base=typename AI::Base;
+    using OrderPool=HumanAIOrderPool<Frames,SceneActor<Frames>>;using Order=typename OrderPool::Order;
     HumanActiveAIStateLoading(Frames& frames,Inputs& inputs,MissionTableSet& second,
             HumanInputCallbacks& callbacks,HumanAIActionPools& actions,Services& services)
         :AI(frames,inputs,second,callbacks,3),actions_(actions),services_(services) {
         for(auto offset:{0x204u,0x209u})state_.set(offset,std::uint8_t{0});
         for(auto offset:{0x202u,0x206u})state_.set(offset,std::uint8_t{1});
         for(auto offset:{0x214u,0x218u})state_.set(offset,std::uint32_t{0});
-        //Native224 task/250 list pointers are typed guards, with no producers here.
+        //Native224 task and250 list pointers live in separate typed borrowers/owners.
     }
     template<class Inline>void bind(Human& human,const Base* previous,MissionNavigation* navigation,
             std::uint32_t mode,Inline& control) {
@@ -77,12 +79,14 @@ public:
     void close_loading() { //00525110; AI close before virtual128(0), then clear Human44.
         AI::close_loading();reset_orders_loading();this->clear_human_reference();
     }
-    void reset_orders_loading() { //0052EF20(0); actual250 list has no loading producer.
-        state_.set(0x1bc,static_cast<std::uint32_t>(services_.game_frame_serial()+1u));
-        auto& query=this->resources().query().state;query.set(0x50,query.template get<std::uint32_t>(0x50)|0x2000u);
-        this->resources().path().stop_loading();
-        state_.set(0x202,std::uint8_t{1});state_.set(0x206,std::uint8_t{1});state_.set(0x18d,std::uint8_t{0});
-    }
+    void reset_orders_loading(){orders_.reset(*this,false,services_);} //0052EF20(0), SAME actual250 owner.
+    bool append_pending_order(typename OrderPool::Lease order){return orders_.append(*this,std::move(order),services_);}
+    bool insert_pending_order_after(typename OrderPool::Lease order,std::int32_t index){return orders_.insert_after(*this,std::move(order),index,services_);}
+    void update_pending_order(std::size_t index,const Order& delta){orders_.update(*this,index,delta,services_);}
+    void retire_pending_order(std::size_t index,bool hold){orders_.retire(*this,index,hold,services_);}
+    auto& pending_orders(){return orders_.records();}const auto& pending_orders()const{return orders_.records();}
+    bool orders_recently_changed()const{return orders_.recently_changed(*this,services_);}
+    void append_hold_order(const HumanVector& position,const HumanVector& direction){orders_.hold(*this,position,direction,services_);}
     void sight_enemy_acquired(Human& actor) override { //0052E5B0: shared event FIRST, before Players/Speech.
         this->emit_sight(actor,0);
         auto* human=this->human();if(!human)throw std::logic_error("Active AI sight has no Human");
@@ -117,11 +121,11 @@ public:
     void disable_follow_loading(bool immediate){set_follow(false,immediate);} //005377F0, same actual state.
     bool process_available()const{return state_.template get<std::uint8_t>(0x202)!=0;}
     bool has_pending_orders_loading()const {
-        //Native250/254/258 have no populated loading producer yet. Reject raw
-        //writes instead of treating an unknown pointer as an empty order list.
+        //Native250/254/258 are represented by orders_. Reject raw pointer
+        //writes instead of consulting a second list or unknown DWORD owner.
         for(auto offset:{0x250u,0x254u,0x258u})if(state_.template get<std::uint32_t>(offset))
             throw std::runtime_error("Active AI populated orders require their actual typed producer");
-        return false;
+        return !orders_.records().empty();
     }
     typename Base::PlayerHandover player_handover()const override {
         if(!action_mode_)throw std::runtime_error("Active AI handover has no native initialized action mode");
@@ -234,6 +238,7 @@ private:
         return human->loading_inventory->special_hand_item(this->item());
     }
     HumanAIActionPools& actions_;Services& services_;HumanJointWords<0x260> state_;std::optional<std::uint32_t> action_mode_;
+    HumanActiveAIOrders<OrderPool> orders_;
 };
 } //namespace hd2::game
 #endif

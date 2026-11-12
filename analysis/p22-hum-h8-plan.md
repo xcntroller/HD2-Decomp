@@ -50,15 +50,16 @@ rather than replacing this path with an idle success. Presentation00525DA0 and C
 [Order action/marker checkpoint](human-h8-order-action-source.md) adds actual
 current-action7/8/**12** pools,0052A1E0 driver lookahead and existing HUD marker
 model acquisition/update/return. These APIs do not yet produce native orders.
-The next boundary is manager+18 order construction/marker EC/dynamic collision
-registration and retirement, then005282E0/00529F60 decisions.00582920 creates
+The [order owner/list checkpoint](human-h8-order-owner-source.md) now binds
+manager+18 construction, marker EC/dynamic collision registration/retirement and
+actual Active250 insertion/update/erase/reset. Next are005282E0/00529F60 decisions.00582920 creates
 current-action12, not4; native order kind4 remains a different family.
 
 | Required Active dependency | Source state |
 | --- | --- |
 | Presentation00525DA0, Car camera004D9E10 | Bound/verified |
-| Order-to-action0052A1E0; shared action7/8/12; HUD marker004B9240/9B10/9080 | Implemented/verified on actual owners; order producer still required |
-| Order005825C0/0058C5A0, marker EC/collision,0058D6C0/0058C8E0/00582640, Active list insert/update/remove/reset | Next required implementation boundary |
+| Order-to-action0052A1E0; shared action7/8/12; HUD marker004B9240/9B10/9080 | Bound/verified on actual owners; process order producer is now bound below |
+| Order005825C0/0058C5A0, marker EC/collision,0058D6C0/0058C8E0/00582640, Active list insert/update/remove/reset | Bound/verified source; positive route74 and actual command/Human190 producers remain required |
 |005282E0/00529F60 pending processing,00528950 decisions,00536120 follow | Exported/raw evidence; mandatory before navigation |
 | Navigation/aim,0052B810 movement,005276E0 decisions,005325C0 output, command retirement/self-treatment | Reuse existing AI cores, complete Active policy and reached commands |
 
@@ -66,9 +67,9 @@ current-action12, not4; native order kind4 remains a different family.
 
 | Caller | Required boundary / existing source | Immediate remaining work |
 | --- | --- | --- |
-| Human0059FE30/0059FFD0 | `human_scene_frame.h`, actual registry/World facade | Concrete Runtime; no replacement Human/B0/inline owners |
-| DD000787270/00787D50 | `human_control_loading.h` and H2 ground/Look/arbitration/geometry | Bind007646F0 walk and0075EEE0 material callbacks to existing bodies; complete reached remaining actions |
-| Player00540090/00540240 | `human_player_state_loading.h`, H6 actual item dispatch | H3 attachment flags/inputs; selected-item zoom and delayed Players command; non7 transport remains conditional |
+| Human0059FE30/0059FFD0 | `human_scene_frame.h`, actual registry/World facade | Bound; finish reached authority/decision receivers on the same owners |
+| DD000787270/00787D50 | `human_control_loading.h` and H2 ground/Look/arbitration/geometry | Walk/material bound; complete reached00751480/00755500 and remaining actions |
+| Player00540090/00540240 | `human_player_state_loading.h`, H6 actual item dispatch | H3 flags/inputs and selected-item zoom bound; suppressed camera/delayed Players command; non7 transport remains conditional |
 | Script0058E1C0/0058E210 | Existing H4 event/formation/VM owners | Bind known receivers; recover00591550 only when original alarm branch selects it |
 | Human2C8/0059BA70 | Actual formation/roster/navigation | Reuse World formation receiver; Aircraft remains absent |
 | Material0075EEE0 | Existing damage and stored hazard logic | 00451900 hazard blast/packet; actual material ordinary return remains valid |
@@ -80,3 +81,11 @@ unbound alarm/non7/type15/20/34 receivers. Keep those contracts as evidence, not
 as permission to call a guard a completed body. Masterfa94dee contains completed
 render work not yet imported into this branch; consider it during containing
 application integration, preserving active FRAME/OWN worktrees.
+
+## Completed source dependencies within open H8.2
+
+- [x] Bind Active presentation and actual Car seat camera.
+- [x] Recover shared order/action pools, actual HUD/collision marker lifecycle and Active pending-order ownership.
+- [ ] Complete pending processing, Active decisions/follow and containing authority; then remaining offline receivers.
+
+These source checkpoints do not close parent H8.2 or application/desktop delivery.

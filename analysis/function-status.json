@@ -13340,13 +13340,17 @@
       "program": "client",
       "entry": "0052ef20",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0052ef20: Active AI constructor/loading/handover/retirement, loading action modes/reset and Sight reactions; actual weapon reselection remains required.",
+      "coverage": "P2.2 source reconstruction at original entry 0052ef20: Active AI constructor/loading/handover/retirement, loading action modes/reset and Sight reactions; actual weapon reselection remains required. H8 binds actual process order manager+18 and Active250 leases, including reverse populated reset, marker/dynamic descriptor/model/route retirement and final native state prefix; actual Human190 and decision producers remain separate.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_active_ai_state_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_active_ai_orders.h",
+        "recovered/game/human_ai_order_pool.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
       ]
     },
     {
@@ -13444,7 +13448,7 @@
       "program": "client",
       "entry": "00582030",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00582030: Kind1 portion of shared AI action pool, growth, initial record acquisition and release. H8 adds SAME process current-action7/8/12 pools, native per-kind acquire fields and actual F0 variant retirement/ageing; pending-order manager+18 remains separate and required.",
+      "coverage": "P2.2 source reconstruction at original entry 00582030: Kind1 portion of shared AI action pool, growth, initial record acquisition and release. H8 adds SAME process current-action7/8/12 pools, native per-kind acquire fields and actual F0 variant retirement/ageing; pending-order manager+18 remains separate and required. H8 binds actual process order manager+18 and Active250 leases, including reverse populated reset, marker/dynamic descriptor/model/route retirement and final native state prefix; actual Human190 and decision producers remain separate.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ai_action_pool.h",
@@ -13452,7 +13456,11 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/human-h8-order-action-source.md",
-        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+        "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json",
+        "recovered/game/human_active_ai_orders.h",
+        "recovered/game/human_ai_order_pool.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
       ]
     },
     {
@@ -45383,6 +45391,161 @@
         "recovered/game/hud_command_loading.h",
         "analysis/human-h8-order-action-source.md",
         "analysis/checkpoints/p2.2-human-h8-order-action-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005825c0",
+      "status": "partial",
+      "coverage": "Acquire from SAME Startup order manager+18 before scalar/marker initialization, distinct from current actions; typed lease returns the record through its matching lifecycle.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_order_pool.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058a3f0",
+      "status": "partial",
+      "coverage": "Eager16/mutable-batch process order allocation, native kind4/growth80 known initialization and cold marker/route ownership; typed stable records and LIFO free list.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_order_pool.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058c5a0",
+      "status": "partial",
+      "coverage": "Actual order scalar/borrower/scratch prefix, SAME HUD marker publication84 before EC/position/link World200 mode1/update, bounds/context/radius, two fresh world reads/inverse and SAME dynamic bucket registration last.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_order_marker.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058d6c0",
+      "status": "partial",
+      "coverage": "Actual order marker retirement: remove SAME descriptor before EC clear and existing HUD model-pool return, then clear descriptor/marker owner; metadata remains visible during callbacks until retirement finishes.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_order_marker.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058c8e0",
+      "status": "partial",
+      "coverage": "Retire marker lifetime before releasing native74 route allocation owner and clearing its typed lifetime; positive route payload/producer remains required.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_order_pool.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00582640",
+      "status": "partial",
+      "coverage": "Matching process order return: marker/route cleanup before free-list publication and count restoration, independent of current-action pools.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ai_order_pool.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052ee60",
+      "status": "partial",
+      "coverage": "Actual Active selected-order merge then index0 request-kind2 raw160/10/20 direction publication and real direction setters;18E prefix and final serial, preserving request-vs-stored split.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_orders.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052efa0",
+      "status": "partial",
+      "coverage": "Actual order retirement serial-before-index0 query/path/flags/formation/hold suppression; pool return-before-stable erase with callback-visible borrower; last-order hold uses real current direction/fresh model position.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_orders.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00531f60",
+      "status": "partial",
+      "coverage": "Append actual kind2 process order from retained first-slot scalar flags/action, including same-record reuse after erase, native default-mask order and actual marker producer.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_orders.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058d720",
+      "status": "partial",
+      "coverage": "Merge raw direction/position on native extended length gate including unordered acceptance, nonzero flags replacement, then actual marker refresh without position movement.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_orders.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052f110",
+      "status": "partial",
+      "coverage": "Actual Active order-recent predicate, unsigned current frame<=stored serial including wrap.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_orders.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052f0e0",
+      "status": "partial",
+      "coverage": "Actual selected Players28 lookup then existing Human005A91A0 formation owner using SAME World/navigation/process formation scale and ActorFrames type.",
+      "limitations": "Source-only typed owners/STL/RAII replace native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan uses actual pool/marker/buckets/order-sequence/AI direction owners with explicit stated endpoints; actual full host i386 link only. Positive route layout/producer, cold undefined vector storage, finite direction constraints, Human190/actual command producers, remaining Active decisions/authority and full application/desktop acceptance remain open. No original/Windows execution or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-order-owner-source.md",
+        "analysis/checkpoints/p2.2-human-h8-order-owner-20261112.json"
       ]
     }
   ]
