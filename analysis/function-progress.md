@@ -223,3 +223,13 @@ and P22-UI closure remain open.
 General HUD control continuation adds15 frozen client partials:34 complete,
 2,611 partial (2,606 client/five engine). [Receipt](checkpoints/p22-ui-general-controls-20261111.json).
 Conditional presentation, actual Human producers and P22-UI closure remain open.
+
+### Human H3 seat interactions — 2026-11-12
+
+[H3 source receipt](checkpoints/p2.2-human-seat-interaction-20261112.json) adds17 frozen
+client partials and extends8 existing entries:34 complete/3025 partial
+(3020 client+5 engine), no promotions or denominator changes.
+Car/StaticWeapon entry/exit and mounted aim/reset/casing use existing owners;
+full occupied Car frame/non7 inputs, Human frame and desktop delivery stay open.
+004D99D0/004D9A40/004D9BE0/00604630/006034D0/004C1990/004DA1D0/00604DA0 and
+B0 direction setter wrappers are absent from the frozen inventory: no new credit.

@@ -40,7 +40,8 @@ public:
     //Typed source handover views, not a native ABI or new function credit.
     HumanVector current_direction()const override{return words_.template get<HumanVector>(0x20);} //005830F0.
     HumanVector target_direction()const override{return words_.template get<HumanVector>(0x10);} //00584B50.
-    void set_target_direction(const HumanVector& value){words_.set(0x10,value);} //00583120, all four words; absent frozen.
+    virtual void set_current_direction(const HumanVector& value){words_.set(0x20,value);} //00583100, B0+50; absent frozen.
+    virtual void set_target_direction(const HumanVector& value){words_.set(0x10,value);} //00583120, B0+54; absent frozen.
     std::uint32_t derived_loading_word(unsigned)const override{throw std::runtime_error("Human state has no recovered derived handover word");}
     PlayerHandover player_handover()const override{throw std::runtime_error("Human state has no recovered player handover");}
     void sight_enemy_acquired(Human&)override{} //00583170, genuine RET4 base receiver.

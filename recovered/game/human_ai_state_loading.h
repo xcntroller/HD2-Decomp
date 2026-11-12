@@ -88,6 +88,8 @@ public:
     }
     HumanVector current_direction()const override{return resources_.direction().state().template get<HumanVector>(0);} //0056FBF0.
     HumanVector target_direction()const override{return resources_.direction().state().template get<HumanVector>(0x10);} //0056FC00.
+    void set_current_direction(const HumanVector& value)override{(void)resources_.direction().set_current(value);} //0056FC10→0055D630.
+    void set_target_direction(const HumanVector& value)override{(void)resources_.direction().set_target(value);} //0056FC20→0055D2E0.
     bool aims_at_human(const Human& target)const override{return resources_.aimed_actor()==&target;}
     bool selected_hostile_is(const Human& target)const override{return resources_.selected_actor()==&target;} //00524DD0.
     std::vector<HumanAINavigationJobPool::Lease>* scene_navigation_jobs()override{return &resources_.navigation_jobs();} //00524DC0.

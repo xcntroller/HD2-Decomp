@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <memory>
 #include <vector>
+#include <optional>
 
 namespace hd2::game {
 
@@ -18,18 +19,23 @@ struct StaticWeaponControl {
         field13c=0,field140=0,field144=0,field148=0,field14c=0,field158=0,field16c=0,field170=0;
     float field128=-1,field12c=-1,field130=-1,field134=-1;
     std::uint32_t fieldd8=0,field160=0x3ec90fdb,field164=0x3ec90fdb;
-    std::uint32_t fielde0=0,fielde4=0; //004C1AD0 clears;004C7670 reads actual reload progress.
+    std::uint32_t fielde0=0,fielde4=0,field154=0; //004C1AD0 clears reload and154 timer.
+    std::optional<std::uint32_t> field118,field11c; //Aim writes; ctor/init do not produce these angles.
     bool flagd4=false,flagdc=false,flag104=false,flag168=false;
 };
 
 class MountedWeaponControlLifetime {
 public:
     virtual ~MountedWeaponControlLifetime()=default;
-    virtual void fire_marker()=0;
+    virtual void fire_marker(void* barrel)=0;
     virtual std::array<float,4> aim_direction()=0;
     virtual std::array<float,4> limits()const=0;
     virtual void view(bool visible)=0;
     virtual void clear_occupant()=0;
+    virtual void set_occupant(void*)=0;
+    virtual void reset()=0;
+    virtual std::optional<std::uint32_t> weapon_kind()=0;
+    virtual void advance(bool authority,std::uint32_t elapsed)=0;
     virtual void retire()=0;
 };
 

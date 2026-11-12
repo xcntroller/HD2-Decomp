@@ -13,7 +13,7 @@ list. Detailed behavior/evidence stays in the linked contracts.
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3011 partial; joint/clip recovery still
+credit is separate: current source34 complete/3080 partial; joint/clip recovery still
 has deferred credit reconciliation.
 
 The selected **H2 reactions/damage/ragdoll** milestone remains open until its
@@ -29,8 +29,9 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
   [Source checkpoint](checkpoints/p2.2-human-model-presentation-20261111.json).
 - [ ] H2 — Reactions, damage and ragdoll through containing owners. **Source closure blocked by D11**;
   source achievements and explicit remaining dependencies follow below.
-- [ ] H3 — Positive interaction actions00751480/00755500: occupied Car/StaticWeapon
-  entry/exit and mounted receivers, existing seats/mass/cameras/control ownership.
+- [x] H3 — Offline Car/StaticWeapon entry/exit and mounted receivers on existing owners.
+  [Verified source](checkpoints/p2.2-human-seat-interaction-20261112.json); [contract](human-seat-interaction-source.md).
+  [H2 integration](checkpoints/p2.2-human-h3-integration-20261112.json) retains D4b/D6b1 owners and D5 guards.
 - [ ] H4 — Common AI outputs: reached00584E30 completions, B0 action/navigation/
   formation, track events and DD0 transition/attachment consumers.
 - [ ] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9
@@ -162,9 +163,8 @@ D10 unmounted composition can advance without waiting for all transport work.
   004D16A0/loading lifetime. Resolve actual driver/input/mounted borrowers;
   retain offline7 gates. Verify any reached non-Car9A8/4A0 physical mapping in
   004D3D10 or prove that the selected branch cannot produce it.
-  H3 worktree has uncommitted mounted-control/Car owner changes; preserve them
-  and integrate its verified checkpoint before duplicating these receivers.
-  H3 now has committed10bebe9; review and integrate that snapshot, not later edits.
+  H3 committed10bebe9 is integrated: mounted reset/seat receivers are source.
+  Its containing occupied/non7 simulation remains D5; retain that guard.
 
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,

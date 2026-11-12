@@ -52,11 +52,12 @@ hook guard is SHDUM, not animation availability. Matching source owners retain
 clips and retract callbacks/backlinks before releasing them, including failures.
 
 GameStaticWeaponEvents installs actual frame+28 callback004C1990 semantics,
-with the SAME frameEC word7 borrowing the typed control. S markers require real
-004C5080 firing and explicitly fail; callback exceptions latch for the containing
-world to rethrow. Source retirement clears every matching hook/backlink before
+with the SAME frameEC word7 borrowing the typed control. S markers now pass the actual barrel into
+[H3 casing receiver004C5080](human-seat-interaction-source.md); callback exceptions
+latch for the containing world to rethrow. Source retirement clears every matching hook/backlink before
 control destruction. No independent opaque-data block or guessed frame pointer
-is installed. Positive firing/occupied simulation is outside this cold boundary.
+is installed. The cold checkpoint is extended by H3 occupied seat/control/aim/casing source.
+Shooting-input/ammunition producers remain H4/H6.
 
 Actual HORT00*/VERT00*/AIM00* and `projectile` borrowers use native masks.
 `GunShells` is category1 MODEL004C76C0, not category4 shadow cache; a returned
