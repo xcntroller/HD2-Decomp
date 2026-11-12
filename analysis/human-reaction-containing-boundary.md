@@ -2,7 +2,7 @@
 
 D0 completed against clean master415e850, including merged UI source. This is a
 call-path/dependency decision, not additional implementation or function credit.
-H2 and P2.2 remain OPEN. Existing original evidence is indexed in WORK
+H2 is now source-closed; P22-HUM/P2.2 delivery remains OPEN. Existing original evidence is indexed in WORK
 `human-d0-containing-index.txt`; detailed source contracts remain authoritative.
 
 ## Branch scope clarification — 2026-11-12
@@ -17,9 +17,29 @@ Full cross-branch Human-frame assembly belongs to H8 and must not be made a
 prerequisite for H2 source delivery. The original-behavior and no-invented-state
 requirements, including D11's demonstrated failures, remain unchanged.
 
-## Required paths and dependency classification
+## H2 source exit classification — 2026-11-12
 
-| D12 case / actual trigger | Containing path and owners | Remaining boundary |
+[H2 source closure](human-h2-source-closure.md) verifies the actual owned reaction
+segment with100×8 native owner families and strict actual host composition.
+This supersedes the earlier blanket claim that fresh Car debris or all entry
+callers must finish before H2. T1–T3 are Human-owned; T4 uses direct004F2790,
+not004F2B60→004FF8B0. T5/T6/T8/T9 and T7's separate Car branch are upstream/
+containing-world integration cases. Blast→Human reception remains H2 source.
+T10's transport/entry policy remains conditional on the selected mode/caller.
+
+No native failure is removed: part5F9/wheel695/EXPL8/smoke14 remain unresolved
+on their actual Car paths. H8/OWN/Car integration must preserve and resolve them
+where reached. The source-only Human result is not a running World, successful
+Car debris, complete network admission or desktop acceptance. The detailed
+historical paths below retain evidence and outstanding integration obligations.
+
+## Historical exit map and retained integration cases
+
+The table preserves the original dependency map. H2-owned D10/D12 are now
+closed by the linked source receipt; other entries describe retained integration
+obligations, not renewed H2 source gates.
+
+| Historical D12 case / actual trigger | Containing path and owners | Recorded boundary |
 | --- | --- | --- |
 | T1: live/corpse hit, source present/NULL | Human D4→005A1C90→005ABBD0/0077F7B0 Look command;0077DE30→0074D510→007B0910→007A7470, SAME B0/inline98/DD0/equipment/tracks/physics/model | D10: compose real control/Look/geometry, not only separate selection and retirement doubles. Native required bones, camera, input/integrity observations remain required. |
 | T2: clip reason2/3 collision, expiry and replacement |007B3C80/007B7410→same007B0910 effect; retained resource and point/frame owners→0079BAC0 retirement | Source S01/S02 complete; D10/D12 verify transition invalidation, query restore and repeated entry through actual containing owner. No new clip solver work without a discrepancy. |
@@ -33,7 +53,7 @@ requirements, including D11's demonstrated failures, remain unchanged.
 | T10: non7 authority/presentation packet and mounted reaction | Existing canonical process inputs/peers/streams→actual Human/Car receivers and same reaction owners | D5 needed for reached non7 Car loading/control, D10 for receiver composition. Use existing real policy/input storage, not fake transport success. |
 
 T1–T10 define source verification cases, not a claim that any has passed over a
-fully initialized World. D12 must distinguish supported actual compositions,
+fully initialized World. The H2 closure receipt and later H8 verification distinguish supported actual compositions,
 explicit engine/OS endpoints and exact remaining failures. H3–H6 receivers reached
 by these cases remain real prerequisites. Their unrelated behaviors are not
 silently added to H2.
@@ -43,7 +63,7 @@ silently added to H2.
 | State | Native producer → consumer/retirement | Owning checkpoint |
 | --- | --- | --- |
 | Human reaction/effect and joint/contact frames | Actual Look hit/0074D510/007B0910 and existing geometry loading → actual frame branch/0079BAC0 before inline/model destruction | D10/D12; existing S01–S04 contracts |
-| Mesh original and usage count |004FF8B0 first affected vertex, keyed by existing resource7B8/part10 →004FE910 reverse restore, flag4/count/release/erase | D1/D2. Native658 sharing still unproved here; no new global owner assumed. |
+| Mesh original and usage count |004FF8B0 first affected vertex, keyed by existing resource7B8/part10 →004FE910 reverse restore, flag4/count/release/erase | D1/D2 source-complete; native658 sharing is documented in the linked positive-deformation contract. |
 | Seat-associated Door visual | Existing004E2E30 Door/seat discovery and part72 binding →004FEFD0 current visual20 →004FE910 restoration before variants | D3 source complete; no occupied Human prerequisite. Actual Human seat behavior remains H3/D5. |
 | Car2584 collision clock |004D16A0 before camera/reset →004D3EF0/004D3D10, same loading lifetime | S14 complete; D5 preserves it during actual activation/re-entry. |
 | Periodic/pending/voice state | Actual clock/target/list producers →004D3110 and derived event6/7 readers, existing SOUND lifetime | D4. Do not skip earlier frame guards to call the recovered timer. |
@@ -71,22 +91,22 @@ merged endpoints; do not repeat the completed UI audit.
 D0 and D1–D3 are source-complete, with [D2/D3 ownership correction](human-car-positive-deformation-source.md).
 D4 follows before
 claiming a continuing Car authority frame. D5 is mode/occupancy conditional.
-D10 can advance independently for unmounted T1–T4 using actual owners, without
-waiting for all transport work. D6–D9 remain explicitly tracked for their actual
+H2-owned D10 has now passed on actual owners; remaining whole-World T1–T4
+integration belongs to H8 without making all transport work unconditional. D6–D9 remain explicitly tracked for their actual
 entry callers. At any newly reached missing state, update the dependency map with
 its caller/owner/retirement and keep the required failure visible.
 
 D11's existing findings are not an excuse to reopen confirmed producer searches.
 If T7/T8 requires one of those fresh paths and no lawful source producer exists,
-report the exact case as blocked and continue independent required paths. D12
-cannot close H2 with a reached required failure hidden by a double. Application
+report the exact case as blocked and continue independent required paths. H2/H8 verification cannot hide a reached required failure behind a double. Application
 loading/render/failure/repeat and user desktop acceptance remain P2.2 gates.
 
 ## Source closure blockers
 
-H2 cannot currently pass D12 under the project's no-invented-initialization rule.
-These are concrete reached native state omissions, not a compilation, scheduling
-or desktop-test blocker. Existing verified evidence is reused; no repeated audit
+These remain concrete reached native state omissions under the project's
+no-invented-initialization rule. The later branch-scope classification above
+assigns these Car/debris paths to containing-world integration; it does not
+resolve them or claim that a complete World can execute them successfully. Existing verified evidence is reused; no repeated audit
 of unchanged kernels was performed.
 
 - Required T7/T8 positive Car part damage calls694→actual Item12 construction/
@@ -109,5 +129,5 @@ of unchanged kernels was performed.
 Closure requires demonstrated original producers/prior ownership or proof that
 the required native branch cannot be reached. Otherwise it requires an explicit
 change to the reconstruction scope/behavior policy. None is assumed or invented.
-D4a is committed and independently verified; D4b/D5–D10 remain visible unfinished
-source dependencies and do not remove these D11 blockers.
+D4a/D4b and the H2-owned D10 segment are source-verified. Continuing Car/entry
+integration remains open and does not remove these D11 failures.

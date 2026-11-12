@@ -1,7 +1,9 @@
 # Human reactions and ragdoll source
 
-P22-HUM's second plan checkbox remains open. Current work continues the same
-body/point owners. Application mission loading and desktop acceptance remain open.
+P22-HUM H2 is source-complete on the same actual Human/control/body/point
+owners. [Closure and verification limits](human-h2-source-closure.md),
+[receipt](checkpoints/p2.2-human-h2-source-20261112.json). Full World/application
+loading and desktop acceptance remain open.
 
 Current status and remaining dependency order are maintained in the
 [revised Human plan](p22-hum-plan.md), including D1–D3 and D4a source checkpoints. S01–S14 identify verified
@@ -9,11 +11,11 @@ source checkpoints; D0–D12 identify remaining composition/producer dependencie
 Earlier “in progress”, “continue” and “not yet bound” notes below are dated
 research snapshots, superseded by later checkpoints. In particular007B3C80,
 007B37C0→00787110,0074D510 and Car fuel10/impulse11 are source-recovered; their
-containing-path/application acceptance is still open. Do not restart these
-kernels from an earlier snapshot. Joint/clip inventory reconciliation is now recorded below; actual containing
-reaction verification and required producer resolution remain open.
+H2-owned containing source segment is now verified; actual World/application
+acceptance remains open. Do not restart these
+kernels from an earlier snapshot. Joint/clip inventory reconciliation is now recorded below; full containing-World verification and external producer limitations remain open.
 
-## Kernel source checkpoint and inventory reconciliation — 2026-11-12
+## Earlier kernel source checkpoint and inventory reconciliation — 2026-11-12
 
 [Receipt](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json) reconciles
 27 previously implemented, verified frozen client bodies: body interpolation/
@@ -40,9 +42,10 @@ current source, retained original research and existing verification, and links
 the merged-check artifacts. Existing frozen fixtures remain intact; no new test
 source was introduced for this reconciliation.
 
-This closes the deferred kernel-inventory item of D12, not D10/D12 or H2.
-Actual reaction-owner composition and D11's demonstrated fresh part5F9,
-wheel695 and reached effect-record failures remain explicit. Full cross-branch
+That earlier checkpoint closed only the deferred kernel-inventory item. The
+later [H2 closure](human-h2-source-closure.md) verifies actual reaction owners;
+D11's fresh part5F9, wheel695 and reached effect-record failures remain explicit
+on their external Car/containing-world callers. Full cross-branch
 frame/application/desktop delivery stays separate; H4 source is not imported.
 
 ## Original evidence
@@ -134,7 +137,7 @@ changes. Consolidate credit, receipts and temporary-source removal at completion
 
 The original continuation scope was007A7470,007B3C80,007B0910,0074D510 and
 positive obstruction/contact/fall damage. Later sections below record their
-source recovery. Use the current [D0–D12 plan](p22-hum-plan.md#h2-remaining-dependencies-and-exit-tests)
+source recovery. Use the current [D0–D12 plan](p22-hum-plan.md#recovered-h2-source-and-containing-world-dependencies)
 for remaining work rather than treating this historical list as unchecked.
 
 007CDE00 emits flags5, source Human, relative bone22/group0/entry44 for6914.

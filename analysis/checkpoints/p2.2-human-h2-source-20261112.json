@@ -1,0 +1,252 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "41f766f",
+  "completed_aggregate": "201adbf",
+  "branch": "feature/p22-hum-h2",
+  "checkpoint": "H2 reactions/damage/ragdoll actual-owner source closure",
+  "source_only": true,
+  "h2_source_complete": true,
+  "p22_hum_complete": false,
+  "p2_2_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "active_h4_imported": false,
+  "contract": "analysis/human-h2-source-closure.md",
+  "complete_promotions": 0,
+  "added_partial_entries": [],
+  "extended_entries": [
+    "0077de30",
+    "007a7470",
+    "0074d510",
+    "007b0910",
+    "007b3c80",
+    "005a1c90",
+    "0077f7b0",
+    "005ab330",
+    "00785b20",
+    "00785be0",
+    "00786030",
+    "005aba90"
+  ],
+  "ledger_complete": 34,
+  "ledger_partial": 3245,
+  "client_partial": 3240,
+  "engine_partial": 5,
+  "source_files": {
+    "recovered/game/human_look_frame.h": {
+      "sha256": "99c6ae18e27414fb0ea9249cfa7f4ba81f371b386a5283087221fc64f421ddec",
+      "bytes": 13740
+    },
+    "recovered/game/human_model_geometry.h": {
+      "sha256": "88be5ee6d91858aca6418ecba1fe4736d6b0b238dd2f72efb0c8ba7c4c53b523",
+      "bytes": 112351
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "67b63d447fdf3dfe849cdec31a1f121f6684ab837f53f487e00d919e0d97266b",
+      "bytes": 143623
+    },
+    "recovered/game/human_inline_loading.h": {
+      "sha256": "a6a3ec334ce3d676e7ed39f26b933ec874f6fea40e6c887262264ace1ede8298",
+      "bytes": 11577
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "6edd9acd17d00c595855dc9ba39fea09f3574f4241bd9e3c98b90e5f84987fea",
+      "bytes": 57093
+    },
+    "recovered/game/human_damage.h": {
+      "sha256": "d5ef88f6e0c5497773fd3d694e9a72385425d5eba6dc27bb28ec3b43b5d53a11",
+      "bytes": 6638
+    },
+    "recovered/game/human_reaction_selection.h": {
+      "sha256": "dba909d2bdbf643cdbce322d13d9145b0980bed476e8f3a102bfb8b3ece71b86",
+      "bytes": 5425
+    },
+    "recovered/game/human_reaction_retirement.h": {
+      "sha256": "b686d7a0569b25c3a6261000633d8c3a716be1e7f15584172a35d4ff64dc89ee",
+      "bytes": 5037
+    },
+    "recovered/game/human_retained_clip_motion.h": {
+      "sha256": "f41d6790eb4f8b13610def410b5dfd70b581e4ca1e655c24e0139470a1d30491",
+      "bytes": 15239
+    },
+    "recovered/game/human_loading_joints.h": {
+      "sha256": "ad811bc644eea094911584485255d01770ac6dcc97cc0a0b85524d62985c6365",
+      "bytes": 46281
+    }
+  },
+  "verification_files": {
+    "analysis/work/mission-world-20261103/human-h2-owner-chain-native.cpp": {
+      "sha256": "cf483f3f7744ac434ce0b7a714405b856b5d17a5c72894cc210a190bc38374bb",
+      "bytes": 43463
+    },
+    "analysis/work/mission-world-20261103/human-h2-owner-chain-native": {
+      "sha256": "ab9ba6bd59e9120698ce59a10539f316506d7cf6c950038bfbb67076712609ee",
+      "bytes": 20666272
+    },
+    "analysis/work/mission-world-20261103/human-h2-owner-chain-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-owner-chain-native.log": {
+      "sha256": "b51ecb1ae2fb4cd2d51523969eef44d5b230d05e11a1e1f6b7699ea2cc004d21",
+      "bytes": 307
+    },
+    "analysis/work/mission-world-20261103/human-h2-audit-add-engine.py": {
+      "sha256": "3d2d26a066fb52d74bcbc5f79aa3b4f3aa92113333ec49e4a30164e1e482f561",
+      "bytes": 1415
+    },
+    "analysis/work/mission-world-20261103/human-h2-source-closure-host-i386.cpp": {
+      "sha256": "b221a48d5b887bbe6d7075f130079e6f3e06645b8d7cf84cbdc0c5a305aa5622",
+      "bytes": 9356
+    },
+    "analysis/work/mission-world-20261103/human-h2-source-closure-host-i386.o": {
+      "sha256": "6825079b2607c8cbc5aa1cb7e0b787d1ffa47afefde27853b36b50dcf3b2063e",
+      "bytes": 20241965
+    },
+    "analysis/work/mission-world-20261103/human-h2-source-closure-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-source-closure-launcher-build.log": {
+      "sha256": "7e9252d1406678b33b81e74a22b80ce66dc917f4950fae75cb2f1bc6e630b306",
+      "bytes": 820
+    },
+    "analysis/work/mission-world-20261103/human-h2-source-closure-application.exe": {
+      "sha256": "2efdfed706013d39fd07c952564a3a3601cd3909abeecfc323a645147acf0fa8",
+      "bytes": 3940352
+    },
+    "analysis/work/mission-world-20261103/human-h2-source-closure-probe.exe": {
+      "sha256": "450205dc99c2e652684c9052e4e0b09effa777952e5f12d24fe131aeaf6eb831",
+      "bytes": 1142272
+    },
+    "analysis/work/mission-world-20261103/human-h2-owner-loading-index.txt": {
+      "sha256": "1256e507f3f117e043bc22baa7e2179e5ea55abfa85ed5eec93a396e7581629b",
+      "bytes": 33620
+    },
+    "analysis/work/mission-world-20261103/human-h2-source-exclusion-index.txt": {
+      "sha256": "67d8f42aaef797e1f37edb78c0e523e308a6d60fcf79b11de570023d437b4209",
+      "bytes": 22382
+    },
+    "analysis/work/mission-world-20261103/human-h2-damage-command-index.txt": {
+      "sha256": "55f280fd38597c532ab702a34132145f34f17052601bf6acd66d9e1b0243e137",
+      "bytes": 12946
+    }
+  },
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    "analysis/work/mission-world-20261103/frame-human-shot-and-control-workers/0077de30.c",
+    "analysis/work/mission-world-20261103/frame-human-shot-and-control-workers/007a7470.c",
+    "analysis/work/mission-world-20261103/human-actions-explicit-abi-v3/0077f7b0.c",
+    "analysis/work/mission-world-20261103/human-damage-selection-abi/005a1c90.c",
+    "analysis/work/mission-world-20261103/dynamic-collision-owners/006efb10.c",
+    "analysis/work/mission-world-20261103/dynamic-collision-owners/006efa70.c"
+  ],
+  "existing_source_verification": [
+    "analysis/human-ragdoll-source.md",
+    "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json",
+    "analysis/checkpoints/p2.2-human-completed-branch-integration-20261112.json",
+    "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json",
+    "analysis/checkpoints/p2.2-human-containing-blast-20261112.json"
+  ],
+  "native": {
+    "result": "PASS",
+    "cycles_per_family": 100,
+    "families": 8,
+    "sanitizers": [
+      "ASan",
+      "UBSan",
+      "LSan"
+    ],
+    "private_field_seeding": false,
+    "actual_owners": [
+      "Human/ActorBase",
+      "passive B0/input resources",
+      "inline98 factory",
+      "E0/DD0/230",
+      "physics/movement/action/tracks/tables",
+      "geometry/skeleton/joints",
+      "shared collision grid/exclusions",
+      "EffectsShadowModels/environment/fade"
+    ],
+    "cases": [
+      "factory activation, Look hit and explicit movement command -> real reaction gate/selection/retirement/full-joint entry/frame/teardown",
+      "retained resource/positive keys/odd-frame three-position motion",
+      "reason3 seven-position transition replaces effect with full joints",
+      "reason2 strict expiry -> shot/light/actual Effects opacity",
+      "two distinct Humans/inline/B0/control/equipment owners; SAME shared grid/globals/animations/events/Effects; source query restore",
+      "missing required bone initialization failure, balanced partial cleanup and SAME factory re-entry",
+      "actual loaded-World point-query guard after earlier mutations; no final request/snapshot publication, exclusions restored, teardown/fresh entry",
+      "actual living damage to SAME Look/passive B0; corpse impulse queue consumed by following joint frame"
+    ],
+    "ownership": "Process event pool outlives both Humans; all retained frame refs/callbacks/registration/buckets/audio leases/presentation/pose refs balance after destruction.",
+    "limits": [
+      "Authored models/bones/markers/clip keys/animation-table bytes and collision-grid data; engine math/refcount/cache/OS/lookup endpoints are explicit doubles.",
+      "Actual selected HumanWorldLoadingServices methods use a registry facade borrowing real inline/B0 owners; not running HumanLoadingComposition/Scene2/World/application.",
+      "Face quality disabled; optional shadow cache absent; empty sector lights; speech already-playing observation suppresses separate speech start.",
+      "Unselected required receivers throw; no private-field seeding, fake successful selection/retirement/geometry, or original engine/allocator/ABI/solver trajectory claim.",
+      "Player/full AI decision scheduling and fresh-death World-wide notifications are not newly runtime-verified; existing source/targeted contracts and actual-host signatures retain their stated limits."
+    ]
+  },
+  "i386": {
+    "result": "PASS",
+    "mode": "compile-only actual nested host World/Human/control plus full Look/control/presentation template instantiation and source-present/damage signatures",
+    "other_runtime_declarations": 53,
+    "other_runtime_behavior": "always throw; compile-only, not installed successful handlers"
+  },
+  "launcher_and_probe": {
+    "result": "PASS",
+    "mode": "compile/link only; dedicated snapshots fingerprinted; no execution"
+  },
+  "commands": [
+    "g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -Wno-misleading-indentation -pthread -fsanitize=address,undefined -fno-omit-frame-pointer -g -fmax-errors=35 -Irecovered analysis/work/mission-world-20261103/human-h2-owner-chain-native.cpp -L.tools/hd2-sanitizer-runtime/usr/lib64 -Wl,-rpath,$PWD/.tools/hd2-sanitizer-runtime/usr/lib64 -o analysis/work/mission-world-20261103/human-h2-owner-chain-native",
+    "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 analysis/work/mission-world-20261103/human-h2-owner-chain-native",
+    ".tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -ferror-limit=8 -Irecovered -c analysis/work/mission-world-20261103/human-h2-source-closure-host-i386.cpp -o analysis/work/mission-world-20261103/human-h2-source-closure-host-i386.o",
+    "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++"
+  ],
+  "external_integration_not_resolved": {
+    "D4_D5": "continuing Car frame/occupied/non7 simulation and conditional upstream producers",
+    "D6_D9": "entry/status9/received0/DirectPlay admission/shared reset and actual application state owners",
+    "D11": [
+      "fresh Item12 part004CB2CD reads/toggles unproduced5F9 before motion",
+      "wheel005FDD10 mutates lifetime/body then reads unproduced695 at final500ms/expiry",
+      "EXPL8/smoke14 required Car destruction/reset producers remain missing"
+    ],
+    "policy": "No defaults or native-unreachability proof invented. All required guards/failure prefixes remain; these external Car/entry paths are not callees of the unmounted Human reaction segment.",
+    "H4_H6_H8": "No active H4 imported; H6/H8 unassigned. H8 retains full cross-branch Human/World/frame integration. P2.2/P22-VIS application and user desktop acceptance remain separate."
+  },
+  "temporary_new_audits_fingerprinted_then_removed": [
+    "analysis/work/mission-world-20261103/human-h2-owner-chain-native.cpp",
+    "analysis/work/mission-world-20261103/human-h2-owner-chain-native",
+    "analysis/work/mission-world-20261103/human-h2-audit-add-engine.py",
+    "analysis/work/mission-world-20261103/human-h2-source-closure-host-i386.cpp",
+    "analysis/work/mission-world-20261103/human-h2-source-closure-host-i386.o"
+  ],
+  "existing_frozen_audits_preserved": true,
+  "original_evidence_fingerprints": {
+    "analysis/work/mission-world-20261103/frame-human-shot-and-control-workers/0077de30.c": {
+      "sha256": "b4f4ae939d332563bbd7effb2b84b52df9fac7c5b6bc94174776edadaa1d1a27",
+      "bytes": 14952
+    },
+    "analysis/work/mission-world-20261103/frame-human-shot-and-control-workers/007a7470.c": {
+      "sha256": "f95b6cd6e7b68082426ce705a4465bb0978dcb4cb9654b084f17327be6e13407",
+      "bytes": 18450
+    },
+    "analysis/work/mission-world-20261103/human-actions-explicit-abi-v3/0077f7b0.c": {
+      "sha256": "a7e4e14df0c4575cf4ca15adf0ebc73002afb46380803121bc6bf1dbfa9192fc",
+      "bytes": 4144
+    },
+    "analysis/work/mission-world-20261103/human-damage-selection-abi/005a1c90.c": {
+      "sha256": "b9959f6569e84aa68586e2a7cefd22a9b3cb4a38ec771a45cc74f41602b9b369",
+      "bytes": 9656
+    },
+    "analysis/work/mission-world-20261103/dynamic-collision-owners/006efb10.c": {
+      "sha256": "c4ebfa79926cb4b83a4e0c927f4906977384acb7b6c9d83f0e8e503fa15d1c2f",
+      "bytes": 809
+    },
+    "analysis/work/mission-world-20261103/dynamic-collision-owners/006efa70.c": {
+      "sha256": "759cc850fa9609144b9180fdc5f7bde5e8a7389fda4e2bc6df5e75f27eae2818",
+      "bytes": 966
+    }
+  }
+}

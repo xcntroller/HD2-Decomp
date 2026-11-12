@@ -14253,20 +14253,23 @@
       "program": "client",
       "entry": "00785b20",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00785b20: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores.",
+      "coverage": "P2.2 source reconstruction at original entry 00785b20: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores. Native verification now uses the actual DD0/physical/geometry/animation owners within factory activation and ordered retirement.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_control_loading.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
-      ]
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
       "entry": "00785be0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00785be0: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores. Physical activation reads SAME owned DD0+DC4 byte.",
+      "coverage": "P2.2 source reconstruction at original entry 00785be0: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores. Physical activation reads SAME owned DD0+DC4 byte. Native verification now executes actual DD0 activation against SAME owned physical/geometry/animation state.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_control_loading.h",
@@ -14274,21 +14277,27 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/shared-world-loading-consumers.md",
-        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
-      ]
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
       "entry": "00786030",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00786030: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores.",
+      "coverage": "P2.2 source reconstruction at original entry 00786030: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores. Native verification now executes actual DD0 cleanup within ordered inline/factory retirement.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_control_loading.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
-      ]
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
@@ -15132,27 +15141,33 @@
       "program": "client",
       "entry": "005ab330",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005ab330: Actual inline98 E0/DD0/230 lifetime and proven loading/control dispatch branches.",
+      "coverage": "P2.2 source reconstruction at original entry 005ab330: Actual inline98 E0/DD0/230 lifetime and proven loading/control dispatch branches. Native verification now uses actual inline factory activation and SAME E0/DD0/230 teardown, failed initialization and fresh re-entry.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_inline_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
-      ]
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
       "entry": "005aba90",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005aba90: Actual inline98 E0/DD0/230 lifetime and proven loading/control dispatch branches.",
+      "coverage": "P2.2 source reconstruction at original entry 005aba90: Actual inline98 E0/DD0/230 lifetime and proven loading/control dispatch branches. Native verification now exercises actual inline retirement on successful and interrupted reaction lifetimes.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_inline_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
-      ]
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
@@ -31114,8 +31129,8 @@
       "program": "client",
       "entry": "007a7470",
       "status": "partial",
-      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required. Actual secondary clips, equipment overlays, stowed/aimed weapon presentation, mounted direction and attached head-direction publication now run at their native frame boundaries.  Actual Look, prone and attached/target/vehicle bodies now run at their original normal frame boundaries, including shared pose chains and real source aim/limits. The actual6304&200 branch dispatches retained clips or full joints, fixed-step/interpolation/pose publication, Human/Scene/shot/light updates and contact/audio retirement with source-Human query exclusion/restoration.",
-      "limitations": "Source-only typed state/owners and delegated engine methods. Native fixtures exercise state/frame doubles. Positive DD0 ground/look/track and geometry workers, actual runtime/application integration and user desktop mission frame remain required.",
+      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required. Actual secondary clips, equipment overlays, stowed/aimed weapon presentation, mounted direction and attached head-direction publication now run at their native frame boundaries.  Actual Look, prone and attached/target/vehicle bodies now run at their original normal frame boundaries, including shared pose chains and real source aim/limits. The actual6304&200 branch dispatches retained clips or full joints, fixed-step/interpolation/pose publication, Human/Scene/shot/light updates and contact/audio retirement with source-Human query exclusion/restoration. Its shared sampling/ragdoll branch now executes on actual activated Human/control/geometry owners, including clip replacement/expiry and two-Human source borrowing.",
+      "limitations": "Source-only typed state/owners and delegated engine methods. The actual activated H2 branch now has native sanitizer coverage with authored data and explicit engine/OS/lookup endpoints. Remaining normal-frame H4/H6 consumers, full World/H8 scheduling/application integration, original ABI/trajectory equivalence and user desktop acceptance are excluded.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
@@ -31123,8 +31138,11 @@
         "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
         "analysis/checkpoints/p2.2-human-model-presentation-20261111.json",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
-      ]
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
@@ -32047,7 +32065,7 @@
       "program": "client",
       "entry": "0077de30",
       "status": "partial",
-      "coverage": "Apply real Look commands, normalized primary/secondary selections, equipment/actions, face state and typed retained snapshot. Remote held-equipment selection and mounted retirement now use their actual same-owner receivers. Selected reaction0074D510 now invokes the verified SAME-owner ordered retirement tail through actual DD0.",
+      "coverage": "Apply real Look commands, normalized primary/secondary selections, equipment/actions, face state and typed retained snapshot. Remote held-equipment selection and mounted retirement now use their actual same-owner receivers. Selected reaction0074D510 now invokes the verified SAME-owner ordered retirement tail through actual DD0. Its unchanged reaction gate/final snapshot is now shared with the H2 source segment and executed on the actual E0/DD0, with publication withheld on selection failure.",
       "limitations": "Positive interaction retirement/execution, Ladder exit, occupied remote equipment and mounted actor retirement remain mandatory Runtime receivers. Source-only. Application loading and desktop execution remain pending.",
       "evidence": [
         "recovered/game/human_look_frame.h",
@@ -32055,8 +32073,11 @@
         "analysis/checkpoints/p2.2-human-look-posture-20261111.json",
         "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
         "recovered/game/human_reaction_retirement.h",
-        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json"
-      ]
+        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
@@ -33029,15 +33050,18 @@
       "program": "client",
       "entry": "007b0910",
       "status": "partial",
-      "coverage": "Actual reason4/non-null-source geometry effect initialization, saved-pose/point/contact reset and containing-grid publication. Expanded source covers reason1/2/3 retained-clip snapshots/cursors/contact positions and null/present-source full-joint entry, saved pose, unavailable limbs, velocity/gravity, camera capture and containing-point query restoration.",
+      "coverage": "Actual reason4/non-null-source geometry effect initialization, saved-pose/point/contact reset and containing-grid publication. Expanded source covers reason1/2/3 retained-clip snapshots/cursors/contact positions and null/present-source full-joint entry, saved pose, unavailable limbs, velocity/gravity, camera capture and containing-point query restoration. Native owner-graph verification now enters actual factory-initialized geometry for retained/full-joint and non-null-source cases without private-field seeding.",
       "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
       "evidence": [
         "recovered/game/human_model_geometry.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
-      ]
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
@@ -33067,13 +33091,16 @@
       "program": "client",
       "entry": "0077f7b0",
       "status": "partial",
-      "coverage": "Actual deferred/special/ordinary hit commands, native direction classification, saved flags/position/direction and geometry publication.",
+      "coverage": "Actual deferred/special/ordinary hit commands, native direction classification, saved flags/position/direction and geometry publication. Native actual-owner verification reaches the real Look/geometry publication before explicit movement-command admission; AI scheduling is not fabricated.",
       "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
       "evidence": [
         "recovered/game/human_look_control.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
-      ]
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
@@ -34721,7 +34748,7 @@
       "program": "client",
       "entry": "005a1c90",
       "status": "partial",
-      "coverage": "Actual authority damage controller, hit/difficulty/death/state/effect/retaliation sequence and nonoffline configuration policy through SAME Human/World owners; required external effects remain explicit. Actual containing blast006DDD40 now reaches SAME Human lifetime/damage body with kind2/4, source pointer and final hit0; no separate health-only effect.",
+      "coverage": "Actual authority damage controller, hit/difficulty/death/state/effect/retaliation sequence and nonoffline configuration policy through SAME Human/World owners; required external effects remain explicit. Actual containing blast006DDD40 now reaches SAME Human lifetime/damage body with kind2/4, source pointer and final hit0; no separate health-only effect. Native actual-owner verification additionally covers living kind9 damage into SAME Look/passive B0 and corpse impulse admission/consumption in real joints.",
       "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance. The containing-blast extension has native ASan/UBSan/LSan actual process→damage→Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/human_damage.h",
@@ -34732,8 +34759,11 @@
         "recovered/host/game_blast_waves.h",
         "recovered/host/game_world_actors.h",
         "analysis/blast-wave-process.md",
-        "analysis/checkpoints/p2.2-human-containing-blast-20261112.json"
-      ]
+        "analysis/checkpoints/p2.2-human-containing-blast-20261112.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
@@ -35026,7 +35056,7 @@
       "program": "client",
       "entry": "0074d510",
       "status": "partial",
-      "coverage": "Actual DD0+AA0 reaction selection, original flags/postures/shared sequence/mounted draws/shape attempts/source hold, followed by SAME physical/Look/equipment/action/tracks/audio/ladder/clip retirement and geometry entry in native order. Pool lookup stays at its original late phase; required failures preserve earlier mutations.",
+      "coverage": "Actual DD0+AA0 reaction selection, original flags/postures/shared sequence/mounted draws/shape attempts/source hold, followed by SAME physical/Look/equipment/action/tracks/audio/ladder/clip retirement and geometry entry in native order. Pool lookup stays at its original late phase; required failures preserve earlier mutations. Native owner-graph verification now executes selection and retirement into actual initialized geometry, including interrupted publication and fresh re-entry.",
       "limitations": "Source-only native typed ownership/dispatch replaces original object/allocator/SEH ABI. Focused actual Look/selection/selected-retirement and packet/policy/damage/Player B0 source runs under native sanitizers with explicit component/engine/geometry boundaries; actual World i386 and launcher/probe link are not application or desktop tests. Normal non7 metadata/peer3C/transport and containing World/frame admission/retirement remain required; no complete equivalence or application-loading claim.",
       "evidence": [
         "recovered/game/human_reaction_selection.h",
@@ -35034,8 +35064,11 @@
         "recovered/game/human_reaction_retirement.h",
         "recovered/game/human_control_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json"
-      ]
+        "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",
@@ -43628,13 +43661,16 @@
       "program": "client",
       "entry": "007b3c80",
       "status": "partial",
-      "coverage": "Advance signed1.5x retained time, reason3 seven-position collision/transition, odd-seed three-position dynamics, strict expiry, surface/camera publication and common query restoration; return immediately after effect replacement.",
-      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. H2 containing-path and required producer failures remain open.",
+      "coverage": "Advance signed1.5x retained time, reason3 seven-position collision/transition, odd-seed three-position dynamics, strict expiry, surface/camera publication and common query restoration; return immediately after effect replacement. Native actual-owner verification now covers retained keys, odd-seed three-position motion, reason3 full-joint replacement and reason2 expiry.",
+      "limitations": "Source-only typed owners and delegated engine/CRT endpoints replace original object/allocator/SEH ABI. Existing focused native checks use explicit math/geometry/owner doubles; strict actual host i386 compilation is not execution. No original solver/trajectory equivalence, full World/application readiness, complete promotion or desktop claim. Full World/H8 integration and external Car/entry producer failures remain open.",
       "evidence": [
         "recovered/game/human_retained_clip_motion.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json"
-      ]
+        "analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json",
+        "analysis/human-h2-source-closure.md",
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+      ],
+      "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
     {
       "program": "client",

@@ -36,12 +36,16 @@ are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
 credit is separate: current source34 complete/3245 partial; [joint/clip kernel inventory
 reconciliation](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json) is complete,
-while containing-path verification and required producer resolution remain open.
+while full containing-World/application verification and external producer
+limitations remain open.
 
-The selected **H2 reactions/damage/ragdoll** milestone remains open until its
-required producer→dispatch→reaction/damage→contact/effect→retirement path works
-through the actual containing owners, including positive branches, failures and
-re-entry. Leaf fixtures and compile/link alone do not close H2. Full Human frame
+The **H2 reactions/damage/ragdoll source checkpoint is complete**: the actual
+Human/passive B0/inline98/E0/DD0/230/Effects graph now executes the owned reaction
+segment, retained clips/joints, damage, failure/re-entry and ordered teardown.
+Existing contact/fall/blast/death contracts retain their stated verification limits.
+Authored data and explicit engine/OS/lookup endpoints are not a running World.
+The earlier broad exit map is classified by the clarified H1–H8 branch ownership
+below; external Car/network callers are not blanket H2 source gates. Full Human frame
 verification belongs to H8 and depends on H3–H6 where reached; H2 records those
 interfaces and dependencies without assuming the other agents’ work.
 P2.2 additionally requires the other workstreams and actual user acceptance.
@@ -50,8 +54,9 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
 
 - [x] H1 — Model presentation through actual007A7470 dispatch.
   [Source checkpoint](checkpoints/p2.2-human-model-presentation-20261111.json).
-- [ ] H2 — Reactions, damage and ragdoll through containing owners. **Source closure blocked by D11**;
-  source achievements and explicit remaining dependencies follow below.
+- [x] H2 — Reactions, damage and ragdoll on actual Human/control owners.
+  [Source closure and limits](human-h2-source-closure.md), [receipt](checkpoints/p2.2-human-h2-source-20261112.json).
+  Full World/frame/application verification remains H8/P2.2.
 - [x] H3 — Offline Car/StaticWeapon entry/exit and mounted receivers on existing owners.
   [Verified source](checkpoints/p2.2-human-seat-interaction-20261112.json); [contract](human-seat-interaction-source.md).
   [H2 integration](checkpoints/p2.2-human-h3-integration-20261112.json) retains D4b/D6b1 owners and D5 guards.
@@ -132,7 +137,7 @@ below still apply; these are not whole-subsystem or desktop claims.
   [Checkpoint](checkpoints/p2.2-human-car-fuel-impulse-20261112.json), commit b132e6d.
   Native regression also corrected004E0180's uninitialized source fourth lanes.
 
-## H2 remaining dependencies and exit tests
+## Recovered H2 source and containing-world dependencies
 
 These are implementation checkpoints, not an instruction to reconstruct every
 adjacent Car or network feature. Before expanding a dependency, record the actual
@@ -151,8 +156,14 @@ and leave a nonreached wider feature with its explicit required guard.
 actual producers/retirement, mandatory versus mode/occupancy dependencies and
 merged UI limits. Direct ragdoll→Car004F2790 does not imply mesh deformation;
 Car→Car/passenger004F2B60 does. Status9/received0 are entry-specific, not callees
-of every offline reaction. D1–D3 are now source-complete; next: reached D4/D5;
-D10 unmounted composition can advance without waiting for all transport work.
+of every offline reaction. D1–D3 and the H2-owned D10 segment are source-complete. D4/D5 and shared
+entry work remain conditional containing-world integration; no transport
+readiness or continuing occupied/non7 Car frame is implied.
+
+The completed H2 source boundary is [recorded separately](human-h2-source-closure.md).
+Unchecked D4–D9/D11 entries below are retained containing-world/Car/entry
+integration obligations. Their exact guards remain; none is silently marked
+resolved or imported from active H4. Full World integration remains H8's work.
 
 ### Car state producers, damage and retirement
 
@@ -261,37 +272,28 @@ interface18 and publish0C before initialization. Do not repeat its completed aud
 
 ### Human composition and H2 closure
 
-- [ ] D10 — Exercise actual0077DE30→0074D510→007B0910→007A7470 composition from
-  the real containing Human/control owner, including source-null/source-present,
-  retained clip/joints, obstruction/contact/fall/blast damage, mounted/death and
-  effect/contact/audio retirement. Complete only newly reached required receivers.
-  Depends on relevant Car/entry tasks from D0 and external H3–H6 receivers where
-  reached. Verify the H2-owned reaction segment; full cross-branch frame assembly
-  is H8. Do not implement/import active H4 or take over unassigned H6/H8.
-- [ ] D11 — Resolve required unproduced-state boundaries: part5F9, wheel695,
-  EXPL record8 and smoke14. Preserve already confirmed findings. For each reached
-  path, supply a demonstrated original producer, prove native unreachability or
-  record a genuine blocker with its exact trigger and retained failure prefix.
-  Never invent initialization. A remaining reached required failure blocks H2.
-  **Current closure blockers:** required T7/T8 fresh part launch reaches004CB2CD
-  before any motion with5F9 unproduced; fresh wheel lifetime reaches005FDD10's
-  <=500ms/expiry695 read without a producer. Existing native checks already
-  preserve both failures. [Exact blocking paths](human-reaction-containing-boundary.md#source-closure-blockers).
-  D4b now preserves absent subtype14 placement lazily: zero-health/busy rejection
-  and mode2-clear authority do not read it; reached presentation XYZ still fails honestly.
-- [ ] D12 — Consolidated H2-owned containing-path verification and source closure:
-  actual dispatch, positive paths, interrupted mutation/cleanup, repeated entry
-  and teardown; targeted ASan/UBSan/LSan, strict actual i386 and final launcher.
-  Joint/clip frozen inventory reconciliation is [complete](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json);
-  actual containing verification, endpoint/integration limits and temporary audit
-  cleanup remain required. No new audits were introduced for reconciliation.
+- [x] D10 — Execute the H2-owned0077DE30 reaction segment→0074D510→007B0910→
+  007A7470 branch on actual Human/B0/inline/E0/DD0/230 owners, including retained
+  clips, joints, two-Human source borrowing, actual damage, failure/re-entry and
+  retirement. [Contract and test limits](human-h2-source-closure.md). Full World
+  dispatch and H4/H6 consumers remain H8/external interfaces.
+- [ ] D11 — External Car producer limitations: fresh part5F9, wheel695,
+  EXPL record8 and smoke14. Preserve confirmed failed prefixes and guards;
+  these are reached by the separate Car/debris simulation callers, not by the
+  Human-owned reaction segment. No producer/default or full-World unreachability
+  is invented. [Exact failures](human-reaction-containing-boundary.md#source-closure-blockers).
+- [x] D12 — Consolidated H2 source verification, inventory and audit cleanup.
+  Native100×8 actual-owner families, strict actual-host i386 and launcher/probe
+  links pass; [closure receipt](checkpoints/p2.2-human-h2-source-20261112.json).
+  No complete promotions, permanent tests or desktop claim. Original solver/
+  engine/ABI equivalence and full cross-branch execution remain outside this checkpoint.
 
-**H2 exit:** H2-owned D0 dependencies and D10–D12 pass, with external milestone
-contracts/dependencies recorded and no reached missing
-producer/required receiver hidden by doubles. If a real blocker remains, leave H2
-unchecked and state the exact blocking input/owner/evidence. Do not relabel leaf
-source or link success as a running Human frame. H8 still verifies the entire
-Human behavior set, and P2.2 still requires application/desktop delivery.
+**H2 source exit is satisfied.** The new owner graph closes the earlier
+selection/control/geometry-double gap. D11's original omissions and D4–D9
+integration remain visible on their actual callers; H2 completion does not turn
+their required failures into successful services. H8 verifies the entire Human
+behavior set in the actual containing World/application, and P2.2 requires
+application/desktop delivery. H4 stays separate; H6/H8 remain unassigned.
 
 ## External integration and acceptance
 
