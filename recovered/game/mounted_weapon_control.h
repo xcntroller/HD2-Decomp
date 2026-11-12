@@ -6,6 +6,8 @@
 #include <memory>
 #include <vector>
 #include <optional>
+#include "game/human_frame_inputs.h"
+#include <cmath>
 
 namespace hd2::game {
 
@@ -24,11 +26,30 @@ struct StaticWeaponControl {
     bool flagd4=false,flagdc=false,flag104=false,flag168=false;
 };
 
+//004C3B60 aim-rate prefix. The caller checks the actual FC occupant first;
+//shoot/reload inputs then continue to the separate H6 receivers.
+inline void request_mounted_aim_rates(StaticWeaponControl& control,const HumanFrameInputBuffer& first){
+    const auto real=[](std::uint32_t bits){float value;std::memcpy(&value,&bits,4);return value;};
+    const auto word=[](float value){std::uint32_t bits;std::memcpy(&bits,&value,4);return bits;};
+    const auto rate=[&](unsigned offset,std::uint32_t& value,std::uint32_t limit,bool& idle){
+        const auto input=first.get<float>(offset);idle=input==0;
+        if(!control.flag168)value=word(static_cast<float>(static_cast<long double>(input)*15.f));
+        else if(input!=0)value=word(static_cast<float>(static_cast<long double>(input)+real(value)));
+        const auto current=real(value),maximum=real(limit);
+        if(maximum<std::abs(current))value=current<=0?word(-maximum):limit;
+    };
+    rate(0xd0,control.fieldcc,control.field160,control.flagd4);
+    rate(0xd4,control.fieldd8,control.field164,control.flagdc);
+}
+
 class MountedWeaponControlLifetime {
 public:
     virtual ~MountedWeaponControlLifetime()=default;
     virtual void fire_marker(void* barrel)=0;
     virtual std::array<float,4> aim_direction()=0;
+    virtual std::array<float,4> mounted_position()=0;
+    virtual bool can_target(const std::array<float,4>&)=0;
+    virtual void frame_inputs(const HumanFrameInputBuffer&,const HumanFrameInputBuffer&)=0;
     virtual std::array<float,4> limits()const=0;
     virtual void view(bool visible)=0;
     virtual void clear_occupant()=0;

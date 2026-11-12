@@ -10,7 +10,8 @@ list. Detailed behavior/evidence stays in the linked contracts.
 
 ## Branch ownership — user clarification 2026-11-12
 
-H1, H3, H5 and H7 are finished on their respective branches. H2 is assigned to
+H1, H3, H5 and H7 are finished and merged into `feature/p22-hum`. Completed
+aggregate201adbf is merged into this H2 worktree; [integration evidence](human-completed-branch-integration.md). H2 is assigned to
 this worktree/agent. H4 is active with another agent on its separate branch;
 do not import or implement its work here. H6 and H8 are unassigned and will be
 started after H2 or H4 finishes. Finished status does not assert that a branch's
@@ -33,7 +34,7 @@ its JSON receipt records hashes and results. It is not application/desktop accep
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: current source34 complete/3096 partial; joint/clip recovery still
+credit is separate: current source34 complete/3218 partial; joint/clip recovery still
 has deferred credit reconciliation.
 
 The selected **H2 reactions/damage/ragdoll** milestone remains open until its
@@ -56,8 +57,8 @@ P2.2 additionally requires the other workstreams and actual user acceptance.
 - [ ] H4 — Common AI outputs: reached00584E30 completions, B0 action/navigation/
   formation, track events and DD0 transition/attachment consumers.
 - [x] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9
-  release and actual Scene2 actor dispatch. Finished on its separate branch, as
-  confirmed by the user; integration into H2 is not claimed.
+  release and actual Scene2 actor dispatch. [Completed source](checkpoints/p2.2-human-guard-area-source-20261112.json),
+  integrated from completed aggregate201adbf; H8/desktop verification remains separate.
 - [ ] H6 — Player items:00542E20 held item,00545140/005454D0 shots and reached
   command/FOV/dry-fire/melee/repair/transport consumers.
 - [x] H7 — Reached breath/blood particle and rest-footprint source through SAME

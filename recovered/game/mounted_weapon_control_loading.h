@@ -6,6 +6,7 @@
 #include "game/human_ai_shot_direction.h"
 #include "game/mounted_weapon_movement_sounds.h"
 #include "game/mounted_weapon_aim.h"
+#include "game/mounted_weapon_capability.h"
 #include "game/mounted_weapon_shell.h"
 #include "frontend/cleanup.h"
 #include <cstdio>
@@ -42,6 +43,12 @@ public:
         retire();(void)initialize(model,pivot,index);set_occupant(occupant);
     }
     void fire_marker(void* barrel)override{emit_mounted_weapon_shell(frames_,services_,static_cast<Frame>(barrel),shells_?shells_->get():Frame{});}
+    void frame_inputs(const HumanFrameInputBuffer& first,const HumanFrameInputBuffer& second)override{ //004C3B60.
+        if(!control_occupant_)return;
+        request_mounted_aim_rates(control_,first);
+        if(first.get<float>(0x18)!=0||second.get<float>(0x18)!=0||first.get<float>(0x34)!=0)
+            throw std::runtime_error("Mounted input requires actual H6 004C4780 firing / 004C6400 reload receivers");
+    }
     void advance(bool authority,std::uint32_t elapsed)override{ //004C55E0/004C56A0, original mode-bit mutual delegation.
         if(!authority&&control_.fielde0){control_.fielde0-=elapsed;if(human_frame_signed_word(control_.fielde0)<=0)control_.fielde0=0;}
         if(failed_||!control_occupant_)return;
@@ -71,6 +78,16 @@ public:
             static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[0])*direction[0];
         normalize_human_ai_shot(direction,square);
         return direction;
+    }
+    std::array<float,4> mounted_position()override{ //004C5800, failed path writes only XYZ; source W is unclaimed.
+        if(failed_)return {};
+        if(!vertical_)throw std::logic_error("Mounted position requires actual VERT pivot");
+        const auto world=frames_.actor_world_matrix(vertical_);return {{world[12],world[13],world[14],world[15]}};
+    }
+    bool can_target(const std::array<float,4>& target)override{ //004C6230.
+        if(failed_)return false;
+        if(!vertical_)throw std::logic_error("Mounted capability requires actual VERT pivot");
+        return mounted_vertical_capability(frames_,vertical_,control_,target)&&mounted_horizontal_capability(frames_,vertical_,control_,target);
     }
     bool initialize(Frame model,Frame pivot,unsigned index) { //004C1AD0(actor,model,pivot,index).
         if(control_.flag104)throw std::logic_error("Retire actual StaticWeapon control before reinitializing");

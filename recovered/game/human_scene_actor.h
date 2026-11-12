@@ -12,6 +12,7 @@
 #include "game/human_activation_fields.h"
 #include "game/human_loading_lifetime.h"
 #include <exception>
+#include <optional>
 
 namespace hd2::frontend {struct HumanRecord;}
 
@@ -29,6 +30,10 @@ struct alignas(16) HumanColdCommandControl {
     std::array<std::vector<std::uint32_t>,2> lists; //005AA7D0, at78/88.
     std::uint32_t field10=0;
     bool flag14=false;
+    std::optional<HumanVector> area_position; //Native00..0C unwritten until005AE610; clear005AE450 retains it.
+    void sniper_area(bool enabled,float radius,const HumanVector& position){ //005AE610, flag/radius/vector publication order.
+        flag14=enabled;std::memcpy(&field10,&radius,4);area_position=position;
+    }
     void bind_event_pool(HumanAIEventPool& pool){first.events.bind(pool);second.events.bind(pool);}
     void advance_events(std::uint32_t elapsed){ //005AD700: FIRST then SECOND, both reverse; actual typed deques.
         for(const auto* queue:{&first,&second})for(auto word:queue->words)

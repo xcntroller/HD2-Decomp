@@ -1,0 +1,217 @@
+{
+  "date": "2026-11-12",
+  "h2_base": "56aabf4",
+  "completed_aggregate": "201adbfce4e2919152f88a43c8d464f77fd982cf",
+  "source_only": true,
+  "h2_complete": false,
+  "h4_imported": false,
+  "application_enabled": false,
+  "desktop_verified": false,
+  "windows_outputs_executed": false,
+  "ledger_complete": 34,
+  "ledger_partial": 3218,
+  "new_partial_rows": 122,
+  "extended_rows": 23,
+  "complete_promotions": 0,
+  "historical_source_hash_checks": 65,
+  "copied_historical_records": 56,
+  "missing_previously_removed_tmp_records": 37,
+  "source_files": {
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "3eff1e5c6344ddbfe941bb699740cf27cd8ad40dcba0a6a6368363cca52c4ed6",
+      "bytes": 23139
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "7b409a53b7339b844c03415926a70a1873aefcae5ca73b5f791fce5f3ea178f7",
+      "bytes": 2816
+    },
+    "recovered/game/car_seat_actions.h": {
+      "sha256": "1a13c7102e98cd06eae0ad2fa43a140df4bb94c89a41ee38cb055a9fd64847ea",
+      "bytes": 12455
+    },
+    "recovered/game/door_collision_queries.h": {
+      "sha256": "47ee1fe70b702de5f5e074307c9938392cb501c53bc3b82ea806848676b6f9d8",
+      "bytes": 7266
+    },
+    "recovered/game/human_ai_action_pool.h": {
+      "sha256": "40974b1f2bb3ca8ee96adfe03a923d84c879d03d3288dfb3a10a7d9f425dce18",
+      "bytes": 6220
+    },
+    "recovered/game/human_ai_cover.h": {
+      "sha256": "721f4f8dff6e0f18c2035e3c55cbdd22983930cb674be99db526c80d28079cab",
+      "bytes": 7637
+    },
+    "recovered/game/human_ai_direction.h": {
+      "sha256": "f7b4a5ecc9562692c29f807c156e05866879c448b3b1b9c2a0071d09d72491a9",
+      "bytes": 6174
+    },
+    "recovered/game/human_ai_floor_path.h": {
+      "sha256": "2b98d57ca8bdcc88984cdb3e0e13ad6a7ae518b897634451a56dcb78ccb9a96c",
+      "bytes": 9153
+    },
+    "recovered/game/human_ai_frame_metrics.h": {
+      "sha256": "fc51945bf62c6cce41fb5c32ea218e30229178b7f59bec56144de3d92803dc2b",
+      "bytes": 12222
+    },
+    "recovered/game/human_ai_frame_output.h": {
+      "sha256": "04444cad74a4ed7bcc603256da81eb7bcdbcdf80d27db3279262d211583f4033",
+      "bytes": 8603
+    },
+    "recovered/game/human_ai_grenade.h": {
+      "sha256": "c130a837396d9f224e968151e473bba8feb3faa8aa23fd8139b9d994e2f605ce",
+      "bytes": 6275
+    },
+    "recovered/game/human_ai_resources.h": {
+      "sha256": "ac61549106c72769d5f2a13c79d4cf62765aa2e25c814f245ca835dc7aa0ef38",
+      "bytes": 12233
+    },
+    "recovered/game/human_ai_state_loading.h": {
+      "sha256": "e2939bd1776bca126305e7cf8772769bbd3bedc6dee43d60f512ef6f02333817",
+      "bytes": 34653
+    },
+    "recovered/game/human_ai_traversal.h": {
+      "sha256": "4820e3c9df2ad6b0073b6e0836a5bafd6ecd4491106b0ef642628de5772a0984",
+      "bytes": 3105
+    },
+    "recovered/game/human_area_ai_state_loading.h": {
+      "sha256": "f2af4ce179b407090760df4441b3d6e3ee182c2379697987eec15501567e81a2",
+      "bytes": 17355
+    },
+    "recovered/game/human_common_command.h": {
+      "sha256": "5f0bac2843a0e9cbe23147facf43de1d1ab56f39e1b87003e81cc376ea9ee098",
+      "bytes": 4547
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "6edd9acd17d00c595855dc9ba39fea09f3574f4241bd9e3c98b90e5f84987fea",
+      "bytes": 57093
+    },
+    "recovered/game/human_guard_ai_state_loading.h": {
+      "sha256": "261f83eaa00e17857588c6945cd123112bbcf28beab923d3b2dd9f59cea6b7bf",
+      "bytes": 125768
+    },
+    "recovered/game/human_inline_loading.h": {
+      "sha256": "a6a3ec334ce3d676e7ed39f26b933ec874f6fea40e6c887262264ace1ede8298",
+      "bytes": 11577
+    },
+    "recovered/game/human_loading_state_factory.h": {
+      "sha256": "24ab9b2a2dc0ef02a0b822a0be4e0ae431b6944e44487e4f6a8888c088a332c9",
+      "bytes": 15938
+    },
+    "recovered/game/human_look_control.h": {
+      "sha256": "60d27f6f56a6023b0f2665153c6383530591d85945c14b2d46fb2ae1a997da7f",
+      "bytes": 20533
+    },
+    "recovered/game/human_scene_actor.h": {
+      "sha256": "ce8bcd3db084535827bbd0f68e8aa6607a330ab87108dfdda775e08d27f88dbf",
+      "bytes": 8629
+    },
+    "recovered/game/human_script_ai_state_loading.h": {
+      "sha256": "d906709f042171df4c892a965f2ae336de3327e9663e82fc30dfabc9468b0ce8",
+      "bytes": 13937
+    },
+    "recovered/game/human_script_loading_controls.h": {
+      "sha256": "aea3a20b392c38bbef115ebe4b9dae22b1e5ebadfd6251fdb3b8edf34af1c507",
+      "bytes": 7685
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "799645add2225e0467cf9c3620bcbd555496119286995f86f9c9255854cd5792",
+      "bytes": 143505
+    },
+    "recovered/game/mounted_weapon_capability.h": {
+      "sha256": "817ca168f2b03b8ebc7f940ce25d8e5a11e7fbd3edbe6115c699b69b4d6b1b89",
+      "bytes": 4132
+    },
+    "recovered/game/mounted_weapon_control.h": {
+      "sha256": "8ac5ed157b87b02548bd0e809974d369a10174cb88ae4c1587c7a933143e909a",
+      "bytes": 3124
+    },
+    "recovered/game/mounted_weapon_control_loading.h": {
+      "sha256": "d51c399cf8162cd2b8b3ca95d1c1946caeec785e2864a231d17dda6d7ffdc1f5",
+      "bytes": 12559
+    },
+    "recovered/game/sight_loading.h": {
+      "sha256": "60376c83770243ceec75a220bbe59970368e6f73e748b0371398a8614fc0c000",
+      "bytes": 31684
+    },
+    "recovered/game/static_weapon_loading.h": {
+      "sha256": "e83d61c1ac65a038be6f1b26cd6ceaaa7261043a5da207b5e5efe20993371108",
+      "bytes": 13920
+    },
+    "recovered/game/static_weapon_loading_lifetime.h": {
+      "sha256": "1b167db73aa681ec81e75bc94b68d6353b9eb47f370ff725f33678c9f81a483e",
+      "bytes": 1274
+    },
+    "recovered/host/game_sight_loading.h": {
+      "sha256": "ac2a289c2f192747692f1e9abb3018d4709b0bb5762acbece2fef3854295a4a4",
+      "bytes": 7891
+    }
+  },
+  "verification_files": {
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-host-i386.o": {
+      "sha256": "89c0a9b1ee85e2df379a93d0422a9dae2571bef06714f77bec371e8b65550de6",
+      "bytes": 18316871
+    },
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-command-native.cpp": {
+      "sha256": "a06f781332716043d0e9c8b473fac5d5fce526eca4d95ed5dcd2eccbc2ab8c8a",
+      "bytes": 12958
+    },
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-command-native": {
+      "sha256": "6f464959e0e3ccd0b72b34bcf2d17925e3c591ad9e88f9bdd259558aa0c8b626",
+      "bytes": 3059440
+    },
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-command-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-command-native.log": {
+      "sha256": "ed4a33c4ec23cb8b7494766adfe599c85a389a97837d9343075e7f9efdb5416a",
+      "bytes": 169
+    },
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-launcher-build.log": {
+      "sha256": "7e9252d1406678b33b81e74a22b80ce66dc917f4950fae75cb2f1bc6e630b306",
+      "bytes": 820
+    },
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-application.exe": {
+      "sha256": "c6a847e83ae5e54421291db4bf3cd0a06080d0711b14d32d40e23d4f6446c92e",
+      "bytes": 3940352
+    },
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-probe.exe": {
+      "sha256": "e75a3380bfe1fa401826e425bf7cdb9b28f9df09cd62623ea77d081aecccb1cc",
+      "bytes": 1142272
+    },
+    "analysis/work/mission-world-20261103/h2-completed-evidence-201adbf/import-map.json": {
+      "sha256": "c5577206cce69fd2563fd797ddc6ffffe7ab2da36d2a70a08f4fb32fa0dbe938",
+      "bytes": 51712
+    },
+    "analysis/work/mission-world-20261103/h2-completed-branch-ledger-union.json": {
+      "sha256": "3d767287ca3d4fcd61d871f105e0192d472d465357b8139519c45a90e2b17490",
+      "bytes": 6790
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-host-i386.cpp": {
+      "sha256": "50eadd6eae5b6c30aa61aa6a857d9e67cf191c8e0aba52c0cdbd1f7b22cf711b",
+      "bytes": 1335
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-native.cpp": {
+      "sha256": "393416647e5ffd51b41996be000c7456764ae61b09ef89cd2611e72ed1fd846d",
+      "bytes": 12555
+    }
+  },
+  "checks": [
+    "PASS strict actual nested World/Control/Human/ragdoll/damage i386 compile, no execution",
+    "PASS100 ASan/UBSan/LSan B0/holder/packet/common-command/Car-event regression, explicit unselected throwing H5 interfaces",
+    "PASS latest application launcher and startup-probe compile/link; dedicated snapshots retained"
+  ],
+  "limits": [
+    "No live Human/DD0/World/application or original-engine execution",
+    "H4 remains separate; H6/H8 unassigned; no removal of D5/D11 required failures"
+  ],
+  "temporary_audits_removed": [
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-host-i386.o",
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-command-native.cpp",
+    "analysis/work/mission-world-20261103/human-h2-completed-merge-command-native"
+  ]
+}

@@ -1,7 +1,8 @@
 # P22-HUM H2 handoff —2026-11-12
 
 Active worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h2`, branch
-`feature/p22-hum-h2`. Latest source checkpoint5491e5b (retained messages), after
+`feature/p22-hum-h2`. Latest H2 implementation5491e5b (retained messages), now with completed
+aggregate201adbf merged onto ownership-plan checkpoint56aabf4; earlier
 1629702 (fragments),1e091a7 (H3),131e9b4 (worker),f771a60 (D6a) and fb89d76's
 move frome742f84. Check HEAD/status; preserve unrelated worktrees and user changes.
 Read AGENTS.md, Phase2 section2 plan.md, [Human plan](analysis/p22-hum-plan.md).
@@ -9,60 +10,37 @@ Read AGENTS.md, Phase2 section2 plan.md, [Human plan](analysis/p22-hum-plan.md).
 execution. Heavy compilation/Ghidra sequential. Actual application/render/user
 desktop acceptance remains P2.2; this checkpoint is source-only.
 
-## Assignment clarification — user 2026-11-12
+## Latest — completed aggregate201adbf merged into H2
 
-H1/H3/H5/H7 are finished on separate branches. This agent owns H2 only. H4 is
-being developed by another agent; keep it separate and do not import its source.
-H6/H8 are unassigned until H2 or H4 finishes. H8 owns full cross-branch Human-frame
-assembly/verification; do not expand H2 into that milestone or require H8 first.
-Preserve H2's actual reaction-owner/producers/retirement verification and exact
-failures. Record reached external contracts without supplying successful doubles.
-The attempted uncommitted H4 import was fully backed out; source/ledger remain
-at5491e5b. Diagnostic evidence is ignored under WORK
-`h2-h4-import-backed-out/`; merged-only results do not verify this checkout.
-The restored H2 native owner-boundary audit PASS100 and launcher/probe rebuild
-passed; temporary new audits were fingerprinted/removed. No new function credit.
+User clarification: finished H1/H3/H5/H7 are merged into `feature/p22-hum`.
+This checkpoint merges that completed aggregate201adbf into H256aabf4; H3 was
+already integrated, new source is H5. Active H4 stays separate with its agent;
+H6/H8 are unassigned until H2 or H4 finishes. H8 owns full cross-branch frame
+assembly. This agent continues H2, without importing/taking over H4/H6/H8.
+[Integration contract](analysis/human-completed-branch-integration.md),
+[receipt](analysis/checkpoints/p2.2-human-completed-branch-integration-20261112.json).
 
-## Latest — D6b2b retained messages and process delivery
+Source conflicts retain H2's reset/damage/worker/message owners alongside H5's
+Car driver/seat and mounted input/capability/action additions. Ledger union has
+no independently conflicting rows:122 new frozen partials,23 extensions, no
+promotions. **34 complete/3218 partial (3213client+5engine)**. H5's65 historical
+source hashes match Git;56 available evidence/log records copied/hash-checked;
+37 previously removed /tmp audits honestly absent. No active H4 source/credit.
 
-Base1629702 contains H3 integration1e091a7 and received fragments D6b2a.
-[Retained-message contract](analysis/human-retained-message-source.md),
+Strict nested actual H2 World/Human/Control/reaction/ragdoll/surface/damage i386
+compile PASS, targeted common-command/Car-event native sanitizer PASS100, latest
+launcher/probe rebuild/link PASS. New temporary audit source/binary/object
+fingerprinted/removed; frozen inputs intact, dedicated snapshots/logs retained.
+No Windows/original/engine/application/desktop execution. H5 retains its completed
+[source contract](analysis/human-guard-area-source.md); no unchanged audit rerun.
+
+Prior5491e5b retained messages/process delivery stays verified:
+[contract](analysis/human-retained-message-source.md),
 [receipt](analysis/checkpoints/p2.2-human-retained-messages-20261112.json).
-**D6b2b source-complete; H2/D6b2/D6 remain OPEN for D6b2c.** Plan now explains
-H/D/S and a/b/c labels; checkpoints mean verified source, not application delivery.
-**34 complete/3096 partial (3091client+5engine)**:14 NEW frozen partials and15
-extensions, no promotions. No new pool/allocator/engine/absent helper credit.
-
-- SAME record bytes across outgoing/pending/incoming/completion/container owners.
-  Actual00745EA0 copy-before20, native signed16 message lengths/48-bit prefix,
-  complete-container decode BEFORE admission, full08 generation filtering.
-- Native sequence lifting/last-ten duplication, reliable completion and ordered
-  delivery, strict retries/max7/backoff5000, ACK timing and count256 truncation.
-  Native record/node/head retirement differs: pending/outgoing release tail,
-  40/34/1C/10 heads in native order. Typed RAII reclaims native unreleased incoming/
-  completion payloads; no allocator/refcount/SEH/layout equivalence claim.
-- Actual captured414 callback detaches/free bytes outside20, shares SAME existing
-  process430 authority/presentation FIFO and packed flags. No World decoder under
-  worker B4. Actual0072D0E0 client/authority send selectors preserve6C-before74,
-  stage2, no extra active08/local gate; submission is not network success.
-- Existing C4 counts and connection08 use atomics with original definedness.
-  Source reset-mode publication uses SAME B4, BEFORE wrapper deletion/stop; no mode
-  clone. Other non7 flag/admission/application writers remain D6b2c/D9 scope.
-
-Final ASan/UBSan/LSan PASS100 actual message/queue/connection/worker/reversed-
-fragment→same process FIFO/reset families (including600-byte payload), actual
-source threads; explicit OS/pump endpoints. Includes callback snapshot despite
-414 clear, callback fault/retained later messages, required malformed/queue3/
-negative16 failures, sequence/retry/lifetime/retirement. Prior D6a cold100 regression
-PASS on NEW paths. Strict actual StartupSession send/receive/control-reset i386
-PASS; final launcher/probe compile/link PASS. No Windows/original/network/World/
-application/desktop run. New temporary fixture sources/objects/native binaries
-fingerprinted and removed; frozen original inputs/artifacts untouched. Dedicated
-Windows snapshots/research/logs retained. Ghidra batch ERROR at missing007459B0
-is recorded despite exit0, just like earlier00745520/007456D0; no absent credit.
-
-Earlier H3/D6b1/D6b2a verified source stays in linked contracts; do not restart
-unchanged kernels. D5 occupied/non7 Car frame guards remain required.
+D6b2a/b preserve SAME record/worker/B4/process FIFO, decode-before-admission,
+generations and ordered retirement; D6b2c admission/application remains OPEN.
+Do not restart unchanged kernels. H2 joint/clip source is implemented but its
+deferred frozen-inventory reconciliation remains next independent H2 work.
 
 ## Continue through dependencies
 

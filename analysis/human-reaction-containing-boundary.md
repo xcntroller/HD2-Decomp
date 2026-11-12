@@ -8,7 +8,8 @@ H2 and P2.2 remain OPEN. Existing original evidence is indexed in WORK
 ## Branch scope clarification — 2026-11-12
 
 The user split Human work across H1–H8 branches: H1/H3/H5/H7 finished, H2
-assigned here, H4 active elsewhere, H6/H8 later and unassigned. This map records
+assigned here, H4 active elsewhere, H6/H8 later and unassigned. Completed work
+is merged into `feature/p22-hum`; H2 now includes completed aggregate201adbf. This map records
 call dependencies, not ownership of all their implementations. Keep H4 separate;
 record its contracts and required failures rather than importing/taking over its
 work. H2 verifies the reaction/damage/ragdoll segment on its actual owners.

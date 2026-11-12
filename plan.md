@@ -251,7 +251,7 @@ preparation, not a standalone audit-only milestone.
   - [ ] Complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
   - [ ] Complete H2-owned reaction composition, required producer resolution and consolidated verification D10–D12, recording external contracts. H8 owns full Human-frame assembly; it is not a prerequisite to finishing H2.
 
-  Human branch assignments: H1/H3/H5/H7 finished; H2 assigned here; H4 active with another agent; H6/H8 unassigned until H2 or H4 finishes. Keep active H4 separate.
+  Human branch assignments: H1/H3/H5/H7 finished and merged into `feature/p22-hum`; [completed aggregate201adbf is integrated into H2](analysis/human-completed-branch-integration.md). H2 assigned here; H4 active with another agent; H6/H8 unassigned until H2 or H4 finishes. Keep active H4 separate.
 
   [P22-UI source-closed](analysis/p22-ui-source-closure.md), [checklist](analysis/p22-ui-plan.md): concrete same-World HUD/FPV/text/overlay/control, occupied/nonoffline presentation and console consumers verified. Human/Actor/packet producers and FRAME/RENDER/OWN execution remain external; no loading activation or desktop claim.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.

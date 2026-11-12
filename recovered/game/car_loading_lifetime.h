@@ -4,6 +4,7 @@
 #include "game/car_cold_solver.h"
 #include "game/car_health_reset.h"
 #include "game/car_steering.h"
+#include "game/human_frame_inputs.h"
 
 namespace hd2::game {
 template<class Frames>class SceneActor;
@@ -37,6 +38,9 @@ public:
     virtual void assign_seat(std::int32_t index,SceneActor<Frames>* human)=0;
     virtual bool exit_seat(std::int32_t index)=0;
     virtual void driver_input(float pedal,float steering)=0;
+    virtual void driver_frame_inputs(const HumanFrameInputBuffer&,const HumanFrameInputBuffer&)=0;
+    virtual bool seat_claimed(std::int32_t)const=0;
+    virtual void claim_seat(std::int32_t,bool)=0;
     virtual std::uint32_t reaction_seat_flags(std::int32_t index)const=0;
     virtual void dead_human_controls()=0;
     virtual void release_presented_driver_pedal()=0;
