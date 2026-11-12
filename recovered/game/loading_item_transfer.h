@@ -7,15 +7,20 @@
 
 namespace hd2::game {
 
+//Native loading bypasses enabled-module cooldown checks; live no-source
+//creation supplies its exact late gate after validation and before insertion.
+struct LoadingItemBeforeInsert {template<class Holder>std::int32_t operator()(Holder*)const{return 1;}};
+
 //007D8B40's EXACT007D81A0 loading call: no source actor, source slot0,
 //destination actor/slot, index−1, no dry-run/override, module7E4 temporarily
 //false. Runtime exchanges, drops, notifications and HUD branches are separate.
 //This consumes actual holder/stack owners; unsupported destination storage
 //rejects, never an opaque saved inventory. Caller owns displaced, if supplied.
-template<class Backend,class Items,class Limits>
+template<class Backend,class Items,class Limits,class BeforeInsert=LoadingItemBeforeInsert>
 std::int32_t transfer_loaded_item(Backend& frames,Items& items,Limits& limits,
                                  typename Backend::Entry entry,typename Backend::Entry& displaced,
-                                 ActorBase<Backend>& actor,std::int32_t slot,std::uint32_t game_word28) {
+                                 ActorBase<Backend>& actor,std::int32_t slot,std::uint32_t game_word28,
+                                 bool publish_expiry=true,BeforeInsert before_insert={}) {
     using Entry=typename Backend::Entry;
     displaced=Entry{};
     if(!entry)return -1;
@@ -74,6 +79,7 @@ std::int32_t transfer_loaded_item(Backend& frames,Items& items,Limits& limits,
     case 6:break;
     }
     if(holder&&!holder->empty())return -6; //007D81A0 has no source; holder must be empty.
+    const auto admission=before_insert(holder);if(admission<1)return admission;
     std::int32_t result;
     if(holder)result=holder->replace(entry,displaced);
     else result=stacks->insert(entry);
@@ -87,7 +93,7 @@ std::int32_t transfer_loaded_item(Backend& frames,Items& items,Limits& limits,
     std::uint32_t bits;std::memcpy(&bits,&weight,4);actor.field7c(bits);
     if(!storage->single()){item.holder_actor=&actor;item.holder_slot=slot;}
     if(item.flag1c&&model) {item.flag1c=false;frames.object_visible(model,false);}
-    item.field14=slot==3?game_word28+0x398u:0u; //007D81A0 resets all other slots immediately after transfer.
+    if(publish_expiry)item.field14=slot==3?game_word28+0x398u:0u; //007D81A0 resets all other slots immediately after transfer.
     return result;
 }
 

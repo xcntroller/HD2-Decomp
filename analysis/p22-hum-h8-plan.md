@@ -46,7 +46,7 @@ The preceding Active task/follow work is preserved and verified in the clothing 
 - [ ] Commands9/11: item pickup and source-container validation/application.
 - [ ] Command12: actual Player validation/application and Remote actions.
 - [ ] Command18: named animation resources, setup and control lifetime.
-- [ ] Command20: active Remote equipment/storage replacement and retirement.
+- [x] Command20: active Remote equipment/storage replacement and retirement [source checkpoint](human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint).
 - [ ] Command3: remaining selected common-command subtypes and effects.
 - [ ] Verify actual owners, packet positive/failure/lifetime paths, concrete host
   link and launcher; publish committed contracts for PACK integration.

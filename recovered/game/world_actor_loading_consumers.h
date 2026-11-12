@@ -42,6 +42,9 @@ public:
         return d().human_factory.make_human_loading_owner(frames,world,human);
     }
     template<class Actor>auto actor_inventory_capacity(const Actor& actor)const{return d().scene.frames().actor_inventory_capacity(actor);}
+    template<class Human,class Entry>std::int32_t transfer_created_human_item(Human& human,Entry entry,std::int32_t slot){
+        return d().human_factory.world_services().transfer_created_human_item(human,entry,slot);
+    }
     auto* script_context_for_frame(typename Dependencies::Frame frame){return d().script_link.context_for_frame(frame);}
     void door_script_use(typename Dependencies::Frame frame,std::uint32_t) { //005FF4B0→0041D960; command argument ignored.
         auto* context=script_context_for_frame(frame);

@@ -17791,8 +17791,8 @@
       "program": "client",
       "entry": "007d8b40",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007d8b40: Verified source/no-source same-Human weapon-slot transfer, cooldown/expiry/dry-run/displacement/retain accounting; containing swap/drop and other families excluded. Exact no-source loading transfer with module notifications disabled; general runtime exchanges excluded. Offline activation/prepared-spawn checkpoint: Cold no-source prepared Human placement retains enabled-module178/hand cooldown and all-slot game28+920 expiry, explicitly excluding active B0/A8/displaced transfers. Added reached no-source/no-destination slot0 branch for a newly constructed item: no holder/model/weight/module178 mutation, final game28+920 expiry remains.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. New source-only subset requires actual containing world/local packet decoder/camera wiring; no mission desktop acceptance. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
+      "coverage": "P2.2 source reconstruction at original entry 007d8b40: Verified source/no-source same-Human weapon-slot transfer, cooldown/expiry/dry-run/displacement/retain accounting; containing swap/drop and other families excluded. Exact no-source loading transfer with module notifications disabled; general runtime exchanges excluded. Offline activation/prepared-spawn checkpoint: Cold no-source prepared Human placement retains enabled-module178/hand cooldown and all-slot game28+920 expiry, explicitly excluding active B0/A8/displaced transfers. Added reached no-source/no-destination slot0 branch for a newly constructed item: no holder/model/weight/module178 mutation, final game28+920 expiry remains. Extended: Extend no-source Human creation with late authority/enabled cooldown gate, actual230 added/HUD/B0/FPV effects and final fresh-clock item14; arbitrary source/cross-Human/swap/drop branches remain excluded.",
+      "limitations": "Source-only typed ownership/STL/RAII instead of original allocator/object/decoder/virtual ABI; explicit endpoint doubles and concrete i386 host linking are not application or desktop verification. Only live no-source population into empty Human holders/stacks is added; general source moves/swaps/pickup and other PACK effects remain required.",
       "evidence": [
         "recovered/game/human_weapon_transfer.h",
         "recovered/game/loading_item_transfer.h",
@@ -17804,7 +17804,9 @@
         "analysis/session-activation-loading.md",
         "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
         "analysis/human-car-frame-events-source.md",
-        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json"
       ]
     },
     {
@@ -21293,14 +21295,16 @@
       "program": "client",
       "entry": "0059eb60",
       "status": "partial",
-      "coverage": "SAME cold Human storage reset and original fixed/holster/pack creation order; non7 missing WORD identity writeback rereads live record/mode after creation and precedes clothing. Authored identities and native one-instance-per-record rule retained.",
-      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
+      "coverage": "SAME cold Human storage reset and original fixed/holster/pack creation order; non7 missing WORD identity writeback rereads live record/mode after creation and precedes clothing. Authored identities and native one-instance-per-record rule retained. Extended: Extend existing storage reset/fixed/list population through actual live no-source Items,230/B0/HUD/FPV and active clothing; temporary identities/pack lifetime retained.",
+      "limitations": "Source-only typed ownership/STL/RAII instead of original allocator/object/decoder/virtual ABI; explicit endpoint doubles and concrete i386 host linking are not application or desktop verification. Only live no-source population into empty Human holders/stacks is added; general source moves/swaps/pickup and other PACK effects remain required.",
       "evidence": [
         "recovered/game/prepared_human_spawn.h",
         "analysis/session-activation-loading.md",
         "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json"
       ]
     },
     {
@@ -21346,14 +21350,16 @@
       "program": "client",
       "entry": "007d7810",
       "status": "partial",
-      "coverage": "Cold prepared-Human item allocation, actual identity assignment, real transfer, rejected entry release and SAME Items registration. Null actor/slot0 factory now follows actual no-source/no-destination transfer, identity/expiry and SAME module registration for Car event7; no fake Human or dynamic actor.",
-      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
+      "coverage": "Cold prepared-Human item allocation, actual identity assignment, real transfer, rejected entry release and SAME Items registration. Null actor/slot0 factory now follows actual no-source/no-destination transfer, identity/expiry and SAME module registration for Car event7; no fake Human or dynamic actor. Extended: Actual live no-source Human creation into empty holders/stacks after0059EB60 reset; same Items identity/publication and required active notifications.",
+      "limitations": "Source-only typed ownership/STL/RAII instead of original allocator/object/decoder/virtual ABI; explicit endpoint doubles and concrete i386 host linking are not application or desktop verification. Only live no-source population into empty Human holders/stacks is added; general source moves/swaps/pickup and other PACK effects remain required.",
       "evidence": [
         "recovered/host/game_mission_items.h",
         "analysis/session-activation-loading.md",
         "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
         "analysis/human-car-frame-events-source.md",
-        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json"
       ]
     },
     {
@@ -45717,6 +45723,18 @@
         "analysis/human-h8-pack-effects-source.md",
         "analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005b2a90",
+      "status": "partial",
+      "evidence": [
+        "recovered/game/human_packet_receiver.h",
+        "analysis/human-h8-pack-effects-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json"
+      ],
+      "coverage": "Actual postdecode command20 effect, including reserved/discard route, referenced Scene2 Human/B0kind7 admission and temporary mutable soldier population.",
+      "limitations": "Source-only typed ownership/STL/RAII instead of original allocator/object/decoder/virtual ABI; explicit endpoint doubles and concrete i386 host linking are not application or desktop verification. Only live no-source population into empty Human holders/stacks is added; general source moves/swaps/pickup and other PACK effects remain required."
     }
   ]
 }

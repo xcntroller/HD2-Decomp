@@ -81,12 +81,14 @@ public:
         item.field14=static_cast<std::uint32_t>(game_word28_)+0x398u;
         register_loaded_item(entry);return entry;
     }
-    template<class Human>Entry create_prepared_human_item(Human& human,std::int32_t definition,std::int32_t slot,std::int32_t identity) { //007D7810, cold no-source loading.
+    template<class Human>Entry create_prepared_human_item(Human& human,std::int32_t definition,std::int32_t slot,std::int32_t identity) { //007D7810, cold/live no-source Human creation into empty holders.
         if(!catalogue_.item(definition))return nullptr;
         if(slot<0||slot>6)return nullptr;
         const auto entry=create_item(definition);auto& item=runtime_item(entry);
         item.identity=identity<0?game::allocate_item_identity(current_identity_,pending_identities_,clock_):identity;
-        const auto result=game::transfer_prepared_cold_item(frames_,human,*this,consumers_,entry,slot,game_word28_,enabled_);
+        const auto result=human.flag90||human.loading_state||human.fielda8?
+            consumers_.transfer_created_human_item(human,entry,slot):
+            game::transfer_prepared_cold_item(frames_,human,*this,consumers_,entry,slot,game_word28_,enabled_);
         if(result<1){frames_.release_entry(entry);return nullptr;}
         register_loaded_item(entry);return entry;
     }

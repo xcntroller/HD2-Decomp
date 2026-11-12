@@ -12,7 +12,19 @@ compilation/Ghidra sequential. No permanent tests. User priority: getting in gam
 ordinary H8 Active/frame work. PACK does not require H8 as a whole to close.
 Do not edit/import its agent's worktree. The review at H8 `14d59d3` is the baseline.
 
-Latest [PACK clothing/Active dependency checkpoint](analysis/human-h8-pack-effects-source.md),
+Latest [PACK live equipment checkpoint](analysis/human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint),
+[receipt](analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json): **command20
+active source dependency resolved**, including Remote-only admission and reserved/
+discard routes. SAME storage reset/pack6 retirement, actual no-source live Items
+creation,230 added/HUD/B0/FPV and final fresh-clock expiry now compose with active
+clothing. Cold transfer API retains its guard; a distinct live kernel handles the
+real empty-holder/stack population boundary. Native ASan/UBSan/LSan PASS9900/100
+lifetimes with explicit endpoints, strict actual command20/packet/Items/World/
+DD0/equipment/clothing i386 FULL LINK and latest launcher/probe rebuild PASS.
+One new partial, no completes;34 complete/3399 partial. Temporary audits removed.
+This does not complete general cross-Human/source moves/swaps/pickup.
+
+Prior [PACK clothing/Active dependency checkpoint](analysis/human-h8-pack-effects-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-pack-clothing-20261112.json): **command2
 active source dependency resolved**, actual005A6930/005A6A00/0048A780 through SAME
 DD0/25 bone capture-release-rebind-restore-retain, geometry face2, physical/tracks/
@@ -34,15 +46,16 @@ Active posture observes actual name then verified retail logger RET. Full
 pending/decision/authority remains guarded; positive follow is not whole AI.
 
 **NEXT PACK:** commands7/8 general validation/application005A2D50/005A2E10 and
-005A2E90/005A2F50; these also underlie command20 live equipment0059EB60. Existing
-`transfer_prepared_cold_item` explicitly rejects active B0/A8; merely routing
-command20 to cold populate would be wrong. Recover actual live007D8B40 family/
-source/destination/notifications and lifecycle. Item commands9/11 need actual
+005A2E90/005A2F50. The new no-source live creation does NOT complete arbitrary
+source/destination transfer007D8B40, automatic007DA3F0 placement,007D9DE0 swap/
+007DA5E0 preflight and fallback007D9B40. Reuse verified source, extend actual
+cross-actor/equipment owners, retain validation/result/publication ordering.
+Item commands9/11 need actual
 005A39D0/005A3A40 and005A37C0/005A38F0; Player/Remote12 requires0053D5D0/0053D870/
 00594110; named-animation18 requires005A9C20/005AC4A0/0077CE10/007757E0; common3
-remaining subtypes. All remain required guards. Indexed original C exports are
+remaining subtypes. Those effects remain required guards. Indexed original C exports are
 now in WORK `human-h8-pack-effects`, and existing inventory/swap/peer lifecycle
-contracts; index before new exports.005B2A90 indexed but not yet exported.
+contracts; index before new exports.005B2A90 C/JSON is now exported in `human-h8-pack-equipment-command`.
 
 After PACK effects, resume005282E0/00529F60 pending processing,00528950 decisions,
 00536120 follow BEFORE ordinary navigation/aim/movement/command retirement in

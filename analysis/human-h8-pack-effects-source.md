@@ -1,8 +1,9 @@
 # H8 PACK effects — active clothing checkpoint, 2026-11-12
 
 User-directed priority is the missing effect families in PACK's review of H8
-`14d59d3`. This checkpoint resolves **command2's active source dependency**.
-Commands3/7/8/9/11/12/18/20 remain required. PACK must integrate committed
+`14d59d3`. The clothing checkpoint resolves **command2's active source dependency**.
+The subsequent live-creation checkpoint below resolves **command20's active source dependency**.
+Commands3/7/8/9/11/12/18 remain required. PACK must integrate committed
 source, reconcile its helpers and run its own affected stream/FIFO/module checks.
 H8, P22-HUM and application/desktop delivery remain open. No original or Windows
 binary was executed. Frozen inventory claims remain partial native adaptations.
@@ -85,8 +86,9 @@ Sight/Players/camera owners, new Active task/cancel/follow/regroup methods and
 the complete Human frame. Launcher/startup-probe rebuild passes. No Windows
 fixture was run. Receipt records fingerprints; temporary audit sources/binaries
 are removed after verification. Other PACK effect guards remain honest,
-especially active item insertion underlying command20: its cold transfer kernel
-still rejects B0/A8 and cannot be reused as a completed general effect.
+At the clothing checkpoint, active item insertion underlying command20 was
+still required; the subsequent checkpoint below binds that path. The cold
+transfer guard remains in its cold-only API.
 
 Original evidence is indexed first and retained in WORK:
 `human-h8-pack-effects*`, `human-h8-clothing-{control,rebind,physical,morph}` C/JSON,
@@ -94,3 +96,53 @@ Original evidence is indexed first and retained in WORK:
 `prepared-item-construction/005a6930.c`, `human-geometry-bindings/0079c320.c`,
 `human-h8-pending-players/00458e50.c`, pending task/follow/formation exports and
 `human-h8-pending-empty.asm`. Original SHA256 is recorded in the receipt.
+
+
+## Command20 live no-source item checkpoint
+
+`005B2A90` still decodes its entire temporary soldier before the typed effect,
+including reserved/discard routes. It resolves the referenced Scene2 Human,
+requires actual published B0 kind7 and populates a mutable copy of the decoded
+record. Missing Human, missing B0 and other B0 kinds genuinely return. No caller
+or per-packet replacement storage is created. Native early lookup is a pure slot
+query; the typed effect re-resolves after decode rather than retaining an unsafe
+actor pointer across the packet reader. Original allocator/decoder ABI equivalence
+is not claimed.
+
+`0059EB60` uses actual `007DDEF0` storage reset: remove borrowed pack6 FIRST,
+release actual holder/array entries ascending, zero cooldowns/weight, then create
+fixed slots0/4/5/2/3, holsters1 and pack contents6 in native order, one item per
+record. Non7 missing WORD identities are filled only in that temporary soldier.
+Mode2 clothing uses the preceding verified active command2 owner. The old cold
+placement API still rejects actual B0/A8; active creation has a distinct, real
+`007D7810` → no-source `007D8B40` empty-holder/stack path on SAME Items.
+
+Existing general no-source holder/stack/capacity/family/pack admission is reused;
+an optional late admission callback inserts the enabled-module/authority/cooldown
+gate AFTER validation and BEFORE insertion. Loading's default callback and expiry
+behavior stay unchanged. Live creation defers item14 until the native final
+stage, so230 callbacks cannot observe a prematurely published expiry. On actual
+module7E4, it calls actual230 `00792590` when present, rechecks mode/current2C for
+HUD, publishes178, then for hand3 writes holder18, refreshes actual B0 virtual74
+and checks fresh mode/current2C/A8/state50-bit1 before actual FPV request8. Final
+item14 rereads game28 for EVERY slot, including when7E4 is disabled. Required
+receiver errors propagate after the native mutation prefix; the actual holder
+and module retain the entry for ordered cleanup. No successful notification stub.
+
+This completes the live no-source population used by command20, not arbitrary
+cross-Human source moves, swaps, fallback placement or item pickup. Those remain
+commands7/8/9/11 dependencies; their guards are unchanged. No source credit for
+unreconstructed branches of007D8B40 is implied.
+
+Fresh focused ASan/UBSan/LSan audit: **9900 assertions /100 lifetimes**. It uses
+actual ActorBase/seven storage holders/stack owners, live transfer/populate,
+command20 admission and reserved/discard receiver policy; explicit item/engine/
+equipment/clock endpoints terminate the graph. Repeated Remote replacement,
+pack6 lifetime, old-entry retirement, exact fixed-slot/list order, one-per-record,
+unchanged decoded identities, cooldown/fresh-mode, callback
+failure with holder ownership, enabled/disabled notifications and final expiry
+are covered. Strict actual i386 FULL LINK instantiates actual command20 and all
+packet command effects through real Items/World/control/clothing owners. Latest
+launcher/startup-probe rebuild passes. Audits fingerprinted/removed; no Windows
+fixture or application was run. Receipt:
+`analysis/checkpoints/p2.2-human-h8-pack-equipment-20261112.json`.

@@ -597,6 +597,24 @@ public:
         auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Human item removal requires its actual Player B0");
         human_state_factory(human).reset_item_player_mode(*state);
     }
+    template<class Human,class Entry>std::int32_t transfer_created_human_item(Human& human,Entry entry,std::int32_t slot){
+        auto& d=dependencies();return game::transfer_created_human_item<typename Dependencies::ActorFrames>(d.scene.frames(),human,d.world_actors.items(),*this,entry,slot);
+    }
+    template<class Human,class Entry>void created_human_equipment_added(Human& human,Entry entry,std::int32_t slot){
+        if(!human.loading_lifetime){if(human.fielda8)throw std::logic_error("Created item requires actual230 lifetime");return;}
+        if(auto* equipment=human_inline(human).equipment())equipment->transfers().added(entry,slot);
+    }
+    template<class Human>void created_human_refresh_item(Human& human){ //005A6A90, actual B0 virtual74.
+        if(!human.loading_state)return;
+        auto* state=composition(human).states().get();if(state!=human.loading_state)throw std::logic_error("Created item lost actual published B0");
+        state->refresh_item();
+    }
+    template<class Human>void created_human_hand_fpv(Human& human){
+        if(!(mode_flags()&2u)||dependencies().players.control().current_player()!=&human)return;
+        if(!human.loading_lifetime){if(human.fielda8)throw std::logic_error("Created hand item requires actual230 lifetime");return;}
+        auto* equipment=human_inline(human).equipment();
+        if(equipment&&!(equipment->state().words().template get<std::uint32_t>(0x50)&1u))dependencies().first_person.view().request(mode_flags(),8,0);
+    }
     template<class Human>void notify_human_inventory_changed(Human& human){
         if(dependencies().players.control().current_player()==&human)dependencies().hud.inventory_changed();
     }
@@ -1810,9 +1828,9 @@ public:
     }
     void receive_human_equipment_packet(const HumanPacketCommand& command){ //005B2A90, including discard.
         using Human=typename Dependencies::Composition::Human;
-        auto* human=dynamic_cast<Human*>(dependencies().scene.frames().scene_actor_identity(command.fields.template get<std::int32_t>(8)));
-        if(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=7u)return;
-        throw std::runtime_error("Human PACK command20 requires Remote equipment replacement0059EB60 on actual Items/B0/DD0");
+        receive_human_equipment_effect(command,
+            [&](std::int32_t identity){return dynamic_cast<Human*>(dependencies().scene.frames().scene_actor_identity(identity));},
+            [&](Human& human,auto& soldier){PreparedHumanLoading<Dependencies> factory(dependencies());factory.populate(human,soldier);});
     }
     template<class Human>void clothing_control_refresh(Human& human){ //0048A780→00786C20; cold Human has no DD0.
         if(!human.loading_lifetime){if(human.fielda0)throw std::logic_error("Clothing raw A0 has no typed DD0 lifetime");return;}
