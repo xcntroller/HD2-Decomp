@@ -1,5 +1,13 @@
 # P22-FRAME implementation —2026-11-12
 
+
+**Current status,2026-11-13:** [reassessment](p22-frame-dependency-review-20261113.md)
+confirms FRAME remains blocked after PACK4fccf12. Current master UI/RENDER,
+including3C/40 history, and later physics bodies are available; full H8 frame,
+5F9 first-use state, positive retained restoration and containing/non7 integration
+remain. Availability claims in the original checkpoint account below are
+historical and superseded by that review. No production source changed.
+
 Fresh fetched/actual base05dbdee51cc366476317011b91b1a1863041dcee;
 isolated feature/p22-frame. [Plan](p22-frame-plan.md). Source-only: application
 loading/forwarding remains disabled in OWN; no original/Windows code or desktop

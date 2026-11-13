@@ -1,6 +1,6 @@
 {
   "base": "05dbdee51cc366476317011b91b1a1863041dcee",
-  "kind": "Current concrete template instantiation contracts; not a claim that every leaf is reached in Tutorial or absent on every other branch.",
+  "kind": "Historical concrete template requirements at the recorded base; current availability is reassessed separately, not54 still-missing functions.",
   "render_inspected": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
   "ui_inspected": "ebdcbf59bc6a59880bb664c0a5934e46105669d6",
   "master_inspected": "b132e6d78d9622e63dcfee982e917ad0ac10b64f",
@@ -713,5 +713,19 @@
         }
       ]
     }
-  ]
+  ],
+  "latest_dependency_review": {
+    "date": "2026-11-13",
+    "contract": "analysis/p22-frame-dependency-review-20261113.md",
+    "evidence": "analysis/p22-frame-dependency-review-20261113.json",
+    "frame_unblocked": false,
+    "frame_source_complete": false,
+    "revisions": {
+      "feature/p22-frame": "c36bba8c5aa2855a02c11ce832810cebe39e8d10",
+      "feature/p22-pack": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+      "feature/p22-hum-h8": "51082a20acd87e68cb3d41aeed57492ffcdab855",
+      "master": "fa94dee38922a21397289a7b5746819c83b42d89",
+      "feature/p22-own": "939fb70283fbf635e0cf1f8f9bcdcae7d8a7800e"
+    }
+  }
 }

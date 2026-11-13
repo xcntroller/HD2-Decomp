@@ -1,57 +1,51 @@
-# P22-FRAME handoff —2026-11-12
+# P22-FRAME handoff — still blocked,2026-11-13
 
-Work only in `/home/control/Documents/Projects/HD2-Decomp-p22-frame`, branch
-feature/p22-frame. Exact fetched/implementation base
-05dbdee51cc366476317011b91b1a1863041dcee. No merge/push, master advance or other
-checkout edits. No original/Windows execution or application mission enabling.
-RENDER54a93e7 is committed separately; its strict original per-volume3C/40 first
-history remains blocked. UI source is now COMPLETE on unmergedebdcbf5; master
-b132e6d was inspected through Git, not imported. Do not repeat stale missing-body
-claims for later master rigid-body motion or latest UI.
+Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-frame`, branch
+feature/p22-frame. Production checkpoint remainsc36bba8; this latest work is a
+source-only dependency reassessment requested after PACK completion.
+[Current review](analysis/p22-frame-dependency-review-20261113.md),
+[revision/blob evidence](analysis/p22-frame-dependency-review-20261113.json),
+[plan](analysis/p22-frame-plan.md). No source imports/merges, other-worktree edits,
+push, original/Windows execution or application mission enabling.
 
-[Plan](analysis/p22-frame-plan.md), [implementation](analysis/p22-frame-implementation.md),
-[exact54 Runtime contracts](analysis/p22-frame-external-contracts.json),
-[core receipt](analysis/checkpoints/p22-frame-session-20261112.json),
-[final receipt](analysis/checkpoints/p22-frame-runtime-20261112.json).
+FRAME is **not unblocked and must not be marked source-complete**. Reviewed exact
+PACK4fccf12, HUM H851082a2, masterfa94dee and OWN939fb70. The selected PACK packet
+effects are complete; newer master supplies completed UI and RENDER, including
+the formerly blocked per-volume3C/40 raw-allocation history. Do not repeat those
+obsolete missing-body/history claims. Real later RigidBody.update/World adapters
+also exist, with matching ContactEvent ABI, but retain the5F9 guard below.
 
-Verified source: positive offline session input/fixed/variable, actual Players
-control and World/module/camera/engine/model/dubbing/text/Car/particle/blast
-services; lifecycle owns/publishes/retires one coordinator before finish/rollback/
-World destruction. Runtime11 authority/presentation now dispatch through actual
-actor timers, same fades/opacity and deferred registry. Expiry uses SAME process
-module12 stream, selector2/identity10/**command3** bits. Original GEffects60 is
-model opacity reset, not fade cancellation. Shared walk007646F0, World Ladder
-required notification and actual Win32 beep bindings remove redundant Runtime
-hooks. Mutable original input arrays preserve UI consumption before Player/final
-gates; OWN must retain writable views without copying or casting read-only data.
+Actual remaining blockers:
 
-Native ASan/UBSan/LSan policy/lifecycle and final100 loose-item/100 real-registry/
-100 mutable-input families PASS, with explicit engine/physics/restore/UI doubles.
-Actual full i386 World/session/lifecycle/module/fade/process-packet composition
-and application link PASS; Windows outputs never run. All temporary audits and
-scripts fingerprinted/removed. Two new partials005B7320/005B7480; two expansions;
-zero complete promotions. Full tracker still hits unrelated missing legacy
-0062D880 WORK evidence; focused frozen inventory/changed ledger checks pass.
+- HumanFrameRuntime still rejects containing Active/Remote B0, remaining
+  00751480 actions and00755500 motion. Actual World kind3 authority reaches
+  that B0 receiver. H8.2/3/4 remain open; packet starts do not complete frames.
+- Fresh rigid-part5F9 remains confirmed unproduced and guarded in current
+  PACK/master004CB2B0. Do not initialize it to false/zero/random or infer its
+  provenance from the separate RENDER allocation contract.
+- Positive non7 Runtime retained-item005B7EC0 restore is absent. Offline RET
+  is already supplied; retained_items_ creation/clear is not restoration.
+- Conditional non7 session policies, reached Dog/Sight/Runtime and actual
+  application forwarding/integration remain. OWN now has activation/controller
+  source but still guards input/fixed/update pending real FRAME composition.
 
-**FRAME is blocked, NOT source complete overall.** No independently available
-base-owned FRAME binding remains selected. Exact next dependencies:
+The old54-operation JSON records base-qualified compile sites; many leaves have
+advanced. It now points to the current review and must not be read as54 still-
+missing bodies. Resume with actual remaining H8/physics/Runtime contracts, then
+integrate the available UI/RENDER/PACK/OWN source with matching lifetimes and
+verify the whole affected graph. No independently complete runtime was inferred
+from static imports, fixtures or absent mission observations.
 
-- HUM/masterc1908cf: actual RigidBody.update/GameWorldActors.update_detached_body
-  import, including changed full contact-event ABI and matching callers. Fresh
-  part5F9 is confirmed unwritten before its first solver read; do not initialize
-  it to false/zero/random. Wheel695 is a separate original unknown.
-- PACK/Runtime: actual retained-item005B7EC0 restoration and positive non7
-  notification/transport producers. Offline restore RET is already bound.
-- HUM/Player/Items/Dog and RENDER debug: exact remaining typed callbacks in JSON;
-  no cold fixtures or empty captures establish mission inactivity.
-- UI import: completed GameUiPresentation HUD/FPV/control/command endpoints with
-  actual loan sources and mutable64-word views; no successful placeholder.
-- Conditional non7 session FRAME bodies remain OPEN behind real process config,
-  console/match/peer/queue consumers. Exact addresses/gates are in implementation.
-- OWN/LIFE installs activation/forwarding and real controller/cutscene/peer
-  services, then retires frame borrowers before World owners. Engine runtime
-  observation and user desktop acceptance remain separate.
+Preserved verified source atc36bba8: positive offline session input/fixed/variable,
+actual Players/World/module/camera/engine/model/dubbing/text/Car/particle/blast
+services and lifecycle-owned frame coordinator; Runtime11 containing timers,
+SAME fades/opacity, module12 expiry and deferred registry; mutable original
+input arrays and real walk/Ladder/beep bindings. Existing source receipts remain
+[session](analysis/checkpoints/p22-frame-session-20261112.json) and
+[Runtime](analysis/checkpoints/p22-frame-runtime-20261112.json).
 
-Resume only with these owning-component contracts/imports or new original state
-provenance. Preserve current verified source; do not use flags/defaults to bypass
-those dependencies or take over other workstreams.
+This review validated committed-source pins, JSON, preserved54 entries and diff
+checks only. Production source is unchanged, so no rebuild/sanitizer rerun or new
+function/ledger/README credit. Earlier native/i386/application results retain
+their documented endpoint-double and execution limits; no desktop claim.
+Read AGENTS.md and use research_index.py before new original exports.

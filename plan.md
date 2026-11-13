@@ -336,4 +336,4 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
 
-P22-FRAME: [isolated plan](analysis/p22-frame-plan.md), base05dbdee; offline session/input/control/lifecycle and Runtime11 containing fade/packet/retirement verified. **Blocked** at later physics import/original5F9, positive retained restore, conditional non7 process owners and external UI/HUM/PACK/OWN contracts. UI source is complete on unmergedebdcbf5. [Details](analysis/p22-frame-implementation.md); no mission/desktop claim.
+P22-FRAME: [plan](analysis/p22-frame-plan.md), production checkpointc36bba8. **Still blocked after PACK4fccf12**, per [2026-11-13 review](analysis/p22-frame-dependency-review-20261113.md): full H8 frame receivers, fresh rigid-part5F9, positive retained restore and containing/non7 integration remain. Selected PACK effects and current master UI/RENDER source, including3C/40 history, are available; no import or desktop claim.

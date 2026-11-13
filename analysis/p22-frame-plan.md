@@ -1,4 +1,11 @@
-# P22-FRAME implementation plan
+# P22-FRAME implementation plan — still blocked,2026-11-13
+
+
+[Current reassessment](p22-frame-dependency-review-20261113.md),
+[exact source evidence](p22-frame-dependency-review-20261113.json): PACK effects,
+current master UI/RENDER and later physics source are available. Full Human frame
+receivers, rigid-part5F9, positive retained restore and containing/non7 integration
+still block closure. The original implementation/checkpoint account follows.
 
 Freshly fetched origin/master and exact implementation base:
 05dbdee51cc366476317011b91b1a1863041dcee. Created isolated worktree
@@ -15,9 +22,7 @@ integration, actual runtime observation and desktop acceptance remain separate.
 - [x] Preserve session_frame_loading policies, SAME session/status/Music D0,
   ascending19-slot module passes, Scene2 captured-forward/FIFO versus Runtime
   reverse visits, actual camera, clock, input, physics and lifetime owners.
-- [x] Inspect latest UIebdcbf5 through Git: complete UI source and positive advance_hud/FPV/control
-  consumers exist there, not this implementation base. Do not repeat stale
-  missing-function claims or copy entire UI implementation/ledger.
+- [x] Inspect current masterfa94dee/OWN939fb70 UI and PACK4fccf12/HUM51082a2 through Git; record available source and remaining actual blockers in the current review.
 
 ## FRAME implementation and verification
 
@@ -30,9 +35,7 @@ integration, actual runtime observation and desktop acceptance remain separate.
 - [x] Implement Runtime11 authority/presentation containing005B7320/005B7480,
   SAME retained fade/opacity, actual process packet and deferred retirement.
 - [ ] **Blocked:** bind embedded RigidBody24=004C9000 and positive005B7EC0
-  retained restore. Actual physics source is on later masterc1908cf; import
-  contracts and confirmed unproduced part5F9 are recorded. PACK restore requires
-  original retained Runtime records. No empty tick/module2 substitute.
+  retained restore. Actual physics source is available on current master/PACK, with full ContactEvent ABI; first-use5F9 remains guarded. Positive non7 restore still needs the actual retained Runtime owner/consumer, outside completed PACK effects.
 - [x] Inventory Runtime consumers and bind available actual walk007646F0,
   World Ladder notifications and platform beep; keep54 exact required external
   interfaces in p22-frame-external-contracts.json, without claiming reachability.
@@ -54,14 +57,12 @@ integration, actual runtime observation and desktop acceptance remain separate.
 
 ## Exact external dependencies to reconcile
 
-- [ ] UI advance_hud/control/FPV methods from unmerged UI branch and their real
-  Human/order/occupied/Sight/console inputs. This base's HUD/full input methods
-  are not replaced by forced disabled flags or successful empty receivers.
-- [ ] RENDER54a93e7 is unmerged: actual Scene/callback/procedural/special-frame
-  services exist there; original per-volume3C/40 provenance remains blocked.
-  No import assumed; FRAME scheduling must not repair or suppress RENDER.
-- [ ] HUM/PACK/other Runtime positive services:54 exact contracts identified
-  in p22-frame-external-contracts.json from concrete instantiation.
+- [ ] Import/bind available current master UI HUD/control/FPV source with real
+  Human/order/occupied/Sight/console inputs and mutable64-word views.
+- [ ] Import available masterfa94dee RENDER stages/history/callbacks; its former
+  volume3C/40 source blocker is resolved. Preserve actual ownership on integration.
+- [ ] Finish actual H8/Runtime/physics dependencies identified by the current
+  review. The54 base-qualified compile contracts are historical, not54 current gaps.
 - [ ] OWN/LIFE final application forwarding, activation/install and retirement;
   actual engine-selected resources/populations/branches and desktop acceptance.
 
@@ -75,7 +76,7 @@ doubles. This is not completed Runtime composition or mission execution.
 The continuation below completes the available Runtime11/walk/notification/
 platform/packet bindings and records the precise remaining blocked composition.
 
-## Final status —2026-11-12
+## Historical checkpoint status —2026-11-12
 
 **Blocked; overall P22-FRAME source completeness is not claimed.** Available
 base-owned offline session/control and Runtime11 containing bindings are complete
@@ -90,3 +91,10 @@ actual i386 World/lifecycle/module/fade/packet composition and application link
 pass; endpoint doubles and unexecuted engine/desktop levels remain explicit.
 No original/Windows code ran. No push or merge. Resume with actual owning-component
 imports/contracts; preserve mutable input and native state/packet widths.
+
+## Current dependency check —2026-11-13
+
+- [x] Reassess committed PACK/HUM/master/OWN and preserve exact source evidence.
+- [ ] Close FRAME after the remaining actual Human,5F9/restore and containing
+  contracts are supplied and integrated. Current result: **blocked**; no source
+  import, execution enabling, repeated unchanged audit or function credit.
