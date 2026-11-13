@@ -6,6 +6,7 @@
 #include "frontend/cleanup.h"
 #include "frontend/pre_mission_data.h"
 #include "game/dynamic_item_contact_sound.h"
+#include "game/loose_item_handoff.h"
 #include <limits>
 
 namespace hd2::game {
@@ -81,6 +82,9 @@ public:
     }
     template<class Sound>void contact_sound(Sound& sound) { //005B7570, actual item definition38 and world pose.
         emit_dynamic_item_contact(this->backend_,items_,entry_,this->base_.frame(),field6a4_,sound);
+    }
+    void release_item_to_inventory(){ //005B6980, frame EC BEFORE item loan/frame reference; body closes later in00477190.
+        release_loose_item_to_inventory(this->backend_,this->base_,entry_);
     }
     Entry entry() const {return entry_;}
     Body& body() {return body_;}

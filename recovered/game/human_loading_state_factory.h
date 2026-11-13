@@ -1,6 +1,8 @@
 #ifndef HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
 #define HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
 #include "game/human_state_damage.h"
+#include "game/human_common_command.h"
+#include "game/human_player_item_notification.h"
 
 #include "game/human_active_ai_state_loading.h"
 #include "game/human_guard_ai_state_loading.h"
@@ -41,7 +43,7 @@ public:
         std::unique_ptr<Base> result;
         switch(kind) {
         case 1:{auto player=std::make_unique<Player>(frames_,inputs_,callbacks_);player->bind_sight_services(services_);result=std::move(player);break;}
-        case 3:result=std::make_unique<Active>(frames_,inputs_,second_,callbacks_,actions_.kind1,services_);break;
+        case 3:result=std::make_unique<Active>(frames_,inputs_,second_,callbacks_,actions_,services_);break;
         case 4:result=std::make_unique<Guard>(frames_,inputs_,second_,callbacks_,actions_,random_,contexts_);break;
         case 5:result=std::make_unique<Script>(frames_,inputs_,second_,callbacks_,contexts_);break;
         case 6:result=std::make_unique<Passive>(frames_,inputs_,second_,callbacks_);break;
@@ -50,6 +52,10 @@ public:
         default:throw std::runtime_error("No original Human B0 factory case");
         }
         result->bind_frame_command_packets(services_);
+        result->bind_common_command_receiver([this](Base& state,const HumanPacketCommand& command){
+            dispatch_human_deferred_common_command(state,command,
+                [this](Base& current,const HumanPacketCommand& value){return common_command(current,value);});
+        });
         if(kind==4||kind==8)result->bind_special_music_reference([this](bool enabled){services_.human_special_music_reference(enabled);});
         return result;
     }
@@ -119,6 +125,7 @@ public:
     bool human_remote_ai_enabled(){return services_.human_remote_ai_enabled();} //006B66B0.
     void record_state_cleanup_failure(std::exception_ptr error)noexcept{services_.record_state_cleanup_failure(error);}
     auto& services(){return services_;}auto& contexts(){return contexts_;} //SAME owners for derived sound dispatch.
+    void advance_active_presentation(Base& state,std::uint32_t elapsed){static_cast<Active&>(state).advance_active_presentation(elapsed);}
     auto& control(){return control_;}
     template<class FrameServices>void apply_inline_feedback(Base& state,std::uint32_t flags,FrameServices& frames){
         const auto kind=state.words().template get<std::uint32_t>(0x48);
@@ -130,15 +137,13 @@ public:
         }
     }
     void notify_inline_frame_command(Base& state,std::uint32_t command){ //Actual virtual08 subset reached by+80 feedback.
+        if(state.words().template get<std::uint32_t>(0x48)==1){
+            PlayerItemNotification notification;notification.command=command;
+            notify_player_item(static_cast<Player&>(state),notification,services_);return;
+        }
         if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Human feedback command requires actual0073E5A0 packet receiver");
         switch(state.words().template get<std::uint32_t>(0x48)){
         case 3:case 4:case 5:case 6:case 8:return; //005785B0 genuinely does nothing in offline7, AFTER actual item execution.
-        case 1:
-            if(command==1){static_cast<Player&>(state).player_words().set(0x534,10000u);return;} //00542920, exact readiness command.
-            if(command==0)return; //Actual default branch, before nonoffline transport.
-            if(command==8){auto* human=state.human();if(!human)throw std::logic_error("Player feedback command has no bound Human");set_human_sight_alignment(*human,-10.f,services_.mode_flags());return;} //00542920→005A6250.
-            if(command==4||command==6||command==7)return; //Actual default branch of00542920, no offline packet.
-            throw std::runtime_error("Other player command requires its actual00542920 effects");
         default:throw std::runtime_error("Human command08 requires its actual current B0 receiver");
         }
     }
@@ -152,11 +157,27 @@ public:
         auto* input=state.input();if(!input)throw std::runtime_error("Human suspension requires its actual input record");
         input->word38=value?0u:7u;
     }
+    bool common_command(Base& state,const HumanPacketCommand& command){ //Existing packet boundary without a frame Runtime.
+        const auto kind=state.words().template get<std::uint32_t>(0x48);
+        if(kind!=1&&(kind<3||kind>8))throw std::runtime_error("Human common command has no proven B0 receiver");
+        return execute_human_common_command(state,command,services_);
+    }
+    template<class Runtime>bool common_command(Base& state,const HumanPacketCommand& command,Runtime& runtime){ //Actual shared DC00586200.
+        const auto kind=state.words().template get<std::uint32_t>(0x48);
+        if(kind!=1&&(kind<3||kind>8))throw std::runtime_error("Human common command has no proven B0 receiver");
+        return execute_human_common_command(state,command,services_,runtime);
+    }
     void script_context(Base& state,typename Contexts::Context* context){
         auto* script=dynamic_cast<Script*>(&state);
         if(!script||state.words().template get<std::uint32_t>(0x48)!=5)
             throw std::logic_error("Script binding notification requires the actual current state5");
         script->script_context(context);
+    }
+    void script_formation(Base& state,typename Script::Formation* formation){
+        auto* script=dynamic_cast<Script*>(&state);
+        if(!script||state.words().template get<std::uint32_t>(0x48)!=5u)
+            throw std::logic_error("Formation binding requires actual Script B0");
+        script->script_formation(formation); //0058D900; producer owns borrower retirement before formation destruction.
     }
     void retire_dead_state(Base& state){ //Virtual84:005836E0, with Player0053BD00 tail.
         retire_human_dead_state(state,services_,frames_);

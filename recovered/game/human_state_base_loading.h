@@ -40,7 +40,8 @@ public:
     //Typed source handover views, not a native ABI or new function credit.
     HumanVector current_direction()const override{return words_.template get<HumanVector>(0x20);} //005830F0.
     HumanVector target_direction()const override{return words_.template get<HumanVector>(0x10);} //00584B50.
-    void set_target_direction(const HumanVector& value){words_.set(0x10,value);} //00583120, all four words; absent frozen.
+    virtual void set_current_direction(const HumanVector& value){words_.set(0x20,value);} //00583100, virtual50, absent frozen.
+    virtual void set_target_direction(const HumanVector& value){words_.set(0x10,value);} //00583120, all four words; absent frozen.
     std::uint32_t derived_loading_word(unsigned)const override{throw std::runtime_error("Human state has no recovered derived handover word");}
     PlayerHandover player_handover()const override{throw std::runtime_error("Human state has no recovered player handover");}
     void sight_enemy_acquired(Human&)override{} //00583170, genuine RET4 base receiver.
@@ -65,7 +66,7 @@ public:
             for(auto offset:{0x50u,0x5cu,0x30u,0x34u,0x38u,0x3cu,0x10u,0x14u,0x18u,0x1cu,
                 0x20u,0x24u,0x28u,0x2cu,0xb0u,0x60u,0x64u,0x6cu})
                 words_.set(offset,previous->words_.template get<std::uint32_t>(offset));
-            action_target_=previous->action_target_; //005832F0 copies native68 identity, not a truncated DWORD.
+            action_target_=previous->action_target_;action_target_base_=previous->action_target_base_; //005832F0 copies native68 identity, not a truncated DWORD.
             words_.set(0x50,words_.template get<std::uint32_t>(0x50)&0x3fffffffu);
             for(auto offset:{0xacu,0xadu})words_.set(offset,previous->words_.template get<std::uint8_t>(offset));
         }else {
@@ -149,6 +150,21 @@ public:
     const auto& first_frame_commands()const{return first_;}
     const auto& second_frame_commands()const{return second_;}
     void queue_frame_command(FrameCommand command,bool second){(second?second_:first_).push_back(std::move(command));}
+    void bind_common_command_receiver(std::function<void(HumanStateBaseLoading&,const FrameCommand&)> receiver){
+        if(human_)throw std::logic_error("Cannot replace a bound Human common command receiver");
+        common_command_=std::move(receiver);
+    }
+    void emit_climb_command(){ //00583C30 virtualD8; actual family policy is factory-bound.
+        if(!common_command_)throw std::logic_error("Human climb requires its actual B0 command receiver");
+        FrameCommand command;command.kind=2;command.fields.set(8,0x1fu);
+        command.fields.set(0xc,0u);command.fields.set(0x10,0u);common_command_(*this,command);
+    }
+    HumanVector climb_history_position()const{
+        if(!input_||!inputs_.contains(input_))throw std::logic_error("Human climb lost its actual registered input record");
+        const auto* history=input_->history(1);
+        if(!history)throw std::runtime_error("Human climb requires actual history1 position value");
+        return history->position_value.words.template get<HumanVector>(0x30); //0073F9A0: LEA EAX,[ECX+30]; RET.
+    }
     void queue_drop_command(std::int32_t actor,std::int32_t item,const HumanVector& direction,float speed){ //00588EF0.
         FrameCommand command;command.kind=10;auto& f=command.fields;f.set(8,item);f.set(0x10,direction);f.set(0x20,speed);f.set(0x24,actor);
         queue_frame_command(std::move(command),true);
@@ -177,7 +193,10 @@ public:
     Human* human()const{return human_;}Command command()const{return command_;}Entry item()const{return item_;}
     void clear_cached_item()noexcept{item_=Entry{};} //005839D0/005783D0 clears A8 AFTER command08, not the hand holder.
     ActionTarget* action_target()const{return action_target_;}
-    void action_target(ActionTarget* actor){action_target_=actor;}
+    void action_target(ActionTarget* actor){action_target_=actor;action_target_base_=actor?&actor->base():nullptr;}
+    void retire_action_target_base(const void* base)noexcept override{
+        if(action_target_base_==base){action_target_=nullptr;action_target_base_=nullptr;}
+    }
     HumanFrameInputBuffer* first_frame_inputs()const{return first_frame_inputs_;}
     HumanFrameInputBuffer* second_frame_inputs()const{return second_frame_inputs_;}
     void bind_frame_inputs(HumanFrameInputBuffer& first,HumanFrameInputBuffer& second){first_frame_inputs_=&first;second_frame_inputs_=&second;}
@@ -212,10 +231,12 @@ private:
     Frames& frames_;Inputs& inputs_;HumanJointWords<0xc0> words_;
     std::vector<FrameCommand> first_,second_; //Native84/94, typed actual kind6 producer and shared packet serializer.
     Human* human_=nullptr;Command command_=nullptr;Entry item_{};Input* input_=nullptr;
+    const void* action_target_base_=nullptr; //Captured while alive; late ActorBase removal never dereferences a dead SceneActor.
     ActionTarget* action_target_=nullptr; //Borrowed native68. Initial no-previous bind leaves it unwritten in original; cold guard only.
     HumanFrameInputBuffer* first_frame_inputs_=nullptr;HumanFrameInputBuffer* second_frame_inputs_=nullptr; //Actual74/78 borrowers.
     MissionNavigation* navigation_=nullptr;MissionTableRecord* point_=nullptr;
     std::function<void(bool)> special_music_reference_;
+    std::function<void(HumanStateBaseLoading&,const FrameCommand&)> common_command_;
     std::function<void(std::int32_t,bool,const std::vector<FrameCommand>&)> frame_packets_;
 };
 } //namespace hd2::game

@@ -2,6 +2,7 @@
 #define HD2_GAME_CAR_DEFORMABLE_PARTS_H
 
 #include "game/car_physics.h"
+#include "game/car_deform_mesh.h"
 #include <string_view>
 #include <cstdlib>
 #include <functional>
@@ -48,6 +49,63 @@ public:
     }
     const std::vector<Part>& parts() const {return parts_;}
     std::vector<Part>& parts() {return parts_;}
+    struct MeshImpact {bool first=false,second=false;float absorbed=0;explicit operator bool()const{return first||second;}};
+    //004FF8B0's original mesh capture is deferred until the FIRST hit vertex.
+    //Native654/658 is this physical owner's vector, initialized by004E2900.
+    template<class Random>MeshImpact deform_mesh(Frames& frames,const std::string& resource,std::size_t index,
+            const CarPartPhysics& applied,const CarContactVector& point,const CarContactVector& direction,
+            float radius,float impulse,Random& random){
+        auto& part=parts_.at(index);MeshImpact result;
+        result.absorbed=static_cast<float>(static_cast<long double>(impulse)-
+            (static_cast<long double>(applied.scalars.get(0x28))*.009999999776482582f)*impulse);
+        float ratio=result.absorbed/applied.scalars.get(0x14);if(ratio>1.f)ratio=1.f;
+        auto backup=find_backup(resource,part.name);const bool fresh=!part.variants&&backup==backups_.size();
+        auto source=!part.variants&&!fresh?backups_[backup].mesh.get():part.mesh;
+        CarContactVector local{},force{},limits{};
+        for(unsigned axis=0;axis<3;++axis)limits[axis]=applied.scalars.get(0x2c+axis*4);
+        const float square=static_cast<float>(static_cast<long double>(radius)*radius);
+        const auto affect=[&](unsigned lod,bool& changed){
+            const auto original=frames.car_deform_lod(source,lod),current=frames.car_deform_lod(part.mesh,lod);
+            if(lod&&(!original||!current))return; //Native LOD1 pair is optional.
+            if(!original||!current)throw std::runtime_error("Car deformation requires actual LOD0");
+            visit_car_deform_vertices(frames,original,current,[&](std::size_t count,auto read_original,auto read_current,auto write){
+                if(!lod){ //Native matrix/ray conversion follows BOTH locks.
+                    auto inverse=frames.car_inverse_matrix(frames.actor_world_matrix(part.frame));
+                    local=frames.car_transform(point,inverse);
+                    inverse[12]=inverse[13]=inverse[14]=0;force=frames.car_transform(direction,inverse);
+                    for(unsigned axis=0;axis<3;++axis)force[axis]=static_cast<float>(clamp_car_deformation(force[axis],limits[axis]));
+                }
+                for(auto n=count;n;){const auto vertex=--n;const auto current_value=read_current(vertex);
+                    const auto x=static_cast<long double>(current_value[0])-local[0],y=static_cast<long double>(current_value[1])-local[1],z=static_cast<long double>(current_value[2])-local[2];
+                    if(!((x*x+z*z)+y*y<square))continue;
+                    if(!changed&&!part.variants&&(!lod||!result.first)){
+                        if(fresh){
+                            //Strings precede factory/copy; the record is published
+                            //before flag4 and before any changed vertex.
+                            std::string name=part.name,key=resource;
+                            auto mesh=frames.copy_car_deform_backup(part.mesh);
+                            backups_.push_back({std::move(mesh),1,std::move(name),std::move(key)});
+                            part.flags|=4u;
+                        }else if(!(part.flags&4u)){part.flags|=4u;++backups_[backup].uses;}
+                    }
+                    changed=true;
+                    if(!part.variants){const auto draw=random();const auto saved=read_original(vertex);
+                        write(vertex,deform_car_vertex(saved,current_value,force,limits,ratio,draw));}
+                }
+            });
+        };
+        affect(0,result.first);
+        //A fresh hit deliberately retains its current source for LOD1, even
+        //when LOD0 just published a backup. Repeated hits use the saved mesh.
+        if(frames.car_deform_lod_count(source)>1)affect(1,result.second);
+        return result;
+    }
+    void finish_mesh_impact(Frames& frames,std::size_t index,const MeshImpact& result){
+        const auto& part=parts_.at(index);if(part.variants)return;
+        if(result.first)frames.car_rebuild_deform_lod(frames.car_deform_lod(part.mesh,0));
+        if(result.second)frames.car_rebuild_deform_lod(frames.car_deform_lod(part.mesh,1));
+        frames.car_refresh_deform_mesh(part.mesh);frames.car_invalidate_deform_frame(part.frame,0);frames.update_scene_object(part.frame);
+    }
     void reset_loading_health(const CarPhysics& physics,const std::function<void()>& callback) { //004FE910(1).
         const auto& applied=physics.geometry().parts;
         if(applied.size()!=parts_.size())throw std::logic_error("Car part health requires the SAME applied geometry");
@@ -72,20 +130,21 @@ public:
         }
     }
     //004FE910(0), same parts and retained glass texture exchange as00500DA0.
-    //Positive mesh backup and seat attachment/nativeFA8+28 restore still
-    //require their actual owners.
-    void restore_cold(Frames& frames,const CarPhysics& physics,const std::function<void()>& callback) {
+    //The containing geometry supplies actual seat-associated Door repair.
+    void restore_cold(Frames& frames,const CarPhysics& physics,const std::function<void()>& callback,const std::string& resource={},
+            const std::function<void(std::size_t,Frame)>& repair={}) {
         const auto& applied=physics.geometry().parts;
         if(applied.size()!=parts_.size())throw std::logic_error("Car part restore requires the SAME applied geometry");
         for(std::size_t n=0;n<parts_.size();++n){
             if(parts_[n].type!=applied[n].type)throw std::logic_error("Car part restore ordering differs from applied geometry");
         }
         for(auto n=parts_.size();n;){const auto index=--n;auto& part=parts_[index];
-            if(part.flags&4u)throw std::runtime_error("Car part restore requires its actual deformed mesh backup owner");
+            restore_mesh(frames,index,resource);
             if(part.type==3&&(part.flags&8u)){
                 if(frames.car_exchange_glass_texture(part.mesh,part.glass_texture))frames.update_scene_object(part.frame);
                 part.flags&=0xfff7u; //Native clears8 even when either texture was NULL.
             }
+            if(repair)repair(index,part.frame); //FA8+28 Door20, before variants/visibility.
             for(auto alternative=part.alternatives.rbegin();alternative!=part.alternatives.rend();++alternative){
                 if(!*alternative)throw std::runtime_error("Car deformable variant sequence has a missing frame");
                 frames.object_visible(*alternative,false);frames.update_scene_object(*alternative);
@@ -102,6 +161,31 @@ public:
         return result;
     }
 private:
+    struct Backup {TextureOwner mesh;std::uint32_t uses;std::string name,resource;};
+    std::size_t find_backup(const std::string& resource,const std::string& name)const{
+        for(auto n=backups_.size();n;)if(backups_[--n].resource==resource&&backups_[n].name==name)return n;
+        return backups_.size();
+    }
+    void restore_mesh(Frames& frames,std::size_t index,const std::string& resource){
+        auto& part=parts_[index];if(part.variants||!(part.flags&4u))return;
+        //Native requires BOTH case-sensitive keys before restoration. A
+        //nonmatching record is a genuine skip; flag4 remains set in that case.
+        const auto backup=find_backup(resource,part.name);
+        if(backup==backups_.size())return;
+        auto& record=backups_[backup];const auto original=record.mesh.get();
+        const auto restore=[&](unsigned lod){const auto source=frames.car_deform_lod(original,lod),destination=frames.car_deform_lod(part.mesh,lod);
+            if(lod&&(!source||!destination))return;
+            if(!source||!destination)throw std::runtime_error("Car mesh restore requires actual LOD0");
+            visit_car_deform_vertices(frames,source,destination,[&](std::size_t count,auto read,auto,auto write){for(auto n=count;n;) {--n;write(n,read(n));}});
+        };
+        restore(0);const bool second=frames.car_deform_lod_count(original)>1;if(second)restore(1);
+        frames.car_rebuild_deform_lod(frames.car_deform_lod(part.mesh,0));
+        if(second)frames.car_rebuild_deform_lod(frames.car_deform_lod(part.mesh,1));
+        frames.car_refresh_deform_mesh(part.mesh);frames.car_invalidate_deform_frame(part.frame,0);
+        if(second)frames.car_invalidate_deform_frame(part.frame,1);
+        frames.update_scene_object(part.frame);part.flags&=0xfffbu;
+        if(!--record.uses){record.mesh.reset();backups_.erase(backups_.begin()+backup);}
+    }
     struct Tag {const char* name;std::uint8_t type;};
     inline static constexpr std::array<Tag,10> tags{{
         {"DEFORM BODY",1},{"DEFORM BUMPER",2},{"DEFORM LIGHT",5},{"DEFORM SPZ",7},
@@ -165,7 +249,16 @@ private:
         }
     }
     std::vector<Part> parts_;
+    std::vector<Backup> backups_;
 };
+
+//Both004EC5C0 retirement and004E9DB0 reset call004FE910 on these SAME
+//geometry/resource/Door owners. Keep their containing bindings identical.
+template<class Frames,class Geometry>void restore_car_deformable_parts(Frames& frames,Geometry& geometry,
+        const std::function<void()>& callback){
+    geometry.deformables().restore_cold(frames,geometry.physics(),callback,geometry.resource(),
+        [&geometry](std::size_t index,typename Frames::Frame frame){geometry.auxiliary().restore_part_frame(index,frame);});
+}
 
 } //namespace hd2::game
 #endif

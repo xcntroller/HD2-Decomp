@@ -1,0 +1,267 @@
+{
+  "result": "PASS",
+  "date": "2026-11-13",
+  "source_only": true,
+  "integration_direction": "feature/p22-pack INTO master",
+  "master_parent": "fa94dee38922a21397289a7b5746819c83b42d89",
+  "pack_parent": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+  "hum_dependency_revision": "51082a20acd87e68cb3d41aeed57492ffcdab855",
+  "frame_review_revision": "91a7d33c90a74ad1bf34e829d6f160166bb1b262",
+  "p22_pack_source_complete": true,
+  "p22_hum_complete": false,
+  "p22_frame_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_or_windows_code_executed": false,
+  "pushed": false,
+  "pack_branch_retained": true,
+  "closure_receipt": "analysis/checkpoints/p22-pack-source-20261113.json",
+  "checks": [
+    "All23 selected PACK closure source fingerprints match merged tree.",
+    "All9 PACK native/concrete/application/tracker log fingerprints match preserved closure receipt; old temporary fixtures are absent.",
+    "Actual merged Human/World/module13 authority+presentation/module16/Scene2 activation/deactivation and Script runtime full static i386 link PASS; renderAD/BB plus formation2..C dispatch instantiated.",
+    "Forced application-launch and startup-probe builds PASS; no Windows fixture execution.",
+    "Frozen ledger/README checks and27 existing tracker tests PASS.",
+    "Unique ledger union of both parents; Script00416E10 render/formation coverage and evidence reconciled; no new credit or complete promotions.",
+    "Newer master render, callbacks, lifecycle, volumetric history and application owner bytes unchanged.",
+    "Graph13 nodes/17 relationships and original IDs/endpoints/types preserved; row/node status synchronized, source paths resolve and blocking DAG acyclic.",
+    "PACK source complete; HUM/FRAME remain partial; current UI/RENDER/DATA merged source status recorded."
+  ],
+  "source_conflict_resolution": {
+    "path": "recovered/game/mission_script_loading_runtime.h",
+    "result": "Preserve both disjoint renderAD/BB and formation2..C helper dispatches before derived handlers; both helpers preserve authority and native PC/advance policy."
+  },
+  "native_sanitizers": {
+    "rerun_for_merge": false,
+    "reason": "PACK bodies unchanged byte-for-byte; retained ASan/UBSan/leak receipts and9 matching logs reviewed. Current full concrete and application i386 links verify additive composition. Native effect/engine endpoints remain explicit doubles; no containing simulation or desktop claim.",
+    "upstream_receipt": "analysis/checkpoints/p22-pack-source-20261113.json"
+  },
+  "ledger": {
+    "complete": 34,
+    "partial": 3479,
+    "client_partial": 3474,
+    "engine_partial": 5,
+    "new_merge_credit": 0,
+    "duplicate_rows": 0
+  },
+  "source_files": [
+    {
+      "path": "recovered/game/human_packet_commands.h",
+      "bytes": 10976,
+      "sha256": "347a44d9edf8856809c741db6bd1544f9711c8e6aa07d5988e86ee3b5ec4ccab"
+    },
+    {
+      "path": "recovered/game/human_packet_receiver.h",
+      "bytes": 3398,
+      "sha256": "ce3b6543b6b59fa9299e2ecc61b847adcf0ab53835372d5f9bcb3a49323abab0"
+    },
+    {
+      "path": "recovered/game/human_frame_commands.h",
+      "bytes": 5365,
+      "sha256": "fe6401eb83d23e9452a596d47f095291b478fb1968cb82367db84058f9f4bf61"
+    },
+    {
+      "path": "recovered/game/session_local_packets.h",
+      "bytes": 7668,
+      "sha256": "6fd80a71a94fd6b2f2969814afc8ce51594cfc56d98679a424558c84a9b96137"
+    },
+    {
+      "path": "recovered/game/human_score_presentation.h",
+      "bytes": 3582,
+      "sha256": "6699ec90c181e91e5cbd1a0daa73a8e1dafdeca1495efb05e59b233df67ccca8"
+    },
+    {
+      "path": "recovered/game/human_packet_notifications.h",
+      "bytes": 5451,
+      "sha256": "5bb306d1508d962076c7db4890732e2d66e73b9031d473f866f208d8023eda80"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 219709,
+      "sha256": "befc67d02c00a1292d228a7f7947aaa0c8adf5184c077d9096e1ffc5dd60c946"
+    },
+    {
+      "path": "recovered/game/mission_script_visibility.h",
+      "bytes": 4420,
+      "sha256": "84515d32c680241441b63504c05c9def501dabfc62e2f0b009e46deabe844688"
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "bytes": 14456,
+      "sha256": "e6a51ea7a712aa4e78dd6e0813a71597ee0dacd6ee92220b901c1da438e45c79"
+    },
+    {
+      "path": "recovered/game/human_common_command.h",
+      "bytes": 10939,
+      "sha256": "21694645807dd7242741adceb3714a24f1769e0b859ed72996b43ab55486594d"
+    },
+    {
+      "path": "recovered/game/human_timed_interaction.h",
+      "bytes": 8557,
+      "sha256": "f586b1cda0ce44d6ed2884f30feaae88696db0329d6fe801c6f401e146a37e82"
+    },
+    {
+      "path": "recovered/game/document_place_scene_actor.h",
+      "bytes": 7951,
+      "sha256": "b21b16ec1591fac5af791f5b77d306f693d98079c5a2272c2e4978ed62a6e1bd"
+    },
+    {
+      "path": "recovered/game/human_loading_composition.h",
+      "bytes": 5866,
+      "sha256": "028c4e50335dd355b74bfb6be906d8a31e146da583d8ff31e8c2ba280b7b205d"
+    },
+    {
+      "path": "recovered/game/human_loading_inventory.h",
+      "bytes": 14156,
+      "sha256": "fc1acc03ca8887d26edf75688ef1097042ad205f7dfd8269b09f7d3bc0f63a73"
+    },
+    {
+      "path": "recovered/game/human_inventory_packet.h",
+      "bytes": 2846,
+      "sha256": "c821a633b8e8dc7232a283ba509749322df607a58c0a29b6506c92e02e6c41fd"
+    },
+    {
+      "path": "recovered/game/human_item_pickup.h",
+      "bytes": 2944,
+      "sha256": "4f5a925a91768349758f14cb9f16ae0d0aaaffcf0f7e8555c53e2a3e6461af3c"
+    },
+    {
+      "path": "recovered/game/human_supply_pickup.h",
+      "bytes": 1877,
+      "sha256": "7567832df522a2b5ad21f3edcda1c54d34c03f0007c236a4214d90efe14ae690"
+    },
+    {
+      "path": "recovered/game/human_player_packet_action.h",
+      "bytes": 5106,
+      "sha256": "b1549ac7d84e595e522e462725b004aa6387f5a8d883d96cf7c3cc7009e5296d"
+    },
+    {
+      "path": "recovered/game/human_speech_loading.h",
+      "bytes": 11558,
+      "sha256": "ee2b76164261b69cf8fa5d81b1b1277e75f34af4bb87c4e40f22ff1f0dfba802"
+    },
+    {
+      "path": "recovered/game/heavy_fire_module_loading.h",
+      "bytes": 7147,
+      "sha256": "e4423dd397e4ca0c2c3c670701fd18f90413d7f88e9f6f0352924fce38cbd16b"
+    },
+    {
+      "path": "recovered/game/heavy_fire_aircraft.h",
+      "bytes": 9294,
+      "sha256": "414b271d76c8ac2797d8ef239dd29fc11c5b1c63b84340630478a779b4dde748"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 62973,
+      "sha256": "a7674df8886e1e2ef63495712b6a9baa2b5bdcd8a083a46c1f546a4215d3352b"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "bytes": 32517,
+      "sha256": "b8aa5edf787bf44f9ba85a21faa9c1ee548407c243b27e6248e6bca9bf8fd93c"
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "bytes": 8992,
+      "sha256": "6889438a84666f973f1deb6153bd5182d14acccd4fba4590fef2d70d0bb9dcac"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 129148,
+      "sha256": "0c97a486f237e4b40dc4946837ccdcb2d0cc1224610290698e8bf5c299b0e762"
+    },
+    {
+      "path": "recovered/host/game_data_observations.h",
+      "bytes": 3015,
+      "sha256": "0bef3cd774765aa656e46e604e89dc4aa80d5eb49793b38ed935a7cdccb9e28f"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 140352,
+      "sha256": "c15d361034880682028881e5260014333af7845b4e2fe60b7e129146aede4b39"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 72638,
+      "sha256": "fd1d37d5c84483008fd975f3c786d0f96c1bab913e328ce335b1075407adfe4b"
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "bytes": 7991,
+      "sha256": "2a4775bb3159a216f575217eb3cad4c6cd8804aaf1787aa2580e8b274dddc041"
+    },
+    {
+      "path": "recovered/host/game_ui_scene_callbacks.h",
+      "bytes": 2260,
+      "sha256": "f3c40e9e320fafd3cbfb696c750cba122660bcd8e6b98da92beab257e21e49a0"
+    },
+    {
+      "path": "recovered/game/volumetric_lights.h",
+      "bytes": 26386,
+      "sha256": "8cf058b505c35dcdb38023c3004362ca864308607b58a53b93f532e10fa0ebf2"
+    },
+    {
+      "path": "recovered/host/game_render_stages.h",
+      "bytes": 2986,
+      "sha256": "35b735462d6ab530dfc384b126d050f068ab720fceface90c63cc1994c19c761"
+    },
+    {
+      "path": "recovered/host/game_owner.h",
+      "bytes": 19270,
+      "sha256": "bd3ab1c2775dac7541a270f691ec23be6fc54866d9d9253265a580f525cba938"
+    }
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/p22-pack-master-20261113/application.log",
+      "bytes": 821,
+      "sha256": "0f6568a0df26224db36b1a758c02068d4a1292dcca3fd8097fddb41529d975df"
+    },
+    {
+      "path": "analysis/work/p22-pack-master-20261113/concrete.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-pack-master-20261113/ledger-check.log",
+      "bytes": 437,
+      "sha256": "cdbee0fe9246342689278b96fcaa2d39d49160c4e03822b28a3e32b8f5a69b3d"
+    },
+    {
+      "path": "analysis/work/p22-pack-master-20261113/ledger-render.log",
+      "bytes": 380,
+      "sha256": "e6b33115068c2cb3eaf454b7223124423ed5147113b01541fcf0f83d80aec462"
+    },
+    {
+      "path": "analysis/work/p22-pack-master-20261113/tracker-tests.log",
+      "bytes": 126,
+      "sha256": "32123c06afaa22405df0ae455b2a9957a73a7a30732623e89bdb1eee75d7e097"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 3968000,
+      "sha256": "f1d6714fad1632d3c40a33f1359c2370cb06bd10a094a4f913116f2efbacd480"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1165824,
+      "sha256": "32be13a6766949532db7238c66351d74c78cb70b8e8c820e48687e4cf3a69314"
+    }
+  ],
+  "temporary_fixture": [
+    {
+      "path": "/tmp/p22-pack-master-20261113/concrete.cpp",
+      "bytes": 1103,
+      "sha256": "ee42ed79f35b211fd91ac123f20101d28ffdaa80f3b4ff5bcdc865854aeabf9d"
+    },
+    {
+      "path": "/tmp/p22-pack-master-20261113/concrete.exe",
+      "bytes": 4610560,
+      "sha256": "dc4b22fbbdb80e0eaba5ad783d5fe4270967ff1fa6f9d36f4aa5d80564bed48d"
+    }
+  ],
+  "temporary_fixture_removed_after_fingerprinting": true,
+  "remaining": "Containing H8 frames and reached services, first-use rigid5F9, positive non7 retained-item restoration, FRAME/OWN imports/composition, actual transport and desktop/mission acceptance remain with their owners."
+}

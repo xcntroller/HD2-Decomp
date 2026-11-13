@@ -1,61 +1,28 @@
-# Merged UI / RENDER wiring handoff —2026-11-12
+# Master PACK integration —2026-11-13
 
-Use `/home/control/Documents/Projects/HD2-Decomp-p22-render`, feature/p22-render.
-Current implementation base973b4f445240ab92df71f62200a71b25e48d8318 has exactly
-mastera820e7018a625dc8a31a314706ab2f4122e0f2d8's tree629d5e206ec501ee0a791f7108bc748e30dfe28c.
-User merged UI7a3f7b7 and RENDER345a390, then authorized completing wiring.
-No master/other checkout writes, reset, merge or push. Do not follow inherited
-HUM/master handoff as this worktree's task. No original/Windows execution.
+User requested merging PACK INTO master. PACK4fccf12 (including selected Human
+dependencies51082a2) is integrated over masterfa94dee; PACK branch is retained.
+[PACK source closure](analysis/p22-pack-source-closure.md),
+[completed source checklist](analysis/p22-pack-plan.md),
+[current blocker matrix](analysis/p2.2-critical-path/blocker-matrix.md),
+[merge verification](analysis/p2.2-critical-path/evidence/pack-master-verification-20261113.json).
 
-[Plan](analysis/p22-render-wiring-plan.md),
-[implementation](analysis/p22-render-wiring-implementation.md),
-[receipt](analysis/checkpoints/p22-render-wiring-20261112.json).
+All23 PACK closure source fingerprints match. The sole source conflict preserves
+both mission-script renderAD/BB and formation2..C dispatch before derived policy.
+Newer master UI/RENDER/lifecycle/application rendering is retained, alongside
+HUM's actual typed Human174 focus. Ledger rows are the unique union of both
+parents, with one overlapping Script claim reconciled; zero new merge credit.
+Prior native sanitizer receipts remain valid for unchanged PACK bodies; current
+strict actual Human/World/module/Scene2/Script full i386 link and forced launcher/
+probe compile-link verify composition. Windows binaries are never run. Ledger,
+README and existing27 tracker tests pass. Temporary link fixture is removed
+following fingerprinting. No permanent tests or original-file changes; no push.
 
-**Merged UI/render and available application render wiring is complete.**
--004B5E40 modal cleanup now reaches actual same-World GEffects through UI's
- bound GameRenderStages; Human/order source no longer implements render cleanup.
- Its genuine gameplay/camera/Sight/realtime operations remain required.
-- Actual GameUiSceneCallbacks binds the UI render loan before engine publication,
- rejects wrong World/duplicates and retires via callback token. Old destruction
- cannot retract a replacement; stale dispatch rejects before touching resources.
- Adapter source is in game_ui_scene_callbacks.h, instantiated with actual UI.
-- Existing lifecycle owns UI/render/callback; engine stop/unbind precedes callback
- loan retirement, then render and World/resource destruction. Lifecycle Scene
- entry also verifies its exact owned dispatcher is still installed.
-- GameApplicationState::render now uses original0069B870 mode/config170 policy
- and actual bound Scene78. Scene checks registered/active/borrowed presentation;
- missing/suspended dispatch fails. session_owner() exposes SAME existing parent
- for OWN composition with its backend and status_storage alias, not a new owner.
- No simulation or graphics-present work moved into render. DATA policy/Scene
- observations remain separate; actual RET00724CB0 remains a no-op.
-
-Native ASan/UBSan/LSan PASS100 loan/callback/stage/special-effect families and
-100 actual GameScene registration/rollback/replacement/admission/Scene78/policy
-families. UI/World/engine/platform endpoints are labelled doubles. Actual host UI/
-render/application/lifecycle compile+link i386 and existing application build PASS;
-Windows outputs never run. Defined throwing gameplay modal double has NO render
-cleanup method; actual stages supply it. Temporary audits/stubs fingerprinted/
-removed. Ledger evidence links only, zero new credit/promotions/count changes.
-Full tracker retains unrelated missing legacy0062D880 WORK evidence limitation.
-
-**Exact next dependencies; no successful activation was enabled:**
-1. FRAMEc36bba8 is NOT merged into this base; game_session_frames.h is absent.
-   Import that owning branch before input/fixed/update integration; do not copy
-   another coordinator. Preserve frame_retirement_started_/retire_frames BEFORE
-   this Scene/callback/render retirement when reconciling lifecycle changes.
-2. OWN installs/owns ONE actual lifecycle and activation state under the application
-   (using session_owner(), parent.backend(), status_storage()), completes genuine
-   loading/activation and controller/cutscene services, then forwards updates/input.
-   Application.initialize still declines; input/fixed_update/update still reject.
-3. FRAME requires mutable original64-word input views; current ApplicationState
-   interface uses const sampled views. Resolve writable controller provenance;
-   do not cast arbitrary read-only storage merely to satisfy types.
-4. Real Human order/path/presentation/selection/Sight/realtime/occupied and PACK
-   producers remain typed UI/Runtime requirements. Interface presence does not
-   prove all callees are missing or that every branch is reached in Tutorial.
-5. Actual loaded populations, engine draw/present and user mission/failure/return/
-   repeat acceptance remain unobserved. No desktop or mission-reachability claim.
-
-RENDER-owned source completion and actual allocation-dependent history from
-345a390 remain preserved. Further full-loop wiring follows the owning FRAME/OWN
-imports/contracts; no remaining merged UI/render cleanup seam is left open.
+Next work remains in containing H8/FRAME/OWN. FRAME review91a7d33 retains explicit
+Human Active/Remote/00751480/00755500, first-use rigid5F9, positive non7 retained
+item restoration and reached conditional service gaps. FRAMEc36bba8 and
+OWN939fb70 are not imported by this merge. UI/RENDER/DATA source is already in
+master; preserve frame-before-callback/render-before-World retirement when
+integrating later work. Application loading is disabled; no gameplay or desktop
+acceptance is claimed. Reuse existing source receipts rather than repeating
+unchanged broad audits. Read AGENTS.md and use research_index.py before exports.

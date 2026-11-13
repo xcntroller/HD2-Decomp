@@ -167,6 +167,7 @@ public:
             return game::receive_scene2_authority_packet(d_.scene.frames(),packet,*this,*this);
         }
         if(kind==4&&!authority){bound(*module,d_.scripts.module());return d_.scripts.module().receive(&packet);} //00424590→0042B650.
+        if(kind==16&&!authority){bound(*module,d_.heavy_fire);return d_.heavy_fire.receive_packet(packet,d_.human_services);}
         if(kind==12)return d_.world_actors.runtime().receive_packet(packet,authority); //004788A0/E0, required positive leaves remain checked.
         if(kind==7&&!authority){bound(*module,d_.versions);return d_.versions.receive_packet(&packet);} //0043F1E0, actual shared master/part slots.
         if(authority&&kind!=12)return false; //Original default module28 returnsfalse.

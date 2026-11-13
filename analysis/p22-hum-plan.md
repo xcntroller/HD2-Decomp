@@ -1,44 +1,77 @@
 # P22-HUM implementation and dependency plan
 
 Revised 2026-11-12; D0 confirmed against merged master **415e850**. Worktree:
-`/home/control/Documents/Projects/H&D2 Decomp 4`. P22-HUM and both P2.2 delivery
+`/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`
+(created from completed H6fc9d452 at the user's request; prior Human
+worktrees/branches preserved). P22-HUM and both P2.2 delivery
 checkboxes remain OPEN. Application loading still declines; no mission desktop
 acceptance has occurred. This plan replaces the former chronological next-work
 list. Detailed behavior/evidence stays in the linked contracts.
 
+## Branch ownership — user clarification 2026-11-12
+
+H1/H2/H3/H4/H5/H7 source work is completed and merged into `feature/p22-hum`.
+Completed HUM/H4b9d67aa is imported into H6 at7e6e019. H6 source is now complete
+on the existing owners; [H6 closure and external limits](human-h6-source-closure.md),
+[dependency plan](p22-hum-h6-plan.md). H8 is assigned to this worktree/agent; [H8 implementation/dependencies](p22-hum-h8-plan.md). H4's branch may
+be deleted; no continued dependency on its old worktree or branch is required.
+Source completion does not add function-inventory credit or application delivery.
+
+H2 completes its reactions/damage/ragdoll source and verifies its own owner,
+producer and retirement boundaries. Reached H4/H6 contracts remain explicit
+external dependencies, not permission to take over those milestones. H8 owns
+full Human-frame assembly and verification across the branches; H2 must not
+require completion of H8 before delivering its own result. Existing required
+source failures remain visible, and application/desktop acceptance stays separate.
+
 ## Completion boundaries
+
+Labels describe the plan: H = Human milestones, D = required dependencies, and
+S = earlier verified source pieces. Lowercase a/b/c split one dependency into
+reviewable parts. A checkpoint is implemented source with focused verification;
+its JSON receipt records hashes and results. It is not application/desktop acceptance.
 
 A checked source checkpoint means its stated source boundary and focused checks
 are complete. It does not mean every function is complete, that a containing
 frame runs, or that application/desktop delivery is accepted. Function inventory
-credit is separate: currently34 complete/2757 partial; joint/clip recovery still
-has deferred credit reconciliation.
+credit is separate: current source34 complete/3360 partial; [joint/clip kernel inventory
+reconciliation](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json) is complete,
+while full containing-World/application verification and external producer
+limitations remain open.
 
-The selected **H2 reactions/damage/ragdoll** milestone remains open until its
-required producer→dispatch→reaction/damage→contact/effect→retirement path works
-through the actual containing owners, including positive branches, failures and
-re-entry. Leaf fixtures and compile/link alone do not close H2. Full Human frame
-verification also depends on the separately listed H3–H6 behaviors where reached.
+The **H2 reactions/damage/ragdoll source checkpoint is complete**: the actual
+Human/passive B0/inline98/E0/DD0/230/Effects graph now executes the owned reaction
+segment, retained clips/joints, damage, failure/re-entry and ordered teardown.
+Existing contact/fall/blast/death contracts retain their stated verification limits.
+Authored data and explicit engine/OS/lookup endpoints are not a running World.
+The earlier broad exit map is classified by the clarified H1–H8 branch ownership
+below; external Car/network callers are not blanket H2 source gates. Full Human frame
+verification belongs to H8 and depends on H3–H6 where reached; H2 records those
+interfaces and dependencies without assuming the other agents’ work.
 P2.2 additionally requires the other workstreams and actual user acceptance.
 
 ## Human milestones
 
 - [x] H1 — Model presentation through actual007A7470 dispatch.
   [Source checkpoint](checkpoints/p2.2-human-model-presentation-20261111.json).
-- [ ] H2 — Reactions, damage and ragdoll through containing owners. **Active**;
-  source achievements and explicit remaining dependencies follow below.
-- [ ] H3 — Positive interaction actions00751480/00755500: occupied Car/StaticWeapon
-  entry/exit and mounted receivers, existing seats/mass/cameras/control ownership.
-- [ ] H4 — Common AI outputs: reached00584E30 completions, B0 action/navigation/
-  formation, track events and DD0 transition/attachment consumers.
-- [ ] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9
-  release and actual Scene2 actor dispatch.
-- [ ] H6 — Player items:00542E20 held item,00545140/005454D0 shots and reached
-  command/FOV/dry-fire/melee/repair/transport consumers.
+- [x] H2 — Reactions, damage and ragdoll on actual Human/control owners.
+  [Source closure and limits](human-h2-source-closure.md), [receipt](checkpoints/p2.2-human-h2-source-20261112.json).
+  Full World/frame/application verification remains H8/P2.2.
+- [x] H3 — Offline Car/StaticWeapon entry/exit and mounted receivers on existing owners.
+  [Verified source](checkpoints/p2.2-human-seat-interaction-20261112.json); [contract](human-seat-interaction-source.md).
+  [H2 integration](checkpoints/p2.2-human-h3-integration-20261112.json) retains D4b/D6b1 owners and D5 guards.
+- [x] H4 — Common outputs, available completions, track/DD0, Script/vehicle and
+  subgroup/formation source on existing owners. [Source closure and external limits](human-h4-source-closure.md),
+  [receipt](checkpoints/p22-hum-h4-source-20261112.json). Full Runtime/absent actors/application remain H8.
+- [x] H5 — Guard/Area decisions:0057CC50 cover/door,00581E30 floor lists, kind9
+  release and actual Scene2 actor dispatch. [Completed source](checkpoints/p2.2-human-guard-area-source-20261112.json),
+  integrated from completed aggregate201adbf; H8/desktop verification remains separate.
+- [x] H6 — Player item controller, firing/sound/projectile producers and retirement, melee/repair, medical and actual input/queue composition on existing owners. **Source-only**: [closure/required H8 boundaries](human-h6-source-closure.md), [receipt](checkpoints/p2.2-human-h6-source-20261112.json).
 - [x] H7 — Reached breath/blood particle and rest-footprint source through SAME
   process/module17 lifetime. [Checkpoint](checkpoints/p2.2-human-particle-surface-20261111.json).
 - [ ] H8 — Full Human frame: H2–H6, actual World/control dispatch, positive paths,
   partial failure/re-entry/ordered teardown, consolidated verification and audit cleanup.
+  [Active H8 plan](p22-hum-h8-plan.md); [containing-frame composition](human-h8-frame-composition-source.md).
 
 Earlier mounted/remote equipment, motion/terrain/Look, bone/IK/weapon posing,
 aimed-posture workers, mount007BA0C0 and head007ADA10 source remain verified in
@@ -51,7 +84,8 @@ below still apply; these are not whole-subsystem or desktop claims.
 
 - [x] S01 — Joint impulses, integration, constraints, point/body contacts, Car
   forwarding, sleep/substeps, pose publication and contact/audio retirement source.
-  [Contract and focused verification](human-ragdoll-source.md#source-progress).
+  [Contract and focused verification](human-ragdoll-source.md#source-progress);
+  [kernel source/inventory receipt](checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json).
 - [x] S02 — Retained clip007B7410/007B3C80 collision/transitions and actual ragdoll
   007A7470 branch. [Contract](human-ragdoll-source.md#retained-clips-actual-frame-dispatch-and-rest-surfaces).
 - [x] S03 — Actual rest007B37C0→00787110, shared ShotMgr surface pool and retained
@@ -104,7 +138,7 @@ below still apply; these are not whole-subsystem or desktop claims.
   [Checkpoint](checkpoints/p2.2-human-car-fuel-impulse-20261112.json), commit b132e6d.
   Native regression also corrected004E0180's uninitialized source fourth lanes.
 
-## H2 remaining dependencies and exit tests
+## Recovered H2 source and containing-world dependencies
 
 These are implementation checkpoints, not an instruction to reconstruct every
 adjacent Car or network feature. Before expanding a dependency, record the actual
@@ -123,28 +157,51 @@ and leave a nonreached wider feature with its explicit required guard.
 actual producers/retirement, mandatory versus mode/occupancy dependencies and
 merged UI limits. Direct ragdoll→Car004F2790 does not imply mesh deformation;
 Car→Car/passenger004F2B60 does. Status9/received0 are entry-specific, not callees
-of every offline reaction. Next: D1 capture/restore lifetime, then reached D2–D5;
-D10 unmounted composition can advance without waiting for all transport work.
+of every offline reaction. D1–D3 and the H2-owned D10 segment are source-complete. D4/D5 and shared
+entry work remain conditional containing-world integration; no transport
+readiness or continuing occupied/non7 Car frame is implied.
+
+The completed H2 source boundary is [recorded separately](human-h2-source-closure.md).
+Unchecked D4–D9/D11 entries below are retained containing-world/Car/entry
+integration obligations. Their exact guards remain; none is silently marked
+resolved by the completed H4/H6 source imports. Full World integration remains H8's work.
 
 ### Car state producers, damage and retirement
 
-- [ ] D1 — Mesh backup ownership and reverse restore004FE910. Recover producer
+- [x] D1 — Mesh backup ownership and reverse restore004FE910. Recover producer
   004FF8B0's resource/part matching, native658 vector owner/sharing, retained mesh
   and usage-count lifetime. Restore LOD0/1 positions with native lock/unlock,
   recompute/invalidation, flag4 clearing, decrement/release/erase order.
-- [ ] D2 — Reached positive impact004FF8B0: light/projector damage, part thresholds,
+  [Verified source checkpoint](checkpoints/p2.2-human-car-mesh-backup-20261112.json); D2 source completion follows below.
+- [x] D2 — Reached positive impact004FF8B0: light/projector damage, part thresholds,
   backup capture, variant/glass transitions, deformation and wheel puncture/
-  detachment. Depends on D1's ownership contract and existing S10–S14 receivers.
-- [ ] D3 — Occupied restore: repair actual FA8+28 attachment mesh+20 before variant/
-  visibility restore and preserve current seats/occupants/mass/camera retirement.
-  Depends on D1 and the reached H3 seat producer, not a fabricated occupied record.
-- [ ] D4 — Containing Car frame: periodic event6, event7 grammar/consumers, pending
-  targeted damage and reached queued SOUND updates. Bind actual producers through
-  004D3110 and004DB360; preserve timer/water/earlier-failure ordering.
+  detachment through SAME loading receivers. [Verified source](checkpoints/p2.2-human-car-positive-deformation-20261112.json).
+- [x] D3 — Seat-associated Door visual restore: repair actual FA8+28 Door20 before
+  variant visibility through existing geometry discovery/binding, including unoccupied Cars.
+  [Source/corrected ownership](human-car-positive-deformation-source.md). Actual Human occupancy remains H3/D5.
+- [ ] D4 — Containing Car frame: periodic event6/reset, incremental event7 inventory,
+  pending targeted damage and reached navigation observations. Bind actual producers through
+  authority004D2790, presentation004D3110 and004DB360; preserve timer/water/earlier-failure ordering.
+  Required internal dependencies:004DB2A0→virtual44/004DD0D0 reset→004DCE40,
+  004E95B0(2), SAME physical/collision/skid/particle owners and saved pose;
+  004DE1F0→007D7810(NULL destination)→007D8B40→actual Car storage;
+  004DEAD0 pending producer→004DEC10→existing004DBF00. Non7 presentation/occupied
+  reset consumers compose with D5. Raw004D3336..335D proves259C's reverse
+  observations call navigation0051D5A0 via game54, with unused results, not SOUND.
+- [x] D4a — Verify event6/reset, incremental event7/Items storage and pending
+  damage source receivers over SAME physical/inventory owners, including failure prefixes.
+  [Verified source checkpoint](checkpoints/p2.2-human-car-frame-events-20261112.json); [contract](human-car-frame-events-source.md).
+- [x] D4b — Compose common B0/00586200 subtype14 item/target/transform admission
+  through actual Player authority and Remote presentation command3 receivers.
+  Original Player/Remote/AI vtables share DC; keep Player presentation consume-only.
+  Occupied/non7 Car reset/frame consumers remain D5; neither checkpoint closes D4 alone.
+  [Verified source](checkpoints/p2.2-human-car-target-command-20261112.json); [contract](human-car-target-command-source.md).
 - [ ] D5 — Reached occupied/non7 Car activation/control/frame through existing
   004D16A0/loading lifetime. Resolve actual driver/input/mounted borrowers;
   retain offline7 gates. Verify any reached non-Car9A8/4A0 physical mapping in
   004D3D10 or prove that the selected branch cannot produce it.
+  H3 committed10bebe9 is integrated: mounted reset/seat receivers are source.
+  Its containing occupied/non7 simulation remains D5; retain that guard.
 
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,
@@ -159,15 +216,40 @@ Evidence: [reset/restore](human-car-physical-reset-source.md),
 `human-car-restore-fuel-checkpoint-index.txt`, `human-car-global-mesh-backup-index.txt`,
 `human-car-deformation-producer-index.txt`, `human-car-backup-container-index.txt`,
 `human-car-part-restore.asm` and `human-car-deformation.asm`. These are research,
-not implementation completion. Native658 sharing/ownership still needs proof;
-do not assume a new global cache.
+D1 implementation/evidence is in the [mesh checkpoint](human-car-mesh-backup-source.md).
+Native654/658 is the physical object's owned vector (constructor004E2900 and
+append004FC320); no process global cache is introduced. [D2/D3 source](human-car-positive-deformation-source.md)
+closes positive damage and Door visual restoration; D4/D5 remain open.
 
 ### Shared entry and process lifetime
 
-- [ ] D6 — Actual peer6C/client334 wrappers and worker lifecycle used by00730A40.
-  Recover00745D20/00746B50/00746D20 queue/critical-section/clock owners, registration
-  publication underB4 and swap-last unregister without deletion. Client00723D20
-  publishes334 before port/register; host007260A0 registers after418 unlock.
+- [ ] D6 — Actual peer6C/client334 and containing worker/caller lifecycle.
+  D6a closes cold connection/registry/entry receivers only; D6b remains required.
+- [x] D6a — Cold00745D20 queue/clock/lock ownership and retirement,00746B50/
+  00746D20 registry and typed00730A40 entry mutation. No live worker/protocol claim.
+  [Verified source](checkpoints/p2.2-human-entry-connections-20261112.json);
+  [contract/remaining boundary](human-entry-connection-source.md).
+- [ ] D6b — Actual007466E0/007474E0 worker/socket storage,007467B0/00747690
+  start callbacks and00746840/00747750 stop/retirement; client334/peer6C
+  publication, port/register and disconnect deletion through SAME owner.
+  Client00723D20 publishes334 before port/register; host007260A0 registers
+  after418 unlock. D6b1 is verified source; D6b2 remains. Generic coldD4 is
+  unproduced; actual singleton loader-zero and native start are proven producers.
+- [x] D6b1 — Worker/socket/control lifetime source: actual callbacks, ACK/ping,
+  typed caller prefixes and reverse-delete/stop/storage ordering.
+  [Verified boundary](human-worker-control-source.md); no live session claim.
+- [ ] D6b2 — Actual admission/callback composition and reached retained payload/
+  queue/fragment receivers; preserve same client/server, process414 and app11.
+  Required before containing D6b/D6 closes; not a Phase3 live-session test.
+- [x] D6b2a — Received fragments through SAME socket30/buffer14: retained sorting,
+  expiry, contiguous assembly and retirement. [Source](human-fragment-reassembly-source.md).
+- [x] D6b2b — Retained payload serialization, queues/retry/ACK order and SAME414
+  delivery into actual process430 FIFOs, with ordered retirement/reset.
+  [Verified source](human-retained-message-source.md); application entry stays open.
+- [ ] D6b2c — DirectPlay admission/name/address/record and complete/terminate
+  callback composition with SAME client04/server00 and current application11.
+  Reconcile the existing menu-lived discovery client with process lifetime;
+  termination requests status11 on the actual current application state.
 - [ ] D7 — Status9 composition:00730A40→0072E890→00731610(true), retained-game
   restoration BEFORE menu shutdown, SAME00698510/006989B0 owner and actual request.
   Depends on D6 and existing S06/S07; preserve its shutdown/delete failure path.
@@ -191,27 +273,28 @@ interface18 and publish0C before initialization. Do not repeat its completed aud
 
 ### Human composition and H2 closure
 
-- [ ] D10 — Exercise actual0077DE30→0074D510→007B0910→007A7470 composition from
-  the real containing Human/control owner, including source-null/source-present,
-  retained clip/joints, obstruction/contact/fall/blast damage, mounted/death and
-  effect/contact/audio retirement. Complete only newly reached required receivers.
-  Depends on relevant Car/entry tasks from D0 and H3–H6 receivers where reached.
-- [ ] D11 — Resolve required unproduced-state boundaries: part5F9, wheel695,
-  EXPL record8 and smoke14. Preserve already confirmed findings. For each reached
-  path, supply a demonstrated original producer, prove native unreachability or
-  record a genuine blocker with its exact trigger and retained failure prefix.
-  Never invent initialization. A remaining reached required failure blocks H2.
-- [ ] D12 — Consolidated containing-path verification and H2 source closure:
-  actual dispatch, positive paths, interrupted mutation/cleanup, repeated entry
-  and teardown; targeted ASan/UBSan/LSan, strict actual i386 and final launcher.
-  Reconcile deferred joint/clip function credit only for frozen implemented bodies,
-  record endpoint/integration limits and fingerprint/remove temporary audits.
+- [x] D10 — Execute the H2-owned0077DE30 reaction segment→0074D510→007B0910→
+  007A7470 branch on actual Human/B0/inline/E0/DD0/230 owners, including retained
+  clips, joints, two-Human source borrowing, actual damage, failure/re-entry and
+  retirement. [Contract and test limits](human-h2-source-closure.md). Full World
+  dispatch and H4/H6 consumers remain H8/external interfaces.
+- [ ] D11 — External Car producer limitations: fresh part5F9, wheel695,
+  EXPL record8 and smoke14. Preserve confirmed failed prefixes and guards;
+  these are reached by the separate Car/debris simulation callers, not by the
+  Human-owned reaction segment. No producer/default or full-World unreachability
+  is invented. [Exact failures](human-reaction-containing-boundary.md#source-closure-blockers).
+- [x] D12 — Consolidated H2 source verification, inventory and audit cleanup.
+  Native100×8 actual-owner families, strict actual-host i386 and launcher/probe
+  links pass; [closure receipt](checkpoints/p2.2-human-h2-source-20261112.json).
+  No complete promotions, permanent tests or desktop claim. Original solver/
+  engine/ABI equivalence and full cross-branch execution remain outside this checkpoint.
 
-**H2 exit:** D0's required dependencies and D10–D12 pass, with no reached missing
-producer/required receiver hidden by doubles. If a real blocker remains, leave H2
-unchecked and state the exact blocking input/owner/evidence. Do not relabel leaf
-source or link success as a running Human frame. H8 still verifies the entire
-Human behavior set, and P2.2 still requires application/desktop delivery.
+**H2 source exit is satisfied.** The new owner graph closes the earlier
+selection/control/geometry-double gap. D11's original omissions and D4–D9
+integration remain visible on their actual callers; H2 completion does not turn
+their required failures into successful services. H8 verifies the entire Human
+behavior set in the actual containing World/application, and P2.2 requires
+application/desktop delivery. H4 is integrated and H6 is source-complete on its own branch; H8 remains open.
 
 ## External integration and acceptance
 

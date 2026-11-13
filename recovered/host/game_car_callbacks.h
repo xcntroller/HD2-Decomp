@@ -17,7 +17,7 @@ namespace hd2::host {
 
 //Shared Car callback owner. Frame/EC/Scene2, physics, process flags/clock/CRT,
 //definitions, damage and emitter borrowers come from the containing world.
-//Wider deformation, occupied control and full frame/input dependencies remain
+//Occupied control and full frame/input dependencies remain
 //checked at their actual consumers.
 //Construction supplies no readiness and performs no pool/resource preparation.
 class GameCarCallbacks final : public GameCarCallbackFrames {
@@ -34,6 +34,9 @@ public:
         next->wheel=[&receiver](Actor actor,const game::CarWheelDamageEvent& event,bool request){receiver.car_contact_event(actor,event,request);};
         next->human=[&receiver](Actor actor,const game::CarHumanDamageEvent& event){receiver.car_contact_request(actor,event);};
         next->destroy=[&receiver](Actor actor){receiver.car_damage_destroy(actor,false);};
+        next->periodic=[&receiver](Actor actor,const game::CarDamageEvent& event){receiver.car_damage_event(actor,event);};
+        next->targeted=[&receiver](Actor actor,GameActorServices::Entry item,Actor human,const std::optional<game::CarTargetedPlacement>& placement,bool authority){
+            return receiver.car_targeted_command(actor,item,human,placement,authority);};
         next->hit=[&receiver](Car& car,Actor source,const Vector& point){return receiver.car_collision_hit(car,source,point);};
         damage_=std::move(next); //All borrowers publish together; preparation failures leave no live endpoint.
     }
@@ -43,6 +46,10 @@ public:
     }
     void receive_damage_request(Actor actor,game::SessionPacketStream& packet)override{required_damage().packet(actor,packet,true);}
     void car_timed_destroy(Actor actor)override{required_damage().destroy(actor);}
+    void car_periodic_event(Actor actor,const game::CarDamageEvent& event)override{required_damage().periodic(actor,event);}
+    bool car_targeted_command(Actor actor,GameActorServices::Entry item,Actor human,const std::optional<game::CarTargetedPlacement>& placement,bool authority)override{
+        return required_damage().targeted(actor,item,human,placement,authority);
+    }
     bool initialize(const std::vector<game::CarParticleDefinition>& definitions){
         if(&definitions!=&car_particle_definitions())throw std::logic_error("Car particles require SAME actual definition owner");
         return initialize_particles();
@@ -78,7 +85,9 @@ public:
             struct Restore {game::CarPhysics& physics;float mass;bool changed;~Restore(){if(changed)physics.contact_mass(mass);}} restore{physics,original_mass,reduced};
             auto incoming=impulse;
             if(reduced){physics.contact_mass(original_mass*.5f);for(unsigned axis=0;axis!=3;++axis)incoming[axis]*=1.399999976158142f;}
-            game::CarColdDeformation<GameActorServices> deformation(frames_,*car.geometry,state.body,state.wheels,state.solver.substeps.flags);
+            auto deformation=[&](const Vector& at,const Vector& direction,float radius,float power){
+                if(!car.loading)throw std::logic_error("Car impact deformation requires actual loading lifetime");car.loading->deform_hit(at,direction,radius,power);
+            };
             game::apply_car_contact_impulse(frames_,state,1.2000000476837158f,point,incoming,normal,source!=nullptr,
                 deformation,[&](float magnitude){game::damage_car_health(physics,state.drive,state.health,state.dirty,magnitude);},
                 [&](const Vector& value,const Vector& at,bool collision){if(car.callbacks->passenger690)car.callbacks->passenger690(value,at,collision,nullptr);},[]{});
@@ -152,6 +161,8 @@ private:
         std::function<void(Actor,const game::CarWheelDamageEvent&,bool)> wheel;
         std::function<void(Actor,const game::CarHumanDamageEvent&)> human;
         std::function<void(Actor)> destroy;
+        std::function<void(Actor,const game::CarDamageEvent&)> periodic;
+        std::function<bool(Actor,GameActorServices::Entry,Actor,const std::optional<game::CarTargetedPlacement>&,bool)> targeted;
         std::function<bool(Car&,Actor,const Vector&)> hit;
     };
     DamageReceivers& required_damage(){if(!damage_)throw std::runtime_error("Car damage requires its actual containing damage owner");return *damage_;}

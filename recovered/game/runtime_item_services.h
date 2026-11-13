@@ -21,10 +21,12 @@ public:
     RuntimeItemServices(Frames& frames,const frontend::PreMissionItemCatalogue& catalogue,
                         const std::string& suffix,SessionTimeWord game_word28)
         : frames_(frames),models_(frames,catalogue,suffix),icons_(frames,catalogue),scuba_(frames,catalogue,suffix),game_word28_(game_word28) {}
+    const std::string& resource_suffix()const{return models_.resource_suffix();}
     ~RuntimeItemServices(){clear_model_cache();}
     RuntimeItemServices(const RuntimeItemServices&)=delete;
     RuntimeItemServices& operator=(const RuntimeItemServices&)=delete;
     ItemModelOwner make_item_model(const frontend::PreMissionItem& definition) {return models_.make_item_model(definition);}
+    Frame primary_model(const frontend::PreMissionItem& definition){return models_.primary(definition);} //007DF750, borrowed definition cache.
     Frame item_icon(const frontend::PreMissionItem& definition){return icons_.get(definition);}
     Frame first_person_model(const frontend::PreMissionItem& definition) {return models_.first_person(definition);}
     Frame first_person_magazine(const frontend::PreMissionItem& definition) const {return models_.first_person_magazine(definition);}
@@ -34,6 +36,11 @@ public:
     auto item_model_frame_position(Frame frame){return frames_.actor_position(frame);}
     auto item_model_frame_rotation(Frame frame){return frames_.item_marker_rotation(frame);}
     void item_model_visible(Frame frame,bool visible) {frames_.object_visible(frame,visible);}
+    void link_item_auxiliary(Frame frame,Frame parent){frames_.item_auxiliary_link(frame,parent);}
+    void position_item_auxiliary(Frame frame,const MissionVector& position){frames_.object_position(frame,position);}
+    void direct_item_auxiliary(Frame frame){frames_.item_auxiliary_forward(frame);}
+    void rotate_item_auxiliary(Frame frame,const MissionQuaternion& rotation){frames_.object_rotation(frame,rotation);}
+    void update_item_auxiliary(Frame frame){frames_.update_scene_object(frame);}
     std::uint32_t item_game_word28() const {return game_word28_;}
     void register_item_kind20(void* item) {
         if(!item)throw std::logic_error("Cannot register a null kind20 item");

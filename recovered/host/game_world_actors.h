@@ -1,6 +1,8 @@
 #ifndef HD2_HOST_GAME_WORLD_ACTORS_H
 #define HD2_HOST_GAME_WORLD_ACTORS_H
 #include "game/human_loading_retirement.h"
+#include "game/document_place_scene_actor.h"
+#include "game/human_inventory_lookup.h"
 #include "game/version_contact_link.h"
 #include "game/explosion_contact_link.h"
 
@@ -79,6 +81,7 @@ public:
     }
     void publish_mine_contact(std::int32_t identity,std::uint32_t command){consumers_.publish_mine_contact(identity,command);}
     void mine_explosion(typename Runtime::Instance* source,const game::HumanVector& position,float radius,float power,std::int32_t sound){explosion_contact_.explode(source,position,radius,power,sound);}
+    bool heavy_fire_blast(typename Runtime::Instance* source,const game::HumanVector& position,float radius,float power){return explosion_contact_.wave(source,position,radius,power);}
     template<class Blast>void bind_explosion(Blast& blast){require_open();explosion_contact_.bind(blast);}
     template<class Blast>void unbind_explosion(Blast& blast)noexcept{explosion_contact_.unbind(blast);}
     auto mine_ground_ray(const game::HumanVector& start,const game::HumanVector& displacement){
@@ -88,6 +91,19 @@ public:
         return query.ray(start,displacement,0,0,true); //006F7C90: SAME World, both exclusion masks0, actual hit normal.
     }
     auto& physics(){require_open();return physics_;}auto& item_models(){require_open();return models_;}
+    bool placed_physics_contact(void* object,const GameActorServices::Vector& direction){require_open();return physics_.placed_contact(object,direction);}
+    void hide_placed_replacement(void* object){require_open();physics_.hide_placed_replacement(object);}
+    void publish_placed_motion(std::int32_t identity,const GameActorServices::Vector& direction){
+        auto& packet=game::begin_runtime_actor_message(session_broadcast_packets(),identity,true);
+        packet.write_yaw(direction,-1);packet.finish_broadcast();
+    }
+    void placed_script_use(GameActorServices::Frame frame){
+        const auto* data=scene_.frames().find_actor_frame_data(frame);
+        if(!data||!data->words[1])return;
+        auto* context=consumers_.script_context_for_frame(frame);
+        if(!context)throw std::logic_error("Placed item Script EC loan disagrees with SAME context owner");
+        context->use(true); //005E2588 uses literal1 independently of late process authority.
+    }
     template<class Versions>void bind_versions(Versions& versions){require_open();versions_contact_.bind(versions);}
     template<class Versions>void unbind_versions(Versions& versions)noexcept{versions_contact_.unbind(versions);}
     bool version_contact(std::uintptr_t handle,std::int32_t damage,std::uint32_t effects){require_open();return versions_contact_.contact(handle,damage,effects);}
@@ -154,6 +170,23 @@ public:
         if(!item)throw std::runtime_error("ExplosivePlace requires its actual item definition for the armed caption");
         return actor_localized(item->caption);
     }
+    auto document_visual_template(std::uint32_t definition){
+        const auto* item=definition<500?catalogue_.item(static_cast<std::int32_t>(definition)):nullptr;
+        if(!item)throw std::runtime_error("DocumentPlace requires actual item definition and primary model");
+        return models_.primary_model(*item);
+    }
+    template<class Human>std::optional<std::int32_t> document_item_identity(Human& human,std::uint32_t value,bool definition){
+        const auto entry=definition?game::find_human_inventory_definition(human,items_,static_cast<std::int32_t>(value)):
+            game::find_human_inventory_item_entry(human,items_,static_cast<std::int32_t>(value));
+        if(!entry)return std::nullopt;
+        return items_.runtime_item(entry).identity;
+    }
+    template<class Human>void document_remove_item(Human& human,std::int32_t identity){consumers_.document_remove_item(human,identity);}
+    bool document_receive_remove(std::uint32_t identity,std::int32_t item){
+        auto* human=scene_.frames().scene_human_identity(static_cast<std::int32_t>(identity));if(!human)return false;
+        const auto found=document_item_identity(*human,static_cast<std::uint32_t>(item),false);if(!found)return false;
+        document_remove_item(*human,*found);return true;
+    }
     void stop_actor_sound_voice(std::int32_t& handle){consumers_.stop_actor_sound_voice(handle);}
     std::uint32_t session_mission_ordinal()const{return consumers_.session_mission_ordinal();}
     auto& session_broadcast_packets(){return consumers_.session_broadcast_packets();}
@@ -192,6 +225,24 @@ public:
     const Car* car_current_attachment(){return consumers_.car_current_attachment();}
     unsigned car_game_kind(){return consumers_.car_game_kind();}
     auto mounted_sound_entry(std::int32_t id)const{return consumers_.mounted_sound_entry(id);}
+    bool mounted_human_view(void* actor){return consumers_.mounted_human_view(actor);} //004C6DD0's actual005A0890/0069A4B0.
+    std::uint32_t session_mission_ordinal(){return consumers_.session_mission_ordinal();}
+    bool mounted_human_is_player(void* actor){return consumers_.mounted_human_is_player(actor);}
+    GameActorServices::Vector mounted_human_target(void* actor){return consumers_.mounted_human_target(actor);}
+    void mounted_human_target(void* actor,const GameActorServices::Vector& value){consumers_.mounted_human_target(actor,value);}
+    void mounted_shell_physics(GameActorServices::Frame frame,const GameActorServices::Vector& velocity){
+        game::PhysicsObjectParameters<GameActorServices::Frame> parameters;parameters.frame=frame;parameters.type=0;
+        parameters.material10=12;parameters.first_list=true;parameters.sight_pass=true;
+        auto* handle=physics().create(parameters);physics().impulse(handle,velocity,GameActorServices::Vector{},.05f);
+    }
+    bool car_seat_integrity_matches(){return consumers_.car_seat_integrity_matches();}
+    void seat_human_direction(void* actor,const GameActorServices::Vector& direction){consumers_.seat_human_direction(actor,direction);}
+    std::uint32_t seat_human_state_kind(void* actor){return consumers_.seat_human_state_kind(actor);}
+    std::int32_t seat_human_health(void* actor){return consumers_.seat_human_health(actor);}
+    void seat_human_proximity_kind(void* actor,unsigned kind){consumers_.seat_human_proximity_kind(actor,kind);}
+    void seat_proximity_kind(std::int32_t index,unsigned kind){consumers_.seat_proximity_kind(index,kind);}
+    bool seat_view_enabled(){return consumers_.seat_view_enabled();}
+    void seat_script_use(GameActorServices::Frame frame){consumers_.seat_script_use(frame);}
     std::unique_ptr<game::CarMountedWeaponControl> make_car_weapon_control(Car& actor,GameActorServices::Frame pivot,unsigned index){ //004D16A0's actual100 branch.
         auto control=std::make_unique<game::CarMountedWeaponControl>();
         auto loading=std::make_unique<game::MountedWeaponControlLoading<GameActorServices,GameWorldActors,Items>>(scene_.frames(),*this,items_,control->state);
@@ -282,6 +333,7 @@ public:
         else if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
         else if(actor.base().type()==10)consumers_.spawn_packet_decoder().receive(static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor),&packet);
         else if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
+        else if(actor.base().type()==23)static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
         else if(actor.base().type()==29){auto& fowl=static_cast<Fowl&>(actor);if(!fowl.loading)throw std::runtime_error("Fowl packet requires its actual generated-bird owner");fowl.loading->launch(false,0);}
         else throw std::runtime_error("Required Scene2 actor packet receiver is unavailable");
     }

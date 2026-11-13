@@ -6,6 +6,7 @@
 #include "frontend/control_actor_records.h"
 #include "frontend/control_frame.h"
 #include "game/session_local_packets.h"
+#include "game/session_connection_packets.h"
 #include "game/session_application_commands.h"
 #include "game/session_received_application.h"
 #include "game/session_peer_records.h"
@@ -13,6 +14,7 @@
 #include "game/session_entry_packets.h"
 #include "game/session_entry_inputs.h"
 #include "game/session_entry_records.h"
+#include "game/session_entry_connections.h"
 #include "game/human_peer_removal.h"
 #include "game/network_mission_metadata.h"
 #include "game/session_owner.h"
@@ -54,6 +56,7 @@
 #include "game/item_hand_models.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
+#include "game/human_ai_order_pool.h"
 #include "game/human_ai_navigation_jobs.h"
 #include "game/human_frame_inputs.h"
 #include "game/human_scene_movement.h"
@@ -75,6 +78,8 @@
 #include "frontend/options_settings.h"
 #include "host/chunk_files.h"
 #include "host/control_startup.h"
+#include "host/control_connection_platform.h"
+#include "frontend/control_connection_worker.h"
 #include "host/graphics_input_services.h"
 #include "host/human_store.h"
 #include "host/joystick_backend.h"
@@ -97,7 +102,7 @@ namespace hd2::host {
 // executable. Construct BEFORE graphics initialization (game.cfg timing).
 // This does not supply application/video/menu states or the binary wrapper VM.
 // Original Win32 import targets are called directly; no protection success API.
-class StartupSession {
+class StartupSession : public ControlConnectionPlatform {
 public:
     using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>,StartupSession>;
     using PlayerHuman=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
@@ -117,7 +122,8 @@ public:
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
           session_voice_(control_data_.wrapper0c,settings_backend_),
           human_inputs_(*this,human_input_shared_,control_data_.service14),control_frame_(control_data_, gate_, *this,broadcast_packets_),
-          local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_) {
+          local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_),
+          connection_worker_(*this,control_data_,frontend::ControlConnectionStorage::loader_zero_filled_process) {
         if (!selected_language.empty()) language_.select(selected_language);
         menu_cursor_={menu_width()*.5f,menu_height()*.5f};
         // Actual00748940/00748960 clock basis, separate from frame pacing.
@@ -360,6 +366,8 @@ public:
     game::HumanAIEventPool& human_ai_event_pool(){return human_ai_events_;}
     game::HumanAIFrameInputs& human_ai_frame_inputs(){return human_ai_frame_inputs_;}
     game::HumanAIActionPools& human_ai_action_pools(){return human_ai_actions_;}
+    using HumanAIOrders=game::HumanAIOrderPool<GameActorServices,GameSceneActors::Instance>;
+    HumanAIOrders& human_ai_order_pool(){return human_ai_orders_;}
     game::HumanAINavigationJobPool& human_ai_navigation_jobs(){return human_ai_navigation_jobs_;}
     auto& human_scene_movement_process(){return human_scene_movement_process_;} //008AADD0, shared by Scene2 owners.
     auto& human_perception_record_pool(){return human_perception_records_;}
@@ -374,6 +382,7 @@ public:
     auto& car_light_receivers(){return car_light_receivers_;} //0089C0A4,004E2810 initializes the actual process list empty.
     auto& car_sound_receivers(){return car_sound_receivers_;} //0089C0B4, separate sound registrations.
     auto& players_process(){return players_process_;} //Actual CRT0089AC30; module reset, not a per-world copy.
+    auto& item_sound_request(){return item_sound_request_;} //007D45B0→004374D0, process0098AFE0, shared across worlds.
     auto& delayed_player_speech(){return delayed_player_speech_;} //Separate0089AC20, survives00456440 reset.
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(EngineFrame* frame,void* callback,Resolve&& resolve,Type&& type) {
         return frontend::add_sound_listener(sound_data_.runtime,gate_,frame,callback,
@@ -408,6 +417,7 @@ public:
     void stop_game_sound_voice(std::int32_t& handle) {
         frontend::stop_sound_voice(sound_data_.runtime,handle,sound_backend_); //00437340.
     }
+    EngineFrame* borrowed_game_sound_voice(std::int32_t handle)const{return static_cast<EngineFrame*>(frontend::sound_voice_frame(sound_data_.runtime,handle));}
     bool game_sound_voice_live(std::int32_t handle)const{ //004374A0.
         return frontend::sound_voice_frame(sound_data_.runtime,handle)!=nullptr;
     }
@@ -443,6 +453,7 @@ public:
     }
     std::uint32_t game_speech_length(std::int32_t id){return sound_catalog_.speech_sample_size(id);} //SOUND virtual94, SAME catalogue mappings.
     const frontend::CatalogSoundEntry* mounted_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(3,id);} //Actual SOUND+8C; no implicit catalogue load.
+    const frontend::CatalogSoundEntry* item_shot_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(2,id);} //007D5C70, SAME SOUND catalogue.
     const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
     void initialize_game_dubbing(){dubbing_sound_.initialize_loading();}
     void synchronize_game_dubbing(){dubbing_sound_.synchronize_attachments();}
@@ -800,6 +811,15 @@ public:
     }
     auto& game_broadcast_packets(){return broadcast_packets_;}
     auto& game_local_packets(){return local_packets_;}
+    void receive_control_connection_payload(const std::vector<unsigned char>& bytes,std::uint32_t channel,std::uint32_t flags){ //0072C360.
+        game::deliver_session_connection_packet(gate_,bytes,channel,flags,local_packets_);
+    }
+    void publish_control_reset_mode(std::uint32_t mode){
+        enter_control_lock(2);gate_=mode;leave_control_lock(2); //Source synchronization with callback's existing B4 scope.
+    }
+    void send_control_connection_payload(std::uint32_t target,const std::vector<unsigned char>& bytes,std::uint32_t flags){
+        game::submit_session_connection_packet(control_data_,gate_,target,bytes,flags,connection_worker_,*this);
+    }
     void enter_application_command_lock(){application_command_lock_.enter();}
     void leave_application_command_lock()noexcept{application_command_lock_.leave();}
     void queue_application_command(std::uint32_t kind,std::uint32_t target,std::uint32_t first,std::uint32_t second){
@@ -875,6 +895,21 @@ public:
     void clear_human_player_slot(std::uint32_t identity){frontend::clear_human_player_slot(control_data_,lock_services_,identity);}
     frontend::ControlStartupState& game_control_records(){return control_data_;} //PreparedSpawnPackets borrows SAME1DC storage and acquires lock0 for each access.
     void reset_control_entry_packets(bool reset_inputs){game::reset_session_entry_packets(human_inputs_,local_packets_,reset_inputs,[this]{return gate_;});}
+    void begin_game_entry_connections(){game::toggle_session_entry_connections(control_data_,gate_,control_frame_.state().local_peer,*this);}
+    std::unique_ptr<frontend::ControlConnectionLock> create_connection_lock(){return std::make_unique<ControlConnectionLock>();}
+    auto make_game_connection(std::uint32_t identity,std::uint32_t address,void* context){
+        return std::make_unique<frontend::ControlConnectionOwner<StartupSession>>(*this,identity,address,context);
+    }
+    void initialize_control_worker_lock(){lock_services_.initialize_control_worker_lock();}
+    bool owns_control_worker()const{return true;} //This object's SAME inline source worker, not transport readiness.
+    void reset_control_connections(){connection_worker_.reset_native();control_frame_.state().worker_active=false;}
+    void flush_control_connections(){connection_worker_.flush_all(true);}
+    void start_control_connections(std::uint32_t port){connection_worker_.start(port);control_frame_.state().worker_active=connection_worker_.active();}
+    auto& create_client_control_connection(std::uint32_t address,std::uint32_t port){return connection_worker_.publish_client(address,port);}
+    void complete_client_control_connection(std::uint32_t result,const std::vector<unsigned char>& reply){connection_worker_.complete_client(result,reply,control_frame_.state().local_peer);}
+    void retire_client_control_connection(){connection_worker_.retire_client();}
+    auto& finish_prepared_peer_connection(std::uint32_t slot){return connection_worker_.finish_prepared_peer(slot);}
+    void disconnect_peer_connection(std::uint32_t slot){connection_worker_.disconnect_peer(slot);}
     bool session_voice_enabled(){return profile_settings().bytes[0x38]!=0;}
     void create_session_voice(bool authority){session_voice_.create(authority,control_frame_.state().server,control_frame_.state().client);}
     void retire_session_voice(){session_voice_.retire();}
@@ -939,7 +974,8 @@ private:
     game::HudCompassShared hud_compass_state_;
     game::HudClickSound<MenuDriver::Owner> hud_click_sound_;
     bool source_packet_path()const{
-        return human_inputs_.present()||packet_world_.bound()||broadcast_packets_.pending()||!local_packets_.authority_queue().empty()||!local_packets_.presentation_queue().empty();
+        return connection_worker_.active()||human_inputs_.present()||packet_world_.bound()||broadcast_packets_.pending()||local_packets_.pending();
+        //Active selects the actual queue owner, not transport or World readiness.
     }
     game::ConsoleVariables game_console_variables_;
     game::TextRenderControls game_text_render_controls_;
@@ -962,6 +998,7 @@ private:
     game::CarSeatCameraShared car_seat_camera_;
     std::vector<EngineFrame*> car_light_receivers_,car_sound_receivers_;
     game::PlayersProcess<PlayerHuman> players_process_;
+    frontend::SpatialSoundRequest item_sound_request_; //Original CRT initialization; item writers preserve unmodified fields.
     std::vector<game::PlayersProcess<PlayerHuman>::DelayedSpeech> delayed_player_speech_;
     game::HumanMorphTables human_morph_tables_;
     float camera_breathing_=0x1.47ae14p-8f; //Original00839268 bytes0A D7 A3 3B, retained across worlds.
@@ -988,6 +1025,7 @@ private:
         game::CarSceneActor<GameActorServices>> human_scene_movement_process_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIActionPools human_ai_actions_;
+    HumanAIOrders human_ai_orders_; //SAME008AB048 manager+18, distinct from current-action pools.
     game::HumanAINavigationJobPool human_ai_navigation_jobs_;
     ResourceDirectoryPlatform directory_platform_;
     JoystickBackend joysticks_backend_;
@@ -1031,6 +1069,7 @@ private:
     HWND archive_focus_ = nullptr;
     BOOL directory_window_ = FALSE;
     LARGE_INTEGER control_frequency_{}, control_origin_{};
+    frontend::ControlConnectionWorker<StartupSession> connection_worker_; //LAST: callbacks retire while every borrowed process/platform owner is still alive.
 };
 
 }

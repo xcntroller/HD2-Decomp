@@ -354,6 +354,38 @@ public:
         if(visible)*visible=(relation.words[3]&0xffu)!=0;
         return relation.words[1];
     }
+    //0046F280→Human observer0046D8C0: immediate all-marker acquisition, no cached successful ray.
+    template<class Queries>bool force_human_target(std::int32_t observer_index,std::uint32_t index,Queries& queries){
+        auto* target=live_target(static_cast<std::int32_t>(index));if(!target||target->flag29)return false;
+        auto& observer=required_observer(observer_index);if(receivers_.sight_actor_type(observer.actor)!=3)throw std::logic_error("Forced Sight requires actual Human observer");
+        if(required_relation(observer,static_cast<std::int32_t>(index)).words[0])return true;
+        const auto origin=queries.sight_human_origin(observer.actor);const auto actor=receivers_.sight_actor(target->frame);
+        if(actor==observer.actor)return false;
+        const bool human=target->kind==0;Actor attachment{};
+        const auto restore=[&]{if(human)queries.sight_restore_human(actor);};
+        try{
+            if(human){
+                queries.sight_exclude_human(actor);attachment=queries.sight_human_attachment(actor);
+                const auto metric=queries.sight_human_metric(observer.actor,actor);
+                if(!metric||*metric!=100.f){restore();return false;}
+            }
+            target=live_target(static_cast<std::int32_t>(index));if(!target)throw std::logic_error("Forced Sight lost actual target after metric");
+            for(auto n=target->markers.size();n;){const auto marker=--n;const auto frame=target->markers[marker];
+                const auto delta=marker_displacement(queries.sight_position(frame),origin);
+                target=live_target(static_cast<std::int32_t>(index));if(!target)throw std::logic_error("Forced Sight lost actual target before ray");
+                const auto hit=queries.sight_ray(origin,delta,(target->enabled?0u:2u)|0x2cc100u,0x100000u);
+                if(!hit||(attachment&&(hit->flags&0x40u)&&hit->actor==attachment)){
+                    auto& relation=required_relation(observer,static_cast<std::int32_t>(index));relation.words[4]=static_cast<std::uint32_t>(marker);relation.words[0]|=1u<<(marker&31u);++relation.words[1];
+                    receivers_.human_sight_changed(observer.actor,false,index);restore();return true;
+                }
+                target=live_target(static_cast<std::int32_t>(index));if(!target)throw std::logic_error("Forced Sight lost actual target after ray");
+            }
+        }catch(...){try{restore();}catch(...){}throw;}
+        restore();return false;
+    }
+    void refresh_target_markers(std::int32_t index){ //Target virtual08/0046EB20, preserve SAME record/relations.
+        auto& target=required_target(index);target.markers.clear();bind_markers(target);
+    }
     Target* target(std::int32_t index){return live_target(index);}
     const auto& observers()const{return observers_;}const auto& targets()const{return targets_;}
 private:

@@ -1,29 +1,27 @@
-# P2.2 overnight reassessment
+# P2.2 current reassessment —2026-11-13
 
-Previous baseline `841d89a35c02de2c12c73bb3df8792e758450aed`. Initial and final inspected `origin/master` are recorded in the validation receipt. The reviewed overnight source is `799a79305c70bc8de1860ac7e438bba25a71a8ac`. Agent #1 merged the previous research through PR14 and added 17 implementation checkpoints. [Commit and source provenance](evidence/manifest.json)
+PACK4fccf12 is source complete and merged **into master**, based on masterfa94dee.
+Its selected Human dependencies through51082a2 are included. All23 payload families,
+five receiver grammars, process/FIFO/module/Scene2 and selected Human effects,
+rank and notifications are implemented. [Matrix](blocker-matrix.md),
+[current verification](evidence/pack-master-verification-20261113.json),
+[closure and limits](../p22-pack-source-closure.md).
 
-**P22-MOVE is resolved as a source-level requirement and bound within the concrete Scene2 facade.** Its solver, constraints and positive detours use actual World actors, navigation records, Car geometry and Startup pools. Actual application invocation belongs to FRAME/OWN. **HUM, FRAME, PACK and UI shrank.** The later focused LIFE review at `f9d5f03` closes the supported offline lifecycle source boundary. Its concrete API remains to be installed under OWN, with desktop repeat acceptance under REPEAT. [LIFE verification](evidence/life-verification.json) The later targeted GUARD review at `122ef38` closes the reconstructed Steam offline source scope. The targeted DATA review closes its implementation scope on unmerged feature/p22-data `e76afc1`. The targeted UI review closes its UI-owned source boundary on unmerged feature/p22-ui `ebdcbf5`, against reviewed master `b132e6d`. The targeted RENDER review closes its RENDER-owned source boundary on unmerged feature/p22-render `345a390`, against master `2c96a7d`. OWN, FRAME/RENDER integration and desktop/coverage requirements remain open. [RENDER verification](evidence/render-verification.json) [UI verification](evidence/ui-verification.json) [DATA verification](evidence/data-verification.json) [GUARD verification](evidence/guard-verification.json) [Before/after matrix](blocker-matrix.md)
+UI/RENDER/DATA source is already merged; same-World render/callback/lifecycle and
+application Scene78 wiring is preserved. Containing HUM/H8 remains partial.
+FRAME review91a7d33 still finds missing containing Active/Remote/00755500 frames,
+first-use physics5F9, non7 retained-item restoration and conditional services.
+FRAMEc36bba8 and OWN939fb70 remain unmerged. Complete the owning source contracts,
+then compose one actual session frame/application graph; preserve retirement
+order and truthful required failures. [FRAME review](../p22-frame-dependency-review-20261113.md).
 
-**Boundary A.** Complete reached positive Runtime receivers, compose the existing module facade into the session frame policies, integrate and invoke the completed UI adapter alongside the completed render services, use the completed Steam integrity bindings, and wire application activation with partial-failure cleanup. An attempt may report its actual failing stage. The application still declines loading. [Implementation order](implementation-order.md)
+Application loading remains disabled. No original mission, Scene/present/fade,
+user failure/return/repeat or second-mission desktop acceptance is claimed.
+Source completion and native/i386 verification do not establish those outcomes.
+[Implementation order](implementation-order.md) · [Reverse trace](reverse-dependencies.md)
+· [Mission reachability](mission-reachability.md).
 
-**First successful original frame.** Activation must construct actual actors and collision data, publish loaded14 and status at their original boundaries, then invoke the real update and render services with the selected camera. Scene render completion and graphics presentation need separate observations, including the original startup fade. **Full P2.2 acceptance** additionally needs user failure/Main-return/repeat tests and second original mission coverage. [Reverse trace](reverse-dependencies.md) · [Mission reachability](mission-reachability.md)
-
-## Immediate findings for Agent #1
-
-- **Historical original-code result, now outside the Steam critical path.** Known CFG dominance inside `0099AEB0` orders `009F0A60` at `009C5335`, `009F02A0` at `009CAD19`, then `009905B0` at `009CAE28`. The last conditionally calls `009995F0` at `00992A9A`. `009905B0` allocates 0x40 bytes for `00B3BD8C`. The later Steam review verifies that original00997602 skips those private validators while keeping descriptor/blocked/action processing. [Static findings R06](evidence/original-findings.json)
-- **Newly verified initialization boundary.** `006DB0F0` calls `006E9EA0` at `006DB104` before graphics initialization. Preserve that startup invocation and the 896 shared CRT draws. The initializer's seed still passes through the original `00A59000` wrapper. The later122ef38 checkpoint binds that initializer and the same process continuations in StartupSession. [Integrity evidence](integrity-and-rendering.md)
-- **RENDER findings now implemented at345a390.** SAME GEffects+C4/clock224, positive procedural-before-light traversal, actual allocation3C/40 history and callable lifecycle→Scene78 are present on feature/p22-render. Current master already has full UI; integrate the render/FRAME callback borrowers through LIFE. UI modal retirement can forward to `world.scene().effects().configure_special_model(false,nullptr,true)`. Source closure does not establish engine presentation. [RENDER verification](evidence/render-verification.json)
-- **Known work, now superseded findings.** `recovered/host/game_scene_actor_frames.h` supplies the solver. `human_world_loading_services.h` supplies actual B0 timer queries and Guard/Area, Script and Player dispatch. `GameMissionModuleFrames` supplies the module composition. The short path now concentrates on the remaining Runtime leaves and session/application services. [Blocker evidence](evidence/blockers.json)
-- **Surface-material finding superseded.** The targeted DATA review confirms `human_world_loading_services.h::sight_surface_factor` calls the actual GEffects material `+94` receiver in both feature/p22-data and reviewed master60f43dc. Actual contact/Sight scheduling still requires runtime observation. [DATA verification](evidence/data-verification.json)
-
-The graph retains all 13 nodes and original relationships. P22-MOVE's prerequisite is marked satisfied at the source level. Original evidence and every verification level remain distinct. [Graph](graph.json) · [Validation](evidence/validation.json)
-
-## Targeted UI source closure
-
-Verified `origin/feature/p22-ui` at `ebdcbf59bc6a59880bb664c0a5934e46105669d6`; latest inspected master `b132e6d78d9622e63dcfee982e917ad0ac10b64f`. All76 source and59 retained evidence/log fingerprints match. Concrete `GameUiPresentation` and `GameUiSceneCallbacks` borrow the existing World, bind positive HUD/FPV/text/control/console policies and preserve callback-before-World retirement. Upstream native/i386/link verification is reported with explicit engine/gameplay doubles and was not rerun. External Human/Actor/Items/PACK producers, containing frame/render scheduling and application activation remain required. The branch is unmerged; its five documented integration overlaps were composed over05dbdee only. Preserve newer master Car fuel/collision-clock ownership when merging. No desktop acceptance is claimed. Other blocker rows retain their individual reviewed revisions. [UI verification](evidence/ui-verification.json)
-
-## Targeted RENDER source closure
-
-Verified `origin/feature/p22-render` at `345a390809297b7d267db67445f6993ee39812ac`; reviewed master `2c96a7d177a4e8ab85eea2b20dfe595f22c9007d`. Same-World `GameRenderStages`, positive00482260/00482E50, process resources, debug and special-light services, opcodeAD/BB and lifecycle-owned callbacks/actual Scene78 are implemented and bound in callable source. Original3C/40 history is unwritten allocation state: consume its actual bytes, then store direction. This is no longer a missing original producer or a source blocker. The OS byte-copy/raw payload adaptation does not reproduce historical heap trajectories or pixels.
-
-The source claim is supported by36 matching receipt source/doc observations,70 matching retained evidence entries and independently checked13 original instruction ranges. Reported native100-family sanitizers, full World/render/lifecycle i386 link and application link pass with declared engine/UI doubles; not rerun. Full tracker retains a legacy missing ignored evidence limitation. The branch remains unmerged. Master already has full UI7a3f7b7; combine its adapters and FRAME retirement with the RENDER lifecycle through OWN/LIFE. Application loading, engine present and user mission/failure/repeat/second mission acceptance remain open. Other blocker rows retain their reviewed source pins. [RENDER verification](evidence/render-verification.json)
+Graph node/relationship identifiers are unchanged. PACK and merged UI/RENDER/DATA
+source prerequisites are satisfied; HUM→FRAME and FRAME→OWN remain open. Individual
+historical receipts, overnight validation and provenance remain pinned to their
+original revisions. Use the current verification receipt for this merge.

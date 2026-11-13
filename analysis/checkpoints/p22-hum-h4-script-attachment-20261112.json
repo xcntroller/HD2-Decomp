@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "Original H4 Script TurnAt producer and attachment consumer",
+  "implementation_base": "b3ebd53609f0605fa3f7f4118392d3e6acd2f0f6",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_script_attachment_output.h",
+      "sha256": "9b3bcd5134ebff3bc139cae95a9bcee179d6ef6e87d29fe37d4f63d61f85e6cf",
+      "bytes": 4243
+    },
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "sha256": "7db2799061dde7a7a211baaa4d13f8ebea67b30fdd533f2c41e22e53f406d77c",
+      "bytes": 16145
+    },
+    {
+      "path": "recovered/game/human_script_loading_controls.h",
+      "sha256": "36cdde21d15de9245606ecee93e3f2507b330075e248ee98dabdf1b55b72e880",
+      "bytes": 8040
+    },
+    {
+      "path": "recovered/game/human_state_base_loading.h",
+      "sha256": "bae663440dd0c7e885c3179bdc92ce4a2ba2960b9ac8c0dc9f09744d6e17ceb7",
+      "bytes": 16400
+    },
+    {
+      "path": "recovered/game/human_ai_state_loading.h",
+      "sha256": "0de537d03f22f990dfbcc0a7cb50a724b83e5e7a46e464722975dba881707cd0",
+      "bytes": 31600
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-attachment.asm",
+      "sha256": "7876313aec3e0becdb72437ac9ea0643ad3970178baafd2c106401507e8bcef7",
+      "bytes": 22067
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-look-target.asm",
+      "sha256": "eb10cf3ac31c9a44b1050364fee7ac3e58ddff256c82749b8b3f95430e8a6367",
+      "bytes": 9089
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-current-setter.asm",
+      "sha256": "690f8147f4efc7a00c226b048a1fc50c4d7c6081e0f501cbe8dfd2349b1d979e",
+      "bytes": 449
+    }
+  ],
+  "verification": {
+    "native": "PASS42 strictO1 ASan/UBSan/LSan actual AI/direction owners; explicit Human/matrix/seat endpoints. Actual TurnAt producer, NULL/non-null frame, supported attachment gates, borrowed world matrix changed by later update, raw versus normalized dot, setter ordering and failures/retry.",
+    "i386": "PASS strictO0 FULL LINK actual World/Script TurnAt\u2192attachment, actual VM/Controls opcode3E receiver and base/AI virtual50/54 setters; no selected endpoint doubles.",
+    "application": "PASS existing application-launch/startup-probe links, no Windows execution.",
+    "actual_mission_reachability": false,
+    "actual_engine_execution": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-attachment-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-attachment-native-run.log",
+      "sha256": "e5e95ea5de7ce87cbc75c683528ea5362e252227198b2815dcceec40fc95fb29",
+      "bytes": 178
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-attachment-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-attachment-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-attachment-audit.cpp",
+      "sha256": "81e107fa3f1597d9f14e7bfa32c9de4848472b6d3e764c1bcf85489164c012cd",
+      "bytes": 5490
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-attachment-audit",
+      "sha256": "2388db7723a0f832798f95e7dcf9d628f9064bf80a3fd5619df6421040818b25",
+      "bytes": 2040072
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-attachment-host.cpp",
+      "sha256": "5a9f39d8600b82ea900e6ac98120e73cbb84a4e60de9e4a72d3e8a2299de565f",
+      "bytes": 812
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-attachment-host.exe",
+      "sha256": "702ba72d7c4e9ffd0366caa0d2c5205da8d137f4f87e4625318296976115e8c3",
+      "bytes": 1517568
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "005904c0",
+      "0058db20",
+      "005af660"
+    ],
+    "extended": [
+      "00421c00"
+    ],
+    "counts": {
+      "client": {
+        "partial": 3051,
+        "complete": 34
+      },
+      "engine": {
+        "partial": 5
+      }
+    },
+    "denominator": 18783
+  },
+  "remaining": "Vehicle path00578790, actual subgroup producer/lifetime/0059BA70 update and positive Physics00407BD0 still H4 work. Type15/20/34 actor factories absent; H5 grenade/A8 imports remain external to base. Absent frozen00583100/0056FC10 receive no credit. Callable source distinct from mission/engine/desktop execution."
+}

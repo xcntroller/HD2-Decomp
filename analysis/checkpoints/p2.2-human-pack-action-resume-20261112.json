@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-12",
+  "source_only": true,
+  "command12_complete": false,
+  "p22_pack_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "base_commit": "370ba2186f5cfeac5cdea48764e579adbecf13a3",
+  "source_files": [
+    {
+      "path": "recovered/game/human_player_packet_action.h",
+      "bytes": 5106,
+      "sha256": "b1549ac7d84e595e522e462725b004aa6387f5a8d883d96cf7c3cc7009e5296d"
+    },
+    {
+      "path": "recovered/game/human_speech_loading.h",
+      "bytes": 11558,
+      "sha256": "ee2b76164261b69cf8fa5d81b1b1277e75f34af4bb87c4e40f22ff1f0dfba802"
+    },
+    {
+      "path": "recovered/game/players_process.h",
+      "bytes": 7790,
+      "sha256": "c32736113f148028aad9a1398b7b34d1dcec714e6a55c3129a359e1e2fe37211"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 203345,
+      "sha256": "2a215e7cc6c6e1a74743800f3dfe769a1d91f38b6fc1c59c8a3f776eeb46ff89"
+    }
+  ],
+  "verification": {
+    "native": "PASS ASan/UBSan/leaks:100 speech and100 mapped-action policy lifetimes; explicit endpoint doubles, support endpoint remains doubled",
+    "actual_i386": "PASS concrete full packet dispatcher host link; not executed",
+    "launcher_probe": "PASS latest rebuild; not executed",
+    "ledger": "PASS fingerprint/inventory/README check",
+    "logs": [
+      "analysis/work/mission-world-20261103/human-pack-action-resume-speech.log",
+      "analysis/work/mission-world-20261103/human-pack-action-resume-action.log",
+      "analysis/work/mission-world-20261103/human-pack-action-resume-host.log",
+      "analysis/work/mission-world-20261103/human-pack-action-resume-build-final.log"
+    ]
+  },
+  "temporary_audits_fingerprinted_for_removal": [
+    {
+      "path": "/tmp/p22-pack-resume/speech.cpp",
+      "bytes": 3694,
+      "sha256": "4ecb3791175c946ebfae23de036243cdcae46b3fcd67133596c87af5c37a1735"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/speech",
+      "bytes": 1658136,
+      "sha256": "4c3769b8144e6c907110bd1acfc26b3e941806afcb8b6d2529aaeb25b56a3adc"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/action.cpp",
+      "bytes": 3043,
+      "sha256": "67779d0229b4e932ca6fc240dfb56f56a2e6a21ffc4971e8fde9af0495c51a6a"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/action",
+      "bytes": 481584,
+      "sha256": "ab777e60b86a231eeb794313efcaa9537c951ccc5c70953ad968f460f848c894"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/host.exe",
+      "bytes": 3043840,
+      "sha256": "55e967b55e169f9c6a6429234d1c8d4f67ac65819606e31bb644239080bf2329"
+    }
+  ],
+  "remaining": [
+    "actual HeavyFire16 positive support actions33/34",
+    "remaining common3 subtypes",
+    "combined Human/PACK stream/FIFO/module verification",
+    "H8 delayed Players frame execution and other containing-frame dependencies"
+  ]
+}

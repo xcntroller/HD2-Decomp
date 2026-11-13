@@ -42,6 +42,10 @@ public:
         return d().human_factory.make_human_loading_owner(frames,world,human);
     }
     template<class Actor>auto actor_inventory_capacity(const Actor& actor)const{return d().scene.frames().actor_inventory_capacity(actor);}
+    template<class Human,class Entry>std::int32_t transfer_created_human_item(Human& human,Entry entry,std::int32_t slot){
+        return d().human_factory.world_services().transfer_created_human_item(human,entry,slot);
+    }
+    template<class Human>void document_remove_item(Human& human,std::int32_t identity){d().human_factory.world_services().document_remove_item(human,identity);}
     auto* script_context_for_frame(typename Dependencies::Frame frame){return d().script_link.context_for_frame(frame);}
     void door_script_use(typename Dependencies::Frame frame,std::uint32_t) { //005FF4B0→0041D960; command argument ignored.
         auto* context=script_context_for_frame(frame);
@@ -79,6 +83,18 @@ public:
     void door_sound_cursor(std::int32_t handle,std::uint32_t cursor){d().startup.game_sound_voice_cursor(handle,cursor);}
     std::int32_t emit_scene_actor_sound(const frontend::SpatialSoundRequest& request){return d().sound.emit(request);}
     auto mounted_sound_entry(std::int32_t id)const{return d().startup.mounted_sound_entry(id);}
+    bool mounted_human_view(void* actor){auto& services=d().human_factory.world_services();return services.human_is_player(services.human_score_actor(actor))&&services.human_view_offset_enabled();}
+    bool mounted_human_is_player(void* actor){return d().human_factory.world_services().mounted_human_is_player(actor);}
+    HumanVector mounted_human_target(void* actor){return d().human_factory.world_services().mounted_human_target(actor);}
+    void mounted_human_target(void* actor,const HumanVector& value){d().human_factory.world_services().mounted_human_target(actor,value);}
+    bool car_seat_integrity_matches(){auto& tables=d().startup.mission_integrity_tables();return tables.expected(60)==tables.observed(60);}
+    void seat_human_direction(void* actor,const HumanVector& direction){d().human_factory.world_services().seat_human_direction(actor,direction);}
+    std::uint32_t seat_human_state_kind(void* actor){return d().human_factory.world_services().seat_human_state_kind(actor);}
+    std::int32_t seat_human_health(void* actor){return d().human_factory.world_services().seat_human_health(actor);}
+    void seat_human_proximity_kind(void* actor,unsigned kind){d().human_factory.world_services().seat_human_proximity_kind(actor,kind);}
+    void seat_proximity_kind(std::int32_t index,unsigned kind){(void)d().proximity.speed_kind(index,kind);}
+    bool seat_view_enabled(){return d().first_person.view().enabled()||d().first_person.view().secondary_enabled();}
+    void seat_script_use(typename Dependencies::Frame frame){if(auto* context=script_context_for_frame(frame))context->use((mode_flags()&1u)!=0);}
     std::int32_t emit_door_sound(const frontend::SpatialSoundRequest& request){return d().sound.emit(request);}
     void emit_supply_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_fowl_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}

@@ -66,8 +66,8 @@ public:
     }
     template<class Callbacks>void retire(Callbacks& callbacks){ //004EC5C0, before model/geometry retirement.
         if(!completed_)throw std::logic_error("Car cold retirement requires a completed initializer");
-        //No occupant/seat attachment or positive deformation producer may be
-        //installed in this cold owner. Those require their actual restore path.
+        //No occupied Human control lifetime is supplied here. Mesh/variant
+        //restoration reuses this geometry's actual seat-associated Door owners.
         frontend::CleanupErrors errors;
         if(ready_){errors.attempt([&]{collision.set_enabled(false,false);});collision.close();}
         errors.attempt([&]{sounds.clear(&sound_receivers_);});
@@ -88,7 +88,7 @@ public:
             skids.clear_wheel(n);
         }
         skids.clear();
-        errors.attempt([&]{geometry_.deformables().restore_cold(frames_,geometry_.physics(),callbacks.empty6b4);});
+        errors.attempt([&]{restore_car_deformable_parts(frames_,geometry_,callbacks.empty6b4);});
         finalizer.lights.flags=0;
         errors.attempt([&]{update_car_loading_lights(frames_,geometry_.lighting(),finalizer.lights,.10000000149011612f,solver.substeps.flags,finalizer.previous_features);});
         errors.attempt([&]{sounds.unregister_receivers(sound_receivers_);});

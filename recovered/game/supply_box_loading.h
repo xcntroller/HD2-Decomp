@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_SUPPLY_BOX_LOADING_H
 #define HD2_GAME_SUPPLY_BOX_LOADING_H
 #include "game/model_scene_actors.h"
+#include "game/supply_box_pickup.h"
 #include "game/mission_vertex_instances.h"
 #include "game/rigid_body.h"
 #include "frontend/spatial_sound.h"
@@ -8,8 +9,8 @@
 namespace hd2::game {
 //005FAC80/005F9A60/005FB220 actual cold SupplyBox loading composition.
 //Same shared vertex registry/definitions, frame fades and dynamic buckets.
-//Cold command6→0/animation update is required now; respawn/falling/pickup remain
-//distinct receivers that reject when reached, never successful substitutes.
+//Cold command6→0 and active pickup/depletion effects use actual owners. Full
+//state1 crossfade/respawn/falling frames remain required guarded receivers.
 template<class Frames,class Services,class Collisions,class Vertices,class Fades>
 class SupplyBoxLoading final:public SupplyBoxLoadingLifetime<typename Frames::Frame> {
 public:
@@ -22,6 +23,13 @@ public:
     ~SupplyBoxLoading()override{try{retire();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}}
     Frame helper(unsigned index)const override{return helpers_.at(index)?helpers_[index]->get():Frame{};}
     const Descriptor* collision_descriptor()const{return descriptor_.get();}std::uint32_t state()const{return flags124_;}
+    std::uint32_t pickup_flags()const override{return flags124_;}
+    void consume_item()override{
+        if(!ready_)throw std::logic_error("Supply pickup requires its actual loaded owner");
+        consume_supply_box_item(actor_,flags124_,[&]{
+            deplete_supply_box(actor_,frames_,clips_[2]?clips_[2]->get():Frame{},[&](const auto& request){services_.emit_supply_sound(request);});
+        },[&]{refresh_ammo();});
+    }
     void activate(bool authority)override { //005FAC80, genuine once guard BEFORE common activation.
         if(actor_.flag90){if(!ready_)throw std::logic_error("Retire partial SupplyBox activation before retry");return;}
         if(descriptor_)throw std::logic_error("Retire actual SupplyBox resources before retry");

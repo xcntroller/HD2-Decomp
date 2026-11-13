@@ -2,6 +2,7 @@
 #define HD2_GAME_PLAYERS_PROCESS_H
 
 #include "game/human_formation.h"
+#include "game/human_loading_stats.h"
 #include <array>
 #include <vector>
 
@@ -29,6 +30,32 @@ public:
     }
     HumanVector formation_scale()const{return words_.template get<HumanVector>(0x110);} //Actual0089AD40.
     const auto& groups()const{return groups_;}auto& words(){return words_;}const auto& words()const{return words_;}
+
+    void speech_mode(std::uint8_t value){words_.set(0x43,value);} //00459470, virtual2C: one BYTE store only.
+    std::uint8_t speech_mode()const{return words_.template get<std::uint8_t>(0x43);} //00459480, virtual30.
+
+    template<class Random,class Clock>void schedule_order_completion(Human* human,
+            std::vector<DelayedSpeech>& delayed,Random&& random,Clock&& clock){ //00455AF0, singleton virtual38; absent frozen start.
+        if(!human)return;
+        std::int32_t delay=0;
+        for(auto n=delayed.size();n;){
+            if(delayed[--n].human==human)return; //Duplicate prefix draws for later entries have already occurred.
+            const auto draw=static_cast<long double>(random()); //Actual engine RandFloat007E4EA2, not CRT rand.
+            delay=signed_word(human_loading_stat_word((draw*200.f+delay)+300.f));
+        }
+        //Game2C is fetched AFTER all draws. Native addition retains low DWORD.
+        delayed.push_back({human,signed_word(clock()+static_cast<std::uint32_t>(delay))});
+    }
+
+    template<class Active,class Control>void first_player_shot(Control& control,std::uint32_t mode){ //00459360, absent frozen.
+        auto* selected=control.selected_player(mode);
+        for(auto n=control.human_roster().size();n;){
+            auto* human=control.human_roster().at(static_cast<std::int32_t>(--n));
+            if(!human)throw std::runtime_error("First Player shot lost its actual roster Human");
+            if(signed_word(human->properties.stats_ec[0])<=0||human==selected)continue;
+            active<Active>(*human).first_player_shot();
+        }
+    }
 
     template<class Active,class Control>void offline_player_close(Human& departing,Control& control) { //004593E0, singleton virtual34.
         //Count and entry are reread each iteration; formation callbacks can mutate the roster.

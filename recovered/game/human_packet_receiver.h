@@ -2,6 +2,15 @@
 #define HD2_GAME_HUMAN_PACKET_RECEIVER_H
 #include "game/human_packet_commands.h"
 namespace hd2::game {
+//005B2A90's effect after full temporary-soldier decode, including discard.
+//Only the referenced Human's ACTUAL B0 kind7 admits replacement. The decoded
+//soldier is copied because0059EB60 fills missing identities in temporary storage.
+template<class Command,class Resolve,class Populate>void receive_human_equipment_effect(const Command& command,Resolve&& resolve,Populate&& populate){
+    auto* human=resolve(command.fields.template get<std::int32_t>(8));
+    if(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=7u)return;
+    auto soldier=command.equipment;populate(*human,soldier);
+}
+
 //005A5F80/005A5FB0 and B0 C4/C0. Resolve rechecks the actual Scene2 slot,
 //including actor retirement; no decoded value retains a borrower. Source guard
 //rereads B0 before each command in case an earlier effect replaced it.

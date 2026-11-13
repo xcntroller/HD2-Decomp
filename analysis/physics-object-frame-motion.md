@@ -163,3 +163,14 @@ Sight/Shot, volumetric visibility/procedural, meaningful integrity publication
 and actual GameApplicationState loading/activation. The remaining tree/pickup
 branches and type6 retain explicit boundaries; do not claim general Physics or
 combat delivery from this motion checkpoint.
+
+
+H4 follow-up2026-11-12: kind3 positive204 replacement00407BD0 and00406740
+numbered-volume owner now implemented and concretely bound to SAME Physics
+manager create/contact, category1 cache and actual frame/handle lifetimes.
+The scene record1E flag now reaches204. Native PASS173 and strict actual World/
+Physics manager full link; [contract](p22-hum-h4-implementation.md#positive-physics-replacement-in-original-h4-completion-scope),
+[receipt](checkpoints/p22-hum-h4-physics-replacement-20261112.json).
+Earlier missing-pickup statements describe the previous checkpoint only. Tree
+nonzero-contact model/proximity branch00408780 and type6 remain distinct open
+Physics work; no live mission or desktop claim.

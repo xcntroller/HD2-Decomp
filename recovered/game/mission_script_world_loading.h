@@ -36,7 +36,7 @@ public:
         using Models=typename MissionScriptWorldLoading::Models;using Human=typename HumanComposition::Human;
         std::uint32_t& mode;bool& advance_override;SessionActivationState& session;Clock& clock;
         Bindings& bindings;Views& views;Objectives& objectives;Lifecycle& lifecycle;Controls& controls;
-        Predicates& predicates;Lookup& world;Effects& effects;
+        Predicates& predicates;Lookup& world;Effects& effects;Players& players;
     };
     using Composition=MissionScriptLoadingComposition<Dependencies>;
     MissionScriptWorldLoading(frontend::ClientModuleRegistry& registry,frontend::ClientModuleRegistration& registration,
@@ -52,7 +52,7 @@ public:
          predicates_(frames,players),experience_(mode),objectives_(session,mode,guard,random,players.control(),experience_,hint,lookup),
          animation_(frames,collisions),models_(frames,effects,lookup,animation_,players,view,mode),
          script_(registry,frames,files,models_,packets,mode,std::move(resource),variables,
-             Dependencies{mode,advance_override,session,clock,bindings_,views_,objectives_,lifecycle_,controls_,predicates_,lookup,effects},registration){
+             Dependencies{mode,advance_override,session,clock,bindings_,views_,objectives_,lifecycle_,controls_,predicates_,lookup,effects,players},registration){
         link_.bind(script_.module());
     }
     ~MissionScriptWorldLoading(){close();}

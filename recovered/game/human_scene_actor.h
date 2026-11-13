@@ -12,6 +12,7 @@
 #include "game/human_activation_fields.h"
 #include "game/human_loading_lifetime.h"
 #include <exception>
+#include <optional>
 
 namespace hd2::frontend {struct HumanRecord;}
 
@@ -29,6 +30,10 @@ struct alignas(16) HumanColdCommandControl {
     std::array<std::vector<std::uint32_t>,2> lists; //005AA7D0, at78/88.
     std::uint32_t field10=0;
     bool flag14=false;
+    std::optional<HumanVector> area_position; //Native00..0C unwritten until005AE610; clear005AE450 retains it.
+    void sniper_area(bool enabled,float radius,const HumanVector& position){ //005AE610, flag/radius/vector publication order.
+        flag14=enabled;std::memcpy(&field10,&radius,4);area_position=position;
+    }
     void bind_event_pool(HumanAIEventPool& pool){first.events.bind(pool);second.events.bind(pool);}
     void advance_events(std::uint32_t elapsed){ //005AD700: FIRST then SECOND, both reverse; actual typed deques.
         for(const auto* queue:{&first,&second})for(auto word:queue->words)
@@ -132,10 +137,11 @@ public:
     Frame field2b8{},field2bc{}; //Actual borrowed dubbing attachments, not frame pointers in DWORD scalar storage.
     SceneActor<Backend>* field160=nullptr; //Actual borrowed attachment actor, never a pointer in a DWORD.
     std::int32_t field164=-1;
+    SceneActor<Backend>* field174=nullptr; //Typed focus loan;00586200 subtype6 is its actual producer.
     HumanActivationFields activation;
     SpeechDefinition* speech_definition=nullptr; //Actual borrowed2C0; release its shared cache reference on deactivation.
     std::uint32_t field94=0,field98=0,fielda0=0,fielda8=0,fieldb0=0,fieldb8=0,
-        field174=0,field204=0,field208=0,
+        field204=0,field208=0,
         field258=0xffffffffu,field25c=0xffffffffu,field2a4=0xffffffffu;
     std::int32_t field188=-1;
     bool flag90=false;

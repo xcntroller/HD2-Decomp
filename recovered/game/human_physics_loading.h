@@ -211,6 +211,11 @@ public:
     void bind_animation_tracks(HumanJointWords<0x3a4>& tracks){frame_words_.bind(tracks);}
     void unbind_animation_tracks()noexcept{frame_words_.unbind();}
     auto& control_action_queue(){return queue_;} //DD0+A4C, SAME deque retired by0075B6C0.
+    void set_frame_motion_mode(std::uint32_t mode,bool copy){ //0075E250, native flag BEFORE face callback.
+        state_.set(0x1ac,mode);if(copy)state_.set(0x1b0,mode);
+        if(mode!=1u)state_.set(0x18c,std::uint8_t{1});
+        if(!mode)face_.activate_air_pose();
+    }
     void rebind_frame_posture(std::uint32_t posture){rebind_posture(posture);} //0075BC80.
     float control_projection_height(float model_height)const{ //00770100, unscaled marker DD0+6E0.
         const auto count=primary_count();
@@ -256,6 +261,22 @@ public:
     const auto& secondary() const{return secondary_;}
     const auto& shots() const{return shot_;}
     const auto& shot_relative() const{return shot_relative_;}
+    void rebind_clothing_bones(){ //0075D1C0 prefix, then0075D080 repeats bone lookup after collision markers.
+        for(unsigned n=0;n!=bones_.size();++n)bones_[n]=frames_.actor_find(human_->base().frame(),human_physics_bone_names[n],0xffff);
+    }
+    void rebind_clothing_markers(){ //0075D080, descriptor allocations/flags/timers survive.
+        const auto model=human_->base().frame();
+        shot_markers_[0]=frames_.actor_find(model,"shot1",0x20);shot_markers_[1]=frames_.actor_find(model,"shot2",0x20);
+        markers_.bind(model);rebind_clothing_bones();
+        for(unsigned n=0;n!=4;++n){
+            if(!primary_[n]||!secondary_[n])throw std::logic_error("Active clothing lost physical descriptor allocations");
+            primary_[n]->frame=model;secondary_[n]->frame=model;
+        }
+        const auto count=state_.template get<std::int32_t>(0x69c);
+        if(count<0||count>2)throw std::logic_error("Human clothing shot descriptor count exceeds native storage");
+        for(int n=0;n<count;++n){if(!shot_[n])throw std::logic_error("Human clothing lost shot descriptor");shot_[n]->frame=model;}
+        face_.bind(*human_); //00781AF0→007809C0, actual current Human property and model.
+    }
     const auto& bones() const{return bones_;}
     const auto& offset740() const{return offset740_;}
     const auto& posture_spheres()const{return posture_;}
@@ -345,6 +366,15 @@ public:
             descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(index?0x1d0:0x1cc))*descriptor.position[3]);
             collisions_.move(descriptor);
         }
+    }
+    void publish_replayed_geometry(std::uint32_t posture){ //00759E20, preserves descriptor flags and masks.
+        markers_.snapshot();rebind_posture(posture);
+        for(int index=0;index<primary_count();++index){
+            auto& descriptor=required(primary_,index);descriptor.position=posture_.at(static_cast<std::size_t>(index));
+            descriptor.radius=static_cast<float>(static_cast<long double>(descriptor.position[3])*state_.template get<float>(0x1c8));
+            collisions_.move(descriptor);
+        }
+        shot_spheres();publish_air_shots();
     }
     void suspend_collisions(bool suspended,std::uint32_t posture) { //0075C2D0.
         if(!human_)throw std::logic_error("Human collision transition has no bound Human");

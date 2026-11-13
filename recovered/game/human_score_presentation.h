@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_SCORE_PRESENTATION_H
 #define HD2_GAME_HUMAN_SCORE_PRESENTATION_H
 #include "game/human_loading_stats.h"
+#include "game/human_packet_notifications.h"
 #include "game/human_state_frame_timers.h"
 #include "frontend/control_startup.h"
 
@@ -22,6 +23,18 @@ template<class Human>void publish_human_rank_statistics(Human& human,const std::
     for(auto n:{2u,1u,4u,6u,7u,8u})human.properties.stats_ec[n]=values[n];
     for(auto n:{2u,1u,4u,6u,7u,8u})human.properties.stats_11c[n]=values[n];
 }
+//00725B00: typed process3C, actual Human holder4 and item definition44.
+//Resolvers borrow the SAME Scene2/Items owners; no record-ID/Players fallback.
+template<class Record,class Resolve,class Alignment,class Localize>
+std::string human_rank_record_label(Record& record,std::uint32_t style,Resolve&& resolve,Alignment&& alignment,Localize&& localize){
+    auto side=record.word(0x64);
+    if(style==0)if(auto* actor=record.human_actor()){
+        auto& human=resolve(actor);auto* storage=human.base().storage();auto* holder=storage?storage->holder(4):nullptr;
+        if(!holder)throw std::logic_error("Rank label requires actual Human holder4");
+        const auto item=holder->entry();side=item&&alignment(item)==0?1u:0u;
+    }
+    return localize((side==1?0x2792u:0x279cu)+record.word(0x54));
+}
 //0072FAC0, lock418 held through localization/HUD. Decoder's preceding54 store
 //is deliberately not suppressed: it affects this native old/new comparison.
 template<class Services>void present_human_score_rank(frontend::ControlStartupState& state,std::uint32_t rank,
@@ -34,8 +47,8 @@ template<class Services>void present_human_score_rank(frontend::ControlStartupSt
     const bool local=identity==static_cast<std::uint32_t>(services.human_current_player_id());
     const auto phrase=services.human_damage_localize(local?(demoted?0x22c4u:0x22c5u):(demoted?0x22c6u:0x22c7u));
     const auto label=services.human_score_rank_label(state.records[identity]);
-    const auto text=local?phrase+" "+label:state.records[identity].name()+" "+phrase+" "+label;
-    if(text.size()>=512)throw std::length_error("Rank message exceeds native512-byte formatter");
+    const auto text=local?format_human_packet_message("%s %s",{phrase,label},512):
+        format_human_packet_message("%s %s %s",{state.records[identity].name(),phrase,label},512);
     services.emit_human_rank_text(text,demoted?std::array<float,3>{{255,0,0}}:std::array<float,3>{{0,255,0}});
 }
 } //namespace hd2::game

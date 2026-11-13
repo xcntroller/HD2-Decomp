@@ -75,6 +75,20 @@ public:
             if(human)joints_.build();
         }catch(...) {clear();throw;}
     }
+    void rebind_clothing_model(std::uint32_t mode,std::optional<OfflineBinding> offline){ //0079C320(2), no movement/joint/effect reset.
+        if(!model_)throw std::logic_error("Human geometry refresh requires bound model");
+        skeleton_.bind_graph(frames_,model_);bind_frames();
+        for(const auto& bone:skeleton_.bones()){
+            if(!bone.frame)throw std::runtime_error("Clothing model requires complete Human skeleton");
+            frames_.human_unit_pose(bone.frame);
+        }
+        frames_.human_unit_pose(model_);
+        if((mode&7u)==7u&&offline_quality_){
+            if(!offline||!offline_faces_)throw std::logic_error("Clothing face refresh requires actual profile/clothing bindings");
+            if(!face_model_)face_model_=std::make_unique<HumanFaceModel<Frames>>(frames_,*offline_faces_);
+            face_model_->bind(model_,offline->player,offline_camouflage_,offline->clothing,2);
+        }
+    }
     void clear() noexcept {
         joints_.clear(); //0079BAC0 retires body then point trees before camera references.
         attachment_pose_.clear();
@@ -112,6 +126,14 @@ public:
         std::array<Matrix,23> saved_local{},saved_world{}; //Native bone13C/17C.
         std::vector<Vector> contact_positions; //Actual6840 allocation, three or seven entries.
     };
+    template<class Services>void retire_mount_geometry_effect(Services& services){ //007B30B0; keep effect storage/clip, native clears only flag200.
+        movement_.field6304&=~0x200u;
+        if(joints_.field6914!=-1)services.stop_human_contact_voice(joints_.field6914);
+        joints_.field6914=-1;
+        if(joints_.field6918>=0)services.stop_human_contact_voice(joints_.field6918);
+        joints_.field6918=-2;
+        if(joints_.field690c)joints_.retire_contact_frames();
+    }
     const auto& geometry_effect()const{return geometry_effect_;}
     template<class Human,class Control,class Services>void present_retained_clip(Human& human,Control& control,Services& services){
         if(!geometry_effect_)throw std::logic_error("Human retained clip requires its actual effect entry");
@@ -1183,6 +1205,11 @@ public:
             offset63a0{{-.075f,-.041f,-.003f,0}},offset63b0{{.075f,-.041f,-.003f,0}};
     };
     const Movement& movement() const {return movement_;}
+    void seat_posture(std::uint32_t posture){ //00755500 updates SAME native62D0/65F0/65F4 after E0 posture.
+        movement_.field62d0=posture;
+        if(posture==2){movement_.flag65f0=true;movement_.field65f4=500;}
+        else movement_.flag65f0=false;
+    }
     const auto& attachment_pose()const{return attachment_pose_;}
     const auto& prone_pose()const{return prone_pose_;}
     template<class Human,class Control>void present_prone_pose(Human& human,Control& control){
@@ -1270,7 +1297,10 @@ public:
         movement_.field630c=static_cast<std::uint32_t>(duration);
         movement_.field6308=static_cast<std::uint32_t>(human_animation_time_integer(static_cast<long double>(duration)*human_animation_word_float(movement_.field6318)));
     }
-    template<class Human,class Control,class Runtime>void present_frame(Human& human,Control& control,std::uint32_t elapsed,Runtime& runtime){ //007A7470.
+    //007A7470's common frame sampling and selected ragdoll branch. The normal
+    //presentation continuation shares this exact prefix, including its clock
+    //and motion samples; it does not run when the reaction branch consumes it.
+    template<class Human,class Control>bool present_reaction_frame(Human& human,Control& control,std::uint32_t elapsed){
         if(human_!=&human||control_!=&control||!model_)throw std::logic_error("Human geometry frame lost its actual owners");
         frame_elapsed_=elapsed;++seed_; //Native62B4/62B8.
         auto countdown=movement_.field6410-elapsed;
@@ -1296,8 +1326,12 @@ public:
         geometry_detail_=(control.animation_state_word(0x22c)&0x380u)==0; //Native62C9.
         if(movement_.field6304&0x200u){
             control.present_ragdoll_geometry();
-            return;
+            return true;
         }
+        return false;
+    }
+    template<class Human,class Control,class Runtime>void present_frame(Human& human,Control& control,std::uint32_t elapsed,Runtime& runtime){ //007A7470.
+        if(present_reaction_frame(human,control,elapsed))return;
         if(human_frame_signed_word(human.properties.stats_ec[0])<1)return;
         if(movement_.flag65f0&&control.animation_look_word(0xb8)!=5&&
            ((control.mode_flags()&7u)==7u||control.human_is_player()))
@@ -1670,9 +1704,9 @@ private:
         secondary_pose_=Frame{}; //0079BD30 clears6630, scratch6638/6694 is reset by007AE320.
     }
     void bind_frames() {
-        auto camera=frames_.actor_find(model_,"camera3RD",0xffff);
+        camera3rd_.reset();auto camera=frames_.actor_find(model_,"camera3RD",0xffff);
         if(camera)camera3rd_.emplace(frames_.retain_actor_frame(camera));
-        camera=frames_.actor_find(model_,"cameraFPV",0xffff);
+        camera_fpv_.reset();camera=frames_.actor_find(model_,"cameraFPV",0xffff);
         if(camera)camera_fpv_.emplace(frames_.retain_actor_frame(camera));
         weapon1_=frames_.actor_find(model_,"hw1",0xffff);weapon2_=frames_.actor_find(model_,"hw2",0xffff);
         marker_z_=frames_.actor_find(model_,"z",0xffff);

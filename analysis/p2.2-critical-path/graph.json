@@ -27,11 +27,11 @@
           "boundary": "A",
           "addresses": "00698510 006CA780 006989B0",
           "source": "host/game_world_loading.h",
-          "status": "SessionOwner construction remains the application entry. GameApplicationState still declines activation and its input/fixed/update/render callbacks throw.",
-          "batch": "Bind existing loading/activation and real frame/render services to GameApplicationState with staged failure cleanup.",
+          "status": "Master retains disabled application loading/input/fixed/update; its actual render callback forwards to bound Scene78. Later OWN939fb70 provides activation/controller/failure ownership on its branch and still guards frames.",
+          "batch": "Integrate the available OWN lifecycle/controller source after completing required FRAME Runtime producers and mutable input provenance. Preserve one parent owner, frame-before-callback/render-before-World retirement and truthful failures.",
           "predecessors": "FRAME GUARD LIFE RENDER",
           "overlap": "Agent1 integration still pending",
-          "source_commit_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+          "source_commit_sha": "fa94dee38922a21397289a7b5746819c83b42d89",
           "original_addresses": [
             "00698510",
             "006ca780",
@@ -44,30 +44,32 @@
             }
           ],
           "desktop_acceptance": "unknown",
-          "critical_path_reason": "SessionOwner construction remains the application entry. GameApplicationState still declines activation and its input/fixed/update/render callbacks throw.",
+          "critical_path_reason": "Master retains disabled application loading/input/fixed/update; its actual render callback forwards to bound Scene78. Later OWN939fb70 provides activation/controller/failure ownership on its branch and still guards frames.",
           "closure_evidence": "real kind7 initialize invokes the actual loader/activation, publishes only actual loaded/status, and dispatches real callbacks; inject failure at each construction/load/activation prefix.",
-          "reconciliation": "unchanged",
-          "delta": "SessionOwner construction remains the application entry. GameApplicationState still declines activation and its input/fixed/update/render callbacks throw.",
-          "world_binding": "source owners available; application unbound",
-          "remaining": "Bind existing loading/activation and real frame/render services to GameApplicationState with staged failure cleanup.",
+          "reconciliation": "partially_resolved",
+          "delta": "Master retains disabled application loading/input/fixed/update; its actual render callback forwards to bound Scene78. Later OWN939fb70 provides activation/controller/failure ownership on its branch and still guards frames.",
+          "world_binding": "SessionOwner and actual application render/Scene binding on master; later OWN activation source unmerged.",
+          "remaining": "Integrate the available OWN lifecycle/controller source after completing required FRAME Runtime producers and mutable input provenance. Preserve one parent owner, frame-before-callback/render-before-World retirement and truthful failures.",
           "original_research": "No new entry contract gap identified.",
           "desktop_unknown": "Actual selected branch/resource/state population and engine result. ",
           "source_paths": [
             "recovered/host/game_owner.h",
-            "recovered/host/game_mission_loading.h",
-            "recovered/host/game_session_activation.h"
+            "recovered/host/game_session_lifecycle.h",
+            "recovered/host/game_ui_scene_callbacks.h"
           ],
           "verification": "Source audit at pinned revision. Upstream checks are reported in evidence/overnight-checkpoints.json.",
           "remaining_blocker": true,
           "verification_levels": {
             "original_behavior_researched": "bounded contracts; remaining original unknowns explicit",
-            "source_body_implemented": "source owners available; application unbound",
-            "world_owner_binding": "source owners available; application unbound",
-            "application_execution": "pending",
+            "source_body_implemented": "SessionOwner and actual application render/Scene binding on master; later OWN activation source unmerged.",
+            "world_owner_binding": "SessionOwner and actual application render/Scene binding on master; later OWN activation source unmerged.",
+            "application_execution": "pending; application loading disabled",
             "native_i386": "See pinned checkpoint summaries for changed source; unchanged paths retain prior checks",
             "desktop_observed": false,
             "user_accepted": false
-          }
+          },
+          "verification_record": "analysis/p22-frame-dependency-review-20261113.json",
+          "available_branch_revision": "939fb70283fbf635e0cf1f8f9bcdcae7d8a7800e"
         }
       },
       {
@@ -148,11 +150,11 @@
           "boundary": "A",
           "addresses": "0059FE30 0059FFD0 00548170 00559DE0 00588010 00584E30 00787270 00787D50 007A7470",
           "source": "game/human_scene_frame.h",
-          "status": "Actual World services now dispatch Guard/Area, Script and Player frames. Base timer queries and common completion policy are concrete. DD0 control/presentation, animation, ground, Look, Player input/weapons and contact source coverage expanded.",
-          "batch": "Finish only reached Runtime leaves and remaining B0 families, DD0 action/air/geometry/effects and item fire. Reuse actual new dispatch and shared query owners.",
+          "status": "H4/H6 and selected PACK Human dependencies through51082a2 are merged. Actual inventory/clothing/common commands/DocumentPlace23/mapped actions/HeavyFire/animation/equipment/speech/damage/rank owners exist.",
+          "batch": "H8.2/3/4 remain open: containing Active/Remote B0, remaining00751480 and00755500 frames, async combat and reached absent actor dependencies. PACK command starts do not supply their containing simulation.",
           "predecessors": "",
           "overlap": "Agent #1 actively reconstructing remaining Human/Player/DD0 Runtime leaves.",
-          "source_commit_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+          "source_commit_sha": "51082a20acd87e68cb3d41aeed57492ffcdab855",
           "original_addresses": [
             "0059fe30",
             "0059ffd0",
@@ -171,35 +173,34 @@
             }
           ],
           "desktop_acceptance": "unknown",
-          "critical_path_reason": "Actual World services now dispatch Guard/Area, Script and Player frames. Base timer queries and common completion policy are concrete. DD0 control/presentation, animation, ground, Look, Player input/weapons and contact source coverage expanded.",
+          "critical_path_reason": "H4/H6 and selected PACK Human dependencies through51082a2 are merged. Actual inventory/clothing/common commands/DocumentPlace23/mapped actions/HeavyFire/animation/equipment/speech/damage/rank owners exist.",
           "closure_evidence": "All reached positive Runtime leaves supplied over actual owners, including remaining B0/DD0 services, with native/strict i386 checks and actual session-frame invocation.",
           "reconciliation": "partially_resolved",
-          "delta": "Actual World services now dispatch Guard/Area, Script and Player frames. Base timer queries and common completion policy are concrete. DD0 control/presentation, animation, ground, Look, Player input/weapons and contact source coverage expanded.",
-          "world_binding": "substantial source and World binding; Runtime incomplete",
-          "remaining": "Finish only reached Runtime leaves and remaining B0 families, DD0 action/air/geometry/effects and item fire. Reuse actual new dispatch and shared query owners.",
+          "delta": "H4/H6 and selected PACK Human dependencies through51082a2 are merged. Actual inventory/clothing/common commands/DocumentPlace23/mapped actions/HeavyFire/animation/equipment/speech/damage/rank owners exist.",
+          "world_binding": "Many actual World/Runtime owners, including all selected PACK effects; containing H8 guarded.",
+          "remaining": "H8.2/3/4 remain open: containing Active/Remote B0, remaining00751480 and00755500 frames, async combat and reached absent actor dependencies. PACK command starts do not supply their containing simulation.",
           "original_research": "Residual positive action, interaction, geometry, derived damage and item-shot callbacks. Recovered timer queries, Guard/Area and Player/Script dispatch are superseded findings.",
           "desktop_unknown": "Actual selected branch/resource/state population and engine result. Source adaptations include zero-speed/cardinal/mixed-posture and lateral zero-span guards, requiring observation if reached.",
           "source_paths": [
+            "recovered/game/human_frame_runtime.h",
             "recovered/game/human_world_loading_services.h",
-            "recovered/game/human_loading_state_factory.h",
-            "recovered/game/human_state_action_completion.h",
-            "recovered/game/human_control_loading.h",
-            "recovered/game/human_player_state_loading.h",
-            "recovered/game/human_look_frame.h",
-            "recovered/game/human_ground_motion.h"
+            "analysis/human-h4-source-closure.md",
+            "analysis/human-h6-source-closure.md",
+            "analysis/p22-hum-h8-plan.md"
           ],
-          "verification": "Source audit at pinned revision. Upstream checks are reported in evidence/overnight-checkpoints.json.",
+          "verification": "Selected PACK source verified on current merge; remaining caller/guard evidence preserved in FRAME dependency review.",
           "checkpoint_receipt": "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
           "remaining_blocker": true,
           "verification_levels": {
             "original_behavior_researched": "bounded contracts; remaining original unknowns explicit",
-            "source_body_implemented": "substantial source and World binding; Runtime incomplete",
-            "world_owner_binding": "substantial source and World binding; Runtime incomplete",
-            "application_execution": "pending",
+            "source_body_implemented": "Many actual World/Runtime owners, including all selected PACK effects; containing H8 guarded.",
+            "world_owner_binding": "Many actual World/Runtime owners, including all selected PACK effects; containing H8 guarded.",
+            "application_execution": "pending; application loading disabled",
             "native_i386": "See pinned checkpoint summaries for changed source; unchanged paths retain prior checks",
             "desktop_observed": false,
             "user_accepted": false
-          }
+          },
+          "verification_record": "analysis/p22-frame-dependency-review-20261113.json"
         }
       },
       {
@@ -268,11 +269,11 @@
           "boundary": "A",
           "addresses": "0069A560 0069AF10 0069B230 0048DAA0 0048DAD0",
           "source": "game/session_frame_loading.h",
-          "status": "GameMissionModuleFrames now composes actual Physics, Scene2 movement/Human, Camera and module passes over one World. Session fixed/variable policies and actual application frame callbacks still lack a complete concrete service receiver.",
-          "batch": "Compose session-level services with the module facade and reached positive Runtime callbacks, FPV/HUD/text/control and effects.",
+          "status": "FRAME session/input/control/lifecycle and Runtime11 source checkpointc36bba8 is available on feature/p22-frame. Review91a7d33 confirms PACK is complete and current master UI/RENDER source is available; FRAME remains unmerged and blocked.",
+          "batch": "Complete containing H8 receivers; resolve first-use rigid-part5F9; supply positive non7 retained-item005B7EC0 restoration and reached nonoffline/Dog/Sight services. Then import and bind actual FRAME/UI/RENDER/OWN owners.",
           "predecessors": "HUM MOVE UI PACK LIFE",
           "overlap": "Agent1 full checkbox",
-          "source_commit_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+          "source_commit_sha": "c36bba8c5aa2855a02c11ce832810cebe39e8d10",
           "original_addresses": [
             "0069a560",
             "0069af10",
@@ -287,13 +288,13 @@
             }
           ],
           "desktop_acceptance": "unknown",
-          "critical_path_reason": "GameMissionModuleFrames now composes actual Physics, Scene2 movement/Human, Camera and module passes over one World. Session fixed/variable policies and actual application frame callbacks still lack a complete concrete service receiver.",
+          "critical_path_reason": "FRAME session/input/control/lifecycle and Runtime11 source checkpointc36bba8 is available on feature/p22-frame. Review91a7d33 confirms PACK is complete and current master UI/RENDER source is available; FRAME remains unmerged and blocked.",
           "closure_evidence": "instantiate the complete concrete frame graph without declaration-only leaves, then verify fixed/variable ordering and same session/status/time/camera/actor identity.",
           "reconciliation": "partially_resolved",
-          "delta": "GameMissionModuleFrames now composes actual Physics, Scene2 movement/Human, Camera and module passes over one World. Session fixed/variable policies and actual application frame callbacks still lack a complete concrete service receiver.",
-          "world_binding": "module facade bound; session/application unbound",
-          "remaining": "Compose session-level services with the module facade and reached positive Runtime callbacks, FPV/HUD/text/control and effects.",
-          "original_research": "Remaining service consumers and conditional Runtime leaves. No missing original contract is inferred solely from unbound session policies.",
+          "delta": "FRAME session/input/control/lifecycle and Runtime11 source checkpointc36bba8 is available on feature/p22-frame. Review91a7d33 confirms PACK is complete and current master UI/RENDER source is available; FRAME remains unmerged and blocked.",
+          "world_binding": "Module facade on master; later session coordinator available but unmerged and missing required positive services.",
+          "remaining": "Complete containing H8 receivers; resolve first-use rigid-part5F9; supply positive non7 retained-item005B7EC0 restoration and reached nonoffline/Dog/Sight services. Then import and bind actual FRAME/UI/RENDER/OWN owners.",
+          "original_research": "Confirmed first-use5F9 and missing containing Human/restore contracts retained; RENDER3C/40 is resolved and is a separate contract.",
           "desktop_unknown": "Actual selected branch/resource/state population and engine result. ",
           "source_paths": [
             "recovered/host/game_mission_module_frames.h",
@@ -301,17 +302,20 @@
             "recovered/game/session_frame_loading.h",
             "recovered/host/game_owner.h"
           ],
-          "verification": "Source audit at pinned revision. Upstream checks are reported in evidence/overnight-checkpoints.json.",
+          "verification": "Pinned FRAME reassessment91a7d33, direct later caller/guard review; unchanged FRAME source not rebuilt.",
           "remaining_blocker": true,
           "verification_levels": {
             "original_behavior_researched": "bounded contracts; remaining original unknowns explicit",
-            "source_body_implemented": "module facade bound; session/application unbound",
-            "world_owner_binding": "module facade bound; session/application unbound",
-            "application_execution": "pending",
+            "source_body_implemented": "Module facade on master; later session coordinator available but unmerged and missing required positive services.",
+            "world_owner_binding": "Module facade on master; later session coordinator available but unmerged and missing required positive services.",
+            "application_execution": "pending; application loading disabled",
             "native_i386": "See pinned checkpoint summaries for changed source; unchanged paths retain prior checks",
             "desktop_observed": false,
             "user_accepted": false
-          }
+          },
+          "verification_record": "analysis/p22-frame-dependency-review-20261113.json",
+          "review_commit_sha": "91a7d33c90a74ad1bf34e829d6f160166bb1b262",
+          "merged_into_master": false
         }
       },
       {
@@ -320,16 +324,16 @@
         "data": {
           "id": "P22-PACK",
           "title": "Process packet positive receivers",
-          "classification": "missing_implementation",
+          "classification": "implemented_and_bound",
           "requirement": "conditional",
           "boundary": "A",
           "addresses": "0072C3B0 005A5FB0 005418E0",
           "source": "host/game_loading_modules.h",
-          "status": "Offline kind6 Ladder command production and authority consumption are bound through real request stream/FIFO/Scene2 dispatch. Other command payloads reject. Reserved presentation receiver005A5FB0/005418E0 still throws.",
-          "batch": "Support other reached command payloads and reserved presentation grammar. Preserve null/discard consumption.",
+          "status": "Selected PACK source complete at4fccf12, merged into master: all23 payload families, five receiver grammars, real process streams/FIFOs/module13/Scene2 dispatch, fresh Human/B0 lifetime and selected effects, rank and notifications.",
+          "batch": "No selected PACK source work remains. Containing Human/Active/DD0/async simulation, conditional nonoffline diagnostic/medical/feedback, application scheduling, Phase3 transport and desktop acceptance remain with their owners.",
           "predecessors": "",
           "overlap": "Agent1 known boundary; reachability of reserved commands needs observation",
-          "source_commit_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+          "source_commit_sha": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
           "original_addresses": [
             "0072c3b0",
             "005a5fb0",
@@ -342,31 +346,38 @@
             }
           ],
           "desktop_acceptance": "unknown",
-          "critical_path_reason": "Offline kind6 Ladder command production and authority consumption are bound through real request stream/FIFO/Scene2 dispatch. Other command payloads reject. Reserved presentation receiver005A5FB0/005418E0 still throws.",
+          "critical_path_reason": "Selected PACK source complete at4fccf12, merged into master: all23 payload families, five receiver grammars, real process streams/FIFOs/module13/Scene2 dispatch, fresh Human/B0 lifetime and selected effects, rank and notifications.",
           "closure_evidence": "observed required packet kinds consume their exact original grammar, including null/discard cases; actual reserved Human receivers work through the process queues.",
-          "reconciliation": "partially_resolved",
-          "delta": "Offline kind6 Ladder command production and authority consumption are bound through real request stream/FIFO/Scene2 dispatch. Other command payloads reject. Reserved presentation receiver005A5FB0/005418E0 still throws.",
-          "world_binding": "one positive offline command path bound and verified",
-          "remaining": "Support other reached command payloads and reserved presentation grammar. Preserve null/discard consumption.",
-          "original_research": "Remaining command families and presentation null/discard grammar. Kind6 authority path is implemented.",
+          "reconciliation": "resolved_source",
+          "delta": "Selected PACK source complete at4fccf12, merged into master: all23 payload families, five receiver grammars, real process streams/FIFOs/module13/Scene2 dispatch, fresh Human/B0 lifetime and selected effects, rank and notifications.",
+          "world_binding": "Actual process, module, Scene2 and Human owners; all selected packet effects bound at source.",
+          "remaining": "No selected PACK source work remains. Containing Human/Active/DD0/async simulation, conditional nonoffline diagnostic/medical/feedback, application scheduling, Phase3 transport and desktop acceptance remain with their owners.",
+          "original_research": "Original-qualified selected wire, receiver holes, null/discard, priorities, alias bytes, drop10 scale15 and native failure prefixes recovered; closure documents limits.",
           "desktop_unknown": "Actual selected branch/resource/state population and engine result. ",
           "source_paths": [
+            "recovered/game/human_packet_commands.h",
+            "recovered/game/human_packet_receiver.h",
             "recovered/game/human_frame_commands.h",
+            "recovered/game/session_local_packets.h",
             "recovered/host/game_loading_modules.h",
-            "recovered/game/session_broadcast_packets.h",
-            "recovered/game/session_local_packets.h"
+            "recovered/game/human_world_loading_services.h",
+            "recovered/game/human_score_presentation.h",
+            "recovered/game/human_packet_notifications.h"
           ],
-          "verification": "Source audit at pinned revision. Upstream checks are reported in evidence/overnight-checkpoints.json.",
-          "remaining_blocker": true,
+          "verification": "All23 closure source fingerprints match merged tree. Fresh merged actual i386 full link and forced launcher/probe builds; retained upstream native ASan/UBSan/leak checks with explicit endpoint doubles.",
+          "remaining_blocker": false,
           "verification_levels": {
             "original_behavior_researched": "bounded contracts; remaining original unknowns explicit",
-            "source_body_implemented": "one positive offline command path bound and verified",
-            "world_owner_binding": "one positive offline command path bound and verified",
-            "application_execution": "pending",
-            "native_i386": "See pinned checkpoint summaries for changed source; unchanged paths retain prior checks",
+            "source_body_implemented": "Actual process, module, Scene2 and Human owners; all selected packet effects bound at source.",
+            "world_owner_binding": "Actual process, module, Scene2 and Human owners; all selected packet effects bound at source.",
+            "application_execution": "pending; application loading disabled",
+            "native_i386": "All23 closure source fingerprints match merged tree. Fresh merged actual i386 full link and forced launcher/probe builds; retained upstream native ASan/UBSan/leak checks with explicit endpoint doubles.",
             "desktop_observed": false,
             "user_accepted": false
-          }
+          },
+          "checkpoint_receipt": "analysis/checkpoints/p22-pack-source-20261113.json",
+          "verification_record": "analysis/p2.2-critical-path/evidence/pack-master-verification-20261113.json",
+          "merged_into_master": true
         }
       },
       {
@@ -380,11 +391,11 @@
           "boundary": "A",
           "addresses": "0069B870 006C9260 00486BF0 00482260 00482E50",
           "source": "host/game_render_stages.h",
-          "status": "RENDER-owned source is complete on unmerged feature/p22-render: actual same-World pre-scene, volume/procedural/debug/special-light services and lifecycle-owned Scene callbacks/render entry are implemented. Actual application execution and desktop presentation remain pending.",
-          "batch": "Integrate branch services with current master UI and FRAME under existing OWN/LIFE. Invoke callable lifecycle render at the original schedule; retire callbacks/stages/frame borrowers before World. VIS/REPEAT/SECOND own actual engine/desktop acceptance.",
+          "status": "RENDER345a390 and UI/render application wiringdd2fb6c are in masterfa94dee. Actual per-volume3C/40 allocation history, positive procedural/debug/special/VM services, Scene callbacks and lifecycle-owned rendering are implemented.",
+          "batch": "Completed render source must be invoked in the actual loaded FRAME/OWN graph. Engine Scene completion, presentation/fade and desktop acceptance remain unobserved.",
           "predecessors": "UI",
           "overlap": "RENDER implementation complete at345a390; branch base447e073. Master2c96a7d already contains full UI7a3f7b7. Combine lifecycle render/FRAME borrowers through existing owners; no combined current-master build is claimed.",
-          "source_commit_sha": "345a390809297b7d267db67445f6993ee39812ac",
+          "source_commit_sha": "fa94dee38922a21397289a7b5746819c83b42d89",
           "original_addresses": [
             "0069b870",
             "006c9260",
@@ -399,12 +410,12 @@
             }
           ],
           "desktop_acceptance": "unknown",
-          "critical_path_reason": "Completed RENDER source prerequisite is supplied by an unmerged branch. Remaining work is current UI/FRAME/OWN integration and actual engine/desktop execution; no separate historical volume-history producer remains on the source critical path.",
+          "critical_path_reason": "RENDER345a390 and UI/render application wiringdd2fb6c are in masterfa94dee. Actual per-volume3C/40 allocation history, positive procedural/debug/special/VM services, Scene callbacks and lifecycle-owned rendering are implemented.",
           "closure_evidence": "All36 receipt source/doc observations and70 retained evidence entries match, with21 current source pins. Independently matched9413 original instruction bytes across13 static ranges. Upstream native100-family sanitizers, actual full World/lifecycle/i386 link and application link PASS reported; audits not rerun. Full tracker has explicit pre-existing missing WORK evidence limitation.",
           "reconciliation": "resolved_source",
-          "delta": "Supersedes missing containing00482260, positive00482E50/process resources, concrete render stages/debug, opcodeAD/BB producers and per-volume history guard.345a390 reads current unwritten allocation bytes at the original gate, then stores current direction; no first-angle initialization or numerical fallback.",
-          "world_binding": "GameRenderStages invokes SAME modules.game_effects().render_before_scene over C4/clock224 and actual Scene15C/graphics endpoints. GameSessionLifecycle owns stages/callbacks, binds Scene dispatcher and calls session policy/actual Scene78. Process procedural configuration and special-light owners bind to existing World/Startup/VM lifetimes.",
-          "remaining": "Branch and current UI/FRAME integration; OWN invokes activation/render/update/present with existing lifecycle. UI modal special-frame retirement needs its containing action forwarder. Conditional water/weather/game64/colour update producers remain required when reached. Engine/desktop mission/failure/repeat/second mission remain unobserved.",
+          "delta": "RENDER345a390 and UI/render application wiringdd2fb6c are in masterfa94dee. Actual per-volume3C/40 allocation history, positive procedural/debug/special/VM services, Scene callbacks and lifecycle-owned rendering are implemented.",
+          "world_binding": "Same-World UI/render/callback lifecycle and actual GameApplicationState render to bound Scene78.",
+          "remaining": "Completed render source must be invoked in the actual loaded FRAME/OWN graph. Engine Scene completion, presentation/fade and desktop acceptance remain unobserved.",
           "original_research": "Original allocation/constructor/read/refresh leaves3C/40 unwritten;00482843/4E reads prior values before00482862/64 stores current direction. Source preserves allocation-dependent behavior using Volume-owned48-byte raw payload and OS copy, not a historical-heap value producer. Native allocation/sidecar ABI and heap/pixel equivalence are explicitly excluded.",
           "desktop_unknown": "Selected active camera/Scene15C state, allocator-dependent first history, actual volume/cloud/special-light/debug populations and reached branches, real draw/Scene completion/present after fade, conditional effects update failures, repeat and second mission.",
           "source_paths": [
@@ -434,18 +445,18 @@
           "remaining_blocker": false,
           "verification_levels": {
             "original_behavior_researched": "Bounded render/allocation contracts checked against original bytes. No separate historical first-value initializer is required. Runtime heap/pixel equivalence is not claimed.",
-            "source_body_implemented": "yes, RENDER-owned source scope at345a390; original functions remain partial where ABI/external contracts differ",
-            "world_owner_binding": "yes, concrete same-World render stages and callable lifecycle/Scene78; process resource/VM/special-light loans bound in source",
-            "application_execution": "not enabled; current GameApplicationState still declines loading, and OWN/FRAME integration must invoke the callable source services",
+            "source_body_implemented": "Same-World UI/render/callback lifecycle and actual GameApplicationState render to bound Scene78.",
+            "world_owner_binding": "Same-World UI/render/callback lifecycle and actual GameApplicationState render to bound Scene78.",
+            "application_execution": "pending; application loading disabled",
             "native_i386": "Reported native100-family ASan/UBSan/LSan policies, actual full World/render/callback/lifecycle i386 compile/link and KERNEL32 ReadProcessMemory import; application link PASS. Engine/UI endpoints doubled. Audits not rerun; full tracker blocked by legacy missing ignored evidence.",
             "desktop_observed": false,
             "user_accepted": false
           },
-          "source_ref": "origin/feature/p22-render",
-          "merged_into_master": false,
-          "reviewed_master_sha": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+          "source_ref": "master",
+          "merged_into_master": true,
+          "reviewed_master_sha": "fa94dee38922a21397289a7b5746819c83b42d89",
           "checkpoint_receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
-          "verification_record": "analysis/p2.2-critical-path/evidence/render-verification.json"
+          "verification_record": "analysis/checkpoints/p22-render-wiring-20261112.json"
         }
       },
       {
@@ -459,11 +470,11 @@
           "boundary": "A",
           "addresses": "0049B9B0 0049B9F0 0049BD50 004909D0 00491660 0048F2D0 0048F390 006E8490 006C9260",
           "source": "host/game_ui_presentation.h",
-          "status": "UI-owned source receivers and positive presentation policies are complete on feature/p22-ui. GameUiPresentation and GameUiSceneCallbacks bind the existing World HUD/FPV/text/control/console/occupied owners. Feature source closure is not merged into reviewed master.",
-          "batch": "Integrate the completed UI branch preserving current master owners. FRAME/RENDER/OWN install and invoke the completed adapters with real external producers; LIFE retires callbacks before World. VIS/REPEAT/SECOND retain desktop acceptance.",
+          "status": "Full UI7a3f7b7 is merged; masterdd2fb6c supplies same-World render loan, modal cleanup and callback retirement. PACK/HUM adds the actual typed Human174 focus borrower.",
+          "batch": "Bind remaining external gameplay producers and the containing FRAME/OWN execution graph. Application activation and desktop observations remain open.",
           "predecessors": "",
           "overlap": "Completed UI-owned implementation on feature/p22-ui ebdcbf5. External Human/Actor/Items/PACK/frame/render producers remain with their owning subsystems. Five overlap resolutions documented against05dbdee; newer master Car changes also require preservation.",
-          "source_commit_sha": "ebdcbf59bc6a59880bb664c0a5934e46105669d6",
+          "source_commit_sha": "7a3f7b786498cca8618a654031ca7191d572982a",
           "original_addresses": [
             "0049b9b0",
             "0049b9f0",
@@ -482,12 +493,12 @@
             }
           ],
           "desktop_acceptance": "unknown",
-          "critical_path_reason": "Completed UI source is a prerequisite supplied by an unmerged feature branch. Remaining work is branch integration and actual FRAME/RENDER/OWN execution with external producers, followed by desktop acceptance.",
+          "critical_path_reason": "Full UI7a3f7b7 is merged; masterdd2fb6c supplies same-World render loan, modal cleanup and callback retirement. PACK/HUM adds the actual typed Human174 focus borrower.",
           "closure_evidence": "Independent review matches all76 source and59 retained original/log fingerprints. Concrete same-World routing/retirement and positive HUD/FPV/text/console endpoints inspected. Reported native100-lifetime sanitizer, strict i386 and application link checks pass within receipt limits; not rerun.",
           "reconciliation": "resolved_source",
-          "delta": "Replaces the799a793 containing-UI gap with concrete full HUD0049BD50/render0049B9B0/0049B9F0, FPV frame00491660, text0048F2D0/0048F390, overlay006E8490, console and staged006C9260 adapters. Master retains earlier31b01f9 subset only.",
-          "world_binding": "Concrete borrowed GameUiPresentation validates SAME SessionOwner/backend/Startup/device/scene/request. Existing World binds occupied presentation before FPV activation; UI publishes retirement callbacks after allocation and unbinds before World close. Typed external action/data producers remain required.",
-          "remaining": "Branch integration; actual session frame/render scheduling and activation under FRAME/RENDER/OWN/LIFE. Required Human174/peer3C/orders/path/weapon/action/health/items/speech, absent Actor data faces and PACK/application endpoints must be supplied when reached. No application loading or desktop rendering claim.",
+          "delta": "Full UI7a3f7b7 is merged; masterdd2fb6c supplies same-World render loan, modal cleanup and callback retirement. PACK/HUM adds the actual typed Human174 focus borrower.",
+          "world_binding": "Actual HUD/control/FPV/text and callback owners on master; same-World render wiring preserved.",
+          "remaining": "Bind remaining external gameplay producers and the containing FRAME/OWN execution graph. Application activation and desktop observations remain open.",
           "original_research": "UI-owned contracts recovered within declared scope.004909D0 is activation;00491660 is the FPV frame tick.006C9260 stage ordering retains required pre-scene/debug/render producers, UI/fades/process text and actual state restoration. External positive receiver contracts remain with their owners.",
           "desktop_unknown": "Actual selected-mission UI/Human/Actor/Items/process populations, camera/visibility, rendered HUD/FPV/text/fades, input and required action results, teardown/repeat and second mission remain unobserved.",
           "source_paths": [
@@ -572,18 +583,18 @@
           "remaining_blocker": false,
           "verification_levels": {
             "original_behavior_researched": "UI-owned bounded contracts and explicit external producer requirements documented; no whole-function completion or absent-owner success claim.",
-            "source_body_implemented": "yes, UI-owned source completion at feature/p22-ui ebdcbf5",
-            "world_owner_binding": "yes, concrete same-World UI/occupied source adapters; external producers and containing scheduling remain required",
-            "application_execution": "mission loading disabled; OWN/FRAME/RENDER must install and invoke adapters after readiness, LIFE retire before World close",
+            "source_body_implemented": "Actual HUD/control/FPV/text and callback owners on master; same-World render wiring preserved.",
+            "world_owner_binding": "Actual HUD/control/FPV/text and callback owners on master; same-World render wiring preserved.",
+            "application_execution": "pending; application loading disabled",
             "native_i386": "Upstream native100-lifetime ASan/UBSan/LSan policies/composed UI checks with declared doubles; concrete active i386 and temporary05dbdee composition/link PASS reported. Fingerprints/logs independently checked, audits not rerun.",
             "desktop_observed": false,
             "user_accepted": false
           },
-          "source_ref": "origin/feature/p22-ui",
-          "merged_into_master": false,
-          "reviewed_master_sha": "b132e6d78d9622e63dcfee982e917ad0ac10b64f",
+          "source_ref": "master",
+          "merged_into_master": true,
+          "reviewed_master_sha": "fa94dee38922a21397289a7b5746819c83b42d89",
           "checkpoint_receipt": "analysis/checkpoints/p22-ui-source-closure-20261112.json",
-          "verification_record": "analysis/p2.2-critical-path/evidence/ui-verification.json"
+          "verification_record": "analysis/checkpoints/p22-render-wiring-20261112.json"
         }
       },
       {
@@ -663,8 +674,8 @@
           "boundary": "A",
           "addresses": "006CC760 006CD940 006EE570",
           "source": "host/game_mission_loading.h",
-          "status": "DATA-owned resource provenance, selected-byte validation and real loader/population/execution observation hooks are implemented on feature/p22-data. Historical capture verified. Source is not yet merged into reviewed master.",
-          "batch": "Merge/integrate the completed DATA branch through the authorized workflow, then OWN/FRAME/RENDER wrap actual lifecycle/frame/render operations with its scopes. VIS/REPEAT/SECOND collect live acceptance evidence.",
+          "status": "DATA-owned provenance, exact-byte validation and observation hooks ate76afc1 are merged into master.",
+          "batch": "Fresh mission populations and desktop observations remain VIS/REPEAT/SECOND; install/invoke the actual loader/frame/render hooks through OWN/FRAME.",
           "predecessors": "",
           "overlap": "DATA implementation complete at feature/p22-data e76afc1, not merged into reviewed master60f43dc.",
           "source_commit_sha": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
@@ -680,12 +691,12 @@
             }
           ],
           "desktop_acceptance": "unknown",
-          "critical_path_reason": "DATA-owned resource provenance, selected-byte validation and real loader/population/execution observation hooks are implemented on feature/p22-data. Historical capture verified. Source is not yet merged into reviewed master.",
+          "critical_path_reason": "DATA-owned provenance, exact-byte validation and observation hooks ate76afc1 are merged into master.",
           "closure_evidence": "All25 source and14 retained artifact fingerprints match. Independent validator rebuild confirms29 historical fingerprints,33 outcomes and16 supported parser scopes. Upstream native100 cycles/16 negative cases and actual i386/app link reported; tracker check has an existing missing-evidence limit.",
           "reconciliation": "resolved_source",
-          "delta": "8877c9d adds actual resolver/cache and owner observation bindings plus shared-parser tools; e76afc1 records completed implementation scope and assigns live integration/acceptance to external owners.",
+          "delta": "DATA-owned provenance, exact-byte validation and observation hooks ate76afc1 are merged into master.",
           "world_binding": "Concrete existing ChunkFiles/cache/loader/World/actor/material/command/particle/shot/render hooks are callable. Owning stores preserve values across receiver retirement; runtime scopes still require an integration caller.",
-          "remaining": "Branch merge and integration under OWN/FRAME/RENDER. Fresh active resolver context, loaded populations, executed branches and desktop acceptance remain external follow-up.",
+          "remaining": "Fresh mission populations and desktop observations remain VIS/REPEAT/SECOND; install/invoke the actual loader/frame/render hooks through OWN/FRAME.",
           "original_research": "Active resolver remains authoritative. Static captured declarations and parser acceptance are bounded. Archive origin is explicitly unavailable where rw_data exposes no origin API.",
           "desktop_unknown": "Fresh resolver bytes/context, actual actor/B0/DD0/contact/command/shot/particle/render populations and source guards remain unknown until actual integration execution.",
           "source_paths": [
@@ -736,7 +747,7 @@
             "master_verified_revision": "60f43dcc8aa6c4249a94817712324a9e18d8e6ae"
           },
           "source_ref": "origin/feature/p22-data",
-          "merged_into_master": false,
+          "merged_into_master": true,
           "reviewed_master_sha": "60f43dcc8aa6c4249a94817712324a9e18d8e6ae",
           "checkpoint_receipt": "analysis/checkpoints/p22-data-20261111.json",
           "verification_record": "analysis/p2.2-critical-path/evidence/data-verification.json"
@@ -970,7 +981,7 @@
           "basis": "explicit",
           "confidence": "confirmed",
           "condition": null,
-          "reason": "World state dispatch and timer queries are concrete. Remaining reached positive Runtime leaves must complete the containing frame graph.",
+          "reason": "H8.2/3/4 remain open: containing Active/Remote B0, remaining00751480 and00755500 frames, async combat and reached absent actor dependencies. PACK command starts do not supply their containing simulation.",
           "provenance": [
             {
               "path": "analysis/p2.2-critical-path/implementation-order.md"
@@ -1012,7 +1023,7 @@
           "basis": "explicit",
           "confidence": "confirmed",
           "condition": null,
-          "reason": "Bind existing Physics, Sight, Camera, actors, Script, FPV, HUD/text, sound and process lifetimes.",
+          "reason": "Full UI7a3f7b7 is merged; masterdd2fb6c supplies same-World render loan, modal cleanup and callback retirement. PACK/HUM adds the actual typed Human174 focus borrower. Bind remaining external gameplay producers and the containing FRAME/OWN execution graph. Application activation and desktop observations remain open.",
           "provenance": [
             {
               "path": "analysis/p2.2-critical-path/implementation-order.md"
@@ -1020,10 +1031,10 @@
           ],
           "satisfied_at_source_level": true,
           "remaining_scheduling_blocker": false,
-          "source_commit_sha": "ebdcbf59bc6a59880bb664c0a5934e46105669d6",
-          "source_ref": "origin/feature/p22-ui",
-          "merged_into_master": false,
-          "requires_branch_integration": true
+          "source_commit_sha": "7a3f7b786498cca8618a654031ca7191d572982a",
+          "source_ref": "7a3f7b7 (merged UI source)",
+          "merged_into_master": true,
+          "requires_branch_integration": false
         }
       },
       {
@@ -1037,14 +1048,16 @@
           "basis": "explicit",
           "confidence": "unresolved",
           "condition": "Actual data/packet/guard must establish reachability first",
-          "reason": "Bind existing Physics, Sight, Camera, actors, Script, FPV, HUD/text, sound and process lifetimes.",
+          "reason": "Selected PACK source complete at4fccf12, merged into master: all23 payload families, five receiver grammars, real process streams/FIFOs/module13/Scene2 dispatch, fresh Human/B0 lifetime and selected effects, rank and notifications. No selected PACK source work remains. Containing Human/Active/DD0/async simulation, conditional nonoffline diagnostic/medical/feedback, application scheduling, Phase3 transport and desktop acceptance remain with their owners.",
           "provenance": [
             {
               "path": "analysis/p2.2-critical-path/implementation-order.md"
             }
           ],
-          "satisfied_at_source_level": false,
-          "remaining_scheduling_blocker": false
+          "satisfied_at_source_level": true,
+          "remaining_scheduling_blocker": false,
+          "source_commit_sha": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+          "merged_into_master": true
         }
       },
       {
@@ -1079,7 +1092,7 @@
           "basis": "explicit",
           "confidence": "confirmed",
           "condition": null,
-          "reason": "Bind same active scene camera/volume224/process renderer and callback stages; preserve state restoration.",
+          "reason": "Full UI7a3f7b7 is merged; masterdd2fb6c supplies same-World render loan, modal cleanup and callback retirement. PACK/HUM adds the actual typed Human174 focus borrower. Bind remaining external gameplay producers and the containing FRAME/OWN execution graph. Application activation and desktop observations remain open.",
           "provenance": [
             {
               "path": "analysis/p2.2-critical-path/implementation-order.md"
@@ -1087,10 +1100,10 @@
           ],
           "satisfied_at_source_level": true,
           "remaining_scheduling_blocker": false,
-          "source_commit_sha": "ebdcbf59bc6a59880bb664c0a5934e46105669d6",
-          "source_ref": "origin/feature/p22-ui",
-          "merged_into_master": false,
-          "requires_branch_integration": true
+          "source_commit_sha": "7a3f7b786498cca8618a654031ca7191d572982a",
+          "source_ref": "7a3f7b7 (merged UI source)",
+          "merged_into_master": true,
+          "requires_branch_integration": false
         }
       },
       {
@@ -1125,7 +1138,7 @@
           "basis": "explicit",
           "confidence": "confirmed",
           "condition": null,
-          "reason": "Observe scene render completion, actual active camera transform, presentation and visible original world after fade.",
+          "reason": "RENDER345a390 and UI/render application wiringdd2fb6c are in masterfa94dee. Actual per-volume3C/40 allocation history, positive procedural/debug/special/VM services, Scene callbacks and lifecycle-owned rendering are implemented. Completed render source must be invoked in the actual loaded FRAME/OWN graph. Engine Scene completion, presentation/fade and desktop acceptance remain unobserved.",
           "provenance": [
             {
               "path": "analysis/p2.2-critical-path/implementation-order.md"
@@ -1133,10 +1146,11 @@
           ],
           "satisfied_at_source_level": true,
           "remaining_scheduling_blocker": false,
-          "implementation_revision": "345a390809297b7d267db67445f6993ee39812ac",
+          "implementation_revision": "fa94dee38922a21397289a7b5746819c83b42d89",
           "implementation_ref": "origin/feature/p22-render",
-          "requires_integration": true,
-          "merged_into_master": false
+          "requires_integration": false,
+          "merged_into_master": true,
+          "source_commit_sha": "fa94dee38922a21397289a7b5746819c83b42d89"
         }
       },
       {
@@ -1171,7 +1185,7 @@
           "basis": "explicit",
           "confidence": "unresolved",
           "condition": "Actual data/packet/guard must establish reachability first",
-          "reason": "DATA-owned source implementation complete on feature/p22-data. Conditional live populations and acceptance remain with actual integration and acceptance owners.",
+          "reason": "DATA-owned provenance, exact-byte validation and observation hooks ate76afc1 are merged into master. Fresh mission populations and desktop observations remain VIS/REPEAT/SECOND; install/invoke the actual loader/frame/render hooks through OWN/FRAME.",
           "provenance": [
             {
               "path": "analysis/p2.2-critical-path/implementation-order.md"
@@ -1181,7 +1195,9 @@
           "remaining_scheduling_blocker": false,
           "implementation_revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
           "implementation_ref": "origin/feature/p22-data",
-          "requires_integration": true
+          "requires_integration": false,
+          "source_commit_sha": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+          "merged_into_master": true
         }
       },
       {
@@ -1237,7 +1253,7 @@
           "basis": "explicit",
           "confidence": "unresolved",
           "condition": "Actual data/packet/guard must establish reachability first",
-          "reason": "DATA-owned source implementation complete on feature/p22-data. Conditional live populations and acceptance remain with actual integration and acceptance owners.",
+          "reason": "DATA-owned provenance, exact-byte validation and observation hooks ate76afc1 are merged into master. Fresh mission populations and desktop observations remain VIS/REPEAT/SECOND; install/invoke the actual loader/frame/render hooks through OWN/FRAME.",
           "provenance": [
             {
               "path": "analysis/p2.2-critical-path/implementation-order.md"
@@ -1247,7 +1263,9 @@
           "remaining_scheduling_blocker": false,
           "implementation_revision": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
           "implementation_ref": "origin/feature/p22-data",
-          "requires_integration": true
+          "requires_integration": false,
+          "source_commit_sha": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+          "merged_into_master": true
         }
       },
       {
@@ -1260,7 +1278,7 @@
           "basis": "explicit",
           "confidence": "confirmed",
           "relationship": "prerequisite",
-          "reason": "Enable application path only with required real render and callback services; preserve explicit failed attempts.",
+          "reason": "RENDER345a390 and UI/render application wiringdd2fb6c are in masterfa94dee. Actual per-volume3C/40 allocation history, positive procedural/debug/special/VM services, Scene callbacks and lifecycle-owned rendering are implemented. Completed render source must be invoked in the actual loaded FRAME/OWN graph. Engine Scene completion, presentation/fade and desktop acceptance remain unobserved.",
           "provenance": [
             {
               "path": "analysis/p2.2-critical-path/implementation-order.md"
@@ -1268,34 +1286,29 @@
           ],
           "satisfied_at_source_level": true,
           "remaining_scheduling_blocker": false,
-          "implementation_revision": "345a390809297b7d267db67445f6993ee39812ac",
+          "implementation_revision": "fa94dee38922a21397289a7b5746819c83b42d89",
           "implementation_ref": "origin/feature/p22-render",
-          "requires_integration": true,
-          "merged_into_master": false
+          "requires_integration": false,
+          "merged_into_master": true,
+          "source_commit_sha": "fa94dee38922a21397289a7b5746819c83b42d89"
         }
       }
     ]
   },
   "unresolved_references": [
     {
-      "id": "P22-GUARD-producer-order",
-      "reason": "Private startup entry/order and validated observation publication unresolved"
-    },
-    {
-      "id": "P22-RENDER-volume-history",
-      "reason": "Original history contract is source-resolved at345a390: read current allocation bytes then store direction. Actual first bytes, Scene15C/camera state and engine result remain runtime observations under VIS.",
-      "classification": "runtime_dependent_unknown",
-      "original_contract_status": "resolved_source",
-      "remaining_scheduling_blocker": false,
-      "owning_blocker": "P22-VIS",
-      "source_commit_sha": "345a390809297b7d267db67445f6993ee39812ac",
-      "provenance": "analysis/p2.2-critical-path/evidence/render-verification.json"
-    },
-    {
       "id": "P22-DATA-runtime-populations",
       "reason": "Active resolver data and actual command/contact paths must be observed"
     }
   ],
   "previous_source_commit_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
-  "targeted_review_note": "RENDER individually verified at feature/p22-render345a390, unmerged into master2c96a7d. Its source prerequisite edges are satisfied; actual integration/desktop work remains. Master UI adapter availability checked separately; other blocker source pins retain prior reviews."
+  "targeted_review_note": "2026-11-13 PACK4fccf12 merged INTO masterfa94dee; selected PACK source resolved. HUM and FRAME remain partial. Current UI/RENDER/DATA source already merged; application loading and desktop acceptance remain pending. Individual historical receipts retain their original revisions.",
+  "latest_review": {
+    "date": "2026-11-13",
+    "master_parent": "fa94dee38922a21397289a7b5746819c83b42d89",
+    "pack_parent": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+    "frame_review": "91a7d33c90a74ad1bf34e829d6f160166bb1b262",
+    "verification_record": "analysis/p2.2-critical-path/evidence/pack-master-verification-20261113.json"
+  },
+  "source_commit_sha_scope": "Historical overnight baseline. Current individual source revisions and the latest_review integration parent pair are authoritative; no desktop acceptance is implied."
 }

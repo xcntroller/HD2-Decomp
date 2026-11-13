@@ -23,6 +23,7 @@ template<class Frames>struct CarColdFinalizerState {
     float air_pressure=0,light_factor=1,slip_distance=0,road_enabled=1,field5d0=0;
     bool live=true,inside=false,air_requested=false,debug_selected=false;
     bool engine_transition=false,engine_sound_pending=false,field2287=false;
+    bool engine_inside2298=false; //004E2900 byte2298=0;00518710 publishes2297 after completed start.
     Frame sector{};
     template<class Geometry>explicit CarColdFinalizerState(const Geometry& geometry)
         :particles(geometry.auxiliary().exhausts().size()){

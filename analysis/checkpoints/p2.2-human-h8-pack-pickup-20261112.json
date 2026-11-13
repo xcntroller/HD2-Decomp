@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H8 PACK command9 pickup and automatic unheld placement",
+  "base": "447d5d8",
+  "branch": "feature/p22-hum-h8",
+  "source_only": true,
+  "H8_complete": false,
+  "PACK_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-pack-effects-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/dynamic_item_actor.h",
+      "bytes": 5642,
+      "sha256": "52fe8859bcd14d8ae100298a97eca4521514e686f71f1efd9244738eb84783bb"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 193225,
+      "sha256": "dc67481f63ee430593193e0bdd798134574f4ab5d4c1c3fb60d16d438c85e4f6"
+    },
+    {
+      "path": "recovered/game/prepared_item_transfer.h",
+      "bytes": 3854,
+      "sha256": "f50574f46fd4ac09af7570f58e0e33f20d018b122ca0a40e012ffd65619cde30"
+    },
+    {
+      "path": "recovered/game/human_item_pickup.h",
+      "bytes": 2944,
+      "sha256": "4f5a925a91768349758f14cb9f16ae0d0aaaffcf0f7e8555c53e2a3e6461af3c"
+    },
+    {
+      "path": "recovered/game/loose_item_handoff.h",
+      "bytes": 556,
+      "sha256": "ef09ac1e535021df2a80373ac7d0d306c77ac75919071dc2b74f389de5ae66cf"
+    }
+  ],
+  "original_program_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a39d0.c",
+      "bytes": 403,
+      "sha256": "2d2bc021d86af7c94e73727762866eb84f772417947835c11b2b5bf9c0fd0302"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a3a40.c",
+      "bytes": 413,
+      "sha256": "51ff1ed900550bdd8dbf11f019fbaef33c867c9e80a6cd0942c2e02e82ce658c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-swap-dependencies/007d9b40.c",
+      "bytes": 2260,
+      "sha256": "6cbdb6c0a500d725736453a50570b571b047b23fd1278ceb8c813544baa4dfee"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pickup-handoff.asm",
+      "bytes": 768,
+      "sha256": "80ab7125f80ec552827e576f1439e7a7e089c89a7fdb003edf57783738f409a7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/actor-registry/00477190.c",
+      "bytes": 1644,
+      "sha256": "e7ac7a7114d3f62b58d9af3e842059ad393e299253fb7c9802a07c5d9a97741b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/runtime-actor-owner-boundary/004772f0.c",
+      "bytes": 523,
+      "sha256": "1e253a6bd10f246df18c90e53d32d2559e0001a37d518940f8f459461db70272"
+    }
+  ],
+  "verification": {
+    "native_sanitizers": "PASS6300 assertions /100 lifetimes, actual storage/placement/transfer/pickup/handoff policies with explicit item/engine/runtime/equipment endpoints",
+    "actual_host_i386": "Strict FULL LINK actual packet/World/Items/runtime loose actor/registry/body/equipment/clothing and command20; not run",
+    "launcher_and_startup_probe": "Rebuild PASS; not run",
+    "logs": [
+      "analysis/work/mission-world-20261103/human-h8-pack-pickup-native-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-pickup-native-run.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-pickup-host-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-pickup-application-link.log"
+    ]
+  },
+  "temporary_audits_removed_after_verification": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-pickup-native.cpp",
+      "bytes": 6741,
+      "sha256": "4ec7ae3f83d28ac3bee6843b933f33569804352f5d00f6164e60039a1fcfabd3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-pickup-native",
+      "bytes": 1154104,
+      "sha256": "8a46cae17948e40a147bcc365e76d613e38f11439f3e810f1eb30ddec4802d83"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-pickup-host-i386.cpp",
+      "bytes": 539,
+      "sha256": "cbcb8f2e4465efaea574117bb257466f93d2c9c1813fb373ae0f3b86372d55a0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-pickup-host-i386.exe",
+      "bytes": 3645952,
+      "sha256": "9657c94308fef71a78551fb1d7245ba2b61583401439c582e3a99419cfb614a7"
+    }
+  ],
+  "ledger": {
+    "new_partials": 3,
+    "new_completes": 0,
+    "complete": 34,
+    "partial": 3402
+  },
+  "remaining": [
+    "PACK commands3/7/8/11/12/18",
+    "Arbitrary source/cross-Human transfers/swaps/preflight",
+    "Source-container pickup and its depletion/animation effects",
+    "H8 full authority/frame/application/desktop acceptance"
+  ]
+}
