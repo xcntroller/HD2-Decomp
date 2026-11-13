@@ -1,4 +1,4 @@
-# P22-PACK source plan — 2026-11-11
+# P22-PACK source plan — 2026-11-12
 
 Isolated worktree `HD2-Decomp-p22-pack`, branch `feature/p22-pack`. Existing clean
 HEAD and read-only fetched master: `f9d5f03183900044ce191530a13f34690b7e8059`.
@@ -10,6 +10,15 @@ HEAD and read-only fetched master: `f9d5f03183900044ce191530a13f34690b7e8059`.
 available receiver and existing inventory-producer work below is implemented and
 verified. No other checkout's uncommitted code is a dependency. Application
 loading stays disabled; source closure and desktop delivery are separate.
+
+## H8 reassessment — 2026-11-12
+
+[Exact source review](p22-pack-hum-h8-review.md) pins HUM H8 at14d59d3.
+Commands1/10/17 and the conditional rank association now have Human source;
+command3 is partially supplied. Commands2/7/8/9/11/12/18/20 still lack required
+positive effects. The older blocker table below is historical; use the review
+for current dependencies. No source import or new implementation credit.
+The mandatory effect-binding checkbox remains blocked.
 
 ## Existing completed source preserved
 

@@ -240,7 +240,15 @@ DD0 kind1, uses cache0041FC10, setup007757E0, process request groups/track updat
 setup/reset effect interface. Its exact reached failure now names that owner;
 no sound/subtitle substitute or research-only implementation credit is claimed.
 
-## Precise remaining blockers
+## Current H8 dependency review — 2026-11-12
+
+[Reassessment at14d59d3](p22-pack-hum-h8-review.md) supersedes the missing-owner
+status in the historical table below. Human now supplies1/10/17, conditional
+rank association and selected command3 subtypes; required2/7/8/9/11/12/18/20
+positive effects remain absent. No HUM source was imported into PACK in this
+review. PACK remains source-open.
+
+## Precise remaining blockers (historical 2026-11-11 snapshot)
 
 These effects are reached failures, not successful empty callbacks. PACK parsing,
 serialization and all independent implemented-owner bindings continue around them.
