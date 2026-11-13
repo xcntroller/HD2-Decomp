@@ -212,10 +212,10 @@ def render(baseline, statuses):
     percent = complete * 100 / total
     filled = complete * 30 // total
     lines = [
-        START, "### Original-function reconstruction (base game only)", "",
+        START, "## Function count", "",
         f"`[{'#' * filled}{'-' * (30 - filled)}] {percent:.2f}% complete`", "",
         f"**{complete:,} complete / {total:,} identified functions** "
-        f"(frozen, estimated baseline); **{partial:,} unique functions partially reconstructed**.",
+        f"\u00b7 **{partial:,} unique functions partially reconstructed**.",
         "",
         "| Program | Counted functions | Complete | Partial |",
         "| --- | ---: | ---: | ---: |",
@@ -226,23 +226,9 @@ def render(baseline, statuses):
                      f"{statuses[program]['complete']:,} | {statuses[program]['partial']:,} |")
     lines += [
         "",
-        "This covers the **base game and original LS3D engine only**, not Sabre",
-        "Squadron. The total is an estimate from Ghidra, including library code we",
-        "haven't separated yet. Imported routines and small forwarding stubs are",
-        "counted separately, outside this bar.",
-        "",
-        "The bar fills only when an entire original function is reconstructed.",
-        "Our existing source recovers useful **parts** of functions, so it appears",
-        "under Partial rather than Complete. Discoveries and research milestones",
-        "are listed below; **0% complete does not mean no progress**.",
-        "",
-        "Ghidra can miss functions or get their boundaries wrong, so the baseline",
-        "may be deliberately revised. This percentage does not measure understanding,",
-        "difficulty, playability, or time remaining.",
-        "",
-        "[Status ledger](analysis/function-status.json) |",
-        "[Frozen counts](analysis/function-baseline.json) |",
-        "[Counting rules and refresh commands](analysis/function-progress.md)",
+        "The estimated total covers the base game client and original engine, including",
+        "library code. Partial functions earn no completion credit; these counts do not",
+        "measure playability. [Counting rules and ledger](analysis/function-progress.md).",
         END,
     ]
     return "\n".join(lines)
