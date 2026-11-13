@@ -163,6 +163,9 @@ public:
     bool sound_special_mode()const{return state_.flag270;} //00465070, virtual7C; actual byte270, distinct from26D/26E/2B4.
     Frame saved_scene_camera() const {return previous_;}
     bool owns_frame(Frame candidate)const{return frame()==candidate;} //00465EE0 virtual4C, compares even null.
+    template<class Control>void request_distance_hold(std::uint32_t duration,std::uint32_t mode,Control& players){ //00465AD0, virtual70.
+        apply_human_camera_distance_hold(state_.field280,duration,mode,players);
+    }
     Frame look_target()const{return look_target_;}
     void look_target(Frame target,std::int32_t angle) { //00465B20 virtual74, borrowed288, radians28C.
         look_target_=target;state_.field28c=static_cast<float>(static_cast<long double>(angle)*.01745329238474369f); //0080F6E8.

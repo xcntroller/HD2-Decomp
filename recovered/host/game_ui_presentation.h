@@ -600,8 +600,7 @@ private:
         Human* current_player(){auto* value=ui.d_.first_players.current_player();if(value)(void)human(*value);return value;}
         Actor* attachment(Actor& actor){auto* value=human(actor).field160;if(value)ui.require_actor_borrower(value);return value;}
         Actor* focus(Actor& actor){auto& value=human(actor);if(!value.field174)return nullptr;
-            auto* source=focus_source?focus_source:ui.signal_external_;if(!source)throw std::runtime_error("HUD target requires actual typed Human174 focus producer");
-            auto* target=source->human_focus(value);if(!target)throw std::logic_error("Populated Human174 has no actual typed actor borrower");ui.require_actor_borrower(target);return target;}
+            auto* target=value.field174;ui.require_actor_borrower(target);return target;}
         std::int32_t health(Actor& actor){return ui.d_.first_players.health(human(actor));}
         std::uint32_t kind(Actor& actor){ui.require_actor_borrower(&actor);return actor.base().type();}
         std::uint32_t human_kind(Actor& actor){return human(actor).properties.field19c;}
@@ -668,8 +667,7 @@ private:
         using Entry=world_loading::Actors::Items::Entry;
         GameUiRollExternalSource* external=nullptr;
         Actor* focus(Actor& actor){auto& value=human(actor);if(!value.field174)return nullptr;
-            if(!external)throw std::runtime_error("Roll focus requires actual typed Human174 producer");
-            auto* focus=external->human_focus(value);if(!focus)throw std::logic_error("Populated Human174 has no actual typed actor borrower");ui.require_actor_borrower(focus);return focus;}
+            auto* focus=value.field174;ui.require_actor_borrower(focus);return focus;}
         bool offline(){return (ui.d_.startup.application_flags()&7u)==7u;}
         Actor* selected_human(){auto* value=ui.d_.players.control().selected_player(ui.d_.startup.application_flags());if(value)(void)human(*value);return value;}
         Actor* previous_human(){auto* value=ui.d_.players.control().previous_player();if(value)(void)human(*value);return value;}

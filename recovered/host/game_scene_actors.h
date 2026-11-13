@@ -6,6 +6,7 @@
 #include "game/scene_actor_registry.h"
 #include "game/scene_actor_frame.h"
 #include "game/simple_scene_actors.h"
+#include "game/document_place_scene_actor.h"
 #include "game/human_spawn_position.h"
 #include "game/zone_scene_actor.h"
 #include "game/geometry_scene_actors.h"
@@ -59,7 +60,7 @@ public:
         return human;
     }
     bool has_scene_actor_factory(std::uint32_t type) const {
-        switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:case 37:return true;default:return false;}
+        switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 23:case 25:case 28:case 29:case 30:case 33:case 37:return true;default:return false;}
     }
     ActorOwner make_scene_actor(std::uint32_t type) {
         switch(type) {
@@ -75,6 +76,7 @@ public:
         case 13:return std::make_unique<game::SwitchSceneActor<GameActorServices,Runtime>>(*this,runtime_,frontend::lookup_localized_text(text_,0x1bf3));
         case 21:return std::make_unique<game::StaticWeaponSceneActor<GameActorServices>>(*this);
         case 22:return std::make_unique<game::ExplosivePlaceSceneActor<GameActorServices>>(*this);
+        case 23:return std::make_unique<game::DocumentPlaceSceneActor<GameActorServices>>(*this);
         case 25:return std::make_unique<game::AnimationSceneActor<GameActorServices>>(*this);
         case 28:return std::make_unique<game::PikeSceneActor<GameActorServices>>(*this);
         case 29:return std::make_unique<game::FowlGeneratorSceneActor<GameActorServices>>(*this);
@@ -174,7 +176,7 @@ public:
             //Reject an unavailable family BEFORE recording entry to a derived
             //receiver. Cold actors later in a failed pass own no such prefix.
             switch(actor.base().type()){
-            case 3:case 4:case 6:case 8:case 10:case 13:case 22:case 9:case 21:case 25:case 28:case 29:case 33:case 37:break;
+            case 3:case 4:case 6:case 8:case 10:case 13:case 22:case 23:case 9:case 21:case 25:case 28:case 29:case 33:case 37:break;
             default:throw std::runtime_error("Required Scene2 actor activation is unavailable: "+std::to_string(actor.base().type()));
             }
             actor.loading_activation_passes|=authority?1u:2u;
@@ -187,6 +189,7 @@ public:
             case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).activate(authority,activation);break;
             case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).activate(authority,activation,collisions);break;
             case 22:static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
+        case 23:static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
             case 9:activation.activate_supply(static_cast<game::SupplyBoxSceneActor<GameActorServices>&>(actor),authority);break;
             case 21:activation.activate_static_weapon(static_cast<game::StaticWeaponSceneActor<GameActorServices>&>(actor),authority);break;
             case 25:activation.activate_animation(static_cast<game::AnimationSceneActor<GameActorServices>&>(actor),authority);break;
@@ -215,6 +218,7 @@ public:
         case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).deactivate(authority,activation);break;
         case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).deactivate(authority,activation,collisions);break;
         case 22:static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
+        case 23:static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
         case 9:activation.deactivate_supply(static_cast<game::SupplyBoxSceneActor<GameActorServices>&>(actor),authority);break;
         case 21:activation.deactivate_static_weapon(static_cast<game::StaticWeaponSceneActor<GameActorServices>&>(actor),authority);break;
         case 25:activation.deactivate_animation(static_cast<game::AnimationSceneActor<GameActorServices>&>(actor),authority);break;

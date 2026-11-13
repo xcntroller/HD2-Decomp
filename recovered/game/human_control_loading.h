@@ -18,6 +18,7 @@
 #include "game/human_look_frame.h"
 #include "game/human_door_action.h"
 #include "game/human_model_action.h"
+#include "game/human_timed_interaction.h"
 #include "game/human_seat_action.h"
 #include "game/human_animation_arbitration.h"
 #include "game/human_posture_transition.h"
@@ -196,7 +197,7 @@ public:
     template<class Look,class Runtime,class Publish>void finish_step_fall(Look& look,Runtime& runtime,Publish& publish){
         finish_human_walk_fall(*this,look,*human_,services_,runtime,false,publish); //00770B90(0).
     }
-    template<class Look,class Runtime>void apply_look_interaction(Look& look,SceneInstance* target,std::uint32_t flags,std::uint32_t argument,Runtime& runtime){
+    template<class Look,class Runtime>void apply_look_interaction(Look& look,SceneInstance* target,std::uint32_t flags,std::uint32_t argument,Runtime& runtime,Frame model={}){
         if(human_seat_entry_action(flags&0x3ffu)||human_seat_exit_action(flags&0x3ffu)){
             auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
             (void)begin_human_seat_action(*this,look,*human_,target,flags,argument,services_,frames_,runtime,publish);return;
@@ -204,12 +205,19 @@ public:
         if((flags&0x3ffu)==1u){(void)begin_human_door_action(*this,look,*human_,services_,frames_,target,flags,argument);return;}
         if((flags&0x3ffu)==8u){
             auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
-            (void)begin_human_model_action(*this,look,services_,frames_,target,flags,argument,look.interaction_frame_argument(),publish);
+            (void)begin_human_model_action(*this,look,services_,frames_,target,flags,argument,model?model:look.interaction_frame_argument(),publish);
             return;
         }
         if((flags&0x3ffu)==9u||(flags&0x3ffu)==10u){
             auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
             (void)begin_human_model_exit(*this,look,services_,flags,publish);return;
+        }
+        switch(flags&0x3ffu){
+        case 0xe:case 0x10:case 0x12:case 0x14:case 0x16:case 0x18:case 0x1a:case 0x1c:case 0x1e:case 0x20:case 0x24:{
+            auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+            (void)begin_human_timed_interaction(*this,look,*human_,target,flags,services_,frames_,publish);return;
+        }
+        default:break;
         }
         runtime.apply_human_look_interaction(*this,target,flags,argument); //00751480's remaining required action cases.
     }

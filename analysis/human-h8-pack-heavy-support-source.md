@@ -130,3 +130,13 @@ producer/retirement contracts. Then run consolidated affected packet verificatio
 and integrate committed HUM dependencies back into PACK. Ordinary H8 frame work,
 Players delayed command execution, wider unsupported actors, application loading
 and actual desktop acceptance remain separately owned and open.
+
+## Subsequent concrete ABI correction
+
+Raw00470CD2 and00470DED distinguish the root model virtual0C call from the
+child model virtual1C call. The initial shared helper used0C for both; the
+current source passes the original root/child selector explicitly. Child initial
+position uses the original guarded cached write; only root initialization uses
+virtual08. This is an
+engine-call binding correction; prior native endpoint doubles did not establish
+that ABI. Rebuild with the common-command checkpoint before committing it.

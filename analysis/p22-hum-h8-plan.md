@@ -48,9 +48,8 @@ The preceding Active task/follow work is preserved and verified in the clothing 
 - [x] Command12: actual Player validation/application and Remote actions; [HeavyFire/source guards](human-h8-pack-heavy-support-source.md).
 - [x] Command18: named cache resources, fourth-track setup and control lifetime [source checkpoint](human-h8-pack-effects-source.md#command18-named-special-animation-source-effect-checkpoint).
 - [x] Command20: active Remote equipment/storage replacement and retirement [source checkpoint](human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint).
-- [ ] Command3: remaining selected common-command subtypes and effects.
-- [ ] Verify actual owners, packet positive/failure/lifetime paths, concrete host
-  link and launcher; publish committed contracts for PACK integration.
+- [x] Command3: remaining selected common effects, type23 document owner, actual inline starts and typed loans; [source contract](human-h8-pack-common-source.md).
+- [x] Verify selected effect owners, packet positive/failure/lifetime paths and concrete host/launcher links; [common/source receipt](checkpoints/p2.2-human-pack-common-20261113.json). PACK integration follows.
 
 Command12's [required dependency boundary](human-h8-pack-action-boundary.md)
 was traced after the inventory checkpoint. Complete these before crediting it:
@@ -58,7 +57,7 @@ was traced after the inventory checkpoint. Complete these before crediting it:
 - [x] Actual mapped inline actions, Players byte/setter, speech duration and Player delayed-action publication.
 - [x] Action33/34: actual HeavyFire16 request/configuration/list/publication and populated lifecycle policy; native unsafe paths remain explicit guards.
 - [x] Required flags1 nonoffline speech19 FIFO producer, eligibility and actual received playback.
-  [Speech/ordinary action checkpoint](human-h8-pack-action-resume-source.md); support33/34 and command12 remain open.
+  [Speech/ordinary action checkpoint](human-h8-pack-action-resume-source.md); [support33/34 checkpoint](human-h8-pack-heavy-support-source.md) closes selected command12 source effects.
 - [x] Command12 positive/failure/stream/lifetime source checks and concrete host/launcher links; full PACK FIFO integration remains below.
 
 Index lookup and original call boundaries are retained under WORK's

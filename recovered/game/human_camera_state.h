@@ -5,6 +5,15 @@
 #include "game/human_joint_math.h"
 
 namespace hd2::game {
+//00465AD0, camera virtual70. The second current-player query is native and
+//may differ after a callback; an attached current Human preserves the old280.
+template<class Control>void apply_human_camera_distance_hold(std::uint32_t& timer,std::uint32_t duration,std::uint32_t mode,Control& players){
+    if(mode&2u){auto* current=players.current_player();if(current){
+        current=players.current_player();if(!current)throw std::runtime_error("Camera distance hold lost native second current Human");
+        if(current->field160)return;
+    }}
+    timer=duration;
+}
 template<class Human>bool human_camera_is_player(const Human& human,std::uint32_t mode,std::int32_t player_id) { //005A0890.
     if(!human.loading_state)return false;
     if((mode&7u)==7u)return human.loading_state->words().template get<std::uint32_t>(0x48)==1;

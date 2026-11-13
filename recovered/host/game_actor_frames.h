@@ -1033,7 +1033,7 @@ public:
     }
     float heavy_fire_model_extent(Frame model){if(!(field<std::uint32_t>(model,0xe0)&0x100u))call<void>(model,0x58);return field<float>(model,0x3c);}
     void heavy_fire_model_position(Frame model,const Vector& p,bool initial){if(initial)call<void>(model,8,p.data());else car_sound_head(model,p);}
-    void heavy_fire_model_direction(Frame model,const Vector& direction){call<void>(model,0xc,direction.data(),0.f);}
+    void heavy_fire_model_direction(Frame model,const Vector& direction,bool root){call<void>(model,root?0xcu:0x1cu,direction.data(),std::uint32_t{0});} //00470CD2 root0C,00470DED child1C.
     void heavy_fire_sound_velocity(Frame sound,const Vector& velocity){call<void>(sound,0xb0,velocity.data());}
     MenuDriver::Owner create_game_camera() {return driver_.create(3);}
     MenuDriver::Owner create_human_sound() {return driver_.create(4);}
@@ -1218,6 +1218,9 @@ public:
     std::uint32_t hud_driver_state(std::uint32_t state)const{return driver_.render_state(state);}
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}
     MenuDriver::Owner create_hud_info_model(){return driver_.create(9);}
+    auto create_document_visual(std::uint32_t kind){return create_visual(kind);}
+    void copy_document_visual(Frame destination,Frame source){call<void>(destination,0x4c,source);} //0060E860.
+    void document_visual_link(Frame frame,Frame parent){call<void>(frame,0x38,parent,std::uint32_t{0});}
     void copy_hud_order_model(Frame destination,Frame source){ //004B9240's frame4C, no extra template owner.
         if(call<std::int32_t>(destination,0x4c,source)<0)throw std::runtime_error("Cannot copy required order marker model");
     }

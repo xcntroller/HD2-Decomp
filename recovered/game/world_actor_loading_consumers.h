@@ -45,6 +45,7 @@ public:
     template<class Human,class Entry>std::int32_t transfer_created_human_item(Human& human,Entry entry,std::int32_t slot){
         return d().human_factory.world_services().transfer_created_human_item(human,entry,slot);
     }
+    template<class Human>void document_remove_item(Human& human,std::int32_t identity){d().human_factory.world_services().document_remove_item(human,identity);}
     auto* script_context_for_frame(typename Dependencies::Frame frame){return d().script_link.context_for_frame(frame);}
     void door_script_use(typename Dependencies::Frame frame,std::uint32_t) { //005FF4B0→0041D960; command argument ignored.
         auto* context=script_context_for_frame(frame);

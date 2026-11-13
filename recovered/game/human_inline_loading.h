@@ -132,9 +132,9 @@ public:
         return required_control().request_frame_ladder(target,required_look(),runtime); //005ABE30 id1F→007861A0.
     }
     void clear_frame_item_action(){required_look().frame_item_action(-1);} //005ABE30 subtype16.
-    void set_frame_item_action(std::int32_t action){ //005ABE30 subtype6/7, null model argument.
+    void set_frame_item_action(std::int32_t action,typename Control::Frame model={}){ //005ABE30, including subtypeA model argument.
         auto& look=required_look();
-        look.action_model(typename Control::Frame{},true);
+        look.action_model(model,true);
         look.frame_item_action(action);
     }
     void set_retained_frame_item_action(std::int32_t action,typename Control::Frame model){ //005ABE30 id0D/0E.

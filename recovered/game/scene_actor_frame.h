@@ -46,7 +46,7 @@ template<class Frames,class World,class Derived>void update_loading_scene_actor(
     case 3:derived.update_human(actor,authority,elapsed);return;
     case 4:world.update_car(static_cast<CarSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 6:if(!authority||!(world.mode_flags()&2u))world.update_door(static_cast<DoorSceneActor<Frames>&>(actor),elapsed);return;
-    case 8:case 10:case 13:case 33:return;
+    case 8:case 10:case 13:case 23:case 33:return; //Type23:0060DC50/0060DC60, genuine RET4.
     case 9:world.update_supply(static_cast<SupplyBoxSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 21:world.update_static_weapon(static_cast<StaticWeaponSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 22:{auto& value=static_cast<ExplosivePlaceSceneActor<Frames>&>(actor);

@@ -29775,7 +29775,7 @@
       "program": "client",
       "entry": "00586200",
       "status": "partial",
-      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. Added subtype1F with actual input7C/history1 position-value30, original local/mode gates, same DD0 replay then E0 movement1E. Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. H5 source checkpoint: Reached Door1B/Ladder1E and Car/StaticWeapon subtype3 command admission, actual seat claim/E0 interaction and independent deferred kind3 copy. Other selected actors and non7 transport remain required. Final H5: shared subtype5 reaches actual Car/StaticWeapon exit and separate deferred copy.",
+      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. Added subtype1F with actual input7C/history1 position-value30, original local/mode gates, same DD0 replay then E0 movement1E. Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor. Added common subtype14 on proven Player/Remote/AI DC vtables: actual hand A8 refresh before target lookup, null/definition0B guards, head260/current B0 direction, target-model placement, late mode/zero-health gate and same authority/presentation Car receiver; other subtypes remain required. H5 source checkpoint: Reached Door1B/Ladder1E and Car/StaticWeapon subtype3 command admission, actual seat claim/E0 interaction and independent deferred kind3 copy. Other selected actors and non7 transport remain required. Final H5: shared subtype5 reaches actual Car/StaticWeapon exit and separate deferred copy. Remaining0/1/2/4/6/E/F/10/11/13/1C/22/23/24/26 common subtypes, actual typed focus/target retirement and progress, native default holes; same-owner packet-only ladder receiver.",
       "limitations": "Only the direct Door branch. Other command cases and Human kind 6 remain required. D4b selected common-command checkpoint; wider commands/occupied/non7 frame and full Human/application acceptance remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -29787,7 +29787,9 @@
         "recovered/game/human_common_command.h",
         "analysis/human-guard-area-source.md",
         "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
-        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json"
+        "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
       ]
     },
     {
@@ -32896,7 +32898,7 @@
       "program": "client",
       "entry": "00751480",
       "status": "partial",
-      "coverage": "Door/model actions plus occupied entry2/4/6/B/D and exit3/5/7/C requests, real previous-seat initialization, timers/locks, live/dead displacement and immediate nonplayer advance.",
+      "coverage": "Door/model actions plus occupied entry2/4/6/B/D and exit3/5/7/C requests, real previous-seat initialization, timers/locks, live/dead displacement and immediate nonplayer advance. Reached timed starts E/10/12/14/16/18/1A/1C/1E/20/24 now bind actual DD0 queue, tracks, equipment, locks, pose/direction and damage; containing remaining action/frame cases stay H8.",
       "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/human_door_action.h",
@@ -32904,7 +32906,9 @@
         "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
         "recovered/game/human_seat_action.h",
         "analysis/human-seat-interaction-source.md",
-        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json",
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
       ]
     },
     {
@@ -43532,12 +43536,14 @@
       "program": "client",
       "entry": "00585a60",
       "status": "partial",
-      "coverage": "Execute selected attached Car/StaticWeapon exit: actual seat claim clear then SAME E0 interaction403/407; unsupported special/unattached/non7 consumers remain explicit.",
+      "coverage": "Execute selected attached Car/StaticWeapon exit: actual seat claim clear then SAME E0 interaction403/407; unsupported special/unattached/non7 consumers remain explicit. Actual unattached focus/action cancellation and Car nonoffline input-history1 seed; same immediate005ABCC0 seat effects. Absent type20 actor owner remains explicit.",
       "limitations": "Source-only reconstruction over typed owners; native object/virtual/temporary W and allocation ABI receive no full-body claim. H4 outputs, H6 firing/reload, other transport/non7/collision receivers and full H8/application/desktop delivery remain separate where reached.",
       "evidence": [
         "analysis/human-guard-area-source.md",
         "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
-        "recovered/game/human_world_loading_services.h"
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
       ]
     },
     {
@@ -46100,6 +46106,105 @@
       "evidence": [
         "analysis/human-h8-pack-heavy-support-source.md",
         "analysis/checkpoints/p2.2-human-pack-heavy-support-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ff650",
+      "status": "partial",
+      "coverage": "Actual closed-state/key gates, linked flag mutation and same module13 lock/error publication; original boolean return.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Engine endpoints are delegated and earn no credit. Native invalid target/resource/bounds paths explicitly reject; containing H8/application/desktop acceptance remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ff5f0",
+      "status": "partial",
+      "coverage": "Actual unlocked/key gates, linked flag mutation and same module13 unlock/error publication; original inverse-lock boolean return.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Engine endpoints are delegated and earn no credit. Native invalid target/resource/bounds paths explicitly reject; containing H8/application/desktop acceptance remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060db70",
+      "status": "partial",
+      "coverage": "Actual type23 construction, captions1255/7051, definition68, zero collision/visual flags and initial state3 on typed SceneActor owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Engine endpoints are delegated and earn no credit. Native invalid target/resource/bounds paths explicitly reject; containing H8/application/desktop acceptance remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060dc70",
+      "status": "partial",
+      "coverage": "Actual ActorBase activation, bounds/world/inverse/max-scale dynamic descriptor in SAME World buckets, state0 effects and late90 store; partial failure cleanup.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Engine endpoints are delegated and earn no credit. Native invalid target/resource/bounds paths explicitly reject; containing H8/application/desktop acceptance remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060df20",
+      "status": "partial",
+      "coverage": "Actual state3/flag90 and ActorBase deactivation with typed descriptor/visual retirement, including failed activation prefix cleanup.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Engine endpoints are delegated and earn no credit. Native invalid target/resource/bounds paths explicitly reject; containing H8/application/desktop acceptance remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060e860",
+      "status": "partial",
+      "coverage": "Actual cached item-primary OBJ_ copy, link/direction/local position, visibility/update/unlink/sceneEC and authored-base hiding through actual engine endpoints.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Engine endpoints are delegated and earn no credit. Native invalid target/resource/bounds paths explicitly reject; containing H8/application/desktop acceptance remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060e9b0",
+      "status": "partial",
+      "coverage": "Actual state0/definition lookup, runtime item removal, module13/actor10/Human10/item16 publication with native zero-bit event tag, then actual state1 visual/caption/collision effects.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Engine endpoints are delegated and earn no credit. Native invalid target/resource/bounds paths explicitly reject; containing H8/application/desktop acceptance remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060ea70",
+      "status": "partial",
+      "coverage": "Actual nonauthority Human00475E00 and runtime token lookup, remove/destroy item then state1; missing Human/item genuine return.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Engine endpoints are delegated and earn no credit. Native invalid target/resource/bounds paths explicitly reject; containing H8/application/desktop acceptance remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060eb60",
+      "status": "partial",
+      "coverage": "Actual store-before-effects state0/1/2/3 caption, dynamic collision, visible model and owned visual transitions, same-value and unknown-state behavior.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Engine endpoints are delegated and earn no credit. Native invalid target/resource/bounds paths explicitly reject; containing H8/application/desktop acceptance remains open.",
+      "evidence": [
+        "analysis/human-h8-pack-common-source.md",
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
       ]
     }
   ]

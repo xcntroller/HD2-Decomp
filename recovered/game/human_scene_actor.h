@@ -137,10 +137,11 @@ public:
     Frame field2b8{},field2bc{}; //Actual borrowed dubbing attachments, not frame pointers in DWORD scalar storage.
     SceneActor<Backend>* field160=nullptr; //Actual borrowed attachment actor, never a pointer in a DWORD.
     std::int32_t field164=-1;
+    SceneActor<Backend>* field174=nullptr; //Typed focus loan;00586200 subtype6 is its actual producer.
     HumanActivationFields activation;
     SpeechDefinition* speech_definition=nullptr; //Actual borrowed2C0; release its shared cache reference on deactivation.
     std::uint32_t field94=0,field98=0,fielda0=0,fielda8=0,fieldb0=0,fieldb8=0,
-        field174=0,field204=0,field208=0,
+        field204=0,field208=0,
         field258=0xffffffffu,field25c=0xffffffffu,field2a4=0xffffffffu;
     std::int32_t field188=-1;
     bool flag90=false;

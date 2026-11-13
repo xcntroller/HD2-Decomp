@@ -1,6 +1,8 @@
 #ifndef HD2_HOST_GAME_WORLD_ACTORS_H
 #define HD2_HOST_GAME_WORLD_ACTORS_H
 #include "game/human_loading_retirement.h"
+#include "game/document_place_scene_actor.h"
+#include "game/human_inventory_lookup.h"
 #include "game/version_contact_link.h"
 #include "game/explosion_contact_link.h"
 
@@ -168,6 +170,23 @@ public:
         if(!item)throw std::runtime_error("ExplosivePlace requires its actual item definition for the armed caption");
         return actor_localized(item->caption);
     }
+    auto document_visual_template(std::uint32_t definition){
+        const auto* item=definition<500?catalogue_.item(static_cast<std::int32_t>(definition)):nullptr;
+        if(!item)throw std::runtime_error("DocumentPlace requires actual item definition and primary model");
+        return models_.primary_model(*item);
+    }
+    template<class Human>std::optional<std::int32_t> document_item_identity(Human& human,std::uint32_t value,bool definition){
+        const auto entry=definition?game::find_human_inventory_definition(human,items_,static_cast<std::int32_t>(value)):
+            game::find_human_inventory_item_entry(human,items_,static_cast<std::int32_t>(value));
+        if(!entry)return std::nullopt;
+        return items_.runtime_item(entry).identity;
+    }
+    template<class Human>void document_remove_item(Human& human,std::int32_t identity){consumers_.document_remove_item(human,identity);}
+    bool document_receive_remove(std::uint32_t identity,std::int32_t item){
+        auto* human=scene_.frames().scene_human_identity(static_cast<std::int32_t>(identity));if(!human)return false;
+        const auto found=document_item_identity(*human,static_cast<std::uint32_t>(item),false);if(!found)return false;
+        document_remove_item(*human,*found);return true;
+    }
     void stop_actor_sound_voice(std::int32_t& handle){consumers_.stop_actor_sound_voice(handle);}
     std::uint32_t session_mission_ordinal()const{return consumers_.session_mission_ordinal();}
     auto& session_broadcast_packets(){return consumers_.session_broadcast_packets();}
@@ -314,6 +333,7 @@ public:
         else if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
         else if(actor.base().type()==10)consumers_.spawn_packet_decoder().receive(static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor),&packet);
         else if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
+        else if(actor.base().type()==23)static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
         else if(actor.base().type()==29){auto& fowl=static_cast<Fowl&>(actor);if(!fowl.loading)throw std::runtime_error("Fowl packet requires its actual generated-bird owner");fowl.loading->launch(false,0);}
         else throw std::runtime_error("Required Scene2 actor packet receiver is unavailable");
     }

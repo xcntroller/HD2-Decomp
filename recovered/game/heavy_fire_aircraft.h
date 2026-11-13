@@ -34,13 +34,13 @@ public:
                 if(!current->frame())throw std::runtime_error("HeavyFire aircraft requires actual allocated model");
                 if(n==0){
                     services_.heavy_fire_model_root(current->frame());services_.heavy_fire_model_position(current->frame(),position_,true);
-                    services_.heavy_fire_model_direction(current->frame(),direction_);
+                    services_.heavy_fire_model_direction(current->frame(),direction_,true);
                 }else{
                     services_.heavy_fire_model_parent(current->frame(),planes_[static_cast<std::size_t>(n-1)]->frame());
                     const float extent=static_cast<float>(static_cast<long double>(services_.heavy_fire_model_extent(current->frame()))*1.5f);
                     current->local={{n%2?extent:extent*-2.f,0,n%2?-extent:0.f,0}};
-                    services_.heavy_fire_model_position(current->frame(),current->local,true);
-                    services_.heavy_fire_model_direction(current->frame(),HumanVector{{0,0,1,0}});
+                    services_.heavy_fire_model_position(current->frame(),current->local,false);
+                    services_.heavy_fire_model_direction(current->frame(),HumanVector{{0,0,1,0}},false);
                 }
                 services_.heavy_fire_model_update(current->frame());
                 HumanVector velocity{};for(unsigned a=0;a!=3;++a)velocity[a]=static_cast<float>(static_cast<long double>(direction_[a])*definition_.speed);

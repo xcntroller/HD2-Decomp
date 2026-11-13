@@ -3,14 +3,79 @@
 
 #include "game/human_packet_commands.h"
 #include "game/car_targeted_placement.h"
+#include "game/human_loading_stats.h"
 
 namespace hd2::game {
-//00586200 DC, shared by the proven Player/Remote/AI vtables. Only the reached
-//subtypes3/5/14/1B/1E/1F bodies are supplied here. Subtype14 refreshes A8 before resolving
-//the target, then short-circuits target/item/definition guards in native order.
+//00586200 DC, shared Player/Remote/AI policy. All actual switch cases and
+//default holes; World binds real Scene2/runtime identities and inline effects.
 template<class State,class World>bool execute_human_common_command(State& state,
         const HumanPacketCommand& command,World& world){
     const auto& fields=command.fields;
+    const auto subtype=fields.template get<std::uint32_t>(8);
+    auto* bound=state.human();if(!bound)throw std::logic_error("Human common command requires actual bound Human");
+    auto& receiver=*bound;
+    const auto validate=world.human_common_receiver_guard(receiver);
+    const auto progress=[&](auto& receiver,std::uint32_t caption){
+        validate();const auto duration=state.words().template get<std::uint32_t>(0x64);
+        receiver.activation.field17c=receiver.activation.field180=duration;receiver.activation.field184=caption;
+    };
+    const auto start=[&](std::uint32_t duration){state.words().set(0x60,subtype);state.words().set(0x64,duration);};
+    const auto interaction=[&](auto& receiver,auto* target,std::uint32_t action){world.human_common_interaction(receiver,target,action);validate();};
+    switch(subtype){
+    case 0:case 1:
+        if(world.mode_flags()&1u)world.human_command_key_door(receiver,fields.template get<std::int32_t>(0xc),subtype==0);
+        validate();if(world.mode_flags()&2u)world.human_inline(receiver).action_command(0x67);
+        return true;
+    case 6:{
+        auto* target=world.human_command_actor(fields.template get<std::int32_t>(0xc));
+        if(!target||target->base().type()!=3)return false;
+        start(1500);world.human_command_focus(receiver,target);return true;
+    }
+    case 0x11:
+        state.refresh_item();
+        if((world.mode_flags()&1u)&&world.human_command_item_kind(state.item())!=10)return false;
+        start(2000);interaction(receiver,static_cast<typename State::ActionTarget*>(nullptr),0x16);progress(receiver,0x1b9e);return true;
+    case 0x1e:world.human_command_ladder(receiver,world.human_command_actor(fields.template get<std::int32_t>(0xc)));return true;
+    case 0x22:
+        if(!(world.mode_flags()&1u))return true;
+        return world.human_command_place_documents(receiver,fields.template get<std::int32_t>(0xc));
+    case 0x23:
+        if(human_frame_signed_word(receiver.properties.stats_ec[0])<=0||world.human_common_health_percent(receiver)==100||world.formation_direction_gate(receiver))return false;
+        if(receiver.field160){const auto kind=receiver.field160->base().type();if(kind==4||kind==0x14||kind==0x15||kind==0x22)return false;}
+        if(world.human_inline(receiver).frame_navigation_floor())return false;
+        state.action_target(&receiver);start(3000);state.words().set(0x6c,fields.template get<std::uint32_t>(0xc));
+        interaction(receiver,&receiver,0x24);progress(receiver,0x1ba2);return true;
+    case 2:case 4:case 0xe:case 0xf:case 0x10:case 0x13:case 0x24:case 0x26:{
+        //Subtype10 finds the actual ready kind19 holster item BEFORE target lookup.
+        const auto item=world.human_common_ground_entry(receiver,subtype==0x10);
+        if(subtype==0x10&&!item)return false;
+        auto* target=(subtype==2||subtype==0x10)?
+            world.human_common_runtime_actor(fields.template get<std::int32_t>(0xc)):
+            world.human_command_actor(fields.template get<std::int32_t>(0xc));
+        state.action_target(target);if(!target)return false;
+        if(subtype==0x13&&!world.human_common_live_human(*target))return false;
+        const auto required_target=[&]{validate();auto* live=state.action_target();if(!live)throw std::runtime_error("Human common callback retired its required target");return live;};
+        switch(subtype){
+        case 2:case 0x26:start(4000);interaction(receiver,target,0x14);progress(receiver,0x1ba3);break;
+        case 4:world.human_common_alignment(receiver);start(3000);interaction(receiver,target,0x16);progress(receiver,0x1ba0);break;
+        case 0xe:{
+            world.human_common_alignment(receiver);state.words().set(0x60,subtype);
+            const auto skill=human_loading_stat(receiver,8);
+            const auto time=(1.L-skill)*5000.f+500.f;
+            state.words().set(0x64,human_loading_stat_word(time));interaction(receiver,target,0x12);progress(receiver,0x1ba1);break;
+        }
+        case 0xf:start(3000);interaction(receiver,target,0xe);world.human_common_target_interaction(*required_target(),&receiver,0x10);validate();
+            progress(receiver,0x1ba2);world.human_common_target_progress(*required_target(),state.words().template get<std::uint32_t>(0x64),0x1ba2);break;
+        case 0x10:{start(3900);world.human_common_alignment(receiver);const auto model=world.human_common_item_model(item);validate();
+            world.human_common_interaction_model(receiver,required_target(),0x1c,model);validate();progress(receiver,0x1ba6);break;}
+        case 0x13:start(5000);interaction(receiver,&receiver,0x1a);interaction(receiver,required_target(),0x18);progress(receiver,0x1ba4);break;
+        case 0x24:start(1000);interaction(receiver,target,0x1e);world.human_common_target_interaction(*required_target(),&receiver,0x20);validate();progress(receiver,0x1ba5);break;
+        default:break;
+        }
+        return true;
+    }
+    default:break;
+    }
     if(fields.template get<std::uint32_t>(8)==0x1fu){
         auto* human=state.human();
         if(!human)throw std::logic_error("Human climb command has no actual bound Human");
@@ -29,14 +94,13 @@ template<class State,class World>bool execute_human_common_command(State& state,
         auto* human=state.human();if(!human)throw std::logic_error("Seat entry command requires actual bound Human");
         return world.human_command_enter_emplacement(*human,world.human_command_actor(fields.template get<std::int32_t>(0xc)),fields.template get<std::int32_t>(0x10));
     }
-    if(fields.template get<std::uint32_t>(8)==0x1bu){
+    if(subtype==0x1bu||subtype==0x1cu){
         const bool direct=(state.words().template get<std::uint32_t>(0x50)&1u)&&(world.mode_flags()&1u);
         auto* target=world.human_command_actor(fields.template get<std::int32_t>(0xc));
         auto* human=state.human();if(!human)throw std::logic_error("Door command requires actual bound Human");
-        world.human_command_open_door(*human,target,direct);return true;
+        world.human_command_door(*human,target,direct,subtype==0x1bu);return true;
     }
-    if(fields.template get<std::uint32_t>(8)!=0x14u)
-        throw std::runtime_error("Human common DC requires its actual selected subtype receiver");
+    if(subtype!=0x14u)return true; //Genuine native switch holes/default.
     state.refresh_item();
     auto* target=world.human_command_actor(fields.template get<std::int32_t>(0xc));
     if(!target||!state.item()||world.human_command_item_kind(state.item())!=0xbu)return false;
