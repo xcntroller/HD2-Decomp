@@ -1,28 +1,29 @@
-# Master PACK integration —2026-11-13
+# Master website deployment repair — 2026-11-13
 
-User requested merging PACK INTO master. PACK4fccf12 (including selected Human
-dependencies51082a2) is integrated over masterfa94dee; PACK branch is retained.
-[PACK source closure](analysis/p22-pack-source-closure.md),
-[completed source checklist](analysis/p22-pack-plan.md),
-[current blocker matrix](analysis/p2.2-critical-path/blocker-matrix.md),
-[merge verification](analysis/p2.2-critical-path/evidence/pack-master-verification-20261113.json).
+Fixed the Pages build failure reported in run43418619614 (also present before
+PACK at masterfa94dee). The progress analyzer required checkpoint verification
+objects, but23 tracked receipts contain lists of report strings. It now preserves
+both forms, rejects malformed list elements and creates stage observations only
+from explicit recognized object keys. Prose does not gain verification status.
+[Analyzer contract](tools/progress-analyzer.md),
+[deployment notes](website/DEPLOYMENT.md#troubleshooting).
 
-All23 PACK closure source fingerprints match. The sole source conflict preserves
-both mission-script renderAD/BB and formation2..C dispatch before derived policy.
-Newer master UI/RENDER/lifecycle/application rendering is retained, alongside
-HUM's actual typed Human174 focus. Ledger rows are the unique union of both
-parents, with one overlapping Script claim reconciled; zero new merge credit.
-Prior native sanitizer receipts remain valid for unchanged PACK bodies; current
-strict actual Human/World/module/Scene2/Script full i386 link and forced launcher/
-probe compile-link verify composition. Windows binaries are never run. Ledger,
-README and existing27 tracker tests pass. Temporary link fixture is removed
-following fingerprinting. No permanent tests or original-file changes; no push.
+Verification: full locked-dependency website build PASS in the master worktree
+and a fresh detached checkout with no ignored research or inventories. CI source/
+public-SHA assertions, data/claims validation, TypeScript, Vite and the17-file
+public artifact audit PASS. Existing27 tracker tests and16 temporary positive/
+negative checkpoint-format checks PASS; all23 list reports remain verbatim with
+no inferred observations or function-credit changes. Temporary fixtures and the
+verification worktree are removed. No permanent tests or gameplay code changed.
+The requested master push triggers Pages; confirm the matching workflow and live
+snapshot before reporting deployment success.
 
-Next work remains in containing H8/FRAME/OWN. FRAME review91a7d33 retains explicit
-Human Active/Remote/00751480/00755500, first-use rigid5F9, positive non7 retained
-item restoration and reached conditional service gaps. FRAMEc36bba8 and
-OWN939fb70 are not imported by this merge. UI/RENDER/DATA source is already in
-master; preserve frame-before-callback/render-before-World retirement when
-integrating later work. Application loading is disabled; no gameplay or desktop
-acceptance is claimed. Reuse existing source receipts rather than repeating
-unchanged broad audits. Read AGENTS.md and use research_index.py before exports.
+PACK is source-complete and already merged/pushed inb96c0d9; its branch is retained.
+[Closure](analysis/p22-pack-source-closure.md),
+[merge verification](analysis/p2.2-critical-path/evidence/pack-master-verification-20261113.json),
+[current blocker matrix](analysis/p2.2-critical-path/blocker-matrix.md).
+Next reconstruction work remains H8/FRAME/OWN: containing Human frames, first-use
+rigid5F9, positive non7 retained-item restoration and reached conditional services.
+FRAMEc36bba8 and OWN939fb70 are unmerged. Preserve one actual owner and frame-before-
+callback/render-before-World retirement. Application loading remains disabled;
+no mission or desktop acceptance is claimed. Read AGENTS.md before continuing.

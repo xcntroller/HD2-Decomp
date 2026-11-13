@@ -168,6 +168,13 @@ live Pages deployment still require the approved first workflow run.
 
 ## Troubleshooting
 
+The 2026-11-13 repair addresses `Invalid checkpoint verification` from the
+analyzer when a receipt uses a list of report strings instead of keyed stages.
+Both forms are supported; prose lists remain verbatim and unclassified in the
+analyzer, with the original receipt linked from the website. Malformed list
+elements still fail validation. Existing stage reports and all publication gates
+remain in effect.
+
 | Symptom | Check / action |
 | --- | --- |
 | No **Run workflow** button | Ensure `pages.yml` with `workflow_dispatch` is on the default `master` branch and your account can run workflows. |

@@ -45,7 +45,10 @@ anchors. Their existence or a recorded PASS does not establish a rendered missio
   original entries, source-only/desktop flags (null when absent) and verbatim
   verification reports. `observations` maps recognized verification keys to the
   native, i386 or desktop dimension without interpreting prose as a test result.
-  Unrecognized keys remain in `reported_verification`. Application compile/link
+  Unrecognized keys remain in `reported_verification`. Verification can also be
+  a list of nonempty report strings; these remain verbatim in
+  `reported_verification`, without inferred stage observations. Other shapes
+  are rejected. Application compile/link
   reports are compilation evidence; they do not establish runtime integration.
 - `first_frame`: a bounded dependency graph for P2.2, described below.
 - `graph`: unified nodes, directed edges and groups for a future static React

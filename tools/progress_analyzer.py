@@ -285,9 +285,14 @@ def checkpoints(sources):
                         for entry in row.get("original_entries", [])),
                 f"Invalid checkpoint addresses: {name}")
         verification = row.get("verification", {})
-        require(isinstance(verification, dict), f"Invalid checkpoint verification: {name}")
+        require(isinstance(verification, dict)
+                or (isinstance(verification, list)
+                    and all(isinstance(item, str) and item.strip() for item in verification)),
+                f"Invalid checkpoint verification: {name}")
         observations = []
-        for key, value in sorted(verification.items()):
+        # Prose lists retain their report scope without guessing verification stages.
+        items = verification.items() if isinstance(verification, dict) else []
+        for key, value in sorted(items):
             if key in VERIFICATION_STAGES:
                 observations.append({"stage": VERIFICATION_STAGES[key], "reported": value,
                                      "record": reference(name, f"/verification/{key}"),
