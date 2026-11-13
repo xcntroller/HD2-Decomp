@@ -3,6 +3,7 @@
 
 #include "game/hud_actor_identity_view.h"
 #include "game/session_activation.h"
+#include "game/actor_zone_presentation.h"
 
 namespace hd2::game {
 
@@ -23,20 +24,24 @@ private:
 
 //Actual HUD scene/map/timer borrowers. Identity slots are SAME Scene2 globals
 //0089B3B0/B4 (including reserved32/holes), NOT HUD's two selection pointers.
-//Zone37 construction/groupA4 remains outside the supported offline loading path.
-template<class SceneActors,class Tables>class HudWorldLoading {
+//Zone37 fields and process squad/local side are borrowed from their actual owners.
+template<class SceneActors,class Tables,class Process>class HudWorldLoading {
 public:
     using Frame=typename SceneActors::Frame;using Objective=frontend::GameDataNode;
-    HudWorldLoading(SceneActors& actors,SessionActivationState& session,Tables& tables):actors_(actors),session_(session),tables_(tables){}
+    HudWorldLoading(SceneActors& actors,SessionActivationState& session,Tables& tables,Process& process):actors_(actors),session_(session),tables_(tables),process_(process){}
     Frame scene_frame()const{return actors_.world_scene_frame();}
     auto hud_actor_identities(){return HudActorIdentityView<SceneActors>(actors_);}
     auto map_objectives()const{return HudMissionObjectiveView(session_.mission);}
     void* navigation_context()const{return &tables_;} //004B4980 stores game54:00523AB0's SAME two datasets, not collision tree/grid.
-    template<class Actor>std::int32_t map_zone_group(const Actor&)const{
-        throw std::runtime_error("HUD map zone requires its actual type37 groupA4 owner");
+    template<class Actor>std::int32_t map_zone_group(const Actor& actor)const{return actors_.zone_map_group(actor);}
+    template<class Actor>std::uint32_t map_zone_side(const Actor& actor)const{return actors_.zone_map_side(actor);}
+    auto& live_squad(){return process_.pre_mission().squad();}
+    std::uint32_t map_local_side(){
+        const auto local=static_cast<std::uint32_t>(process_.local_player_identity());
+        return process_.game_control_records().records.at(local).word(0x64); //007304B0 direct local record, no fallback or lock.
     }
 private:
-    SceneActors& actors_;SessionActivationState& session_;Tables& tables_;
+    SceneActors& actors_;SessionActivationState& session_;Tables& tables_;Process& process_;
 };
 
 } //namespace hd2::game

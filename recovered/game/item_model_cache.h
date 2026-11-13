@@ -83,6 +83,7 @@ public:
     using ItemModelOwner=typename ItemFrameTree<Frames>::Owner;
     ItemPrimaryModelCache(Frames& frames,const Catalogue& catalogue,const std::string& suffix)
         : frames_(frames),catalogue_(catalogue),suffix_(suffix) {}
+    const std::string& resource_suffix()const{return suffix_;} //Actual borrowed0084E8E4, shared with named Human animation.
     ~ItemPrimaryModelCache() {clear();}
     ItemPrimaryModelCache(const ItemPrimaryModelCache&)=delete;
     ItemPrimaryModelCache& operator=(const ItemPrimaryModelCache&)=delete;
@@ -134,8 +135,10 @@ public:
     }
     void clear_definition(std::size_t index) noexcept {
         //007E0560 releases derived64 before007DF430 destroys20, then30.
-        magazines_[index].reset();first_person_[index].reset();primary_[index].reset();
+        clear_first_person_definition(index);clear_primary_definition(index);
     }
+    void clear_first_person_definition(std::size_t index)noexcept{magazines_[index].reset();first_person_[index].reset();}
+    void clear_primary_definition(std::size_t index)noexcept{primary_[index].reset();}
     void clear() noexcept {for(auto i=primary_.size();i!=0;)clear_definition(--i);}
 private:
     void validate(const Definition& definition) const {

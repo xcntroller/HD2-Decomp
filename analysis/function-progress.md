@@ -32,16 +32,11 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are34 complete client functions and2,518 partial entries
-(2,513 client and five engine). The [P22-PACK notification/rank checkpoint](checkpoints/p22-pack-notifications-20261111.json)
-adds seven implemented frozen client partials and extends two presentation rows;
-conditional Human effect owners still prevent full PACK source closure. The [P22-PACK wire/discard checkpoint](p22-pack-implementation.md)
-adds40 frozen client partials and extends seven existing rows, with no complete
-promotions or denominator changes. Full PACK source closure remains blocked by
-explicit positive Human effect interfaces; application and desktop delivery remain open.
-The earlier [Human motion/pose checkpoint](checkpoints/p2.2-human-motion-pose-20261111.json)
-added100 frozen client partials and extended nine existing partials.
-The [ledger](function-status.json) and generated README tally remain authoritative.
+The [ledger](function-status.json) and generated README contain the current totals.
+The Human selected PACK dependencies and the earlier PACK wire/notification/rank
+claims are merged without duplicate function credit; [PACK closure](p22-pack-source-closure.md)
+records their integration and verification. Earlier checkpoint counts are
+historical. Source closure does not imply application or desktop delivery.
 
 The [P22-LIFE source checkpoint](p22-life-implementation.md) extends five existing
 partials with concrete prefix rollback/finish/file retirement and partial-VM
@@ -199,3 +194,53 @@ unimplemented Connect/Host, auxiliary services or the Phase2 game receiver.
 client partials (004AF980,004AFDB0,004B01E0,00491E30), with no complete promotions
 or denominator changes. Totals:34 complete,2,371 partial (2,366 client/five engine).
 P22-UI remains open; full HUD/FPV processing and command geometry are still required.
+
+The HUD animation continuation adds four further client partials:004ABE60,
+004AD350,004AD380,004AD440. Totals:34 complete,2,375 partial (2,370 client/five engine).
+
+FPV completion adds00491C60 as one further client partial:34 complete,2,376 partial
+(2,371 client/five engine). Full P22-UI and desktop acceptance remain open.
+
+FPV frame/status sweep adds00491660,00491E90 and004AAD30 as three client partials.
+Totals:34 complete,2,379 partial (2,374 client/five engine). P22-UI remains open.
+
+Crosshair continuation adds004AA840 and005A8100 as two client partials:34 complete,
+2,381 partial (2,376 client/five engine). P22-UI remains open.
+
+Hands/icon/selector continuation adds six client partials and extends two existing
+rows:34 complete,2,387 partial (2,382 client/five engine). P22-UI remains open.
+
+Command input/modal continuation adds31 frozen client partials:34 complete,
+2,596 partial (2,591 client/five engine). The [receipt](checkpoints/p22-ui-command-controls-20261111.json)
+records source-only verification. General HUD controls, actual Human producers
+and P22-UI closure remain open.
+
+General HUD control continuation adds15 frozen client partials:34 complete,
+2,611 partial (2,606 client/five engine). [Receipt](checkpoints/p22-ui-general-controls-20261111.json).
+Conditional presentation, actual Human producers and P22-UI closure remain open.
+
+H4 C1 adds five frozen client partials0060D6F0/00588AA0/005A7770/005A7810/005A9560;
+source bindings/track coverage extend existing rows, no promotions or inventory
+changes.34 complete/3,016 partial (3,011client/fiveengine). Full H4 remains open.
+[Contract](p22-hum-h4-implementation.md).
+### Human H3 seat interactions — 2026-11-12
+
+[H3 source receipt](checkpoints/p2.2-human-seat-interaction-20261112.json) adds17 frozen
+client partials and extends8 existing entries:34 complete/3025 partial
+(3020 client+5 engine), no promotions or denominator changes.
+Car/StaticWeapon entry/exit and mounted aim/reset/casing use existing owners;
+full occupied Car frame/non7 inputs, Human frame and desktop delivery stay open.
+004D99D0/004D9A40/004D9BE0/00604630/006034D0/004C1990/004DA1D0/00604DA0 and
+B0 direction setter wrappers are absent from the frozen inventory: no new credit.
+
+### H4 common outputs — source boundary, 2026-11-12
+
+[Source closure](human-h4-source-closure.md) and
+[receipt](checkpoints/p22-hum-h4-source-20261112.json) consolidate H4 on existing
+actor owners. Completed-HUM keyed integration preserves both branches' credit;
+Active AI grenade response added3 partials; vehicle source adds15 and extends3.
+Current34 complete/3324 partial (3319client+5engine), unchanged18783 baseline and
+no complete promotions. Full checker still fails on inherited unavailable ignored
+evidence; exact baseline/schema/address/status/totals/available evidence, changed
+rows and README checked separately. H6/H8/absent actor/application/desktop remain
+required; no delegated engine/helper bodies or external actor credit added.

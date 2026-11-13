@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H8 PACK command11 supply source effect and depletion",
+  "base": "cd1473e",
+  "branch": "feature/p22-hum-h8",
+  "source_only": true,
+  "H8_complete": false,
+  "PACK_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-pack-effects-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 195890,
+      "sha256": "d1d04c6be97c70f7d09be6d364c7fb21a3c46735fa06a136b27130a768c78d0d"
+    },
+    {
+      "path": "recovered/game/supply_box_loading.h",
+      "bytes": 13520,
+      "sha256": "0a5bbe055f546d9482667e0c70ecce70f81ed6cb6fc7bd3017367970e13d3091"
+    },
+    {
+      "path": "recovered/game/supply_box_loading_lifetime.h",
+      "bytes": 511,
+      "sha256": "33a573eaf07c09c0b21dec375a7969a766dd9470349ee305aefbb4feaaf42c6c"
+    },
+    {
+      "path": "recovered/game/human_supply_pickup.h",
+      "bytes": 1877,
+      "sha256": "7567832df522a2b5ad21f3edcda1c54d34c03f0007c236a4214d90efe14ae690"
+    },
+    {
+      "path": "recovered/game/supply_box_pickup.h",
+      "bytes": 1819,
+      "sha256": "3a0ac41c3894f275a8f91e3808fb9bbfdd55c9bbb7dd4269bd2212a55fc4ba22"
+    }
+  ],
+  "original_program_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a37c0.c",
+      "bytes": 1454,
+      "sha256": "93ad0ca167466c8efc45bdc338f3a2c65d2a1d5ca9c5e74a61f0ec414bff9f30"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a38f0.c",
+      "bytes": 1068,
+      "sha256": "dc494e9bb9188b01981bdd0418e87c599dafcffffd82c287e42bd22b5ac8e621"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/supply-box-initial-commands/005fcd80.c",
+      "bytes": 5267,
+      "sha256": "e03df110639a6d7123d331494f4e5275d0669fee5ab37b828dd21f888119b08c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/supply-box-state-required/005fc860.c",
+      "bytes": 1831,
+      "sha256": "fd035069744ac442bbfa93d86c6fd9dc431a79030149503cdd1a07f83c4fb81f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/supply-box-state-required/005fd760.c",
+      "bytes": 942,
+      "sha256": "f4ffc16c5ec6fd7826548d4314aaf9e286adf9df28a0a09f20f2e476767bbf85"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-first-person-model-loading/005a2b10.c",
+      "bytes": 255,
+      "sha256": "3d0ab57970bba449ae0af63ceb2f67e92e14b16e19522d9ed7933b270344e8e1"
+    }
+  ],
+  "verification": {
+    "native_sanitizers": "PASS5100 assertions /100 lifetimes, actual new admission/application/consumption/depletion policies; explicit definition/item/placement/SOUND/visibility/engine endpoints",
+    "actual_host_i386": "Strict FULL LINK actual packet/SupplyBox loading/geometry/clip/SOUND/visibility/Items/World/equipment; not run",
+    "launcher_and_startup_probe": "Rebuild PASS; not run",
+    "logs": [
+      "analysis/work/mission-world-20261103/human-h8-pack-supply-native-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-supply-native-run.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-supply-host-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-supply-application-link.log"
+    ]
+  },
+  "temporary_audits_removed_after_verification": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-supply-native.cpp",
+      "bytes": 4768,
+      "sha256": "e3fb506248a966caf442d56ddeb663883b42afca21b2742564b991b212914e83"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-supply-native",
+      "bytes": 359560,
+      "sha256": "eeb6f487b18daf8c952a3a24ceecf0d62d4a7217e1e47a501bb0729ea3d1673f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-supply-host-i386.cpp",
+      "bytes": 564,
+      "sha256": "31ac311ea95ab549d14da1b85ea42cee5bf8bcf5fe41ecf80dbfc3cdbf7df52c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-supply-host-i386.exe",
+      "bytes": 3782144,
+      "sha256": "413d75e67ed70632cbfaea33c55ad2629ff238b9db97cc49ff65a291bd01a2b2"
+    }
+  ],
+  "ledger": {
+    "new_partials": 2,
+    "new_completes": 0,
+    "complete": 34,
+    "partial": 3404
+  },
+  "remaining": [
+    "PACK commands3/7/8/12/18",
+    "Arbitrary source/cross-Human transfer/swap/preflight",
+    "Full SupplyBox state1/crossfade/respawn/falling frame",
+    "H8 full authority/frame/application/desktop acceptance"
+  ]
+}

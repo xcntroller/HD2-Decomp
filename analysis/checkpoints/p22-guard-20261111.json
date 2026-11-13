@@ -1,0 +1,367 @@
+{
+  "status": "blocked_reference_data_not_source_closed",
+  "base_sha": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "verification": {
+    "native_sanitizers": "PASS bounded initializer/matcher/blocked/decoder checks only",
+    "application_i386_compile_link": "PASS rerun after seed-provider ordering change",
+    "headers_i386_compile_link": "PASS not executed",
+    "full_guard_composition": "NOT IMPLEMENTED",
+    "desktop": "NOT RUN",
+    "seed_read_order": "PASS identity permutations before one seed read, seed exception invalidates access, retry; four complete896-draw oracle comparisons"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/p22-guard-init.cpp",
+      "sha256": "b763ba73936caa8e5acad559d89ba07ef0f7c754b572a181bf4ca1be2dc3dd5b",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-init",
+      "sha256": "c9c77a6a1b99e0bddc179d508f64cf4e0baab3898f9aefd2231813f3f12f0f45",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-descriptors.cpp",
+      "sha256": "c612bb3a9759155beaaf611b49217057d931f189f034e8590614ca647b58014f",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-descriptors",
+      "sha256": "7bd4eaee5699713a0410983c34b89c889c916255cf277fcbf40bf64fcee7016a",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-configuration.cpp",
+      "sha256": "c67533b331096f63c9667620a70e5e17e49a735a0c32962a021dfbad59efd514",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-configuration",
+      "sha256": "4eb2c4cc1763c5cccfc1329f82e8e3fcd866f669fef7ae25f87ea114f1c30872",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-partial.cpp",
+      "sha256": "489051dbcc2a95ab666b350424e869bb11e1b6bc7e626bfeafdbea8b2d236480",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-partial",
+      "sha256": "add7d1ef55409ec448a99707be6fbf0a48edec5461191055d9dda980f71d4b3a",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-headers.cpp",
+      "sha256": "fc125c32176673ffa9048c2fbe9a0f3da71b7a26d82b56e63fca0eaa6da4d6bd",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-headers.exe",
+      "sha256": "6fdc871acf71f2240a6a2dd8e28aab321528d5429f3ca2781a1c49f8b48ea0f4",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-seed-order.cpp",
+      "sha256": "a2fbe142e85d25f83f36affa6cd7b31c448bbc3854279f12a8b516c6f6465bde",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-seed-order",
+      "sha256": "a54103d9e277dd59dd4db33455e88b420bcdac0bc153177c3a1a53a158034cad",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-checks.cpp",
+      "sha256": "cb9cf7d6f41c14bc62a047119cc0f058d203c86404e01f0dce9d3c3ce9948946",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-checks",
+      "sha256": "2fb28dcc28d5db702a6b0821262cd9d8142a02cbbfc2262d6a6ce9094fd69631",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-checksum.cpp",
+      "sha256": "07b901201940438d95243381968aa45db3ea6fb25ca6a4a6076e13b05b8ed7c1",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-checksum",
+      "sha256": "9dc827cc111c385b4c299e43f3ad3b95da5ad13ff67039b4454d23a07f00be9a",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-checks-i386.cpp",
+      "sha256": "51b12b1e96825a8026a4044a2cda259758668d02d6cde7e8481088471056cc90",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-checks-i386.o",
+      "sha256": "81b700b4d694229e69ab8a789e8924044da82fa3849d28ad3297cdf43c94955a",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-checks-i386-main.cpp",
+      "sha256": "54343498977e087c5b805d77879c8a2c7b1d4dc5884e44eaa80a9d8573e5e32b",
+      "removed": true
+    },
+    {
+      "path": "/tmp/p22-guard-checks-i386.exe",
+      "sha256": "5c7aac3697b3204399fc992394a056d4addb80c489e7edf21b51a95fe4ebacd0",
+      "removed": true
+    }
+  ],
+  "ledger_credit": 0,
+  "source_files": {
+    "recovered/game/mission_integrity_tables.h": "ec790da7e8183edb3ba056c008fec88dfc0a773a8221c733924bb3b0dfecdf6d",
+    "recovered/game/integrity_descriptors.h": "bc97dc4578b3878b5e391a35d126ebf9915699c7e9d2ecd1395a0779d8b98d52",
+    "recovered/game/integrity_configuration.h": "c467f44d6d1e5dbedca5dcde411c1840b3f949d616dc6a74ef134fbf9e5bf1e7",
+    "recovered/host/startup_session.h": "2e8b808426e309ec79ff50b13d826bee0a8a8309fb8f3c4199232af86ee184c1",
+    "recovered/host/application_launch.cpp": "2b12f82692d0988d1c5bc4ebfcd9e6c93dcc84a5fc5e76905e3e4631c65c0f45",
+    "recovered/game/integrity_validation.h": "eb6a5714a694c52d0ad3196355cc5bdfe07ff74129d0f51f9da50410bcfe4652",
+    "recovered/game/integrity_observation_actions.h": "061fefd43822f5bfbca6d9af47e722731e25af030ac2e50430358f26083098eb",
+    "recovered/game/integrity_checksum.h": "0bcbfd8dbcfdcf12e2a30e229103f41c99d146457dfcc7d5600c8a14a2e56a62"
+  },
+  "original_exports": {
+    "analysis/work/p22-guard/export3/009f0a60.c": {
+      "sha256": "57d77e278c1414981e5108f16b8255ad863b004961f921b112a940b6490696ec",
+      "bytes": 13784
+    },
+    "analysis/work/p22-guard/export3/009f0a60.json": {
+      "sha256": "4f3468d115a27541369122c56c518ea2be3c98a70431c01f370bf7b5cb52d3e4",
+      "bytes": 130849
+    },
+    "analysis/work/p22-guard/export3/009f02a0.c": {
+      "sha256": "28f30bc0f7b411f5353b61413b8dc5f1314cdbb3c347620d7a400b3c42bd4543",
+      "bytes": 3294
+    },
+    "analysis/work/p22-guard/export3/009f02a0.json": {
+      "sha256": "8258a672b26a6aeb3f70c9bbaac53a9944d0feda50ce57e39eb5f7ad89cf1e22",
+      "bytes": 32132
+    },
+    "analysis/work/p22-guard/export3/009905b0.c": {
+      "sha256": "7e20c78fb859957cedf7b0294d8ae25ef73e2292bcb1d841f6cfc8036b11c3d9",
+      "bytes": 42785
+    },
+    "analysis/work/p22-guard/export3/009905b0.json": {
+      "sha256": "2cc4611881aacbc4942ce000cca00ea79714d44c36fe168477d4201036593df6",
+      "bytes": 340015
+    },
+    "analysis/work/p22-guard/export3/009995f0.c": {
+      "sha256": "b23cb7132bfa47e3e11e8f5706bb4fbc1034a890e9fa5c2aebc622bff47bfa76",
+      "bytes": 18503
+    },
+    "analysis/work/p22-guard/export3/009995f0.json": {
+      "sha256": "2ce94556dce4a6b262506d05107e5e95a61e11aaee04d6c6b45e282a292ba80f",
+      "bytes": 175136
+    },
+    "analysis/work/p22-guard/export3/009f8c60.c": {
+      "sha256": "09f8486a22d936e75e621e6f746e45dacb40efec620771565af3560b33560dc7",
+      "bytes": 832
+    },
+    "analysis/work/p22-guard/export3/009f8c60.json": {
+      "sha256": "486f53e42ca1e2615d93701d3ef6399fe9cf9d203120566dd972359a394d3842",
+      "bytes": 5948
+    },
+    "analysis/work/p22-guard/export3/009f8d40.c": {
+      "sha256": "1798a374cf0ee3c6e2b182bec58185babf2fdf27e9f2bf26850d396d2def20bb",
+      "bytes": 835
+    },
+    "analysis/work/p22-guard/export3/009f8d40.json": {
+      "sha256": "f40f0a2120449c57d5ed220e12e0b87e4af5a50d9679ef6dbceff571f9363130",
+      "bytes": 5948
+    },
+    "analysis/work/p22-guard/export3/0099aeb0.c": {
+      "sha256": "8e39db32ad542a0de2b1ea1c65379e66d815b3514e9c3592a4cff48f8b940c7e",
+      "bytes": 30155
+    },
+    "analysis/work/p22-guard/export3/0099aeb0.json": {
+      "sha256": "0f82346afb087986adb8f8fd73e276c77818d36dbf3aa81a1093d7228846197e",
+      "bytes": 277221
+    },
+    "analysis/work/p22-guard/helpers2/009ffbb0.c": {
+      "sha256": "d84e8cda8b32633e0940c47678a478093e806ad25c95ffc66b8018824e7a0362",
+      "bytes": 100
+    },
+    "analysis/work/p22-guard/helpers2/009ffbb0.json": {
+      "sha256": "80771e9919abddc92d675c1963f50c8499bd37c8d88e96b7e229c9820eb925a9",
+      "bytes": 2271
+    },
+    "analysis/work/p22-guard/helpers2/00a0db60.c": {
+      "sha256": "ad6770c1e8dcb8141eaa5748fdabb9e2bb8c48a450f73ae81071217d2dac6025",
+      "bytes": 468
+    },
+    "analysis/work/p22-guard/helpers2/00a0db60.json": {
+      "sha256": "01515ff3080f9b9a51ebb009c0ff5b8313df32761bd28e28e2983c155fd670c4",
+      "bytes": 4142
+    },
+    "analysis/work/p22-guard/helpers2/009ea5b0.c": {
+      "sha256": "f97dd7d31b8ef28b46247e98b2946d71fe84d6e1f9c53bf43a83db848e6c5236",
+      "bytes": 60
+    },
+    "analysis/work/p22-guard/helpers2/009ea5b0.json": {
+      "sha256": "5212604efd3a195a39da3e578f9f1a5b3b38f8fda812549b0ad259783fa41c09",
+      "bytes": 837
+    },
+    "analysis/work/p22-guard/helpers2/009ed0d0.c": {
+      "sha256": "8709bd54357c54ad32a366c6a5e6e39329a30790aa8df3e4736de34c07ce1c26",
+      "bytes": 535
+    },
+    "analysis/work/p22-guard/helpers2/009ed0d0.json": {
+      "sha256": "bbff070885d4843b34a94d8a8fa33fdc5143f6e65637716ff61fa85679ef52de",
+      "bytes": 5279
+    },
+    "analysis/work/p22-guard/upstream/009ed500.c": {
+      "sha256": "1e653c6304fe902177aacc103c706d0e959e9a472eb2487539cf9ee2d0d39576",
+      "bytes": 1783
+    },
+    "analysis/work/p22-guard/upstream/009ed500.json": {
+      "sha256": "b5d4fa1f747b2dc590acd1931fd2607421d3d7b6d49a5355f618679c699570c4",
+      "bytes": 22246
+    },
+    "analysis/work/p22-guard/upstream/009ed7b0.c": {
+      "sha256": "f171e3a597bbe4053d977121916575f51c7b75460d356ee3e79cb0473321fadf",
+      "bytes": 12971
+    },
+    "analysis/work/p22-guard/upstream/009ed7b0.json": {
+      "sha256": "b51116ae3bb678167aa17bd9d767f9fe1dc1ef485159f873aa09ff1e14aeabd2",
+      "bytes": 136968
+    },
+    "analysis/work/p22-guard/upstream/00a4d782.c": {
+      "sha256": "53670f1b74f8aede9d36585eeb8aa687a4cf6efdf420c250e93462d035141ca7",
+      "bytes": 1303
+    },
+    "analysis/work/p22-guard/upstream/00a4d782.json": {
+      "sha256": "40e8e4bcb0bc338a906ec69416b94b6f9d4cf57650568fbed84c76d244b753c6",
+      "bytes": 7692
+    },
+    "analysis/work/p22-guard/configuration-check/009f7020.c": {
+      "sha256": "89a2093e934ac84300e9cf8fe094640308ff7d709bb3d90da67063bfd588c764",
+      "bytes": 156
+    },
+    "analysis/work/p22-guard/configuration-check/009f7020.json": {
+      "sha256": "c1e691957cbc8e80143739b6c45f007ca0159213db7ddc903e0fdbb46d8464b2",
+      "bytes": 1198
+    },
+    "analysis/work/p22-guard/configuration-check/00a0d930.c": {
+      "sha256": "e7f1dfed240ca50ea8bc2d683eea5fe14fef8b8fcdd260bd80f82d3e1eb3318c",
+      "bytes": 171
+    },
+    "analysis/work/p22-guard/configuration-check/00a0d930.json": {
+      "sha256": "defff3836febce85b769a2d75c2bc9d64e71675c2fa91dfb338c6cf5eaff6b4c",
+      "bytes": 2132
+    },
+    "analysis/work/p22-guard/file-check/00a0d960.c": {
+      "sha256": "21164c564ffe3b94f4e9958435b51105aad930913e406be06f7cac228df3ab17",
+      "bytes": 475
+    },
+    "analysis/work/p22-guard/file-check/00a0d960.json": {
+      "sha256": "2e8aeb2f01aa0d27fcae143525b87b9fce9777dfabbe8e5f5514934c46a48833",
+      "bytes": 4694
+    },
+    "analysis/work/p22-guard/file-check/00a0da00.c": {
+      "sha256": "2f5da9bc85a4cc65e0b45a231ef6564970f93b774e091e26a37214db068e7f21",
+      "bytes": 885
+    },
+    "analysis/work/p22-guard/file-check/00a0da00.json": {
+      "sha256": "d94f77343b84363d8893a38c7c26d13eb56dda0fdf11057daa3260b4edaa418e",
+      "bytes": 7878
+    }
+  },
+  "original_instruction_windows": {
+    "analysis/work/p22-guard/descriptor-match.asm": "e18b583814466af5e0cb80238b51a4b25055a5610c5a109d1d2297f1d55102d6",
+    "analysis/work/p22-guard/registry.asm": "6a0177cd556a7ff28b5a368329d1a743b194e9cab215cc39139760725d9585d6",
+    "analysis/work/p22-guard/private-entry.asm": "a95f514d5162bfdd8403bf0b590c1a526295caa9f90d3319ab5a21560b52b20b",
+    "analysis/work/p22-guard/pe-entry.asm": "e85ac017d6b6aaace9564093be9ab2d2496df6522eebe948a97e1bdbd3f2ed48",
+    "analysis/work/p22-guard/pe-entry-tail.asm": "986a5f35b3b9f616461aca755db860470ae53cc25d873d11050be05c61e4d406",
+    "analysis/work/p22-guard/actions.asm": "881678a437680e6c46494dea98f690d1a96e035661329db223f565211848b6e8",
+    "analysis/work/p22-guard/validation-dispatch.asm": "f082cbe2495c63b28211608513448214c975b9e3c1c76e9953a47dc06214d7b6",
+    "analysis/work/p22-guard/validation20.asm": "004b22635504eaae38be0db5ffb0b0553471cb6950da7f8aff0ab8c4cfeb3102",
+    "analysis/work/p22-guard/caller-observation-writes.asm": "a8345b4f4dabcf03a091f6b2780b25f2304136c6de2a5f2f82216ebc47e1807a",
+    "analysis/work/p22-guard/validation20-call.asm": "c5af712f302c869c15edf6daff496410cca1163aa971bbec115a28dce1233260",
+    "analysis/work/p22-guard/checksum-byte.asm": "bf78b14853ce95e62f004248f52dfb0fa46afb9f64a40448d0ac9676fd92d54b"
+  },
+  "blocker": {
+    "matched_path": "00997602 E951000000 ->00997658 skips00997648 validation",
+    "installed_input_sha256": "e015f149b860d99e866a1ae71a7688c2691de00fe81a0f1ec9e796eb44dde2b3",
+    "fresh_unpacked_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "needed": "intact protection data/startup evidence for private registry/configuration/import and producer endpoints",
+    "no_bypass_ported": true,
+    "byte_anchors": [
+      {
+        "address": "00997602",
+        "hex": "e951000000",
+        "meaning": "matched path skips validation to00997658"
+      },
+      {
+        "address": "00997648",
+        "hex": "e8a3d7ffff",
+        "meaning": "dormant direct call00994DF0"
+      },
+      {
+        "address": "00A59120",
+        "hex": "c29e6e00b4f18000",
+        "meaning": "seed return address/IAT pair"
+      }
+    ]
+  },
+  "decompression_only_temporary_copies": [
+    {
+      "name": "p22-guard-original-restored.exe",
+      "sha256": "be96756799921d14f3702d3c783611646e03fd69576136513088ea4c6252548c",
+      "removed": true
+    },
+    {
+      "name": "p22-guard-original-unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "removed": true
+    }
+  ],
+  "resume_scalar_checkpoint": {
+    "native": "PASS ASan/UBSan/LSan for validation11/20/21 predicates, signed counter wrap/overrides, negative checks, query/checksum exceptions, scalar actions and CRC table/accumulator",
+    "endpoints": "EnvironmentDouble and supplied checksum callbacks/fixture arrays; no production private producers",
+    "i386": "PASS actual World header object compilation and separate scalar template compile/link, not full concrete GUARD composition; not executed",
+    "application": "PASS actual application-launch link",
+    "tracker": "PASS frozen18783,34 complete/2507 partial, seven new partials and one extended;27 existing tracker tests pass",
+    "not_verified": [
+      "private producers",
+      "real registry/import/file-mode bindings",
+      "production TLS/caller restoration",
+      "concrete positive Startup/World/GUARD publication",
+      "desktop"
+    ]
+  },
+  "resume_original_queries": {
+    "analysis/work/p22-guard/upstream-references.txt": "3242c0de7dcff40132b7c91723988ef221f7cece519a3b60d8066fb477cb7505",
+    "analysis/work/p22-guard/loading-call-words.txt": "50414e1f18dba8e611d66f032cf8a0855748027f921cd0172f5a23fe0761d106",
+    "analysis/work/p22-guard/loading-call-details.txt": "34ae029c50b2319e1a5dca99bd4280ce3919643785b5c80cc23036ea67a667c9",
+    "analysis/work/p22-guard/all-wrapper-call-details.txt": "43c958dd2f700d7f278c91a81c3dd1e46c628f419f98d6ba716fdde9577c7bf9",
+    "analysis/work/p22-guard/wrapper-inventory.txt": "e3d23ff61e433acbe4494cec3debe4c12501f92dcfa4f2f9e70a4d4264884f88"
+  },
+  "variant_check": {
+    "sabre_sha256": "786d8edb7455c332da8dc7f774ae3fdc579a77b515c58080fa78146cdb644af6",
+    "scope": "layout/data-population comparison only; not reused as base-client equivalence evidence",
+    "dogui_raw_nonzero_bytes": 542,
+    "idata_raw_nonzero_bytes": 0,
+    "base_same_counts": true
+  },
+  "ledger": {
+    "new_partial_entries": [
+      "00994810",
+      "009fb050",
+      "00a0db60",
+      "00a0d960",
+      "00a0daf0",
+      "00994df0",
+      "00996330"
+    ],
+    "extended": [
+      "006e9ea0"
+    ],
+    "complete": 34,
+    "partial": 2507,
+    "frozen": 18783,
+    "absent_return_helpers_credited": false
+  }
+}

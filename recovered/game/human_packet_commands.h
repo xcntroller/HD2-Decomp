@@ -147,9 +147,9 @@ inline void write_human_packet_command(SessionPacketStream& packet,const HumanPa
     case 9:word(8,16);word(0xc,3);break;
     case 10:
         word(8,16);packet.write_direction(f.get<HumanVector>(0x10),-1);
-        //005B20A1 stores zero to the high temporary DWORD, then the push at
-        //005B20AB makes FIMUL [ESP+0C] use that ZERO, not mask15. Preserve bytes.
-        packet.write(human_packet_ftol((static_cast<long double>(f.get<float>(0x20))-1)*.25L*0.L),4);
+        //At20A7 [S+08]=mask15; PUSH at20AB makes ESP=S-4.
+        //FIMUL [ESP+0C] at20B2 reads [S+08], still15, not high zero[S+0C].
+        packet.write(human_packet_ftol((static_cast<long double>(f.get<float>(0x20))-1)*.25L*15.L),4);
         packet.write(f.get<std::int32_t>(0x24)>=0,1);if(f.get<std::int32_t>(0x24)>=0)word(0x24,16);break;
     case 11:
         word(8,10);word(0xc,4);packet.write(f.get<std::uint32_t>(0x14)!=7u,1);

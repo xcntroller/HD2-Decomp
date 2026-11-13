@@ -1,0 +1,162 @@
+{
+  "artifacts": {
+    "/tmp/research-index-audit.py": {
+      "bytes": 12849,
+      "retained": false,
+      "sha256": "941ca3ce90445c6c3aa650fd71383e13b42535fab9d1c57d20346432def6b6c0"
+    },
+    "/tmp/research-index-real-audit.py": {
+      "bytes": 4264,
+      "retained": false,
+      "sha256": "41f1aec630f854aaff7e94659ff8f1ba8baf9a8566700ae8a96f4cbbc19a34a9"
+    },
+    "analysis/work/research-index/verification/existing-tracker.log": {
+      "bytes": 126,
+      "retained": true,
+      "sha256": "e6003b583cb2a86a68695abe02a47c7e996ee2aaf2b27c3a8b337ad86d844097"
+    },
+    "analysis/work/research-index/verification/real-corpus-audit.json": {
+      "bytes": 2087,
+      "retained": true,
+      "sha256": "4fc1bccf873e0421035a8293e2edb77c56753c8d64c6aec40a97c2fcbafafbd8"
+    },
+    "analysis/work/research-index/verification/real-corpus.log": {
+      "bytes": 2087,
+      "retained": true,
+      "sha256": "4fc1bccf873e0421035a8293e2edb77c56753c8d64c6aec40a97c2fcbafafbd8"
+    },
+    "analysis/work/research-index/verification/temporary-audit.log": {
+      "bytes": 2801,
+      "retained": true,
+      "sha256": "42e57700ef661a7474c187c4fe4121dfc598f90dc4f83db0d418e02e6a5413fd"
+    }
+  },
+  "baseline_commit": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "branch": "tooling/research-index",
+  "cache_schema": "4",
+  "checks": {
+    "diff_check": {
+      "command": "git diff --check",
+      "result": "PASS"
+    },
+    "existing_function_tracker_tests": {
+      "command": "python3 -B -m unittest discover -s tools -p test_function_progress.py",
+      "count": 27,
+      "result": "PASS"
+    },
+    "real_corpus": {
+      "cases": [
+        "00751480 locates recent C-only ABI v3 beside older metadata export",
+        "00751480 locates actual untracked model-action source",
+        "00799bb0 locates C-only export, original assembly and failure contract",
+        "uncommitted source does not acquire ledger credit",
+        "interior instruction address resolves containing frozen function",
+        "phrase search reaches current Human Car-seat contract",
+        "symbol search reaches actual model-exit implementation",
+        "shared movement has actual exported caller and 26 reported callees",
+        "engine lookup is fingerprint qualified separately from client",
+        "bounded live reading returns requested source interval",
+        "snapshot-only CLI queries leave real SQLite cache byte-identical"
+      ],
+      "command": "python3 -B /tmp/research-index-real-audit.py",
+      "count": 11,
+      "result": "PASS"
+    },
+    "source_only_checkout": {
+      "candidate_files": 1243,
+      "ignored_evidence_required": false,
+      "result": "PASS"
+    },
+    "temporary_python_audit": {
+      "command": "python3 -B /tmp/research-index-audit.py",
+      "count": 30,
+      "result": "PASS"
+    }
+  },
+  "corpus": {
+    "files": {
+      "assembly": 777,
+      "decompilation": 4578,
+      "helper": 168,
+      "metadata": 5043,
+      "note": 183,
+      "receipt": 67,
+      "source": 772
+    },
+    "issues": [
+      {
+        "error": "over 8 MiB limit; not indexed",
+        "path": "analysis/work/menu-contract-calls-20261031.json"
+      },
+      {
+        "error": "over 8 MiB limit; not indexed",
+        "path": "analysis/work/menu-contract-calls-linked-20261031.json"
+      },
+      {
+        "error": "over 8 MiB limit; not indexed",
+        "path": "analysis/work/menu-contract-calls-prompts-20261031.json"
+      },
+      {
+        "error": "over 8 MiB limit; not indexed",
+        "path": "analysis/work/menu-contract-final-20261031.json"
+      }
+    ],
+    "mentions": 1529475,
+    "passages": 64997,
+    "records": {
+      "c_export": 4578,
+      "export": 4520,
+      "inventory": 18921,
+      "ledger": 2405
+    }
+  },
+  "date": "2026-11-11",
+  "desktop_verified": false,
+  "ghidra_invoked": false,
+  "inputs": {
+    "AGENTS.md": {
+      "bytes": 4079,
+      "retained": true,
+      "sha256": "a2e3c85285f044d1bd2dba5d6030d35e555e8c6903a91a10ad72a0e2b399d1d2"
+    },
+    "tools/research-index.md": {
+      "bytes": 7961,
+      "retained": true,
+      "sha256": "740823d47fcdf6e6757b980325c3f5cafe5b92c83684278e84aa837ce025e8d4"
+    },
+    "tools/research_index.py": {
+      "bytes": 31087,
+      "retained": true,
+      "sha256": "c18e50f4f61a35249e2da0d142e8523ea159ccb919709bda3e92471c8b37577d"
+    }
+  },
+  "limitations": [
+    "Index of the live source tree, not an atomic source or verification snapshot.",
+    "Text and C-only exports are program-unqualified; timestamp order is not correctness order.",
+    "Legacy exports lack complete Ghidra type/analysis/options revisions; no automatic export reuse decision.",
+    "Four over-8-MiB historical aggregate JSON files omitted explicitly; status lists exact paths.",
+    "Reported caller/callee edges come only from existing qualified exports and are not exhaustive.",
+    "No native/i386/desktop checks are applicable to this Python-only non-gameplay change."
+  ],
+  "main_checkout_writes": false,
+  "measurements": {
+    "cache_bytes": 391868416,
+    "cached_lookup_median_seconds": 0.06781154000782408,
+    "cached_two_address_lookup_seconds": [
+      0.0667813269974431,
+      0.06781154000782408,
+      0.06443944199418183,
+      0.06895140800043009,
+      0.06854568999551702
+    ],
+    "cold_index_seconds": 25.111,
+    "interpretation": "Local CLI wall time only; no measured agent-time savings claimed.",
+    "refresh_and_lookup_seconds": 0.6619981199910399
+  },
+  "merge_or_push": false,
+  "original_execution": false,
+  "python": "3.14.10",
+  "scope": "Local research lookup tooling only; no original-function credit, gameplay or delivery change.",
+  "source_only": true,
+  "temporary_audit_sources_removed": true
+}

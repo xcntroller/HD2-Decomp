@@ -7,6 +7,7 @@
 #include "game/mission_tables.h"
 #include "game/human_state_frame_timers.h"
 #include <variant>
+#include <functional>
 
 namespace hd2::game {
 
@@ -46,12 +47,23 @@ struct HumanAIQueryLoading {
         state.set(0x58,std::uint8_t{0});
         state.set(0x24,0u);
     }
+    void request_point_position(std::uint16_t index,const HumanVector& position){ //00560E50.
+        if(index==0xffff)return;
+        state.set(0x10,position);state.set(0x20,index);
+        state.set(0x50,(state.get<std::uint32_t>(0x50)&0x7ff7fffcu)|3u);
+        state.set(0x58,std::uint8_t{0});state.set(0x24,0u);
+    }
     void request_point(std::uint16_t index){ //00560F00.
         if(index==0xffff)return;
         state.set(0x20,index);
         state.set(0x50,(state.get<std::uint32_t>(0x50)&0x7ff7fffcu)|1u);
         state.set(0x58,std::uint8_t{0});
         state.set(0x24,0u);
+    }
+    void request_mode(std::uint32_t mode,std::uint32_t range){ //00560E20.
+        state.set(0x38,mode);state.set(0x3c,range);state.set(0x20,std::uint16_t{0xffff});
+        state.set(0x50,(state.get<std::uint32_t>(0x50)&0x7ff7fff8u)|5u);
+        state.set(0x58,std::uint8_t{0});state.set(0x24,0u);
     }
     void finish(){ //00560F30.
         door=nullptr;
@@ -79,11 +91,11 @@ struct HumanAIFlagLoading {
 
 //0055DF90/0055F2C0/0055E130/0055E030. Borrow the actual SECOND MissionTableSet
 //(original game+54 dataset+3C), not a private graph or empty successful path.
-//No path/query-node producer is exposed here; both real owning buffers start empty.
+//The route producer uses typed native30-byte records; query nodes still have no producer.
 class HumanAIPathLoading {
 public:
     explicit HumanAIPathLoading(MissionTableSet& second):table_(second) {
-        state_.set(0x40,std::uint32_t{0});state_.set(0x74,std::uint32_t{0});
+        state_.set(0x40,std::uint32_t{0}); //Native74 is the separate typed vehicle_ loan.
         state_.set(0x88,std::uint8_t{0});state_.set(0x8c,-1.f);state_.set(0x90,std::uint32_t{0x2000});
         reset();
     }
@@ -94,14 +106,38 @@ public:
         for(auto offset:{0x20u,0x24u,0x30u,0x34u,0x38u})state_.set(offset,std::uint32_t{0});
         state_.set(0x1d,std::uint8_t{0});state_.set(0x1c,std::uint8_t{0});
     }
-    MissionTableSet& table()const{return table_;}const auto& state()const{return state_;}
-    void stop_loading() { //0055E250/0055E2B0(4); native74 vehicle has no producer here.
-        if(state_.get<std::uint32_t>(0x74))throw std::runtime_error("Human AI path stop requires actual vehicle path ownership");
-        state_.set(0x40,state_.get<std::uint32_t>(0x40)|4u);
+    MissionTableSet& table()const{return table_;}auto& state(){return state_;}const auto& state()const{return state_;}
+    struct RoutePoint{HumanVector position{},tangent{};std::uint8_t terminal=0;}; //Native30-byte stride,20 terminal byte; scratch lanes stay guards.
+    auto& route(){return route_;}const auto& route()const{return route_;}
+    void* vehicle()const{return vehicle_;} //0055E120, native74 typed borrower.
+    template<class Restore>void bind_vehicle(void* vehicle,Restore&& restore){ //0055E0E0.
+        if(!vehicle&&vehicle_)restore(vehicle_);
+        vehicle_=vehicle;restore_vehicle_=std::forward<Restore>(restore);state_.set(0x88,std::uint8_t{0});
     }
+    bool flags(std::uint32_t bits)const{return (state_.get<std::uint32_t>(0x40)&bits)!=0;} //0055E2E0.
+    void set_flags(std::uint32_t bits){state_.set(0x40,state_.get<std::uint32_t>(0x40)|bits);} //0055E2B0.
+    void clear_flags(std::uint32_t bits){state_.set(0x40,state_.get<std::uint32_t>(0x40)&~bits);} //0055E2C0.
+    void movement_flags(std::uint32_t flags){state_.set(0x90,flags&0x1f000u);} //0055E130.
+    void request_vehicle_position(const HumanVector& destination,float speed){ //0055E160, signed speed and NaN tangent sentinel.
+        if(std::abs(static_cast<long double>(speed))>9.99999993922529e-9){clear_flags(4);set_flags(1);state_.set(0x50,destination);state_.set(0x60,0x7fc00000u);state_.set(0x8c,speed);}
+        else set_flags(4);
+    }
+    void request_vehicle_segment(const HumanVector& destination,const HumanVector& next,float speed){ //0055E1D0.
+        if(std::abs(static_cast<long double>(speed))>9.99999993922529e-9){
+            clear_flags(4);set_flags(1);state_.set(0x50,destination);state_.set(0x60,next);state_.set(0x8c,speed);
+        }else set_flags(4);
+    }
+    template<class Restore>void stop_vehicle(Restore&& restore){if(vehicle_)restore(vehicle_);set_flags(4);} //0055E250.
+
+    void stop_loading() { //0055E250 on the SAME typed74 borrower.
+        if(vehicle_){if(!restore_vehicle_)throw std::logic_error("Vehicle path lost governor owner");restore_vehicle_(vehicle_);}
+        set_flags(4);
+    }
+
 private:
     MissionTableSet& table_;HumanJointWords<0xa0> state_;
-    std::vector<std::uint8_t> route_; //Uninterpreted native04 buffer; no element format or producer inferred.
+    std::vector<RoutePoint> route_; //Native04 owner, typed records preserve order and vector capacity.
+    void* vehicle_=nullptr;std::function<void(void*)> restore_vehicle_;
     std::vector<std::unique_ptr<unsigned char[]>> nodes_; //Native7C owns raw node allocations; producer remains required.
 };
 
@@ -132,6 +168,9 @@ public:
         retire_current_action(); //Typed nativeF0; explicit state close normally returns it first.
         direction_.reset();target_.reset();flag_.reset();path_.reset();query_.reset();finish_navigation_jobs();
     }
+    std::uint32_t current_action_mode()const{
+        return std::visit([](const auto& lease)->std::uint32_t{using T=std::decay_t<decltype(lease)>;if constexpr(std::is_same_v<T,std::monostate>)return 0;else return lease?lease->state.template get<std::uint32_t>(8):0;},current_action_);
+    }
     Direction& direction(){return required(direction_);}Target& target(){return required(target_);}
     const Direction& direction()const{return required(direction_);}
     HumanAIFlagLoading& flag(){return required(flag_);}HumanAIQueryLoading& query(){return required(query_);}
@@ -143,6 +182,7 @@ public:
         aimed_actor_=actor;
         if(actor)selected_actor_=actor;
     }
+    void publish_script_aimed_actor(Actor* actor){aimed_actor_=actor;} //0058E5DF writes D0 only, preserving D4.
     auto& navigation_jobs(){return jobs_;}
     const HumanAINavigationJob* current_navigation_job()const{return current_job_.get();}
     void advance_navigation_job(){
@@ -160,6 +200,10 @@ public:
     void current_action(HumanAIAction2Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction3Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction5Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction6Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction7Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction8Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction12Pool::Lease value){current_action_=std::move(value);}
     template<class Pool>auto* current_action_as()const{
         const auto* lease=std::get_if<typename Pool::Lease>(&current_action_);
         return lease?lease->get():nullptr;
@@ -207,7 +251,8 @@ private:
     std::vector<HumanAINavigationJobPool::Lease> jobs_; //NativeF8.
     HumanAINavigationJobPool::Lease current_job_{nullptr,HumanAINavigationJobPool::Return{}}; //Native104.
     std::variant<std::monostate,HumanAIAction1Pool::Lease,HumanAIAction2Pool::Lease,
-        HumanAIAction3Pool::Lease,HumanAIAction5Pool::Lease> current_action_;
+        HumanAIAction3Pool::Lease,HumanAIAction5Pool::Lease,HumanAIAction6Pool::Lease,
+        HumanAIAction7Pool::Lease,HumanAIAction8Pool::Lease,HumanAIAction12Pool::Lease> current_action_;
 };
 } //namespace hd2::game
 #endif

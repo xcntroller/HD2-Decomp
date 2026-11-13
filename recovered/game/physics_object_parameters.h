@@ -18,6 +18,7 @@ template<class Frame>struct PhysicsObjectParameters {
     std::uint32_t type=5;
     bool flag14=false,flag15=false,first_list=false,sight_pass=true;
     std::uint32_t field18=0;
+    std::uint32_t material10=0; //Native+10→common object150; Versions fragment producer supplies part material.
     bool free_axis=false,tree=false,breakable=false,pickup=false;
     float angle=1.57079637050628662109375f;
     std::string break_model;
@@ -43,7 +44,7 @@ std::optional<PhysicsObjectParameters<Frame>> physics_scene_parameters(Frame fra
     if(has("can")) {value.type=2;value.first_list=true;return value;}
     if(has("cross"))value.type=6;
     value.free_axis=has("free")||has("axis");value.tree=has("tree");
-    const auto broken=text.find("break");value.breakable=broken!=std::string::npos;
+    const auto broken=text.find("break");value.breakable=broken!=std::string::npos;value.pickup=value.breakable; //Native record1E→object204 is ONE flag.
     if(value.breakable) {
         const auto start=text.find_first_not_of(" \t\r\n\v\f",broken+5);
         if(start==std::string::npos)value.break_model="plotdira";

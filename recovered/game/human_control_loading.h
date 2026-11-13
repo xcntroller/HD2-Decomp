@@ -1,7 +1,11 @@
 #ifndef HD2_GAME_HUMAN_CONTROL_LOADING_H
 #define HD2_GAME_HUMAN_CONTROL_LOADING_H
+#include "game/human_track_equipment_events.h"
+#include "game/human_track_control_events.h"
+#include "game/human_track_effect_events.h"
 
 #include "game/human_action_control.h"
+#include "game/human_clothing_control.h"
 #include "game/human_control_action_queue.h"
 #include "game/human_ladder_control.h"
 #include "game/human_step_preparation.h"
@@ -14,12 +18,16 @@
 #include "game/human_look_frame.h"
 #include "game/human_door_action.h"
 #include "game/human_model_action.h"
+#include "game/human_timed_interaction.h"
+#include "game/human_seat_action.h"
 #include "game/human_animation_arbitration.h"
 #include "game/human_posture_transition.h"
 #include "game/human_lateral_stride.h"
 #include "game/human_posture_room.h"
 #include "game/human_mount_retirement.h"
+#include "game/human_mount_assignment.h"
 #include "game/human_direction_replay.h"
+#include "game/human_position_replay.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
 #include "game/human_face_control.h"
@@ -33,6 +41,9 @@
 #include "game/effects_shadow_models.h"
 #include "game/human_camera_amount.h"
 #include "game/human_ai_shot_direction.h"
+#include "game/human_reaction_selection.h"
+#include "game/human_reaction_retirement.h"
+#include "game/human_footstep.h"
 #include <cmath>
 #include <optional>
 
@@ -65,8 +76,8 @@ public:
             DynamicCollisionExclusions<typename Physical::Descriptor>& exclusions,
             const HumanMorphTables& morph,HumanPhysicsGlobals& physics_globals,Audio& audio,Random& random,
             Callbacks& callbacks,Effects& effects,Presentation& presentation,Services& services)
-        :frames_(frames),audio_(audio),random_(random),effects_(effects),presentation_(presentation),services_(services),
-         geometry_(frames,random),face_(frames,morph,random),physical_(frames,collisions,exclusions,face_,audio,physics_globals,[this]{return shadow_.frame();}),
+        :frames_(frames),audio_(audio),random_(random),effects_(effects),presentation_(presentation),services_(services),physics_globals_(physics_globals),
+         geometry_(frames,random,audio,physics_globals),face_(frames,morph,random),physical_(frames,collisions,exclusions,face_,audio,physics_globals,[this]{return shadow_.frame();}),
          tracks_(frames,callbacks),shadow_(frames,effects),animation_(frames,tracks_,shadow_,*this,opacity_,random) {
         physical_.bind_animation_tracks(tracks_.frame_words());
         pool_.emplace(audio_.acquire_pool()); //Geometry constructor precedes007855C0's shared pool lease.
@@ -94,6 +105,33 @@ public:
             }
         }
         geometry_.bind_loading(human.base().frame(),&human,this,mode_flags(),offline);
+    }
+    void special_animation(const char* name,std::int32_t blend,std::int32_t fade,bool loop){ //Human005A9C20→inline005AC4A0→C00/0077CE10.
+        play_human_special_animation(*this,name,blend,fade,loop,services_);
+    }
+    void rebind_clothing_model(){ //00786C20, same actual DD0/bone leases.
+        if(!human_||!active_)throw std::logic_error("Clothing refresh requires actual active DD0");
+        rebind_human_clothing_control(*this,*human_,frames_);
+    }
+    void retire_clothing_bone(unsigned n){if(!bones_.at(n))throw std::logic_error("Clothing refresh lost retained Human bone");bones_[n].reset();}
+    void retain_clothing_bone(unsigned n){bones_.at(n).emplace(frames_.retain_actor_frame(physical_.bones().at(n)));}
+    void refresh_clothing_bindings(){ //0075D1C0/0075D080,0077D410,0079C320(2),007936E0 in native order.
+        const auto model=human_->base().frame();
+        physical_.rebind_clothing_bones();physical_.rebind_clothing_markers();tracks_.rebind_model(model);
+        services_.clothing_bind_equipment_markers(*human_); //0075D080 tail0078CC90, before C00/geometry.
+        action_.rebind_model(frames_);
+        std::optional<typename Geometry::OfflineBinding> offline;
+        if((mode_flags()&7u)==7u){
+            const bool quality=services_.human_face_quality_enabled();
+            geometry_.configure_offline_faces(services_.human_face_resources(),quality,services_.human_face_camouflage());
+            if(quality){
+                auto* storage=human_->base().storage();auto* holder=storage?storage->holder(0):nullptr;
+                if(!holder)throw std::logic_error("Clothing face refresh requires actual holder0");
+                std::optional<float> clothing;if(const auto entry=holder->entry())clothing=frames_.entry_scalar(entry);
+                offline=typename Geometry::OfflineBinding{human_->properties.field19c==1,clothing};
+            }
+        }
+        geometry_.rebind_clothing_model(mode_flags(),offline);services_.clothing_rebind_equipment(*human_);
     }
     template<class Resources,class Sweep>void activate(Resources& resources,Sweep& sweep,const CollisionTree<Frame>* tree) {
         if(started_||!human_||!human_->base().frame())throw std::logic_error("DD0 activation has no bound cold Human");
@@ -125,6 +163,10 @@ public:
         active_=started_=false;
     }
     Geometry& geometry(){return geometry_;}Face& face(){return face_;}Physical& physical(){return physical_;}
+    void select_geometry_attachment(std::uint32_t flags,void* actor,std::uint32_t seat){geometry_.select_attachment_pose(flags,actor,seat,services_);} //007ADD30.
+    void present_attached_geometry(){geometry_.present_attached_pose(mode_flags(),services_);} //007AE3C0.
+    void present_target_geometry(){geometry_.present_target_pose(mode_flags(),services_);} //007AEBE0.
+    void present_vehicle_geometry(){geometry_.present_vehicle_pose(mode_flags(),services_);} //007AF320.
     Movement& movement(){return movement_;}
     template<class Look>void prepare_motion_velocity(Look& look,bool refresh){ //0076B670.
         prepare_human_motion_velocity(*this,look,*human_,services_,frames_,refresh);
@@ -139,6 +181,10 @@ public:
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
         prepare_human_direction_replay(*this,look,*human_,requested,human_frame_signed_word(elapsed),publish);
     }
+    template<class Look>void replay_position(const Look& look,const HumanVector& position){ //00759E20.
+        if(!human_)throw std::logic_error("Human position replay has no actual bound Human");
+        replay_human_control_position(*this,look,*human_,services_,frames_,position);
+    }
     void publish_dynamic_ground_position(){ //007646F0 dynamic descriptor publication tail.
         synchronize_control_position(human_->base().world_position());
         synchronize_control_position(human_->base().world_position());
@@ -151,16 +197,27 @@ public:
     template<class Look,class Runtime,class Publish>void finish_step_fall(Look& look,Runtime& runtime,Publish& publish){
         finish_human_walk_fall(*this,look,*human_,services_,runtime,false,publish); //00770B90(0).
     }
-    template<class Look,class Runtime>void apply_look_interaction(Look& look,SceneInstance* target,std::uint32_t flags,std::uint32_t argument,Runtime& runtime){
+    template<class Look,class Runtime>void apply_look_interaction(Look& look,SceneInstance* target,std::uint32_t flags,std::uint32_t argument,Runtime& runtime,Frame model={}){
+        if(human_seat_entry_action(flags&0x3ffu)||human_seat_exit_action(flags&0x3ffu)){
+            auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+            (void)begin_human_seat_action(*this,look,*human_,target,flags,argument,services_,frames_,runtime,publish);return;
+        }
         if((flags&0x3ffu)==1u){(void)begin_human_door_action(*this,look,*human_,services_,frames_,target,flags,argument);return;}
         if((flags&0x3ffu)==8u){
             auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
-            (void)begin_human_model_action(*this,look,services_,frames_,target,flags,argument,look.interaction_frame_argument(),publish);
+            (void)begin_human_model_action(*this,look,services_,frames_,target,flags,argument,model?model:look.interaction_frame_argument(),publish);
             return;
         }
         if((flags&0x3ffu)==9u||(flags&0x3ffu)==10u){
             auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
             (void)begin_human_model_exit(*this,look,services_,flags,publish);return;
+        }
+        switch(flags&0x3ffu){
+        case 0xe:case 0x10:case 0x12:case 0x14:case 0x16:case 0x18:case 0x1a:case 0x1c:case 0x1e:case 0x20:case 0x24:{
+            auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+            (void)begin_human_timed_interaction(*this,look,*human_,target,flags,services_,frames_,publish);return;
+        }
+        default:break;
         }
         runtime.apply_human_look_interaction(*this,target,flags,argument); //00751480's remaining required action cases.
     }
@@ -169,8 +226,29 @@ public:
         if((flags&0x3ffu)==8u)advance_human_model_action(*this,look,*human_,services_,frames_,elapsed);
         else advance_human_model_exit(*this,look,*human_,services_,frames_,elapsed);
     }
+    template<class Look,class Runtime>void advance_seat_action(Look& look,std::uint32_t elapsed,Runtime& runtime){
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        advance_human_seat_action(*this,look,*human_,services_,frames_,runtime,publish,elapsed);
+    }
+    template<class Look,class Runtime,class Publish>void arbitrate_seat_animation(Look& look,Runtime& runtime,Publish& publish){
+        arbitrate_human_animation_frame(*this,look,*human_,services_,frames_,runtime,publish);
+    }
+    void publish_seat_ground_position(){ //00755500→007599F0 twice, then CE8/DB4/Scene144.
+        physical_.control_frame_words().set(0x228,0u);publish_dynamic_ground_position();
+    }
+    void retire_dead_seat(const HumanVector& position){ //0075E560, engine SetPos then reason0 geometry effect.
+        frames_.car_camera_position(human_->base().frame(),position);human_->base().world_position(position);
+        physical_.control_frame_words().set(0x1cc,1.f);physical_.control_frame_words().set(0x1d0,1.f);
+        begin_geometry_effect(8,HumanVector{},Frame{},0,nullptr);frames_.update_scene_object(human_->base().frame());
+    }
+    void retain_frame_action(Frame frame){
+        if(!frame)throw std::logic_error("Retained Human item action requires actual model");
+        auto retained=frames_.retain_actor_frame(frame);retained.release(); //0077F760 direct E4 retain, transferred to the action consumer.
+    }
     Shadow& shadow(){return shadow_;}
     const Links& links() const{return links_;}const auto& motion() const{return motion_;}
+    auto& animation(){return animation_;}
+    auto& motion_words(){return action_.frame_words();}
     const auto& animation() const{return animation_;}const auto& opacity() const{return opacity_;}
     auto& opacity(){return opacity_;}
     Human** human_slot_address(){return physical_.human_slot_address();}
@@ -179,6 +257,9 @@ public:
     auto human_geometry_ray(const HumanVector& start,const HumanVector& displacement,
             std::uint32_t layers,std::uint32_t flags,bool normal=true){
         return services_.human_geometry_ray(start,displacement,layers,flags,normal);
+    }
+    auto prone_pose_sweep(const HumanVector& start,const HumanVector& displacement,float radius){
+        return services_.human_geometry_sweep().sweep(start,displacement,radius,0xc8102u,0x230000u);
     }
     bool frame_special_movement_item()const{ //005A66B0.
         auto* storage=human_?human_->base().storage():nullptr;
@@ -248,6 +329,11 @@ public:
             tracks_.motion_deceleration({{0,0,0,0}},0);
             action_.finish_special_motion_command();
         }
+    }
+    template<class Runtime>bool advance_walk_frame(std::int32_t elapsed,Runtime& runtime){ //007646F0 on this SAME DD0/E0.
+        auto& look=services_.human_look_control(*human_);
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        return advance_human_walk_motion(*this,look,*human_,services_,elapsed,runtime,publish);
     }
     template<class Look,class Runtime>void advance_ground_frame(Look& look,std::uint32_t elapsed,Runtime& runtime){ //007637D0.
         auto& state=physical_.control_frame_words();
@@ -402,6 +488,9 @@ public:
     std::uint32_t human_scene_epoch(){return frames_.human_scene_epoch();}
     int equipment_current_mode() const{return physical_.state().template get<std::int32_t>(0xa20);}
     int equipment_command_identity() const{return action_.state().template get<std::int32_t>(0x38);}
+    template<class Transfers,class Look>void finish_inventory_added_transfer(Transfers& transfers,Look& look){
+        apply_human_timed_inventory_transfer(*this,transfers,frames_,look,services_); //00792590→00758170(true).
+    }
     void reset_equipment_command(){action_.reset_equipment_command();}
     void equipment_transfer_mode(std::uint32_t command,std::uint32_t mode,bool moved) {
         if(moved)field_dc8_=3;
@@ -420,6 +509,76 @@ public:
         refine_human_lateral_stride(*this,look,*human_,frames_,services_.human_geometry_sweep());
     }
     void begin_mounted_geometry_effect(Human& source){geometry_.begin_mounted_effect(*human_,*this,source,services_);}
+    void begin_geometry_effect(std::uint32_t flags,const HumanVector& impulse,Frame clip,
+            std::uint16_t reason,Human* source){
+        geometry_.begin_geometry_effect(*human_,*this,flags,impulse,clip,reason,source,services_);
+    }
+    void present_ragdoll_geometry(){geometry_.present_ragdoll_frame(*human_,*this,services_);}
+    template<class Look>void present_footstep(const Look& look,bool left){present_human_footstep(*this,look,*human_,services_,frames_,left);}
+    void request_geometry_surface(const HumanVector& position,const HumanVector& normal){ //00787110, receiver is DD0, NOT Human.
+        if(!(mode_flags()&2u))return;
+        const auto kind=physical_.control_frame_words().template get<std::uint32_t>(0x184);
+        const auto draw=static_cast<std::int32_t>(random_());
+        const float limit=static_cast<float>(static_cast<long double>(draw%150)*.0013+(kind==0?.3499999940395355:.25));
+        const auto emit=[&](const auto& point,const auto& up){
+            services_.emit_human_surface_mark(point,up,limit); //Quality rejection still precedes native position retention.
+            services_.retain_human_surface_position(point);
+        };
+        if(kind!=5){
+            const auto frame=physical_.surface_reference_frame();
+            if(!frame)throw std::runtime_error("Human surface request requires its actual retained188 marker");
+            const auto world=frames_.actor_world_matrix(frame);
+            const HumanVector start{{world[12],world[13],world[14],world[15]}};
+            auto& owner=services_.human_inline(*human_);
+            const auto hit=[&]{try{
+                owner.exclude_query(false);
+                const auto hit=services_.human_geometry_ray(start,{{0,-.2f,0,0}},0x48002u,0u,true);
+                owner.restore_query(false);
+                return hit;
+            }catch(...){
+                const auto primary=std::current_exception();
+                try{owner.restore_query(false);}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
+                std::rethrow_exception(primary);
+            }}();
+            if(hit){emit(hit->position,hit->normal);return;}
+        }
+        emit(position,normal);
+    }
+    void refresh_ragdoll_geometry(bool shots,bool light){ //00786E50.
+        auto& state=physical_.control_frame_words();
+        if(shots&&state.template get<std::int32_t>(0x69c)>0){physical_.refresh_shot_geometry();physical_.publish_ragdoll_shots();}
+        if(!light||!(mode_flags()&2u))return;
+        const bool player=human_is_player();
+        animation_.refresh_ragdoll_sector(player,[&](Frame,Frame){
+            if(services_.current_human_frame_player()==human_)services_.refresh_human_presentation_camera();
+        });
+        try{
+            physical_.exclude_query(false);
+            auto* target=physical_.control_interaction_target();
+            if(state.template get<std::int32_t>(0xa44)<1||state.template get<std::int32_t>(0xa44)>7||!target||
+               target->base().type()!=4||!services_.human_action_car_disabled(*target)){
+                const auto bone=physical_.bones().at(16);
+                if(!bone)throw std::logic_error("Human ragdoll light requires its actual cached bone16");
+                const auto world=frames_.actor_world_matrix(bone);
+                opacity_.observe(frames_,services_,animation_.sector(),human_->base().frame(),
+                    HumanVector{{world[12],world[13],world[14],world[15]}},false,
+                    [&](auto model,float value){human_opacity_changed(model,value);});
+                opacity_.update(human_->base().frame(),100,player?0u:1u,*this);
+            }
+        }catch(...){
+            const auto primary=std::current_exception();
+            try{physical_.restore_query(false);}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
+            std::rethrow_exception(primary);
+        }
+        physical_.restore_query(false);
+    }
+    template<class Look>bool retire_interaction_clip(Look& look){
+        return select_human_reaction(*this,look,*human_,services_,frames_,random_,physics_globals_);
+    }
+    template<class Look>void finish_reaction_selection(Look& look,std::uint16_t reason){ //0074D510, SAME selected-reaction owners.
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        finish_human_reaction_selection(*this,look,*human_,physical_,face_,action_,tracks_,movement_,pool_,services_,frames_,random_,physics_globals_,reason,publish);
+    }
     template<class Look,class Runtime>bool prepare_step_motion(Look& look,Runtime& runtime){
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
         return prepare_human_step_motion(*this,look,*human_,services_,frames_,runtime,publish);
@@ -496,7 +655,7 @@ public:
             if(look_word(0xb8)==5&&physical_word(0x764)==0x46)runtime.advance_human_motion_event(*this,0x46,elapsed);
             else if(!state.template get<std::uint8_t>(0x760))runtime.advance_human_motion_event(*this,physical_word(0x75c),elapsed);
             if(human_->base().world_position()[1]<static_cast<long double>(services_.human_control_world_floor())-5.f)
-                runtime.apply_human_floor_damage(*human_);
+                services_.apply_human_damage(*human_,6,1000.f,HumanVector{},HumanVector{},static_cast<Human*>(nullptr),0);
         }
         publish_control_frame_task(elapsed,runtime);
         constexpr std::array<unsigned,4> periods{{200,300,400,600}};
@@ -573,7 +732,7 @@ public:
         }
         if(state.template get<std::uint8_t>(0x18c))synchronize_presentation_direction(look,runtime);
         animation_.present_position(elapsed); //007587F0→007585C0.
-        present_control_effects(look,elapsed,runtime);
+        present_control_effects(look,elapsed);
         if(human_frame_signed_word(word(0x950))>0){
             const auto remaining=word(0x950)-elapsed;
             state.set(0x950,human_frame_signed_word(remaining)<0?0u:remaining);
@@ -586,12 +745,26 @@ public:
         geometry_.present_frame(*human_,*this,elapsed,runtime);
     }
 private:
-    template<class Look,class Runtime>void present_control_effects(const Look& look,std::uint32_t elapsed,Runtime& runtime){ //00758830.
+    template<class Look>void present_footstep_track_sound(const Look&){ //00758D20 cases4/5/6, AFTER0075D210 even when that worker returned.
+        if(!(mode_flags()&2u)||services_.current_human_frame_player()!=human_||human_frame_signed_word(animation_.footstep_sound_timer())<=329)return;
+        animation_.reset_footstep_sound_timer();const auto& state=physical_.control_frame_words();
+        const auto posture=state.template get<std::int32_t>(0x1dc),variant=state.template get<std::int32_t>(0x1e0);
+        const auto chance=[&]{const auto skill=human_frame_signed_word(human_->properties.stats_ec[6]);
+            if(!skill)throw std::runtime_error("Footstep sound reached original zero skill remainder");
+            return (static_cast<std::int32_t>(random_())%skill)/5==0;};
+        if(posture==0){if(variant==2||variant==5)play_presentation_track_sound(9);
+            else if(variant==1||variant==3||variant==4||(variant==0&&chance()))play_presentation_track_sound(8);}
+        else if(posture==1){if(variant==2||variant==5){const auto active=state.template get<std::int32_t>(0x1d8);play_presentation_track_sound(active>=162&&active<=165?7u:8u);}
+            else if(variant==1||variant==3||variant==4||(variant==0&&chance()))play_presentation_track_sound(8);}
+        else if(posture==2&&(variant==2||variant==5||variant==1||variant==3||variant==4||(variant==0&&chance())))play_presentation_track_sound(7);
+    }
+    template<class Look>void present_control_effects(const Look& look,std::uint32_t elapsed){ //00758830.
         auto& equipment_owner=services_.human_presentation_equipment(*human_);
         auto& state=physical_.control_frame_words();
         const auto mode=animation_.present_scene_effects(elapsed,human_is_player(),
             [&](std::int32_t event){ //00758D20.
                 switch(event){
+                case 0:apply_human_track_inventory_transfer(*this,equipment_owner,frames_);return true;
                 case 1:equipment_owner.transfers().event(1);return true;
                 case 2:{
                     const auto command=look.state().template get<std::uint32_t>(0x54);
@@ -600,13 +773,37 @@ private:
                     return true;
                 }
                 case 3:return true; //00758D20 has no receiver for this event ID.
+                case 4:case 5:case 6:
+                    present_footstep(look,event==5);
+                    present_footstep_track_sound(look);
+                    return true;
+                case 7:apply_human_track_door(*this,*human_,services_);return true;
+                case 8:{
+                    auto& current=services_.human_look_control(*human_);
+                    apply_human_track_action_transition(*this,current,*human_,equipment_owner,services_,frames_);return true;
+                }
+                case 9:{
+                    auto& current=services_.human_look_control(*human_);
+                    auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+                    apply_human_track_action_retirement(*this,current,equipment_owner,frames_,services_,publish);return true;
+                }
                 case 10:equipment_owner.set_frame_weapon_pose(false,true);return true;
                 case 0x0b:case 0x0c:
                     if(event==0x0c||!animation_.equipment_frame_timer_active())equipment_owner.set_frame_weapon_pose(false,true);
                     animation_.clear_equipment_frame_timer();
                     return true;
+                case 0x0d:case 0x0e:
+                    apply_human_track_hand_transfer(event,tracks_,*this,equipment_owner);
+                    return true;
+                case 0x0f:case 0x10:case 0x11:equipment_owner.transfers().event(static_cast<unsigned>(event)+1u);return true;
+                case 0x12:apply_human_track_particle(*this,services_,frames_);return true;
+                case 0x13:return apply_human_track_ladder_sound(*this,*human_,services_);
                 case 0x15:state.set(0x9c8,std::uint8_t{1});return true;
-                default:return runtime.apply_human_track_event(*this,look,event);
+                case 0x14:apply_human_track_action_light(*this,equipment_owner);return true;
+                case 0x16:apply_human_track_deceleration(*this,*human_,services_);return true;
+                case 0x17:apply_human_track_motion_reset(*this);return true;
+                case 0x18:apply_human_track_presentation_sound(*this,*human_,services_);return true;
+                default:return true; //758D6B..74: unsigned event>24 skips to next event.
                 }
             },
             [&](Frame previous,Frame next){
@@ -615,8 +812,17 @@ private:
                 if((!previous||!next||previous==root||next==root)&&services_.current_human_frame_player()==human_)
                     services_.refresh_human_presentation_camera();
             });
-        if(state.template get<std::int32_t>(0xa30)>0)
-            runtime.present_human_control_attachment(*this,elapsed,mode); //00793490 and attached opacity.
+        if(state.template get<std::int32_t>(0xa30)>0){
+            equipment_owner.present_mounted_frame(elapsed); //00793490 before fresh selected-model/EC query.
+            if(const auto model=equipment_owner.state().selected_model(9)){
+                if(auto* mounted=services_.template human_mounted_model_actor<Human>(model)){
+                    auto* target=services_.human_inline(*mounted).control();
+                    if(!target)throw std::logic_error("Mounted opacity requires its actual target DD0");
+                    target->opacity().inherit_mount_observation(opacity_); //RAW targetDA8/ambientDB8, not field0/applied.
+                    target->opacity().update(model,human_frame_signed_word(elapsed),mode,*target);
+                }
+            }
+        }
         if(animation_.advance_equipment_frame_timer(elapsed))
             equipment_owner.set_frame_weapon_pose(true,false); //00791AC0(1,1,0).
         const auto secondary=state.template get<std::uint32_t>(0x1e8);
@@ -723,6 +929,7 @@ private:
         try{work();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
     }
     Frames& frames_;Audio& audio_;Random& random_;Effects& effects_;Presentation& presentation_;Services& services_;
+    HumanPhysicsGlobals& physics_globals_;
     std::optional<PoolLease> pool_;Geometry geometry_;Face face_;Physical physical_;Movement movement_;
     Links links_;Action action_;HumanMotionState motion_;HumanOpacityControl opacity_;
     Tracks tracks_;Shadow shadow_;Animation animation_;Human* human_=nullptr;

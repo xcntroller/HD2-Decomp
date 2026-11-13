@@ -7,8 +7,19 @@ namespace hd2::game {
 
 struct CarSteeringState {
     float requested=0,current=0,maximum=0,difference=0; //948/94C/934/958.
+    float response_curve=.5f; //004E2900 initializes core5F4, separate from serialized physics coefficients.
     bool snap=false; //2299, initialized by004EA780.
 };
+
+//004F2420 maps the signed input through the actual steering response curve.
+inline void request_car_steering(CarSteeringState& state,float requested){
+    long double input=requested;
+    if(input>1)input=1;
+    else if(input< -1)input=-1;
+    const auto curve=state.response_curve;
+    const auto response=!(input>0)?-(input-(1.L+input)*curve)*input:((1.L-input)*curve+input)*input;
+    state.requested=static_cast<float>(response*state.maximum);
+}
 
 //00507400. The original's inline local-matrix cache is supplied by the actual
 //004C8140 endpoint; quaternion publication normalizes through the real engine.

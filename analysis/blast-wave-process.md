@@ -65,15 +65,27 @@ Eligible power is abs((1-node14/range18)*power14), with native normalized offset
 006DDD40 ignores nonpositive power, deduplicates actual actor pointers, bypasses
 material absorption for kind4, otherwise reads virtualD8 and subtracts unsigned
 material row28 only when strictly below power. Authority bit1 gates virtualD4;
-source word0 selects hit kind4, other source selects2. Actor pointers append even
-when material/authority gates did not fire. Actual frameEC+14 Physics receives
-truncated remaining power, flag1 for first eleven eligible hits and2 thereafter;
+native source1C is a borrowed Human pointer: NULL selects hit kind4, otherwise2;
+D4 receives that SAME pointer and final hit-kind0. Source Request/Record now use
+typed Actor* to preserve the borrower on native64, never a serialized identity. Actor pointers append even
+when material/authority gates did not fire. Actual frameEC+14 **Versions master** receives
+truncated remaining power through0043C6A0, flag1 for first eleven eligible hits and2 thereafter;
 actor deduplication does not suppress Physics impulse. Counts reset per advance.
 
-**Required positive runtime leaves:** actual actor virtualD8 material selection,
-virtualD4 damage and0043C6A0 Physics-force receiver. The actual World bridge rejects
-these when reached; it does not silently consume a hit. Generic source policies
-exercise positive dispatch with explicit endpoint doubles. Existing script/weapon/
+**Human binding update (2026-11-12):** actual Human D8 is constant0059C2A0=66
+(absent frozen, no new credit). Its D4 now validates target/source against SAME
+World Human lifetime map, compares owner keys before touching a retired borrower,
+and calls actual005A1C90 through the existing lifetime. No second Human owner or
+health-only mutation was added. Native source retirement still does not retain1C.
+Runtime Mine type2 now binds actual100 material and genuine empty D4; its
+[owner contract](human-runtime-mine-source.md) preserves the same registry/grid.
+Other derived actor D8/D4 and0043C6A0/0043B000 Versions part transitions remain
+required positive receivers. The historical source endpoint name
+`blast_physics_impulse` does not imply a rigid-body force: actual EC+14 points to
+VersionModuleLoading::Master and0043C6A0 iterates its parts. The World bridge keeps
+that required failure. Earlier records called this a Physics force; that label
+was incorrect. The underlying unimplemented boundary remains honest. Generic
+geometry/Versions leaves are explicit doubles. Existing script/weapon/
 projectile producer guards remain until their required native positive consumers
 are integrated. Save restore006DF690/006DECE0 is not implemented or credited.
 Malformed/nonfinite centre/power/range, nonpositive range and invalid integer
@@ -122,3 +134,11 @@ no Windows fixture is executed. App link and27 tracker tests pass. Temporary
 fixtures/binaries are fingerprinted and removed; logs retained.11 new partials,
 no whole-body/desktop promotions. Continue FULL P2.2 into actual frame/module/
 visibility/guard integration and any reached required positive receivers.
+
+[Human containing-blast source receipt](checkpoints/p2.2-human-containing-blast-20261112.json)
+extends existing entries only, no complete promotions. Focused native sanitizers
+exercise actual BlastWaveProcess→Human material/lifetime→damage→Player B0 queue,
+mode1/2/3/7 and sourced/NULL800 lifetimes, authority/material/missing-lifetime/hit
+failures and retained-frame cleanup. Geometry/ray/Versions and remaining damage
+endpoints are doubles. Strict actual World guard/binding and launcher/probe
+compile/link pass; full Human/application frame and desktop acceptance remain open.

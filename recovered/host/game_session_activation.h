@@ -31,10 +31,10 @@ public:
             StartupSession& startup,Graphics& graphics,HMODULE module,FrameClockPlatform& clock,
             game::SessionActivationState& session,Controller* controller)
         :loading_(loading),parent_(parent),backend_(backend),startup_(startup),graphics_(graphics),clock_(clock),session_(session),controller_(controller),
-         d_(loading.world().owners().dependencies()),queries_(module),
-         selection_(startup.pre_mission().game(),startup.pre_mission().route(),parent.request().preparation),
+         d_(loading.world().owners().dependencies()),queries_(module,startup),
+         selection_(startup.pre_mission().game(),startup.pre_mission().route(),startup.game_application_data(),parent.request()),
          input_(loading.world().owners().input_profiles(),startup.human_input_shared(),&d_.inputs,startup.game_control_records(),
-                startup.local_player_identity(),startup.application_flags_owner()),lights_(d_.scene.frames()),prepared_(d_){
+                startup.local_player_identity(),startup.application_flags_owner()),lights_(d_.scene.frames()){
         if(&d_.startup!=&startup||&d_.session!=&session||&d_.request!=&parent.request()||
            &parent.live_squad()!=&startup.pre_mission().squad())
             throw std::logic_error("Activation requires SAME actual loading/session/application squad owners");
@@ -89,8 +89,7 @@ public:
     auto& live_squad(){return parent_.live_squad();}
     auto* loading_spawn_point(std::uint32_t team){return d_.scene.frames().loading_spawn_point(team);}
     void spawn_prepared_human(GameSceneActors::Spawn& spawn,frontend::PreMissionSoldier& soldier){
-        game::spawn_prepared_human(d_.scene.frames(),d_.scene.frames(),d_.catalogue,prepared_,
-            loading_.world().owners().spawn_records(),prepared_,spawn,soldier,mode_flags());
+        loading_.world().owners().human_services().spawn_authority_human(spawn,0,&soldier,nullptr);
     }
     void initialize_loaded_dubbing(){startup_.initialize_game_dubbing();}
     bool has_mission_text_definition()const{return session_.resource!=nullptr;}
@@ -126,7 +125,7 @@ private:
     Graphics& graphics_;FrameClockPlatform& clock_;game::SessionActivationState& session_;Controller* controller_;
     world_loading::Dependencies& d_;GameLoadingQueries queries_;game::SessionSelection selection_;InputBinding input_;
     game::WorldLoadingDependencyLink<GameSessionTransientFinish> transients_;std::exception_ptr flags_failure_;
-    game::MissionLightVisibility<GameActorServices> lights_;GamePreparedHumanLoading prepared_;
+    game::MissionLightVisibility<GameActorServices> lights_;
 };
 } //namespace hd2::host
 #endif

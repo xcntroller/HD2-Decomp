@@ -180,6 +180,7 @@ public:
         if(timer==-10000)state_.set(0x120,std::int32_t{-500});
         else if(timer>0)state_.set(0x120,0u-static_cast<std::uint32_t>(timer));
     }
+    template<class Frames,class Pool>void retire_motion_audio(Frames& frames,Pool& pool){close_motion_audio(frames,pool);} //007706F0(true).
 private:
     static void normalize_ground_direction(HumanVector& value){
         const auto square=(static_cast<long double>(value[2])*value[2]+

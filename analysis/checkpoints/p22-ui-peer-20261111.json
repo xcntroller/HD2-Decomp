@@ -1,0 +1,217 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "87d92dc8772e849a303f11bdf1a194b2c60286e8",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "05dbdee51cc366476317011b91b1a1863041dcee",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "application_loading_enabled": false,
+  "added_entries": [
+    "005a81b0",
+    "0072ebd0",
+    "00730530",
+    "007304b0",
+    "005a9920",
+    "005ec840"
+  ],
+  "updated_entries": [
+    "005a8380",
+    "005a82c0",
+    "005a8320",
+    "005a8820",
+    "004b3890",
+    "004b3ec0",
+    "004a9f50",
+    "005a9830",
+    "0069e070",
+    "004b0b20"
+  ],
+  "ledger_added_partial_client": 6,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2624,
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan100 actual soldier/TextObject/ActorBase/storage/ControlStartupRecord lifetimes; rank54 vs60 discrimination, locked failure cleanup, actual clothing slot4/no clothing/style/team names, peer bounds/profile/user fallbacks, VIP and alive/dead/visibility/disguise/offline tail gates, texture/font/visibility failures. Real session words drive selected-objective identity helper; zone lookups/gates/order/wrapping arithmetic use explicit Actor/zone endpoints. Engine/Human/items/zone endpoints doubled.",
+    "actual_host_i386": "PASS strict i386 object generation of concrete soldier, peer/name/team, progress and full HUD frame calls over actual World; no Windows execution.",
+    "application_link": "PASS sequential existing application-launch strict i386 compile/link; not executed.",
+    "latest_master_source_compatibility": "PASS fresh67-file three-way composition from31b01f9 onto05dbdee, with same5 occupied-checkpoint resolutions. New master network metadata/request source retained; no active merge/rebase.",
+    "tracker": "PASS exact frozen fingerprints/full inventories/unique statuses/evidence/README and27 tracker tests."
+  },
+  "temporary_master_composition": {
+    "master": "05dbdee51cc366476317011b91b1a1863041dcee",
+    "base": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+    "files": 67,
+    "conflicts": [
+      "recovered/game/car_loading_activation.h",
+      "recovered/game/hud_injury_movies_loading.h",
+      "recovered/host/game_mesh_movie.h",
+      "recovered/game/static_weapon_actor.h",
+      "recovered/game/static_weapon_loading.h"
+    ],
+    "resolutions": "Same five exact resolutions as occupied receipt; verified first3 files unchanged on master since447e073. Preserve master moved mounted state/control, add UI E0/E4 fields/init and delegate StaticWeapon presentation getters.",
+    "verified_source_directory": "/tmp/p22-ui-master-05dbdee-peer-final"
+  },
+  "artifacts": {
+    "/tmp/p22-ui-peer-audit.cpp": {
+      "sha256": "71fb25658e0dbe8ff926bcbf19a73db5b43cd5bc03ca65858d31224fa46b745d",
+      "bytes": 13545,
+      "retained": false
+    },
+    "/tmp/p22-ui-peer-audit": {
+      "sha256": "cce3dbd8552d9e4c8ceeda4ae974e44a28542781fdfde379ee80abc94917a9a9",
+      "bytes": 2661504,
+      "retained": false
+    },
+    "/tmp/p22-ui-peer-concrete.cpp": {
+      "sha256": "cef4bc1ce3e8b5fff3db4189bef9c16e195e92d5a5b82bf40b3b96be2fc2ee43",
+      "bytes": 518,
+      "retained": false
+    },
+    "/tmp/p22-ui-peer-concrete.o": {
+      "sha256": "ea08c46dd0639ae3d3de1735370029abafbb5dac4d912a0a3452727e2e58a040",
+      "bytes": 4049426,
+      "retained": false
+    },
+    "/tmp/p22-ui-peer-compat.o": {
+      "sha256": "23827ba11957cac31c594eebbe89d38e7f1c9e79819c1122b76ab8ccb35b3f10",
+      "bytes": 4242853,
+      "retained": false
+    },
+    "/tmp/p22-ui-peer-compat.py": {
+      "sha256": "77a209b4292ff83d4a958f9adb6e6eb627c207bbe4d3511ce391492aabc7d383",
+      "bytes": 2922,
+      "retained": false
+    },
+    "/tmp/p22-ui-peer-compat-final.py": {
+      "sha256": "afc16e63b1beca4ba3ed3208917651a08a76a9b5df05b7c1027ef4d45ec3a3e7",
+      "bytes": 2928,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-peer/application.log": {
+      "sha256": "e17c02752cb69d4428e5486d2d5c6c32598b897b314db9a1993976e0b22be675",
+      "bytes": 599,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/audit-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/audit-run.log": {
+      "sha256": "fd7603536c408f06bc68937a22d4dc5a5cde0e8d972b1682a8c5c24118f42fba",
+      "bytes": 185,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/compat-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/compat.log": {
+      "sha256": "2c038afa666c8c4e5acb2e3b6f61a237d26ddf872fdea280c29eadf356074a44",
+      "bytes": 334,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/human-zone.asm": {
+      "sha256": "ad2387688797de8ee98ff0b12b33f0ecd81338d3f5ba63f8ab8799d902bb9e5c",
+      "bytes": 1103,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/p22-ui-network-getters-index.txt": {
+      "sha256": "82cb0c0ca9b73ef090b502b40a2c7233b35746f1ecec85421433c139f8d0ee4c",
+      "bytes": 10776,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/p22-ui-network-index.txt": {
+      "sha256": "af849a8b5a579df9e3ada1e8619a0ac556f78ef1c776bf0e76d29eaf2c5bd18d",
+      "bytes": 5556,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/p22-ui-peer-fixture-stale-reference.log": {
+      "sha256": "e8db6262dc605237f88e9bdd1d7365dbf827fcb6aa55ce89715d3d46d2915379",
+      "bytes": 6402,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/rank54.asm": {
+      "sha256": "caf2cd7d4799fae880d1f41e1544279903f3bde93adf9031692b5c427189d156",
+      "bytes": 2015,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/receivers/004b3890.c": {
+      "sha256": "48ac420016990a5c5961c43537354319f8df7399ed56c998d2d0616aa0bd22db",
+      "bytes": 4861,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/receivers/005a81b0.c": {
+      "sha256": "4890283ac3c4debf289c428f0fd3d52fbcec90dd85b56c1578e76fc0e1a86271",
+      "bytes": 154,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/receivers/005a8380.c": {
+      "sha256": "a619bf28ab23d12a4cda1a4546973a7def6fab0cfd2bceb23f03e5c7f43bac86",
+      "bytes": 659,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/receivers/0069e070.c": {
+      "sha256": "b580689e26a7aacddfcd281bba880542ac88d3f77d12530870c3b265b03e37e7",
+      "bytes": 298,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/receivers/0072ebd0.c": {
+      "sha256": "9781fe1841180fc69103b167cb80ab47a187799ffd3a0dcc65e6cc5967c94ffe",
+      "bytes": 312,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/receivers/00730530.c": {
+      "sha256": "205143ce7692875985c2f1ad2d40073574dae2de362b95de1bf4f0357b177672",
+      "bytes": 414,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/vip.asm": {
+      "sha256": "338d24a332b4aabf2d81646efbac528ac0b1ff976ff5900250770f5f5a489ba7",
+      "bytes": 1576,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/zone-progress.asm": {
+      "sha256": "0550e87f291221621d9078e2cd7a42b1a22035606cd45bc0532feedda6f81fbb",
+      "bytes": 1977,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/local-team.asm": {
+      "sha256": "75dcc86e41f55c057316a32896b6ca326918b84d9ff8b23ceae0a031e22d2af1",
+      "bytes": 1172,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/tracker-render.log": {
+      "sha256": "16b18d95c0dc45eaaca0c1816baa8d662fbe41f4643c4b050702726882e399e8",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/tracker-check.log": {
+      "sha256": "e51e75deedecff47aa63e44e82035c1938e8e4fca18df03af8510f8e83df5c2d",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-peer/tracker-tests.log": {
+      "sha256": "32123c06afaa22405df0ae455b2a9957a73a7a30732623e89bdb1eee75d7e097",
+      "bytes": 126,
+      "retained": true
+    }
+  },
+  "fixture_correction": "Initial temporary audit held a peer reference across vector growth; ASan caught that fixture-only stale reference. Corrected fixture reserves capacity before that borrow. Product queries copy values in-call; final audit clean.",
+  "remaining": [
+    "Actual nonoffline peer3C spawn/configuration/lifetime is still being implemented by Agent1; no UI peer/Human is manufactured.",
+    "Actor37 and actor20/34 actual owners are absent. Zone F1/98/A0/A8/EC must come from that real owner through GameUiZoneSource, never a fabricated timer.",
+    "Typed Human174/order path/model/mutation and mounted reload producers plus documented master-owner integration and populated composition verification remain required.",
+    "Console/chat00720130/00720340 execution still needs ownership resolution/binding. FRAME/RENDER/OWN scheduling/activation remain external; no desktop/frame claim."
+  ]
+}

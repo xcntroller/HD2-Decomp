@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H6 existing-owner source closure",
+  "implementation_base": "7e6e019",
+  "completed_hum": "b9d67aa",
+  "source_only": true,
+  "H6_source_complete": true,
+  "full_Human_World_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h6-source-closure.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_item_melee.h",
+      "bytes": 2664,
+      "sha256": "1a619568b32c46cb398236314676de81ef321a87e3c6bb25968df58d236b52ab"
+    },
+    {
+      "path": "recovered/game/shot_human_hit_zones.h",
+      "bytes": 1477,
+      "sha256": "2556164acf931372daadb2607b6f4a278a84268c81a8d63b085267fba1506291"
+    },
+    {
+      "path": "recovered/game/human_player_treatment.h",
+      "bytes": 3745,
+      "sha256": "1ced589b93f51dff8a0d564a197c5bcba0976c45171084b255bbfabfcf542f1e"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 182908,
+      "sha256": "fbf9972ad1ac1e4ba5b416d41b3ce1c534a803973c3704e81f15d48b35011e10"
+    },
+    {
+      "path": "recovered/game/human_sound_state_callbacks.h",
+      "bytes": 11007,
+      "sha256": "2b2798ddaddcfd5ed21ab3870904d5d9df58babc541553aef90cba7b69d8af99"
+    },
+    {
+      "path": "recovered/game/human_player_item_frame.h",
+      "bytes": 5792,
+      "sha256": "0152f23cd3219ccb9dc886257146cc5d530b23e58b3f6f150b2489f1af7e3a41"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 123463,
+      "sha256": "05757d19f9fd34eb84c16ee2992050431fd51eacee1d06e5a593f188e517d84a"
+    }
+  ],
+  "verification": {
+    "medical": "PASS1600/100 lifetimes: actual RuntimeItem/catalogue/storage; Player/Human/World/damage/notification/score endpoints explicit doubles.",
+    "melee": "PASS2000/100 lifetimes: actual ShotMgr hit-zone state and AI pool/queue; engine/actor/state/damage endpoints explicit doubles.",
+    "i386": "PASS strict FULL LINK actual nested World/Player/inline/RuntimeItem/Human/ShotMgr item frame, feedback and treatment with EMPTY external Runtime; no Windows execution.",
+    "application": "PASS latest launcher/probe rebuild/link only.",
+    "ledger": "PASS full fingerprint/inventory/frozen counts/unique status/evidence/README checks."
+  },
+  "ledger": {
+    "added_partial": [
+      "00451230",
+      "00455670",
+      "00546dc0",
+      "00574cb0",
+      "005a5960"
+    ],
+    "extended_partial": [
+      "005433b0",
+      "007d4fd0",
+      "00584e30",
+      "005839d0",
+      "0058b6c0"
+    ],
+    "complete": 34,
+    "partial": 3360,
+    "client_partial": 3355,
+    "engine_partial": 5,
+    "complete_promotions": 0,
+    "no_credit": [
+      "004558A0 debug dispatcher omitted; retail logger genuine RET",
+      "0052E780/00590380/005831F0/005A43A0 and Human material constant absent frozen",
+      "Delegated LS3DF transforms/picks, new C++ wrappers, external Runtime/async guards"
+    ]
+  },
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-medical-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-medical-native-run.log",
+      "bytes": 175,
+      "sha256": "06a3efc84d0ace3a57cdde29e10e02bae80e62a3145dc7d904d14c455f9d7646"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-melee-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-melee-native-run.log",
+      "bytes": 203,
+      "sha256": "3787a6c836aa98f74118f6759837aeec584e35ef4368e6f321848aa039901a2b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-medical-host-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-final-application-link.log",
+      "bytes": 820,
+      "sha256": "9bdc4fb1756a31d97bb7aedf79405fad9d9537a8a20de16f22dd16076815a5dd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-final-ledger.log",
+      "bytes": 817,
+      "sha256": "5dc4a9f9abcf2f1646aa89dfe9065c36ab3a42cc2ad40f47e2d2bed6c7be4e59"
+    }
+  ],
+  "original_static_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-player-medical.asm",
+      "bytes": 16763,
+      "sha256": "277f5e752f8a890ac15acc42cbd2fa37529e8e1f70815195debb9ecb6c95b0c8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-immediate-melee.asm",
+      "bytes": 17490,
+      "sha256": "3f66b29c942a6bcc9be56d50a06ce7944543afcf7197e577510579ee23006bd6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-hit-zones.asm",
+      "bytes": 9189,
+      "sha256": "48c73d16e18b118c9df4101d3132a15f7bf1c7b57c916a22b312a839c724c4f3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-near-shot.asm",
+      "bytes": 5186,
+      "sha256": "07694932400c30750725dc31677f79b34ea9b2b1a607432644a7337bdb73e6e4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-active-near-shot.asm",
+      "bytes": 1165,
+      "sha256": "5351cd54c510713302d98c8a1074f3bce270cc638a4ed83f865983d17e898fb5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-script-near-shot.asm",
+      "bytes": 2246,
+      "sha256": "e525afd4aeb0b9ae33cd1ce85ec132bedba914d9b4d07e888abd301934b8fdae"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-base-near-shot.asm",
+      "bytes": 630,
+      "sha256": "a4b02797273afd35855ec8f5e0e850dee88268323669be175dcd5776c15aef7d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-guard-near-shot.asm",
+      "bytes": 630,
+      "sha256": "a6fe2243f4fd1527161b7eed8573b25937d6be5dcd4a6aa6ea7fd193c630b809"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-near-shot-vtables.json",
+      "bytes": 237,
+      "sha256": "adb8fe978cedf716c2119895073a9b8204add0dfdf23aba91657ab4856ee5800"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-hit-zones/00455670.c",
+      "bytes": 3732,
+      "sha256": "1cb0eed0226970901a3190d764797204355cf6d2f6518b3eaa7121126d4b1685"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-hit-zones/004558a0.c",
+      "bytes": 1379,
+      "sha256": "797c0cdb65cc4edf719207806d7e8fa05a9595dd8041d11ce190dfa663c0b723"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-melee-miss/005a5960.c",
+      "bytes": 327,
+      "sha256": "41bbb94a397e33c1458f581b6497586c7fa63ee5721a548eb0c97b5ee3f6a53d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-near-shot/00574cb0.c",
+      "bytes": 996,
+      "sha256": "e4cace2de44fd6060297beb029d0a5974e7fe693d8b22b69b3a8ca1de0d69a3e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-item-positive-workers/00546dc0.c",
+      "bytes": 3221,
+      "sha256": "1c8c8b9ec914cba37b22f398a1d46e482927b44a76f3df7b51fa2d1c31cebdfd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-shot-and-control-workers/00451230.c",
+      "bytes": 4231,
+      "sha256": "e8d8e51f489248de0156b49cabf70603e0614722e93633596c86b6ccce25d697"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-melee-medical-final-index.txt",
+      "bytes": 14958,
+      "sha256": "613980ec35ac35dcf1f8d61775a8005e8f5021d6c03e190ece8c34a326ebe7d2"
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-medical-native.cpp",
+      "bytes": 6572,
+      "sha256": "f2982ee7bde1a24d534905b250abf12dc356ea54dc97a6c490e584814ee71c21"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-medical-native",
+      "bytes": 1811104,
+      "sha256": "7a4b5396ab68ba5fe26056b734fbc6c6855cb2a3b1aea44ffb53da5512570810"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-melee-native.cpp",
+      "bytes": 9357,
+      "sha256": "e4642051dd17a4e3926035c2aa095fd90041e2d047e526aecf7f2f73876b9e31"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-melee-native",
+      "bytes": 2684240,
+      "sha256": "7e2cb98523a00e20d66617cafccfd2ddc48fd10986d297886762627b2540e587"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-medical-host-i386.cpp",
+      "bytes": 946,
+      "sha256": "1e926a431a2e750944cee03fc2eb10621237007956906a3a870625771f9e3b31"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-medical-host-i386.exe",
+      "bytes": 3535872,
+      "sha256": "867260fb337060f0038019f7b47cd70f9708086e6e704c440299c3ef976f31d1"
+    }
+  ],
+  "remaining": [
+    "Full H8 World/Runtime/control/frame assembly and application/render/user desktop acceptance",
+    "ShotMgr async bullet0044B910/0044B400, shell00454360, capsule00449290/00449030, grenade0044D260/0044D240 and rigid contact0044D570; selected initial100 retained",
+    "Unsupported actor D8 material and Dog30 factory/D4, unselected00451230 undercut=true",
+    "Conditional non7 bullet/input-history/feedback/replay/admission; producer is not transport",
+    "Existing Car D4/D5, OWN D6-D9, confirmed D11 and absent H4 actor owners"
+  ]
+}

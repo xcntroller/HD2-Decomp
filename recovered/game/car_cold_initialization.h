@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_CAR_COLD_INITIALIZATION_H
 #define HD2_GAME_CAR_COLD_INITIALIZATION_H
+#include "game/car_control_requests.h"
 
 #include "game/car_cold_finalizer.h"
 #include "game/car_geometry.h"
@@ -9,6 +10,14 @@
 #include "frontend/cleanup.h"
 
 namespace hd2::game {
+
+//004E9DB0's additional mutable runtime words, separate from coefficients.
+//Wider driving/plane-cache consumers remain required at their existing gates.
+struct CarPhysicalResetFields {
+    float field780=0,field78c=0,fieldf68=0;
+    std::array<std::uint32_t,4> fields4f0{};
+    bool field22c1=false,signal2294=false,signal2295=false;
+};
 
 //004EA780 and004EC5C0's cold, unoccupied source owner. The containing actor
 //must supply its SAME geometry, callbacks, shared buckets, process receiver
@@ -57,8 +66,8 @@ public:
     }
     template<class Callbacks>void retire(Callbacks& callbacks){ //004EC5C0, before model/geometry retirement.
         if(!completed_)throw std::logic_error("Car cold retirement requires a completed initializer");
-        //No occupant/seat attachment or positive deformation producer may be
-        //installed in this cold owner. Those require their actual restore path.
+        //No occupied Human control lifetime is supplied here. Mesh/variant
+        //restoration reuses this geometry's actual seat-associated Door owners.
         frontend::CleanupErrors errors;
         if(ready_){errors.attempt([&]{collision.set_enabled(false,false);});collision.close();}
         errors.attempt([&]{sounds.clear(&sound_receivers_);});
@@ -79,7 +88,7 @@ public:
             skids.clear_wheel(n);
         }
         skids.clear();
-        errors.attempt([&]{geometry_.deformables().restore_cold(frames_,geometry_.physics(),callbacks.empty6b4);});
+        errors.attempt([&]{restore_car_deformable_parts(frames_,geometry_,callbacks.empty6b4);});
         finalizer.lights.flags=0;
         errors.attempt([&]{update_car_loading_lights(frames_,geometry_.lighting(),finalizer.lights,.10000000149011612f,solver.substeps.flags,finalizer.previous_features);});
         errors.attempt([&]{sounds.unregister_receivers(sound_receivers_);});
@@ -122,6 +131,8 @@ public:
     CarMassLoading<Frames> mass;CarCollisionLoading<Frames,Collisions> collision;CarSkidModels<Frames> skids;
     CarSoundLoading<Frames> sounds;CarSoundUpdates<Frames> audio;
     Wheels wheels;CarDrivetrainState drive;CarHealthState health;CarSteeringState steering;
+    CarControlRequests control_requests;
+    CarPhysicalResetFields reset_fields;
     CarColdSolverState<Frames> solver;CarColdFinalizerState<Frames> finalizer;
     std::vector<std::uint16_t> paired_flags;std::int32_t update_hold=0;float fuel=0;
     float engine_timeout=0,brake_ramp=0,brake_amount=0;bool brake_latch=false; //F48/710/740/22C7.

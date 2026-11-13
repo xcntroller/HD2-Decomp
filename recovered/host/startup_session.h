@@ -6,6 +6,20 @@
 #include "frontend/control_actor_records.h"
 #include "frontend/control_frame.h"
 #include "game/session_local_packets.h"
+#include "game/session_connection_packets.h"
+#include "game/session_application_commands.h"
+#include "game/session_received_application.h"
+#include "game/session_peer_records.h"
+#include "game/session_human_inputs.h"
+#include "game/session_entry_packets.h"
+#include "game/session_entry_inputs.h"
+#include "game/session_entry_records.h"
+#include "game/session_entry_connections.h"
+#include "game/human_peer_removal.h"
+#include "game/network_mission_metadata.h"
+#include "game/session_owner.h"
+#include "host/application_command_lock.h"
+#include "host/game_console.h"
 #include "game/session_packet_world.h"
 #include "game/blast_wave_process.h"
 #include "game/human_projection_process.h"
@@ -30,6 +44,8 @@
 #include "game/human_morph_tables.h"
 #include "game/human_physics_globals.h"
 #include "game/mission_integrity_tables.h"
+#include "game/integrity_threads.h"
+#include "game/steam_integrity_calls.h"
 #include "game/mission_script_variables.h"
 #include "game/mission_effects_loading.h"
 #include "game/shot_manager_loading.h"
@@ -38,6 +54,7 @@
 #include "game/item_hand_models.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
+#include "game/human_ai_order_pool.h"
 #include "game/human_ai_navigation_jobs.h"
 #include "game/human_frame_inputs.h"
 #include "game/human_scene_movement.h"
@@ -59,6 +76,8 @@
 #include "frontend/options_settings.h"
 #include "host/chunk_files.h"
 #include "host/control_startup.h"
+#include "host/control_connection_platform.h"
+#include "frontend/control_connection_worker.h"
 #include "host/graphics_input_services.h"
 #include "host/human_store.h"
 #include "host/joystick_backend.h"
@@ -81,10 +100,11 @@ namespace hd2::host {
 // executable. Construct BEFORE graphics initialization (game.cfg timing).
 // This does not supply application/video/menu states or the binary wrapper VM.
 // Original Win32 import targets are called directly; no protection success API.
-class StartupSession {
+class StartupSession : public ControlConnectionPlatform {
 public:
-    using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>>;
+    using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>,StartupSession>;
     using PlayerHuman=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
+    using HumanInputs=game::SessionHumanInputs<StartupSession,game::HumanInputCallbacks>;
     std::optional<frontend::MultiplayerLaunchRequest>& multiplayer_request() { return multiplayer_request_; }
     StartupSession(HMODULE engine, HMODULE rw_data, HMODULE joy,const std::string& selected_language={})
         : engine_(engine), files_(rw_data), text_files_(rw_data), directory_(platform_), language_(platform_),
@@ -98,8 +118,10 @@ public:
           sound_backend_(engine, game_views_.sound), sound_catalog_(sound_backend_),
           dubbing_sound_(sound_backend_,files_),
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
-          control_frame_(control_data_, gate_, *this,broadcast_packets_),
-          local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_) {
+          session_voice_(control_data_.wrapper0c,settings_backend_),
+          human_inputs_(*this,human_input_shared_,control_data_.service14),control_frame_(control_data_, gate_, *this,broadcast_packets_),
+          local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_),
+          connection_worker_(*this,control_data_,frontend::ControlConnectionStorage::loader_zero_filled_process) {
         if (!selected_language.empty()) language_.select(selected_language);
         menu_cursor_={menu_width()*.5f,menu_height()*.5f};
         // Actual00748940/00748960 clock basis, separate from frame pacing.
@@ -114,27 +136,79 @@ public:
         control_ready_ = true;
         phase_ = Phase::control_ready;
     }
+    //006DB0F0 calls006E9EA0 at006DB104, before graphics acquisition.
+    //Call for each device attempt, including retries; never from mission load.
+    void begin_device_attempt() {
+        if (phase_ != Phase::control_ready) throw std::logic_error("Integrity device-startup order mismatch");
+        if(mission_integrity_threads_.active_calls())
+            throw std::logic_error("Integrity device retry still has active continuations");
+        struct SharedRandom {
+            StartupSession& startup;
+            void seed(std::uint32_t value){startup.seed_random(value);}
+            std::uint32_t operator()(){return startup.random_word();}
+        } random{*this};
+        //006E9EBC -> return006E9EC2 -> table00A59120 -> IAT0080F1B4.
+        mission_integrity_tables_.initialize_from_seed([&]{
+            //The seed has no deliberate descriptor tag, but its wrapper still
+            //registers the current process thread before the actual API.
+            auto call=begin_integrity_call(0x6e9ec2);
+            return call.complete(GetTickCount()).value;
+        },random);
+    }
+    void graphics_integrity_queries(){
+        if(phase_!=Phase::control_ready)throw std::logic_error("Steam graphics integrity order mismatch");
+        (void)steam_window_probe({29,0x6db2be,0x0a4276bc},[](HWND value){return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetParent(value)));});
+        (void)steam_window_probe({48,0x6db390,0x0a4276bc},[](HWND value){return static_cast<std::uint32_t>(IsZoomed(value));});
+        (void)steam_window_probe({20,0x6db411,0x056a648f,0x702fe,true},[](HWND value){return static_cast<std::uint32_t>(IsZoomed(value));});
+    }
     // Called only after real graphics, sound and I3D initialization. The caller
     // retains device ownership; close_consumers must run before device close.
     void setup_devices() {
         if (phase_ != Phase::control_ready) throw std::logic_error("Startup device order mismatch");
         phase_ = Phase::loading;
         setup_started_ = true;
+        (void)game::steam_integrity_marker_call(*this,{19,0x6db534,0x0a4276bc},[]{return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetCapture()));});
+        (void)game::steam_integrity_marker_call(*this,{8,0x6db60b,0x097a5e32},[]{return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetFocus()));});
         auto random = [&] { return settings_backend_.sound_random_word(); };
         auto mask = io::begin_archive_key_mask(random);
         const auto selected_language = language_.get();
-        archive_focus_ = GetFocus(); // Original006DB8C7 wrapper → real GetFocus.
+        archive_focus_ = reinterpret_cast<HWND>(static_cast<std::uintptr_t>(
+            game::steam_integrity_marker_call(*this,{53,0x6db8cd,0x075ac025},[]{
+                return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetFocus()));
+            }).returned)); //Original006DB8C7, Steam action62 before actual API.
         archives_.create(io::language_archive_name(selected_language));
         archives_.configure(mask, random);
         io::setup_resource_directory_trees(caches_, directory_platform_);
-        using Window = HWND (WINAPI *)(EngineFrame*);
-        auto* graphics = static_cast<EngineFrame*>(input_setup_.graphics());
-        const auto window = scene_method<Window>(graphics, engine(), 0x48, 0x6a240)(graphics);
-        directory_window_ = IsZoomed(window); // Original006DBF2B wrapper target.
+        directory_window_=static_cast<BOOL>(steam_window_probe({69,0x6dbf31,0x0a4276bc},
+            [](HWND argument){return static_cast<std::uint32_t>(IsZoomed(argument));}).returned);
         input_setup_started_ = true;
         frontend::setup_graphics_input(input_, input_setup_, language_, text_, platform_, text_files_, directory_);
         modules_.initialize(gate_, files_); // Original006DBFB0 includes this phase.
         phase_ = Phase::resources_ready;
+    }
+    void complete_device_integrity(){
+        if(phase_!=Phase::resources_ready)throw std::logic_error("Steam device-tail integrity order mismatch");
+        (void)steam_window_probe({123,0x6dc291,0x0143b042,0x4076b,true},[](HWND value){return static_cast<std::uint32_t>(IsWindowVisible(value));});
+        (void)steam_window_probe({41,0x6dc360,0x01770325,0xa1372,true},[](HWND value){return static_cast<std::uint32_t>(IsZoomed(value));});
+    }
+    void complete_device_startup_randomness(){
+        if(phase_!=Phase::resources_ready)throw std::logic_error("Startup CRT tail seed order mismatch");
+        //006DC37F time(NULL) ->006DC385 srand, AFTER the table initializer and
+        //device/module/text setup. This reseeds the SAME stream, not the tables.
+        seed_random(static_cast<std::uint32_t>(std::time(nullptr)));
+    }
+    void prepare_steam_process_observations(){
+        if(phase_!=Phase::resources_ready)throw std::logic_error("Steam process publication order mismatch");
+        //Actual006DCBB0/006DCBD7/006DCBF3 writes, not a retail check result.
+        for(const auto stage:{83u,60u,100u})mission_integrity_tables_.observed(stage)=mission_integrity_tables_.expected(stage);
+        (void)game::steam_integrity_marker_call(*this,{90,0x6dcc31,0x0143b042,0x4076b,true},[]{
+            return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetFocus()));
+        });
+
+    }
+    void complete_steam_controller_integrity(){
+        if(phase_!=Phase::ready)throw std::logic_error("Steam controller integrity order mismatch");
+        (void)game::steam_integrity_marker_call(*this,{25,0x6dcd15,0x01770325,0xa1372,true},[]{return GetTickCount();});
     }
     bool prepare_application() {
         if (phase_ != Phase::resources_ready) throw std::logic_error("Application preparation repeated/out of order");
@@ -172,6 +246,7 @@ public:
         if (phase_ == Phase::closed) return;
         phase_ = Phase::closed;
         frontend::CleanupErrors errors;
+        console_.reset(); //Stop the process console's window callbacks before retiring its borrowers.
         //0072E460 final reset is required even after status4 reset. Failed
         // pre-device acquisition instead abandons only acquired native locks.
         errors.attempt([&] {
@@ -182,6 +257,8 @@ public:
             }
         });
         // Also reclaim partial0072E1A0 initialization/unsupported native errors.
+        errors.attempt([&]{session_voice_.retire_all();}); //Actual0C borrowed through close/Release; fallback before inputs/locks.
+        human_inputs_.retire(); //Acquired process14 fallback, before locks even when a required reset receiver failed.
         lock_services_.delete_control_critical_section(0);
         lock_services_.delete_control_critical_section(1);
         control_data_.locks5018 = 0;
@@ -227,10 +304,15 @@ public:
     void application_input_enabled(bool value) { application_input_enabled_ = value; } // 006DCAD0
     std::uint32_t random_word() { return settings_backend_.sound_random_word(); }
     void seed_random(std::uint32_t seed){std::srand(seed);} //006E9EA0 uses the SAME CRT stream as sound/AI.
+    game::IntegrityThreads::Call begin_integrity_call(std::uintptr_t caller){
+        //00996A3F..00996A5E resolves00B4EDB8 to actual GetCurrentThreadId.
+        return mission_integrity_threads_.acquire(GetCurrentThreadId(),caller);
+    }
+    const game::SteamIntegrityState& steam_integrity_state()const{return steam_integrity_state_;}
     bool& script_advance_override(){return script_advance_override_;} //008692D0;00424900 reset scope owns its writes.
     game::MissionIntegrityTables& mission_integrity_tables(){return mission_integrity_tables_;} //SAME process owner; no invented initialized/healthy state.
     game::MissionScriptVariables& mission_script_variables(){return mission_script_variables_;} //Module4 survives world finish/reconstruction;004270D0 applies actual selection kind afterward.
-    game::MissionEffectsProcess<EngineFrame*>& mission_effects_process(){return mission_effects_process_;}
+    game::MissionEffectsProcess<GameActorServices>& mission_effects_process(){return mission_effects_process_;}
     game::ShotManagerLoadingState<GameActorServices>& shot_manager_process(){return shot_manager_process_;}
     game::HeavyFireLoadingState& heavy_fire_process(){return heavy_fire_process_;}
     auto& effects_loading_process(){return effects_loading_process_;}
@@ -244,12 +326,42 @@ public:
     GameAnimations& game_animations() { return game_animations_; }
     game::HumanSoundVariants& human_sound_variants() {return human_sound_variants_;}
     game::HumanInputShared& human_input_shared() {return human_input_shared_;}
+    std::uint64_t performance_frequency()const{
+        LARGE_INTEGER frequency{};
+        if(!QueryPerformanceFrequency(&frequency)||frequency.QuadPart<=0)throw std::runtime_error("Human input performance frequency failed");
+        return static_cast<std::uint64_t>(frequency.QuadPart);
+    }
+    std::uint64_t performance_counter()const{
+        LARGE_INTEGER counter{};if(!QueryPerformanceCounter(&counter))throw std::runtime_error("Human input performance counter failed");
+        return static_cast<std::uint64_t>(counter.QuadPart);
+    }
+    HumanInputs& game_human_inputs(){return human_inputs_;}
+    game::HumanInputCallbacks& game_human_input_callbacks(){return human_input_callbacks_;}
+    void replace_game_human_inputs(){ //00723000, SAME process14; no old-World receiver captured.
+        human_inputs_.replace([this]{return application_flags();},[this]{return local_player_identity();},
+            [this](std::int32_t identity){return packet_world_.input_default_receiver(identity,false);},
+            [this](std::int32_t identity){return packet_world_.input_default_receiver(identity,true);});
+    }
+    HumanInputs& prepare_game_human_inputs(){
+        if(!human_inputs_.present())replace_game_human_inputs(); //Cold source graph acquisition; full entry chooses native replacement explicitly.
+        if(!human_inputs_.configured())throw std::logic_error("Human process input setup has an incomplete published prefix");
+        return human_inputs_;
+    }
+    bool owns_control_input_manager(const void* owner)const noexcept{return human_inputs_.owns(owner);}
+    void clear_control_input_records(){
+        if(!human_inputs_.owns(control_data_.service14))throw std::logic_error("Control input reset lost actual process14 owner");
+        human_inputs_.clear();
+    }
+    void retire_control_input_manager()noexcept{human_inputs_.retire();}
+    void reset_game_entry_records(){game::reset_session_entry_records(control_data_,*this);}
     const game::HumanMorphTables& human_morph_tables() {human_morph_tables_.load(files_);return human_morph_tables_;}
     const float& human_animation_time_scale()const{return human_animation_time_scale_;} //0084E80C initial FLOAT1.4; original direct references are reads.
     game::HumanPhysicsGlobals& human_physics_globals(){return human_physics_globals_;}
     game::HumanAIEventPool& human_ai_event_pool(){return human_ai_events_;}
     game::HumanAIFrameInputs& human_ai_frame_inputs(){return human_ai_frame_inputs_;}
     game::HumanAIActionPools& human_ai_action_pools(){return human_ai_actions_;}
+    using HumanAIOrders=game::HumanAIOrderPool<GameActorServices,GameSceneActors::Instance>;
+    HumanAIOrders& human_ai_order_pool(){return human_ai_orders_;}
     game::HumanAINavigationJobPool& human_ai_navigation_jobs(){return human_ai_navigation_jobs_;}
     auto& human_scene_movement_process(){return human_scene_movement_process_;} //008AADD0, shared by Scene2 owners.
     auto& human_perception_record_pool(){return human_perception_records_;}
@@ -264,6 +376,7 @@ public:
     auto& car_light_receivers(){return car_light_receivers_;} //0089C0A4,004E2810 initializes the actual process list empty.
     auto& car_sound_receivers(){return car_sound_receivers_;} //0089C0B4, separate sound registrations.
     auto& players_process(){return players_process_;} //Actual CRT0089AC30; module reset, not a per-world copy.
+    auto& item_sound_request(){return item_sound_request_;} //007D45B0→004374D0, process0098AFE0, shared across worlds.
     auto& delayed_player_speech(){return delayed_player_speech_;} //Separate0089AC20, survives00456440 reset.
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(EngineFrame* frame,void* callback,Resolve&& resolve,Type&& type) {
         return frontend::add_sound_listener(sound_data_.runtime,gate_,frame,callback,
@@ -298,8 +411,14 @@ public:
     void stop_game_sound_voice(std::int32_t& handle) {
         frontend::stop_sound_voice(sound_data_.runtime,handle,sound_backend_); //00437340.
     }
+    EngineFrame* borrowed_game_sound_voice(std::int32_t handle)const{return static_cast<EngineFrame*>(frontend::sound_voice_frame(sound_data_.runtime,handle));}
     bool game_sound_voice_live(std::int32_t handle)const{ //004374A0.
         return frontend::sound_voice_frame(sound_data_.runtime,handle)!=nullptr;
+    }
+    std::optional<bool> game_sound_voice_active(std::int32_t handle)const{ //007CDF10 distinguishes an absent frame from an inactive frame.
+        auto* frame=frontend::sound_voice_frame(sound_data_.runtime,handle);
+        if(!frame)return std::nullopt;
+        return sound_backend_.sound_active(frame,0);
     }
     void resume_game_sound_voice(std::int32_t handle) { //SOUND+78/004374A0→actual frame+30(1), used by Door00601F90.
         set_game_sound_voice_enabled(handle,true);
@@ -327,9 +446,13 @@ public:
         return dubbing_sound_.play_speech(actor,frame,id,near_range,far_range,subtitles,gate_,world);
     }
     std::uint32_t game_speech_length(std::int32_t id){return sound_catalog_.speech_sample_size(id);} //SOUND virtual94, SAME catalogue mappings.
+    const frontend::CatalogSoundEntry* mounted_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(3,id);} //Actual SOUND+8C; no implicit catalogue load.
+    const frontend::CatalogSoundEntry* item_shot_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(2,id);} //007D5C70, SAME SOUND catalogue.
     const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
     void initialize_game_dubbing(){dubbing_sound_.initialize_loading();}
     void synchronize_game_dubbing(){dubbing_sound_.synchronize_attachments();}
+    void stop_game_dubbing(EngineFrame* frame){dubbing_sound_.stop_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();} //0071E460.
+    bool playing_game_dubbing(EngineFrame* frame)const{return dubbing_sound_.playing(frame);} //0071ECC0.
     void update_game_dubbing(std::uint32_t elapsed){dubbing_sound_.update(elapsed);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void retire_game_dubbing(EngineFrame* frame){dubbing_sound_.retire_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void finish_game_dubbing(){dubbing_sound_.clear(false);sound_backend_.rethrow_dubbing_cleanup_failure();} //0071DE60: no morph neutral on native mission finish.
@@ -343,6 +466,14 @@ public:
     frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
     bool human_face_quality_enabled(){return profile_settings().quality_byte(3)!=0;} //006B6740→006B33E0(3).
     frontend::GameConfiguration& game_configuration(){return data_.game_configuration();}
+    frontend::GameData& game_application_data(){return data_.game();} //SAME application+04, distinct from preparation's reloaded graph.
+    void read_game_network_map(game::SessionPacketStream& packet){frontend::replace_selected_network_map(packet,game_configuration());}
+    void write_game_network_map(game::SessionPacketStream& packet){frontend::write_selected_network_map(packet,game_configuration());}
+    void read_game_network_rules(game::SessionPacketStream& packet){frontend::read_network_rules(packet,game_configuration(),game_network_parameters());}
+    void write_game_network_rules(game::SessionPacketStream& packet){frontend::write_network_rules(packet,game_configuration(),game_network_parameters());}
+    game::SessionNetworkParameters& game_network_parameters(){return game_control_records().network_parameters;}
+    bool rebuild_game_network_mission(){return game::populate_network_mission(data_.game(),game_configuration());}
+    game::MissionRequest make_game_network_request(){return game::make_network_mission_request(data_.game(),game_configuration(),gate_,pre_mission().route());}
     frontend::SoundApplicationMode game_sound_application(){
         const auto& configuration=game_configuration();
         //006B66B0 tests this opaque native DWORD for nonzero only; it is never dereferenced.
@@ -361,9 +492,17 @@ public:
     frontend::ClientModuleRegistration& game_module_registration(std::uint32_t kind){return modules_.registration(kind);}
     input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
     const std::string& profile_name() { return data_.profile().directories.current_name; }
+    std::uint32_t selected_game_mode()const { //006B4670 owner08, SAME route; never allocate preparation from a frame callback.
+        if(!pre_mission_)throw std::logic_error("UI game-mode query requires actual preparation owner");
+        return pre_mission_->route().game_mode();
+    }
     PreMission& pre_mission() {
-        if (!pre_mission_) pre_mission_=std::make_unique<PreMission>(data_.humans());
+        if (!pre_mission_) pre_mission_=std::make_unique<PreMission>(data_.humans(),*this);
         return *pre_mission_;
+    }
+    void preparation_store_integrity(){
+        (void)steam_window_probe({69,0x673734,0x0437e723,0x923a1,true},[](HWND value){return static_cast<std::uint32_t>(IsWindowVisible(value));});
+        (void)steam_window_probe({41,0x67379f,0x0143b042,0x4076b,true},[](HWND value){return static_cast<std::uint32_t>(IsIconic(value));});
     }
     bool prepare_pre_mission() {
         if (profile_name().empty())
@@ -581,6 +720,7 @@ public:
     std::int32_t query_input(const std::uint32_t*& output, std::uint8_t mode) const {
         return frontend::query_controller_input(input_.state().first, input_.state().second, output, mode);
     }
+    input::BindingInputState& presentation_input_bindings(){return input_.state();} //Borrow SAME process manager; no new input owner/poll.
     std::uint32_t mouse_buttons() const { return input_backend_.mouse_buttons(graphics()); }
     std::int32_t mouse_wheel() const { return input_backend_.mouse_z(graphics()); }
     std::int32_t mouse_x() const { return input_backend_.mouse_x(graphics()); }
@@ -603,6 +743,10 @@ public:
     }
     struct CreditsMusic { std::int32_t request; std::uint32_t position; };
     std::int32_t game_music_request()const{return sound_data_.selection.requested;} //SOUND+70, SAME primary owner.
+    void select_game_secondary_music(std::int32_t track){ //SOUND+68=00436F60; this is NOT a voice-group stop.
+        frontend::select_secondary_sound_movie(sound_catalog_,sound_data_.settings,sound_data_.fade,
+            sound_data_.secondary,sound_data_.selection,gate_,track,sound_backend_);
+    }
     void queue_game_music(std::int32_t track,std::int32_t fade,std::uint32_t position){ //SOUND+6C.
         frontend::queue_primary_sound_movie(sound_data_.settings,sound_data_.fade,
             sound_data_.secondary,sound_data_.selection,track,fade,position);
@@ -649,6 +793,7 @@ public:
         errors.rethrow();
     }
     void control_phase(std::uint32_t milliseconds,bool fixed){
+        if(console_)console_->rethrow_failure();
         if(source_packet_path())local_packets_.phase(fixed);else control_frame_.phase(milliseconds,fixed);
     }
     void control_maintenance(std::uint32_t milliseconds){
@@ -660,6 +805,82 @@ public:
     }
     auto& game_broadcast_packets(){return broadcast_packets_;}
     auto& game_local_packets(){return local_packets_;}
+    void receive_control_connection_payload(const std::vector<unsigned char>& bytes,std::uint32_t channel,std::uint32_t flags){ //0072C360.
+        game::deliver_session_connection_packet(gate_,bytes,channel,flags,local_packets_);
+    }
+    void publish_control_reset_mode(std::uint32_t mode){
+        enter_control_lock(2);gate_=mode;leave_control_lock(2); //Source synchronization with callback's existing B4 scope.
+    }
+    void send_control_connection_payload(std::uint32_t target,const std::vector<unsigned char>& bytes,std::uint32_t flags){
+        game::submit_session_connection_packet(control_data_,gate_,target,bytes,flags,connection_worker_,*this);
+    }
+    void enter_application_command_lock(){application_command_lock_.enter();}
+    void leave_application_command_lock()noexcept{application_command_lock_.leave();}
+    void queue_application_command(std::uint32_t kind,std::uint32_t target,std::uint32_t first,std::uint32_t second){
+        application_commands_.enqueue({kind,first,second,target},gate_,*this);
+    }
+    void drain_application_commands(){application_commands_.drain(*this);}
+    std::uint32_t application_mode_flags()const{return gate_;}
+    bool has_application_game()const{return game_views_.owner()!=nullptr;}
+    std::int32_t application_local_peer()const{return local_player_identity();}
+    std::string application_localize(std::uint32_t id){return frontend::lookup_localized_text(text(),static_cast<std::int32_t>(id));}
+    std::optional<std::string> application_peer_name(std::uint32_t transport){
+        const auto slot=game::find_session_peer_transport(control_data_,*this,transport);
+        //0072EBD0 checks bounds after EC90 unlock; empty native char-array name is still nonnull.
+        return slot<control_data_.records.size()?std::optional<std::string>(control_data_.records[slot].name()):std::nullopt;
+    }
+    void prepare_application_packet_phase(bool authority){
+        if(authority&&game_configuration().field174==1)
+            throw std::runtime_error("Authority packet phase requires actual007239F0 domain service pump");
+    }
+    void dispatch_application_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority){
+        game::receive_session_application_packet(kind,packet,authority,*this);
+    }
+    void receive_application_objective(std::uint32_t identity,std::uint32_t status){packet_world_.receive_application_objective(identity,status);}
+    void receive_application_peer_departure(std::uint32_t transport){
+        if(!has_application_game())throw std::runtime_error("Departure receiver lost its actual current game");
+        packet_world_.receive_application_peer_departure(transport);
+    }
+    void receive_application_local_removal(std::uint32_t reason){packet_world_.receive_application_local_removal(reason);}
+    void receive_application_spawn_rejection(std::uint32_t reason){packet_world_.receive_application_spawn_rejection(reason);}
+    void receive_application_peer_removal(std::uint32_t reason,std::uint32_t identity){
+        struct Services{
+            StartupSession& startup;
+            std::uint32_t mode_flags(){return startup.application_flags();}
+            void queue_human_peer_removal(std::uint32_t why,std::uint32_t slot){startup.queue_application_command(17,0,why,slot);}
+            std::string human_damage_localize(std::uint32_t id){return startup.application_localize(id);}
+            void emit_human_peer_removal_log(const std::string& text){startup.emit_application_log(text);}
+        }services{*this};
+        game::remove_human_peer(control_data_,identity,reason,services);
+    }
+    void emit_application_log(const std::string& text){ //006C4B40→0069BF70, SAME application/current World owners.
+        if(application_log_to_console()){append_game_console(text);return;}
+        if(!has_application_game())return;
+        const auto message=game::format_human_game_message(text);
+        if(!(gate_&2u)){append_game_console(message);return;}
+        packet_world_.append_application_message(message);
+    }
+    void bind_application_console_owner(void* owner,std::function<bool()> route,std::function<void()> close){
+        if(application_console_owner_||!owner||!route||!close)throw std::logic_error("Invalid application console owner binding");
+        application_console_route_=std::move(route);application_console_close_=std::move(close);application_console_owner_=owner;
+    }
+    void unbind_application_console_owner(void* owner)noexcept{
+        if(application_console_owner_!=owner)return;
+        application_console_owner_=nullptr;application_console_route_={};application_console_close_={};
+    }
+    bool application_log_to_console(){ //006C4B40: configuration170 FIRST, then current application state12/210.
+        if(game_configuration().flag170)return true;
+        if(!application_console_route_)throw std::logic_error("Application log requires its actual current-state owner");
+        return application_console_route_();
+    }
+    void append_game_console(const std::string& text){game_console().append(text);}
+    auto take_game_console_command(){return game_console().take_command();}
+    void flush_application_command_packets(std::uint32_t elapsed){local_packets_.flush(elapsed);}
+    auto& begin_application_command(std::uint32_t target,std::uint32_t kind){ //0072BDE0/0072BE00 local=true, priority0.
+        if(target)throw std::runtime_error("Application command requires actual targeted scratch/transport receiver");
+        auto& stream=broadcast_packets_.begin(20,0);stream.write(kind,32);return stream;
+    }
+    void finish_application_command(game::SessionPacketStream& stream){stream.finish_broadcast();}
     void bind_game_packet_world(game::SessionPacketWorld& world){packet_world_.bind(world);}
     void unbind_game_packet_world(game::SessionPacketWorld& world)noexcept{packet_world_.unbind(world);}
     void enter_control_lock(unsigned index) { lock_services_.enter_control_lock(index); }
@@ -667,6 +888,28 @@ public:
     void clear_retired_actor_record(std::int32_t identity){frontend::clear_retired_actor_record(control_data_,lock_services_,identity);}
     void clear_human_player_slot(std::uint32_t identity){frontend::clear_human_player_slot(control_data_,lock_services_,identity);}
     frontend::ControlStartupState& game_control_records(){return control_data_;} //PreparedSpawnPackets borrows SAME1DC storage and acquires lock0 for each access.
+    void reset_control_entry_packets(bool reset_inputs){game::reset_session_entry_packets(human_inputs_,local_packets_,reset_inputs,[this]{return gate_;});}
+    void begin_game_entry_connections(){game::toggle_session_entry_connections(control_data_,gate_,control_frame_.state().local_peer,*this);}
+    std::unique_ptr<frontend::ControlConnectionLock> create_connection_lock(){return std::make_unique<ControlConnectionLock>();}
+    auto make_game_connection(std::uint32_t identity,std::uint32_t address,void* context){
+        return std::make_unique<frontend::ControlConnectionOwner<StartupSession>>(*this,identity,address,context);
+    }
+    void initialize_control_worker_lock(){lock_services_.initialize_control_worker_lock();}
+    bool owns_control_worker()const{return true;} //This object's SAME inline source worker, not transport readiness.
+    void reset_control_connections(){connection_worker_.reset_native();control_frame_.state().worker_active=false;}
+    void flush_control_connections(){connection_worker_.flush_all(true);}
+    void start_control_connections(std::uint32_t port){connection_worker_.start(port);control_frame_.state().worker_active=connection_worker_.active();}
+    auto& create_client_control_connection(std::uint32_t address,std::uint32_t port){return connection_worker_.publish_client(address,port);}
+    void complete_client_control_connection(std::uint32_t result,const std::vector<unsigned char>& reply){connection_worker_.complete_client(result,reply,control_frame_.state().local_peer);}
+    void retire_client_control_connection(){connection_worker_.retire_client();}
+    auto& finish_prepared_peer_connection(std::uint32_t slot){return connection_worker_.finish_prepared_peer(slot);}
+    void disconnect_peer_connection(std::uint32_t slot){connection_worker_.disconnect_peer(slot);}
+    bool session_voice_enabled(){return profile_settings().bytes[0x38]!=0;}
+    void create_session_voice(bool authority){session_voice_.create(authority,control_frame_.state().server,control_frame_.state().client);}
+    void retire_session_voice(){session_voice_.retire();}
+    void begin_received_game_inputs(){game::begin_received_session_inputs(control_data_,*this);}
+    void submit_human_transmit_targets(void* object,const std::uint32_t* targets,std::uint32_t count){settings_backend_.submit_transmit_targets(object,targets,count);}
+    std::uint32_t peer_human_ticks(){return timeGetTime();} //00612A60 uses the process multimedia clock.
     std::uint32_t control_packet_clock()const {return static_cast<std::uint32_t>(std::clock());} //007E814F CRT clock(), packet timestamps.
     void delete_control_critical_section(unsigned index) noexcept {
         lock_services_.delete_control_critical_section(index);
@@ -693,6 +936,21 @@ public:
         }
     }
 private:
+    GameConsole& game_console(){ //0069F1E0, publish before Win32 CreateWindow re-entry.
+        if(!console_)console_=std::make_unique<GameConsole>([this]{
+            if(!application_console_close_)throw std::logic_error("Console close requires the actual current application state");
+            application_console_close_();
+        });
+        console_->open();return *console_;
+    }
+    template<class Api>game::SteamIntegrityResult steam_window_probe(game::SteamIntegritySite site,Api api){
+        return game::steam_integrity_window_call(*this,site,[&]{
+            using Window=HWND (WINAPI *)(EngineFrame*);
+            auto* current=static_cast<EngineFrame*>(input_setup_.graphics());
+            const auto value=scene_method<Window>(current,engine(),0x48,0x6a240)(current);
+            return game::IntegrityApiArgument<HWND>{value,static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(value))};
+        },api);
+    }
     HMODULE engine() const { return engine_; }
     enum class Phase { constructed, control_ready, loading, resources_ready, data_ready, ready, closed };
     game::ScenePresentationFlags scene_presentation_flags_;
@@ -710,7 +968,8 @@ private:
     game::HudCompassShared hud_compass_state_;
     game::HudClickSound<MenuDriver::Owner> hud_click_sound_;
     bool source_packet_path()const{
-        return packet_world_.bound()||broadcast_packets_.pending()||!local_packets_.authority_queue().empty()||!local_packets_.presentation_queue().empty();
+        return connection_worker_.active()||human_inputs_.present()||packet_world_.bound()||broadcast_packets_.pending()||local_packets_.pending();
+        //Active selects the actual queue owner, not transport or World readiness.
     }
     game::ConsoleVariables game_console_variables_;
     game::TextRenderControls game_text_render_controls_;
@@ -733,14 +992,19 @@ private:
     game::CarSeatCameraShared car_seat_camera_;
     std::vector<EngineFrame*> car_light_receivers_,car_sound_receivers_;
     game::PlayersProcess<PlayerHuman> players_process_;
+    frontend::SpatialSoundRequest item_sound_request_; //Original CRT initialization; item writers preserve unmodified fields.
     std::vector<game::PlayersProcess<PlayerHuman>::DelayedSpeech> delayed_player_speech_;
     game::HumanMorphTables human_morph_tables_;
     float camera_breathing_=0x1.47ae14p-8f; //Original00839268 bytes0A D7 A3 3B, retained across worlds.
     const float human_animation_time_scale_=0x1.666666p+0f;
     game::HumanPhysicsGlobals human_physics_globals_;
     game::MissionIntegrityTables mission_integrity_tables_;
+    //Destroyed/retired BEFORE tables, so callback-held loans cannot publish
+    //through a replaced StartupSession's former process table lifetime.
+    game::SteamIntegrityState steam_integrity_state_;
+    game::IntegrityThreads mission_integrity_threads_;
     game::MissionScriptVariables mission_script_variables_;
-    game::MissionEffectsProcess<EngineFrame*> mission_effects_process_;
+    game::MissionEffectsProcess<GameActorServices> mission_effects_process_;
     game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;
     game::HeavyFireLoadingState heavy_fire_process_;
     game::EffectsLoadingProcess<EngineFrame*> effects_loading_process_;
@@ -753,6 +1017,7 @@ private:
         game::CarSceneActor<GameActorServices>> human_scene_movement_process_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIActionPools human_ai_actions_;
+    HumanAIOrders human_ai_orders_; //SAME008AB048 manager+18, distinct from current-action pools.
     game::HumanAINavigationJobPool human_ai_navigation_jobs_;
     ResourceDirectoryPlatform directory_platform_;
     JoystickBackend joysticks_backend_;
@@ -771,7 +1036,14 @@ private:
     frontend::SoundManagerData sound_data_;
     frontend::StartupModules modules_;
     frontend::ControlStartupState control_data_;
+    frontend::SessionVoice<SettingsServices> session_voice_; //Actual0C creator; settings/transmit borrow SAME native04 interface.
+    game::HumanInputCallbacks human_input_callbacks_; //Stateless native process callback labels, never a retired World borrower.
+    HumanInputs human_inputs_; //ONE canonical process14 allocation; profiles/getters and B0 handle survive World retirement.
     ControlStartupServices lock_services_;
+    ApplicationCommandLock application_command_lock_;
+    game::SessionApplicationCommands application_commands_; //SAME process lifetime, survives World unbind.
+    std::unique_ptr<GameConsole> console_;void* application_console_owner_=nullptr;
+    std::function<bool()> application_console_route_;std::function<void()> application_console_close_;
     frontend::ProfileSelectionWords profile_words_;
     frontend::LocalizedTextCache text_;
     std::uint32_t gate_ = 0;
@@ -789,6 +1061,7 @@ private:
     HWND archive_focus_ = nullptr;
     BOOL directory_window_ = FALSE;
     LARGE_INTEGER control_frequency_{}, control_origin_{};
+    frontend::ControlConnectionWorker<StartupSession> connection_worker_; //LAST: callbacks retire while every borrowed process/platform owner is still alive.
 };
 
 }

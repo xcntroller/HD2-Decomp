@@ -1,0 +1,528 @@
+{
+  "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "receipts": [
+    {
+      "path": "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native_action_reload_aim": "PASS (ASan/UBSan/LSan)",
+        "actual_host_i386": "PASS (strict compile, required runtime leaves are fixture declarations)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "00584e30",
+        "0077fbb0",
+        "005a62e0",
+        "005a6360",
+        "005ff6c0",
+        "005a95d0",
+        "0060d9f0",
+        "0060da50",
+        "00572120",
+        "005722b0",
+        "007d4850",
+        "007dc2a0",
+        "007dbd80"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native_ai_movement_and_item_output": "PASS (ASan/UBSan/LSan)",
+        "native_guard_area_authority_and_positive_hostile": "PASS (ASan/UBSan/LSan)",
+        "actual_host_i386": "PASS (strict compile)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "0046f2a0",
+        "005710b0",
+        "00572c20",
+        "00575d50",
+        "00576350",
+        "00548130",
+        "00559da0",
+        "00583c30",
+        "0058baf0",
+        "00547d80",
+        "00548080",
+        "00548170",
+        "005482a0",
+        "005482f0",
+        "005484b0",
+        "00548520",
+        "00548610",
+        "00548840",
+        "00548b00",
+        "00548900",
+        "00549940",
+        "0054ab70",
+        "0054ac40",
+        "0054b730",
+        "0054b770",
+        "0054e600",
+        "005582a0",
+        "00558960",
+        "00558ae0",
+        "00559420",
+        "00559610",
+        "00575670",
+        "005594b0",
+        "00559d40",
+        "00559de0",
+        "00582a40",
+        "0058a9f0",
+        "00584b60",
+        "0058c330",
+        "0058c4d0",
+        "005abd90",
+        "00590700",
+        "0077f0a0",
+        "0077f190",
+        "0077ebd0",
+        "005a66b0"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native_guard_area_navigation": "PASS (ASan/UBSan/LSan)",
+        "actual_host_i386": "PASS (strict compile)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "00549ae0",
+        "0058c400",
+        "0055ad50",
+        "0055a6e0",
+        "0055b860",
+        "0077f380",
+        "0077f3d0",
+        "0077ec00",
+        "0057f610",
+        "0057eec0",
+        "0057ef00",
+        "0057ef30",
+        "0057fda0",
+        "0057fd30",
+        "0057a750",
+        "0057a610",
+        "0057a420",
+        "0057fe40",
+        "0057feb0",
+        "00560ea0",
+        "00560f00",
+        "00560f30",
+        "00560f50",
+        "00582670",
+        "0058a4a0",
+        "005638e0",
+        "00521120",
+        "00521160",
+        "00521b60",
+        "00521480",
+        "0051e8a0",
+        "0057aaf0",
+        "0057b2e0",
+        "0057b740",
+        "0057a8e0",
+        "0057bdc0",
+        "0057c2b0",
+        "0057c760",
+        "00571730",
+        "0057f6f0",
+        "0057ff10",
+        "005802a0",
+        "00580460",
+        "0057d5a0",
+        "0057e030",
+        "0057e020",
+        "0057bd00",
+        "0057ca50",
+        "0057ca70",
+        "0057b270",
+        "00560f90",
+        "0057ec60",
+        "0057edc0",
+        "0057ee00",
+        "005ae890",
+        "0057db70",
+        "0057dbd0",
+        "0057da40",
+        "0057f670",
+        "00576610",
+        "0057cf80",
+        "00586200",
+        "00602320",
+        "005ac310",
+        "005ac3f0",
+        "0055d950"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-contact-player-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS ASan/UBSan/LSan actual base/Player contact, request FIFO, truncation/failure/retry, original priority0 and Player phase/timing/input/direction with explicit owner/engine/positive-worker doubles",
+        "actual_host_i386": "PASS strict actual World authority/presentation instantiation, required Runtime leaves declaration-only",
+        "application_launch": "PASS i386 link",
+        "function_tracker": "PASS render/check and27 tests"
+      },
+      "added_entries": [
+        "00540240",
+        "00588c60",
+        "00588cc0",
+        "0072bed0",
+        "00475570",
+        "00475530",
+        "00540db0",
+        "005a5f80",
+        "00541cb0"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ground-bindings-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native_projection": "PASS ASan/UBSan/LSan actual AI path/fallback/clamp/unordered/radius/receiver checks and shared CD0 sector timer",
+        "native_inline": "PASS ASan/UBSan/LSan actual inline230 equipment flag selection, movement independence and retired owner failure",
+        "actual_host_i386": "PASS strict actual World authority/presentation instantiation, mandatory remaining Runtime leaves declaration-only",
+        "application_launch": "PASS i386 link",
+        "function_tracker": "PASS render/check and27 tests"
+      },
+      "added_entries": [
+        "0057fbc0",
+        "005a66f0"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ground-collision-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS (ASan/UBSan/LSan, actual ground/state/face/water-query code with explicit collision/frame/equipment/positive-receiver doubles)",
+        "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining Runtime leaves declaration-only)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and27 tests)"
+      },
+      "added_entries": [
+        "0071baf0",
+        "0071c7d0",
+        "00766050",
+        "007646f0",
+        "00766f10",
+        "007671c0",
+        "00788600",
+        "00789bc0",
+        "0075c940",
+        "0074ea80",
+        "0076ac80",
+        "00781150",
+        "00789b00",
+        "00770c30",
+        "00770b90",
+        "00767530",
+        "0075eee0",
+        "0075f180",
+        "005eb1d0",
+        "00788840"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ground-direction-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS (two ASan/UBSan/LSan fixtures, actual marker/state/E0 owners with explicit frame, descriptor-publication and collision doubles)",
+        "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining Runtime leaves declaration-only)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and27 tests)"
+      },
+      "added_entries": [
+        "00763ec0",
+        "0075c250",
+        "0075bbf0",
+        "0076cf90",
+        "00749e60",
+        "0076cfe0",
+        "0076db30"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ground-frame-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS (ASan/UBSan/LSan, actual track and movement owners with frame/audio doubles, positive sound return failure/retry)",
+        "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining positive runtime leaves declaration-only)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "007861a0",
+        "007637d0",
+        "00772a00",
+        "00770770",
+        "007705e0",
+        "0076fbc0",
+        "00773850",
+        "00773a90",
+        "00773b20",
+        "00773b60",
+        "00768170"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS (ASan/UBSan/LSan, actual track/movement/E0 owners with explicit frame/query/actor and unresolved-receiver doubles)",
+        "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining runtime leaves declaration-only)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "0074b4f0",
+        "0074bbe0",
+        "0074c1e0",
+        "0076ce30",
+        "0075cd50",
+        "005eb8c0",
+        "005eba70",
+        "007709c0",
+        "00768230"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-look-posture-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native_look": "PASS ASan/UBSan/LSan actual Look/physical/face dispatch and typed snapshots",
+        "native_item": "PASS ASan/UBSan/LSan actual RuntimeItem marker priority/cache/failure/pose/ownership",
+        "native_posture": "PASS ASan/UBSan/LSan six posture transitions, room obstruction/retries/impulses/exclusion cleanup and lateral stride",
+        "native_tracks": "PASS ASan/UBSan/LSan actual selected lane/time and inactive/zero-duration results",
+        "actual_host_i386": "PASS strict actual World authority/presentation instantiation",
+        "application_launch": "PASS i386 link",
+        "function_tracker": "PASS render/check and27 tests"
+      },
+      "added_entries": [
+        "0077de30",
+        "0076af70",
+        "0074ef60",
+        "00749d60",
+        "0074a290",
+        "007d46d0",
+        "007d5250",
+        "00791c10",
+        "00775770",
+        "0075cd00",
+        "00781290",
+        "007812b0",
+        "007812d0",
+        "0074e820"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-motion-velocity-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS (ASan/UBSan/LSan, all237 table words, 288 mappings, actual track/movement/E0 owners with explicit frame/owner doubles)",
+        "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining runtime leaves declaration-only)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "0076b670",
+        "00773980",
+        "00774d50"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS ASan/UBSan/LSan local/external buffer ownership, coordinator, FLOAT/integer endurance/NaN/faults, scope/readiness/three draws, breath audio/order/failure, AC shot gate, item/reload/held dispatch with explicit boundaries",
+        "actual_host_i386": "PASS strict actual World phase instantiation, mandatory Runtime leaves declaration-only",
+        "application_launch": "PASS i386 link",
+        "function_tracker": "PASS render/check and27 tests"
+      },
+      "added_entries": [
+        "0053f9b0",
+        "00588710",
+        "0053cd90",
+        "005457e0",
+        "00545b90",
+        "00493500",
+        "005433b0"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS (ASan/UBSan/LSan, actual face state seeded and frame/audio doubles)",
+        "actual_host_i386": "PASS (strict compile with required runtime gaps declaration-only)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "00758830",
+        "00775480",
+        "007816b0",
+        "00781ba0",
+        "00785290",
+        "00791ac0",
+        "005a62a0",
+        "00758d20"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS (ASan/UBSan/LSan, queued commands and weapon timers with state/frame doubles)",
+        "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining runtime leaves declaration-only)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "0075f230",
+        "00791c60",
+        "007a7470"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native": "PASS (ASan, UBSan and LSan, focused owner fixture with explicit engine doubles)",
+        "actual_host_i386": "PASS (strict compile, remaining runtime leaves declaration-only)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "00416d50",
+        "0058e1c0",
+        "0058e210",
+        "00591930",
+        "007585c0",
+        "007587f0",
+        "007599f0",
+        "00759b80",
+        "00770100",
+        "0077fc70",
+        "0077fce0",
+        "00787270",
+        "00787d50",
+        "007881d0"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native_scene_movement": "PASS (ASan/UBSan/LSan)",
+        "actual_host_i386": "PASS (strict compile)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "00475d50",
+        "005647c0",
+        "00564ef0",
+        "005653c0",
+        "00565540",
+        "005656e0",
+        "00565f30",
+        "00566130",
+        "00566e50",
+        "00567ab0",
+        "00567ba0",
+        "00567c80",
+        "00567df0",
+        "00568190",
+        "00568580",
+        "00568dc0",
+        "00569530",
+        "00569890",
+        "0056a0f0",
+        "0056be90",
+        "005a45c0",
+        "005a5c70",
+        "005aa7b0",
+        "005ae230",
+        "005ac210"
+      ]
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json",
+      "source_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "source_only": true,
+      "desktop_verified": false,
+      "application_loading_enabled": false,
+      "checks": {
+        "native_detours": "PASS (ASan/UBSan/LSan)",
+        "actual_host_i386": "PASS (strict compile)",
+        "application_launch": "PASS (i386 link)",
+        "function_tracker": "PASS (render, check and 27 tests)"
+      },
+      "added_entries": [
+        "00563f90",
+        "0056a6d0",
+        "0056a8e0",
+        "0056c230",
+        "0056de90"
+      ]
+    }
+  ],
+  "verification_scope": "Reported upstream native/i386 results. Remaining Runtime leaves include declarations/doubles. No test execution by this research refresh."
+}

@@ -3,6 +3,7 @@
 
 #include "host/menu_scene.h"
 #include "io/loaded_resource_cache.h"
+#include "io/resource_observations.h"
 
 namespace hd2::host {
 
@@ -14,6 +15,10 @@ public:
     using Resource = EngineFrame;
     using Owner = MenuDriver::Owner;
     CachedResourceBackend(HMODULE module, unsigned category) : module_(module), category_(category) {}
+    void observe_resources(std::shared_ptr<io::ResourceObservations> store)noexcept{observations_=std::move(store);}
+    void observe_data(const char* level,const char* operation,const char* detail,std::uint64_t value)const noexcept {
+        if(observations_)observations_->event(level,operation,detail,value);
+    }
     bool loads_into() const { return category_ != 3; } //006D5600 is RET/zero.
     Owner create() const {
         const auto entry = GetProcAddress(module_, "I3DGetDriver");
@@ -106,6 +111,7 @@ private:
     MenuDriver::Release release_method(Resource* resource) const {
         return scene_method<MenuDriver::Release>(resource, module_, 0, category_ == 3 ? 0x04c80 : 0x1c370);
     }
+    std::shared_ptr<io::ResourceObservations> observations_;
     HMODULE module_;
     unsigned category_;
 };
@@ -119,6 +125,12 @@ public:
         for (unsigned i = 0; i != caches_.size(); ++i)
             caches_[i] = std::make_unique<Cache>(backends_[i], directories.client(i + 1));
     }
+    auto resource_observations()const noexcept{return observations_;}
+    void observe_resources(std::shared_ptr<io::ResourceObservations> store)noexcept{
+        observations_=std::move(store);for(auto& backend:backends_)backend.observe_resources(observations_);
+    }
+    using ObservationScope=io::ResourceObservationScope<LoadedResources>;
+    auto observe_scope(std::shared_ptr<io::ResourceObservations> store){return ObservationScope(*this,std::move(store));}
     Cache& cache(unsigned category) {
         if (category < 1 || category > 5) throw std::out_of_range("Invalid loaded-resource category");
         return *caches_[category - 1];
@@ -147,6 +159,7 @@ public:
         std::puts("Shutdown: loaded-resource caches released before engine drivers");
     }
 private:
+    std::shared_ptr<io::ResourceObservations> observations_;
     std::array<CachedResourceBackend,5> backends_;
     std::array<std::unique_ptr<Cache>,5> caches_;
 };

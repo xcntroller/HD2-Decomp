@@ -16,6 +16,7 @@
 #include "game/mission_effects_loading.h"
 #include "game/particle_module_loading.h"
 #include "game/version_module_loading.h"
+#include "game/version_debris.h"
 #include "game/effects_module_loading.h"
 #include "host/game_world_actors.h"
 #include "host/game_human_animation_events.h"
@@ -23,6 +24,7 @@
 #include "host/game_actor_proximity_loading.h"
 #include "game/human_loading_owner_factory.h"
 #include "game/players_module_loading.h"
+#include "game/human_players_subgroup.h"
 #include "game/human_presentation_shared.h"
 #include "game/mission_subtitles_loading.h"
 #include "game/human_world_loading_services.h"
@@ -44,6 +46,7 @@
 #include "game/human_objective_experience.h"
 #include "game/collision_sweep.h"
 #include "game/human_input_default_receiver.h"
+#include "host/game_occupied_actor_presentation.h"
 
 namespace hd2::host::world_loading {
 struct Dependencies;struct PresentationDependencies;
@@ -55,7 +58,7 @@ using Control=game::HumanPlayerControlLoading<GameSceneActors,Human,Presentation
 using Camera=game::MissionCamera<Frames,Human>;
 using Consumers=game::WorldActorLoadingConsumers<Dependencies>;
 using Actors=GameWorldActors<GameOwnerBackend,Consumers>;
-using Inputs=game::HumanInputLoadingManager<FrameClockPlatform,game::HumanInputCallbacks>;
+using Inputs=StartupSession::HumanInputs;
 struct Sound;
 using Subtitles=game::MissionSubtitlesLoading<GameOwnerBackend::DisplayText>;
 using Dubbing=game::HumanDubbingLoading<Human,Control,Subtitles>;
@@ -67,17 +70,18 @@ using InlineFactory=game::HumanInlineLoadingFactory<Frames,Human,Scene::Buckets,
 using ScriptLink=game::MissionScriptWorldLink<Frames>;
 using Contexts=game::HumanScriptContextServices<Frames,Human,ScriptLink,ScriptLink,GameHumanAudioLoading::Random,Services>;
 
-using Group=game::PlayersSubgroup;
+using Group=game::PlayersSubgroup<Human>;
 using Active=game::HumanActiveAIStateLoading<Frames,Human,Inputs,Services>;
 using Players=game::PlayersModuleLoading<GameSceneActors,Human,Presentation,Active,Services,Group>;
 using Sight=GameSightLoading<Services>;
 struct Hearing;
 using Composition=game::HumanLoadingComposition<InlineFactory,Inputs,Contexts,frontend::HumanStore<HumanPortraits>,GameHumanAudioLoading,Sight::Source,Hearing,GameActorProximityLoading,Camera,Control>;
 using Shared=game::HumanPresentationShared<Frames,Services>;
-using HudWorld=game::HudWorldLoading<Scene::Frames,game::MissionTables<GameOwnerBackend>>;
+using HudWorld=game::HudWorldLoading<Scene::Frames,game::MissionTables<GameOwnerBackend>,StartupSession>;
 using Panels=game::HudPanelsLoading<GameSceneActors,GameOwnerBackend,GameOwnerBackend::Hud,Control,Actors::Items,frontend::OpeningTextStyles,Camera,HudWorld>;
 using Hud=game::HudSceneLoading<GameSceneActors,GameOwnerBackend,GameOwnerBackend::Hud,Panels>;
 using FirstPlayers=game::FirstPersonPlayersLoading<Human,Control,Actors,Composition,GameSceneActors>;
+using SeatPresentation=GameOccupiedActorPresentation<Dependencies,Frames,Actors>;
 using Cursor=game::HudCursorLoading<GameSceneActors,Control,Actors::Items>;
 struct FirstPerson:game::FirstPersonLoadingComposition<GameSceneActors,game::SessionOwner<GameOwnerBackend>::Overlay,Actors::Items,FirstPlayers,Camera,GameAnimationResources,AnimationSound,Cursor,game::EffectsShadowModels<Frames>>{using FirstPersonLoadingComposition::FirstPersonLoadingComposition;};
 using PlayerModes=game::HumanPlayerModeLoading<Actors::Items,FirstPerson::View,FirstPlayers>;
@@ -88,12 +92,11 @@ using Router=game::HumanSoundStateRouter<Frames,Human,Composition::StateFactory,
 struct Hearing:GameHumanSoundLoading<Services,Router,StartupSession>{using GameHumanSoundLoading::GameHumanSoundLoading;};
 
 using OwnerFactory=game::HumanLoadingOwnerFactory<Composition,Dependencies,Services>;
-using SpawnRefresh=std::function<void(Camera&)>;
-using SpawnPresentation=game::OfflineSpawnPresentation<Human,Control,Camera,SpawnRefresh>;
+using SpawnPresentation=game::SessionSpawnPresentation<Human,Services>;
 using SpawnRecords=game::PreparedSpawnPackets<StartupSession,GameSceneActors,SpawnPresentation>;
-using SpawnDecoder=game::OfflineSpawnPacketDecoder<SpawnRecords,SpawnPresentation>;
+using SpawnDecoder=game::SessionSpawnPacketDecoder<SpawnRecords,SpawnPresentation>;
 struct Dependencies{using Frame=EngineFrame*;using ActorFrames=Frames;using Composition=Composition;StartupSession& startup;const game::MissionRequest& request;game::SessionActivationState& session;Scene& scene;Actors& world_actors;Players& players;FirstPerson& first_person;game::HumanFaceResources<Frames>& faces;GameAnimations& animations;Shared& presentation_shared;Music& music;Sound& sound;Dubbing& dubbing;game::MissionSubtitlesLoading<GameOwnerBackend::DisplayText>& subtitles;Hud& hud;FirstPlayers& first_players;
- GameHumanAudioLoading& audio;Events& animation_events;Presentation& presentation;const frontend::PreMissionItemCatalogue& catalogue;Sweep& sweep;Inputs& inputs;game::MissionTableSet& second_tables;game::MissionNavigation& navigation;game::HumanInputCallbacks& input_callbacks;Contexts& contexts;frontend::HumanStore<HumanPortraits>& profiles;Sight& sight;Hearing& hearing;GameActorProximityLoading& proximity;Camera& camera;OwnerFactory& human_factory;ScriptLink& script_link;game::CarLoadingResources<Frames>& car_resources;game::CarDefinitionTables& car_definitions;game::SessionBroadcastPackets& broadcast_packets;SpawnDecoder& spawn_decoder;FrameClockPlatform& clock;game::MissionWorldBounds& bounds;};
+ GameHumanAudioLoading& audio;Events& animation_events;Presentation& presentation;const frontend::PreMissionItemCatalogue& catalogue;Sweep& sweep;Inputs& inputs;game::MissionTableSet& second_tables;game::MissionNavigation& navigation;game::HumanInputCallbacks& input_callbacks;Contexts& contexts;frontend::HumanStore<HumanPortraits>& profiles;Sight& sight;Hearing& hearing;GameActorProximityLoading& proximity;Camera& camera;OwnerFactory& human_factory;ScriptLink& script_link;game::CarLoadingResources<Frames>& car_resources;game::CarDefinitionTables& car_definitions;game::SessionBroadcastPackets& broadcast_packets;SpawnRecords& spawn_records;SpawnDecoder& spawn_decoder;FrameClockPlatform& clock;game::MissionWorldBounds& bounds;};
 using Scripts=game::MissionScriptWorldLoading<Composition,ChunkFiles,Services,Players,FirstPlayers,Sight::Source,Hearing,FirstPerson::View,Camera,game::EffectsShadowModels<Frames>,GameHumanAudioLoading::Random,Hud,Scene::Buckets,FrameClockPlatform>;
 
 
@@ -134,7 +137,7 @@ public:
            game::CarDefinitionTables& definitions,const game::CarMaterialRegistry& materials)
         :bindings_(bindings.require_unbound(scene,parent,startup)),startup_(startup),scene_(scene),mode_(startup.application_flags_owner()),navigation_(parent.tables()->sets()[0]),
          actors_(scene,bindings.consumers,navigation_,vertices,startup.text(),catalogue,suffix,startup.pre_mission_files(),clock,game::SessionTimeWord(session)),
-         camera_(scene.frames()),inputs_(clock,startup.human_input_shared()),audio_(startup,scene.frames()),
+         camera_(scene.frames()),inputs_(startup.prepare_game_human_inputs()),input_callbacks_(startup.game_human_input_callbacks()),audio_(startup,scene.frames()),
          faces_(scene.frames()),animation_resources_(startup.loaded_resources()),shared_(scene.frames(),bindings.services,startup.human_projection_process()),
          music_(Music::LiveTracks{scene.documents().fields().field_c8,scene.documents().fields().field_cc}),
          players_(startup.game_module_registry(),scene.frames(),bindings.presentation,startup.players_process(),bindings.services,startup.game_module_registration(11)),
@@ -146,36 +149,37 @@ public:
          sight_(scene.frames(),bindings.services,startup.game_sight_work_clock()),router_(scene.frames(),bindings.services),
          hearing_(scene.frames(),sight_,bindings.services,router_,startup),proximity_(scene.frames(),startup),
          first_players_(players_.control(),actors_,scene.frames(),session,startup.local_player_identity()),
-         hud_world_(scene.frames(),session,*parent.tables()),
+         hud_world_(scene.frames(),session,*parent.tables(),startup),
          hud_(scene.frames(),backend,startup,*parent.hud(),players_.control(),actors_.items(),camera_,hud_world_),
          first_person_(scene.frames(),*parent.overlays(),actors_.items(),first_players_,camera_,animation_resources_,animation_sound_,hud_.panels().cursor(),scene.effects(),catalogue,scene.documents().fields().field_of_view),
          player_modes_(actors_.items(),first_person_.view(),first_players_,session,startup.mission_integrity_tables(),startup.first_person_preference(),startup.game_configuration(),scene.documents().fields().field_of_view,startup.local_player_identity()),
          car_random_([&startup]{return static_cast<int>(startup.random_word());}),
          car_resources_{scene.car_callbacks().car_tyres(),materials,startup.car_sound_receivers(),startup.car_light_receivers(),scene.car_callbacks().car_particle_pool(),startup.car_seat_camera_shared(),car_random_},
-         packets_(startup.game_broadcast_packets()),spawn_refresh_([this](Camera& camera){refresh_camera(camera);}),
-         spawn_presentation_(players_.control(),camera_,spawn_refresh_,mode_,startup.local_player_identity()),
+         packets_(startup.game_broadcast_packets()),
+         spawn_presentation_(bindings.services),
          spawn_records_(startup.game_control_records(),packets_,startup,scene.frames(),spawn_presentation_,mode_,session),
          spawn_decoder_(spawn_records_,spawn_presentation_,mode_),
          presentation_dependencies_{shared_,mode_,startup,startup.local_player_identity(),player_modes_,first_person_,camera_,players_,first_players_,hud_.scene()},
          dependencies_{startup,parent.request(),session,scene,actors_,players_,first_person_,faces_,startup.game_animations(),shared_,music_,sound_,dubbing_,subtitles_,hud_.scene(),first_players_,
-            audio_,events_,bindings.presentation,catalogue,sweep_,inputs_,parent.tables()->sets()[1],navigation_,input_callbacks_,contexts_,startup.pre_mission_humans(),sight_,hearing_,proximity_,camera_,bindings.human_factory,script_link_,car_resources_,definitions,packets_,spawn_decoder_,clock,bounds_} {
+            audio_,events_,bindings.presentation,catalogue,sweep_,inputs_,parent.tables()->sets()[1],navigation_,input_callbacks_,contexts_,startup.pre_mission_humans(),sight_,hearing_,proximity_,camera_,bindings.human_factory,script_link_,car_resources_,definitions,packets_,spawn_records_,spawn_decoder_,clock,bounds_} {
         try {
             bindings_.services.bind_dependencies(dependencies_);
             bindings_.presentation.bind_dependencies(presentation_dependencies_);
             bindings_.human_factory.bind_dependencies(dependencies_);
             bindings_.consumers.bind_dependencies(dependencies_);
+            occupied_presentation_.bind_dependencies(dependencies_);
+            first_players_.bind_seat_presentation(occupied_presentation_);
             auto* callbacks=dynamic_cast<GameCarCallbacks*>(&scene.car_callbacks());
             if(!callbacks)throw std::logic_error("Containing world requires its actual Car callback owner");
             actors_.bind_car_physics(*callbacks);
+            players_.bind_subgroup_factory([this](Human* leader,std::int32_t identity){
+                return std::make_unique<game::HumanPlayersSubgroup<Frames,Human,Services>>(scene_.frames(),navigation_,bindings_.services,leader,identity);
+            });
             scripts_=std::make_unique<Scripts>(startup.game_module_registry(),startup.game_module_registration(4),
                 scene.frames(),startup.pre_mission_files(),bindings.services,players_,first_players_,sight_.source(),hearing_,
                 first_person_.view(),camera_,scene.effects(),audio_.random_source(),hud_.scene(),scene.buckets(),clock,session,
                 startup.mission_integrity_tables(),startup.mission_script_variables(),packets_,mode_,startup.script_advance_override(),
                 parent.request().preparation.mission_resource,script_link_);
-            inputs_.configure(input_profiles_,
-                [this](std::int32_t identity){return game::human_input_default_receiver(scene_.frames(),input_callbacks_,identity,false);},
-                [this](std::int32_t identity){return game::human_input_default_receiver(scene_.frames(),input_callbacks_,identity,true);},
-                startup_.local_player_identity(),mode_);
         }catch(...){unbind();throw;}
     }
     ~Owners(){close();}
@@ -188,7 +192,7 @@ public:
     Services& human_services(){require_open();return bindings_.services;}
     Scripts& scripts(){require_open();return *scripts_;}
     auto& spawn_records(){require_open();return spawn_records_;}
-    auto& input_profiles(){require_open();return input_profiles_;}
+    auto& input_profiles(){require_open();return inputs_.profiles();}
     auto& hud_panels(){require_open();return hud_.panels();} //SAME inline panel owners; no second HUD.
     void close()noexcept {
         if(closed_)return;closed_=true;
@@ -200,33 +204,32 @@ public:
         errors.attempt([&]{first_person_.close(mode_);});
         errors.attempt([&]{camera_.clear();});
         errors.attempt([&]{startup_.clear_game_dubbing();});
+        players_.retire_subgroup_loans(); //Source guard: retire subgroup Script loans before Human owners, including native finish-dropped groups.
         actors_.close(); //Retracts Human lifetimes BEFORE binding aggregates.
         errors.attempt([&]{hud_.close();});
-        inputs_.clear();shared_.clear();
+        shared_.clear(); //Input records/embedded30 belong to process14; actual B0 retirement detaches its own borrowers.
         if(errors.failed())try{errors.rethrow();}catch(...){scene_.frames().record_actor_cleanup_failure(std::current_exception());}
         unbind();
     }
 private:
     void require_open()const{if(closed_)throw std::logic_error("Containing world owners are retired");}
-    void refresh_camera(Camera& camera){
-        auto& view=first_person_.view();camera.refresh_current_loading_target(players_.control(),view.enabled(),view.secondary_enabled(),
-            [this](Human& human){return first_players_.control_sector(human);},first_players_.camera_retirement());
-    }
     void unbind()noexcept{
+        first_players_.unbind_seat_presentation(occupied_presentation_);
+        occupied_presentation_.unbind_dependencies(dependencies_);
         bindings_.consumers.unbind_dependencies(dependencies_);
         bindings_.human_factory.unbind_dependencies(dependencies_);
         bindings_.presentation.unbind_dependencies(presentation_dependencies_);
         bindings_.services.unbind_dependencies(dependencies_);
     }
     Bindings& bindings_;StartupSession& startup_;Scene& scene_;std::uint32_t& mode_;
-    game::MissionNavigation navigation_;Actors actors_;Camera camera_;Inputs inputs_;game::HumanInputSessionProfiles input_profiles_;game::HumanInputCallbacks input_callbacks_;
+    game::MissionNavigation navigation_;Actors actors_;Camera camera_;Inputs& inputs_;game::HumanInputCallbacks& input_callbacks_;
     GameHumanAudioLoading audio_;game::HumanFaceResources<Frames> faces_;GameAnimationResources animation_resources_;
     Shared shared_;Music music_;Players players_;Subtitles subtitles_;Dubbing dubbing_;Sound sound_;
     AnimationActors animation_actors_;AnimationSound animation_sound_;Events events_;Sweep sweep_;
     ScriptLink script_link_;Contexts contexts_;Sight sight_;Router router_;Hearing hearing_;GameActorProximityLoading proximity_;
-    FirstPlayers first_players_;HudWorld hud_world_;GameHudLoading<Control,Actors::Items,Camera,HudWorld> hud_;
+    SeatPresentation occupied_presentation_;FirstPlayers first_players_;HudWorld hud_world_;GameHudLoading<Control,Actors::Items,Camera,HudWorld> hud_;
     FirstPerson first_person_;PlayerModes player_modes_;std::function<int()> car_random_;game::CarLoadingResources<Frames> car_resources_;
-    game::SessionBroadcastPackets& packets_;SpawnRefresh spawn_refresh_;SpawnPresentation spawn_presentation_;SpawnRecords spawn_records_;SpawnDecoder spawn_decoder_;
+    game::SessionBroadcastPackets& packets_;SpawnPresentation spawn_presentation_;SpawnRecords spawn_records_;SpawnDecoder spawn_decoder_;
     game::MissionWorldBounds bounds_;
     PresentationDependencies presentation_dependencies_;Dependencies dependencies_;std::unique_ptr<Scripts> scripts_;bool closed_=false;
 };
@@ -258,9 +261,41 @@ public:
          versions_(registry(),registration(7),d_.scene.frames(),d_.scene.buckets(),d_.startup.application_flags_owner()),
          lightmaps_(registry(),registration(8),d_.scene.frames()),shifts_(registry(),registration(10)),
          shots_(registry(),registration(14),d_.scene.frames(),d_.startup.shot_manager_process(),d_.startup.application_flags_owner()),
-         heavy_fire_(registry(),registration(16),d_.startup.heavy_fire_process()),particles_(registry(),registration(17),mission_effects_),
+         heavy_fire_(registry(),registration(16),d_.startup.heavy_fire_process(),d_.startup.pre_mission_files()),particles_(registry(),registration(17),mission_effects_,
+             [this]{return d_.session.words.template get<std::uint8_t>(0x64)!=0;},
+             [&owners](const game::HumanVector& position){return static_cast<float>(owners.human_services().human_scene_light(position,Frames::Frame{},true));}),
          dependencies_{d_.startup,d_.request,d_.scene,d_.world_actors,d_.session,owners.human_services(),d_.presentation_shared,owners.scripts(),d_.sight,d_.players,d_.camera,
-             tracks_,effects_,versions_,lightmaps_,shifts_,vertices,shots_,heavy_fire_,particles_},dispatch_(dependencies_){}
+             tracks_,effects_,versions_,lightmaps_,shifts_,vertices,shots_,heavy_fire_,particles_},dispatch_(dependencies_){
+        typename Versions::TransitionServices services;
+        services.script=[this](Frames::Frame frame,bool hit){
+            const auto* data=d_.scene.frames().find_actor_frame_data(frame);if(!data||!data->words[1])return;
+            auto* context=dependencies_.scripts.module().contexts().context_for_frame(frame);
+            if(!context)throw std::logic_error("Version script metadata has no actual containing context");
+            if(hit)context->hit((d_.startup.application_flags()&1u)!=0);
+            else context->death(dependencies_.scripts.runtime()); //0041D920; no gameplay-save suppression producer is exposed here.
+        };
+        services.particle=[this](Frames::Frame frame,std::int32_t id){
+            if(frame)(void)d_.startup.mission_effects_process().emit(static_cast<std::uint32_t>(id),d_.scene.frames().actor_world_matrix(frame),Frames::Frame{},true,false);
+        };
+        services.sound=[this](Frames::Frame frame,std::int32_t id){
+            if(id==-1||!frame)return;
+            frontend::SpatialSoundRequest request;const auto matrix=d_.scene.frames().actor_world_matrix(frame);
+            request.position={{matrix[12],matrix[13],matrix[14],matrix[15]}};request.group=7;request.flags=1;request.entry=id;(void)d_.sound.emit(request);
+        };
+        services.debris=[this](Frames::Frame source,Frames::Frame group,std::uint32_t material,Frames::Frame master,bool effects){
+            struct Random {StartupSession& startup;std::int32_t fowl_random_word(){return static_cast<std::int32_t>(startup.random_word());}} random{d_.startup};
+            game::emit_version_debris(d_.scene.frames(),d_.world_actors.physics(),random,source,group,material,master,effects);
+        };
+        services.publish=[this](std::uint32_t master,std::uint32_t part,std::uint32_t stage){
+            auto& packet=d_.broadcast_packets.begin(7,0);packet.write(master,16);packet.write(part,8);packet.write(stage,8);packet.finish_broadcast();
+        };
+        versions_.bind_transition_services(std::move(services));
+        car_versions_=dynamic_cast<GameCarCallbacks*>(&d_.scene.car_callbacks());
+        if(!car_versions_)throw std::logic_error("Versions binding requires actual scene Car callback owner");
+        try{d_.world_actors.bind_versions(versions_);car_versions_->bind_versions(versions_);}
+        catch(...){d_.world_actors.unbind_versions(versions_);car_versions_->unbind_versions(versions_);throw;}
+    }
+    ~ModuleOwners(){d_.world_actors.unbind_versions(versions_);if(car_versions_)car_versions_->unbind_versions(versions_);}
     ModuleOwners(const ModuleOwners&)=delete;ModuleOwners& operator=(const ModuleOwners&)=delete;
     auto& dispatch(){return dispatch_;}auto& mission_effects(){return mission_effects_;}
     auto& game_effects(){return effects_;}
@@ -272,7 +307,7 @@ private:
     Dependencies& d_;MissionEffects mission_effects_;game::MissionTracksLoading tracks_;Effects effects_;Versions versions_;
     game::MissionLightmapGroupsLoading<Frames> lightmaps_;game::MissionTextureShiftLoading shifts_;
     game::ShotManagerLoading<Frames> shots_;game::HeavyFireModuleLoading heavy_fire_;Particles particles_;
-    ModuleDependencies dependencies_;GameLoadingModules<ModuleDependencies> dispatch_;
+    ModuleDependencies dependencies_;GameLoadingModules<ModuleDependencies> dispatch_;GameCarCallbacks* car_versions_=nullptr;
 };
 
 //One actual cold world/session dependency allocation. Original loader stages
@@ -298,12 +333,30 @@ public:
         std::printf("P2.2 event=world_constructed result=success loaded14=%u\n",session.loaded?1u:0u);
     }
     ~World()override{
-        startup_.unbind_game_packet_world(*this);
         startup_.blast_wave_process().clear(); //Source failure guard: retained frames cannot outlive World/Scene retirement.
+        owners_.close(); //SAME current-game/default input getter remains published through Human/B0 retirement.
+        startup_.unbind_game_packet_world(*this);
     }
     bool world_loaded()const override{return owners_.session_loaded();}
     bool dispatch_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority)override{
         return modules_.dispatch().dispatch_packet(kind,packet,authority);
+    }
+    void receive_application_objective(std::uint32_t identity,std::uint32_t status)override{
+        owners_.scripts().runtime().receive_human_objective_status(static_cast<std::int32_t>(identity),static_cast<std::int32_t>(status));
+    }
+    void receive_application_peer_departure(std::uint32_t transport)override{owners_.human_services().retire_session_peer(transport);}
+    void receive_application_local_removal(std::uint32_t reason)override{
+        game::receive_local_session_removal(owners_.dependencies().session,reason,owners_.dependencies().hud);
+    }
+    void receive_application_spawn_rejection(std::uint32_t reason)override{
+        auto& d=owners_.dependencies();auto& services=owners_.human_services();
+        game::receive_session_spawn_rejection(d.session,d.startup.pre_mission().squad(),reason,[&]{
+            d.hud.show_map([&]{return services.mode_flags();},[&](bool enabled){services.spawn_pause(enabled);});
+        });
+    }
+    void append_application_message(const std::string& message)override{owners_.dependencies().hud.append_message(message.c_str(),{{255,255,255}});}
+    game::HumanInputCallbacks* input_default_receiver(std::int32_t identity,bool secondary)override{
+        return game::human_input_default_receiver(scene_.frames(),startup_.game_human_input_callbacks(),identity,secondary);
     }
     World(const World&)=delete;World& operator=(const World&)=delete;
     Scene& scene(){return scene_;}Owners& owners(){return owners_;}ModuleOwners& modules(){return modules_;}

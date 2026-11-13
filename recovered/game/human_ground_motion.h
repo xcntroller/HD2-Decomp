@@ -105,11 +105,11 @@ void apply_human_ground_material(Control& control,Human& human,Services& service
     auto& state=control.physical().control_frame_words();
     const float time=static_cast<float>(elapsed);
     switch(material){
-    case 70:runtime.damage_human_ground_material(human,15u,time*.12f);return;
-    case 71:runtime.damage_human_ground_material(human,6u,time*.16f);state.set(0x75c,71u);return;
-    case 90:runtime.damage_human_ground_material(human,6u,time*.14f);state.set(0x75c,90u);return;
-    case 72:runtime.damage_human_ground_material(human,6u,-1.f);return;
-    case 93:runtime.damage_human_ground_material(human,9u,-1.f);return;
+    case 70:services.apply_human_damage(human,15u,time*.12f,HumanVector{},HumanVector{},static_cast<Human*>(nullptr),0);return;
+    case 71:services.apply_human_damage(human,6u,time*.16f,HumanVector{},HumanVector{},static_cast<Human*>(nullptr),0);state.set(0x75c,71u);return;
+    case 90:services.apply_human_damage(human,6u,time*.14f,HumanVector{},HumanVector{},static_cast<Human*>(nullptr),0);state.set(0x75c,90u);return;
+    case 72:services.apply_human_damage(human,6u,-1.f,HumanVector{},HumanVector{},static_cast<Human*>(nullptr),0);return;
+    case 93:services.apply_human_damage(human,9u,-1.f,HumanVector{},HumanVector{},static_cast<Human*>(nullptr),0);return;
     default:break;
     }
     const bool eligible=state.template get<std::int32_t>(0x1d8)<190||(services.game_word28()/100u)%10u==0;
@@ -256,7 +256,7 @@ void apply_human_fall_damage(Control& control,Human& human,Services& services,Ru
         }
         if(!state.template get<std::uint8_t>(0xa90)&&
                 ((control.mode_flags()&7u)==7u||runtime.human_fall_damage_authority(control))){
-            if(control.mode_flags()&1u)runtime.damage_human_from_fall(human,std::min(amount,1000.f)); //Actual Human virtualD4(0,amount,zero,zero,self,0).
+            if(control.mode_flags()&1u)services.apply_human_damage(human,0,std::min(amount,1000.f),HumanVector{},HumanVector{},&human,0); //Actual Human virtualD4.
             else runtime.send_human_fall_damage(human,amount); //005A9BF0, original packet receiver owns truncation.
         }
         movement.set(0xfc,inactive);

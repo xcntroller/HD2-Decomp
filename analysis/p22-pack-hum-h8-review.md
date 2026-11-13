@@ -1,6 +1,10 @@
-# P22-PACK dependency reassessment — 2026-11-12
+# Historical P22-PACK dependency reassessment — 2026-11-12
 
-**P22-PACK remains blocked.** Read-only review of committed
+**Historical snapshot: PACK was blocked at14d59d3.** The selected dependencies
+were completed through51082a2 and integrated in the [final PACK source closure](p22-pack-source-closure.md).
+The revision-specific review below is preserved as evidence.
+
+PACK was blocked. Read-only review of committed
 `feature/p22-hum-h8` at `14d59d33b028c3bab1c350cbe7b98bce286fc69a`;
 local and `origin/feature/p22-hum-h8` refs agree. PACK HEAD is
 `31b87862a49e8c43394ff7469d1a37a607facd6e`. No fetch, merge, source import,

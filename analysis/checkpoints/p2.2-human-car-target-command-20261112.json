@@ -1,0 +1,202 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "b99f0882597a264f9522f05c2cba23bc6073bf4b",
+  "branch": "feature/p22-hum",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-hum",
+  "source_only": true,
+  "completed_plan_checkpoints": [
+    "D4b"
+  ],
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "004dec60",
+    "004ddcf0",
+    "005406c0"
+  ],
+  "extended_entries": [
+    "00586200",
+    "00540db0",
+    "004dead0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 3011,
+  "source_files": {
+    "recovered/game/car_callback_services.h": {
+      "sha256": "b2e3823b78cd04e4a26575f57e4f491f73b16d5d1061a1824a8888915606478e",
+      "bytes": 6280
+    },
+    "recovered/game/car_frame_events.h": {
+      "sha256": "a6bdbd36f928abadb4e976ca798a48687787c5cef669790547aeef69b20c387c",
+      "bytes": 4571
+    },
+    "recovered/game/human_loading_state_factory.h": {
+      "sha256": "7feed7136a8d6e0653091f86249f997742cca88a1d44e32673c78342a451721a",
+      "bytes": 15504
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "33a57f9135f7a957c0d62b029428eadf6a2aed5d4b0a7e154544427c886a0fea",
+      "bytes": 121549
+    },
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "a66f1c01699e0612ad0eca835568f44f52cb852819d2b1a1c11abc83f061577e",
+      "bytes": 23045
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "d233bd8d6270e187a849faf995858ef7e5c5d61709aff810bc7526eea5094a5c",
+      "bytes": 13775
+    },
+    "recovered/host/game_car_frames.h": {
+      "sha256": "4d0917b0b66b42e9d540fb8093749118c2807b7efd6dc189bdba5a83a7e0a04c",
+      "bytes": 28104
+    },
+    "recovered/game/car_targeted_placement.h": {
+      "sha256": "dd5d7ae9b650c8ed3ef1de52e3ff38301238a68eabf2292a3562a1fd02630527",
+      "bytes": 1376
+    },
+    "recovered/game/human_common_command.h": {
+      "sha256": "1d484fcec21eafe008e1943a68cedbb1b81c83e9d573154e4d8f484ccaa984e2",
+      "bytes": 2667
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-target-command-native.cpp": {
+      "sha256": "393416647e5ffd51b41996be000c7456764ae61b09ef89cd2611e72ed1fd846d",
+      "bytes": 12555
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-native": {
+      "sha256": "ba6352c60094e5bc3c3cd89d03870bfa8b299a2c7145ad7b164ce34e032d1aeb",
+      "bytes": 3018416
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-native.log": {
+      "sha256": "ed4a33c4ec23cb8b7494766adfe599c85a389a97837d9343075e7f9efdb5416a",
+      "bytes": 169
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-host-i386.cpp": {
+      "sha256": "50eadd6eae5b6c30aa61aa6a857d9e67cf191c8e0aba52c0cdbd1f7b22cf711b",
+      "bytes": 1335
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-host-i386.o": {
+      "sha256": "bd7d3c857402fa0d57a3bed9dd8e9bab883b58564c415bed3f394c93dab45a24",
+      "bytes": 18183249
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-regression-native": {
+      "sha256": "d1a761c64b568826d7e4ba103afdd954f408e98e6789f8d27daba64ed8241b19",
+      "bytes": 1573704
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-regression-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-regression-native.log": {
+      "sha256": "dc9413d3e57b07d4b5b958715aa9ae2816f27408940770d4bac2346fa5eb0c5b",
+      "bytes": 128
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-application-i386.log": {
+      "sha256": "db337f5e0b07bd1e8c9601b68bf7eb02db94acb9a7fe5d9b8149f124f5a12e60",
+      "bytes": 796
+    },
+    "analysis/work/mission-world-20261103/human-car-target-placement-oracle.json": {
+      "sha256": "708d867c2d0b4d4f6f7e9b852f1caa2986c9af18fd323596dd6fac7bff34c766",
+      "bytes": 171
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-car-ai-command-containing-index.txt": {
+      "sha256": "32a1b8847b34bc559e1be58ef6e3207c76344013647c385f5887466314acba8e",
+      "bytes": 16423
+    },
+    "analysis/work/mission-world-20261103/human-car-command3-wire-index.txt": {
+      "sha256": "176f99eeed21f5f01b2abc78c53812f0fffc28dd65b99d8d42ee4ffdcae6936d",
+      "bytes": 6564
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-deps-index.txt": {
+      "sha256": "38f79272ce849499432e7328103d098e7ed997410fa65395d052827f1c8afb84",
+      "bytes": 11847
+    },
+    "analysis/work/mission-world-20261103/human-car-command3-vtable-evidence.json": {
+      "sha256": "b7ede8d0a0a48d6fa06a15fbfd5f2ed9afb66b2af7c0345deb1e02b306b9031c",
+      "bytes": 733
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-subtype14.asm": {
+      "sha256": "472dcb2ea42add4c184224e0e0b6adff21ae38fb66876f5334cccd5461516647",
+      "bytes": 5603
+    },
+    "analysis/work/mission-world-20261103/human-car-target-transform.asm": {
+      "sha256": "0282b96a9aa49a653a167dfbfc3266ba96f48b4f5be8e32f7cb2894509b08f6b",
+      "bytes": 5387
+    },
+    "analysis/work/mission-world-20261103/human-car-command3-authority.asm": {
+      "sha256": "303ad4cd71007c04fa2544f93925e465d3bbd4d7f8ae3c177c1a8c8003d41af6",
+      "bytes": 15976
+    },
+    "analysis/work/mission-world-20261103/ExportHumanCarTargetTransformABI.java": {
+      "sha256": "42d024ef6f6c5e819f61ff7f3e9a7707202d147ac2324c41f05c8e6fccdc2eb0",
+      "bytes": 1521
+    },
+    "analysis/work/mission-world-20261103/human-car-target-transform-final.log": {
+      "sha256": "6e1c3249ee78ee8e025c583f72d6a7894a307606304620c162be2837c5c8d07b",
+      "bytes": 5366
+    },
+    "analysis/work/mission-world-20261103/human-car-target-transform-final/00586200.c": {
+      "sha256": "433f1bc268928bd2b40026094bdfe538b9c7cf400874d641030b954692595ded",
+      "bytes": 20274
+    },
+    "analysis/work/mission-world-20261103/human-car-target-transform-final/00586200.json": {
+      "sha256": "71993545400fb962cbe7c6dabd9298d295a07ed4ec195d8d0833e8692275e164",
+      "bytes": 80046
+    },
+    "analysis/work/mission-world-20261103/human-car-target-transform-final/004dec60.c": {
+      "sha256": "f305bc5320bd8c7e085c89bab7123db8ae23b5f59eff0234a7448592a85e0679",
+      "bytes": 1233
+    },
+    "analysis/work/mission-world-20261103/human-car-target-transform-final/004dec60.json": {
+      "sha256": "f72fa295ba9f6ca936f0bf74300cb3013727cac1ebf8dd3806108a9cfb1f80de",
+      "bytes": 2659
+    },
+    "analysis/work/mission-world-20261103/car-contact-trigger-dependencies/004ddcf0.c": {
+      "sha256": "7a96f5999e515f2d994173774566c3d64214d50e04da031dced2611b27be4223",
+      "bytes": 225
+    },
+    "analysis/work/mission-world-20261103/human-damage-presentation-abi-v3/005406c0.c": {
+      "sha256": "bcf5007ca3570e68f89cb8218e989c9309ee862ebba978de153985a68f77e6dd",
+      "bytes": 5917
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/00540db0.c": {
+      "sha256": "02adbf2ae579692c46b74dad66d9fcb1e3c0796a9e92f68e46a079b3b504e749",
+      "bytes": 12894
+    },
+    "analysis/work/mission-world-20261103/process-packet-receivers/005418e0.c": {
+      "sha256": "8df02af12cd5f56f28ca534c0b09dd3e302c0b685eeb9bae992008d85d6fad5d",
+      "bytes": 1546
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan100 families PASS over actual B0 base/ActorStorageOwner/hand holder/packet grammar and receiver/common admission/Car timer and presentation/identity inventory retirement source.",
+    "Explicit Scene/engine/Car activation/Items registry/input endpoints; no fake original execution or missing XYZ producer.",
+    "Guards preserve refresh-before-lookup, target/item/definition/head/health/busy ordering, fresh mode after pick and after presentation, pure Player consume, Remote mode1 suppress, full payload before effect, truncated packets, authority forwarding parameter and interrupted clone/consume mutation.",
+    "Ray miss remains optional: zero-health/busy skip, mode2-clear authority succeeds without reading, presentation required XYZ read fails honestly.",
+    "Independent Decimal100 oracle XY47C5FEF6 versus Z47C5FEF7 PASS.",
+    "Original100 D4a event/inventory/presentation families PASS in NEW regression binary/log; frozen ignored artifact files preserved.",
+    "Strict actual nested World/Car/Human/module13/Items/command3 and targeted receiver i386 instantiation PASS; final launcher/startup-probe compile/link PASS, no Windows output run.",
+    "No Ghidra export during this implementation; existing read-only rollback exports, raw caller/placement and bounded vtable reads used. Heavy compilation sequential."
+  ],
+  "limitations": [
+    "Typed/template/STL/RAII/checked-frame adaptation; no original object/allocator/SEH/virtual ABI, whole-body equivalence or running Human/Car frame.",
+    "Only selected00586200 subtype14/common command3 effects are enabled. Other H4 subtypes retain required failures; D5 occupied/mounted/non7 Car activation/frame remains open.",
+    "Native100 uses actual B0 base but explicit derived-state/Scene/engine/Car activation/Items registry/input endpoints. Full World/frame composition remains D10/D12.",
+    "Confirmed D11 part5F9/wheel695/EXPL8/smoke14 and presentation ray-miss XYZ remain honest reached failures; no arbitrary initialization.",
+    "Application/render and actual desktop acceptance remain open; delegated engine/Items/Human/cache bodies receive no new credit."
+  ]
+}

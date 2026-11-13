@@ -66,6 +66,9 @@ public:
     EngineFrame* resource(unsigned table,unsigned row) const {
         return this->row(table,row).animation.get();
     }
+    GameAnimationResources::Reference named_clip(const std::string& name){ //0077CE10→0041FC10, actual category3 loan; no table-loading side effect.
+        GameAnimationResources::Reference clip;(void)resources_.resolve_animation(name,clip);return clip;
+    }
     EngineFrame* holster_pose() { //0078CE20's0098ADB0, SAME category3 cache.
         if(!holster_pose_) {
             GameAnimationResources::Reference next;

@@ -2,6 +2,9 @@
 #define HD2_FRONTEND_CONTROL_STARTUP_H
 
 #include "frontend/settings_sound.h"
+#include "frontend/multiplayer_server.h"
+#include "frontend/control_connection_records.h"
+#include "game/session_network_parameters.h"
 #include <bitset>
 #include <optional>
 #include <stdexcept>
@@ -25,16 +28,38 @@ public:
     }
     void word(std::size_t offset, std::uint32_t value) {
         if (offset > size - 4) throw std::out_of_range("Original control record word");
+        if(offset==0x3c){
+            if(value)throw std::logic_error("Control Human borrower cannot be manufactured from a DWORD");
+            human3c_=nullptr;
+        }
+        if(offset==0x6c){
+            if(value)throw std::logic_error("Control connection cannot be manufactured from a DWORD");
+            connection6c_=nullptr;
+            connection_lifetime_.reset();
+        }
         for (unsigned i = 0; i != 4; ++i) byte(offset + i, static_cast<std::uint8_t>(value >> (i * 8)));
     }
     std::uint32_t word(std::size_t offset)const {
         if(offset>size-4)throw std::out_of_range("Original control record word");
+        if(offset==0x3c&&human3c_)throw std::logic_error("Control Human borrower requires its typed access");
+        if(offset==0x6c&&connection6c_)throw std::logic_error("Control connection requires its typed access");
         std::uint32_t value=0;
         for(unsigned n=0;n!=4;++n){const auto v=byte(offset+n);
             if(!v)throw std::runtime_error("Control record word has no original producer");
             value|=std::uint32_t{*v}<<(8*n);}
         return value;
     }
+    void* human_actor()const{(void)byte(0x3c).value();return human3c_;}
+    void human_actor(void* actor){word(0x3c,0);human3c_=actor;} //00612A60 borrows;0059E3E0/reset clears, never owns.
+    ControlConnectionRecord* connection()const{
+        for(unsigned n=0;n<4;++n)if(byte(0x6c+n).value())
+            throw std::logic_error("Control connection requires its actual typed owner");
+        if(connection6c_){const auto lifetime=connection_lifetime_.lock();
+            if(!lifetime||!lifetime->live)throw std::logic_error("Control connection borrower outlived its actual owner");}
+        return connection6c_;
+    }
+    void connection(ControlConnectionRecord* value){word(0x6c,0);connection6c_=value;
+        connection_lifetime_=value?value->lifetime():std::weak_ptr<ControlConnectionRecord::Lifetime>{};}
     std::string name()const {
         std::string value;
         for(std::size_t n=8;n!=size;++n){const auto c=byte(n);
@@ -46,6 +71,9 @@ public:
 private:
     std::array<std::uint8_t, size> bytes_{};
     std::bitset<size> defined_;
+    void* human3c_=nullptr;
+    ControlConnectionRecord* connection6c_=nullptr;
+    std::weak_ptr<ControlConnectionRecord::Lifetime> connection_lifetime_;
 };
 
 // 00725A50 via00725A40: only these bytes are written; reset preserves the rest.
@@ -63,23 +91,31 @@ inline void initialize_control_record(ControlStartupRecord& record) {
 }
 
 // Records the original callback identity, not an executable original-client
-// address. Actual0072C360 routes packed events to0072C170/0072C230; its consumer
-// and those destinations must be reconstructed before enabling that service.
+// address. Actual0072C360 now routes payloads to SAME0072C170/0072C230 process
+// FIFOs. DirectPlay admission/current-application composition remains required.
 enum class ControlStartupCallback { packed_event_0072c360 };
 
 // Consumed fields of singleton0097D070, not its complete constructor or ABI.
 // Pointer owners are borrowed here. Initialization overwrites without release,
 // matching the original; normal startup constructs the full owner beforehand.
 struct ControlStartupState {
+    game::SessionNetworkParameters network_parameters; //Process-shared packet/console values, not per-world copies.
     std::uint8_t byte08 = 0;
     SettingsControlInterface* wrapper0c = nullptr;
     void* wrapper10 = nullptr;
     void* service14 = nullptr;
     std::vector<ControlStartupRecord> records; // +1DC, elements at+1E0
+    ControlConnectionRecord* client334=nullptr; //Distinct from transport client04 and voice0C. Original process BSS; borrowed here.
+    std::uint32_t server_address338=0; //SAME process BSS/00723D20 producer, distinct from discovery descriptor4E00.
     std::optional<ControlStartupCallback> callback414;
     std::uint32_t word448 = 0, word4e4 = 0;
+    //0097D070+44C/464 lie beyond .data's raw extent in the original image:
+    //the loader zero-fills them. These are the SAME three process team records.
+    std::array<float,3> team_scores44c{};
+    std::array<std::array<std::uint32_t,9>,3> team_statistics464{};
     std::int32_t handle4d3c = 0;
     std::uint8_t byte4df8 = 0;
+    MultiplayerServer server4e00; //0072DE00 constructs this distinct inline descriptor through00724EE0.
     void* object4ee0 = nullptr;
     std::uint8_t locks5018 = 0;
     std::uint32_t word503c = 0, word5044 = 0, word5054 = 0, word5058 = 0;

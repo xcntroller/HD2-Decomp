@@ -4,6 +4,7 @@
 #include "game/human_joint_owners.h"
 #include "game/human_ai_shot_direction.h"
 #include "game/human_animation_requests.h"
+#include "game/human_special_animation.h"
 #include <cmath>
 #include <limits>
 
@@ -78,6 +79,15 @@ public:
             for(auto offset:{0x1ecu,0x210u}){words_.set(offset,std::int32_t{91});words_.set(offset+4,std::int32_t{0});}
             for(auto offset:{0x1f8u,0x21cu}){words_.set(offset,std::int32_t{75});words_.set(offset+4,std::int32_t{0});}
         }catch(...){clear();throw;}
+    }
+    void rebind_model(Frame model){ //00772400, preserve metadata/current tracks. SAME model clothing skips copy.
+        const auto previous=model_;model_=model;
+        marker_=frames_.actor_find(model,"a",0xffff);
+        if(marker_)callbacks_.install_animation_events(marker_,*this);
+        if(previous&&previous!=model)for(unsigned slot=0;slot!=8;++slot)if(frames_.human_model_clip(previous,slot)){
+            const auto weight=frames_.human_model_weight(previous,slot);const auto clip=frames_.human_model_clip(previous,slot);
+            frames_.human_model_animation(model,clip,slot,weight,0);frames_.human_model_time(model,slot,frames_.human_model_time(previous,slot));
+        }
     }
     void clear() noexcept { //007723B0, before CD0's separate shadow cleanup.
         if(!started_)return;
@@ -422,6 +432,9 @@ public:
     void motion_impulse(const HumanVector& displacement,std::int32_t duration){ //00773A90.
         words_.set(0x280,displacement);words_.set(0x290,0u);words_.set(0x294,duration);
     }
+    void motion_position_hold(const HumanVector& position,float amount,std::int32_t duration){ //00773AD0.
+        words_.set(0x298,amount);words_.set(0x2a0,position);words_.set(0x2b0,0u);words_.set(0x2b4,duration);
+    }
     void clear_motion_displacement(){for(unsigned axis=0;axis!=3;++axis)words_.set(0x270+4*axis,0.f);} //0074B4F0, XYZ only.
     void secondary_motion_impulse(const HumanVector& displacement,std::int32_t duration){ //00773B20.
         words_.set(0x2e0,displacement);words_.set(0x2f0,0u);words_.set(0x2f4,duration);
@@ -531,6 +544,10 @@ public:
             for(unsigned axis=0;axis!=3;++axis)
                 words_.set(0x270+4*axis,static_cast<float>(static_cast<long double>(fraction)*real(0x2c0+4*axis)+real(0x270+4*axis)));
         }
+    }
+    void setup_fourth(Frame clip,std::int32_t blend,std::int32_t fade,bool loop){ //007757E0.
+        require_model();if(!clip)throw std::logic_error("Special track requires actual clip loan");
+        setup_human_fourth_track(words_,frames_,[this]{return model_;},clip,blend,fade,loop);
     }
     void fade_fourth(std::int32_t duration) { //00775970.
         const auto lane=integer(0x90);if(lane==-1)return;

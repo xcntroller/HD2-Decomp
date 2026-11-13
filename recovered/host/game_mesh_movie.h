@@ -38,6 +38,11 @@ public:
         using Play=std::int32_t(WINAPI*)(Frame);
         scene_method<Play>(movie,module_,0x14,0x71c50)(movie);
     }
+    void rewind_mesh_movie(Frame movie){ //004AD380, IShow virtual30(0).
+        using Seek=std::int32_t(WINAPI*)(Frame,std::uint32_t);
+        checked_engine_method<Seek>(movie,module_,0x30)(movie,0);
+    }
+    void loop_mesh_movie(Frame movie,bool enabled){call<void>(movie,0x30,static_cast<std::uint32_t>(enabled));} //004AD380's IShow+30.
     void stop_mesh_movie(Frame movie) {
         using Stop=std::int32_t(WINAPI*)(Frame);
         scene_method<Stop>(movie,module_,0x18,0x71d10)(movie);

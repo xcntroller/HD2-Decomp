@@ -2,6 +2,7 @@
 #define HD2_HOST_GAME_LOADING_MODULES_H
 
 #include "frontend/module_registration.h"
+#include "io/data_operation.h"
 #include "game/mission_module_dispatch.h"
 #include "game/offline_spawn_presentation.h"
 #include <cstring>
@@ -23,7 +24,9 @@ public:
         struct Pass {
             GameLoadingModules& owner;FrameServices& frames;
             void tick_mission_module(frontend::ClientModuleRegistration& module,bool authority,std::uint32_t elapsed){
-                owner.tick_mission_module(module,authority,elapsed,frames);
+                const auto store=owner.d_.scene.frames().resource_observations();
+                if(store)store->event("execution",authority?"authority module":"presentation module","original module kind",owner.checked_kind(module));
+                io::observe_data_operation(store,"module frame receiver",[&]{owner.tick_mission_module(module,authority,elapsed,frames);});
             }
         } pass{*this,frames};
         game::tick_mission_module_pass(module_registry(),pass,authority,elapsed);
@@ -161,19 +164,25 @@ public:
         (void)checked_kind(*module);
         if(kind==13){
             if(!authority)return game::receive_scene2_presentation_packet(d_.scene.frames(),packet,*this,*this);
-            const auto identity=packet.read(10); //004755D0, reserved0..31 use005A5F80.
-            auto* actor=d_.scene.frames().scene_actor_identity(static_cast<std::int32_t>(identity));
-            d_.human_services.receive_human_authority_packet(actor,packet,identity<32u);
-            return true;
+            return game::receive_scene2_authority_packet(d_.scene.frames(),packet,*this,*this);
         }
-        if(kind==4&&!authority){bound(*module,d_.scripts.module());return d_.scripts.module().receive(&packet);} //00424590→existing0042B650 SetOn.
-        //Original default module24/28 receivers00405B20/30 returnfalse.
-        if(authority&&kind!=12)return false;
+        if(kind==4&&!authority){bound(*module,d_.scripts.module());return d_.scripts.module().receive(&packet);} //00424590→0042B650.
+        if(kind==16&&!authority){bound(*module,d_.heavy_fire);return d_.heavy_fire.receive_packet(packet,d_.human_services);}
+        if(kind==12)return d_.world_actors.runtime().receive_packet(packet,authority); //004788A0/E0, required positive leaves remain checked.
+        if(kind==7&&!authority){bound(*module,d_.versions);return d_.versions.receive_packet(&packet);} //0043F1E0, actual shared master/part slots.
+        if(authority&&kind!=12)return false; //Original default module28 returnsfalse.
         if(!authority&&kind!=4&&kind!=7&&kind!=12&&kind!=14&&kind!=16)return false;
         throw std::runtime_error("Required actual authority/presentation module packet receiver is unavailable");
     }
     template<class Actor>void receive_player_packet(Actor* actor,game::SessionPacketStream& packet){
         d_.human_services.receive_human_presentation_packet(actor,packet,true);
+    }
+    template<class Actor>void receive_player_authority_packet(Actor* actor,game::SessionPacketStream& packet){
+        d_.human_services.receive_human_authority_packet(actor,packet,true);
+    }
+    template<class Actor>void receive_actor_authority_packet(Actor& actor,game::SessionPacketStream& packet){
+        if(actor.base().type()==3)d_.human_services.receive_human_authority_packet(&actor,packet,false);
+        else d_.world_actors.receive_actor_authority_packet(actor,packet);
     }
     template<class Actor>void receive_actor_packet(Actor& actor,game::SessionPacketStream& packet){
         if(!d_.human_services.try_human_presentation_packet(actor,packet))d_.world_actors.receive_actor_packet(actor,packet);

@@ -6,6 +6,7 @@
 #include "frontend/cleanup.h"
 #include "frontend/pre_mission_data.h"
 #include "game/dynamic_item_contact_sound.h"
+#include "game/loose_item_handoff.h"
 #include <limits>
 
 namespace hd2::game {
@@ -44,7 +45,7 @@ public:
         body_.bind(model);
         const auto category=frontend::pre_mission_detail::Bytes::integer(item.definition().category); //007D32A0, not instance family.
         typename Body::Parameters parameters{velocity,item.scalar(),.800000011920928955078125f,
-            [this](unsigned event,void* context,Descriptor* contact){return callback(event,context,contact);},this,false,category<=1};
+            [this](unsigned event,void* context,typename Body::ContactEvent* contact){return callback(event,context,contact?contact->primitive:nullptr);},this,false,category<=1};
         body_.configure(parameters);body_.reset();body_.actor(this);
         field6a4_=0;field6ac_=-1;
         if(!(activation_.mode_flags()&1)||(activation_.mode_flags()&7)==7||items_.dynamic_item_server_policy()||
@@ -82,8 +83,12 @@ public:
     template<class Sound>void contact_sound(Sound& sound) { //005B7570, actual item definition38 and world pose.
         emit_dynamic_item_contact(this->backend_,items_,entry_,this->base_.frame(),field6a4_,sound);
     }
+    void release_item_to_inventory(){ //005B6980, frame EC BEFORE item loan/frame reference; body closes later in00477190.
+        release_loose_item_to_inventory(this->backend_,this->base_,entry_);
+    }
     Entry entry() const {return entry_;}
     Body& body() {return body_;}
+    void thrown_lifetime(std::int32_t value){require_bound();field6ac_=value;} //00478EE0's nonoffline kind20 branch.
     std::int32_t lifetime() const {require_bound();return field6a0_;}
     std::int32_t sound_cooldown() const {require_bound();return field6a4_;}
 private:

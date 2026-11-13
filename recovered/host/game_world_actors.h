@@ -1,5 +1,10 @@
 #ifndef HD2_HOST_GAME_WORLD_ACTORS_H
 #define HD2_HOST_GAME_WORLD_ACTORS_H
+#include "game/human_loading_retirement.h"
+#include "game/document_place_scene_actor.h"
+#include "game/human_inventory_lookup.h"
+#include "game/version_contact_link.h"
+#include "game/explosion_contact_link.h"
 
 #include "game/session_time_word.h"
 #include "host/game_world_scene.h"
@@ -45,22 +50,92 @@ public:
     ~GameWorldActors(){close();}
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
+    void update_detached_body(Body& body,std::uint32_t elapsed){require_open();body.update(elapsed,*this);}
+    auto& rigid_exclusions(){require_open();return scene_.exclusions();}
+    std::optional<typename Body::MotionHit> rigid_ray(const GameActorServices::Vector& start,const GameActorServices::Vector& displacement,
+                                                     std::uint32_t layers,std::uint32_t flags){
+        require_open();
+        game::CollisionRay<GameActorServices::Frame,typename Scene::Descriptor,GameCollisionResources,GameActorServices>
+            query(&scene_.collision_tree(),&scene_.buckets(),scene_.collision_resources(),scene_.frames());
+        const auto hit=query.ray(start,displacement,layers,flags,true);if(!hit)return std::nullopt;
+        typename Body::MotionHit result;result.position=hit->position;result.normal=hit->normal;
+        if(hit->dynamic_identity)result.primitive=*hit->dynamic_identity;
+        else {
+            if(!hit->static_identity)throw std::logic_error("Rigid query lost its actual tree/descriptor identity");
+            const auto id=*hit->static_identity;const auto& tree=scene_.collision_tree();
+            if(id.kind){const auto& shape=tree.shapes.at(id.kind-0x80).at(id.index);result.primitive.flags=shape.flags;result.primitive.frame=shape.frame;}
+            else {const auto& triangle=tree.triangles.at(id.index);result.primitive.flags=triangle.flags;result.primitive.frame=triangle.frame;}
+        }
+        return result;
+    }
+    std::uint32_t rigid_actor_type(void* actor){return rigid_actor(actor).base().type();}
+    GameActorServices::Vector rigid_actor_position(void* actor){return rigid_actor(actor).base().world_position();}
+    void rigid_water_particle(const GameActorServices::Vector& position){consumers_.rigid_water_particle(position);}
+    void restore_detached_camera_amount(GameActorServices::Frame frame){(void)scene_.effects().model_camera_amount(frame,0.f);} //00486E90, NOT fade cancellation.
+    void fade_detached(GameActorServices::Frame frame,std::int32_t remaining){scene_.effects().frame_fades().fade_out(frame,remaining,false);}
+    void emit_mine_effect(const GameActorServices::Vector& position,const GameActorServices::Vector& direction,std::uint32_t particle,std::int32_t sound){consumers_.emit_mine_effect(position,direction,particle,sound);}
+    bool consume_mine_inventory(typename Runtime::Instance* human,std::int32_t definition){return consumers_.consume_mine_inventory(human,definition);}
+    auto* mine_scene_actor(std::int32_t identity){require_open();return scene_.frames().scene_actor_identity(identity);}
+    void publish_mine(std::int32_t identity,std::int32_t human,std::int32_t definition,const game::HumanVector& position,const game::HumanVector& direction){
+        consumers_.publish_mine(identity,human,definition,position,direction);
+    }
+    void publish_mine_contact(std::int32_t identity,std::uint32_t command){consumers_.publish_mine_contact(identity,command);}
+    void mine_explosion(typename Runtime::Instance* source,const game::HumanVector& position,float radius,float power,std::int32_t sound){explosion_contact_.explode(source,position,radius,power,sound);}
+    bool heavy_fire_blast(typename Runtime::Instance* source,const game::HumanVector& position,float radius,float power){return explosion_contact_.wave(source,position,radius,power);}
+    template<class Blast>void bind_explosion(Blast& blast){require_open();explosion_contact_.bind(blast);}
+    template<class Blast>void unbind_explosion(Blast& blast)noexcept{explosion_contact_.unbind(blast);}
+    auto mine_ground_ray(const game::HumanVector& start,const game::HumanVector& displacement){
+        require_open();
+        game::CollisionRay<GameActorServices::Frame,typename Scene::Descriptor,GameCollisionResources,GameActorServices>
+            query(&scene_.collision_tree(),&scene_.buckets(),scene_.collision_resources(),scene_.frames());
+        return query.ray(start,displacement,0,0,true); //006F7C90: SAME World, both exclusion masks0, actual hit normal.
+    }
     auto& physics(){require_open();return physics_;}auto& item_models(){require_open();return models_;}
+    bool placed_physics_contact(void* object,const GameActorServices::Vector& direction){require_open();return physics_.placed_contact(object,direction);}
+    void hide_placed_replacement(void* object){require_open();physics_.hide_placed_replacement(object);}
+    void publish_placed_motion(std::int32_t identity,const GameActorServices::Vector& direction){
+        auto& packet=game::begin_runtime_actor_message(session_broadcast_packets(),identity,true);
+        packet.write_yaw(direction,-1);packet.finish_broadcast();
+    }
+    void placed_script_use(GameActorServices::Frame frame){
+        const auto* data=scene_.frames().find_actor_frame_data(frame);
+        if(!data||!data->words[1])return;
+        auto* context=consumers_.script_context_for_frame(frame);
+        if(!context)throw std::logic_error("Placed item Script EC loan disagrees with SAME context owner");
+        context->use(true); //005E2588 uses literal1 independently of late process authority.
+    }
+    template<class Versions>void bind_versions(Versions& versions){require_open();versions_contact_.bind(versions);}
+    template<class Versions>void unbind_versions(Versions& versions)noexcept{versions_contact_.unbind(versions);}
+    bool version_contact(std::uintptr_t handle,std::int32_t damage,std::uint32_t effects){require_open();return versions_contact_.contact(handle,damage,effects);}
     template<class Callbacks>void bind_car_physics(Callbacks& callbacks){
         require_open();
         static_assert(noexcept(callbacks.unbind_physics(physics_)),"Car physics retirement must not throw");
+        static_assert(noexcept(callbacks.unbind_runtime(runtime_)),"Car runtime contact retirement must not throw");
         if(car_physics_unbind_||static_cast<typename Scene::CarServices*>(&callbacks)!=&scene_.car_callbacks())
             throw std::logic_error("Car physics must bind the containing scene's actual callback owner once");
-        std::function<void()> unbind=[this,&callbacks]()noexcept{callbacks.unbind_physics(physics_);};
-        callbacks.bind_physics(physics_);car_physics_unbind_=std::move(unbind);
+        std::function<void()> unbind=[this,&callbacks]()noexcept{callbacks.unbind_runtime(runtime_);callbacks.unbind_physics(physics_);};
+        callbacks.bind_physics(physics_);
+        try{callbacks.bind_runtime(runtime_);}catch(...){callbacks.unbind_physics(physics_);throw;}
+        car_physics_unbind_=std::move(unbind);
     }
     auto& rigid_bodies(){require_open();return bodies_;}
     using Human=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
+    Human& human_loading_actor(GameSceneActors::Instance* borrowed){
+        require_open();
+        //Compare actual owner keys BEFORE touching a possibly retired source.
+        for(const auto& entry:human_loading_)if(static_cast<GameSceneActors::Instance*>(entry.first)==borrowed){
+            if(!entry.second||entry.first->loading_lifetime!=entry.second.get())break;
+            return *entry.first;
+        }
+        throw std::logic_error("Human borrower has no actual live containing lifetime");
+    }
     template<class Owner>Owner& human_loading_owner(Human& actor){
         require_open();const auto found=human_loading_.find(&actor);
-        if(found==human_loading_.end()||actor.loading_lifetime!=found->second.get())
+        if(found==human_loading_.end())
             throw std::runtime_error("Human callback requires its actual containing loading owner");
-        auto* owner=dynamic_cast<Owner*>(found->second.get());
+        auto* published=found->second?found->second.get():actor.loading_lifetime; //Same borrower during reset-before-erase destruction.
+        if(!published||actor.loading_lifetime!=published)throw std::runtime_error("Human callback lost its actual containing loading owner");
+        auto* owner=dynamic_cast<Owner*>(published);
         if(!owner)throw std::runtime_error("Human callback loading owner has a different concrete type");
         return *owner;
     }
@@ -76,6 +151,7 @@ public:
             if(!owner||actor.loading_lifetime!=owner.get())throw std::runtime_error("Human factory must publish its actual composed loading owner");
             found=human_loading_.emplace(&actor,std::move(owner)).first;
         }
+        if(!found->second)throw std::logic_error("Human activation during its containing owner retirement");
         return *found->second;
     }
     void activate_human(Human& actor,bool authority){
@@ -83,19 +159,7 @@ public:
         prepare_human_loading(actor).activate(authority);
     }
     void deactivate_human(Human& actor,bool authority){
-        const auto found=human_loading_.find(&actor);
-        if(found==human_loading_.end()){
-            //Source partial-activation guard: Scene2's captured pass includes
-            //later Humans whose factory was never entered. An actual published
-            //owner may never be replaced by a successful missing receiver.
-            if(actor.loading_lifetime)throw std::runtime_error("Human retirement lost its published containing owner");
-            return;
-        }
-        frontend::CleanupErrors errors;errors.attempt([&]{found->second->deactivate(authority);});
-        //Scene2 removes reserved Humans immediately after the authority call,
-        //including when a receiver fails. Retract all borrowers while it lives.
-        if(authority)human_loading_.erase(found);
-        errors.rethrow();
+        game::deactivate_human_loading_owner(human_loading_,actor,authority,[this]{return mode_flags();});
     }
     std::uint32_t mode_flags()const{return consumers_.mode_flags();}
     std::int32_t human_current_player_id(){return consumers_.human_current_player_id();}
@@ -106,9 +170,30 @@ public:
         if(!item)throw std::runtime_error("ExplosivePlace requires its actual item definition for the armed caption");
         return actor_localized(item->caption);
     }
+    auto document_visual_template(std::uint32_t definition){
+        const auto* item=definition<500?catalogue_.item(static_cast<std::int32_t>(definition)):nullptr;
+        if(!item)throw std::runtime_error("DocumentPlace requires actual item definition and primary model");
+        return models_.primary_model(*item);
+    }
+    template<class Human>std::optional<std::int32_t> document_item_identity(Human& human,std::uint32_t value,bool definition){
+        const auto entry=definition?game::find_human_inventory_definition(human,items_,static_cast<std::int32_t>(value)):
+            game::find_human_inventory_item_entry(human,items_,static_cast<std::int32_t>(value));
+        if(!entry)return std::nullopt;
+        return items_.runtime_item(entry).identity;
+    }
+    template<class Human>void document_remove_item(Human& human,std::int32_t identity){consumers_.document_remove_item(human,identity);}
+    bool document_receive_remove(std::uint32_t identity,std::int32_t item){
+        auto* human=scene_.frames().scene_human_identity(static_cast<std::int32_t>(identity));if(!human)return false;
+        const auto found=document_item_identity(*human,static_cast<std::uint32_t>(item),false);if(!found)return false;
+        document_remove_item(*human,*found);return true;
+    }
     void stop_actor_sound_voice(std::int32_t& handle){consumers_.stop_actor_sound_voice(handle);}
     std::uint32_t session_mission_ordinal()const{return consumers_.session_mission_ordinal();}
     auto& session_broadcast_packets(){return consumers_.session_broadcast_packets();}
+    void activate_zone(game::ZoneSceneActor<GameActorServices>& actor,bool authority){require_open();actor.activate(authority,*this,vertices_);}
+    std::int32_t zone_style(){return consumers_.zone_style();}
+    bool zone_remote_ai(){return consumers_.zone_remote_ai();}
+    void zone_hud_objective(std::uint32_t index,std::int32_t side){consumers_.zone_hud_objective(index,side);}
     void door_script_use(GameActorServices::Frame frame,std::uint32_t command){consumers_.door_script_use(frame,command);}
     auto door_current_player_frame(){return consumers_.door_current_player_frame();}
     std::int32_t emit_door_sound(const frontend::SpatialSoundRequest& request){return consumers_.emit_door_sound(request);}
@@ -139,6 +224,31 @@ public:
     void remove_car_proximity(std::int32_t index){consumers_.actor_proximity().remove_actor(index);}
     const Car* car_current_attachment(){return consumers_.car_current_attachment();}
     unsigned car_game_kind(){return consumers_.car_game_kind();}
+    auto mounted_sound_entry(std::int32_t id)const{return consumers_.mounted_sound_entry(id);}
+    bool mounted_human_view(void* actor){return consumers_.mounted_human_view(actor);} //004C6DD0's actual005A0890/0069A4B0.
+    std::uint32_t session_mission_ordinal(){return consumers_.session_mission_ordinal();}
+    bool mounted_human_is_player(void* actor){return consumers_.mounted_human_is_player(actor);}
+    GameActorServices::Vector mounted_human_target(void* actor){return consumers_.mounted_human_target(actor);}
+    void mounted_human_target(void* actor,const GameActorServices::Vector& value){consumers_.mounted_human_target(actor,value);}
+    void mounted_shell_physics(GameActorServices::Frame frame,const GameActorServices::Vector& velocity){
+        game::PhysicsObjectParameters<GameActorServices::Frame> parameters;parameters.frame=frame;parameters.type=0;
+        parameters.material10=12;parameters.first_list=true;parameters.sight_pass=true;
+        auto* handle=physics().create(parameters);physics().impulse(handle,velocity,GameActorServices::Vector{},.05f);
+    }
+    bool car_seat_integrity_matches(){return consumers_.car_seat_integrity_matches();}
+    void seat_human_direction(void* actor,const GameActorServices::Vector& direction){consumers_.seat_human_direction(actor,direction);}
+    std::uint32_t seat_human_state_kind(void* actor){return consumers_.seat_human_state_kind(actor);}
+    std::int32_t seat_human_health(void* actor){return consumers_.seat_human_health(actor);}
+    void seat_human_proximity_kind(void* actor,unsigned kind){consumers_.seat_human_proximity_kind(actor,kind);}
+    void seat_proximity_kind(std::int32_t index,unsigned kind){consumers_.seat_proximity_kind(index,kind);}
+    bool seat_view_enabled(){return consumers_.seat_view_enabled();}
+    void seat_script_use(GameActorServices::Frame frame){consumers_.seat_script_use(frame);}
+    std::unique_ptr<game::CarMountedWeaponControl> make_car_weapon_control(Car& actor,GameActorServices::Frame pivot,unsigned index){ //004D16A0's actual100 branch.
+        auto control=std::make_unique<game::CarMountedWeaponControl>();
+        auto loading=std::make_unique<game::MountedWeaponControlLoading<GameActorServices,GameWorldActors,Items>>(scene_.frames(),*this,items_,control->state);
+        if(!loading->initialize(actor.base().frame(),pivot,index))return nullptr;
+        control->loading=std::move(loading);return control;
+    }
     using StaticWeapon=game::StaticWeaponSceneActor<GameActorServices>;
     void activate_static_weapon(StaticWeapon& actor,bool authority){
         require_open();if(!actor.loading)actor.loading=std::make_unique<game::StaticWeaponLoading<GameActorServices,GameWorldActors,Collisions,Items>>(scene_.frames(),*this,scene_.buckets(),items_,actor);
@@ -146,8 +256,8 @@ public:
     }
     void deactivate_static_weapon(StaticWeapon& actor,bool authority){if(actor.loading)actor.loading->deactivate(authority);}
     void update_static_weapon(StaticWeapon& actor,bool authority,std::uint32_t elapsed){require_open();if(!actor.loading)throw std::runtime_error("StaticWeapon requires actual loading owner");actor.loading->update(authority,elapsed);}
-    void install_static_weapon_events(GameActorServices::Frame frame,game::StaticWeaponLoadingLifetime& control){static_weapon_events_.install(frame,control);}
-    void remove_static_weapon_events(GameActorServices::Frame frame,game::StaticWeaponLoadingLifetime& control){static_weapon_events_.remove(frame,control);}
+    void install_static_weapon_events(GameActorServices::Frame frame,game::MountedWeaponControlLifetime& control){static_weapon_events_.install(frame,control);}
+    void remove_static_weapon_events(GameActorServices::Frame frame,game::MountedWeaponControlLifetime& control){static_weapon_events_.remove(frame,control);}
     void rethrow_static_weapon_event_failure(){static_weapon_events_.rethrow_failure();}
     GameActorServices::Vector static_weapon_navigation_position(StaticWeapon& actor){
         const auto references=navigation_.actor_references(&actor);if(!references.empty()){
@@ -218,16 +328,24 @@ public:
     void rethrow_fowl_sound_failure(){fowl_sound_.rethrow_callback_failure();}
     void receive_actor_packet(typename Runtime::Instance& actor,game::SessionPacketStream& packet) {
         require_open();
-        if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
+        if(actor.base().type()==3)consumers_.receive_human_presentation_packet(&actor,packet);
+        else if(actor.base().type()==4)scene_.car_callbacks().receive_damage_packet(&actor,packet);
+        else if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
         else if(actor.base().type()==10)consumers_.spawn_packet_decoder().receive(static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor),&packet);
         else if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
+        else if(actor.base().type()==23)static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
         else if(actor.base().type()==29){auto& fowl=static_cast<Fowl&>(actor);if(!fowl.loading)throw std::runtime_error("Fowl packet requires its actual generated-bird owner");fowl.loading->launch(false,0);}
         else throw std::runtime_error("Required Scene2 actor packet receiver is unavailable");
+    }
+    void receive_actor_authority_packet(typename Runtime::Instance& actor,game::SessionPacketStream& packet){
+        require_open();if(actor.base().type()==4){scene_.car_callbacks().receive_damage_request(&actor,packet);return;}
+        throw std::runtime_error("Scene2 authority packet requires its actual derived actor20 receiver");
     }
     void set_scene_actor_active(GameActorServices::Actor& actor,bool value){scene_.frames().set_scene_actor_active(actor,value);}
     void set_runtime_actor_active(GameActorServices::Actor& actor,bool value){runtime_.set_active(actor,value);}
     void remove_actor_presentation_references(typename Runtime::Instance& actor){consumers_.remove_actor_presentation_references(actor);}
     void clear_retired_actor_record(std::int32_t identity){consumers_.clear_retired_actor_record(identity);}
+    void retire_scene_human(Human& human){scene_.frames().retire_scene_actor(&human,[this](auto& actor){consumers_.retire_scene_human(dynamic_cast<Human&>(actor));});}
     void retire_file_resources(){
         require_open();
         if(has_human_loading_owners())throw std::logic_error("File resource retirement still has actual Human lifetimes");
@@ -244,8 +362,8 @@ public:
         //identities, Items and the shared world dependencies still exist.
         frontend::CleanupErrors human_errors;
         for(auto& record:human_loading_){
-            human_errors.attempt([&]{record.second->deactivate(false);});
-            human_errors.attempt([&]{record.second->deactivate(true);});
+            game::retire_human_mode_passes([this]{return mode_flags();},[&](bool authority){record.second->deactivate(authority);},human_errors);
+            record.second.reset(); //Retiring callbacks can still resolve the actual Human borrower through the published key.
         }
         human_loading_.clear();
         if(human_errors.failed())try{human_errors.rethrow();}catch(...){scene_.frames().record_actor_cleanup_failure(std::current_exception());}
@@ -263,10 +381,20 @@ public:
         items_.clear();frames.clear_actor_entries();models_.clear_model_cache();closing_=false;
     }
 private:
+    typename Runtime::Instance& rigid_actor(void* borrowed){
+        require_open();if(!borrowed)throw std::logic_error("Rigid contact actor is null");
+        auto* actor=static_cast<typename Runtime::Instance*>(borrowed);
+        if(runtime_.owns(actor))return *actor;
+        const auto count=scene_.frames().scene_actor_identity_count();
+        for(std::size_t index=0;index<count;++index)if(scene_.frames().scene_actor_identity(static_cast<std::int32_t>(index))==actor)return *actor;
+        throw std::logic_error("Rigid contact actor has no live containing registry owner");
+    }
     void require_open()const{if(closed_)throw std::logic_error("World actor owners are closed");}
     Scene& scene_;Consumers& consumers_;Vertices& vertices_;game::MissionNavigation& navigation_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
     typename Body::Registry bodies_;GameRuntimeItemServices models_;
     std::map<Human*,std::unique_ptr<game::HumanLoadingLifetime>> human_loading_;
+    game::VersionContactLink<GameActorServices> versions_contact_{scene_.frames()};
+    game::ExplosionContactLink<GameActorServices,typename Runtime::Instance> explosion_contact_{scene_.frames()};
     Items items_;Runtime runtime_;Physics physics_;std::function<void()> car_physics_unbind_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false,closing_=false;
 };
 } //namespace hd2::host

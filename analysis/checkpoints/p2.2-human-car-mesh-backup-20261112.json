@@ -1,0 +1,217 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+  "branch": "feature/p22-hum",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-hum",
+  "source_only": true,
+  "completed_plan_checkpoint": "D1",
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [],
+  "extended_entries": [
+    "004ff8b0",
+    "004fe910"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2997,
+  "source_files": {
+    "recovered/game/car_deform_mesh.h": {
+      "sha256": "e9c1429c2c5c1adf066b1aceb122abf92860d5c08cd8fbf32eb11fd042e6b6c9",
+      "bytes": 3536
+    },
+    "recovered/game/car_deformable_parts.h": {
+      "sha256": "0f3e53961ead29f9858b8bfd08bae88083f09b717fd68c366baca19478c0bc1d",
+      "bytes": 15599
+    },
+    "recovered/game/car_cold_deformation.h": {
+      "sha256": "3ff53d323f0becfcda2b5700481d323d7e9746e8bc7aca22041e602c81818538",
+      "bytes": 4066
+    },
+    "recovered/game/car_cold_initialization.h": {
+      "sha256": "b6cbbc62fd7fc4b470f7d14d72cec0434b82c27e414a95100470c2f4f8f9e62a",
+      "bytes": 9577
+    },
+    "recovered/game/car_cold_receivers.h": {
+      "sha256": "33ecdfe9a6112b0b138e6f9cf16c00bb55b6e51f1193a9ffdff57800296bbdf9",
+      "bytes": 2751
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "78f125ebf93855086060efffb2a5304554746f0a5a080799c45653ebd0f6c255",
+      "bytes": 12843
+    },
+    "recovered/host/game_car_frames.h": {
+      "sha256": "998f8f9821ee547c25d50a408aaa0bf9f3878f5d7007dc0ef51e525f94bf63cb",
+      "bytes": 25786
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-mesh-backup-native.cpp": {
+      "sha256": "be4ecf33673124695bac3aa2af294101481f3eccf3091cab44dcf4f391a32197",
+      "bytes": 11863
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-backup-native": {
+      "sha256": "6a1752788e13a25bbfccd15cd3da8ec4e057f9e3e01bee61ae89a961697ae0a6",
+      "bytes": 2881936
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-backup-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-backup-native.log": {
+      "sha256": "8025b78d7f4c4f9cf948be24d9f86075237463fcca7eaad83aee9ac2dfbf34fe",
+      "bytes": 210
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-backup-host-i386.cpp": {
+      "sha256": "cb5f69e8d930d43cd3479783944ee389a0742946dc71aee5dbcaa29979c0f4d6",
+      "bytes": 620
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-backup-host-i386.o": {
+      "sha256": "c5011eada0906d5868c0e1502cc6b6be938d8871fc5312219efb1525bca381e3",
+      "bytes": 18130799
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-backup-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-backup-application-i386.log": {
+      "sha256": "fb17c5f902763148959fb7d0ee05c8f5e53c08f4a8b23e1365023d70fa96e03b",
+      "bytes": 813
+    },
+    "analysis/work/mission-world-20261103/human-car-mesh-spill-oracle.json": {
+      "sha256": "bf05d9d95772f9c909640ccc1e6b4c59f6f4b5503e9bffa9e23bf8588d8ab2f6",
+      "bytes": 617
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-car-backup-owner-index.txt": {
+      "sha256": "27b49493f32cb38a8232c9e25bd6e234715afc90582e312f6c6d8187621c85f7",
+      "bytes": 7635
+    },
+    "analysis/work/mission-world-20261103/human-car-backup-methods-index.txt": {
+      "sha256": "32eed67c6bdc3d88166c5387f321d2f237fc91fe15d3726e7fe61a923e5706ec",
+      "bytes": 8716
+    },
+    "analysis/work/mission-world-20261103/human-car-backup-retirement-index.txt": {
+      "sha256": "b775d8a0ee82df482bd78419e4a59e14b3f3808f73a8346a936711c9e129851e",
+      "bytes": 991
+    },
+    "analysis/work/mission-world-20261103/human-car-restore-fuel-checkpoint-index.txt": {
+      "sha256": "44fc39699917f038def359a7c8b6d58769b019a14ea4c4a3d529fc7820c93348",
+      "bytes": 26069
+    },
+    "analysis/work/mission-world-20261103/human-car-deformation-producer-index.txt": {
+      "sha256": "7d79971b18a8d722a3bbdb20980ec1818531428f7da621c7e7a7780fe8a446c3",
+      "bytes": 7602
+    },
+    "analysis/work/mission-world-20261103/human-car-positive-deformation-workers-index.txt": {
+      "sha256": "e69fbc535cb55d249456b7644b2268588ce11c6321dfd69623543eef37402c40",
+      "bytes": 1278
+    },
+    "analysis/work/mission-world-20261103/human-d0-containing-index.txt": {
+      "sha256": "8be9cef2906ac59c256f6d4bfbf48bab27e62e6c6b58f061e46c2342346eeaf4",
+      "bytes": 25279
+    },
+    "analysis/work/mission-world-20261103/human-car-part-restore.asm": {
+      "sha256": "667b05ecaacb839dee80deb1505bdb2fd8f7c87483775056a98330cc4136fbaa",
+      "bytes": 27962
+    },
+    "analysis/work/mission-world-20261103/human-car-deformation.asm": {
+      "sha256": "2c0bbfe4d44402d3da9f1ae303388ff9727aeace355e1b2cf81c75de586d6d57",
+      "bytes": 88125
+    },
+    "analysis/work/mission-world-20261103/human-car-deformation-constants.json": {
+      "sha256": "844a5341d1bc21238f6ec09beb2ec90a931256f6d4e647a96de06e733b51b973",
+      "bytes": 278
+    },
+    "analysis/work/mission-world-20261103/ExportHumanCarRestoreABI.java": {
+      "sha256": "688fe2849817a111111f62ef6bb57bc1d54f843fbd58b826d61329806a21584b",
+      "bytes": 4241
+    },
+    "analysis/work/mission-world-20261103/human-car-restore-impact-abi.log": {
+      "sha256": "769999b70ec99d66223fc166f469a658fee37d43c8d595714f7161a4c3142c78",
+      "bytes": 4688
+    },
+    "analysis/work/mission-world-20261103/ExportHumanCarImpactDamageABI.java": {
+      "sha256": "7a40d8d6b07c56f5ee8ebaa7ae01c550ea5288f9d587c6d3bff3d1f80593b242",
+      "bytes": 4275
+    },
+    "analysis/work/mission-world-20261103/human-car-impact-damage-abi.log": {
+      "sha256": "4bbd2454c5b0ba8383b71739cf15f0748b125bbfe288eb0c9a426b969e180faa",
+      "bytes": 4803
+    },
+    "analysis/work/mission-world-20261103/human-car-restore-impact-abi/004fc320.c": {
+      "sha256": "60300c523e0d123f644761a2a0aa2178055f6a7b919cbc3d9d40d18391c8745f",
+      "bytes": 4941
+    },
+    "analysis/work/mission-world-20261103/human-car-restore-impact-abi/004fc320.json": {
+      "sha256": "b4ba1902ce3e17c49ac198239262229ab7f725795af6950b6b8b565adf81458b",
+      "bytes": 10586
+    },
+    "analysis/work/mission-world-20261103/human-car-restore-impact-abi/004fe910.c": {
+      "sha256": "327a98c6b757ba7bc76f20a87e2c7749c3144111693936d4b051ef0cdb34340f",
+      "bytes": 11678
+    },
+    "analysis/work/mission-world-20261103/human-car-restore-impact-abi/004fe910.json": {
+      "sha256": "b13ac83c7175c5a0f0f5fac5d3f3a0950313199fff81fb65a95c0ed6c7b8d504",
+      "bytes": 10906
+    },
+    "analysis/work/mission-world-20261103/human-car-restore-impact-abi/004ff8b0.c": {
+      "sha256": "4d51e2fa67ebc6f105ee21a1c35bf7d0a7d252110becd222e8a61f1f86ed0289",
+      "bytes": 33814
+    },
+    "analysis/work/mission-world-20261103/human-car-restore-impact-abi/004ff8b0.json": {
+      "sha256": "4c713e7151cbc7378557acf1f236fa0d34d95adeaa40df2fe9a6eb6ca43ff24d",
+      "bytes": 46443
+    },
+    "analysis/work/mission-world-20261103/human-car-impact-damage-abi/004fe910.c": {
+      "sha256": "327a98c6b757ba7bc76f20a87e2c7749c3144111693936d4b051ef0cdb34340f",
+      "bytes": 11678
+    },
+    "analysis/work/mission-world-20261103/human-car-impact-damage-abi/004fe910.json": {
+      "sha256": "79098ae1163fb3bac99142940e005f64e1b05f7d5f14c13c64fee4b40b166378",
+      "bytes": 10906
+    },
+    "analysis/work/mission-world-20261103/human-car-impact-damage-abi/004fefd0.c": {
+      "sha256": "4bb52d229d19f8ba975fa16d75b5452942fe7dc8bb8133def671754ca6e6a6d7",
+      "bytes": 14289
+    },
+    "analysis/work/mission-world-20261103/human-car-impact-damage-abi/004fefd0.json": {
+      "sha256": "f2bf9aea16d1b2690b4538b3a07152754fb86ec32db9390084a6938db04f1be7",
+      "bytes": 22414
+    },
+    "analysis/work/mission-world-20261103/human-car-impact-damage-abi/004ff8b0.c": {
+      "sha256": "6145587c7cc93dbef809cf90ce482d781fcb12f0c83a8d8cd7162daff8ba0d6a",
+      "bytes": 33710
+    },
+    "analysis/work/mission-world-20261103/human-car-impact-damage-abi/004ff8b0.json": {
+      "sha256": "204e82fded5b46763ed4a5f0fcba80023bedcda52796e35462337a742665692e",
+      "bytes": 46443
+    },
+    "analysis/work/mission-world-20261103/human-car-impact-damage-abi/00500cb0.c": {
+      "sha256": "861656ba972d46973ed7b15c1b3ad2e9e5da61c1778fde0be1a3797e23bb6bcd",
+      "bytes": 1462
+    },
+    "analysis/work/mission-world-20261103/human-car-impact-damage-abi/00500cb0.json": {
+      "sha256": "c20c75234010499eab3d8f10e62c3df2f0859299b1fd555f0d802b4f3f5b31b3",
+      "bytes": 2427
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan100 actual source impact-capture-deformation-restoration families PASS; engine/frame/geometry coefficients doubled.",
+    "Original-relative repeated clamp, first hit in either LOD, shared-key counts, strict radius edge, XYZ-only writes/high flags, key mismatch, factory/notification/lock/rebuild failures and reverse retained restore/retry/release.",
+    "No manually supplied backup; access-control option only seeds known physical coefficients.",
+    "Independent Decimal100 spill golden XYZ3FA55876/C14A137E/42F7D5D2 matches.",
+    "Strict actual nested World/Car/Human/module13 i386 plus explicit mesh/cold receiver instantiation PASS. New-worktree launcher/probe compile/link PASS.",
+    "Read-only Ghidra and heavy compilation sequential; no original EXE/DLL/Proton or Windows output execution."
+  ],
+  "limitations": [
+    "D2 positive light/health/variant/glass/wheel consumers remain required after their actual earlier mutations; no full positive-impact claim.",
+    "D3 occupied FA8+28 linkage/producer, containing frames/entry and application/desktop acceptance remain open.",
+    "Typed/template/STL/RAII adaptation and checked vertex/lock failure handling do not reconstruct native engine/object/container/allocator/SEH/virtual ABI.",
+    "Initial impact ABI mis-types694/698; later impact-damage-abi corrects FASTCALL/RET8. Newly exported004FEFD0/00500CB0 are research only and not credited.",
+    "Engine and STL vector insertion004FC320 receive no new function credit. Confirmed5F9/695/EXPL8/smoke14 required failures remain separate."
+  ]
+}

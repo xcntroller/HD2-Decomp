@@ -49,6 +49,7 @@ public:
     }
     void clear_packet_action_suppression()noexcept{flag2c1_=false;} //00592FE0 command23.
     bool bound()const{return bound_;}
+    void spawn_remote_flag(std::uint8_t value){flag2c0_=value!=0;} //006123A0 writes Remote2C0 BEFORE B0 virtual60.
     bool suppress_hostile_selection()const override{return flag2c1_;} //005A4410.
 private:
     void detach_callbacks()noexcept {

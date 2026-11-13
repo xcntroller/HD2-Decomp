@@ -1,5 +1,8 @@
 # Structured script analysis and includes — 2026-11-09
 
+The later [spatial script integration](SPATIAL-SCRIPTS.md) reuses these products
+for docked source inspection and bounded 3D relationship neighborhoods.
+
 This checkpoint completes the two script checkboxes. It is a read-only scripting
 inspection environment, not a text editor, debugger or runtime. Syntax acceptance
 means acceptance by the recovered bounded front end, not original-game or full

@@ -1,0 +1,267 @@
+{
+  "result": "PASS_WITH_KNOWN_TRACKER_LIMIT",
+  "date_utc": "2026-11-11T20:37:01.331686+00:00",
+  "source_sha": "e76afc1d5fedee02d2d3f70722a7f6c110635704",
+  "source_ref": "origin/feature/p22-data",
+  "reviewed_master_sha": "60f43dcc8aa6c4249a94817712324a9e18d8e6ae",
+  "merged_into_reviewed_master": false,
+  "implementation_scope": "DATA-owned resource provenance, exact-byte static validation and concrete observation hooks. Live integration and acceptance retained under their external owners per branch plan.",
+  "receipt": "analysis/checkpoints/p22-data-20261111.json",
+  "source_fingerprints": [
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 93275,
+      "sha256": "7f6f6c576638dbbb6b2b2656aa8f0a4d577905101c84fe19464f3b98860512a0"
+    },
+    {
+      "path": "recovered/game/mission_scene_documents.h",
+      "bytes": 4578,
+      "sha256": "de88f31360135ae2c3b935b8962ee683c2e7886f90eac0764ae3295837f99dd3"
+    },
+    {
+      "path": "recovered/game/mission_script_bindings.h",
+      "bytes": 3112,
+      "sha256": "a4b916a15478c458b0c709dddf0c8c8ddec3b53b2b37b67437f61959f45b6d68"
+    },
+    {
+      "path": "recovered/game/particle_module_loading.h",
+      "bytes": 8381,
+      "sha256": "0d495c1217b38fcaf6811c8cf0b395388f48d5393329303b722fcc4b9f94cecb"
+    },
+    {
+      "path": "recovered/game/selected_resource_analysis.h",
+      "bytes": 5523,
+      "sha256": "bacbcb1856c8f49b9da263df035257dec64e60bbefd913ed622f328f56ecbbce"
+    },
+    {
+      "path": "recovered/game/shot_blood_marks.h",
+      "bytes": 7479,
+      "sha256": "372464827194accfc36ed4505fa7a2b8008b709a305e91842a164402a46b1657"
+    },
+    {
+      "path": "recovered/game/shot_surface_marks.h",
+      "bytes": 5730,
+      "sha256": "c0f45f633200341f122479a2eb9e5680daacbb8225cd4bb7e3ab7c1cda8fe0d7"
+    },
+    {
+      "path": "recovered/host/application_launch.cpp",
+      "bytes": 36839,
+      "sha256": "a15bbe75bfa6dc09dd5c19d9bb1f2953f9623ad5596eabcb037c7b277f550724"
+    },
+    {
+      "path": "recovered/host/chunk_files.h",
+      "bytes": 3593,
+      "sha256": "1e77edbee8dcb39d66f814c84e86b238327c90d5fab075d3270e577bb71d8649"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 94950,
+      "sha256": "466d0b17dd9df27c3b13638c979f41010508d6d69b803a5924711a2c96dddd9b"
+    },
+    {
+      "path": "recovered/host/game_data_observations.h",
+      "bytes": 2129,
+      "sha256": "65e394b2cce3fc6a2c6b66aa50ee988314c6ea7e20c735b44586e5b8d4734d5b"
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "bytes": 13226,
+      "sha256": "80e879fd69523beb18579cc4f073d20cb2f3955a9fc8486d3cac315e1ee1e8af"
+    },
+    {
+      "path": "recovered/host/game_mission_loading.h",
+      "bytes": 15670,
+      "sha256": "6cfcf672270ac587a224946cf8a6dcbdaae7a271cf97c5d4aac4734328a88c4b"
+    },
+    {
+      "path": "recovered/host/game_mission_module_frames.h",
+      "bytes": 2469,
+      "sha256": "da6b10b904ddd5e4e5294d151138ea2d7c5610cab224e323616f39235555e35d"
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "bytes": 8408,
+      "sha256": "8b490633b9c06242853f5da098c9903edd9335bbca66613cd7b62e310ae14b8b"
+    },
+    {
+      "path": "recovered/host/game_scene_actors.h",
+      "bytes": 17595,
+      "sha256": "a461cda44eb86559610437e82bc8fd5517c269821475d2bdb4929bf260d6264d"
+    },
+    {
+      "path": "recovered/host/game_scene_objects.h",
+      "bytes": 18862,
+      "sha256": "685f27711a2f920037044995cf7a01cc27e38e356b969071a6eae64af220bcd9"
+    },
+    {
+      "path": "recovered/host/loaded_resources.h",
+      "bytes": 8893,
+      "sha256": "8f4968eb4afdf3f833adb2569f969335aba1348d935709f5759a22b301efc1e5"
+    },
+    {
+      "path": "recovered/host/loading_input_capture.h",
+      "bytes": 8322,
+      "sha256": "62c0ee41a5787840260f183439cded53ac3c733bfc8112b2d9ea37a7f2285f54"
+    },
+    {
+      "path": "recovered/io/data_manifest.h",
+      "bytes": 2346,
+      "sha256": "ea2a5eb07aaa863f75f01f5ab0867ee0224525f5ff6ba0c4bf180cbe564c78cf"
+    },
+    {
+      "path": "recovered/io/data_operation.h",
+      "bytes": 1148,
+      "sha256": "85ece8c52b0e0596a5a1d7bacfa4bef3cf141eb66253e7fe8dd3bfa9e77c55f7"
+    },
+    {
+      "path": "recovered/io/loaded_resource_cache.h",
+      "bytes": 7341,
+      "sha256": "3f5335385a185e4bf92390d0ab5028a90f2ce2efffd5c7967ff2b0af6cdf0104"
+    },
+    {
+      "path": "recovered/io/resource_observations.h",
+      "bytes": 9311,
+      "sha256": "b30b43b6a2c84be2bc69d30f4351149e4ee7548be1499f6722f35094dc0e4e6c"
+    },
+    {
+      "path": "tools/validate_loading_capture.py",
+      "bytes": 4579,
+      "sha256": "eda77560e391405ec3c817986323c2df34854b72c9c2ca782f15f44661025e24"
+    },
+    {
+      "path": "tools/validate_selected_resource.cpp",
+      "bytes": 6565,
+      "sha256": "db04b9a2bbe029f324ab2c6125e5c18901d276b3ceef5b9821657aba9bbbd33f"
+    }
+  ],
+  "retained_artifacts": [
+    {
+      "path": "analysis/work/p22-data-20261111/application-i386.log",
+      "bytes": 603,
+      "sha256": "057704a5b6ad82c8bf86feee75e89403ab46b351af7d9409dd970ad39468bf21"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/concrete-i386.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/ledger-check.log",
+      "bytes": 109,
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/native-run.log",
+      "bytes": 2452,
+      "sha256": "e1eece1d0e55adfacc3cfa9a0fcd88fd6807b8d59f25f7da91ecd5bf910a6331"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/particle-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/particle-run.log",
+      "bytes": 142,
+      "sha256": "9e026a08c0ef906829dd879eab384fffe5dc96ee229e06768a6e1c7c76d97860"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/surface-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/surface-run.log",
+      "bytes": 40,
+      "sha256": "433a61d75fd2c74f4467687e3dfa4f6e222550c5b1a09dc45880eee50f8a059e"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/validator-san-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/validator-san-run.log",
+      "bytes": 202,
+      "sha256": "e2e06ca6746678ad795c0e9501bbc0f5faaee7205290a1f64149fe2e090c7446"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/validation-summary.json",
+      "bytes": 5022,
+      "sha256": "6e643703ba78e3bb8347fb6d80f75975583a55ef2eb5784d3cb1a5d9df854cd4"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/static-summary.json",
+      "bytes": 1808,
+      "sha256": "666495b317009142f9576558ece842e4ae4d82e3045ab57ea5cf5f0d39021e61"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/historical-validation.json",
+      "bytes": 1563875,
+      "sha256": "1bcefb60994c1cad43dfa28e710eb7c0aeb3c7ab86bdf812de0c8e136e192b98"
+    }
+  ],
+  "independent_rerun": {
+    "compiler": "g++ C++17 -O1 -Wall -Wextra -Wpedantic -Werror, branch production headers",
+    "tool": "tools/validate_loading_capture.py with rebuilt tools/validate_selected_resource.cpp",
+    "historical_fingerprints": 29,
+    "resource_outcomes": 33,
+    "payloads": 28,
+    "accepted_parser_scopes": 16,
+    "validation_failed": false,
+    "report_sha256": "1bcefb60994c1cad43dfa28e710eb7c0aeb3c7ab86bdf812de0c8e136e192b98",
+    "report_bytes": 1563875,
+    "temporary_validator_sha256": "d26b0d1b81d2f6a2c3e6dca19103449c7ae1158caef82d87b0d8f2d809cb50d8",
+    "temporary_validator_removed": true
+  },
+  "upstream_native": {
+    "status": "PASS ASan/UBSan/LSan",
+    "endpoint_cycles": 100,
+    "negative_cases": 16,
+    "captured_parser_scopes": 16,
+    "cases": [
+      "actual capture_loading_inputs with verified historical input bytes through a native layered resolver endpoint",
+      "actual read_loading_input and ResourceOperationObserver open/seek/full/short/empty/absent/close outcomes",
+      "cache search order, early success, hit, clear; actual LoadedResourceCache with engine backend double",
+      "actual MissionSceneDocuments optional actors/sounds, Scene2 status and legacy fallback policies with parser/Scene endpoints as doubles",
+      "required exception identity, seek/read failure, output failure, retry, scope replacement/restore and WorldLoadingDependencyLink unbind/rebind",
+      "actual typed actor, Car, navigation/storage, animation, GameData, items, scripts and track definition production decoders",
+      "actual particle module positive publication/reuse and ShotMgr surface publication hooks, using explicit engine endpoint doubles"
+    ],
+    "limits": "Actual Windows ChunkFiles/World construction and loading were compiled/linked, never executed. Native WorldLoadingDependencyLink retirement is not an actual engine World rebind. No successful external Runtime, UI, PACK, procedural or camera-history receiver was fabricated.",
+    "sanitizer_execution": "Outside ptrace sandbox after LeakSanitizer could not run under sandbox; native binaries only."
+  },
+  "upstream_i386": {
+    "status": "PASS actual GameMissionLoadingSession cold World construction, load_observed/load, observation scopes, snapshot/manifests; compile/link only",
+    "compiler": "/home/control/Documents/Projects/H&D2 Decomp 4/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++",
+    "flags": "-std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -Irecovered -static -lwinmm -lole32 -ladvapi32",
+    "executed": false
+  },
+  "tracker_check": {
+    "status": "Cannot complete: pre-existing ignored assembly evidence absent from this isolated worktree",
+    "missing_evidence": "analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm",
+    "ledger_or_denominator_bypass": false
+  },
+  "application_loading_enabled": false,
+  "engine_execution": false,
+  "desktop_verified": false,
+  "checks": [
+    "All25 branch source fingerprints match receipt.",
+    "All14 retained artifact fingerprints match receipt.",
+    "Independent native production validator rebuild and historical capture validation passed.",
+    "Read-only branch ancestry confirms implementation is not merged into reviewed master.",
+    "Graph13 node and17 edge IDs/types preserved. DATA conditional edges remain nonblocking.",
+    "Other blocker nodes and revisions unchanged. DATA is explicitly branch-only.",
+    "Pinned source digests, research links and authorized edit scope validated."
+  ],
+  "limits": [
+    "Existing function tracker cannot complete because pre-existing ignored rule-refresh.asm evidence is missing in isolated branch.",
+    "Native observation sanitizer/i386 audits reported and fingerprint-checked, not rerun.",
+    "Fresh resolver capture, actual loaded populations and branch execution remain pending under OWN/FRAME/RENDER/VIS/REPEAT/SECOND."
+  ]
+}

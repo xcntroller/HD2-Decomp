@@ -20,6 +20,50 @@ public:
         if(!enabled&&drive.audible)sounds_.stop_all();
         drive.audible=enabled;
     }
+    void stop_engine_transition(CarDrivetrainState& drive,bool inside,bool& transition,bool& destroyed){ //00518710(false), native22A2/22BF/22A0.
+        //These four observations precede even the stop branch's early return.
+        if(drive.audible)for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset))(void)frames_.car_sound_state(sound);
+        if(!drive.running)return; //Native22A2 gate, distinct from pending22BF.
+        sounds_.stop_all();
+        if(auto sound=sounds_.sound(inside?0x980:0xc4c);sound&&drive.audible){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);}
+        for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset))frames_.human_sound_parameter94(sound,0);
+        drive.engine_speed=0;drive.running=false;transition=false;destroyed=false;
+    }
+    void start_engine_transition(CarDrivetrainState& drive,bool inside,bool& transition,bool& last_inside,float& timeout){ //00518710(true).
+        bool idle=true;
+        if(drive.audible)for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset))if(frames_.car_sound_state(sound))idle=false;
+        if(!drive.running&&!transition&&idle){
+            if(auto sound=sounds_.sound(inside?0x97c:0xc48);sound&&drive.audible){
+                frames_.human_sound_parameter94(sound,0);frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);
+            }
+            drive.running=true;
+        }
+        if(!drive.running)return;
+        idle=true;
+        if(drive.audible)for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset)){
+            if(!frames_.car_sound_state(sound))continue;
+            const auto duration=frames_.car_sound_duration(sound);
+            if(duration>300&&duration-frames_.car_sound_elapsed(sound)>300){timeout=0;idle=false;}
+        }
+        if(!idle)return;
+        transition=true;last_inside=inside;
+    }
+    void failed_engine_start(bool last_inside){ //0051A620; caller supplies2296 gate, both state queries precede last-inside selection.
+        bool idle=true;
+        if(auto sound=sounds_.sound(0x984))if(frames_.car_sound_state(sound))idle=false;
+        if(auto sound=sounds_.sound(0xc50))if(frames_.car_sound_state(sound))return;
+        if(!idle)return;
+        if(auto sound=sounds_.sound(last_inside?0x984:0xc50)){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);}
+    }
+    void puncture(bool audible,bool inside,const Vector& wheel_position){ //0051A880.
+        if(!audible)return;
+        const unsigned slot=inside?0x9ec:0xcbc;
+        if(const auto sound=sounds_.sound(slot)){
+            frames_.human_sound_enabled(sound,true);
+            frames_.human_sound_volume(sounds_.sound(slot),1.f); //Read-only0083BEC4=1.
+            if(!inside)frames_.object_position(sounds_.sound(slot),{{wheel_position[0],wheel_position[1],wheel_position[2]}});
+        }
+    }
     void suspension(float volume,bool audible,bool inside){ //0051B560.
         if(!audible)return;
         const auto sound=sounds_.sound(inside?0x9e8:0xcb8);if(!sound)return;
@@ -119,6 +163,7 @@ public:
         requested=true;
     }
     float skid_amount()const{return skid_;}
+    void reset_skid(){skid_=0;} //004E9DB0's5F0, without stopping/releasing voices.
 private:
     void stop(unsigned slot){if(const auto sound=sounds_.sound(slot))frames_.human_sound_enabled(sound,false);}
     void rate(Frame sound,const CarPhysicsScalars& fields,unsigned offset,float speed){

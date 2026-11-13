@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "131e9b4",
+  "integrated_commit": "10bebe92fd33dc817e8a969069e3088a8d4a0818",
+  "source_only": true,
+  "completed_plan_checkpoints": [
+    "H3 dependency integration"
+  ],
+  "h2_complete": false,
+  "desktop_verified": false,
+  "ledger_complete": 34,
+  "ledger_partial": 3080,
+  "source_files": {
+    "recovered/game/car_body_collision_controller.h": {
+      "sha256": "c259a51b85a32c092283b71e751f40586a19ceb68b33904ce7fee94a1a18fbef",
+      "bytes": 5584
+    },
+    "recovered/game/car_cold_finalizer.h": {
+      "sha256": "8bd72aca642636c90aa09653846d48b6e8c62f17ea0a925e88997c40c3d5c2ec",
+      "bytes": 10129
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "c937479e719af696462502ea59f89f56009e501bf82fccc2ba45e41dba3ea05a",
+      "bytes": 22356
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "6e5e00119aec281c260c55969cebd381a311372f3a2b804436ecfe3f20ea6cb1",
+      "bytes": 2578
+    },
+    "recovered/game/car_scene_actor.h": {
+      "sha256": "e3c9695235e30dcf25be6fe0b97381539d07bf9adadda631d6c985e7f9127f0f",
+      "bytes": 9398
+    },
+    "recovered/game/car_seat_actions.h": {
+      "sha256": "bcf22e21e8c7130489be44cc110586991f0723f289933839928b0a327b8b5d35",
+      "bytes": 10049
+    },
+    "recovered/game/car_seat_exit.h": {
+      "sha256": "bc39392052c5b3d2ec8df7982f37d5c2ac694e4a42cbd1bd5012e7188ee2f7e5",
+      "bytes": 3089
+    },
+    "recovered/game/car_sound_updates.h": {
+      "sha256": "57a83f3a4354ad3095cbc5cc96658d732fa672767bdce1f8e4fcf45c76963ce7",
+      "bytes": 12367
+    },
+    "recovered/game/first_person_players_loading.h": {
+      "sha256": "fe7ae4c8d8356fc86685d18a766f075ec9986cea669fac32e0543f8011261e34",
+      "bytes": 5287
+    },
+    "recovered/game/human_ai_state_loading.h": {
+      "sha256": "46167976add99167628f4a15972e6b8b92f127535512276f226982266e4333cf",
+      "bytes": 34199
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "6d01a2f9b70ddd0861cabf450d5cff6b5ce6b8efa469cae695901a390743cb0c",
+      "bytes": 56809
+    },
+    "recovered/game/human_door_action.h": {
+      "sha256": "06600158625130b386ce3f3eec3ce695cd7ab36c09febc4a12afeee2698f8615",
+      "bytes": 3590
+    },
+    "recovered/game/human_loading_presentation.h": {
+      "sha256": "2760c2c15f4c1cdaa6c32ef7a56b9e09114c9d14992a542df938ca6274850c7e",
+      "bytes": 3961
+    },
+    "recovered/game/human_model_geometry.h": {
+      "sha256": "e085da9dd2271bd6d7edc1bf834e4a31304e597651a7f3b6e901b2b906b8adc0",
+      "bytes": 111895
+    },
+    "recovered/game/human_seat_action.h": {
+      "sha256": "0e5d2f6db4d98daecbb8dd776e0b1261e703ee6df70306871461cd5e0cfdfb67",
+      "bytes": 13222
+    },
+    "recovered/game/human_state_base_loading.h": {
+      "sha256": "0b80c38cbbdeb14e7b5657ca4244d9c9e61171105341a2bdd8b9042813eaa30d",
+      "bytes": 15227
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "ffadbda52d8e8d54a3abb502eb51f5d8ce78dace682cd1ec5deddac4d8803f29",
+      "bytes": 126559
+    },
+    "recovered/game/mounted_weapon_aim.h": {
+      "sha256": "50f9ce4d256f7e5efe9bdfd4e6b63eefc8e492b4c3b1950f03e3fe4a105dd656",
+      "bytes": 9320
+    },
+    "recovered/game/mounted_weapon_control.h": {
+      "sha256": "7207f435be2a1aaf86800388e931f7f8bc4b1a37dc4ed99cb0993a312322250a",
+      "bytes": 1789
+    },
+    "recovered/game/mounted_weapon_control_loading.h": {
+      "sha256": "a0a24d945901600d8d6dc9b3386841a4c8e8d6c5a1e1aeef0046444438a2e582",
+      "bytes": 11379
+    },
+    "recovered/game/mounted_weapon_movement_sounds.h": {
+      "sha256": "a1e44ca9b8bd28491f1d56a7a55297a7f7a109068d667927cd1b53ea9951a7a1",
+      "bytes": 3751
+    },
+    "recovered/game/mounted_weapon_shell.h": {
+      "sha256": "8766a46cd7fa856ba511cc9d943923bee901b563d04c29bc2659c497e1a10a28",
+      "bytes": 2880
+    },
+    "recovered/game/static_weapon_loading.h": {
+      "sha256": "3a98599b75cf5a58f5bde9ac10dfe5003f4e61b6472179da38315b39a6b26697",
+      "bytes": 13048
+    },
+    "recovered/game/static_weapon_loading_lifetime.h": {
+      "sha256": "0eb7649231880a690ccec3c793f1275a0493ca907c7c4f5e21d87a35cffd8cd4",
+      "bytes": 912
+    },
+    "recovered/game/world_actor_loading_consumers.h": {
+      "sha256": "7322464bd3ae45d938a12c0d440ce7b0b974b782dafc667a80bbf5540fd90e70",
+      "bytes": 10603
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "66bd97e0df40bc24711bff99620a31bbcdc6198e6e493e90a5dde45b99f1deb3",
+      "bytes": 112547
+    },
+    "recovered/host/game_static_weapon_events.h": {
+      "sha256": "daf13f93aeed5cff2a9d3afc109c3066d5566e1c3f715c85049e2dd34a4eae41",
+      "bytes": 3285
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "930d36511eda8575dd5111b07ec8fdb51d488460035f39316c6e9e9d59ded4be",
+      "bytes": 29823
+    }
+  },
+  "verification": {
+    "analysis/work/mission-world-20261103/h2-h3-integration-host-i386.cpp": {
+      "sha256": "2c98cee8c5643144fd48454d6703259ac3cd15b6c1711b31f0d2f05698f7a3ec",
+      "bytes": 1454
+    },
+    "analysis/work/mission-world-20261103/h2-h3-integration-host-i386.o": {
+      "sha256": "e4052f0973b78c4bad357472613a76df4c30aa6f7dd26fa7f44430de4811da85",
+      "bytes": 19259683
+    },
+    "analysis/work/mission-world-20261103/h2-h3-integration-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h2-h3-integration-launcher-build.log": {
+      "sha256": "7e9252d1406678b33b81e74a22b80ce66dc917f4950fae75cb2f1bc6e630b306",
+      "bytes": 820
+    },
+    "analysis/work/mission-world-20261103/h2-h3-target-regression-native": {
+      "sha256": "e079e997b637499d20d295eae656408922e2199cdf158b376390d715a51e36ac",
+      "bytes": 3044368
+    },
+    "analysis/work/mission-world-20261103/h2-h3-target-regression-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h2-h3-target-regression-native.log": {
+      "sha256": "ed4a33c4ec23cb8b7494766adfe599c85a389a97837d9343075e7f9efdb5416a",
+      "bytes": 169
+    },
+    "analysis/work/mission-world-20261103/human-car-target-command-native.cpp": {
+      "sha256": "393416647e5ffd51b41996be000c7456764ae61b09ef89cd2611e72ed1fd846d",
+      "bytes": 12555
+    },
+    "analysis/work/mission-world-20261103/h2-h3-evidence-10bebe9/import-map.json": {
+      "sha256": "f20bafe05091ff702443847450e722e9d8de2c31ed0d3766462783219db57030",
+      "bytes": 15010
+    }
+  },
+  "limits": [
+    "Actual containing frame Runtime remains required; temporary i386 fixture uses three throwing endpoints, not a successful Runtime.",
+    "H3 original receipt and 51 locally imported evidence/log files validated by SHA256; source auto-merge retained H2 common-command and worker owners.",
+    "D5 occupied/non7 Car frame guards remain. No Windows output executed."
+  ],
+  "temporary_audits_removed": [
+    "analysis/work/mission-world-20261103/h2-h3-integration-host-i386.cpp",
+    "analysis/work/mission-world-20261103/h2-h3-integration-host-i386.o",
+    "analysis/work/mission-world-20261103/h2-h3-target-regression-native"
+  ]
+}

@@ -46,7 +46,7 @@ template<class Frames,class World,class Derived>void update_loading_scene_actor(
     case 3:derived.update_human(actor,authority,elapsed);return;
     case 4:world.update_car(static_cast<CarSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 6:if(!authority||!(world.mode_flags()&2u))world.update_door(static_cast<DoorSceneActor<Frames>&>(actor),elapsed);return;
-    case 8:case 10:case 13:case 33:return;
+    case 8:case 10:case 13:case 23:case 33:return; //Type23:0060DC50/0060DC60, genuine RET4.
     case 9:world.update_supply(static_cast<SupplyBoxSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 21:world.update_static_weapon(static_cast<StaticWeaponSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 22:{auto& value=static_cast<ExplosivePlaceSceneActor<Frames>&>(actor);
@@ -56,6 +56,9 @@ template<class Frames,class World,class Derived>void update_loading_scene_actor(
         if(authority)value.update_authority(elapsed,world.mode_flags());else value.update_presentation(elapsed);return;}
     case 29:world.update_fowl(static_cast<FowlGeneratorSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 30:derived.update_dog(actor,authority,elapsed);return;
+    case 37:
+        if((world.mode_flags()&7u)==7u)return; //005EC060/005EC540 both have this genuine initial RET.
+        throw std::runtime_error(authority?"Zone authority frame requires actual005EC060 decision receivers":"Zone presentation frame requires actual005EC540 containment receivers");
     default:throw std::runtime_error("Required Scene2 actor frame receiver is unavailable");
     }
 }

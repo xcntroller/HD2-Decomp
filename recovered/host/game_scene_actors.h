@@ -6,6 +6,9 @@
 #include "game/scene_actor_registry.h"
 #include "game/scene_actor_frame.h"
 #include "game/simple_scene_actors.h"
+#include "game/document_place_scene_actor.h"
+#include "game/human_spawn_position.h"
+#include "game/zone_scene_actor.h"
 #include "game/geometry_scene_actors.h"
 #include "game/model_scene_actors.h"
 #include "game/static_weapon_actor.h"
@@ -57,10 +60,11 @@ public:
         return human;
     }
     bool has_scene_actor_factory(std::uint32_t type) const {
-        switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:return true;default:return false;}
+        switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 23:case 25:case 28:case 29:case 30:case 33:case 37:return true;default:return false;}
     }
     ActorOwner make_scene_actor(std::uint32_t type) {
         switch(type) {
+        case 37:return std::make_unique<game::ZoneSceneActor<GameActorServices>>(*this);
         case 3:return std::make_unique<game::HumanSceneActor<GameActorServices,Runtime>>(*this,runtime_);
         case 4:
             if(!cars_)throw std::runtime_error("Car construction requires the actual shared callback owner");
@@ -72,6 +76,7 @@ public:
         case 13:return std::make_unique<game::SwitchSceneActor<GameActorServices,Runtime>>(*this,runtime_,frontend::lookup_localized_text(text_,0x1bf3));
         case 21:return std::make_unique<game::StaticWeaponSceneActor<GameActorServices>>(*this);
         case 22:return std::make_unique<game::ExplosivePlaceSceneActor<GameActorServices>>(*this);
+        case 23:return std::make_unique<game::DocumentPlaceSceneActor<GameActorServices>>(*this);
         case 25:return std::make_unique<game::AnimationSceneActor<GameActorServices>>(*this);
         case 28:return std::make_unique<game::PikeSceneActor<GameActorServices>>(*this);
         case 29:return std::make_unique<game::FowlGeneratorSceneActor<GameActorServices>>(*this);
@@ -88,13 +93,14 @@ public:
     bool initialize_actor(Actor actor,Frame frame) {
         if(!actor)return false;
         try {
-            if(actor->initialize(frame))return true;
+            if(actor->initialize(frame)){observe_data("loaded-owner","actor initialized","Scene2 type",actor->base().type());return true;}
         } catch(...) {actors_.remove(actor);throw;}
         actors_.remove(actor);return false;
     }
     void read_actor_properties(Actor actor,game::SerializedBytes& bytes) {
         if(!actor)throw std::logic_error("Actor property read requires an owner");
         actor->load(bytes);
+        observe_data("loaded-owner","actor properties decoded","Scene2 type",actor->base().type());
     }
     void clear_scene_frame_data(){ //006E9B50/006E9B70, scene44 maskFFFF, userdata0.
         enumerate_activation_scene(false,0xffff,[this](Frame frame){erase_actor_frame_data(frame);});
@@ -106,7 +112,15 @@ public:
     std::size_t scene_actor_identity_count()const{return actors_.identity_count();}
     Instance* scene_actor_command_identity(std::int32_t id)const{return actors_.command_identity(id);} //00475D50.
     template<class Services>void tick_scene_actors(bool authority,std::uint32_t elapsed,Services& services){
+        observe_data("execution","Scene2 frame entered",authority?"authority":"presentation");
         game::tick_scene_actor_registry(actors_,authority,elapsed,services);
+        observe_data("execution","Scene2 frame completed",authority?"authority":"presentation");
+    }
+    void observe_scene_population()const noexcept {
+        observe_data("population","Scene2 snapshot","identity slots",actors_.identity_count());
+        for(std::size_t n=0;n<actors_.identity_count();++n)if(auto* actor=actors_.identity(n))
+            observe_data("population","Scene2 actor","type",actor->base().type());
+        observe_data("population","Scene2 snapshot end");
     }
     std::uint32_t available_human_count()const{return actors_.available_human_count();}
     std::uint32_t selected_human_count()const{return actors_.selected_human_count();}
@@ -119,6 +133,7 @@ public:
     std::int32_t player_generation(std::int32_t identity)const { //004754F0 sign-extends native CHAR.
         return identity<0||identity>31?-1:static_cast<std::int8_t>(actors_.generation(static_cast<std::size_t>(identity)));
     }
+    void player_generation(std::int32_t identity,std::uint32_t value){actors_.player_generation(identity,value);} //00475510, exact signed reserved-slot bound.
     std::int32_t first_free_player_identity()const { //004759A0, physical reserved slots0..31 ascending.
         for(std::size_t n=0;n!=32;++n)if(!actors_.identity(n))return static_cast<std::int32_t>(n);
         return -1;
@@ -136,6 +151,21 @@ public:
         }
         return nullptr;
     }
+    template<class Random>Spawn* select_session_spawn(std::uint32_t kind,std::uint32_t side,Random&& random){
+        auto* actor=game::select_session_spawn_point<Spawn>([this]()->const std::vector<Actor>&{return actors_.identity_actors();},kind,side,std::forward<Random>(random));
+        return actor?static_cast<Spawn*>(actor):nullptr;
+    }
+    std::int32_t zone_map_group(const GameActorServices::Actor& base)const{
+        auto* actor=actors_.actor_for_base(base);
+        if(!actor||actor->base().type()!=37)throw std::logic_error("HUD zone group requires its SAME type37 actor");
+        const auto value=static_cast<game::ZoneSceneActor<GameActorServices>*>(actor)->fielda4;
+        std::int32_t out;std::memcpy(&out,&value,4);return out;
+    }
+    std::uint32_t zone_map_side(const GameActorServices::Actor& base)const{
+        auto* actor=actors_.actor_for_base(base);
+        if(!actor||actor->base().type()!=37)throw std::logic_error("HUD zone side requires its SAME type37 actor");
+        return static_cast<game::ZoneSceneActor<GameActorServices>*>(actor)->field98;
+    }
     void set_scene_actor_active(GameActorServices::Actor& base,bool value) {
         auto* actor=actors_.actor_for_base(base);
         if(!actor)throw std::runtime_error("Scene actor active-list receiver has no matching owner");
@@ -146,11 +176,12 @@ public:
             //Reject an unavailable family BEFORE recording entry to a derived
             //receiver. Cold actors later in a failed pass own no such prefix.
             switch(actor.base().type()){
-            case 3:case 4:case 6:case 8:case 10:case 13:case 22:case 9:case 21:case 25:case 28:case 29:case 33:break;
+            case 3:case 4:case 6:case 8:case 10:case 13:case 22:case 23:case 9:case 21:case 25:case 28:case 29:case 33:case 37:break;
             default:throw std::runtime_error("Required Scene2 actor activation is unavailable: "+std::to_string(actor.base().type()));
             }
             actor.loading_activation_passes|=authority?1u:2u;
             switch(actor.base().type()) {
+            case 37:activation.activate_zone(static_cast<game::ZoneSceneActor<GameActorServices>&>(actor),authority);break;
             case 3:activation.activate_human(static_cast<game::HumanSceneActor<GameActorServices,Runtime>&>(actor),authority);break;
             case 4:activation.activate_car(static_cast<game::CarSceneActor<GameActorServices>&>(actor),authority);break;
             case 6:static_cast<game::DoorSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
@@ -158,6 +189,7 @@ public:
             case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).activate(authority,activation);break;
             case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).activate(authority,activation,collisions);break;
             case 22:static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
+        case 23:static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
             case 9:activation.activate_supply(static_cast<game::SupplyBoxSceneActor<GameActorServices>&>(actor),authority);break;
             case 21:activation.activate_static_weapon(static_cast<game::StaticWeaponSceneActor<GameActorServices>&>(actor),authority);break;
             case 25:activation.activate_animation(static_cast<game::AnimationSceneActor<GameActorServices>&>(actor),authority);break;
@@ -178,6 +210,7 @@ public:
     template<class Activation,class Collisions>void deactivate_scene_actor(Instance& actor,bool authority,Activation& activation,Collisions& collisions) {
         if(!actor.loading_activation_passes)return; //Source guard: no derived receiver was entered, including rejected Dog/cold tail actors.
         switch(actor.base().type()) {
+        case 37:static_cast<game::ZoneSceneActor<GameActorServices>&>(actor).deactivate(authority);break;
         case 3:activation.deactivate_human(static_cast<game::HumanSceneActor<GameActorServices,Runtime>&>(actor),authority);break;
         case 4:activation.deactivate_car(static_cast<game::CarSceneActor<GameActorServices>&>(actor),authority);break;
         case 6:static_cast<game::DoorSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
@@ -185,6 +218,7 @@ public:
         case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).deactivate(authority,activation);break;
         case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).deactivate(authority,activation,collisions);break;
         case 22:static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
+        case 23:static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
         case 9:activation.deactivate_supply(static_cast<game::SupplyBoxSceneActor<GameActorServices>&>(actor),authority);break;
         case 21:activation.deactivate_static_weapon(static_cast<game::StaticWeaponSceneActor<GameActorServices>&>(actor),authority);break;
         case 25:activation.deactivate_animation(static_cast<game::AnimationSceneActor<GameActorServices>&>(actor),authority);break;

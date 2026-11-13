@@ -93,6 +93,9 @@ public:
     auto& selection(){return selection_;}const auto& collected_frames()const{return collected_;}const auto& sighted_dogs()const{return dogs_;}
     std::int32_t& selected_index(){return index28_;}std::int32_t& current_index(){return index2c_;}std::int32_t& previous_index(){return index30_;}
     Human*& override_player(){return override58_;} //Typed borrowed native58, actual writers remain containing consumers.
+    void override_player(Human* human){ //0045E8F0, store BEFORE camera reset/FPV rebind, no roster mutation.
+        override58_=human;presentation_.reset_player_camera(0);presentation_.bind_first_person_player();
+    }
 private:
     Human* indexed(std::int32_t index)const {
         if(index==-1)return nullptr;

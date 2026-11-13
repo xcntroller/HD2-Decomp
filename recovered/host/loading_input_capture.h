@@ -3,6 +3,7 @@
 
 #include "game/serialized_bytes.h"
 #include "io/resource_directories.h"
+#include "io/data_manifest.h"
 #include <map>
 #include <set>
 #include <cstdint>
@@ -88,15 +89,18 @@ template<class Files, class Output>
 void capture_loading_inputs(Files& files, Output& output,
                             const io::ResourceDirectoryList& model_directories) {
     std::string manifest = "resource\tbytes\tfile\n";
+    std::string provenance="resource\toutcome\tbytes\tsha256\torigin\n";
     const auto capture = [&](const std::string& path, const std::string& filename = {}) {
         const auto bytes = read_loading_input(files, path.c_str());
         std::string name = filename.empty() ? path : filename;
         for (auto& c : name) if (c == '\\' || c == '/') c = '_';
         if (bytes) {
+            provenance+=io::data_manifest_text(path)+"\treturned-by-resolver\t"+std::to_string(bytes->size())+"\t"+io::resource_sha256(bytes->data(),bytes->size())+"\tunavailable: rw_data selected origin\n";
             output.write(name, bytes->data(), bytes->size());
             manifest += path + "\t" + std::to_string(bytes->size()) + "\t" + name + "\n";
             std::printf("Loading input captured: %s bytes=%zu\n", path.c_str(), bytes->size());
         } else {
+            provenance+=io::data_manifest_text(path)+"\tabsent-at-capture\tunknown\tunknown\tunavailable: rw_data selected origin\n";
             manifest += path + "\tmissing\t-\n";
             std::printf("Loading input absent: %s\n", path.c_str());
         }
@@ -136,6 +140,7 @@ void capture_loading_inputs(Files& files, Output& output,
     output.write("model-directories.tsv", directories.data(), directories.size());
     // This completion marker is written last, only after every read/output has
     // completed. A failed/partial capture is never presented as a complete one.
+    output.write("resource-provenance.tsv",provenance.data(),provenance.size());
     output.write("manifest.tsv", manifest.data(), manifest.size());
 }
 

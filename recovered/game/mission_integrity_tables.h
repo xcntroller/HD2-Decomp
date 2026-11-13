@@ -16,9 +16,13 @@ class MissionIntegrityTables {
 public:
     static constexpr std::size_t count=128;
     template<class Random>void initialize(std::uint32_t seed,Random& random) {
+        initialize_from_seed([seed]{return seed;},random);
+    }
+    template<class Seed,class Random>void initialize_from_seed(Seed seed,Random& random) {
         initialized_=false;
         for(std::size_t n=0;n<count;++n)expected_indices_[n]=observed_indices_[n]=static_cast<std::uint16_t>(n);
-        random.seed(seed);
+        //006E9EBC reads the clock AFTER both identity permutations are written.
+        random.seed(seed());
         for(std::size_t n=0;n<count;++n){
             const auto a=random()&0x7fu;const auto old_observed=observed_indices_[n];
             observed_indices_[n]=observed_indices_[a];observed_indices_[a]=old_observed;

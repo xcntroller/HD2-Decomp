@@ -6,6 +6,7 @@
 #include "game/car_ancillary_model.h"
 #include "game/car_callback_services.h"
 #include "game/car_loading_lifetime.h"
+#include "game/mounted_weapon_control.h"
 #include <functional>
 
 namespace hd2::game {
@@ -30,7 +31,7 @@ public:
         std::function<void(std::size_t)> hide69c;
         std::function<Contact*(Contact&)> contact6a8;
         std::function<Contact*(Contact&,unsigned)> surface6ac;
-        std::function<void()> empty6b0,empty6b4;
+        std::function<void()> empty6b0,empty6b4,state6a4; //Actual core6A4/actor734 is cold NULL.
         std::function<bool(CarParticleState<Frame>&,unsigned)> particle6bc;
         std::function<std::int32_t(unsigned,unsigned)> reuse6c0;
         //6A0/6B8 remain unassigned cold null;6A4 is explicitly null.
@@ -51,13 +52,14 @@ public:
         geometry.reset(); //004E7F10 before00610170's base storage/frame/reference cleanup.
     }
     bool initialize(Frame frame) override { //004D10A0.
-        flag24a1=false;fields24b4.fill(0);
+        flag24a1=false;for(auto& control:fields24b4)control.reset();
         if(!this->base_.initialize_frame(frame))return false;
         if(geometry)throw std::logic_error("Car geometry initialization repeated");
         geometry.emplace(this->backend_,frame,services_.car_tyre_ids());
         occupants.assign(geometry->auxiliary().seats().size(),nullptr); //004E2E30's actual FA8+30 zeroed seats.
         bind_callbacks();
         ancillary.emplace();
+        ancillary->bind_particles(services_);
         ancillary->load(this->backend_,geometry->resource(),geometry->auxiliary().seats().size());
         return true;
     }
@@ -73,7 +75,11 @@ public:
     std::unique_ptr<CarLoadingLifetime<Backend>> loading;
     std::vector<SceneActor<Backend>*> occupants;
     SceneActor<Backend>* driver24ac=nullptr; //004D0B60, separate from seat0's current occupant.
+    bool driver_enabled2321=false; //004D11C0 publishes with driver24AC.
+    std::array<bool,4> input_flags2329{}; //Reached004D9430 publications.
+    std::uint32_t control_mask24a8=0; //004D16A0 produces before004D9280 consumes.
     Services& callback_services(){return services_;}
+    void restart_clock(){clock2470=services_.car_clock();fields2474[1]=1;} //0073EAC0.
     bool clock_expired(){ //0073EA90 on the actual0073EA50 owner at actor2470.
         if(!fields2474[1])return false;
         if(car_contact_signed_word(clock2470+fields2474[0])>=car_contact_signed_word(services_.car_clock()))return false;
@@ -82,10 +88,18 @@ public:
     //Actual runtime producers must fill these owners before invoking callbacks;
     //cold loading alone does not initialize a current simulation state.
     std::vector<CarSeatContactCooldown> cooldowns;
-    std::array<std::uint32_t,10> fields24b4{};
+    std::array<std::unique_ptr<CarMountedWeaponControl>,10> fields24b4{};
     std::array<std::uint32_t,2> fields2474{};
     std::uint32_t clock2470,field24dc=0xffffffffu;
-    bool flag24a1=false;
+    using DamageModelOwner=decltype(std::declval<Backend&>().retain_car_frame(std::declval<Frame>()));
+    std::optional<DamageModelOwner> model254c; //Native owned reference, initialized NULL by004D16A0.
+    bool flag2548=false;
+    bool flag24a1=false,flag254a=false; //254A reset by actual004D16A0; set by004DBF00.
+    std::optional<bool> flag2544; //Actual004DB760 case8 publication; no cold producer is invented.
+    std::optional<std::int32_t> source24b0; //Native24B0 is produced by authority activation or actualD4.
+    std::optional<std::int32_t> damage2550,source2554; //Produced by004D16A0/004DD0D0, armed by004DEAD0.
+    Vector target2560{},target2570{}; //004DEB50 publishes before template/factory.
+    bool flag2549=false; //004D16A0/004DD0D0; non7 water request latch.
     std::array<std::vector<std::uint32_t>,2> lists2518;
     std::vector<std::uint32_t> lists2528,lists2538,lists258c,lists259c;
 private:

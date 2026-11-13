@@ -1,0 +1,202 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "dcd648994cb25ff85710d304c2f8f19ea05ba4e9",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "004e0040",
+    "004e0800",
+    "004d3d10"
+  ],
+  "extended_entries": [
+    "004d3ef0",
+    "004db360",
+    "004db760",
+    "004db2b0",
+    "004db2e0",
+    "004e0180"
+  ],
+  "absent_frozen_zero_credit": [
+    "004e00f0",
+    "004e0830"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2757,
+  "source_files": {
+    "recovered/game/car_damage_packets.h": {
+      "sha256": "883cfaaf2eeaf8924c0a611c041263c18a7efabb9727e53a718d15f7d5642c0d",
+      "bytes": 6592
+    },
+    "recovered/game/car_actor_damage.h": {
+      "sha256": "688371ddabe47167079fc5a0b0e624546a6535b2e9d5c26bce703b9cbb6045c0",
+      "bytes": 11274
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "041422aacbe8549d8fa87b4b95be52af7dd970f4b5013514973daa76a5c42244",
+      "bytes": 2091
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "5ad84b0849dd79b39d8e9377820bcd5a3d78e95afe51de96d8436a49672944ef",
+      "bytes": 20177
+    },
+    "recovered/game/car_collision_impulse.h": {
+      "sha256": "3341b9b00ea819fd339aa38acfebf8d888940407e3c9d047fbff41e5ed90defa",
+      "bytes": 3984
+    },
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "a54f3bf7b55d1eafbaae01624b5e4850d5d724ffbccbfbd5811c1194b3aa5c6d",
+      "bytes": 20822
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "dafdcf67d14ef943a06c75ba3b12f138984ea6d29fd089b23181043b0ce09427",
+      "bytes": 12694
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-native.cpp": {
+      "sha256": "4290efa9019fe7e06d9b2adeddf9064ad42b31518c8f7aacee19347cfbd20356",
+      "bytes": 26695
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-native": {
+      "sha256": "a1ac1b70ec9bb7afeb39dbf15c21614c6bd6bdd336f89eacebdae62150dd0d9f",
+      "bytes": 4429072
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-native.log": {
+      "sha256": "0d8467258eec9ea631fd0612fbee80ceb29bc7c152b397fcf49cac28e419c493",
+      "bytes": 474
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-host-i386.cpp": {
+      "sha256": "a588f99500ab9f1c8b7de931e6ffba07546d5ec2dbb5c77cc2a58f6413833dce",
+      "bytes": 745
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-host-i386.o": {
+      "sha256": "c66e0bf06968f334f50cf6e6c9b90979ab4795436439800fc5e4b98b90e59222",
+      "bytes": 17856552
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    },
+    "analysis/work/mission-world-20261103/human-car-impulse-spill-oracle.json": {
+      "sha256": "569db9f960392acf01780eb1948a0ec7812ec09b0963206efeb230c11a0b92db",
+      "bytes": 692
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/ExportHumanCarFuelImpulseABI.java": {
+      "sha256": "f8c4b4271ef7e7d95d286517d6bdd71a3d4f0ff9a10283c40a0eedce42f802a3",
+      "bytes": 3163
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi.log": {
+      "sha256": "e96d90a1d6aa3fa9a389896fc8974f8c18f32b0dcbdd422beedec93d88437267",
+      "bytes": 4970
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-contact.asm": {
+      "sha256": "b05970bebc75b3ed386b4b21ad2a94eb1a16276a9143d0a933066eb634a2ad30",
+      "bytes": 17626
+    },
+    "analysis/work/mission-world-20261103/human-car-impulse-packet.asm": {
+      "sha256": "fb6ffbc8c75d4096d2da6fbd9f7d918aa0a35660aeed7d8f220f233b80bb83fa",
+      "bytes": 4438
+    },
+    "analysis/work/mission-world-20261103/human-car-human-damage-packets.asm": {
+      "sha256": "836535db0a119e2b65031ad3940ccc74121a7f73824c7b50a0826d19d1fa10b7",
+      "bytes": 10006
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-packet-constants.json": {
+      "sha256": "c562c3a6b80661b9e0888bdb67c5c4da57f84ce09855a50700f00bc679f1e8a6",
+      "bytes": 621
+    },
+    "analysis/work/mission-world-20261103/human-car-authority-extra-branches-index.txt": {
+      "sha256": "30aa4db734f067b54a0fdb8da941bb62007eba1b9129e7d7bf3d8730253e88c4",
+      "bytes": 5259
+    },
+    "analysis/work/mission-world-20261103/human-car-impulse-owner-fields-index.txt": {
+      "sha256": "26f334ca93654cdaf69c070dcd95ccd91a24c9d4328919a82c80c327253b3646",
+      "bytes": 14231
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-export-index.txt": {
+      "sha256": "fcb68cadc9da3f7c78ed8077756654fc7553bea0813929a2fab486ee816ebeb4",
+      "bytes": 14421
+    },
+    "analysis/work/mission-world-20261103/human-car-restore-fuel-checkpoint-index.txt": {
+      "sha256": "44fc39699917f038def359a7c8b6d58769b019a14ea4c4a3d529fc7820c93348",
+      "bytes": 26069
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004d3d10.c": {
+      "sha256": "a52683a8028df43d304f019af866303018853fe01f1a384db68fc8adc1a201dc",
+      "bytes": 2516
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004d3d10.json": {
+      "sha256": "f837fbe847eacbbee9d5e9f2caad8ff63c2cb6f713a23d5bd0de7031b2a0239d",
+      "bytes": 7006
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004d3ef0.c": {
+      "sha256": "652932d369a1afe7f43a6a8dcce569c722588f7b8f18e55e481dbe3c5b78a010",
+      "bytes": 2823
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004d3ef0.json": {
+      "sha256": "997aaa8a741b3bb55e6234eae5569e8b6a4f2390c7e38bd00dc1dfb55a69038b",
+      "bytes": 11344
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004e0040.c": {
+      "sha256": "d2bde13b223ea907f63cd973eb5f59c0016a230f53c173bde5f34c52364ce40a",
+      "bytes": 636
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004e0040.json": {
+      "sha256": "624eb09f562fe8142eb9d5fdac3cd89c63bd6838ea18cffbc0462e5d888f0d35",
+      "bytes": 3593
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004e00f0.c": {
+      "sha256": "ce903f09deec45ab9ae45e25f00a96228d071c677c621e144efa9f0ac9c4603c",
+      "bytes": 435
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004e00f0.json": {
+      "sha256": "f207ee5964b799df4845d4586ab76304b2b489a4e8b5cb3a7bd45892fa3d3873",
+      "bytes": 2454
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004e0800.c": {
+      "sha256": "b5f30cbe2a306b01c1d59417701d0cb3836fed96cb821835b7ee51c075b79ea9",
+      "bytes": 285
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004e0800.json": {
+      "sha256": "a7d16c76f39552dc7cadc637b98d79152cdad2f7d73af10d1e2cf5cc085559ad",
+      "bytes": 1501
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004e0830.c": {
+      "sha256": "3ed862dd0e49f7b6099b27f843ca994b5539927efc3091bf34c551ae49d25833",
+      "bytes": 489
+    },
+    "analysis/work/mission-world-20261103/human-car-fuel-impulse-abi/004e0830.json": {
+      "sha256": "cf1553e5b7bde126a5792101830bea39b2cbe2d69720aca14aa59012bbf6d935",
+      "bytes": 2148
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan100 existing request/timer families and100 fuel/impulse families PASS.",
+    "Actual shared packets/quantizers/streams/routing; explicit actor/clock/physics/damage/detachment/destruction endpoints doubled.",
+    "Independent Decimal100 FLOAT spill golden matches XYZ457E4C41/42/43. Fuel5000 encodes65534; original event rebroadcast follows local capacity clamp.",
+    "Driver/mode fresh reads,1000/1001ms/signed wrap, physical versus command identity, absent unrelated owners, retained timestamp/fuel/stream failure prefixes.",
+    "Expanded regression exposed and corrected uninitialized source fourth lanes in004E0180; six serialized FLOAT components unchanged.",
+    "Strict actual nested World/Car/Human/module13 and explicit fuel/impulse/hit58 i386 PASS. Final launcher/probe compile/link PASS. Heavy compilation and Ghidra sequential.",
+    "No original executable/DLL/Proton or Windows fixture/output executed."
+  ],
+  "limitations": [
+    "Typed/template/STL/RAII adaptation, no native object/allocator/SEH/virtual ABI or full network/trajectory equivalence.",
+    "Non-Car mass9A8/velocity4A0 mapping remains required rather than fabricated.",
+    "Non7 activation, Car6/7/deformed/global backup/occupied restore, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+    "Confirmed unproduced5F9/695/EXPL8/smoke14 remain separate honest failures."
+  ]
+}

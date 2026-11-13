@@ -1,0 +1,166 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "b4e9617d1df1f1941911ae6a106a6de47468a94b",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "0072e890",
+    "00723220",
+    "0072e4e0"
+  ],
+  "extended_entries": [
+    "00723000",
+    "0073f5a0",
+    "0072e460"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2620,
+  "source_files": {
+    "recovered/frontend/control_frame.h": {
+      "sha256": "4650499c3e7e43f69f9e178afd16aca553a8cc9664a465710faedade85e7c476",
+      "bytes": 6924
+    },
+    "recovered/game/human_input_session_profiles.h": {
+      "sha256": "ed5d58db7d90007a3cb367d7a01166bc5a3599b9ee3acb9f24cc397ba519fac0",
+      "bytes": 2060
+    },
+    "recovered/game/session_packet_world.h": {
+      "sha256": "d7aa3f92ce58d28aa9bd486846fb9269258c1c9c24976de07157c8cde150ff51",
+      "bytes": 2254
+    },
+    "recovered/host/game_world_loading.h": {
+      "sha256": "44dcf131facb64b4330e7d9e56929a561c67976d27423d641a9d1424960f27e8",
+      "bytes": 27367
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "998fd60b6d199e0e1c86400f58e845edd60b4c7ef71e852718d60517cab82191",
+      "bytes": 66601
+    },
+    "recovered/game/session_entry_records.h": {
+      "sha256": "192d2398d63212684e5087437e2e069962364e78e8fc36b484b5a7d6bfe5c686",
+      "bytes": 961
+    },
+    "recovered/game/session_human_inputs.h": {
+      "sha256": "2a1107a8008ab12ddb3ca986168f5a6610b3d70d1b6da18832733163a98b11d7",
+      "bytes": 3344
+    }
+  },
+  "verification_artifacts": {
+    "human-process-input-native.cpp": {
+      "sha256": "496a46227514868a1af90f23507e099a3aff6aa5f65922bb567f3fb67a57fcbd",
+      "bytes": 8398
+    },
+    "human-process-input-native": {
+      "sha256": "f937811a69f96f9b8dea575c362d8bf78f6f4176f2677df2ae697494297bc992",
+      "bytes": 2889488
+    },
+    "human-process-input-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-process-input-native.log": {
+      "sha256": "5b7ffe9293f52c8ebdb1c21bb752fc99999863130c96a62eb746928b6212bcd9",
+      "bytes": 420
+    },
+    "human-process-input-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-process-input-host-i386.o": {
+      "sha256": "ee40e05d1ef1ab1fe67d49ca4956c4ce4ee6f59f9317b7540d791974c0709c25",
+      "bytes": 15901194
+    },
+    "human-process-input-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-process-input-originals/00723220.c": {
+      "sha256": "0c931872c3f70bef0461d2b1373c5d3626a73e8c385c1fdaa95499fed4dc9e27",
+      "bytes": 210
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/00723220.json": {
+      "sha256": "1494cde0ec50e3d6543f421444d4577afe380e3dbdc1d8d38c1637e32deabf32",
+      "bytes": 704
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/00723000.c": {
+      "sha256": "956650d888f58f4e2d265f6db1526fc68c3a12edecfeba7bbfd3ffff4daee93e",
+      "bytes": 2261
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/00723000.json": {
+      "sha256": "f158b9af14bea9c1dc123873ca9f3594cffb06f1736f4f329e2eaed89e296e5b",
+      "bytes": 10184
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0073f5a0.c": {
+      "sha256": "8384ba0e731133cc2df534b4a820a70d4c0844b9eb49249b72733efa9e8531e7",
+      "bytes": 515
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0073f5a0.json": {
+      "sha256": "adafc63eb67d910ac5e0c33445fd281e13966fc2ac75f41ddbf85182b427589d",
+      "bytes": 1680
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0073ed00.c": {
+      "sha256": "bc3ba7e354f24b4791a782fabb7a759ab9028dc99aefb60b035ee2ca300e527d",
+      "bytes": 487
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0073ed00.json": {
+      "sha256": "378c1287b722b644bc77e24b31a6c9934c32c6ed79559beb348189846d1e9c1c",
+      "bytes": 3074
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0072e890.c": {
+      "sha256": "011408e75c8f6de5b0e20966939ea9a8792a7ce1afe340b44ac1afa5c3a8a4f2",
+      "bytes": 1200
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0072e890.json": {
+      "sha256": "6ef79e509a3b8fa307b2686611387ec0b4a406de329bcee2c96173ab65f41031",
+      "bytes": 2585
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0072e460.c": {
+      "sha256": "cdbc0e390f66322b11fe7d50b9a392c82ae74e0eb7d78501c22bd095df14a534",
+      "bytes": 819
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0072e460.json": {
+      "sha256": "25e2be517ea82f2df27031783e1fe1634537d1de9a0fcdbbfcd4c85637d4952c",
+      "bytes": 2520
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0072e4e0.c": {
+      "sha256": "78fe8936b09f5f725635507be1bec10c21eaa235102dfb6450f682d07305cf49",
+      "bytes": 3696
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/0072e4e0.json": {
+      "sha256": "9e636e47e76ead83f94f79606b82012460cf490dca1992aa828cc97d6a05f816",
+      "bytes": 1257
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/00724110.c": {
+      "sha256": "9747597d959dfcfb142ddf194653c6fefef53a4a9128b10d0d52ced142effb3d",
+      "bytes": 283
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/00724110.json": {
+      "sha256": "0e9274cafa0b1503a778774d11fce02605bb7835374504aae3f5e5ad19dfcf2f",
+      "bytes": 1751
+    },
+    "analysis/work/mission-world-20261103/human-process-input-originals/provenance.json": {
+      "sha256": "7d02d1e56750a24743e5739cfc1cd01d4f8d23eb19d21b2c4070e5b6a0e0ccf5",
+      "bytes": 2972
+    }
+  },
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan actual canonical manager, Remote full bind/close, Player Base and required retired-input close failure, destructive replacement prefixes, entry records/input/team ordering,100 lifetimes, actual cold control reset retains manager and shutdown deletes it before locks. Frames/clock/Scene getter/presentation are doubles. No full World or entry execution.",
+    "actual_i386": "PASS final strict actual World process-input/factories/retirement source composition compile only.",
+    "launcher_probe": "PASS sequential strict application-launch/startup-probe compile/link; Windows outputs not executed.",
+    "research": "Research indexes before copied originals, no new Ghidra export.0072E890 clears records; received-start00724110/00723000 separately replaces manager before old-game exit.",
+    "original_or_windows_execution": false
+  },
+  "temporary_audits_removed": false,
+  "exclusions": [
+    "Full controller status9 and presentation command0 entry protocols remain required",
+    "Cold source-only manager acquisition differs from native control startup timing, explicitly bounded",
+    "Old Player close after record retirement remains a required failure, no fabricated replacement record",
+    "History packet input/transport and full Human frame/application loading/desktop acceptance remain required"
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "date": "2026-11-11",
+  "previous_implementation_checkpoint": "d01face",
+  "previous_planning_checkpoint": "a2d61c6",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "remote_note": "Shared repository remote externally renamed origin to feature/p22-pack during work; same GitHub URL, read-only master fetch only. No active branch merge/rebase or other-worktree source change.",
+  "research_tool": "Used read-only research-index02f804a documentation/locator before exports. Reused retained original roll and target evidence. Did not copy dirty Human source.",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "004b0f30",
+    "004b11f0",
+    "004b13c0",
+    "004b1ee0",
+    "004b13a0",
+    "004b0b20",
+    "004b0920",
+    "004b27b0",
+    "004b0ef0",
+    "004b2f50",
+    "004b2ce0",
+    "004b3010",
+    "004b3030",
+    "004b3060",
+    "004b2fc0"
+  ],
+  "updated_entries": [
+    "0049ef70"
+  ],
+  "ledger_added_partial_client": 15,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2439,
+  "checks": {
+    "native_roll": "PASS ASan/UBSan/LSan100 lifetimes of actual HudDialogsLoading/TextState/roll policy: ordinary/command eligibility, row families, selected-vs-target medical/health, caption/disabled/selected/seat formatting, original three StaticWeapon target queries, target changes/redirects, hover/cycle/wrapping timer, protected restoration, localization/click/geometry failures, retirement error aggregation retracting both ordinary and nested command borrowers. Engine/font/actor/query endpoints are doubles.",
+    "actual_host_i386": "PASS strict GameUiPresentation ordinary/nested target/show/hover/cycle/tick/position methods and GameUiRollExternalSource through real World/Players/Human/Items/Car/StaticWeapon/Door/Supply/Scene owners, no absent UI declarations.",
+    "application_link": "PASS sequential i386 application-launch; never executed.",
+    "latest_master_source_compatibility": "PASS temporary git-archive494cbee plus37 UI source files, three-way composition with31b01f9 base, zero conflicts; strict i386 actual adapter. Temporary files only, no active-branch merge/rebase.",
+    "tracker": "PASS exact fingerprints/full frozen inventories/unique statuses/evidence/README and27 existing tracker tests."
+  },
+  "artifacts": {
+    "/tmp/p22-ui-roll-audit.cpp": {
+      "sha256": "7282fd49b705b614826bd906baad8c01fe620c9234ec415910d759c73f81457e",
+      "bytes": 18041,
+      "retained": false
+    },
+    "/tmp/p22-ui-roll-audit": {
+      "sha256": "7953e318a53245c896820894b26df2d735e3b064a46b9f8a740877247e582324",
+      "bytes": 1992776,
+      "retained": false
+    },
+    "/tmp/p22-ui-roll-i386.cpp": {
+      "sha256": "d8db7e4f0ce77d20123334466818ebcaa3e12091dc67d1751ea39e869139a1b7",
+      "bytes": 453,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-roll-row.asm": {
+      "sha256": "f02973c09ed975a8751a0f0172f501faaf008edbd7f27ef8f02b14d4516f8d7d",
+      "bytes": 860,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-position.asm": {
+      "sha256": "f4ef83b5c66d4e7ebf688504b2bb39d0632ec5c8dcc43d1d873c5dbcbcadb1ff",
+      "bytes": 23750,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-human-predicates.asm": {
+      "sha256": "cf7134322207485481cae98c9188d1e957e01b9e72e95e4cf45a33ee4c3964d4",
+      "bytes": 2611,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-constants.txt": {
+      "sha256": "761c7facb8aaef595eddd843ad2e01dd7d95c66e827dd8b887fbca0bad97f047",
+      "bytes": 177,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-target.asm": {
+      "sha256": "68b28e57cba4253cdc279c5bfc1ba3c82c2713150d40645ec54a55520e577308",
+      "bytes": 9993,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-ordinary.asm": {
+      "sha256": "5fa8209ab7ef6ff44a716cd1893d92fe72043c3afac914d1bbf0c0009391de7f",
+      "bytes": 40909,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-command.asm": {
+      "sha256": "8275d1f68e1f8d54c0af53e0fb906e564db96dc91b4d44275a86eaa0c23d8532",
+      "bytes": 33301,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-verify.txt": {
+      "sha256": "6fb4020f64145b35001e9df91e6b4a054d9ac6ed33e1a4eb1f37884038145f17",
+      "bytes": 557,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/roll-004b0b20.c": {
+      "sha256": "4661fdf4d6907cbfb592ed3e1dcec6f187a9d93b8722baa0cc8ee45a941b3386",
+      "bytes": 4735,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/roll-004b11f0.c": {
+      "sha256": "30a20d979b9cd42a395cf2feb24ad361c4f5b5a455abbf433c8494167235c2c0",
+      "bytes": 1831,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/roll-004b0f30.c": {
+      "sha256": "20e7d687daa06c908e0f13d577743fcea0ae7e8a506fa82c96e599d72fcd7499",
+      "bytes": 3190,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/roll-004b0920.c": {
+      "sha256": "543616a5653a74f0997999eac1f10eaf2bcd4231f605505e20275f1c76ae117e",
+      "bytes": 2383,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/roll-004b27b0.c": {
+      "sha256": "e93ca284485cd7db01193c6ad9aa9b0f91d5d10afd4a763fba94e947e2227f95",
+      "bytes": 721,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b13c0.c": {
+      "sha256": "6c50a686ab80b56d30f15cad464dd1ff53b43ab1bcbfb67386c44991eb243922",
+      "bytes": 14035,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b13c0.json": {
+      "sha256": "f3a19c6e0d38bb418ea9b6a90ec2648647123fb4ae8e56f4dec319e61b5f961a",
+      "bytes": 49501,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b1ee0.c": {
+      "sha256": "07716c1b2c7dfb8f2566df75889b855eb0482c1ac7cf2bc7bdd1866a31d005b9",
+      "bytes": 11322,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b1ee0.json": {
+      "sha256": "b329a6e054d37e18477b5b6cccf9607ba9eee5c716359ebc21bc4454e8df6416",
+      "bytes": 39378,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b2f50.c": {
+      "sha256": "87d28349176278f84096beae4a23ce08e7044a25a2e155f628029ae2a5d4269c",
+      "bytes": 589,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b2f50.json": {
+      "sha256": "6a89e14533b19141c18f1675a5bc623cf582e714d1c9de5496018dd0a68c240c",
+      "bytes": 1792,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b3030.c": {
+      "sha256": "4dde38ad818ec66fd92566c883f995af43bc1f8ba753906c01a7e984b1d4b9d4",
+      "bytes": 255,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b3030.json": {
+      "sha256": "a0765787b1620fcde4119bd8bf5e77126650e839275739be48a2e7fb731c134b",
+      "bytes": 875,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b3060.c": {
+      "sha256": "ce1779448cdcd908599fda4cd7db33ec59820532ef244e495caece6c2aaa71ad",
+      "bytes": 541,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll/004b3060.json": {
+      "sha256": "f8de769b016d87819cd6be93321f23a900d19f55ca19a6428beffcd4971c8ad3",
+      "bytes": 969,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/005a7e00.c": {
+      "sha256": "b5d71338102f51009e092e916181be56d3c5b385c6f7785bccfb9e04c5066d1c",
+      "bytes": 1783,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/005a7e00.json": {
+      "sha256": "fcc89821da137c9216b964c89a23d87d8041995fafa73b3a193ae2643d7721cd",
+      "bytes": 3894,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/005a7ed0.c": {
+      "sha256": "c0b19f2a92820859ecb7203b495d0c767b3360a37f7425c899bd916c8ecb9505",
+      "bytes": 884,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/005a7ed0.json": {
+      "sha256": "87671633b26d660fe8529dd3fa4c5ccee252f8e680ed292740ec71b15343378b",
+      "bytes": 2280,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/004ddd10.c": {
+      "sha256": "5e787fc16ef092baaed57b269097df9e4895f341151dcc9a0d592c0ece8f5ccf",
+      "bytes": 1226,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/004ddd10.json": {
+      "sha256": "15ace16b77ec2574e7a7e495190ab0089ec79f602e1ad4c9d44a551fc2b0e567",
+      "bytes": 5744,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/004dde20.c": {
+      "sha256": "a0add2d0687b419fe0a5a25ae8a50c50bfecd226a833de82b506f89ad4feafae",
+      "bytes": 999,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/004dde20.json": {
+      "sha256": "17885f7a1b5981e358abc30922acc5915c48e20a947e296b8063080071fa6416",
+      "bytes": 4437,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/0060b460.c": {
+      "sha256": "3f1d1c22e448f5758a588204eb897418562ee29363801d28e19a47fd59547f05",
+      "bytes": 420,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-roll-read-queries/0060b460.json": {
+      "sha256": "422801b90bd56adcf58c5fbacc05c67899e37936c7d468e3cfc038a3dc58ac99",
+      "bytes": 1970,
+      "retained": true,
+      "ignored": true
+    }
+  },
+  "limitations": [
+    "P22-UI is OPEN. Signal population/control/reset004BF4A0/004BFFE0/004C0370/004C0EF0/004C0F70/004C11C0 and roll action/control004B2DC0/004B2830 are still UI-owned work; no signal implementation credit.",
+    "Required GameUiRollExternalSource loans actual typed Human174, Car254A/004D5430 and007DAF80 pickup-capacity receivers in-call. No default successful producer exists. Actor families7/23 and nonoffline owners remain missing; generic UI row policies are not proof of runtime population.",
+    "Populated retirement retracts borrowers and reports required original reset; it is not a successful substitute for004C11C0 or original target/menu rebuilding.",
+    "Native actor/frame/font/query endpoint doubles and seeded properties do not prove real desktop rendering or mission populations. Latest-master composition is source-only compatibility, not a worktree merge or acceptance.",
+    "Full0049D6E0 selection,004B6420 command frame, map/inventory/objectives/modal and0049BD50 dispatch remain UI-owned. FRAME/RENDER/OWN scheduling/activation remain pending.",
+    "No Human B0/DD0/Guard/integrity implementation, duplicate owner or application loading change; frozen denominator and complete-function count unchanged."
+  ]
+}

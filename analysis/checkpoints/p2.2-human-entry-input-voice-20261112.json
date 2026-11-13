@@ -1,0 +1,338 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "6995623700d84020e48f078b432f07cf91c167d7",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "0073e5a0",
+    "0073e600",
+    "0073e660",
+    "0073e6e0",
+    "00731610",
+    "00724110",
+    "00724370",
+    "00724450",
+    "00741dc0",
+    "00741df0",
+    "00741e10",
+    "00741e20",
+    "00741e80",
+    "00741ef0",
+    "00741fe0",
+    "00742090",
+    "00742240",
+    "00742270"
+  ],
+  "extended_entries": [
+    "0073df70",
+    "005a7fe0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2667,
+  "source_files": {
+    "recovered/game/human_input_callbacks.h": {
+      "sha256": "ba4dad04ee8fe1174c52d47476157b9eb4142e7af7dc2192f51d52002be67cb6",
+      "bytes": 3624
+    },
+    "recovered/game/human_input_records.h": {
+      "sha256": "891685af30bfb8bc93c23e48ada684df0117260f28d0ed427c90e258fb7abfe7",
+      "bytes": 17402
+    },
+    "recovered/game/session_entry_packets.h": {
+      "sha256": "de81072df7e5c706004dfe4487ac3991a65985348abcd96f860f82f913457dd2",
+      "bytes": 734
+    },
+    "recovered/game/session_local_packets.h": {
+      "sha256": "2fe793859e19a50c980c0f9ab161dd1e7400202506814943bbcaff48861de782",
+      "bytes": 7552
+    },
+    "recovered/game/session_entry_inputs.h": {
+      "sha256": "16ddef89ddcd5879bd8f5e295aa6737a450bea605a7c03b2061e3578fc92b227",
+      "bytes": 528
+    },
+    "recovered/frontend/session_voice.h": {
+      "sha256": "7a493c3c5c231c2c065cac55b15f72146f59c406662bfd6a1eb87c6dbeff4e6a",
+      "bytes": 6434
+    },
+    "recovered/host/settings_services.h": {
+      "sha256": "c6f48da82e93e3e6ee7962c1d75839bab2743756c450664dde4cf53a3310764d",
+      "bytes": 10898
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "dd81722332be7d0fa3bc9c7836138cb8c67112823cb503c28029aa2e424ecc33",
+      "bytes": 67942
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "c15bae3818ac0bd19216048887ecb271623d22f8ddb85aa185efaffc4dcc2e3d",
+      "bytes": 118046
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-entry-pending-native.cpp": {
+      "sha256": "a54e4e2236c88cdbd5e78aaea9cf7a9fc0145cf34776ed109de7530547535a1c",
+      "bytes": 4924
+    },
+    "analysis/work/mission-world-20261103/human-entry-pending-native": {
+      "sha256": "07f678ec1189491240936fa5cb96b79c41e6551e0a8c9a1043c16ddfec738b03",
+      "bytes": 1810904
+    },
+    "analysis/work/mission-world-20261103/human-entry-pending-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-entry-pending-native.log": {
+      "sha256": "6d75e69658dc34273a06d1d2f4dbf6adf415388c9747961e99be38289201cd1c",
+      "bytes": 408
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-native.cpp": {
+      "sha256": "8c5c43d3b1f36766e26042bf3a71bc912005646defd0f80d9773aa3d76aabc32",
+      "bytes": 7771
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-native": {
+      "sha256": "05d53eee8ad3f68dfaef37411692084e08f57732a59135090605d44626278efd",
+      "bytes": 899976
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-native.log": {
+      "sha256": "2b95688efc9a659cc5ff9ddb0db95532b6771908c56888b6d376254014285cd9",
+      "bytes": 394
+    },
+    "analysis/work/mission-world-20261103/human-entry-pending-host-i386.cpp": {
+      "sha256": "491e451d8de0c49600536afefa602198ba14e94b16821258ce4fb35b9547af82",
+      "bytes": 328
+    },
+    "analysis/work/mission-world-20261103/human-entry-input-voice-host-i386.o": {
+      "sha256": "ddb8d62e16a6ea66b74e1c1bb234137543fdd9d205c884e1b1e201829fe1d38d",
+      "bytes": 16403786
+    },
+    "analysis/work/mission-world-20261103/human-entry-input-voice-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-entry-input-voice-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-control-entry-originals/00730a40.c": {
+      "sha256": "bfa367af3930bc73f902eefff9f8e13e4cc351f7b90f4293a232eb9fbe657c5a",
+      "bytes": 1159
+    },
+    "analysis/work/mission-world-20261103/human-control-entry-originals/00730a40.json": {
+      "sha256": "283775869448f807a74decbde5e4d12365cb7fbeb935cefa59402d18fbda585b",
+      "bytes": 3107
+    },
+    "analysis/work/mission-world-20261103/human-control-entry-originals/00731610.c": {
+      "sha256": "151f41fe96c066778317bb54f20836214042a118944840d01210ec03f933f63f",
+      "bytes": 1098
+    },
+    "analysis/work/mission-world-20261103/human-control-entry-originals/00731610.json": {
+      "sha256": "ecff11a734ce759b523a6c51025a1a299dd5c36167c42786a033a834edab4945",
+      "bytes": 4666
+    },
+    "analysis/work/mission-world-20261103/human-control-entry-originals/provenance.json": {
+      "sha256": "9a946334a12614b765ebb7557aa941b5c82b38cdf964767927f1a5dc26a11baf",
+      "bytes": 1219
+    },
+    "analysis/work/mission-world-20261103/human-entry-inputs-abi/00724370.c": {
+      "sha256": "25a59a494de14d556ac15dca0680f50fdef90a51bf497c76e6774e36ac1fdb97",
+      "bytes": 1429
+    },
+    "analysis/work/mission-world-20261103/human-entry-inputs-abi/00724370.json": {
+      "sha256": "7b21ca778e56d076d68ef25760eae5123a264465ca0b930aa8dac19e53c7475f",
+      "bytes": 4973
+    },
+    "analysis/work/mission-world-20261103/human-entry-inputs-abi/0073e660.c": {
+      "sha256": "a424a134674e74edc7a4ea2d3d9aca600a5ecd0485016f81b8539d9f3ecdebf6",
+      "bytes": 867
+    },
+    "analysis/work/mission-world-20261103/human-entry-inputs-abi/0073e660.json": {
+      "sha256": "c8bf0f64c04291e9b3c299e05b80e9c40abc594402e02e3ed9b345de1cd8032a",
+      "bytes": 2652
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741df0.c": {
+      "sha256": "873cf6331a725af0b127c23a80320720104b08af3b96c6f2458128e77aead9c6",
+      "bytes": 150
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741df0.json": {
+      "sha256": "872bb63ad6349d42e8798692b68068cb5df7407c95d633d113debf1fdde974f1",
+      "bytes": 1123
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741e10.c": {
+      "sha256": "2615d3032847a1a6fc465702517adc43efc94e3b78f14b764915a153df801078",
+      "bytes": 124
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741e10.json": {
+      "sha256": "acdd4523907b30e52124b943ead668f6e00ed8c06d6811da12f0474192bdd33a",
+      "bytes": 923
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741e20.c": {
+      "sha256": "e66527961d201804b977b884b2d4743ff4388d159891d71c9076bf547ce03875",
+      "bytes": 479
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741e20.json": {
+      "sha256": "6387d612b6025ab18b4c65d0085a3819a598b2627866edf1c4c46219ac41dbf2",
+      "bytes": 3406
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741e80.c": {
+      "sha256": "20db9a4a0b3de19d07adfff04bc4a7b2bdd2bc763b7d30b79b2bb584d37a7a75",
+      "bytes": 286
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741e80.json": {
+      "sha256": "e020efe846e74735600f043c0a03e8466c82426cafcd297f61ce0b04e10042e9",
+      "bytes": 1678
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741ef0.c": {
+      "sha256": "6876eaca8b6711b0f58fe45f76653ff1e80ced3bbd392815be544e7594ec8215",
+      "bytes": 1175
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741ef0.json": {
+      "sha256": "c4df3af9de58ec08aba79314cc0bf41e84c7d37fb6f93feeaa5399fb3aa17453",
+      "bytes": 5242
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741fe0.c": {
+      "sha256": "2658687f062e0d6a12a65ce24fde4388a896810ee43c4246cac60901cd91d44b",
+      "bytes": 748
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00741fe0.json": {
+      "sha256": "ea1f4cf061813565cbf192facd719a7f0b2f5f5cd920aca568c80766261e190e",
+      "bytes": 1589
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00742090.c": {
+      "sha256": "6f8e304d948f566f8426643656866a97268044c3a9e2516b60bddfda9b091cf6",
+      "bytes": 1977
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00742090.json": {
+      "sha256": "741efbe79bdfb844ccca3a933aa3ac9701e42c8d473a078e5b3867cb860f4efc",
+      "bytes": 4585
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00742240.c": {
+      "sha256": "2526dafc1e8bca40c64df06490a8449251371a1449f39379aa873b0f91bbf701",
+      "bytes": 354
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00742240.json": {
+      "sha256": "1f6f012938d5bad0537f4c87a1922b8139493af8fe71df1227f5111452cff750",
+      "bytes": 816
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00742270.c": {
+      "sha256": "1c55137a7293d6ceb7a6ba411977f3e08533c8e316942b08d19b1e5db39ea774",
+      "bytes": 354
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-abi-v3/00742270.json": {
+      "sha256": "a1c5eec032fc3daaa0b88e776db50c08304f1eca67f070fc1132f11d69ae7d7a",
+      "bytes": 816
+    },
+    "analysis/work/mission-world-20261103/human-entry-connection-originals/00745d20.c": {
+      "sha256": "749d600625448488ee49a2e651beae168d1a564f6019e500ae5eae1bbdb85f43",
+      "bytes": 1301
+    },
+    "analysis/work/mission-world-20261103/human-entry-connection-originals/00745d20.json": {
+      "sha256": "6f9e0cd0836a512c68983f7f62b364095e11492155836d83e5784127f55a0e67",
+      "bytes": 5144
+    },
+    "analysis/work/mission-world-20261103/human-entry-connection-originals/00746b50.c": {
+      "sha256": "12622104b8c8b7bbf5d6bfe5ad6e33411836161ddc454ef67db26e691e8149e1",
+      "bytes": 2237
+    },
+    "analysis/work/mission-world-20261103/human-entry-connection-originals/00746b50.json": {
+      "sha256": "b0d65b168d860cfd73dcb8733cb98f22156e1b58e2bf4e27c5bf818adacb9a58",
+      "bytes": 8962
+    },
+    "analysis/work/mission-world-20261103/human-entry-connection-originals/00746d20.c": {
+      "sha256": "c17fca3b0e22d1ee5dfaf6c440b72351fd1cfd0b3aaee6c3a37e8dde3b4baa5a",
+      "bytes": 837
+    },
+    "analysis/work/mission-world-20261103/human-entry-connection-originals/00746d20.json": {
+      "sha256": "d613461fe5ab9cbefc21548b88c75c2678af19c3b868899294cb707d5ce22d57",
+      "bytes": 3030
+    },
+    "analysis/work/mission-world-20261103/human-entry-connection-originals/provenance.json": {
+      "sha256": "4fdc09a6732c46e72554954ce8246ecf6cb3fe77b569bda34d9251edea92d62b",
+      "bytes": 2160
+    },
+    "analysis/work/mission-world-20261103/human-entry-owners-abi-v2/0073e5a0.c": {
+      "sha256": "43ead8bee7d0540296d97ddb5ddb7b1a883f3ee27e61464d4fe1939e74a96757",
+      "bytes": 716
+    },
+    "analysis/work/mission-world-20261103/human-entry-owners-abi-v2/0073e5a0.json": {
+      "sha256": "1998d7b8c96d55774cf0a6776bfaf97141949cd0e3474f9def04ea4799fad00c",
+      "bytes": 2553
+    },
+    "analysis/work/mission-world-20261103/human-entry-owners-abi-v2/0073e600.c": {
+      "sha256": "a6622785c5546da4815679a482e1879382ecea718ac8e1d6584b6b6d7f833192",
+      "bytes": 538
+    },
+    "analysis/work/mission-world-20261103/human-entry-owners-abi-v2/0073e600.json": {
+      "sha256": "aba48abd63d41085cbde65d325850d5bfa012e1bd575c0ad98c071cffe9d44d5",
+      "bytes": 1415
+    },
+    "analysis/work/mission-world-20261103/human-entry-owners-abi-v2/0073e6e0.c": {
+      "sha256": "ad89275a1d5871cf299fd94e4f81cbd58087a7c8a67bcaef602ca2265649e0d2",
+      "bytes": 303
+    },
+    "analysis/work/mission-world-20261103/human-entry-owners-abi-v2/0073e6e0.json": {
+      "sha256": "69affc916f215953395a8b5aa874aefdc3c6a9f7160d5c7d25b52769e646d6c3",
+      "bytes": 1016
+    },
+    "analysis/work/mission-world-20261103/human-entry-reset-pending.asm": {
+      "sha256": "d4e1b4ef2e2888ed2fcdd6c28d4585850d432b94edf2dcd23a66a9dfc7cbd262",
+      "bytes": 2887
+    },
+    "analysis/work/mission-world-20261103/human-entry-input-message-vtables.json": {
+      "sha256": "2529ff9e6b3bc53bf4ac056ee4196e3acae99f4756fba6f4717ff913ca078be8",
+      "bytes": 963
+    },
+    "analysis/work/mission-world-20261103/human-entry-message-release-index.txt": {
+      "sha256": "1597e1b362af13d17cc916b64d80758b996ef6d58bb077db8fbbcc6569de4019",
+      "bytes": 5615
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-helpers.asm": {
+      "sha256": "b186e0ae5c6ad083eb3f566af4d2ac0b6b1e799f813a23a7193b5af66328910c",
+      "bytes": 24706
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-create.asm": {
+      "sha256": "28d40ba216b4cba40e9ec12cdfca85b6a23f94a1707d5acf755a69ff528d1158",
+      "bytes": 4063
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-guid-data.json": {
+      "sha256": "6fd7613731be3f57e7fb01062dfcfb8651fb6bbd2b28223091232d1b286c284b",
+      "bytes": 880
+    },
+    "analysis/work/mission-world-20261103/ExportHumanEntryVoiceABI.java": {
+      "sha256": "c5b26c73a1ce30c32a955bce1cd2c00caf93b176a769768fc6c98a253c0c2ab3",
+      "bytes": 1567
+    },
+    "analysis/work/mission-world-20261103/human-entry-voice-export-v3.log": {
+      "sha256": "f044adbc0dfd1a463595372c35bdbef738456594344dde6d55915e122320e273",
+      "bytes": 5236
+    },
+    "analysis/work/mission-world-20261103/human-entry-service-index.txt": {
+      "sha256": "704dea35ce3d857039089625ab06b23e3ced6a9d5180ae08d03cffb7ecc799d0",
+      "bytes": 14849
+    }
+  },
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan actual process14 record/message reset and owned selected queues modes1/2/3/7 x100, absent-manager, wrapping/take identity, repeated node, stale forced alias and nonprogress boundaries. Voice real source owner/shared settings view, received prefix gates, retries/all HRESULT prefixes, publication/window failure, client/server deletion and repeated-publication fallback x100; COM/window/clock/locks/replacement endpoints are doubles.",
+    "actual_i386": "PASS final strict complete actual World/Human/entry/reset/voice/lifetime composition compile only. Attachment80 now borrows existing Car/StaticWeapon kernels; added containing binding compile-verified only.",
+    "launcher_probe": "PASS final sequential application-launch and startup-probe compile/link after ABI corrections; Windows outputs not executed.",
+    "research": "Index before reuse/exports. Final voice ABI v3 preserves eight args including clientConfig and optional playback interface, raw caller/COM call assembly overrides bad decompiler aliases. Rejected existing-output export and earlier ABI variants are not final evidence. Original connection owners reused read-only and pinned for next work.",
+    "original_or_windows_execution": false
+  },
+  "temporary_audits_removed": false,
+  "exclusions": [
+    "Full controller status9 and received application0 game/config/load/publication/failure/request9 protocols still required; new preparers are Startup-bound but not called by those routes.",
+    "Actual input-history decoder20 and B0/Car pending producers remain required; no substitute messages admitted.",
+    "Native shared-alias UAF and nonprogress are explicit failures; source allocation fallback reclaims native leaked messages, second-query buffer and abandoned voice wrappers at documented boundaries.",
+    "Positive network/worker/connection lifecycle and0072E4E0 still required; cold guard remains honest and voice fallback does not report successful reset.",
+    "Original00722140 and Car004D9A40/StaticWeapon00604630 are absent frozen: zero credit. No new unchanged seat/solver/contact/clip or delegated engine credit.",
+    "Full containing Human reaction/frame/partial failure/re-entry/teardown and actual application loading/rendering/desktop acceptance remain required."
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "7a2ec6db218f2581c18575b826eabc924564adff",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "00728450",
+    "00699a20",
+    "0072ec90"
+  ],
+  "extended_entries": [
+    "0072c0b0",
+    "0072c3b0",
+    "006c4b40",
+    "0069bc40",
+    "0072f2f0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2617,
+  "source_files": {
+    "recovered/game/human_peer_removal.h": {
+      "sha256": "9d5486960dcaa2617b22e5b906640667121bc74defb0a9200ef3589c6d5d233e",
+      "bytes": 1292
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "ca008235d65092d00bb48c5c64e8989c2c1996969713b10a892cb8d2c49d2d51",
+      "bytes": 107135
+    },
+    "recovered/game/mission_objective_status.h": {
+      "sha256": "164234c814618bdc0073ba6340c81e8d325fa26ae6191f54b628f34643465aea",
+      "bytes": 6763
+    },
+    "recovered/game/mission_script_loading_runtime.h": {
+      "sha256": "7032a10d224a232ecf8913c009ba353666fbbc15fa7a8403f9bd8f586b537c50",
+      "bytes": 8627
+    },
+    "recovered/game/session_local_packets.h": {
+      "sha256": "10a95be07938e9101912603fa78704071e67abeefdf694553272cb7d2a459a3d",
+      "bytes": 7068
+    },
+    "recovered/game/session_packet_world.h": {
+      "sha256": "921bbc7ad42fdbffa3d5a02c73e5ed594149be4c3677fdd83af123d578f2ce1b",
+      "bytes": 1985
+    },
+    "recovered/game/session_peer_records.h": {
+      "sha256": "6ac07b0b004ed3fa7ca0922d3fe2af74aa251fe61a4aa7f12e6d7569942f0114",
+      "bytes": 2213
+    },
+    "recovered/host/game_world_loading.h": {
+      "sha256": "a4362551b7d73138dad8b2ff62154d1d002cde68d3f80092a69dc5594c210804",
+      "bytes": 27360
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "eb826d3f9fff7e7de71f601afbf0239cefe91800434c519134b7f6cd227b5991",
+      "bytes": 64012
+    },
+    "recovered/game/session_received_application.h": {
+      "sha256": "c9ef3ee7d2b14a1fb697abf6ee4dba2bc9792dde2c92d64617b2325188d89802",
+      "bytes": 2832
+    }
+  },
+  "verification_artifacts": {
+    "human-application-packets-native.cpp": {
+      "sha256": "6d2fb375e0dd1d6e0b444f5b2a12fb3d5dbf9e3ee1da2f51601ba95413cfb31e",
+      "bytes": 10314
+    },
+    "human-application-packets-native": {
+      "sha256": "2c53adb1f92f1e2568a8545525e8f71c2ca34e5326048c795b4af6cc83e27bff",
+      "bytes": 2235592
+    },
+    "human-application-packets-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-application-packets-native.log": {
+      "sha256": "e25cdffac4d550bf5a485e97857584d6c4ab36b076a4758329b678f79031a2e0",
+      "bytes": 343
+    },
+    "human-application-packets-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-application-packets-host-i386.o": {
+      "sha256": "ece890f4fa9ce6352ede601c39ed6aa588e57ef91984c993a49ac864a6bfc0d4",
+      "bytes": 15936173
+    },
+    "human-application-packets-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-application-reused-originals/00727800.c": {
+      "sha256": "b1af6be5a0fe390a95ab9c3beff603d0df4a9c44a4512e4beb02359a261aeee0",
+      "bytes": 13145
+    },
+    "analysis/work/mission-world-20261103/human-application-reused-originals/00727800.json": {
+      "sha256": "23aa600531dce66fe161c68a62a4bf1c28e2e6559d3cc02aa9c8800bbcda7534",
+      "bytes": 66445
+    },
+    "analysis/work/mission-world-20261103/human-application-reused-originals/0072ec90.c": {
+      "sha256": "84eee2458515fed0210a3e6e97f08f8b11b26a31e6101511c8c41d221b3402bc",
+      "bytes": 747
+    },
+    "analysis/work/mission-world-20261103/human-application-reused-originals/0072ec90.json": {
+      "sha256": "2a0ec5d426f3fbd8c7734b9627cd0b38b62121c6dbd9c89435e9b68a4a81455a",
+      "bytes": 3423
+    },
+    "analysis/work/mission-world-20261103/human-application-reused-originals/0072e890.c": {
+      "sha256": "011408e75c8f6de5b0e20966939ea9a8792a7ce1afe340b44ac1afa5c3a8a4f2",
+      "bytes": 1200
+    },
+    "analysis/work/mission-world-20261103/human-application-reused-originals/0072e890.json": {
+      "sha256": "6ef79e509a3b8fa307b2686611387ec0b4a406de329bcee2c96173ab65f41031",
+      "bytes": 2585
+    },
+    "analysis/work/mission-world-20261103/human-application-reused-originals/provenance.json": {
+      "sha256": "73ba1c38db6203abc4533d8f69231c3d03bec362092f77d1b83accb303c722da",
+      "bytes": 1241
+    },
+    "analysis/work/mission-world-20261103/human-application-local-removal.asm": {
+      "sha256": "1d30c0ae4ff594bb956f0fb6a65bbf18e994e47efc473e03694fb56ba864f743",
+      "bytes": 3885
+    },
+    "analysis/work/menu-route-extra-20261031/00728450.c": {
+      "sha256": "b9c8016db7a09c41f356be16f9dbb10905e2d7263dfecb5bbaef86bd46eedbc2",
+      "bytes": 32585
+    },
+    "analysis/work/menu-route-extra-20261031/00728450.json": {
+      "sha256": "71dc35e08fd10d3ba61e4de976bf745e4edce0b0f9f2bfc26dd118b4c0372522",
+      "bytes": 151438
+    },
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0072c0b0.c": {
+      "sha256": "2842cfd42353d7dd938f20b29481460028b26078c31602fb4f45db45518f70a2",
+      "bytes": 932
+    }
+  },
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan actual scalar FIFO/broadcasts/queues/application2/10/17/shared objectives/session/peer policies, independent wire, late name lookup/mode, destructive prefixes, failure queue retention and100 lifetimes. Platform/log/HUD/Scene endpoints are doubles; no full application execution.",
+    "actual_i386": "PASS strict actual World/application callbacks source compile only.",
+    "launcher_probe": "PASS sequential strict application-launch/startup-probe compile/link only; neither Windows output executed.",
+    "research": "Research index before reuse; peer-send/world-control C copied from research checkout read-only with provenance; raw00699A20 captures result/hint leaves and jump table. No Ghidra export needed.",
+    "original_or_windows_execution": false
+  },
+  "temporary_audits_removed": false,
+  "exclusions": [
+    "Full authority00727800 switch and other presentation command families remain required failures",
+    "Domain174==1 native007239F0 service pump still required",
+    "Positive transport/non7 flush, input histories and full entry protocol remain required",
+    "Source graph compile/link is not application loading, whole-frame or desktop acceptance"
+  ]
+}

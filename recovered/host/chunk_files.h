@@ -2,6 +2,7 @@
 #define HD2_HOST_CHUNK_FILES_H
 
 #include "io/chunk_file.h"
+#include "io/resource_observations.h"
 #include <windows.h>
 
 namespace hd2::host {
@@ -21,15 +22,22 @@ public:
           close_(resolve<Close>(module, "_dtaClose@4", 0x14f1)) {
         static_assert(sizeof(void*) == 4, "Original chunk file ABI requires i386");
     }
-    std::uint32_t open(const char* name, std::uint32_t flags) { return open_(name, flags); }
+    std::uint32_t open(const char* name, std::uint32_t flags) { const auto result=open_(name, flags); observations_.opened(name,flags,result); return result; }
     std::uint32_t open_write(const char* name, std::uint32_t flags) { return open_write_(name, flags); }
     std::uint32_t seek(std::uint32_t handle, std::uint32_t offset, std::uint32_t origin) {
-        return seek_(handle, offset, origin);
+        const auto result=seek_(handle, offset, origin); observations_.sought(handle,offset,origin,result); return result;
     }
-    std::uint32_t read(std::uint32_t handle, void* output, std::uint32_t count) { return read_(handle, output, count); }
+    std::uint32_t read(std::uint32_t handle, void* output, std::uint32_t count) { const auto result=read_(handle, output, count); observations_.read(handle,output,count,result); return result; }
     std::uint32_t write(std::uint32_t handle, const void* input, std::uint32_t count) { return write_(handle, input, count); }
-    void close(std::uint32_t handle) { close_(handle); }
+    void close(std::uint32_t handle) { close_(handle); observations_.closed(handle); }
+    auto resource_observations()const noexcept { return observations_.store(); }
+    using ObservationScope=io::ResourceObservationScope<ChunkFiles>;
+    //Scope must retire before this process file owner. Stores themselves contain
+    //no file/World borrowers and may survive it. Replacement is never reverted.
+    auto observe_scope(std::shared_ptr<io::ResourceObservations> store){return ObservationScope(*this,std::move(store));}
+    void observe_resources(std::shared_ptr<io::ResourceObservations> store)noexcept { observations_.bind(std::move(store)); }
 private:
+    io::ResourceOperationObserver observations_;
     template<class Function>
     static Function resolve(HMODULE module, const char* name, std::uintptr_t rva) {
         const auto entry = module ? GetProcAddress(module, name) : nullptr;

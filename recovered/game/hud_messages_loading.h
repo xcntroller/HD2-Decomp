@@ -8,6 +8,7 @@
 #include <utility>
 #include <vector>
 #include "game/hud_message_state.h"
+#include "game/hud_message_edit.h"
 #include "game/text_glyphs.h"
 #include <string>
 namespace hd2::game {
@@ -58,8 +59,28 @@ public:
     void update(std::uint32_t elapsed){ //00496230, SAME actual message/input state.
         if(state_.flagd385){
             state_.caret_d380+=elapsed;
-            throw std::runtime_error("Active HUD message input requires actual00494D20 edit/clipboard receiver");
+            throw std::runtime_error("Active HUD message input requires its borrowed graphics input and command receiver");
         }
+        age_records(elapsed);
+    }
+    template<class Input>void input_mode(std::uint8_t enabled,Input& input){hud_message_input_mode(state_,enabled,input);} //004961E0.
+    template<class Input,class Controls>void mode(std::uint32_t value,bool offline,Input& input,Controls& controls){ //00496120, writes precede realtime and artwork/input callbacks.
+        state_.field10=value;state_.words30[0]=0;if(value!=0&&value!=1)return;
+        if(offline)controls.request_realtime(value==1);require(visual_);frames_.object_visible(visual_,value==1);input_mode(value==1,input);
+    }
+    template<class Input>void say(bool team,Input& input){ //004961A0/004961C0; existing other prefix byte is deliberately retained.
+        if(state_.field10==1)return;if(team)state_.flagd387=1;else state_.flagd386=1;input_mode(1,input);
+    }
+    template<class Input,class Submit>void update(std::uint32_t elapsed,bool wide,Input& input,Submit& submit){ //Full00496230.
+        if(state_.flagd385){
+            state_.caret_d380+=elapsed;
+            if(!fonts_)throw std::logic_error("HUD message editing requires SAME loaded message fonts");
+            edit_hud_message(state_,records_.size(),wide,input,*fonts_,submit,[&](const char* text){append(text,{{255,255,0}});});
+            if(state_.words30[1])state_.words30[2]+=elapsed; //After editing, with fresh repeat key.
+        }
+        age_records(elapsed);
+    }
+    void age_records(std::uint32_t elapsed){
         state_.fieldd37c+=elapsed;
         std::int32_t time;std::memcpy(&time,&state_.fieldd37c,4);
         if(time>2000){state_.fieldd37c=0;advance_line_indices();} //ONE step, discard overshoot, signed compare.
@@ -87,6 +108,12 @@ public:
         if(output[2]<0)output[2]=state_.width40; //Native wraps negative right edge to WIDTH, no upper clamp.
         if(output[3]>state_.height44)output[3]=state_.height44;
         else if(output[3]<0)output[3]=0; //NaN/zero survive both comparisons.
+    }
+    template<class Mode,class Pause>void hide(Mode&& mode,Pause&& pause){ //00496120(0) then004961E0(false).
+        state_.field10=0;state_.words30[0]=0;
+        if((mode()&7u)==7u)pause(false); //Required0069B8B0 before visibility, not an optional notification.
+        require(visual_);frames_.object_visible(visual_,false);
+        state_.input68[0]=0;state_.flagd387=0;state_.flagd386=0;state_.flagd385=0;
     }
     void clear_records()noexcept { //004950C0 destroys owned raw payloads in reverse, retaining vector capacity.
         while(!records_.empty())records_.pop_back();

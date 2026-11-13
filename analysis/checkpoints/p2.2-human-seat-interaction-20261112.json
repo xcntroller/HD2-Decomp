@@ -1,0 +1,463 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "b99f0882597a264f9522f05c2cba23bc6073bf4b",
+  "branch": "feature/p22-hum-h3",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h3",
+  "source_only": true,
+  "completed_plan_checkpoints": [
+    "H3"
+  ],
+  "selected_checkbox_complete": true,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "004d9430",
+    "004da2f0",
+    "004da420",
+    "004d9280",
+    "004f2530",
+    "0051a620",
+    "006041a0",
+    "00604590",
+    "006046d0",
+    "00604e90",
+    "004c6620",
+    "004c55e0",
+    "004c56a0",
+    "004c2580",
+    "004c3120",
+    "004c5080",
+    "0075e560"
+  ],
+  "extended_entries": [
+    "00751480",
+    "00755500",
+    "00518710",
+    "004c6dd0",
+    "004d16a0",
+    "004dd0d0",
+    "00603070",
+    "004c57b0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 3025,
+  "source_files": {
+    "recovered/game/car_body_collision_controller.h": {
+      "sha256": "c259a51b85a32c092283b71e751f40586a19ceb68b33904ce7fee94a1a18fbef",
+      "bytes": 5584
+    },
+    "recovered/game/car_cold_finalizer.h": {
+      "sha256": "8bd72aca642636c90aa09653846d48b6e8c62f17ea0a925e88997c40c3d5c2ec",
+      "bytes": 10129
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "c937479e719af696462502ea59f89f56009e501bf82fccc2ba45e41dba3ea05a",
+      "bytes": 22356
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "6e5e00119aec281c260c55969cebd381a311372f3a2b804436ecfe3f20ea6cb1",
+      "bytes": 2578
+    },
+    "recovered/game/car_scene_actor.h": {
+      "sha256": "e3c9695235e30dcf25be6fe0b97381539d07bf9adadda631d6c985e7f9127f0f",
+      "bytes": 9398
+    },
+    "recovered/game/car_seat_actions.h": {
+      "sha256": "bcf22e21e8c7130489be44cc110586991f0723f289933839928b0a327b8b5d35",
+      "bytes": 10049
+    },
+    "recovered/game/car_seat_camera.h": {
+      "sha256": "32f52be849a5ac97c814e83822947540f3d07524b161fb5fec56098fbc2cc258",
+      "bytes": 5824
+    },
+    "recovered/game/car_seat_exit.h": {
+      "sha256": "bc39392052c5b3d2ec8df7982f37d5c2ac694e4a42cbd1bd5012e7188ee2f7e5",
+      "bytes": 3089
+    },
+    "recovered/game/car_sound_updates.h": {
+      "sha256": "57a83f3a4354ad3095cbc5cc96658d732fa672767bdce1f8e4fcf45c76963ce7",
+      "bytes": 12367
+    },
+    "recovered/game/first_person_players_loading.h": {
+      "sha256": "fe7ae4c8d8356fc86685d18a766f075ec9986cea669fac32e0543f8011261e34",
+      "bytes": 5287
+    },
+    "recovered/game/human_ai_state_loading.h": {
+      "sha256": "46167976add99167628f4a15972e6b8b92f127535512276f226982266e4333cf",
+      "bytes": 34199
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "6d01a2f9b70ddd0861cabf450d5cff6b5ce6b8efa469cae695901a390743cb0c",
+      "bytes": 56809
+    },
+    "recovered/game/human_door_action.h": {
+      "sha256": "06600158625130b386ce3f3eec3ce695cd7ab36c09febc4a12afeee2698f8615",
+      "bytes": 3590
+    },
+    "recovered/game/human_loading_presentation.h": {
+      "sha256": "2760c2c15f4c1cdaa6c32ef7a56b9e09114c9d14992a542df938ca6274850c7e",
+      "bytes": 3961
+    },
+    "recovered/game/human_model_geometry.h": {
+      "sha256": "e085da9dd2271bd6d7edc1bf834e4a31304e597651a7f3b6e901b2b906b8adc0",
+      "bytes": 111895
+    },
+    "recovered/game/human_seat_action.h": {
+      "sha256": "0e5d2f6db4d98daecbb8dd776e0b1261e703ee6df70306871461cd5e0cfdfb67",
+      "bytes": 13222
+    },
+    "recovered/game/human_state_base_loading.h": {
+      "sha256": "0b80c38cbbdeb14e7b5657ca4244d9c9e61171105341a2bdd8b9042813eaa30d",
+      "bytes": 15227
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "0c3c09bd89ce414111d3a446d97cc3a2b92a85023aa36500dd99528400457c53",
+      "bytes": 124675
+    },
+    "recovered/game/mounted_weapon_aim.h": {
+      "sha256": "50f9ce4d256f7e5efe9bdfd4e6b63eefc8e492b4c3b1950f03e3fe4a105dd656",
+      "bytes": 9320
+    },
+    "recovered/game/mounted_weapon_control.h": {
+      "sha256": "7207f435be2a1aaf86800388e931f7f8bc4b1a37dc4ed99cb0993a312322250a",
+      "bytes": 1789
+    },
+    "recovered/game/mounted_weapon_control_loading.h": {
+      "sha256": "a0a24d945901600d8d6dc9b3386841a4c8e8d6c5a1e1aeef0046444438a2e582",
+      "bytes": 11379
+    },
+    "recovered/game/mounted_weapon_movement_sounds.h": {
+      "sha256": "a1e44ca9b8bd28491f1d56a7a55297a7f7a109068d667927cd1b53ea9951a7a1",
+      "bytes": 3751
+    },
+    "recovered/game/mounted_weapon_shell.h": {
+      "sha256": "8766a46cd7fa856ba511cc9d943923bee901b563d04c29bc2659c497e1a10a28",
+      "bytes": 2880
+    },
+    "recovered/game/static_weapon_loading.h": {
+      "sha256": "3a98599b75cf5a58f5bde9ac10dfe5003f4e61b6472179da38315b39a6b26697",
+      "bytes": 13048
+    },
+    "recovered/game/static_weapon_loading_lifetime.h": {
+      "sha256": "0eb7649231880a690ccec3c793f1275a0493ca907c7c4f5e21d87a35cffd8cd4",
+      "bytes": 912
+    },
+    "recovered/game/world_actor_loading_consumers.h": {
+      "sha256": "7322464bd3ae45d938a12c0d440ce7b0b974b782dafc667a80bbf5540fd90e70",
+      "bytes": 10603
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "66bd97e0df40bc24711bff99620a31bbcdc6198e6e493e90a5dde45b99f1deb3",
+      "bytes": 112547
+    },
+    "recovered/host/game_static_weapon_events.h": {
+      "sha256": "daf13f93aeed5cff2a9d3afc109c3066d5566e1c3f715c85049e2dd34a4eae41",
+      "bytes": 3285
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "930d36511eda8575dd5111b07ec8fdb51d488460035f39316c6e9e9d59ded4be",
+      "bytes": 29823
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/ExportH3MountedABI.java": {
+      "sha256": "6fd5937a31a49c8aedaa92683c7de067d629aaef4de84fd9d69969d3d9ee5197",
+      "bytes": 3129
+    },
+    "analysis/work/mission-world-20261103/ExportH3SeatsABI.java": {
+      "sha256": "08ea366912c139af89f591ec03dd2d59dba42bb7039eda51948f15d781d79949",
+      "bytes": 3045
+    },
+    "analysis/work/mission-world-20261103/h3-mounted-ai-aim.asm": {
+      "sha256": "f05b5bc7b1e7a71bad40432f6ed79515394055aea83aff4a0e9779f0698ce206",
+      "bytes": 52295
+    },
+    "analysis/work/mission-world-20261103/h3-mounted-aim-abi-v2/004c2580.c": {
+      "sha256": "f392a7a7fa4acbf4aa42e455293a6a72fef2f5e8a5a38c86fdad2465975c59f5",
+      "bytes": 13513
+    },
+    "analysis/work/mission-world-20261103/h3-mounted-aim-abi-v2/004c3120.c": {
+      "sha256": "a0a35cc783131b8cd738d4557be876582a3f12b80440b98a1a1ec02dba6a5349",
+      "bytes": 11849
+    },
+    "analysis/work/mission-world-20261103/h3-mounted-original/004c2580.c": {
+      "sha256": "31fba19d745a49f13f1f318b58ac9f84e02d7bc5c044dee97610916492e8ee5e",
+      "bytes": 13084
+    },
+    "analysis/work/mission-world-20261103/h3-mounted-original/004c3120.c": {
+      "sha256": "df7788d71794e42de0421a95aa1140920eb0cdcf530ff4f2f5bf27808b1e3c3c",
+      "bytes": 11413
+    },
+    "analysis/work/mission-world-20261103/h3-mounted-original/004c5080.c": {
+      "sha256": "b1a1118a6b68b40130dcb0fa5d8cb64d709e70988b958e38ee221256f6e40743",
+      "bytes": 7635
+    },
+    "analysis/work/mission-world-20261103/h3-mounted-shell.asm": {
+      "sha256": "1b008f7d5532585e64f3670c70bf90a21f85dc4d5a017c5485d57c3b21c3cf4e",
+      "bytes": 24191
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/004c6620.c": {
+      "sha256": "bde448245d264c14eabe95fdcadf84dd526c546271f10bdb3aa1a552dc67cac5",
+      "bytes": 328
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/004c6dd0.c": {
+      "sha256": "a090763dc53de1c3b0b9842481cf798e070bf9bb09ab80af33cb4fc39bbc4fcc",
+      "bytes": 826
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/004d1200.c": {
+      "sha256": "a9a573254f73177e4d6caebde8e8d996a5ad55b46f82cce7d5ce868015fd504b",
+      "bytes": 121
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/004d9280.c": {
+      "sha256": "c5bd7781d12f416125e6e9cc65854adfe91726e3f53132f6785feae7b3736fce",
+      "bytes": 1187
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/004d9be0.c": {
+      "sha256": "806620ae24dfe081d9eb2cf47ede519ed77f15a8ce6f8cde9982cbc9f4d4c066",
+      "bytes": 2882
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/004da2f0.c": {
+      "sha256": "f059ac312bcd26a775b00ae258e9d118b8a2e33557ee3ab456e88d98a1876d9a",
+      "bytes": 2008
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/005a84d0.c": {
+      "sha256": "4b1fd9cca655e548a4199c1e2b48daed5a394f2d2b43a8cdd9fb1df908e6ca40",
+      "bytes": 287
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/005a84e0.c": {
+      "sha256": "3b65cf487d321e7263649b0b4c43e0da3c1171b041f58806d9695392ea238a50",
+      "bytes": 287
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/006041a0.c": {
+      "sha256": "6ea6f987f62f5d2e498b8257f00e39fbb31d27edf9b91da1e07d193adca7b99d",
+      "bytes": 5267
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/00604590.c": {
+      "sha256": "aca1ec981660509a2c1c97ed5286bfed508afa9a72aa5d966916ce9dd48e3f3d",
+      "bytes": 316
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/006045e0.c": {
+      "sha256": "1aa568a42fd959f88d0a23c07f509a51889a7bdd94c7677141de9c00f110b1c9",
+      "bytes": 592
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi/006046d0.c": {
+      "sha256": "81c35e2cb9398cd6a94b2f8f50e05afbb77e44beb5263a210189f2a2b1bc0167",
+      "bytes": 4402
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/004c6620.c": {
+      "sha256": "bde448245d264c14eabe95fdcadf84dd526c546271f10bdb3aa1a552dc67cac5",
+      "bytes": 328
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/004c6dd0.c": {
+      "sha256": "a090763dc53de1c3b0b9842481cf798e070bf9bb09ab80af33cb4fc39bbc4fcc",
+      "bytes": 826
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/004d1200.c": {
+      "sha256": "a9a573254f73177e4d6caebde8e8d996a5ad55b46f82cce7d5ce868015fd504b",
+      "bytes": 121
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/004d9280.c": {
+      "sha256": "c5bd7781d12f416125e6e9cc65854adfe91726e3f53132f6785feae7b3736fce",
+      "bytes": 1187
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/004d9430.c": {
+      "sha256": "c69171c0a72c2bfc473af587fcb68ba9d901164b82dceb12b84d01f5d8f788c5",
+      "bytes": 7307
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/004d9be0.c": {
+      "sha256": "645a4f9690a84861afcd223f74656961a0ab3cdc7340e8108575455b4c75a329",
+      "bytes": 2974
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/004da2f0.c": {
+      "sha256": "aeca4fbc88f6d78e16b99a35bc76364dbecbf3893f070f332cacc5c35c76beff",
+      "bytes": 2073
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/004da420.c": {
+      "sha256": "9eaebc19f6c97b3f78fd11403d0c1da1f00842f5213684f39be579a851ff1669",
+      "bytes": 9685
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/005a84d0.c": {
+      "sha256": "4b1fd9cca655e548a4199c1e2b48daed5a394f2d2b43a8cdd9fb1df908e6ca40",
+      "bytes": 287
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/005a84e0.c": {
+      "sha256": "3b65cf487d321e7263649b0b4c43e0da3c1171b041f58806d9695392ea238a50",
+      "bytes": 287
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/006041a0.c": {
+      "sha256": "5abc3dea93e9e43a886ffc61261cd202a5166f8e0cc4a802079c6e5c65a19cbf",
+      "bytes": 5214
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/00604590.c": {
+      "sha256": "aca1ec981660509a2c1c97ed5286bfed508afa9a72aa5d966916ce9dd48e3f3d",
+      "bytes": 316
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/006045e0.c": {
+      "sha256": "1aa568a42fd959f88d0a23c07f509a51889a7bdd94c7677141de9c00f110b1c9",
+      "bytes": 592
+    },
+    "analysis/work/mission-world-20261103/h3-seat-abi-v2/006046d0.c": {
+      "sha256": "f02996e4cac45f2df3ff52d6b00908fa45fd03cc3abcd6b44bb9af3caa1143ce",
+      "bytes": 4345
+    },
+    "analysis/work/mission-world-20261103/h3-state-direction-vtables.json": {
+      "sha256": "a9068595a8256db39f0b31d7732f33e11cf6604900589b39d3b2628d1559c087",
+      "bytes": 515
+    },
+    "analysis/work/mission-world-20261103/human-action-entry.asm": {
+      "sha256": "49b1ac5bf0440b004f938f9eaba9cd5044b36abac08908e29137b8d1108cfba2",
+      "bytes": 238081
+    },
+    "analysis/work/mission-world-20261103/human-action-update.asm": {
+      "sha256": "70ce0ea91c2a0cb152a86e89e54c3a160f9ed93bbc0ae762fb695dc081137edd",
+      "bytes": 91038
+    },
+    "analysis/work/mission-world-20261103/human-dd0-surface-producer-range.asm": {
+      "sha256": "6308ff0fabe41465786c0b994cfccea4c37f8167bacf6305a82d7d33dad1532e",
+      "bytes": 3444231
+    }
+  },
+  "verification_artifacts": {
+    "/tmp/h3-action-native.cpp": {
+      "sha256": "850250a0d9dd44fe8e403568dd5bf7c4329310bc22367279bbac533fca292433",
+      "bytes": 10411
+    },
+    "/tmp/h3-static-native.cpp": {
+      "sha256": "c0fcc6d192a64509a88e87acef17f42986ae473f82501ccfec05a44ce1285ec8",
+      "bytes": 11296
+    },
+    "/tmp/h3-car-native.cpp": {
+      "sha256": "8ab0fc29075d0d5d84fb422ff63aac7e722671a36842d15f435321b932ff00f4",
+      "bytes": 10482
+    },
+    "/tmp/h3-composed-native.cpp": {
+      "sha256": "981ccd0de627192b43d2b433bf00d3ce1bd38979f9552665e8f5e2242552ad84",
+      "bytes": 5658
+    },
+    "analysis/work/mission-world-20261103/h3-host-i386.cpp": {
+      "sha256": "9d6d1f08ae10c12028ecd2316da5333060c607498a464df2d44daf57cb9033ad",
+      "bytes": 1694
+    },
+    "analysis/work/mission-world-20261103/h3-action-native.log": {
+      "sha256": "97852cf1b453c09e459b71dbbecc4acefa405f09623ba95ec61c5bdfca1abb32",
+      "bytes": 144
+    },
+    "analysis/work/mission-world-20261103/h3-action-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h3-static-native.log": {
+      "sha256": "d40e21540a48f9618396d1fe7f28483f230b5b711358d5dd4fc544d9a3d90ce8",
+      "bytes": 177
+    },
+    "analysis/work/mission-world-20261103/h3-static-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h3-car-native.log": {
+      "sha256": "9d3d74b0dfb758d914761da1ac955a59c7064ee01152288b9bd020db86075b96",
+      "bytes": 194
+    },
+    "analysis/work/mission-world-20261103/h3-car-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h3-composed-native.log": {
+      "sha256": "3454e69b41fee42dacb652e8f13c60d8d205a0671d87eb97a0504aa8ac6d815d",
+      "bytes": 184
+    },
+    "analysis/work/mission-world-20261103/h3-composed-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/tmp/h3-action-native": {
+      "sha256": "6f22f91a5f85a9c7942c3c74dfd8df9338793d24b9be2c37a5d797045445362d",
+      "bytes": 684232
+    },
+    "/tmp/h3-static-native": {
+      "sha256": "77a1d299a173060dbbe9afc94d5df7e460459673a34561eef48a7b5abb6b428a",
+      "bytes": 3010600
+    },
+    "/tmp/h3-car-native": {
+      "sha256": "a67432a0eb944b5e0b1193c180618624d0635f2f8901f98e0e69dc97b0d12299",
+      "bytes": 6239104
+    },
+    "/tmp/h3-composed-native": {
+      "sha256": "a6fe08f0f0d5c1a9f0336d2174798f6e53f95b27eb34a94811b6fbd0625cf252",
+      "bytes": 3282720
+    },
+    "/tmp/h3-host-i386.o": {
+      "sha256": "910829b556f2cd2967a3f8439807b7c9932a78616a5be9a969d3d6ff696771a9",
+      "bytes": 11570903
+    },
+    "analysis/work/mission-world-20261103/h3-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h3-application-i386.log": {
+      "sha256": "4004802f01a6f160fe99860235cb1f515a6aaa6574cd018e5b655a3143d99cb6",
+      "bytes": 802
+    },
+    "recovered/build/application_launch.exe": {
+      "sha256": "df99bc192a24b7310ceeb704e1e4add3f1667fcff998b73f5e1c63193ec0bb5e",
+      "bytes": 3915776
+    },
+    "recovered/build/startup_probe.exe": {
+      "sha256": "c02a81c0a87ee1a96646de698df94bc894bd375b411e256582999a0104c64d73",
+      "bytes": 1117696
+    },
+    "/tmp/h3-engine-feature-native.cpp": {
+      "sha256": "913b8173fb9b8a1d8b9370f252be2ed1d1ab9453099cac2e93b28786d8a96e27",
+      "bytes": 2568
+    },
+    "/tmp/h3-engine-feature-native": {
+      "sha256": "aa6a7f44cba4157e2876e9dc9c7d2c5521d3ba03b0b6064201ecd109f4b080c2",
+      "bytes": 548800
+    },
+    "analysis/work/mission-world-20261103/h3-engine-feature-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h3-engine-feature-native.log": {
+      "sha256": "1428fd294f34a876f3db89d27c2ff2ed82fba5b70924fd011ef21ec89f1b3440",
+      "bytes": 161
+    }
+  },
+  "temporary_audits_removed": true,
+  "verification": [
+    "PASS four native ASan/UBSan/LSan executables,100 families each; adjacent endpoints and composition limits in contract",
+    "PASS additional100 targeted native ASan/UBSan/LSan engine admission families: F6C actual simulation features independent of5B0 lighting flags; actual feature/drive/health storage and explicit audio endpoints",
+    "PASS strict actual nested World/Human/Car/Items/Physics i386 instantiation, O0 warnings-as-errors",
+    "PASS final application-launch/startup-probe i386 build, O2 warnings-as-errors; Windows outputs not run",
+    "PASS function_progress exact fingerprints/inventories/ledger/README and git diff --check"
+  ],
+  "remaining": [
+    "H2/D11 confirmed producer blockers and D4b/D5/D10-D12",
+    "Full occupied/non7 Car frame D5; shooting producers H4/H6",
+    "H4/H5/H6/H8 and OWN/FRAME/application/render/desktop delivery"
+  ],
+  "commands": {
+    "native": "g++ -std=c++17 -O0 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -Irecovered; local sanitizer runtime library/rpath; ASAN_OPTIONS=detect_leaks=1:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1",
+    "i386": "i686-w64-mingw32-g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -Irecovered -c h3-host-i386.cpp",
+    "build": "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++"
+  },
+  "removed_audit_paths": [
+    "/tmp/h3-action-native.cpp",
+    "/tmp/h3-action-native",
+    "/tmp/h3-static-native.cpp",
+    "/tmp/h3-static-native",
+    "/tmp/h3-car-native.cpp",
+    "/tmp/h3-car-native",
+    "/tmp/h3-composed-native.cpp",
+    "/tmp/h3-composed-native",
+    "analysis/work/mission-world-20261103/h3-host-i386.cpp",
+    "/tmp/h3-host-i386.o",
+    "/tmp/h3-engine-feature-native.cpp",
+    "/tmp/h3-engine-feature-native"
+  ],
+  "corrected_findings": [
+    "Final ownership check corrected004F2530 feature4000 from5B0 lighting requests to F6C actual solver.substeps.flags; targeted100 admission families and actual i386/application build pass after correction. Earlier Car/SOUND/lifetime audits remain recorded with their explicit endpoints."
+  ]
+}

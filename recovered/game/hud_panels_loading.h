@@ -21,6 +21,7 @@
 #include "game/hud_soldier_loading.h"
 #include "game/hud_player_loading.h"
 #include "game/hud_weapon_selector_loading.h"
+#include "game/hud_spawn_mode.h"
 #include <type_traits>
 namespace hd2::game {
 //0049B730/0049B620/0049B280 and0049B490 source composition. World and
@@ -84,16 +85,33 @@ public:
     void post_bind(std::uint32_t mode,std::uint32_t flags) { //0049F1C0, actual current-Human definition9 lookup.
         update_hud_compass_visibility(frames_,inventory_.root(),crosshair_,command_,players_,items_,compass_,mode,flags);
     }
+    template<class Mode,class Pause>void spawn_mode(std::uint32_t phase,Mode&& mode,Pause&& pause){
+        apply_hud_spawn_mode(frames_,hud_,*this,phase,mode,pause);
+    }
+    void clear_roster_selection(){ //0049D340(0,5), live controlled roster count, no actor selection callback.
+        for(std::size_t n=0;n<players_.human_roster().size();++n){
+            if(n>=soldiers_.size())throw std::logic_error("HUD selection exceeds its six actual soldier panels");
+            soldiers_[n].set_selected(0);
+        }
+    }
+    bool hide_map(){ //0049F040(false)'s004A5630 and late map-center E0 query.
+        map_.hide(auxiliary_);const auto center=map_.center();return center&&frames_.hud_frame_visible(center);
+    }
+    bool show_map(){map_.show(world_,auxiliary_);const auto center=map_.center();return center&&frames_.hud_frame_visible(center);}
     template<class Human>bool add_human(Human* human,std::int32_t index,std::uint32_t mode,std::uint32_t difficulty,std::int32_t local_player){
         return add_hud_loading_human(frames_,hud_,soldiers_,compass_,players_,items_,human,index,mode,difficulty,local_player,[&]{post_bind(mode,hud_.flags);});
     }
     template<class Human>bool remove_human(Human* human,std::int32_t index){return remove_hud_loading_human(frames_,hud_,soldiers_,compass_,human,index);}
     template<class Human>void select_human(Human* human,bool selected,std::uint32_t mode,std::uint32_t difficulty){select_hud_loading_human(hud_,compass_,human,selected,mode,difficulty);}
+    template<class Human>void refresh_peer_human(Human* supplied,std::uint32_t mode,std::int32_t local_player){ //0049F100.
+        refresh_hud_peer_human(frames_,soldiers_[0],players_,items_,timers_,supplied,mode,local_player);
+    }
     void inventory_changed(){ //0049FBF0; hidden inventory is a genuine RET, not a successful refresh substitute.
         const auto root=inventory_.root();if(!root)throw std::logic_error("Inventory notification requires its actual loaded HUD root");
         if(!frames_.hud_frame_visible(root))return;
-        throw std::runtime_error("Visible inventory refresh requires actual004A49F0/004A26D0 actor/slot consumers");
+        inventory_.notify_changed(); //004A49F0→004A26D0, actual UI receiver over SAME actor/Items owners.
     }
+    template<class Random>void show_human_damage(Random& random){movies_.show(true,random);} //0049F0B0, no flags gate.
     bool hide_cold_soldiers(){return hide_hud_loading_humans(frames_,hud_,soldiers_,compass_);} //0049B900 also retires populated marker amounts.
     void discard_borrowers()noexcept {
         inventory_.retire_inline_scrolls();inventory_.discard_borrowers();cursor_.clear();dialogs_.discard_borrowers();
@@ -106,10 +124,15 @@ public:
     auto& artwork(){return artwork_;}auto& compass(){return compass_;}auto& soldiers(){return soldiers_;}auto& command(){return command_;}
     auto& messages(){return messages_;}auto& crosshair(){return crosshair_;}auto& hands(){return hands_;}auto& small(){return small_;}
     auto& dialogs(){return dialogs_;}auto& timers(){return timers_;}auto& inventory(){return inventory_;}auto& map(){return map_;}
+    auto& command_roll(){return command_roll_;} //SAME command590 nested dialog, not ordinary HUD roll2F00.
     auto& info(){return info_;}auto& selector(){return selector_;}auto& auxiliary(){return auxiliary_;}auto& scoreboard(){return scoreboard_;}
+    void select_objective(unsigned index,std::int32_t side){objectives_.select(index,side);}
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){compass_.sound_direction(direction,kind,players_);} //0049DE80→004947E0.
+    auto& injury_movies(){return movies_;}
     auto& cursor(){return cursor_;} //FPV borrows the SAME HUD2E60 artwork/cursor owner.
+    auto& objectives(){return objectives_;}
     void set_hint(bool enabled,std::uint32_t identity){small_.set_hint(enabled,identity);}
+    void set_injury_message(std::uint32_t identity,std::uint32_t time){small_.set_injury_message(identity!=0xffffffffu,identity,time);}
 private:
     Frames& frames_;Factory& factory_;Hud& hud_;Players& players_;Items& items_;World& world_;Frame scene_{};bool started_=false,progress_started_=false,command_started_=false;
     HudArtworkLoading<Frames> artwork_;HudCursorLoading<Frames,Players,Items> cursor_;Dialogs dialogs_,command_roll_;

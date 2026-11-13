@@ -11,6 +11,11 @@
 
 namespace hd2::game {
 
+//00479450's separate module74 word; the caller borrows its actual storage.
+inline std::int32_t consume_runtime_detached_identity(std::uint32_t& counter){
+    const auto old=counter++;const auto value=old+1000000u;std::int32_t result;std::memcpy(&result,&value,4);return result;
+}
+
 //004770B0/00477190/004772F0/00477330/00477430. This is the runtime
 //registry, not Scene2's reserved identity array. Backend supplies real matching
 //factories, activation/deactivation, presentation-reference removal and frame
@@ -117,7 +122,11 @@ public:
         active_.clear();toggles_.clear();removals_.clear();clearing_=false;
     }
     const std::vector<Actor*>& active_actors() const {return active_;}
+    template<class Predicate>void remove_owned_forward(Predicate&& matches){ //00479700; native increment still skips a swapped-in owner after removal.
+        for(std::size_t index=0;index<owners_.size();++index){auto* actor=owners_[index].owner.get();if(matches(*actor))remove(actor);}
+    }
     std::size_t size() const {return owners_.size();}
+    bool owns(const Actor* actor)const{for(const auto& record:owners_)if(record.owner.get()==actor)return true;return false;}
 private:
     struct Record {ActorOwner owner;bool authority_started=false,presentation_started=false,removing=false;};
     Record* find(Actor* actor) {

@@ -136,6 +136,8 @@ public:
     }
     const Descriptor& collision_descriptor()const{return descriptor_;}Frame on_frame()const{return on_;}Frame off_frame()const{return off_;}
     std::uint32_t countdown()const{return timer_c8_;}
+    std::uint32_t placer_identity()const{return fieldc4_;}
+    void placer_identity(std::uint32_t value){fieldc4_=value;} //0060D6F0, actual placer C4; not the Actor identity.
     ExplosivePlaceActorProperties properties;
     bool flag90=false,flag170=false;
     std::uint32_t field94=4,fieldb0=0,fieldb4=0;

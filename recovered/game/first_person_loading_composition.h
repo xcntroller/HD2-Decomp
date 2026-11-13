@@ -32,6 +32,8 @@ public:
     FirstPersonLoadingComposition(const FirstPersonLoadingComposition&)=delete;
     FirstPersonLoadingComposition& operator=(const FirstPersonLoadingComposition&)=delete;
     template<class Files,class Clock>void activate(std::uint32_t mode,Files& files,Clock& clock){view_.activate(mode,files,clock);}
+    void advance(std::uint32_t mode,std::uint32_t elapsed){view_.advance(mode,elapsed);}
+    void complete_animation(std::uint32_t mode,std::uint32_t elapsed){view_.complete_animation(mode,elapsed);}
     void update_opacity(std::uint32_t mode){view_.update_opacity(mode);} //00491E30, not the complete00491660 frame.
     void close(std::uint32_t mode){models_.close(mode);} //00490B50; native mode gate retained.
     template<class Files,class Clock>void reset(std::uint32_t mode,Files& files,Clock& clock,const std::uint8_t& preference){ //00493360.

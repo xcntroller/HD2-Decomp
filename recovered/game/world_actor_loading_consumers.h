@@ -3,8 +3,12 @@
 
 #include "game/world_loading_dependency_link.h"
 #include "game/car_scene_actor.h"
+#include "game/session_packet_stream.h"
 #include "frontend/localized_text.h"
 #include "frontend/spatial_sound.h"
+#include "game/shot_effect.h"
+#include "game/mission_particle_emission.h"
+#include "game/runtime_actor_packets.h"
 #include <limits>
 
 namespace hd2::game {
@@ -38,6 +42,10 @@ public:
         return d().human_factory.make_human_loading_owner(frames,world,human);
     }
     template<class Actor>auto actor_inventory_capacity(const Actor& actor)const{return d().scene.frames().actor_inventory_capacity(actor);}
+    template<class Human,class Entry>std::int32_t transfer_created_human_item(Human& human,Entry entry,std::int32_t slot){
+        return d().human_factory.world_services().transfer_created_human_item(human,entry,slot);
+    }
+    template<class Human>void document_remove_item(Human& human,std::int32_t identity){d().human_factory.world_services().document_remove_item(human,identity);}
     auto* script_context_for_frame(typename Dependencies::Frame frame){return d().script_link.context_for_frame(frame);}
     void door_script_use(typename Dependencies::Frame frame,std::uint32_t) { //005FF4B0→0041D960; command argument ignored.
         auto* context=script_context_for_frame(frame);
@@ -47,10 +55,15 @@ public:
     auto door_current_player_frame(){auto* human=d().players.control().current_player();return human?human->base().frame():typename Dependencies::Frame{};}
     std::uint32_t session_mission_ordinal()const{return d().session.words.template get<std::uint32_t>(0x3c);}
     auto& session_broadcast_packets(){return d().broadcast_packets;}
+    std::int32_t zone_style(){return d().startup.game_configuration().style224;}
+    bool zone_remote_ai(){return d().startup.human_remote_ai_enabled();}
+    void zone_hud_objective(std::uint32_t index,std::int32_t side){d().hud.select_objective(index,side);}
     auto& spawn_packet_decoder(){return d().spawn_decoder;}
+    template<class Actor>void receive_human_presentation_packet(Actor* actor,SessionPacketStream& packet){d().human_factory.world_services().receive_human_presentation_packet(actor,packet,false);}
     auto& actor_proximity(){return d().proximity;}
     void clear_retired_actor_record(std::int32_t identity){d().startup.clear_retired_actor_record(identity);}
     void clear_human_player_slot(std::uint32_t identity){d().startup.clear_human_player_slot(identity);}
+    template<class Human>void retire_scene_human(Human& human){d().human_factory.world_services().retire_scene_human(human);}
     template<class Actor>void remove_actor_presentation_references(Actor& actor){d().hud.remove_actor_references(mode_flags(),1,&actor.base());}
     auto car_loading_resources(){return d().car_resources;}
     auto& car_definitions(){return d().car_definitions;}
@@ -69,10 +82,40 @@ public:
     std::uint32_t door_sound_cursor(std::int32_t handle){return d().startup.game_sound_voice_cursor(handle);}
     void door_sound_cursor(std::int32_t handle,std::uint32_t cursor){d().startup.game_sound_voice_cursor(handle,cursor);}
     std::int32_t emit_scene_actor_sound(const frontend::SpatialSoundRequest& request){return d().sound.emit(request);}
+    auto mounted_sound_entry(std::int32_t id)const{return d().startup.mounted_sound_entry(id);}
+    bool mounted_human_view(void* actor){auto& services=d().human_factory.world_services();return services.human_is_player(services.human_score_actor(actor))&&services.human_view_offset_enabled();}
+    bool mounted_human_is_player(void* actor){return d().human_factory.world_services().mounted_human_is_player(actor);}
+    HumanVector mounted_human_target(void* actor){return d().human_factory.world_services().mounted_human_target(actor);}
+    void mounted_human_target(void* actor,const HumanVector& value){d().human_factory.world_services().mounted_human_target(actor,value);}
+    bool car_seat_integrity_matches(){auto& tables=d().startup.mission_integrity_tables();return tables.expected(60)==tables.observed(60);}
+    void seat_human_direction(void* actor,const HumanVector& direction){d().human_factory.world_services().seat_human_direction(actor,direction);}
+    std::uint32_t seat_human_state_kind(void* actor){return d().human_factory.world_services().seat_human_state_kind(actor);}
+    std::int32_t seat_human_health(void* actor){return d().human_factory.world_services().seat_human_health(actor);}
+    void seat_human_proximity_kind(void* actor,unsigned kind){d().human_factory.world_services().seat_human_proximity_kind(actor,kind);}
+    void seat_proximity_kind(std::int32_t index,unsigned kind){(void)d().proximity.speed_kind(index,kind);}
+    bool seat_view_enabled(){return d().first_person.view().enabled()||d().first_person.view().secondary_enabled();}
+    void seat_script_use(typename Dependencies::Frame frame){if(auto* context=script_context_for_frame(frame))context->use((mode_flags()&1u)!=0);}
     std::int32_t emit_door_sound(const frontend::SpatialSoundRequest& request){return d().sound.emit(request);}
     void emit_supply_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_fowl_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_animation_actor_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
+    void emit_mine_effect(const HumanVector& position,const HumanVector& direction,std::uint32_t particle,std::int32_t sound){
+        auto& world=d();emit_shot_effect_without_material(world.startup.shot_manager_process(),world.sound,
+            world.startup.mission_effects_process(),world.scene.frames(),position,direction,particle,sound);
+    }
+    void rigid_water_particle(const HumanVector& position){
+        auto& world=d();
+        (void)emit_mission_particle(world.startup.mission_effects_process(),world.scene.frames(),45,position,
+            HumanVector{{0,1,0,0}},typename Dependencies::Frame{},false,false);
+    }
+    template<class Actor>bool consume_mine_inventory(Actor* borrowed,std::int32_t definition){
+        auto& world=d();auto& human=world.world_actors.human_loading_actor(borrowed);
+        return world.human_factory.world_services().consume_human_mine_inventory(human,definition);
+    }
+    void publish_mine(std::int32_t identity,std::int32_t human,std::int32_t definition,const HumanVector& position,const HumanVector& direction){
+        publish_runtime_mine(d().broadcast_packets,identity,human,definition,position,direction);
+    }
+    void publish_mine_contact(std::int32_t identity,std::uint32_t command){publish_runtime_mine_contact(d().broadcast_packets,identity,command);}
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(typename Dependencies::Frame frame,void* callback,Resolve&& resolve,Type&& type){
         return d().startup.add_game_sound_listener(frame,callback,std::forward<Resolve>(resolve),std::forward<Type>(type));
     }

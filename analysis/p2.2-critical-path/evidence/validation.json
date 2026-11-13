@@ -1,105 +1,260 @@
 {
   "result": "PASS",
-  "date_utc": "2026-11-10T22:58:11.059984+00:00",
-  "prior_audit_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
-  "latest_inspected_master_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
-  "latest_origin_master_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
-  "fetch": "Initial and final fetches succeeded. FETCH_HEAD and origin/master agree.",
-  "fully_resolved": [],
+  "date_utc": "2026-11-11T07:36:41.236164+00:00",
+  "previous_baseline": "841d89a35c02de2c12c73bb3df8792e758450aed",
+  "initial_master_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_origin_master_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "fetch": "Initial, intermediate and final fetch checks agreed with799a793.",
+  "commits_considered": [
+    {
+      "sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+      "title": "Recover Look frame posture collision and held-model receivers"
+    },
+    {
+      "sha": "edc1d9457af17bb2a9dd392075886f5c3b29496e",
+      "title": "Bind Human ground projection and shared geometry state"
+    },
+    {
+      "sha": "3e6b0cdfa6d46b9309e65728e0562d0b971667e3",
+      "title": "Recover Player input weapon and breath frame coordination"
+    },
+    {
+      "sha": "7588e38433c7c4e8694a56cdc405ceb1660eca87",
+      "title": "Recover Human contacts and Player offline command frames"
+    },
+    {
+      "sha": "edd3ace14beba4b5deb54544bc3a9eedfc89b812",
+      "title": "Recover Human ground collision and water fall coordination"
+    },
+    {
+      "sha": "2b285018ee4d54a1e1b3aa9b12e039e734087b12",
+      "title": "Recover Human ground geometry and direction replay"
+    },
+    {
+      "sha": "b0cf587b811472bfa26c6f119122dacb56643946",
+      "title": "Recover Human animation-driven velocity selection"
+    },
+    {
+      "sha": "b7efe9cd3fcceada535376ccfd7f96e84ceafa05",
+      "title": "Recover Human Ladder setup and movement coordination"
+    },
+    {
+      "sha": "92a8d76af374529e8ad4c6e3887f733ce4cd4de8",
+      "title": "Recover Human ground frame coordination and motion audio"
+    },
+    {
+      "sha": "a654f8fe2449f833c2a27e562981899acfb47fcf",
+      "title": "Recover Human queued actions and model frame dispatch"
+    },
+    {
+      "sha": "ac65c399c3ed1fa20a1033fa4a6ecf469b06a9d2",
+      "title": "Recover Human presentation face and pooled audio frames"
+    },
+    {
+      "sha": "7909094a665651869a1849a44265b20f6e03855b",
+      "title": "Recover Script AI and Human control frame coordination"
+    },
+    {
+      "sha": "39af3ab174a1203af64b595d1fc8a51a03fcd630",
+      "title": "Recover Human action and reload frame services"
+    },
+    {
+      "sha": "01adb447f900f7c3eeeba6e4a90e0e5edf0706c4",
+      "title": "Recover pooled Scene2 movement detours"
+    },
+    {
+      "sha": "dbe5e60dc1f40c60786b0e1ea78fc05618315c30",
+      "title": "Recover shared Scene2 Human movement solver"
+    },
+    {
+      "sha": "40215074c61a96fed1052b80bc376a8b16bbea0a",
+      "title": "Recover Guard and Area authority frame dispatch"
+    },
+    {
+      "sha": "55b3ee6ffe51be8f92c1348451b8269dc7cf4dc8",
+      "title": "Recover Human AI navigation routes and traversal"
+    },
+    {
+      "sha": "4f1db33fd0a584cb46bbb555d844d5bdd787dac7",
+      "title": "Merge pull request #14 from xcntroller/research/p22"
+    },
+    {
+      "sha": "52b4f2716559825a0e5779ec1e9cb93947553185",
+      "title": "Refresh P2.2 critical path after Human AI checkpoint"
+    },
+    {
+      "sha": "1276d5ca4dfab5dc59896b23aaba0f0714af91ca",
+      "title": "Map P2.2 reverse critical path and identify integrity startup producers"
+    }
+  ],
+  "resolved_source": [
+    "P22-MOVE"
+  ],
   "partially_resolved": [
-    "P22-HUM"
+    "P22-HUM",
+    "P22-FRAME",
+    "P22-PACK",
+    "P22-UI",
+    "P22-LIFE"
   ],
   "unchanged": [
     "P22-OWN",
     "P22-GUARD",
-    "P22-MOVE",
-    "P22-FRAME",
-    "P22-PACK",
     "P22-RENDER",
-    "P22-UI",
-    "P22-LIFE",
-    "P22-DATA"
-  ],
-  "checkpoint_receipt": "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
-  "reported_checks": {
-    "native_state_timers": "PASS (ASan/UBSan/LSan)",
-    "native_ai_prefix_and_pools": "PASS (ASan/UBSan/LSan)",
-    "native_guard_area_selection": "PASS (ASan/UBSan/LSan)",
-    "actual_host_i386": "PASS (strict compile)",
-    "application_launch": "PASS (i386 link)",
-    "function_tracker": "PASS (render, check and 27 tests)"
-  },
-  "receipt_original_artifacts_checked": [
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-authority/00559eb0.c",
-      "sha256": "f86fb3ab827c1ad2b5e59ef7325decd61869205819859e00157b9f0766ce3929"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-authority/00559eb0.json",
-      "sha256": "83904381432907a926d819d52f85414d2d63426cc49845e874b85fcc264ba75e"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-authority/00575940.c",
-      "sha256": "b832da131e3da108fb7c71f87176d64b25629f142d890db00facbf38baf94e59"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-authority/00575940.json",
-      "sha256": "fb878dbad265cae55129f57f702601ab333d1895581a00680fef70edf5983dc6"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-selection/00549360.c",
-      "sha256": "f75d9fa6541d06908a142e4e93e3760ed33100a5bf8309a47b35deccdbe54341"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-selection/00549360.json",
-      "sha256": "3c1bc5d5cbf6eb4fa15cd2107f17758644d747c7d584dff3bdc119c2cabc0338"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-timers/00547e70.c",
-      "sha256": "04eed1d4dc20f89385093bfdf9b40140cf98cd4c52817952a0e5a0e6a90d612f"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-timers/00547e70.json",
-      "sha256": "6bb2325e445b65606cb130c03f6b0d965fbf02b88c823e0b1180899dd089ed37"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-timers/00559c60.c",
-      "sha256": "3842a8d7b754cff5fe02a7f0104c7cf294fc0807ac787ea7825daab3e34096a2"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-timers/00559c60.json",
-      "sha256": "98bafbb019594bf76d51330639095c3dfc83e1d99eae5b83cc6667fbfbd01221"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-state-common-updates/00571680.c",
-      "sha256": "26e071419559480bdd89aed2eb4edc1ac9de622a1f195ca7b3e32b38275e7b37"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-state-common-updates/00571680.json",
-      "sha256": "2e2a6ab8df376fbdf4847cc69b159e15e5dbffa0616bff11602a2251226759df"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-state-common-updates/00588010.c",
-      "sha256": "31d842a1e864ad162483b7d3ab08888a23b25577f7578ce578ad547fa8b67ce8"
-    },
-    {
-      "path": "analysis/work/mission-world-20261103/frame-human-state-common-updates/00588010.json",
-      "sha256": "9c5879fcbdeb8b929283a6827d86f4e4bdadc2d0e405c8248bb55ceb640a0d05"
-    }
-  ],
-  "validated_refresh_source_inputs": 40,
-  "validated_retained_original_exports": 22,
-  "checks": [
-    "Pinned source provenance and retained original evidence hashes match.",
-    "Stable schema, 13 node IDs and 17 edge IDs and endpoint types match prior graph.",
-    "All graph edges resolve. Conditional relationships are nonblocking. Blocking prerequisite graph is acyclic.",
-    "Graph nodes match the blocker records. All 19 module slots are accounted for.",
-    "Markdown links resolve. All changes are under the requested research directory.",
-    "Master does not contain this research directory at the inspected revision."
+    "P22-DATA",
+    "P22-VIS",
+    "P22-REPEAT",
+    "P22-SECOND"
   ],
   "nodes": 13,
   "edges": 17,
+  "source_pins": 124,
+  "checkpoint_summaries": 17,
+  "retained_checkpoint_original_artifacts_checked": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0074a290.c",
+      "sha256": "86a3687754be41d0b488b8371348bff8ab4237517579ced57f1ebf927a2fc3c2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0074a290.json",
+      "sha256": "c723e3da0b2ceb9c1ff13f9a937e4cea728a2525588948cc3a72b854a4d8b3e6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0074e820.c",
+      "sha256": "2b331c2c03aaf71d13f6ad635be10f538c8566eef4d745ad2db19fce42ce9d29"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0074e820.json",
+      "sha256": "ae79d80ed4404c72c2d80f0cb02f5bca0df7aebf329024a0b1474481049c25d0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0075cd00.c",
+      "sha256": "4216f5fd78ae6aef35c927ecffc04da2076b144ba4b4c94ced571c7c23c17bd6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0075cd00.json",
+      "sha256": "09acedbef4a2d402d665a6f5dd30f6a4e597cf7c11536cca49dd9f977d929eee"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0076af70.c",
+      "sha256": "b6669d4e79807a82ab2d5d829844f610290efecd28ff937f51f4a4a444ce0bb8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-animation-workers/0076af70.json",
+      "sha256": "f3192f87e7233590eb7a27974f69bcfc575792063a77f0f3297b18f2a5ba81e4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-leaf-workers/0075e290.c",
+      "sha256": "f3c723283905b078eb30596583843e4df9006cc1280ab1047a9327ab40b62cf2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-leaf-workers/0075e290.json",
+      "sha256": "352167a6b1ce74e3f431f7b3ae41c781c872227b89caed76f493879d46fb2313"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-leaf-workers/00775770.c",
+      "sha256": "86569b6d8d10129348ae4ec23fdfddc1a71a2cfcffeca6732d03cd3bc013b6d6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-frame-leaf-workers/00775770.json",
+      "sha256": "0dfce9e072d30fe9aff71ddccf06fa73e79565c106c018976c9836114be29514"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-posture-room-workers/0074ef60.c",
+      "sha256": "0475d34ea438cf15d6859020ff1e997ce4bb4701692033ab3b6e5839960e0bd9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-posture-room-workers/0074ef60.json",
+      "sha256": "293625deffb767f750901f426e3f51704e83367432f2140e5a1a2ec3d4a8e5f5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-posture-room-workers/0075c7e0.c",
+      "sha256": "e9e45b11822c3f05023b283e23944e902748c588ac745b70a287da2037615437"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-posture-room-workers/0075c7e0.json",
+      "sha256": "6c4a87f085a69931b389909811ad65dbb04a5e1ca84dd7a1decfa1f5ce35caad"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-posture-room-workers/00791c10.c",
+      "sha256": "a71762d18323e274203dc5ed27ddc8bb054e52561c8818327cc7c14e7d38faae"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-posture-room-workers/00791c10.json",
+      "sha256": "393e807ecd3552a1d5e18c02a44a9d39e50a2d6af2284c893d14d0f5aef05828"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-posture-room-workers/007d5250.c",
+      "sha256": "b55bc485d3f1ad7dfa0e2f721e6dd44e1830de9b59bcac2447db7c8f1f483d25"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-look-posture-room-workers/007d5250.json",
+      "sha256": "1c824b6c08d67059535648355464fa5281f34fc36f1b2b5d3e7ae268f2131b29"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-item-actor-consumers/005647c0.c",
+      "sha256": "2a7e268121dc6b2f79089f0621723b7924ebb52abc6f986f6d63b6e326b135e0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement/005656e0.c",
+      "sha256": "786b0d8e4afd7934d35e4a2e4800d6a3eaefd692ad92c57ed37108475ae31e43"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement/00566130.c",
+      "sha256": "d1820344838e5026b700768a638e3287ffac82db5f54cb3ac55d611409dda73b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement/00568580.c",
+      "sha256": "89363f0b5a60d21cbeee9599095afa135f446c8bd81a2c70b4636df9e8e3bcbc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement-path/00568190.c",
+      "sha256": "1bb4509e495ab9f0bd99414a5d57e4ccb1b6d60ed9ffa52891042563e429abf5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement-path/00569890.c",
+      "sha256": "359adb322a79c0ce0283f66797622e464b93b86c8e726d1ee7fa42295699bb23"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement-path/0056a0f0.c",
+      "sha256": "7c625e123f92221cef16f16063536e02320c84f39156041567a6880826ec05d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement-volume/00567df0.c",
+      "sha256": "fd76d352f973dbfbac1bfb267564a56bef0bde60c4e32ec5af5fb1c2e14e333f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement-volume/0056be90.c",
+      "sha256": "f4af26029aa77b2d4b61699c29356b05fc4796075dfd058ce56b48d26b59f0f6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement-replan/0056a6d0.c",
+      "sha256": "0aaeb68e2e2f695ac8d99f96b1722fc24a48ce7d14df3f95474ec3ce16b17368"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement-replan/0056a8e0.c",
+      "sha256": "52f638e409cd99291127a802b732285fa19937433a32f5ce2508b4f9bda8f051"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement-replan/0056c230.c",
+      "sha256": "50f6ae1a1942d50fc8fe7de66fdfad7f34cba9930b1434f5c4b38a07ee00539c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-shared-movement-detour-ellipse/0056de90.c",
+      "sha256": "6a567f83ace2f0b32851c047db005446bfdfefc1a54d5be7e3b9e369a3c54645"
+    }
+  ],
+  "checks": [
+    "All historical/current source pins and retained original evidence hashes match.",
+    "New original callsite/CFG evidence fingerprinted. Known-CFG limits preserved.",
+    "Graph node IDs and typed prerequisite relationships preserved. MOVE source prerequisite marked satisfied.",
+    "Blocking DAG acyclic, conditional relationships nonblocking. All source and research references resolve.",
+    "Source anchors confirm actual movement bindings, timer queries, packet scope and open application callbacks.",
+    "Only requested research directory changed. Latest master contains the prior research checkpoint."
+  ],
   "desktop_verified": false,
   "original_execution": false,
-  "builds": "Research-only refresh. The upstream compile, link and native results are recorded from the receipt."
+  "native_i386": "Upstream PASS receipts reviewed, including doubles and declaration-only Runtime gaps. Research changes require no game rebuild.",
+  "merge_readiness": "Research-only changes based on master-merged prior checkpoint. Verify read-only merge preview after committing."
 }

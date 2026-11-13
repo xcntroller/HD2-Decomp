@@ -27,9 +27,9 @@ public:
             markers_[index]=frame&&frames_.frame_kind(frame)==6?frame:Frame{};
         }
     }
-    void snapshot() { //0075C070.
+    void snapshot(bool prone_only=false) { //0075C070, or0075C160's last four markers.
         if(!model_)throw std::runtime_error("Human collision markers have no actual model");
-        for(unsigned index=0;index!=markers_.size();++index)if(markers_[index]) {
+        for(unsigned index=prone_only?5u:0u;index!=markers_.size();++index)if(markers_[index]) {
             const auto world=frames_.actor_world_matrix(markers_[index]);
             for(unsigned axis=0;axis!=4;++axis)positions_[index][axis]=world[12+axis];
             const auto model=frames_.actor_world_matrix(model_);

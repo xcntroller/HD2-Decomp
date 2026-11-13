@@ -39,6 +39,15 @@ public:
         pose_.centre=frames_.car_transform({{coefficients_.get(0x1e0),coefficients_.get(0x1e4),coefficients_.get(0x1e8),0}},world);
     }
     const Pose& pose()const{return pose_;}Pose& pose(){return pose_;}
+    void reset_pose(){ //004E9DB0, native160 is republished on reset.
+        const auto world=frames_.actor_world_matrix(model_);pose_.world=world;pose_.inverse=frames_.car_inverse_matrix(world);
+        pose_.rotation=world;pose_.inverse_rotation=pose_.inverse;
+        for(unsigned a=0;a!=3;++a){pose_.rotation[12+a]=0;pose_.inverse_rotation[12+a]=0;}
+        pose_.right={{world[0],world[1],world[2],world[3]}};pose_.up={{world[4],world[5],world[6],world[7]}};
+        pose_.forward={{world[8],world[9],world[10],world[11]}};pose_.position={{world[12],world[13],world[14],world[15]}};
+        const auto current=frames_.actor_world_matrix(model_);initial_position_={{current[12],current[13],current[14],current[15]}};
+        pose_.centre=frames_.car_transform({{coefficients_.get(0x1e0),coefficients_.get(0x1e4),coefficients_.get(0x1e8),0}},world);
+    }
     const Motion& motion()const{return motion_;}Motion& motion(){return motion_;}
     const Vector& initial_position()const{return initial_position_;}
     CarContactState contact_state()const{ //Actual current producer for004F32A0 and the loading solver.

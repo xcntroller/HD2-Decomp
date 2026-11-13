@@ -48,6 +48,7 @@ public:
     Human* human()const{return human_;}Look* look()const{return look_.get();}
     Control* control()const{return control_.get();}Equipment* equipment()const{return equipment_.get();}
     bool initialized()const{return initialized_;}
+    template<class Publish>void damage_limb_limit(Publish& publish){flag14_=true;required_look().frame_movement_mode(3,publish);} //005AC370.
     void frame_position(const HumanVector& value){required_look().position_command(value);} //005AC080.
     void frame_current_direction(const HumanVector& value){required_look().current_direction(value);} //005AC0A0.
     void frame_target_direction(const HumanVector& value){required_look().target_direction(value);} //005AC0C0.
@@ -127,11 +128,17 @@ public:
         if(model)look_->action_model(model,true); //A null model deliberately retains native04.
         look_->action_command(command,true);
     }
+    template<class Runtime>std::int32_t request_frame_ladder(typename Control::SceneInstance* target,Runtime& runtime){
+        return required_control().request_frame_ladder(target,required_look(),runtime); //005ABE30 id1F→007861A0.
+    }
     void clear_frame_item_action(){required_look().frame_item_action(-1);} //005ABE30 subtype16.
-    void set_frame_item_action(std::int32_t action){ //005ABE30 subtype6/7, null model argument.
+    void set_frame_item_action(std::int32_t action,typename Control::Frame model={}){ //005ABE30, including subtypeA model argument.
         auto& look=required_look();
-        look.action_model(typename Control::Frame{},true);
+        look.action_model(model,true);
         look.frame_item_action(action);
+    }
+    void set_retained_frame_item_action(std::int32_t action,typename Control::Frame model){ //005ABE30 id0D/0E.
+        auto& look=required_look();look.retained_action_model(model,true);look.frame_item_action(action);
     }
     template<class Notify>void clear_frame_item_ready(Notify&& notify){set_frame_item_ready(false,notify);} //005ABE30 subtype15.
     template<class Notify>void set_frame_item_ready(bool ready,Notify&& notify){required_look().frame_item_ready(ready,notify);} //005ABE30 subtype14/15.

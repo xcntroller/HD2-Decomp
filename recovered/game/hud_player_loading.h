@@ -1,9 +1,29 @@
 #ifndef HD2_GAME_HUD_PLAYER_LOADING_H
 #define HD2_GAME_HUD_PLAYER_LOADING_H
+#include <array>
+#include <cstring>
 #include <cstddef>
 #include <cstdint>
 #include <stdexcept>
 namespace hd2::game {
+//0049F100, SAME primary soldier and explosive timer owners. NULL means refresh
+//from selected player, not erase its Human74 borrower. Native reads the root
+//AFTER binding/callbacks and rereads the selected player before that bind.
+template<class Frames,class Soldier,class Players,class Items,class Timers,class Human>
+void refresh_hud_peer_human(Frames& frames,Soldier& soldier,Players& players,Items& items,Timers& timers,
+        Human* supplied,std::uint32_t mode,std::int32_t local_player){
+    const auto show=[&](bool visible){const auto root=soldier.artwork().root;
+        if(!root)throw std::logic_error("HUD peer refresh requires actual primary soldier root");
+        frames.object_visible(root,visible);
+    };
+    if(supplied){soldier.bind_human(*supplied,items,mode,local_player);show(true);return;}
+    if(players.selected_player(mode)){
+        auto* selected=players.selected_player(mode);if(!selected)throw std::logic_error("HUD selected Human changed during native refresh");
+        soldier.bind_human(*selected,items,mode,local_player);show(true);
+        const std::array<std::uint32_t,3> bits{{0x3f7051dbu,0xbeec29e1u,0}};std::array<float,3> point;
+        std::memcpy(point.data(),bits.data(),sizeof point);timers.position(point);
+    }else show(false); //Native hide retains Human74, flags and prior timer geometry.
+}
 
 //0049B980 uses any nonzero HUD flags, then actual selected marker publication
 //or retirement. It neither changes HUD flags nor binds/hides a soldier panel.

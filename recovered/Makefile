@@ -13,12 +13,12 @@ WINDOWS_CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror -static -mun
 application-launch: $(BUILD_DIR)/application_launch.exe
 
 $(BUILD_DIR)/application_launch.exe: scene/model_resource_key.cpp scene/model_resource_key.h host/application_launch.cpp host/bitmap_font.cpp host/multiplayer_discovery.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp $(wildcard host/*.h frontend/*.h input/*.h io/*.h game/*.h) | $(BUILD_DIR)
-	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/application_launch.cpp scene/model_resource_key.cpp host/bitmap_font.cpp host/multiplayer_discovery.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp -lwinmm -lole32 -ladvapi32 -o "$@"
+	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/application_launch.cpp scene/model_resource_key.cpp host/bitmap_font.cpp host/multiplayer_discovery.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp -lwinmm -lws2_32 -lole32 -ladvapi32 -lgdi32 -o "$@"
 
 startup-probe: $(BUILD_DIR)/startup_probe.exe
 
 $(BUILD_DIR)/startup_probe.exe: host/startup_probe.cpp $(wildcard host/*.h frontend/*.h input/*.h io/*.h game/*.h) | $(BUILD_DIR)
-	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/startup_probe.cpp -lole32 -ladvapi32 -o "$@"
+	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/startup_probe.cpp -lws2_32 -lole32 -ladvapi32 -lgdi32 -o "$@"
 
 all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key $(BUILD_DIR)/frame_kind_tests $(BUILD_DIR)/model_load_policy_tests $(BUILD_DIR)/model_file_header_tests $(BUILD_DIR)/inspect_model_header $(BUILD_DIR)/model_first_table_tests $(BUILD_DIR)/scan_model_first_table $(BUILD_DIR)/graphics_settings_tests $(BUILD_DIR)/cursor_geometry_tests $(BUILD_DIR)/bitmap_font_tests $(BUILD_DIR)/menu_text_geometry_tests
 

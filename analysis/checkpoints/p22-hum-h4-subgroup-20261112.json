@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 actual Players subgroup, formation frame and VM commands",
+  "implementation_base": "aaa99cf",
+  "H4_complete": false,
+  "branch": "feature/p22-hum-h4",
+  "source_only": true,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "contract": "analysis/human-players-subgroup-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_formation.h",
+      "sha256": "fbce541a7548e5e22df4f08ec95dbcf40e10dd9b1a1613459f8369bb4f80af53",
+      "bytes": 37141
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "48270bfe8ef6f47d07d57377946d9a9b2128f01f7023d9f46db648eae1cbcc24",
+      "bytes": 136467
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "sha256": "56ba7c7beba24ee18e352e28a21ff2270ea8fdd0887e0e7eae864d709719bfd5",
+      "bytes": 8823
+    },
+    {
+      "path": "recovered/game/mission_script_world_loading.h",
+      "sha256": "c9adbe8eb4d93613bba5d5a424a7b8011b9335c9c9feaef02a807f9e9c935296",
+      "bytes": 5123
+    },
+    {
+      "path": "recovered/game/players_module_loading.h",
+      "sha256": "267c19a4ba07d7a95c3341aba6ba42486319e2e4ce7d16490360ad894eda2a81",
+      "bytes": 8894
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "sha256": "03f2120f4a280602c2ed1627025b5f881e04df0fb1275e61d38cbb94183bf06a",
+      "bytes": 30854
+    },
+    {
+      "path": "recovered/game/human_players_subgroup.h",
+      "sha256": "84ded6eed7e093a827804f45626367dd9e0a7aae2587668b9642560ef2c1e21d",
+      "bytes": 4039
+    },
+    {
+      "path": "recovered/game/human_formation_layouts.h",
+      "sha256": "deaccbd4e953daa1d98749c1b91a8612dfb69d5eb381ceac0eb9aaef4199660b",
+      "bytes": 3895
+    },
+    {
+      "path": "recovered/game/mission_script_formation_commands.h",
+      "sha256": "781d22a6253f5529137a506c66cb05be1d82ad9b8eea825320d0d5ce3534bcb8",
+      "bytes": 2564
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/subgroup-takeover-constructor.asm",
+      "sha256": "c044f7d25577672a89d439df66020676e59b6429ed11debe44ae3ee664678d9e",
+      "bytes": 3011
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/subgroup-add.asm",
+      "sha256": "6d8886c4fd5ca2d57f1366c4f3396e7074fcf4eee361b78301b08dca1cac9682",
+      "bytes": 1493
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/subgroup-module-lifetime.asm",
+      "sha256": "014048829b16bbda74cf4b0ce16b6d35f667978bfc294270261a4104650d3fee",
+      "bytes": 10782
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-static-initializers.asm",
+      "sha256": "2c9749fb9c1411938218545c3121b6d64c066d9b9655eb63bcb9ddc7ded2c8ba",
+      "bytes": 44317
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-static-tail.asm",
+      "sha256": "dc916c880fa1ff82d13078a362abe8c5fbb83f9d02cd05eee7b6f1af6023eb6e",
+      "bytes": 9772
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/subgroup-original/00460960.c",
+      "sha256": "ed30f670b30192f3c22ddb9e91952415c91f23a95f2a3add991ab37fb723b8f1",
+      "bytes": 170
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/subgroup-original/00460980.c",
+      "sha256": "bc5e84c3fc4e67b2440c57c9fced471d20658d63de8cf99f8bf68af549bb2444",
+      "bytes": 637
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/subgroup-original/00461290.c",
+      "sha256": "3e19d7c025ce0f61edb56ab4f72da3642eefb1b50a5d92fe0973fea75ab54fa5",
+      "bytes": 1529
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/subgroup-original/00461d20.c",
+      "sha256": "1495a9ad207b619d16a6475e97eb1682e840a6f01468dfd33651fab3f636d901",
+      "bytes": 41
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/0055f320.c",
+      "sha256": "e6a91bd867393d93c1ed906e6386238cd63279771c9ec4387f3138a240cc46b7",
+      "bytes": 10999
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/00577a60.c",
+      "sha256": "9a6e5c651b72f60d79541ad4cdb7f0ec8c0d7430d1987ea15a1f3c1eda89b58d",
+      "bytes": 815
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/005796d0.c",
+      "sha256": "40206cd8ff82fc4078df00ae517b0c908d8d419ef862f402fbc27cfa98b2f7af",
+      "bytes": 520
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/00579760.c",
+      "sha256": "28fa3b0b8bded3326fd16248f2a853bd402e488a1ad4fe3b5c9a975f2e94ee00",
+      "bytes": 4825
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/00579d50.c",
+      "sha256": "911004261ca89ca836ea486f4e65e4a09b8b61dca1b07efb0c449d35d4baa3e0",
+      "bytes": 4823
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/005957d0.c",
+      "sha256": "20d349ea2bd38fc9af0dae011b8a368f2ae4693a8a16e224ed86b5c3e71031bb",
+      "bytes": 12755
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/005990c0.c",
+      "sha256": "39378a74451c85678581fd8fa423509ce52a0cf87bf2c7f1778efd20ad78dc82",
+      "bytes": 19312
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/0059a2e0.c",
+      "sha256": "c7b79fef5d02c4ec34e1ea5df433dfb75e3b0b225cf4d097e3acd83907df221c",
+      "bytes": 10419
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-original/0059bb60.c",
+      "sha256": "214cee2f7903de49d4dc3ed7707ee2f9c5b4593f70f0b6fb2e4da66908263c4a",
+      "bytes": 1926
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-abi/00598550.c",
+      "sha256": "54531fe96f039d57d66bc99e066cafa4fb08539273b6e5c274eafd428ec9b58c",
+      "bytes": 3461
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-abi/00598810.c",
+      "sha256": "86d4b20e9caf06a2cb1b8a5a28890b7aa0262c5a358d99dfe87588e29d5af3aa",
+      "bytes": 6725
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-abi/005990c0.c",
+      "sha256": "7aa2c149d5644f84300046ef3acd330b1d2422b3ae1729330cd35578367a0b93",
+      "bytes": 20001
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-abi/0059a2e0.c",
+      "sha256": "05c1f09e7666f6d25f3c7a55fe0d431fbdd8ae2f00fc64a14cadda926d535fef",
+      "bytes": 10510
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-abi/0059af30.c",
+      "sha256": "65dec700d9fe58bfafa329e9b4e1f8b92f306eb91592b574045e26cfc9ca5933",
+      "bytes": 9123
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-frame-abi/0059bb60.c",
+      "sha256": "b3685a01be7dd4a7c30a6cad82e3fe77735966e0df0176ceee045f9a3b2102d8",
+      "bytes": 1929
+    }
+  ],
+  "verification": {
+    "native": "PASS55 actual formation/subgroup/module/navigation owners and separate non-roster leader removal regression; Human/B0/engine/seat endpoints explicit doubles.",
+    "vm": "PASS16 actual VM/context/FrameEC/SceneActor cold owners; Players endpoint explicit double.",
+    "i386": "PASS strict actual World/subgroup/formation/Script VM FULL LINK with system winmm/ws2_32 imports; no Windows execution.",
+    "application": "PASS latest launcher/probe rebuild/link; no application or desktop execution.",
+    "ledger": "Full checker retains inherited missing0062D880 rule-refresh.asm failure. Changed rows/frozen baseline/status uniqueness/totals/README checked separately; no fabricated/copied artifact.",
+    "full_ledger_exit_code": 1
+  },
+  "ledger": {
+    "added_partial": [
+      "004603c0",
+      "00460850",
+      "004608a0",
+      "00460980",
+      "00461240",
+      "00461290",
+      "00461390",
+      "0059ba70",
+      "0059bb60",
+      "005990c0",
+      "0059a2e0",
+      "00598550",
+      "00598810",
+      "0059af30",
+      "005957d0"
+    ],
+    "extended_partial": [
+      "00597420",
+      "00416e10"
+    ],
+    "complete": 34,
+    "partial": 3073,
+    "client_partial": 3068,
+    "engine_partial": 5,
+    "complete_promotions": 0,
+    "no_credit": [
+      "00460A10 absent frozen",
+      "static initializer/helper declarations",
+      "delegated engine bodies"
+    ]
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-native-run.log",
+      "sha256": "aace57e56b1a1ac506816c666ea558a915ed089fef4abe2e26029510fc1a1543",
+      "bytes": 116
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-vm-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-vm-run.log",
+      "sha256": "4365011f9520dda49774b35171d3c2cd9ad68a9db0536bf71e515b40a4accb95",
+      "bytes": 100
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-world-i386.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-application-link.log",
+      "sha256": "17b9229a4a2363276d8a0245a0a82d8c7d67d80a41fae1f524803b160f046ef1",
+      "bytes": 852
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-ledger-full.log",
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-ledger-focused.log",
+      "sha256": "c32196ae4cd98c78703ca8a000b2daf3bf39d8cf2c67bc4eb3cc9dd75bb77fe3",
+      "bytes": 218
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-native.cpp",
+      "sha256": "dc15eea736cea4337252ce68bd8ca537a585d647b9832db72be2286d73a3ba00",
+      "bytes": 9942
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-native",
+      "sha256": "db8924d2eae1ffa61f480e333643cce5028ccd732b889aa133795e6f275a6436",
+      "bytes": 3797160
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-vm-native.cpp",
+      "sha256": "49632bdf8545ce6df920f74be6a6661b85a97febfa1190060794f966ecf996fb",
+      "bytes": 3302
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-vm-native",
+      "sha256": "cf05898aaef49950a6334ae1e08269a5a8196ea1a2454e6c844775238527e125",
+      "bytes": 1538216
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-world-i386.cpp",
+      "sha256": "aa5af539403586e9d8d879f6ba1044c345da21abdd729be26d8e7b75de8803c8",
+      "bytes": 726
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-native.cpp",
+      "sha256": "0af039b66ba58fad63b683f9875aea9a7e8c92c5822aa37b61e7f1cd1aee0a2d",
+      "bytes": 10219
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-native",
+      "sha256": "e6ae1e6fac7131246fbe4e3e2e4e1265438c738b04a5e888ef9f4e811cd243e2",
+      "bytes": 2838752
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-vm-native",
+      "sha256": "2a78bbab133928b9118dd6a833053435b914da325721df108ab49885d5394a41",
+      "bytes": 1338176
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/formation-takeover-world-i386.exe",
+      "sha256": "29187823469b95f4f8fba240f586a2093d76de40e141e00ddd7b7e6b57e66989",
+      "bytes": 3815424
+    }
+  ],
+  "remaining": [
+    "Vehicle00578770/90",
+    "Actual completed H3/H5 API integration including Car exit query",
+    "H6 grenade Active AI00530FF0 recipient",
+    "Type15/Scene2 actor91 and Aircraft owners external; full Human/World/application/H8/user acceptance separate"
+  ]
+}

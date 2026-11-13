@@ -39,6 +39,7 @@ public:
         sight_add_=[&services](Human& actor){services.player_add_enemy(&actor);};
         sight_remove_=[&services](Human& actor){services.player_remove_enemy(&actor);};
         sight_speech_=[this,&services](unsigned code){services.queue_player_ai_speech(*this,code,5000);}; //Required00542060.
+        sight_kill_speech_=[this,&services]{services.queue_player_ai_speech(*this,0x6a,300);};
     }
     template<class Inline,class Camera,class Presentation>
     void bind(Human& human,const Base* previous,MissionNavigation* navigation,std::uint32_t mode,
@@ -102,6 +103,11 @@ public:
     }
     bool bound()const{return bound_;}
     bool selection_suppressed()const{return this->words().template get<std::uint8_t>(0x70)!=0;} //005A4240 virtual64.
+    void sight_enemy_killed(Human&)override{ //00542300, genuine offline-only speech receiver, absent frozen.
+        if((bound_mode_&7u)!=7u)return;
+        if(!sight_kill_speech_)throw std::logic_error("Player kill notification requires its actual speech service");
+        sight_kill_speech_();
+    }
     void sight_enemy_acquired(Human& actor)override { //005421C0; no AI event producer.
         if((bound_mode_&7u)!=7u)return;
         require_sight_services();
@@ -265,8 +271,8 @@ public:
         this->process_second_frame_commands(); //FC(1), AFTER actual model direction publication.
     }
     void receive_packet_inputs(const HumanPacketCommand& command){ //00540DB0 case0, SAME C4/1C4 buffers.
-        this->queue_frame_command(command,true); //Allocate before publishing, for source allocation-failure retry.
         local_inputs_=command.inputs;
+        this->queue_frame_command(command,true); //Native C4/1C4 stores precede00547460 insertion; allocation failure retains those stores.
     }
     //Dead00583190 genuinely inherits the base RET4 receiver.
 private:
@@ -291,6 +297,7 @@ private:
     std::function<bool(Human&)> sight_known_;
     std::function<void(Human&)> sight_add_,sight_remove_;
     std::function<void(unsigned)> sight_speech_;
+    std::function<void()> sight_kill_speech_;
 };
 } //namespace hd2::game
 #endif

@@ -5,7 +5,40 @@
 #include <cmath>
 
 namespace hd2::game {
-//005710B0, ordinary detached Human. The single candidate does not run the
+//00570CA0, selected only by005710B0's actual Actor98 gate. Unlike the
+//ordinary selector, a single mounted candidate runs the full reverse score.
+template<class Human,class State,class Frames,class World>
+Human* select_human_mounted_hostile(State& state,Frames& frames,World& world){
+    auto& human=*state.human();auto* attachment=human.field160;
+    if(!attachment)return nullptr;
+    const auto kind=world.human_seat_weapon_kind(attachment,human.field164);if(!kind)return nullptr;
+    const auto origin=frames.actor_world_matrix(human.base().frame());float best=-100000.f;Human* selected=nullptr;
+    const auto& enemies=human.perception.lists()[0];
+    for(auto n=enemies.size();n;){
+        auto* target=dynamic_cast<Human*>(enemies[--n]);if(!target)throw std::logic_error("Mounted hostile list requires actual Human");
+        if(human_frame_signed_word(target->properties.stats_ec[0])<1||world.human_unavailable(*target)||(target->properties.field19c==2&&target->loading_state&&target->loading_state->suppress_hostile_selection()))continue;
+        if(*kind!=2&&human.properties.field19c==1&&target->field160&&target->field160->base().type()==4&&world.car_field5e0(target->field160))continue;
+        const auto pose=frames.actor_world_matrix(target->base().frame());HumanVector delta{{static_cast<float>(static_cast<long double>(pose[12])-origin[12]),static_cast<float>(static_cast<long double>(pose[13])-origin[13]),static_cast<float>(static_cast<long double>(pose[14])-origin[14]),0}};
+        const float square=static_cast<float>((static_cast<long double>(delta[0])*delta[0]+static_cast<long double>(delta[1])*delta[1])+static_cast<long double>(delta[2])*delta[2]);
+        std::int32_t bits;std::memcpy(&bits,&square,4);constexpr float epsilon=9.99999993922529e-09f;
+        const bool unit=std::abs(static_cast<long double>(square)-1)<epsilon;
+        const auto distance=bits<0x322bcc77?0.L:unit?1.L:std::sqrt(static_cast<long double>(square));const float capped=distance>100?100.f:static_cast<float>(distance);
+        auto* enemy=target->loading_state;if(!enemy)throw std::logic_error("Mounted hostile score requires actual B0");float score=0;
+        if(enemy->words().template get<std::uint32_t>(0x48)==1){
+            if(!unit){if(square>=epsilon){const auto scale=1/std::sqrt(static_cast<long double>(square));for(unsigned a=0;a<3;++a)delta[a]=static_cast<float>(delta[a]*scale);}else{const unsigned a=delta[0]!=0?0:delta[2]!=0?2:1;delta[a]=delta[a]<0?-1.f:1.f;}}
+            const auto aim=enemy->target_direction();if((-static_cast<long double>(delta[0])*aim[0]-static_cast<long double>(delta[1])*aim[1])-static_cast<long double>(delta[2])*aim[2]>.9f)score=50.f;
+        }else if(enemy->aims_at_human(human))score=50.f;
+        const HumanVector position{{pose[12],pose[13],pose[14],pose[15]}};
+        if(world.human_emplacement_can_target(attachment,human.field164,position))score+=20.f;
+        score=static_cast<float>((100.L-capped)*.5f+score);
+        if(enemy->words().template get<std::int32_t>(0xb0)<400)score+=20.f;
+        const auto flags=enemy->words().template get<std::uint32_t>(0x50)&3u;if(!flags)score+=10.f;else if(flags&2u)score+=5.f;
+        if(score>best){best=score;selected=target;}
+    }
+    return selected;
+}
+
+//005710B0, ordinary Human without an Actor98-controlled mount. The single candidate does not run the
 //distance, direction, Sight or friendly-selection scoring pass.
 template<class Human,class State,class Frames,class World>
 Human* select_human_hostile(State& state,Frames& frames,World& world,const HumanVector* filter=nullptr){
@@ -13,7 +46,8 @@ Human* select_human_hostile(State& state,Frames& frames,World& world,const Human
     if(!human)throw std::logic_error("Hostile selection requires the bound Human");
     const auto& enemies=human->perception.lists()[0];
     if(enemies.empty())return nullptr;
-    if(human->field160)throw std::runtime_error("Hostile selection requires the actual attachment virtual98 and 00570CA0 receivers");
+    if(human->field160&&world.human_pose_actor_has_control(human->field160,human->field164))
+        return select_human_mounted_hostile<Human>(state,frames,world);
     const auto actual=[](auto* actor)->Human&{
         auto* target=dynamic_cast<Human*>(actor);
         if(!target)throw std::logic_error("Hostile selection requires actual Human perception entries");
@@ -102,6 +136,13 @@ Human* select_human_hostile(State& state,Frames& frames,World& world,const Human
     return best;
 }
 
+//00573240, one actual target; same native FLOAT square and signed bit length test.
+template<class Human,class Actor,class Frames>long double human_ai_actor_distance(Human& human,Actor& target,Frames& frames){
+    const auto first=frames.actor_world_matrix(human.base().frame()),second=frames.actor_world_matrix(target.base().frame());
+    const auto x=static_cast<long double>(second[12])-first[12],y=static_cast<long double>(second[13])-first[13],z=static_cast<long double>(second[14])-first[14];
+    const float square=static_cast<float>((z*z+y*y)+x*x);std::int32_t bits;std::memcpy(&bits,&square,4);
+    return bits<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1)<9.99999993922529e-09f?1.L:std::sqrt(static_cast<long double>(square));
+}
 //005733E0: reverse actual hostile list, real model poses each iteration;
 //extended differences, stored FLOAT square, SIGNED bit-pattern epsilon test.
 template<class Human,class Frames>long double human_ai_closest_enemy_distance(Human& human,Frames& frames){

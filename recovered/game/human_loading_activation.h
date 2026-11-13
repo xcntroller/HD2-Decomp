@@ -33,10 +33,7 @@ public:
     void activate(bool authority)override {
         human_.base().activate_frame(authority,services_);
         const auto mode=services_.mode_flags();
-        if((mode&7u)!=7u&&!authority&&(mode&2u)&&services_.human_current_player_id()==human_.base().id10()) {
-            const auto delay=services_.human_respawn_delay_seconds();
-            if(delay>0)services_.hud_human_respawn(0x4f59u,static_cast<std::uint32_t>(delay)*1000u);
-        }
+        present_human_spawn_protection(human_,authority,mode,services_);
         if(!human_.flag90) {
             if(local_started_)throw std::logic_error("Retire partial Human activation before retry");
             initialize_local(mode);
@@ -62,6 +59,10 @@ public:
         fields.vector1c0=fields.vector1b0;
         if(human_.scene_movement)human_.scene_movement->reset_loading(human_); //0059F2C0, Human+2C4.
     }
+    void damage(std::uint32_t kind,float amount,const HumanVector& point,const HumanVector& impulse,void* source,std::uint32_t hit_kind)override{
+        services_.apply_human_damage(human_,kind,amount,point,impulse,static_cast<Human*>(source),hit_kind);
+    }
+    bool actor_contact(void* source,const HumanVector& point)override{return services_.human_loading_actor_contact(human_,source,point);}
     void deactivate(bool authority)override {
         const auto mode=services_.mode_flags();frontend::CleanupErrors errors;
         if(human_.flag90||local_started_) {

@@ -1,0 +1,360 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "da598720ebddb9057bae7c9d13a73da2241db847",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "005fde30",
+    "005fdec0",
+    "005fdf40",
+    "005fdf60",
+    "005fdf90",
+    "005fdfd0",
+    "005fe010",
+    "005febb0",
+    "005feec0",
+    "005fef50",
+    "00451a80",
+    "00451db0",
+    "00479700"
+  ],
+  "extended_entries": [
+    "004770b0",
+    "00477190",
+    "004774c0",
+    "00477590",
+    "006ddd40",
+    "0069e720"
+  ],
+  "implemented_absent_frozen_zero_credit": [
+    "005fdf20",
+    "005fdfb0",
+    "005feb50",
+    "005fee10",
+    "005fee50",
+    "005fee70",
+    "005fee90",
+    "005feeb0",
+    "005b88a0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2680,
+  "source_files": {
+    "recovered/game/mine_scene_actor.h": {
+      "sha256": "f46ccc71b27f74da2ae1f4260f21476dce52cbc2065e1325849b0f831457357d",
+      "bytes": 6992
+    },
+    "recovered/game/shot_effect.h": {
+      "sha256": "2fb06266239fec7c49ec8b9a6708bead8b1f47938e8966d2fc4455fbe7358287",
+      "bytes": 1692
+    },
+    "recovered/game/world_actor_loading_consumers.h": {
+      "sha256": "496db245c51f24a744981e463c376f8892af18972a7c5fc221bc25c75b886daa",
+      "bytes": 7936
+    },
+    "recovered/host/game_runtime_actors.h": {
+      "sha256": "ffcff05f56c96dee7d56f1319a46ebdf06790a74785a38e8e28030a8c8f11b31",
+      "bytes": 10481
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "9596cff719fc86518dca818abd2a6a751a804900f1c12c632ac6dbc503c66cc3",
+      "bytes": 22403
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "57a80928b2eb272c8413999a7678b9aefe2e82d5b1b75417783614afcc43921e",
+      "bytes": 95564
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "ed0bb7c78f8316813d7cfa6a73f822ec316c4b270f6baa2c61667002da9af1e0",
+      "bytes": 9556
+    },
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "a349716ccd18ee1bc6bf9ee3b7818af60f359d2ce4e066c699dcc3ce67922757",
+      "bytes": 7065
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-runtime-mine-native.cpp": {
+      "sha256": "ea0be513f827fd786c4614f35a06fc2075b11c31a746d7e5ef02bb41fff5ec69",
+      "bytes": 10157
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-native": {
+      "sha256": "9aba586b7947b92b5970220359f2e5cb192b15ee6a53d4f42445f627c3b00bad",
+      "bytes": 3173728
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-native.log": {
+      "sha256": "8f9e2b9c978562831ab89a56752e4fc5c3197e31b7d7de5adf14f510f4b9d38d",
+      "bytes": 397
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-host-i386.cpp": {
+      "sha256": "6b206804353d2f2544af99d5392ee2e6b97c6eaef0fe43a40ce655e51febee7c",
+      "bytes": 454
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-host-i386.o": {
+      "sha256": "ad2407a9bd8f0f54faf9874ae06d6c992623b020710f8d53e2081a71c8c927f3",
+      "bytes": 16688187
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdec0.c": {
+      "sha256": "84d865eb76c37fa079856d046ade70b35aa1d0aa003651a12ca7356b9d1f3e0f",
+      "bytes": 554
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdec0.json": {
+      "sha256": "a124c5514fa721d7045d59c83e5ec41ed9c6a52e029d25ff6c113aa7c6cd22f7",
+      "bytes": 1065
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdf40.c": {
+      "sha256": "2a89c4085c1bfa241dc44deca974426a5dc49ff3f85adea147490d2cb705644c",
+      "bytes": 150
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdf40.json": {
+      "sha256": "477b7e2cf6af17d7549869cf1735231a60226dfadb0a1cf4c7cd103a4dc6d619",
+      "bytes": 1123
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdf60.c": {
+      "sha256": "8b2a8cb2766ce8d816c70627f435b0a0f4185aa7716b605787113e6f3803484f",
+      "bytes": 254
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdf60.json": {
+      "sha256": "fa055c41bddf9833c1095e663698fc2329a1bf4f93016519f419816234c78803",
+      "bytes": 1014
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdf90.c": {
+      "sha256": "49b74a9e387dec8f9a1bc66011a63ed336ea261ee5272489d5a8c4df3ba4e1ad",
+      "bytes": 190
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdf90.json": {
+      "sha256": "2fd4276e767414c69b82ff344aabf853c6463537a227c069fe77cc5de062a87a",
+      "bytes": 1027
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdfb0.c": {
+      "sha256": "5d10a3264e2ede587cc0e60546ae987ef3229408fede8ff4c186924dd3b1debb",
+      "bytes": 127
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdfb0.json": {
+      "sha256": "41e2692c38e83ab9d018f5a3f73e0aa489f1869f408cfaeb217057e975458b04",
+      "bytes": 690
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdfd0.c": {
+      "sha256": "05cc54a4c17f54699c7653e70ec059e83acdb06d16f5f0c57384ff99fb7102b2",
+      "bytes": 216
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fdfd0.json": {
+      "sha256": "ec8cddbd2902da8b17fde6877d2f1e0ff6f6892255e8bbd1b5731cc6a6343d7a",
+      "bytes": 1418
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fe010.c": {
+      "sha256": "a25e9ee32c1e1e04c30872fa14e47b92b32d27783a72a82507f3c62b4d624eda",
+      "bytes": 5250
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fe010.json": {
+      "sha256": "f4f669fb0c04fe2a91b958c1adc7960412db1155623a5a3e2ec9ed60fdde6811",
+      "bytes": 24876
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005feb50.c": {
+      "sha256": "3c316efe6db1f90e6887c884532ac20870e9e75eb17ccd2c1cec18a290d7abc7",
+      "bytes": 387
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005feb50.json": {
+      "sha256": "56a5a45ea048918daa21487b9ecdcf5ea19601358c41e2845085fb7aec2869d8",
+      "bytes": 2143
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005febb0.c": {
+      "sha256": "40758338684854c5c5438a6765082c88f55d7091fa0cd2cbb0a4ca8728cc16a4",
+      "bytes": 3043
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005febb0.json": {
+      "sha256": "5f497b4d58defd783cfad2b89e8280a96cfdf06379f4b709d5424c59e2d8fb3b",
+      "bytes": 12185
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fee10.c": {
+      "sha256": "d8aa15d0967050c068f4cb7df517b2bcae528f450210c530446e6a693b519d89",
+      "bytes": 372
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fee10.json": {
+      "sha256": "e44d440c4c07b107024d540caaa0819e8792a4389a670abca8e355586a710865",
+      "bytes": 1027
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fee50.c": {
+      "sha256": "42d54e914e20e00f0f332e45a0ce45b16a542f49b3882b43b55cc44754973ee3",
+      "bytes": 428
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fee50.json": {
+      "sha256": "92b9df9a7b958db543017cbf0e4d670398abda152cc3fb67ec1c75495a6a82a7",
+      "bytes": 760
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fee70.c": {
+      "sha256": "b85ee30f43f9e6ec25f90378f8f31e8be3663865e5bce964623f2b605902c92b",
+      "bytes": 483
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fee70.json": {
+      "sha256": "6b75a8ef953899a2e8b74c5e84f6ed27a5f89fbe2ffb9b75b51a4d8735991683",
+      "bytes": 932
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fee90.c": {
+      "sha256": "1cd72c660b5b5680b5de08782376f2dfafab305e0a44885de10de5900a20a054",
+      "bytes": 483
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fee90.json": {
+      "sha256": "d9f7ce18ee185e78c9dad09dc908c7fb1065d4f26a63fc9801e047ab41d1ddf9",
+      "bytes": 931
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005feec0.c": {
+      "sha256": "9474b0bf050799e8adeefea88ea5dad2b4f49c4a5ce931a65392d7c0d3497cf0",
+      "bytes": 121
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005feec0.json": {
+      "sha256": "9d281dc25b3d87543fe34b7625de81114172c39c8de44cf8ed59b106579c82bf",
+      "bytes": 908
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fef50.c": {
+      "sha256": "54a934979a2954c5944b44c7897b440d4fdd8792545e3df0c878d43072a8931a",
+      "bytes": 453
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-abi-v2/005fef50.json": {
+      "sha256": "71e08d7d1e496f3ff4c28111f12d48708d8689257b336641abf4964fd2f53463",
+      "bytes": 2010
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-reused/005fde30.c": {
+      "sha256": "3feb7f12165b8f2d32c7392409b2ef68d9323ca1b1dc30a12a3b69c81f57caca",
+      "bytes": 470
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-reused/005fde30.json": {
+      "sha256": "c316a3397e61bed23e5daeb8a2abd0e09b81560b107f7b4fe6e35f2768e2114a",
+      "bytes": 2473
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-reused/005fe010.c": {
+      "sha256": "03cea34c461102c765f7e0f97165856a381729f7e16a19cbc831b0578523dce6",
+      "bytes": 5263
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-reused/005fe010.json": {
+      "sha256": "bbaf387937e8cc34918ce77e2d7f3a865db7cda44f93cb1a39c00b1a20cf49ed",
+      "bytes": 24826
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-reused/005fe440.c": {
+      "sha256": "a9c84f7728619fefbb949ef345fa54cbe567664d71b6a2c87a58885fbfb84f20",
+      "bytes": 5029
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-reused/005fe440.json": {
+      "sha256": "1d386e3a2df853b5e6d856351d69a406308fa721e783dc20c37e832edc0380b2",
+      "bytes": 12445
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-reused/005fe800.c": {
+      "sha256": "40a213142b6ebe5d5d0c2251e7938a9cdca0e25e9c4e111447012abcea10e8fa",
+      "bytes": 5078
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-reused/005fe800.json": {
+      "sha256": "58ee5c69764eb19c0ae4c855ce5f1c41fe851ba11f0d4bd1892672bd3db442d3",
+      "bytes": 10705
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-reused/provenance.json": {
+      "sha256": "46aa223b637a63e13598ec863c11dff5e4bc93e7ea804d8696e51fb7846b02f2",
+      "bytes": 2629
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-effects-abi/00451a80.c": {
+      "sha256": "2a3a2e592eace913b598253b6c4c13c51333c6865e8b54c839914d6cfb604e71",
+      "bytes": 787
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-effects-abi/00451a80.json": {
+      "sha256": "98ad3c38963cea455cf30fcdb35c46019937ef070ef3db1d81b19f2313e854f9",
+      "bytes": 1703
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-effects-abi/00451db0.c": {
+      "sha256": "5dc69012b34eddbe8601f1a898d0963559f9cf5bdae8f7538920ae5fdd187572",
+      "bytes": 495
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-effects-abi/00451db0.json": {
+      "sha256": "06473a61099977cfa737396ccfec45b7a43668e76439d951ff72a62a0cb08cc3",
+      "bytes": 3443
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-lifecycle.asm": {
+      "sha256": "ff2ddc541512645066bbf807d9b04876951d5f43861e7bf51f83cc5ff4372c52",
+      "bytes": 8315
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-tick.asm": {
+      "sha256": "1f382db87fe4b555c7a5d114eab115e62dabfeb7a5645f7dadf0b029eb1c8ffb",
+      "bytes": 18475
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-vtable.json": {
+      "sha256": "15879b7c06ebad0b3e81e4219e54cc84eac3e7dd9066c7fe97ad8a284a400a20",
+      "bytes": 1365
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-bind.asm": {
+      "sha256": "a0dcfdac6195ae42c5168ace57cc254c7418b1285a0fef1acd111b9fa7b8ed3e",
+      "bytes": 19041
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-empty-damage.asm": {
+      "sha256": "c32bc47a9f54df88f7acc3a89ea23ca1fd37da0bc27e1298d6139ced14eaf43d",
+      "bytes": 244
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-sound-effect.asm": {
+      "sha256": "6d3edf7456e62a58af4cfb1c841b658885509fb274ab6a7e18d883d0fb32f091",
+      "bytes": 2471
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-owner-export-v2.log": {
+      "sha256": "fbd357ea33685d7519902c0e375b1da3d5c43850bab9d27e053d81535b588174",
+      "bytes": 5798
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-effects-export.log": {
+      "sha256": "cfc9cbc6cfaa2f9b8d65da3dd33ec411bf5f4a5029a8b6ef54f7126d37568e8a",
+      "bytes": 4598
+    },
+    "analysis/work/mission-world-20261103/ExportHumanRuntimeItemABI.java": {
+      "sha256": "51f3f1f185afdf1424db4a1441fcae0060ea7e85f39d935a9310e02471aa17e7",
+      "bytes": 1818
+    },
+    "analysis/work/mission-world-20261103/ExportHumanMineEffectABI.java": {
+      "sha256": "1aaa32b5717d1fbfcfd27873202b892dd24986cbbcb31c9c8bee2dbaabee625f",
+      "bytes": 1306
+    },
+    "analysis/work/mission-world-20261103/human-runtime-reference-lifetime-index.txt": {
+      "sha256": "552282f148fdcfc4cdb0015e378529e43b5e534613834f3e84edabb6c1d3872a",
+      "bytes": 5303
+    },
+    "analysis/work/mission-world-20261103/human-runtime-kind2-frame-index.txt": {
+      "sha256": "199093c81b06709ba34fd5f36f1bd3d9e07f2e46b1f161ca992f5dc388702aa2",
+      "bytes": 3458
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-effect-index.txt": {
+      "sha256": "a5876156a3acb303b9f93d8805be9447335cf0013f1659cd35d40abc84754909",
+      "bytes": 4747
+    },
+    "analysis/work/mission-world-20261103/human-runtime-mine-effect-body-index.txt": {
+      "sha256": "a96e8101c3af9017a756037bd7ea2f6c3001bf07dd0274b565cd83b9c49dad0c",
+      "bytes": 909
+    }
+  },
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan actual Mine/common actor/runtime registry/dynamic buckets, modes1/2/3/7 x100 xdefinition70/71=800 lifetimes. Actual shared ShotMgr request/negative-material sound-before-particle source and serialized payload04 bias, signed timer/overflow, late caption/missing grid/unproduced fields, pointer9C/native forward-swap-skip, packet0/1/2 and failed effect retirement. Frames/localization/grid geometry/sound/particle endpoints and removal predicate environment are explicit doubles, not actual full World.",
+    "actual_i386": "PASS final strict complete actual World/Mine factory/bind/frame/receive/Human9C removal/shot effect/item lookup/Car/blast composition compile only; no Windows fixture execution.",
+    "launcher_probe": "PASS final sequential application-launch/startup-probe compile/link.",
+    "research": "Indexed constructor/lifetime/frame/effect groups before exports; exact005FDFB0 lookup was late after its export, disclosed in source notes. Read-only reused originals pinned. ABI-v2 corrects005FEBB0 to NO stack args. Raw00451A80 stack overrides misleading C tail after indirect SOUND call. Original native payload14/1C -> serialized10/18 follows existing parser/runtime-item vtable bias.",
+    "original_or_windows_execution": false
+  },
+  "temporary_audits_removed": false,
+  "exclusions": [
+    "Full00478B90 resource/model/pose/local-reference producer and00478CC0 wire/module12 envelopes remain required; no unsupported placement or packet guards removed.",
+    "Actual placed-item ground ray/producer and positive-material00451DB0/0044FBC0 branches remain required; scoped producer only admits native material=-1 Mine path.",
+    "Unknown104 and preproducer90/94/98/99/9C/100 values guarded; populated108 table/save/restore005FE440/005FE800 not implemented or credited.",
+    "No original object/aligned allocator/SEH/register/virtual ABI claim. Source cleanup retracts failed registration; invalid native rearm rejected before dangling bucket overwrite.",
+    "Genuine absent frozen leaves and unchanged common/math/particle/SOUND/delegated engine bodies receive no new credit.",
+    "Full Human reaction/frame/failure/re-entry/ordered teardown, control entry/transport/Versions dependencies and actual application loading/rendering/user desktop acceptance remain required."
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "date": "2026-11-11",
+  "previous_checkpoint": "394a822",
+  "initial_master": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "latest_inspected_master": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "source_only": true,
+  "p22_ui_closed": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_execution": false,
+  "added_entries": [
+    "0049de90",
+    "004a4380",
+    "004a3920",
+    "004a26d0",
+    "004a1db0",
+    "004a1e20",
+    "004a2010",
+    "004a2640",
+    "004a4680",
+    "004a39b0",
+    "004a4630",
+    "004abc00",
+    "004a4150",
+    "004ae4d0",
+    "004ae570",
+    "0049d6e0",
+    "004bb0e0",
+    "004b5ad0",
+    "004a5630"
+  ],
+  "updated_entries": [
+    "0049fbf0",
+    "0049ef70"
+  ],
+  "ledger_added_partial_client": 19,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial_branch_local": 2481,
+  "checks": {
+    "native_inventory": "PASS ASan/UBSan/LSan100 repeated actual HudOwner77/TextState/ActorStorageOwner/ActorItemHolder/ActorSlotStorage/HudScrollLoading/HudInventoryLoading lifetimes. Actual one/two-sided modal/population/weight/icon/count/skill/tooltip bodies, absent pack/reset/disabled/index cases, range fields, refresh binding, callback rebinding failure, failed lookup/localization/texture, item/actor retraction. Item descriptor/engine/font/actor query endpoints are doubles. Real GameMissionItems destruction callback is strictly compiled; native fixture exercises its actual receiver, not Windows host module construction.",
+    "native_selection": "PASS ASan/UBSan/LSan100 original selection-policy runs: visibility/throttle/wrapping counters, two masks and hit identities, distance/door/miss hysteresis, pair/roll/crosshair/signals order, attachment override, invalid actor and first/second-ray/head/crosshair failures with restored exclusions. Concrete engine/World geometry endpoints are query doubles.",
+    "native_command_roll": "PASS100 actual HudCommandLoading/HudDialogsLoading lifetimes within native inventory audit: real command bind, nested positive kind13 roll/text, pointer position and clamps, all18 reverse button locks, paused unlock, protected restore/hide, invalid actor failure and cleanup. Engine/font/Human query endpoints are doubles.",
+    "actual_host_i386": "PASS strict concrete GameUiPresentation inventory publication/show/frame/skills/notification, ordinary target selection and nested command roll methods over actual owners, including GameMissionItems UI retirement binding.",
+    "application_link": "PASS sequential application-launch after all inventory/selection/nested-command changes; never executed.",
+    "latest_master_source_compatibility": "PASS temporary git-archive494cbee plus51 UI source files, three-way composition with31b01f9 base, zero conflicts; strict concrete inventory/selection/nested command entry points. No active-branch merge/rebase or other-worktree mutation.",
+    "tracker": "PASS exact fingerprints/full frozen inventories/unique statuses/evidence/README and27 existing tracker tests."
+  },
+  "shared_changes": {
+    "recovered/host/game_mission_items.h": "One nonowning noexcept UI retirement receiver, called by existing OwnedEntry::forget BEFORE actual RuntimeItem/pack destruction; no item/actor allocator/queue/simulation change. UI must detach before Items/World retirement.",
+    "recovered/game/hud_scene_loading.h": "Actual selection receiver uses SAME private10/14 counters and6B8F8/FC pair; defined inventory actor-loan retirement guard before actor cleanup.",
+    "recovered/game/hud_panels_loading.h": "Visible inventory notification now invokes actual UI-bound refresh instead of unconditional positive rejection.",
+    "recovered/host/game_actor_frames.h": "Borrowed engine endpoints for original inventory A8 opacity and SceneFC40000 hit; existing Make/Normalize/frame/material APIs reused."
+  },
+  "artifacts": {
+    "/tmp/p22-ui-inventory-audit.cpp": {
+      "sha256": "293ed10a14b8425d9c5cc4c39b17297df2f8ef6a88b81fd1e2e0949e50d686fa",
+      "bytes": 20829,
+      "retained": false
+    },
+    "/tmp/p22-ui-inventory-audit": {
+      "sha256": "4eb545859a01b1ced10b328ea7d75bb25ca0befff2296405d8cc8067b77b27f4",
+      "bytes": 4017016,
+      "retained": false
+    },
+    "/tmp/p22-ui-selection-audit.cpp": {
+      "sha256": "40af12b727b0ed6aafcce877ea76402ed372e182b87f16002ab6af742c37bc78",
+      "bytes": 7801,
+      "retained": false
+    },
+    "/tmp/p22-ui-selection-audit": {
+      "sha256": "3658bfb7b1cb260d1b9f6ea8bb59c2cad59c25adaf3ef2477c37287e47b3b145",
+      "bytes": 689024,
+      "retained": false
+    },
+    "/tmp/p22-ui-inventory-i386.cpp": {
+      "sha256": "3a3e0df6b05eb102f4aa8dc84441f173b29c4dc9f77c43366660070865cd1109",
+      "bytes": 516,
+      "retained": false
+    }
+  },
+  "original_evidence": {
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-root/004a3920.c": {
+      "sha256": "958ab04988fc4a967b0e026cebb9309cde2912d6897c16708c50c8c91194b387",
+      "bytes": 985,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-root/004a3920.json": {
+      "sha256": "ddff22351ce33f58b166d61b18a9a37522c2e3cd4ac7b04d50cd6923dda89744",
+      "bytes": 1318,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-root/004a4150.c": {
+      "sha256": "9e1f986d4e365d409089f747c9be41238997166f927994c3f8bd5b48c5b074a1",
+      "bytes": 666,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-root/004a4150.json": {
+      "sha256": "409bb2a9eba77eabc92d7b1af73d4eb7f886fcb6cd8c853ef446da56b379e55c",
+      "bytes": 2572,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-root/004a4380.c": {
+      "sha256": "88963960751b33c1a04b5b98cac20b023dcd1c52a2d204a42c12808496febc01",
+      "bytes": 2920,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-root/004a4380.json": {
+      "sha256": "ff85de4277bebd2defb37be9ed4bc7fe5d63e36603a1508325de110670e147b7",
+      "bytes": 14055,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a1e20.c": {
+      "sha256": "eaa2e2ba27099990232837612ed75797ca825f0826e559447153236dcee97956",
+      "bytes": 2705,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a1e20.json": {
+      "sha256": "ff27614e2cd9e5de2f8f3dc224238f2402cf752a078b3efd5e8426c94c8e7601",
+      "bytes": 7571,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a2010.c": {
+      "sha256": "78fa8563b1b68c56e5de9ba3d170078f95990e2b5e2db02fc4e76a7f61a87e54",
+      "bytes": 7145,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a2010.json": {
+      "sha256": "7474349343f7c02b7c0c3e6cc0dfb925dde12ec0ce4a09ea2a62e41f5ba5f41a",
+      "bytes": 15754,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a2640.c": {
+      "sha256": "b61f4d50fcd05ad043f41ffaf7d574c06e7461dd8c09bf93cb71b0bb2ea40a64",
+      "bytes": 627,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a2640.json": {
+      "sha256": "2de2646a0a934faccf474e741966153ab7982b8eb9ba9cf040bb1fe559d94eef",
+      "bytes": 2283,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a39b0.c": {
+      "sha256": "80155bbe2a0728c0d958de46d5b8fa16717c2749ac75f40c460c24ef871b727e",
+      "bytes": 9646,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a39b0.json": {
+      "sha256": "4cfd9956ce43f444a28d5c3a70879cfbe04ac706a3cb95ff66955444d6675ae1",
+      "bytes": 30345,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a4680.c": {
+      "sha256": "955f3be5cd8ff432774988cd0eba6c01815db91842b5720d10a2c316a413cfa8",
+      "bytes": 3719,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-workers/004a4680.json": {
+      "sha256": "e83c7096e6c983910e95347b7938f07420b5a05fe8ace2a22ffeb3b4a2c3ce94",
+      "bytes": 11852,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-leaves/004a1db0.c": {
+      "sha256": "5cc05591cd0765cb57632e87d9ad607249c05e164322ccdaec56865c2d2b4774",
+      "bytes": 220,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-leaves/004a1db0.json": {
+      "sha256": "1b04b184129ecc7fceb7ecdeddfa5bcfe52e2a8f5d7f670226ad591be7d995ea",
+      "bytes": 2378,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-leaves/004a4630.c": {
+      "sha256": "4fa8b274bd98fed69cb014373e76081bae6cda981390181286d2e95ec6dc1894",
+      "bytes": 466,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-leaves/004a4630.json": {
+      "sha256": "0466600bbdc4b20f3be944e9d3cb887de00f18e0d8886cae53a7b989be2f5867",
+      "bytes": 1305,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-leaves/004ae4d0.c": {
+      "sha256": "bb46be8b95a5a0ede8821cfecb52b1a90e09ee280192ea1b34f657bd6ee80da0",
+      "bytes": 708,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-leaves/004ae4d0.json": {
+      "sha256": "66d4974b89e58db4d2eabf7347dd13ebc74526d0b5411cea613e8814ab187d94",
+      "bytes": 2558,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-leaves/004ae570.c": {
+      "sha256": "0457f854b1fd9da1791b8e1ccd2490e923a1d952e7135c70f54a16ef94f1899a",
+      "bytes": 97,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-leaves/004ae570.json": {
+      "sha256": "3a1d6bf6f519e9f9461e945898d552de5ad4bb61c2e163859803768528d1661c",
+      "bytes": 466,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-pointer/004abc00.c": {
+      "sha256": "98b338e070e29000457f467968d551b1709305c08156a4ea77b18a25f8c45695",
+      "bytes": 1125,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-pointer/004abc00.json": {
+      "sha256": "798727bf2847a9e9726979543b3c7833990d890f8037315b91b0f2c0cb3659e4",
+      "bytes": 1275,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-array.asm": {
+      "sha256": "ef370624c8bfab7a942842bcc79bd2c8e4236edd63e0fee88e59d450120ba833",
+      "bytes": 22835,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-weight.asm": {
+      "sha256": "c9ae78bf5f8366715597994feb451406874ecfa6a66bda265eb6a88f7285ad03",
+      "bytes": 6937,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-tooltip.asm": {
+      "sha256": "4cb34d2c7c140b0e9d38111184014d656be167eb1c69f0f7a6c83f61828df98c",
+      "bytes": 33754,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-visible.asm": {
+      "sha256": "4cec6b05272d08dc952afff9af7b2d358f4d038b7e13902c0c2bf605ed17f26e",
+      "bytes": 2087,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-command-button-lock.asm": {
+      "sha256": "d8b867a42d1106b62638082673fa248b421511e3b5b3577cbaef3635f35ed02b",
+      "bytes": 3031,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-selection.asm": {
+      "sha256": "2c7ce5d75f389dee1b5b5e9171840cadce3c4225071d5ddbdf425d6accb95ca7",
+      "bytes": 19947,
+      "retained": true,
+      "ignored": true
+    },
+    "analysis/work/p22-ui-20261111/p22-ui-inventory-command-constants.asm": {
+      "sha256": "6154b9a7bc3d3c878d57e9a49a06f06a69b16a96421a683a41b7069ae94e7dea",
+      "bytes": 6240,
+      "retained": true,
+      "ignored": true
+    }
+  },
+  "limitations": [
+    "P22-UI OPEN. Actual ordinary inventory frame/modal/description and selection receivers now connect to existing owners, but full command004B6420/routes004B9E80, map004A6FA0, info00499210/00496E70 population, scoreboard004AED20 and full0049BD50 UI dispatch remain UI-owned.",
+    "General inventory drag/drop/transfer input receivers are not implemented by presentation workers and remain explicit UI follow-up. No gameplay transfer/combat implementation was added. Roll action7 now reaches actual UI services; Human/Player action/transfer/queue producers remain external requirements.",
+    "Conditional nonoffline rank/name/transport, actor7/23, occupied actor and non-Human178 producers remain required. Native seeded properties/doubles do not prove real mission populations.",
+    "UI creates both dialog captures and inventory refresh callable before publishing bindings. Items observer is a nonallocating noexcept function pointer; destructor detaches it first, then refresh/dialog captures and actor/item loans before World/HUD destruction. Existing LIFE ordering must be honored.",
+    "Tooltip speed getters were verified against payload vtables: nativekind2 virtual14=007E0320(+38), nativekind3=007E0380(+34), distinct serialized offsets. No Human ballistic code was copied/modified.",
+    "Native positive tests and strict/link compatibility do not imply full World engine execution, game rendering, activation, desktop acceptance or whole-body original ABI equivalence. No original EXE/DLL/Windows fixture/Proton execution."
+  ]
+}

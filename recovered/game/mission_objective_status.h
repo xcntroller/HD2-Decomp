@@ -4,22 +4,32 @@
 #include "game/mission_integrity_tables.h"
 #include "game/mission_script_context.h"
 #include "game/session_activation.h"
+#include "game/human_death_objective.h"
 
 namespace hd2::game {
 
 inline void retail_objective_status_output()noexcept{} //0069BFD0, genuine RET.
 
-//006B6510→0069BA60/0069BC40, offline7. Uses SAME missionA8.related/native34
+//006B6510→0069BA60/0069BC40. Uses SAME missionA8.related/native34
 //descriptors and session clock/result words. Actual process guard, CRT random,
 //Players, experience and HUD hint owners remain mandatory; no healthy guard
-//or successful presentation stand-in. Non7 transport/HUD is separate.
-template<class Random,class Players,class Experience,class Hint>class MissionObjectiveStatus {
+//or successful presentation stand-in. Non7 uses the SAME World score/FIFO/HUD
+//owners; normal metadata admission and nonoffline transport remain required.
+template<class Random,class Players,class Experience,class Hint,class World>class MissionObjectiveStatus {
 public:
     MissionObjectiveStatus(SessionActivationState& session,const std::uint32_t& mode,MissionIntegrityTables& tables,
-            Random& random,Players& players,Experience& experience,Hint& hint)
-        :session_(session),mode_(mode),tables_(tables),random_(random),players_(players),experience_(experience),hint_(hint){}
+            Random& random,Players& players,Experience& experience,Hint& hint,World& world)
+        :session_(session),mode_(mode),tables_(tables),random_(random),players_(players),experience_(experience),hint_(hint),world_(world){}
     void set_status(std::int32_t identity,std::int32_t status) {
-        if((mode_&7u)!=7u)throw std::runtime_error("Objective status requires actual nonoffline transport/score/HUD receivers");
+        if((mode_&7u)!=7u){
+            if(world_.human_score_style()==2&&status==1){
+                const auto fields=human_death_objective_fields(find(identity)); //Native invalid dereference rejects explicitly.
+                world_.award_human_objective_score(fields.score24,fields.side18);
+            }
+            apply(identity,status);
+            world_.queue_human_objective_status(identity,status); //AFTER score, descriptor and HUD; owns scalar values only.
+            return;
+        }
         if(tables_.objective_failure_trial(random_)){apply(identity,3);return;}
         if(status==1){
             auto* objective=find(identity);if(session_.mission&&!objective)return;
@@ -34,6 +44,7 @@ public:
         }
         apply(identity,status);
     }
+    void receive_status(std::int32_t identity,std::int32_t status){apply(identity,status);} //00728450→0069BC40; no0069BA60 score/FIFO producer.
     void fail_all(bool special) { //0069BED0; hint notification precedes descriptor mutation.
         session_.words.set(0x6f,std::uint8_t{1});result(special?0x1cf0u:0x1ce9u);
         const auto* mission=session_.mission;
@@ -60,6 +71,16 @@ private:
         case 4:return; //Set descriptor, then genuinely skip completion evaluation.
         default:break;
         }
+        if((mode_&7u)!=7u){
+            if(mode_&2u)if(auto* objective=find(identity)){
+                const auto side=human_death_objective_fields(objective).side18;
+                //00724EA0 is a register-argument signed (side+1)%2 helper,
+                //not the selected/local team getter. ADD wraps before remainder.
+                const auto kind=status==1?signed_word(side):signed_word(side+1u)%2;
+                hint_.select_objective(static_cast<std::uint32_t>(identity)-1u,kind);
+            }
+            return; //Mission completion/result/clock scan belongs ONLY to offline7.
+        }
         const auto* mission=session_.mission;if(!mission||mission->related.empty())return;
         bool all_ignored=true;
         for(const auto& objective:mission->related){
@@ -79,7 +100,7 @@ private:
     }
     static std::int32_t signed_word(std::uint32_t value){std::int32_t result;std::memcpy(&result,&value,4);return result;}
     SessionActivationState& session_;const std::uint32_t& mode_;MissionIntegrityTables& tables_;
-    Random& random_;Players& players_;Experience& experience_;Hint& hint_;
+    Random& random_;Players& players_;Experience& experience_;Hint& hint_;World& world_;
 };
 
 template<class Frames,class Objectives,class Runtime>std::optional<bool> execute_mission_objective_command(

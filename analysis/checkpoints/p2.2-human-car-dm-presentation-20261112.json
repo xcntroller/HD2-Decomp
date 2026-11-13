@@ -1,0 +1,330 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "cfd8aa3e689789cc5d81ef54755e920c7206bafc",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "00445740",
+    "00445800",
+    "004db360",
+    "004e0340",
+    "004e0410",
+    "004e0540",
+    "004e0630",
+    "004e06a0",
+    "004e0710",
+    "004e1f70",
+    "004e2000",
+    "0051a880"
+  ],
+  "extended_entries": [
+    "004e09d0",
+    "004e0dc0",
+    "004e0ea0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2723,
+  "source_files": {
+    "recovered/game/car_actor_damage.h": {
+      "sha256": "4a76109d1a2393775d985fd7b4f3a0d7d0adee266d02767b52cf690799debdf7",
+      "bytes": 9027
+    },
+    "recovered/game/car_ancillary_model.h": {
+      "sha256": "a044546aa80a7c13c5edffe816f0b9d100a2532ef4db50a96088d49622371f37",
+      "bytes": 14886
+    },
+    "recovered/game/car_callback_services.h": {
+      "sha256": "a698f58a216b9b7b708e5cfe21dd7174905b81c4e0eb75d6deb73b6ffe48f866",
+      "bytes": 5892
+    },
+    "recovered/game/car_damage_packets.h": {
+      "sha256": "e4bda5a732a79121d4e742ddca83e2b72bf209d5ac63354465ef8a90a1688557",
+      "bytes": 3113
+    },
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "e10e713433d30e1b8dcacb354cb5d81488c31b6598030d3fb653488f6ef690e6",
+      "bytes": 17254
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "b837342947229c00ec98f558da613e1c63235245d2aa2be42b08659e3849dcc2",
+      "bytes": 1771
+    },
+    "recovered/game/car_scene_actor.h": {
+      "sha256": "0ee45431810e10aa59ac2c415271556b00631074901f7e904b00023a3baae5d1",
+      "bytes": 8441
+    },
+    "recovered/game/car_sound_updates.h": {
+      "sha256": "e79c6d729c03d4e49f5477d268500317b5dc209d8cc41c789b3913784e133489",
+      "bytes": 10574
+    },
+    "recovered/game/mission_effects_loading.h": {
+      "sha256": "8f8c9712f33aa0a0cf95a6cf6c3e50e4aa9998bfe76188673c998c4d109465fe",
+      "bytes": 6830
+    },
+    "recovered/host/game_blast_waves.h": {
+      "sha256": "4992d28fb8328f3b754c2cd2327839841194d3bd97545074b434ade4184dd242",
+      "bytes": 11730
+    },
+    "recovered/host/game_car_callbacks.h": {
+      "sha256": "49567c358387a60b10c1cb75144dd04c815eda0e102e7524bea999a969165410",
+      "bytes": 11781
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "b8aa2db893e8727e42f7ad8896744dcbda94ddc86ea68a736e24f4ab20da46d0",
+      "bytes": 24969
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-native.cpp": {
+      "sha256": "312e066ded6ee58bd45d425e0ab3c3d96af3a6798b44f2dd566279c1f54f94d2",
+      "bytes": 19238
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-native": {
+      "sha256": "e0722bd6385ddc56bc1fc4142c9f341067bb9eafa07e7ec7c4291b86158cce58",
+      "bytes": 4209296
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-native.log": {
+      "sha256": "b4a9ff48101441827d0a397f3b21a67f7c9b6eb7d573d8a3247906e253fffb14",
+      "bytes": 421
+    },
+    "analysis/work/mission-world-20261103/human-car-particle-retirement-native.cpp": {
+      "sha256": "9e945244dcd1b9a4b7d010e95e42166e46051cddd0a22f0ce96762886785d11a",
+      "bytes": 8422
+    },
+    "analysis/work/mission-world-20261103/human-car-particle-retirement-native": {
+      "sha256": "c4109c104ac0c1508935a2992969c5230ec4e076f1a0946427ec191dc7704306",
+      "bytes": 2982360
+    },
+    "analysis/work/mission-world-20261103/human-car-particle-retirement-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-particle-retirement-native.log": {
+      "sha256": "3f61e494d6c454f548bf8dbe6631a7e8fb5a0994953d0c74f1cd618068e6e0f4",
+      "bytes": 302
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-sound-native.cpp": {
+      "sha256": "c959b1c678ba401daf8def20c4be1dbdbf72b844eaf60130aa0f571beb702d8c",
+      "bytes": 2472
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-sound-native": {
+      "sha256": "efeb4f7c6315b7c7be12430bb8e6f7818c01f7a21b7ea74988bcaf99a9ded10c",
+      "bytes": 837200
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-sound-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-sound-native.log": {
+      "sha256": "98844ef7294f51e9c3806b8688f6ea8cdc03ec9ffada20f4a41a3c7d80861682",
+      "bytes": 154
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-host-i386.cpp": {
+      "sha256": "d087697a5e700db17075229c3410d186457d318d3698cb222993649e8ceb0755",
+      "bytes": 688
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-host-i386.o": {
+      "sha256": "ba5bf7ba5bb81a8b7ef3eb80085c4bdd90f1e3c9c4257689b2bb00fa1dd47df2",
+      "bytes": 17481864
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-presentation-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-car-damage-receive-vtable.json": {
+      "sha256": "f75354076bbbc54efb0056d4ef8622db347c1787905dfc4689b395be6433ca8b",
+      "bytes": 47
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-receivers-index.txt": {
+      "sha256": "1f9b4ff5f148a127ff9e148a450ff48696eaa515fef29fa73e3f36ac42c8e9b6",
+      "bytes": 8305
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-dispatch-index.txt": {
+      "sha256": "a45f583c3bbd14eac6984bdfce775ace575cc6eb1af19bb1fdc1e1ee161ced71",
+      "bytes": 1205
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-index.txt": {
+      "sha256": "66c04a0a6d8f6aad1d6a9d6e44fcecff499edf069d873dc4ccf3b000d5dc15d0",
+      "bytes": 5172
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-lifetime-packets-index.txt": {
+      "sha256": "43ac1e55e6410740bb0057abf45d33faaef2df88eb377fefae9a66aff49c5dd9",
+      "bytes": 5607
+    },
+    "analysis/work/mission-world-20261103/human-car-particle-lookup-index.txt": {
+      "sha256": "064803890cae22ec8c0876b089c3970a7523bd3ca2e5be13868f21f24b42e396",
+      "bytes": 1080
+    },
+    "analysis/work/mission-world-20261103/human-car-particle-retirement.asm": {
+      "sha256": "04b486ba1b63c1a518f4a24379f817f077af13aa8816684a9e78ef682ec0bd46",
+      "bytes": 8073
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-metadata.asm": {
+      "sha256": "6b5624c5f8bb537298854e57b03b7effb37012e5527b3a610127c2f062acfbe0",
+      "bytes": 20521
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-cold-state.asm": {
+      "sha256": "4b8ded2c85f2f98e7fdfc6a0c4f6c95adb7a1336d77cd09499800ccf59ebe87d",
+      "bytes": 2725
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-allocation.asm": {
+      "sha256": "bc5208692c673cdef952134bea41c7e12cb388c59754a50cdd63f9be8c0ee122",
+      "bytes": 1845
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-allocation-base.asm": {
+      "sha256": "499466414305d6f82c06e7f818c879b770d30fdb0eb58dac7b888ab149cf1969",
+      "bytes": 2493
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-allocation-index.txt": {
+      "sha256": "2e8de7de484a826fe0081f9b917c1f00704e58ed49bfb5bfd563855fa60abf83",
+      "bytes": 1910
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-allocation-base-index.txt": {
+      "sha256": "6eaf3e82660b46ec4b0289562d87bc30b34eefcf6ea9e1f4a888e4097da1be5e",
+      "bytes": 886
+    },
+    "analysis/work/mission-world-20261103/car-loading-runtime-required/004e0dc0.c": {
+      "sha256": "3ccebadca5f9069283de4cb7ce08b714ec595463502a2f520d65f0f2a3b585fb",
+      "bytes": 1089
+    },
+    "analysis/work/mission-world-20261103/car-activation-required/004e0ea0.c": {
+      "sha256": "1d991082f2a2ce0eb49bbfde129f243ca7b64d2d757092dabaf3e47b43f999c5",
+      "bytes": 347
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004db360.c": {
+      "sha256": "9858d743f22260be136849b72ce116c3ff31e382d6c891a23fcc9c6d6310f529",
+      "bytes": 3047
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004db360.json": {
+      "sha256": "09632111a68de2d344c934bffee0c361b082baff9a9615f969ea82a8df904b45",
+      "bytes": 20590
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e0340.c": {
+      "sha256": "aebef272a80974073a060fe11d1c4e2eabc7844a9de787db2bf5257da85657ba",
+      "bytes": 534
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e0340.json": {
+      "sha256": "b9923d626e2ed9303473afe9666081853e1f7e1b2b86ed6ec33f333451ff5c58",
+      "bytes": 2014
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e0410.c": {
+      "sha256": "3771936bc919d9a6bf0eb86e1b0e6c6fab79ee14b031c0230b4fbdc7d33af56a",
+      "bytes": 933
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e0410.json": {
+      "sha256": "4c6ce4464619cdc5f8f12020d1d2a664162777ce0628621c2fd424914bcd8187",
+      "bytes": 3490
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e0630.c": {
+      "sha256": "cd25e0092f54ef6d56c81b3169dfe23954d53b3d676ad2f106f591fa5755fd1a",
+      "bytes": 149
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e0630.json": {
+      "sha256": "dbf4a4e4c04942cbd0796776e51da39ae75fa9def4b2e406adce34bc5eccc386",
+      "bytes": 875
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e06a0.c": {
+      "sha256": "e7a18c229f35b0112b998addd484aec25592e03092d60cfc8771abf057937eff",
+      "bytes": 149
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e06a0.json": {
+      "sha256": "10085d29a09365f8ba31bb53fd9d27a8374f3e88f947c9a3244a38da9f7408d3",
+      "bytes": 875
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e0710.c": {
+      "sha256": "0fd3cb90d7c0a5043f2c42e1e844834942cc0e6a4933e113079458750c590e7e",
+      "bytes": 41
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-event-readers/004e0710.json": {
+      "sha256": "c42f237577cc6316521d346102c2f55bc95e4894bf89bfe83ba26b10b2d7e9dd",
+      "bytes": 466
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004dc580.c": {
+      "sha256": "ca142ebd2a24f3ceede945a054199714a0f2a0d82fbfadbcb6cb91fbd0d5a371",
+      "bytes": 2187
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004dc580.json": {
+      "sha256": "ea0c57cf5768604835e220fb1e73e23982014c038ca904153b4c0e1525ba91aa",
+      "bytes": 11870
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004dc780.c": {
+      "sha256": "c10ad200cbe6bc46c6154700f1e05dcd6800f6e0b8c0b335758fe5108e0174b8",
+      "bytes": 6470
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004dc780.json": {
+      "sha256": "1c90f9961295fcfc77e1bda870d34b7d6f33e22a0c2c4267a3db1e90bc2f2789",
+      "bytes": 15583
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004e2000.c": {
+      "sha256": "3dd80db7163d7e942ea4e77195aa7ccd1036a76ebe876aa92327f031e2e906c8",
+      "bytes": 2545
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004e2000.json": {
+      "sha256": "19530ff5f9f5abd33677f907be769c9afdf2430d2e51844578fd9b5649f58ecb",
+      "bytes": 11001
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/00500da0.c": {
+      "sha256": "5dfb18fad6f2ddc9368d4e1f07dedeac0f0190dfe7c7079d9a6dd01295aa25ee",
+      "bytes": 2071
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/00500da0.json": {
+      "sha256": "c8ad23db5ceb420bee5e6e384107810326b353bd1466b219e51c7a85268e7a32",
+      "bytes": 2455
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/0051a880.c": {
+      "sha256": "e29924666317c01a4e4ef9d2981b54f0b3a58df41ad5662383aa1bd1e548edd1",
+      "bytes": 1186
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/0051a880.json": {
+      "sha256": "073f66b897024d246969d6b8f33849967f26e8f45dcf5cd0f5dfd92907425dc2",
+      "bytes": 1632
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004e1f70.c": {
+      "sha256": "b17b1d036d927b9e8b09026d4756b9a854e684531c7ea10dac6e864afd6a25f4",
+      "bytes": 671
+    },
+    "analysis/work/mission-world-20261103/human-car-damage-presentation-workers/004e1f70.json": {
+      "sha256": "db2e0c2607e3dcbbba95b45b1b43fb0e840ef9d1c8794422fd2449b0185b22b2",
+      "bytes": 1926
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-particle-stop/00445800.c": {
+      "sha256": "bf309ecd69d7b393e41ea667d3229a8d73aa06c026c1ec8ed764086c8f285bc8",
+      "bytes": 871
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-particle-stop/00445800.json": {
+      "sha256": "4e5bd9e413d4a077ce18d5819fc2be0850929116cf52a8f3687735a9f1d371ef",
+      "bytes": 2960
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-particle-stop/004e0540.c": {
+      "sha256": "c177ed0add00027886a686a11178b42a71eada92b3838bbedf0790922d4f9fe5",
+      "bytes": 646
+    },
+    "analysis/work/mission-world-20261103/human-car-dm-particle-stop/004e0540.json": {
+      "sha256": "b62ba49d50390f206c7a57f6ed4e795783ed9a443ba215d89580009b28256dcc",
+      "bytes": 2514
+    }
+  },
+  "verification": [
+    "ASan/UBSan/LSan100 repeated actual packet/DM source families, positive effects/lifecycle/sentinel guards and preceding CarD4 checks PASS with explicit endpoints.",
+    "Separate actual process/module/instance/point binary lookup/immediate stable deletion/failure retry100 lifetimes and actual sound-slot loading/puncture100 repetitions PASS.",
+    "Strict actual full World/Car/DM/particle/packet i386 instantiation and final launcher/probe compile/link PASS, heavy jobs sequential."
+  ],
+  "limitations": [
+    "Source-only typed/template/STL/RAII/checked-frame adaptation; original allocator/object/virtual/SEH ABI and whole-body equivalence excluded. Native100 repeated packet/DM families use actual DM/parts/body/wheels/streams with explicit engine/geometry/coefficients/containing actor-policy/Human-damage/destruction/effect/SOUND doubles. Separate actual particle process/module/instance/point retirement and actual Car sound-slot audits pass ASan/UBSan/LSan. Strict actual World/packet/Car/DM/particle i386 and launcher/probe compile/link pass. Unwritten EXPL_D8 with active records and missing-model smoke14 remain explicit required failures; terminal004DBF00/004DC580/004DC780, Item12/positive glass and full Human entry/frame/application acceptance remain open.",
+    "00500DA0 positive texture exchange and terminal visual receiver remain guards; no new credit is claimed for00500DA0 or delegated engine/SOUND/particle callees. No Windows/original/DLL/Proton execution or desktop acceptance."
+  ]
+}

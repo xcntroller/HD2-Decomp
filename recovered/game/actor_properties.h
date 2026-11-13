@@ -161,6 +161,20 @@ struct ExplosivePlaceActorProperties {
     }
 };
 
+//0060DB70 defaults;0060E160 authored properties.
+struct DocumentPlaceActorProperties {
+    std::uint32_t caption94=0x4e7,item98=0x44,progress9c=0x1b8b;
+    void load(SerializedBytes& bytes){
+        while(auto chunk=next_mission_chunk(bytes)){
+            switch(chunk->id){
+            case 100:caption94=chunk->bytes.word();item98=chunk->bytes.word();break;
+            case 101:progress9c=chunk->bytes.word();break;
+            default:throw std::runtime_error("Unknown DocumentPlace actor property");
+            }
+        }
+    }
+};
+
 struct SwitchActorProperties {
     std::uint32_t fieldd4 = 0, fieldd8 = 0;
     template<class Apply>

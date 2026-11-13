@@ -8,8 +8,10 @@
 #include "frontend/cleanup.h"
 #include <algorithm>
 #include <functional>
+#include <limits>
 #include <memory>
 #include <optional>
+#include <string>
 #include <utility>
 
 namespace hd2::game {
@@ -68,11 +70,53 @@ struct MissionCameraState {
     std::array<Vector,4> vectors{}; //Native60/70/80/90; fourth lanes are not reset.
     float fieldd0=0,field254=0,field258=0,field27c=0,field28c=0,field2a4=0,field2a8=0;
     std::uint32_t field250=0,field260=1,field268=0,field280=0,field284=0;
+    std::optional<std::int32_t> spectator_index274; //Unwritten until0046CB20 command2 publishes selection.
     std::array<std::uint32_t,3> fields298{};
     bool flag26c=false,flag26d=false,flag26e=false,flag26f=true,flag270=false,flag278=false,flag290=false;
     bool flag2b0=false;std::uint32_t field2b4=0;
     std::uint32_t field294=0;
 };
+
+//0046CB20 commands0/2 used by ordinary spawn and0069AA50. The scene owns
+//spectator frames; keep only the original index, with no new camera owner.
+template<class Services,class Own,class Refresh,class Random>
+void apply_spawn_camera_command(MissionCameraState& state,Services& services,Own&& own,
+        std::uint32_t command,bool parameter_present,std::uint32_t parameter,std::uint32_t mode,
+        Refresh&& refresh,Random&& random){
+    if(command==0){
+        state.flag26d=parameter_present?parameter!=0:!state.flag26d;
+        if(state.flag26d)if(const auto active=services.active_game_camera()){
+            const auto matrix=services.actor_world_matrix(active);
+            state.position={{matrix[12],matrix[13],matrix[14],matrix[15]}};
+        }
+        if(state.flag26e){
+            if(!state.flag26d){services.active_game_camera(own());state.flag26e=false;}
+            else if(const auto spectator=services.game_scene_find("spectator",4))services.active_game_camera(spectator);
+        }
+        if(!state.flag26d)refresh();
+        return;
+    }
+    if(command!=2)throw std::runtime_error("Camera command is outside recovered spawn dispatch");
+    if((mode&7u)==7u)return; //Native offline command2 does not touch flags or draw random.
+    state.flag26e=parameter_present?parameter!=0:!state.flag26e;
+    if(!state.flag26e){services.active_game_camera(own());return;}
+    std::int32_t count=0;
+    while(services.game_scene_find("spectator"+std::to_string(count),4)){
+        if(count==std::numeric_limits<std::int32_t>::max())throw std::length_error("Spectator count exceeds native signed index");
+        ++count;
+    }
+    const auto word=static_cast<std::uint32_t>(random());std::int32_t draw;std::memcpy(&draw,&word,4);
+    const std::uint32_t bits=0x38000100;float multiplier;std::memcpy(&multiplier,&bits,4);
+    //FILD rand -> FMUL FLOAT0080FF64 -> FIMUL count -> store DOUBLE -> floor.
+    //A FLOAT product would round RAND_MAX to1 and select past the last frame.
+    const double product=static_cast<double>(static_cast<long double>(draw)*multiplier*count);
+    const auto rounded=std::floor(product);
+    if(!std::isfinite(rounded)||rounded<std::numeric_limits<std::int32_t>::min()||rounded>std::numeric_limits<std::int32_t>::max())
+        throw std::runtime_error("Spectator random selection exceeds native signed index");
+    state.spectator_index274=static_cast<std::int32_t>(rounded);
+    if(const auto spectator=services.game_scene_find("spectator"+std::to_string(*state.spectator_index274),4))
+        services.active_game_camera(spectator);
+}
 
 //0046CB20 command1 over SAME camera state/frame. Engine matrix is required.
 template<class Services,class Frame>void apply_camera_blast_impulse(MissionCameraState& state,Services& services,Frame frame,
@@ -119,6 +163,9 @@ public:
     bool sound_special_mode()const{return state_.flag270;} //00465070, virtual7C; actual byte270, distinct from26D/26E/2B4.
     Frame saved_scene_camera() const {return previous_;}
     bool owns_frame(Frame candidate)const{return frame()==candidate;} //00465EE0 virtual4C, compares even null.
+    template<class Control>void request_distance_hold(std::uint32_t duration,std::uint32_t mode,Control& players){ //00465AD0, virtual70.
+        apply_human_camera_distance_hold(state_.field280,duration,mode,players);
+    }
     Frame look_target()const{return look_target_;}
     void look_target(Frame target,std::int32_t angle) { //00465B20 virtual74, borrowed288, radians28C.
         look_target_=target;state_.field28c=static_cast<float>(static_cast<long double>(angle)*.01745329238474369f); //0080F6E8.
@@ -138,17 +185,15 @@ public:
     template<class Refresh>void command_offline(std::uint32_t command,bool parameter_present,std::uint32_t parameter,
                                                std::uint32_t mode,Refresh& refresh) { //0046CB20 commands0/2, loading/spawn path.
         if((mode&7u)!=7u)throw std::runtime_error("Camera command requires actual nonoffline spectator receivers");
-        if(command==2)return; //Genuine native offline no-op, even if a parameter was supplied.
-        if(command!=0)throw std::runtime_error("Camera command is outside recovered offline spawn dispatch");
-        if(state_.flag26e)throw std::runtime_error("Camera command has an unrecovered spectator camera producer");
-        state_.flag26d=parameter_present?parameter!=0:!state_.flag26d;
-        if(state_.flag26d) {
-            if(const auto active=services_.active_game_camera()) {
-                const auto matrix=services_.actor_world_matrix(active);
-                state_.position={{matrix[12],matrix[13],matrix[14],matrix[15]}};
-            }
-        }else refresh(*this); //Actual0046C370 current-Players target selection, required containing receiver.
+        command_spawn(command,parameter_present,parameter,mode,refresh,[]()->std::uint32_t{throw std::logic_error("Offline camera attempted a nonoffline random producer");});
     }
+    template<class Refresh,class Random>void command_spawn(std::uint32_t command,bool parameter_present,std::uint32_t parameter,
+            std::uint32_t mode,Refresh& refresh,Random&& random){
+        apply_spawn_camera_command(state_,services_,[this]{return frame();},command,parameter_present,parameter,mode,
+            [&]{refresh(*this);},std::forward<Random>(random));
+    }
+    float fov(){const auto camera=frame();if(!camera)throw std::logic_error("FPV interpolation requires actual mission camera240");return services_.game_camera_fov_value(camera);}
+    float parameter78(){const auto camera=frame();if(!camera)throw std::logic_error("FPV interpolation requires actual mission camera240");return services_.game_camera_parameter78_value(camera);}
     bool set_fov(float value) { //00465E50, virtual50.
         const auto camera=frame();if(!camera)return false;
         services_.game_camera_fov(camera,value);services_.update_scene_object(camera);return true;

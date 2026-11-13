@@ -1,10 +1,10 @@
 # P22-PACK implementation — 2026-11-11
 
-**Wire/discard and available-owner checkpoint; PACK is not source-closed.**
-[Plan](p22-pack-plan.md) · [Wire receipt](checkpoints/p22-pack-20261111.json) ·
-[Notification/rank receipt](checkpoints/p22-pack-notifications-20261111.json).
-Missing positive Human effects below prevent full closure. No successful
-application loading, real engine execution or desktop result is claimed.
+**PACK is source-closed as of2026-11-13.** [Final integration/limits](p22-pack-source-closure.md),
+[receipt](checkpoints/p22-pack-source-20261113.json), [plan](p22-pack-plan.md).
+The detailed text below records the earlier wire/notification checkpoints and
+historical blockers. Human source through51082a2 resolves the selected effect
+blockers; application/desktop delivery remains separate.
 
 Worktree `HD2-Decomp-p22-pack`, branch `feature/p22-pack`, clean starting HEAD and
 read-only fetched master `f9d5f03183900044ce191530a13f34690b7e8059`.
@@ -93,10 +93,10 @@ profiles; no new quantizer, clock, queue or packet-world owner. Helper005AC660
 zeros velocity only if all components are strictly below native DOUBLE0.01.
 Event1 writes the raw direction and truncates length from stored FLOAT length²,
 using its IEEE-word epsilon test then the FLOAT near-one comparison. Scale10
-reader maps raw4/15*4+1 and clamps1..5. Its original writer005B20A1..B2 writes a
-zero high temporary DWORD; the intervening push makes FIMUL use that zero, not
-mask15. Finite valid scales therefore serialize code0; this was preserved, not
-silently repaired to a symmetric quantizer.
+reader maps raw4/15*4+1 and clamps1..5. **The initial zero-multiplier interpretation
+was incorrect:** after PUSH005B20AB, FIMUL005B20B2 reads[S+08]=mask15. The merged
+writer preserves `(speed-1)*.25*15`; [original-qualified correction](human-ragdoll-source.md)
+and the final closure contract supersede that earlier claim.
 
 Command11's absent optional fields were indeterminate in the native reader.
 Source gives them the paired writer's -1/slot7 sentinel instead of exposing
@@ -240,7 +240,7 @@ DD0 kind1, uses cache0041FC10, setup007757E0, process request groups/track updat
 setup/reset effect interface. Its exact reached failure now names that owner;
 no sound/subtitle substitute or research-only implementation credit is claimed.
 
-## Current H8 dependency review — 2026-11-12
+## Historical H8 dependency review — 2026-11-12
 
 [Reassessment at14d59d3](p22-pack-hum-h8-review.md) supersedes the missing-owner
 status in the historical table below. Human now supplies1/10/17, conditional

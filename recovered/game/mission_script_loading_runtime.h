@@ -7,6 +7,7 @@
 #include "game/mission_script_actor_lifecycle.h"
 #include "game/mission_script_view_commands.h"
 #include "game/mission_objective_status.h"
+#include "game/mission_script_formation_commands.h"
 
 namespace hd2::game {
 
@@ -48,6 +49,9 @@ public:
         if(!human||!human->loading_state)throw std::runtime_error("Script signal requires its actual Human/B0 owner");
         return human->loading_state->words().template get<std::uint32_t>(0x48)==5;
     }
+    void fail_human_mission(){dependencies_.objectives.fail_all(false);} //005A0220→0045E790→0069BED0.
+    void set_human_objective_status(std::int32_t identity,std::int32_t status){dependencies_.objectives.set_status(identity,status);} //0053BD00→actual0069BA60 owner.
+    void receive_human_objective_status(std::int32_t identity,std::int32_t status){dependencies_.objectives.receive_status(identity,status);}
     void script_return_end(Context& context){dependencies_.lifecycle.return_end_human(context,script_authority());}
     void script_loading_finish(){dependencies_.effects.fade().configure(0,false,nullptr);} //00427B80→GEffects8C/00486B30.
     bool human_remote_ai_enabled(){return dependencies_.world.human_remote_ai_enabled();}
@@ -64,6 +68,7 @@ public:
         if(!script_authority())return;
         //00421C00/00421970 call base00416E10 BEFORE their derived switch.
         if(accept_base(module().execute(context,instruction),context))return;
+        if(accept_base(execute_formation_script_command<Frames,Human>(frames_,dependencies_.players,context,instruction,*this),context))return;
         if(accept_base(dependencies_.views.execute(context,instruction,*this),context))return;
         if(accept_base(execute_mission_objective_command(context,instruction,dependencies_.objectives,*this),context))return;
         if(accept_base(dependencies_.lifecycle.execute(context,instruction,*this),context))return;

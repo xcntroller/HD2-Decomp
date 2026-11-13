@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 completed Human aggregate and actual H3/H5 interfaces",
+  "h4_base": "96356ab",
+  "completed_aggregate": "46a6cef",
+  "source_only": true,
+  "H4_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h4-completed-integration.md",
+  "verification": {
+    "native": "PASS27 ASan/UBSan/LSan; endpoint doubles explicit",
+    "i386": "PASS strict actual World/Script/Car full link; not executed",
+    "application": "PASS launcher/probe rebuild; not executed",
+    "ledger": "Full check FAIL inherited0062D880 missing ignored evidence; scoped all-row schema/inventory/status/available evidence PASS with5 inherited unavailable artifact rows listed"
+  },
+  "ledger": {
+    "complete": 34,
+    "partial": 3306,
+    "client_partial": 3301,
+    "engine_partial": 5,
+    "new_claims": 0,
+    "complete_promotions": 0
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-native-run.log",
+      "sha256": "24f55faf80a899d512e0c6553c99835ee759e25adf0fe6cff4de409c36876eea",
+      "bytes": 100
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-world-i386.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-application-link.log",
+      "sha256": "17bc46c791ed45977d375eb6bde5cd96d52e6fb21f58c0e08d26f2cf5e674162",
+      "bytes": 870
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-ledger-full.log",
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-ledger-focused.log",
+      "sha256": "3a9464cdc95cc289e4def38fa842e3408adbb17800d890c2ca040db229547f46",
+      "bytes": 672
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-native.cpp",
+      "sha256": "05f2cb6ef00bc4d3aa79d2f76dd5b62dd3603aff07c814e7710887f4e3130374",
+      "bytes": 4441
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-native",
+      "sha256": "54afb8e45c6b4eae6d339bf808d93891b4b09c7430eceaa1c1dde3c65abc7565",
+      "bytes": 369992
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-world-i386.cpp",
+      "sha256": "3fb9eb68feee48741ee1fc99b43a935ed364c9c31a590eb23ec16c8d5558cc48",
+      "bytes": 587
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completed-hum-world-i386.exe",
+      "sha256": "364febd79697fe32b06a3a1e2dd3107e69a47d49ee1521b5f012f9bf433f3268",
+      "bytes": 407040
+    }
+  ],
+  "evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/ai-aim-composition.asm",
+      "sha256": "00afa9cd781eca920fe13c01d40cc67382b3839fa668a9cec940985b47348a87",
+      "bytes": 11209
+    }
+  ]
+}

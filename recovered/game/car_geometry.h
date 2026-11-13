@@ -62,6 +62,7 @@ public:
     const std::string& resource() const {return resource_;}
     const Matrix& initial_world() const {return initial_world_;}
     const CarAuxiliaryGeometry<Frames>& auxiliary() const {return auxiliary_;}
+    CarAuxiliaryGeometry<Frames>& auxiliary() {return auxiliary_;}
     const CarCollisionParts<Frames>& collision() const {return collision_;}
     const CarWheelGeometry<Frames>& wheels() const {return wheels_;}
     const CarAxes<Frames>& axes() const {return axes_;}

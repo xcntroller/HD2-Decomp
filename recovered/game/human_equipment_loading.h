@@ -7,6 +7,7 @@
 #include "game/human_equipment_services.h"
 #include "game/human_equipment_transfers.h"
 #include "game/human_equipment_frame.h"
+#include "game/human_equipment_mount_presentation.h"
 
 namespace hd2::game {
 
@@ -35,12 +36,29 @@ public:
     HumanEquipmentLoading(const HumanEquipmentLoading&)=delete;
     HumanEquipmentLoading& operator=(const HumanEquipmentLoading&)=delete;
     template<class Human>void activate(Human& human){activation_.activate(human);}
+    template<class Human>void rebind_clothing_model(Human& human,Items& items){ //007936E0, retain230 state/attachments/light.
+        const auto model=human.base().frame();holsters_.clear();holsters_.initialize(model);
+        auto* storage=human.base().storage();if(!storage||storage->single())throw std::logic_error("Clothing holsters require actual Human storage");
+        auto* stacks=storage->slots(1);if(!stacks)throw std::logic_error("Clothing holsters lost actual stack array");
+        for(std::size_t n=0;n<stacks->occupied_stacks();++n){
+            const auto& stack=stacks->slots().at(n);if(stack.entries.empty())continue;
+            holsters_.show_items(items.runtime_item(stack.entries.front()).definition(),static_cast<std::int32_t>(stack.entries.size()),services_.equipment_opacity());
+        }
+        auto* hand=storage->holder(3);if(!hand)throw std::logic_error("Clothing holsters lost actual hand holder");
+        if(const auto entry=hand->entry()){
+            const auto& definition=items.runtime_item(entry).definition();
+            if(human_item_holster_group(definition)==0)holsters_.show_items(definition,1,services_.equipment_opacity());
+        }
+        state_.bind_markers(frames_,model);
+    }
     void deactivate() noexcept {activation_.deactivate();}
     void refresh(Frame model)override{visibility_.refresh(model);}
     auto& state(){return state_;}const auto& state()const{return state_;}
     auto& attachments(){return attachments_;}
     auto& transfers(){return transfers_;}
     void toggle_frame_action(bool enabled){toggle_human_equipment_action(frames_,state_,activation_.light(),services_.mode_flags(),enabled);} //007931B0.
+    void set_frame_action_lens(bool enabled){human_equipment_action_lens(frames_,state_,enabled);} //007933D0, SAME action model.
+    void present_mounted_frame(std::uint32_t elapsed){present_human_equipment_mount(frames_,state_,services_,elapsed);} //00793490.
     void set_action_holster_visible(bool visible){holsters_.set_action_holster_visible(visible);} //007918C0, SAME initialized group4.
     void set_frame_weapon_pose(bool ready,bool toggle){ //00791AC0.
         auto& words=state_.words();

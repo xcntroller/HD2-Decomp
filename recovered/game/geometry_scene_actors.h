@@ -3,6 +3,7 @@
 
 #include "game/scene_actor.h"
 #include "game/actor_initial_properties.h"
+#include "game/door_key_lock.h"
 #include "game/ladder_geometry.h"
 #include "game/door_portal_binding.h"
 #include "game/door_loading_packets.h"
@@ -242,6 +243,14 @@ public:
         default:return; //Native6/7 default consumes the command without another effect.
         }
         if(sound!=0xffffffffu)emit_sound(sound,sounds);
+    }
+    bool key_lock(std::uint32_t key,bool lock,SessionBroadcastPackets& packets){ //005FF650/005FF5F0.
+        return change_door_key_lock(properties,this->base_.id10(),key,lock,packets,[&]() -> DoorActorProperties* {
+            if(!linked_door)return nullptr;
+            auto* linked=dynamic_cast<DoorSceneActor*>(linked_door);
+            if(!linked)throw std::runtime_error("Door key operation requires an actual linked Door");
+            return &linked->properties;
+        });
     }
     void complete_lockpick(SessionBroadcastPackets& packets){ //005FF6C0.
         if(properties.fields220[1]||!properties.flag234||!properties.flag235)return;

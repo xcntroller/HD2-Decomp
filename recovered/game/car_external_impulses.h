@@ -5,6 +5,54 @@
 
 namespace hd2::game {
 
+//004F2790, direct linear/angular impulse on the SAME410/210 motion state.
+template<class Frames,class Notify>void apply_car_direct_impulse(Frames& frames,CarActorColdState<Frames>& state,
+        const CarContactVector& impulse,const CarContactVector& point,unsigned flags,
+        const CarContactVector& scales,Notify&& notify){
+    std::array<long double,3> offset{};
+    for(unsigned axis=0;axis!=3;++axis)offset[axis]=static_cast<long double>(point[axis])-state.body.pose().centre[axis];
+    if(!(flags&1u)){
+        const auto inverse=1.L/state.body.contact_state().mass918;
+        for(unsigned axis=0;axis!=3;++axis){
+            auto delta=inverse*impulse[axis];
+            if(axis)delta=static_cast<float>(delta);
+            state.body.motion().velocity[axis]=static_cast<float>(state.body.motion().velocity[axis]+delta);
+        }
+        auto direction=state.body.motion().velocity;
+        const float square=static_cast<float>((static_cast<long double>(direction[0])*direction[0]+
+            static_cast<long double>(direction[1])*direction[1])+static_cast<long double>(direction[2])*direction[2]);
+        if(!std::isfinite(square))throw std::runtime_error("Non-finite Car direct-impulse velocity");
+        constexpr float epsilon=9.99999993922529e-09f;
+        if(std::abs(static_cast<long double>(square)-1)>=epsilon){
+            if(square>=epsilon){
+                const auto factor=1.L/std::sqrt(static_cast<long double>(square));
+                for(unsigned axis=0;axis!=3;++axis)direction[axis]=static_cast<float>(direction[axis]*factor);
+            }else{
+                const auto axis=direction[0]!=0?0u:direction[2]!=0?2u:1u;
+                direction[axis]=direction[axis]<0?-1.f:1.f;
+            }
+        }
+        state.body.motion().direction=direction;
+    }
+    if(!(flags&2u)){
+        CarContactVector torque{};
+        for(unsigned axis=0;axis!=3;++axis){
+            const auto next=(axis+1)%3,last=(axis+2)%3;
+            torque[axis]=static_cast<float>(offset[next]*impulse[last]-offset[last]*impulse[next]);
+        }
+        frames.car_transform_in_place(torque,state.body.pose().inverse_rotation);
+        const auto inertia=state.body.contact_state().inertia220;
+        for(unsigned axis=0;axis!=3;++axis){
+            auto product=static_cast<long double>(torque[axis])*inertia[axis];
+            if(axis==2)product=static_cast<float>(product);
+            torque[axis]=static_cast<float>(product*scales[axis]);
+        }
+        frames.car_transform_in_place(torque,state.body.pose().rotation);
+        for(unsigned axis=0;axis!=3;++axis)state.body.motion().angular_velocity[axis]-=torque[axis];
+    }
+    state.solver.mass_changed=true;notify(); //Native22C0 precedes the optional6A4 callback.
+}
+
 //004F2A30. Flags suppress linear(1) and angular(2) accumulation independently.
 //These are SAME270/280 solver accumulators, not a second motion simulation.
 //Installed loading actors keep native6A4 null; the containing producer must

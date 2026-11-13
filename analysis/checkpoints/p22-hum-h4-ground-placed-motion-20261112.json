@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "Original H4 ground completion and containing type35 motion/navigation",
+  "implementation_base": "feda1db7669a9ac771686bfa454a61dba4078082",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_action_completion_effects.h",
+      "sha256": "91057e62318b8f16e4c7f63f75fa46e7432492d957c57d8c302ba33f5daacba0",
+      "bytes": 5436
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "5499ccd7f7afae10bab7cb067adeffad05f453e905f066ad4a960adeab23901b",
+      "bytes": 134017
+    },
+    {
+      "path": "recovered/game/mission_navigation.h",
+      "sha256": "ef31887262b5dcffbd39f079e5f76fad4477a084dcaed4fd1f1db10e2ee73678",
+      "bytes": 29003
+    },
+    {
+      "path": "recovered/game/placed_item_actor.h",
+      "sha256": "29093549e1225bd733011c5516fef7cdfe7e8c7c190769467b7253a0d0bcba9b",
+      "bytes": 4421
+    },
+    {
+      "path": "recovered/game/physics_object.h",
+      "sha256": "c9dc2475ab2ad9eef6e461399268bd86324a785d02a8f3186842a2414d748c70",
+      "bytes": 19261
+    },
+    {
+      "path": "recovered/game/session_packet_stream.h",
+      "sha256": "e20aaa3c5abb6cd43385a50d3a46659744ed9dd6e2d6608201c9e534e3116b37",
+      "bytes": 9837
+    },
+    {
+      "path": "recovered/host/game_physics_objects.h",
+      "sha256": "e1bcffdec55e5669ab7945d519d3288903ce0ee2aeb44c7343abab00fc7d878b",
+      "bytes": 9832
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "sha256": "3a158df7f0e7dd1ddfd9716a3465a7053fa0c2a5c730d2ca69822a9caf6039cd",
+      "bytes": 17249
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "sha256": "c4fdae4af1d5c2902436509f130acca81471ae18c4957f94ca14cbddb63f6ccb",
+      "bytes": 29008
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-dispatch.asm",
+      "sha256": "891cdf7889a592d88432605919eb35a9833eabba88528dc8ed00c1ecf23d007e",
+      "bytes": 33028
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/placed-nav-mark.asm",
+      "sha256": "6246c20f14f25352df0d07537c78afc020830b4a37890a58c452841065b41c9c",
+      "bytes": 4124
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/placed-nav-state.asm",
+      "sha256": "314bbbe226e37fb8f98e44254ab1222c29ad98025c810c7b6f996300dfb2fa78",
+      "bytes": 2620
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/nav-link-distance.asm",
+      "sha256": "7aeeaeac86254914744b234af772aed7b6cf455fa582922f5023bbed37eb864c",
+      "bytes": 4159
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/nav-link-pair.asm",
+      "sha256": "ca81a19e9219e29f6f4889d4558f17af8454b93c9ba397f115d2424075a6a8fa",
+      "bytes": 10441
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/physics-type5-constructor.asm",
+      "sha256": "5278d6f1206cafd551208f6a3407ec0bb2231eafad33ec362d845564e57f1e04",
+      "bytes": 21969
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/placed-packet-vector.asm",
+      "sha256": "4c6b659b74780f68a9fd7f7549e66f558fc8c79986f8304d66785c37d9063fbf",
+      "bytes": 1118
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-pickup-original/00407bd0.json",
+      "sha256": "d4f06c90b0052ef534a9b363f25f7e12eb2c7bbf3f71714d228916c5aaf7d134",
+      "bytes": 37808
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-pickup-original/00408750.json",
+      "sha256": "8b5fd4c43276a3808c1e35b438aa9c4c633c7eeed41e35be0c5716704ab707f1",
+      "bytes": 635
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-pickup-original/0051f280.json",
+      "sha256": "4b51206cffd2ddf2eddb41cb0477f6a13a386dd8a120fcaf3fb382fa57ba5991",
+      "bytes": 8856
+    }
+  ],
+  "verification": {
+    "native": "PASS51 strictO1 ASan/UBSan/LSan actual CollisionRay/static tree/dynamic buckets, MissionNavigation/TableStorage/PlacedItemActor and packet quantizers. Engine/Mine/Physics/packet/Script endpoints explicitly doubled. Positive hit/miss/dynamic exclusion, late item, malformed/failure/retry, link gates/reset/partial rejection, motion/publication prefix, yaw-only lane.",
+    "i386": "PASS strictO0 actual World\u2192ground\u2192static-only ray\u2192runtime Mine and World\u2192registry\u2192type35\u2192actual Physics/navigation/packet/Script FULL LINK; no selected concrete endpoint doubles. Positive Physics00407BD0 explicitly unavailable.",
+    "application": "PASS application-launch/startup-probe links, no Windows execution.",
+    "actual_mission_reachability": false,
+    "actual_engine_execution": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-owners-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-owners-native-run.log",
+      "sha256": "51e598fae5661303e0177033547aeb3e404db3b919d8ced36682a278c78eb882",
+      "bytes": 168
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-owners-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-owners-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-pickup-export.log",
+      "sha256": "e539c263e904989d020ab0bdda20808d9c0d02d9f447240d25b11124be053d7d",
+      "bytes": 4659
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-owners-audit.cpp",
+      "sha256": "bbc6b59c70f4d215c4fb79d60950add7d1426a6130eacff784d1cc0263c5d606",
+      "bytes": 8134
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-owners-audit",
+      "sha256": "5a2a283088f156183482813cc96ac3ab17358fc8f7582121e8e0e24b1a3556a4",
+      "bytes": 3452016
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-owners-host.cpp",
+      "sha256": "19046174e24ddc41acf40571aedfae2aa04fa524ad81927b0658c7496f6b8ec8",
+      "bytes": 428
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-owners-host.exe",
+      "sha256": "7e5da1e8dbd9f47b7a78ba60a12214893550e005b7ba51da961674f6593f941c",
+      "bytes": 2138624
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "005e2510",
+      "005e2480",
+      "0051f280",
+      "005248c0",
+      "005247a0",
+      "005247e0",
+      "00408750",
+      "0073d760"
+    ],
+    "extended": [
+      "00584e30"
+    ],
+    "counts": {
+      "client": {
+        "partial": 3048,
+        "complete": 34
+      },
+      "engine": {
+        "partial": 5
+      }
+    },
+    "denominator": 18783
+  },
+  "remaining": "Physics00407BD0 model/cache/frame/Scene/Physics positive replacement producer remains unimplemented (same explicit guard on current HUM201adbf). Type15 Scene2 factory/91 owner remains absent. Vehicle path, attachment and subgroup H4 work open. No credit for those unavailable bodies or general006F6870 adapter/delegated existing Mine/ray bodies. H5 imports remain external to this base."
+}

@@ -125,6 +125,29 @@ void apply_human_look_equipment(Control& control,Look& look,Human& human,World& 
     if((wanted(0x58)<0||wanted(0x58)>2)&&current(0x1f4)==0x4a)state.set(0x218,0x4cu);
 }
 
+template<class Control,class Look>void finish_human_look_frame(Control& control,Look& look){
+    if(look.state().template get<std::int32_t>(0xb8)==4)look.mark_frame_feedback(0x40u);
+    control.physical().capture_look_frame(look);
+}
+
+//0077DE30's reaction gate, after B4 clearing and the Player direction replay.
+//Keep this segment on the SAME E0/DD0: selection may replace the geometry
+//effect and fail after earlier retirement mutations. Publish44/capture only
+//after it returns successfully. Ordinary movement/action continuation is H8's
+//containing frame, not a prerequisite to invoking this reaction segment.
+template<class Control,class Look>bool consume_human_look_reaction(Control& control,Look& look){
+    auto& request=look.frame_words();auto& state=control.physical().control_frame_words();
+    const auto interaction=[](std::int32_t id){return id>=0x71&&id<=0x9a;};
+    if(!interaction(request.template get<std::int32_t>(0x44))){
+        if(state.template get<std::int32_t>(0x1ac)==1&&
+                !interaction(state.template get<std::int32_t>(0x1d8)))return false;
+    }else{
+        if(!control.retire_interaction_clip(look))return false;
+        request.set(0x44,state.template get<std::int32_t>(0x1fc));
+    }
+    finish_human_look_frame(control,look);return true;
+}
+
 //0077DE30, actual E0 command application, normalization and retained snapshot.
 //Positive posture, interaction, lateral collision and occupied remote weapon
 //workers remain required. No command mask substitutes for their real bodies.
@@ -135,21 +158,13 @@ void apply_human_look_frame(Control& control,Look& look,Human& human,World& worl
     const auto current=[&](unsigned offset){return state.template get<std::int32_t>(offset);};
     const auto walk=[](std::int32_t id){return id>=0x29&&id<=0x41;};
     const auto ladder=[](std::int32_t id){return id>=8&&id<=14;};
-    const auto interaction=[](std::int32_t id){return id>=0x71&&id<=0x9a;};
     const auto normalize=[&]{normalize_human_primary_animation(state,0x1fc);};
     const auto cancel_ladder=[&]{request.set(0x44,0xceu);state.set(0x1fc,0xceu);normalize();};
-    const auto finish=[&]{
-        if(wanted(0xb8)==4)look.mark_frame_feedback(0x40u);
-        control.physical().capture_look_frame(look);
-    };
+    const auto finish=[&]{finish_human_look_frame(control,look);};
     const bool walking=walk(current(0x1d8));
     request.set(0xb4,0u);
     if(control.human_is_player())control.prepare_direction_replay(look,request.template get<HumanVector>(0x20),elapsed);
-    if(!interaction(wanted(0x44))){
-        if(current(0x1ac)!=1||interaction(current(0x1d8))){finish();return;}
-    }else if(runtime.retire_human_interaction_clip(control)) { //0074D510, actual queued descriptor.
-        request.set(0x44,current(0x1fc));finish();return;
-    }
+    if(consume_human_look_reaction(control,look))return;
     const auto sensitive=[](std::int32_t id){return id==0x2b||id==0x2c||id==0x36||id==0x3e||id==0x41;};
     const auto desired=wanted(0x44),active=current(0x1d8);
     if(desired!=0xce&&(!walk(desired)||!walking||(desired!=active&&(sensitive(desired)||sensitive(active))))&&

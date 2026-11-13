@@ -1,0 +1,92 @@
+{
+  "result": "PASS_WITH_RECEIPT_HASH_DISCREPANCY",
+  "source_sha": "122ef38ebbf7fe6605a5edbf7d0ac4259f124cb7",
+  "scope": "Reconstructed Steam offline GUARD source and owner composition",
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "receipt": "analysis/checkpoints/p22-guard-steam-20261111.json",
+  "source_files": {
+    "recovered/game/steam_integrity_calls.h": "28a2cbfd3996209a74d05448b9e8ac7120779e448c4ed7aeefdb721b5cbad00f",
+    "recovered/game/integrity_threads.h": "c106e96bb707c68485fea1f4744592a07e07e8751aac9331afd698528421b3e7",
+    "recovered/game/integrity_observation_actions.h": "2e81f2bef1c5db1962560fe785eb31dfa2b83736e2dc00afe2f39da33b287317",
+    "recovered/host/startup_session.h": "e903d407e576b76f2f51731712acdf8c945f1312e0276979734fe2ea32be3736",
+    "recovered/host/game_loading_queries.h": "345076db057d75a0127c007276282c346af7512d9c8b51109c4229196fec22ab",
+    "recovered/host/application_launch.cpp": "0d7e49adab0de08a067295e59484f52a474738221e450b33064b882c929a3dc5",
+    "recovered/frontend/pre_mission_flow.h": "baef47d9dfdae3da8460b6d39a54872e1137a2cb41e0c3d1ea7e0dccfc2a191c"
+  },
+  "receipt_source_hash_discrepancies": [
+    {
+      "path": "recovered/host/startup_session.h",
+      "receipt_sha256": "e903d407e576b76f2f51731712acdf8c945f1312e0276979734fe2ea32be3736",
+      "actual_sha256": "9a07f3121aa8b2f02059b0d4fa9a6b9a37aad43d142fad267a6f5886ca607a56"
+    }
+  ],
+  "fingerprinted_original_evidence": [
+    {
+      "path": "analysis/work/p22-guard/all-wrapper-call-details.txt",
+      "sha256": "43c958dd2f700d7f278c91a81c3dd1e46c628f419f98d6ba716fdde9577c7bf9",
+      "bytes": 46583
+    },
+    {
+      "path": "analysis/work/p22-guard/steam-block-references.txt",
+      "sha256": "203dcfb02dc779813e6a4d51b746473e821d83cf16decda5da22d02c6ba51a34",
+      "bytes": 1416
+    },
+    {
+      "path": "analysis/work/p22-guard/startup-time-seed.asm",
+      "sha256": "6bcdae7eed6e28252f13950dc919151e2498859fa44294680cf4f957523e9c52",
+      "bytes": 4150
+    },
+    {
+      "path": "analysis/work/p22-guard/caller-observation-writes.asm",
+      "sha256": "a8345b4f4dabcf03a091f6b2780b25f2304136c6de2a5f2f82216ebc47e1807a",
+      "bytes": 3884
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/guard-activation-descriptors.json",
+      "sha256": "50edb4f08953609bbd09b5a8ffe968f940f8fabe869213418af9665a42a76f30",
+      "bytes": 3577
+    }
+  ],
+  "retained_logs": [
+    {
+      "path": "analysis/work/p22-guard/application-build-steam.log",
+      "sha256": "79d494c401b28dae2bcad6a9e6ba1a4beabdcdbc2cc72c3aaafe262e4745d1ab",
+      "bytes": 605
+    },
+    {
+      "path": "analysis/work/p22-guard/verification-steam.log",
+      "sha256": "6d65ec91d115ef33e27ade36065038b801da585137acb9dbe4450b87451410e3",
+      "bytes": 605
+    }
+  ],
+  "independent_static_checks": [
+    "Original00997602 JMP00997658 verified from image bytes.",
+    "All32 descriptor records match source.",
+    "Initial blocked key/pointer are zero in image storage.",
+    "Seed resolver pair006E9EC2/0080F1B4 verified.",
+    "Original direct observation stores83/60/100 verified from instructions.",
+    "Application startup call ordering checked from actual source."
+  ],
+  "reported_native": "PASS ASan/UBSan/LSan; all32 descriptor words,16 active matches, blocked/unmatched, actions/fallback, raw/observed split, exceptions/replacement, thread isolation,100 process lifetimes, actual objective and Human obstruction consumer bodies",
+  "reported_i386": "PASS strict compile/link of actual application LaunchOwners::Controller explicitly instantiating GameSessionLifecycle and concrete Startup/World/loading/activation/Human/objective composition; not executed",
+  "audits_rerun": false,
+  "desktop_verified": false,
+  "limitations": [
+    "dormant retail private producer/validator equivalence",
+    "unimplemented containing-function conditional wrappers listed in contract",
+    "successful GameApplicationState loading/activation",
+    "real-engine/application execution",
+    "desktop acceptance"
+  ],
+  "date_utc": "2026-11-11T19:32:47.399680+00:00",
+  "classification": "resolved_source",
+  "distribution": "Supplied Steam image, same fingerprint as prior research",
+  "discrepancy_assessment": "Six receipt source hashes match. startup_session.h hash differs from committed source. Actual source was read directly and startup ordering independently checked. Upstream sanitizer/i386 checks remain reported evidence, not independently rerun against this exact file digest.",
+  "research_update_checks": [
+    "Stable13 node and17 typed edge identities preserved.",
+    "Only GUARD source status and its prerequisite satisfaction changed. Other node revisions unchanged.",
+    "Targeted source provenance and Markdown links checked.",
+    "All edits confined to requested research directory.",
+    "Receipt source hash discrepancy retained explicitly."
+  ]
+}

@@ -5,6 +5,9 @@
 #include "game/car_particles.h"
 #include "game/car_wheel_runtime.h"
 #include "game/car_tyres.h"
+#include "game/session_packet_stream.h"
+#include "game/car_damage_packets.h"
+#include "game/car_targeted_placement.h"
 #include <memory>
 
 namespace hd2::game {
@@ -34,6 +37,13 @@ public:
     virtual const CarTyres& car_tyres() const=0;
     std::vector<std::int32_t> car_tyre_ids()const{return car_tyres().material_ids();}
     virtual std::uint32_t car_clock()=0;
+    virtual void receive_damage_packet(Actor,SessionPacketStream&)=0;
+    virtual void receive_damage_request(Actor,SessionPacketStream&)=0;
+    virtual void car_timed_destroy(Actor)=0;
+    virtual void car_periodic_event(Actor,const CarDamageEvent&)=0;
+    virtual bool car_targeted_command(Actor,typename Backend::Entry,Actor,const std::optional<CarTargetedPlacement>&,bool)=0;
+    virtual void car_retire_particle(std::int32_t)=0;
+    virtual std::size_t car_active_particles()const=0;
     virtual Actor car_actor_from_frame(Frame)=0;
     virtual std::uint32_t actor_type(Actor)=0;
     virtual std::int32_t actor_id(Actor)=0;
@@ -56,6 +66,7 @@ public:
     virtual void car_actor_hit58(Actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame)=0;
     virtual void car_actor_hit5c(Actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame,Actor)=0;
     virtual void human_car_contact(Actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame)=0;
+    virtual void human_ragdoll_car_impulse(Actor,const Vector&,const Vector&)=0;
     virtual void car_human_impact(Actor,int,float,const Vector&,const Vector&,Actor,int)=0;
     virtual void submit_car_human_damage(Actor,const CarHumanDamageEvent&)=0;
     virtual void apply_car_wheel_damage(Actor,const CarWheelDamageEvent&)=0;

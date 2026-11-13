@@ -3,6 +3,7 @@
 
 #include "game/scene_actor.h"
 #include "game/static_weapon_loading_lifetime.h"
+#include "game/mounted_weapon_control.h"
 #include <array>
 #include <vector>
 
@@ -10,15 +11,7 @@ namespace hd2::game {
 
 //004C19D0/004C1AA0 native cold owner, at StaticWeapon+160 (not+150).
 //No shooting, ammunition or targeting receivers are supplied by these values.
-struct StaticWeaponControl {
-    std::array<std::uint32_t,24> fields60{};
-    std::vector<std::uint32_t> field10c;
-    std::uint32_t fieldc8=0xffffffffu,fieldcc=0,fieldd0=0,field120=0,field124=0,
-        field13c=0,field140=0,field144=0,field148=0,field158=0,field16c=0,field170=0;
-    float field128=-1,field12c=-1,field130=-1,field134=-1;
-    std::uint32_t fieldd8=0,field160=0x3ec90fdb,field164=0x3ec90fdb;
-    bool flagd4=false,flagdc=false,flag104=false,flag168=false;
-};
+
 
 template<class Backend>
 class StaticWeaponSceneActor final : public SceneActor<Backend> {

@@ -237,12 +237,24 @@ preparation, not a standalone audit-only milestone.
 
 ## 2. Load an original mission to its first world frame
 
+[P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
+
+[P22-GUARD source plan](analysis/p22-guard-plan.md): Steam descriptor/actions and concrete process publication are source-bound to startup and existing offline consumers; focused sanitizers, actual i386 composition and application link pass (34 complete/2,510 partial). Dormant retail protection is excluded by the explicitly selected Steam target; application execution remains separate.
+
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
   [Full boundary/source progress](analysis/mission-world-loading.md), [frame/render](analysis/frame-render-source.md), [module/actor frames](analysis/module-actor-frame-source.md), [projection process](analysis/human-projection-frame-process.md), [Physics frames](analysis/physics-object-frame-motion.md), [Sight frames](analysis/sight-shot-frame-source.md), [Human frames](analysis/human-frame-source.md), [shared movement](analysis/human-scene-movement.md). The containing module facade, ground collision/water/fall coordination, Human contacts, Look/posture collision and Player frame/input state are in source. Positive actor, rendering, integrity and application integration remain.
-  [P22-HUM remaining sequence](analysis/p22-hum-plan.md) tracks the active Human blocker.
-  [P22-UI implementation](analysis/p22-ui-implementation.md): presentation/text/timer leaves verified; full HUD/FPV updates remain open.
-  [P22-PACK plan](analysis/p22-pack-plan.md): wire/discard, queued inventory producers, offline notifications and available rank receivers verified; exact positive Human effects still block full source closure.
+  [P22-HUM dependency plan](analysis/p22-hum-plan.md): **H2 reactions/damage/ragdoll is source-complete** ([closure and limits](analysis/human-h2-source-closure.md)). S01–S14, D1–D3 and D4a/D4b and D6a record completed source checkpoints through positive Car damage, Door restoration, frame-event/common-command receivers and cold connection/entry records plus worker/control lifetime D6b1 and received fragments/retained messages through process FIFOs D6b2a/b; full cross-branch World/frame delivery remains H8. H3 offline seat interactions/mounted receivers are [source-verified](analysis/checkpoints/p2.2-human-seat-interaction-20261112.json); D5/H8 remain open.
+
+  - [x] Record verified reaction/damage, peer/input/entry-prefix, Mine/Versions and Car source checkpoints with their limits ([S01–S14](analysis/p22-hum-plan.md#h2-source-checkpoints-already-achieved)); [deferred joint/clip inventory is reconciled](analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json).
+  - [ ] H8/Car integration: finish the remaining selected containing path (boundary established in [D0](analysis/p22-hum-plan.md#d0--confirm-the-remaining-containing-path-boundary)); D1–D3/D4a/D4b source is complete; finish reached occupied/non7 dependencies D5 and containing Car frame D4.
+  - [ ] OWN/H8 entry integration: complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
+  - [x] Complete H2-owned reaction composition, consolidated verification, inventory and audit cleanup ([source receipt](analysis/checkpoints/p2.2-human-h2-source-20261112.json)). External Car producer/entry failures remain guarded; H8 owns full Human-frame assembly.
+
+  Human branch assignments: H1/H2/H3/H4/H5/H7 source work is merged into `feature/p22-hum`; completed HUMb9d67aa is imported into the active H6 branch. H6 is [source-complete on existing owners](analysis/human-h6-source-closure.md); its async combat/material/non7 guards remain required H8 dependencies. H8 is active on `feature/p22-hum-h8`: [plan](analysis/p22-hum-h8-plan.md). Its current user priority is PACK effect dependencies; commands2/7/8/9/11/18/20 active effects are [source-bound/verified](analysis/human-h8-pack-effects-source.md); [command12](analysis/human-h8-pack-heavy-support-source.md) and [common3](analysis/human-h8-pack-common-source.md) supply the remaining selected PACK source effects. PACK integration/stream verification remains its owner. It owns absent actor factories and full Runtime/World/application integration. Remaining D dependencies and user desktop acceptance still apply.
+
+  [P22-UI source-closed](analysis/p22-ui-source-closure.md), [checklist](analysis/p22-ui-plan.md): concrete same-World HUD/FPV/text/overlay/control, occupied/nonoffline presentation and console consumers verified. Human/Actor/packet producers and FRAME/RENDER/OWN execution remain external; no loading activation or desktop claim.
+  [P22-PACK source-closed](analysis/p22-pack-source-closure.md), [plan](analysis/p22-pack-plan.md): selected Human effects are integrated from51082a2, with affected stream/FIFO/receiver and rank sanitizers plus concrete i386/application links. Loading/desktop execution remains separate.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.
@@ -332,3 +344,11 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Interactive commits require user desktop confirmation; no pushes without instruction.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
+
+P22-HUM H4 common-output source is complete on existing actor owners:
+[source closure / selected-call inventory and external limits](analysis/human-h4-source-closure.md),
+[receipt](analysis/checkpoints/p22-hum-h4-source-20261112.json). Vehicle path/VM
+producer/control/finish, completed H3/H5 interfaces and Active AI grenade response
+are now bound to actual owners. H6 item production/Player medical is [source-complete](analysis/human-h6-source-closure.md). H8 absent
+actors/full Runtime/async combat/application/user desktop acceptance remain required. The
+parent Human/mission-loading delivery checkbox stays open.

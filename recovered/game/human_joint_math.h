@@ -2,10 +2,36 @@
 #define HD2_GAME_HUMAN_JOINT_MATH_H
 
 #include "game/actor_activation_math.h"
+#include <cstdint>
+#include <cstring>
+#include <limits>
 
 namespace hd2::game {
 using HumanMatrix=std::array<float,16>;
 using HumanVector=std::array<float,4>;
+template<class Frames>
+long double human_joint_frame_basis_square(Frames& frames,typename Frames::Frame frame){
+    //007B0910/007B7410 repeat the actual world-cache read three times.
+    const auto forward=frames.actor_world_matrix(frame);
+    const auto up=frames.actor_world_matrix(frame);
+    const auto right=frames.actor_world_matrix(frame);
+    const float partial_z=right[2]+up[6];
+    const float x=static_cast<float>((static_cast<long double>(right[0])+up[4])+forward[8]);
+    const auto y=(static_cast<long double>(right[1])+up[5])+forward[9];
+    const auto z=static_cast<long double>(partial_z)+forward[10];
+    return (z*z+y*y)+static_cast<long double>(x)*x;
+}
+inline bool human_joint_unwritten(float value){
+    std::uint32_t bits;std::memcpy(&bits,&value,sizeof bits);
+    return bits==0x7fc00000u||bits==0xffc00000u;
+}
+inline long double human_joint_inverse_root(long double value){
+    const float stored=static_cast<float>(value);
+    std::uint32_t bits;std::memcpy(&bits,&stored,sizeof bits);
+    bits=0x5f3759dfu-(bits>>1);
+    float estimate;std::memcpy(&estimate,&bits,sizeof estimate);
+    return (1.5L-static_cast<long double>(estimate)*estimate*value*.5f)*estimate;
+}
 inline HumanMatrix human_identity() {HumanMatrix m{};m[0]=m[5]=m[10]=m[15]=1;return m;}
 inline HumanMatrix human_transpose(const HumanMatrix& m) { //007A2190.
     HumanMatrix result{};for(unsigned row=0;row!=4;++row)for(unsigned column=0;column!=4;++column)result[row*4+column]=m[column*4+row];return result;
@@ -100,6 +126,86 @@ inline HumanMatrix human_vertical_basis(const HumanVector& z) { //007A2E10.
     result[6]=static_cast<float>(-static_cast<long double>(z[1])*result[0]);
     for(unsigned axis=0;axis!=3;++axis)result[8+axis]=z[axis];
     return result;
+}
+inline HumanMatrix human_lateral_basis(const HumanVector& z){ //007A3500 before its RotateZMatrix product.
+    auto result=human_identity();
+    const auto y=actor_activation_direction(HumanVector{{0,z[2],-z[1],0}});
+    for(unsigned axis=0;axis!=3;++axis){result[4+axis]=y[axis];result[8+axis]=z[axis];}
+    result[0]=static_cast<float>(static_cast<long double>(z[2])*y[1]-static_cast<long double>(y[2])*z[1]);
+    result[1]=static_cast<float>(static_cast<long double>(y[2])*z[0]-static_cast<long double>(y[0])*z[2]);
+    result[2]=static_cast<float>(static_cast<long double>(y[0])*z[1]-static_cast<long double>(y[1])*z[0]);
+    return result;
+}
+inline float human_joint_segment_distance(const HumanVector& origin,const HumanVector& direction,
+        const HumanVector& other_origin,const HumanVector& other_direction,HumanVector& closest,
+        HumanVector& other_closest,float& parameter,float& other_parameter){ //007CE070.
+    constexpr float epsilon=9.99999993922529e-09f;
+    std::array<HumanVector,2> offsets{};
+    for(unsigned axis=0;axis!=3;++axis){
+        offsets[0][axis]=other_origin[axis]-origin[axis];
+        const float end=other_origin[axis]+other_direction[axis];
+        offsets[1][axis]=end-origin[axis];
+    }
+    //The native projection consumes direction unchanged here. Its normalization
+    //and length guard occur only after publishing the other segment's point.
+    for(auto& offset:offsets){
+        const auto projection=(static_cast<long double>(offset[2])*direction[2]+
+            static_cast<long double>(offset[1])*direction[1])+static_cast<long double>(offset[0])*direction[0];
+        for(unsigned axis=0;axis!=3;++axis){
+            const float projected=static_cast<float>(projection*direction[axis]);
+            offset[axis]-=projected;
+        }
+    }
+    HumanVector transverse{};
+    for(unsigned axis=0;axis!=3;++axis)transverse[axis]=offsets[1][axis]-offsets[0][axis];
+    const float square=static_cast<float>((static_cast<long double>(transverse[2])*transverse[2]+
+        static_cast<long double>(transverse[1])*transverse[1])+static_cast<long double>(transverse[0])*transverse[0]);
+    if(square<epsilon)return std::numeric_limits<float>::quiet_NaN();
+    std::int32_t bits;std::memcpy(&bits,&square,sizeof bits);
+    const auto length=bits<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1)<epsilon?1.L:std::sqrt(static_cast<long double>(square));
+    const auto inverse=1.L/length;
+    HumanVector normal{};
+    for(unsigned axis=0;axis!=3;++axis)normal[axis]=static_cast<float>(transverse[axis]*inverse);
+    const auto projection=(static_cast<long double>(normal[2])*offsets[0][2]+
+        static_cast<long double>(normal[1])*offsets[0][1])+static_cast<long double>(normal[0])*offsets[0][0];
+    other_parameter=static_cast<float>(-(projection*inverse));
+    for(unsigned axis=0;axis!=3;++axis){
+        if(std::signbit(other_parameter))other_closest[axis]=other_origin[axis];
+        else if(other_parameter>1)other_closest[axis]=other_origin[axis]+other_direction[axis];
+        else{
+            const float delta=other_parameter*other_direction[axis];
+            other_closest[axis]=other_origin[axis]+delta;
+        }
+    }
+    const auto direction_square=(static_cast<long double>(direction[0])*direction[0]+
+        static_cast<long double>(direction[1])*direction[1])+static_cast<long double>(direction[2])*direction[2];
+    if(direction_square<epsilon)return std::numeric_limits<float>::quiet_NaN();
+    const float stored=static_cast<float>(direction_square);
+    std::memcpy(&bits,&stored,sizeof bits);
+    const auto direction_length=bits<0x322bcc77?0.L:std::abs(static_cast<long double>(stored)-1)<epsilon?1.L:std::sqrt(static_cast<long double>(stored));
+    const float direction_inverse=static_cast<float>(1.L/direction_length);
+    HumanVector unit{},delta{};
+    for(unsigned axis=0;axis!=3;++axis){
+        unit[axis]=direction[axis]*direction_inverse;
+        delta[axis]=other_closest[axis]-origin[axis];
+    }
+    parameter=static_cast<float>(((static_cast<long double>(delta[2])*unit[2]+
+        static_cast<long double>(delta[1])*unit[1])+static_cast<long double>(delta[0])*unit[0])*direction_inverse);
+    for(unsigned axis=0;axis!=3;++axis){
+        if(std::signbit(parameter))closest[axis]=origin[axis];
+        else if(parameter>1)closest[axis]=origin[axis]+direction[axis];
+        else{
+            const float displacement=direction[axis]*parameter;
+            closest[axis]=origin[axis]+displacement;
+        }
+        delta[axis]=other_closest[axis]-closest[axis];
+    }
+    const float result=static_cast<float>((static_cast<long double>(delta[0])*delta[0]+
+        static_cast<long double>(delta[1])*delta[1])+static_cast<long double>(delta[2])*delta[2]);
+    std::memcpy(&bits,&result,sizeof bits);
+    if(bits<0x322bcc77)return 0;
+    if(std::abs(static_cast<long double>(result)-1)<epsilon)return 1;
+    return static_cast<float>(std::sqrt(static_cast<long double>(result)));
 }
 //007A3E60's shortest rotation, including nearly parallel/antiparallel vectors.
 //The original writes nine entries only; preserve translation and homogeneous words.

@@ -1,0 +1,250 @@
+{
+  "date": "2026-11-13",
+  "source_only": true,
+  "p22_pack_source_complete": true,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "pushed": false,
+  "pack_pre_integration_commit": "16919be30dc58c057bef8eb1f8899e2d3ce3324f",
+  "hum_dependency_commit": "51082a20acd87e68cb3d41aeed57492ffcdab855",
+  "contract": "analysis/p22-pack-source-closure.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_packet_commands.h",
+      "bytes": 10976,
+      "sha256": "347a44d9edf8856809c741db6bd1544f9711c8e6aa07d5988e86ee3b5ec4ccab"
+    },
+    {
+      "path": "recovered/game/human_packet_receiver.h",
+      "bytes": 3398,
+      "sha256": "ce3b6543b6b59fa9299e2ecc61b847adcf0ab53835372d5f9bcb3a49323abab0"
+    },
+    {
+      "path": "recovered/game/human_frame_commands.h",
+      "bytes": 5365,
+      "sha256": "fe6401eb83d23e9452a596d47f095291b478fb1968cb82367db84058f9f4bf61"
+    },
+    {
+      "path": "recovered/game/session_local_packets.h",
+      "bytes": 7668,
+      "sha256": "6fd80a71a94fd6b2f2969814afc8ce51594cfc56d98679a424558c84a9b96137"
+    },
+    {
+      "path": "recovered/game/human_score_presentation.h",
+      "bytes": 3582,
+      "sha256": "6699ec90c181e91e5cbd1a0daa73a8e1dafdeca1495efb05e59b233df67ccca8"
+    },
+    {
+      "path": "recovered/game/human_packet_notifications.h",
+      "bytes": 5451,
+      "sha256": "5bb306d1508d962076c7db4890732e2d66e73b9031d473f866f208d8023eda80"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 219709,
+      "sha256": "befc67d02c00a1292d228a7f7947aaa0c8adf5184c077d9096e1ffc5dd60c946"
+    },
+    {
+      "path": "recovered/game/mission_script_visibility.h",
+      "bytes": 4420,
+      "sha256": "84515d32c680241441b63504c05c9def501dabfc62e2f0b009e46deabe844688"
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "bytes": 14456,
+      "sha256": "e6a51ea7a712aa4e78dd6e0813a71597ee0dacd6ee92220b901c1da438e45c79"
+    },
+    {
+      "path": "recovered/game/human_common_command.h",
+      "bytes": 10939,
+      "sha256": "21694645807dd7242741adceb3714a24f1769e0b859ed72996b43ab55486594d"
+    },
+    {
+      "path": "recovered/game/human_timed_interaction.h",
+      "bytes": 8557,
+      "sha256": "f586b1cda0ce44d6ed2884f30feaae88696db0329d6fe801c6f401e146a37e82"
+    },
+    {
+      "path": "recovered/game/document_place_scene_actor.h",
+      "bytes": 7951,
+      "sha256": "b21b16ec1591fac5af791f5b77d306f693d98079c5a2272c2e4978ed62a6e1bd"
+    },
+    {
+      "path": "recovered/game/human_loading_composition.h",
+      "bytes": 5866,
+      "sha256": "028c4e50335dd355b74bfb6be906d8a31e146da583d8ff31e8c2ba280b7b205d"
+    },
+    {
+      "path": "recovered/game/human_loading_inventory.h",
+      "bytes": 14156,
+      "sha256": "fc1acc03ca8887d26edf75688ef1097042ad205f7dfd8269b09f7d3bc0f63a73"
+    },
+    {
+      "path": "recovered/game/human_inventory_packet.h",
+      "bytes": 2846,
+      "sha256": "c821a633b8e8dc7232a283ba509749322df607a58c0a29b6506c92e02e6c41fd"
+    },
+    {
+      "path": "recovered/game/human_item_pickup.h",
+      "bytes": 2944,
+      "sha256": "4f5a925a91768349758f14cb9f16ae0d0aaaffcf0f7e8555c53e2a3e6461af3c"
+    },
+    {
+      "path": "recovered/game/human_supply_pickup.h",
+      "bytes": 1877,
+      "sha256": "7567832df522a2b5ad21f3edcda1c54d34c03f0007c236a4214d90efe14ae690"
+    },
+    {
+      "path": "recovered/game/human_player_packet_action.h",
+      "bytes": 5106,
+      "sha256": "b1549ac7d84e595e522e462725b004aa6387f5a8d883d96cf7c3cc7009e5296d"
+    },
+    {
+      "path": "recovered/game/human_speech_loading.h",
+      "bytes": 11558,
+      "sha256": "ee2b76164261b69cf8fa5d81b1b1277e75f34af4bb87c4e40f22ff1f0dfba802"
+    },
+    {
+      "path": "recovered/game/heavy_fire_module_loading.h",
+      "bytes": 7147,
+      "sha256": "e4423dd397e4ca0c2c3c670701fd18f90413d7f88e9f6f0352924fce38cbd16b"
+    },
+    {
+      "path": "recovered/game/heavy_fire_aircraft.h",
+      "bytes": 9294,
+      "sha256": "414b271d76c8ac2797d8ef239dd29fc11c5b1c63b84340630478a779b4dde748"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 62973,
+      "sha256": "a7674df8886e1e2ef63495712b6a9baa2b5bdcd8a083a46c1f546a4215d3352b"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "bytes": 32517,
+      "sha256": "b8aa5edf787bf44f9ba85a21faa9c1ee548407c243b27e6248e6bca9bf8fd93c"
+    }
+  ],
+  "full_recovered_source_manifest": {
+    "path": "analysis/work/p22-pack-20261111/final-hum-integration-source-manifest.json",
+    "bytes": 161053,
+    "sha256": "5b6bc5aebb242f031e302b98519f86fea2f5c68bb51cfef9e039b9131bd6c013"
+  },
+  "recovered_difference_from_hum": " recovered/game/human_score_presentation.h     | 17 +++++++++++++++--\n recovered/game/human_world_loading_services.h | 10 +++-------\n recovered/game/mission_script_visibility.h    | 16 +++++++++++++---\n 3 files changed, 31 insertions(+), 12 deletions(-)\n",
+  "verification": {
+    "native_sanitizers": "PASS final combined run: actual codecs/grammars/frame streams/FIFOs/registered GameLoadingModules/module13/HumanPacketReceiver boundaries100 lifetimes; actual rank stats/typed record3C label/formatter/HUD owned messages with callback destruction100 lifetimes. ASan/UBSan/leaks. Explicit Human/effect/scene/engine endpoints are doubles; retained recent HUM per-family receipts cover actual effect bodies.",
+    "native_primary_audit_sources": [
+      "/tmp/p22-pack-final/rank.cpp",
+      "/tmp/p22-pack-final/packet.cpp"
+    ],
+    "native_primary_log": "analysis/work/p22-pack-20261111/final-hum-integration-rank-run.log",
+    "native_compiler_flags": "-std=c++17 -g -O1 -fsanitize=address,undefined -fno-omit-frame-pointer -Wall -Wextra -Werror -Wno-misleading-indentation; local sanitizer runtime",
+    "concrete_i386": "PASS final static FULL LINK actual Human packet/common/World and module13 authority/presentation/module16/Scene2 activation/deactivation; -Wall -Wextra -Wpedantic -Werror, no warning suppressions; never executed.",
+    "launcher_probe": "PASS final make -j1 application-launch startup-probe; never executed.",
+    "tracker": "PASS existing27 tests",
+    "ledger": "PASS frozen inventory/status/evidence/README; diff checks"
+  },
+  "totals": {
+    "complete": 34,
+    "partial": 3472,
+    "client_partial": 3467,
+    "engine_partial": 5,
+    "pack_rows_preserved_absent_from_hum": 35,
+    "overlapping_rows_reconciled": 19,
+    "new_merge_credit": 0
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-pack-20261111/final-hum-integration-application.log",
+      "bytes": 833,
+      "sha256": "23fb166d97e26065b0f33cc71ef672ce57beda15328f77bc48175a33be7937b0"
+    },
+    {
+      "path": "analysis/work/p22-pack-20261111/final-hum-integration-concrete.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-pack-20261111/final-hum-integration-ledger-check.log",
+      "bytes": 437,
+      "sha256": "903c7c4812ddf4f8bbe1c0cb69d22406cccc0cca8f0979ef00549839c2f46218"
+    },
+    {
+      "path": "analysis/work/p22-pack-20261111/final-hum-integration-ledger-render.log",
+      "bytes": 380,
+      "sha256": "92d075f72a0f0eb22b2372c5f99ae13ddc09f6acdfecd76eb92705be6cfb55bd"
+    },
+    {
+      "path": "analysis/work/p22-pack-20261111/final-hum-integration-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-pack-20261111/final-hum-integration-native-run.log",
+      "bytes": 158,
+      "sha256": "901ced575cb20e33fb6346371f522632b5b9c6c56c13e8d80f391725c3acedcc"
+    },
+    {
+      "path": "analysis/work/p22-pack-20261111/final-hum-integration-rank-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-pack-20261111/final-hum-integration-rank-run.log",
+      "bytes": 316,
+      "sha256": "642a53923513137f46b8c3cce61f6824a21ade27952b27a603cb13a7b3b501b5"
+    },
+    {
+      "path": "analysis/work/p22-pack-20261111/final-hum-integration-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 3963392,
+      "sha256": "b2f019104baf5f859b517e42b7c982c083904edbff1e2e6bd6b8a6668f5aaedf"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1165312,
+      "sha256": "f2070dbae1bf344730abb3153170b7c5f7d242e30ea80f7ae02d2228eedfa7d0"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "/tmp/p22-pack-final/concrete.cpp",
+      "bytes": 933,
+      "sha256": "666eff661b18b2f90cbad3a0efa1323c0f526149090c418436e77f5ab0ff3786"
+    },
+    {
+      "path": "/tmp/p22-pack-final/concrete.exe",
+      "bytes": 4358144,
+      "sha256": "4c3739e4fe6f7c1353d0d587cc12db21bd358a6b70dda68d1a3d03f39d90a063"
+    },
+    {
+      "path": "/tmp/p22-pack-final/packet",
+      "bytes": 2824848,
+      "sha256": "b0063e81e4f7da23d1d6c562a79021275ac1b346c3bb8df93d056bd95a2d5ebb"
+    },
+    {
+      "path": "/tmp/p22-pack-final/packet.cpp",
+      "bytes": 15933,
+      "sha256": "fc713aa38c26d6081c55bf0587dc6f3feeb878f57cf998f2d2374bdf6e9e9695"
+    },
+    {
+      "path": "/tmp/p22-pack-final/rank",
+      "bytes": 4483392,
+      "sha256": "6cabcb6641d78b72d309c38bfde78180dcb0fe78b461a7aedf6b33ca044d0e87"
+    },
+    {
+      "path": "/tmp/p22-pack-final/rank.cpp",
+      "bytes": 5654,
+      "sha256": "8d9942924ffcfbef7227ab504ea4140726a2811489f62625c7b272bb951bcddc"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "original_or_windows_code_executed": false
+}

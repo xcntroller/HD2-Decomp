@@ -2,6 +2,9 @@
 #define HD2_GAME_HUMAN_SCRIPT_AI_STATE_LOADING_H
 
 #include "game/human_ai_state_loading.h"
+#include "game/human_script_formation_output.h"
+#include "game/human_script_timed_output.h"
+#include "game/human_script_attachment_output.h"
 #include "game/human_ai_frame_metrics.h"
 
 namespace hd2::game {
@@ -14,6 +17,7 @@ class HumanScriptAIStateLoading : public HumanAIStateLoading<Frames,Human,Inputs
 public:
     using AI=HumanAIStateLoading<Frames,Human,Inputs>;
     using Base=typename AI::Base;using Context=typename Contexts::Context;
+    using Actor=SceneActor<Frames>;using Frame=typename Frames::Frame;
     HumanScriptAIStateLoading(Frames& frames,Inputs& inputs,MissionTableSet& second,
             HumanInputCallbacks& callbacks,Contexts& contexts)
         :AI(frames,inputs,second,callbacks,5),contexts_(contexts) {
@@ -32,14 +36,17 @@ public:
         this->words().set(0x50,this->words().template get<std::uint32_t>(0x50)&0x7fffffffu);
         state_.set(0x1c0,std::uint32_t{0});state_.set(0x1d4,std::int32_t{-1});
         for(auto offset:{0x1d2u,0x18cu,0x1bdu})state_.set(offset,std::uint8_t{0});
-        for(auto offset:{0x1c8u,0x1c4u,0x1e0u,0x1ccu})state_.set(offset,std::uint32_t{0});
+        for(auto offset:{0x1c8u,0x1c4u,0x1ccu})state_.set(offset,std::uint32_t{0});
+        attack_actor_=nullptr;attack_frame_=Frame{};
+        turn_frame_=Frame{};
+        formation_=nullptr; //Native1E0 typed borrower, never a pointer in DWORD storage.
         state_.set(0x1d0,std::uint8_t{0});state_.set(0x150,std::uint8_t{0});
         return context_!=nullptr; //Native factory ignores this return; absence is not a successful script bind.
     }
-    void close_loading(){AI::close_loading();this->clear_human_reference();alarm_target_=nullptr;} //0058D8E0.
+    void close_loading(){AI::close_loading();this->clear_human_reference();alarm_target_=nullptr;attack_actor_=nullptr;attack_frame_=Frame{};turn_frame_=Frame{};} //0058D8E0.
     template<class World,class Runtime>void advance_script_presentation(std::uint32_t elapsed,World& world,Runtime& runtime){ //0058E1C0.
         if(!(this->words().template get<std::uint32_t>(0x50)&0x800u)){
-            if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(runtime);
+            if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(world);
             if((world.mode_flags()&7u)!=7u)runtime.advance_network_ai_presentation(*this,elapsed); //0056F710.
         }
         this->process_second_frame_commands();
@@ -61,10 +68,10 @@ public:
             auto& resources=this->resources();
             resources.reconcile_direction_flags();
             if(!this->human()->field160){
-                const bool formation=state_.template get<std::uint32_t>(0x1e0)&&runtime.advance_script_formation_path(*this);
+                const bool formation=formation_&&runtime.advance_script_formation_path(*this);
                 auto& query=resources.query().state;
                 const auto before=query.template get<std::uint32_t>(0x50);
-                this->advance_frame_query(control,world,elapsed);
+                this->advance_frame_query(control,world,elapsed,runtime);
                 if((before&0x10000000u)&&!(query.template get<std::uint32_t>(0x50)&0x10000000u)){
                     if(!formation){
                         if(context_)contexts_.finish_human_script_navigation(*context_,state_.template get<std::int32_t>(0x1d8));
@@ -72,21 +79,22 @@ public:
                     }
                     if(alarm_enabled())state_.set(0x19c,0x80u); //00591ED0.
                 }
-            }else if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(runtime);
-            if(alarm_enabled())this->advance_frame_aim(world);
+            }else if(state_.template get<std::uint8_t>(0x1d0))update_script_attachment(world);
+            if(alarm_enabled())this->advance_frame_aim(elapsed,world);
             this->advance_frame_direction(elapsed,control);
             const auto alarm_posture=state_.template get<std::uint32_t>(0x1a4);
             const auto posture=alarm_enabled()&&alarm_posture?alarm_posture:state_.template get<std::uint32_t>(0x1b0);
             if(!(posture&flags()&7u))this->request_navigation_posture(posture&7u,control,world.mode_flags());
-            if(this->human()->field160&&resources.path().state().template get<std::uint32_t>(0x74))
-                runtime.advance_script_vehicle_path(*this,elapsed); //00578770→00578790, actual path+74 gate.
-            if(state_.template get<std::uint32_t>(0x1c0))runtime.advance_script_timed_action(*this,elapsed); //0058E500.
+            if(this->human()->field160&&resources.path().vehicle())
+                world.advance_script_vehicle_path(*this,elapsed); //00578770→00578790, actual path+74 gate.
+            if(state_.template get<std::uint32_t>(0x1c0))advance_script_timed_action(elapsed,world); //0058E500.
             this->apply_frame_movement(control);
             this->apply_frame_items(control,world,runtime,elapsed,this->words().template get<std::uint8_t>(0xb4));
         }
         this->process_second_frame_commands();
     }
     void sight_enemy_acquired(Human& actor)override{this->emit_sight(actor,0);interrupt(actor,0x20);} //00590060.
+    void damage_interrupt(Human& actor){interrupt(actor,0x40);} //00590400, after the shared AI damage receiver.
     void sight_dead_acquired(Human& actor)override{this->emit_sight(actor,2);interrupt(actor,0x200);} //0058FFE0.
     using AI::sight_enemy_lost;
     Context* context()const{return context_;}
@@ -141,15 +149,33 @@ public:
         return state_.template get<std::uint32_t>(offset);
     }
     auto& state(){return state_;}const auto& state()const{return state_;}
+    Actor* script_attack_actor()const{return attack_actor_;}
+    Frame script_attack_frame()const{return attack_frame_;}
+    Frame script_turn_frame()const{return turn_frame_;}
+    void publish_script_turn_frame(Frame frame){turn_frame_=frame;}
+    template<class World>void turn_at_frame(Frame frame,World& world){turn_human_script_at_frame(*this,frame,this->state_frames(),world);}
+    template<class World>void advance_attachment(World& world){advance_human_script_attachment(*this,this->state_frames(),world);}
+    void publish_script_attack_actor(Actor* actor){attack_actor_=actor;}
+    void publish_script_attack_frame(Frame frame){attack_frame_=frame;}
+    template<class World>void request_actor_attack(Actor* actor,std::uint32_t duration,bool ill_fire,std::int32_t pc,World& world){request_human_script_actor_attack(*this,actor,duration,ill_fire,pc,world);}
+    template<class World>void request_frame_attack(Frame frame,std::uint32_t duration,bool ill_fire,std::int32_t pc,World& world){request_human_script_frame_attack(*this,frame,duration,ill_fire,pc,world);}
+    template<class World>void advance_script_timed_action(std::uint32_t elapsed,World& world){advance_human_script_timed_attack(*this,elapsed,world);}
+    void finish_script_attack_context(std::int32_t pc){if(context_)contexts_.finish_human_script_navigation(*context_,pc);} //00416D70, same existing PC-match receiver.
+    void finish_script_vehicle_context(std::int32_t pc){auto* human=this->human();if(!human)throw std::logic_error("Vehicle completion lost actual Human");if(auto* context=contexts_.human_script_context(*human))contexts_.finish_human_script_navigation(*context,pc);} //00416D90, actual PC-match advance.
+    using Formation=std::remove_reference_t<decltype(*std::declval<Human&>().formation)>;
+    Formation* script_formation()const{return formation_;}
+    void script_formation(Formation* formation){ //0058D900, actual producer004603C0 / retirement00460850.
+        bind_human_script_formation(*this,formation_,formation,[&](std::int32_t pc){
+            if(context_)contexts_.finish_human_script_navigation(*context_,pc);
+        });
+    }
 private:
+    Formation* formation_=nullptr;
+    Actor* attack_actor_=nullptr;Frame attack_frame_{}; //Native1C4/1C8 loans, retired before Scene/frame destruction.
+    Frame turn_frame_{}; //Native1CC, actual TurnAt producer; no DWORD pointer.
     bool alarm_enabled()const{return state_.template get<std::uint8_t>(0x198)!=0;}
     template<class Runtime>void update_script_attachment(Runtime& runtime){ //0058DB20.
-        const auto* attachment=this->human()->field160;
-        if(attachment){
-            const auto kind=attachment->base().type();
-            if(kind==4||kind==0x14||kind==0x15||kind==0x22){runtime.update_script_attachment(*this);return;}
-        }
-        state_.set(0x1d0,std::uint8_t{0});
+        advance_attachment(runtime);
     }
     template<class World>void update_script_follow_gate(World& world){
         if(!state_.template get<std::uint8_t>(0x18c))return;
