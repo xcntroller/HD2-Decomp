@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_CAR_LOADING_ACTIVATION_H
 #define HD2_GAME_CAR_LOADING_ACTIVATION_H
 
+#include "game/car_drive_controller.h"
 #include "game/car_actor_features.h"
 #include "game/car_destruction.h"
 #include "game/car_physical_reset.h"
@@ -72,7 +73,7 @@ public:
         if(actor_.flag24a1){if(!ready_)throw std::logic_error("Retire partial Car activation before retry");return;}
         actor_.flag24a1=true;ready_=false;actor_.driver24ac=nullptr;
         body_collision_.reset();receivers_.reset();view_.reset();initial_.reset();
-        initial_.emplace(frames_,*actor_.geometry,collisions_,resources_.sound_receivers,resources_.light_receivers,resources_.particles);
+        initial_.emplace(frames_,*actor_.geometry,collisions_,resources_.sound_receivers,resources_.light_receivers,resources_.particles,actor_.driver_enabled2321);
         initial_->initialize(&actor_,resources_.tyres,*actor_.callbacks);
         view_.emplace(initial_->body(),initial_->wheels,initial_->drive,initial_->solver,initial_->health,initial_->finalizer.dirty_flags);
         initial_->configure_offline_actor_loading();
@@ -261,8 +262,14 @@ private:
         for(auto occupant:actor_.occupants)if(occupant)throw std::runtime_error("Car occupied update requires its actual Human attachment owner");
     }
     static Vector position(const typename Frames::Matrix& matrix){return {{matrix[12],matrix[13],matrix[14],matrix[15]}};}
-    void update_core(std::uint32_t elapsed){update_car_cold(frames_,actor_.geometry->model(),actor_.geometry->physics(),resources_.tyres,initial_->body(),initial_->wheels,
-        initial_->drive,initial_->solver,initial_->steering,initial_->controller(),queries_,*receivers_,initial_->update_hold,elapsed,initial_->wheel_layers,initial_->wheel_flags,*body_collision_);}
+    void update_core(std::uint32_t elapsed){
+        update_car_controller(frames_,actor_.geometry->model(),actor_.geometry->physics(),*initial_,*receivers_,elapsed,
+            [&](float delta,const std::array<float,3>& drag,float first,float second,float first_input,float second_input){
+                car_cold_solver_step(frames_,actor_.geometry->model(),actor_.geometry->physics(),resources_.tyres,
+                    initial_->body(),initial_->wheels,initial_->drive,initial_->solver,queries_,*receivers_,delta,drag,
+                    first,second,first_input,second_input,initial_->wheel_layers,initial_->wheel_flags,*body_collision_);
+            });
+    }
     unsigned finalize_core(std::uint32_t elapsed){
         CarColdFinalizerContext<Frames,CarGeometry<Frames>,Collisions,Queries,BodyCollision,CarSkidModels<Frames>,Random> context{
             frames_,*actor_.geometry,initial_->body(),initial_->wheels,initial_->drive,initial_->solver,initial_->steering,initial_->controller(),

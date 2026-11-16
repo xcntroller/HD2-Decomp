@@ -9,7 +9,7 @@ namespace hd2::game {
 //coefficients. The containing solver supplies current body speed/velocity and
 //forward direction before these functions run. No standalone simulation here.
 struct CarDrivetrainState {
-    float engine_speed=0,engine_load=0,clutch=1,clutch_target=1,torque_amount=0;
+    float engine_speed=0,engine_load=0,clutch=1,clutch_target=1,torque_amount=0; //78C is reset here too.
     float governor=1000,health=1,transfer=1,throttle=0,second_throttle=0,brake=0;
     float first_filtered=1,second_filtered=1; //004EA780's508/50C; distinct from85C/860 throttle outputs.
     std::int32_t gear=1,requested_gear=1;
@@ -43,13 +43,14 @@ inline long double car_engine_torque(const CarPhysicsScalars& fields,float speed
 
 //0050D2C0, including the genuine engine-off return. Body speed/velocity are
 //current solver outputs, not constructor defaults or actor-local estimates.
+//22BF is the completed engine transition;22A2 can already be true during start.
 inline long double car_drive_force(const CarPhysics& physics,CarDrivetrainState& state,
-        float elapsed,float throttle,float speed,const std::array<float,4>& velocity){
+        float elapsed,float throttle,float speed,const std::array<float,4>& velocity,bool engine_transition){
     const auto get=[&](unsigned offset){return physics.scalars().get(offset);};
     if(throttle<get(0x524)&&state.engine_speed<get(0x914)+2.f)throttle=get(0x524);
     if(get(0x221c)<state.engine_speed||state.governor<speed)throttle=0;
     state.body_flags&=0xfffffffbu;
-    if(!state.running){
+    if(!engine_transition){
         const float square=static_cast<float>((static_cast<long double>(velocity[2])*velocity[2]+static_cast<long double>(velocity[1])*velocity[1])+static_cast<long double>(velocity[0])*velocity[0]);
         std::int32_t bits;std::memcpy(&bits,&square,4);
         if(bits>0x322bcc76&&(std::abs(square-1.f)<9.99999993922529e-09f||std::sqrt(static_cast<long double>(square))>=.5f))return 0;

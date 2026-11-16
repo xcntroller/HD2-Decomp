@@ -11,7 +11,7 @@ template<class Frames>struct CarColdSolverState {
     using Vector=typename Frames::Vector;
     CarSubstepState<Frames> substeps;
     CarWheelQueryState queries;
-    Vector external_force{},external_torque{},published_net{}; //004EA780's270/280,0050DE60's20.
+    Vector external_force{},external_torque{},published_net{},drive_force{}; //004EA780's270/280 and010/020;0050DE60 clears010/020 before traction.
     float speed=0,rolling_speed=0,speed_angle=0,additional_grip=0;
     std::int32_t stable_milliseconds=0;
     bool mass_changed=false,driven_contact=false,wheel_spin=false;
@@ -32,6 +32,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void car_col
     if(drive.running||!(drive.body_flags&0x1000000u)||first_drive!=0||second_drive!=0)
         throw std::runtime_error("Car loading solver requires actual engine-off drive outputs");
     ++state.substeps.index;
+    for(unsigned a=0;a!=3;++a){state.published_net[a]=0;state.drive_force[a]=0;}
     (void)prepare_car_wheel_traction(frames,wheels,tyres,body.pose().up,state.additional_grip);
     const auto wheel_forces=car_cold_wheel_forces(frames,wheels,tyres,physics,drive,state.speed,body.pose().centre);
     state.driven_contact=wheel_forces.driven_contact;if(wheel_forces.clear_wheel_spin)state.wheel_spin=false;

@@ -11,14 +11,17 @@ template<class Frames>struct CarSettlingControllerState {
     Vector previous_velocity{},position_checkpoint{};
     float previous_engine_speed=0,previous_speed=0,previous_rolling_speed=0;
     float desired_clutch=1,previous_steering=0;
-    bool controlled=false,requests_update=false,frame_simulated=false; //2291/229E/229F.
+    float previous_first_input=0,previous_second_input=0; //714/718.
+    bool& controlled; //2291 is Actor2321, borrowed from the SAME seat/input owner.
+    bool requests_update=false,frame_simulated=false,has_strip_connections=false; //229E/229F/228A.
     std::uint32_t inactive_milliseconds=0;
-    explicit CarSettlingControllerState(const CarBodyIntegration<Frames>& body):position_checkpoint(body.pose().position){}
+    CarSettlingControllerState(const CarBodyIntegration<Frames>& body,bool& enabled,bool strips)
+        :position_checkpoint(body.initial_position()),controlled(enabled),has_strip_connections(strips){controlled=false;} //004EA780.
 };
 
 //00509AA0's actual engine-off/unoccupied branch, including ordinary sleeping
 //and held updates after0050B180 clears22C0. Running, occupied and shift-requested
-//control requires the wider original controller. BODYCOL uses the SAME owner
+//control uses update_car_controller. BODYCOL uses the SAME owner
 //passed by the containing Car, even during settling when its10 gate is clear.
 template<class Frames,class Queries,class Receivers,class Collision>void update_car_cold(Frames& frames,
         typename Frames::Frame model,const CarPhysics& physics,const CarTyres& tyres,
@@ -48,8 +51,8 @@ template<class Frames,class Queries,class Receivers,class Collision>void update_
     drive.body_flags&=~0x1000000u;drive.first_filtered=drive.second_filtered=0;
     drive.throttle=drive.second_throttle=0;
     float first_drive=0,second_drive=0;
-    if(kind==0||kind==2){const auto force=car_drive_force(physics,drive,elapsed,0,state.speed,velocity);first_drive=second_drive=static_cast<float>(force*.5f*drive.transfer);}
-    else if(kind==1){first_drive=static_cast<float>(car_drive_force(physics,drive,elapsed,0,state.speed,velocity)*.5f*drive.transfer);second_drive=static_cast<float>(car_drive_force(physics,drive,elapsed,0,state.speed,velocity)*.5f*drive.transfer);}
+    if(kind==0||kind==2){const auto force=car_drive_force(physics,drive,elapsed,0,state.speed,velocity,false);first_drive=second_drive=static_cast<float>(force*.5f*drive.transfer);}
+    else if(kind==1){first_drive=static_cast<float>(car_drive_force(physics,drive,elapsed,0,state.speed,velocity,false)*.5f*drive.transfer);second_drive=static_cast<float>(car_drive_force(physics,drive,elapsed,0,state.speed,velocity,false)*.5f*drive.transfer);}
     const auto ticks=static_cast<std::uint32_t>(state.stable_milliseconds)+milliseconds;std::memcpy(&state.stable_milliseconds,&ticks,4);
     if(std::abs(static_cast<long double>(steering.current)-controller.previous_steering)>static_cast<float>(.03500000014901161)){
         controller.previous_steering=steering.current;controller.inactive_milliseconds=0;
@@ -110,15 +113,15 @@ template<class Frames,class Queries,class Receivers,class Collision>void update_
         bool all=true;for(auto n=wheels.size();n;){const auto f=wheels[--n].flags;if((!(f&8u)&&!(f&0x400u))||(f&0x10u)){all=false;break;}}
         if(all)drive.body_flags&=~8u;
     }
-    long double moved=0;for(unsigned axis=0;axis!=3;++axis){const float difference=body.pose().position[axis]-controller.position_checkpoint[axis];moved+=static_cast<long double>(difference)*difference;}
-    if(moved>=.02250000089406967f||(drive.body_flags&0x20000000u)){controller.position_checkpoint=body.pose().position;controller.inactive_milliseconds=0;}
+    long double moved=0;for(unsigned axis=0;axis!=3;++axis){const float difference=body.initial_position()[axis]-controller.position_checkpoint[axis];moved+=static_cast<long double>(difference)*difference;}
+    if(moved>=.02250000089406967f||(drive.body_flags&0x20000000u)){controller.position_checkpoint=body.initial_position();controller.inactive_milliseconds=0;}
     else controller.inactive_milliseconds+=milliseconds;
     if(!(drive.body_flags&2u))state.stable_milliseconds=std::min(state.stable_milliseconds,std::int32_t{0});
     if(state.stable_milliseconds>1000||controller.inactive_milliseconds>4000)drive.body_flags&=~1u;
 }
 
 //004F67B0's restricted entry is retained for callers which have not yet bound
-//the ordinary BODYCOL owner. The real activation must use update_car_cold above.
+//the ordinary BODYCOL owner. Activation now uses update_car_controller.
 template<class Frames,class Queries,class Receivers>void update_car_settling(Frames& frames,
         typename Frames::Frame model,const CarPhysics& physics,const CarTyres& tyres,
         CarBodyIntegration<Frames>& body,std::vector<CarWheelRuntime<Frames>>& wheels,

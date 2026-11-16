@@ -101,7 +101,7 @@ void reset_car_physics(Frames& frames,Geometry& geometry,State& state,float spee
         state.body().motion().direction=direction;state.solver.speed=std::abs(speed);
     }
     engine(speed!=0); //004F2530(speed!=0,true), BEFORE gear/wheel/health reset.
-    state.drive.gear=state.drive.requested_gear=1;state.reset_fields.field78c=0;state.brake_amount=0;
+    state.drive.gear=state.drive.requested_gear=1;state.drive.torque_amount=0;state.brake_amount=0;
     state.solver.substeps.field724=0;state.drive.clutch=1;state.steering.current=0;state.drive.brake=0;
     state.health.destroyed=false;state.drive.throttle=state.drive.second_throttle=0;state.steering.requested=0;
     state.reset_fields.signal2294=state.reset_fields.signal2295=false;state.reset_fields.field780=0;state.steering.difference=0;
@@ -119,7 +119,7 @@ void reset_car_physics(Frames& frames,Geometry& geometry,State& state,float spee
             static_cast<float>(static_cast<long double>(wheel.vectors.at(0x40)[a])-static_cast<long double>(wheel.scalars.get(0x1e4))*up[a]);previous[a]=anchor[a]-up[a];}
         wheel.vectors[0x50]=anchor;wheel.vectors[0x60]=previous;
     }
-    state.controller().desired_clutch=state.drive.clutch_target=1;state.drive.transmission&=0xffffffe0u;state.reset_fields.fieldf68=0;
+    state.controller().desired_clutch=state.drive.clutch_target=1;state.drive.transmission&=0xffffffe0u;state.solver.speed_angle=0;
     if(restore){reset_car_health(frames,geometry.physics(),state.drive,state.health,state.wheels,geometry.lighting(),state.paired_flags);restore_parts();}
     state.finalizer.air_requested=false; //228E.
     for(auto n=geometry.lighting().lights().size();n;){const auto& light=geometry.lighting().lights()[--n];
