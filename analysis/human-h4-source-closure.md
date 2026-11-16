@@ -72,8 +72,8 @@ beyond the selected ASCII name behavior remain exclusions, not complete credit.
 - H6: held/fired item producers and actual00546DC0 Player medicine; integrate its
   grenade publication→this0045EAB0→inventory retirement in order. H6 worktree stays
   separate; its unfinished shell/capsule/grenade sources were not imported here.
-- H8/Scene2: actual type15 actor91 factory/lifetime for0060C130, Aircraft20 and
-  type34 selected attachment/formation owners. Existing guards remain; none was
+- H8/Scene2: [Photo-place type15 factory/lifetime and0060C130](human-h8-photo-place-source.md)
+  are now source-bound. Aircraft20 and type34 selected attachment/formation owners remain required. Existing guards remain; none was
   replaced with writes to unrelated actor layouts.
 - H8/FRAME/OWN: assemble the complete Runtime frame facade, including Script alarm
   decisions00591550/non7 presentation0056F710, full occupied Car frame, packet/input

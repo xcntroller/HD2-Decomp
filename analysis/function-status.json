@@ -19552,7 +19552,9 @@
         "recovered/game/scene_actor_registry.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h8-photo-place-source.md",
+        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
       ]
     },
     {
@@ -23882,7 +23884,9 @@
       "evidence": [
         "recovered/game/actor_material.h",
         "analysis/animation-supply-loading.md",
-        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json",
+        "analysis/human-h8-photo-place-source.md",
+        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
       ]
     },
     {
@@ -30956,7 +30960,9 @@
         "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json",
         "recovered/game/human_action_completion_effects.h",
         "analysis/human-h6-source-closure.md",
-        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json",
+        "analysis/human-h8-photo-place-source.md",
+        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
       ]
     },
     {
@@ -46880,6 +46886,62 @@
         "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json",
         "analysis/human-h8-d11-compatibility.md",
         "analysis/checkpoints/p2.2-human-h8-d11-compatibility-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060b6d0",
+      "status": "partial",
+      "coverage": "Actual type15 PhotoPlace constructor: common actor15, zero collision descriptor, flags90/91 false, caption94=-1 and initial localized name through Scene2 factory ownership.",
+      "limitations": "Source-only typed/STL/RAII ownership and ABI adaptation. Native3168 checks/128 lifetimes pass ASan/UBSan/leak detection with actual Scene2 registry/common actor/collision buckets/PhotoPlace/action-completion source and explicit frame/math/bounds/localization/Human-state endpoints. Strict actual nested host i386 full link and launcher/probe compile/link only; no full World/application/desktop, original object/allocator/SEH/engine parity or complete promotion.",
+      "evidence": [
+        "recovered/game/photo_place_scene_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/human-h8-photo-place-source.md",
+        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060b820",
+      "status": "partial",
+      "coverage": "Actual PhotoPlace common-pass activation, first-pass91/90 publication before caption/bounds/collision, native flags40/layer800000, live world/owned inverse, transformed centre and scaled radius before SAME bucket insertion.",
+      "limitations": "Source-only typed/STL/RAII ownership and ABI adaptation. Native3168 checks/128 lifetimes pass ASan/UBSan/leak detection with actual Scene2 registry/common actor/collision buckets/PhotoPlace/action-completion source and explicit frame/math/bounds/localization/Human-state endpoints. Strict actual nested host i386 full link and launcher/probe compile/link only; no full World/application/desktop, original object/allocator/SEH/engine parity or complete promotion.",
+      "evidence": [
+        "recovered/game/photo_place_scene_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/human-h8-photo-place-source.md",
+        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060bb50",
+      "status": "partial",
+      "coverage": "Actual PhotoPlace90 clear, SAME descriptor removal before common deactivation, including source failure cleanup and re-entry over actual Scene2 ownership.",
+      "limitations": "Source-only typed/STL/RAII ownership and ABI adaptation. Native3168 checks/128 lifetimes pass ASan/UBSan/leak detection with actual Scene2 registry/common actor/collision buckets/PhotoPlace/action-completion source and explicit frame/math/bounds/localization/Human-state endpoints. Strict actual nested host i386 full link and launcher/probe compile/link only; no full World/application/desktop, original object/allocator/SEH/engine parity or complete promotion.",
+      "evidence": [
+        "recovered/game/photo_place_scene_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/human-h8-photo-place-source.md",
+        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060c130",
+      "status": "partial",
+      "coverage": "Actual Human action3 PhotoPlace receiver: target ECX byte91=1, pushed Human unused; same typed Scene2 actor, effect before action/target cleanup.",
+      "limitations": "Source-only typed/STL/RAII ownership and ABI adaptation. Native3168 checks/128 lifetimes pass ASan/UBSan/leak detection with actual Scene2 registry/common actor/collision buckets/PhotoPlace/action-completion source and explicit frame/math/bounds/localization/Human-state endpoints. Strict actual nested host i386 full link and launcher/probe compile/link only; no full World/application/desktop, original object/allocator/SEH/engine parity or complete promotion.",
+      "evidence": [
+        "recovered/game/photo_place_scene_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/human-h8-photo-place-source.md",
+        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
       ]
     }
   ]

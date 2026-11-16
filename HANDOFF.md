@@ -45,16 +45,30 @@ pass; tracker check/27 tests pass. Temporary audits fingerprinted and removed.
 D11 is source-closed under approved compatibility policy; it no longer blocks
 H8.4. Counts unchanged34 complete/3467 partial; no frozen/complete/engine credit.
 
-NEXT H8.4: complete reached actor/material receivers. Type15 action3 completion
-0060C130 is11-byte MOV[ECX+91],1/RET; the source guard requires the actual
-Scene2 type15 factory/lifetime. Existing export indexed in h8-4-type15-index.txt;
-research entire actor construction/loading/activation/frame boundary before
-implementation, rather than writing91 on a fabricated or unrelated actor.
-Dog D4/material and Aircraft/type34 borrowers remain actual dependencies.
+Latest: [PhotoPlace/type15 source](analysis/human-h8-photo-place-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json).
+Scene2 factory now owns actual type15/PhotoPlace. Constructor/activation collision
+flags40/layer800000, real bounds/scale/world/inverse, properties94, raw snapshot91,
+material fallback and retirement are source-bound. Human action3 calls actual
+0060C130 on targetECX; pushed Human is unused, then action cleanup. Frame/packet
+leaves are native RET4. Native ASan/UBSan/leak PASS3168 checks /128 lifetimes,
+actual registry/common actor/buckets/action helper with explicit engine/Human-view
+endpoints. Strict actual host i386 and launcher/probe pass; tracker check/27 tests
+pass; temporary audits fingerprinted/removed. Four frozen bodies gain partial
+entries; counts34 complete/3471 partial (3466 client+5 engine), frozen18783.
+No complete promotion, absent-leaf or delegated engine credit.
+
+NEXT H8.4: remaining actor material callbacks, then Dog/Aircraft/type34 and
+selected Car/entry borrowers. Material vtables are mapped and indexed in
+h8-4-actor-material-index.txt; export in h8-4-actor-material-originals is pending
+inspection. Existing DocumentPlace material0060E550 was already exported.
+Do not use the initial guessed DocumentPlace vtable00813580: constructor proves
+008135E0; the local material map was corrected. Car constructor is004D0B60.
+Research the complete reached material dispatch before replacing its guard.
 
 D5 non-Car9A8/4A0 in004D3D10 remains a selected non7 unowned-contact obligation;
 offline7 is owned unconditionally at004D3EF0/004DE800. Entry D6–D9, reached
-Dog/type15/Aircraft/type34/material owners, full occupied Human/Player/mounted
+Dog/Aircraft/type34/material owners, full occupied Human/Player/mounted
 composition, H8.2/H8.3 and OWN/FRAME/application/desktop remain required in scope.
 Plane-cache/absent coefficient/debug gates remain explicit. Continue independent
 required paths when lawful; stop at a concrete blocker rather than invent success.

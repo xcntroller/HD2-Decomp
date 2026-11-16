@@ -33,7 +33,8 @@ checks are not application delivery. Use the research index before exports.
   damage, visual and contact frames, including selected initial100 calls.
 - [ ] H8.4 — Resolve reached actor/Car/entry dependencies against current
   OWN/FRAME interfaces: existing D4/D5/D6–D9/D11 remain required when selected;
-  absent Dog/type15/Aircraft/type34/material owners cannot report success.
+  [Photo-place type15](human-h8-photo-place-source.md) now supplies action3 completion;
+  absent Dog/Aircraft/type34/material owners cannot report success.
   [Offline Car authority checkpoint](human-h8-car-authority-source.md) binds mounted
   frames, unstable-seat exit requests and engine hearing. [Occupied offline presentation](human-h8-car-occupied-source.md) removes the empty-seat guard; full D5 remains open.
   [Gear/clutch dependencies](human-h8-car-gear-source.md) add actual gear request,
