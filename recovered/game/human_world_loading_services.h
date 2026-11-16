@@ -14,6 +14,7 @@
 #include "game/car_scene_actor.h"
 #include "game/car_seat_frame.h"
 #include "game/human_ai_order_marker.h"
+#include "game/human_active_ai_commands.h"
 #include "game/first_person_human_items.h"
 #include "game/human_player_item_notification.h"
 #include "game/human_player_shot_direction.h"
@@ -110,8 +111,64 @@ public:
     std::uint32_t game_frame_serial()const{return dependencies().session.words.template get<std::uint32_t>(0x2c);}
     auto& human_ai_event_pool(){return dependencies().startup.human_ai_event_pool();}
     auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
-    template<class State,class Actor>void dispatch_active_pending_command(State&,std::uint32_t,Actor*,std::uint32_t){
-        throw std::runtime_error("Active kind3 order requires actual Players00458E50 filtering and command producers");
+    template<class State,class Actor>void dispatch_active_pending_command(State& state,std::uint32_t action,Actor* target,std::uint32_t secondary){
+        auto* human=state.human();if(!human)throw std::logic_error("Active pending command lost explicit Human44");
+        std::vector<decltype(human)> selected{human}; //00458E50's explicit-Human branch, no group4 lookup.
+        dispatch_active_player_commands(selected,action,target,false,secondary,dependencies().scene.frames(),*this);
+    }
+    template<class Human>auto& active_command_state(Human& human){
+        using Active=typename Dependencies::Composition::StateFactory::Active;
+        auto* state=dynamic_cast<Active*>(human.loading_state);
+        if(!state)throw std::logic_error("Players command requires actual published Active B0");
+        return *state;
+    }
+    template<class Human>void reject_active_command(Human& human){queue_active_ai_speech(active_command_state(human),0x68u,true,300u,false);}
+    template<class Human>bool active_command_has_definition(Human& human,std::uint32_t definition){
+        return bool(find_human_inventory_definition(human,dependencies().world_actors.items(),human_frame_signed_word(definition)));
+    }
+    template<class Actor>std::uint32_t active_command_definition(Actor& actor,std::uint32_t action){
+        using Frames=typename Dependencies::ActorFrames;
+        if(action==16)return 0x3bu;
+        if(action==0||action==1)return human_navigation_door(&actor).properties.field230;
+        if(action==4){
+            auto* place=dynamic_cast<ExplosivePlaceSceneActor<Frames>*>(&actor);
+            if(!place)throw std::runtime_error("Active command4 selector requires actual targetA0 actor family");
+            return place->properties.fielda0;
+        }
+        auto* place=dynamic_cast<DocumentPlaceSceneActor<Frames>*>(&actor);
+        if(action!=34||!place)throw std::runtime_error("Active command34 selector requires actual DocumentPlace98");
+        return place->properties.item98;
+    }
+    template<class Actor>bool active_command_seat_occupied(Actor& actor,std::int32_t seat){return human_emplacement_claimed(&actor,seat);} //Native virtual78, claim policy.
+    template<class Actor>std::uint32_t active_command_supply_kind(Actor& actor){
+        auto* box=dynamic_cast<SupplyBoxSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!box)throw std::logic_error("Players command type9 requires actual SupplyBox11C");
+        return box->properties.field11c;
+    }
+    template<class Human,class Actor>bool active_command_door_allowed(Human& human,Actor& actor){
+        if(actor.base().type()!=6)return false;
+        auto& door=human_navigation_door(&actor);
+        if(door.properties.flag234&&!door.properties.flag235)return active_command_has_definition(human,door.properties.field230);
+        return true;
+    }
+    template<class Human,class Actor>bool active_command_document_allowed(Human& human,Actor& actor){
+        if(actor.base().type()!=23)return false;
+        auto* place=dynamic_cast<DocumentPlaceSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!place)throw std::logic_error("Active command34 requires actual DocumentPlace owner");
+        return active_command_has_definition(human,place->properties.item98)&&place->state148==0;
+    }
+    template<class State>void active_command_exit_focus(State& state,std::int32_t identity){
+        HumanPacketCommand command;command.kind=3;command.fields.set(8,5u);command.fields.set(0xc,identity);command.fields.set(0x10,0u);
+        (void)composition(*state.human()).state_factory().common_command(state,command); //00587540 immediate DC only; no additional queue copy.
+    }
+    template<class Humans,class Actor>auto select_special_active_command_candidate(Humans&,std::uint32_t,Actor&,std::uint32_t) -> typename Humans::value_type {
+        throw std::runtime_error("Players selection requires specialized0045BD10 item/attachment capability policy");
+    }
+    template<class State,class Actor>void produce_special_active_player_command(State&,std::uint32_t,Actor*,std::uint32_t){
+        throw std::runtime_error("Active command requires its specialized00534460..00535630 task producer");
+    }
+    template<class Humans,class Actor>void produce_active_group_command(Humans&,std::uint32_t,Actor*,bool){
+        throw std::runtime_error("Players command requires actual00457820 group/navigation producer");
     }
     auto& human_ai_order_pool(){return dependencies().startup.human_ai_order_pool();}
     template<class Order>void initialize_human_ai_order_marker(Order& order){

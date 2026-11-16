@@ -46245,6 +46245,214 @@
         "analysis/human-h8-pending-source.md",
         "analysis/checkpoints/p2.2-human-h8-pending-20261116.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00459180",
+      "status": "partial",
+      "coverage": "Actual candidate model reads, x87 ordered squared-distance FLOAT array and native Human-pointer-only selection swaps without moving distance keys.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045bd10",
+      "status": "partial",
+      "coverage": "Selected ordinary target-model/sort-first candidate selection; definition lookups, first-candidate actions, type21 claim and Human focus gates; required specialized policies.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045bb20",
+      "status": "partial",
+      "coverage": "Actual forward Car erase with skipped shifted neighbor, reverse focus/attachment filtering, type9/11C bypass,21/23/32 preservation and selected candidate reduction.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00458e50",
+      "status": "partial",
+      "coverage": "Explicit-Human pending kind3 selection, original first rejection speech, filtering, reverse188 publication and selected task producers; required specialized/group dispatch.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534620",
+      "status": "partial",
+      "coverage": "Target model position before Human cached direction, same Active+1E0 task initialization, typed224 loan and optional actual empty-list notification.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534840",
+      "status": "partial",
+      "coverage": "Action0 target task producer, enabled=false,radius1.5,notify=true on same Active owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534860",
+      "status": "partial",
+      "coverage": "Action1 target task producer, enabled=false,radius1.5,notify=true on same Active owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005348f0",
+      "status": "partial",
+      "coverage": "Action28 target task producer, enabled=false,radius1.5,notify=true on same Active owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005343e0",
+      "status": "partial",
+      "coverage": "Action33 target task producer, enabled=false,radius1.5,notify=true on same Active owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534a00",
+      "status": "partial",
+      "coverage": "Action2 target task then fresh focus gate, actual immediate subtype5 DC and1000 delay only after callback returns.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534f80",
+      "status": "partial",
+      "coverage": "Action14 target task then fresh focus gate, actual immediate subtype5 DC and1000 delay only after callback returns.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534a70",
+      "status": "partial",
+      "coverage": "Action38 target task then fresh focus gate, actual immediate subtype5 DC and1000 delay only after callback returns.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534910",
+      "status": "partial",
+      "coverage": "Action3 per-target-type enabled/radius choice, target task initialization and actual focus exit/delay tail.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534ff0",
+      "status": "partial",
+      "coverage": "Action5 attachment/focus rejection or target task then200/207 byte publication.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534880",
+      "status": "partial",
+      "coverage": "Action27 actual Door type6/234/235/key230 inventory gate, rejected speech or actual target task.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534400",
+      "status": "partial",
+      "coverage": "Action34 actual DocumentPlace23/98 definition-before-state148 gate, rejected speech or actual target task.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-active-command-source.md",
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
     }
   ]
 }

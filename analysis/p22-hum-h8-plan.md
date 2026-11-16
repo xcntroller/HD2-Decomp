@@ -91,7 +91,7 @@ current-action12, not4; native order kind4 remains a different family.
 | Presentation00525DA0, Car camera004D9E10 | Bound/verified |
 | Order-to-action0052A1E0; shared action7/8/12; HUD marker004B9240/9B10/9080 | Bound/verified on actual owners; process order producer is now bound below |
 | Order005825C0/0058C5A0, marker EC/collision,0058D6C0/0058C8E0/00582640, Active list insert/update/remove/reset | Bound/verified source; positive route74 and actual command/Human190 producers remain required |
-|005282E0/00529F60 pending,00528950/00536120 decisions/follow | Pending lifecycle and on-foot move52 bound; kind3/other task/turn/occupied/standalone/follow remain required |
+|005282E0/00529F60 pending,00528950/00536120 decisions/follow | Pending lifecycle and on-foot move52 bound; Selected kind3 production now bound; specialized selection/production, other task/turn/occupied/standalone/follow remain required |
 | Navigation/aim,0052B810 movement,005276E0 decisions,005325C0 output, command retirement/self-treatment | Reuse existing AI cores, complete Active policy and reached commands |
 
 Required later H8 frame dependency exposed by command11: SupplyBox state1
@@ -122,6 +122,22 @@ application integration, preserving active FRAME/OWN worktrees.
 - [x] Bind Active presentation and actual Car seat camera.
 - [x] Recover shared order/action pools, actual HUD/collision marker lifecycle and Active pending-order ownership.
 - [x] Bind pending-order lifecycle and on-foot move52 source path [checkpoint](human-h8-pending-source.md).
-- [ ] Finish kind3 producers, remaining Active decisions/follow and containing authority; then remaining offline receivers.
+- [ ] Finish specialized kind3 producers, remaining Active decisions/follow and containing authority; then remaining offline receivers.
 
 These source checkpoints do not close parent H8.2 or application/desktop delivery.
+
+## Reached kind3 dependencies within H8.2
+
+The [selected command checkpoint](human-h8-active-command-source.md) binds
+explicit-Human00458E50, ordinary0045BB20/0045BD10 selection, native00459180
+pointer-only ordering and selected00534620 task producers. Task production is
+separate from execution and containing authority.
+
+- [x] Selected ordinary kind3 filtering, target tasks, actual DC focus exit,
+  Door/document inventory eligibility and required failure publication prefixes.
+- [ ] Specialized item/attachment/treatment selection and remaining task producers.
+- [ ] Actual00457820 group/navigation production and group4 selector.
+- [ ] Target-task execution/arrival, turn/occupied phases and standalone completion.
+- [ ] Follow00536120 and containing00526550 reached chain.
+
+Keep H8.2 open until all required offline receivers are bound and verified.

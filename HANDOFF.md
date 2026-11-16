@@ -7,32 +7,33 @@ worktrees. No push or original EXE/DLL/Proton/Windows fixture execution. Heavy
 compilation and Ghidra must run sequentially. Source recovery is not desktop
 acceptance; application loading and full H8 remain OPEN.
 
-Latest: [pending/move52 source checkpoint](analysis/human-h8-pending-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-pending-20261116.json). Actual
-005282E0 pending lifecycle and00529F60 setup now use the SAME Active/order pool/
-list/action/path/query/direction owners. Preserve first-slot reread after regroup,
-action-before49 publication, hold-before-retire and two fresh completion model
-reads.00528950 supplies delayed/inactive gates and order-generated on-foot52:
-readiness before query, FLOAT radius comparison, separate later completion.
-Required kind3, other task/target families, occupied movement,201-clear turn and
-standalone completion still fail explicitly. Pending00535C00 prefix has no new
-body credit. Late actor retirement invalidates order/issuer/task borrowers using
-saved base addresses; expired required order targets fail before access.
+Latest: [Active command production](analysis/human-h8-active-command-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-active-command-20261116.json), after
+97c29e9 [pending/move52](analysis/human-h8-pending-source.md). Pending kind3 now
+reaches actual explicit-Human00458E50, selected0045BB20/0045BD10 filtering and
+00534620 target-task producers on SAME published B0/World owners. Preserve
+native pointer-only sorting with FIXED distance slots, forward Car erase's skipped
+shifted neighbor, original first rejection Human, reverse188 publication,
+target-model-before-cached-direction and fresh focus test after notification.
+Selected0/1/2/3/5/14/27/28/33/34/38 producers are bound. Focus exit is immediate
+DC only, not an extra queue copy. Task production does not execute target tasks.
+Specialized item/attachment/treatment selection, remaining producers and
+00457820 group/navigation retain exact required failures.
 
-ASan/UBSan/leak PASS37600 checks across100 lifecycle matrices on actual owner
-kernels with explicit endpoint doubles. Strict actual-host i386 link instantiates
-pending/task plus existing packet path; final launcher/probe build PASS. Windows
-artifacts never run. Temporary audits fingerprinted and removed. Three new
-partials;34 complete/3440 partial (3435 client,5 engine). Tracker/ledger results
-are in the receipt. Full00526550 authority remains disabled pending dependencies.
+Focused ASan/UBSan/leak PASS19500 checks across100 command lifecycle matrices,
+using actual order/list/resources/task/pending kernels and explicit endpoint
+doubles. Strict actual-host i386 link passes. Final launcher/probe, ledger and
+tracker results are in the receipt. No Windows execution. H8/authority/application
+remain open. Previous pending sanitizer PASS37600/100 is recorded separately;
+unchanged H1–H7 kernels need no repeated broad audit.
 
-**NEXT:** actual Players00458E50 dispatch/filtering/task producers for pending
-kind3; remaining00528950 task families/turn/occupied/standalone completion and
-00536120 follow, then containing00526550 timers/attachment/aim/movement/output/
-events/self-treatment. See [H8 plan](analysis/p22-hum-h8-plan.md). Continue through
-reached dependencies; do not re-audit unchanged H1–H7. Human190/route74 and actor
-lifetime event producers remain required. Later async combat/material/water,
-occupied/absent actors and application/FRAME/OWN/render/desktop gates remain open.
+**NEXT:** specialized0045BD10 and00534460..00535630 producers, reached00457820
+and group4;00528950 target/task execution,201-clear turn/occupied phases,
+00535E70 arrival,00538A60 readiness and standalone00535C00 completion. Then
+00536120 follow and containing00526550 timers/attachment/aim/movement/output/
+events/self-treatment. See [H8 plan](analysis/p22-hum-h8-plan.md). Human190/route74
+and actor lifetime event producers remain required. Later async combat/material/
+water/occupied/absent actors and application/FRAME/OWN/render/desktop gates remain.
 
 Existing PACK source contracts: [common](analysis/human-h8-pack-common-source.md),
 [effects](analysis/human-h8-pack-effects-source.md),
