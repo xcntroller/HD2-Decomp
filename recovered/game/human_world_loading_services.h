@@ -16,6 +16,7 @@
 #include "game/car_seat_frame.h"
 #include "game/human_ai_order_marker.h"
 #include "game/human_active_ai_commands.h"
+#include "game/human_active_ai_loot.h"
 #include "game/first_person_human_items.h"
 #include "game/human_player_item_notification.h"
 #include "game/human_player_shot_direction.h"
@@ -215,6 +216,111 @@ public:
         const bool moved=receive_human_inventory_move(human,dependencies().world_actors.items(),*this,true,identity,source,source_slot,destination,index);
         if(moved&&(mode_flags()&7u)!=7u)throw std::runtime_error("Human inventory request requires00587BF0 second command7 publication after successful transfer");
         return moved;
+    }
+    template<class Actor>bool active_loot_target_dead(Actor& target){ //00534AF0 reads EC directly, not00538A60.
+        if(target.base().type()!=3)throw std::runtime_error("Active loot admission requires actual nonHuman native EC field owner");
+        return human_frame_signed_word(selection_human(target).properties.stats_ec[0])<1;
+    }
+    template<class Human,class Entry>auto active_inventory_capacity(Human& human,Entry entry){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;auto& d=dependencies();
+        return probe_human_inventory_capacity(d.scene.frames(),static_cast<Actor*>(&human),d.world_actors.items(),*this,entry);
+    }
+    template<class Human,class Actor>auto active_loose_target_capacity(Human& human,Actor& actor){
+        using Runtime=std::remove_reference_t<decltype(dependencies().world_actors.runtime())>;
+        auto* loose=dynamic_cast<typename Runtime::LooseItemActor*>(&actor);
+        if(!loose)throw std::logic_error("Active capacity requires actual loose item11");
+        return active_inventory_capacity(human,loose->entry());
+    }
+    template<class AI>void active_command_exit_attachment(AI& ai){
+        auto* human=ai.human();HumanPacketCommand command;command.kind=3;command.fields.set(8,5u);
+        command.fields.set(0xc,human->base().id10());command.fields.set(0x10,human->field164);
+        (void)composition(*human).state_factory().common_command(ai,command);
+    }
+    template<class AI>void active_task_pickup_effect(AI& ai,std::uint32_t kind){ //Actual AI6C=00587BC0,7C=00587BA0, both direct validators.
+        ai.require_live_task_target();if(!ai.task_target)throw std::runtime_error("Active pickup effect lost native target224");
+        auto& human=*ai.human();const auto validate=human_common_receiver_guard(human);const auto identity=ai.task_target->base().id10();
+        std::int32_t slot=7;
+        if(kind==11)(void)validate_human_item_pickup(human,identity,slot,*this);
+        else{std::int32_t item=-1;(void)validate_human_supply_pickup(human,identity,ai.state().template get<std::int32_t>(0x210),slot,item,*this);}
+        validate();human.activation.flag178=true; //005A2D20/2CF0 even when validator returnedfalse.
+    }
+    template<class Human,class Entry>bool active_request_inventory_move(Human& human,Human& source,Entry entry,std::int32_t slot,std::int32_t destination){
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);
+        const bool moved=request_human_inventory_move(human,dependencies().world_actors.items().runtime_item(entry).identity,&source==&human?-1:source.base().id10(),slot,destination,0);
+        own();other();return moved;
+    }
+    template<class Human,class Entry>bool active_receive_inventory_move(Human& human,Human& source,Entry entry,std::int32_t slot){ //Direct005A2D50, NO B0 request/forwarding.
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);std::int32_t destination=7;
+        const bool moved=receive_human_inventory_move(human,dependencies().world_actors.items(),*this,true,dependencies().world_actors.items().runtime_item(entry).identity,source.base().id10(),slot,destination,0);
+        own();other();return moved;
+    }
+    template<class Human,class Entry>bool active_request_inventory_swap(Human& human,Entry current,std::int32_t current_slot,Human& source,Entry selected,std::int32_t selected_slot){ //005A2BB0 ->00587E00 ->005A2E90.
+        if(selected_slot==4){
+            if(human.properties.field1a0!=source.properties.field1a0)return false;
+            if(!human_unavailable(human)&&!human_unavailable(source))return false;
+            if(human.properties.flags1a4[1]||source.properties.flags1a4[1])return false;
+        }
+        if(!current||!selected)throw std::runtime_error("Active inventory swap reached native NULL item identity dereference");
+        auto& items=dependencies().world_actors.items();const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);
+        const bool moved=receive_human_inventory_swap(human,items,*this,true,items.runtime_item(current).identity,current_slot,&source==&human?-1:source.base().id10(),items.runtime_item(selected).identity,selected_slot);
+        own();other();if(moved&&(mode_flags()&7u)!=7u)throw std::runtime_error("Active inventory swap requires second command8 forwarding after transfer");
+        return moved;
+    }
+    template<class Human,class Entry>void active_apply_loot_clothing(Human& human,Entry entry){ //Direct005A6930, not005A6920/B0+68 producer.
+        if(!entry)throw std::runtime_error("Active clothing callback reached native NULL item dereference");
+        const auto validate=human_common_receiver_guard(human);PreparedHumanLoading<Dependencies> clothing(dependencies());
+        (void)clothing.apply_clothing(human,dependencies().world_actors.items().runtime_item(entry).identity);validate();
+    }
+    template<class Humans,class Actor>auto select_active_handoff_candidate(Humans& humans,Actor& target)->typename Humans::value_type{ //0045BD10/task24.
+        const auto selected=active_handoff_entry(selection_human(target),4);if(!selected)return nullptr;
+        auto& items=dependencies().world_actors.items();const auto variant=[&](auto entry){auto& item=items.runtime_item(entry);
+            if(!item.definition().payloads[0].type)throw std::runtime_error("Handoff selection reached native NULL payload dereference");
+            return item.primary_payload_command()==1;
+        };
+        const bool wanted=variant(selected);
+        for(auto* human:humans){const auto own=active_handoff_entry(*human,4);if(!own||variant(own)!=wanted)return human;}
+        return nullptr;
+    }
+    auto* active_nearby_loose_weapon(const HumanVector& origin,float radius){ //00479600, SAME runtime ownership vector, forward FIRST.
+        auto& d=dependencies();using Runtime=std::remove_reference_t<decltype(d.world_actors.runtime())>;
+        auto* actor=d.world_actors.runtime().first_owned_forward([&](auto& candidate){
+            if(candidate.base().type()!=11)return false;
+            auto* item=dynamic_cast<typename Runtime::LooseItemActor*>(&candidate);if(!item)throw std::logic_error("Loose weapon query lost actual item11");
+            const auto kind=d.world_actors.items().runtime_item(item->entry()).definition().kind();
+            if(kind!=3&&kind!=4&&kind!=5&&kind!=6&&kind!=12)return false;
+            const auto matrix=d.scene.frames().actor_world_matrix(candidate.base().frame());
+            return active_loose_weapon_in_radius(origin,{{matrix[12],matrix[13],matrix[14],matrix[15]}},radius);
+        });
+        return static_cast<typename Runtime::LooseItemActor*>(actor);
+    }
+    template<class Human,class Entry>void active_drop_loot_weapon(Human& human,Entry entry,const HumanVector& direction){
+        const auto validate=human_common_receiver_guard(human);drop_human_damage_item(human,entry,direction);validate();
+    }
+    template<class Human,class Actor>auto active_loot_borrowers(Human& human,Human& source,Actor* loose){
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);
+        const auto entry=loose?loose->entry():decltype(loose->entry()){};
+        const auto frame=loose?loose->base().frame():typename Dependencies::Frame{};
+        return [this,own,other,loose,entry,frame]{own();other();if(loose&&(!dependencies().world_actors.runtime().owns(loose)||loose->entry()!=entry||loose->base().frame()!=frame))throw std::runtime_error("Active loot callback retired or replaced loose-item borrower");};
+    }
+    template<class Human>auto active_inventory_pair_borrowers(Human& human,Human& source){
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);return [own,other]{own();other();};
+    }
+    template<class Human,class Actor>bool active_receive_loose_weapon(Human& human,Actor& actor){
+        if(!dependencies().world_actors.runtime().owns(&actor))throw std::runtime_error("Active loot lost actual loose actor before pickup");
+        const auto validate=human_common_receiver_guard(human);std::int32_t slot=7;
+        const bool moved=validate_human_item_pickup(human,actor.base().id10(),slot,*this);validate();return moved;
+    }
+    template<class AI>bool active_task_loot_effect(AI& ai,std::uint32_t action){
+        ai.require_live_task_target();auto* human=ai.human();auto* target=ai.task_target;
+        if(!human)throw std::logic_error("Active loot task lost Human44");
+        auto* source=target?&selection_human(*target):nullptr;auto& items=dependencies().world_actors.items();
+        if(action==23)return active_loot_human(*human,source,items,*this);
+        if(action==24){if(!source)throw std::runtime_error("Active handoff reached native NULL target dereference");return active_handoff_inventory(*human,*source,*this);}
+        if(!source)throw std::runtime_error("Active task33 reached native NULL target dereference");
+        const bool first=active_take_inventory_kind(*human,*source,items,*this,20);
+        const bool second=active_take_inventory_kind(*human,*source,items,*this,22);
+        const bool third=active_take_inventory_kind(*human,*source,items,*this,21);
+        return first|second|third;
     }
     template<class Human>bool active_holster_spare_ammunition(Human& human){ //005318C0 ->005A2B40 ->B0 virtual74.
         auto* storage=human.base().storage();auto* hand=storage?storage->holder(3):nullptr;

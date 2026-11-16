@@ -336,3 +336,78 @@ reset, Actor retirement, changed current B0, exact timers, ranged callback and
 posture failures, oblique geometry and native >3 member behavior. Fresh actual
 World/factory/Active and scene-frame links and cleanup are recorded separately
 in receipt `group_follow_up`; no loaded mission/application/desktop claim.
+
+## Item, loot and handoff task effects — 2026-11-17
+
+Actual World/factory/Active now runs the prior required task6/23/24/33 effect
+families through existing PACK transfers, loose-item and SupplyBox validators;
+no PACK body changes. `human_active_ai_loot.h` contains the source policy.
+Actual task6's item/supply attempt returns **false**, propagated through the turn
+and pending caller.005A2D20/005A2CF0 invoke AI vtable008109F8+6C/+7C direct
+00587BC0/00587BA0 wrappers, then publish178 even if the validator returns false.
+There is no extra invented queue. Human task6 requests posture4, writes1500,
+then reruns005346C0. Producer6 requires positive loose capacity, unfocused Human
+or SupplyBox, initializes actual radius1/notify, then occupied exit and1000;
+supply210 is last. Occupied receiver remains H8.4. In contrast,0045BD10's loose
+candidate test accepts ANY nonzero capacity, including a negative result; the
+producer subsequently rejects it. The two gates are intentionally distinct.
+
+007DAF80 probes the SAME007D8B40 kernel with dry-run1 and no source, preserving
+holder order and last failure. Pack is terminal; payload3 attempts shoulder even
+occupied; payload2 requires size2/3 plus empty shoulder. This differs from source
+automatic placement. No storage, weights, timers, presentation or item borrower
+is mutated by this probe.00536D30 relooks up definition and capacity on EACH of
+at most three direct005A2D50 requests, ignores false transfer and still sets its
+result; prior moves remain.00536DC0 visits hand3, shoulder2, holster1, pack6;
+pack6's native predicate is inverted (NULL/non3 payload), unlike weapon3 in
+hand/shoulder/holsters. It uses actual live stack order, not a copied inventory.
+
+00536FB0 borrows the first qualifying runtime11 weapon within3 via00479600,
+then target hand/shoulder, then own hand/shoulder. Definition CLASS1/3/4 admission
+is separate from loose lookup KIND3/4/5/6/12. Ammo counts for the loose candidate
+come from TARGET, without pack. Target hand wins ties, then shoulder, then loose;
+both own ammo counts must be<2. Drop snapshotted own weapons hand then shoulder,
+with a fresh cached direction each time. Pickup/move precedes an unconditional
+00536D30 call even when false; return the original pickup/move boolean. Real
+runtime ownership order is borrowed forward, not nearest-distance sorted or a
+private list. Raw00479600 keeps (Z²+X²)+Y² extended against spilled radius²;
+AND4100 also accepts unordered, unlike the C decompiler's ordered<= expression.
+
+005A7850/005A7610 snapshot every kind match: receivers0..6, occupied stacks
+forward, entries reverse.00537350 then requests into holder1 in snapshot order;
+first false returns false without rolling back earlier moves.00537300 calls
+ammunition, replacement weapon, kind9, kind13 even after success, ORing all four.
+Task23 alone sets214=1000 on success; task33 calls kinds20,22,21 in that order
+without short circuit and preserves its existing timer.00534AF0 admits actual
+Human signedEC<1; nonHuman EC remains its actual layout requirement.
+
+Task24 swaps actual clothing4, then rereads/applies own clothing and target
+clothing through existing005A6930, then rereads target0 and own0 and requests
+head move/swap. A failed clothing swap STILL permits head transfer; even a
+successful head transfer cannot turn that saved false clothing result into true
+(raw52964C).005A2BB0's personality1A0,005A6380 and flag1A5 gates are retained
+before identity dereferences. Selector24 compares actual payload command+0C
+variants after model/sort. Original00534BF0 really REJECTS target type3; it is
+not repaired to admit Humans. NonHuman Human-layout admission stays required,
+not an invented empty success. Explicit command/task producers may still reach
+the implemented effect. Native NULL holder/item/payload cases remain honest
+invalid-path failures. Human/B0 and loose-actor borrowers are revalidated across
+callbacks, without retaining a retired item actor after successful pickup.
+
+Research index preceded bounded exports `human-h8-task-item-effects`,
+`human-h8-task-item-dependencies`, `human-h8-loot-source`,
+`human-h8-loot-capacity`; existing producer/selection and PACK sources reused.
+Raw `human-h8-loot-{query,ammunition,weapons}.asm`,
+`human-h8-pickup-virtual.asm`, `human-h8-item-effect-order.asm` and prior
+`human-h8-task-handoff-admission.asm` preserve the important non-C contracts.
+No new credit for absent frozen00587BC0/00587BA0 wrapper entries.
+
+Focused native ASan/UBSan/leak checks:9100/100 lifetimes, actual storage,
+lookup/count, transfer kernel and runtime registry, with Human/item/frame/AI
+endpoints explicit doubles. Include partial transfer, reverse-stack snapshot,
+three ignored failures, dry-run/no mutation, native negative results, weapon
+priority, fresh drops, borrower failure, clothing false/head success, task timers
+and pickup false propagation at the effect boundary. Actual World/factory/Active
+and scene frame plus launcher/probe compile/link only; no Windows execution,
+loaded mission or desktop claim. Evidence/fingerprints and removed temporary
+fixtures are consolidated in receipt `loot_follow_up`.

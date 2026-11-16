@@ -95,11 +95,11 @@ template<class AI>bool turn_and_start_active_task(AI& ai){
         ai.resources().target().bind_position(destination);
         state.set(0x214,static_cast<std::uint32_t>(ai.pending_ranged_animation_duration()));return true;
     }
-    ai.start_pending_task_effect();return true;
+    return ai.start_pending_task_effect();
 }
 //00528950 after turn publication. Vehicle seat/interaction cases are kept at
 //their reached H8.4 boundary; specialized task effects remain H8.2 work.
-template<class AI>void start_active_task_effect(AI& ai){
+template<class AI>bool start_active_task_effect(AI& ai){
     auto& state=ai.state();const auto action=state.template get<std::uint32_t>(0x220);
     if(action==3){
         ai.require_live_task_target();
@@ -108,18 +108,31 @@ template<class AI>void start_active_task_effect(AI& ai){
         }
     }
     if(state.template get<std::uint8_t>(0x204)){
-        if(action==32)return;
+        if(action==32)return true;
         state.set(0x214,0u);
         if(state.template get<std::uint8_t>(0x208))ai.notify_pending_group();
-        return;
+        return true;
     }
     publish_active_task_second_mode(ai,action);
-    if(!ai.pending_task_effect_ready()){ai.reject_pending_task();return;}
-    if(action==6||action==23||action==24||action==33)
-        throw std::runtime_error("Active task requires its specialized00537300/00537350 or item/handoff effect receiver");
+    if(!ai.pending_task_effect_ready()){ai.reject_pending_task();return true;}
+    if(action==23||action==24||action==33){
+        if(ai.pending_loot_effect(action)){if(action==23)state.set(0x214,1000u);}
+        else ai.reject_pending_task();
+        return true;
+    }
+    if(action==6){
+        ai.require_live_task_target();
+        if(ai.task_target){const auto kind=ai.task_target->base().type();
+            if(kind==11||kind==9){ai.pending_pickup_effect(kind);return false;}
+            if(kind==3&&!(ai.words().template get<std::uint32_t>(0x50)&4u)){
+                ai.pending_posture(4);state.set(0x214,1500u);ai.reproduce_pending_pickup();return true;
+            }
+        }
+    }
     state.set(0x214,1500u);
     ai.execute_pending_task_command(action,state.template get<std::int32_t>(0x20c),0u);
     if(ai.words().template get<std::int32_t>(0x60)!=-1)state.set(0x214,ai.words().template get<std::uint32_t>(0x64));
+    return true;
 }
 } //namespace hd2::game
 #endif

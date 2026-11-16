@@ -200,6 +200,7 @@ public:
         }
     }
     const auto& active_actors() const {return registry_.active_actors();}
+    template<class Predicate>Instance* first_owned_forward(Predicate&& matches)const{return registry_.first_owned_forward(std::forward<Predicate>(matches));}
     template<class Predicate>bool any_owned_reverse(Predicate&& matches)const{return registry_.any_owned_reverse(std::forward<Predicate>(matches));}
     bool owns(const Instance* actor)const{return registry_.owns(actor);}
     template<class Derived>void tick(bool authority,std::uint32_t elapsed,Derived& derived) {

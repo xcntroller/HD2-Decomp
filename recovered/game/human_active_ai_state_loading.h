@@ -8,6 +8,7 @@
 #include "game/human_active_ai_order_action.h"
 #include "game/human_active_ai_orders.h"
 #include "game/human_active_ai_task_state.h"
+#include "game/human_active_ai_commands.h"
 #include "game/human_active_ai_pending.h"
 #include "game/human_active_ai_task_completion.h"
 #include "game/human_active_ai_follow_frame.h"
@@ -116,6 +117,9 @@ public:
     auto pending_task_turn_gate(){return services_.formation_direction_gate(*this->human());}
     bool pending_target_arrived(){return active_task_target_arrived(*this,task_target,this->state_frames(),services_);}
     bool pending_task_effect_ready(){return services_.active_task_effect_ready(*this);}
+    bool pending_loot_effect(std::uint32_t action){return services_.active_task_loot_effect(*this,action);}
+    void pending_pickup_effect(std::uint32_t kind){services_.active_task_pickup_effect(*this,kind);}
+    void reproduce_pending_pickup(){produce_active_pickup_task(*this,*task_target,this->state().template get<std::uint32_t>(0x210),this->state_frames(),services_);}
     bool pending_task_target_unavailable(){
         require_live_task_target();if(!task_target)throw std::runtime_error("Active task completion dereferences native NULL224");
         return services_.active_task_actor_unavailable(*task_target);
@@ -123,7 +127,7 @@ public:
     auto pending_ranged_animation_duration(){return services_.human_grenade_animation_duration((~this->words().template get<std::uint32_t>(0x50)>>2)&1u);}
     void reject_pending_task(){services_.queue_active_ai_speech(*this,0x68u,true,300u,false);}
     void execute_pending_task_command(std::uint32_t action,std::int32_t identity,std::uint32_t value){services_.execute_active_task_command(*this,action,identity,value);}
-    void start_pending_task_effect(){start_active_task_effect(*this);}
+    bool start_pending_task_effect(){return start_active_task_effect(*this);}
     void notify_pending_group(){services_.active_task_group_arrival();}
     void advance_follow_frame(){advance_human_active_follow(*this,this->state_frames(),services_);}
     void expire_frame_modes(std::uint32_t elapsed){

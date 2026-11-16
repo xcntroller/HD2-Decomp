@@ -7,7 +7,7 @@ then H8.3. Another agent owns H8.4; preserve its occupied/Car/seat/absent-actor
 work and other worktrees. PACK is finished. No push, original EXE/DLL/Proton or
 Windows fixture execution. Heavy compile and Ghidra sequentially.
 
-Latest: actual group production/arrival after c5cba01, extending [on-foot authority through return](analysis/human-h8-authority-body-source.md),
+Latest: actual item6/loot23/handoff24/supply33 after e8cb169, extending [on-foot authority through return](analysis/human-h8-authority-body-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json).
 Actual World→factory→SAME Active now runs the prior prefix/navigation AND ordinary
 00526550 body through actual return. Rifle range/burst/crouch, populated00537FB0
@@ -19,6 +19,7 @@ task25/26 actual command admission/production/progression/selection and query-10
 replanning on actual FIRST navigation,
 valid explicit reload source slots and actual hazard blast→packet/water command→HUD,
 actual distinct F8 group3/18/21 staging/arrival, posture and ranged task37,
+item6 direct pickup/supply false returns, actual loot23 and handoff24/supply33,
 look/items/preset/direction,
 last processed-event retirement and medical tail are bound. The unconditional
 remaining-authority failure on this path is removed. H8.2/full H8/application
@@ -42,8 +43,12 @@ Human/frame/inline/aim-result/World endpoints are explicit doubles. Strict actua
 full World/factory/Active i386 and launcher/probe links. No Windows execution.
 Temporary audits fingerprinted and removed. Do not repeat unchanged H1–H7/PACK.
 
-NEXT: continue positive process98 and other specialized
-task/effect producers. Task22/Dog and positive type34/type36/absent actors still
+NEXT: continue positive process98 and remaining specialized task producers.
+Item effects6/23/24/33 are now bound; reuse `human_active_ai_loot.h` and receipt
+`loot_follow_up`. Native handoff producer24 rejects Human type3; do not repair it.
+Item6 selection accepts nonzero capacity, producer requires positive. Actual
+007DAF80 is dry-run on SAME PACK kernel; no PACK body edits. Task6 item/supply
+returnsfalse through turn/pending;178 still follows a false validator. Task22/Dog and positive type34/type36/absent actors still
 require their actual owners where reached; H8.4 bodies stay external.
 Positive holder reload reaches native NULL3C dereference (8170D0/007D6860/6880);
 it is an explicit invalid-native failure, not missing successful behavior. Water

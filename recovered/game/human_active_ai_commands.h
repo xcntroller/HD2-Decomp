@@ -86,12 +86,16 @@ template<class Human,class Actor,class Frames,class World>Human* select_active_c
         if(target.base().type()==3){for(auto* human:humans)if(!human->field174)return human;return nullptr;}
         if(target.base().type()==9)return humans.front();
         if(target.base().type()!=11)return nullptr;
-        return world.select_special_active_command_candidate(humans,action,target,secondary);
+        //Native0045BD10 accepts ANY nonzero capacity result, including a
+        //negative failure.005346C0 subsequently requires a positive result.
+        for(auto* human:humans)if(world.active_loose_target_capacity(*human,target)!=0)return human;
+        return nullptr;
     case 18:
         for(auto* human:humans)if(world.active_group_grenade_available(*human))return human;
         return nullptr;
     case 25:case 26:return select_active_attack_candidate(humans,action,target,world);
-    case 22:case 24:case 37:
+    case 24:return world.select_active_handoff_candidate(humans,target);
+    case 22:case 37:
         return world.select_special_active_command_candidate(humans,action,target,secondary);
     default:return nullptr; //Native switch has no accepted candidate.
     }
@@ -131,6 +135,19 @@ template<class AI,class World>void delay_active_focused_task(AI& ai,World& world
     if(!human->field174)return;
     world.active_command_exit_focus(ai,ai.state().template get<std::int32_t>(0x20c));
     ai.state().set(0x214,1000u); //Only AFTER actual00587540 returns.
+}
+//005346C0, item/focus/supply producer. Occupied exit is AFTER task publication;
+//its actual common-command/Car receiver remains owned by H8.4.
+template<class AI,class Actor,class Frames,class World>void produce_active_pickup_task(AI& ai,Actor& target,std::uint32_t secondary,Frames& frames,World& world){
+    auto* human=ai.human();if(!human)throw std::logic_error("Active pickup producer lost Human44");
+    const auto kind=target.base().type();
+    if(!((kind==11&&world.active_loose_target_capacity(*human,target)>0)||(kind==3&&!human->field174)||kind==9)){
+        world.reject_active_command(*human);return;
+    }
+    const auto validate=world.human_common_receiver_guard(*human);
+    start_active_target_task(ai,target,6u,false,1.f,true,frames,world);validate();
+    if(human->field160){world.active_command_exit_attachment(ai);validate();ai.state().set(0x214,1000u);}
+    if(kind==9)ai.state().set(0x210,secondary);
 }
 //00535050/00535110. The alternate producer is selected by saved188 even for
 //command25. Inventory requests ignore their boolean; task publication follows.
@@ -183,8 +200,19 @@ template<class AI,class Actor,class Frames,class World>void produce_active_playe
     case 25:case 26:
         if(!target)throw std::runtime_error("Active attack producer dereferences native NULL target");
         produce_active_attack_task(ai,*target,action==26||ai.state().template get<std::uint8_t>(0x188),frames,world);return;
-    case 4:case 6:case 8:case 9:case 10:case 11:case 12:case 13:case 16:
-    case 19:case 22:case 23:case 24:case 32:case 37:
+    case 6:
+        if(!target)throw std::runtime_error("Active pickup producer dereferences native NULL target");
+        produce_active_pickup_task(ai,*target,secondary,frames,world);return;
+    case 23:
+        if(!target)throw std::runtime_error("Active loot producer dereferences native NULL target");
+        if(!world.active_loot_target_dead(*target)){reject();return;}start();return;
+    case 24:
+        if(!target)throw std::runtime_error("Active handoff producer dereferences native NULL target");
+        //00534BF0 really REJECTS type3 before005A6380; do not repair it.
+        if(target->base().type()==3){reject();return;}
+        world.produce_special_active_player_command(ai,action,target,secondary);return;
+    case 4:case 8:case 9:case 10:case 11:case 12:case 13:case 16:
+    case 19:case 22:case 32:case 37:
         world.produce_special_active_player_command(ai,action,target,secondary);return;
     default:return; //Native unhandled command still publishes188 in the caller.
     }
