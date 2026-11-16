@@ -4,6 +4,7 @@
 #include "game/human_frame_stats.h"
 #include "game/human_animation_requests.h"
 #include "game/human_ai_cover.h"
+#include "game/human_active_ai_cautious.h"
 #include <functional>
 namespace hd2::game {
 //00537FB0. Populated F4/action-mode changes use the SAME A4 record and
@@ -197,26 +198,35 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
     if(!state.template get<std::uint8_t>(0x202)&&task==22)throw std::runtime_error("Active movement requires0052B810 specialized task22 policy");
     const auto flags=state.template get<std::uint32_t>(0x174);
     if(flags&0x10u)throw std::runtime_error("Active movement requires0052B810 saved-position aim policy");
-    if(flags&2u)throw std::runtime_error("Active movement requires0052F160 cautious posture/target policy");
+    const bool admit=!(flags&2u)||active_cautious_attacker(ai,true,world);validate();
+    if(admit||selected){
     if(!selected&&!(flags&4u)){selected=select_active_movement_target(ai,frames,world);validate();}
     if(!state.template get<std::uint8_t>(0x202)&&(task==25||task==26))throw std::runtime_error("Active movement requires00538A60 task25/26 completion gates");
     if(!state.template get<std::uint8_t>(0x202)&&task==41)selected=nullptr;
     if(selected&&ai.has_pending_orders_loading()){
         const auto own_flags=ai.words().template get<std::uint32_t>(0x50);
         if(own_flags&0x400u)selected=nullptr;
-        if(own_flags&0x200u)throw std::runtime_error("Active movement requires0052F160 selected-target suppression");
+        if((own_flags&0x200u)&&!active_cautious_attacker(ai,true,world))selected=nullptr;
     }
     if((following||!ai.has_pending_orders_loading())&&(ai.active_event_mode()==0||ai.active_event_mode()==2))selected=nullptr;
     if(state.template get<std::uint8_t>(0x18a)&&ai.item()&&!world.active_special_hand(ai.item()))selected=nullptr;
     if(flags&0x200u)throw std::runtime_error("Active movement requires00560780 saved vector-target policy");
     ai.resources().target().bind_actor(selected);
     set_active_target_intervals(ai,selected,frames,world);validate();
+    }else ai.resources().target().bind_actor(nullptr); //Native cautious NULL branch does NOT reset range intervals.
     if(!selected&&!state.template get<std::uint32_t>(0x198)){
         if(!state.template get<std::uint32_t>(0x1ac)){
             if(!(flags&4u)){world.active_idle_look(ai);validate();}
             state.set(0x23c,0u); //The bit4 path also publishes the native NULL result.
             state.set(0x1ac,1000u);
         }else decrement(0x1ac);
+        if((flags&2u)&&!state.template get<std::uint32_t>(0x19c)){
+            HumanVector direction{};std::uint32_t posture=0;select_active_cautious_posture(ai,direction,posture,world);validate();
+            if(posture==1)posture=2;
+            auto* leader=human->formation_leader;
+            if(!leader||(posture<=(world.active_follow_state(*leader).words().template get<std::uint32_t>(0x50)&7u)&&posture!=(ai.words().template get<std::uint32_t>(0x50)&7u)))ai.pending_posture(posture);
+            direction[1]=0;ai.resources().direction().set_target(direction);
+        }
     }
     //Fresh target after the preceding publications, as in the native tail.
     auto& target=ai.resources().target();

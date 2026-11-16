@@ -79,7 +79,7 @@ Raw bytes and constants are recorded in the checkpoint receipt.
 
 ## Remaining reached requirements
 
-Cautious flag2, saved-position flag10/vector-target200, specialized25/26/22
+Saved-position flag10/vector-target200, specialized25/26/22
 selection/replanning, retained launcher5 and admitted close-combat00536A30 tasks,
 unusual reload source slots, populated process98/group command members and
 remaining reached offline action/hazard/water receivers remain explicit. Positive
@@ -98,3 +98,36 @@ Existing unchanged AI/physics/PACK kernels are not re-audited. Strict actual
 full World/factory/Active i386 instantiation and final launcher/probe link check
 the real bindings; Windows fixtures are never executed. Temporary audit source
 and binaries are fingerprinted before removal. No application or desktop claim.
+
+## Cautious order follow-through after3ca9299
+
+`human_active_ai_cautious.h` binds0052F160,00525C90 and00525700 and removes
+both cautious admission requirements from the containing0052B810. The false
+admission branch clears the target WITHOUT resetting retained fire/pause ranges.
+When its native timer gates select posture work, high cover18 is tried before
+crouched cover17; the returned direction/posture are published before the final
+leader lookup. Leader prone override requires signed B0>5000; the containing
+caller maps1→2 and preserves its separate leader/posture comparison.
+
+0052F160 walks the actual enemy list in reverse and reads each actual B0+A4.
+Its friendly test is SELECTED Human005A0AB0(own), not the reverse relation. An
+absent enemy B0 remains a precise requirement; Base/Player A4's genuine NULL is
+distinct. Source: existing `human-h8-authority-movement/0052f160.c` and saved raw.
+
+Indexed first, bounded exports269-byte00525C90 and1200-byte00525700 are under
+`human-h8-cautious-posture`/`human-h8-cautious-admission`. Raw proves an unusual
+native behavior: the helper's pruning condition tests the normalized vector's
+OWN squared length, which cannot be negative, so candidates remain in ascending
+bit order.525A1C consumes CRT rand, then525A25 overwrites its result with count;
+it selects count/2. Do not replace this with random selection or a candidate dot
+product. The unused floating self-normalization has no modeled FPU-status claim.
+
+Eight process008AAC80 XYZ triples come from actual00525150→00525160 stores:
+(0,0,5), (5,0,5), (5,0,0), (5,0,-5), (0,0,-5), (-5,0,-5), (-5,0,0), (-5,0,5).
+W is untouched zero storage. Entry pointer008322EC and raw stores are retained.
+The chosen vector is negated and normalized. No new function credit is assigned
+to these unclassified initializer addresses. Mask0 returns before player/rand;
+a nonzero mask with no low8 bits preserves query/rand before the native invalid
+empty-selection requirement. New policy/failure checks and real scene/World/
+factory i386 and launcher verification are separately qualified in the receipt's
+`cautious_follow_up`; the earlier9,400 matrices are not claimed as rerun.

@@ -255,6 +255,11 @@ public:
         auto& human=selection_human(actor);auto* state=dynamic_cast<AI*>(human.loading_state);
         return state?state->resources().selected_actor():nullptr;
     }
+    template<class Actor>auto* active_movement_selected(Actor& actor){
+        if(!selection_human(actor).loading_state)throw std::runtime_error("Active cautious query requires actual enemy B0 virtualA4");
+        return active_event_selected(actor);
+    }
+    template<class Actor,class Human>bool active_movement_target_friendly(Actor& selected,Human& human){return human_sound_friendly(selection_human(selected),&human);} //0052F160 ->selected005A0AB0(own).
     template<class Actor>bool active_event_roster_member(Actor& actor){
         using Human=typename Dependencies::Composition::Human;
         auto* human=dynamic_cast<Human*>(&actor);return human&&dependencies().players.control().human_roster().contains(human); //00461A20.

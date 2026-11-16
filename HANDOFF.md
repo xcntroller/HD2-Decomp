@@ -7,12 +7,13 @@ then H8.3. Another agent owns H8.4; preserve its occupied/Car/seat/absent-actor
 work and other worktrees. PACK is finished. No push, original EXE/DLL/Proton or
 Windows fixture execution. Heavy compile and Ghidra sequentially.
 
-Latest: [ordinary on-foot authority through return](analysis/human-h8-authority-body-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json), after9661f9e.
+Latest: cautious-order follow-through after3ca9299, extending [on-foot authority through return](analysis/human-h8-authority-body-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json).
 Actual World→factory→SAME Active now runs the prior prefix/navigation AND ordinary
 00526550 body through actual return. Rifle range/burst/crouch, populated00537FB0
 stance,005318C0 ammunition→same general inventory transfer, ordinary reload,
-actual event-priority/roster/cover decisions, look/items/preset/direction,
+actual event-priority/roster/cover decisions, cautious2 admission/posture,
+look/items/preset/direction,
 last processed-event retirement and medical tail are bound. The unconditional
 remaining-authority failure on this path is removed. H8.2/full H8/application
 loading and desktop acceptance are still OPEN; no actual mission execution claim.
@@ -35,7 +36,7 @@ Human/frame/inline/aim-result/World endpoints are explicit doubles. Strict actua
 full World/factory/Active i386 and launcher/probe links. No Windows execution.
 Temporary audits fingerprinted and removed. Do not repeat unchanged H1–H7/PACK.
 
-NEXT: continue the next actual offline frame failure. Cautious2/saved-position10/
+NEXT: continue the next actual offline frame failure. Saved-position10/
 vector200, specialized task25/26/22 and query-10 replan, launcher5/close combat,
 unusual reload source slots, populated process98/group command members and
 remaining reached offline action/hazard/water callbacks still require bodies.
@@ -46,8 +47,10 @@ WORK=`analysis/work/mission-world-20261103`. Research index BEFORE new exports.
 Reuse00526550 (`frame-human-script-and-active-workers`),0052B810/005276E0
 (`human-h8-authority-policy`), movement helpers (`human-h8-authority-movement`),
 00537FB0 (`human-active-ai-actions`),00527560 (`human-h8-body-event`),0052AC20
-(`human-h8-target-crouch`).00525C90 cautious posture is indexed but NOT exported;
-00525BB0 also indexed, not exported. Read relevant source before exporting more.
+(`human-h8-target-crouch`).00525C90/00525700 cautious source is now exported and bound under
+`human-h8-cautious-posture`/`human-h8-cautious-admission`. Raw shows selection
+count/2 AFTER a discarded CRT draw; process008AAC80 XYZ comes from00525160
+(pointer008322EC→00525150).00525BB0 remains indexed, not exported. Read relevant source before exporting more.
 Original image SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
 Read-only/noanalysis Ghidra: `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`,
 project `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process

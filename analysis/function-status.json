@@ -46820,13 +46820,14 @@
       "program": "client",
       "entry": "0052b810",
       "status": "partial",
-      "coverage": "Recover ordinary on-foot target/movement policy, wrapped timers/readiness, actual process/Dog queries, real hostile selection, pending-order/action-mode suppression, range intervals, weapon reselection, burst/query58/posture/crouch, forced target clear, ammunition and readiness tail. Specialized/cautious/saved-position/launcher/close-combat branches retain precise requirements.",
+      "coverage": "Recover ordinary on-foot target/movement policy, wrapped timers/readiness, actual process/Dog queries, real hostile selection, pending-order/action-mode suppression, range intervals, weapon reselection, burst/query58/posture/crouch, forced target clear, ammunition and readiness tail. Cautious admission/posture is now source-bound, retaining range words on its negative-admission branch. Specialized/saved-position/launcher/close-combat branches retain precise requirements.",
       "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit.",
       "evidence": [
         "recovered/game/human_active_ai_authority_body.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_active_ai_cautious.h"
       ]
     },
     {
@@ -46953,6 +46954,48 @@
       "coverage": "Read ACTUAL holder3, capacity!=-1 and actual ammunition definition lookup; request fixed source6 to holster1/index0 through SAME common inventory command, returning true even when the request returns false.",
       "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit.",
       "evidence": [
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052f160",
+      "status": "partial",
+      "coverage": "Reverse actual enemies and read their current B0 virtualA4. False returns first enemy selecting own Human; true tests selected Human friendship toward own, retaining native direction of the relationship and actual selected-actor borrowers.",
+      "limitations": "Source-only typed data/borrowers replace original ABI/containers/SEH. Original initializer addresses are unclassified and receive no credit. Actual application/desktop delivery and remaining specialized receivers remain open. See separately qualified cautious follow-up verification.",
+      "evidence": [
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00525c90",
+      "status": "partial",
+      "coverage": "Capture actual target direction and cached own position, try actual A4 high-cover then crouched masks, publish direction/posture before leader lookup, and retain follow/prone/signed-B0>5000 override on the SAME owners.",
+      "limitations": "Source-only typed data/borrowers replace original ABI/containers/SEH. Original initializer addresses are unclassified and receive no credit. Actual application/desktop delivery and remaining specialized receivers remain open. See separately qualified cautious follow-up verification.",
+      "evidence": [
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00525700",
+      "status": "partial",
+      "coverage": "Actual low8 mask candidate order from native process direction triples, selected-player query, discarded CRT draw, count/2 selection, negation/normalization and output. Preserve mask0 early return and post-rand invalid empty-mask requirement. Raw self-square pruning is unreachable; no modeled FPU-status equivalence claim.",
+      "limitations": "Source-only typed data/borrowers replace original ABI/containers/SEH. Original initializer addresses are unclassified and receive no credit. Actual application/desktop delivery and remaining specialized receivers remain open. See separately qualified cautious follow-up verification.",
+      "evidence": [
+        "recovered/game/human_active_ai_cautious.h",
         "recovered/game/human_active_ai_authority_body.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",

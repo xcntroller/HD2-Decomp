@@ -307,5 +307,254 @@
     "partial": 3492,
     "client_partial": 3487,
     "engine_partial": 5
+  },
+  "cautious_follow_up": {
+    "date": "2026-11-16",
+    "base_commit": "3ca9299acf3a61990249cdfeb6c9aa7c31ec3e93",
+    "source_only": true,
+    "h8_2_complete": false,
+    "application_loading_enabled": false,
+    "desktop_verified": false,
+    "scope": "Complete cautious2 target admission/posture family; preserve previous range intervals on negative admission. No added helper checkboxes or H8.4 implementation.",
+    "source_files": [
+      {
+        "path": "recovered/game/human_active_ai_cautious.h",
+        "bytes": 3884,
+        "sha256": "27705483cb57bdc836fe68988ad11f93efb1f8451726b6951e8ed1d8aed0d560"
+      },
+      {
+        "path": "recovered/game/human_active_ai_authority_body.h",
+        "bytes": 28913,
+        "sha256": "2676ecaf706500984feefd4ea7f9cd9b4d28af90d7d7151ef8978b2218a6442a"
+      },
+      {
+        "path": "recovered/game/human_world_loading_services.h",
+        "bytes": 241449,
+        "sha256": "1d6c2e269fc85cd061c75478be8254293c20f722742ff75780fc5f94f6aa779c"
+      }
+    ],
+    "original_evidence": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052f160.c",
+        "bytes": 897,
+        "sha256": "841876c78f86aaf9519bb122fcbcbd105b06fe92c80ea703131906bb1362620d"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-posture/00525c90.c",
+        "bytes": 1271,
+        "sha256": "061de6b12365a3304d99daddc16c2a3c7349c2f936fc8364f45d16f09b94a654"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-admission/00525700.c",
+        "bytes": 4991,
+        "sha256": "98050e30015d6480398a303c61e7a11b81a413ec4e6087a870465647add69697"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-selected.asm",
+        "bytes": 2893,
+        "sha256": "1a89d8fa347f4b57a2c3b4c9ad5855d8d3b3b64af4758b9e6af146499ef4051a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-posture.asm",
+        "bytes": 4588,
+        "sha256": "01380c2e268e84e74dc8e9679f193f040771efe517d5c9b7051834cdbf992d69"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-admission.asm",
+        "bytes": 19273,
+        "sha256": "f96cb2deedbb12640377c183c475d78cc66a484ba0600c35bbbc263c4b48af3d"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-table-producer.asm",
+        "bytes": 4835,
+        "sha256": "8a9dd8e90ed206811634829ed5418198839e21ac1ae71935e9bab2db94e58911"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-direction-table-references.asm",
+        "bytes": 8570,
+        "sha256": "1094dc51a58ff41bd0d7495bf98a3f0b65315c020d65f4f456e73fc885298f2c"
+      }
+    ],
+    "native_table_provenance": {
+      "pointer": "008322EC ->00525150 JMP00525160",
+      "xyz": [
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          5,
+          0,
+          5
+        ],
+        [
+          5,
+          0,
+          0
+        ],
+        [
+          5,
+          0,
+          -5
+        ],
+        [
+          0,
+          0,
+          -5
+        ],
+        [
+          -5,
+          0,
+          -5
+        ],
+        [
+          -5,
+          0,
+          0
+        ],
+        [
+          -5,
+          0,
+          5
+        ]
+      ],
+      "w": "Untouched zero storage",
+      "initializer_credit": "No exact frozen entry; no new credit",
+      "pe_word_checks": {
+        "w_words": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "008322ec": "00525150",
+        "00525150_bytes": "e90b000000"
+      }
+    },
+    "native_behavior": "Mask0 returns before player/rand. Nonzero low8 mask retains ascending candidates: pruning tests own squared length and cannot remove them. CRT rand consumed but result overwritten with count; choose count/2, negate and normalize. Original FPU-status behavior of unused self-normalization is outside native adaptation scope.",
+    "verification": {
+      "native_sanitizers": {
+        "pass": true,
+        "result": "181300 cautious direction/posture/attacker checks /100 lifecycle matrices PASS",
+        "flags": "-std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer",
+        "environment": "ASAN_OPTIONS=detect_leaks=1:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1",
+        "scope": "All256 masks across100 fixture lifetimes, selected/no-selected, native median independent of rand, reverse attacker/friend relation direction, high/crouched/default/leader posture, signed5000 boundary and output/rand failure prefixes.",
+        "actual_owners": [
+          "New cautious kernels",
+          "HumanJointWords",
+          "MissionTableRecord"
+        ],
+        "explicit_doubles": [
+          "Human/AI endpoints",
+          "selected-player/friend/leader/CRT stage receivers"
+        ],
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-cautious-native.cpp",
+          "bytes": 4622,
+          "sha256": "88e0f6c6d027f941f5bb01070e9a22cdafb67004f00584ef6af3546e7881e574"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-cautious-native",
+          "bytes": 752760,
+          "sha256": "627bd0da3421a64b1959935b67e5b5aa4bde226e353408724ba828128dd05452"
+        }
+      },
+      "actual_human_scene_world_i386": {
+        "pass": true,
+        "scope": "Actual Human scene frame and World/factory/Active authority; compile/link only, same strict flags as primary receipt.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-cautious-host.cpp",
+          "bytes": 461,
+          "sha256": "b0fadffa24ccdcc51eee07ceea2ff21e478e8a36be04e899b942d843de124397"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-cautious-host.exe",
+          "bytes": 9192960,
+          "sha256": "835fed71eff7efee75702bf9927f5b4faccd1b642d1249a281de4129f99b3d99"
+        }
+      },
+      "launcher_probe": {
+        "pass": true,
+        "command": "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++",
+        "artifacts": [
+          {
+            "path": "recovered/build/application_launch.exe",
+            "bytes": 3963392,
+            "sha256": "5837dfd340427d6d33d45dcd917c98e73993327b41a3f9ba7127d94ba01ee241"
+          },
+          {
+            "path": "recovered/build/startup_probe.exe",
+            "bytes": 1165312,
+            "sha256": "dc98efef9ed3faea83c6806e5a86ea3565c28681dd3c17f4bb58bef648a12cb6"
+          }
+        ],
+        "windows_execution": false
+      },
+      "ledger_check": true,
+      "tracker_tests": 27,
+      "diff_check": true,
+      "prior_9400_matrices": "Not rerun; new tests focus on changed cautious kernels and fresh actual frame bindings."
+    },
+    "logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-native-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-native-run.log",
+        "bytes": 79,
+        "sha256": "2445a320b7936663fca1c7bf94908c5eb4d2e1dd41fd25decc7f4d66e3cfdb40"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-host-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-launcher-build.log",
+        "bytes": 820,
+        "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-ledger-render.log",
+        "bytes": 380,
+        "sha256": "e7f975fa8760628ba97ff136e58ff0a774e5ff1fda43ddcc4659e218ac8be4ad"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-ledger-check.log",
+        "bytes": 437,
+        "sha256": "345108084dc815c02cb08fc3ce89eecbf069bc246ee989c8afb88b42de4ec26c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-tracker-tests.log",
+        "bytes": 126,
+        "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-posture-export.log",
+        "bytes": 4455,
+        "sha256": "fbbc79b89eaac8aea00df93f2f328078cfb714267f9e11a2e652121fad6c76aa"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-admission-export.log",
+        "bytes": 4457,
+        "sha256": "2929e38aa9ed24f86aba9752b9a41c7e2ec03b0a151158f2b5ce0de6a0263d98"
+      }
+    ],
+    "function_tally": {
+      "complete": 34,
+      "partial": 3495,
+      "client_partial": 3490,
+      "engine_partial": 5
+    },
+    "cleanup": {
+      "temporary_sources_and_binaries_removed": true
+    }
   }
 }
