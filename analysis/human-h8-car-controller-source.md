@@ -1,5 +1,10 @@
 # H8.4 Car controller policy — source checkpoint, 2026-11-16
 
+**Correction from the [powered solver evidence](human-h8-car-powered-source.md):**
+160 is a mutable simulation position. The initial-position interpretation below
+is historical and superseded;240 is the forward vector. Current source uses
+`physical_position` for inactivity and Human force origin.
+
 Branch `feature/p22-hum-h8-4`, base85a9aa1. This continues the
 [gear/clutch checkpoint](human-h8-car-gear-source.md). H8.4/D4/D5/H8 and P2.2
 remain OPEN. This is source recovery with native boundary doubles and Windows

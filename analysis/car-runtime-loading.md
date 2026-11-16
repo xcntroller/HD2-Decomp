@@ -122,3 +122,8 @@ Retain explicit active-particle/skid/engine/debug boundaries. Then continue
 containing Human/session/VM/FPV/HUD/SOUND/module owners, ordered006CA780 loading,
 first camera/update/render, failure/repeat and desktop acceptance under the
 same full checkbox. No new broad audit is needed before implementation.
+
+The [H8.4 powered solver checkpoint](human-h8-car-powered-source.md) now binds
+0050DE60 running drive/brake forces and reaction on the actual loading lifetime.
+It corrects160 to a mutable simulation position and unifies2293/229F consumers.
+Running0050B180, occupied presentation, plane-cache and D11 guards remain open.

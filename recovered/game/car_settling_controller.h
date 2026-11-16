@@ -16,7 +16,7 @@ template<class Frames>struct CarSettlingControllerState {
     bool requests_update=false,frame_simulated=false,has_strip_connections=false; //229E/229F/228A.
     std::uint32_t inactive_milliseconds=0;
     CarSettlingControllerState(const CarBodyIntegration<Frames>& body,bool& enabled,bool strips)
-        :position_checkpoint(body.initial_position()),controlled(enabled),has_strip_connections(strips){controlled=false;} //004EA780.
+        :position_checkpoint(body.physical_position()),controlled(enabled),has_strip_connections(strips){controlled=false;} //004EA780.
 };
 
 //00509AA0's actual engine-off/unoccupied branch, including ordinary sleeping
@@ -29,7 +29,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void update_
         CarDrivetrainState& drive,CarColdSolverState<Frames>& state,CarSteeringState& steering,
         CarSettlingControllerState<Frames>& controller,Queries& queries,Receivers& receivers,
         std::int32_t update_hold,std::uint32_t milliseconds,std::uint32_t layers,std::uint32_t flags,Collision& collision){
-    if(drive.running||drive.gear!=1||drive.flag2293||drive.shift_in_progress||steering.requested!=0||steering.current!=0)
+    if(drive.running||drive.gear!=1||drive.shift_in_progress||steering.requested!=0||steering.current!=0)
         throw std::runtime_error("Car cold controller requires its actual unoccupied zero-input state");
     if(!milliseconds)milliseconds=1;
     const float elapsed=static_cast<float>(static_cast<long double>(milliseconds)*.0010000000474974513f);
@@ -105,7 +105,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void update_
     controller.previous_speed=state.speed;controller.previous_rolling_speed=state.rolling_speed;
     drive.body_flags|=0x1000000u;
     if(!(drive.body_flags&0x10000000u))run_car_substeps(physics,body,wheels,state.substeps,elapsed,state.speed,drive.brake,first_drive,second_drive,
-        [&](float delta,const std::array<float,3>& drag,float first,float second){car_cold_solver_step(frames,model,physics,tyres,body,wheels,drive,state,queries,receivers,delta,drag,first,second,0,0,layers,flags,collision);});
+        [&](float delta,const std::array<float,3>& drag,float first,float second){car_cold_solver_step(frames,model,physics,tyres,body,wheels,drive,state,controller.frame_simulated,queries,receivers,delta,drag,first,second,0,0,layers,flags,collision);});
     if(!(drive.body_flags&8u)){
         bool contact=false;for(auto n=wheels.size();n;){const auto f=wheels[--n].flags;if((f&8u)&&!(f&0x400u)){contact=true;break;}}
         if(!contact)drive.body_flags|=8u;
@@ -113,8 +113,8 @@ template<class Frames,class Queries,class Receivers,class Collision>void update_
         bool all=true;for(auto n=wheels.size();n;){const auto f=wheels[--n].flags;if((!(f&8u)&&!(f&0x400u))||(f&0x10u)){all=false;break;}}
         if(all)drive.body_flags&=~8u;
     }
-    long double moved=0;for(unsigned axis=0;axis!=3;++axis){const float difference=body.initial_position()[axis]-controller.position_checkpoint[axis];moved+=static_cast<long double>(difference)*difference;}
-    if(moved>=.02250000089406967f||(drive.body_flags&0x20000000u)){controller.position_checkpoint=body.initial_position();controller.inactive_milliseconds=0;}
+    long double moved=0;for(unsigned axis=0;axis!=3;++axis){const float difference=body.physical_position()[axis]-controller.position_checkpoint[axis];moved+=static_cast<long double>(difference)*difference;}
+    if(moved>=.02250000089406967f||(drive.body_flags&0x20000000u)){controller.position_checkpoint=body.physical_position();controller.inactive_milliseconds=0;}
     else controller.inactive_milliseconds+=milliseconds;
     if(!(drive.body_flags&2u))state.stable_milliseconds=std::min(state.stable_milliseconds,std::int32_t{0});
     if(state.stable_milliseconds>1000||controller.inactive_milliseconds>4000)drive.body_flags&=~1u;

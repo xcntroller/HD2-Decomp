@@ -2,6 +2,7 @@
 #define HD2_GAME_CAR_LOADING_ACTIVATION_H
 
 #include "game/car_drive_controller.h"
+#include "game/car_solver.h"
 #include "game/car_actor_features.h"
 #include "game/car_destruction.h"
 #include "game/car_physical_reset.h"
@@ -117,7 +118,7 @@ public:
             },[&](const auto& request){return services_.emit_car_engine_sound(request);});
             return;
         }
-        require_unoccupied(); //Running/occupied solver and finalizer remain required D5 receivers.
+        require_unoccupied(); //Occupied input/presentation and running finalization remain D5 requirements.
         elapsed=std::min(elapsed,std::uint32_t{83});
         initial_->finalizer.lights.steering_threshold=initial_->steering.maximum*.8999999761581421f;
         same_epoch_=frames_.vertex_scene_epoch()==frames_.vertex_frame_epoch(actor_.geometry->model());
@@ -265,9 +266,9 @@ private:
     void update_core(std::uint32_t elapsed){
         update_car_controller(frames_,actor_.geometry->model(),actor_.geometry->physics(),*initial_,*receivers_,elapsed,
             [&](float delta,const std::array<float,3>& drag,float first,float second,float first_input,float second_input){
-                car_cold_solver_step(frames_,actor_.geometry->model(),actor_.geometry->physics(),resources_.tyres,
-                    initial_->body(),initial_->wheels,initial_->drive,initial_->solver,queries_,*receivers_,delta,drag,
-                    first,second,first_input,second_input,initial_->wheel_layers,initial_->wheel_flags,*body_collision_);
+                (void)first_input;(void)second_input; //0050DE60 reads SAME6FC/700 from initialized state.
+                car_solver_step(frames_,actor_.geometry->model(),actor_.geometry->physics(),resources_.tyres,*initial_,
+                    queries_,*receivers_,delta,drag,first,second,initial_->wheel_layers,initial_->wheel_flags,*body_collision_);
             });
     }
     unsigned finalize_core(std::uint32_t elapsed){

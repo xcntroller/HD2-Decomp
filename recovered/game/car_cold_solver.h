@@ -14,8 +14,10 @@ template<class Frames>struct CarColdSolverState {
     Vector external_force{},external_torque{},published_net{},drive_force{}; //004EA780's270/280 and010/020;0050DE60 clears010/020 before traction.
     float speed=0,rolling_speed=0,speed_angle=0,additional_grip=0;
     std::int32_t stable_milliseconds=0;
-    bool mass_changed=false,driven_contact=false,wheel_spin=false;
-    explicit CarColdSolverState(const CarPhysics& physics){queries.projected_radius=physics.scalars().get(0x8dc);} //004ED270's real initial8DC.
+    bool mass_changed=false;
+    bool brake_limiter=false,handbrake_full=false; //228F/228B.
+    std::int32_t differential_mode=0; //004ED270 F7C;0050DE60 publishes1.
+    explicit CarColdSolverState(const CarPhysics& physics):brake_limiter(physics.flags().at(0x228f)!=0){queries.projected_radius=physics.scalars().get(0x8dc);} //004ED270's real initial8DC.
 };
 
 //0050DE60's actual engine-off branch. BODYCOL acceptance uses the mandatory
@@ -25,7 +27,7 @@ template<class Frames>struct CarColdSolverState {
 template<class Frames,class Queries,class Receivers,class Collision>void car_cold_solver_step(Frames& frames,
         typename Frames::Frame model,const CarPhysics& physics,const CarTyres& tyres,
         CarBodyIntegration<Frames>& body,std::vector<CarWheelRuntime<Frames>>& wheels,
-        CarDrivetrainState& drive,CarColdSolverState<Frames>& state,Queries& queries,Receivers& receivers,
+        CarDrivetrainState& drive,CarColdSolverState<Frames>& state,bool& wheel_spin,Queries& queries,Receivers& receivers,
         float elapsed,const std::array<float,3>& drag,float first_drive,float second_drive,
         float first_input,float second_input,std::uint32_t layers,std::uint32_t flags,Collision& collision){
     using Vector=typename Frames::Vector;
@@ -35,7 +37,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void car_col
     for(unsigned a=0;a!=3;++a){state.published_net[a]=0;state.drive_force[a]=0;}
     (void)prepare_car_wheel_traction(frames,wheels,tyres,body.pose().up,state.additional_grip);
     const auto wheel_forces=car_cold_wheel_forces(frames,wheels,tyres,physics,drive,state.speed,body.pose().centre);
-    state.driven_contact=wheel_forces.driven_contact;if(wheel_forces.clear_wheel_spin)state.wheel_spin=false;
+    drive.flag2293=wheel_forces.driven_contact;if(wheel_forces.clear_wheel_spin)wheel_spin=false;
     const auto forces=car_cold_body_forces(frames,physics,drive,body,wheels,wheel_forces,drag,
         state.external_force,state.external_torque,state.substeps.flags,state.speed,first_input,second_input);
     state.published_net=forces.published_net;
@@ -59,7 +61,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void car_col
         const auto& direction=body.motion().direction;
         state.rolling_speed=static_cast<float>(std::abs((static_cast<long double>(sum[0])*direction[0]+static_cast<long double>(sum[2])*direction[2])+static_cast<long double>(sum[1])*direction[1])*state.speed);
     }
-    if(square(body.motion().velocity)<=.0010000000474974513f&&square(body.motion().angular_velocity)<=.0010000000474974513f&&state.driven_contact&&!state.mass_changed){
+    if(square(body.motion().velocity)<=.0010000000474974513f&&square(body.motion().angular_velocity)<=.0010000000474974513f&&drive.flag2293&&!state.mass_changed){
         if(first_input<.30000001192092896f&&state.stable_milliseconds>0){body.motion().velocity={};body.motion().angular_velocity={};body.motion().direction={};state.speed=0;}
         if(!(drive.body_flags&0x20000000u))drive.body_flags|=2u;
     }
@@ -80,13 +82,13 @@ struct CarLoadingWithoutBodyCollision {
 template<class Frames,class Queries,class Receivers>void car_cold_solver_step(Frames& frames,
         typename Frames::Frame model,const CarPhysics& physics,const CarTyres& tyres,
         CarBodyIntegration<Frames>& body,std::vector<CarWheelRuntime<Frames>>& wheels,
-        CarDrivetrainState& drive,CarColdSolverState<Frames>& state,Queries& queries,Receivers& receivers,
+        CarDrivetrainState& drive,CarColdSolverState<Frames>& state,bool& wheel_spin,Queries& queries,Receivers& receivers,
         float elapsed,const std::array<float,3>& drag,float first_drive,float second_drive,
         float first_input,float second_input,std::uint32_t layers,std::uint32_t flags){
     //Reject before any mutation, including the candidate publication.
     if(state.substeps.flags&0x10u)throw std::runtime_error("Car BODYCOL acceptance/rollback requires its actual controller");
     CarLoadingWithoutBodyCollision collision;
-    car_cold_solver_step(frames,model,physics,tyres,body,wheels,drive,state,queries,receivers,elapsed,
+    car_cold_solver_step(frames,model,physics,tyres,body,wheels,drive,state,wheel_spin,queries,receivers,elapsed,
         drag,first_drive,second_drive,first_input,second_input,layers,flags,collision);
 }
 } //namespace hd2::game

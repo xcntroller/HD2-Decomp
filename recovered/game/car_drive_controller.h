@@ -8,8 +8,8 @@ namespace hd2::game {
 
 //00509AA0, including running input, automatic selection, clutch/traction,
 //sleep/hold and contact policy. State is the SAME initialized Car lifetime.
-//The mandatory step is0050DE60: production still rejects its unrecovered
-//powered branch. No successful solver/finalizer or readiness is manufactured.
+//The mandatory step is the actual0050DE60 source body. Running finalization
+//and occupied entry retain their own gates; no readiness is manufactured.
 template<class Frames,class State,class Receivers,class Step>void update_car_controller(Frames& frames,
         typename Frames::Frame model,const CarPhysics& physics,State& state,Receivers& receivers,
         std::uint32_t milliseconds,Step&& step){
@@ -195,9 +195,9 @@ template<class Frames,class State,class Receivers,class Step>void update_car_con
         bool all=true;for(auto n=wheels.size();n;){const auto flags=wheels[--n].flags;if((!(flags&8u)&&!(flags&0x400u))||(flags&0x10u)){all=false;break;}}
         if(all)drive.body_flags&=~8u;
     }
-    std::array<float,3> displacement{};for(unsigned a=0;a!=3;++a)displacement[a]=body.initial_position()[a]-controller.position_checkpoint[a];
+    std::array<float,3> displacement{};for(unsigned a=0;a!=3;++a)displacement[a]=body.physical_position()[a]-controller.position_checkpoint[a];
     const auto moved=(static_cast<long double>(displacement[0])*displacement[0]+static_cast<long double>(displacement[1])*displacement[1])+static_cast<long double>(displacement[2])*displacement[2];
-    if(.02250000089406967f<=moved||(drive.body_flags&0x20000000u)){controller.position_checkpoint=body.initial_position();controller.inactive_milliseconds=0;}
+    if(.02250000089406967f<=moved||(drive.body_flags&0x20000000u)){controller.position_checkpoint=body.physical_position();controller.inactive_milliseconds=0;}
     else controller.inactive_milliseconds+=milliseconds;
     if(!(drive.body_flags&2u))solver.stable_milliseconds=std::min(solver.stable_milliseconds,std::int32_t{0});
     if(solver.stable_milliseconds>1000||controller.inactive_milliseconds>4000)drive.body_flags&=~1u;

@@ -209,8 +209,9 @@ and publishes engine hearing through SAME SOUND. D4/D5 stay open: running engine
 occupied presentation and non7 consumers remain required; D11 failures are unchanged.
 Its [gear/clutch dependencies](human-h8-car-gear-source.md) bind request/force/audio
 and correct retained shift state. The [controller policy](human-h8-car-controller-source.md)
-now binds running/input/automatic decisions and SAME driver state; powered solver,
-running finalizer and occupied presentation remain open.
+now binds running/input/automatic decisions and SAME driver state. The
+[powered step](human-h8-car-powered-source.md) binds drive/brake forces and live160;
+running finalizer, occupied presentation and D11 remain open.
 
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,

@@ -15,7 +15,7 @@
 namespace hd2::game {
 
 template<class Frames>struct CarColdFinalizerState {
-    using Frame=typename Frames::Frame;
+    using Frame=typename Frames::Frame;using Vector=typename Frames::Vector;
     CarLoadingLightState lights;CarStripUpdateState strips;
     std::vector<CarDoorRuntime<Frames>> doors;CarColdParticleSlots particles;
     std::uint32_t previous_features=0x8000dff9u,dirty_flags=0,light_elapsed=0;
@@ -23,6 +23,7 @@ template<class Frames>struct CarColdFinalizerState {
     float air_pressure=0,light_factor=1,slip_distance=0,road_enabled=1,field5d0=0;
     bool live=true,inside=false,air_requested=false,debug_selected=false;
     bool engine_transition=false,engine_sound_pending=false,field2287=false;
+    Vector steering_target{}; //004EA780 core40/44/48, consumed only with2287.
     bool engine_inside2298=false; //004E2900 byte2298=0;00518710 publishes2297 after completed start.
     Frame sector{};
     template<class Geometry>explicit CarColdFinalizerState(const Geometry& geometry)
@@ -100,13 +101,13 @@ unsigned finalize_car_cold(CarColdFinalizerContext<Frames,Geometry,Collisions,Qu
     const auto kind=static_cast<unsigned>(physics.scalars().get(0x550));
     if(kind==0)update_car_steering(c.frames,model,physics,c.body,c.wheels,c.steering,elapsed,solver.speed);
     else if(kind==2)reset_car_tracked_steering(c.frames,c.wheels);
-    update_car_wheel_rotation(c.frames,physics,c.body,c.wheels,drive,solver.queries,solver.wheel_spin,elapsed);
+    update_car_wheel_rotation(c.frames,physics,c.body,c.wheels,drive,solver.queries,c.controller.frame_simulated,elapsed);
     const CarLoadingLightInputs light_inputs{drive.gear,drive.brake,c.steering.current};
     update_car_loading_lights(c.frames,c.geometry.lighting(),state.lights,elapsed,solver.substeps.flags,state.previous_features,&light_inputs);
     update_car_steering_wheel(c.frames,c.geometry.auxiliary(),physics,c.steering);
     if(state.live||solver.substeps.flags!=state.previous_features)
         c.geometry.axes().apply(c.frames,c.geometry.wheels().wheels(),solver.substeps.flags,state.previous_features);
-    if(state.live)update_car_strips(c.frames,c.geometry.strips(),physics,c.body,c.wheels,drive,solver.wheel_spin,elapsed,state.strips);
+    if(state.live)update_car_strips(c.frames,c.geometry.strips(),physics,c.body,c.wheels,drive,c.controller.frame_simulated,elapsed,state.strips);
     bool quiet=update_car_cold_damage_particle<Frames>(physics,c.health,state.particles,c.pool,solver.substeps.flags,state.live,solver.speed);
     update_car_cold_wheel_particles(c.materials,c.wheels,c.pool,solver.substeps.flags,state.live,solver.speed,game_kind);
     update_car_cold_exhaust_particles<Frames>(physics,drive,state.particles,c.pool,solver.substeps.flags,state.live,solver.speed);

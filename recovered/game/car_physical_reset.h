@@ -134,7 +134,7 @@ void reset_car_physics(Frames& frames,Geometry& geometry,State& state,float spee
         if(!paired)continue;
         frames.car_reset_link(projector.visual.get(),state.finalizer.sector);if(projector.light)frames.car_reset_link(projector.light.get(),state.finalizer.sector);
     }
-    update_car_wheel_rotation(frames,geometry.physics(),state.body(),state.wheels,state.drive,state.solver.queries,state.solver.wheel_spin,1.f);
+    update_car_wheel_rotation(frames,geometry.physics(),state.body(),state.wheels,state.drive,state.solver.queries,state.controller().frame_simulated,1.f);
     state.collision.pose(state.body().pose().world,state.body().pose().inverse);state.collision.set_enabled(true,true);
     state.solver.mass_changed=true;state.reset_fields.field22c1=false;state.drive.brake=0;
     state.control_requests.second=state.control_requests.first=0;state.reset_fields.fields4f0={};

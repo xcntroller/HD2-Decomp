@@ -24188,7 +24188,7 @@
       "program": "client",
       "entry": "004ea780",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004ea780: Actual pose, wheel, collision and skid initialization subsets; full runtime initialization still awaits containing Car activation. Compose the cold complete initializer sequence on SAME geometry/runtime: body pose, collisions, reverse wheels, skids, mass, sounds/receivers, health/parts/glass/lights/axes. Retain saved model160 position independently of moving pose240 for Human-to-Car external force. Controller borrows SAME Actor2321/core2291; initialized228A uses actual strip-connection lists; retained010/020 diagnostics have one solver owner.",
+      "coverage": "P2.2 source reconstruction at original entry 004ea780: Actual pose, wheel, collision and skid initialization subsets; full runtime initialization still awaits containing Car activation. Compose the cold complete initializer sequence on SAME geometry/runtime: body pose, collisions, reverse wheels, skids, mass, sounds/receivers, health/parts/glass/lights/axes. Initialize live simulation160 independently of the frame-derived cache;0050DE60 advances it before publication/retry.240 is forward, not a position. Controller borrows SAME Actor2321/core2291; initialized228A uses actual strip-connection lists; retained010/020 diagnostics have one solver owner.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_wheel_runtime.h",
@@ -24199,7 +24199,9 @@
         "analysis/car-callback-world-binding.md",
         "recovered/host/game_car_callbacks.h",
         "analysis/human-h8-car-controller-source.md",
-        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json",
+        "analysis/human-h8-car-powered-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
       ]
     },
     {
@@ -24435,7 +24437,7 @@
       "entry": "0050d760",
       "status": "partial",
       "coverage": "Actual engine/clutch/transmission source integration now binds same-owner0051A480 audio. Native22C6 is distinct from2293; shift completion mutates retained508/50C filters, not current85C/860 throttles. Clutch-down publication precedes sound; requested878 is reread after sound and a failure retains old874. NaN clutch does not finish the down phase.",
-      "limitations": "Source-only typed/STL/RAII adaptation; full native object/vtable/allocator/SEH ABI and malformed-pointer behavior unclaimed. Native parameter/gear/sound checks use explicit geometry/engine endpoints. Running controller policy is source-bound; powered solver/finalizer, conditional unproduced thresholds and actual occupied-frame composition remain required. Strict host and launcher/probe compile/link only; no application/desktop acceptance or delegated engine credit.",
+      "limitations": "Source-only typed/STL/RAII adaptation; full native object/vtable/allocator/SEH ABI and malformed-pointer behavior unclaimed. Native parameter/gear/sound checks use explicit geometry/engine endpoints. Running controller policy is source-bound; running finalizer, conditional unproduced thresholds and actual occupied-frame composition remain required. Strict host and launcher/probe compile/link only; no application/desktop acceptance or delegated engine credit.",
       "evidence": [
         "recovered/game/car_drivetrain.h",
         "analysis/car-runtime-loading.md",
@@ -24444,28 +24446,35 @@
         "analysis/checkpoints/p2.2-human-h8-car-gear-20261116.json",
         "recovered/game/car_gear_control.h",
         "analysis/human-h8-car-controller-source.md",
-        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json",
+        "analysis/human-h8-car-powered-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
       ]
     },
     {
       "program": "client",
       "entry": "0050de60",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0050de60: Actual engine-off traction/forces/aero/stabilization, prediction, BODYCOL controller, wheel queries and post-step drivetrain; powered forces excluded. Cold step clears010/020 XYZ before traction, preserving the actual diagnostic publication prefix; powered010 production remains required.",
+      "coverage": "Powered and engine-off source step now binds SAME traction, aero, drive/brake/yaw/ellipse,010/020 diagnostics, BODYCOL, wheel queries/notifications, optional target steering and drivetrain reaction. Mutable160 physical position and2293/229E/229F have actual shared owners. Native brake/projection/lock precision is resolved against ASM. Plane-cache/absent-state/occupied-finalizer boundaries remain explicit; no whole-function ABI promotion.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_cold_solver.h",
         "analysis/car-runtime-loading.md",
         "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
         "analysis/human-h8-car-controller-source.md",
-        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json",
+        "recovered/game/car_solver.h",
+        "recovered/game/car_powered_wheel_forces.h",
+        "recovered/game/car_powered_body_forces.h",
+        "analysis/human-h8-car-powered-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
       ]
     },
     {
       "program": "client",
       "entry": "00509aa0",
       "status": "partial",
-      "coverage": "Running/input/automatic selection, fuel, clutch/filter/force, held/sleep/contact/inactivity policy is source-bound to SAME initialized Car. Actual driver2321/core2291 is a reference,228A comes from strip lists; predictive decisions use previous010/020. Mandatory powered solver and running finalizer remain guarded; conditional unproduced thresholds are not defaulted.",
+      "coverage": "Running/input/automatic selection, fuel, clutch/filter/force, held/sleep/contact/inactivity policy is source-bound to SAME initialized Car. Actual driver2321/core2291 is a reference,228A comes from strip lists; predictive decisions use previous010/020. Powered solver is source-bound and inactivity borrows live160; running finalizer/occupied presentation remain guarded; conditional unproduced thresholds are not defaulted.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_settling_controller.h",
@@ -24478,7 +24487,9 @@
         "recovered/game/car_automatic_gears.h",
         "recovered/game/car_loading_activation.h",
         "analysis/human-h8-car-controller-source.md",
-        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json",
+        "analysis/human-h8-car-powered-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
       ]
     },
     {
@@ -24534,24 +24545,28 @@
       "program": "client",
       "entry": "0050b180",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0050b180: Composed cold finalization through same scene/audio/collision/visual/particle owners, road random state and original result flags; active/debug/engine transitions excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0050b180: Composed cold finalization through same scene/audio/collision/visual/particle owners, road random state and original result flags; active/debug/engine transitions excluded. Wheel/strip spin now borrows SAME controller229F; the independent solver flag is removed.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_cold_finalizer.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/human-h8-car-powered-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
       ]
     },
     {
       "program": "client",
       "entry": "00507a40",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00507a40: Actual wheel/strip spin, authored rotation, wobble, middle/opposite-side sampling and C0 clearing.",
+      "coverage": "P2.2 source reconstruction at original entry 00507a40: Actual wheel/strip spin, authored rotation, wobble, middle/opposite-side sampling and C0 clearing. Wheel/strip spin now borrows SAME controller229F; the independent solver flag is removed.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_wheel_rotation.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/human-h8-car-powered-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
       ]
     },
     {
@@ -24571,12 +24586,14 @@
       "program": "client",
       "entry": "00506700",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00506700: Actual private-mesh XYZ transform/Y/inverse edits and original U scroll on SAME connections.",
+      "coverage": "P2.2 source reconstruction at original entry 00506700: Actual private-mesh XYZ transform/Y/inverse edits and original U scroll on SAME connections. Wheel/strip spin now borrows SAME controller229F; the independent solver flag is removed.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_strip_update.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/human-h8-car-powered-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
       ]
     },
     {
@@ -26949,7 +26966,7 @@
       "program": "client",
       "entry": "004d3ef0",
       "status": "partial",
-      "coverage": "Offline hit58 dispatch: Human force500 using saved model Y/current COM, or actual Car impulse1.2 with destroyed-heavy1.4 impulse/temporary half mass and restoration. Non7 unowned hit58 now invokes actual authority/client1000ms request or same004D3D10 route through SAME2584 and callback borrower bundle. Car collision deformation now invokes SAME loading receivers at its original post-velocity point, preserving actual positive damage/variant/glass/wheel borrowers and later passenger ordering.",
+      "coverage": "Offline hit58 dispatch: Human force500 using live simulation160 Y/current COM, or actual Car impulse1.2 with destroyed-heavy1.4 impulse/temporary half mass and restoration. Non7 unowned hit58 now invokes actual authority/client1000ms request or same004D3D10 route through SAME2584 and callback borrower bundle. Car collision deformation now invokes SAME loading receivers at its original post-velocity point, preserving actual positive damage/variant/glass/wheel borrowers and later passenger ordering.",
       "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; no native object/container/allocator/SEH/virtual ABI, actual engine or trajectory equivalence. Native100 D1 regression and100 positive damage families pass ASan/UBSan/LSan through actual damage/variants/paired lights and Door discovery/binding/restore source, with explicit engine/frame/physical coefficient and glass/detachment endpoints. Independent Decimal100 matches distinct light/wheel rounding. Strict actual nested World/Car/Human/module13 i386 and launcher/probe compile/link only. Authority/presentation containing frames, occupied/non7 control, full Human entry/frame, confirmed unproduced5F9/695/EXPL8/smoke14 and application/desktop acceptance remain open.",
       "evidence": [
         "analysis/car-callback-world-binding.md",
@@ -26958,7 +26975,9 @@
         "analysis/human-car-fuel-impulse-source.md",
         "analysis/checkpoints/p2.2-human-car-fuel-impulse-20261112.json",
         "analysis/human-car-positive-deformation-source.md",
-        "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json",
+        "analysis/human-h8-car-powered-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
       ]
     },
     {
@@ -37187,7 +37206,9 @@
         "analysis/human-car-positive-deformation-source.md",
         "analysis/checkpoints/p2.2-human-car-positive-deformation-20261112.json",
         "analysis/human-h8-car-controller-source.md",
-        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-car-controller-20261116.json",
+        "analysis/human-h8-car-powered-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
       ]
     },
     {

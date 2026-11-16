@@ -77,7 +77,7 @@ public:
         if(actor_type(source)==3){
             auto force=impulse;for(unsigned axis=0;axis!=3;++axis)force[axis]*=500.f;
             auto origin=state.body.pose().centre;
-            origin[1]=static_cast<float>((static_cast<long double>(state.body.initial_position()[1])-origin[1])+origin[1]);
+            origin[1]=static_cast<float>((static_cast<long double>(state.body.physical_position()[1])-origin[1])+origin[1]);
             game::accumulate_car_contact_force(frames_,state,force,origin,1,Vector{{1,1,1,0}},[]{}); //6A4 is cold null.
         }else if(actor_type(source)==4){
             auto& physics=car.geometry.value().physics();const float original_mass=physics.scalars().get(0x918);
