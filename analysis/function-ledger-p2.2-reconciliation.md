@@ -69,3 +69,19 @@ adds39 eligible partial client bodies and extends four existing rows. No
 constructor-default-only006739F0 or separately delegated wrapper/engine body
 receives new credit. Complete functions remain34; explicit selections and
 focused verification receipts are saved with that subsystem checkpoint.
+
+
+## 2026-11-16 H8.4 engine/skid/particle finalizer source
+
+[Contract](human-h8-car-finalizer-source.md),
+[receipt](checkpoints/p2.2-human-h8-car-finalizer-20261116.json).
+00518AB0,0051B7C0,004FCBD0 and004ECE20 add four frozen client **partial**
+entries. Existing0050B180 and four emitter worker entries extend their source
+boundaries; no complete promotions or delegated engine credit. Shared0083BEC4
+is temporarily mutable; prior read-only/volume1 wording is superseded. Native
+267374 checks/12000 engine mixes pass focused ASan/UBSan/leak verification with
+explicit endpoint/geometry/coefficient/particle doubles; full actual host and
+launcher/probe are compile/link only. Totals:34 complete,3467 partial
+(3462 client+5 engine), frozen18783. Reachable00501CB0 active-light rendering,
+occupied/non7 presentation, D11 and containing World/application/desktop remain
+OPEN; this does not close the full finalizer, H8.4 or its parent checkbox.

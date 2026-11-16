@@ -24545,14 +24545,16 @@
       "program": "client",
       "entry": "0050b180",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0050b180: Composed cold finalization through same scene/audio/collision/visual/particle owners, road random state and original result flags; active/debug/engine transitions excluded. Wheel/strip spin now borrows SAME controller229F; the independent solver flag is removed.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "coverage": "Running finalizer on SAME body/controller/drive/reset/audio/particle/skid owners:22C1 restores22BF before early return; actual740 air brake,2294/2295 signals,170 slip direction, active skids and particles, engine-aware sleep, final low-gear requests and XYZ clears.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native object/container/allocator/SEH ABI, undefined vector W/scratch padding and whole-function equivalence unclaimed. Engine/frame/query/geometry/coefficients/particle callback boundaries use explicit native audit doubles; the actual host binding is compile/link-only. Engine gain restores on endpoint exception as a containment adaptation. Active-light rendering00501CB0, debug-selected drawing, occupied/non7 presentation, D11 missing producers and containing application/desktop acceptance remain open. No delegated engine-body credit.",
       "evidence": [
         "recovered/game/car_cold_finalizer.h",
         "analysis/car-runtime-loading.md",
         "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
         "analysis/human-h8-car-powered-source.md",
-        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-car-powered-20261116.json",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
       ]
     },
     {
@@ -24840,48 +24842,56 @@
       "program": "client",
       "entry": "00506f00",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00506f00: Cold body-emitter gate/actual pool pending retirement and quiet return; positive emitter production rejects.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "coverage": "Body emitter selection/allocation, native slot-index versus ID comparison, scene placement, lit RGB and transformed smoke position/velocities; actual pending retirement and quiet return.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native object/container/allocator/SEH ABI, undefined vector W/scratch padding and whole-function equivalence unclaimed. Engine/frame/query/geometry/coefficients/particle callback boundaries use explicit native audit doubles; the actual host binding is compile/link-only. Engine gain restores on endpoint exception as a containment adaptation. Active-light rendering00501CB0, debug-selected drawing, occupied/non7 presentation, D11 missing producers and containing application/desktop acceptance remain open. No delegated engine-body credit.",
       "evidence": [
-        "recovered/game/car_cold_particles.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "recovered/game/car_finalizer_particles.h",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
       ]
     },
     {
       "program": "client",
       "entry": "00508350",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00508350: Actual cold wheel-emitter gates/slot retirement, including kind8/dummy behavior; positive production rejects.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "coverage": "Reverse wheel emitter selection, kind8/dummy gates, material slip/dust IDs, SAME pool reuse/retirement, projected velocity with native0.65 and spread multipliers, lighting and contact publication.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native object/container/allocator/SEH ABI, undefined vector W/scratch padding and whole-function equivalence unclaimed. Engine/frame/query/geometry/coefficients/particle callback boundaries use explicit native audit doubles; the actual host binding is compile/link-only. Engine gain restores on endpoint exception as a containment adaptation. Active-light rendering00501CB0, debug-selected drawing, occupied/non7 presentation, D11 missing producers and containing application/desktop acceptance remain open. No delegated engine-body credit.",
       "evidence": [
-        "recovered/game/car_cold_particles.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "recovered/game/car_finalizer_particles.h",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
       ]
     },
     {
       "program": "client",
       "entry": "00508ee0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00508ee0: Actual cold exhaust gates and reverse pool-slot retirement; running emitter production rejects.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "coverage": "Exhaust uses actual22BF transition, positive definition/speed gates, reverse slots, rotated RPM-scaled exhaust plus point velocity, lighting and native scene/property/update order.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native object/container/allocator/SEH ABI, undefined vector W/scratch padding and whole-function equivalence unclaimed. Engine/frame/query/geometry/coefficients/particle callback boundaries use explicit native audit doubles; the actual host binding is compile/link-only. Engine gain restores on endpoint exception as a containment adaptation. Active-light rendering00501CB0, debug-selected drawing, occupied/non7 presentation, D11 missing producers and containing application/desktop acceptance remain open. No delegated engine-body credit.",
       "evidence": [
-        "recovered/game/car_cold_particles.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "recovered/game/car_finalizer_particles.h",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
       ]
     },
     {
       "program": "client",
       "entry": "00509540",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00509540: Actual cold three-impact-slot/material gates and retirement; positive production rejects.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "coverage": "Reverse three impact slots with native signed material ID absolute value, SAME pool reuse/retirement, lighting and live160 point-velocity publication.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native object/container/allocator/SEH ABI, undefined vector W/scratch padding and whole-function equivalence unclaimed. Engine/frame/query/geometry/coefficients/particle callback boundaries use explicit native audit doubles; the actual host binding is compile/link-only. Engine gain restores on endpoint exception as a containment adaptation. Active-light rendering00501CB0, debug-selected drawing, occupied/non7 presentation, D11 missing producers and containing application/desktop acceptance remain open. No delegated engine-body credit.",
       "evidence": [
-        "recovered/game/car_cold_particles.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "recovered/game/car_finalizer_particles.h",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
       ]
     },
     {
@@ -46590,14 +46600,64 @@
       "program": "client",
       "entry": "0051a480",
       "status": "partial",
-      "coverage": "Actual feature20 gate, both current-variant interior/exterior playback queries, shared CRT rand%100 >79 selection, late2298 read, same sound-slot enable/reread/volume1 order and retained650 variant. Concrete Car clutch callback uses SAME sound, feature, last-inside and random owners.",
+      "coverage": "Actual feature20 gate, both current-variant interior/exterior playback queries, shared CRT rand%100 >79 selection, late2298 read, same sound-slot enable/reread/shared0083BEC4 volume order and retained650 variant. Concrete Car clutch callback uses SAME sound, feature, last-inside and random owners.",
       "limitations": "Source-only typed/STL/RAII adaptation; native pointer/vtable/allocator/SEH ABI and out-of-domain CRT/malformed-pointer behavior unclaimed. Native audits use captured parameter blocks with geometry/engine/frame doubles. Full automatic controller, powered force solver, running finalizer and occupied presentation remain required; no loaded World or application/desktop acceptance. Actual-host and application builds are compile/link only; no delegated engine credit.",
       "evidence": [
         "recovered/game/car_sound_updates.h",
         "recovered/game/car_loading_activation.h",
         "recovered/game/car_cold_receivers.h",
         "analysis/human-h8-car-gear-source.md",
-        "analysis/checkpoints/p2.2-human-h8-car-gear-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-car-gear-20261116.json",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00518ab0",
+      "status": "partial",
+      "coverage": "Full reached engine mixer: SAME process0083BEC4 temporary gain/F48 ramp,2297/2298 old-side retirement, fallback and three five-row RPM/load/fade banks, neutral flags, final single voice and native threshold/query/rate/volume order.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native object/container/allocator/SEH ABI, undefined vector W/scratch padding and whole-function equivalence unclaimed. Engine/frame/query/geometry/coefficients/particle callback boundaries use explicit native audit doubles; the actual host binding is compile/link-only. Engine gain restores on endpoint exception as a containment adaptation. Active-light rendering00501CB0, debug-selected drawing, occupied/non7 presentation, D11 missing producers and containing application/desktop acceptance remain open. No delegated engine-body credit.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051b7c0",
+      "status": "partial",
+      "coverage": "Exact ascending interior loop banks,9C4,C54,ascending exterior banks,C94 AC(0,1) pause order, without stopping unrelated voices.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native object/container/allocator/SEH ABI, undefined vector W/scratch padding and whole-function equivalence unclaimed. Engine/frame/query/geometry/coefficients/particle callback boundaries use explicit native audit doubles; the actual host binding is compile/link-only. Engine gain restores on endpoint exception as a containment adaptation. Active-light rendering00501CB0, debug-selected drawing, occupied/non7 presentation, D11 missing producers and containing application/desktop acceptance remain open. No delegated engine-body credit.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004fcbd0",
+      "status": "partial",
+      "coverage": "Active retained skid-pair initialization, native rejection/reversal/length gates, previous second-model corner joins,0.3 segment splitting,50-slot cursor wrapping and repeated remainder production on SAME wheels/models.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native object/container/allocator/SEH ABI, undefined vector W/scratch padding and whole-function equivalence unclaimed. Engine/frame/query/geometry/coefficients/particle callback boundaries use explicit native audit doubles; the actual host binding is compile/link-only. Engine gain restores on endpoint exception as a containment adaptation. Active-light rendering00501CB0, debug-selected drawing, occupied/non7 presentation, D11 missing producers and containing application/desktop acceptance remain open. No delegated engine-body credit.",
+      "evidence": [
+        "recovered/game/car_skid_models.h",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ece20",
+      "status": "partial",
+      "coverage": "SAME shared emitter pool allocator: real6C0 prior reuse, reverse matching/free selection, engine4C visual copy and vector copy, real6BC fallback, native active/Activate publication; no new successful emitter factory.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native object/container/allocator/SEH ABI, undefined vector W/scratch padding and whole-function equivalence unclaimed. Engine/frame/query/geometry/coefficients/particle callback boundaries use explicit native audit doubles; the actual host binding is compile/link-only. Engine gain restores on endpoint exception as a containment adaptation. Active-light rendering00501CB0, debug-selected drawing, occupied/non7 presentation, D11 missing producers and containing application/desktop acceptance remain open. No delegated engine-body credit.",
+      "evidence": [
+        "recovered/game/car_finalizer_particles.h",
+        "analysis/human-h8-car-finalizer-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-finalizer-20261116.json"
       ]
     }
   ]

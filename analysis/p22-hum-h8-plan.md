@@ -8,6 +8,7 @@ invented desktop acceptance. H8 and parent P22-HUM remain OPEN.
 Parallel H8.4 work uses `feature/p22-hum-h8-4`, managed worktree
 `/home/control/.codex/worktrees/3472/HD2-Decomp-p22-hum-h8`, forked at529b9a9.
 Agent1 continues H8.2 on the original branch; no post-fork H8.2 changes are imported here.
+Latest H8.4: [running finalizer source](human-h8-car-finalizer-source.md); engine audio, active skid and particle workers are bound; active lighting remains guarded. H8.4/D4/D5 and D11 remain OPEN.
 
 Complete the existing plan's full Human frame checkbox. Offline7 is the first
 required application path; non7/occupied/absent-actor branches retain precise

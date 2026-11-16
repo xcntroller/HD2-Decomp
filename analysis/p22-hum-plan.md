@@ -211,7 +211,7 @@ Its [gear/clutch dependencies](human-h8-car-gear-source.md) bind request/force/a
 and correct retained shift state. The [controller policy](human-h8-car-controller-source.md)
 now binds running/input/automatic decisions and SAME driver state. The
 [powered step](human-h8-car-powered-source.md) binds drive/brake forces and live160;
-running finalizer, occupied presentation and D11 remain open.
+[running finalizer](human-h8-car-finalizer-source.md) now binds engine audio, active skids and positive particle workers on SAME owners. Active-light rendering00501CB0, occupied/non7 presentation and D11 remain open.
 
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,

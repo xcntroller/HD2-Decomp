@@ -272,10 +272,13 @@ private:
             });
     }
     unsigned finalize_core(std::uint32_t elapsed){
-        CarColdFinalizerContext<Frames,CarGeometry<Frames>,Collisions,Queries,BodyCollision,CarSkidModels<Frames>,Random> context{
+        CarFinalizerContext<Frames,CarGeometry<Frames>,Collisions,Queries,BodyCollision,CarSkidModels<Frames>,Random,typename Actor::Callbacks> context{
             frames_,*actor_.geometry,initial_->body(),initial_->wheels,initial_->drive,initial_->solver,initial_->steering,initial_->controller(),
-            initial_->collision,queries_,exclusions_,*body_collision_,initial_->audio,initial_->health,resources_.materials,resources_.particles,initial_->skids,resources_.random};
-        return finalize_car_cold(context,initial_->finalizer,elapsed,services_.car_game_kind());
+            initial_->collision,queries_,exclusions_,*body_collision_,initial_->audio,initial_->health,resources_.materials,resources_.particles,initial_->skids,resources_.random,
+            *actor_.callbacks,actor_.callback_services().car_particle_definitions(),initial_->reset_fields.field22c1,initial_->reset_fields.field22c2,
+            initial_->reset_fields.signal2294,initial_->reset_fields.signal2295,initial_->control_requests.flag229d,
+            initial_->brake_amount,initial_->engine_timeout,initial_->reset_fields.field780};
+        return finalize_car(context,initial_->finalizer,elapsed,services_.car_game_kind());
     }
     void refresh_navigation(){navigation_.load(actor_.geometry->model(),actor_.geometry->body(),services_.mode_flags(),initial_->solver.speed,initial_->body().motion().velocity);}
     void remove_seat(std::size_t index){remove_car_seat(*this,index);}

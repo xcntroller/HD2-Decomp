@@ -45,7 +45,7 @@ CA8 variant using real78(sound,0), even if the first query reports playing;
 a playing second voice returns immediately. Only both idle permit one SAME CRT
 draw. Native stores rand%100 then retains its >79 Boolean as650. Read actual
 2298 AFTER that draw, enable the selected0/1 interior/exterior voice, reread its
-slot, then set volume to read-only0083BEC4=1. Missing selected resources still
+slot, then set volume to shared0083BEC4 (initially1). The [running mixer](human-h8-car-finalizer-source.md) proves that gain is temporarily mutable; the earlier read-only interpretation is superseded. Missing selected resources still
 consume the draw and retain the selection. If a synchronous endpoint retires
 the required voice before volume publication, source fails explicitly. The
 real CarColdReceivers clutch callback now calls this body over SAME sound,

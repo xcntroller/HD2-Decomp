@@ -9,13 +9,89 @@
 
 namespace hd2::game {
 
-//Required0050B180 sound consumers, on the SAME81 sound slots.0083BEC4 is
-//FLOAT1 in the original image; its xrefs are reads only. Calls below retain
+//0083BEC4 starts at FLOAT1, but00518AB0 temporarily changes this SAME process
+//gain while calling the engine. Other Car sound workers read it too.
+inline float car_sound_gain=1.f;
+
+//Required0050B180 sound consumers, on the SAME81 sound slots. Calls below retain
 //the actual78(state,0),98(rate),8C(volume) and30(enable) engine boundaries.
 template<class Frames>class CarSoundUpdates {
 public:
     using Frame=typename Frames::Frame;using Vector=typename Frames::Vector;
     CarSoundUpdates(Frames& frames,CarSoundLoading<Frames>& sounds):frames_(frames),sounds_(sounds){}
+    void pause_engine_loops(){ //0051B7C0, AC(0,1), distinct from30(false).
+        auto pause=[&](unsigned slot){if(auto sound=sounds_.sound(slot))frames_.car_sound_stop(sound);};
+        for(unsigned bank:{0x988u,0x99cu,0x9b0u})for(unsigned n=0;n<5;++n)pause(bank+n*4);
+        pause(0x9c4);pause(0xc54);
+        for(unsigned bank:{0xc58u,0xc6cu,0xc80u})for(unsigned n=0;n<5;++n)pause(bank+n*4);
+        pause(0xc94);
+    }
+    void engine(const CarPhysics& physics,const CarDrivetrainState& drive,std::uint32_t features,
+            bool transition,bool inside,bool& last_inside,float& timeout,float elapsed){ //00518AB0.
+        if(!transition)return;
+        const auto saved_gain=car_sound_gain;
+        timeout+=elapsed;if(timeout>.30000001192092896f)timeout=.30000001192092896f;
+        car_sound_gain=static_cast<float>(static_cast<long double>(car_sound_gain)*timeout*3.3333332538604736f);
+        //Engine endpoints cannot unwind in the original ABI. Our required
+        //endpoints can report failure; do not leak a temporary process gain.
+        struct Restore {float saved;~Restore(){car_sound_gain=saved;}} restore{saved_gain};
+        const auto& fields=physics.scalars();float speed=drive.engine_speed;
+        if(speed<fields.get(0x914))speed=fields.get(0x914);
+        else{const float upper=fields.get(0x221c)-.0010000000474974513f;if(upper<speed)speed=upper;}
+        auto bank_stop=[&](bool selected_inside,unsigned bank){for(unsigned n=5;n;)stop((selected_inside?0x988u:0xc58u)+bank*20+(--n)*4);};
+        if(last_inside!=inside){
+            for(unsigned bank=0;bank<3;++bank)bank_stop(last_inside,bank);
+            if(last_inside){stop(0x9c4);stop(0x9c8);}
+            else{stop(0xc94);stop(0xc98);stop(0xc54);}
+            last_inside=inside;
+        }
+        if(!(features&0x20u)&&!last_inside){
+            if(const auto sound=sounds_.sound(0xc54)){
+                float volume=fields.get(0xcf8);
+                if(speed<fields.get(0xcf4))volume=static_cast<float>((static_cast<long double>(speed)-fields.get(0x914))/
+                    (static_cast<long double>(fields.get(0xcf4))-fields.get(0x914))*volume);
+                const auto pitch=static_cast<float>((static_cast<long double>(speed)-fields.get(0x914))/
+                    ((static_cast<long double>(fields.get(0x221c))-fields.get(0x914))/
+                     (static_cast<long double>(fields.get(0xcf0))-fields.get(0xcec)))+fields.get(0xcec));
+                if(!frames_.car_sound_state(sound))frames_.human_sound_enabled(sound,true);
+                frames_.car_sound_parameter98(sounds_.sound(0xc54),pitch);
+                frames_.human_sound_volume(sounds_.sound(0xc54),car_sound_gain*volume);
+            }
+        }else{
+            if(drive.gear<0){bank_stop(last_inside,0);bank_stop(last_inside,1);}
+            else bank_stop(last_inside,2);
+            const unsigned first=drive.gear<0?2u:0u,last=drive.gear<0?3u:2u;
+            for(unsigned bank=first;bank<last;++bank)for(unsigned n=5;n;){const auto row=--n;
+                const auto slot=(last_inside?0x988u:0xc58u)+bank*20+row*4;
+                const auto sound=sounds_.sound(slot);if(!sound)continue;
+                const auto field=(last_inside?0xa1cu:0xcfcu)+bank*0xa0+row*4;
+                const auto low=fields.get(field+40),high=fields.get(field+60);
+                const bool neutral_disabled=bank<2&&drive.gear==0&&physics.flags().at((last_inside?0x22a3u:0x22b1u)+bank*5+row);
+                if(!(low<=speed&&speed<=high)||neutral_disabled){if(frames_.car_sound_state(sound))stop(slot);continue;}
+                const auto blend=bank==1?static_cast<long double>(1.f)-drive.torque_amount:static_cast<long double>(drive.torque_amount);
+                float volume=static_cast<float>((static_cast<long double>(fields.get(field+120))-fields.get(field+140))*blend+fields.get(field+140));
+                if(volume>.009999999776482582f){
+                    const auto fade_in=fields.get(field+80),fade_out=fields.get(field+100);
+                    if(speed<fade_in&&low!=fade_in)volume=static_cast<float>((static_cast<long double>(speed)-low)/(static_cast<long double>(fade_in)-low)*volume);
+                    else if(fade_out<speed&&high!=fade_out)volume=static_cast<float>((1.L-(static_cast<long double>(speed)-fade_out)/(static_cast<long double>(high)-fade_out))*volume);
+                }
+                const auto pitch=static_cast<float>((static_cast<long double>(speed)-low)/
+                    ((static_cast<long double>(high)-low)/(static_cast<long double>(fields.get(field+20))-fields.get(field)))+fields.get(field));
+                if(frames_.car_sound_state(sound)){if(volume<.009999999776482582f){stop(slot);continue;}}
+                else{if(volume<=.009999999776482582f)continue;frames_.human_sound_enabled(sounds_.sound(slot),true);}
+                frames_.car_sound_parameter98(sounds_.sound(slot),pitch);
+                frames_.human_sound_volume(sounds_.sound(slot),car_sound_gain*volume);
+            }
+        }
+        const auto slot=last_inside?0x9c4u:0xc94u,base=last_inside?0xbfcu:0xedcu;
+        const auto sound=sounds_.sound(slot);if(!sound)return;
+        const auto low=fields.get(base+4),high=fields.get(base);
+        if(!(low<=speed&&speed<=high)){if(frames_.car_sound_state(sound))stop(slot);return;}
+        const float volume=static_cast<float>((static_cast<long double>(high)-speed)/(static_cast<long double>(high)-low)*fields.get(base+8));
+        if(frames_.car_sound_state(sound)){if(volume<.009999999776482582f){stop(slot);return;}}
+        else{if(volume<=.009999999776482582f)return;frames_.human_sound_enabled(sounds_.sound(slot),true);}
+        frames_.human_sound_volume(sounds_.sound(slot),car_sound_gain*volume);
+    }
     void audible(CarDrivetrainState& drive,bool enabled){ //004F2710.
         if(!enabled&&drive.audible)sounds_.stop_all();
         drive.audible=enabled;
@@ -25,7 +101,7 @@ public:
         if(drive.audible)for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset))(void)frames_.car_sound_state(sound);
         if(!drive.running)return; //Native22A2 gate, distinct from pending22BF.
         sounds_.stop_all();
-        if(auto sound=sounds_.sound(inside?0x980:0xc4c);sound&&drive.audible){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);}
+        if(auto sound=sounds_.sound(inside?0x980:0xc4c);sound&&drive.audible){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,car_sound_gain);}
         for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset))frames_.human_sound_parameter94(sound,0);
         drive.engine_speed=0;drive.running=false;transition=false;destroyed=false;
     }
@@ -34,7 +110,7 @@ public:
         if(drive.audible)for(auto offset:{0x97cu,0x980u,0xc48u,0xc4cu})if(auto sound=sounds_.sound(offset))if(frames_.car_sound_state(sound))idle=false;
         if(!drive.running&&!transition&&idle){
             if(auto sound=sounds_.sound(inside?0x97c:0xc48);sound&&drive.audible){
-                frames_.human_sound_parameter94(sound,0);frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);
+                frames_.human_sound_parameter94(sound,0);frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,car_sound_gain);
             }
             drive.running=true;
         }
@@ -53,7 +129,7 @@ public:
         if(auto sound=sounds_.sound(0x984))if(frames_.car_sound_state(sound))idle=false;
         if(auto sound=sounds_.sound(0xc50))if(frames_.car_sound_state(sound))return;
         if(!idle)return;
-        if(auto sound=sounds_.sound(last_inside?0x984:0xc50)){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);}
+        if(auto sound=sounds_.sound(last_inside?0x984:0xc50)){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,car_sound_gain);}
     }
     template<class Random>void clutch_changed(std::uint32_t features,const bool& last_inside,Random& random){ //0051A480.
         if(!(features&0x20u))return;
@@ -68,7 +144,7 @@ public:
             frames_.human_sound_enabled(sound,true);
             const auto current=sounds_.sound(slot);
             if(!current)throw std::logic_error("Car clutch sound retired before its native volume write");
-            frames_.human_sound_volume(current,1.f);
+            frames_.human_sound_volume(current,car_sound_gain);
         }
     }
     void puncture(bool audible,bool inside,const Vector& wheel_position){ //0051A880.
@@ -76,7 +152,7 @@ public:
         const unsigned slot=inside?0x9ec:0xcbc;
         if(const auto sound=sounds_.sound(slot)){
             frames_.human_sound_enabled(sound,true);
-            frames_.human_sound_volume(sounds_.sound(slot),1.f); //Read-only0083BEC4=1.
+            frames_.human_sound_volume(sounds_.sound(slot),car_sound_gain); //SAME0083BEC4.
             if(!inside)frames_.object_position(sounds_.sound(slot),{{wheel_position[0],wheel_position[1],wheel_position[2]}});
         }
     }
@@ -87,7 +163,7 @@ public:
             if(!frames_.car_sound_state(sound))return;
             if(!(static_cast<long double>(volume)+.15000000596046448f>frames_.car_sound_volume(sound)))return;
         }
-        frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,volume); //Read-only gain0083BEC4=1.
+        frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,car_sound_gain*volume); //SAME0083BEC4.
     }
     template<class Random>void collision(const CarPhysics& physics,float impulse,bool gear,bool inside,Random& random){ //0051A950.
         const auto& fields=physics.scalars();const unsigned threshold=inside?0xc38:0xf38;
@@ -102,14 +178,14 @@ public:
             if(frames_.car_sound_state(selected))return;
             if(frames_.car_sound_state(other)&&frames_.car_sound_elapsed(other)<800)return;
         }else if(frames_.car_sound_state(selected))return;
-        frames_.human_sound_enabled(selected,true);frames_.human_sound_volume(selected,1.f);
+        frames_.human_sound_enabled(selected,true);frames_.human_sound_volume(selected,car_sound_gain);
     }
     void signal(bool second,bool enabled,bool inside){ //0051A6C0 /0051A7A0.
         const unsigned first=second?0x9d0:0x9cc,other=second?0xca0:0xc9c;
         if(!enabled){stop(first);stop(other);return;}
         const auto selected=sounds_.sound(inside?first:other);
         if(selected&&!frames_.car_sound_state(selected)){
-            frames_.human_sound_enabled(selected,true);frames_.human_sound_volume(selected,1.f);
+            frames_.human_sound_enabled(selected,true);frames_.human_sound_volume(selected,car_sound_gain);
         }
         stop(inside?other:first);
     }
@@ -160,14 +236,14 @@ public:
         if(skid_>=.009999999776482582f){
             const auto selected=sounds_.sound(inside?0x9e0:0xcb0);
             if(selected){if(!frames_.car_sound_state(selected))frames_.human_sound_enabled(selected,true);
-                frames_.human_sound_volume(selected,skid_);}
+                frames_.human_sound_volume(selected,car_sound_gain*skid_);}
             stop(inside?0xcb0:0x9e0);
         }else{stop(0x9e0);stop(0xcb0);}
     }
     void door(const CarAuxiliaryGeometry<Frames>& geometry,std::size_t seat,bool opening,bool audible,bool inside){ //0051B660.
         if(!audible)return;
         const auto sound=sounds_.sound(inside?(opening?0xa10:0xa14):(opening?0xce0:0xce4));if(!sound)return;
-        frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);
+        frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,car_sound_gain);
         const auto index=geometry.seats().at(seat).door;
         if(index==CarAuxiliaryGeometry<Frames>::no_door)throw std::runtime_error("Car door sound has no actual seat door");
         frames_.car_sound_head(sound,geometry.doors().at(index).position);
@@ -175,7 +251,7 @@ public:
     void air_brake(std::uint32_t features,bool inside,bool& requested){ //0051A580; caller supplies actual228E.
         if(!(features&0x20u))return;
         const auto sound=sounds_.sound(inside?0x9d4:0xca4);
-        if(sound&&!frames_.car_sound_state(sound)&&!requested){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);}
+        if(sound&&!frames_.car_sound_state(sound)&&!requested){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,car_sound_gain);}
         requested=true;
     }
     float skid_amount()const{return skid_;}
@@ -194,7 +270,7 @@ private:
         const auto playing=frames_.car_sound_state(sound);
         if(playing){if(volume<.009999999776482582f){frames_.human_sound_enabled(sound,false);return;}}
         else{if(!(volume>.009999999776482582f))return;frames_.human_sound_enabled(sound,true);}
-        frames_.car_sound_parameter98(sound,value);frames_.human_sound_volume(sound,volume);
+        frames_.car_sound_parameter98(sound,value);frames_.human_sound_volume(sound,car_sound_gain*volume);
     }
     Frames& frames_;CarSoundLoading<Frames>& sounds_;float skid_=0; //004EA780 clears5F0.
     std::uint32_t clutch_variant_=0; //004EA780 clears650;0051A480 retains the selected0/1.
