@@ -2,6 +2,7 @@
 #define HD2_GAME_GEOMETRY_SCENE_ACTORS_H
 
 #include "game/scene_actor.h"
+#include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/door_key_lock.h"
 #include "game/ladder_geometry.h"
@@ -34,6 +35,10 @@ public:
         if(geometry)throw std::logic_error("Ladder frame initialization repeated");
         geometry.emplace(this->backend_,frame);
         return this->base_.initialize_frame(frame);
+    }
+    std::int32_t material(Frame)override{ //005EA560, SAME initialized geometry's184.
+        if(!geometry)throw std::logic_error("Ladder material requires actual initialized geometry");
+        return geometry->material();
     }
     void load(SerializedBytes& bytes) override {properties.load(bytes);} //005EBBD0.
     ~LadderSceneActor() override {if(remove_collisions_)remove_collisions_();}
@@ -128,6 +133,7 @@ class DoorSceneActor final : public SceneActor<Backend> {
 public:
     using Frame=typename Backend::Frame;
     using Descriptor=RigidBodyCollisionDescriptor<Frame>;
+    std::int32_t material(Frame picked)override{return actor_picked_or_model_material(this->backend_,picked,this->base_.frame());} //006023B0.
     explicit DoorSceneActor(Backend& backend) : SceneActor<Backend>(backend,6),
         properties(initial_door_properties()) {} //005FF210.
     bool initialize(Frame frame) override {return this->base_.initialize_frame(frame);} //005FF3D0.

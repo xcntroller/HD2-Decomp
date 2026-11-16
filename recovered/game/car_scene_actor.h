@@ -2,6 +2,7 @@
 #define HD2_GAME_CAR_SCENE_ACTOR_H
 
 #include "game/scene_actor.h"
+#include "game/actor_material.h"
 #include "game/car_geometry.h"
 #include "game/car_ancillary_model.h"
 #include "game/car_callback_services.h"
@@ -42,6 +43,7 @@ public:
         backend.register_car_actor(this); //0089BC28 list, after cold members/name.
         registered_=true;
     }
+    std::int32_t material(Frame picked)override{return actor_nonnegative_material(this->backend_,picked);} //004DBEE0.
     ~CarSceneActor() override { //004D0F20; no populated-producer cleanup is invented.
         loading.reset(); //Actual runtime borrowers precede DM/geometry/frame retirement.
         ancillary.reset(); //004E0EE0 precedes registry removal.

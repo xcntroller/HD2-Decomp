@@ -15,6 +15,7 @@ template<class Backend>class DocumentPlaceSceneActor final:public SceneActor<Bac
 public:
     using Frame=typename Backend::Frame;using Descriptor=RigidBodyCollisionDescriptor<Frame>;
     using Visual=decltype(std::declval<Backend&>().create_document_visual(0u));
+    std::int32_t material(Frame)override{return 0x55;} //0060E550, genuine constant/RET4.
     explicit DocumentPlaceSceneActor(Backend& backend):SceneActor<Backend>(backend,23){}
     ~DocumentPlaceSceneActor()override{if(remove_collision_)remove_collision_();}
     bool initialize(Frame frame)override{return this->base_.initialize_frame(frame);} //0060DC00→00610200.

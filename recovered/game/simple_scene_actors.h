@@ -2,6 +2,7 @@
 #define HD2_GAME_SIMPLE_SCENE_ACTORS_H
 
 #include "game/scene_actor.h"
+#include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/sound_emission.h"
 #include "game/rigid_body.h"
@@ -53,6 +54,7 @@ class ExplosivePlaceSceneActor final : public SceneActor<Backend> {
 public:
     using Frame=typename Backend::Frame;
     using Descriptor=RigidBodyCollisionDescriptor<Frame>;
+    std::int32_t material(Frame picked)override{return actor_picked_or_model_material(this->backend_,picked,this->base_.frame());} //0060CEE0.
     explicit ExplosivePlaceSceneActor(Backend& backend) : SceneActor<Backend>(backend,22),
         properties(initial_explosive_place_properties()) {} //0060C230.
     bool initialize(Frame frame) override {return this->base_.initialize_frame(frame);} //0060C2F0.

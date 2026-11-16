@@ -50,13 +50,7 @@ public:
     }
     template<class Human>void complete(Human&){photographed91=1;} //0060C130 RET4; Human argument unused.
     void reset_completion(){photographed91=0;} //0060BE80.
-    std::int32_t material(Frame picked){ //0060BE40, picked frame before actor-frame fallback.
-        const auto material=picked?actor_material_id(this->backend_.actor_user_data(picked)):-1;if(material!=-1)return material;
-        if(picked!=this->base_.frame()){
-            const auto fallback=actor_material_id(this->backend_.actor_user_data(this->base_.frame()));if(fallback!=-1)return fallback;
-        }
-        return 11;
-    }
+    std::int32_t material(Frame picked)override{return actor_picked_or_model_material(this->backend_,picked,this->base_.frame());} //0060BE40.
     void read_snapshot(SerializedBytes& bytes){ //0060BF90:3000, one raw byte, extension/unknown chunks skipped.
         while(auto chunk=next_mission_chunk(bytes))if(chunk->id==3000&&chunk->bytes.remaining())photographed91=chunk->bytes.byte();
     }

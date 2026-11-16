@@ -1487,22 +1487,7 @@ public:
         callbacks.b8(*state,&source,displacement);
     }
     template<class Actor,class Frame>std::uint32_t item_melee_material(Actor& actor,Frame picked){
-        if(actor.base().type()==15){
-            auto* photo=dynamic_cast<PhotoPlaceSceneActor<typename Dependencies::ActorFrames>*>(&actor);
-            if(!photo)throw std::logic_error("Melee material requires actual PhotoPlace");
-            return static_cast<std::uint32_t>(photo->material(picked));
-        }
-        if(actor.base().type()==12){
-            using Item=typename std::remove_reference_t<decltype(dependencies().world_actors)>::Runtime::DetachedItem;
-            if(!dynamic_cast<Item*>(&actor))throw std::logic_error("Melee material requires actual Item12");
-            return 11; //005FDDC0.
-        }
-        if(actor.base().type()==2){
-            using Mine=typename std::remove_reference_t<decltype(dependencies().world_actors)>::Runtime::Mine;
-            auto* mine=dynamic_cast<Mine*>(&actor);if(!mine)throw std::logic_error("Melee material requires actual Mine");
-            return static_cast<std::uint32_t>(mine->material());
-        }
-        throw std::runtime_error("Melee requires actual actor D8 material receiver (H8)");
+        return static_cast<std::uint32_t>(actor.material(picked)); //Actual typed virtualD8; each concrete native family supplies its own receiver.
     }
     template<class Actor,class Human>void item_melee_dog_damage(Actor&,float,const HumanVector&,const HumanVector&,Human&){
         throw std::runtime_error("Melee requires actual type30 Dog factory/D4 damage receiver (H8)");

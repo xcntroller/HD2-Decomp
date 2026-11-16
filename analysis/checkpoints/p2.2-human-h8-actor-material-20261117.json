@@ -1,0 +1,261 @@
+{
+  "checkpoint": "H8.4 actual actor D8 material source",
+  "date": "2026-11-17",
+  "branch": "feature/p22-hum-h8-4",
+  "base": "85dc76f",
+  "contract": "analysis/human-h8-actor-material-source.md",
+  "original_pe_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "native": {
+    "result": "PASS",
+    "checks": 26976,
+    "repeated_families": 32,
+    "sanitizers": [
+      "ASan",
+      "UBSan",
+      "LSan"
+    ],
+    "actual_source": [
+      "typed actor common/derived material methods",
+      "Human/Dog/Ladder geometry/Photo/Explosive/Document/Animation/Supply/StaticWeapon/Null/placed source owners",
+      "Human/common actor storage and navigation",
+      "00451230 HUM melee source on seven concrete families"
+    ],
+    "boundary_doubles": [
+      "engine frame/resource/math",
+      "item payload/query/actor lookup",
+      "terminal effect/unused damage endpoints"
+    ]
+  },
+  "host": {
+    "result": "PASS i386 O0 C++17 Wall Wextra Wpedantic Werror static full link, not executed",
+    "scope": "Every currently supported Scene2/runtime factory and HUM material bridge"
+  },
+  "application_launch_startup_probe": "PASS compile/link only",
+  "ghidra": "readOnly/noanalysis; selected temporary leaf definitions and material ABI; transaction rolled back, project not saved",
+  "original_or_windows_execution": false,
+  "agent1_worktree_modified": false,
+  "push": false,
+  "tracker": {
+    "render": "PASS unchanged counts",
+    "check": "PASS exact fingerprints/inventories/frozen counts/statuses/evidence/README",
+    "tests": "PASS 27",
+    "complete": 34,
+    "partial": 3471,
+    "frozen": 18783,
+    "new_entries": 0,
+    "complete_promotions": 0,
+    "engine_credit": 0
+  },
+  "D11": "Previously source-resolved under explicit four-state compatibility policy",
+  "H8_4": "Open; Dog D4/owner, Aircraft/type34 and selected Car/entry composition remain required",
+  "evidence_fingerprints": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-map.json",
+      "bytes": 3552,
+      "sha256": "5f35bdaa8b1d6268f5c7d71f202660556413ec2f482e64059f1b21378d83f242"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-index.txt",
+      "bytes": 9371,
+      "sha256": "f524be877b50aebafbab6fbba70719727a14fc86e782c2d23c3c9113b47d7570"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-common-actor-material-index.txt",
+      "bytes": 4023,
+      "sha256": "81ad62809632e28c9fac1069a7b18b5248fbce2202a7e1baa6886a88cdd59ad5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-material-other-owners-index.txt",
+      "bytes": 8804,
+      "sha256": "a729746ca2a92d0f5b20f82c3f0d9a2e5721873aaadb45b942ea4f72d1f465db"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-document-material-index.txt",
+      "bytes": 1542,
+      "sha256": "f0bb71b4a0eb239eb078c61a15d4cfc0833ffdd1b372aa10c44f46112906175f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-placed-material-index.txt",
+      "bytes": 730,
+      "sha256": "5c1a97826a6dc65670bad38882170165c6c5197b5655cf03cc348b4950ac6020"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-loose-material-index.txt",
+      "bytes": 882,
+      "sha256": "4bf1e23301524d72583c1316df1bfb8eb2cc195a44971838ca1d8d512f24ac51"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-common-material-vtable.asm",
+      "bytes": 204,
+      "sha256": "7ed1bb07beddd015039ded29ec8dd0a25042b9d6fa936007765186d1bf216c53"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-runtime-material-leaves.asm",
+      "bytes": 776,
+      "sha256": "6fb369ca6f159ecff3beb148122dff58c657a1e286494b135f63152bb328e312"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/ExportH8ActorMaterials.java",
+      "bytes": 1534,
+      "sha256": "dbe05bf0a910dbfa60a274d61add4743c316bde24b3918d28bda41dbaf2f6c90"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-export.log",
+      "bytes": 5362,
+      "sha256": "898b4eacf2b5fab23824d8d5ae44a58f9a93aee661ce2ac565a6555a882b348c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-material-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-material-sanitizer-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-material-native-run.log",
+      "bytes": 69,
+      "sha256": "1e92273a46e19ff599960bf5aa12bc383c27bd1cd8fecfb2f2453e0c55376ce7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-material-host-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-material-application-build.log",
+      "bytes": 930,
+      "sha256": "4fd12cb475e84990a6514cb4e337f3ee6957fecd0e2088f4bfa2dde2591d73f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/004dbee0.c",
+      "bytes": 144,
+      "sha256": "035bfafa5a20a094a21826001da2540f891153fc36f2b3ddeba3595c7aa49fcb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/004dbee0.json",
+      "bytes": 840,
+      "sha256": "22567f2f9ef42236bb75df259219b3ff1389fd8ffd8ae8f82d61fe899586ddd2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/0059c2a0.c",
+      "bytes": 52,
+      "sha256": "3df1feffd6a0fdf9aa52f1fc8ade515a7d0ddf0ff22a61396186e8f6d37a4fe5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/0059c2a0.json",
+      "bytes": 404,
+      "sha256": "8d82dc73aee015d79b29badaede7f4d41ef658684bb37a8f24becd4102b13751"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005b5f20.c",
+      "bytes": 144,
+      "sha256": "2237b2aabadfb82326dedc3971b6106a39881088caf85a1d0225f3a744a52755"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005b5f20.json",
+      "bytes": 840,
+      "sha256": "2fbcec6769ab3e84b9f3a54768c2f14d65cd7ddfb0043fc1be6840bada976479"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005b88b0.c",
+      "bytes": 51,
+      "sha256": "b2b54747c95d8eca7ce13821e71f25e64e82e7f6e49046f98abf5fd7f19b38d5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005b88b0.json",
+      "bytes": 404,
+      "sha256": "a778ebe922ab4c9e37c7707ae42299c8bdeac311032760923b0e0d1c580f4c1d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005d4cb0.c",
+      "bytes": 52,
+      "sha256": "de0aec271e39afccda8b6564a90fef0b2c86ba8ad3f88368c69187ebb878cc96"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005d4cb0.json",
+      "bytes": 404,
+      "sha256": "e1d282059d9ed413f0cd5cf7f571304522b4a0b32c2449262b6626c2b193547d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005ea560.c",
+      "bytes": 98,
+      "sha256": "57604de982ef83ca4cd4d6580834bc87b7bf961aba4db4dbf2e0580c3cd1ba9b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005ea560.json",
+      "bytes": 404,
+      "sha256": "d871471d4db5bc8e98adea3433e86d1bd860ed20a08ae742d72786d211a0c38c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005f9850.c",
+      "bytes": 52,
+      "sha256": "da3e69e6af310935c304d3fc70507f07a60a44b486d0ce6fb05a7e56b8a91a87"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005f9850.json",
+      "bytes": 404,
+      "sha256": "eb64a97a56331be2596ae4311f7085d78df73321c1028c3fd44023dac0e81669"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005fddc0.c",
+      "bytes": 51,
+      "sha256": "980800810e0fcbea63efb1835b1bfb555ac4d84e457aac3ec7317d6667eb68ab"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/005fddc0.json",
+      "bytes": 404,
+      "sha256": "ed615deae1153569a3dd1a2a4151dfa6276c3237d52e35cc6f76c1ae1327da0a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/006023b0.c",
+      "bytes": 320,
+      "sha256": "cb3374ec68adb545d1eac3c87d0888e4e5dc26683ca69442d37114c74648ac65"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/006023b0.json",
+      "bytes": 1343,
+      "sha256": "df02379f62a203f2e285a6e3c3635607a0aecc666d21cef337c97a7eabb62ff4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/0060cee0.c",
+      "bytes": 320,
+      "sha256": "3c4ba8753771558822fbbb52ec63f65e991f6dd714f4287d9d77e30a05be4a11"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-actor-material-originals/0060cee0.json",
+      "bytes": 1343,
+      "sha256": "4c60ae1a389adccd08faf10f786d47933b026c2e6f35587e30edda0fca15cf3c"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-material-audit.cpp",
+      "bytes": 9927,
+      "sha256": "bab4c7cb85ae3ce4f8f717e95ee89328801c4a7c6da1b8d20c312d626b5afba1"
+    },
+    {
+      "path": "/tmp/h8-material-audit",
+      "bytes": 1702680,
+      "sha256": "ef2f43801acdde46b6b0c1cac0a490ff973741a04917c14b10b8ca6d43ff4761"
+    },
+    {
+      "path": "/tmp/h8-material-audit-san",
+      "bytes": 3358280,
+      "sha256": "1b8b7529ec0000506f35fa90503a9fd76bcbbd81649cad58f4e4b881963eada8"
+    },
+    {
+      "path": "/tmp/h8-material-host.cpp",
+      "bytes": 675,
+      "sha256": "4418ed55d9c9ac3bea0f48694b28bff07e8c1a7274528efece52666c0c1a115c"
+    },
+    {
+      "path": "/tmp/h8-material-host.exe",
+      "bytes": 2730496,
+      "sha256": "d43de4c31e188e5f9e6ea3fb6908d3dbbc9f3fba54e6d8db590be1c313ce86e8"
+    }
+  ],
+  "temporary_audits_removed": true
+}

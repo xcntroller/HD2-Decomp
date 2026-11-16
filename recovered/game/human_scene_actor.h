@@ -84,6 +84,7 @@ template<class Backend,class Runtime>
 class HumanSceneActor final : public SceneActor<Backend> {
 public:
     using Frame=typename Backend::Frame;
+    std::int32_t material(Frame)override{return 0x42;} //0059C2A0.
     HumanSceneActor(Backend& backend,Runtime& runtime,HumanStorageScalars scalars={})
         : SceneActor<Backend>(backend,3),properties(initial_human_properties(runtime.mode_flags())),
           command(std::make_unique<HumanColdCommandControl>()),

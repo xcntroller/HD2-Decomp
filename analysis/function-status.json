@@ -23886,7 +23886,10 @@
         "analysis/animation-supply-loading.md",
         "analysis/checkpoints/p2.2-animation-supply-20261109.json",
         "analysis/human-h8-photo-place-source.md",
-        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json",
+        "analysis/human-h8-actor-material-source.md",
+        "analysis/checkpoints/p2.2-human-h8-actor-material-20261117.json",
+        "recovered/game/scene_actor.h"
       ]
     },
     {
@@ -45509,13 +45512,17 @@
       "program": "client",
       "entry": "00451230",
       "status": "partial",
-      "coverage": "Ordinary undercut=false item melee: payload damage, exact1.2 displacement, actual ray/exclusion restoration before descriptor48 inspection, Human/StaticWeapon seat0 hit zones and H2 damage, miss/B8 and ungated material3C particle output. Existing Item12/Mine material owners are bound.",
+      "coverage": "Ordinary undercut=false item melee: payload damage, exact1.2 displacement, actual ray/exclusion restoration before descriptor48 inspection, Human/StaticWeapon seat0 hit zones and H2 damage, miss/B8 and ungated material3C particle output. Existing Item12/Mine material owners are bound. Actual typed virtualD8 material receivers now cover the currently constructed Scene2/runtime families, preserving original negative-vs-sentinel fallback and HUM pick/effect order; Dog D4 remains required.",
       "limitations": "Source-only typed ownership/STL/RAII replaces native class/vtable/allocator/SEH ABI. Focused ASan/UBSan/LSan with explicit engine/Human/state/damage/notification endpoint doubles and actual-host i386 full link verify the stated subset; no original/Windows/application/desktop execution. Full World/Runtime/async combat, conditional non7 admission/replay and absent actor/material receivers remain required H8/OWN dependencies. Unwritten SIMD lanes receive no ABI credit. Undercut=true is not selected by007D4FD0 and is excluded; Dog30 factory/D4 and other actor D8 materials retain required H8 guards.",
       "evidence": [
         "recovered/game/human_item_melee.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h6-source-closure.md",
-        "analysis/checkpoints/p2.2-human-h6-source-20261112.json"
+        "analysis/checkpoints/p2.2-human-h6-source-20261112.json",
+        "analysis/human-h8-actor-material-source.md",
+        "analysis/checkpoints/p2.2-human-h8-actor-material-20261117.json",
+        "recovered/game/actor_material.h",
+        "recovered/game/scene_actor.h"
       ]
     },
     {
@@ -46899,7 +46906,11 @@
         "recovered/game/human_world_loading_services.h",
         "recovered/host/game_scene_actors.h",
         "analysis/human-h8-photo-place-source.md",
-        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json",
+        "analysis/human-h8-actor-material-source.md",
+        "analysis/checkpoints/p2.2-human-h8-actor-material-20261117.json",
+        "recovered/game/actor_material.h",
+        "recovered/game/scene_actor.h"
       ]
     },
     {
