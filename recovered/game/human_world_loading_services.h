@@ -373,6 +373,15 @@ public:
     template<class State,class Actor>void produce_special_active_player_command(State&,std::uint32_t,Actor*,std::uint32_t){
         throw std::runtime_error("Active command requires its specialized00534460..00535630 task producer");
     }
+    template<class Human,class Actor>bool active_command_attack_pair(Human& human,Actor& target){
+        return active_event_hostile(human,&target)||active_event_hostile(selection_human(target),&human);
+    }
+    template<class Human>bool active_command_special_available(Human& human){ //0045BD10, all three lookups precede quantity tests.
+        return active_attack_special_available(human,dependencies().world_actors.items());
+    }
+    template<class AI>bool prepare_active_attack_special_weapon(AI& ai){ //00535110: FIXED native source2, even if lookup found another slot.
+        auto& human=*ai.human();return prepare_active_attack_special(human,dependencies().world_actors.items(),composition(human).inventory());
+    }
     template<class Humans,class Actor>void produce_active_group_command(Humans&,std::uint32_t,Actor*,bool){
         throw std::runtime_error("Players command requires actual00457820 group/navigation producer");
     }

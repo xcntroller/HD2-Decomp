@@ -242,3 +242,35 @@ Pending startup/live/dead completion, route ties/fallback/failure, source slots,
 blast-before-packet and command-before-captured-HUD failures are included. Fresh
 full actual frame/i386 and launcher links and cleanup are qualified in receipt
 `specialized_follow_up`. No actual loaded mission or desktop claim.
+
+## Attack command admission after9615ce0 — 2026-11-17
+
+Actual00458E50 now reaches00535050/00535110 through the existing command owner,
+not an isolated task setter. Command25 uses saved188 to choose25 or alternate26;
+command26 always chooses26.0045BD10 first tries sorted candidates with either
+own hostile membership toward target or target membership toward own, then retries
+all candidates. Only native target type3 admits the first pass.26 tests each
+candidate's actual definition22/7/260 entries: all three lookups occur before
+quantity tests; nonzero (including unordered) amount or005A6C50 non-pack ammo
+count admits.25 does not inherit this eligibility test when188 later selects26.
+
+Both producers test actual00538A60 before any task effect. Alternate26 reads hand3,
+then finds definitions22,7,260 in that priority, stopping after the first match.
+Its move/swap uses FIXED source2 even if lookup found the entry elsewhere; false
+request results are deliberately ignored. It reuses the existing SAME inventory
+owner and changes no PACK transfer body. Target model/task initialization and
+empty-order notification precede174 bit4 clear and204=1.26 additionally runs actual
+mode17 before first mode10. Focus exit follows;214=1000 publishes only after it
+returns, preserving earlier task/mode state if it throws. Missing special item or
+unavailable target uses existing rejected-command speech, with no task publish.
+
+Evidence reused after index lookup: `human-h8-command-producers/{00535050,
+00535110}.c`, `human-h8-command-selection/0045bd10.c` and containing00458E50;
+raw `human-h8-attack-{selection,producers}.asm` confirms ECX direction, hidden
+arguments, fixed source2 and publication order. New4700 focused checks/100
+lifetimes exercise actual storage/find/count/task initialization, two-pass
+selection and producer/failure order, with explicit Actor/frame/inventory-command/
+mode/notification endpoints. Fresh actual World/factory/Active/scene i386 and
+launcher/probe links are recorded in receipt `attack_follow_up`; no old audit
+rerun or actual mission/desktop claim. Remaining group/other specialized families
+still retain their requirements; H8.4 remains separate.

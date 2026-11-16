@@ -46280,7 +46280,7 @@
       "program": "client",
       "entry": "0045bd10",
       "status": "partial",
-      "coverage": "Selected ordinary target-model/sort-first candidate selection; definition lookups, first-candidate actions, type21 claim and Human focus gates; required specialized policies. Action15 now skips the target Human and selects the first medical-equipped candidate after native model/sort prefix.",
+      "coverage": "Selected ordinary target-model/sort-first candidate selection; definition lookups, first-candidate actions, type21 claim and Human focus gates; required specialized policies. Action15 now skips the target Human and selects the first medical-equipped candidate after native model/sort prefix. Attack25/26 selection now prefers actual bidirectional hostile-list membership, then retries all sorted candidates;26 tests definition22/7/260 quantities or actual non-pack ammunition counts on each pass.",
       "limitations": "Source-only typed/STL/RAII adaptation. Other specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full containing authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
       "evidence": [
         "recovered/game/human_active_ai_commands.h",
@@ -46288,7 +46288,9 @@
         "analysis/human-h8-active-command-source.md",
         "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json",
         "analysis/human-h8-authority-policy-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
       ]
     },
     {
@@ -46308,13 +46310,15 @@
       "program": "client",
       "entry": "00458e50",
       "status": "partial",
-      "coverage": "Explicit-Human pending kind3 selection, original first rejection speech, filtering, reverse188 publication and selected task producers; required specialized/group dispatch.",
+      "coverage": "Explicit-Human pending kind3 selection, original first rejection speech, filtering, reverse188 publication and selected task producers; required specialized/group dispatch. Command25 now selects actual ordinary/alternate attack producer from saved188; command26 always selects alternate, after native candidate filtering.",
       "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
       "evidence": [
         "recovered/game/human_active_ai_commands.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-active-command-source.md",
-        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
       ]
     },
     {
@@ -47108,6 +47112,32 @@
       "limitations": "Source-only typed/STL adaptation on the same loaded owners. Original ABI/allocator/SEH and containing application/desktop delivery remain excluded. Focused native stages explicitly double Human/frame/item/World endpoints; concrete World/factory/Active and Human scene frame compile/link only. Existing delegated bodies receive no new credit.",
       "evidence": [
         "recovered/game/human_ground_frame_receivers.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00535050",
+      "status": "partial",
+      "coverage": "Recover ordinary attack25 producer: actual target capability before task initialization, notify,174 bit4 clear/204 publication, first mode10 and focused-exit delay.",
+      "limitations": "Source-only typed/STL owners and explicit native endpoint doubles; actual World/frame bindings compile/link. Existing inventory/effect bodies reused without new credit; no original ABI, loaded mission, application or desktop delivery claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00535110",
+      "status": "partial",
+      "coverage": "Recover alternate attack26: actual target capability, definition22/7/260 priority and fixed source2 inventory move/swap (false results ignored), actual task initialization,204/action mode17/first mode10 and focus-exit delay.",
+      "limitations": "Source-only typed/STL owners and explicit native endpoint doubles; actual World/frame bindings compile/link. Existing inventory/effect bodies reused without new credit; no original ABI, loaded mission, application or desktop delivery claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"

@@ -31,7 +31,8 @@ look/items/preset/direction, processed-event retirement and self-treatment.
 There is no unconditional remaining-authority failure after this path.
 
 H8.2 remains open: other specialized tasks/effects and populated Players command
-producers still stop when selected. Task25/26 selection, pending progression and
+producers still stop when selected. Task25/26 command admission/production,
+selection, pending progression and
 query-10 replanning, explicit valid reload sources, hazard blast/packet and water
 command/HUD orchestration now use their existing actual owners. Saved-position/vector aim and launcher/close-combat branches now
 use their actual target, collision, inline/common-command and item owners. Ordinary

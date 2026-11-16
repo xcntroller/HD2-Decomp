@@ -1,9 +1,42 @@
 #ifndef HD2_GAME_HUMAN_ACTIVE_AI_COMMANDS_H
 #define HD2_GAME_HUMAN_ACTIVE_AI_COMMANDS_H
 #include "game/human_active_ai_task_state.h"
+#include "game/human_inventory_lookup.h"
+#include "game/human_inventory_counts.h"
 #include <vector>
 #include <utility>
 namespace hd2::game {
+template<class Human,class Items>bool active_attack_special_available(Human& human,Items& items){ //0045BD10, all lookups BEFORE quantity tests.
+    const auto first=find_human_inventory_definition(human,items,0x16),second=find_human_inventory_definition(human,items,7),third=find_human_inventory_definition(human,items,0x104);
+    for(auto entry:{first,second,third})if(entry){auto& item=items.runtime_item(entry);
+        if(item.amount()!=0.f||count_human_ammunition(human,items,item.definition().ammunition(),false))return true;
+    }
+    return false;
+}
+template<class Human,class Items,class Inventory>bool prepare_active_attack_special(Human& human,Items& items,Inventory& inventory){ //00535110, FIXED native source2.
+    auto* storage=human.base().storage();if(!storage||!storage->holder(3))throw std::runtime_error("Active attack26 requires actual hand holder");
+    const auto hand=storage->holder(3)->entry();auto selected=find_human_inventory_definition(human,items,0x16);
+    if(!selected)selected=find_human_inventory_definition(human,items,7);
+    if(!selected)selected=find_human_inventory_definition(human,items,0x104);
+    if(!selected)return false;
+    if(selected!=hand){
+        if(hand)(void)inventory.swap(hand,3,human,selected,2);else (void)inventory.move(selected,human,2,3,0);
+    }
+    return true; //Native deliberately ignores false move/swap results.
+}
+//0045BD10 attack cases: prefer either direction of actual hostile membership,
+//then retry all candidates.26 tests special ammunition on EACH pass.
+template<class Humans,class Actor,class World>auto select_active_attack_candidate(Humans& humans,
+        std::uint32_t action,Actor& target,World& world) -> typename Humans::value_type {
+    for(unsigned phase=0;phase!=2;++phase){
+        if(!phase&&target.base().type()!=3)continue;
+        for(auto* human:humans){
+            if(!phase&&!world.active_command_attack_pair(*human,target))continue;
+            if(action!=26||world.active_command_special_available(*human))return human;
+        }
+    }
+    return nullptr;
+}
 //00459180. Native swaps ONLY Human pointers; the original distance array is
 //never swapped. A conventional sort changes the order for three+ candidates.
 template<class Human,class Frames>void order_active_command_candidates(std::vector<Human*>& humans,
@@ -54,7 +87,8 @@ template<class Human,class Actor,class Frames,class World>Human* select_active_c
         if(target.base().type()==9)return humans.front();
         if(target.base().type()!=11)return nullptr;
         [[fallthrough]];
-    case 18:case 22:case 24:case 25:case 26:case 37:
+    case 25:case 26:return select_active_attack_candidate(humans,action,target,world);
+    case 18:case 22:case 24:case 37:
         return world.select_special_active_command_candidate(humans,action,target,secondary);
     default:return nullptr; //Native switch has no accepted candidate.
     }
@@ -95,6 +129,18 @@ template<class AI,class World>void delay_active_focused_task(AI& ai,World& world
     world.active_command_exit_focus(ai,ai.state().template get<std::int32_t>(0x20c));
     ai.state().set(0x214,1000u); //Only AFTER actual00587540 returns.
 }
+//00535050/00535110. The alternate producer is selected by saved188 even for
+//command25. Inventory requests ignore their boolean; task publication follows.
+template<class AI,class Actor,class Frames,class World>void produce_active_attack_task(AI& ai,Actor& target,
+        bool alternate,Frames& frames,World& world){
+    const auto validate=world.human_common_receiver_guard(*ai.human());
+    if(world.active_task_actor_unavailable(target)){world.reject_active_command(*ai.human());return;}
+    if(alternate){const bool found=world.prepare_active_attack_special_weapon(ai);validate();if(!found){world.reject_active_command(*ai.human());return;}}
+    start_active_target_task(ai,target,alternate?26u:25u,false,1.f,true,frames,world);validate();
+    auto& state=ai.state();state.set(0x174,state.template get<std::uint32_t>(0x174)&~4u);state.set(0x204,std::uint8_t{1});
+    if(alternate){ai.active_event_action_mode(17);validate();}
+    ai.pending_first_mode(10);validate();delay_active_focused_task(ai,world);validate();
+}
 template<class AI,class Actor,class Frames,class World>void produce_active_medical_task(AI& ai,Actor& target,Frames& frames,World& world){ //00535630.
     if(world.active_medical_target_health(target)<=0||!world.active_self_treatment_item(*ai.human())){
         world.reject_active_command(*ai.human());return;
@@ -131,8 +177,11 @@ template<class AI,class Actor,class Frames,class World>void produce_active_playe
     case 15:
         if(!target)throw std::runtime_error("Active medical task dereferences native NULL target");
         produce_active_medical_task(ai,*target,frames,world);return;
+    case 25:case 26:
+        if(!target)throw std::runtime_error("Active attack producer dereferences native NULL target");
+        produce_active_attack_task(ai,*target,action==26||ai.state().template get<std::uint8_t>(0x188),frames,world);return;
     case 4:case 6:case 8:case 9:case 10:case 11:case 12:case 13:case 16:
-    case 19:case 22:case 23:case 24:case 25:case 26:case 32:case 37:
+    case 19:case 22:case 23:case 24:case 32:case 37:
         world.produce_special_active_player_command(ai,action,target,secondary);return;
     default:return; //Native unhandled command still publishes188 in the caller.
     }
