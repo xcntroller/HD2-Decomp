@@ -83,7 +83,7 @@ void reset_car_physics(Frames& frames,Geometry& geometry,State& state,float spee
     }
     state.body().reset_pose();
     state.finalizer.sector=frames.object_parent(model);frames.car_place_in_scene(model,state.body().pose().centre);
-    state.drive.changing_gear=false; //2293, distinct from engine-running22A2.
+    state.drive.flag2293=false; //2293, distinct from engine-running22A2.
     for(unsigned a=0;a!=3;++a){state.body().motion().angular_velocity[a]=0;state.body().motion().velocity[a]=0;}
     state.body().motion().direction=state.body().motion().velocity;state.drive.body_flags=1;
     state.audio.reset_skid();state.brake_ramp=0;state.solver.mass_changed=false;state.solver.speed=0;

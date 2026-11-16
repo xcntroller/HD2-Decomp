@@ -54,7 +54,7 @@ public:
     }
     void sound(float volume){state_.audio.suspension(volume,state_.drive.audible,state_.finalizer.inside);}
     void sound(float impulse,bool gear){state_.audio.collision(actor_.geometry->physics(),impulse,gear,state_.finalizer.inside,random_);}
-    void clutch_changed(){throw std::runtime_error("Car gear change requires its actual clutch sound transition");}
+    void clutch_changed(){state_.audio.clutch_changed(state_.solver.substeps.flags,state_.finalizer.engine_inside2298,random_);}
 private:
     Frames& frames_;Actor& actor_;Initial& state_;Random& random_;CarColdDeformation<Frames> deformation_;
 };

@@ -14,6 +14,7 @@
 #include "game/car_water_loading.h"
 #include "game/car_frame_events.h"
 #include "game/car_offline_frame.h"
+#include "game/car_gear_control.h"
 #include "game/car_seat_exit.h"
 #include "game/car_seat_actions.h"
 
@@ -155,6 +156,15 @@ public:
     bool exit_seat(std::int32_t index)override{return exit_car_seat(*this,index);}
     bool seat_exit_pose(std::size_t index,Vector& position,Vector& direction)override{return exit_pose(index,position,direction);} //004DA420 query, no occupant mutation.
     void driver_input(float pedal,float steering)override{request_car_seat_input(*this,pedal,steering);}
+    bool request_gear(std::int32_t value)override{
+        if(!initial_)throw std::logic_error("Car gear request requires its actual initialized runtime");
+        return request_car_gear(actor_.geometry->physics(),initial_->drive,initial_->solver.substeps.flags,
+            initial_->health.drivetrain,initial_->reset_fields.field780,value);
+    }
+    bool gear_force(float rpm,float& output,std::int32_t gear,bool include_drag)override{
+        if(!actor_.geometry)throw std::logic_error("Car gear force requires its actual geometry");
+        return evaluate_car_gear_force(actor_.geometry->physics(),rpm,output,gear,include_drag);
+    }
     void path_governor(float speed)override{if(!initial_)throw std::logic_error("Car path requires initialized governor");initial_->drive.governor=speed>0?static_cast<float>(static_cast<long double>(speed)+.5f):speed;} //004F2630, positive half-unit margin.
     void path_drive(float value)override{if(!initial_)throw std::logic_error("Car path requires initialized drive");request_car_drive_pedal(initial_->control_requests,initial_->drive,actor_.geometry->physics().scalars(),initial_->solver.substeps,value,true);} //004F2100.
     void path_brake(float value)override{if(!initial_)throw std::logic_error("Car path requires initialized brake");request_car_brake_pedal(initial_->control_requests,initial_->drive,actor_.geometry->physics().scalars(),initial_->solver.substeps,value);} //004F2270.

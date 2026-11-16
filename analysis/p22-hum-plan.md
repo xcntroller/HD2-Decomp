@@ -207,6 +207,8 @@ Parallel H8.4 [offline authority source checkpoint](human-h8-car-authority-sourc
 now consumes actual mounted controls, requests unstable-seat exits through SAME B0
 and publishes engine hearing through SAME SOUND. D4/D5 stay open: running engine,
 occupied presentation and non7 consumers remain required; D11 failures are unchanged.
+Its [gear/clutch dependencies](human-h8-car-gear-source.md) bind request/force/audio
+and correct retained shift state; the full running controller/solver remains open.
 
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,

@@ -31,6 +31,8 @@ checks are not application delivery. Use the research index before exports.
   absent Dog/type15/Aircraft/type34/material owners cannot report success.
   [Offline Car authority checkpoint](human-h8-car-authority-source.md) binds mounted
   frames, unstable-seat exit requests and engine hearing; occupied presentation remains open.
+  [Gear/clutch dependencies](human-h8-car-gear-source.md) add actual gear request,
+  force evaluation and shared clutch SOUND; automatic controller/forces remain required.
 - [ ] H8.5 — Consolidated same-owner positive/failure/re-entry/teardown native
   sanitizers, actual-host/module i386 link, launcher/probe, ledger and cleanup.
 - [ ] H8.6 — Compose required completed application/FRAME/OWN/render work;

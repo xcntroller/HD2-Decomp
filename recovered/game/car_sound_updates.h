@@ -55,6 +55,22 @@ public:
         if(!idle)return;
         if(auto sound=sounds_.sound(last_inside?0x984:0xc50)){frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,1.f);}
     }
+    template<class Random>void clutch_changed(std::uint32_t features,const bool& last_inside,Random& random){ //0051A480.
+        if(!(features&0x20u))return;
+        bool idle=true;
+        if(auto sound=sounds_.sound(0x9d8+clutch_variant_*4))if(frames_.car_sound_state(sound))idle=false;
+        if(auto sound=sounds_.sound(0xca8+clutch_variant_*4))if(frames_.car_sound_state(sound))return;
+        if(!idle)return;
+        const auto draw=random();clutch_variant_=static_cast<std::uint32_t>(draw%100);
+        clutch_variant_=clutch_variant_>79u;
+        const unsigned slot=(last_inside?0x9d8u:0xca8u)+clutch_variant_*4;
+        if(auto sound=sounds_.sound(slot)){
+            frames_.human_sound_enabled(sound,true);
+            const auto current=sounds_.sound(slot);
+            if(!current)throw std::logic_error("Car clutch sound retired before its native volume write");
+            frames_.human_sound_volume(current,1.f);
+        }
+    }
     void puncture(bool audible,bool inside,const Vector& wheel_position){ //0051A880.
         if(!audible)return;
         const unsigned slot=inside?0x9ec:0xcbc;
@@ -181,6 +197,7 @@ private:
         frames_.car_sound_parameter98(sound,value);frames_.human_sound_volume(sound,volume);
     }
     Frames& frames_;CarSoundLoading<Frames>& sounds_;float skid_=0; //004EA780 clears5F0.
+    std::uint32_t clutch_variant_=0; //004EA780 clears650;0051A480 retains the selected0/1.
 };
 } //namespace hd2::game
 #endif

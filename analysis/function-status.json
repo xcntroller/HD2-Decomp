@@ -24429,12 +24429,15 @@
       "program": "client",
       "entry": "0050d760",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0050d760: Reconstructed engine/clutch/transmission updates; actual audible shift receiver mandatory.",
-      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "coverage": "Actual engine/clutch/transmission source integration now binds same-owner0051A480 audio. Native22C6 is distinct from2293; shift completion mutates retained508/50C filters, not current85C/860 throttles. Clutch-down publication precedes sound; requested878 is reread after sound and a failure retains old874. NaN clutch does not finish the down phase.",
+      "limitations": "Source-only typed/STL/RAII adaptation; full native object/vtable/allocator/SEH ABI and malformed-pointer behavior unclaimed. Native parameter/gear/sound checks use explicit geometry/engine endpoints. Full running automatic controller/powered solver/finalizer and actual occupied-frame composition remain required. Strict host and launcher/probe compile/link only; no application/desktop acceptance or delegated engine credit.",
       "evidence": [
         "recovered/game/car_drivetrain.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/human-h8-car-gear-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-gear-20261116.json",
+        "recovered/game/car_gear_control.h"
       ]
     },
     {
@@ -24453,12 +24456,15 @@
       "program": "client",
       "entry": "00509aa0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00509aa0: Actual unoccupied zero-input engine-off update, sleeping/held branches, substeps and histories; running/occupied/shift-requested control excluded.",
+      "coverage": "Actual unoccupied zero-input engine-off update, sleeping/held branches, substeps and histories. Retained508/50C filters now borrow SAME drivetrain storage as0050D760; native2293 and22C6 are separate. Running/occupied/automatic shift policy remains required; newly recovered gear/force/audio source APIs do not replace that containing policy.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_settling_controller.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/human-h8-car-gear-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-gear-20261116.json",
+        "recovered/game/car_gear_control.h"
       ]
     },
     {
@@ -46513,6 +46519,48 @@
         "recovered/game/car_loading_activation.h",
         "analysis/human-h8-car-authority-source.md",
         "analysis/checkpoints/p2.2-human-h8-car-authority-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2030",
+      "status": "partial",
+      "coverage": "Actual gear request bounds, unchanged-request gate, kind1 reverse restriction, conditional damaged-drivetrain successful no-op, extended overspeed refusal,780 clear, conditional22C6/910 publication then878 write on SAME initialized Car owners. Current874 remains with0050D760.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native pointer/vtable/allocator/SEH ABI and out-of-domain CRT/malformed-pointer behavior unclaimed. Native audits use captured parameter blocks with geometry/engine/frame doubles. Full automatic controller, powered force solver, running finalizer and occupied presentation remain required; no loaded World or application/desktop acceptance. Actual-host and application builds are compile/link only; no delegated engine credit.",
+      "evidence": [
+        "recovered/game/car_gear_control.h",
+        "recovered/game/car_loading_activation.h",
+        "recovered/game/car_cold_receivers.h",
+        "analysis/human-h8-car-gear-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-gear-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f3840",
+      "status": "partial",
+      "coverage": "Actual requested-gear and retained raw RPM bounds, FLOAT RPM-to-RPS conversion, shared0050D5C0 torque, optional second drag call with required first-result FLOAT spill, neutral/nonzero ratio policy and final output store. Refusal preserves output. Bound to SAME Car applied-parameter owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native pointer/vtable/allocator/SEH ABI and out-of-domain CRT/malformed-pointer behavior unclaimed. Native audits use captured parameter blocks with geometry/engine/frame doubles. Full automatic controller, powered force solver, running finalizer and occupied presentation remain required; no loaded World or application/desktop acceptance. Actual-host and application builds are compile/link only; no delegated engine credit.",
+      "evidence": [
+        "recovered/game/car_gear_control.h",
+        "recovered/game/car_loading_activation.h",
+        "recovered/game/car_cold_receivers.h",
+        "analysis/human-h8-car-gear-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-gear-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051a480",
+      "status": "partial",
+      "coverage": "Actual feature20 gate, both current-variant interior/exterior playback queries, shared CRT rand%100 >79 selection, late2298 read, same sound-slot enable/reread/volume1 order and retained650 variant. Concrete Car clutch callback uses SAME sound, feature, last-inside and random owners.",
+      "limitations": "Source-only typed/STL/RAII adaptation; native pointer/vtable/allocator/SEH ABI and out-of-domain CRT/malformed-pointer behavior unclaimed. Native audits use captured parameter blocks with geometry/engine/frame doubles. Full automatic controller, powered force solver, running finalizer and occupied presentation remain required; no loaded World or application/desktop acceptance. Actual-host and application builds are compile/link only; no delegated engine credit.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "recovered/game/car_loading_activation.h",
+        "recovered/game/car_cold_receivers.h",
+        "analysis/human-h8-car-gear-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-gear-20261116.json"
       ]
     }
   ]

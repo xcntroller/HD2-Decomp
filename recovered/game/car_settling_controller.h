@@ -10,7 +10,7 @@ template<class Frames>struct CarSettlingControllerState {
     using Vector=typename Frames::Vector;
     Vector previous_velocity{},position_checkpoint{};
     float previous_engine_speed=0,previous_speed=0,previous_rolling_speed=0;
-    float first_filtered=1,second_filtered=1,desired_clutch=1,previous_steering=0;
+    float desired_clutch=1,previous_steering=0;
     bool controlled=false,requests_update=false,frame_simulated=false; //2291/229E/229F.
     std::uint32_t inactive_milliseconds=0;
     explicit CarSettlingControllerState(const CarBodyIntegration<Frames>& body):position_checkpoint(body.pose().position){}
@@ -26,7 +26,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void update_
         CarDrivetrainState& drive,CarColdSolverState<Frames>& state,CarSteeringState& steering,
         CarSettlingControllerState<Frames>& controller,Queries& queries,Receivers& receivers,
         std::int32_t update_hold,std::uint32_t milliseconds,std::uint32_t layers,std::uint32_t flags,Collision& collision){
-    if(drive.running||drive.gear!=1||drive.changing_gear||steering.requested!=0||steering.current!=0)
+    if(drive.running||drive.gear!=1||drive.flag2293||drive.shift_in_progress||steering.requested!=0||steering.current!=0)
         throw std::runtime_error("Car cold controller requires its actual unoccupied zero-input state");
     if(!milliseconds)milliseconds=1;
     const float elapsed=static_cast<float>(static_cast<long double>(milliseconds)*.0010000000474974513f);
@@ -45,7 +45,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void update_
     else if(controller.desired_clutch<drive.clutch_target)drive.clutch_target=std::max(controller.desired_clutch,static_cast<float>(static_cast<long double>(drive.clutch_target)-static_cast<long double>(elapsed)*fields.get(0x900)));
     //With both genuine input fields6FC/700 zero, either native acceleration
     //filter arm produces zero from their nonnegative508/50C values.
-    drive.body_flags&=~0x1000000u;controller.first_filtered=controller.second_filtered=0;
+    drive.body_flags&=~0x1000000u;drive.first_filtered=drive.second_filtered=0;
     drive.throttle=drive.second_throttle=0;
     float first_drive=0,second_drive=0;
     if(kind==0||kind==2){const auto force=car_drive_force(physics,drive,elapsed,0,state.speed,velocity);first_drive=second_drive=static_cast<float>(force*.5f*drive.transfer);}
@@ -78,7 +78,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void update_
             else{if(!(original&3u))drive.clutch=drive.clutch_target;drive.transmission=original&0xffffffebu;}
         }else if(low<=rolling){transmission=original&0xffffffebu;engage=true;}
         else{
-            drive.changing_gear=false;drive.clutch=0;
+            drive.shift_in_progress=false;drive.clutch=0;
             //Input714=0 <=524 on the applied loading parameter sets. Other
             //input thresholds must not silently select the driving shift arm.
             if(fields.get(0x524)<0)throw std::runtime_error("Car cold input selects unresolved automatic driving control");
@@ -88,7 +88,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void update_
         transmission=drive.transmission;
         if(!(transmission&4u))drive.transmission=(transmission&0xfffffff3u)|1u;
         else{
-            drive.changing_gear=false;
+            drive.shift_in_progress=false;
             if(drive.engine_speed<=fields.get(0x8f4)){drive.clutch=0;drive.transmission=transmission&0xfffffff7u;}
             else if(!(transmission&8u)){
                 drive.engine_speed=fields.get(0x8f4)+1.f;

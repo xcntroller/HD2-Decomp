@@ -11,9 +11,11 @@ namespace hd2::game {
 struct CarDrivetrainState {
     float engine_speed=0,engine_load=0,clutch=1,clutch_target=1,torque_amount=0;
     float governor=1000,health=1,transfer=1,throttle=0,second_throttle=0,brake=0;
+    float first_filtered=1,second_filtered=1; //004EA780's508/50C; distinct from85C/860 throttle outputs.
     std::int32_t gear=1,requested_gear=1;
     std::uint32_t transmission=0x20,body_flags=1;
-    bool running=false,audible=true,changing_gear=false;
+    bool running=false,audible=true,flag2293=false; //22A2/2296/2293, NOT22C6.
+    bool shift_in_progress=false; //004EA780 clears22C6;004F2030 produces it.
 };
 
 inline float car_gear_ratio(const CarPhysics& physics,std::int32_t gear){
@@ -102,7 +104,7 @@ template<class Audio>void update_car_drivetrain(const CarPhysics& physics,CarDri
     if(state.engine_speed<0)state.engine_speed=0;
     if(flags&2u){
         state.clutch=static_cast<float>(static_cast<long double>(state.clutch)-static_cast<long double>(elapsed)*get(0x900));
-        if(state.clutch>0)return;
+        if(!(state.clutch<=0))return;
         state.clutch=0;state.transmission=(flags&0xfffffffdu)|1u;
         if(state.audible)audio.clutch_changed();
         state.gear=state.requested_gear;return;
@@ -115,16 +117,16 @@ template<class Audio>void update_car_drivetrain(const CarPhysics& physics,CarDri
     state.clutch=static_cast<float>(static_cast<long double>(elapsed)*get(0x8fc)+state.clutch);
     if(state.clutch>state.clutch_target){
         state.clutch=state.clutch_target;state.transmission=flags&0xfffffffcu;
-        if(!state.changing_gear)return;
-        state.changing_gear=false;state.throttle=state.second_throttle=.800000011920929f;
+        if(!state.shift_in_progress)return;
+        state.shift_in_progress=false;state.first_filtered=state.second_filtered=.800000011920929f;
     }else if(state.clutch>1){
         state.clutch=1;state.transmission=flags&0xfffffffcu;
-        if(!state.changing_gear)return;
-        state.changing_gear=false;state.throttle=state.second_throttle=.800000011920929f;
+        if(!state.shift_in_progress)return;
+        state.shift_in_progress=false;state.first_filtered=state.second_filtered=.800000011920929f;
     }
-    if(state.changing_gear&&rolling<(get(static_cast<unsigned>(0x7cc+state.gear*4))-get(static_cast<unsigned>(0x810+state.gear*4)))*.15000000596046448f+get(static_cast<unsigned>(0x810+state.gear*4))){
-        state.throttle=state.second_throttle=1;state.clutch=state.clutch_target;
-        state.transmission&=0xfffffffcu;state.changing_gear=false;
+    if(state.shift_in_progress&&rolling<(get(static_cast<unsigned>(0x7cc+state.gear*4))-get(static_cast<unsigned>(0x810+state.gear*4)))*.15000000596046448f+get(static_cast<unsigned>(0x810+state.gear*4))){
+        state.first_filtered=state.second_filtered=1;state.clutch=state.clutch_target;
+        state.transmission&=0xfffffffcu;state.shift_in_progress=false;
     }
 }
 } //namespace hd2::game
