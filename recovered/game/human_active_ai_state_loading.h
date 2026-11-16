@@ -142,6 +142,7 @@ public:
         advance_active_aim_policy(*this,elapsed,following,services_);
         advance_active_movement_policy(*this,elapsed,following,this->state_frames(),services_);
     }
+    void saved_frame_position(bool enabled,const HumanVector& position){set_active_saved_position_mode(*this,enabled,position,services_);} //005382D0.
     template<class Inline,class Runtime>void finish_onfoot_authority(std::uint32_t elapsed,Inline& control,Runtime& runtime){finish_active_onfoot_authority(*this,elapsed,control,services_,runtime);}
     void complete_pending_task(std::uint32_t action){complete_human_active_task(*this,action,services_);}
     void require_live_task_target()const{if(task_target_retired_)throw std::runtime_error("Active task requires its retired-target event policy");}

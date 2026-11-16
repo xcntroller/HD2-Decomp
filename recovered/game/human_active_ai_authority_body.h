@@ -5,6 +5,7 @@
 #include "game/human_animation_requests.h"
 #include "game/human_ai_cover.h"
 #include "game/human_active_ai_cautious.h"
+#include "game/human_active_ai_target_modes.h"
 #include <functional>
 namespace hd2::game {
 //00537FB0. Populated F4/action-mode changes use the SAME A4 record and
@@ -170,7 +171,6 @@ template<class AI,class Frames,class World>void advance_active_burst_policy(AI& 
             }
             if((ai.words().template get<std::uint32_t>(0x50)&7u)>=3&&ai.point()&&kind!=5&&active_target_crouch_clear(ai,frames,world))ai.pending_posture(2);
         }
-        if(kind==5)throw std::runtime_error("Active launcher target requires0052A810/0052B810 retained-launcher posture policy");
     }else{
         if(query.template get<std::uint8_t>(0x58)){
             state.set(0x1a8,static_cast<std::uint32_t>(human_animation_time_integer((static_cast<long double>(world.human_sound_random())+1.f)*1000.f)));
@@ -180,6 +180,14 @@ template<class AI,class Frames,class World>void advance_active_burst_policy(AI& 
         if(!following&&posture&&(ai.words().template get<std::uint32_t>(0x50)&7u)!=posture&&
            (state.template get<std::uint8_t>(0x202)||task!=6||!ai.task_target||ai.task_target->base().type()!=3))ai.pending_posture(posture);
     }
+    if(kind==5&&active_movement_has_aim(ai)){
+        const bool admitted=state.template get<std::uint8_t>(0x18b)||active_launcher_target_clear(ai,frames,world);
+        if(((query.template get<std::uint32_t>(0x50)&0x10000000u)&&!query.template get<std::uint8_t>(0x58))||!admitted)ai.resources().target().bind_actor(nullptr);
+        else{
+            if((ai.words().template get<std::uint32_t>(0x50)&7u)!=1u){ai.resources().target().bind_actor(nullptr);ai.pending_posture(1);}
+            state.set(0x18b,std::uint8_t{1});
+        }
+    }else state.set(0x18b,std::uint8_t{0});
 }
 //0052B810 ordinary on-foot authority path. Specialized branches stop at their
 //native selection point, after earlier writes, rather than supplying idle work.
@@ -197,7 +205,15 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
     const auto task=state.template get<std::uint32_t>(0x220);
     if(!state.template get<std::uint8_t>(0x202)&&task==22)throw std::runtime_error("Active movement requires0052B810 specialized task22 policy");
     const auto flags=state.template get<std::uint32_t>(0x174);
-    if(flags&0x10u)throw std::runtime_error("Active movement requires0052B810 saved-position aim policy");
+    if(flags&0x10u){
+        const auto own=human->base().world_position();
+        if(!state.template get<std::uint32_t>(0x194)){ai.saved_frame_position(false,own);validate();}
+        else{
+            const auto direction=active_saved_position_direction(state.template get<HumanVector>(0x140),own);
+            auto* target=select_active_movement_target(ai,frames,world,&direction);validate();
+            if(target)ai.resources().target().bind_actor(target);else ai.resources().target().bind_vector(direction);
+        }
+    }else{
     const bool admit=!(flags&2u)||active_cautious_attacker(ai,true,world);validate();
     if(admit||selected){
     if(!selected&&!(flags&4u)){selected=select_active_movement_target(ai,frames,world);validate();}
@@ -210,8 +226,12 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
     }
     if((following||!ai.has_pending_orders_loading())&&(ai.active_event_mode()==0||ai.active_event_mode()==2))selected=nullptr;
     if(state.template get<std::uint8_t>(0x18a)&&ai.item()&&!world.active_special_hand(ai.item()))selected=nullptr;
-    if(flags&0x200u)throw std::runtime_error("Active movement requires00560780 saved vector-target policy");
-    ai.resources().target().bind_actor(selected);
+    if(flags&0x200u){
+        const auto model=frames.actor_world_matrix(human->base().frame());validate();const auto position=state.template get<HumanVector>(0x1e0);
+        auto value=ai.resources().target().state.template get<HumanVector>(0x10); //Native temporary W unwritten; retained typed lane has no native claim.
+        for(unsigned n=0;n!=3;++n)value[n]=static_cast<float>(static_cast<long double>(position[n])-model[12+n]);
+        ai.resources().target().bind_vector(value);
+    }else ai.resources().target().bind_actor(selected);
     set_active_target_intervals(ai,selected,frames,world);validate();
     }else ai.resources().target().bind_actor(nullptr); //Native cautious NULL branch does NOT reset range intervals.
     if(!selected&&!state.template get<std::uint32_t>(0x198)){
@@ -228,6 +248,7 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
             direction[1]=0;ai.resources().direction().set_target(direction);
         }
     }
+    }
     //Fresh target after the preceding publications, as in the native tail.
     auto& target=ai.resources().target();
     if(target.actor){auto& other=world.human_ai_target_human(*target.actor);if(world.human_unavailable(other)||(other.properties.field19c==2&&other.loading_state&&other.loading_state->suppress_hostile_selection()))target.bind_actor(nullptr);}
@@ -241,7 +262,9 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
     if(ai.item()){
         advance_active_burst_policy(ai,elapsed,following,frames,world);validate();
     }
-    state.set(0x18b,std::uint8_t{0});
+    if(!ai.item())state.set(0x18b,std::uint8_t{0});
+    const auto& query_state=ai.resources().query().state;
+    if((query_state.template get<std::uint32_t>(0x50)&0x10000000u)&&!query_state.template get<std::uint8_t>(0x58))state.set(0x18b,std::uint8_t{0});
     if(ai.item()&&world.active_follow_item_command(ai.item())==3){
         auto& query=ai.resources().query().state;const auto movement=query.template get<std::uint32_t>(0x54)&0x1f000u;
         if((query.template get<std::uint32_t>(0x50)&0x10000000u)&&!query.template get<std::uint8_t>(0x58)&&movement>0x1000u&&movement!=0x8000u){
@@ -261,7 +284,7 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
         const auto x=static_cast<long double>(b[0])-a[0],y=static_cast<long double>(b[1])-a[1],z=static_cast<long double>(b[2])-a[2];
         const float square=static_cast<float>((x*x+y*y)+z*z);std::uint32_t bits;std::memcpy(&bits,&square,4);
         if(human_frame_signed_word(bits)<0x322bcc77||std::abs(static_cast<long double>(square)-1)<9.99999993922529e-9f||std::sqrt(static_cast<long double>(square))<1.2000000476837158f)
-            throw std::runtime_error("Active close-combat target requires00536A30 task producer");
+            {advance_active_close_target(ai,*target.actor,frames,world);validate();}
     }
     if(active_movement_has_aim(ai))state.set(0x19c,5000u);
 }

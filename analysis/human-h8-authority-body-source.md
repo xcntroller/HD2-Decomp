@@ -79,9 +79,8 @@ Raw bytes and constants are recorded in the checkpoint receipt.
 
 ## Remaining reached requirements
 
-Saved-position flag10/vector-target200, specialized25/26/22
-selection/replanning, retained launcher5 and admitted close-combat00536A30 tasks,
-unusual reload source slots, populated process98/group command members and
+Specialized25/26/22 selection/replanning, unusual reload source slots,
+populated process98/group command members and
 remaining reached offline action/hazard/water receivers remain explicit. Positive
 sound36/type34/Dog and occupied bodies retain actual owner requirements. Their
 unimplemented results are not successful defaults. This does not establish
@@ -131,3 +130,51 @@ a nonzero mask with no low8 bits preserves query/rand before the native invalid
 empty-selection requirement. New policy/failure checks and real scene/World/
 factory i386 and launcher verification are separately qualified in the receipt's
 `cautious_follow_up`; the earlier9,400 matrices are not claimed as rerun.
+
+## Saved/vector aim, launcher and close-combat follow-through after da826b2
+
+`human_active_ai_target_modes.h` completes the selected005382D0,00560780,
+0052A810 and00536A30 families and their containing0052B810 branches. It reuses
+actual target/direction resources, inline action, cached RuntimeItem, loaded
+scene geometry and the existing B0 common-command dispatch. These branches no
+longer stop at the former required-call guards. This does not complete H8.2.
+
+005382D0 executes mode16 before enable flags/random, then publishes timer194
+from engine RandFloat*2000+8000,19C=timer+1000 and full saved140. Look interval
+and actual inline look0 precede mode6. Disable clears174bit10 and target before
+mode refresh; it does not clear194 or140. The timed containing path uses saved
+position minus cached Human position, Y additionally minus1, then normalized
+XYZ and native copied Human W; it skips the ordinary range/idle/cautious phase.
+00560780 copies all four vector lanes before clearing actor and only accumulator
+XYZ. Vector200 uses1E0 minus actual model position; its native temporary W is
+unwritten. Retaining that typed lane carries no native W equivalence claim.
+
+Launcher0052A810 checks empty target before model access, uses actual own/actor
+models, native spilled squared lengths/incline and item/sector admission. The
+forward origin is .5 with Y+.15000000596046448; raw x87 evidence retains extended
+X through origin addition, spills inverse for Y/Z, and spills Z*.5 separately.
+Vector-only admission genuinely needs no ray. Actor admission reads its actual
+260 head and the SAME loaded-scene ray3/flags0/no-normal. Retained18B avoids
+rechecking; movement, target clearing and posture1 publication preserve native
+order, including the separate common query reset of18B.
+
+00536A30 checks prone50bit1 before item/clocks, then field14 and signed cooldown
+with distinct game28 reads. Human stealth admission normalizes the target MODEL
+forward (not its B0 direction) and dots actual AI direction with strict>.8.
+005A45B0 invokes B0 virtualD8: existing dispatch executes the shared effect before
+copying command0x24/target id10/argument0 to queued SECOND for AI, even if the
+shared effect returns false. Otherwise actual inline action8 runs. Lazy item
+model, existing H6 sound, item cooldown and005A6250 alignment follow; thrown
+effects prevent the queue and later stages. A reached unimplemented shared
+receiver still fails honestly through the existing dispatcher.
+
+Evidence: indexed005382D0 reused `human-active-ai-actions`; bounded exports
+`human-h8-target-modes/{00560780,00536a30,0052a810}.c`; saved raw
+`human-h8-{saved-position-mode,close-melee,launcher-clear}.asm` and existing full
+0052B810 raw.0052ABE0 and005A45B0 raw confirm empty-vector and D8 boundaries.
+New focused5700 checks/100 lifecycle matrices use actual AI resources and common
+queue dispatcher, with Human/frame/item/inline/World endpoints explicitly
+doubled. Containing saved/vector/launcher branches are instantiated and tested.
+Fresh strict actual scene/World/factory/Active and launcher/probe links are
+recorded in `target_modes_follow_up` of the consolidated receipt; older audits
+are not claimed as rerun. No Windows binary execution or desktop claim.

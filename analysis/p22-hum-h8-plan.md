@@ -30,8 +30,9 @@ movement output/endurance, ordinary reload, actual event/roster/cover selection,
 look/items/preset/direction, processed-event retirement and self-treatment.
 There is no unconditional remaining-authority failure after this path.
 
-H8.2 remains open: saved-position/vector-target variants, launcher/close-combat
-target tasks and unusual reload source slots still stop when selected. Ordinary
+H8.2 remains open: specialized tasks and unusual reload source slots still stop
+when selected. Saved-position/vector aim and launcher/close-combat branches now
+use their actual target, collision, inline/common-command and item owners. Ordinary
 rifle target range/burst/crouch, cautious posture/admission, populated stance and005318C0
 pack→holster ammunition are now source-bound. Specialized tasks25/26/22,
 query-10 replanning00532190, populated Players00457820/00456F00 command members
@@ -43,7 +44,7 @@ Car/seat/Aircraft bodies. Follow actual reached dependencies rather than trying
 to finish all specialized families before integration.
 
 Next implementation target: the next reached offline frame failure, with
-saved-position/vector-target movement and specialized task admission still explicit. After H8.2, continue H8.3. Loading
+specialized task selection and query-failure replanning still explicit. After H8.2, continue H8.3. Loading
 activation and desktop acceptance remain explicit H8.6 gates.
 
 ## Existing evidence to reuse

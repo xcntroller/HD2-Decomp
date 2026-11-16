@@ -292,9 +292,7 @@
     "temporary_audit_sources_and_binaries_removed": true
   },
   "remaining_requirements": [
-    "cautious/saved-position/vector-target movement",
     "specialized task25/26/22 and query-10 replan",
-    "launcher/close-combat target tasks",
     "unusual reload source slots",
     "positive process98 and populated group command members",
     "positive type36/type34/Dog owners and occupied bodies with H8.4",
@@ -551,6 +549,197 @@
       "complete": 34,
       "partial": 3495,
       "client_partial": 3490,
+      "engine_partial": 5
+    },
+    "cleanup": {
+      "temporary_sources_and_binaries_removed": true
+    }
+  },
+  "target_modes_follow_up": {
+    "date": "2026-11-16",
+    "base_commit": "da826b28d129b6c4a6c29bff674bb6fd051845f4",
+    "source_only": true,
+    "h8_2_complete": false,
+    "application_loading_enabled": false,
+    "desktop_verified": false,
+    "scope": "Saved-position/vector aim, retained launcher target/posture and admitted close-combat through existing actual common dispatch or inline/sound; H8.4 untouched, PACK unchanged.",
+    "source_files": [
+      {
+        "path": "recovered/game/human_active_ai_target_modes.h",
+        "bytes": 8040,
+        "sha256": "f5c96bc1c9a2c8f93ec837401b54878571a68b255f0b0f3d7b2663a22875a4be"
+      },
+      {
+        "path": "recovered/game/human_active_ai_authority_body.h",
+        "bytes": 30434,
+        "sha256": "661504d145033be4c0de91d0db3de706c26b65ae2ebc0657bccc65a04e3d3682"
+      },
+      {
+        "path": "recovered/game/human_active_ai_state_loading.h",
+        "bytes": 22857,
+        "sha256": "bcc3358c0accaf74752068e16ab5566aecc0b72b62ec1a3855cf8d482460e1c2"
+      },
+      {
+        "path": "recovered/game/human_state_base_loading.h",
+        "bytes": 16997,
+        "sha256": "c32995b56b46e45d6da9afa9c0331dc25b897314c438970de1307acb03ca3a13"
+      },
+      {
+        "path": "recovered/game/human_ai_resources.h",
+        "bytes": 15141,
+        "sha256": "392a6aecf18f285753daf31404a70cc44711fb66a3cbace6169beadfea0ec2ad"
+      }
+    ],
+    "original_evidence": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-active-ai-actions/005382d0.c",
+        "bytes": 737,
+        "sha256": "8a51ed2f0aa22781cdec70312b7a1a4455feed65a297234f345bb95d2940d191"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes/00560780.c",
+        "bytes": 265,
+        "sha256": "459eca950ba1694be81e626bf00f17aae031fb51e107a6c624a6d8ad9d9e0499"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes/00536a30.c",
+        "bytes": 3265,
+        "sha256": "0e2eee68459f1a271ef099b6a07cc606e6c9727fb232163353a454667c8b1de9"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes/0052a810.c",
+        "bytes": 3720,
+        "sha256": "e2a93f2d7d6388d59398bd048b853b4b1dd119c8e1d2f4de348534aa22b2b9f1"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-saved-position-mode.asm",
+        "bytes": 2773,
+        "sha256": "72053a1f6e4ba2670d6c2dff7092ccbb892cfcaaecf579b692c303bc209edfd2"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-close-melee.asm",
+        "bytes": 11381,
+        "sha256": "7e8bdeae6ab5cdb38e0bc864edec91e03585ef21bce731b4841869c4be46cd42"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-launcher-clear.asm",
+        "bytes": 15571,
+        "sha256": "ff184f47a8040e7b2f6090d8a860077938c6a07ca207dab4778dd0a81ca59533"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-authority-body-raw.asm",
+        "bytes": 78375,
+        "sha256": "8627f7161a31e02d15da18c81b9a4f7cc54994327d354f2bf7d910ef347f193b"
+      }
+    ],
+    "verification": {
+      "native_sanitizers": {
+        "pass": true,
+        "result": "5700 target-mode checks /100 saved/vector/launcher/melee matrices PASS",
+        "flags": "-std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer",
+        "environment": "ASAN_OPTIONS=detect_leaks=1:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1",
+        "actual_owners": [
+          "AI resources/direction/query/target",
+          "new target/movement kernels",
+          "existing common D8 dispatcher and queue packet values"
+        ],
+        "explicit_doubles": [
+          "Human/frame/item/inline/World stage endpoints"
+        ],
+        "scope": "100 saved enable/disable, containing saved/vector/launcher matrices, empty/sector/ray admission, retained launcher posture, melee/stealth effect\u2192SECOND queue, sound/cooldown/alignment and failure prefixes. Prior audits not rerun.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-target-modes-native.cpp",
+          "bytes": 11506,
+          "sha256": "f2fbdfb056dea43a0d8819348c40e97e63c8cc4ee1f4f5a9ec202db896684ca3"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-target-modes-native",
+          "bytes": 4165392,
+          "sha256": "e4203dcee22f713447cefc0b4ab3f8f62333fee4578da198cde10d10193d437f"
+        }
+      },
+      "actual_human_scene_world_i386": {
+        "pass": true,
+        "flags": "-std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -ftemplate-backtrace-limit=1 -ferror-limit=6 -Irecovered -lwinmm -lws2_32 -lgdi32",
+        "scope": "Explicit actual Services::advance_human_scene_frame and World/factory/Active on-foot authority; compile/link only.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-target-modes-host.cpp",
+          "bytes": 461,
+          "sha256": "b0fadffa24ccdcc51eee07ceea2ff21e478e8a36be04e899b942d843de124397"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-target-modes-host.exe",
+          "bytes": 9202688,
+          "sha256": "17e0e2a38a19fc2da1c71cc73644d984572b8e9c4076417f64349c79e5028e51"
+        }
+      },
+      "launcher_probe": {
+        "pass": true,
+        "command": "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++",
+        "artifacts": [
+          {
+            "path": "recovered/build/application_launch.exe",
+            "bytes": 3963392,
+            "sha256": "d0de420239d33aa0f3c8ac19c96fb908801c701f37665c608a21727f1bd0aad3"
+          },
+          {
+            "path": "recovered/build/startup_probe.exe",
+            "bytes": 1165312,
+            "sha256": "d5fa2d2df3a59c0db1b6aedf8ea6cc354f630bd58ae958dd091c5cc892d7b2c8"
+          }
+        ],
+        "windows_execution": false
+      },
+      "ledger_check": true,
+      "tracker_tests": 27,
+      "diff_check": true
+    },
+    "logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes-export.log",
+        "bytes": 4657,
+        "sha256": "375a2ff80dd3d6501406de47f46287eb9de7268d607674b015e3f12e2ef565d1"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes-host-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes-launcher-build.log",
+        "bytes": 820,
+        "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes-ledger-check.log",
+        "bytes": 437,
+        "sha256": "fb39f0185626147861e5171f1cbdb2a4dc199e2b8189b7f344473b9624e08302"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes-ledger-render.log",
+        "bytes": 380,
+        "sha256": "206912839f43ae9ecd12f46e4a3b94531b299c958ed60116099acddd8db85ddd"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes-native-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes-native-run.log",
+        "bytes": 71,
+        "sha256": "a2e669201465be93fa9104a52a846780ce0a92b3f14f7f0f0bf4b973f648cf9e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-target-modes-tracker-tests.log",
+        "bytes": 126,
+        "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+      }
+    ],
+    "function_tally": {
+      "complete": 34,
+      "partial": 3499,
+      "client_partial": 3494,
       "engine_partial": 5
     },
     "cleanup": {

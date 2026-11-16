@@ -21,6 +21,10 @@ template<class Actor>struct HumanAITargetLoading {
     }
     HumanJointWords<0x50> state;
     Actor* actor=nullptr;
+    void bind_vector(const HumanVector& input){ //00560780, vector publication BEFORE actor/accumulator reset.
+        const auto value=input;state.set(0x10,value);actor=nullptr;
+        for(auto offset:{0u,4u,8u})state.set(offset,std::uint32_t{0});
+    }
     void bind_actor(Actor* value) { //005607B0, resets both three-component accumulators.
         actor=value;
         for(auto offset:{0x10u,0x14u,0x18u,0u,4u,8u})state.set(offset,std::uint32_t{0});

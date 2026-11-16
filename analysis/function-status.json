@@ -46820,14 +46820,15 @@
       "program": "client",
       "entry": "0052b810",
       "status": "partial",
-      "coverage": "Recover ordinary on-foot target/movement policy, wrapped timers/readiness, actual process/Dog queries, real hostile selection, pending-order/action-mode suppression, range intervals, weapon reselection, burst/query58/posture/crouch, forced target clear, ammunition and readiness tail. Cautious admission/posture is now source-bound, retaining range words on its negative-admission branch. Specialized/saved-position/launcher/close-combat branches retain precise requirements.",
+      "coverage": "Recover ordinary on-foot target/movement policy, wrapped timers/readiness, actual process/Dog queries, real hostile selection, pending-order/action-mode suppression, range intervals, weapon reselection, burst/query58/posture/crouch, forced target clear, ammunition and readiness tail. Cautious admission/posture is now source-bound, retaining range words on its negative-admission branch. Saved-position10 and vector200 aim, launcher retention/posture and admitted close-combat are now source-bound. Specialized task/replan branches retain precise requirements.",
       "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit.",
       "evidence": [
         "recovered/game/human_active_ai_authority_body.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
-        "recovered/game/human_active_ai_cautious.h"
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_target_modes.h"
       ]
     },
     {
@@ -46998,6 +46999,55 @@
         "recovered/game/human_active_ai_cautious.h",
         "recovered/game/human_active_ai_authority_body.h",
         "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005382d0",
+      "status": "partial",
+      "coverage": "Recover saved-position enable/disable: mode16 before flags/RandFloat, timer194/19C, saved140, direction interval, actual inline look and mode6; disable retains timer/vector and clears target before mode refresh.",
+      "limitations": "Source-only typed owners replace original object/virtual ABI and SEH. Native focused sanitizer endpoints explicitly double Human/frame/item/World stages; actual containing World/factory/Active and scene-frame i386 compile/link only. No whole Human-frame, application-loading or desktop acceptance claim; delegated existing bodies receive no new credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_target_modes.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560780",
+      "status": "partial",
+      "coverage": "Copy all four vector lanes before clearing actor and accumulators0/4/8 on actual target resource; retain other words and independent aimed/selected borrowers.",
+      "limitations": "Source-only typed owners replace original object/virtual ABI and SEH. Native focused sanitizer endpoints explicitly double Human/frame/item/World stages; actual containing World/factory/Active and scene-frame i386 compile/link only. No whole Human-frame, application-loading or desktop acceptance claim; delegated existing bodies receive no new credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_target_modes.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_ai_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052a810",
+      "status": "partial",
+      "coverage": "Recover launcher retained-target admission, early empty-vector gate, actual own/target/head models, distance/incline/item/sector checks and same loaded-scene collision ray; vector-only path genuinely returns without ray.",
+      "limitations": "Source-only typed owners replace original object/virtual ABI and SEH. Native focused sanitizer endpoints explicitly double Human/frame/item/World stages; actual containing World/factory/Active and scene-frame i386 compile/link only. No whole Human-frame, application-loading or desktop acceptance claim; delegated existing bodies receive no new credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_target_modes.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00536a30",
+      "status": "partial",
+      "coverage": "Recover close-target gates and model-facing stealth decision, actual B0 D8 common effect-before-SECOND queue or inline action8, lazy item model/sound, cooldown and sight alignment; retain failure prefixes.",
+      "limitations": "Source-only typed owners replace original object/virtual ABI and SEH. Native focused sanitizer endpoints explicitly double Human/frame/item/World stages; actual containing World/factory/Active and scene-frame i386 compile/link only. No whole Human-frame, application-loading or desktop acceptance claim; delegated existing bodies receive no new credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_target_modes.h",
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
       ]

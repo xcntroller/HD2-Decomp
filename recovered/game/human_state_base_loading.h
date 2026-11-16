@@ -155,9 +155,12 @@ public:
         common_command_=std::move(receiver);
     }
     void emit_climb_command(){ //00583C30 virtualD8; actual family policy is factory-bound.
-        if(!common_command_)throw std::logic_error("Human climb requires its actual B0 command receiver");
-        FrameCommand command;command.kind=2;command.fields.set(8,0x1fu);
-        command.fields.set(0xc,0u);command.fields.set(0x10,0u);common_command_(*this,command);
+        emit_common_action(0x1fu,0,0);
+    }
+    void emit_common_action(std::uint32_t subtype,std::int32_t identity,std::uint32_t argument=0){ //005A45B0 ->actual B0 virtualD8.
+        if(!common_command_)throw std::logic_error("Human common action requires its actual B0 command receiver");
+        FrameCommand command;command.kind=2;command.fields.set(8,subtype);
+        command.fields.set(0xc,identity);command.fields.set(0x10,argument);common_command_(*this,command);
     }
     HumanVector climb_history_position()const{
         if(!input_||!inputs_.contains(input_))throw std::logic_error("Human climb lost its actual registered input record");
