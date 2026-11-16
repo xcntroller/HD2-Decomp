@@ -80,6 +80,11 @@ public:
         if(!slot.words.template get<std::uint8_t>(0x88))return false;
         slot.words.set(0x88,std::uint8_t{0});return true;
     }
+    bool member_direction(Human* human,HumanVector& direction)const{ //005983C0, no changed88 mutation; NULL membership is permitted.
+        if(!leader_||!slots_)return false;
+        std::int32_t index=0;if(!contains(human,&index))return false;
+        direction=slots_->at(static_cast<std::size_t>(index)).vector(0x40);return true;
+    }
     void request_member_position(Human* human,const HumanVector& position){ //00599040, reset point/changed only on membership.
         std::int32_t index=0;if(!contains(human,&index))return;
         auto& s=slot(static_cast<unsigned>(index));s.vector(0x20,position);

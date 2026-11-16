@@ -46237,8 +46237,8 @@
       "program": "client",
       "entry": "00528950",
       "status": "partial",
-      "coverage": "18D/delayed214/inactive202 gates and order-generated on-foot task52: readiness/query startup, strict radius arrival, later201-set completion and pending00535C00 prefix. Selected task52 completion now calls actual00535C00 for pending or ordinary standalone completion. Selected ordinary on-foot target tasks now bind startup/target-before-radius arrival,201-clear turn with native precision, mode/readiness/immediate DC effect,214 duration/wait and completion.",
-      "limitations": "Source-only typed/STL adaptation. Specialized action/effect families, ranged far branch, Players notification, combat/cover and H8.4 occupied/Car/seat policies remain required. Full follow/authority/application/desktop is open. Native endpoint doubles and concrete i386 link do not establish full ABI equivalence; no delegated callee/engine credit.",
+      "coverage": "18D/delayed214/inactive202 gates and order-generated on-foot task52: readiness/query startup, strict radius arrival, later201-set completion and pending00535C00 prefix. Selected task52 completion now calls actual00535C00 for pending or ordinary standalone completion. Selected ordinary on-foot target tasks now bind startup/target-before-radius arrival,201-clear turn with native precision, mode/readiness/immediate DC effect,214 duration/wait and completion. Task204/208 now binds distinct direct Players00456F00 inactive/busy/countdown/empty-vector prefixes after214 clear.",
+      "limitations": "Source-only typed/STL adaptation. Specialized action/effect families, ranged far branch, populated Players group production, combat/cover and H8.4 occupied/Car/seat policies remain required. Full containing authority/application/desktop is open. Native endpoint doubles and concrete i386 link do not establish full ABI equivalence; no delegated callee/engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_pending.h",
         "recovered/game/human_active_ai_state_loading.h",
@@ -46249,7 +46249,9 @@
         "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json",
         "recovered/game/human_active_ai_task_execution.h",
         "analysis/human-h8-task-execution-source.md",
-        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json",
+        "analysis/human-h8-follow-source.md",
+        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json"
       ]
     },
     {
@@ -46550,6 +46552,54 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-task-execution-source.md",
         "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00536120",
+      "status": "partial",
+      "coverage": "Selected on-foot follow: idle direction gates, actual formation position/direction, native distance precision, query routing/timer/Players notification, posture/Sight and item readiness order.",
+      "limitations": "Source-only portable/STL adaptation. Occupied leader/self policy belongs to H8.4; native unwritten formation outputs remain explicit requirements. Containing authority/application/desktop remains open. Native endpoint doubles/strict i386 link do not establish original ABI equivalence. No delegated credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_follow_frame.h",
+        "analysis/human-h8-follow-source.md",
+        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005324d0",
+      "status": "partial",
+      "coverage": "Actual active query, queued F8 first-job, E0 floor and A4 point mode predicate, including mode6 to job5.",
+      "limitations": "Source-only portable/STL adaptation. Typed ownership replaces original raw pointers/layout; full ABI and application/desktop equivalence unverified. Native endpoint doubles/strict i386 link do not establish original ABI equivalence. No delegated credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_follow_frame.h",
+        "analysis/human-h8-follow-source.md",
+        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005983c0",
+      "status": "partial",
+      "coverage": "Actual leader/slots/reverse membership gates and slot40 direction XYZ/W copy without changed88 mutation.",
+      "limitations": "Source-only portable/STL adaptation. Typed formation records replace original raw layout; full ABI and application/desktop equivalence unverified. Native endpoint doubles/strict i386 link do not establish original ABI equivalence. No delegated credit.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-h8-follow-source.md",
+        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00456f00",
+      "status": "partial",
+      "coverage": "Actual action3/18/21 inactive/busy/countdown publication and genuinely empty command-member vector branches.",
+      "limitations": "Source-only portable/STL adaptation. Populated distinct F8 command-members and00457820 producer/owner and positive task production remain required after native prefix; five group4C..8C buffers are not substituted. Native endpoint doubles/strict i386 link do not establish original ABI equivalence. No delegated credit.",
+      "evidence": [
+        "recovered/game/players_process.h",
+        "analysis/human-h8-follow-source.md",
+        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json"
       ]
     }
   ]

@@ -8,35 +8,33 @@ worktrees. No push or original EXE/DLL/Proton/Windows fixture execution. Heavy
 compilation and Ghidra must run sequentially. Source recovery is not desktop
 acceptance; application loading and full H8 remain OPEN.
 
-Latest: [ordinary on-foot task execution](analysis/human-h8-task-execution-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json), after
-529b9a9. Selected00528950 now binds target-before-radius arrival,201-clear turn,
-mode/readiness/immediate DC effects, actual duration wait and existing completion
-on SAME Active/resources/World.00535E70 uses actual navigation identity or engine
-inverse/transform/A8 bounds. Human arrival borrows matrices across BOTH lazy
-updates before reading coordinates. Preserve target W from cached Human,209's
-raw160 copy, extended horizontal model X/Z through final FLOAT dot, unordered
-turn wait,201/214 publication before effects and no extra command queue copy.
-005374A0 uses actual raw switch modes. Door006029F0 is locked?4:224, not94.
-Human Actor00538A60 and selected005387C0 are bound; reached H8.4 remains required.
+Latest: [on-foot follow and distinct Players notifications](analysis/human-h8-follow-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-follow-20261116.json), after ae889e2.
+Selected00536120 binds actual formation/query/posture/Sight/readiness;005324D0
+uses FIRST F8 job (6→5);005983C0 reads slot40, all W, no88 mutation. Preserve
+extended/FLOAT spill and random/sector ordering recorded in contract.
+Players virtual20 at0080FB28 is00459490, NOT direct00456F00. Follow snapshots
+selected player then reverse roster, healthy nonselected zero1A4→2200, leaving
+A8 unchanged. Task204/208 instead calls direct00456F00 after214=0; actual
+inactive/busy/countdown/empty command-vector prefixes now bound. Populated
+F8/FC/100 remains required actual00457820 producer/owner and positive00456F00;
+F8 command-members is distinct from five group4C..8C buffers.
 
-Focused ASan/UBSan/leak PASS29500 checks /100 task lifecycle matrices. Actual AI
-resources/query/path/direction, initializer, MissionNavigation/records/references,
-Door properties and task/turn/effect/completion kernels; explicit endpoints.
-Mode oracle comes from original jump tables. Strict actual-host i386 link and
-final launcher/probe results, ledger and27 tracker tests are in receipt. Windows
-artifacts never run. Temporary audits fingerprinted and removed. Five new
-partials and extended00528950;34 complete/3463 partial (3458 client,5 engine).
-H8.2/H8/containing00526550/application/desktop acceptance remain OPEN.
+Focused ASan/UBSan/leak PASS99400 checks /100 follow lifecycle matrices;
+actual resources/query/path/direction, formation, nav-job pool, Players,
+follow/posture/task204/208 kernels with explicit endpoints. Corrected callback
+routing and callback-deleted leader covered. Strict actual-host i386 and final
+launcher/probe links PASS; not run. Four new partials and extended00528950;
+34 complete/3467 partial (3462 client,5 engine). Temporary audits fingerprinted
+and removed; tracker27 and ledger results in receipt. Full H8.2/H8 remain OPEN.
 
-**NEXT H8.2:** specialized task/effect/producer families and actual00456F00/
-00457820 Players receivers, full00536120 follow, then containing00526550 timers/
+**NEXT H8.2:** specialized task/effect/producer families and actual populated
+00456F00/00457820 command-member receivers, then containing00526550 timers/
 navigation/aim/movement/output/events/self-treatment and remaining offline
-receivers. Authority4029-byte C is already under
-`frame-human-script-and-active-workers`; timer helpers are in
-`human-h8-active-frame-workers`. Both indexed/reused, not exported again.
-Do not implement H8.4's occupied/Car/seat/absent-actor policies on this branch.
-After H8.2, proceed to H8.3 async combat. See [plan](analysis/p22-hum-h8-plan.md).
+receivers. On-foot follow source is bound; occupied00536120 remains H8.4.
+Authority4029-byte C is already under `frame-human-script-and-active-workers`;
+timer helpers are in `human-h8-active-frame-workers`. Both indexed/reused, not
+exported again. Preserve H8.4 ownership; after H8.2 proceed to H8.3 async combat.
 
 Existing PACK source contracts: [common](analysis/human-h8-pack-common-source.md),
 [effects](analysis/human-h8-pack-effects-source.md),

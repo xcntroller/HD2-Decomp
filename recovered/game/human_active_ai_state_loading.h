@@ -10,6 +10,7 @@
 #include "game/human_active_ai_task_state.h"
 #include "game/human_active_ai_pending.h"
 #include "game/human_active_ai_task_completion.h"
+#include "game/human_active_ai_follow_frame.h"
 
 namespace hd2::game {
 
@@ -113,6 +114,8 @@ public:
     void reject_pending_task(){services_.queue_active_ai_speech(*this,0x68u,true,300u,false);}
     void execute_pending_task_command(std::uint32_t action,std::int32_t identity,std::uint32_t value){services_.execute_active_task_command(*this,action,identity,value);}
     void start_pending_task_effect(){start_active_task_effect(*this);}
+    void notify_pending_group(){services_.active_task_group_arrival();}
+    void advance_follow_frame(){advance_human_active_follow(*this,this->state_frames(),services_);}
     void complete_pending_task(std::uint32_t action){complete_human_active_task(*this,action,services_);}
     void require_live_task_target()const{if(task_target_retired_)throw std::runtime_error("Active task requires its retired-target event policy");}
     bool process_pending_orders(std::uint32_t elapsed){return process_human_active_pending_orders(*this,elapsed,this->state_frames(),services_);}

@@ -143,7 +143,8 @@ separate from execution and containing authority.
 - [x] Ordinary standalone task completion and distinct follow resume [checkpoint](human-h8-task-completion-source.md).
 - [x] Selected ordinary on-foot task arrival/turn/effect/wait/completion [checkpoint](human-h8-task-execution-source.md).
 - [ ] Specialized task/effect families and combat/cover completion; occupied/Car/seat dependencies belong to H8.4.
-- [ ] Follow00536120 and containing00526550 reached chain.
+- [x] Selected on-foot follow00536120, nav posture/direction and distinct Players notifications [checkpoint](human-h8-follow-source.md).
+- [ ] Populated Players00457820/00456F00 command-member production and containing00526550 reached chain.
 
 Keep H8.2 open until all required offline receivers are bound and verified.
 
@@ -156,3 +157,8 @@ required. Full00536120 follow is a separate containing-frame dependency.
 Latest ordinary execution binds selected00528950/00535E70/005374A0/005387C0,
 Human Actor00538A60 and Door006029F0. Other selected task producers and full
 follow/containing authority remain required. Keep H8.2 open.
+
+Latest [on-foot follow checkpoint](human-h8-follow-source.md) binds actual
+formation/query/posture/Sight/readiness and distinct virtual20=00459490 versus
+direct task00456F00. Populated F8 command-members, specialized producers/effects
+and containing authority remain H8.2; occupied follow remains H8.4.

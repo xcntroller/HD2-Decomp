@@ -109,7 +109,7 @@ template<class AI>void start_active_task_effect(AI& ai){
     if(state.template get<std::uint8_t>(0x204)){
         if(action==32)return;
         state.set(0x214,0u);
-        if(state.template get<std::uint8_t>(0x208))throw std::runtime_error("Active task requires actual Players00456F00 notification");
+        if(state.template get<std::uint8_t>(0x208))ai.notify_pending_group();
         return;
     }
     publish_active_task_second_mode(ai,action);

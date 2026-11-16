@@ -33,6 +33,29 @@ public:
 
     void speech_mode(std::uint8_t value){words_.set(0x43,value);} //00459470, virtual2C: one BYTE store only.
     std::uint8_t speech_mode()const{return words_.template get<std::uint8_t>(0x43);} //00459480, virtual30.
+    template<class Active,class Control>void postpone_follow_queries(Control& control,std::uint32_t mode){ //00459490, absent frozen.
+        auto* selected=control.selected_player(mode); //Snapshot BEFORE count/reverse traversal.
+        for(auto n=control.human_roster().size();n;){
+            auto* human=control.human_roster().at(static_cast<std::int32_t>(--n));
+            if(!human)throw std::runtime_error("Players follow-query notification lost roster Human");
+            if(signed_word(human->properties.stats_ec[0])<=0||human==selected)continue;
+            auto& state=active<Active>(*human).state();
+            if(!state.template get<std::uint32_t>(0x1a4))state.set(0x1a4,2200u);
+        }
+    }
+    void notify_group_arrival(){ //00456F00's actual inactive/busy/countdown/empty branches.
+        const auto action=words_.template get<std::uint32_t>(0xa0);
+        if(action!=3&&action!=18&&action!=21)return;
+        if(words_.template get<std::uint32_t>(0xa4))return;
+        const auto next=words_.template get<std::uint32_t>(0xa8)-1u;words_.set(0xa8,next);
+        if(next)return;
+        if(action==18)words_.set(0xa0,0xffffffffu);else words_.set(0xa4,1u);
+        //Native F8/FC/100 is a DISTINCT command-member vector, not one of
+        //groups4C..8C. Its populated00457820 producer/owner is still required.
+        for(auto offset:{0xf8u,0xfcu,0x100u})if(words_.template get<std::uint32_t>(offset))
+            throw std::runtime_error("Players group arrival requires actual00457820 F8 command-member owner and positive00456F00 producers");
+        words_.set(0xa0,0xffffffffu);
+    }
 
     template<class Random,class Clock>void schedule_order_completion(Human* human,
             std::vector<DelayedSpeech>& delayed,Random&& random,Clock&& clock){ //00455AF0, singleton virtual38; absent frozen start.

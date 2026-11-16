@@ -127,6 +127,37 @@ public:
         if((mode_flags()&7u)!=7u)throw std::runtime_error("Active completion name requires actual nonoffline005A81C0 peer/profile receiver");
         (void)offline_human_hud_name(dependencies().scene.frames(),human);
     }
+    template<class Human>auto& active_follow_state(Human& human){
+        auto* state=composition(human).states().get();
+        if(!state||state!=human.loading_state)throw std::logic_error("Active follow requires actual published SAME-World B0");
+        return *state;
+    }
+    template<class Human>HumanVector active_follow_current_direction(Human& human){return active_follow_state(human).current_direction();} //005A80D0.
+    template<class Human>bool active_follow_floor(Human& human){return human_inline(human).frame_navigation_floor();}
+    auto active_follow_root_sector(){return dependencies().scene.frames().camera_root_sector();}
+    template<class Human>auto active_follow_sector(Human& human){return human_inline(human).scene_sector();}
+    auto active_follow_probe_sector(const HumanVector& position){return dependencies().scene.frames().human_scene_sector(position);}
+    void active_task_group_arrival(){dependencies().startup.players_process().notify_group_arrival();} //Direct00456F00, task204/208.
+    void active_follow_query_changed(){ //Players virtual20 at final0080FB28 is00459490 (absent frozen), not00456F00.
+        using Active=typename Dependencies::Composition::StateFactory::Active;
+        auto& d=dependencies();d.startup.players_process().template postpone_follow_queries<Active>(d.players.control(),mode_flags());
+    }
+    template<class Human>bool active_follow_force_sight(Human& human,Human& leader){return dependencies().sight.force_human_target(human,leader);}
+    template<class Entry>auto active_follow_item_command(Entry entry){return dependencies().world_actors.items().runtime_item(entry).definition().equipment_command();}
+    template<class Entry>auto active_follow_item_kind(Entry entry){return dependencies().world_actors.items().runtime_item(entry).definition().kind();}
+    template<class State>void active_follow_ready_item(State& state){ //0058C330, same E0 then actual B0 virtual08.
+        auto* human=state.human();if(!human)throw std::logic_error("Active follow readiness lost Human44");
+        human_inline(*human).set_frame_item_ready(true,[&](std::uint32_t value){human_frame_first_person_state(*human,value);});
+        human_state_factory(*human).notify_inline_frame_command(state,1u);
+    }
+    template<class Human,class Formation>auto active_follow_guard(Human& human,Human& leader,Formation* formation){
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(leader);
+        return [own,other,&human,&leader,formation]{
+            own();other();
+            if(human.formation_leader!=&leader||leader.formation.get()!=formation)
+                throw std::runtime_error("Active follow callback retired or replaced its formation borrower");
+        };
+    }
     template<class Actor>auto active_task_arrival_frame(Actor& target){
         if(target.base().type()==4)throw std::runtime_error("Active task arrival requires H8.4 Car body-frame selection");
         return target.base().frame();
