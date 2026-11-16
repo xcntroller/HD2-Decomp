@@ -1,0 +1,115 @@
+{
+  "checkpoint": "D11 authorized compatibility source closure",
+  "date": "2026-11-16",
+  "branch": "feature/p22-hum-h8-4",
+  "base": "309d700",
+  "contract": "analysis/human-h8-d11-compatibility.md",
+  "authorization": "User: Alright, do the practical route for now. We need to focus on getting HUM done.",
+  "original_pe_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "policy_exception": {
+    "part5F9": "constructor phase0; first part step toggles1 and queries all14 points; native reset/toggles retained",
+    "wheel695": "fresh retirementtrue; explicit part-launch flag overrides",
+    "EXPL8": "new record instance-1; only actual emission acquires identity",
+    "smoke14": "absent-model definition-1; authored/present-model fallback95 retained"
+  },
+  "native": {
+    "result": "PASS",
+    "checks": 3328,
+    "repeated_families": 32,
+    "sanitizers": [
+      "ASan",
+      "UBSan",
+      "LSan"
+    ],
+    "actual_source": [
+      "DetachedItemActor/ActorBase/storage",
+      "RigidBody configuration/geometry/motion/registry",
+      "DynamicCollisionBuckets/Exclusions",
+      "CarAncillaryModel parsing/emission publication/retirement"
+    ],
+    "boundary_doubles": [
+      "engine frame/math/visual bounds",
+      "common activation endpoints",
+      "terminal particles/SOUND/fade/removal"
+    ],
+    "fresh_5F9_or_695_fixture_seeding": false
+  },
+  "strict_host": {
+    "result": "PASS full link, not executed",
+    "flags": "i386 O0 C++17 Wall Wextra Wpedantic Werror static municode",
+    "scope": "Actual nested World/Car/Item12/Blast/DM; runtime factory12, both launchers, body and particle bridges, both Car frame/retirement passes"
+  },
+  "application_launch_startup_probe": "PASS compile/link only",
+  "original_or_windows_execution": false,
+  "new_exports": false,
+  "agent1_worktree_modified": false,
+  "push": false,
+  "tracker": {
+    "render": "PASS; unchanged counts",
+    "check": "PASS exact fingerprints/inventories/frozen counts/statuses/evidence/README",
+    "tests": "PASS 27",
+    "complete": 34,
+    "partial": 3467,
+    "frozen": 18783,
+    "new_entries": 0,
+    "complete_promotions": 0,
+    "engine_credit": 0
+  },
+  "evidence_fingerprints": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-d11-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-d11-sanitizer-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-d11-native-run.log",
+      "bytes": 54,
+      "sha256": "b1dd96dcede1879f7589881e6743d57de700de5278003ce0ce0b197e673bdd2f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-d11-host-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-d11-application-build.log",
+      "bytes": 930,
+      "sha256": "4fd12cb475e84990a6514cb4e337f3ee6957fecd0e2088f4bfa2dde2591d73f8"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-d11-audit.cpp",
+      "bytes": 12794,
+      "sha256": "d0454b19b5135f30936cc2edbc55f6ea0e64056da0b5eb843385700874419727"
+    },
+    {
+      "path": "/tmp/h8-d11-audit",
+      "bytes": 1923640,
+      "sha256": "00af99543ae30f45ed9cf7ea3e7bb592e50a1fb0547f115e394a1f344de9f10c"
+    },
+    {
+      "path": "/tmp/h8-d11-audit-san",
+      "bytes": 4467192,
+      "sha256": "b8c23e3f311b066cc0f9a129785764c40165089b19c8d8dbd6c69163a7d9942e"
+    },
+    {
+      "path": "/tmp/h8-d11-host.cpp",
+      "bytes": 1011,
+      "sha256": "82ca5db48592abb42e84d84bcbc95322a074453006f2b3d92c5793279c310845"
+    },
+    {
+      "path": "/tmp/h8-d11-host.exe",
+      "bytes": 4705792,
+      "sha256": "ad6ce8d0966b9c71bc13ecc241f94ce289f33c590f4e6f426acbab12e20bd5b1"
+    }
+  ],
+  "D11": "Source-resolved under explicit compatibility policy; original omissions remain historical evidence; no original-equivalence or desktop claim",
+  "H8_4": "Still open for remaining reached actor/Car/entry composition",
+  "temporary_audits_removed": true
+}

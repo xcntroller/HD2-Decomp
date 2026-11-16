@@ -8,11 +8,11 @@ invented desktop acceptance. H8 and parent P22-HUM remain OPEN.
 Parallel H8.4 work uses `feature/p22-hum-h8-4`, managed worktree
 `/home/control/.codex/worktrees/3472/HD2-Decomp-p22-hum-h8`, forked at529b9a9.
 Agent1 continues H8.2 on the original branch; no post-fork H8.2 changes are imported here.
-Latest H8.4: [running finalizer source](human-h8-car-finalizer-source.md); engine audio, active skid and particle workers are bound; [active lighting](human-h8-car-lights-source.md) now covers all nine families; [Occupied offline presentation](human-h8-car-occupied-source.md) now passes source-owner admission/input/frame/removal/re-entry checks; complete Human/Player/mounted composition and non7 remain required. H8.4/D4/D5 and D11 remain OPEN.
+Latest H8.4: [running finalizer source](human-h8-car-finalizer-source.md); engine audio, active skid and particle workers are bound; [active lighting](human-h8-car-lights-source.md) now covers all nine families; [Occupied offline presentation](human-h8-car-occupied-source.md) now passes source-owner admission/input/frame/removal/re-entry checks; complete Human/Player/mounted composition and non7 remain required. H8.4/D4/D5 remain OPEN. [D11 compatibility corrections](human-h8-d11-compatibility.md) resolve the four original-state omissions under explicit user authorization.
 
-User resumed H8.4 work after clarifying D11 belongs here. Completion remains
-**blocked on D11** under the existing fidelity policy; continue independent
-required paths and preserve exact failures. See [handoff](../HANDOFF.md).
+User authorized the D11 compatibility route to advance HUM. Its four defaults
+are a documented behavior-policy exception; other fidelity requirements remain.
+Continue H8.4's independent required paths. See [handoff](../HANDOFF.md).
 
 Complete the existing plan's full Human frame checkbox. Offline7 is the first
 required application path; non7/occupied/absent-actor branches retain precise

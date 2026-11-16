@@ -52,9 +52,11 @@ public:
     struct WheelParameters {Vector motion{};float radius,width,mass,coefficient,field594;Callback callback;bool flag4c=false;};
     RigidBody(Frames& frames,Collisions& collisions,Registry& registry)
         : frames_(frames),collisions_(collisions),registry_(registry) {
-        //Only original cold writes are initialized. Unwritten scalar reads
-        //throw instead of turning uninitialized client memory into zeroes.
+        //Original cold writes, plus the user-authorized D11 compatibility
+        //initial phase: first part step toggles5F9 to1 and queries all points.
+        //004C84A0 leaves this byte unwritten; reset preserves the produced phase.
         for(auto offset:{0x560u,0x58cu,0x590u,0x200u,0x204u,0x208u,0x210u,0x214u,0x218u})word(offset,0);
+        word(0x5f9,0);
         word(0x580,0x41200000);word(0x568,0x3ce56042);
         word(0xe0,0);word(0xe4,0x3f800000);word(0xe8,0);
         word(0x5ac,0xffffffffu);word(0x5b0,0xffffffffu);

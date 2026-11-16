@@ -53,7 +53,10 @@ private:
         lifetime_=static_cast<std::int32_t>(value); //ENGINE RandFloat, native FTOL truncation.
     }
     Runtime& runtime_;Body body_;
-    std::optional<std::int32_t> lifetime_;std::optional<bool> fading_,retire_; //Ctor genuinely leaves690/694/695 unwritten.
+    std::optional<std::int32_t> lifetime_;std::optional<bool> fading_;
+    //D11 compatibility: fresh wheels fade/retire at their produced lifetime.
+    //005FDAB0/005FDC00 leave695 unwritten; an explicit part-launch flag wins.
+    std::optional<bool> retire_{true};
 };
 }
 #endif

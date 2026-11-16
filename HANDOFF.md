@@ -5,12 +5,12 @@ Worktree `/home/control/.codex/worktrees/3472/HD2-Decomp-p22-hum-h8`, branch
 is untouched; no post-fork source imported. No push or original EXE/DLL/Proton/
 Windows artifact execution. Heavy compilation/Ghidra sequential.
 
-**H8.4 work resumed by user; completion remains blocked on D11.** The user
-clarified D11 belongs here and instructed “in that case keep working on it.”
-This permits independent required work, not invented state. H8.4/D4/D5/H8/P2.2
+**D11 compatibility route authorized and implemented.** The user instructed:
+“Alright, do the practical route for now. We need to focus on getting HUM done.”
+This explicitly permits only the four documented D11 corrections. H8.4/H8/HUM
 remain OPEN; source recovery is not loaded-World or desktop acceptance.
 
-Latest: [occupied offline source](analysis/human-h8-car-occupied-source.md),
+Previous: [occupied offline source](analysis/human-h8-car-occupied-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-car-occupied-20261116.json).
 004D3110/004D38F0 have no native empty-seat precondition. Production now calls
 shared `present_car_offline_frame`; the artificial occupancy guard is removed.
@@ -30,13 +30,27 @@ tracker exact check and27 tests pass. Temporary audits fingerprinted and removed
 Counts unchanged:34 complete/3467 partial (3462 client+5 engine), frozen18783;
 no new frozen/complete/engine credit.
 
-D11's confirmed fresh part5F9/wheel695/EXPL8/absent-model smoke14 omissions are
-unchanged. Do not repeat confirmed producer searches or invent defaults. Its
-[closure contract](analysis/human-reaction-containing-boundary.md#source-closure-blockers)
-requires original producers/prior ownership, unreachability proof, or an explicit
-scope/behavior policy change. A user question asks whether to preserve strict
-failures or prepare an explicit compatibility fix for review; no policy change
-is assumed. Full H8.4 cannot be checked complete with these reached failures.
+Latest: [D11 compatibility/source closure](analysis/human-h8-d11-compatibility.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-d11-compatibility-20261116.json).
+RigidBody starts5F9 phase0 (first part step queries all14 points), fresh wheel695
+retirement defaultstrue (explicit part flag overrides), EXPL8 starts instance-1,
+and absent-DM smoke14 starts definition-1 (no smoke; real model PSMOKE/default95
+unchanged). These deliberately correct original omissions; no original-equivalent
+initialization claim, arbitrary wider defaults or successful service substitutes.
+Native ASan/UBSan/leak PASS3328 checks /32 repeated D11 lifecycle families,
+including fresh actual rigid motion, wheel fade/expiry, retained parts,
+failed-query/fade/particle prefix, reset/retry and unrelated particle ownership.
+Strict actual nested World/Car/Item12/Blast/DM O0 i386 full link and launcher/probe
+pass; tracker check/27 tests pass. Temporary audits fingerprinted and removed.
+D11 is source-closed under approved compatibility policy; it no longer blocks
+H8.4. Counts unchanged34 complete/3467 partial; no frozen/complete/engine credit.
+
+NEXT H8.4: complete reached actor/material receivers. Type15 action3 completion
+0060C130 is11-byte MOV[ECX+91],1/RET; the source guard requires the actual
+Scene2 type15 factory/lifetime. Existing export indexed in h8-4-type15-index.txt;
+research entire actor construction/loading/activation/frame boundary before
+implementation, rather than writing91 on a fabricated or unrelated actor.
+Dog D4/material and Aircraft/type34 borrowers remain actual dependencies.
 
 D5 non-Car9A8/4A0 in004D3D10 remains a selected non7 unowned-contact obligation;
 offline7 is owned unconditionally at004D3EF0/004DE800. Entry D6–D9, reached
