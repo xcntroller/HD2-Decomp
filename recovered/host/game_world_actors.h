@@ -220,6 +220,8 @@ public:
         actor.loading->update(authority,elapsed);
     }
     bool car_camera_setting264(){return consumers_.car_camera_setting264();}
+    std::int32_t emit_car_engine_sound(const frontend::SpatialSoundRequest& request){return consumers_.emit_scene_actor_sound(request);}
+    void car_occupant_forced_exit(game::SceneActor<GameActorServices>* actor){consumers_.car_occupant_forced_exit(actor);}
     std::int32_t add_car_proximity(Car& actor,unsigned kind){return consumers_.actor_proximity().add_actor(&actor,kind);}
     void remove_car_proximity(std::int32_t index){consumers_.actor_proximity().remove_actor(index);}
     const Car* car_current_attachment(){return consumers_.car_current_attachment();}

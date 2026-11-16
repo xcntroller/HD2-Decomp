@@ -13,6 +13,7 @@
 #include "game/car_support_checks.h"
 #include "game/car_water_loading.h"
 #include "game/car_frame_events.h"
+#include "game/car_offline_frame.h"
 #include "game/car_seat_exit.h"
 #include "game/car_seat_actions.h"
 
@@ -27,10 +28,11 @@ template<class Frames>struct CarLoadingResources {
     std::function<int()>& random;
 };
 
-//004D16A0/004D25C0/004D2790/004D3110's actual offline, unoccupied loading
+//004D16A0/004D25C0/004D2790/004D3110's actual offline loading
 //lifetime. Services supplies common actor registries, SAME proximity/Players,
 //settings264 and game kind; query/tree/bucket owners outlive this object.
-//Occupied/non7 input and wider containing-frame producers remain required.
+//Occupied authority borrows H3 controls/B0/SOUND; occupied presentation,
+//non7 input and wider containing-frame producers remain required.
 //Source composition alone does not enable application loading.
 template<class Frames,class Services,class Collisions,class Queries>class CarLoadingActivation final : public CarLoadingLifetime<Frames> {
 public:
@@ -97,20 +99,27 @@ public:
     }
     void update(bool authority,std::uint32_t elapsed)override{
         require_mode();if(!ready_||!initial_)throw std::logic_error("Car update requires completed loading");
-        require_unoccupied();
         if(authority){ //004D2790: offline authority does not run00509AA0.
             update_car_periodic_event(actor_,[&]{return services_.mode_flags();},[&](const CarDamageEvent& event){actor_.callback_services().car_periodic_event(&actor_,event);},[&]{reset_event();});
             update_car_targeted_damage(actor_,elapsed,[&]{actor_.callback_services().car_timed_destroy(&actor_);});
             update_car_loading_water(frames_,actor_.geometry->model(),queries_,initial_->health,actor_.occupants,actor_.callback_services(),services_.mode_flags());
+            advance_car_mounted_controls(actor_,true,elapsed);
+            require_mode(); //A callback-selected non7 refill/frame path still requires its real receivers.
             actor_.ancillary->update(elapsed,[&]{actor_.callback_services().car_timed_destroy(&actor_);});
-            if(initial_->health.body!=0&&initial_->solver.speed<.10000000149011612f)
-                (void)car_support_checks(initial_->health,initial_->fuel,initial_->solver.speed,initial_->wheels,initial_->body().pose().up,2);
-            return; //All actual occupied control/exit/UI producers are null here.
+            const auto& up=initial_->body().pose().up;
+            request_car_unstable_occupant_exit(actor_,services_.mode_flags(),initial_->health.body,initial_->solver.speed,up,
+                [&]{return car_support_checks(initial_->health,initial_->fuel,initial_->solver.speed,initial_->wheels,up,2);},
+                [&](auto* human){services_.car_occupant_forced_exit(human);});
+            if((services_.mode_flags()&7u)==7u)emit_car_engine_hearing(actor_,[&](float& volume,float& range){
+                observe_car_engine_sound(frames_,initial_->sounds,actor_.geometry->physics().scalars(),initial_->finalizer.engine_transition,volume,range);
+            },[&](const auto& request){return services_.emit_car_engine_sound(request);});
+            return;
         }
+        require_unoccupied(); //Running/occupied solver and finalizer remain required D5 receivers.
         elapsed=std::min(elapsed,std::uint32_t{83});
         initial_->finalizer.lights.steering_threshold=initial_->steering.maximum*.8999999761581421f;
         same_epoch_=frames_.vertex_scene_epoch()==frames_.vertex_frame_epoch(actor_.geometry->model());
-        update_core(elapsed);(void)finalize_core(elapsed);
+        update_core(elapsed);advance_car_mounted_controls(actor_,false,elapsed);(void)finalize_core(elapsed);
         actor_.base().world_direction(initial_->body().pose().forward);actor_.base().world_position(initial_->body().pose().position); //004D38F0.
         update_car_actor_features(frames_,actor_.geometry->model(),frames_.active_game_camera(),same_epoch_,actor_.flag254a,services_.mode_flags(),
             initial_->solver.substeps.flags,initial_->drive,initial_->audio);
@@ -240,7 +249,6 @@ private:
     void require_unoccupied()const{
         if(actor_.driver24ac)throw std::runtime_error("Car occupied input requires its actual driver owner");
         for(auto occupant:actor_.occupants)if(occupant)throw std::runtime_error("Car occupied update requires its actual Human attachment owner");
-        for(const auto& control:actor_.fields24b4)if(control)throw std::runtime_error("Car mounted control requires its actual simulation owner");
     }
     static Vector position(const typename Frames::Matrix& matrix){return {{matrix[12],matrix[13],matrix[14],matrix[15]}};}
     void update_core(std::uint32_t elapsed){update_car_cold(frames_,actor_.geometry->model(),actor_.geometry->physics(),resources_.tyres,initial_->body(),initial_->wheels,

@@ -248,6 +248,7 @@ preparation, not a standalone audit-only milestone.
 
   - [x] Record verified reaction/damage, peer/input/entry-prefix, Mine/Versions and Car source checkpoints with their limits ([S01–S14](analysis/p22-hum-plan.md#h2-source-checkpoints-already-achieved)); [deferred joint/clip inventory is reconciled](analysis/checkpoints/p2.2-human-ragdoll-kernel-source-20261112.json).
   - [ ] H8/Car integration: finish the remaining selected containing path (boundary established in [D0](analysis/p22-hum-plan.md#d0--confirm-the-remaining-containing-path-boundary)); D1–D3/D4a/D4b source is complete; finish reached occupied/non7 dependencies D5 and containing Car frame D4.
+    [Offline authority source](analysis/human-h8-car-authority-source.md) binds mounted controls, forced-exit requests and engine hearing; occupied presentation/non7 stay open.
   - [ ] OWN/H8 entry integration: complete shared connection/entry/reset consumers D6–D9, preserving actual process/World owners; live multiplayer acceptance remains Phase3.
   - [x] Complete H2-owned reaction composition, consolidated verification, inventory and audit cleanup ([source receipt](analysis/checkpoints/p2.2-human-h2-source-20261112.json)). External Car producer/entry failures remain guarded; H8 owns full Human-frame assembly.
 

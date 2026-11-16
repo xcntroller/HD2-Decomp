@@ -159,6 +159,11 @@ public:
         FrameCommand command;command.kind=2;command.fields.set(8,0x1fu);
         command.fields.set(0xc,0u);command.fields.set(0x10,0u);common_command_(*this,command);
     }
+    void request_emplacement_exit(){ //00588C20, shared B0 virtual44;005A97B0 tail-forwards here.
+        if(!common_command_)throw std::logic_error("Human forced exit requires its actual B0 command receiver");
+        FrameCommand command;command.kind=2;command.fields.set(8,5u);
+        command.fields.set(0xc,0u);command.fields.set(0x10,0u);common_command_(*this,command);
+    }
     HumanVector climb_history_position()const{
         if(!input_||!inputs_.contains(input_))throw std::logic_error("Human climb lost its actual registered input record");
         const auto* history=input_->history(1);

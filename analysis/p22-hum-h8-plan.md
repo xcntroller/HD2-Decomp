@@ -5,6 +5,10 @@ from completed H6fc9d452. All H1–H7 source is present, including user-merged
 H4b9d67aa. Preserve other worktrees. No push, original/Windows execution or
 invented desktop acceptance. H8 and parent P22-HUM remain OPEN.
 
+Parallel H8.4 work uses `feature/p22-hum-h8-4`, managed worktree
+`/home/control/.codex/worktrees/3472/HD2-Decomp-p22-hum-h8`, forked at529b9a9.
+Agent1 continues H8.2 on the original branch; no post-fork H8.2 changes are imported here.
+
 Complete the existing plan's full Human frame checkbox. Offline7 is the first
 required application path; non7/occupied/absent-actor branches retain precise
 requirements until completed or proven outside the selected path. Source-only
@@ -25,6 +29,8 @@ checks are not application delivery. Use the research index before exports.
 - [ ] H8.4 — Resolve reached actor/Car/entry dependencies against current
   OWN/FRAME interfaces: existing D4/D5/D6–D9/D11 remain required when selected;
   absent Dog/type15/Aircraft/type34/material owners cannot report success.
+  [Offline Car authority checkpoint](human-h8-car-authority-source.md) binds mounted
+  frames, unstable-seat exit requests and engine hearing; occupied presentation remains open.
 - [ ] H8.5 — Consolidated same-owner positive/failure/re-entry/teardown native
   sanitizers, actual-host/module i386 link, launcher/probe, ledger and cleanup.
 - [ ] H8.6 — Compose required completed application/FRAME/OWN/render work;

@@ -25022,26 +25022,32 @@
       "program": "client",
       "entry": "004d2790",
       "status": "partial",
-      "coverage": "Actual offline cold authority update gates, water damage, post-reset DM and support checks using SAME owners. Reached frame prefix now publishes event6, rereads mode after publication, conditionally resets and clears2478 only after success; actual pending2550 expiry precedes water/timed DM on the same activation.",
-      "limitations": "Unoccupied loading only; periodic event, targeted damage, occupied control/UI and non7 paths excluded. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
+      "coverage": "Actual offline authority event6/reset and targeted2550 prefixes, water, reverse actual mounted controls, timed DM, support/up-vector forced-exit requests through same B0, and driver engine hearing through same process SOUND. Mode changes retain required non7 failures before skipped consumers.",
+      "limitations": "Source-only typed ownership/ABI adaptation. Non7 refill/simulation and containing occupied presentation remain D5. Active engine/controller/solver/finalizer and D11 fresh-state omissions remain required where selected; no loaded World or application/desktop acceptance. Native frame/engine/DC/mounted endpoints are explicit doubles; concrete host verifies compile/link only.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_loading_activation.h",
         "analysis/human-car-frame-events-source.md",
-        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json",
+        "analysis/human-h8-car-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-authority-20261116.json",
+        "recovered/game/car_offline_frame.h"
       ]
     },
     {
       "program": "client",
       "entry": "004d3110",
       "status": "partial",
-      "coverage": "Actual offline cold presentation clamp, epoch/steering threshold, core/finalizer/base pose/features, seat cameras, navigation and model tick. Corrected259C reverse tail as game54 navigation0051D5A0 observations with unused result, over SAME retained navigation identities before final model tick; no invented SOUND consumer.",
-      "limitations": "Unoccupied loading only; mounted/non7/positive queued SOUND receivers excluded; no application binding. D4a receiver checkpoint: actual AI subtype14/occupied/non7 containing composition remains D4b/D5/D10; no application/desktop acceptance.",
+      "coverage": "Actual offline cold presentation clamp, epoch/steering threshold, core/finalizer/base pose/features, seat cameras/navigation/model tick, plus reverse actual mounted presentation dispatch between core and finalizer. Retained navigation0051D5A0 observations use SAME identities before model tick.",
+      "limitations": "Source-only typed ownership/ABI adaptation. Actual occupied/driver presentation, active engine/controller/finalizer and non7 paths remain explicit required guards. Available empty mounted allocations now advance; positive occupied authority is separate. No loaded World or application/desktop acceptance.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_loading_activation.h",
         "analysis/human-car-frame-events-source.md",
-        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json"
+        "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json",
+        "analysis/human-h8-car-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-authority-20261116.json",
+        "recovered/game/car_offline_frame.h"
       ]
     },
     {
@@ -46481,6 +46487,32 @@
         "recovered/game/human_active_ai_state_loading.h",
         "analysis/human-h8-task-completion-source.md",
         "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d2dc0",
+      "status": "partial",
+      "coverage": "Actual exterior engine-voice snapshot on same Car sound owners: actorF7C/coreEEC range first, volume zero, actual234F engine-start gate, ordered three five-voice groups then standaloneC54, direct soundE0&1/16C and ordered maximum. Bound to driver hearing producer.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original pointer/vtable/allocator/SEH ABI and malformed-pointer behavior unclaimed. Frame/engine/DC effect endpoints are explicit native audit doubles. Concrete actual-host i386 and application builds are compile/link only; containing occupied simulation, application/desktop acceptance remain open. No delegated engine credit.",
+      "evidence": [
+        "recovered/game/car_offline_frame.h",
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-h8-car-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-authority-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a97b0",
+      "status": "partial",
+      "coverage": "Actual Human current-B0 forced-exit forwarding through shared virtual44/00588C20 and factory-bound derived D8 common-command receiver; Player first80 versus Remote direct DC versus AI DC-before-second90 preserves real owners and failure prefixes.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original pointer/vtable/allocator/SEH ABI and malformed-pointer behavior unclaimed. Frame/engine/DC effect endpoints are explicit native audit doubles. Concrete actual-host i386 and application builds are compile/link only; containing occupied simulation, application/desktop acceptance remain open. No delegated engine credit.",
+      "evidence": [
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/game/car_loading_activation.h",
+        "analysis/human-h8-car-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-authority-20261116.json"
       ]
     }
   ]

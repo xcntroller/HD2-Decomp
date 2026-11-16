@@ -203,6 +203,11 @@ resolved by the completed H4/H6 source imports. Full World integration remains H
   H3 committed10bebe9 is integrated: mounted reset/seat receivers are source.
   Its containing occupied/non7 simulation remains D5; retain that guard.
 
+Parallel H8.4 [offline authority source checkpoint](human-h8-car-authority-source.md)
+now consumes actual mounted controls, requests unstable-seat exits through SAME B0
+and publishes engine hearing through SAME SOUND. D4/D5 stay open: running engine,
+occupied presentation and non7 consumers remain required; D11 failures are unchanged.
+
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,
 and launcher/probe rebuild passes. Test doubles must be named. Compile-only or
