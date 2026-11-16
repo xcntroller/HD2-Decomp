@@ -127,3 +127,9 @@ The [H8.4 powered solver checkpoint](human-h8-car-powered-source.md) now binds
 0050DE60 running drive/brake forces and reaction on the actual loading lifetime.
 It corrects160 to a mutable simulation position and unifies2293/229F consumers.
 Running0050B180, occupied presentation, plane-cache and D11 guards remain open.
+
+
+The historical00501CB0 cold-only boundary above is superseded by the
+[2026-11-16 active-light checkpoint](human-h8-car-lights-source.md): all nine
+light families now execute on SAME paired flags/markers/sector owners. This
+does not close occupied presentation, D11 or containing application delivery.

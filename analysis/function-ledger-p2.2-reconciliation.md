@@ -85,3 +85,18 @@ launcher/probe are compile/link only. Totals:34 complete,3467 partial
 (3462 client+5 engine), frozen18783. Reachable00501CB0 active-light rendering,
 occupied/non7 presentation, D11 and containing World/application/desktop remain
 OPEN; this does not close the full finalizer, H8.4 or its parent checkbox.
+
+
+## 2026-11-16 H8.4 active Car light policy source
+
+[Contract](human-h8-car-lights-source.md),
+[receipt](checkpoints/p2.2-human-h8-car-lights-20261116.json).00501CB0's existing
+partial now covers all nine light types, native shared-state/pose/hide exceptions
+and timers. Existing004E7450/004EA780/004D3110 entries add marker retention, actual
+sector544 publication and live160 actor publication. No new frozen entry or
+complete/delegated-engine promotion:34 complete/3467 partial (3462 client+5
+engine), frozen18783. Native7170816 checks/16000 original-policy-transcription
+comparisons and139 failure prefixes pass ASan/UBSan/leak verification; frames/
+resources/geometry/command and damage injection are explicit doubles. Actual
+host and launcher/probe are compile/link only. H3 occupied containing-frame
+verification, non7/entry, selected D11 and World/application/desktop remain OPEN.

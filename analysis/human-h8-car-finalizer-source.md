@@ -1,5 +1,9 @@
 # H8.4 running Car finalizer — source checkpoint, 2026-11-16
 
+**Subsequent source checkpoint:** [active lights](human-h8-car-lights-source.md)
+now removes the00501CB0 rendering guard described below. Occupied/D11 and
+containing delivery remain open.
+
 Branch `feature/p22-hum-h8-4`, base0ed148b. The actual loading lifetime now
 calls0050B180's running finalizer on its existing owners. This extends the
 [powered step](human-h8-car-powered-source.md); H8.4/D4/D5/H8 and P2.2 remain

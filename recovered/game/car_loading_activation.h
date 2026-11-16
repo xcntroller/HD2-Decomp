@@ -118,12 +118,12 @@ public:
             },[&](const auto& request){return services_.emit_car_engine_sound(request);});
             return;
         }
-        require_unoccupied(); //Occupied input/presentation and running finalization remain D5 requirements.
+        require_unoccupied(); //D5 still requires actual H3 entry through a verified occupied containing frame.
         elapsed=std::min(elapsed,std::uint32_t{83});
         initial_->finalizer.lights.steering_threshold=initial_->steering.maximum*.8999999761581421f;
         same_epoch_=frames_.vertex_scene_epoch()==frames_.vertex_frame_epoch(actor_.geometry->model());
         update_core(elapsed);advance_car_mounted_controls(actor_,false,elapsed);(void)finalize_core(elapsed);
-        actor_.base().world_direction(initial_->body().pose().forward);actor_.base().world_position(initial_->body().pose().position); //004D38F0.
+        actor_.base().world_direction(initial_->body().pose().forward);actor_.base().world_position(initial_->body().physical_position()); //004D38F0 copies core240/160.
         update_car_actor_features(frames_,actor_.geometry->model(),frames_.active_game_camera(),same_epoch_,actor_.flag254a,services_.mode_flags(),
             initial_->solver.substeps.flags,initial_->drive,initial_->audio);
         seats_.update(queries_,actor_.base().world_direction(),initial_->body().motion().velocity,initial_->solver.speed,
@@ -277,7 +277,7 @@ private:
             initial_->collision,queries_,exclusions_,*body_collision_,initial_->audio,initial_->health,resources_.materials,resources_.particles,initial_->skids,resources_.random,
             *actor_.callbacks,actor_.callback_services().car_particle_definitions(),initial_->reset_fields.field22c1,initial_->reset_fields.field22c2,
             initial_->reset_fields.signal2294,initial_->reset_fields.signal2295,initial_->control_requests.flag229d,
-            initial_->brake_amount,initial_->engine_timeout,initial_->reset_fields.field780};
+            initial_->brake_amount,initial_->engine_timeout,initial_->reset_fields.field780,initial_->paired_flags};
         return finalize_car(context,initial_->finalizer,elapsed,services_.car_game_kind());
     }
     void refresh_navigation(){navigation_.load(actor_.geometry->model(),actor_.geometry->body(),services_.mode_flags(),initial_->solver.speed,initial_->body().motion().velocity);}

@@ -19,7 +19,7 @@ public:
     using Projector=typename Frames::CarProjector;
     static constexpr std::size_t none=std::numeric_limits<std::size_t>::max();
     struct Light {
-        Frame frame{},billboard{};
+        Frame frame{},billboard{},projector_marker{}; //Paired5A4+0 is the actual PROJECTOR marker.
         std::size_t projector=none;
         std::uint16_t type=0,part1a=0xffff;
         std::uint32_t flags10=0;float field14=0; //SAME native594 records used by damage/part detachment.
@@ -72,6 +72,7 @@ public:
             const auto index=projectors_.size();projectors_.push_back(std::move(projector));
             lights_[first].projector=index;lights_[second].projector=index;
             lights_[first].shared=lights_[second].shared=true;
+            lights_[first].projector_marker=lights_[second].projector_marker=marker;
             lights_[first].flags10|=0x80000000u;lights_[second].flags10|=0x80000000u;
         }
     }

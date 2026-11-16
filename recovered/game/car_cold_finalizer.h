@@ -49,6 +49,7 @@ struct CarFinalizerContext {
     Callbacks& callbacks;const std::vector<CarParticleDefinition>& definitions;
     const bool& reset;const bool& saved_transition;const bool& signal_first;const bool& signal_second;const bool& automatic_gears;
     float& brake_amount;float& engine_timeout;float& gear_direction_timer;
+    std::vector<std::uint16_t>& paired_flags;
 };
 
 //0050B180, on the SAME initialized owners. The native debug-selected drawing
@@ -110,7 +111,8 @@ unsigned finalize_car(CarFinalizerContext<Frames,Geometry,Collisions,Queries,Bod
     else if(kind==2)reset_car_tracked_steering(c.frames,c.wheels);
     update_car_wheel_rotation(c.frames,physics,c.body,c.wheels,drive,solver.queries,c.controller.frame_simulated,elapsed);
     const CarLoadingLightInputs light_inputs{drive.gear,drive.brake,c.steering.current};
-    update_car_loading_lights(c.frames,c.geometry.lighting(),state.lights,elapsed,solver.substeps.flags,state.previous_features,&light_inputs);
+    update_car_loading_lights(c.frames,c.geometry.lighting(),state.lights,elapsed,solver.substeps.flags,state.previous_features,
+        c.paired_flags,state.sector,c.body.pose().forward,&light_inputs);
     update_car_steering_wheel(c.frames,c.geometry.auxiliary(),physics,c.steering);
     if(state.live||solver.substeps.flags!=state.previous_features)
         c.geometry.axes().apply(c.frames,c.geometry.wheels().wheels(),solver.substeps.flags,state.previous_features);
