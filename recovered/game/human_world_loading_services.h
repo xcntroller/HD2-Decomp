@@ -154,6 +154,8 @@ public:
     }
     float active_self_treatment_random(){return dependencies().scene.frames().volume_random_unit();} //ENGINE RandFloat, not CRT.
     bool active_authority_nearby(const HumanVector& position){return active_nearby_runtime_actor(dependencies().world_actors.runtime(),dependencies().scene.frames(),position,3u);}
+    void active_avoidance_clamp(HumanVector& position,bool enabled,const HumanVector& original){clamp_active_avoidance_position(dependencies().navigation,position,enabled,original);}
+    auto* active_avoidance_player(){return dependencies().players.control().selected_player(mode_flags());}
     template<class Human,class Actor>bool active_event_hostile(Human& human,Actor* actor){
         const auto& enemies=human.perception.lists()[0];return std::find(enemies.rbegin(),enemies.rend(),actor)!=enemies.rend(); //005A5E50.
     }
@@ -2005,8 +2007,11 @@ public:
             void finish_human_state_action(Base& state,bool success){complete_human_state_action(state,success,world,runtime);}
         } queries{*this,runtime};
         if(kind==3){
-            if(factory.begin_active_authority(*state,elapsed,queries).has_value())
-                runtime.advance_human_state(human,authority,elapsed); //Required remaining00526550 body AFTER native prefix; no success fallback.
+            const auto prefix=factory.begin_active_authority(*state,elapsed,queries);
+            if(prefix.has_value()){
+                if(!human.field160)factory.advance_active_onfoot_navigation(*state,elapsed,*prefix,runtime);
+                runtime.advance_human_state(human,authority,elapsed); //Required remaining00526550 body; no success fallback.
+            }
             return;
         }
         if(kind==1){factory.advance_player_frame(*state,authority,elapsed,queries,runtime);return;}

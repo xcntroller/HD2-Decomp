@@ -130,6 +130,10 @@ public:
         if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Active authority prefix requires actual B0 family3");
         return static_cast<Active&>(state).begin_authority_frame(elapsed,queries);
     }
+    template<class Runtime>void advance_active_onfoot_navigation(Base& state,std::uint32_t elapsed,bool following,Runtime& runtime){
+        if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Active navigation requires actual B0 family3");
+        static_cast<Active&>(state).advance_onfoot_navigation(elapsed,following,control_,runtime);
+    }
     auto& control(){return control_;}
     template<class FrameServices>void apply_inline_feedback(Base& state,std::uint32_t flags,FrameServices& frames){
         const auto kind=state.words().template get<std::uint32_t>(0x48);

@@ -14,6 +14,7 @@
 #include "game/human_active_ai_frame_policy.h"
 #include "game/human_active_ai_events.h"
 #include "game/human_active_ai_authority_prefix.h"
+#include "game/human_active_ai_avoidance.h"
 
 namespace hd2::game {
 
@@ -132,6 +133,10 @@ public:
     }
     void active_event_action_mode(unsigned mode){set_action_mode(mode);}
     template<class Queries>auto begin_authority_frame(std::uint32_t elapsed,Queries& queries){return begin_active_authority_frame(*this,elapsed,queries,services_);}
+    void clamp_frame_avoidance(HumanVector& position,bool enabled,const HumanVector& original){services_.active_avoidance_clamp(position,enabled,original);}
+    void avoid_frame_position(const HumanVector& position,const HumanVector& direction,bool blend,bool check_angle){avoid_active_position(*this,position,direction,blend,check_angle,services_);}
+    void avoid_selected_player(){avoid_active_selected_player(*this,services_);}
+    template<class Inline,class Runtime>void advance_onfoot_navigation(std::uint32_t elapsed,bool following,Inline& control,Runtime& runtime){advance_active_onfoot_navigation(*this,elapsed,following,this->state_frames(),control,services_,runtime);}
     void complete_pending_task(std::uint32_t action){complete_human_active_task(*this,action,services_);}
     void require_live_task_target()const{if(task_target_retired_)throw std::runtime_error("Active task requires its retired-target event policy");}
     bool process_pending_orders(std::uint32_t elapsed){return process_human_active_pending_orders(*this,elapsed,this->state_frames(),services_);}

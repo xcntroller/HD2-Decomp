@@ -128,6 +128,22 @@ public:
         };
         return search_route(start,destination,mask,route,estimate);
     }
+    long double route_length(const std::vector<std::uint16_t>& route)const{ //005230D0, x87 return; invalid/missing edge returns0.
+        if(route.size()<2||!record(route.front()))return 0;
+        std::uint32_t total=0;
+        for(std::size_t n=1;n<route.size();++n){
+            if(!record(route[n]))return 0;
+            const auto& previous=*record(route[n-1]);const auto count=previous.flags&0x3fu;
+            if(count&&!previous.payload)throw std::runtime_error("Navigation route length lost actual link storage");
+            const auto* links=static_cast<const unsigned char*>(previous.payload);bool found=false;
+            for(unsigned i=0;i<count;++i){
+                SerializedBytes link(links+i*4,4);const auto target=link.half(),weight=link.half();
+                if(target==route[n]){total+=weight;found=true;break;} //005247A0 scans FORWARD; first duplicate wins.
+            }
+            if(!found)return 0;
+        }
+        return static_cast<long double>(total)*.00390625f; //Unsigned DWORD sum, no FLOAT spill.
+    }
     //00521460 -> 00521480. End at the first discovered point outside every
     //target's exclusion radius with zero truncated distance penalty.
     bool find_escape_route(std::uint16_t start,const std::vector<std::array<float,3>>& targets,

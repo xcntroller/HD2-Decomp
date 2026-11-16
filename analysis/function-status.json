@@ -46720,8 +46720,8 @@
       "program": "client",
       "entry": "00526550",
       "status": "partial",
-      "coverage": "Actual World/factory/Active authority prefix: bit800 return, base timers,248 nearby scan and234/1C4/1A4/1B0 timers, actual shared inputs, pending/task/follow short circuit, actual event drain then mode expiry; required remaining body after this native prefix.",
-      "limitations": "Source-only typed/STL/RAII adaptation with explicit native endpoints and concrete i386 World binding. Remaining00526550 avoidance/movement/decision/output body and H8.2 are REQUIRED. H8.4 occupied policies untouched. No original ABI/SEH/allocator or application/desktop equivalence claimed; no delegated/exported-only body credit.",
+      "coverage": "Actual World/factory/Active authority prefix: bit800 return, base timers,248 nearby scan and234/1C4/1A4/1B0 timers, actual shared inputs, pending/task/follow short circuit, actual event drain then mode expiry; required remaining body after this native prefix. On-foot continuation now binds selected-player avoidance, item refresh, actual flag reconciliation/query, selected native result policy and actual0052D460 gait using the prefix follow flag.",
+      "limitations": "Source-only typed/STL/RAII adaptation with explicit native endpoints and concrete i386 World binding. Remaining00526550 aim/movement/decision/output body and H8.2 are REQUIRED. Task25/26 query -10 replanning remains required; H8.4 occupied policies untouched. No original ABI/SEH/allocator or application/desktop equivalence claimed; no delegated/exported-only body credit.",
       "evidence": [
         "recovered/game/human_active_ai_authority_prefix.h",
         "recovered/game/human_active_ai_state_loading.h",
@@ -46731,7 +46731,9 @@
         "recovered/host/game_runtime_actors.h",
         "recovered/game/human_frame_runtime.h",
         "analysis/human-h8-authority-prefix-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-prefix-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-prefix-20261116.json",
+        "analysis/human-h8-avoidance-source.md",
+        "analysis/checkpoints/p2.2-human-h8-avoidance-20261116.json"
       ]
     },
     {
@@ -46750,6 +46752,62 @@
         "recovered/game/human_frame_runtime.h",
         "analysis/human-h8-authority-prefix-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-prefix-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052e310",
+      "status": "partial",
+      "coverage": "Native on-foot selected-player spacing: ordered early gates and two selected identities, cached extended distance/posture thresholds, velocity/direction and W normalization, actual avoidance call.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Native x87 return/register spills mapped to long double/FLOAT; ABI/SEH/allocator equivalence and desktop unverified. Existing navigation safety guards remain required. Native explicit endpoint doubles plus concrete World i386 links; no H8.4 or delegated body credit. Same-point clipped native W is unwritten and retained typed W has no native-value claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_avoidance.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-avoidance-source.md",
+        "analysis/checkpoints/p2.2-human-h8-avoidance-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052dc10",
+      "status": "partial",
+      "coverage": "Actual horizontal/cross/blend normalization precision, angle/floor/40000 gates, same-World clamp/query/18C publication then actual formation slot and route effects.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Native x87 return/register spills mapped to long double/FLOAT; ABI/SEH/allocator equivalence and desktop unverified. Existing navigation safety guards remain required. Native explicit endpoint doubles plus concrete World i386 links; no H8.4 or delegated body credit. Same-point clipped native W is unwritten and retained typed W has no native-value claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_avoidance.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-avoidance-source.md",
+        "analysis/checkpoints/p2.2-human-h8-avoidance-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052d720",
+      "status": "partial",
+      "coverage": "Actual GAME+54 point/route/length gates and same/different-volume radius clamp with native scalar spill/Y/W ordering; existing invalid-data requirements retained.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Native x87 return/register spills mapped to long double/FLOAT; ABI/SEH/allocator equivalence and desktop unverified. Existing navigation safety guards remain required. Native explicit endpoint doubles plus concrete World i386 links; no H8.4 or delegated body credit. Same-point clipped native W is unwritten and retained typed W has no native-value claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_avoidance.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-avoidance-source.md",
+        "analysis/checkpoints/p2.2-human-h8-avoidance-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005230d0",
+      "status": "partial",
+      "coverage": "Actual forward first-matching link weight sum with uint32 wrap and extended unsigned/256 return; invalid node/edge returns0, missing link storage remains required.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Native x87 return/register spills mapped to long double/FLOAT; ABI/SEH/allocator equivalence and desktop unverified. Existing navigation safety guards remain required. Native explicit endpoint doubles plus concrete World i386 links; no H8.4 or delegated body credit. Same-point clipped native W is unwritten and retained typed W has no native-value claim.",
+      "evidence": [
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-avoidance-source.md",
+        "analysis/checkpoints/p2.2-human-h8-avoidance-20261116.json"
       ]
     }
   ]

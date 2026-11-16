@@ -157,7 +157,7 @@ direct task00456F00. Occupied follow stays with H8.4.
 
 [Authority helpers and medical/event checkpoint](human-h8-authority-policy-source.md)
 binds source APIs; the [containing prefix](human-h8-authority-prefix-source.md) now
-reaches them on SAME World. Remaining00526550 body is still REQUIRED.
+reaches them on SAME World. Remaining00526550 aim/movement/decision/output body is still REQUIRED.
 This list separates completed owners from the remaining policy dependencies.
 
 - [x] Actual pending/task/follow ordinary source paths (links above).
@@ -167,8 +167,10 @@ This list separates completed owners from the remaining policy dependencies.
 - [x] Containing00526550 prefix: base timers,248 nearby-actor scan00478AE0,
   234/1C4/1A4/1B0 timers, shared74/78 inputs and pending/task/follow/events/modes.
 - [ ] Remaining00526550 body after that prefix; no idle success or loading activation.
-- [ ] On-foot0052E310 avoidance and0052DC10 receiver, query result policy,
- 0052B810 movement/target selection and reached helper producers.
+- [x] On-foot0052E310/0052DC10/0052D720 avoidance, route length and containing
+  query-result/gait phase [checkpoint](human-h8-avoidance-source.md).
+- [ ] Containing aim policy,0052B810 movement/target selection and reached helpers;
+  specialized task25/26 result-10 replanning00532190 remains required.
 - [ ] Event/cover decisions005276E0 and its actual processed-event/roster/target owners.
 - [ ] Bind native containing order, aim/reload/trigger/movement/items/preset/direction,
   processed-event retirement and medical tail; complete remaining offline receivers.
