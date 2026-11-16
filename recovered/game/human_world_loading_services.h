@@ -110,6 +110,9 @@ public:
     std::uint32_t game_frame_serial()const{return dependencies().session.words.template get<std::uint32_t>(0x2c);}
     auto& human_ai_event_pool(){return dependencies().startup.human_ai_event_pool();}
     auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
+    template<class State,class Actor>void dispatch_active_pending_command(State&,std::uint32_t,Actor*,std::uint32_t){
+        throw std::runtime_error("Active kind3 order requires actual Players00458E50 filtering and command producers");
+    }
     auto& human_ai_order_pool(){return dependencies().startup.human_ai_order_pool();}
     template<class Order>void initialize_human_ai_order_marker(Order& order){
         auto& d=dependencies();game::initialize_human_ai_order_marker(order,d.scene.frames(),d.scene.buckets(),d.hud.command_owner());

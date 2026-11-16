@@ -8,6 +8,7 @@
 #include "game/human_active_ai_order_action.h"
 #include "game/human_active_ai_orders.h"
 #include "game/human_active_ai_task_state.h"
+#include "game/human_active_ai_pending.h"
 
 namespace hd2::game {
 
@@ -86,10 +87,30 @@ public:
     void update_pending_order(std::size_t index,const Order& delta){orders_.update(*this,index,delta,services_);}
     void retire_pending_order(std::size_t index,bool hold){orders_.retire(*this,index,hold,services_);}
     auto& pending_orders(){return orders_.records();}const auto& pending_orders()const{return orders_.records();}
+    Order& first_pending_order(){return orders_.records().empty()?orders_.retained_first():orders_.at(0);}
+    void pending_second_mode(unsigned mode){set_second_mode(mode);} //00538550.
+    void pending_posture(std::uint32_t posture){
+        auto* human=this->human();if(!human)throw std::logic_error("Active pending posture lost Human44");
+        this->request_navigation_posture(posture,services_.human_inline(*human),services_.mode_flags());
+    }
+    void pending_clear_item_ready(){
+        auto* human=this->human();if(!human)throw std::logic_error("Active move task lost Human44");
+        services_.clear_script_formation_item_ready(*this,services_.human_inline(*human));
+    }
+    HumanVector pending_model_position(){
+        auto* human=this->human();if(!human)throw std::logic_error("Active move task lost Human44");
+        const auto matrix=this->state_frames().actor_world_matrix(human->base().frame());return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    }
+    bool advance_pending_task(std::uint32_t elapsed){return advance_human_active_pending_task(*this,elapsed);}
+    bool process_pending_orders(std::uint32_t elapsed){return process_human_active_pending_orders(*this,elapsed,this->state_frames(),services_);}
     bool orders_recently_changed()const{return orders_.recently_changed(*this,services_);}
     void append_hold_order(const HumanVector& position,const HumanVector& direction){orders_.hold(*this,position,direction,services_);}
     void initialize_task(SceneActor<Frames>* target,std::uint32_t action,const HumanVector& position,const HumanVector& direction,bool enabled,float radius){
-        initialize_human_active_ai_task(*this,target,action,position,direction,enabled,radius);
+        initialize_human_active_ai_task(*this,target,action,position,direction,enabled,radius);task_target_base_=target?&target->base():nullptr;
+    }
+    void retire_action_target_base(const void* base)noexcept override{
+        AI::retire_action_target_base(base);orders_.retire_actor_base(base);
+        if(task_target_base_==base){task_target=nullptr;task_target_base_=nullptr;}
     }
     void cancel_task(){cancel_human_active_ai_task(*this,services_);}
     void regroup(bool reset){regroup_human_active_ai(*this,reset,services_);}
@@ -248,7 +269,7 @@ private:
         return human->loading_inventory->special_hand_item(this->item());
     }
     HumanAIActionPools& actions_;Services& services_;HumanJointWords<0x260> state_;std::optional<std::uint32_t> action_mode_;
-    HumanActiveAIOrders<OrderPool> orders_;
+    HumanActiveAIOrders<OrderPool> orders_;const void* task_target_base_=nullptr;
 };
 } //namespace hd2::game
 #endif

@@ -37,6 +37,10 @@ public:
         return *retained_first_;
     }
     Order& at(std::size_t index)const{auto* value=records_.at(index).get();if(!value)throw std::logic_error("Active order slot lost its borrower");return *value;}
+    void retire_actor_base(const void* base)noexcept{
+        for(auto& record:records_)record.get()->retire_actor_base(base);
+        if(retained_first_)retained_first_->retire_actor_base(base);
+    }
     template<class State,class World>bool append(State& ai,Lease value,World& world){return insert(ai,std::move(value),0,true,world);}
     template<class State,class World>bool insert_after(State& ai,Lease value,std::int32_t after,World& world){return insert(ai,std::move(value),after,false,world);}
     template<class State,class Delta,class World>void update(State& ai,std::size_t index,const Delta& delta,World& world){ //0052EE60.

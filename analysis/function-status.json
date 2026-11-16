@@ -46206,6 +46206,45 @@
         "analysis/human-h8-pack-common-source.md",
         "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005282e0",
+      "status": "partial",
+      "coverage": "Pending-order empty/dirty/setup/action activation and completion, same process leases, first-slot reread after regroup, hold append before retire and fresh model reads.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Kind3 Players dispatch, other task families/targets, occupied movement,201-clear turn, standalone completion and containing follow/authority remain required. Temporary native sanitizer endpoint doubles and strict actual-host link do not establish full ABI/application/desktop equivalence. No new callee/body or engine credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "analysis/human-h8-pending-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pending-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00529f60",
+      "status": "partial",
+      "coverage": "Actual first-order setup1/2/4/6/7 and common flag defaults/publication, movement/mind/posture calls, started direction refresh and task-decision completion.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Kind3 Players dispatch, other task families/targets, occupied movement,201-clear turn, standalone completion and containing follow/authority remain required. Temporary native sanitizer endpoint doubles and strict actual-host link do not establish full ABI/application/desktop equivalence. No new callee/body or engine credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "analysis/human-h8-pending-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pending-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00528950",
+      "status": "partial",
+      "coverage": "18D/delayed214/inactive202 gates and order-generated on-foot task52: readiness/query startup, strict radius arrival, later201-set completion and pending00535C00 prefix.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Kind3 Players dispatch, other task families/targets, occupied movement,201-clear turn, standalone completion and containing follow/authority remain required. Temporary native sanitizer endpoint doubles and strict actual-host link do not establish full ABI/application/desktop equivalence. No new callee/body or engine credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "analysis/human-h8-pending-source.md",
+        "analysis/checkpoints/p2.2-human-h8-pending-20261116.json"
+      ]
     }
   ]
 }

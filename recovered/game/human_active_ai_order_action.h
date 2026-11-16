@@ -13,7 +13,7 @@ void activate_human_ai_order(State& ai,const Order& order,const Orders& pending,
     ai.reset_frame_action(); //Actual virtual10C BEFORE flags/target/frame reads.
     auto& state=ai.state();state.set(0x174,state.template get<std::uint32_t>(0x174)&~2u);
     const auto position=[&](const auto& record){
-        if(!record.target)return record.state.template get<HumanVector>(0x30);
+        record.require_live_target();if(!record.target)return record.state.template get<HumanVector>(0x30);
         const auto model=record.target->base().frame();
         if(!model)throw std::logic_error("Active order target requires actual model");
         const auto matrix=frames.actor_world_matrix(model);
@@ -38,9 +38,9 @@ void activate_human_ai_order(State& ai,const Order& order,const Orders& pending,
             path.request_vehicle_position(position(order),1.f);
         }
     }else if(kind==2){
-        ai.resources().current_action(actions.kind12.acquire(order.state.template get<HumanVector>(0x20),order.target));
+        order.require_live_target();ai.resources().current_action(actions.kind12.acquire(order.state.template get<HumanVector>(0x20),order.target));
     }else if(kind==4){
-        ai.resources().current_action(actions.kind8.acquire(order.target));
+        order.require_live_target();ai.resources().current_action(actions.kind8.acquire(order.target));
     }
 }
 }

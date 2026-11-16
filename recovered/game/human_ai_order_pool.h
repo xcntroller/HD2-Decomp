@@ -18,6 +18,12 @@ public:
 template<class Frames,class Actor>struct HumanAIOrder {
     HumanJointWords<0x90> state;
     Actor* issuer=nullptr;Actor* target=nullptr;
+    const void* issuer_base=nullptr;const void* target_base=nullptr;bool target_retired=false; //Native borrower safety, not serialized words.
+    void require_live_target()const{if(target_retired)throw std::logic_error("AI order requires its retired-target command policy");}
+    void retire_actor_base(const void* base)noexcept{
+        if(issuer_base==base){issuer=nullptr;issuer_base=nullptr;}
+        if(target_base&&target_base==base){target=nullptr;target_base=nullptr;target_retired=true;}
+    }
     std::unique_ptr<std::byte[]> route_allocation;
     std::unique_ptr<HumanAIOrderMarkerLifetime<typename Frames::Frame>> marker;
     HumanAIOrder(){state.set(4,4u);state.set(0x80,8u);}
@@ -37,8 +43,8 @@ public:
             std::uint32_t mind,Actor* target,std::uint32_t secondary){
         if(free_.empty())grow();
         auto* value=free_.back();free_.pop_back();Lease result(value,Return{this});
-        auto& state=value->state;state.set(0xc,kind);value->issuer=issuer;state.set(0x10,action);
-        state.set(0x20,direction);state.set(0x30,position);value->target=target;state.set(0x70,secondary);
+        auto& state=value->state;state.set(0xc,kind);value->issuer=issuer;value->issuer_base=issuer?&issuer->base():nullptr;state.set(0x10,action);
+        state.set(0x20,direction);state.set(0x30,position);value->target=target;value->target_base=target?&target->base():nullptr;value->target_retired=false;state.set(0x70,secondary);
         state.set(0x44,movement|posture|mind);
         for(auto offset:{0x50u,0x54u,0x58u,0x60u,0x64u,0x68u})state.set(offset,100000.f);
         //5C/6C are uninitialized temporary W stores in native0058C5A0; unclaimed.

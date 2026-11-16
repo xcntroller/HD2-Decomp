@@ -34,11 +34,11 @@ Continue through these dependencies, committing verified larger checkpoints.
 Do not re-audit unchanged H1–H7 kernels or expand non7 research solely because
 an adjacent function exists. Required missing bodies stay honest.
 
-## PACK effects — current priority within H8.2
+## PACK effects — completed source dependencies
 
 User-directed priority after PACK's [review](../../HD2-Decomp-p22-pack/analysis/p22-pack-hum-h8-review.md)
-at H8 `14d59d3`: finish the mandatory effect families below before resuming
-ordinary Active/frame work. PACK closure does not require all of H8 to finish.
+at H8 `14d59d3`. These source effects and PACK itself are now finished, as
+confirmed by the user on2026-11-16. Resume ordinary Active/frame work.
 The preceding Active task/follow work is preserved and verified in the clothing checkpoint; full decisions remain open.
 
 - [x] Command2: active clothing/DD0/equipment/Sight/Players/camera [source checkpoint](human-h8-pack-effects-source.md).
@@ -49,7 +49,7 @@ The preceding Active task/follow work is preserved and verified in the clothing 
 - [x] Command18: named cache resources, fourth-track setup and control lifetime [source checkpoint](human-h8-pack-effects-source.md#command18-named-special-animation-source-effect-checkpoint).
 - [x] Command20: active Remote equipment/storage replacement and retirement [source checkpoint](human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint).
 - [x] Command3: remaining selected common effects, type23 document owner, actual inline starts and typed loans; [source contract](human-h8-pack-common-source.md).
-- [x] Verify selected effect owners, packet positive/failure/lifetime paths and concrete host/launcher links; [common/source receipt](checkpoints/p2.2-human-pack-common-20261113.json). PACK integration follows.
+- [x] Verify selected effect owners, packet positive/failure/lifetime paths and concrete host/launcher links; [common/source receipt](checkpoints/p2.2-human-pack-common-20261113.json). PACK integration is finished.
 
 Command12's [required dependency boundary](human-h8-pack-action-boundary.md)
 was traced after the inventory checkpoint. Complete these before crediting it:
@@ -58,11 +58,11 @@ was traced after the inventory checkpoint. Complete these before crediting it:
 - [x] Action33/34: actual HeavyFire16 request/configuration/list/publication and populated lifecycle policy; native unsafe paths remain explicit guards.
 - [x] Required flags1 nonoffline speech19 FIFO producer, eligibility and actual received playback.
   [Speech/ordinary action checkpoint](human-h8-pack-action-resume-source.md); [support33/34 checkpoint](human-h8-pack-heavy-support-source.md) closes selected command12 source effects.
-- [x] Command12 positive/failure/stream/lifetime source checks and concrete host/launcher links; full PACK FIFO integration remains below.
+- [x] Command12 positive/failure/stream/lifetime source checks and concrete host/launcher links; PACK FIFO integration was completed by its owner.
 
 Index lookup and original call boundaries are retained under WORK's
 `human-h8-pack-effects*`. Do not replace required positive effects with guards
-and claim resolution. PACK's own integration/stream checks remain its work.
+and claim resolution. PACK's integration/stream checks are finished, as confirmed by the user.
 
 ## Active AI dependency boundary (current H8.2 frontier)
 
@@ -73,8 +73,9 @@ movement policy before trigger/direction and command-event retirement. Original
 005335E0 is RET4; it must not be confused with these required decision bodies.
 End helper00526400 drives self-treatment cadence/skill/health/random and subtype23
 command. Existing C and bounded new worker exports/raw bytes are retained in
-WORK, indexed first. None of these newly exported bodies is implemented or
-credited by H8.1. Complete the task/event/command producer and retirement owners
+WORK, indexed first. The [pending/move52 checkpoint](human-h8-pending-source.md) now binds pending
+setup/retirement and the on-foot order-generated move task; other task/follow
+bodies remain required. Complete the task/event/command producer and retirement owners
 rather than replacing this path with an idle success. Presentation00525DA0 and Car camera004D9E10 are now [source-bound and verified](human-h8-active-presentation-source.md); authority00526550 is still required. Its order/task/command dependencies remain the current implementation frontier.
 
 [Order action/marker checkpoint](human-h8-order-action-source.md) adds actual
@@ -90,7 +91,7 @@ current-action12, not4; native order kind4 remains a different family.
 | Presentation00525DA0, Car camera004D9E10 | Bound/verified |
 | Order-to-action0052A1E0; shared action7/8/12; HUD marker004B9240/9B10/9080 | Bound/verified on actual owners; process order producer is now bound below |
 | Order005825C0/0058C5A0, marker EC/collision,0058D6C0/0058C8E0/00582640, Active list insert/update/remove/reset | Bound/verified source; positive route74 and actual command/Human190 producers remain required |
-|005282E0/00529F60 pending processing,00528950 decisions,00536120 follow | Exported/raw evidence; mandatory before navigation |
+|005282E0/00529F60 pending,00528950/00536120 decisions/follow | Pending lifecycle and on-foot move52 bound; kind3/other task/turn/occupied/standalone/follow remain required |
 | Navigation/aim,0052B810 movement,005276E0 decisions,005325C0 output, command retirement/self-treatment | Reuse existing AI cores, complete Active policy and reached commands |
 
 Required later H8 frame dependency exposed by command11: SupplyBox state1
@@ -120,6 +121,7 @@ application integration, preserving active FRAME/OWN worktrees.
 
 - [x] Bind Active presentation and actual Car seat camera.
 - [x] Recover shared order/action pools, actual HUD/collision marker lifecycle and Active pending-order ownership.
-- [ ] Complete pending processing, Active decisions/follow and containing authority; then remaining offline receivers.
+- [x] Bind pending-order lifecycle and on-foot move52 source path [checkpoint](human-h8-pending-source.md).
+- [ ] Finish kind3 producers, remaining Active decisions/follow and containing authority; then remaining offline receivers.
 
 These source checkpoints do not close parent H8.2 or application/desktop delivery.
