@@ -8,7 +8,11 @@ invented desktop acceptance. H8 and parent P22-HUM remain OPEN.
 Parallel H8.4 work uses `feature/p22-hum-h8-4`, managed worktree
 `/home/control/.codex/worktrees/3472/HD2-Decomp-p22-hum-h8`, forked at529b9a9.
 Agent1 continues H8.2 on the original branch; no post-fork H8.2 changes are imported here.
-Latest H8.4: [running finalizer source](human-h8-car-finalizer-source.md); engine audio, active skid and particle workers are bound; [active lighting](human-h8-car-lights-source.md) now covers all nine families; occupied verification remains required. H8.4/D4/D5 and D11 remain OPEN.
+Latest H8.4: [running finalizer source](human-h8-car-finalizer-source.md); engine audio, active skid and particle workers are bound; [active lighting](human-h8-car-lights-source.md) now covers all nine families; [Occupied offline presentation](human-h8-car-occupied-source.md) now passes source-owner admission/input/frame/removal/re-entry checks; complete Human/Player/mounted composition and non7 remain required. H8.4/D4/D5 and D11 remain OPEN.
+
+User resumed H8.4 work after clarifying D11 belongs here. Completion remains
+**blocked on D11** under the existing fidelity policy; continue independent
+required paths and preserve exact failures. See [handoff](../HANDOFF.md).
 
 Complete the existing plan's full Human frame checkbox. Offline7 is the first
 required application path; non7/occupied/absent-actor branches retain precise
@@ -31,7 +35,7 @@ checks are not application delivery. Use the research index before exports.
   OWN/FRAME interfaces: existing D4/D5/D6–D9/D11 remain required when selected;
   absent Dog/type15/Aircraft/type34/material owners cannot report success.
   [Offline Car authority checkpoint](human-h8-car-authority-source.md) binds mounted
-  frames, unstable-seat exit requests and engine hearing; occupied presentation remains open.
+  frames, unstable-seat exit requests and engine hearing. [Occupied offline presentation](human-h8-car-occupied-source.md) removes the empty-seat guard; full D5 remains open.
   [Gear/clutch dependencies](human-h8-car-gear-source.md) add actual gear request,
   force evaluation and shared clutch SOUND; automatic controller/forces remain required.
 - [ ] H8.5 — Consolidated same-owner positive/failure/re-entry/teardown native

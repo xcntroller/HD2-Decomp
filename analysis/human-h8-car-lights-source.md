@@ -114,3 +114,8 @@ boundary until SAME H3 input/attachment/control/camera source is verified throug
 that frame. D11's confirmed fresh part5F9/wheel695/EXPL8/smoke14 omissions are
 unchanged; full selected H8.4 delivery remains blocked on them under current
 policy. No renewed D11 search, coefficient default or successful placeholder.
+
+The later [occupied offline source checkpoint](human-h8-car-occupied-source.md)
+verifies the shared Car admission/input/frame/camera/removal path and removes
+that empty-seat guard. Its endpoint limits and remaining D5/D11 obligations are
+explicit; it does not infer an interior-audio selector from attachment.

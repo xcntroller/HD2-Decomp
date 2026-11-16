@@ -24416,7 +24416,10 @@
       "evidence": [
         "recovered/game/car_seat_camera.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "recovered/game/car_offline_presentation.h",
+        "analysis/human-h8-car-occupied-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-occupied-20261116.json"
       ]
     },
     {
@@ -24925,7 +24928,10 @@
       "limitations": "Only reached seat setter; no populated ballast producer or original object ABI.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_mass_loading.h"
+        "recovered/game/car_mass_loading.h",
+        "recovered/game/car_offline_presentation.h",
+        "analysis/human-h8-car-occupied-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-occupied-20261116.json"
       ]
     },
     {
@@ -25108,8 +25114,8 @@
       "program": "client",
       "entry": "004d3110",
       "status": "partial",
-      "coverage": "Actual offline cold presentation clamp, epoch/steering threshold, core/finalizer/base pose/features, seat cameras/navigation/model tick, plus reverse actual mounted presentation dispatch between core and finalizer. Retained navigation0051D5A0 observations use SAME identities before model tick. Actor base position now copies SAME live core160 physical position through004D38F0; offline occupied guard remains until H3 containing-frame verification.",
-      "limitations": "Source-only typed ownership/ABI adaptation. Actual occupied/driver presentation, active engine/controller/finalizer and non7 paths remain explicit required guards. Available empty mounted allocations now advance; positive occupied authority is separate. No loaded World or application/desktop acceptance.",
+      "coverage": "Offline presentation on SAME occupied Car owners: elapsed83, steering/epoch, controller/powered solver, reverse mounted dispatch, finalizer/live160 base pose/features, ascending seat cameras, navigation observations and final model tick. Source H3 admission/input/removal share driver2321/controller2291, mass and camera state; artificial unoccupied guard removed.",
+      "limitations": "Source-only typed/template ownership and ABI adaptation. Native596 checks/16 lifetimes/9 failure prefixes pass ASan/UBSan/leak detection on actual Car source with explicit Human/common actor, engine/math/query and attachment-observer endpoints. Strict actual nested-host i386 links both passes and seat/input/release. Full Human/Player/mounted lifetime, non7/entry, reached absent actors and D11 remain required; no complete World/application/desktop or delegated engine credit.",
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_loading_activation.h",
@@ -25124,7 +25130,10 @@
         "recovered/game/car_lighting.h",
         "recovered/game/car_cold_initialization.h",
         "recovered/game/car_cold_finalizer.h",
-        "recovered/host/game_car_frames.h"
+        "recovered/host/game_car_frames.h",
+        "recovered/game/car_offline_presentation.h",
+        "analysis/human-h8-car-occupied-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-occupied-20261116.json"
       ]
     },
     {
@@ -25135,7 +25144,10 @@
       "limitations": "Engine calls delegated; native pointer/object ABI differs.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/car_seat_camera.h"
+        "recovered/game/car_seat_camera.h",
+        "recovered/game/car_offline_presentation.h",
+        "analysis/human-h8-car-occupied-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-occupied-20261116.json"
       ]
     },
     {
@@ -41774,7 +41786,10 @@
       "evidence": [
         "recovered/game/car_seat_actions.h",
         "analysis/human-seat-interaction-source.md",
-        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json",
+        "recovered/game/car_offline_presentation.h",
+        "analysis/human-h8-car-occupied-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-occupied-20261116.json"
       ]
     },
     {
@@ -42904,7 +42919,10 @@
       "evidence": [
         "recovered/game/car_seat_actions.h",
         "analysis/human-guard-area-source.md",
-        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json"
+        "analysis/checkpoints/p2.2-human-guard-area-progress-20261112.json",
+        "recovered/game/car_offline_presentation.h",
+        "analysis/human-h8-car-occupied-source.md",
+        "analysis/checkpoints/p2.2-human-h8-car-occupied-20261116.json"
       ]
     },
     {

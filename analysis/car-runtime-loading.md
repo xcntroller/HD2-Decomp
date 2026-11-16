@@ -133,3 +133,8 @@ The historical00501CB0 cold-only boundary above is superseded by the
 [2026-11-16 active-light checkpoint](human-h8-car-lights-source.md): all nine
 light families now execute on SAME paired flags/markers/sector owners. This
 does not close occupied presentation, D11 or containing application delivery.
+
+The [occupied offline checkpoint](human-h8-car-occupied-source.md) supersedes the
+empty-seat presentation guard. Actual Car source admission/input/frame/removal
+and re-entry pass on shared owners; full Human/Player/mounted composition,
+non7, D11 and application/desktop delivery remain required.

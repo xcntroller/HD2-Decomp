@@ -1,0 +1,156 @@
+{
+  "checkpoint": "H8.4 occupied offline Car presentation source",
+  "date": "2026-11-16",
+  "branch": "feature/p22-hum-h8-4",
+  "base": "5aa99c9",
+  "contract": "analysis/human-h8-car-occupied-source.md",
+  "scope": "Shared Car source admission/input/occupied presentation/removal/re-entry and retirement; no full D5/H8.4 closure",
+  "original_pe_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_or_windows_execution": false,
+  "agent1_worktree_modified": false,
+  "push": false,
+  "new_exports": false,
+  "native": {
+    "result": "PASS",
+    "checks": 596,
+    "lifetimes": 16,
+    "injected_failure_prefixes": 9,
+    "sanitizers": [
+      "ASan",
+      "UBSan",
+      "LSan"
+    ],
+    "actual_source_owners": [
+      "CarGeometry/default parameters/wheel and seat discovery",
+      "CarColdInitialization/mass/controller driver reference",
+      "H3 Car seat admission/input/removal helpers",
+      "powered solver/BODYCOL controller/finalizer/features",
+      "seat camera/navigation/retirement"
+    ],
+    "boundary_doubles": [
+      "engine frame/resource/math",
+      "analytic ground ray and camera sweep endpoints",
+      "Human/common actor storage",
+      "current attachment observer",
+      "terminal callbacks"
+    ],
+    "exclusions": [
+      "complete Human/Player/attachment lifetime",
+      "positive BODYCOL shape collision",
+      "positive mounted firing",
+      "non7/entry",
+      "D11",
+      "application/desktop/original trajectory equivalence"
+    ]
+  },
+  "host": {
+    "result": "PASS",
+    "compiler": "llvm-mingw-20261020 i686-w64-mingw32-g++",
+    "flags": "O0 C++17 Wall Wextra Wpedantic Werror static municode",
+    "scope": "Actual nested World/Car/Human activation, seat admission, driver/frame inputs, both frame passes, seat removal and retirement; full link, not executed"
+  },
+  "application_launch_and_startup_probe": "PASS compile/link only",
+  "tracker": {
+    "render": "PASS; counts unchanged",
+    "check": "PASS exact fingerprints/inventories/frozen counts/statuses/evidence/README",
+    "existing_tests": "PASS 27",
+    "complete": 34,
+    "partial": 3467,
+    "client_partial": 3462,
+    "engine_partial": 5,
+    "frozen": 18783,
+    "new_frozen_entries": 0,
+    "complete_promotions": 0
+  },
+  "D11": "Unresolved original producer omissions; no guessed state or repeated producer search; user scope question pending",
+  "evidence_fingerprints": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-contact-mapping-index.txt",
+      "bytes": 12169,
+      "sha256": "5bf67883747f7479478a8c3e8ecfa298bae8e516f546dc8767c889385819744e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-occupied-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-occupied-sanitizer-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-occupied-native-run.log",
+      "bytes": 52,
+      "sha256": "f5e0855d25b60bcd31033965e5abe0c1dd867598c1561d13151a0e7aadc55538"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-occupied-host-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-occupied-application-build.log",
+      "bytes": 930,
+      "sha256": "4fd12cb475e84990a6514cb4e337f3ee6957fecd0e2088f4bfa2dde2591d73f8"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/car-activation-required/004d3110.c",
+      "bytes": 2988,
+      "sha256": "37dfea6a55da64115f210ee738623d4f3b76ff02a53665867350ff8ac14a4aeb"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/car-loading-runtime-required/004d38f0.c",
+      "bytes": 866,
+      "sha256": "cb41f82db891fe980086d964b737a73d3ea34c7756c0f78f0c5bf2f97e49bc1f"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/car-callback-world-required/004d3ef0.c",
+      "bytes": 2610,
+      "sha256": "8b0b9985c2f80b7672afd28cdbbedf70a697fb30f3f04fbc27af68f693a4375d"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-occupied-audit.cpp",
+      "bytes": 24753,
+      "sha256": "3c4d60dd372e3c50591891ecb6513faec9ebb44f96ac1d9fd26345305d69c5b6"
+    },
+    {
+      "path": "/tmp/h8-occupied-audit",
+      "bytes": 4988792,
+      "sha256": "1a777d9372e28bcbe502f719cee0a1b2745f9ea71326b77698fbef252952a33d"
+    },
+    {
+      "path": "/tmp/h8-occupied-audit-san",
+      "bytes": 12637856,
+      "sha256": "6fa34c1fa9c5ea887549b3e7320676e882d9a343ad6b2a0f2d3f28e50c5199ec"
+    },
+    {
+      "path": "/tmp/h8-occupied-diagnostic.cpp",
+      "bytes": 19472,
+      "sha256": "61e0c769fb004a7852a837b0b71c6ffc7c799b6b3ffdb530d7ecef4743348562"
+    },
+    {
+      "path": "/tmp/h8-occupied-diagnostic",
+      "bytes": 4871304,
+      "sha256": "4cfbf3fbc86f6b7d27b0022e91dd26debd33b991c921b4af670edd123384727a"
+    },
+    {
+      "path": "/tmp/h8-occupied-host.cpp",
+      "bytes": 633,
+      "sha256": "f894b4b5b0641acf209f66e43e406ca60db317dbbc94e63c6b76cc6dc91b0747"
+    },
+    {
+      "path": "/tmp/h8-occupied-host.exe",
+      "bytes": 4400640,
+      "sha256": "8296255a570c1faf41fbe25cd71d79240439556d662906e705954ac8d041e470"
+    },
+    {
+      "path": "/tmp/h8-occupied-include/game/car_physics.h",
+      "bytes": 23403,
+      "sha256": "8e5dd9c5f2d2aa4841ead4a2a23083fe46e2b2c8ca744760aeb63874e0638008"
+    }
+  ],
+  "temporary_audits_removed": true
+}

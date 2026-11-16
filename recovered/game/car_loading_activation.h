@@ -16,6 +16,7 @@
 #include "game/car_water_loading.h"
 #include "game/car_frame_events.h"
 #include "game/car_offline_frame.h"
+#include "game/car_offline_presentation.h"
 #include "game/car_gear_control.h"
 #include "game/car_seat_exit.h"
 #include "game/car_seat_actions.h"
@@ -34,7 +35,7 @@ template<class Frames>struct CarLoadingResources {
 //004D16A0/004D25C0/004D2790/004D3110's actual offline loading
 //lifetime. Services supplies common actor registries, SAME proximity/Players,
 //settings264 and game kind; query/tree/bucket owners outlive this object.
-//Occupied authority borrows H3 controls/B0/SOUND; occupied presentation,
+//Occupied authority/presentation borrow H3 seat/input/control/camera owners;
 //non7 input and wider containing-frame producers remain required.
 //Source composition alone does not enable application loading.
 template<class Frames,class Services,class Collisions,class Queries>class CarLoadingActivation final : public CarLoadingLifetime<Frames> {
@@ -118,19 +119,7 @@ public:
             },[&](const auto& request){return services_.emit_car_engine_sound(request);});
             return;
         }
-        require_unoccupied(); //D5 still requires actual H3 entry through a verified occupied containing frame.
-        elapsed=std::min(elapsed,std::uint32_t{83});
-        initial_->finalizer.lights.steering_threshold=initial_->steering.maximum*.8999999761581421f;
-        same_epoch_=frames_.vertex_scene_epoch()==frames_.vertex_frame_epoch(actor_.geometry->model());
-        update_core(elapsed);advance_car_mounted_controls(actor_,false,elapsed);(void)finalize_core(elapsed);
-        actor_.base().world_direction(initial_->body().pose().forward);actor_.base().world_position(initial_->body().physical_position()); //004D38F0 copies core240/160.
-        update_car_actor_features(frames_,actor_.geometry->model(),frames_.active_game_camera(),same_epoch_,actor_.flag254a,services_.mode_flags(),
-            initial_->solver.substeps.flags,initial_->drive,initial_->audio);
-        seats_.update(queries_,actor_.base().world_direction(),initial_->body().motion().velocity,initial_->solver.speed,
-            services_.car_current_attachment(),resources_.seat_camera);
-        if(initial_->solver.speed!=0||navigation_elapsed_>0){navigation_elapsed_+=elapsed;if(navigation_elapsed_>500){navigation_elapsed_=initial_->solver.speed!=0;refresh_navigation();}}
-        navigation_.observe_loading_marks();
-        frames_.supply_model_tick(actor_.geometry->model(),elapsed); //Actual model+20,004D3110's final call.
+        present_car_offline_frame(*this,elapsed);
     }
     CarActorColdState<Frames>& cold_state()override{if(!view_)throw std::logic_error("Car callback requires initialized source state");return *view_;}
     std::uint32_t& collision_clock()override{if(!clock2584_)throw std::logic_error("Car2584 collision clock requires actual activation");return *clock2584_;}
@@ -244,6 +233,7 @@ public:
             [&](const auto&,const char*){actor_.callbacks->hide69c(index);}); //004D4A10 genuinely ignores both extra arguments.
     }
 private:
+    template<class Owner>friend void present_car_offline_frame(Owner&,std::uint32_t);
     template<class Owner,class Human>friend void assign_car_seat(Owner&,std::int32_t index,Human* human);
     template<class Owner>friend bool exit_car_seat(Owner&,std::int32_t index);
     template<class Owner>friend void request_car_seat_input(Owner&,float pedal,float steering);
@@ -258,10 +248,6 @@ private:
     void request_engine(bool running,bool force){request_car_seat_engine(*this,running,force);}
     void require_mode()const{if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Car loading requires actual non7 network/input owners");}
     void require_geometry()const{if(!actor_.geometry||!actor_.ancillary||!actor_.callbacks)throw std::logic_error("Car activation requires its actual geometry/DM/callback owners");}
-    void require_unoccupied()const{
-        if(actor_.driver24ac)throw std::runtime_error("Car occupied input requires its actual driver owner");
-        for(auto occupant:actor_.occupants)if(occupant)throw std::runtime_error("Car occupied update requires its actual Human attachment owner");
-    }
     static Vector position(const typename Frames::Matrix& matrix){return {{matrix[12],matrix[13],matrix[14],matrix[15]}};}
     void update_core(std::uint32_t elapsed){
         update_car_controller(frames_,actor_.geometry->model(),actor_.geometry->physics(),*initial_,*receivers_,elapsed,
