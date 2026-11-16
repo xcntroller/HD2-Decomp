@@ -3,7 +3,9 @@
 
 #include "game/human_formation.h"
 #include "game/human_loading_stats.h"
+#include "game/human_active_ai_group.h"
 #include <array>
+#include <functional>
 #include <vector>
 
 namespace hd2::game {
@@ -13,6 +15,7 @@ namespace hd2::game {
 //exposed. Native unwritten fields/W lanes use guards, not constructor credit.
 template<class Human>class PlayersProcess {
 public:
+    using CommandActor=std::remove_pointer_t<decltype(std::declval<Human&>().field160)>;
     struct DelayedSpeech {Human* human;std::int32_t due;}; //Separate process0089AC20 vector, not cleared by00456440.
     PlayersProcess(){reset();}
     PlayersProcess(const PlayersProcess&)=delete;PlayersProcess& operator=(const PlayersProcess&)=delete;
@@ -43,18 +46,31 @@ public:
             if(!state.template get<std::uint32_t>(0x1a4))state.set(0x1a4,2200u);
         }
     }
-    void notify_group_arrival(){ //00456F00's actual inactive/busy/countdown/empty branches.
+    auto& command_members(){return command_members_;} //Native DISTINCT F8/FC/100 vector, not group4C..8C.
+    void clear_command_members(){command_members_.clear();command_member_liveness_.clear();}
+    template<class World>void capture_command_members(World& world){
+        command_member_liveness_.clear();
+        for(auto* human:command_members_)command_member_liveness_.push_back(human?std::function<void()>(world.active_event_actor_guard(*human)):std::function<void()>{});
+    }
+    void validate_command_member(std::size_t index){
+        if(index>=command_member_liveness_.size())throw std::runtime_error("Group member borrower changed without its actual producer");
+        if(command_member_liveness_[index])command_member_liveness_[index]();
+    }
+    void command_target(CommandActor* actor,std::function<void()> live){command_target_=actor;command_target_live_=std::move(live);}
+    void validate_command_target(){if(command_target_live_)command_target_live_();}
+    CommandActor& require_command_target(){validate_command_target();if(!command_target_)throw std::runtime_error("Group arrival dereferences native NULL F0 target");return *command_target_;}
+    template<class World>void notify_group_arrival(World& world){ //00456F00 on actual retained command members.
         const auto action=words_.template get<std::uint32_t>(0xa0);
         if(action!=3&&action!=18&&action!=21)return;
         if(words_.template get<std::uint32_t>(0xa4))return;
         const auto next=words_.template get<std::uint32_t>(0xa8)-1u;words_.set(0xa8,next);
         if(next)return;
         if(action==18)words_.set(0xa0,0xffffffffu);else words_.set(0xa4,1u);
-        //Native F8/FC/100 is a DISTINCT command-member vector, not one of
-        //groups4C..8C. Its populated00457820 producer/owner is still required.
+        //Raw pointer words are not serialized identities or substitutes for
+        //the typed vector. Unexpected external writers retain their requirement.
         for(auto offset:{0xf8u,0xfcu,0x100u})if(words_.template get<std::uint32_t>(offset))
-            throw std::runtime_error("Players group arrival requires actual00457820 F8 command-member owner and positive00456F00 producers");
-        words_.set(0xa0,0xffffffffu);
+            throw std::runtime_error("Players group arrival requires its actual external raw F8 command-member producer");
+        finish_active_group_arrival(*this,action,world.human_command_frames(),world);
     }
 
     template<class Random,class Clock>void schedule_order_completion(Human* human,
@@ -141,6 +157,8 @@ private:
     }
     void expire_byte(unsigned timer,unsigned flag,std::uint32_t elapsed){if(expire(timer,elapsed))words_.set(flag,std::uint8_t{0});}
     HumanJointWords<0x130> words_;std::array<std::vector<Human*>,5> groups_;
+    std::vector<Human*> command_members_;CommandActor* command_target_=nullptr;std::function<void()> command_target_live_;
+    std::vector<std::function<void()>> command_member_liveness_; //Actor identities only; B0 is reread at each native call, not pinned across tasks.
 };
 } //namespace hd2::game
 #endif

@@ -120,6 +120,7 @@ public:
         require_live_task_target();if(!task_target)throw std::runtime_error("Active task completion dereferences native NULL224");
         return services_.active_task_actor_unavailable(*task_target);
     }
+    auto pending_ranged_animation_duration(){return services_.human_grenade_animation_duration((~this->words().template get<std::uint32_t>(0x50)>>2)&1u);}
     void reject_pending_task(){services_.queue_active_ai_speech(*this,0x68u,true,300u,false);}
     void execute_pending_task_command(std::uint32_t action,std::int32_t identity,std::uint32_t value){services_.execute_active_task_command(*this,action,identity,value);}
     void start_pending_task_effect(){start_active_task_effect(*this);}

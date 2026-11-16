@@ -3,6 +3,7 @@
 #include "game/human_animation_requests.h"
 #include "game/human_sight_relations.h"
 #include "game/human_joint_owners.h"
+#include "game/human_state_frame_timers.h"
 #include <cmath>
 namespace hd2::game {
 inline HumanVector active_target_unit(HumanVector value,long double extended){

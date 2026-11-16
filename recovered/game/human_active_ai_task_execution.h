@@ -92,7 +92,8 @@ template<class AI>bool turn_and_start_active_task(AI& ai){
         const auto own=human->base().world_position(),destination=state.template get<HumanVector>(0x1e0);
         const auto dx=static_cast<long double>(destination[0])-own[0],dy=static_cast<long double>(destination[1])-own[1],dz=static_cast<long double>(destination[2])-own[2];
         if(!(((dz*dz+dy*dy)+dx*dx)>36.f)){state.set(0x206,std::uint8_t{1});ai.reject_pending_task();return true;}
-        throw std::runtime_error("Active task turn requires actual00560750/005AC200 ranged command receiver");
+        ai.resources().target().bind_position(destination);
+        state.set(0x214,static_cast<std::uint32_t>(ai.pending_ranged_animation_duration()));return true;
     }
     ai.start_pending_task_effect();return true;
 }

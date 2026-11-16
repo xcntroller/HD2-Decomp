@@ -79,8 +79,8 @@ Raw bytes and constants are recorded in the checkpoint receipt.
 
 ## Remaining reached requirements
 
-Task22/Dog and other specialized task/effect producers, populated
-process98/group command members and
+Task22/Dog and other specialized task/effect producers, positive process98
+and
 remaining reached offline action receivers remain explicit. Hazard blast/packet
 and water command/HUD orchestration are now bound; reached external callee
 requirements still propagate. Positive
@@ -274,3 +274,65 @@ mode/notification endpoints. Fresh actual World/factory/Active/scene i386 and
 launcher/probe links are recorded in receipt `attack_follow_up`; no old audit
 rerun or actual mission/desktop claim. Remaining group/other specialized families
 still retain their requirements; H8.4 remains separate.
+
+## Group production and arrival after c5cba01 — 2026-11-17
+
+00457820 and00456F00 now use a distinct retained F8 command-member vector on
+actual Startup PlayersProcess. They do not substitute any five group4C..8C
+buffers. Command3/type8 preserves all members;18 keeps one and21 two. Empty
+incoming clears the vector but leaves prior scalar command state. Reset00456440
+retains vector/target storage. Raw pointer-word writers stay guarded rather than
+being interpreted as typed/serialized identities. Lifetime metadata checks actual
+Actor identity before dereference; it does NOT pin a B0 across tasks. Each native
+call reads the current published Active. Target F0 publishes only for18/21 after
+target model update, before actual FIRST navigation actor-reference lookup.
+
+18/21 genuinely return with earlier member/A0/A4/A8/F0 writes when reference
+count differs from2.3 uses its first two references; missing storage remains an
+explicit native invalid-dereference failure. Reverse references, selected cached
+position or actual active-camera matrix select near/far; ties choose second.
+3 flattens forward Y;18/21 retain XYZ. Normalization, cross/up and each vector
+constructor's FLOAT spills preserve the native staged offsets. Process far/
+negated-forward stores follow distinct D0/E0 versus B0/C0 order. Members traverse
+reverse, publishing188 before staged task52;3 retains native >3 behavior rather
+than inventing a cap.18 additionally overrides first task radius to.2 after its
+producer returns. Action18 candidate selection now uses the actual ready9 holster
+lookup. Action6/type11 retains its earlier specialized receiver (a fallthrough
+regression introduced by the attack-case insertion is corrected).
+
+005354F0 initializes task52, then208/214/204, first mode4/5 and00537B60. That
+posture decision uses actual own enemies first, else0045F280's FIRST qualifying
+reverse roster member within40. It consumes CRT even for one enemy and does not
+combine lists like0045F3A0. Raw AND4100 admits unordered shared distance; its
+separate prone no-aim comparison is ordered<epsilon. Timer1000 versus1001 and
+posture-before5C stores remain distinct. No private empty list or random owner.
+
+Arrival decrements actual A8 after inactive/busy gates.3 sets busy then emits
+reverse task52 at far+2*forward and the two forward±side offsets, delays0/4000/8000.
+21 uses1.5 scale and0/3000/4000, then A0=-1.18 clears A0 before its loop: the first
+member publishes202 before Door phase. Closed/locked phase initializes actual
+Door27 with200/208, then re-arms A0/A8; open phase chooses00535910 after actual
+Door model/horizontal direction. Its X remains extended through normalization,
+*7 and current-origin addition; only Z*7 spills separately. The own cached
+origin is reread after model/normalization. Existing Door/holster/focus receivers
+remain actual owners; failures retain earlier command state.
+
+00535910 queries ready holster9 without equipping it, requires extended distance
+strict>36, initializes task37/200 and flags174, then focus delay and empty-order
+notification. Pending task37 is admitted through existing startup/turn/completion.
+Its far ranged branch uses00560750: XYZ to target20,35=1 before W, then four
+range resets; actor/accumulators remain. Only afterward does actual005AC200
+animation duration replace214. Callback failure leaves initialized201/1500 and
+target publication intact. This reuses the existing H7/H6 grenade path; no shot
+physics or H8.4 actor bodies are imported or given new credit.
+
+Index preceded bounded005354F0/00535910,00537B60 and0045F280 exports under
+`human-h8-group-{task-leaves,hold,threat}`. Existing group C was reused with raw
+`human-h8-group-{producer,arrival,posture,threat}.asm` and saved PE constants.
+Focused native checks cover actual PlayersProcess, navigation/reference tables,
+roster, target/query and task owners with Human/frame/door/holster/mode callbacks
+explicitly doubled. They include staging/arrival, missing references, retained
+reset, Actor retirement, changed current B0, exact timers, ranged callback and
+posture failures, oblique geometry and native >3 member behavior. Fresh actual
+World/factory/Active and scene-frame links and cleanup are recorded separately
+in receipt `group_follow_up`; no loaded mission/application/desktop claim.

@@ -25,6 +25,11 @@ template<class Actor>struct HumanAITargetLoading {
         const auto value=input;state.set(0x10,value);actor=nullptr;
         for(auto offset:{0u,4u,8u})state.set(offset,std::uint32_t{0});
     }
+    void bind_position(const HumanVector& input){ //00560750, distinct from vector aim10; retains actor/accumulators.
+        const auto value=input;for(unsigned n=0;n!=3;++n)state.set(0x20+n*4,value[n]);
+        state.set(0x35,std::uint8_t{1});state.set(0x2c,value[3]);
+        for(auto offset:{0x3cu,0x40u,0x44u,0x48u})state.set(offset,std::int32_t{-1}); //00560810.
+    }
     void bind_actor(Actor* value) { //005607B0, resets both three-component accumulators.
         actor=value;
         for(auto offset:{0x10u,0x14u,0x18u,0u,4u,8u})state.set(offset,std::uint32_t{0});

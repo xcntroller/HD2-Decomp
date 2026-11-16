@@ -7,7 +7,7 @@ then H8.3. Another agent owns H8.4; preserve its occupied/Car/seat/absent-actor
 work and other worktrees. PACK is finished. No push, original EXE/DLL/Proton or
 Windows fixture execution. Heavy compile and Ghidra sequentially.
 
-Latest: attack25/26 command admission/production after9615ce0, extending [on-foot authority through return](analysis/human-h8-authority-body-source.md),
+Latest: actual group production/arrival after c5cba01, extending [on-foot authority through return](analysis/human-h8-authority-body-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json).
 Actual World→factory→SAME Active now runs the prior prefix/navigation AND ordinary
 00526550 body through actual return. Rifle range/burst/crouch, populated00537FB0
@@ -18,6 +18,7 @@ close-target00536A30 through real D8 effect→SECOND queue or inline8 and sound,
 task25/26 actual command admission/production/progression/selection and query-10
 replanning on actual FIRST navigation,
 valid explicit reload source slots and actual hazard blast→packet/water command→HUD,
+actual distinct F8 group3/18/21 staging/arrival, posture and ranged task37,
 look/items/preset/direction,
 last processed-event retirement and medical tail are bound. The unconditional
 remaining-authority failure on this path is removed. H8.2/full H8/application
@@ -41,7 +42,7 @@ Human/frame/inline/aim-result/World endpoints are explicit doubles. Strict actua
 full World/factory/Active i386 and launcher/probe links. No Windows execution.
 Temporary audits fingerprinted and removed. Do not repeat unchanged H1–H7/PACK.
 
-NEXT: continue populated process98/group command members and other specialized
+NEXT: continue positive process98 and other specialized
 task/effect producers. Task22/Dog and positive type34/type36/absent actors still
 require their actual owners where reached; H8.4 bodies stay external.
 Positive holder reload reaches native NULL3C dereference (8170D0/007D6860/6880);
@@ -61,7 +62,9 @@ count/2 AFTER a discarded CRT draw; process008AAC80 XYZ comes from00525160
 sources are `human-h8-specialized-{replan,reference}`; raw and new focused
 checks/real frame links are qualified in receipt `specialized_follow_up`. Actual attack producers/selection reuse command sources;
 new raw `human-h8-attack-{selection,producers}.asm` and receipt `attack_follow_up`.
-Reuse before exporting.
+Group sources/exports are `human-h8-group-{task-leaves,hold,threat}` and matching
+raw producer/arrival/posture/threat files; receipt `group_follow_up`. Actor lifetime
+metadata does NOT retain B0; current B0 is reread. Reuse before exporting.
 Original image SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
 Read-only/noanalysis Ghidra: `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`,
 project `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process

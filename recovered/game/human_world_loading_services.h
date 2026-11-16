@@ -139,7 +139,7 @@ public:
     auto active_follow_root_sector(){return dependencies().scene.frames().camera_root_sector();}
     template<class Human>auto active_follow_sector(Human& human){return human_inline(human).scene_sector();}
     auto active_follow_probe_sector(const HumanVector& position){return dependencies().scene.frames().human_scene_sector(position);}
-    void active_task_group_arrival(){dependencies().startup.players_process().notify_group_arrival();} //Direct00456F00, task204/208.
+    void active_task_group_arrival(){dependencies().startup.players_process().notify_group_arrival(*this);} //Direct00456F00, task204/208.
     void active_follow_query_changed(){ //Players virtual20 at final0080FB28 is00459490 (absent frozen), not00456F00.
         using Active=typename Dependencies::Composition::StateFactory::Active;
         auto& d=dependencies();d.startup.players_process().template postpone_follow_queries<Active>(d.players.control(),mode_flags());
@@ -382,9 +382,16 @@ public:
     template<class AI>bool prepare_active_attack_special_weapon(AI& ai){ //00535110: FIXED native source2, even if lookup found another slot.
         auto& human=*ai.human();return prepare_active_attack_special(human,dependencies().world_actors.items(),composition(human).inventory());
     }
-    template<class Humans,class Actor>void produce_active_group_command(Humans&,std::uint32_t,Actor*,bool){
-        throw std::runtime_error("Players command requires actual00457820 group/navigation producer");
+    template<class Humans,class Actor>void produce_active_group_command(Humans& humans,std::uint32_t action,Actor* target,bool immediate){
+        produce_active_group_tasks(dependencies().startup.players_process(),humans,action,target,immediate,dependencies().scene.frames(),*this);
     }
+    auto active_group_reference_origin(){
+        if(auto* selected=dependencies().players.control().selected_player(mode_flags()))return selected->base().world_position();
+        auto& frames=dependencies().scene.frames();const auto camera=frames.active_game_camera();if(!camera)throw std::runtime_error("Group command requires actual active scene camera");
+        const auto matrix=frames.actor_world_matrix(camera);return HumanVector{{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    }
+    template<class Actor>auto active_group_door_phase(Actor& actor){return active_task_door_phase(human_navigation_door(&actor).properties);}
+    template<class Human>bool active_group_grenade_available(Human& human){return bool(find_player_mode_holster(human,dependencies().world_actors.items(),9,game_word28()));}
     auto& human_ai_order_pool(){return dependencies().startup.human_ai_order_pool();}
     template<class Order>void initialize_human_ai_order_marker(Order& order){
         auto& d=dependencies();game::initialize_human_ai_order_marker(order,d.scene.frames(),d.scene.buckets(),d.hud.command_owner());

@@ -293,7 +293,7 @@
   },
   "remaining_requirements": [
     "other specialized task/effect producers and task22/Dog orchestration",
-    "positive process98 and populated group command members",
+    "positive process98 producer",
     "positive type36/type34/Dog owners and occupied bodies with H8.4",
     "remaining reached offline action receivers",
     "ShotMgr H8.3 including received ground-effect packet",
@@ -1189,6 +1189,269 @@
       "client_partial": 3500,
       "engine_partial": 5
     },
+    "cleanup": {
+      "temporary_sources_and_binaries_removed": true
+    }
+  },
+  "group_follow_up": {
+    "date": "2026-11-17",
+    "base_commit": "c5cba01b1b39d0dc5f90c856148f247eb1cc6a41",
+    "source_only": true,
+    "h8_2_complete": false,
+    "application_loading_enabled": false,
+    "desktop_verified": false,
+    "scope": "Complete actual group3/18/21 staging/arrival through distinct Players F8 owner, current Active B0, navigation/roster/posture and actual ranged task37. PACK/H8.4 bodies unchanged.",
+    "source_files": [
+      {
+        "path": "recovered/game/human_active_ai_group.h",
+        "bytes": 13060,
+        "sha256": "92cff615c4d2fd1571d6a3d34dde4effc201687dfef3e91816db340274dd2852"
+      },
+      {
+        "path": "recovered/game/human_active_ai_commands.h",
+        "bytes": 13337,
+        "sha256": "00090a833db652f9d674a990afce7f224bc1e2ce3341296ff23737cdc99e023a"
+      },
+      {
+        "path": "recovered/game/players_process.h",
+        "bytes": 11047,
+        "sha256": "6a23724849f0e912fab642643a6bbcb4139abfab0ce1b82cfd2743790847784f"
+      },
+      {
+        "path": "recovered/game/human_active_ai_pending.h",
+        "bytes": 10399,
+        "sha256": "6fc82bf485f279638b48224aff0fdfd0ee37270438e395514372481d1510d3fb"
+      },
+      {
+        "path": "recovered/game/human_active_ai_state_loading.h",
+        "bytes": 23263,
+        "sha256": "01e84795364c8da2e3a744d5e378205719b23ef9a39ed8a4e80f457a330063a8"
+      },
+      {
+        "path": "recovered/game/human_active_ai_task_execution.h",
+        "bytes": 8003,
+        "sha256": "0010d199001464623c8ca59c23be5ad9e32ef394ece83c8937ee66f6a96fabac"
+      },
+      {
+        "path": "recovered/game/human_active_ai_target_modes.h",
+        "bytes": 8083,
+        "sha256": "5e1d9ddd60225edfd04e96cbc3b29da1b2db1ee70b856b33b37c686efc2c5cfe"
+      },
+      {
+        "path": "recovered/game/human_ai_resources.h",
+        "bytes": 15516,
+        "sha256": "68112c2eec8ea269953f76709c5ca012d4d291e908ee57c69dfd7f80ef0d638e"
+      },
+      {
+        "path": "recovered/game/human_world_loading_services.h",
+        "bytes": 244095,
+        "sha256": "a10908618ce39e0ec847df083246a6fa4cea7f6fb6fcdf4d4a97b59d55b88a61"
+      }
+    ],
+    "original_evidence": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-command-producers/00457820.c",
+        "bytes": 21738,
+        "sha256": "941e1deae1dc21b3aeae8c8179f956003dc8fff456636ce5bc3f408d87e24ceb"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-command-selection/0045bd10.c",
+        "bytes": 9315,
+        "sha256": "29267978a42b206175ca97c0dd0b2f8dff809b30143a91fe7b3b1bad94cbc5bc"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-follow-players/00456f00.c",
+        "bytes": 10798,
+        "sha256": "7b573b386b459008ae2f23a245b6701b6b256e0bcf5909ededdb58c6d1088a28"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-task-leaves/005354f0.c",
+        "bytes": 704,
+        "sha256": "d50be0e81f8e03effb77b97dfc75f9279928bbaa18bc5f73354740ae6af08803"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-task-leaves/00535910.c",
+        "bytes": 1526,
+        "sha256": "981ee8d034937f69c506f2fe5403bfe5055277512c722828e49de970f24e2b6d"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-hold/00537b60.c",
+        "bytes": 1550,
+        "sha256": "fbdb613df1b3d00b2899b96848fc22b4b58abd3d06bd3e20632d186739028f04"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-threat/0045f280.c",
+        "bytes": 1634,
+        "sha256": "e8017e6f731675b35a4e0246765c3b015adbdf87600a1ed1184648c421790963"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-weapon-target-binding/00560750.c",
+        "bytes": 366,
+        "sha256": "7547e5f6d2347d7c3828c3aa579b5e5750d4870b99d0ff5fe6dd4f28667009c0"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-state-owned-input/00560810.c",
+        "bytes": 251,
+        "sha256": "d8e32ac702834ce132e3c7abcf30c358efc3825ed1f4da60241dc5154ecd662e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-producer.asm",
+        "bytes": 74650,
+        "sha256": "b8315a37fdd6e6c720faf7817fa48e6fcc34041d9a24e6b47e0d7cf1249c8363"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-arrival.asm",
+        "bytes": 30892,
+        "sha256": "529a45b06267b083a49a466bf7c62a15a23a9122ef2d1d1f7b28d0a5a2b6becc"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-posture.asm",
+        "bytes": 4400,
+        "sha256": "b2ba63b8e9636faaf28ba5fe7817c5469f0b858a9145bba4e9d914e75617b966"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-threat.asm",
+        "bytes": 5244,
+        "sha256": "021fdd171453304bb72f235f3340dd792908341c317bb2282920dbdffb753eda"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-constants.txt",
+        "bytes": 108,
+        "sha256": "ad4db55c2406ec4a399d339685607b4f627574069b7b8a717269d5759923e02c"
+      }
+    ],
+    "verification": {
+      "native_sanitizers": {
+        "pass": true,
+        "result": "5300 group producer/arrival/posture checks /100 lifecycle matrices PASS",
+        "flags": "-std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer",
+        "environment": "ASAN_OPTIONS=detect_leaks=1:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1",
+        "actual_owners": [
+          "PlayersProcess words/distinct F8 members",
+          "MissionNavigation/reference tables",
+          "HumanRoster",
+          "AI target/query owners and new group/ranged/pending policies",
+          "Existing task initialization"
+        ],
+        "explicit_doubles": [
+          "Human/Actor/frame/scene-lifetime endpoints",
+          "Door and ready-holster receivers",
+          "Mode/posture/notification/focus endpoints",
+          "Ranged animation duration"
+        ],
+        "scope": "100 lifetimes of action3/18/21 staging/arrival/delays, source masks and native limits, door rearm/grenade task37, ordered failures, Actor retirement/current B0 replacement, retained reset, empty/missing refs, posture boundaries/shared-threat NaN/CRT, ranged publication-before-duration, oblique geometry and >3 native behavior. Earlier audits not rerun.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-group-native.cpp",
+          "bytes": 13349,
+          "sha256": "cd6e7bab5bb6069798939dcaa01a19b905be2a6723de42c73310b8373c9c87fa"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-group-native",
+          "bytes": 1547296,
+          "sha256": "f380d67cd1b05a8aed2f4afd062f34aa3890b2c4909964df419756a431ee9976"
+        }
+      },
+      "actual_human_scene_world_i386": {
+        "pass": true,
+        "flags": "-std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -ftemplate-backtrace-limit=1 -ferror-limit=6 -Irecovered -lwinmm -lws2_32 -lgdi32",
+        "scope": "Explicit actual World/factory/Active authority and Human scene frame with HumanFrameRuntime, including actual group/inventory callback bindings; compile/link only.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-group-host.cpp",
+          "bytes": 381,
+          "sha256": "7ab70f35c4b8f0049e437ac11cd0715bdc1c8bbc6c358d27819ab626a4f33519"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-group-host.exe",
+          "bytes": 9290752,
+          "sha256": "33bdf4c12c7efc43145db2ee1ca7cc1c5044cbc5d694fb41f8f82046e567ceda"
+        }
+      },
+      "launcher_probe": {
+        "pass": true,
+        "command": "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++",
+        "artifacts": [
+          {
+            "path": "recovered/build/application_launch.exe",
+            "bytes": 3963392,
+            "sha256": "fb0ae3be3ee6e8ac587766888d373aacb0afb74940e2a63ae85b496f5daf7afd"
+          },
+          {
+            "path": "recovered/build/startup_probe.exe",
+            "bytes": 1165312,
+            "sha256": "6531039ce2c864af436d053bf61681256036e18a1b9dcbbf7325430879e283f0"
+          }
+        ],
+        "windows_execution": false
+      },
+      "ledger_check": true,
+      "tracker_tests": 27,
+      "diff_check": true
+    },
+    "logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-hold-export.log",
+        "bytes": 4449,
+        "sha256": "bf667a07b5c267b17dfa28197351b474cc97e971d242f4b232b7eee87acda1f7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-host-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-launcher-build.log",
+        "bytes": 820,
+        "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-ledger-check.log",
+        "bytes": 437,
+        "sha256": "a839a3ada8dfcf23a1ad1dc3b304191fcd8607a22b2b95c344b3605b4454b021"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-ledger-render.log",
+        "bytes": 380,
+        "sha256": "c1a0d1c828b0e87e1d783a690efd80771a1aa968ebd97cda9b34738b5ff3a3b6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-native-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-native-run.log",
+        "bytes": 72,
+        "sha256": "e4114c2e335114f60b8da441bbadfa4b6014027767d7699eed758daac61d10e6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-task-leaves-export.log",
+        "bytes": 4559,
+        "sha256": "969ae9bd778adb985878cc12fde166cdb9d1739acaa85bcbdf56a3a33614fa5b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-threat-export.log",
+        "bytes": 4451,
+        "sha256": "b1b0a5e34a4577d61556dd89c73e98e3ef08c2e02b14084f1b1f80b93db74939"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-group-tracker-tests.log",
+        "bytes": 126,
+        "sha256": "8b2f659099c3d525331665dc15ef749b27dbea4add879f3408d4c6b1f1b11b84"
+      }
+    ],
+    "function_tally": {
+      "complete": 34,
+      "partial": 3511,
+      "client_partial": 3506,
+      "engine_partial": 5
+    },
+    "limits": [
+      "Native temporary vector W values unproduced; retained/initialized typed lanes unclaimed.",
+      "Extra Actor identity guards do not pin B0 across tasks; raw external F8 pointer writers still required.",
+      "Missing group3 refs and malformed native holders stay explicit invalid-path failures.",
+      "Actual non-Human/occupied/seat/Dog/type34/type36 bodies remain H8.4; other task effects and process98 remain open.",
+      "No actual loaded mission/application or user desktop acceptance."
+    ],
     "cleanup": {
       "temporary_sources_and_binaries_removed": true
     }

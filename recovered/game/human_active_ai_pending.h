@@ -88,7 +88,7 @@ template<class AI>bool advance_human_active_pending_move(AI& ai){
     if(!human)throw std::logic_error("Active move task lost Human44");
     switch(state.template get<std::uint32_t>(0x220)){
     case 0:case 1:case 2:case 3:case 4:case 5:case 14:case 15:case 19:
-    case 25:case 26:case 27:case 28:case 33:case 34:case 38:case 52:break;
+    case 25:case 26:case 27:case 28:case 33:case 34:case 37:case 38:case 52:break;
     default:throw std::runtime_error("Active task requires its specialized00528950 action-family receivers");
     }
     if(human->field160)throw std::runtime_error("Active task requires its H8.4 occupied00528950 path");

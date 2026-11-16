@@ -46243,7 +46243,7 @@
       "program": "client",
       "entry": "00528950",
       "status": "partial",
-      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required.",
+      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required. Task37 now shares actual pending/turn/completion; far ranged aim publishes position35 before actual grenade animation duration, preserving1500 prefix on failure.",
       "limitations": "Source-only typed/STL adaptation. Specialized action/effect families, ranged far branch, populated Players group production, combat/cover and H8.4 occupied/Car/seat policies remain required. Full containing authority/application/desktop is open. Native endpoint doubles and concrete i386 link do not establish full ABI equivalence; no delegated callee/engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_pending.h",
@@ -46260,7 +46260,10 @@
         "analysis/checkpoints/p2.2-human-h8-follow-20261116.json",
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
-        "recovered/game/human_active_ai_specialized_target.h"
+        "recovered/game/human_active_ai_specialized_target.h",
+        "recovered/game/human_active_ai_group.h",
+        "recovered/game/players_process.h",
+        "recovered/game/human_world_loading_services.h"
       ]
     },
     {
@@ -46280,7 +46283,7 @@
       "program": "client",
       "entry": "0045bd10",
       "status": "partial",
-      "coverage": "Selected ordinary target-model/sort-first candidate selection; definition lookups, first-candidate actions, type21 claim and Human focus gates; required specialized policies. Action15 now skips the target Human and selects the first medical-equipped candidate after native model/sort prefix. Attack25/26 selection now prefers actual bidirectional hostile-list membership, then retries all sorted candidates;26 tests definition22/7/260 quantities or actual non-pack ammunition counts on each pass.",
+      "coverage": "Selected ordinary target-model/sort-first candidate selection; definition lookups, first-candidate actions, type21 claim and Human focus gates; required specialized policies. Action15 now skips the target Human and selects the first medical-equipped candidate after native model/sort prefix. Attack25/26 selection now prefers actual bidirectional hostile-list membership, then retries all sorted candidates;26 tests definition22/7/260 quantities or actual non-pack ammunition counts on each pass. Action18 now chooses first sorted ready holster9 candidate. Kind11 action6 keeps its original specialized capability receiver, separate from attack selection.",
       "limitations": "Source-only typed/STL/RAII adaptation. Other specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full containing authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
       "evidence": [
         "recovered/game/human_active_ai_commands.h",
@@ -46290,7 +46293,9 @@
         "analysis/human-h8-authority-policy-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json",
         "analysis/human-h8-authority-body-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_active_ai_group.h",
+        "recovered/game/players_process.h"
       ]
     },
     {
@@ -46609,12 +46614,16 @@
       "program": "client",
       "entry": "00456f00",
       "status": "partial",
-      "coverage": "Actual action3/18/21 inactive/busy/countdown publication and genuinely empty command-member vector branches.",
-      "limitations": "Source-only portable/STL adaptation. Populated distinct F8 command-members and00457820 producer/owner and positive task production remain required after native prefix; five group4C..8C buffers are not substituted. Native endpoint doubles/strict i386 link do not establish original ABI equivalence. No delegated credit.",
+      "coverage": "Recover same F8 positive action3/18/21 arrival: native countdown/busy prefix, ordered staged task52 delays, actual Door open/closed phases, task27 publication or native seven-unit grenade producer and re-arm. Actor lifetime guards preserve current-B0 rereads.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual loaded owners reused; native checks explicitly double Human/frame/command/mode/holster/door endpoints. Original object/virtual ABI, allocator/SEH and unproduced W lanes remain excluded. Actual World/frame i386 and launcher compile/link only; no loaded-mission/application/desktop acceptance claim or delegated callee credit.",
       "evidence": [
         "recovered/game/players_process.h",
         "analysis/human-h8-follow-source.md",
-        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json",
+        "recovered/game/human_active_ai_group.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
       ]
     },
     {
@@ -47141,6 +47150,91 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00457820",
+      "status": "partial",
+      "coverage": "Recover actual distinct F8 command-member owner, native action3/18/21 limits/count/busy publication, actual actor navigation references and selected/camera origin, staged positions/current B0/task52 producers and radius override; preserve missing-reference and earlier-write failures.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual loaded owners reused; native checks explicitly double Human/frame/command/mode/holster/door endpoints. Original object/virtual ABI, allocator/SEH and unproduced W lanes remain excluded. Actual World/frame i386 and launcher compile/link only; no loaded-mission/application/desktop acceptance claim or delegated callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_group.h",
+        "recovered/game/players_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005354f0",
+      "status": "partial",
+      "coverage": "Initialize actual task52 using cached direction,208/214/204 publication before first-mode and actual group-move posture policy. Existing task/inline owners reused.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual loaded owners reused; native checks explicitly double Human/frame/command/mode/holster/door endpoints. Original object/virtual ABI, allocator/SEH and unproduced W lanes remain excluded. Actual World/frame i386 and launcher compile/link only; no loaded-mission/application/desktop acceptance claim or delegated callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_group.h",
+        "recovered/game/players_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00535910",
+      "status": "partial",
+      "coverage": "Ready holster9 query before extended far>36 admission, task37/200/174 publication, actual focus-exit delay and empty-order notification; no invented equip operation.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual loaded owners reused; native checks explicitly double Human/frame/command/mode/holster/door endpoints. Original object/virtual ABI, allocator/SEH and unproduced W lanes remain excluded. Actual World/frame i386 and launcher compile/link only; no loaded-mission/application/desktop acceptance claim or delegated callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_group.h",
+        "recovered/game/players_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00537b60",
+      "status": "partial",
+      "coverage": "Own enemies before actual first-nearby-roster threat query, native posture/timer/aim rules and request-before-immediate5C publication; exact1000/1001 and unordered aim gate preserved.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual loaded owners reused; native checks explicitly double Human/frame/command/mode/holster/door endpoints. Original object/virtual ABI, allocator/SEH and unproduced W lanes remain excluded. Actual World/frame i386 and launcher compile/link only; no loaded-mission/application/desktop acceptance claim or delegated callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_group.h",
+        "recovered/game/players_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045f280",
+      "status": "partial",
+      "coverage": "Reverse actual roster, own/other lazy models, extended squared distance<=1600 including native unordered admission, then CRT draw from FIRST qualifying member enemy list, including singleton.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual loaded owners reused; native checks explicitly double Human/frame/command/mode/holster/door endpoints. Original object/virtual ABI, allocator/SEH and unproduced W lanes remain excluded. Actual World/frame i386 and launcher compile/link only; no loaded-mission/application/desktop acceptance claim or delegated callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_group.h",
+        "recovered/game/players_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560750",
+      "status": "partial",
+      "coverage": "Copy target position XYZ, publish35 before W, then reset four retained range words through00560810; actor, accumulator and aim-vector state retained.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual loaded owners reused; native checks explicitly double Human/frame/command/mode/holster/door endpoints. Original object/virtual ABI, allocator/SEH and unproduced W lanes remain excluded. Actual World/frame i386 and launcher compile/link only; no loaded-mission/application/desktop acceptance claim or delegated callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_group.h",
+        "recovered/game/players_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_ai_resources.h"
       ]
     }
   ]

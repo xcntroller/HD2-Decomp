@@ -86,9 +86,12 @@ template<class Human,class Actor,class Frames,class World>Human* select_active_c
         if(target.base().type()==3){for(auto* human:humans)if(!human->field174)return human;return nullptr;}
         if(target.base().type()==9)return humans.front();
         if(target.base().type()!=11)return nullptr;
-        [[fallthrough]];
+        return world.select_special_active_command_candidate(humans,action,target,secondary);
+    case 18:
+        for(auto* human:humans)if(world.active_group_grenade_available(*human))return human;
+        return nullptr;
     case 25:case 26:return select_active_attack_candidate(humans,action,target,world);
-    case 18:case 22:case 24:case 37:
+    case 22:case 24:case 37:
         return world.select_special_active_command_candidate(humans,action,target,secondary);
     default:return nullptr; //Native switch has no accepted candidate.
     }
