@@ -46237,8 +46237,8 @@
       "program": "client",
       "entry": "00528950",
       "status": "partial",
-      "coverage": "18D/delayed214/inactive202 gates and order-generated on-foot task52: readiness/query startup, strict radius arrival, later201-set completion and pending00535C00 prefix. Selected task52 completion now calls actual00535C00 for pending or ordinary standalone completion.",
-      "limitations": "Source-only typed/STL/RAII adaptation. Kind3 Players dispatch, other task families/targets, occupied movement,201-clear turn, combat/cover completion and containing follow/authority remain required. Temporary native sanitizer endpoint doubles and strict actual-host link do not establish full ABI/application/desktop equivalence. No new callee/body or engine credit.",
+      "coverage": "18D/delayed214/inactive202 gates and order-generated on-foot task52: readiness/query startup, strict radius arrival, later201-set completion and pending00535C00 prefix. Selected task52 completion now calls actual00535C00 for pending or ordinary standalone completion. Selected ordinary on-foot target tasks now bind startup/target-before-radius arrival,201-clear turn with native precision, mode/readiness/immediate DC effect,214 duration/wait and completion.",
+      "limitations": "Source-only typed/STL adaptation. Specialized action/effect families, ranged far branch, Players notification, combat/cover and H8.4 occupied/Car/seat policies remain required. Full follow/authority/application/desktop is open. Native endpoint doubles and concrete i386 link do not establish full ABI equivalence; no delegated callee/engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_pending.h",
         "recovered/game/human_active_ai_state_loading.h",
@@ -46246,7 +46246,10 @@
         "analysis/checkpoints/p2.2-human-h8-pending-20261116.json",
         "recovered/game/human_active_ai_task_completion.h",
         "analysis/human-h8-task-completion-source.md",
-        "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json",
+        "recovered/game/human_active_ai_task_execution.h",
+        "analysis/human-h8-task-execution-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json"
       ]
     },
     {
@@ -46481,6 +46484,72 @@
         "recovered/game/human_active_ai_state_loading.h",
         "analysis/human-h8-task-completion-source.md",
         "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00535e70",
+      "status": "partial",
+      "coverage": "NULL/Human/Door/generic target arrival, same navigation reference and actual model/inverse/transform/bounds, extended strict distance tests and native unordered-axis behavior; reached Car selection remains external. Human matrices remain borrowed across both lazy updates before coordinate reads.",
+      "limitations": "Source-only typed/STL adaptation. H8.4 occupied/Car/seat/absent-actor policies are external; specialized task/producer/Players/follow/authority, application and desktop remain open. Native frame/readiness/common endpoints are explicit doubles, concrete i386 linked only. No original ABI or delegated engine/callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_execution.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-execution-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json",
+        "recovered/host/game_actor_frames.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005374a0",
+      "status": "partial",
+      "coverage": "Actual raw switch-table action-to-second-mode mapping and default holes through SAME Active mode/timer owner.",
+      "limitations": "Source-only typed/STL adaptation. H8.4 occupied/Car/seat/absent-actor policies are external; specialized task/producer/Players/follow/authority, application and desktop remain open. Native frame/readiness/common endpoints are explicit doubles, concrete i386 linked only. No original ABI or delegated engine/callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_execution.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-execution-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005387c0",
+      "status": "partial",
+      "coverage": "Selected actual task target Door locks/phase, ExplosivePlace94, Human availability/friendly/actor capability and DocumentPlace148 readiness; defaulttrue and reached required families.",
+      "limitations": "Source-only typed/STL adaptation. H8.4 occupied/Car/seat/absent-actor policies are external; specialized task/producer/Players/follow/authority, application and desktop remain open. Native frame/readiness/common endpoints are explicit doubles, concrete i386 linked only. No original ABI or delegated engine/callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_execution.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-execution-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00538a60",
+      "status": "partial",
+      "coverage": "Actor ECX dispatch, signed Human healthEC and genuine defaultfalse; type4/25/30 requirements preserved.",
+      "limitations": "Source-only typed/STL adaptation. H8.4 occupied/Car/seat/absent-actor policies are external; specialized task/producer/Players/follow/authority, application and desktop remain open. Native frame/readiness/common endpoints are explicit doubles, concrete i386 linked only. No original ABI or delegated engine/callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_execution.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-execution-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006029f0",
+      "status": "partial",
+      "coverage": "Actual locked234 return4, otherwise native Door224 phase via SAME typed Door properties.",
+      "limitations": "Source-only typed/STL adaptation. H8.4 occupied/Car/seat/absent-actor policies are external; specialized task/producer/Players/follow/authority, application and desktop remain open. Native frame/readiness/common endpoints are explicit doubles, concrete i386 linked only. No original ABI or delegated engine/callee credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_execution.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-execution-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json"
       ]
     }
   ]

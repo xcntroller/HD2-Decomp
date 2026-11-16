@@ -5,6 +5,9 @@ from completed H6fc9d452. All H1–H7 source is present, including user-merged
 H4b9d67aa. Preserve other worktrees. No push, original/Windows execution or
 invented desktop acceptance. H8 and parent P22-HUM remain OPEN.
 
+User assignment2026-11-16: this branch owns H8.2, then H8.3. Another agent owns
+H8.4; leave its worktree/branch and occupied/Car/seat/absent-actor work to them.
+
 Complete the existing plan's full Human frame checkbox. Offline7 is the first
 required application path; non7/occupied/absent-actor branches retain precise
 requirements until completed or proven outside the selected path. Source-only
@@ -138,7 +141,8 @@ separate from execution and containing authority.
 - [ ] Specialized item/attachment/treatment selection and remaining task producers.
 - [ ] Actual00457820 group/navigation production and group4 selector.
 - [x] Ordinary standalone task completion and distinct follow resume [checkpoint](human-h8-task-completion-source.md).
-- [ ] Target-task execution/arrival, turn/occupied phases and combat/cover completion.
+- [x] Selected ordinary on-foot task arrival/turn/effect/wait/completion [checkpoint](human-h8-task-execution-source.md).
+- [ ] Specialized task/effect families and combat/cover completion; occupied/Car/seat dependencies belong to H8.4.
 - [ ] Follow00536120 and containing00526550 reached chain.
 
 Keep H8.2 open until all required offline receivers are bound and verified.
@@ -148,3 +152,7 @@ standalone on-foot52 completion. Remaining execution dependencies include
 005374A0/005387C0, target arrival00535E70 and **target Actor**, not Active,
 00538A60 capability. Nonoffline name lookup and32/40/41/42 completion remain
 required. Full00536120 follow is a separate containing-frame dependency.
+
+Latest ordinary execution binds selected00528950/00535E70/005374A0/005387C0,
+Human Actor00538A60 and Door006029F0. Other selected task producers and full
+follow/containing authority remain required. Keep H8.2 open.

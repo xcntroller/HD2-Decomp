@@ -105,6 +105,10 @@ public:
         return context.found;
     }
     Matrix actor_world_matrix(Frame frame) {return car_world_matrix(frame);}
+    const Matrix& active_task_borrow_world_matrix(Frame frame){ //00535E70 reads both matrices AFTER both lazy updates.
+        (void)actor_world_matrix(frame);
+        return *reinterpret_cast<const Matrix*>(address(frame,0x40)); //Borrowed only across the next lazy update, never retained.
+    }
     void formation_matrix_direction(Matrix& matrix,const Vector& direction) {
         using Set=void(WINAPI*)(void*,const void*);
         exported<Set>("?SetDir@S_matrix@@QAGXABUS_vector@@@Z",0x2c7a0)(matrix.data(),direction.data());

@@ -2,38 +2,41 @@
 
 Worktree `HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`. PACK is already
 finished, as confirmed by the user. Its worktree was deleted; do not return there
-or reopen completed PACK requirements. Continue ordinary H8. Preserve other
+or reopen completed PACK requirements. Continue H8.2, then H8.3. Another agent owns H8.4: leave its worktree, branch
+and occupied/Car/seat/absent-actor implementation to them. Preserve other
 worktrees. No push or original EXE/DLL/Proton/Windows fixture execution. Heavy
 compilation and Ghidra must run sequentially. Source recovery is not desktop
 acceptance; application loading and full H8 remain OPEN.
 
-Latest: [ordinary task completion](analysis/human-h8-task-completion-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json), after
-a40119d [command production](analysis/human-h8-active-command-source.md) and
-97c29e9 [pending/move52](analysis/human-h8-pending-source.md).00535C00 now binds
-selected standalone/default and attachment/follow-stop completion;005376F0 is
-the distinct follow-resume helper. Move52 uses that actual receiver for pending
-or standalone completion. Preserve202-before-pending gate, no target/name calls
-with pending orders, first-mode/174-before-leader lookup and extended ordered
-<100 with NO FLOAT spill. Resume does not enable follow or notify completion.
-32/40/42 publish198=0 before required combat/cover policy;41 does not. Nonoffline
-name lookup and expired task-target event policy remain explicit requirements.
+Latest: [ordinary on-foot task execution](analysis/human-h8-task-execution-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json), after
+529b9a9. Selected00528950 now binds target-before-radius arrival,201-clear turn,
+mode/readiness/immediate DC effects, actual duration wait and existing completion
+on SAME Active/resources/World.00535E70 uses actual navigation identity or engine
+inverse/transform/A8 bounds. Human arrival borrows matrices across BOTH lazy
+updates before reading coordinates. Preserve target W from cached Human,209's
+raw160 copy, extended horizontal model X/Z through final FLOAT dot, unordered
+turn wait,201/214 publication before effects and no extra command queue copy.
+005374A0 uses actual raw switch modes. Door006029F0 is locked?4:224, not94.
+Human Actor00538A60 and selected005387C0 are bound; reached H8.4 remains required.
 
-ASan/UBSan/leak PASS65800 checks /100 completion lifecycle matrices on actual
-resources/task/follow/completion kernels with explicit endpoint doubles. Strict
-actual-host i386 completion/pending/task/packet link and final launcher/probe
-PASS;27 tracker tests and ledger pass. No Windows execution. Temporary audits
-fingerprinted and removed. Two new partials and extended00528950;34 complete/
-3458 partial (3453 client,5 engine). Prior pending37600/100 and command19500/100
-checks are recorded separately; unchanged kernels need no repeated broad audit.
+Focused ASan/UBSan/leak PASS29500 checks /100 task lifecycle matrices. Actual AI
+resources/query/path/direction, initializer, MissionNavigation/records/references,
+Door properties and task/turn/effect/completion kernels; explicit endpoints.
+Mode oracle comes from original jump tables. Strict actual-host i386 link and
+final launcher/probe results, ledger and27 tracker tests are in receipt. Windows
+artifacts never run. Temporary audits fingerprinted and removed. Five new
+partials and extended00528950;34 complete/3463 partial (3458 client,5 engine).
+H8.2/H8/containing00526550/application/desktop acceptance remain OPEN.
 
-**NEXT:**00528950 target/task execution,201-clear turn/occupied phases,00535E70
-arrival, target-Actor00538A60 capability,005374A0/005387C0 and reached effects.
-Specialized0045BD10/00534460..00535630 producers,00457820/group4 and full00536120
-follow remain required. Then containing00526550 timers/attachment/aim/movement/
-output/events/self-treatment. See [H8 plan](analysis/p22-hum-h8-plan.md).
-Human190/route74 and actor lifetime event producers remain required, plus later
-async combat/material/water/occupied/absent actors and application/desktop gates.
+**NEXT H8.2:** specialized task/effect/producer families and actual00456F00/
+00457820 Players receivers, full00536120 follow, then containing00526550 timers/
+navigation/aim/movement/output/events/self-treatment and remaining offline
+receivers. Authority4029-byte C is already under
+`frame-human-script-and-active-workers`; timer helpers are in
+`human-h8-active-frame-workers`. Both indexed/reused, not exported again.
+Do not implement H8.4's occupied/Car/seat/absent-actor policies on this branch.
+After H8.2, proceed to H8.3 async combat. See [plan](analysis/p22-hum-h8-plan.md).
 
 Existing PACK source contracts: [common](analysis/human-h8-pack-common-source.md),
 [effects](analysis/human-h8-pack-effects-source.md),
@@ -44,7 +47,8 @@ already committed through51082a2; no repeat audit is needed without new evidence
 WORK=`analysis/work/mission-world-20261103`. Research index BEFORE new exports:
 `python3 -B tools/research_index.py find ADDRESS...`. Existing worker C and raw evidence are listed in the contracts.00458E50 is under
 `human-h8-pending-players`;005376F0/00535E70/00538A60 are under
-`human-h8-command-execution`.005374A0/005387C0 were indexed but not exported.
+`human-h8-command-execution`.005374A0/005387C0 are now exported under
+`human-h8-task-execution-tail`;006029F0 under`human-h8-task-door-ready`.
 Raw0053505B proves00538A60 ECX=target Actor, not Active. Reuse these exports. Original SHA
 8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
 Read-only/noanalysis Ghidra: `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`,

@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_ACTIVE_AI_PENDING_H
 #include "game/human_ai_shot_direction.h"
 #include "game/human_state_frame_timers.h"
+#include "game/human_active_ai_task_execution.h"
 namespace hd2::game {
 //00529F60. The first order is borrowed across callbacks; kind4 can reset the
 //owning sequence, so its caller must reread native begin[0] afterwards.
@@ -79,15 +80,18 @@ template<class AI,class Frames,class World>bool process_human_active_pending_ord
     }
     return true;
 }
-//00528950's order-generated action52 on foot, plus delayed/inactive gates.
-//Other task families and occupied movement remain
-//required. This does not activate the containing00526550 authority frame.
+//00528950's selected ordinary on-foot tasks, plus delayed/inactive gates.
+//Occupied and specialized action families remain required. This does not
+//activate the containing00526550 authority frame.
 template<class AI>bool advance_human_active_pending_move(AI& ai){
     auto& state=ai.state();auto* human=ai.human();
     if(!human)throw std::logic_error("Active move task lost Human44");
-    if(state.template get<std::uint32_t>(0x220)!=52||ai.task_target)
-        throw std::runtime_error("Active task requires its positive00528950 action-family receivers");
-    if(human->field160)throw std::runtime_error("Active move task requires its occupied00528950 path");
+    switch(state.template get<std::uint32_t>(0x220)){
+    case 0:case 1:case 2:case 3:case 4:case 5:case 14:case 15:case 19:
+    case 27:case 28:case 33:case 34:case 38:case 52:break;
+    default:throw std::runtime_error("Active task requires its specialized00528950 action-family receivers");
+    }
+    if(human->field160)throw std::runtime_error("Active task requires its H8.4 occupied00528950 path");
     if(!state.template get<std::uint8_t>(0x205)&&!state.template get<std::uint8_t>(0x200)){
         state.set(0x205,std::uint8_t{1});ai.pending_clear_item_ready(); //0058C400, before query/174/direction.
         ai.resources().query().request_position(state.template get<HumanVector>(0x1e0));
@@ -107,12 +111,13 @@ template<class AI>bool advance_human_active_pending_move(AI& ai){
         const auto x=static_cast<long double>(destination[0])-position[0],y=static_cast<long double>(destination[1])-position[1],z=static_cast<long double>(destination[2])-position[2];
         const float square=static_cast<float>((y*y+z*z)+x*x);
         const auto radius=state.template get<float>(0x21c);const float radius_square=static_cast<float>(static_cast<long double>(radius)*radius);
-        if(square<radius_square){
+        ai.require_live_task_target();
+        if((ai.task_target&&ai.pending_target_arrived())||square<radius_square){
             auto& query=ai.resources().query().state;query.set(0x50,query.template get<std::uint32_t>(0x50)|0x2000u);state.set(0x200,std::uint8_t{1});
         }
         return true; //Arrival and completion are separate native frames.
     }
-    if(!state.template get<std::uint8_t>(0x201))throw std::runtime_error("Active move task requires its00528950 direction/turn phase");
+    if(!state.template get<std::uint8_t>(0x201))return turn_and_start_active_task(ai);
     if(state.template get<std::uint8_t>(0x206))return true;
     if(const auto posture=state.template get<std::uint32_t>(0x218);posture){
         if(posture!=(state.template get<std::uint32_t>(0x17c)&ai.words().template get<std::uint32_t>(0x50)))ai.pending_posture(posture);

@@ -103,6 +103,16 @@ public:
         const auto matrix=this->state_frames().actor_world_matrix(human->base().frame());return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
     }
     bool advance_pending_task(std::uint32_t elapsed){return advance_human_active_pending_task(*this,elapsed);}
+    HumanVector pending_task_forward(){
+        auto* human=this->human();if(!human)throw std::logic_error("Active task forward lost Human44");
+        const auto matrix=this->state_frames().actor_world_matrix(human->base().frame());return {{matrix[8],matrix[9],matrix[10],matrix[11]}};
+    }
+    auto pending_task_turn_gate(){return services_.formation_direction_gate(*this->human());}
+    bool pending_target_arrived(){return active_task_target_arrived(*this,task_target,this->state_frames(),services_);}
+    bool pending_task_effect_ready(){return services_.active_task_effect_ready(*this);}
+    void reject_pending_task(){services_.queue_active_ai_speech(*this,0x68u,true,300u,false);}
+    void execute_pending_task_command(std::uint32_t action,std::int32_t identity,std::uint32_t value){services_.execute_active_task_command(*this,action,identity,value);}
+    void start_pending_task_effect(){start_active_task_effect(*this);}
     void complete_pending_task(std::uint32_t action){complete_human_active_task(*this,action,services_);}
     void require_live_task_target()const{if(task_target_retired_)throw std::runtime_error("Active task requires its retired-target event policy");}
     bool process_pending_orders(std::uint32_t elapsed){return process_human_active_pending_orders(*this,elapsed,this->state_frames(),services_);}

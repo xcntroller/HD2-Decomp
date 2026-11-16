@@ -127,6 +127,52 @@ public:
         if((mode_flags()&7u)!=7u)throw std::runtime_error("Active completion name requires actual nonoffline005A81C0 peer/profile receiver");
         (void)offline_human_hud_name(dependencies().scene.frames(),human);
     }
+    template<class Actor>auto active_task_arrival_frame(Actor& target){
+        if(target.base().type()==4)throw std::runtime_error("Active task arrival requires H8.4 Car body-frame selection");
+        return target.base().frame();
+    }
+    template<class Actor>bool active_task_actor_unavailable(Actor& target){ //00538A60, Actor ECX.
+        switch(target.base().type()){
+        case 3:return human_frame_signed_word(selection_human(target).properties.stats_ec[0])<1;
+        case 4:throw std::runtime_error("Active task capability requires H8.4 Car004DDCF0 receiver");
+        case 25:case 30:throw std::runtime_error("Active task capability requires H8.4 type25/A1 or type30/4A0 actor owner");
+        default:return false;
+        }
+    }
+    template<class State>bool active_task_effect_ready(State& state){ //005387C0, same typed task224.
+        using Frames=typename Dependencies::ActorFrames;
+        const auto target=[&]() -> auto& {
+            state.require_live_task_target();if(!state.task_target)throw std::runtime_error("Active task effect dereferences native NULL224");return *state.task_target;
+        };
+        switch(state.state().template get<std::uint32_t>(0x220)){
+        case 0:return !human_navigation_door(&target()).properties.flag234;
+        case 1:return human_navigation_door(&target()).properties.flag234!=0;
+        case 4:{auto* place=dynamic_cast<ExplosivePlaceSceneActor<Frames>*>(&target());if(!place)throw std::runtime_error("Active task4 requires actual target94 owner");return place->field94==0;}
+        case 15:return !active_task_actor_unavailable(target());
+        case 16:throw std::runtime_error("Active task16 requires actual005E24C0 target actor capability");
+        case 19:{
+            auto& actor=target();bool allowed=false;
+            if(actor.base().type()==3){auto& human=selection_human(actor);
+                allowed=!human_unavailable(human)&&human.properties.field19c==2&&human.loading_state&&human.loading_state->suppress_hostile_selection();
+            }
+            return !active_task_actor_unavailable(target())&&allowed;
+        }
+        case 22:
+            if(!state.human()->field160&&target().base().type()==4)throw std::runtime_error("Active task22 requires H8.4 Car004DDEE0 receiver");
+            return false;
+        case 27:case 28:{
+            const auto& properties=human_navigation_door(&target()).properties;
+            const auto phase=active_task_door_phase(properties); //006029F0, not Door94.
+            return state.state().template get<std::uint32_t>(0x220)==27?(phase!=1&&phase!=2):(phase!=0&&phase!=3);
+        }
+        case 34:{auto* place=dynamic_cast<DocumentPlaceSceneActor<Frames>*>(&target());if(!place)throw std::logic_error("Active task34 requires actual DocumentPlace148");return place->state148==0;}
+        default:return true;
+        }
+    }
+    template<class State>void execute_active_task_command(State& state,std::uint32_t action,std::int32_t identity,std::uint32_t value){
+        HumanPacketCommand command;command.kind=3;command.fields.set(8,action);command.fields.set(0xc,identity);command.fields.set(0x10,value);
+        (void)composition(*state.human()).state_factory().common_command(state,command); //Immediate00587540/DC only, no deferred queue copy.
+    }
     template<class Human>bool active_command_has_definition(Human& human,std::uint32_t definition){
         return bool(find_human_inventory_definition(human,dependencies().world_actors.items(),human_frame_signed_word(definition)));
     }
