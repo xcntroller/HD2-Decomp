@@ -91,7 +91,7 @@ current-action12, not4; native order kind4 remains a different family.
 | Presentation00525DA0, Car camera004D9E10 | Bound/verified |
 | Order-to-action0052A1E0; shared action7/8/12; HUD marker004B9240/9B10/9080 | Bound/verified on actual owners; process order producer is now bound below |
 | Order005825C0/0058C5A0, marker EC/collision,0058D6C0/0058C8E0/00582640, Active list insert/update/remove/reset | Bound/verified source; positive route74 and actual command/Human190 producers remain required |
-|005282E0/00529F60 pending,00528950/00536120 decisions/follow | Pending lifecycle and on-foot move52 bound; Selected kind3 production now bound; specialized selection/production, other task/turn/occupied/standalone/follow remain required |
+|005282E0/00529F60 pending,00528950/00536120 decisions/follow | Pending lifecycle and on-foot move52 bound; Selected kind3 production now bound; specialized selection/production, other task/turn/occupied/combat completion/follow remain required |
 | Navigation/aim,0052B810 movement,005276E0 decisions,005325C0 output, command retirement/self-treatment | Reuse existing AI cores, complete Active policy and reached commands |
 
 Required later H8 frame dependency exposed by command11: SupplyBox state1
@@ -137,7 +137,14 @@ separate from execution and containing authority.
   Door/document inventory eligibility and required failure publication prefixes.
 - [ ] Specialized item/attachment/treatment selection and remaining task producers.
 - [ ] Actual00457820 group/navigation production and group4 selector.
-- [ ] Target-task execution/arrival, turn/occupied phases and standalone completion.
+- [x] Ordinary standalone task completion and distinct follow resume [checkpoint](human-h8-task-completion-source.md).
+- [ ] Target-task execution/arrival, turn/occupied phases and combat/cover completion.
 - [ ] Follow00536120 and containing00526550 reached chain.
 
 Keep H8.2 open until all required offline receivers are bound and verified.
+
+The ordinary completion checkpoint closes selected00535C00/005376F0 and permits
+standalone on-foot52 completion. Remaining execution dependencies include
+005374A0/005387C0, target arrival00535E70 and **target Actor**, not Active,
+00538A60 capability. Nonoffline name lookup and32/40/41/42 completion remain
+required. Full00536120 follow is a separate containing-frame dependency.

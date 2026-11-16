@@ -80,7 +80,7 @@ template<class AI,class Frames,class World>bool process_human_active_pending_ord
     return true;
 }
 //00528950's order-generated action52 on foot, plus delayed/inactive gates.
-//Other task families, occupied movement and standalone completion remain
+//Other task families and occupied movement remain
 //required. This does not activate the containing00526550 authority frame.
 template<class AI>bool advance_human_active_pending_move(AI& ai){
     auto& state=ai.state();auto* human=ai.human();
@@ -121,8 +121,7 @@ template<class AI>bool advance_human_active_pending_move(AI& ai){
     for(const auto mask:{8u,0x200u})if(state.template get<std::uint32_t>(0x174)&mask)state.set(0x174,state.template get<std::uint32_t>(0x174)&~mask);
     if(!state.template get<std::uint8_t>(0x203))state.set(0x202,std::uint8_t{1});
     state.set(0x206,std::uint8_t{1});
-    state.set(0x202,std::uint8_t{1}); //00535C00, BEFORE the actual pending-list gate.
-    if(!ai.has_pending_orders_loading())throw std::runtime_error("Active move completion requires standalone00535C00 policy");
+    ai.complete_pending_task(state.template get<std::uint32_t>(0x220)); //Actual00535C00, including pending/standalone gates.
     return true;
 }
 //00528950, delayed/inactive prefix before the selected move-task decision.

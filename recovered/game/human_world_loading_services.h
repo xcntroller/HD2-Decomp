@@ -123,6 +123,10 @@ public:
         return *state;
     }
     template<class Human>void reject_active_command(Human& human){queue_active_ai_speech(active_command_state(human),0x68u,true,300u,false);}
+    template<class Human>void active_task_completion_debug_name(Human& human){
+        if((mode_flags()&7u)!=7u)throw std::runtime_error("Active completion name requires actual nonoffline005A81C0 peer/profile receiver");
+        (void)offline_human_hud_name(dependencies().scene.frames(),human);
+    }
     template<class Human>bool active_command_has_definition(Human& human,std::uint32_t definition){
         return bool(find_human_inventory_definition(human,dependencies().world_actors.items(),human_frame_signed_word(definition)));
     }

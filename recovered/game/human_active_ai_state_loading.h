@@ -9,6 +9,7 @@
 #include "game/human_active_ai_orders.h"
 #include "game/human_active_ai_task_state.h"
 #include "game/human_active_ai_pending.h"
+#include "game/human_active_ai_task_completion.h"
 
 namespace hd2::game {
 
@@ -102,15 +103,17 @@ public:
         const auto matrix=this->state_frames().actor_world_matrix(human->base().frame());return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
     }
     bool advance_pending_task(std::uint32_t elapsed){return advance_human_active_pending_task(*this,elapsed);}
+    void complete_pending_task(std::uint32_t action){complete_human_active_task(*this,action,services_);}
+    void require_live_task_target()const{if(task_target_retired_)throw std::runtime_error("Active task requires its retired-target event policy");}
     bool process_pending_orders(std::uint32_t elapsed){return process_human_active_pending_orders(*this,elapsed,this->state_frames(),services_);}
     bool orders_recently_changed()const{return orders_.recently_changed(*this,services_);}
     void append_hold_order(const HumanVector& position,const HumanVector& direction){orders_.hold(*this,position,direction,services_);}
     void initialize_task(SceneActor<Frames>* target,std::uint32_t action,const HumanVector& position,const HumanVector& direction,bool enabled,float radius){
-        initialize_human_active_ai_task(*this,target,action,position,direction,enabled,radius);task_target_base_=target?&target->base():nullptr;
+        initialize_human_active_ai_task(*this,target,action,position,direction,enabled,radius);task_target_base_=target?&target->base():nullptr;task_target_retired_=false;
     }
     void retire_action_target_base(const void* base)noexcept override{
         AI::retire_action_target_base(base);orders_.retire_actor_base(base);
-        if(task_target_base_==base){task_target=nullptr;task_target_base_=nullptr;}
+        if(task_target_base_&&task_target_base_==base){task_target=nullptr;task_target_base_=nullptr;task_target_retired_=true;}
     }
     void cancel_task(){cancel_human_active_ai_task(*this,services_);}
     void regroup(bool reset){regroup_human_active_ai(*this,reset,services_);}
@@ -269,7 +272,7 @@ private:
         return human->loading_inventory->special_hand_item(this->item());
     }
     HumanAIActionPools& actions_;Services& services_;HumanJointWords<0x260> state_;std::optional<std::uint32_t> action_mode_;
-    HumanActiveAIOrders<OrderPool> orders_;const void* task_target_base_=nullptr;
+    HumanActiveAIOrders<OrderPool> orders_;const void* task_target_base_=nullptr;bool task_target_retired_=false;
 };
 } //namespace hd2::game
 #endif

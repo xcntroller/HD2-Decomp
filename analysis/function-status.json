@@ -46237,13 +46237,16 @@
       "program": "client",
       "entry": "00528950",
       "status": "partial",
-      "coverage": "18D/delayed214/inactive202 gates and order-generated on-foot task52: readiness/query startup, strict radius arrival, later201-set completion and pending00535C00 prefix.",
-      "limitations": "Source-only typed/STL/RAII adaptation. Kind3 Players dispatch, other task families/targets, occupied movement,201-clear turn, standalone completion and containing follow/authority remain required. Temporary native sanitizer endpoint doubles and strict actual-host link do not establish full ABI/application/desktop equivalence. No new callee/body or engine credit.",
+      "coverage": "18D/delayed214/inactive202 gates and order-generated on-foot task52: readiness/query startup, strict radius arrival, later201-set completion and pending00535C00 prefix. Selected task52 completion now calls actual00535C00 for pending or ordinary standalone completion.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Kind3 Players dispatch, other task families/targets, occupied movement,201-clear turn, combat/cover completion and containing follow/authority remain required. Temporary native sanitizer endpoint doubles and strict actual-host link do not establish full ABI/application/desktop equivalence. No new callee/body or engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_pending.h",
         "recovered/game/human_active_ai_state_loading.h",
         "analysis/human-h8-pending-source.md",
-        "analysis/checkpoints/p2.2-human-h8-pending-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-pending-20261116.json",
+        "recovered/game/human_active_ai_task_completion.h",
+        "analysis/human-h8-task-completion-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json"
       ]
     },
     {
@@ -46452,6 +46455,32 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-active-command-source.md",
         "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00535c00",
+      "status": "partial",
+      "coverage": "202-before-pending gate, ordinary/default standalone follow resume,3 target-kind and8-13/30 follow stops, offline7 name before retail logger and exact required combat prefixes.",
+      "limitations": "Source-only typed adaptation on actual Active/World owners. Combat/cover32/40/41/42, nonoffline005A81C0 and retired-target event policy remain required. Full target task/turn/occupied/follow/authority/application/desktop remains open. Native Human/name/pending endpoints are explicit doubles; actual host i386 is linked only. No delegated callee or engine credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_completion.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "analysis/human-h8-task-completion-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005376f0",
+      "status": "partial",
+      "coverage": "189 gate,188-derived first mode,174 mask, actual cached leader/position and extended ordered distance threshold with B05C1000/2000/4000; no follow enable or notification.",
+      "limitations": "Source-only typed adaptation on actual Active/World owners. Combat/cover32/40/41/42, nonoffline005A81C0 and retired-target event policy remain required. Full target task/turn/occupied/follow/authority/application/desktop remains open. Native Human/name/pending endpoints are explicit doubles; actual host i386 is linked only. No delegated callee or engine credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_completion.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "analysis/human-h8-task-completion-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json"
       ]
     }
   ]
