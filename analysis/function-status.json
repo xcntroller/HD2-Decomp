@@ -46271,13 +46271,15 @@
       "program": "client",
       "entry": "0045bd10",
       "status": "partial",
-      "coverage": "Selected ordinary target-model/sort-first candidate selection; definition lookups, first-candidate actions, type21 claim and Human focus gates; required specialized policies.",
-      "limitations": "Source-only typed/STL/RAII adaptation. Specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full follow/authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
+      "coverage": "Selected ordinary target-model/sort-first candidate selection; definition lookups, first-candidate actions, type21 claim and Human focus gates; required specialized policies. Action15 now skips the target Human and selects the first medical-equipped candidate after native model/sort prefix.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Other specialized selection/producers, group4/00457820, target-task execution/turn/occupied/completion, full containing authority and application/desktop acceptance remain required. No original object/vtable/allocator ABI or engine/delegated callee credit. Native sanitizer endpoints are explicit doubles; actual-host Windows fixtures are linked only.",
       "evidence": [
         "recovered/game/human_active_ai_commands.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-active-command-source.md",
-        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-active-command-20261116.json",
+        "analysis/human-h8-authority-policy-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
       ]
     },
     {
@@ -46600,6 +46602,118 @@
         "recovered/game/players_process.h",
         "analysis/human-h8-follow-source.md",
         "analysis/checkpoints/p2.2-human-h8-follow-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00537690",
+      "status": "partial",
+      "coverage": "Nonzero1B4 subtraction with DWORD wrap; signed<=0 clears timer and pending1CC mode, preserving zero gate.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Concrete same-owner bindings and focused native endpoint doubles; original ABI/SEH/allocator equivalence and desktop execution unverified. Containing00526550 has not yet been integrated; other specialized task/positive group and authority policies remain required. No H8.4/delegated body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_frame_policy.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-policy-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005376c0",
+      "status": "partial",
+      "coverage": "Nonzero1B8 subtraction with DWORD wrap; signed<=0 clears timer and pending1D4 mode, preserving zero gate.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Concrete same-owner bindings and focused native endpoint doubles; original ABI/SEH/allocator equivalence and desktop execution unverified. Containing00526550 has not yet been integrated; other specialized task/positive group and authority policies remain required. No H8.4/delegated body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_frame_policy.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-policy-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052d460",
+      "status": "partial",
+      "coverage": "Actual query movement hysteresis with native extended distance and equality/unordered retention; leader/flags/query publication and stamina/focus/nearby overrides.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Concrete same-owner bindings and focused native endpoint doubles; original ABI/SEH/allocator equivalence and desktop execution unverified. Containing00526550 has not yet been integrated; other specialized task/positive group and authority policies remain required. No H8.4/delegated body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_frame_policy.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-policy-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005325c0",
+      "status": "partial",
+      "coverage": "First-order-kind snapshot before item refresh, actual formation output/distance, query/posture/task/order/target gates and actual name-before-preset publication.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Concrete same-owner bindings and focused native endpoint doubles; original ABI/SEH/allocator equivalence and desktop execution unverified. Containing00526550 has not yet been integrated; other specialized task/positive group and authority policies remain required. No H8.4/delegated body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_frame_policy.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-policy-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00526400",
+      "status": "partial",
+      "coverage": "Self-treatment eligibility/cooldown/skill/health gates, CRT modulo, actual medical identity and immediate common35 before separate engine RNG and wrapped timer.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Concrete same-owner bindings and focused native endpoint doubles; original ABI/SEH/allocator equivalence and desktop execution unverified. Containing00526550 has not yet been integrated; other specialized task/positive group and authority policies remain required. No H8.4/delegated body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_frame_policy.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-policy-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a7e00",
+      "status": "partial",
+      "coverage": "Actual holder5 kind13 without cooldown then reverse holster FRONT-only kind13 unsigned cooldown query on actual storage owners.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Concrete same-owner bindings and focused native endpoint doubles; original ABI/SEH/allocator equivalence and desktop execution unverified. Containing00526550 has not yet been integrated; other specialized task/positive group and authority policies remain required. No H8.4/delegated body credit.",
+      "evidence": [
+        "recovered/game/human_holster_lookup.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-policy-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00535630",
+      "status": "partial",
+      "coverage": "Target health before own medical query; rejected speech or actual target-task15 publication and optional focus exit before delayed214 store.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Concrete same-owner bindings and focused native endpoint doubles; original ABI/SEH/allocator equivalence and desktop execution unverified. Containing00526550 has not yet been integrated; other specialized task/positive group and authority policies remain required. No H8.4/delegated body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-policy-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00528580",
+      "status": "partial",
+      "coverage": "Actual Active F4 switch, timers/modes, repeated identity/friendship/selected-D4/roster/model gates and native event transfer/speech/nearby notification order.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Concrete same-owner bindings and focused native endpoint doubles; original ABI/SEH/allocator equivalence and desktop execution unverified. Containing00526550 has not yet been integrated; other specialized task/positive group and authority policies remain required. No H8.4/delegated body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_events.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-policy-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
       ]
     }
   ]

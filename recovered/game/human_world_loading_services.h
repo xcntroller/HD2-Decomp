@@ -145,6 +145,31 @@ public:
     template<class Human>bool active_follow_force_sight(Human& human,Human& leader){return dependencies().sight.force_human_target(human,leader);}
     template<class Entry>auto active_follow_item_command(Entry entry){return dependencies().world_actors.items().runtime_item(entry).definition().equipment_command();}
     template<class Entry>auto active_follow_item_kind(Entry entry){return dependencies().world_actors.items().runtime_item(entry).definition().kind();}
+    template<class Human>auto active_self_treatment_health(Human& human){return human_hud_health_percent(human);} //005A5FF0, signed.
+    template<class Actor>auto active_medical_target_health(Actor& target){return human_frame_signed_word(selection_human(target).properties.stats_ec[0]);}
+    template<class Human>std::optional<std::int32_t> active_self_treatment_item(Human& human){ //005A7E00, holder5 BEFORE timed reverse holsters.
+        auto& items=dependencies().world_actors.items();const auto entry=find_human_medical_item(human,items,game_word28());
+        if(!entry)return std::nullopt;
+        return items.runtime_item(entry).identity;
+    }
+    float active_self_treatment_random(){return dependencies().scene.frames().volume_random_unit();} //ENGINE RandFloat, not CRT.
+    template<class Human,class Actor>bool active_event_hostile(Human& human,Actor* actor){
+        const auto& enemies=human.perception.lists()[0];return std::find(enemies.rbegin(),enemies.rend(),actor)!=enemies.rend(); //005A5E50.
+    }
+    template<class Actor>auto* active_event_selected(Actor& actor){ //B0 virtualA4; actual AI D4, Base/Player/Remote returnNULL.
+        using AI=typename Dependencies::Composition::StateFactory::AI;
+        auto& human=selection_human(actor);auto* state=dynamic_cast<AI*>(human.loading_state);
+        return state?state->resources().selected_actor():nullptr;
+    }
+    template<class Actor>bool active_event_roster_member(Actor& actor){
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=dynamic_cast<Human*>(&actor);return human&&dependencies().players.control().human_roster().contains(human); //00461A20.
+    }
+    template<class Actor,class Human>bool active_event_attacker_hostile(Actor& actor,Human& human){return dependencies().sight.human_sight_hostile(&selection_human(actor),&human);} //005A0980.
+    template<class Actor>auto active_event_actor_guard(Actor& actor){
+        const auto id=actor.base().id10();auto* expected=&actor;
+        return [this,id,expected]{if(dependencies().scene.frames().scene_actor_identity(id)!=expected)throw std::runtime_error("Active F4 callback retired its selected Actor borrower");};
+    }
     template<class State>void active_follow_ready_item(State& state){ //0058C330, same E0 then actual B0 virtual08.
         auto* human=state.human();if(!human)throw std::logic_error("Active follow readiness lost Human44");
         human_inline(*human).set_frame_item_ready(true,[&](std::uint32_t value){human_frame_first_person_state(*human,value);});
@@ -904,19 +929,22 @@ public:
             if(kind==1||kind==2||kind==3)perturb_player_damage_direction(state,*this,dependencies().scene.frames());
         }
         if((mode_flags()&7u)==7u&&source&&dependencies().sight.human_sight_hostile(source,human)){
-            auto& d=dependencies();auto& frames=d.scene.frames();const auto origin=frames.actor_world_matrix(human->base().frame());
-            auto& roster=d.players.control().human_roster();
-            for(auto n=roster.size();n;){ //0045F110, reverse same roster, strict30m test.
-                auto* member=roster.at(static_cast<std::int32_t>(--n));
-                if(!member||human_frame_signed_word(member->properties.stats_ec[0])<1||!member->loading_state||
-                        member->loading_state->words().template get<std::uint32_t>(0x48)!=3)continue;
-                const auto action=member->loading_state->player_handover().action;if(action!=14&&action!=15)continue;
-                const auto position=frames.actor_world_matrix(member->base().frame());
-                const float x=origin[12]-position[12],y=origin[13]-position[13],z=origin[14]-position[14];
-                const auto square=(static_cast<long double>(y)*y+static_cast<long double>(x)*x)+static_cast<long double>(z)*z;
-                if(square<900.f){auto* current=human_state_owner(*member).get();if(!current)throw std::logic_error("Player damage notification lost actual B0");
-                    human_state_factory(*member).notify_nearby_player_damage(*current);}
-            }
+            notify_nearby_player_damage(*human);
+        }
+    }
+    template<class Human>void notify_nearby_player_damage(Human& human){ //0045F110, SAME actual roster and existing receivers.
+        auto& d=dependencies();auto& frames=d.scene.frames();const auto origin=frames.actor_world_matrix(human.base().frame());
+        auto& roster=d.players.control().human_roster();
+        for(auto n=roster.size();n;){ //0045F110, reverse same roster, strict30m test.
+            auto* member=roster.at(static_cast<std::int32_t>(--n));
+            if(!member||human_frame_signed_word(member->properties.stats_ec[0])<1||!member->loading_state||
+                    member->loading_state->words().template get<std::uint32_t>(0x48)!=3)continue;
+            const auto action=member->loading_state->player_handover().action;if(action!=14&&action!=15)continue;
+            const auto position=frames.actor_world_matrix(member->base().frame());
+            const float x=origin[12]-position[12],y=origin[13]-position[13],z=origin[14]-position[14];
+            const auto square=(static_cast<long double>(y)*y+static_cast<long double>(x)*x)+static_cast<long double>(z)*z;
+            if(square<900.f){auto* current=human_state_owner(*member).get();if(!current)throw std::logic_error("Player damage notification lost actual B0");
+                human_state_factory(*member).notify_nearby_player_damage(*current);}
         }
     }
     std::uint32_t human_control_microseconds(){return dependencies().clock.microseconds();}

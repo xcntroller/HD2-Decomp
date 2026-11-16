@@ -46,12 +46,15 @@ template<class Human,class Actor,class Frames,class World>Human* select_active_c
     case 3:
         if(target.base().type()!=21||!world.active_command_seat_occupied(target,0))return humans.front();
         return nullptr;
+    case 15:
+        for(auto* human:humans)if(static_cast<Actor*>(human)!=&target&&world.active_self_treatment_item(*human))return human;
+        return nullptr;
     case 6:
         if(target.base().type()==3){for(auto* human:humans)if(!human->field174)return human;return nullptr;}
         if(target.base().type()==9)return humans.front();
         if(target.base().type()!=11)return nullptr;
         [[fallthrough]];
-    case 15:case 18:case 22:case 24:case 25:case 26:case 37:
+    case 18:case 22:case 24:case 25:case 26:case 37:
         return world.select_special_active_command_candidate(humans,action,target,secondary);
     default:return nullptr; //Native switch has no accepted candidate.
     }
@@ -92,6 +95,12 @@ template<class AI,class World>void delay_active_focused_task(AI& ai,World& world
     world.active_command_exit_focus(ai,ai.state().template get<std::int32_t>(0x20c));
     ai.state().set(0x214,1000u); //Only AFTER actual00587540 returns.
 }
+template<class AI,class Actor,class Frames,class World>void produce_active_medical_task(AI& ai,Actor& target,Frames& frames,World& world){ //00535630.
+    if(world.active_medical_target_health(target)<=0||!world.active_self_treatment_item(*ai.human())){
+        world.reject_active_command(*ai.human());return;
+    }
+    start_active_target_task(ai,target,15u,false,1.5f,true,frames,world);delay_active_focused_task(ai,world);
+}
 //Selected ordinary00458E50 task producers. Full task execution is separate;
 //unsupported producers throw before claiming publication or completion.
 template<class AI,class Actor,class Frames,class World>void produce_active_player_command(AI& ai,
@@ -119,7 +128,10 @@ template<class AI,class Actor,class Frames,class World>void produce_active_playe
     case 34:
         if(!target)throw std::runtime_error("Active document task requires native target");
         if(!world.active_command_document_allowed(*ai.human(),*target)){reject();return;}start();return;
-    case 4:case 6:case 8:case 9:case 10:case 11:case 12:case 13:case 15:case 16:
+    case 15:
+        if(!target)throw std::runtime_error("Active medical task dereferences native NULL target");
+        produce_active_medical_task(ai,*target,frames,world);return;
+    case 4:case 6:case 8:case 9:case 10:case 11:case 12:case 13:case 16:
     case 19:case 22:case 23:case 24:case 25:case 26:case 32:case 37:
         world.produce_special_active_player_command(ai,action,target,secondary);return;
     default:return; //Native unhandled command still publishes188 in the caller.

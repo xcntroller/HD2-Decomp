@@ -11,6 +11,8 @@
 #include "game/human_active_ai_pending.h"
 #include "game/human_active_ai_task_completion.h"
 #include "game/human_active_ai_follow_frame.h"
+#include "game/human_active_ai_frame_policy.h"
+#include "game/human_active_ai_events.h"
 
 namespace hd2::game {
 
@@ -116,6 +118,18 @@ public:
     void start_pending_task_effect(){start_active_task_effect(*this);}
     void notify_pending_group(){services_.active_task_group_arrival();}
     void advance_follow_frame(){advance_human_active_follow(*this,this->state_frames(),services_);}
+    void expire_frame_modes(std::uint32_t elapsed){
+        expire_active_mode(state_,0x1b4,0x1cc,elapsed);expire_active_mode(state_,0x1b8,0x1d4,elapsed);
+    }
+    void select_frame_navigation_gait(bool following){select_active_navigation_gait(*this,following,services_);}
+    void select_frame_direction_preset(){select_active_direction_preset(*this,this->state_frames(),services_);}
+    void advance_frame_self_treatment(){advance_active_self_treatment(*this,services_);}
+    void drain_frame_events(){drain_active_frame_events(*this,this->state_frames(),services_);}
+    unsigned active_event_mode()const{
+        if(!action_mode_)throw std::runtime_error("Active F4 requires actual initialized action mode1D8");
+        return *action_mode_;
+    }
+    void active_event_action_mode(unsigned mode){set_action_mode(mode);}
     void complete_pending_task(std::uint32_t action){complete_human_active_task(*this,action,services_);}
     void require_live_task_target()const{if(task_target_retired_)throw std::runtime_error("Active task requires its retired-target event policy");}
     bool process_pending_orders(std::uint32_t elapsed){return process_human_active_pending_orders(*this,elapsed,this->state_frames(),services_);}

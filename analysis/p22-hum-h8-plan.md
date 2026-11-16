@@ -138,7 +138,8 @@ separate from execution and containing authority.
 
 - [x] Selected ordinary kind3 filtering, target tasks, actual DC focus exit,
   Door/document inventory eligibility and required failure publication prefixes.
-- [ ] Specialized item/attachment/treatment selection and remaining task producers.
+- [x] Medical15 selection/task producer and actual holder5/holster query [checkpoint](human-h8-authority-policy-source.md).
+- [ ] Other specialized item/attachment selection and remaining task producers.
 - [ ] Actual00457820 group/navigation production and group4 selector.
 - [x] Ordinary standalone task completion and distinct follow resume [checkpoint](human-h8-task-completion-source.md).
 - [x] Selected ordinary on-foot task arrival/turn/effect/wait/completion [checkpoint](human-h8-task-execution-source.md).
@@ -148,17 +149,32 @@ separate from execution and containing authority.
 
 Keep H8.2 open until all required offline receivers are bound and verified.
 
-The ordinary completion checkpoint closes selected00535C00/005376F0 and permits
-standalone on-foot52 completion. Remaining execution dependencies include
-005374A0/005387C0, target arrival00535E70 and **target Actor**, not Active,
-00538A60 capability. Nonoffline name lookup and32/40/41/42 completion remain
-required. Full00536120 follow is a separate containing-frame dependency.
-
-Latest ordinary execution binds selected00528950/00535E70/005374A0/005387C0,
-Human Actor00538A60 and Door006029F0. Other selected task producers and full
-follow/containing authority remain required. Keep H8.2 open.
-
-Latest [on-foot follow checkpoint](human-h8-follow-source.md) binds actual
+The [on-foot follow checkpoint](human-h8-follow-source.md) binds actual
 formation/query/posture/Sight/readiness and distinct virtual20=00459490 versus
-direct task00456F00. Populated F8 command-members, specialized producers/effects
-and containing authority remain H8.2; occupied follow remains H8.4.
+direct task00456F00. Occupied follow stays with H8.4.
+
+## Remaining authority assembly within H8.2
+
+[Authority helpers and medical/event checkpoint](human-h8-authority-policy-source.md)
+binds source APIs; containing00526550 is still REQUIRED and not yet connected.
+This list separates completed owners from the remaining policy dependencies.
+
+- [x] Actual pending/task/follow ordinary source paths (links above).
+- [x] Active F4 event dispatch00528580 and actual incoming/processed event leases.
+- [x] Temporary mode expiry00537690/005376C0, navigation gait0052D460,
+  direction preset005325C0 and self-treatment00526400.
+- [ ] Containing00526550: base timers,248 nearby-actor scan00478AE0,
+  234/1C4/1A4/1B0 timers and actual shared74/78 input publication.
+- [ ] On-foot0052E310 avoidance and0052DC10 receiver, query result policy,
+ 0052B810 movement/target selection and reached helper producers.
+- [ ] Event/cover decisions005276E0 and its actual processed-event/roster/target owners.
+- [ ] Bind native containing order, aim/reload/trigger/movement/items/preset/direction,
+  processed-event retirement and medical tail; complete remaining offline receivers.
+- [ ] Populated00457820/00456F00 command-member production; remaining specialized
+  producer/effect/turn/cover/completion families.
+
+Newly exported original policy bodies are in WORK `human-h8-authority-policy`;
+reuse those before another export. Specialized producers, gait and mode/medical
+helpers already have existing C in earlier folders. Do not re-audit completed
+kernels absent a discrepancy. H8.4 attachment/Car/seat policies remain external.
+Keep H8.2 open; after it completes this branch owns H8.3.

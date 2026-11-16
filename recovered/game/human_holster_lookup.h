@@ -20,5 +20,14 @@ template<class Human,class Items>auto find_player_mode_holster(Human& human,Item
     }
     return Entry{};
 }
+//005A7E00. The held kind13 bypasses cooldown; fallback checks the front of
+//each occupied holster in reverse, through the existing005A6730 owner.
+template<class Human,class Items>auto find_human_medical_item(Human& human,Items& items,std::uint32_t now){
+    auto* storage=human.base().storage();
+    if(!storage||storage->single()||!storage->holder(5))throw std::runtime_error("Human medical query requires actual holder5");
+    const auto held=storage->holder(5)->entry();
+    if(held&&items.runtime_item(held).definition().kind()==13)return held;
+    return find_player_mode_holster(human,items,13,now);
+}
 } //namespace hd2::game
 #endif
