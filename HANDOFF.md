@@ -1,72 +1,74 @@
 # P22-HUM H8 handoff — 2026-11-16
 
-Worktree `HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`. PACK is already
-finished, as confirmed by the user. Its worktree was deleted; do not return there
-or reopen completed PACK requirements. Continue H8.2, then H8.3. Another agent owns H8.4: leave its worktree, branch
-and occupied/Car/seat/absent-actor implementation to them. Preserve other
-worktrees. No push or original EXE/DLL/Proton/Windows fixture execution. Heavy
-compilation and Ghidra must run sequentially. Source recovery is not desktop
-acceptance; application loading and full H8 remain OPEN.
+Worktree `HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`. PACK is finished;
+do not revisit its deleted worktree. This branch owns H8.2, then H8.3. Another
+agent owns H8.4: leave its branch/worktree and occupied/Car/seat/absent-actor
+implementation to them. Preserve other worktrees. No push or original EXE/DLL/
+Proton/Windows fixture execution. Heavy compilation and Ghidra sequentially.
+H8.2/H8/application loading and user desktop acceptance remain OPEN.
 
-Latest: [Active authority helpers, events and medical production](analysis/human-h8-authority-policy-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json), after
-[on-foot follow](analysis/human-h8-follow-source.md) eb44e0b. Actual APIs now bind
-00537690/005376C0 mode expiry,0052D460 gait,005325C0 direction preset,00526400
-self-treatment,00528570→005A8480→Active F4/00528580 event dispatch, plus selected
-0045BD10 medical15 and00535630 producer with shared005A7E00 holder/holster query.
-**Containing00526550 is still required and does not call these helpers yet.**
-Actual command15 is reachable through the existing dispatch; no loading enabled.
+Latest: [actual containing Active authority prefix](analysis/human-h8-authority-prefix-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-authority-prefix-20261116.json), after
+19ac12b. World→actual factory→SAME Active now executes00526550 through005376C0:
+bit800 return; actual AI/base timers;248 nearby00478AE0/244;234/1C4/1A4/1B0;
+actual Startup shared74/78 input clear/bind; native pending/task/follow dispatch;
+actual incoming/processed F4 event drain; mode expiry. Runtime now requires the
+REMAINING00526550 body AFTER that prefix; no idle success or frame tail.
 
-Preserve gait hysteresis (>36 fast,<9 slow,middle/equality/unordered retain170;
-nonzero1B0 uses2.25/.25), extended distance, discarded1C0 arithmetic and override
-order. Preset snapshots first-order kind BEFORE refresh but rereads flags AFTER;
-formation consumes88; raw Z FLOAT,DOUBLE5.0/final FLOAT49; name BEFORE preset.
-Self-treatment accepts B0+B0=5000, skill/health gates precede CRT RNG, identity0
-is valid, common35 BEFORE separate ENGINE RandFloat and timer. Active F4 moves
-actual event leases; borrowed models survive BOTH lazy updates;40000011 writes
-19C only after merge;40000015 speech precedes timer/merge. Shared0045F110 source
-is extracted from existing Player damage binding, not another implementation.
+Preserve optional result: nullopt=bit800 genuine return, presentfalse still
+requires the body. Special task32/206-clear calls task+follow unconditionally.
+248=250 BEFORE nearby callback/244; failed scan retains prior244.1C4 uses unsigned
+elapsed, extended .1f subtraction, FLOAT store then extended negative clamp.
+Nearby scan traverses actual registry+10 owned actors in reverse, including
+inactive; not active+20. Type2 only, wrapped integer radius and extended strict
+(Z²+X²)+Y²; equality/unordered fail. Same registry host facade, no copied list.
 
-Focused ASan/UBSan/leak, strict actual-host i386 and final sequential launcher/
-probe results and exact audit fingerprints are in receipt. Windows artifacts
-never run; temporary audits fingerprinted and removed. Eight new partials and
-extended0045BD10;34 complete/3475 partial (3470 client,5 engine). Full H8.2/H8 and
-application/desktop remain OPEN. Another agent owns H8.4.
+Focused ASan/UBSan/leak PASS5000 checks /100 prefix ownership/order matrices.
+Actual registry/query/resources/base+AI timers/inputs/mode/prefix kernels with
+explicit backend/Human/frame/World/task/follow/event/completion endpoints.
+Those task/follow/event bodies were separately verified. Strict full World/
+factory/Active i386 and sequential final launcher/probe links, ledger and27 tests
+are in receipt. Windows artifacts never run; temporary audits fingerprinted and
+removed. Two new partials;34 complete/3477 partial (3472 client,5 engine).
 
-**NEXT H8.2:** complete actual on-foot avoidance0052E310→0052DC10, movement
-0052B810 and cover/event005276E0, containing00526550 timers/nearby00478AE0/shared
-inputs/query-result/aim/reload/movement/items/preset/direction/events/medical order,
-populated00457820/00456F00 group command-member producers, other specialized
-task producers/effects and remaining offline receivers. H8.3 follows H8.2.
-Occupied/Car/seat/absent-actor policy stays with H8.4.
+Previous source checkpoints this continuation:
+- eb44e0b [on-foot follow](analysis/human-h8-follow-source.md),99400 native checks.
+  Players virtual20=00459490 is DISTINCT from task direct00456F00. The former
+  postpones roster1A4 and NEVER changes group A8; F8 command-members is distinct
+  from five4C..8C group buffers. Populated group production remains required.
+- 19ac12b [gait/preset/events/medical](analysis/human-h8-authority-policy-source.md),
+  45900 native checks. Gait hysteresis, raw extended/FLOAT spill boundaries,
+  first-order-kind-before-refresh/fresh-flags-after, ENGINE-vs-CRT RNG ordering,
+  immediate medical commands and event lease transfer/re-entry are documented.
+  Existing Player damage0045F110 notification is shared, not implemented again.
 
-Existing C: authority4029 bytes under `frame-human-script-and-active-workers`;
-newly exported00528580/005325C0/**005276E0/0052B810/0052E310/00478AE0**/005A7E00
-under `human-h8-authority-policy`; mode/self-treatment under
-`human-h8-active-frame-workers`, gait under `human-h8-active-task-workers`.
-Reuse these. The next required movement dependency index is
-`human-h8-authority-movement-dependencies-index.txt`:0052DC10(1786bytes),0052B180
-(988),0052D0D0(848),0052A5D0(550),0052CEA0(31),0052F160(137),0052F700(72),
-0052B080(221) currently have NO local C export. Index before further exports.
-
-Existing PACK source contracts: [common](analysis/human-h8-pack-common-source.md),
-[effects](analysis/human-h8-pack-effects-source.md),
-[actions/speech](analysis/human-h8-pack-action-resume-source.md),
-[HeavyFire](analysis/human-h8-pack-heavy-support-source.md). Those owners are
-already committed through51082a2; no repeat audit is needed without new evidence.
+**NEXT H8.2:** on-foot0052E310→0052DC10→0052D720 navigation clamp; remaining
+0052B810 movement,005276E0 cover/event decisions; containing attachment-aware
+query-result/aim/reload/trigger/movement/items/preset/direction/event retirement/
+medical tail. Also populated00457820/00456F00 command-members, other specialized
+task/effect producers and remaining offline receivers. No H8.4 implementation.
+After H8.2 proceed H8.3 async combat. [Current plan](analysis/p22-hum-h8-plan.md).
 
 WORK=`analysis/work/mission-world-20261103`. Research index BEFORE new exports:
-`python3 -B tools/research_index.py find ADDRESS...`. Existing worker C and raw evidence are listed in the contracts.00458E50 is under
-`human-h8-pending-players`;005376F0/00535E70/00538A60 are under
-`human-h8-command-execution`.005374A0/005387C0 are now exported under
-`human-h8-task-execution-tail`;006029F0 under`human-h8-task-door-ready`.
-Raw0053505B proves00538A60 ECX=target Actor, not Active. Reuse these exports. Original SHA
-8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+`python3 -B tools/research_index.py find ADDRESS...`. Reuse existing C:
+-00526550(4029bytes): `frame-human-script-and-active-workers`.
+-00528580/005325C0/**005276E0/0052B810/0052E310/00478AE0**/005A7E00:
+ `human-h8-authority-policy`; mode/self-treatment under `human-h8-active-frame-workers`.
+-0052DC10(1786),0052B180(988),0052D0D0(848),0052A5D0(550),0052CEA0(31),
+ 0052F160(137),0052F700(72),0052B080(221): `human-h8-authority-movement`.
+-0052D720(1261): `human-h8-avoidance-query`; raw prefix and original clamp C.
+ These last two folders are EXPORTED-ONLY dependencies, NO source/ledger credit.
+-005230D0 route length(236bytes): indexed in `human-h8-avoidance-route-length-index.txt`,
+ NO local C export yet. Required byD720 different-point route-distance gate.
+ Existing005223B0 delegates actual route search; do not infer its local mask byte
+ or x87 spill behavior from truncated C. See avoidance/query raw ASM and contracts.
+
+Original SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
 Read-only/noanalysis Ghidra: `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`,
 project `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
-hd2.unpacked.exe. Check ERROR even with exit0; no saved project/type mutations.
-Build: `make -C recovered -j1 application-launch startup-probe
+hd2.unpacked.exe. Check ERROR even with exit0; no saved project/type mutation.
+Build `make -C recovered -j1 application-launch startup-probe
 WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
-Ledger: `python3 -B tools/function_progress.py --render`/`--check` and existing
-`python3 -B tools/test_function_progress.py`. Keep documentation
-consolidated and commit meaningful verified source checkpoints.
+Ledger `python3 -B tools/function_progress.py --render`/`--check`; tracker
+`python3 -B tools/test_function_progress.py`. Consolidate docs/tallies at meaningful
+verified source checkpoints. Do not repeat unchanged H1–H7/PACK audits.

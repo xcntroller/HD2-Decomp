@@ -13,6 +13,7 @@
 #include "game/human_active_ai_follow_frame.h"
 #include "game/human_active_ai_frame_policy.h"
 #include "game/human_active_ai_events.h"
+#include "game/human_active_ai_authority_prefix.h"
 
 namespace hd2::game {
 
@@ -130,6 +131,7 @@ public:
         return *action_mode_;
     }
     void active_event_action_mode(unsigned mode){set_action_mode(mode);}
+    template<class Queries>auto begin_authority_frame(std::uint32_t elapsed,Queries& queries){return begin_active_authority_frame(*this,elapsed,queries,services_);}
     void complete_pending_task(std::uint32_t action){complete_human_active_task(*this,action,services_);}
     void require_live_task_target()const{if(task_target_retired_)throw std::runtime_error("Active task requires its retired-target event policy");}
     bool process_pending_orders(std::uint32_t elapsed){return process_human_active_pending_orders(*this,elapsed,this->state_frames(),services_);}

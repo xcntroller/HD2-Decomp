@@ -1,0 +1,319 @@
+{
+  "date": "2026-11-16",
+  "source_only": true,
+  "h8_2_complete": false,
+  "p22_hum_complete": false,
+  "h8_4_owner": "Another agent; H8.4 implementation untouched.",
+  "containing_authority_prefix_connected": true,
+  "remaining_authority_body_required": true,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "base_commit": "19ac12b2cf319f41ac2ee23ddca88887fbb16d05",
+  "contract": "analysis/human-h8-authority-prefix-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_active_ai_authority_prefix.h",
+      "bytes": 3575,
+      "sha256": "045fd7812a7e9c50f4d1a17f3d6f52640ab239a3568ce493488a3b24567c1bfc"
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "bytes": 21484,
+      "sha256": "46d2508946b2089c43aae067f708afc827da1f426fbcfd703ad0c293208631d6"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 6299,
+      "sha256": "7fcf82e2a314f4359dbdc7b41d95de16c19658ec0195b0b17b436808bf558384"
+    },
+    {
+      "path": "recovered/game/human_loading_state_factory.h",
+      "bytes": 16726,
+      "sha256": "919e423aeceb30c5df658caf7fec3af692076c61dcc2b277e4d792baa6388f00"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 233576,
+      "sha256": "08f19d08d6b68bdc573db9d1a305c9ad402522d2c653ac99ae7a1617a70005c7"
+    },
+    {
+      "path": "recovered/game/runtime_actor_registry.h",
+      "bytes": 9338,
+      "sha256": "941504c2618163305fd7c02e00c7175d10be718f0d8706f047c0371652f9f84f"
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "bytes": 17398,
+      "sha256": "6ad21d5a8b73ee91493f78c1b62c81eed2c8640900a4b6efef485eb2f0bb34a5"
+    }
+  ],
+  "original_image_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-script-and-active-workers/00526550.c",
+      "bytes": 21680,
+      "sha256": "cc18ea566ad53bc35a9628be582bac0677dd7fc2822daed6d39db2c158e71b26"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-script-and-active-workers/00526550.json",
+      "bytes": 49435,
+      "sha256": "353778cfa60b06d615533e1869214eb7e1b2cbdeb685b6cec921bf3942fd80c4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-policy/00478ae0.c",
+      "bytes": 1250,
+      "sha256": "62fc1a2922d2b0388dbefbd4445dd9f1171204009b87775a56a2f724c2543b2a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-policy/00478ae0.json",
+      "bytes": 2895,
+      "sha256": "953a8433832595622fcc3626ef79ac970102a7c65fe8386e1462f40ac2af7cfa"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix.asm",
+      "bytes": 7281,
+      "sha256": "35f98f7f76d6c221c6bc85b30313d6bec7ed8267c38fad5b1de8d27e466c0dfb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-nearby.asm",
+      "bytes": 3523,
+      "sha256": "f852acf018333e38ff0fc91f9e200902ef7491f6a494abbe5eeb43826d49825b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-next-index.txt",
+      "bytes": 14083,
+      "sha256": "9b7dcc9ef1940901fad2e1118fed16a8c2107ce5e83048d6d0d1201f5093b561"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-dependencies-index.txt",
+      "bytes": 10356,
+      "sha256": "2e4a3a9b603812cd0ef2ff9daa15b81105a0f13c8682b045808dcb1cb881b96c"
+    }
+  ],
+  "next_research_evidence_no_source_credit": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052a5d0.c",
+      "bytes": 2602,
+      "sha256": "e4f9e8b05d12fc30887482cb68cb2135b6692f702b95cdc2aec5b28016a9493c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052a5d0.json",
+      "bytes": 11500,
+      "sha256": "57de09df1a4ee2e7d14ebb428f473042e68339ffdfc2f52e89fc1cc5bbb64fd8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052b080.c",
+      "bytes": 771,
+      "sha256": "d071bbeafe9ec9d801999d2200ce412fafb247278ec2807319019b4bb13587a2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052b080.json",
+      "bytes": 2563,
+      "sha256": "4fe09533e1001c3b09e6b7ce1aa5d1888a8fd6e683a758aa56f111fcb10466bb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052b180.c",
+      "bytes": 4846,
+      "sha256": "8d1788ca3c427a10a6580e5e491f8e1f37a2f47ecbdaaa04cac44b7019d43ffd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052b180.json",
+      "bytes": 17362,
+      "sha256": "0b4ae808d60f89f4a79607fa54d444cf4c9ab74fc415b1d8681af046e498f48b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052cea0.c",
+      "bytes": 127,
+      "sha256": "85d3f1f73d4958c10ce0c0bf08e351285360eb29932ea3d847e212b41987b225"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052cea0.json",
+      "bytes": 1375,
+      "sha256": "f27ed2433b3936ac1845579d13f54a95a95fbd6e76ed9b2c5f74bb3618463e55"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052d0d0.c",
+      "bytes": 4806,
+      "sha256": "6dd88f34a1ea5a5829d3cd665bc471397a01d867242b883b92beebcdc7883b7c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052d0d0.json",
+      "bytes": 14727,
+      "sha256": "c413d20c804362590bf47dc2870753c40836120b0ded86ea5732282434c911ee"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052dc10.c",
+      "bytes": 6024,
+      "sha256": "4cd22d9f20dc1a5ac0e690baaa6748353fc4c2d5644b9a019b1e04791d27eb9c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052dc10.json",
+      "bytes": 47801,
+      "sha256": "8ff0b474eb00faf3eb21bd93758bcaeb32e9873282e83daf2a5a444c477bd149"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052f160.c",
+      "bytes": 897,
+      "sha256": "841876c78f86aaf9519bb122fcbcbd105b06fe92c80ea703131906bb1362620d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052f160.json",
+      "bytes": 2107,
+      "sha256": "cfe8bfe7f9ff7a5f796927f303c0b15a6c87714e025b1b46e67e90433f066fdc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052f700.c",
+      "bytes": 571,
+      "sha256": "0ac78c18afc7d6ac7f970909ac6fd96f4a9830bec69a467403e9a2d371d15767"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052f700.json",
+      "bytes": 1102,
+      "sha256": "260d4f757567c6d70f3bb22fb51e472f6fbe43ff092015ca98a5cde5dbe78c06"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-avoidance-query/0052d720.c",
+      "bytes": 4645,
+      "sha256": "d1f7ffa2898531d221e232cbfb736022afe6861f3fd5fc9bd05e52ae6b164f76"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-avoidance-query/0052d720.json",
+      "bytes": 32167,
+      "sha256": "cd0898d68dccc1c9b682bd85d55f20cdd6b822ab27dfdcfb5965a9daf407c12b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement-dependencies-index.txt",
+      "bytes": 7008,
+      "sha256": "f43e6e99c18eef8949df71c88c176e07d736fb0b91b6c3da686428619fe63dc7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-avoidance-index.txt",
+      "bytes": 6517,
+      "sha256": "0719cd3031f6917216b96ea480e0a928811038ebdaa6a767b67e90f8f79a701e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-avoidance-route-length-index.txt",
+      "bytes": 1467,
+      "sha256": "5f2c2898493d5c1f1c5634f3cf46db34f153559f0c75f63941e3a3b8237bea1a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-avoidance.asm",
+      "bytes": 27267,
+      "sha256": "c6b68eca4fededbdb6a43b4e0d928ca1ce906812ec7b0e522dd50afe99ebd0e5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-avoid-player.asm",
+      "bytes": 10449,
+      "sha256": "8665cd4096f0009a6183acdfb5ec93006010282d79418362bf9658deba52f9ce"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-avoidance-query-prefix.asm",
+      "bytes": 4894,
+      "sha256": "44aaa4d79c9457b86c08868225f2b74bb83365a4fddf5d33c489478009c9bb41"
+    }
+  ],
+  "new_partial_entries": [
+    "00526550",
+    "00478ae0"
+  ],
+  "no_new_credit": [
+    "Exported-only avoidance/movement/query dependencies",
+    "Existing base timers/task/follow/events/modes and delegated engine calls",
+    "H8.4 occupied/Car/seat/absent-actor policies"
+  ],
+  "ledger_totals": {
+    "complete": 34,
+    "partial": 3477,
+    "client_partial": 3472,
+    "engine_partial": 5
+  },
+  "verification": {
+    "native_sanitizers": "PASS5000 assertions /100 authority-prefix ownership/order matrices, ASan/UBSan/leak. Actual runtime registry, AI resources/query/timer kernels, base timers/shared inputs/mode expiry and containing prefix; explicit backend/Human/frame/World/task/follow/event/completion endpoints. Prior checkpoints verify reused workers.",
+    "concrete_i386": "PASS final strict -Wall/-Wextra/-Wpedantic/-Werror actual full World/factory/Active authority prefix and required Runtime remainder link; not executed.",
+    "launcher_probe": "PASS final sequential -j1 application-launch startup-probe compile/link; not executed.",
+    "tracker_tests": "PASS27.",
+    "ledger": "PASS frozen inventories/evidence/README and git diff --check."
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-native.cpp",
+      "bytes": 9414,
+      "sha256": "e94391cf26fb46ef672975bad1efed3649423399968f39288f22f1f6937a4115"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-native",
+      "bytes": 3490032,
+      "sha256": "a50d9030d11e2cf2232a16708da349306b882d2aaf7d302e5a570bc9105e9286"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-host.cpp",
+      "bytes": 373,
+      "sha256": "cca8850a2cd82c03a4eea8bd4ca15b2e0ed10abb03d5499a6545d436344b77b0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-host.exe",
+      "bytes": 7387648,
+      "sha256": "38d73400e7da4f568acc870e80dd1b590538ca7135fed91e9e942b0d8e6fd4dd"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-movement-export.log",
+      "bytes": 5179,
+      "sha256": "46549956594828b80b5cdd05a00d85f3753ccf6fcfe3154e1be3802f20f4551d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-application-link.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-host-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-ledger-check.log",
+      "bytes": 437,
+      "sha256": "ffe4bb06f3738bf19c61ae3ff57fd961eb86921422dce4889d0098abf5d9dcc2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-ledger-render.log",
+      "bytes": 380,
+      "sha256": "35a6247d6cc3f3eb4f2922e7ca3cb198de98e5e02642b6e0ba3c9e646c6a5861"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-native-run.log",
+      "bytes": 71,
+      "sha256": "68e781b00e781944936200561b3c38fe408ede54505148fea51840a756331149"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-authority-prefix-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "8b2f659099c3d525331665dc15ef749b27dbea4add879f3408d4c6b1f1b11b84"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-avoidance-query-export.log",
+      "bytes": 4455,
+      "sha256": "784c391ad9b9c95e478ea5e7939e485b896b71ae311210e95f1d42f0724eb594"
+    }
+  ],
+  "windows_artifacts": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 3963392,
+      "sha256": "3d1690a99d8dbe9c1ae9b0c4c691dbdd70e688975e8d26f2e3799c7d423a4862"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1165312,
+      "sha256": "0b2bf22cf4d2b0ad0eb2308b779cca3b4dbd9a3a113721ce7cb9b63d3f02951b"
+    }
+  ]
+}

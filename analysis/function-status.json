@@ -46715,6 +46715,42 @@
         "analysis/human-h8-authority-policy-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-policy-20261116.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00526550",
+      "status": "partial",
+      "coverage": "Actual World/factory/Active authority prefix: bit800 return, base timers,248 nearby scan and234/1C4/1A4/1B0 timers, actual shared inputs, pending/task/follow short circuit, actual event drain then mode expiry; required remaining body after this native prefix.",
+      "limitations": "Source-only typed/STL/RAII adaptation with explicit native endpoints and concrete i386 World binding. Remaining00526550 avoidance/movement/decision/output body and H8.2 are REQUIRED. H8.4 occupied policies untouched. No original ABI/SEH/allocator or application/desktop equivalence claimed; no delegated/exported-only body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_authority_prefix.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/runtime_actor_registry.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-authority-prefix-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-prefix-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00478ae0",
+      "status": "partial",
+      "coverage": "Reverse actual registry+10 owned actor traversal including inactive actors; type2 model query, wrapped integer-radius square and extended strict distance; actual swap-in owner retirement order retained.",
+      "limitations": "Source-only typed/STL/RAII adaptation with explicit native endpoints and concrete i386 World binding. Remaining00526550 avoidance/movement/decision/output body and H8.2 are REQUIRED. H8.4 occupied policies untouched. No original ABI/SEH/allocator or application/desktop equivalence claimed; no delegated/exported-only body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_authority_prefix.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/runtime_actor_registry.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-authority-prefix-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-prefix-20261116.json"
+      ]
     }
   ]
 }

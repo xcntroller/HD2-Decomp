@@ -122,6 +122,10 @@ public:
         active_.clear();toggles_.clear();removals_.clear();clearing_=false;
     }
     const std::vector<Actor*>& active_actors() const {return active_;}
+    template<class Predicate>bool any_owned_reverse(Predicate&& matches)const{ //Borrow actual+10 order; no copied actor list.
+        for(auto n=owners_.size();n;)if(matches(*owners_.at(--n).owner))return true;
+        return false;
+    }
     template<class Predicate>void remove_owned_forward(Predicate&& matches){ //00479700; native increment still skips a swapped-in owner after removal.
         for(std::size_t index=0;index<owners_.size();++index){auto* actor=owners_[index].owner.get();if(matches(*actor))remove(actor);}
     }

@@ -153,6 +153,7 @@ public:
         return items.runtime_item(entry).identity;
     }
     float active_self_treatment_random(){return dependencies().scene.frames().volume_random_unit();} //ENGINE RandFloat, not CRT.
+    bool active_authority_nearby(const HumanVector& position){return active_nearby_runtime_actor(dependencies().world_actors.runtime(),dependencies().scene.frames(),position,3u);}
     template<class Human,class Actor>bool active_event_hostile(Human& human,Actor* actor){
         const auto& enemies=human.perception.lists()[0];return std::find(enemies.rbegin(),enemies.rend(),actor)!=enemies.rend(); //005A5E50.
     }
@@ -1981,7 +1982,7 @@ public:
         auto& factory=owner.state_factory();
         if(kind==3&&!authority){factory.advance_active_presentation(*state,elapsed);return;}
         if(kind==5&&!authority){factory.advance_script_presentation(*state,elapsed,runtime);return;}
-        if(kind!=1&&kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
+        if(kind!=1&&kind!=3&&kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
         using Actor=SceneActor<typename Dependencies::ActorFrames>;
         using Base=std::remove_reference_t<decltype(*state)>;
         struct Queries {
@@ -2003,6 +2004,11 @@ public:
             }
             void finish_human_state_action(Base& state,bool success){complete_human_state_action(state,success,world,runtime);}
         } queries{*this,runtime};
+        if(kind==3){
+            if(factory.begin_active_authority(*state,elapsed,queries).has_value())
+                runtime.advance_human_state(human,authority,elapsed); //Required remaining00526550 body AFTER native prefix; no success fallback.
+            return;
+        }
         if(kind==1){factory.advance_player_frame(*state,authority,elapsed,queries,runtime);return;}
         if(kind==5){factory.advance_script_authority(*state,elapsed,queries,runtime);return;}
         if(factory.advance_guard_or_area_frame(*state,authority,elapsed,queries,runtime)){
