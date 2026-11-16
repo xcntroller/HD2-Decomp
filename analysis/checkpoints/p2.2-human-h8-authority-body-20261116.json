@@ -292,12 +292,11 @@
     "temporary_audit_sources_and_binaries_removed": true
   },
   "remaining_requirements": [
-    "specialized task25/26/22 and query-10 replan",
-    "unusual reload source slots",
+    "other specialized task/effect producers and task22/Dog orchestration",
     "positive process98 and populated group command members",
     "positive type36/type34/Dog owners and occupied bodies with H8.4",
-    "remaining reached offline action/hazard/water callbacks",
-    "ShotMgr H8.3",
+    "remaining reached offline action receivers",
+    "ShotMgr H8.3 including received ground-effect packet",
     "actual application integration and user desktop acceptance"
   ],
   "function_tally": {
@@ -742,6 +741,290 @@
       "client_partial": 3494,
       "engine_partial": 5
     },
+    "cleanup": {
+      "temporary_sources_and_binaries_removed": true
+    }
+  },
+  "specialized_follow_up": {
+    "date": "2026-11-16",
+    "base_commit": "b385907965a6da04d43b4e1ed2d562835a2fd9e0",
+    "source_only": true,
+    "h8_2_complete": false,
+    "application_loading_enabled": false,
+    "desktop_verified": false,
+    "scope": "Task25/26 on-foot pending progression/completion, target selection and -10 replanning; explicit valid reload source and actual hazard blast/packet plus water command/HUD orchestration. Existing PACK and H8.4 bodies unchanged.",
+    "source_files": [
+      {
+        "path": "recovered/game/human_active_ai_specialized_target.h",
+        "bytes": 6394,
+        "sha256": "e51e22520f72efeda36410483cd97d2ad13e86a1cf6ec8dc49943cc95ac969c0"
+      },
+      {
+        "path": "recovered/game/human_active_ai_authority_body.h",
+        "bytes": 30658,
+        "sha256": "26fff2b8340a434994f2885db80e2f78d14d303669d6a92dd81aa9099e69ba3a"
+      },
+      {
+        "path": "recovered/game/human_active_ai_avoidance.h",
+        "bytes": 12436,
+        "sha256": "8094e7849e9a8a57921176a1942257cae6306c95b2bb6129438e2f9182807b3e"
+      },
+      {
+        "path": "recovered/game/human_active_ai_pending.h",
+        "bytes": 10391,
+        "sha256": "bf00ec5b2b5cc7bdcdfcce2a0aa7005ed4dbe19a5e8f0944351a77339f667e30"
+      },
+      {
+        "path": "recovered/game/human_active_ai_state_loading.h",
+        "bytes": 23108,
+        "sha256": "13837910f0909b8a9e641c4ea43cfb60b7be8ff59ba5bc04f85333ff3da3a66d"
+      },
+      {
+        "path": "recovered/game/human_weapon_reload.h",
+        "bytes": 4227,
+        "sha256": "20c3299eb713602c3dd24b4b7c9ec8993212d8ae984ca31e8a43149eeecf4a5d"
+      },
+      {
+        "path": "recovered/game/human_ground_frame_receivers.h",
+        "bytes": 1372,
+        "sha256": "17294e58a8f2d965f89e8107a4c4eb2fdc7abd094c3bd71527e2111f3c4ecde6"
+      },
+      {
+        "path": "recovered/game/human_ground_motion.h",
+        "bytes": 36866,
+        "sha256": "2272382ae9c6f037e3911d18af2982578881fac1048689a4492ede94fe3abef1"
+      },
+      {
+        "path": "recovered/game/human_world_loading_services.h",
+        "bytes": 242477,
+        "sha256": "d1c35227c5081c8a476b58fe4f490ef6807d800978111955f46f35f57beebca9"
+      },
+      {
+        "path": "recovered/game/mission_navigation.h",
+        "bytes": 30844,
+        "sha256": "8105b0c1b052db396b12a1123ab7fb1a544bf175235070d6a6c0d393c2d43332"
+      }
+    ],
+    "original_evidence": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-replan/00532190.c",
+        "bytes": 3864,
+        "sha256": "e5895c0b838cde6e4f3ff497a8a04dbd396643d168b65157f421f2543f1b70ac"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-reference/0051c9c0.c",
+        "bytes": 2726,
+        "sha256": "c7c36217b4c03669ce3b4875fd99fcd658e343ebf8fc70567d4a9b8cbcbbc913"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-authority-movement/0052d0d0.c",
+        "bytes": 4806,
+        "sha256": "6dd88f34a1ea5a5829d3cd665bc471397a01d867242b883b92beebcdc7883b7c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-frame-workers/00528950.c",
+        "bytes": 23856,
+        "sha256": "40a8e6e5aeafc8bafa5411b46eafd70a9c8738daa0e6ee2df9ad18a497f18b96"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-authority-body-raw.asm",
+        "bytes": 78375,
+        "sha256": "8627f7161a31e02d15da18c81b9a4f7cc54994327d354f2bf7d910ef347f193b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-selection.asm",
+        "bytes": 13556,
+        "sha256": "52545a8fa8f030c819a34111cc4deeed7f09c1856230337c41ae207be2668269"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-replan.asm",
+        "bytes": 13462,
+        "sha256": "0a0817cce4fd1fde6a320a64c6550b01eb09d8903b0e7b87900aa82ddf312815"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-reference.asm",
+        "bytes": 1984,
+        "sha256": "8365f9ab73a4f02ef00f4c7089af416ce75124e2a789e796ac5de2a470d75976"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-reload-holder-views.asm",
+        "bytes": 1644,
+        "sha256": "671a2896d099fff31f86364e6071c658988a2b445288fd327f8a764f0456d3cc"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-reload-holder-table.txt",
+        "bytes": 459,
+        "sha256": "fe58f222be0e05c75162f821788e5a35578231eaa8a4e27e7c2a90953214f3b8"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/frame-human-item-positive-workers/007d4850.c",
+        "bytes": 7396,
+        "sha256": "d7ac6bd89b7a7c061f5a4892ad74641313a2ae542b0a1ec9d19464b9bc46709a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/frame-human-ground-water-fall/005a97c0.c",
+        "bytes": 472,
+        "sha256": "66706ee912c8cc3e0f1eb53a4de18cbed11b397d15cde3d3a982291ad50e8e57"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-ground-effect/00451900.c",
+        "bytes": 320,
+        "sha256": "c57cd3cdd2b5e90418d0d84331fa5b218d141c5c46f890f3927abdebf9fb4749"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-ground-effect.asm",
+        "bytes": 5179,
+        "sha256": "8774e10fa252fef68253e8036d391871a54bb7b905e40a5eae9e311d592c019d"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-hazard-packet.asm",
+        "bytes": 2430,
+        "sha256": "8da7f9c5cc1f239375593b151052d0d5c563acce28c411cee47f65cf321e9c31"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-hazard-constants.txt",
+        "bytes": 55,
+        "sha256": "acb1094aee816e2bcb6c3c33ec0caffa5b9939b2d5a0133c53fbf89d6d3516a1"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-water-exit/00452ca0.c",
+        "bytes": 397,
+        "sha256": "a960a55060e55e431b640a9abeeb3ad04a3d9b8217fef59d4c400e4895d8a3d2"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-water-exit/00452d00.c",
+        "bytes": 80,
+        "sha256": "bb9c8ee89075265f8e5cf2dd4213a7582f6197ea8b5d1bf7a64032761e634008"
+      }
+    ],
+    "verification": {
+      "native_sanitizers": {
+        "pass": true,
+        "result": "14200 specialized-target/replan/reload/ground checks /100 lifecycle matrices PASS",
+        "flags": "-std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer",
+        "environment": "ASAN_OPTIONS=detect_leaks=1:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1",
+        "actual_owners": [
+          "New and containing pending/query/target kernels",
+          "MissionNavigation and decoded tables/search/routes/length",
+          "HumanAIQueryLoading",
+          "Actual task initialization and word stores",
+          "ActorStorageOwner/ActorSlotStorage",
+          "SessionBroadcastPackets/SessionPacketStream"
+        ],
+        "explicit_doubles": [
+          "Human/Actor/frame endpoints",
+          "Item payload/clock/sound/removal stages",
+          "Task notification/effect/completion endpoints",
+          "Blast/common/HUD receivers"
+        ],
+        "scope": "100 lifetimes of pending startup/live/unavailable completion, range profiles and target choice/restart, label/reverse/tie/route/fallback/failure selection, explicit source/pack redirect/invalid native holder, blast-before-packet and captured-focus command-before-HUD/failures. Prior unchanged audits not rerun.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-specialized-native.cpp",
+          "bytes": 14844,
+          "sha256": "fdc354266bd4c608595f3d3437c3b4fdfa9cf5d882ad049c5cfb26e7d9f7c613"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-specialized-native",
+          "bytes": 2639424,
+          "sha256": "eecbd0686d1c3ccffb4f145be3afa2c4322ca0da2850c3e04fcb81394d082045"
+        }
+      },
+      "actual_human_scene_world_i386": {
+        "pass": true,
+        "flags": "-std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -ftemplate-backtrace-limit=1 -ferror-limit=6 -Irecovered -lwinmm -lws2_32 -lgdi32",
+        "scope": "Actual HumanFrameRuntime, World/factory/Active authority and Human scene frame; compile/link only.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-specialized-host.cpp",
+          "bytes": 381,
+          "sha256": "7ab70f35c4b8f0049e437ac11cd0715bdc1c8bbc6c358d27819ab626a4f33519"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-specialized-host.exe",
+          "bytes": 9217536,
+          "sha256": "841b61572ccaea72731f809bfa07436b07a6ed263b1d7d0c47236a8507650193"
+        }
+      },
+      "launcher_probe": {
+        "pass": true,
+        "command": "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++",
+        "artifacts": [
+          {
+            "path": "recovered/build/application_launch.exe",
+            "bytes": 3963392,
+            "sha256": "2b5c8639d6b57df18d1317f60f2a11f3c770bac420b54ed9f8a23634e293472c"
+          },
+          {
+            "path": "recovered/build/startup_probe.exe",
+            "bytes": 1165312,
+            "sha256": "1b25a723bc888cfef770aa66d7718afb0d95bfeb4c23503a4f1e1834aecf39a7"
+          }
+        ],
+        "windows_execution": false
+      },
+      "ledger_check": true,
+      "tracker_tests": 27,
+      "diff_check": true
+    },
+    "logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-host-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-launcher-build.log",
+        "bytes": 820,
+        "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-ledger-check.log",
+        "bytes": 437,
+        "sha256": "b27d865fd7fab23bf69296fc27e829d40c94d8674c07f3ac032414ed23bd3612"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-ledger-render.log",
+        "bytes": 380,
+        "sha256": "98cb79660a69cccd032a6062d31ef3cd240b7cc8054a4956800c9a48b2d3b739"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-native-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-native-run.log",
+        "bytes": 82,
+        "sha256": "8f7dfe72fa7c884d99db20c6438a6f324dc07c7a9fa3adc76ff4ff96a9f87d52"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-reference-export.log",
+        "bytes": 4461,
+        "sha256": "41965926e6e465f67037f424c1c4220e0a7dbde4356a610512b85848afbc7f69"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-replan-export.log",
+        "bytes": 4457,
+        "sha256": "0cfe2d869d11292af493e5b0a082821d410d4298d1abf7f2011ca99720691d08"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-specialized-tracker-tests.log",
+        "bytes": 126,
+        "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f"
+      }
+    ],
+    "function_tally": {
+      "complete": 34,
+      "partial": 3503,
+      "client_partial": 3498,
+      "engine_partial": 5
+    },
+    "limits": [
+      "Fixed16 navigation labels only; original malformed label/ABI behavior excluded.",
+      "Random-fallback output W unproduced; retained typed value unclaimed.",
+      "Positive holder reload reaches native NULL3C dereference, retained explicit failure.",
+      "Actual non-Human/occupied/seat bodies remain H8.4; further command/task producers and H8.3 remain open.",
+      "No actual mission execution/application or user desktop acceptance."
+    ],
     "cleanup": {
       "temporary_sources_and_binaries_removed": true
     }

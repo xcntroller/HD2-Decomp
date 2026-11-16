@@ -184,7 +184,7 @@ std::int32_t query_human_ground_water(Control& control,Look& look,Human& human,S
         return !(movement.template get<float>(0x108)<shallow&&movement.template get<float>(0x10c)<movement.template get<float>(0x108));
     }
     if(attachment!=-10000&&equipment==-10000)return 0;
-    runtime.retire_human_water_attachment(human); //005A97C0, positive offline174 command/packet receiver.
+    runtime.retire_human_water_attachment(human); //005A97C0, positive offline174 command/HUD receiver.
     if(movement.template get<float>(0xfc)!=inactive)movement.set(0xfc,human.base().world_position()[1]);
     return 0;
 }

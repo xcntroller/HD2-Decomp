@@ -30,13 +30,14 @@ movement output/endurance, ordinary reload, actual event/roster/cover selection,
 look/items/preset/direction, processed-event retirement and self-treatment.
 There is no unconditional remaining-authority failure after this path.
 
-H8.2 remains open: specialized tasks and unusual reload source slots still stop
-when selected. Saved-position/vector aim and launcher/close-combat branches now
+H8.2 remains open: other specialized tasks/effects and populated Players command
+producers still stop when selected. Task25/26 selection, pending progression and
+query-10 replanning, explicit valid reload sources, hazard blast/packet and water
+command/HUD orchestration now use their existing actual owners. Saved-position/vector aim and launcher/close-combat branches now
 use their actual target, collision, inline/common-command and item owners. Ordinary
 rifle target range/burst/crouch, cautious posture/admission, populated stance and005318C0
-pack→holster ammunition are now source-bound. Specialized tasks25/26/22,
-query-10 replanning00532190, populated Players00457820/00456F00 command members
-and remaining reached offline action/hazard/water callbacks must also retain
+pack→holster ammunition are now source-bound. Task22/Dog and other specialized task/effect producers, populated
+Players00457820/00456F00 command members and remaining reached offline action callbacks must also retain
 honest requirements until implemented or shown outside the selected path.
 Type36 sound look selection and positive type34 singleton look require actual
 owners; no private empty registry is substituted. H8.4 owns Dog/attachment/
@@ -44,7 +45,7 @@ Car/seat/Aircraft bodies. Follow actual reached dependencies rather than trying
 to finish all specialized families before integration.
 
 Next implementation target: the next reached offline frame failure, with
-specialized task selection and query-failure replanning still explicit. After H8.2, continue H8.3. Loading
+populated Players command members and specialized task/effect producers still explicit. After H8.2, continue H8.3. Loading
 activation and desktop acceptance remain explicit H8.6 gates.
 
 ## Existing evidence to reuse

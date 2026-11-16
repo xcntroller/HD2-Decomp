@@ -84,8 +84,8 @@ Result4 preserves native202/206→200, idle-follow1A4 clear and18C clear. Result
 queues actual rejected-task speech before gait. Results-5/-4 on an unfinished,
 not-arrived task request saved1E0 when targetNULL; a present target instead gets
 its actual lazy model update with NO fabricated target-position request.
-Retired target policy remains required. Result-10 with active task25/26 requires
-actual00532190 specialized replanning after earlier query publication. Other
+Retired target policy remains required. Result-10 with active task25/26 now executes actual00532190 replanning and
+ordered task publication/cancel; [current contract](human-h8-authority-body-source.md#task2526-explicit-reload-source-and-ground-receivers-after-b385907). Other
 results genuinely fall through. Gait runs after those effects with native local
 follow flag. World passes only unattached Humans through this phase; Runtime
 requires remaining aim/movement/decision/output, or H8.4 occupied continuation.

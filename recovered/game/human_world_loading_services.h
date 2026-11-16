@@ -47,6 +47,7 @@
 #include "game/human_objective_experience.h"
 #include "game/human_ai_shot_direction.h"
 #include "game/human_weapon_reload.h"
+#include "game/human_ground_frame_receivers.h"
 #include "game/human_frame_stats.h"
 #include "game/human_actor_contact.h"
 #include "game/human_frame_commands.h"
@@ -156,6 +157,7 @@ public:
     float active_self_treatment_random(){return dependencies().scene.frames().volume_random_unit();} //ENGINE RandFloat, not CRT.
     bool active_authority_nearby(const HumanVector& position){return active_nearby_runtime_actor(dependencies().world_actors.runtime(),dependencies().scene.frames(),position,3u);}
     void active_avoidance_clamp(HumanVector& position,bool enabled,const HumanVector& original){clamp_active_avoidance_position(dependencies().navigation,position,enabled,original);}
+    auto& active_task_navigation(){return dependencies().navigation;} //Actual game54,00532190.
     auto* active_avoidance_player(){return dependencies().players.control().selected_player(mode_flags());}
     auto* active_process_target(){ //00456860, actual process98 (the positive producer remains required).
         using Actor=SceneActor<typename Dependencies::ActorFrames>;
@@ -237,9 +239,8 @@ public:
             const auto amount=item.amount();
             if(amount==0.f||(!ai.state().template get<std::uint32_t>(0x19c)&&
                static_cast<long double>(amount)+1.f<items.runtime_item(ammunition).amount()&&!item.allows_partial_reload())){
-                if(slot!=1&&!(kind==6&&slot==6))throw std::runtime_error("Active authority reload requires007D4850 explicit source-slot receiver outside ordinary magazines");
                 std::int32_t consumed=-1;
-                if(reload_human_ai_weapon(item,*ai.human(),consumed,false)){
+                if(reload_human_ai_weapon(item,*ai.human(),consumed,false,static_cast<std::uint32_t>(slot))){
                     control.set_frame_item_action(3);ai.state().set(0x19c,5000u);
                 }
                 return; //Native reload branch skips the separate forced-flag clear even on failure.
@@ -1583,8 +1584,24 @@ public:
     bool human_model_debug_enabled(){return dependencies().startup.scene_presentation_flags().debug;} //Actual0098AF98, not a fabricated false callback.
     template<class Geometry>void present_human_model_debug(Geometry&){throw std::runtime_error("Human debug requires actual geometry5D94 visualA8 receiver");}
     void human_walk_debug_beep(){dependencies().scene.frames().human_walk_debug_beep();}
-    template<class Human>void human_ground_surface_effect(Human&,std::int32_t){throw std::runtime_error("Human hazard requires actual00451900 blast and ShotMgr packet producer");}
-    template<class Human>void retire_human_water_attachment(Human&){throw std::runtime_error("Human water requires actual005A97C0 command5 and packet174 receiver");}
+    template<class Human>void human_ground_surface_effect(Human& human,std::int32_t material){
+        auto& d=dependencies();const auto validate=human_common_receiver_guard(human);
+        const auto& matrix=d.scene.frames().active_task_borrow_world_matrix(human.base().frame());
+        auto position=[&]{return HumanVector{{matrix[12],matrix[13],matrix[14],matrix[15]}};};
+        auto blast=[&](const HumanVector& centre,float radius,float power){
+            (void)d.world_actors.heavy_fire_blast(nullptr,centre,radius,power);validate();
+        };
+        emit_human_ground_hazard(position,material,blast,d.broadcast_packets);
+    }
+    template<class Human>void retire_human_water_attachment(Human& human){
+        const auto validate=human_common_receiver_guard(human);
+        auto common=[&](Human& actor,std::uint32_t action,std::int32_t identity,std::uint32_t argument){
+            auto* state=composition(actor).states().get();if(!state||state!=actor.loading_state)throw std::logic_error("Water exit requires actual published B0");
+            state->emit_common_action(action,identity,argument);validate();
+        };
+        auto hud=[&](auto* actor,unsigned kind){dependencies().hud.remove_actor_references(mode_flags(),kind,&actor->base());};
+        retire_human_water_focus(human,mode_flags(),common,hud);
+    }
     std::int32_t player_mission_ordinal()const{return dependencies().session.words.template get<std::int32_t>(0x3c);}
     bool player_recoil_disabled(){return dependencies().startup.game_console_variables().integer(6)!=0;} //00720B80(6).
     bool player_zoom_enabled(){return dependencies().first_person.view().zoom_enabled();}
@@ -1854,9 +1871,9 @@ public:
     template<class Entry>bool human_feedback_item_ready(Entry entry){return dependencies().world_actors.items().runtime_item(entry).field14<=game_word28();}
     template<class Entry>auto& human_frame_output_item(Entry entry){return dependencies().world_actors.items().runtime_item(entry);}
     template<class Item,class Human>bool reload_human_ai_weapon(Item& item,Human& human,
-            std::int32_t& ammunition,bool retain_last){
+            std::int32_t& ammunition,bool retain_last,std::uint32_t source_slot=1u){
         //SAME process0098B02C, now also published by console007205E2.
-        return reload_human_weapon(item,human,ammunition,retain_last,dependencies().startup.game_console_variables().happy_ammunition(),*this);
+        return reload_human_weapon(item,human,ammunition,retain_last,dependencies().startup.game_console_variables().happy_ammunition(),*this,source_slot);
     }
     auto& human_reload_items(){return dependencies().world_actors.items();}
     template<class Human>std::uint32_t human_reload_animation_family(Human& human){ //00791C10, SAME hand holder and lazy Item virtual40.

@@ -79,9 +79,11 @@ Raw bytes and constants are recorded in the checkpoint receipt.
 
 ## Remaining reached requirements
 
-Specialized25/26/22 selection/replanning, unusual reload source slots,
-populated process98/group command members and
-remaining reached offline action/hazard/water receivers remain explicit. Positive
+Task22/Dog and other specialized task/effect producers, populated
+process98/group command members and
+remaining reached offline action receivers remain explicit. Hazard blast/packet
+and water command/HUD orchestration are now bound; reached external callee
+requirements still propagate. Positive
 sound36/type34/Dog and occupied bodies retain actual owner requirements. Their
 unimplemented results are not successful defaults. This does not establish
 whole0052B810 equivalence or completion of all Human frame branches.
@@ -178,3 +180,65 @@ doubled. Containing saved/vector/launcher branches are instantiated and tested.
 Fresh strict actual scene/World/factory/Active and launcher/probe links are
 recorded in `target_modes_follow_up` of the consolidated receipt; older audits
 are not claimed as rerun. No Windows binary execution or desktop claim.
+
+## Task25/26, explicit reload source and ground receivers after b385907
+
+The same pending-task owner now admits unattached25/26 through startup, arrival,
+turn/default effect and completion. Their201-set completion differs from ordinary
+tasks:202/206 publish only if actual00538A60 reports target unavailable, regardless
+of203. Live targets remain active; completed targets run the existing00535C00.
+
+0052D0D0 preserves a generic Actor return and refines actual hostile selection:
+read own hostility toward224, cached distance, kind-specific squared range;
+query-active/in-range hostile targets cancel query and publish200. Inactive,
+out-of-range, live tasks with210zero restart only when actual target model is
+within squared.04000000283122063 of query10.206 publishes before00534620 (whose
+initialization clears it);204 publishes after. Hostile task targets replace a
+NULL selection, or a selected actor farther than.4*sqrt(task-square). Human
+selection suppressors keep the native task-target exception; task25/26 bypass
+ordinary pending/follow suppression. Non-Human type/health bodies still require
+H8.4's actual owners where reached; no cast/default bypass is added.
+
+00532190 uses actual game54 FIRST navigation, not the AI SECOND path table.
+The existing decoded data10's four words are fixed16-byte labels for0051C9C0.
+Native0051C840 uses strstr(label,prefix)==label. Lookup `#<model name>` appends
+matching references in reverse. Empty matches return before own model. Nearest
+volume5/-1 precedes a reverse reference scan using existing005223B0/005230D0;
+strict shortest comparisons retain a FLOAT best value, so first native tie wins.
+No nearest point uses a CRT draw modulo count. Success copies point XYZ and
+byte13/16 radius. Route-scratch W is zero after route cleanup; random-branch W
+is unproduced and retaining the typed lane has no native W-value claim. The
+containing-10 branch queues rejected speech before cancellation on false;
+success writes206 before00534340, then204 and210=1 after initialization.
+
+007D4850 now receives the actual source slot from00526550's inventory lookup.
+Kind6 redirects ONLY requested1 to actual pack6; explicit6 works for other kinds.
+Single-array source requires0. Existing magazine selection/timers/sound/removal
+are reused. Raw8170D0 table and007D6860/007D6880 prove that positive holder source
+has virtual3C=NULL and virtual44=1, then native reload dereferences NULL. This is
+an invalid native holder path, not missing successful reload research: it retains
+an explicit failure; a holder with first scalar<=0 genuinely returnsfalse first.
+Malformed source indices remain bounded by the typed adaptation.
+
+`human_ground_frame_receivers.h` binds00451900 to the existing containing blast
+link/process: copied current model centre, radius5,power1000,sourceNULL and
+same-sectorfalse, including the already recovered initial100ms. Only after that
+returns does it begin module14 priority0, write subtype0 in1bit (native double
+constants1/2), reread the borrowed model position through primary(-1)/mask7,
+write material8 and finish broadcast. Packet/damage callbacks remain existing
+owners.005A97C0 is command/HUD orchestration, NOT a packet174 producer: offline7
+captures actual174 before B0 D8 command5/-1/0; actual HUD0049EF70(kind2) receives
+that captured ActorBase after command mutation. H8.4 retains the reached seat/
+exit body, and HUD/command failures propagate with native earlier effects.
+
+Research index preceded bounded read-only/noanalysis00532190 and0051C9C0 exports
+under `human-h8-specialized-{replan,reference}`. Existing selection/task/ground/
+water and packet/blast sources were reused. Raw `human-h8-specialized-*.asm`,
+`human-h8-reload-holder-views.asm` and `human-h8-hazard-packet.asm` settle x87,
+label, holder and packet-width ambiguities. New14200 checks/100 lifecycle
+matrices cover actual navigation/search/routes, query/task initialization and
+storage/packet owners, with explicit Human/frame/item/blast/common/HUD endpoints.
+Pending startup/live/dead completion, route ties/fallback/failure, source slots,
+blast-before-packet and command-before-captured-HUD failures are included. Fresh
+full actual frame/i386 and launcher links and cleanup are qualified in receipt
+`specialized_follow_up`. No actual loaded mission or desktop claim.

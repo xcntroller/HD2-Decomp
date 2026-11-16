@@ -116,6 +116,10 @@ public:
     auto pending_task_turn_gate(){return services_.formation_direction_gate(*this->human());}
     bool pending_target_arrived(){return active_task_target_arrived(*this,task_target,this->state_frames(),services_);}
     bool pending_task_effect_ready(){return services_.active_task_effect_ready(*this);}
+    bool pending_task_target_unavailable(){
+        require_live_task_target();if(!task_target)throw std::runtime_error("Active task completion dereferences native NULL224");
+        return services_.active_task_actor_unavailable(*task_target);
+    }
     void reject_pending_task(){services_.queue_active_ai_speech(*this,0x68u,true,300u,false);}
     void execute_pending_task_command(std::uint32_t action,std::int32_t identity,std::uint32_t value){services_.execute_active_task_command(*this,action,identity,value);}
     void start_pending_task_effect(){start_active_task_effect(*this);}

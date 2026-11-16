@@ -30933,12 +30933,15 @@
       "program": "client",
       "entry": "007d4850",
       "status": "partial",
-      "coverage": "Select matching magazines, preserve the last-magazine gate, apply overflow, update weapon timers and invoke real reload sound.",
+      "coverage": "Extend existing magazine policy with explicit source slots, exact kind6 slot1-only pack redirect and actual single-array slot0 gate. Positive holder slots retain native NULL3C stack-dereference failure; they are not successful empty inventory. Existing timers/sound/removal use actual owners.",
       "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
-        "recovered/game/human_weapon_reload.h"
+        "recovered/game/human_weapon_reload.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_active_ai_specialized_target.h"
       ]
     },
     {
@@ -46240,7 +46243,7 @@
       "program": "client",
       "entry": "00528950",
       "status": "partial",
-      "coverage": "18D/delayed214/inactive202 gates and order-generated on-foot task52: readiness/query startup, strict radius arrival, later201-set completion and pending00535C00 prefix. Selected task52 completion now calls actual00535C00 for pending or ordinary standalone completion. Selected ordinary on-foot target tasks now bind startup/target-before-radius arrival,201-clear turn with native precision, mode/readiness/immediate DC effect,214 duration/wait and completion. Task204/208 now binds distinct direct Players00456F00 inactive/busy/countdown/empty-vector prefixes after214 clear.",
+      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required.",
       "limitations": "Source-only typed/STL adaptation. Specialized action/effect families, ranged far branch, populated Players group production, combat/cover and H8.4 occupied/Car/seat policies remain required. Full containing authority/application/desktop is open. Native endpoint doubles and concrete i386 link do not establish full ABI equivalence; no delegated callee/engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_pending.h",
@@ -46254,7 +46257,10 @@
         "analysis/human-h8-task-execution-source.md",
         "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json",
         "analysis/human-h8-follow-source.md",
-        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_active_ai_specialized_target.h"
       ]
     },
     {
@@ -46723,7 +46729,7 @@
       "program": "client",
       "entry": "00526550",
       "status": "partial",
-      "coverage": "Bind SAME World/factory/Active ordinary on-foot authority through actual return: prior prefix/navigation, aim-result switch, target/movement, movement/endurance, ordinary reload, event/cover/look/item/preset/direction output, strict last processed-event retirement and medical tail. Occupied continuation remains separately required.",
+      "coverage": "Bind SAME World/factory/Active ordinary on-foot authority through actual return: prior prefix/navigation, aim-result switch, target/movement, movement/endurance, ordinary reload, event/cover/look/item/preset/direction output, strict last processed-event retirement and medical tail. Occupied continuation remains separately required. Query-10 task25/26 replanning now executes actual navigation selection before task initialization and204/210 publication, or rejected speech before cancellation.",
       "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit.",
       "evidence": [
         "recovered/game/human_active_ai_authority_prefix.h",
@@ -46739,7 +46745,8 @@
         "analysis/checkpoints/p2.2-human-h8-avoidance-20261116.json",
         "recovered/game/human_active_ai_authority_body.h",
         "analysis/human-h8-authority-body-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_active_ai_specialized_target.h"
       ]
     },
     {
@@ -46820,7 +46827,7 @@
       "program": "client",
       "entry": "0052b810",
       "status": "partial",
-      "coverage": "Recover ordinary on-foot target/movement policy, wrapped timers/readiness, actual process/Dog queries, real hostile selection, pending-order/action-mode suppression, range intervals, weapon reselection, burst/query58/posture/crouch, forced target clear, ammunition and readiness tail. Cautious admission/posture is now source-bound, retaining range words on its negative-admission branch. Saved-position10 and vector200 aim, launcher retention/posture and admitted close-combat are now source-bound. Specialized task/replan branches retain precise requirements.",
+      "coverage": "Recover ordinary on-foot movement, saved/vector and cautious targeting, task25/26 completion flags and suppression exemptions, range/burst/crouch/launcher/close-target policy on actual existing owners. Task22/Dog/absent-actor requirements remain precise; no whole-body claim.",
       "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit.",
       "evidence": [
         "recovered/game/human_active_ai_authority_body.h",
@@ -46828,20 +46835,22 @@
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
         "recovered/game/human_active_ai_cautious.h",
-        "recovered/game/human_active_ai_target_modes.h"
+        "recovered/game/human_active_ai_target_modes.h",
+        "recovered/game/human_active_ai_specialized_target.h"
       ]
     },
     {
       "program": "client",
       "entry": "0052d0d0",
       "status": "partial",
-      "coverage": "Refresh actual hand cache before no-item return and reuse SAME hostile selector for ordinary on-foot target selection; specialized task25/26 range/replanning remains required after selection.",
+      "coverage": "Recover refresh/hostile selection and actual task25/26 range, hostility, query cancellation, unchanged-position restart and target-vs-selected distance policy; retain generic Actor return family and native callback/publication order.",
       "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit.",
       "evidence": [
         "recovered/game/human_active_ai_authority_body.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_active_ai_specialized_target.h"
       ]
     },
     {
@@ -47048,6 +47057,58 @@
       "limitations": "Source-only typed owners replace original object/virtual ABI and SEH. Native focused sanitizer endpoints explicitly double Human/frame/item/World stages; actual containing World/factory/Active and scene-frame i386 compile/link only. No whole Human-frame, application-loading or desktop acceptance claim; delegated existing bodies receive no new credit.",
       "evidence": [
         "recovered/game/human_active_ai_target_modes.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051c9c0",
+      "status": "partial",
+      "coverage": "Append matching navigation label references in reverse on actual FIRST dataset; case-sensitive native prefix rule over decoded16-byte labels. Original raw allocation/18-byte ABI and malformed unterminated label behavior excluded.",
+      "limitations": "Source-only typed/STL adaptation on the same loaded owners. Original ABI/allocator/SEH and containing application/desktop delivery remain excluded. Focused native stages explicitly double Human/frame/item/World endpoints; concrete World/factory/Active and Human scene frame compile/link only. Existing delegated bodies receive no new credit.",
+      "evidence": [
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00532190",
+      "status": "partial",
+      "coverage": "Match #target-model-name labels, genuine empty return before own model, actual nearest-volume and route/length owners; reverse route scan, strict shortest FLOAT retention or CRT fallback, XYZ/radius output. Random-branch unproduced W remains unclaimed.",
+      "limitations": "Source-only typed/STL adaptation on the same loaded owners. Original ABI/allocator/SEH and containing application/desktop delivery remain excluded. Focused native stages explicitly double Human/frame/item/World endpoints; concrete World/factory/Active and Human scene frame compile/link only. Existing delegated bodies receive no new credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_specialized_target.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00451900",
+      "status": "partial",
+      "coverage": "Initial actual blast request at current model centre/radius5/power1000/sourceNULL/same-sectorfalse precedes module14 priority0 subtype0, live position primary quantizer XYZ7, material8 and broadcast finish on same session streams.",
+      "limitations": "Source-only typed/STL adaptation on the same loaded owners. Original ABI/allocator/SEH and containing application/desktop delivery remain excluded. Focused native stages explicitly double Human/frame/item/World endpoints; concrete World/factory/Active and Human scene frame compile/link only. Existing delegated bodies receive no new credit.",
+      "evidence": [
+        "recovered/game/human_ground_frame_receivers.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a97c0",
+      "status": "partial",
+      "coverage": "Offline7 and positive174 gates, capture focus before actual B0 D8 command5/-1/0, then actual HUD0049EF70 kind2 with captured ActorBase. No packet174 or invented focus reset.",
+      "limitations": "Source-only typed/STL adaptation on the same loaded owners. Original ABI/allocator/SEH and containing application/desktop delivery remain excluded. Focused native stages explicitly double Human/frame/item/World endpoints; concrete World/factory/Active and Human scene frame compile/link only. Existing delegated bodies receive no new credit.",
+      "evidence": [
+        "recovered/game/human_ground_frame_receivers.h",
+        "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
       ]

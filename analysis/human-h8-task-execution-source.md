@@ -118,3 +118,6 @@ Authority still routes to the existing required Runtime boundary; this checkpoin
 does not enable application loading. Existing authority C4029bytes and timer
 workers were indexed/reused, not exported again. H8.4 is assigned elsewhere;
 its requirements remain visible at reached calls. See [plan](p22-hum-h8-plan.md).
+
+Task25/26 follow-through now admits their on-foot pending progression and target-
+unavailable completion; [current consolidated contract](human-h8-authority-body-source.md#task2526-explicit-reload-source-and-ground-receivers-after-b385907). Other specialized families and H8.4 remain explicit.

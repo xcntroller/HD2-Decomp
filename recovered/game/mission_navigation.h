@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <string_view>
 
 namespace hd2::game {
 
@@ -17,6 +18,16 @@ namespace hd2::game {
 class MissionNavigation {
 public:
     explicit MissionNavigation(MissionTableSet& table) : table_(table) {}
+    void append_named_references(std::string_view prefix,std::vector<std::uint16_t>& output)const { //0051C9C0/0051C840.
+        if(table_.count0c&&!table_.data10)throw std::runtime_error("Navigation named references require actual label records");
+        const auto* records=static_cast<const MissionTableVectorRecord*>(table_.data10);
+        for(auto n=table_.count0c;n;){
+            const auto& record=records[--n];const auto* label=reinterpret_cast<const char*>(record.words.data());
+            //These same four serialized words are a fixed16 label in this
+            //lookup. Native strstr(label,prefix)==label is case-sensitive.
+            if(prefix.size()<=16&&std::memcmp(label,prefix.data(),prefix.size())==0)output.push_back(record.value);
+        }
+    }
     bool connect_runtime_points(std::uint16_t first,std::uint16_t second){ //0051F280; first mark survives a rejected second mark.
         auto* a=record(first);auto* b=record(second);
         if(!a||!b||!mark_runtime_link(*a,second,*b)||!mark_runtime_link(*b,first,*a))return false;

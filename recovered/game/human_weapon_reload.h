@@ -6,11 +6,11 @@
 
 namespace hd2::game {
 
-//007D4850, carried ammunition request (native slot1, with kind6 pack redirect).
+//007D4850, explicit source slot (default1, with kind6 slot1 pack redirect).
 //The caller supplies the actual Items module, reload sound and holder removal.
 template<class Item,class Human,class World>
 bool reload_human_weapon(Item& weapon,Human& human,std::int32_t& ammunition,
-        bool retain_last,bool unlimited_ammunition,World& world){
+        bool retain_last,bool unlimited_ammunition,World& world,std::uint32_t source_slot=1u){
     ammunition=-1;
     if(weapon.family()!=Item::Family::weapon)return false;
     const auto finish=[&]{
@@ -25,10 +25,19 @@ bool reload_human_weapon(Item& weapon,Human& human,std::int32_t& ammunition,
         return forced?finish():false;
     if(world.game_word28()<weapon.field5c)return false;
     auto* storage=human.base().storage();
-    if(!storage||storage->single())return false;
-    const auto slot=weapon.definition().kind()==6&&storage->slots(6)?6u:1u;
+    if(!storage||(storage->single()&&source_slot!=0)||source_slot>6)return false;
+    const auto slot=weapon.definition().kind()==6&&source_slot==1&&!storage->single()&&storage->slots(6)?6u:source_slot;
     auto* slots=storage->slots(slot);
-    if(!slots||slots->first_scalar()<=0)return false;
+    if(!slots){
+        if(auto* holder=storage->holder(slot)){
+            if(holder->first_scalar()<=0)return false;
+            //Actual8170D0: holder virtual3C=007D6860 returnsNULL while
+            //virtual44=007D6880 returns1. Native reload then dereferencesNULL.
+            throw std::runtime_error("Reload source holder reaches native NULL3C stack dereference");
+        }
+        return false;
+    }
+    if(slots->first_scalar()<=0)return false;
     using Entry=std::decay_t<decltype(human.base().storage()->holder(3)->entry())>;
     auto& items=world.human_reload_items();
     Entry fullest{},emptiest{};

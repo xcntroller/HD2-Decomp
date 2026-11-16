@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_ACTIVE_AI_AVOIDANCE_H
 #define HD2_GAME_HUMAN_ACTIVE_AI_AVOIDANCE_H
 #include "game/mission_navigation.h"
+#include "game/human_active_ai_specialized_target.h"
 #include "game/human_joint_owners.h"
 #include <cmath>
 namespace hd2::game {
@@ -140,10 +141,7 @@ template<class AI,class Frames,class Inline,class World,class Runtime>void advan
         else if(state.template get<std::uint8_t>(0x189))state.set(0x1a4,0u);
         if(state.template get<std::uint8_t>(0x18c))state.set(0x18c,std::uint8_t{0});
         break;
-    case 0xfffffff6u:
-        if(!state.template get<std::uint8_t>(0x202)&&(state.template get<std::uint32_t>(0x220)==25||state.template get<std::uint32_t>(0x220)==26))
-            throw std::runtime_error("Active query -10 requires actual00532190 specialized task25/26 replanning before00534340");
-        break;
+    case 0xfffffff6u:replan_active_query_failure(ai,frames,world);validate();break;
     case 0xfffffffau:ai.reject_pending_task();validate();break;
     case 0xfffffffbu:case 0xfffffffcu:
         if(!state.template get<std::uint8_t>(0x202)&&!state.template get<std::uint8_t>(0x200)){

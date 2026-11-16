@@ -6,6 +6,7 @@
 #include "game/human_ai_cover.h"
 #include "game/human_active_ai_cautious.h"
 #include "game/human_active_ai_target_modes.h"
+#include "game/human_active_ai_specialized_target.h"
 #include <functional>
 namespace hd2::game {
 //00537FB0. Populated F4/action-mode changes use the SAME A4 record and
@@ -66,12 +67,9 @@ template<class AI>bool active_weapon_selection_due(AI& ai){
 template<class AI,class Frames,class World>auto select_active_movement_target(AI& ai,Frames& frames,World& world,const HumanVector* filter=nullptr){
     using Human=std::remove_reference_t<decltype(*ai.human())>;
     ai.refresh_item();
-    Human* selected=ai.item()?select_human_hostile<Human>(ai,frames,world,filter):nullptr;
-    if(ai.item()&&!ai.state().template get<std::uint8_t>(0x202)){
-        const auto task=ai.state().template get<std::uint32_t>(0x220);
-        if(task==25||task==26)throw std::runtime_error("Active target selection requires0052D0D0 specialized task25/26 range and replan policy");
-    }
-    return selected;
+    using Actor=std::remove_reference_t<decltype(*ai.task_target)>;
+    Actor* selected=ai.item()?select_human_hostile<Human>(ai,frames,world,filter):nullptr;
+    return ai.item()?refine_active_task_target(ai,selected,frames,world):selected;
 }
 //0052A5D0. Original0083C150/170/190/1B0 are INTEGER tables. The two
 //interpolations run in opposite directions and truncate BEFORE their .1 spans.
@@ -202,7 +200,7 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
     if(!state.template get<std::uint32_t>(0x19c)&&ai.words().template get<std::uint8_t>(0xac)){ai.pending_clear_item_ready();validate();}
     auto* threat=world.active_nearby_dog(ai,7.f);validate();
     if(threat)throw std::runtime_error("Active movement requires0052B580 Dog-target policy");
-    const auto task=state.template get<std::uint32_t>(0x220);
+    const auto task=state.template get<std::uint32_t>(0x220);bool specialized=false;
     if(!state.template get<std::uint8_t>(0x202)&&task==22)throw std::runtime_error("Active movement requires0052B810 specialized task22 policy");
     const auto flags=state.template get<std::uint32_t>(0x174);
     if(flags&0x10u){
@@ -217,14 +215,18 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
     const bool admit=!(flags&2u)||active_cautious_attacker(ai,true,world);validate();
     if(admit||selected){
     if(!selected&&!(flags&4u)){selected=select_active_movement_target(ai,frames,world);validate();}
-    if(!state.template get<std::uint8_t>(0x202)&&(task==25||task==26))throw std::runtime_error("Active movement requires00538A60 task25/26 completion gates");
+    specialized=!state.template get<std::uint8_t>(0x202)&&(task==25||task==26);
+    if(specialized){
+        ai.require_live_task_target();if(!ai.task_target)throw std::runtime_error("Active target completion dereferences native NULL224");
+        if(world.active_task_actor_unavailable(*ai.task_target)){state.set(0x200,std::uint8_t{1});state.set(0x206,std::uint8_t{1});}validate();
+    }
     if(!state.template get<std::uint8_t>(0x202)&&task==41)selected=nullptr;
-    if(selected&&ai.has_pending_orders_loading()){
+    if(selected&&!specialized&&ai.has_pending_orders_loading()){
         const auto own_flags=ai.words().template get<std::uint32_t>(0x50);
         if(own_flags&0x400u)selected=nullptr;
         if((own_flags&0x200u)&&!active_cautious_attacker(ai,true,world))selected=nullptr;
     }
-    if((following||!ai.has_pending_orders_loading())&&(ai.active_event_mode()==0||ai.active_event_mode()==2))selected=nullptr;
+    if(!specialized&&(following||!ai.has_pending_orders_loading())&&(ai.active_event_mode()==0||ai.active_event_mode()==2))selected=nullptr;
     if(state.template get<std::uint8_t>(0x18a)&&ai.item()&&!world.active_special_hand(ai.item()))selected=nullptr;
     if(flags&0x200u){
         const auto model=frames.actor_world_matrix(human->base().frame());validate();const auto position=state.template get<HumanVector>(0x1e0);
@@ -251,7 +253,7 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
     }
     //Fresh target after the preceding publications, as in the native tail.
     auto& target=ai.resources().target();
-    if(target.actor){auto& other=world.human_ai_target_human(*target.actor);if(world.human_unavailable(other)||(other.properties.field19c==2&&other.loading_state&&other.loading_state->suppress_hostile_selection()))target.bind_actor(nullptr);}
+    if(target.actor){auto& other=world.human_ai_target_human(*target.actor);if(((other.properties.field19c==2&&other.loading_state&&other.loading_state->suppress_hostile_selection())||world.human_unavailable(other))&&(!specialized||target.actor!=ai.task_target))target.bind_actor(nullptr);}
     if(!active_movement_has_aim(ai)){
         threat=world.active_nearby_dog(ai,30.f);validate();
         if(threat&&threat->base().type()==30)throw std::runtime_error("Active movement requires0052B580 distant Dog-target policy");
