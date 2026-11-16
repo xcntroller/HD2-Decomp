@@ -1,10 +1,11 @@
 # P22-HUM implementation and dependency plan
 
-Revised 2026-11-12; D0 confirmed against merged master **415e850**. Worktree:
-`/home/control/Documents/Projects/HD2-Decomp-p22-hum-h6`, branch `feature/p22-hum-h6`
-(created from completed H2 `85593e8` at the user's request; prior Human
-worktrees/branches preserved). P22-HUM and both P2.2 delivery
-checkboxes remain OPEN. Application loading still declines; no mission desktop
+Ownership reconciled 2026-11-16; D0's original boundary was confirmed against
+merged master **415e850**. Aggregate worktree:
+`/home/control/Documents/Projects/HD2-Decomp-p22-hum`, branch `feature/p22-hum`.
+H1–H7 source is merged through H6 `fc9d452` (aggregate `cee967b`). Another agent
+owns H8 in `../HD2-Decomp-p22-hum-h8` on `feature/p22-hum-h8`.
+P22-HUM and both P2.2 delivery checkboxes remain OPEN. Application loading still declines; no mission desktop
 acceptance has occurred. This plan replaces the former chronological next-work
 list. Detailed behavior/evidence stays in the linked contracts.
 
@@ -13,9 +14,27 @@ list. Detailed behavior/evidence stays in the linked contracts.
 H1/H2/H3/H4/H5/H7 source work is completed and merged into `feature/p22-hum`.
 Completed HUM/H4b9d67aa is imported into H6 at7e6e019. H6 source is now complete
 on the existing owners; [H6 closure and external limits](human-h6-source-closure.md),
-[dependency plan](p22-hum-h6-plan.md). H8 remains open/unassigned. H4's branch may
-be deleted; no continued dependency on its old worktree or branch is required.
-Source completion does not add function-inventory credit or application delivery.
+[dependency plan](p22-hum-h6-plan.md). H6 is merged into this aggregate. H8 is
+assigned to the other agent's worktree; no continued dependency on the old H4/H6
+worktrees or branches is required. Source completion does not add
+function-inventory credit or application delivery.
+
+The user's 2026-11-16 request selects remaining P22-HUM work **outside H8**.
+H1–H7 have no unchecked source checkpoints. The active H8 plan explicitly owns
+full Human-frame assembly, decisions/control, async combat, and resolution of
+selected D4/D5/D6–D9/D11 dependencies (H8.2–H8.6). Those entries below remain open;
+this ownership reconciliation does not complete, reassign or implement them.
+Standalone source changes to those dependencies require an explicit work split
+with the H8 effort. OWN/FRAME, UI/RENDER, LIFE and desktop acceptance remain their
+existing cross-workstream obligations. No additional non-H8 Human implementation
+item was identified by reconciling the milestone checklist and closure contracts.
+
+The user confirmed strict exclusion of H8 on 2026-11-16. **H8 is the final
+P22-HUM source milestone:** once its completion criteria, selected dependencies,
+verification and handoff are satisfied, P22-HUM may be marked source-complete.
+No additional Human milestone is required by this reconciliation. P2.2's
+application/mission/desktop acceptance remains separate and must not be marked
+complete from Human source closure.
 
 H2 completes its reactions/damage/ragdoll source and verifies its own owner,
 producer and retirement boundaries. Reached H4/H6 contracts remain explicit
@@ -293,7 +312,7 @@ selection/control/geometry-double gap. D11's original omissions and D4–D9
 integration remain visible on their actual callers; H2 completion does not turn
 their required failures into successful services. H8 verifies the entire Human
 behavior set in the actual containing World/application, and P2.2 requires
-application/desktop delivery. H4 is integrated and H6 is source-complete on its own branch; H8 remains open.
+application/desktop delivery. H4 and H6 source are integrated into this aggregate; H8 remains open with the other agent.
 
 ## External integration and acceptance
 
