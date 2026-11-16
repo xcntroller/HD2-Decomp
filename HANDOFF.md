@@ -1,87 +1,58 @@
 # P22-HUM H8 handoff — 2026-11-16
 
-Worktree `HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`. PACK is finished;
-do not revisit its deleted worktree. This branch owns H8.2, then H8.3. Another
-agent owns H8.4: leave its branch/worktree and occupied/Car/seat/absent-actor
-implementation to them. Preserve other worktrees. No push or original EXE/DLL/
-Proton/Windows fixture execution. Heavy compilation and Ghidra sequentially.
-H8.2/H8/application loading and user desktop acceptance remain OPEN.
+Worktree `HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`. Latest user
+priority: get in game, stop expanding helper checkboxes/research. H8 plan is
+consolidated to its six original delivery checkpoints. This branch owns H8.2,
+then H8.3. Another agent owns H8.4; preserve its occupied/Car/seat/absent-actor
+work and other worktrees. PACK is finished. No push, original EXE/DLL/Proton or
+Windows fixture execution. Heavy compile and Ghidra sequentially.
 
-Latest: [on-foot avoidance and containing navigation](analysis/human-h8-avoidance-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-avoidance-20261116.json), after70cb01d.
-Actual World→factory→SAME Active now runs the prefix plus0052E310/0052DC10/
-0052D720 avoidance, refresh, flag reconciliation, actual0057A750 query, selected
-result handling and0052D460 gait using the prefix follow flag. Runtime still
-requires remaining aim/movement/decision/output; occupied continuation H8.4.
-Loading remains disabled and full H8.2/H8 remain OPEN.
+Latest: [ordinary on-foot authority through return](analysis/human-h8-authority-body-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json), after9661f9e.
+Actual World→factory→SAME Active now runs the prior prefix/navigation AND ordinary
+00526550 body through actual return. Rifle range/burst/crouch, populated00537FB0
+stance,005318C0 ammunition→same general inventory transfer, ordinary reload,
+actual event-priority/roster/cover decisions, look/items/preset/direction,
+last processed-event retirement and medical tail are bound. The unconditional
+remaining-authority failure on this path is removed. H8.2/full H8/application
+loading and desktop acceptance are still OPEN; no actual mission execution claim.
 
-Preserve 174bit20 BEFORE resource access and TWO selected-player queries;
-strict posture spacing, velocity-zero fallback and W provenance. Avoidance's
-cross/normalization phases have different x87 component spills; see contract/raw.
-Query request THEN18C=1 THEN formation member/route effects. Missing slots fail
-AFTER earlier publication. Clamp uses actual global GAME+54 navigation, proposed
-lookup even disabled, route proposed→original mask0, length<=4 accepted. Same-
-point clipped temporary W is unwritten; retained typed W has no native claim.
-Route length sums FIRST forward duplicate edge weights with uint32 wrap and
-extended unsigned/256 return. No copied registry/navigation/formation owners.
+Preserve exact whole-value aim switch; native virtual134 is pending-order COUNT,
+not action mode. Range tables are INTEGER; opposite fire/pause interpolation and
+truncation before .1 spans. CRT burst/selection and engine idle-release/turning
+random owners are distinct. Query58/timers/postures follow native publication.
+Actual C0 is sighted Dogs. Type36 sound-list empty case still updates actual head;
+positive36 remains required. Type34 singleton lookup has genuine first10000ms
+return. No private empty registry. PACK transfer owner unchanged/reused;005318C0
+returns true after its request even if false. Positive non7 queues fail AFTER
+successful transfer. Cover reverse sort retains farthest-first traversal;
+0045F3A0 C lost its positive random return, confirmed by raw bytes. Event pool
+return BEFORE erase; only LAST10000003 considered, age>750 strict.
 
-Query result4 handles200/1A4/18C; -6 rejected speech; -5/-4 request saved1E0 for
-NULL target or perform actual lazy target-model update without a new target
-position request. Active task25/26 query -10 still requires00532190 replanning.
-Native partial/mode/speech/query/formation failure prefixes remain honest.
+Verification and fingerprints in receipt: native ASan/UBSan/leak on NEW policies
+with actual AI resource/direction/query/target/roster/event pool/deques/frame stats;
+Human/frame/inline/aim-result/World endpoints are explicit doubles. Strict actual
+full World/factory/Active i386 and launcher/probe links. No Windows execution.
+Temporary audits fingerprinted and removed. Do not repeat unchanged H1–H7/PACK.
 
-Focused ASan/UBSan/leak PASS9201 checks /100 on-foot avoidance/navigation lifecycle
-matrices plus wrapped long-route check. Actual nav records/links/search, AI
-resources/query, formation and kernels; Human/frame/World/selected/E0 endpoints
-and reused query/gait/speech stage receivers are explicit doubles. Strict actual
-full World authority/avoidance i386, final sequential launcher/probe links,
-ledger and27 tests in receipt. Windows fixtures never run; temporary audits
-fingerprinted and removed. Four new partials and extended00526550;34 complete/
-3481 partial (3476 client,5 engine). Earlier verified kernels need no repeat audit.
+NEXT: continue the next actual offline frame failure. Cautious2/saved-position10/
+vector200, specialized task25/26/22 and query-10 replan, launcher5/close combat,
+unusual reload source slots, populated process98/group command members and
+remaining reached offline action/hazard/water callbacks still require bodies.
+No new helper checklist. Use the source contract for exact supported gates;
+do not claim full H8.2 from the ordinary first-frame path alone. H8.4 external.
 
-Previous larger checkpoints: eb44e0b [follow](analysis/human-h8-follow-source.md),
-19ac12b [gait/preset/events/medical](analysis/human-h8-authority-policy-source.md),
-70cb01d [containing prefix](analysis/human-h8-authority-prefix-source.md).
-Players virtual20=00459490 postpones roster1A4 and NEVER changes groupA8;
-direct task00456F00 is separate. Populated F8 command-members is distinct from
-five4C..8C groups and remains required. PACK is finished.
-
-**NEXT H8.2:** containing aim result policy AFTER on-foot gait, then0052B810
-movement/target family,005276E0 cover/event decisions and containing output/
-processed-event retirement/medical tail. Also populated00457820/00456F00 group
-command-members, other specialized task/effects and remaining offline receivers.
-No H8.4 implementation. After H8.2 proceed H8.3. [Plan](analysis/p22-hum-h8-plan.md).
-
-Aim result0x800 depends on005318C0(111bytes): index and raw ASM already saved
-as `human-h8-authority-aim-policy-index.txt`/`human-h8-authority-aim-reload.asm`.
-NO C export/source credit yet. Raw checks actual holder3 item, virtual10 capacity
-!=-1, definition virtual18 ammunition,005A78F0 definition lookup, then005A2B40
-with source6/destination1/index0, returningtrue after that call. This is pack→
-holster ammunition, not weapon equip6→3. Existing Inventory.move loading wrapper
-rejects destination1; recover/reuse actual common packet/inventory command owner,
-do not bypass required wrapper/ordering or reopen completed PACK integration.
-
-WORK=`analysis/work/mission-world-20261103`. Research index BEFORE new exports:
-`python3 -B tools/research_index.py find ADDRESS...`. Reuse existing C:
--00526550(4029bytes): `frame-human-script-and-active-workers`.
--00528580/005325C0/**005276E0/0052B810/0052E310/00478AE0**/005A7E00:
- `human-h8-authority-policy`; mode/self-treatment under `human-h8-active-frame-workers`.
--0052DC10(1786),0052B180(988),0052D0D0(848),0052A5D0(550),0052CEA0(31),
- 0052F160(137),0052F700(72),0052B080(221): `human-h8-authority-movement`.
--0052D720(1261): `human-h8-avoidance-query`; raw prefix and original clamp C.
- Remaining unimplemented movement bodies in these folders receive NO credit.
- Implemented0052DC10/0052D720 are covered by the latest avoidance receipt.
--005230D0 route length(236bytes): `human-h8-avoidance-route-length`, now implemented.
- Native x87 return/uint32 accumulation is in its raw ASM; C incorrectly reports pointer.
- Existing005223B0 delegates actual route search; do not infer its local mask byte
- or x87 spill behavior from truncated C. See avoidance/query raw ASM and contracts.
-
-Original SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+WORK=`analysis/work/mission-world-20261103`. Research index BEFORE new exports.
+Reuse00526550 (`frame-human-script-and-active-workers`),0052B810/005276E0
+(`human-h8-authority-policy`), movement helpers (`human-h8-authority-movement`),
+00537FB0 (`human-active-ai-actions`),00527560 (`human-h8-body-event`),0052AC20
+(`human-h8-target-crouch`).00525C90 cautious posture is indexed but NOT exported;
+00525BB0 also indexed, not exported. Read relevant source before exporting more.
+Original image SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
 Read-only/noanalysis Ghidra: `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`,
 project `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
-hd2.unpacked.exe. Check ERROR even with exit0; no saved project/type mutation.
+hd2.unpacked.exe. Check ERROR even with exit0. No project/type mutation.
 Build `make -C recovered -j1 application-launch startup-probe
 WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
 Ledger `python3 -B tools/function_progress.py --render`/`--check`; tracker
-`python3 -B tools/test_function_progress.py`. Consolidate docs/tallies at meaningful
-verified source checkpoints. Do not repeat unchanged H1–H7/PACK audits.
+`python3 -B tools/test_function_progress.py`. Consolidate docs at verified commits.

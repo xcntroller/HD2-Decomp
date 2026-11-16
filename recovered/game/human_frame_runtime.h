@@ -41,7 +41,7 @@ public:
     template<class Human>void advance_human_state(Human& human,bool,std::uint32_t){
         if(human.loading_state&&human.loading_state->words().template get<std::uint32_t>(0x48)==3){
             if(human.field160)throw std::runtime_error("Active authority requires H8.4 occupied continuation after its bound prefix");
-            throw std::runtime_error("Active authority requires remaining00526550 aim/movement/decision/output body after on-foot navigation");
+            throw std::logic_error("Active on-foot authority must use its actual World/factory containing frame");
         }
         throw std::runtime_error("Human frame requires actual Remote B0 frame receiver");
     }

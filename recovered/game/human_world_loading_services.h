@@ -6,6 +6,7 @@
 #include "game/heavy_fire_aircraft.h"
 #include "game/heavy_fire_player_support.h"
 #include "game/human_ai_alignment.h"
+#include "game/human_active_ai_authority_body.h"
 #include "game/human_vehicle_path.h"
 #include "game/human_inventory_counts.h"
 #include "game/human_inventory_packet.h"
@@ -156,6 +157,96 @@ public:
     bool active_authority_nearby(const HumanVector& position){return active_nearby_runtime_actor(dependencies().world_actors.runtime(),dependencies().scene.frames(),position,3u);}
     void active_avoidance_clamp(HumanVector& position,bool enabled,const HumanVector& original){clamp_active_avoidance_position(dependencies().navigation,position,enabled,original);}
     auto* active_avoidance_player(){return dependencies().players.control().selected_player(mode_flags());}
+    auto* active_process_target(){ //00456860, actual process98 (the positive producer remains required).
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        if(dependencies().startup.players_process().words().template get<std::uint32_t>(0x98))
+            throw std::runtime_error("Active movement requires the actual Players process98 actor borrower");
+        return static_cast<Actor*>(nullptr);
+    }
+    template<class Entry>bool active_special_hand(Entry entry){return human_special_hand_definition(dependencies().world_actors.items().runtime_item(entry).definition());}
+    template<class Human>bool active_has_ammunition(Human& human,std::uint32_t definition){
+        return bool(find_human_inventory_definition(human,dependencies().world_actors.items(),human_frame_signed_word(definition)));
+    }
+    template<class AI>auto* active_nearby_dog(AI& ai,float radius){ //0052B180; C0 is the SAME sighted-Dog list.
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        auto& state=ai.state();
+        if(!state.template get<std::uint8_t>(0x202)){
+            const auto task=state.template get<std::uint32_t>(0x220);
+            if(task==25||task==26){ai.require_live_task_target();if(ai.task_target&&ai.task_target->base().type()==30)return ai.task_target;}
+            else if(task==22&&ai.task_target&&ai.item())throw std::runtime_error("Active nearby-target query requires0052B180 task22 completion/replan policy");
+        }
+        const auto& dogs=dependencies().players.control().sighted_dogs();
+        for(auto n=dogs.size();n;){
+            auto* dog=dogs[--n];if(!dog)throw std::runtime_error("Active nearby-Dog query reached native NULL Dog dereference");
+            const auto a=dog->base().world_position(),b=ai.human()->base().world_position();
+            const auto x=static_cast<long double>(a[0])-b[0],y=static_cast<long double>(a[1])-b[1],z=static_cast<long double>(a[2])-b[2];
+            const auto square=(z*z+y*y)+x*x; //52B488..A2 retains the sum in x87 through comparison.
+            const float limit=static_cast<float>(static_cast<long double>(radius)*radius);
+            if(square<limit)throw std::runtime_error("Active nearby-Dog query requires H8.4 actual Dog4A0/540 health and relation owner");
+        }
+        return static_cast<Actor*>(nullptr);
+    }
+    template<class AI>void active_idle_look(AI& ai){ //0052CEA0 ->005E8B70, then005F0E40.
+        auto& d=dependencies();auto* human=ai.human();
+        if(!human->head_marker)throw std::logic_error("Active idle look requires actual Human260 head frame");
+        (void)d.scene.frames().actor_world_matrix(human->head_marker); //Even the empty sound registry updates the head first.
+        //005E3C90 registers EVERY type36;005E3F10 unregisters before actor
+        //retirement. No type36 in the SAME live registry proves this cold list empty.
+        if(d.world_actors.runtime().any_owned_reverse([](auto& actor){return actor.base().type()==36;}))
+            throw std::runtime_error("Active idle look requires actual005E8B70 type36 sound registry/collision receiver");
+        //005EF180 constructs type34 and publishes008AC8D4;005EF450 clears
+        //it on destruction. The cold first10000ms005F0E60 return is genuine.
+        if(d.world_actors.runtime().any_owned_reverse([](auto& actor){return actor.base().type()==34;})&&
+           d.session.words.template get<std::int32_t>(0x2c)>=10000)
+            throw std::runtime_error("Active idle look requires H8.4 actual type34 singleton005F0E60 receiver");
+        ai.state().set(0x23c,0u); //Both native queries returned NULL;240 is intentionally untouched.
+    }
+    template<class Actor>bool active_armoured_target(Actor& actor){
+        if(actor.base().type()!=3)return false;
+        auto& human=selection_human(actor);auto* attachment=human.field160;
+        return attachment&&attachment->base().type()==4&&car_field5e0(attachment);
+    }
+    template<class Human>bool active_has_heavy_weapon(Human& human){
+        std::int32_t slot=7;return bool(find_human_weapon_candidate(human,dependencies().world_actors.items(),6u,false,false,slot));
+    }
+    template<class Human>bool request_human_inventory_move(Human& human,std::int32_t identity,std::int32_t source,std::int32_t source_slot,std::int32_t destination,std::int32_t index){ //00587BF0, common B0 virtual74.
+        const bool moved=receive_human_inventory_move(human,dependencies().world_actors.items(),*this,true,identity,source,source_slot,destination,index);
+        if(moved&&(mode_flags()&7u)!=7u)throw std::runtime_error("Human inventory request requires00587BF0 second command7 publication after successful transfer");
+        return moved;
+    }
+    template<class Human>bool active_holster_spare_ammunition(Human& human){ //005318C0 ->005A2B40 ->B0 virtual74.
+        auto* storage=human.base().storage();auto* hand=storage?storage->holder(3):nullptr;
+        if(!hand)throw std::logic_error("Active ammunition policy requires actual Human holder3");
+        const auto entry=hand->entry();if(!entry)return false;
+        auto& items=dependencies().world_actors.items();auto& weapon=items.runtime_item(entry);
+        if(weapon.capacity()==-1.f)return false;
+        const auto ammunition=find_human_inventory_definition(human,items,weapon.definition().ammunition());
+        if(!ammunition)return false;
+        //Native source6 is FIXED even if005A78F0 found this definition in
+        //another slot. The request's false result is deliberately ignored.
+        (void)request_human_inventory_move(human,items.runtime_item(ammunition).identity,-1,6,1,0);
+        return true;
+    }
+    template<class AI,class Inline>void active_frame_reload_policy(AI& ai,Inline& control){ //00526550 after endurance, BEFORE cover decisions.
+        const auto entry=ai.item();if(!entry)return;
+        auto& items=dependencies().world_actors.items();auto& item=items.runtime_item(entry);
+        if(item.capacity()==-1.f)return;
+        const auto kind=item.definition().kind();if(!((kind>1&&kind<7)||kind==12))return;
+        std::int32_t slot=7;const auto ammunition=find_human_inventory_definition(*ai.human(),items,item.definition().ammunition(),&slot);
+        if(ammunition){
+            const auto amount=item.amount();
+            if(amount==0.f||(!ai.state().template get<std::uint32_t>(0x19c)&&
+               static_cast<long double>(amount)+1.f<items.runtime_item(ammunition).amount()&&!item.allows_partial_reload())){
+                if(slot!=1&&!(kind==6&&slot==6))throw std::runtime_error("Active authority reload requires007D4850 explicit source-slot receiver outside ordinary magazines");
+                std::int32_t consumed=-1;
+                if(reload_human_ai_weapon(item,*ai.human(),consumed,false)){
+                    control.set_frame_item_action(3);ai.state().set(0x19c,5000u);
+                }
+                return; //Native reload branch skips the separate forced-flag clear even on failure.
+            }
+        }
+        item.field60&=~2u;
+    }
     template<class Human,class Actor>bool active_event_hostile(Human& human,Actor* actor){
         const auto& enemies=human.perception.lists()[0];return std::find(enemies.rbegin(),enemies.rend(),actor)!=enemies.rend(); //005A5E50.
     }
@@ -2009,8 +2100,8 @@ public:
         if(kind==3){
             const auto prefix=factory.begin_active_authority(*state,elapsed,queries);
             if(prefix.has_value()){
-                if(!human.field160)factory.advance_active_onfoot_navigation(*state,elapsed,*prefix,runtime);
-                runtime.advance_human_state(human,authority,elapsed); //Required remaining00526550 body; no success fallback.
+                if(!human.field160)factory.advance_active_onfoot_authority(*state,elapsed,*prefix,runtime);
+                else runtime.advance_human_state(human,authority,elapsed); //H8.4 owns the occupied continuation.
             }
             return;
         }
@@ -2492,10 +2583,7 @@ public:
         if(!human.command||!human.command->area_position)throw std::logic_error("Area AI handover requires produced B4 sniper area005AE610");
         float radius;std::memcpy(&radius,&human.command->field10,4);return {*human.command->area_position,radius};
     }
-    template<class State>void adjust_active_ai_stance(State& state,bool){
-        if(!state.first_frame_inputs()||!state.second_frame_inputs())return;
-        throw std::runtime_error("Populated Active AI stance requires actual74/78 command and A4/A8 posture producers");
-    }
+    template<class State>void adjust_active_ai_stance(State& state,bool ready){adjust_active_navigation_stance(state,ready);} //00537FB0, populated SAME Active inputs/A4/item.
     template<class Human>bool human_unavailable(const Human& human)const { //005A6380, only its native AL result.
         std::int32_t health;const auto bits=human.properties.stats_ec[0];std::memcpy(&health,&bits,4);
         if(health<1||!human.loading_state||human.properties.field19c==1)return false;

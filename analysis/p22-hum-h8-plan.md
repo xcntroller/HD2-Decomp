@@ -1,184 +1,66 @@
-# H8 Human containing frame — implementation and dependency plan
+# H8 Human frame — delivery plan
 
-Active worktree `../HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`, created
-from completed H6fc9d452. All H1–H7 source is present, including user-merged
-H4b9d67aa. Preserve other worktrees. No push, original/Windows execution or
-invented desktop acceptance. H8 and parent P22-HUM remain OPEN.
+Worktree `HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`.
+This branch owns H8.2, then H8.3. Another agent owns H8.4; preserve its
+occupied/Car/seat/absent-actor work. PACK is finished. No original EXE/DLL,
+Proton or Windows-fixture execution; no push. Compile and Ghidra sequentially.
 
-User assignment2026-11-16: this branch owns H8.2, then H8.3. Another agent owns
-H8.4; leave its worktree/branch and occupied/Car/seat/absent-actor work to them.
+## Delivery boundary
 
-Complete the existing plan's full Human frame checkbox. Offline7 is the first
-required application path; non7/occupied/absent-actor branches retain precise
-requirements until completed or proven outside the selected path. Source-only
-checks are not application delivery. Use the research index before exports.
+- [x] H8.1 — Compose actual scene→B0/inline→DD0/E0/equipment/geometry on the SAME World. [Source composition](human-h8-frame-composition-source.md).
+- [ ] H8.2 — Complete the mandatory offline Human decision/action/callback receivers reached by that composition.
+- [ ] H8.3 — Complete reached ShotMgr async bullet/shell/capsule/grenade collision, damage, visual/contact frames and initial100 calls.
+- [ ] H8.4 — Complete reached occupied/Car/entry/absent-actor dependencies. **Other agent owns this.**
+- [ ] H8.5 — Verify the completed containing Human frame on actual owners, module/i386/launcher links and consolidated native positive/failure/lifetime checks.
+- [ ] H8.6 — Connect completed application/FRAME/OWN/render work and obtain actual mission/user desktop acceptance.
 
-## Completion boundary and dependency order
+These are the delivery checkpoints. Do not add helper checkboxes. Commit larger
+verified changes and continue through required dependencies. The priority is the
+selected offline mission reaching its real Human frame, followed by the next
+reached failure. Source count and a successfully linked fixture do not establish
+application or desktop delivery. Unreached variants keep precise requirements;
+do not expand research merely because an adjacent function exists.
 
-- [x] H8.1 — Compose actual Human scene→B0/inline→DD0/E0/equipment/geometry
-  frame on the SAME World through one borrowed Runtime facade. Bind recovered
-  walk/material, H3 seats, H4 Script/formation/completion and H6 firing/input
-  receivers; instantiate the whole path to identify exact missing receivers.
-  **Source-only** [composition checkpoint](human-h8-frame-composition-source.md); H8.2+ remain required.
-- [ ] H8.2 — Finish mandatory offline receivers exposed by that composition:
-  Active AI/Player/Script decisions, reached control actions, hazard/water and
-  actor callbacks. Preserve native gates, publication and failure prefixes.
-- [ ] H8.3 — Actual ShotMgr async bullet/shell/capsule/grenade collision,
-  damage, visual and contact frames, including selected initial100 calls.
-- [ ] H8.4 — Resolve reached actor/Car/entry dependencies against current
-  OWN/FRAME interfaces: existing D4/D5/D6–D9/D11 remain required when selected;
-  absent Dog/type15/Aircraft/type34/material owners cannot report success.
-- [ ] H8.5 — Consolidated same-owner positive/failure/re-entry/teardown native
-  sanitizers, actual-host/module i386 link, launcher/probe, ledger and cleanup.
-- [ ] H8.6 — Compose required completed application/FRAME/OWN/render work;
-  actual mission/user desktop acceptance remains an explicit P2.2 delivery gate.
+## Current H8.2 path and next failure
 
-Continue through these dependencies, committing verified larger checkpoints.
-Do not re-audit unchanged H1–H7 kernels or expand non7 research solely because
-an adjacent function exists. Required missing bodies stay honest.
+The [ordinary on-foot authority](human-h8-authority-body-source.md) now runs from
+World→factory→SAME Active through00526550's actual return: existing prefix,
+avoidance/query/gait, aim result policy, ordinary movement/target policy,
+movement output/endurance, ordinary reload, actual event/roster/cover selection,
+look/items/preset/direction, processed-event retirement and self-treatment.
+There is no unconditional remaining-authority failure after this path.
 
-## PACK effects — completed source dependencies
+H8.2 remains open: cautious/saved-position variants, launcher/close-combat
+target tasks and unusual reload source slots still stop when selected. Ordinary
+rifle target range/burst/crouch, populated action-mode stance and005318C0
+pack→holster ammunition are now source-bound. Specialized tasks25/26/22,
+query-10 replanning00532190, populated Players00457820/00456F00 command members
+and remaining reached offline action/hazard/water callbacks must also retain
+honest requirements until implemented or shown outside the selected path.
+Type36 sound look selection and positive type34 singleton look require actual
+owners; no private empty registry is substituted. H8.4 owns Dog/attachment/
+Car/seat/Aircraft bodies. Follow actual reached dependencies rather than trying
+to finish all specialized families before integration.
 
-User-directed priority after PACK's [review](../../HD2-Decomp-p22-pack/analysis/p22-pack-hum-h8-review.md)
-at H8 `14d59d3`. These source effects and PACK itself are now finished, as
-confirmed by the user on2026-11-16. Resume ordinary Active/frame work.
-The preceding Active task/follow work is preserved and verified in the clothing checkpoint; full decisions remain open.
+Next implementation target: the next reached offline frame failure, with
+cautious/saved-position movement and specialized task admission still explicit. After H8.2, continue H8.3. Loading
+activation and desktop acceptance remain explicit H8.6 gates.
 
-- [x] Command2: active clothing/DD0/equipment/Sight/Players/camera [source checkpoint](human-h8-pack-effects-source.md).
-- [x] Commands7/8: general inventory validation, transfer/swap and presentation [source checkpoint](human-h8-pack-effects-source.md#commands78-general-inventory-source-effect-checkpoint).
-- [x] Command9: actual runtime pickup, automatic placement and handoff [source checkpoint](human-h8-pack-effects-source.md#command9-pickup-and-automatic-unheld-placement-checkpoint).
-- [x] Command11: SupplyBox validation, creation/application, depletion and visibility [source checkpoint](human-h8-pack-effects-source.md#command11-supplybox-source-effect-checkpoint).
-- [x] Command12: actual Player validation/application and Remote actions; [HeavyFire/source guards](human-h8-pack-heavy-support-source.md).
-- [x] Command18: named cache resources, fourth-track setup and control lifetime [source checkpoint](human-h8-pack-effects-source.md#command18-named-special-animation-source-effect-checkpoint).
-- [x] Command20: active Remote equipment/storage replacement and retirement [source checkpoint](human-h8-pack-effects-source.md#command20-live-no-source-item-checkpoint).
-- [x] Command3: remaining selected common effects, type23 document owner, actual inline starts and typed loans; [source contract](human-h8-pack-common-source.md).
-- [x] Verify selected effect owners, packet positive/failure/lifetime paths and concrete host/launcher links; [common/source receipt](checkpoints/p2.2-human-pack-common-20261113.json). PACK integration is finished.
+## Existing evidence to reuse
 
-Command12's [required dependency boundary](human-h8-pack-action-boundary.md)
-was traced after the inventory checkpoint. Complete these before crediting it:
-
-- [x] Actual mapped inline actions, Players byte/setter, speech duration and Player delayed-action publication.
-- [x] Action33/34: actual HeavyFire16 request/configuration/list/publication and populated lifecycle policy; native unsafe paths remain explicit guards.
-- [x] Required flags1 nonoffline speech19 FIFO producer, eligibility and actual received playback.
-  [Speech/ordinary action checkpoint](human-h8-pack-action-resume-source.md); [support33/34 checkpoint](human-h8-pack-heavy-support-source.md) closes selected command12 source effects.
-- [x] Command12 positive/failure/stream/lifetime source checks and concrete host/launcher links; PACK FIFO integration was completed by its owner.
-
-Index lookup and original call boundaries are retained under WORK's
-`human-h8-pack-effects*`. Do not replace required positive effects with guards
-and claim resolution. PACK's integration/stream checks are finished, as confirmed by the user.
-
-## Active AI dependency boundary (current H8.2 frontier)
-
-The initial authority path00526550 requires005282E0 pending tasks,00528950
-actual event/decision processing and00536120 follow/formation, then00528570,
-paired00537690/005376C0 expiry, attachment005328A0, navigation/aim and0052B810
-movement policy before trigger/direction and command-event retirement. Original
-005335E0 is RET4; it must not be confused with these required decision bodies.
-End helper00526400 drives self-treatment cadence/skill/health/random and subtype23
-command. Existing C and bounded new worker exports/raw bytes are retained in
-WORK, indexed first. The [pending/move52 checkpoint](human-h8-pending-source.md) now binds pending
-setup/retirement and the on-foot order-generated move task; other task/follow
-bodies remain required. Complete the task/event/command producer and retirement owners
-rather than replacing this path with an idle success. Presentation00525DA0 and Car camera004D9E10 are now [source-bound and verified](human-h8-active-presentation-source.md); authority00526550 is still required. Its order/task/command dependencies remain the current implementation frontier.
-
-[Order action/marker checkpoint](human-h8-order-action-source.md) adds actual
-current-action7/8/**12** pools,0052A1E0 driver lookahead and existing HUD marker
-model acquisition/update/return. These APIs do not yet produce native orders.
-The [order owner/list checkpoint](human-h8-order-owner-source.md) now binds
-manager+18 construction, marker EC/dynamic collision registration/retirement and
-actual Active250 insertion/update/erase/reset. Next are005282E0/00529F60 decisions.00582920 creates
-current-action12, not4; native order kind4 remains a different family.
-
-| Required Active dependency | Source state |
+| Already verified source | Contract |
 | --- | --- |
-| Presentation00525DA0, Car camera004D9E10 | Bound/verified |
-| Order-to-action0052A1E0; shared action7/8/12; HUD marker004B9240/9B10/9080 | Bound/verified on actual owners; process order producer is now bound below |
-| Order005825C0/0058C5A0, marker EC/collision,0058D6C0/0058C8E0/00582640, Active list insert/update/remove/reset | Bound/verified source; positive route74 and actual command/Human190 producers remain required |
-|005282E0/00529F60 pending,00528950/00536120 decisions/follow | Pending lifecycle and on-foot move52 bound; Selected kind3 production now bound; specialized selection/production, other task/turn/occupied/combat completion/follow remain required |
-| Navigation/aim,0052B810 movement,005276E0 decisions,005325C0 output, command retirement/self-treatment | Reuse existing AI cores, complete Active policy and reached commands |
+| Frame composition and presentation | [composition](human-h8-frame-composition-source.md), [presentation](human-h8-active-presentation-source.md) |
+| Order/action owners and pending move52 | [actions](human-h8-order-action-source.md), [owners](human-h8-order-owner-source.md), [pending](human-h8-pending-source.md) |
+| Ordinary command/task producers | [selected](human-h8-active-command-source.md) |
+| Task execution/completion and follow | [execution](human-h8-task-execution-source.md), [completion](human-h8-task-completion-source.md), [follow](human-h8-follow-source.md) |
+| Gait/modes/F4/medical | [policy](human-h8-authority-policy-source.md) |
+| Containing prefix and navigation | [prefix](human-h8-authority-prefix-source.md), [avoidance](human-h8-avoidance-source.md) |
+| Ordinary authority through return | [body](human-h8-authority-body-source.md) |
+| Completed PACK effects | [effects](human-h8-pack-effects-source.md), [common3](human-h8-pack-common-source.md), [command12](human-h8-pack-heavy-support-source.md) |
 
-Required later H8 frame dependency exposed by command11: SupplyBox state1
-closing crossfade and subsequent respawn/falling frame receivers remain guarded.
-PACK effect source availability does not close that frame path.
-
-## Initial original-call map
-
-| Caller | Required boundary / existing source | Immediate remaining work |
-| --- | --- | --- |
-| Human0059FE30/0059FFD0 | `human_scene_frame.h`, actual registry/World facade | Bound; finish reached authority/decision receivers on the same owners |
-| DD000787270/00787D50 | `human_control_loading.h` and H2 ground/Look/arbitration/geometry | Walk/material bound; complete reached00751480/00755500 and remaining actions |
-| Player00540090/00540240 | `human_player_state_loading.h`, H6 actual item dispatch | H3 flags/inputs and selected-item zoom bound; suppressed camera/delayed Players command; non7 transport remains conditional |
-| Script0058E1C0/0058E210 | Existing H4 event/formation/VM owners | Bind known receivers; recover00591550 only when original alarm branch selects it |
-| Human2C8/0059BA70 | Actual formation/roster/navigation | Reuse World formation receiver; Aircraft remains absent |
-| Material0075EEE0 | Existing damage and stored hazard logic | 00451900 hazard blast/packet; actual material ordinary return remains valid |
-| Water0074EA80 | Existing ground/water owner | 005A97C0 actual command5 then HUD packet174; no unrelated flag clear |
-| Geometry007A7470 | Existing H1/H2 body; debug0098AF98 | SAME Startup scene presentation flag; optional visualA8 needs actual receiver |
-
-H6 closure lists exact async and unsupported actor boundaries. H4 closure lists
-unbound alarm/non7/type15/20/34 receivers. Keep those contracts as evidence, not
-as permission to call a guard a completed body. Masterfa94dee contains completed
-render work not yet imported into this branch; consider it during containing
-application integration, preserving active FRAME/OWN worktrees.
-
-## Completed source dependencies within open H8.2
-
-- [x] Bind Active presentation and actual Car seat camera.
-- [x] Recover shared order/action pools, actual HUD/collision marker lifecycle and Active pending-order ownership.
-- [x] Bind pending-order lifecycle and on-foot move52 source path [checkpoint](human-h8-pending-source.md).
-- [ ] Finish specialized kind3 producers, remaining Active decisions/follow and containing authority; then remaining offline receivers.
-
-These source checkpoints do not close parent H8.2 or application/desktop delivery.
-
-## Reached kind3 dependencies within H8.2
-
-The [selected command checkpoint](human-h8-active-command-source.md) binds
-explicit-Human00458E50, ordinary0045BB20/0045BD10 selection, native00459180
-pointer-only ordering and selected00534620 task producers. Task production is
-separate from execution and containing authority.
-
-- [x] Selected ordinary kind3 filtering, target tasks, actual DC focus exit,
-  Door/document inventory eligibility and required failure publication prefixes.
-- [x] Medical15 selection/task producer and actual holder5/holster query [checkpoint](human-h8-authority-policy-source.md).
-- [ ] Other specialized item/attachment selection and remaining task producers.
-- [ ] Actual00457820 group/navigation production and group4 selector.
-- [x] Ordinary standalone task completion and distinct follow resume [checkpoint](human-h8-task-completion-source.md).
-- [x] Selected ordinary on-foot task arrival/turn/effect/wait/completion [checkpoint](human-h8-task-execution-source.md).
-- [ ] Specialized task/effect families and combat/cover completion; occupied/Car/seat dependencies belong to H8.4.
-- [x] Selected on-foot follow00536120, nav posture/direction and distinct Players notifications [checkpoint](human-h8-follow-source.md).
-- [ ] Populated Players00457820/00456F00 command-member production and containing00526550 reached chain.
-
-Keep H8.2 open until all required offline receivers are bound and verified.
-
-The [on-foot follow checkpoint](human-h8-follow-source.md) binds actual
-formation/query/posture/Sight/readiness and distinct virtual20=00459490 versus
-direct task00456F00. Occupied follow stays with H8.4.
-
-## Remaining authority assembly within H8.2
-
-[Authority helpers and medical/event checkpoint](human-h8-authority-policy-source.md)
-binds source APIs; the [containing prefix](human-h8-authority-prefix-source.md) now
-reaches them on SAME World. Remaining00526550 aim/movement/decision/output body is still REQUIRED.
-This list separates completed owners from the remaining policy dependencies.
-
-- [x] Actual pending/task/follow ordinary source paths (links above).
-- [x] Active F4 event dispatch00528580 and actual incoming/processed event leases.
-- [x] Temporary mode expiry00537690/005376C0, navigation gait0052D460,
-  direction preset005325C0 and self-treatment00526400.
-- [x] Containing00526550 prefix: base timers,248 nearby-actor scan00478AE0,
-  234/1C4/1A4/1B0 timers, shared74/78 inputs and pending/task/follow/events/modes.
-- [ ] Remaining00526550 body after that prefix; no idle success or loading activation.
-- [x] On-foot0052E310/0052DC10/0052D720 avoidance, route length and containing
-  query-result/gait phase [checkpoint](human-h8-avoidance-source.md).
-- [ ] Containing aim policy,0052B810 movement/target selection and reached helpers;
-  specialized task25/26 result-10 replanning00532190 remains required.
-- [ ] Event/cover decisions005276E0 and its actual processed-event/roster/target owners.
-- [ ] Bind native containing order, aim/reload/trigger/movement/items/preset/direction,
-  processed-event retirement and medical tail; complete remaining offline receivers.
-- [ ] Populated00457820/00456F00 command-member production; remaining specialized
-  producer/effect/turn/cover/completion families.
-
-Newly exported original policy bodies are in WORK `human-h8-authority-policy`;
-reuse those before another export. Specialized producers, gait and mode/medical
-helpers already have existing C in earlier folders. Do not re-audit completed
-kernels absent a discrepancy. H8.4 attachment/Car/seat policies remain external.
-Keep H8.2 open; after it completes this branch owns H8.3.
+WORK=`analysis/work/mission-world-20261103`. Use the research index before new
+exports. Existing00526550 is under `frame-human-script-and-active-workers`;
+0052B810/005276E0 under `human-h8-authority-policy`; movement helpers under
+`human-h8-authority-movement`. Read raw bytes when C loses arguments, x87 values
+or apparently unreachable returns. Do not repeat unchanged H1–H7/PACK audits.
