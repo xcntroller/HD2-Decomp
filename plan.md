@@ -352,3 +352,5 @@ producer/control/finish, completed H3/H5 interfaces and Active AI grenade respon
 are now bound to actual owners. H6 item production/Player medical is [source-complete](analysis/human-h6-source-closure.md). H8 absent
 actors/full Runtime/async combat/application/user desktop acceptance remain required. The
 parent Human/mission-loading delivery checkbox stays open.
+
+H8 now includes [reconciled FRAME source composition](analysis/human-h8-frame-integration-source.md) on the same World/Players/Runtime; actual i386 input/fixed/update/lifecycle binding and focused combined-owner native checks pass. Application wiring, conditional H8.4 and full containing/desktop verification remain open.

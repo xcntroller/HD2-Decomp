@@ -31,6 +31,7 @@ public:
     void explode(Actor* source,const Vector& position,float radius,float power,std::int32_t sound){
         game::emit_shot_explosion(d_.startup.shot_manager_process(),d_.sound,*this,source,position,radius,power,sound);
     }
+    const auto& dependencies()const noexcept{return d_;} //SAME owner identity for FRAME.
     bool create(const Process::Request& request){require_loaded();return d_.startup.blast_wave_process().create(request,*this);}
     void update(std::uint32_t elapsed){require_loaded();d_.startup.blast_wave_process().update(elapsed,*this);}
     void clear_all_shared_records()override{d_.startup.blast_wave_process().clear();} //006DF390(0,true), including positive linked records.

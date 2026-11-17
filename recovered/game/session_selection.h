@@ -39,6 +39,7 @@ public:
         return location->flat_ordinal;
     }
     const std::uint32_t& field_e8;
+    const MissionRequest* accepted_request()const noexcept{return accepted_;}
 private:
     frontend::GameData& data_;const frontend::PreMissionRoute& route_;const frontend::PreMissionGameRequest& request_;
     const MissionRequest* accepted_=nullptr;

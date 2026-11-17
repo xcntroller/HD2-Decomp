@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "e105008",
+  "imported_frame": "91a7d33",
+  "frame_production_checkpoint": "c36bba8",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-frame-integration-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_player_control_loading.h",
+      "bytes": 8163,
+      "sha256": "7becea01e417f3a7ba6372f0cbad13520e9fc2306f5a1cee631cd42da2975993"
+    },
+    {
+      "path": "recovered/game/mission_script_world_loading.h",
+      "bytes": 5260,
+      "sha256": "7bbdd8e39b436c9b0219474b81a7f6013614b4a7248e2c37fb683051632e6f36"
+    },
+    {
+      "path": "recovered/game/player_control_frames.h",
+      "bytes": 1594,
+      "sha256": "ba2e78c7558a93c42a3e421f833c21a82b2a81940a0c04dd94c72406eea3f0d8"
+    },
+    {
+      "path": "recovered/game/session_frame_input.h",
+      "bytes": 4596,
+      "sha256": "f0b61b8ce9ea472a216d677cc42f0b6728c4cb2c49506b8930b7cadf96cca58d"
+    },
+    {
+      "path": "recovered/game/session_frame_loading.h",
+      "bytes": 6953,
+      "sha256": "10ddbc659dcb5ad9f40855e6fab72a05130ef3c2633e5baaf9a5079efe7b3a9f"
+    },
+    {
+      "path": "recovered/game/session_owner.h",
+      "bytes": 11535,
+      "sha256": "87fc4f39d53d98deb10aecfb9600db599ac06a9763c24e65db85024116a55a8f"
+    },
+    {
+      "path": "recovered/game/session_selection.h",
+      "bytes": 3035,
+      "sha256": "b64b239be87b24b2b5b7e3e3e04e4fd2eefb49ee25728158d3a96768e4a24ff2"
+    },
+    {
+      "path": "recovered/host/game_blast_waves.h",
+      "bytes": 23309,
+      "sha256": "a36a2a076e96a7c370e4f9f6b57305bad4bee3ce5b3cfb6a05177c72ded5557f"
+    },
+    {
+      "path": "recovered/host/game_mission_module_frames.h",
+      "bytes": 3221,
+      "sha256": "1586aa7a91374f52ed9b00dbfd057ff3369bdd5e6e6f2edbc0b746236bd0529f"
+    },
+    {
+      "path": "recovered/host/game_session_activation.h",
+      "bytes": 9626,
+      "sha256": "221ded488eb838e4ad12f5ac6ea29ffcb6a7f1a289d6b9f28e12d9273ffd3adb"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 12216,
+      "sha256": "2bfa579707bfca76281fd597398b5fc2a2bd0421a4ce4306f64048ce8efa1632"
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "bytes": 7999,
+      "sha256": "3ac451029b68a41201c47e894c2fcbb0385f46d853149c94a8ded1591252258c"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "bytes": 31049,
+      "sha256": "e69c63411070a2d944f6beaf2626cde941841ceee2b5fd163478ea0875b0a4ad"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-handoff-index.txt",
+      "bytes": 4143,
+      "sha256": "2a8a78661459df0aa5710b3b8add2df8a1be8917d6526008677d5655059fc379"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/game-state-frame-coordination/0069b230.c",
+      "bytes": 7936,
+      "sha256": "62946c4b1119d69a5b70c6bfbcc5b43ac7a65ce414090174fb9882f2dd480dbf"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-handoff-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-handoff-native-run.log",
+      "bytes": 154,
+      "sha256": "90dda6c0863014a9dd755899ee4464691d529594fb4e8ce3b9cdc3c7bf484ee7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-handoff-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-handoff-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-handoff-native.cpp",
+      "bytes": 4349,
+      "sha256": "0cfbf39737f20fcd3b4da9e292ae1b9e53bb6db00139e154aa519bbf139e2b25"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-handoff-native",
+      "bytes": 1172152,
+      "sha256": "f4ac99ca466d55ec5cc7f123691fbde3070699d57304d3ef1825659060d31df6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-handoff-module.cpp",
+      "bytes": 1113,
+      "sha256": "8e76011ef2c84b917dc10d30b214ca83f134012f4b6bb049110eb37fe402c202"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-handoff-module.exe",
+      "bytes": 12021760,
+      "sha256": "7e091ca681cf0060a8023629ded2bc090002c1b7aa333d3767a87ac5c68b89a1"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "imported_existing_frame_partial_bodies": [
+    "0069a500",
+    "0045e380",
+    "0045ef00",
+    "005a9720",
+    "004dd090"
+  ],
+  "new_reconstruction_claims": [],
+  "complete_promotions": [],
+  "counts": {
+    "complete": 34,
+    "partial": 3704,
+    "client_partial": 3699,
+    "engine_partial": 5,
+    "frozen_denominator": 18783
+  },
+  "verification": {
+    "native": "PASS896 strict ASan/UBSan/leaks combined actual Players owner/roster/selection/fixed/presentation checks; explicit Human/Frames/HUD endpoints",
+    "actual_i386": "PASS strict full actual World/session coordinator input/fixed/update/retire, module passes and lifecycle.bind_frames forwarding; compile/link only, opaque ControllerEndpoint for bind-only check",
+    "launcher": "PASS forced O2 application-launch/startup-probe compile/link only",
+    "limitations": "H8.4 selected actors, H8.5 full containing graph/failure/lifetime checks and H8.6 actual application/desktop remain open. Same-World composition source only, no runtime readiness or matrix promotion."
+  }
+}

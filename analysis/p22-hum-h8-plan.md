@@ -78,6 +78,17 @@ H8.3 is now source-closed: ordinary derived runtime/Animation paths and shared b
 Dog/runtime and Human callback integration; application/desktop remain
 explicit H8.6 gates.
 
+## Current integration checkpoint
+
+[FRAME source composition](human-h8-frame-integration-source.md) reconciles the
+existing session coordinator/lifecycle with current H8 World/Players/Runtime.
+Input/fixed/update plus lifecycle binding compile/link on actual i386 owners;
+combined Players native sanitizers pass. The FRAME branch is unchanged. Preserve
+newer H8 loose-item/physics/walk/Human bridges when integrating its older source.
+Application still declines before activation; actual OWN/UI/controller/cutscene
+bindings, reached H8.4 and containing/desktop verification remain required.
+This advances H8.5 dependencies without checking the unfinished full boundary.
+
 ## Existing evidence to reuse
 
 | Already verified source | Contract |

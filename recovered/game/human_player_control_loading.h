@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_PLAYER_CONTROL_LOADING_H
 
 #include "game/human_player_roster.h"
+#include "game/player_control_frames.h"
 #include <array>
 #include <cstdint>
 #include <type_traits>
@@ -100,6 +101,14 @@ public:
     void override_player(Human* human){ //0045E8F0, store BEFORE camera reset/FPV rebind, no roster mutation.
         override58_=human;presentation_.reset_player_camera(0);presentation_.bind_first_person_player();
     }
+    void advance_presentation(std::uint32_t elapsed){selection_.tick(elapsed);} //0045DDC0: base00461D20 RET4, then0045E3A0.
+    template<class Mission,class Queries>void advance_fixed(std::uint32_t elapsed,const Mission* mission,Queries& queries){ //0045DD90.
+        //00461D10 is RET4;0045E380 ticks only without mode2.
+        if(!(queries.mode_flags()&2u))selection_.tick(elapsed);
+        (void)roster_.live_count(); //Native scan before0045EF00, return unused.
+        update_player_control_frame_flags(*this,mission,field34_,queries);
+    }
+    std::uint32_t frame_surface_flags()const noexcept{return field34_;}
 private:
     Human* indexed(std::int32_t index)const {
         if(index==-1)return nullptr;

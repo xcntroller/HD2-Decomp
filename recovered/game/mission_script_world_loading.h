@@ -67,6 +67,7 @@ public:
     }
     auto& module(){if(closed_)throw std::logic_error("Script world owner is closed");return script_.module();}
     auto& runtime(){if(closed_)throw std::logic_error("Script world owner is closed");return script_.runtime();}
+    void fail_objectives(bool special){if(closed_)throw std::logic_error("Script world owner is closed");objectives_.fail_all(special);}
 private:
     Frames& frames_;Link& link_;Bindings bindings_;Controls controls_;Lifecycle lifecycle_;Views views_;
     Predicates predicates_;HumanObjectiveExperience experience_;Objectives objectives_;
