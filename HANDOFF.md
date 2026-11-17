@@ -18,26 +18,34 @@ acceptance. No desktop test has been performed for H8.
 ## Latest result
 
 [Projectile source](analysis/human-h8-projectile-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-projectile-20261117.json): SAME World
-all-hit006FF140/static00700BC0/00701350; shell00454360 motion/query/sound;
-grenade0044D260/0044D240→0044D290 Body/blast/effects and0044D570 contact;
-material00451DB0→0044FBC0 native80 owned projection pool; picked-frame Versions
-0043C660 single-Part receiver and004511E0 parser. Native33,408/32 query,
-9,901/100 motion/contact/projection and800/100 actual two-Part Versions checks
-PASS with explicit endpoint doubles as qualified in receipt. Strict actual
-World/factory/frame/contact/effects i386 and launcher/probe compile/link PASS;
-exact tracker and27 tests PASS. Counts34 complete/3563 partial
-(client3558+engine5), frozen18783. New claims partial only. Temporary audits
-fingerprinted/removed; original evidence retained. H8.3 and full H8 remain OPEN.
+[receipt bullet_capsule_follow_up](analysis/checkpoints/p2.2-human-h8-projectile-20261117.json):
+SAME World bullet0044B910/capsule00449290 combat and visual0044B400/00449030,
+native0044A910/0044AE00 hit sort, actual module17 emission toggle004458B0,
+0044EBD0 shared impact pool,004E1530 Car DM/seat picking, Versions replacement
+Frame outputs, actual Physics/Script/StaticWeapon first-seat/Animation/loose-item
+D4 and checked SAME blast→Car link. Native211000 visual/sort,7500 combat/flyby,
+900 toggle,901 Car,1100 Versions,1400 ShotMgr impact pool and1800 Animation/link
+checks PASS; fixture endpoint qualifications are explicit in receipt. Strict full
+World/factory/Human/frame/projectile/derived i386 and launcher/probe compile/link
+PASS. Exact tracker and27 tests PASS. Counts34 complete/3581 partial
+(client3576+engine5), frozen18783.18 new claims partial only. Temporary audits
+fingerprinted/removed; original evidence/logs retained. H8.3/full H8 remain OPEN;
+no application/desktop delivery claimed.
 
-Important: DOUBLE0080FAC8 is9.99999993922529e-09, not .0001. Shell uses ray
-layers1/flags0, .1 speed gate, reflection1.2 and NEGATE helper00454680, gravity3.8;
-SOUND sees old position. Grenade common worker runs from presentation in offline7,
-Body update before timer/state reads, strict fuse<age and close-before-effects.
-Material2C is UNSIGNED integer threshold, not FLOAT. Native80 projections have
-no tick; exact maximum recycles BEFORE draws; explicit sectorE0(point,1).
-First Ghidra projectile batch failed on absent0044D240 AFTER exporting two workers;
-kept failure log, reused raw wrapper and completed separate exports. No absent credit.
+Important: capsule2C is SIGNED FILD DWORD, bullet/grenade UNSIGNED. Equal-hit
+sort can reorder above16. Explosion texture is native48 followed by blood4C..60;
+fixed prior checkpoint's wrong decal24-array selection.004458B0 toggles emission,
+NOT deletion; retain points/B4 until00445800 retirement. Capsule ordinary producer
+90=false/incoming=false; positive command9 remains actual MissionCamera guard.
+Animation damage shares A3 with its frame owner, strict greater-than threshold;
+triggered track remains required. Loose-item D4 uses signed age300 then actual
+Body impulse; containing age/frame work and non7 packet remain required.
+
+Previous dbac1af binds actual all-hit006FF140/static00700BC0/00701350,
+shell00454360/grenade0044D260→0044D290/contact0044D570 and material0044FBC0.
+DOUBLE0080FAC8=9.99999993922529e-09; shell00454680 NEGATES, reflection1.2,
+gravity3.8, old-position SOUND. Grenade Body precedes timers; strict fuse<age;
+close-before-blast. Reuse these owners; do not repeat their unchanged audits.
 
 Prior latest5738cca fixed actual Active BC dispatch0052EAF0→0052E7C0 (Remote
 RET24 still genuine), and bound Players98 reaction00459500/00456860 on actual
@@ -55,17 +63,17 @@ across callbacks. CRT and engine RandFloat remain distinct owners.
 
 ## Next work — entire H8, no helper checklist expansion
 
-Continue H8.3 **bullet0044B910/0044B400 and capsule00449290/00449030** combat,
-visual/effect/damage/camera frames and original initial100 orchestration.
-Existing World stubs remain explicit. Reuse all-hit query and new shell/grenade/
-material effects instead of new substitutes. Selected variants remain required.
-Raw visual exports now available but not implemented:
-WORK/human-h8-bullet-visual.asm and human-h8-capsule-visual.asm. Capsule90 ordinary
-producer is false; raw special branch is command9 after strict age>300, not the
-misleading earlier inference. Both presentations orient from interpolated motion,
-not reconstructed C locals. New impact projection uses explicit sector flag1;
-existing one-argument human_scene_sector wrapper needs a targeted ABI check when
-reached, not a broad speculative replacement.
+Continue remaining reached H8.2/H8.4 and containing projectile dependencies.
+Bullet/capsule workers and initial100 attached-bullet production are now source-bound;
+H8.3 remains open for reached Dog/Animation/runtime damage/frame paths and containing
+verification. Dog30 D4 still needs live loading/control/geometry, rather than calling
+the merged policy kernel with synthetic state. Animation25 damage now triggers actual
+A3, exposing its existing positive start/track requirement. Loose11 D4 binds actual
+item/Body but runtime first-frame/age advancement remains required. Native type37
+Zone constructor005EBED0 installs00812B20 (common RET24); do not mislabel this as Fowl.
+StaticWeapon006057B0 is now bound to actual first seat, zone/miss, normalized direction
+and damage-before-Script hit. Type11/non7 packet and special capsule90 MissionCamera
+command9 stay conditional requirements, not selected ordinary producer substitutions.
 
 Then remaining reached H8.2 specialized seat8..13/action16/Car22/retreat40 pending
 and actual runtime callbacks (Script alarm, Human look/control motion, suppressed

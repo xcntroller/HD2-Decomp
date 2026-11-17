@@ -1241,6 +1241,19 @@ public:
         call<void>(owner.get(),0x4c,source);return owner;
     }
     void shot_projectile_root(Frame frame){human_sound_link(frame,field<Frame>(scene_.frame(),0x1f8));}
+    struct ShotDetailedPick {Frame frame{};float distance=0;Vector normal{};};
+    std::optional<ShotDetailedPick> shot_detailed_pick(const Vector& start,const Vector& displacement,Frame root,std::uint32_t flags=0x40000){
+        using Pick=Frame(WINAPI*)(Frame,const float*,const float*,Frame,void*,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
+        alignas(16) std::array<std::uint8_t,64> details{};
+        const auto frame=scene_method<Pick>(scene_.frame(),module_,0x104,0x110f0)(scene_.frame(),start.data(),displacement.data(),root,details.data(),flags,0,0,0);
+        if(!frame)return std::nullopt;
+        ShotDetailedPick result;result.frame=frame;std::memcpy(&result.distance,details.data(),4);
+        for(unsigned a=0;a!=3;++a)std::memcpy(&result.normal[a],details.data()+0x10+a*4,4);
+        return result;
+    }
+    void shot_visual_direction(Frame frame,const Vector& direction){call<void>(frame,0x1c,direction.data(),std::uint32_t{0});}
+    float shot_flare_intensity(Frame frame)const{return field<float>(frame,0x1e4);}
+    void shot_flare_intensity(Frame frame,float value){put(frame,0x1e0,value);put(frame,0x1e4,value);put(frame,0x244,value);}
     void shot_grenade_parameter(Frame frame,float value){call<void>(frame,0xa8,value);}
     void configure_shot_capsule(Frame frame,const Vector& velocity,const Vector& position){
         human_sound_link(frame,shot_hidden_sector());call<void>(frame,0xc,velocity.data(),std::uint32_t{0});
@@ -1312,9 +1325,12 @@ public:
         return owner;
     }
     MenuDriver::Owner create_shot_surface(){return driver_.create(0x4a4f5250u);} //004546E0, PROJ driver extension.
+    std::uint32_t shot_frame_native_type(Frame frame){return call<std::uint32_t>(frame,4);}
+    std::uint32_t shot_impact_visual_flags(Frame frame)const{return field<std::uint32_t>(frame,0x1d0);}
+    void shot_surface_white(Frame frame){const std::array<float,3> white{{1,1,1}};call<void>(frame,0xb0,white.data());}
     void shot_surface_projection(Frame frame,bool value){call<void>(frame,0xa4,std::uint32_t(value));}
     Frame shot_material_sector(const Vector& position){return call<Frame>(scene_.frame(),0xe0,position.data(),std::uint32_t{1});}
-    float shot_scene_light(const Vector& position){return call<float>(scene_.frame(),0x8c,position.data(),Frame{},std::uint32_t{0},std::uint32_t{0});}
+    float shot_scene_light(const Vector& position,bool shadows=false){return call<float>(scene_.frame(),0x8c,position.data(),Frame{},std::uint32_t(shadows),std::uint32_t{0});}
     void shot_surface_texture(Frame frame,Frame texture){call<void>(frame,0x9c,texture);}
     void shot_surface_scale(Frame frame,float x,float y,float z){
         put(frame,0xd0,x);put(frame,0xd4,y);put(frame,0xd8,z); //Native DC is unwritten; retain its known prior lane.

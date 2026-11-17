@@ -90,6 +90,9 @@ public:
     void mine_explosion(typename Runtime::Instance* source,const game::HumanVector& position,float radius,float power,std::int32_t sound){explosion_contact_.explode(source,position,radius,power,sound);}
     bool heavy_fire_blast(typename Runtime::Instance* source,const game::HumanVector& position,float radius,float power){return explosion_contact_.wave(source,position,radius,power);}
     template<class Blast>void bind_explosion(Blast& blast){require_open();explosion_contact_.bind(blast);}
+    template<class Blast>void bind_shot_damage(Blast& blast){require_open();explosion_contact_.bind_damage(blast);}
+    void shot_actor_damage(typename Runtime::Instance* actor,std::uint32_t kind,float amount,const game::HumanVector& point,
+            const game::HumanVector& direction,typename Runtime::Instance* source,GameActorServices::Frame frame){require_open();explosion_contact_.damage(actor,kind,amount,point,direction,source,frame);}
     template<class Blast>void unbind_explosion(Blast& blast)noexcept{explosion_contact_.unbind(blast);}
     auto mine_ground_ray(const game::HumanVector& start,const game::HumanVector& displacement){
         require_open();
@@ -113,6 +116,8 @@ public:
     }
     template<class Versions>void bind_versions(Versions& versions){require_open();versions_contact_.bind(versions);}
     template<class Versions>void unbind_versions(Versions& versions)noexcept{versions_contact_.unbind(versions);}
+    auto version_picked_material(GameActorServices::Frame picked){require_open();return versions_contact_.picked_material(picked);}
+    bool version_damage_picked(GameActorServices::Frame& picked,std::int32_t damage){require_open();return versions_contact_.damage_picked(picked,damage);}
     bool version_frame_contact(std::uintptr_t handle,GameActorServices::Frame picked,std::int32_t damage){require_open();return versions_contact_.frame(handle,picked,damage);}
     bool version_contact(std::uintptr_t handle,std::int32_t damage,std::uint32_t effects){require_open();return versions_contact_.contact(handle,damage,effects);}
     template<class Callbacks>void bind_car_physics(Callbacks& callbacks){

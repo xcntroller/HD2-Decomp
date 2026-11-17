@@ -23,7 +23,7 @@ public:
         points_(d_.scene.buckets(),d_.scene.frames()){
         car_=dynamic_cast<GameCarCallbacks*>(&d_.scene.car_callbacks());
         if(!car_)throw std::logic_error("Explosion binding requires actual scene Car callback owner");
-        try{d_.world_actors.bind_explosion(*this);car_->bind_explosion(*this);car_->bind_damage_packets(*this);}
+        try{d_.world_actors.bind_explosion(*this);d_.world_actors.bind_shot_damage(*this);car_->bind_explosion(*this);car_->bind_damage_packets(*this);}
         catch(...){car_->unbind_damage_packets(*this);d_.world_actors.unbind_explosion(*this);car_->unbind_explosion(*this);throw;}
     }
     ~GameBlastWaves()override{if(car_)car_->unbind_damage_packets(*this);d_.world_actors.unbind_explosion(*this);if(car_)car_->unbind_explosion(*this);}
@@ -115,6 +115,10 @@ public:
     }
     void car_damage_human(Actor* target,std::uint32_t kind,float amount,const Vector& point,const Vector& direction,Actor* source){
         blast_actor_damage(*target,kind,amount,point,direction,source); //SAME guarded Human lifetime and final hit0.
+    }
+    void shot_actor_damage(Actor& actor,std::uint32_t kind,float amount,const Vector& point,const Vector& direction,Actor* source,EngineFrame*){
+        if(actor.base().type()!=4)throw std::logic_error("Bound Car shot D4 requires actual Car actor");
+        blast_actor_damage(actor,kind,amount,point,direction,source); //004DBA10 ignores the final native hit slot.
     }
     std::uint32_t car_damage_absorption(std::int32_t index){return d_.car_definitions.materials().at(index).word(0x28);}
     void car_damage_event(Actor* actor,const game::CarDamageEvent& event){game::publish_car_damage(d_.broadcast_packets,actor->base().id10(),event);}

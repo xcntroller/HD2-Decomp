@@ -86,6 +86,21 @@ public:
     void release_item_to_inventory(){ //005B6980, frame EC BEFORE item loan/frame reference; body closes later in00477190.
         release_loose_item_to_inventory(this->backend_,this->base_,entry_);
     }
+    void damage(std::uint32_t kind,float amount,const Vector& point,const Vector& direction) { //005B74D0.
+        std::int32_t age;std::memcpy(&age,&field6b0_,4);if(age<300)return;
+        if(!entry_)throw std::logic_error("Loose item D4 requires its actual item90");
+        const auto definition_kind=items_.runtime_item(entry_).definition().kind();
+        if(definition_kind==20||definition_kind==21)return;
+        auto impulse=direction;
+        if(kind==1){const float factor=static_cast<float>(static_cast<long double>(amount)*.05000000074505806f);
+            for(unsigned axis=0;axis!=3;++axis)impulse[axis]=static_cast<float>(static_cast<long double>(impulse[axis])*factor);}
+        apply_motion(impulse,point);
+    }
+    void apply_motion(const Vector& force,const Vector& point) { //005B79C0: body BEFORE the late offline check.
+        if(!entry_)return;
+        body_.apply_impulse(force,point);
+        if((activation_.mode_flags()&7u)!=7u)throw std::runtime_error("Loose item impulse requires actual non7 motion packet producer");
+    }
     Entry entry() const {return entry_;}
     Body& body() {return body_;}
     void thrown_lifetime(std::int32_t value){require_bound();field6ac_=value;} //00478EE0's nonoffline kind20 branch.

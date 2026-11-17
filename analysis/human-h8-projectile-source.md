@@ -1,9 +1,9 @@
 # H8 projectile frames — source checkpoint, 2026-11-17
 
-H8.3 remains open. This checkpoint binds the all-hit collision query, shell
-motion, grenade authority/presentation/contact, material projection effects and
-picked-part Versions damage on the SAME World. Bullet/capsule combat and visual
-workers remain required; no application loading or desktop acceptance is claimed.
+H8.3 remains open pending the reached derived-actor/containing dependencies.
+The SAME World now binds all-hit collision, bullet/capsule combat and visuals,
+shell/grenade frames, impact effects, Car picking and picked-part Versions damage.
+No application loading or desktop acceptance is claimed.
 [Receipt](checkpoints/p2.2-human-h8-projectile-20261117.json).
 
 ## Collision identities and ordering
@@ -110,5 +110,71 @@ preceding workers; that log is retained as a failed export. Separate completed
 read-only/noanalysis exports and raw wrapper bytes support the actual source.
 No absent wrapper/delegated engine implementation receives credit. All new frozen
 function claims are partial; source STL/typed borrowers/RAII are not original
-allocator, class, SEH or register ABI. H8.2/H8.4 dependencies, bullet/capsule
-workers, containing verification and actual application/desktop gates stay open.
+allocator, class, SEH or register ABI. H8.2/H8.4 dependencies, reached Dog damage/Animation destruction,
+containing verification and actual application/desktop gates stay open.
+
+
+## Bullet/capsule follow-up — 2026-11-17
+
+0044B910 and00449290 now query the SAME World all-hit owner, restoring source
+collision exclusion before callbacks.0044A910/0044AE00 preserve the native
+median/partition/final-insertion sort: equal hits above16 CAN reorder. There is
+no stable-sort substitution or synthetic repeated closest query.0044B3B0 applies
+range attenuation before detailed picking refines a contact.00448380 retains
+speed, both normalizations, FLOAT reflection spill and the native ricochet factor.
+Bullet material2C is unsigned; capsule uses signed2C, including native negative
+non-sentinel values. Threshold equality, distinct pass77/kill76, source/previous
+actor gates, distance600 late retirement and position publication order survive.
+Capsule publishes20/40 before blast/effects and sets78 afterwards; presentation
+retirement stops particle70, then hides sound8C/model and decrements timer84.
+Static capsule misses retain material processing where bullet misses continue.
+
+Human hits use actual hit zones, friendly/hostile policy, damage and miss owners.
+StaticWeapon006057B0 forwards to actual first-seat Human, normalizing incoming
+direction, and invokes Script hit AFTER damage. Its miss uses the weapon's base40
+direction. Car damage uses existing004DBA10 via the SAME checked blast-owner link;
+004DBED0→004E1530 picks the actual DM after reverse hiding EXPL_D children and
+publishing real occupied-seat visibility. Missing DM is genuine−1, and negative
+matid values remain distinct. Body impulses use actual frame EC word4, not text.
+
+Picked Versions damage retains the actual replacement Frame output from
+0043B000. A Part suppresses the Script/Physics alternative; ordinary non-Part
+picks use actual Physics and Script context owners. Animation absent-frozen
+005B5EB0 adds damage with strict greater-than threshold and shares A3 with its
+frame owner. Its triggered track receiver remains required, not silently idle.
+Loose-item005B74D0 preserves signed age300/item20/21 gates;005B79C0 applies the
+actual Body impulse BEFORE its late non7 packet requirement. The selected offline
+path is implemented; dynamic-item containing-frame age advancement remains a
+separate runtime requirement. Actual table/raw proof permits RET24 only for the
+confirmed common families and distinct Pike005B8980, Supply005FBD80,
+Switch00613390 and ExplosivePlace0060DA70 leaves. Dog30 still needs its live owner.
+
+0044B400/00449030 orient from interpolated motion, retaining signed100 clamping
+and capsule original elapsed80. Flare particles use actual module17;004458B0
+TOGGLES emission, retaining existing points and B4. It is not00445800 deletion.
+The actual module/instance toggle has focused lifetime verification. Ordinary
+00451670 supplies special90=false/incoming=false. The positive90 command9 branch
+still fails at its actual MissionCamera requirement; no successful camera stub is
+introduced.004486B0/00451E40 use the actual selected Player/head and shared SOUND,
+with source/listener distinction and late6E publication. Existing attached bullet
+production already calls authority100 BEFORE active-vector publication, ignoring
+its return as native.
+
+0044EBD0 uses the SAME native80 projection pool as0044FBC0. It preserves frame
+kind/flags/ancestor gates, exact-maximum recycle before draws, parent link/text
+capture order, explicit sectorE0(point,1), .4 light floor and white/NaN branches.
+Native4C..60 are blood textures following explosion48; the prior checkpoint's
+use of the decal array for explosion marks was incorrect and is corrected here.
+Bullet decals use24. Parent COW text survives explosion-mark reuse; frame release
+precedes text retirement.00451BC0 emits projection before material particle policy.
+
+Verification:211,000 visual/sort,7,500 combat/flyby,900 actual emission-toggle,
+901 actual Car pick,1,100 actual Versions replacement,1,400 actual shared ShotMgr
+impact-pool and1,800 Animation/shared damage-link checks pass under native
+ASan/UBSan/LSan. World/ray/actor/damage/engine callbacks in the policy fixtures
+are explicit doubles; these are not whole-World execution. Strict actual i386
+World/factory/Human/frame/bullet/capsule/derived-owner link and launcher/probe
+builds are recorded in the receipt. No Windows artifact was executed. Frozen
+entries receive partial source credit only; absent005B5EB0/00455650 and delegated
+engine calls receive no new credit. Remaining H8 and actual application/desktop
+requirements stay open.

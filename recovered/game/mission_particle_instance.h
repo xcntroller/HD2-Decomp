@@ -71,6 +71,7 @@ public:
         const bool current=current_epoch();prepare_geometry(current);
         if(current)publish_geometry();else (void)frames_.mission_particle_vertices(visual_.get(),0,0.f);
     }
+    void toggle_emission(){flags_^=1u;} //004458B0, actual instance9C bit0; second native argument is ignored.
     Frame visual()const{return visual_.get();}Frame parent()const{return parent_?parent_->get():Frame{};}
     const auto& points()const{return points_;}const auto& timers()const{return timers_;}
 private:

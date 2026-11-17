@@ -90,6 +90,20 @@ public:
         }
         frames.update_scene_object(model());
     }
+    template<class Occupied>std::int32_t pick_material(Frames& frames,Frame car,Occupied&& occupied,
+            const CarContactVector& point,const CarContactVector& direction){ //004DBED0→004E1530.
+        if(!model())return -1;
+        for(auto n=explosions_.size();n;)frames.object_visible(explosions_[--n].frame,false); //Native28 is EXPL_D; not planes38.
+        align_damage_model(frames,car);
+        for(auto n=seats_.size();n;){const auto index=--n;if(seats_[index])frames.object_visible(seats_[index],occupied(index));}
+        frames.object_visible(model(),true);auto start=point;
+        for(unsigned a=0;a!=3;++a)start[a]=static_cast<float>(static_cast<long double>(point[a])-direction[a]);
+        Frame hit{};
+        try{hit=frames.car_damage_pick(start,direction,model(),0x40000);}catch(...){frames.object_visible(model(),false);throw;}
+        frames.object_visible(model(),false);if(!hit)return -1;
+        for(auto n=seats_.size();n;)if(seats_[--n]==hit)return 66;
+        return car_attribute_number(frames.car_user_data(hit),"matid");
+    }
     //004E1A20 RET20; the containing actor owns the source identity and6F8/FF4
     //events. This is its separate24E0 DM receiver, never physics00500EB0.
     template<class Runtime,class Actor>void damage(Frames& frames,Frame car,Runtime& runtime,Actor self,

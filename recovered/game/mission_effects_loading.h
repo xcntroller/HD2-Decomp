@@ -42,6 +42,11 @@ template<class Frames>struct MissionEffectsProcess {
         }
         return nullptr; //Native out index remains unchanged on a miss.
     }
+    void toggle_emission(std::int32_t identity){ //004458B0, lookup miss genuinely returns without a write.
+        std::int32_t index=0;auto* record=particle_record(identity,index);if(!record)return;
+        if(!record->instance)throw std::logic_error("Particle emission toggle requires actual live instance");
+        record->instance->toggle_emission();
+    }
     void stop(std::int32_t identity){ //00445800, delete actual instance BEFORE stable vector erase; no reuse pool.
         std::int32_t index=0;auto* record=particle_record(identity,index);if(!record)return;
         if(record->instance){record->instance->close();record->instance.reset();}

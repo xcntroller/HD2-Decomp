@@ -66,12 +66,14 @@ owners; no private empty registry is substituted. H8.4 owns Dog/attachment/
 Car/seat/Aircraft bodies. Follow actual reached dependencies rather than trying
 to finish all specialized families before integration.
 
-Current implementation target: finish H8.3 bullet/capsule combat and visual
-workers. [Projectile source](human-h8-projectile-source.md) now binds the SAME
-all-hit query, shell motion, grenade authority/presentation/contact, material
-projections and picked-part Versions damage;33,408+9,901+800 focused checks and
-actual World/launcher links pass. H8.3 is still open. Continue remaining reached
-H8.2/H8.4 owners afterwards; loading/desktop remain explicit H8.6 gates.
+Current implementation target: finish reached H8.2/H8.4 owners and containing
+H8.3 dependencies. [Projectile source](human-h8-projectile-source.md) binds
+bullet/capsule combat/visuals, shell/grenade, all-hit collision, material marks,
+Car/StaticWeapon/Animation/loose-item damage and picked Versions outputs on the
+SAME World. Focused native sanitizers and actual World/launcher links pass;
+H8.3 remains open for reached derived/containing dependencies. Continue actual
+Dog/Animation/runtime and Human callback integration; application/desktop remain
+explicit H8.6 gates.
 
 ## Existing evidence to reuse
 

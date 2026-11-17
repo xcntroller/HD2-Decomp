@@ -18,7 +18,7 @@ public:
     ~AnimationActorLoading()override{try{retire();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}}
     Frame model()const override{return model_?model_->get():Frame{};}
     void activate(bool authority)override { //005B3BE0.
-        actor_.flaga0=false;flag_a3_=false;actor_.fieldd4=0;flag_b8_=false;count_bc_=0;
+        actor_.flaga0=false;actor_.flaga3=false;actor_.fieldd4=0;flag_b8_=false;count_bc_=0;
         actor_.base().name(actor_.properties.fieldb0==0xffffffffu?std::string{}:services_.actor_localized(actor_.properties.fieldb0));
         actor_.base().activate_frame(authority,services_);
         if(authority&&(services_.mode_flags()&2u))return;
@@ -58,7 +58,7 @@ public:
         retire();
     }
     void update(std::uint32_t)override { //005B5190, reached initial inactive flags and actual A2 colliders.
-        if(flag_a3_||actor_.flaga0)throw std::runtime_error("Animation first update requires actual start/track receiver");
+        if(actor_.flaga3||actor_.flaga0)throw std::runtime_error("Animation first update requires actual start/track receiver");
         if(actor_.properties.flaga2&&((!actor_.flaga1&&!actor_.flaga0)||count_bc_)) {
             if(count_bc_)--count_bc_;
             if(actor_.collisions)actor_.collisions->update();
@@ -82,7 +82,7 @@ private:
         actor_.fieldd4=0;partial_=false;errors.rethrow();
     }
     Frames& frames_;Services& services_;Collisions& collisions_;Actor& actor_;std::optional<ModelOwner> model_;
-    Frame particle_{};std::uint32_t count_bc_=0;bool flag_a3_=false,flag_b8_=false,partial_=false;
+    Frame particle_{};std::uint32_t count_bc_=0;bool flag_b8_=false,partial_=false;
 };
 } //namespace hd2::game
 #endif

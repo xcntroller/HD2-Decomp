@@ -66,12 +66,19 @@ public:
         if(!collisions)throw std::runtime_error("Animation visibility requires its actual BODYCOLB collision owner");
         if(enabled)collisions->rebuild();else collisions->clear();
     }
+    void damage(float amount) { //005B5EB0 (absent frozen entry): accumulate before triggering A3.
+        if(properties.fieldd0<=0.f||flaga1||fieldd4<0.f)return;
+        const auto total=static_cast<long double>(amount)+fieldd4;
+        fieldd4=static_cast<float>(total);
+        if(total>properties.fieldd0){fieldd4=-1.f;flaga3=true;}
+    }
     AnimationActorProperties properties;
     std::vector<std::uint32_t> fieldc4;
     std::unique_ptr<AnimationActorCollisionLifetime> collisions;
     std::unique_ptr<AnimationLoadingLifetime<Frame>> loading;
-    std::uint32_t field98=0,fieldd4=0,fieldd8=3;
-    bool flaga0=false,flaga1=false;
+    std::uint32_t field98=0,fieldd8=3;
+    float fieldd4=0;
+    bool flaga0=false,flaga1=false,flaga3=false;
 private:
     template<class Work> void cleanup(Work&& work) noexcept {
         try {work();} catch(...) {this->backend_.record_actor_cleanup_failure(std::current_exception());}

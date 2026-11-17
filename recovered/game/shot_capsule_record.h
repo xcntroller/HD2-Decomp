@@ -13,6 +13,7 @@ public:
     ~ShotCapsuleRecord(){try{retire();}catch(...){if(frames_)frames_->record_actor_cleanup_failure(std::current_exception());}}
     std::uint32_t kind()const override{return 4;}
     Frame frame()const{return visual_?visual_->get():Frame{};}
+    Frame incoming_sound()const{return incoming_sound_?incoming_sound_->get():Frame{};}
     unsigned authority_tick(std::uint32_t elapsed)override{
         if(!authority_)throw std::runtime_error("Capsule requires actual00449290 authority receiver");
         return authority_(elapsed);
@@ -23,6 +24,7 @@ public:
     }
     void retire()override{ //00448FC0: sound, particle while model lives, model, camera9, common base.
         if(!frames_)return;
+        incoming_sound_.reset(); //00448FC0 releases8C BEFORE particle70/model68.
         if(frame()){
             if(words.template get<std::int32_t>(0x70)>=0){
                 if(!stop_)throw std::logic_error("Capsule requires actual module17 stop");
@@ -58,12 +60,16 @@ public:
         words.set(0x78,std::uint8_t{0});words.set(0x88,std::uint8_t{0});words.set(0x90,std::uint8_t{0});
     }
     HumanJointWords<0xa0> words;SceneActor<Frames>* source=nullptr;const frontend::PreMissionItemPayload* payload=nullptr;
-private:
+    std::uint32_t payload_word(std::size_t offset)const{
+        if(!payload||offset>payload->bytes.size()||payload->bytes.size()-offset<4)throw std::runtime_error("Capsule requires complete native weapon payload");
+        return frontend::pre_mission_detail::Bytes::word(payload->bytes.data()+offset);
+    }
     float payload_real(std::size_t offset)const{
         if(!payload||offset>payload->bytes.size()||payload->bytes.size()-offset<4)throw std::runtime_error("Capsule requires complete native weapon payload");
         return frontend::pre_mission_detail::Bytes::real(frontend::pre_mission_detail::Bytes::word(payload->bytes.data()+offset));
     }
-    Frames* frames_=nullptr;std::optional<Owner> visual_;
+private:
+    Frames* frames_=nullptr;std::optional<Owner> visual_,incoming_sound_; //Selected00451670 incoming-sound argument is false; no substitute frame is created.
     std::function<unsigned(std::uint32_t)> authority_;std::function<void(std::uint32_t)> presentation_;
     std::function<void(std::int32_t)> stop_;std::function<void()> camera_;
 };

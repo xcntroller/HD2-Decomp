@@ -379,5 +379,570 @@
     "client_partial": 3558,
     "engine_partial": 5,
     "frozen_internal_non_thunk": 18783
+  },
+  "bullet_capsule_follow_up": {
+    "base_commit": "dbac1af",
+    "source_only": true,
+    "h8_3_complete": false,
+    "desktop_verified": false,
+    "scope": "Bullet/capsule combat/visuals, native hit sorting, emission toggle, shared impact marks, actual Car/Versions/StaticWeapon/Animation/loose damage and shared lifecycle links.",
+    "source_files": [
+      {
+        "path": "recovered/game/animation_actor_loading.h",
+        "bytes": 6136,
+        "sha256": "fd303349f1e4b27501a29506e7aa5075158bca9f1144d93e32249219fa8aeec4"
+      },
+      {
+        "path": "recovered/game/car_ancillary_model.h",
+        "bytes": 16650,
+        "sha256": "10e01610930db50537ee67be304e4241da07c2e61037592ef89ea8c7050aea8c"
+      },
+      {
+        "path": "recovered/game/dynamic_item_actor.h",
+        "bytes": 6698,
+        "sha256": "60d5d3451da4fb0cf884bcaee1a29d0db09bcf85c34bcda0b104b6a78deaf11f"
+      },
+      {
+        "path": "recovered/game/explosion_contact_link.h",
+        "bytes": 5985,
+        "sha256": "fa4644aa844ac0eba0499ebc34ce3df4622e9c9aae8bae9f877f239957a0a4e6"
+      },
+      {
+        "path": "recovered/game/human_world_loading_services.h",
+        "bytes": 276082,
+        "sha256": "f31cdef2104a2edb2474bf60647d91e56fdb9345f47aae468c75933796ac23dd"
+      },
+      {
+        "path": "recovered/game/mission_effects_loading.h",
+        "bytes": 7193,
+        "sha256": "9e5521d317925acbbca7347e3ccd7c0a639411eeb453dd1d5b1bc64ed7ee0752"
+      },
+      {
+        "path": "recovered/game/mission_particle_instance.h",
+        "bytes": 15307,
+        "sha256": "b0378af9ea1d69e6cc033e3f382aa29dd7f4efa4851baf2c50dc702d3a980751"
+      },
+      {
+        "path": "recovered/game/model_scene_actors.h",
+        "bytes": 6560,
+        "sha256": "9258a0f74eb9c2789ff5d28cb1e811a482d9d9e9caebaa1f67da61a8a329c74a"
+      },
+      {
+        "path": "recovered/game/shot_capsule_record.h",
+        "bytes": 5343,
+        "sha256": "9e5e17085b36c04788513d27c89957b417733f1b5a861d61e056edc61b420913"
+      },
+      {
+        "path": "recovered/game/shot_combat_frames.h",
+        "bytes": 20777,
+        "sha256": "cd79e69a507ba4b9a11741e5611801409be2d458e6297836a9900d59a02c5718"
+      },
+      {
+        "path": "recovered/game/shot_hit_sort.h",
+        "bytes": 2266,
+        "sha256": "4b28ea07ffbc960724ac05a776cabd29b37c124b740064aa0a4063b3461116a6"
+      },
+      {
+        "path": "recovered/game/shot_impact_marks.h",
+        "bytes": 7723,
+        "sha256": "c5633fea7e710ede9ec1c3299965114671acce65628156877dd1f7a15fc03f9c"
+      },
+      {
+        "path": "recovered/game/shot_visual_frames.h",
+        "bytes": 5231,
+        "sha256": "6723d7c506c60160b91b445d62da01179bc8a6034c27ff4a28a0206f0dad95dd"
+      },
+      {
+        "path": "recovered/game/version_contact_link.h",
+        "bytes": 2894,
+        "sha256": "b584236485c2d47e6923732cac0d92e1c3bde123497f6d12ad08b02a59a68165"
+      },
+      {
+        "path": "recovered/game/version_module_loading.h",
+        "bytes": 24214,
+        "sha256": "e537891cb61effc379b2cfa0366f8cc57172a830801cea0e81c82235716d0517"
+      },
+      {
+        "path": "recovered/host/game_actor_frames.h",
+        "bytes": 128017,
+        "sha256": "105388c4dde000a25f0304289f4422c3be4711e506aaf17551cda2489f271048"
+      },
+      {
+        "path": "recovered/host/game_blast_waves.h",
+        "bytes": 23457,
+        "sha256": "2ec79468e1401405509d31a44b8293a61b3094774d948a8d00807e67e8bf8e94"
+      },
+      {
+        "path": "recovered/host/game_runtime_actors.h",
+        "bytes": 18026,
+        "sha256": "258d5750646b7c184983dbfad80c2e4a73abeb6dee7bec1e338442717efb1308"
+      },
+      {
+        "path": "recovered/host/game_world_actors.h",
+        "bytes": 34339,
+        "sha256": "5a36e4153bc6c0f74867e6574c32de8992255198c11e30829ef222d1b0f44425"
+      }
+    ],
+    "original_evidence": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-collision-receivers/004486b0.c",
+        "bytes": 5493,
+        "sha256": "b8f6b5709e8a43ea106d1b10a77692c7f036a79604aead6a8ad4d947d9fda54c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-collision-receivers/004486b0.json",
+        "bytes": 37874,
+        "sha256": "817c6c4068b9e4f5e7100852efb42147282044d94cb2f255182536fbe22a2967"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-collision-receivers/0044ae00.c",
+        "bytes": 3588,
+        "sha256": "4edbd8e6643b9e547b94c96bf2a3ddc04c69e87f2b222f0ce399666001f18167"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-collision-receivers/0044ae00.json",
+        "bytes": 5895,
+        "sha256": "671ff2529cbb9fed9e44f3b9154a9081efa95bc8cdd11b0329878b8b56adacf4"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-collision-receivers/00451bc0.c",
+        "bytes": 263,
+        "sha256": "a0dd193892d964e17b684d5162e31bdf3f39a78ec821fa47b75b8cdcea760760"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-collision-receivers/00451bc0.json",
+        "bytes": 1801,
+        "sha256": "aa0fdd96d55a02be89ee91e0ae675651ea850c5963b9e8eafbdb5860ded8080f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-collision-receivers.log",
+        "bytes": 4671,
+        "sha256": "a425404ad27541643654363aa69d3ac86151ef46291cee11f7311aeccecdaf49"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-combat.asm",
+        "bytes": 63428,
+        "sha256": "e033e90c3d83b8cfd0fc6015ff4d22a6f03560217eddaac03ec2f5867c81f0e5"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-constants.json",
+        "bytes": 705,
+        "sha256": "8333d1119b89c5f04466a08431eeafa3fd1d3a0c4b77bd9f3008b311203b567a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-impact-leaves/0044ebd0.c",
+        "bytes": 12002,
+        "sha256": "b9395c26befc8d11f9492db286c26afe0841b09d05e109ec749b27bf4e6f41a2"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-impact-leaves/0044ebd0.json",
+        "bytes": 23455,
+        "sha256": "c03afdee39f511cfe8cf86e1f213ca7f3521e3c13ad4f7eb3321254c88f4f892"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-impact-leaves/00451e40.c",
+        "bytes": 729,
+        "sha256": "8381569045671c539899ee9732d16ab9995f3c82d2c7659d01abeec1301d7848"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-impact-leaves/00451e40.json",
+        "bytes": 1213,
+        "sha256": "cfd6e6171f606b00de3878c51f914e5f3aecc0a3de98530c797d85b62b9311a0"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-impact-leaves/004e1530.c",
+        "bytes": 1946,
+        "sha256": "d21ce65ed87cbfa78480e56b7c9c587bba607b594498ba65b776d2baff7fe8cb"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-impact-leaves/004e1530.json",
+        "bytes": 3890,
+        "sha256": "1f69a3100e5706cff071e15a6a0b811ea7156898fd6c239eaa9d8661dc7c6c20"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-impact-leaves.log",
+        "bytes": 4665,
+        "sha256": "90d9e8ef4b2eca67160e79aa7ded9e271cbfb1971c5a44df959d4adb5a2dda00"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-impact-pose.asm",
+        "bytes": 28918,
+        "sha256": "946dd2cb286ae9e0bf2578b42197c71afba06acc43ddf0d9ead6f05a5d37b802"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-bullet-visual.asm",
+        "bytes": 20335,
+        "sha256": "2c8ecad3b39f0e9a6e7b858c22d1316a3b5b118f37ebfb592c8ff3c46ddda37f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-capsule-camera-index.txt",
+        "bytes": 5897,
+        "sha256": "2184e9928c8f36388a3eaf98de515d30d9f4b46de94157bd1bcf663f84478745"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-capsule-combat.asm",
+        "bytes": 55639,
+        "sha256": "a4eb95df25997527369e74dcf8aa76e59e372df2c0e21ec9730f5aae6c0b09eb"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-capsule-visual.asm",
+        "bytes": 10273,
+        "sha256": "f5cc9f73681d30727f5d941b6e0400c556e11f439ada62e682f6521026d52d84"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-particle-toggle.asm",
+        "bytes": 664,
+        "sha256": "909881ea3303988a197f168f35d557b921e6108ce7ce574d7f4ffef9013f730b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-derived-damage-complete.asm",
+        "bytes": 6328,
+        "sha256": "e89b4d5dcfefd320a6a7f8bb3a70a0f304d0effef5c87f32c577f09b6d522d67"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-derived-damage-index.txt",
+        "bytes": 3640,
+        "sha256": "909f7b4a99080af105de612965ab0e499d2a5e94eafe2a5cc903b21aa922ea50"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-derived-damage.asm",
+        "bytes": 8631,
+        "sha256": "a70337f0077eee340857f639607c138d82e5797d93491b1d576e8bbe4b88d556"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-effect-index.txt",
+        "bytes": 1852,
+        "sha256": "9fc9058450438d1ea54f5e68a3f437d4b10dc10e6642be7e8b5b97656cb6f3f9"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-extra-damage-tables.json",
+        "bytes": 334,
+        "sha256": "14265d3017727a5e2c716f98b773d3b388e039a7636b90a70bdb677cb87d048b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-loose-damage/005b74d0.c",
+        "bytes": 830,
+        "sha256": "782c4bdd5fa13edf09feacfa4ad5b3c41ebe443b30a1df48084d4d822e2b07bd"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-loose-damage/005b74d0.json",
+        "bytes": 2058,
+        "sha256": "eee34371d9840b9b3ea0c059a1c95f949c31deb097ad064f626179db54853626"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-loose-damage.asm",
+        "bytes": 2840,
+        "sha256": "7396df96dff39722c82a2a5b5f5c1f5a2dfd9650b0c5f4d08b1eced6eb31ff8c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-loose-damage.log",
+        "bytes": 4456,
+        "sha256": "0e5ef3100fbe8d09a1ec6784bd639adfd4b3d1042fa815a20ab3c2b8ea17edac"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-loose-impulse/005b79c0.c",
+        "bytes": 2207,
+        "sha256": "0ada29c8db27262f374dc60c4814761b8c08b976faf5f7838f436f6fce5f26ce"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-loose-impulse/005b79c0.json",
+        "bytes": 15540,
+        "sha256": "533c46ce048b0690bd1768c2e654ec03c55e1788add249dc7258f4d0b875eeaf"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-loose-impulse-index.txt",
+        "bytes": 1418,
+        "sha256": "70104b9cdd7c27e74bb321dca036e33b2afba91fd9a55d8ea71e8cfb98f0865a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-loose-impulse.log",
+        "bytes": 4457,
+        "sha256": "2df825c98d599bf7af617270d8fdf894b6bf65260277ae5903ce90f5a9461344"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-material-effects.asm",
+        "bytes": 16912,
+        "sha256": "1a203e1e9586133be5bd9c53b4aa0c54c060ccf41ad2cafa4c24bd2a963ed8f4"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-more-damage-index.txt",
+        "bytes": 2989,
+        "sha256": "c4f24bc47dbd301ed511716fb6637f1e7973a6beff70f828eeeff8199beff8fa"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-sound-source-index.txt",
+        "bytes": 6710,
+        "sha256": "79ae4d7f07a1760e27bddbcc71f4260ff895eb8d516919be489c72980df3b730"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-static-damage.asm",
+        "bytes": 8260,
+        "sha256": "d1ba2e29ec7df01155129504041a1cf4f41173e6f45e4d6d7b2f932fee93a368"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-static-weapon/006057b0.c",
+        "bytes": 2035,
+        "sha256": "c85f50375b618e0330bc5b5efe6372f1a821b384d64d9666704ecf9ad03ca46e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-static-weapon/006057b0.json",
+        "bytes": 8554,
+        "sha256": "8c3a35212a6c31bbc913d21426aff1916d573694e96cf610c770074ff9ae29d5"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-static-weapon.log",
+        "bytes": 4457,
+        "sha256": "cd4b45fd1997f39b088d3ebf9f202b7cde8b31fe6d1ca4f00dc128da92edd138"
+      }
+    ],
+    "audits": [
+      {
+        "name": "human-h8-shot-visual-native",
+        "files": [
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-visual-native.cpp",
+            "bytes": 6515,
+            "sha256": "db00c3babd3dfe2c363c6e5e6c6af84b89008f61406cc47035ae58280c013684"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-visual-native-build.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-visual-native",
+            "bytes": 1070184,
+            "sha256": "0bf1d0b4431de5a1acfe70e57fe7bfcdc994e7598512191f93c5bf791d76ea15"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-visual-native-run.log",
+            "bytes": 61,
+            "sha256": "390f754eeccdfdda6da9e3d22f61d4430f37b87eb8ac6acb9372e5b7b7ed4915"
+          }
+        ],
+        "result": "211000 visual and native tie-order checks /100 families PASS"
+      },
+      {
+        "name": "human-h8-particle-toggle-native",
+        "files": [
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-particle-toggle-native.cpp",
+            "bytes": 7610,
+            "sha256": "98f25a4139efef5ac3878871b5ce7535ffe65619651b41f6e8f5f5eaa4cd0c15"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-particle-toggle-native-build.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-particle-toggle-native",
+            "bytes": 4783856,
+            "sha256": "5b498a4a60c3ea473cab7b28f76f72ee1cd84a3fe7364d4f07ca2d2f7c226491"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-particle-toggle-native-run.log",
+            "bytes": 72,
+            "sha256": "c58ad8969778c6b7b971f5789fd3c7cd75233ba4728ae15028933341b7fec323"
+          }
+        ],
+        "result": "900 particle emission-toggle checks /100 actual module17 lifetimes PASS"
+      },
+      {
+        "name": "human-h8-shot-combat-native",
+        "files": [
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-native.cpp",
+            "bytes": 14726,
+            "sha256": "9937fb796875187420dd1d1d3808a71085fb648cbead1d264e01898d859f4fa6"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-native-build.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-native",
+            "bytes": 1712816,
+            "sha256": "eba53ef845f043da6b31094e4787dac5845751f6c4c6e81a8fae1a02c7090d60"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-native-run.log",
+            "bytes": 63,
+            "sha256": "7ea354901cdc6c7d5f97356ce10eeda68d40151ac720190ea2aaf5d0ae9306f8"
+          }
+        ],
+        "result": "7500 bullet/capsule combat and flyby checks /100 families PASS"
+      },
+      {
+        "name": "human-h8-car-shot-pick-native",
+        "files": [
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-car-shot-pick-native.cpp",
+            "bytes": 4948,
+            "sha256": "37bc3b007d43dff1c3e9df90abe8ed6f05605d3592d2a2a9df902fc225dcc94e"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-car-shot-pick-native-build.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-car-shot-pick-native",
+            "bytes": 1868416,
+            "sha256": "41b8e861b7f4e553ec66f75bf69797cbfc05480e11e9c01c319524f061a9ca25"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-car-shot-pick-native-run.log",
+            "bytes": 70,
+            "sha256": "548ec24308fbcdb34f5d336214a5114023bd99e4887a8a522264e9562a3f578d"
+          }
+        ],
+        "result": "901 Car ancillary shot-pick checks /100 lifetimes plus absent DM PASS"
+      },
+      {
+        "name": "human-h8-shot-version-native",
+        "files": [
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-version-native.cpp",
+            "bytes": 10072,
+            "sha256": "03445a6c7ab55f7acb849633b536d96c4768a6f9981c37b09b71875a6ce7966f"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-version-native-build.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-version-native",
+            "bytes": 5350672,
+            "sha256": "0ffb937958424b27957a0a94bf8f3780cceae1ee363893784931a0b898ec1429"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-version-native-run.log",
+            "bytes": 90,
+            "sha256": "ea097b122aaae8a1191c6baa9cec8d65cc67d9ae2cd7f09faaaf31126a38f2af"
+          }
+        ],
+        "result": "1100 shot Versions material/replacement checks /100 actual two-part Master lifetimes PASS"
+      },
+      {
+        "name": "human-h8-shot-mark-native",
+        "files": [
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-mark-native.cpp",
+            "bytes": 5712,
+            "sha256": "9622f2658d423627918c918b7e58407ea6ed0980a164cbba13299e8b9777fac8"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-mark-native-build.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-mark-native",
+            "bytes": 2964216,
+            "sha256": "c4ce466df43335426ac44537b29be76fefd52d726e141cc18ebb0ce5e31ed9da"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-mark-native-run.log",
+            "bytes": 86,
+            "sha256": "6dce48d26fec6660e8674f54c92f953f337d07428c33e5448a74130fb2706ed1"
+          }
+        ],
+        "result": "1400 shared impact-pool/parent/COW/lighting checks /100 actual ShotMgr lifetimes PASS"
+      },
+      {
+        "name": "human-h8-shot-derived-native",
+        "files": [
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-derived-native.cpp",
+            "bytes": 2963,
+            "sha256": "f842f1fe784530b1b05b872bf8dc400fdec766d606d23095f5554373471702c4"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-derived-native-build.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-derived-native",
+            "bytes": 1313768,
+            "sha256": "52eb6dffcbb4ccd274e0c195d2390281a4c2233aa34925fc7e2de35fc27d0a11"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-derived-native-run.log",
+            "bytes": 77,
+            "sha256": "0ae954860377e09e7468c682e256217c9f8c8012b15aafa2bcaf91e578725184"
+          }
+        ],
+        "result": "1800 Animation D4/shared damage-link checks /100 actual owner lifetimes PASS"
+      },
+      {
+        "name": "human-h8-shot-combat-i386",
+        "files": [
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-i386.cpp",
+            "bytes": 1103,
+            "sha256": "45b0b2e1d25601ce98dc48bb53225a15c7e4d28a9dc94c273a041284ddb2e27b"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-i386-build.log",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-i386.exe",
+            "bytes": 9848832,
+            "sha256": "90b29570b05c185bcc1b3d7f18d00b420f44f2c6d83b937f95a9410300ee510b"
+          }
+        ],
+        "result": "compile/link only; never executed"
+      }
+    ],
+    "build_and_tracker_logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-launcher-build.log",
+        "bytes": 820,
+        "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-tracker-render.log",
+        "bytes": 380,
+        "sha256": "65f96150b5a8aab112215b5c9add4885d414d735f48a9d694cd4e41846105e90"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-tracker-check.log",
+        "bytes": 437,
+        "sha256": "655db964db99b2668e5b936a3deb6938dc213373bae36b30eedc444620095f81"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-shot-combat-tracker-tests.log",
+        "bytes": 126,
+        "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+      }
+    ],
+    "launcher_artifacts": [
+      {
+        "path": "recovered/build/application_launch.exe",
+        "bytes": 3963392,
+        "sha256": "d1a2ee55bca1825c709b76f4bb2ce43525826e33d350ccea43918fa9a94bfab5"
+      },
+      {
+        "path": "recovered/build/startup_probe.exe",
+        "bytes": 1165312,
+        "sha256": "cf459d1e462ed476eff605d886ef1818c5de000162821052fe27f748d95cac55"
+      }
+    ],
+    "limitations": [
+      "Policy fixtures explicitly double World/ray/actor/damage/engine endpoints; selected actual owners are verified separately, not whole World execution.",
+      "Special capsule90 command9, non7 loose-item packet, Dog live D4 and triggered Animation track/containing frames remain honest required receivers. Ordinary capsule producer sets90=false/incoming=false.",
+      "Loose-item containing-frame age advancement is still required; D4 and native Body impulse compiled on actual owners, age gates are not claimed live.",
+      "Windows full composition and launcher/probe compile/link only; no Windows/original/desktop execution.",
+      "18 new partial frozen client claims; absent005B5EB0/00455650 and delegated engine bodies receive no credit.",
+      "Native mark fixture needed complete throwing unused endpoints and non-inlined fake reset to avoid GCC16 false-positive optional maybe-uninitialized warning; no production warning suppression."
+    ],
+    "correction": "Explosion projection texture is native48 plus blood4C..60. Corrected prior decal24-array selection. Capsule2C signed differs from bullet/grenade unsigned.",
+    "temporary_audits": "All listed temporary fixture sources/binaries fingerprinted above and removed after successful checks; logs/original evidence retained."
   }
 }

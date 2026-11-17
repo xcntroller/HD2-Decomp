@@ -60,6 +60,8 @@
 #include "game/car_steering.h"
 #include "game/shot_surface_marks.h"
 #include "game/shot_motion_frames.h"
+#include "game/shot_visual_frames.h"
+#include "game/shot_combat_frames.h"
 #include "game/human_state_damage.h"
 #include "game/human_inventory_retirement.h"
 #include "game/mission_particle_emission.h"
@@ -1780,12 +1782,59 @@ public:
     auto shot_collision_results(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags){
         return dependencies().world_actors.shot_ray_all(start,displacement,layers,flags);
     }
-    template<class Bullet>unsigned advance_shot_bullet_authority(Bullet&,std::uint32_t){
-        throw std::runtime_error("ShotMgr bullet requires actual0044B910 collision/damage receiver");
+    template<class Bullet>unsigned advance_shot_bullet_authority(Bullet& bullet,std::uint32_t elapsed){return shot_combat::bullet(bullet,elapsed,*this);}
+    template<class Record>auto shot_travel_hits(Record& record,const HumanVector& point,const HumanVector& displacement,std::size_t travelled){
+        auto& d=dependencies();const bool exclude=record.words.template get<float>(travelled)<5.f;
+        if(exclude)human_inline(d.world_actors.human_loading_actor(record.source)).exclude_query(false);
+        const auto query=[&]{return d.world_actors.shot_ray_all(point,displacement,0x48001u,0x200000u);};
+        auto hits=[&]{try{return query();}catch(...){if(exclude)human_inline(d.world_actors.human_loading_actor(record.source)).restore_query(false);throw;}}();
+        if(exclude)human_inline(d.world_actors.human_loading_actor(record.source)).restore_query(false);
+        return hits;
     }
-    template<class Bullet>void advance_shot_bullet_presentation(Bullet&,std::uint32_t){
-        throw std::runtime_error("ShotMgr bullet requires actual0044B400 visual receiver");
+    template<class Hit>auto shot_hit_frame(const Hit& hit){
+        if(hit.dynamic_identity)return hit.dynamic_identity->frame;
+        if(!hit.static_identity)throw std::logic_error("Shot hit lost actual tree/descriptor identity");
+        const auto id=*hit.static_identity;const auto& tree=dependencies().scene.collision_tree();
+        return id.kind?tree.shapes.at(id.kind-0x80).at(id.index).frame:tree.triangles.at(id.index).frame;
     }
+    template<class Frame>bool shot_static_frame_in_scene(Frame frame){
+        auto& frames=dependencies().scene.frames();const auto kind=frames.frame_kind(frame);return (kind==1||kind==9)&&frames.shot_actor_in_scene(frame);
+    }
+    template<class Frame>bool shot_hit_has_physics(Frame frame){
+        if(!frame)throw std::logic_error("Shot dynamic primitive has native NULL frame");
+        const auto* data=dependencies().scene.frames().find_actor_frame_data(frame);return data&&data->words[4]!=ActorFrameData::empty_text_token();
+    }
+    float shot_engine_random(){return dependencies().scene.frames().volume_random_unit();}
+    template<class Actor>void shot_impact_sound(Actor* source,std::uint32_t material,const HumanVector& point,bool network){
+        auto& d=dependencies();const auto& materials=d.car_definitions.materials();if(!(mode_flags()&2u)||material==0xffffffffu||material>=materials.size())return;
+        auto& state=d.startup.shot_manager_process();auto& request=state.hit_sound;request.group=4;state.hit_sound_position=point;request.position={{point[0],point[1],point[2]}};
+        request.entry=human_frame_signed_word(materials[material].word(0x30));if(request.entry==-1)return;
+        request.source=source;request.flags=network?1u:0u;request.relative=nullptr;request.voice_group=1;(void)d.sound.emit(request);
+    }
+    auto* shot_current_player(){return dependencies().players.control().current_player();}
+    template<class Actor>HumanVector shot_player_head_position(Actor& actor){
+        auto& human=dependencies().world_actors.human_loading_actor(&actor);if(!human.head_marker)throw std::logic_error("Bullet flyby requires actual Player260 head marker");
+        return shot_motion_world_position(human.head_marker);
+    }
+    void shot_flyby_sound(const HumanVector& point){
+        if(!(mode_flags()&2u))return;auto& d=dependencies();auto& state=d.startup.shot_manager_process();auto& request=state.hit_sound;
+        request.group=4;state.hit_sound_position=point;request.position={{point[0],point[1],point[2]}};request.entry=11;request.flags=1;request.source=nullptr;request.relative=nullptr;request.voice_group=0;(void)d.sound.emit(request);
+    }
+    template<class Record>void shot_bullet_flyby(Record& record,const HumanVector& start,const HumanVector& end){shot_combat::flyby(record,start,end,*this);}
+    template<class Frame>void shot_missing_material(Frame frame){
+        const auto name=frame?dependencies().scene.frames().frame_name(frame):std::string("no frame");
+        std::array<char,1028> diagnostic{};
+        const auto size=std::snprintf(diagnostic.data(),diagnostic.size(),"Shot bullet:MatID je -1, na frame \"%s\".. zapiste si to a dejte grafikum,program pak nejspise spadne!!!!",name.c_str());
+        if(size<0||static_cast<std::size_t>(size)>=diagnostic.size())throw std::runtime_error("Shot missing-material diagnostic exceeds native stack buffer"); //Native formats this unused local, without publishing a message.
+    }
+    template<class Bullet>void advance_shot_bullet_presentation(Bullet& bullet,std::uint32_t elapsed){shot_visual::bullet(bullet,elapsed,dependencies().scene.frames(),*this);}
+    template<class Frame>std::int32_t emit_shot_flare_particle(Frame frame){
+        auto& d=dependencies();return d.startup.mission_effects_process().emit(0x17,d.scene.frames().actor_world_matrix(frame),frame,true,true);
+    }
+    void toggle_shot_particle_emission(std::int32_t identity){dependencies().startup.mission_effects_process().toggle_emission(identity);}
+    void shot_flare_game_flag(){dependencies().session.words.set(0x40,std::uint8_t{1});}
+    template<class Actor>bool shot_source_is_player(Actor* actor){return human_is_player(dependencies().world_actors.human_loading_actor(actor));}
+    template<class Frame>void begin_capsule_camera(Frame){throw std::runtime_error("Capsule special90 requires actual0046CB20 command9 frame target owner");}
     template<class Item,class Human>std::uint32_t fire_human_item(Item& item,Human& human,const HumanVector& position,
             const HumanVector& direction,std::uint32_t argument,bool primary){
         return fire_human_weapon_item(item,human,position,direction,argument,primary,*this);
@@ -1841,8 +1890,90 @@ public:
     }
     auto shot_material_texture(std::uint32_t material){
         auto& d=dependencies();const auto index=d.car_definitions.materials().at(material).word(0x54);
+        auto& state=d.startup.shot_manager_process();
+        const auto& texture=index==0?state.explosion_texture:state.blood_textures.at(index-1);
+        return texture?texture->get():typename Dependencies::Frame{}; //Native48, then4C..60; bullet decal textures start24.
+    }
+    bool shot_bullet_mark_admitted(std::uint32_t material){
+        const auto& materials=dependencies().car_definitions.materials();const auto index=human_frame_signed_word(materials.at(material).word(0x50));
+        return material<materials.size()&&index>=0&&index<9;
+    }
+    auto shot_bullet_mark_texture(std::uint32_t material){
+        auto& d=dependencies();const auto index=d.car_definitions.materials().at(material).word(0x50);
         const auto& texture=d.startup.shot_manager_process().decal_textures.at(index);return texture?texture->get():typename Dependencies::Frame{};
     }
+    template<class Frame>void shot_bullet_impact_mark(std::uint32_t material,const HumanVector& point,const HumanVector& normal,Frame parent){
+        if(material==0xffffffffu)return;
+        auto& d=dependencies();emit_shot_bullet_mark(d.startup.shot_manager_process(),d.scene.frames(),*this,material,point,normal,parent);
+        human_damage_material_effect(material,point,normal); //00451BC0: projection before00451C00 camera/particle policy.
+    }
+    template<class Frame>auto shot_detailed_pick(const HumanVector& position,const HumanVector& displacement,Frame root){return dependencies().scene.frames().shot_detailed_pick(position,displacement,root);}
+    template<class Frame>void shot_script_hit(Frame frame){ //00427700→0041DBB0; NULL/missing context is a genuine empty gate.
+        if(!frame)return;auto& d=dependencies();const auto* data=d.scene.frames().find_actor_frame_data(frame);if(!data||!data->words[1])return;
+        auto* context=d.script_link.context_for_frame(frame);if(!context)throw std::logic_error("Shot Script EC borrower disagrees with actual context owner");context->hit((mode_flags()&1u)!=0);
+    }
+    template<class Frame>auto shot_version_material(Frame frame){
+        auto& d=dependencies();const auto* data=d.scene.frames().find_actor_frame_data(frame);
+        if(!data||!data->words[6])return std::optional<std::int32_t>{};
+        return d.world_actors.version_picked_material(frame);
+    }
+    template<class Frame>bool shot_version_damage(Frame& frame,std::int32_t amount){return dependencies().world_actors.version_damage_picked(frame,amount);}
+    template<class Frame>void shot_physics_impulse(Frame frame,const HumanVector& velocity,const HumanVector& point){
+        auto& d=dependencies();const auto* data=d.scene.frames().find_actor_frame_data(frame);
+        if(!data||data->words[4]==ActorFrameData::empty_text_token())return;
+        using Handle=typename std::remove_reference_t<decltype(d.world_actors.physics())>::Handle;
+        d.world_actors.physics().impulse(reinterpret_cast<Handle*>(data->words[4]),velocity,point,.009999999776482582f);
+    }
+    template<class Actor>std::uint32_t shot_car_material(Actor& actor,const HumanVector& point,const HumanVector& direction){
+        auto* car=dynamic_cast<CarSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!car||!car->ancillary)throw std::logic_error("Shot Car material requires actual initialized ancillary owner");
+        return static_cast<std::uint32_t>(car->ancillary->pick_material(dependencies().scene.frames(),car->base().frame(),[&](auto index){return index<car->occupants.size()&&car->occupants[index];},point,direction));
+    }
+    template<class Actor>bool shot_source_attached_to(Actor* source,Actor& target){return dependencies().world_actors.human_loading_actor(source).field160==&target;}
+    template<class Actor,class Frame>void shot_actor_damage(Actor& target,std::uint32_t kind,float amount,const HumanVector& point,
+            const HumanVector& direction,Actor* source,Frame frame){
+        //Actual derived D4 tables: common005B88A0 and four distinct RET24 leaves.
+        switch(target.base().type()){
+        case 2:case 6:case 8:case 9:case 10:case 12:case 13:case 15:case 22:case 23:case 28:case 29:case 33:case 35:case 37:return;
+        case 11:dependencies().world_actors.runtime().damage_loose_item(target,kind,amount,point,direction);return;
+        case 4:dependencies().world_actors.shot_actor_damage(&target,kind,amount,point,direction,source,frame);return;
+        case 25:{
+            auto* animation=dynamic_cast<AnimationSceneActor<typename Dependencies::ActorFrames>*>(&target);
+            if(!animation)throw std::logic_error("Animation shot D4 requires actual Animation owner");
+            animation->damage(amount);return;
+        }
+        case 21:{ //006057B0: the FIRST seat, original ray zone and normalized incoming direction.
+            auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&target);
+            if(!weapon||!weapon->loading)throw std::logic_error("StaticWeapon D4 requires actual loading/seat owner");
+            auto* seated=static_cast<Actor*>(weapon->loading->seat_occupant(0));if(!seated)return;
+            unsigned zone=0;
+            if(kind==1||kind==3){zone=shot_human_zone(*seated,point,direction);
+                if(zone==0xff){shot_human_miss(*seated,source,target.base().world_direction(),true);return;}}
+            auto unit=direction;
+            const auto square=(static_cast<long double>(unit[1])*unit[1]+static_cast<long double>(unit[2])*unit[2])+static_cast<long double>(unit[0])*unit[0];
+            normalize_human_ai_shot(unit,square);
+            apply_human_damage(dependencies().world_actors.human_loading_actor(seated),kind,amount,point,unit,source,zone);
+            shot_script_hit(seated->base().frame());return;
+        }
+        default:throw std::runtime_error("Shot requires actual selected derived actor D4 receiver");
+        }
+    }
+    template<class Actor>void shot_human_damage(Actor& actor,float amount,const HumanVector& point,const HumanVector& direction,Actor* source,std::uint32_t zone){
+        apply_human_damage(dependencies().world_actors.human_loading_actor(&actor),1,amount,point,direction,source,zone);
+    }
+    template<class Actor>unsigned shot_human_zone(Actor& actor,const HumanVector& point,const HumanVector& displacement){return item_melee_hit_zone(dependencies().world_actors.human_loading_actor(&actor),point,displacement);}
+    template<class Actor>void shot_human_miss(Actor& actor,Actor* source,const HumanVector& velocity,bool hostile_required){
+        auto& target=dependencies().world_actors.human_loading_actor(&actor);if(human_frame_signed_word(target.properties.stats_ec[0])<=0)return;
+        auto& from=dependencies().world_actors.human_loading_actor(source);
+        if(hostile_required&&!dependencies().sight.human_sight_hostile(&target,&from))return;
+        item_melee_miss(target,from,velocity);
+    }
+    template<class Actor>bool shot_friendly_human(Actor& target,Actor* source){
+        if((mode_flags()&7u)!=7u)return false;
+        auto& human=dependencies().world_actors.human_loading_actor(&target);
+        return !human_is_player(human)&&human.properties.field19c==1&&dependencies().world_actors.human_loading_actor(source).properties.field19c==1;
+    }
+    std::uint32_t shot_material_absorption(std::uint32_t material){return dependencies().car_definitions.materials().at(material).word(0x28);}
     template<class Record>void shot_grenade_effect(Record& record,const HumanVector& position,std::int32_t material){
         shot_explosion_effect(position,record.words.template get<HumanVector>(0x680),record.payload_word(0x50),material,human_frame_signed_word(record.payload_word(0x54)));
     }
@@ -1909,8 +2040,19 @@ public:
         record->initialize(d.scene.frames(),*this,human,position,direction,item.definition().payloads[0],model,(argument&0xffu)!=0);
         state.transient[0].push_back(std::move(record));
     }
-    template<class Capsule>unsigned advance_shot_capsule_authority(Capsule&,std::uint32_t){throw std::runtime_error("Capsule requires actual00449290 frame/damage receiver");}
-    template<class Capsule>void advance_shot_capsule_presentation(Capsule&,std::uint32_t){throw std::runtime_error("Capsule requires actual00449030 presentation receiver");}
+    template<class Capsule>unsigned advance_shot_capsule_authority(Capsule& capsule,std::uint32_t elapsed){return shot_combat::capsule(capsule,elapsed,*this);}
+    template<class Record>bool shot_capsule_car_boost(Record& record){
+        return (mode_flags()&7u)==7u&&human_difficulty()==1&&dependencies().world_actors.human_loading_actor(record.source).properties.field19c==1&&record.frame();
+    }
+    template<class Record>void shot_capsule_explosion(Record& record,const HumanVector& centre,float factor){
+        dependencies().world_actors.mine_explosion(record.source,centre,record.payload_real(0x5c),static_cast<float>(static_cast<long double>(factor)*record.payload_real(0x58)),human_frame_signed_word(record.payload_word(0x54)));
+    }
+    template<class Record>void shot_capsule_effect(Record& record,const HumanVector& point,const HumanVector& normal,std::uint32_t material){
+        shot_explosion_effect(point,normal,record.payload_word(0x50),human_frame_signed_word(material),human_frame_signed_word(record.payload_word(0x54)));
+    }
+    template<class Frame>bool shot_frame_visible(Frame frame){return dependencies().scene.frames().human_control_visible(frame);}
+    template<class Frame>void shot_hide_frame(Frame frame){dependencies().scene.frames().object_visible(frame,false);}
+    template<class Capsule>void advance_shot_capsule_presentation(Capsule& capsule,std::uint32_t elapsed){shot_visual::capsule(capsule,elapsed,dependencies().scene.frames(),*this);}
     void stop_capsule_camera(){spawn_camera_command(9,false,0);}
     template<class Item,class Human>void apply_item_melee(Item& item,Human& human,const HumanVector& start,const HumanVector& direction){
         strike_human_item(item,human,start,direction,*this);
