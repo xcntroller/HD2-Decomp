@@ -49,8 +49,9 @@ Item6, loot23, handoff24 and supply33 task effects now reuse actual PACK/storage
 loose-item and SupplyBox owners, preserving partial moves and native false returns.
 Standalone cover/hold completion and commands4/19/32/37 now use existing actual
 owners; task32 retains its target-unavailable completion gate.
-H8.2 remains open: other specialized tasks/effects and the positive Players
-process98 producer still stop when selected. Populated group command18/21 and
+Active BC damage and the actual Players process98 producer/borrower now use the
+existing shared damage/Sight/order owners. H8.2 remains open: other specialized
+tasks/effects still stop when selected. Populated group command18/21 and
 3/type8 production/arrival now use actual distinct F8 storage and current B0s. Task25/26 command admission/production,
 selection, pending progression and
 query-10 replanning, explicit valid reload sources, hazard blast/packet and water
@@ -58,7 +59,7 @@ command/HUD orchestration now use their existing actual owners. Saved-position/v
 use their actual target, collision, inline/common-command and item owners. Ordinary
 rifle target range/burst/crouch, cautious posture/admission, populated stance and005318C0
 pack→holster ammunition are now source-bound. Task22/Dog and other specialized task/effect producers, populated
-positive Players process98 and remaining reached offline action callbacks must also retain
+remaining reached offline action callbacks must also retain
 honest requirements until implemented or shown outside the selected path.
 Type36 sound look selection and positive type34 singleton look require actual
 owners; no private empty registry is substituted. H8.4 owns Dog/attachment/
@@ -66,7 +67,7 @@ Car/seat/Aircraft bodies. Follow actual reached dependencies rather than trying
 to finish all specialized families before integration.
 
 Next implementation target: the next reached offline frame failure, with
-positive Players process98 and specialized task/effect producers still explicit. After H8.2, continue H8.3. Loading
+specialized task/effect and actual actor receivers still explicit. After H8.2, continue H8.3. Loading
 activation and desktop acceptance remain explicit H8.6 gates.
 
 ## Existing evidence to reuse

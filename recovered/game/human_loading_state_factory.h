@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
 #define HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
 #include "game/human_state_damage.h"
+#include "game/human_active_ai_damage.h"
 #include "game/human_common_command.h"
 #include "game/human_player_item_notification.h"
 
@@ -230,7 +231,8 @@ public:
     void notify_damage(Base& state,std::uint32_t kind,std::uint32_t hit_kind,std::int32_t health,Human* source,
             const HumanVector& point,const HumanVector& direction){
         const auto type=state.words().template get<std::uint32_t>(0x48);
-        if(type==3||type==7)return; //005A43B0/00583200, genuine RET24, absent frozen.
+        if(type==7)return; //00583200, genuine RET24, absent frozen.
+        if(type==3){notify_active_human_damage(static_cast<Active&>(state),kind,hit_kind,health,source,point,direction,services_,frames_);return;}
         if(type==1){notify_human_ai_damage(static_cast<Player&>(state),kind,hit_kind,health,source,point,direction,services_,frames_);return;}
         if(type!=4&&type!=5&&type!=6&&type!=8)throw std::logic_error("Human damage has no actual B0 family");
         notify_human_ai_damage(static_cast<AI&>(state),kind,hit_kind,health,source,point,direction,services_,frames_);

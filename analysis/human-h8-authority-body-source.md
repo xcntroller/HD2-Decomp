@@ -462,3 +462,65 @@ pre-failure output publication and callback sequencing are covered. Actual
 World/factory/Active and Human scene-frame link plus launcher/probe are distinct
 compile-only checks; no Windows/mission/desktop claim. Receipt
 `completion_follow_up` stores fingerprints and temporary fixture cleanup.
+
+## Active damage BC and actual Players target98 — 2026-11-17
+
+Corrected a real containing dispatch gap: `HumanLoadingStateFactory::notify_damage`
+previously skipped Active kind3 as a RET24. Original Human005A1C90 calls B0+BC;
+Active vtable008109F8+BC is0052EAF0, which pushes fixed FLOAT100 and calls
+0052E7C0. Remote's00583200 RET24 remains separate. This is a correction to the
+old source scope, not a claim that earlier standalone H2 checks covered Active BC.
+
+When source exists, call actual00574560 first; its actual Active-kind3 path skips
+other AI families' drop cases and uses the existing shared event/packet owners.
+Only source19C==1, damage kind1 and actual source005A0890 admit accumulation.
+Add100 to FLOAT1C4, store FLOAT but compare EXTENDED sum strictly>400. Fifth
+ordinary admitted hit resets1C4 BEFORE process virtual1C=00459500. Source19C==2
+with NULL target actor and ordered target vector square<exact FLOAT0080F948
+(1.0000000168623835e-16) clears198; equality/unordered do not. Shared callback
+failure prevents all subsequent Active mutations. SourceNULL skips shared work
+but still reaches the distinct head/hand drop policy.
+
+00459500 publishes actual process target98 and clears40 BEFORE reverse controlled
+roster iteration. Positive signed-HP, non-target members force actual Sight
+(observer258,target25C). Only true Sight proceeds: Human005A5F00 tests current
+B0 kind3 and pending count;005A5E90 passesTRUE to virtual128/0052EF20 (append-hold,
+not ordinary false reset). Reread current B0 after Sight/reset and cancel only
+if its202 is clear.9C=4000 publishes LAST. Earlier pointer/40/order effects remain
+if a callback fails. Count is captured but actual roster entries/B0s are reread.
+No direct setter calls exist: original0052E7C0's getter/virtual1C call is the
+concrete reached producer, so no unused UI bridge was invented.
+
+PlayersProcess owns that SAME typed Human loan, preserving source pointer98
+separately from DWORD storage; no pointer truncation or actor-ID substitution.
+Unexpected external raw98 writers remain required.00456860 now consumes this
+loan. Reset00456440 and exact/overshoot9C expiry clear it before later callbacks.
+Identity guards retain Actor lifetime only; source/member B0s are reread, not
+pinned across tasks. Native NULL/stale/family-invalid paths retain honest errors.
+
+Helmet hit11 uses actual holder0 and direction with Y+1 BEFORE normalization,
+then engine RandFloat+2 retained extended through XYZ scaling and actual drop.
+This differs from the shared AI drop's post-normalization uplift. Hit3 consumes
+CRT and, on rand%20==0, refreshes actual A8. Definition CLASS1/3/4 admits a drop
+using fresh OWN Human005A80E0/virtual4C direction, then speech72/500. Native unused
+scratch from hit direction is not substituted as velocity; no engine draw or
+invented A8 clear. Helmet scratch W is unproduced natively; retained typed W has
+no native-value claim. Existing Items/runtime/equipment transfer owners remain
+unchanged.
+
+Index preceded bounded0052E7C0/005A5F00/005A5E90 exports in
+`human-h8-process-target-producer`;00574560/Human damage evidence reused. Raw
+`human-h8-active-damage{,-wrapper,-vtable}.asm`,
+`human-h8-process-target-{setter,callers}.asm` and original constants preserve
+hidden arguments and x87/publication order.00459500/0052EAF0 are absent from the
+frozen inventory and receive no credit. This is the actual target producer,
+not a scan-driven expansion into unrelated Player command families.
+
+Focused ASan/UBSan/leak checks passed2100/100 lifetimes on actual PlayersProcess,
+HumanRoster, HumanAITargetLoading, storage and new policy; Human/World/shared
+AI damage/Sight/drop callbacks are explicit doubles. Cover fifth hit/failure
+prefixes, TRUE order reset/current-B0 reread, target retirement/reset/exact expiry,
+near-zero/unordered gates, helmet geometry and separate CRT/engine drop behavior.
+Actual merged World/factory/Active frame and explicit damage call compile/link,
+plus launcher/probe; no Windows execution or actual mission/application/desktop
+claim. Receipt `active_damage_follow_up` records fingerprints/fixture cleanup.

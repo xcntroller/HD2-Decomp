@@ -22,6 +22,7 @@ public:
     void reset() { //00456440; does NOT clear five group buffers or delayed speech.
         for(auto offset:{0x3du,0x3fu,0x42u,0x3eu,0x41u,0x40u,0x3cu})words_.set(offset,std::uint8_t{0});
         for(auto offset:{0x38u,0x34u,0x30u,0x98u,0x9cu})words_.set(offset,std::uint32_t{0});
+        reaction_target_=nullptr;reaction_target_live_={};
         words_.set(0xa0,std::int32_t{-1});words_.set(0xa4,std::uint32_t{0});
         words_.set(0x120,std::int32_t{3});update_formation_scale();
         words_.set(0x43,std::uint8_t{0});words_.set(0x44,std::uint32_t{5000});
@@ -33,6 +34,32 @@ public:
     }
     HumanVector formation_scale()const{return words_.template get<HumanVector>(0x110);} //Actual0089AD40.
     const auto& groups()const{return groups_;}auto& words(){return words_;}const auto& words()const{return words_;}
+    Human* reaction_target(){ //00456860; native pointer98 has its own typed loan.
+        if(words_.template get<std::uint32_t>(0x98))throw std::runtime_error("Players target requires its actual external raw98 producer");
+        if(reaction_target_live_)reaction_target_live_();
+        return reaction_target_;
+    }
+    template<class Control,class World>void react_to_player_damage(Human* target,Control& control,World& world){ //00459500, actual process virtual1C; absent frozen.
+        reaction_target_=target;reaction_target_live_=target?world.active_event_actor_guard(*target):std::function<void()>{};
+        const auto target_live=reaction_target_live_;
+        words_.set(0x98,0u);words_.set(0x40,std::uint8_t{0}); //Typed pointer, never an identity encoded into DWORD98.
+        auto count=control.human_roster().size();
+        while(count){auto* human=control.human_roster().at(static_cast<std::int32_t>(--count));
+            if(!human)throw std::runtime_error("Players damage reaction reached native NULL roster member");
+            if(signed_word(human->properties.stats_ec[0])<=0||human==target)continue;
+            if(!target)throw std::runtime_error("Players damage reaction reached native NULL target25C dereference");
+            const auto member_live=world.active_event_actor_guard(*human);
+            const bool seen=world.active_follow_force_sight(*human,*target);member_live();if(target_live)target_live();
+            if(!seen)continue;
+            //005A5F00 is kind3-only;005A5E90 then passesTRUE to virtual128.
+            if(state_kind(*human)==3&&world.active_command_state(*human).has_pending_orders_loading()){
+                world.active_command_state(*human).reset_orders_loading(true);member_live();
+            }
+            auto& current=world.active_command_state(*human); //Fresh current B0 after Sight/reset callbacks.
+            if(!current.state().template get<std::uint8_t>(0x202)){current.cancel_task();member_live();}
+        }
+        words_.set(0x9c,4000u); //Only after all preceding callbacks return.
+    }
 
     void speech_mode(std::uint8_t value){words_.set(0x43,value);} //00459470, virtual2C: one BYTE store only.
     std::uint8_t speech_mode()const{return words_.template get<std::uint8_t>(0x43);} //00459480, virtual30.
@@ -110,7 +137,7 @@ public:
     void tick(std::uint32_t elapsed,std::uint32_t mode,Frames& frames,Control& control,
               std::uint32_t game_time,std::vector<DelayedSpeech>& delayed,Speech& speech) { //004564A0.
         expire_byte(0x30,0x3c,elapsed);expire_byte(0x34,0x40,elapsed);
-        if(expire(0x9c,elapsed))words_.set(0x98,std::uint32_t{0});
+        if(expire(0x9c,elapsed)){words_.set(0x98,std::uint32_t{0});reaction_target_=nullptr;reaction_target_live_={};}
         for(auto& group:groups_)group.clear(); //0045C860 whole-range erase, retain all five allocations.
         auto* selected=control.selected_player(mode);if(!selected)return;
         for(auto n=control.human_roster().size();n;) {
@@ -157,6 +184,7 @@ private:
     }
     void expire_byte(unsigned timer,unsigned flag,std::uint32_t elapsed){if(expire(timer,elapsed))words_.set(flag,std::uint8_t{0});}
     HumanJointWords<0x130> words_;std::array<std::vector<Human*>,5> groups_;
+    Human* reaction_target_=nullptr;std::function<void()> reaction_target_live_;
     std::vector<Human*> command_members_;CommandActor* command_target_=nullptr;std::function<void()> command_target_live_;
     std::vector<std::function<void()>> command_member_liveness_; //Actor identities only; B0 is reread at each native call, not pinned across tasks.
 };

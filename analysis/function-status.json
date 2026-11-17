@@ -35076,7 +35076,7 @@
       "program": "client",
       "entry": "005a1c90",
       "status": "partial",
-      "coverage": "Actual authority damage controller, hit/difficulty/death/state/effect/retaliation sequence and nonoffline configuration policy through SAME Human/World owners; required external effects remain explicit. Actual containing blast006DDD40 now reaches SAME Human lifetime/damage body with kind2/4, source pointer and final hit0; no separate health-only effect. Native actual-owner verification additionally covers living kind9 damage into SAME Look/passive B0 and corpse impulse admission/consumption in real joints.",
+      "coverage": "Actual authority damage controller, hit/difficulty/death/state/effect/retaliation sequence and nonoffline configuration policy through SAME Human/World owners; required external effects remain explicit. Actual containing blast006DDD40 now reaches SAME Human lifetime/damage body with kind2/4, source pointer and final hit0; no separate health-only effect. Native actual-owner verification additionally covers living kind9 damage into SAME Look/passive B0 and corpse impulse admission/consumption in real joints. Extended: Actual B0 BC dispatch now includes Active0052EAF0/0052E7C0 rather than incorrect RET24 skip; existing Human D4 producer remains the containing caller.",
       "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance. The containing-blast extension has native ASan/UBSan/LSan actual process→damage→Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/human_damage.h",
@@ -35089,7 +35089,14 @@
         "analysis/blast-wave-process.md",
         "analysis/checkpoints/p2.2-human-containing-blast-20261112.json",
         "analysis/human-h2-source-closure.md",
-        "analysis/checkpoints/p2.2-human-h2-source-20261112.json"
+        "analysis/checkpoints/p2.2-human-h2-source-20261112.json",
+        "recovered/game/human_active_ai_damage.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/players_process.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
       ],
       "verification": "H2 source checkpoint: 100 runs of eight actual-owner ASan/UBSan/LSan families plus strict actual-host i386 and launcher/probe compile/link. Only selected branches execute; authored data and explicit engine/OS/lookup endpoints, registry facade rather than running World, and compile-only throwing Runtime declarations are detailed in the linked contract."
     },
@@ -48039,6 +48046,54 @@
         "recovered/game/dog_damage.h"
       ],
       "verification": "Native ASan/UBSan/leak PASS45408 checks/32 repeated families; actual cold Dog/table/geometry/integrity/damage source. Engine/resources/live Body/controller/perception are named doubles. Source-only; Dog activation/HUM callback guards remain."
+    },
+    {
+      "program": "client",
+      "entry": "0052e7c0",
+      "status": "partial",
+      "coverage": "Actual Active BC damage policy through source-gated shared AI receiver, fixed100/fifth-hit Player reaction target, near-zero enemy198 reset, distinct helmet uplift/engine-speed and CRT hand drop/actual own target direction; partial prefixes preserved.",
+      "limitations": "Source-only typed/STL/RAII adaptation; Actor pointer98 is a typed borrower with separate raw-word guard, not a serialized identity or original object ABI. Native focused checks use actual process/roster/target/storage with explicit Human/World/shared-damage/Sight/drop/mode endpoints. Actual merged World/factory/frame/damage i386 and launcher compile/link only, no mission/application/desktop acceptance. Absent00459500/0052EAF0 wrapper entries and delegated engine calls receive no credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_damage.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/players_process.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5e90",
+      "status": "partial",
+      "coverage": "Reached Human reset invokes current actual Active virtual128 with true, preserving append-hold retirement rather than the ordinary false reset.",
+      "limitations": "Source-only typed/STL/RAII adaptation; Actor pointer98 is a typed borrower with separate raw-word guard, not a serialized identity or original object ABI. Native focused checks use actual process/roster/target/storage with explicit Human/World/shared-damage/Sight/drop/mode endpoints. Actual merged World/factory/frame/damage i386 and launcher compile/link only, no mission/application/desktop acceptance. Absent00459500/0052EAF0 wrapper entries and delegated engine calls receive no credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_damage.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/players_process.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5f00",
+      "status": "partial",
+      "coverage": "Reached process reaction count gate reads actual current kind3 pending order owner; non3 returns no count. General UI count-return binding remains separate.",
+      "limitations": "Source-only typed/STL/RAII adaptation; Actor pointer98 is a typed borrower with separate raw-word guard, not a serialized identity or original object ABI. Native focused checks use actual process/roster/target/storage with explicit Human/World/shared-damage/Sight/drop/mode endpoints. Actual merged World/factory/frame/damage i386 and launcher compile/link only, no mission/application/desktop acceptance. Absent00459500/0052EAF0 wrapper entries and delegated engine calls receive no credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_damage.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/players_process.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
     }
   ]
 }

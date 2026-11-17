@@ -89,7 +89,7 @@ public:
     void close_loading() { //00525110; AI close before virtual128(0), then clear Human44.
         AI::close_loading();reset_orders_loading();this->clear_human_reference();
     }
-    void reset_orders_loading(){orders_.reset(*this,false,services_);} //0052EF20(0), SAME actual250 owner.
+    void reset_orders_loading(bool append_hold=false){orders_.reset(*this,append_hold,services_);} //0052EF20, SAME actual250 owner;005A5E90 passestrue.
     bool append_pending_order(typename OrderPool::Lease order){return orders_.append(*this,std::move(order),services_);}
     bool insert_pending_order_after(typename OrderPool::Lease order,std::int32_t index){return orders_.insert_after(*this,std::move(order),index,services_);}
     void update_pending_order(std::size_t index,const Order& delta){orders_.update(*this,index,delta,services_);}

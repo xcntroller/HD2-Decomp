@@ -161,11 +161,13 @@ public:
     void active_avoidance_clamp(HumanVector& position,bool enabled,const HumanVector& original){clamp_active_avoidance_position(dependencies().navigation,position,enabled,original);}
     auto& active_task_navigation(){return dependencies().navigation;} //Actual game54,00532190.
     auto* active_avoidance_player(){return dependencies().players.control().selected_player(mode_flags());}
-    auto* active_process_target(){ //00456860, actual process98 (the positive producer remains required).
+    auto* active_process_target(){ //00456860 on SAME process98 borrower, produced by Active BC.
         using Actor=SceneActor<typename Dependencies::ActorFrames>;
-        if(dependencies().startup.players_process().words().template get<std::uint32_t>(0x98))
-            throw std::runtime_error("Active movement requires the actual Players process98 actor borrower");
-        return static_cast<Actor*>(nullptr);
+        return static_cast<Actor*>(dependencies().startup.players_process().reaction_target());
+    }
+    template<class Human>void active_player_damage_reaction(Human& source){auto& d=dependencies();d.startup.players_process().react_to_player_damage(&source,d.players.control(),*this);}
+    template<class AI,class Human>void active_shared_damage(AI& ai,std::uint32_t kind,std::uint32_t hit,std::int32_t health,Human* source,const HumanVector& point,const HumanVector& direction){
+        notify_human_ai_damage(ai,kind,hit,health,source,point,direction,*this,dependencies().scene.frames());
     }
     template<class Entry>bool active_special_hand(Entry entry){return human_special_hand_definition(dependencies().world_actors.items().runtime_item(entry).definition());}
     template<class Human>bool active_has_ammunition(Human& human,std::uint32_t definition){

@@ -1957,5 +1957,204 @@
     "cleanup": {
       "temporary_sources_and_binaries_removed": true
     }
+  },
+  "active_damage_follow_up": {
+    "date": "2026-11-17",
+    "base_commit": "906dc1b50edea798a37063ecb14d8d81412a9bbc",
+    "source_only": true,
+    "h8_2_complete": false,
+    "application_loading_enabled": false,
+    "desktop_verified": false,
+    "scope": "Correct Active BC dispatch and bind actual damage/Players reaction target98 producer/borrower and distinct drops. Includes merged H8.4 baseline906dc1b; PACK bodies unchanged.",
+    "source_files": [
+      {
+        "path": "recovered/game/human_active_ai_damage.h",
+        "bytes": 3457,
+        "sha256": "67a646bf3712412433d3271bc2d556fddb88a864929d6b3e31cb79d5ed4f3be6"
+      },
+      {
+        "path": "recovered/game/human_loading_state_factory.h",
+        "bytes": 17439,
+        "sha256": "1dad1d445279b0d6a1ae8458e98439a370de54f0b16c95d8c4cf76efc11e17dc"
+      },
+      {
+        "path": "recovered/game/human_active_ai_state_loading.h",
+        "bytes": 23732,
+        "sha256": "3364621df2af0a2f05ffc34ce2960a7a044b341c5d64c7c8b966d0aa161f9275"
+      },
+      {
+        "path": "recovered/game/human_world_loading_services.h",
+        "bytes": 256048,
+        "sha256": "71a8162a5dd0f7ff4b434747caca0aef1db9646c24dd9d7d08e2cf2feb8ccce8"
+      },
+      {
+        "path": "recovered/game/players_process.h",
+        "bytes": 13305,
+        "sha256": "a9de8ebcdbd80516d19475c648878f00492305f2d4f150606a330a525537b767"
+      }
+    ],
+    "original_evidence": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-process-target-producer/0052e7c0.c",
+        "bytes": 3557,
+        "sha256": "7758f19b60ab6737035dc8e45a7cf303a88d4946fe0feedf76b2cb783284af83"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-process-target-producer/005a5f00.c",
+        "bytes": 387,
+        "sha256": "5b676a328c4ac31fb842a50683598bf429647db953ac8f3fa4402a052c13ccf1"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-process-target-producer/005a5e90.c",
+        "bytes": 115,
+        "sha256": "c18d1ef5803ef2cb7890d5e8c5ba5190a7a31cc1b25658e28e363d44c62f24fe"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-damage-state-dependencies/00574560.c",
+        "bytes": 9395,
+        "sha256": "9a1061911971155cdae910cc31628e60a87ee4ca4b0b282a7cb93100fffdae58"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-damage-selection-abi/005a1c90.c",
+        "bytes": 9656,
+        "sha256": "b9959f6569e84aa68586e2a7cefd22a9b3cb4a38ec771a45cc74f41602b9b369"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage.asm",
+        "bytes": 13601,
+        "sha256": "f36ab3c3f0cf39c1b3fd8aea7599d7bce506f19291e375b6108e2b050efe86e8"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage-wrapper.asm",
+        "bytes": 1082,
+        "sha256": "b20d24aedfbfba0f2b4ff295e6faeb25ee11125b86f9fbc7ee669c777ae172cd"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage-vtable.asm",
+        "bytes": 1389,
+        "sha256": "5c813d379742d49dab2aba4e6468402dfc9348c9f6874f669187fca157507bb7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-process-target-setter.asm",
+        "bytes": 4367,
+        "sha256": "a71a0c5a11b4fdce2e662ce38a015eda6a6aa09097d188910150d29469f8872d"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-process-target-callers.asm",
+        "bytes": 9526,
+        "sha256": "cfbfdad3c7c5c4141b78c609563c489897410d79301ce61a1a5ea3c007a97523"
+      }
+    ],
+    "verification": {
+      "native_sanitizers": {
+        "passed": true,
+        "result": "2100 Active damage/process checks /100 lifetimes PASS",
+        "flags": "-std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer",
+        "environment": "ASAN_OPTIONS=detect_leaks=1:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1",
+        "actual_owners": [
+          "PlayersProcess",
+          "HumanRoster",
+          "HumanAITargetLoading",
+          "ActorStorageOwner/holders",
+          "New Active damage policy"
+        ],
+        "explicit_doubles": [
+          "Human/World/shared damage/Sight endpoints",
+          "Current-B0 order-reset/cancel callbacks",
+          "Item/drop/speech/random frame callbacks"
+        ],
+        "scope": "100 lifetimes of fixed100/fifth-hit threshold, shared/Sight failure prefix, TRUE append-hold reset, current-B0 reread, target retirement/reset/expiry, ordered near-zero/NaN, helmet uplift and distinct CRT hand drop.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-active-damage-native.cpp",
+          "bytes": 8018,
+          "sha256": "735eac031e92a9e964ec76ff6d6d511e9dab3250f1d3a1cf12077165f3a15c6e"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-active-damage-native",
+          "bytes": 1333216,
+          "sha256": "b3d2b3594b7dc9d3226a1e21ea867511bf5b4f5eaf4907baebeb66fbb88d575b"
+        }
+      },
+      "actual_human_scene_world_i386": {
+        "passed": true,
+        "scope": "Post-merge actual World/factory/Active frame and explicit damage callback composition, compile/link only.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-active-damage-host.cpp",
+          "bytes": 516,
+          "sha256": "21d1303adcfa99c71b4c2d8994f087e9c6ca44c973a88d65f7b8ae999f5911c5"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-active-damage-host.exe",
+          "bytes": 9449984,
+          "sha256": "f66a7caff0da952e84b19ad92b812c93bc33327f365c1ad6439c838811f830c1"
+        }
+      },
+      "launcher_probe": {
+        "passed": true,
+        "command": "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++"
+      },
+      "tracker_tests": {
+        "passed": true,
+        "tests": 27
+      },
+      "heavy_compile_ghidra_sequential": true,
+      "windows_binaries_executed": false
+    },
+    "logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage-host-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage-launcher-build.log",
+        "bytes": 820,
+        "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage-ledger-check.log",
+        "bytes": 437,
+        "sha256": "44d041307509c1eaf691f8462158a8f242c23f3594d24e64218a16d67ca534a0"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage-ledger-render.log",
+        "bytes": 380,
+        "sha256": "def8aa7a8a3c9a3bf1916cc223f63cae80953834e94b4bd8a1a82342889def9a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage-native-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage-native-run.log",
+        "bytes": 54,
+        "sha256": "d046f9a1923e86980de8441465084537c1c9e3bc7440bf35df930d25227f8ac2"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-damage-tracker-tests.log",
+        "bytes": 126,
+        "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-process-target-producer-export.log",
+        "bytes": 4669,
+        "sha256": "c8c0222877195370081574ee492cb24b913fc3ac0ab81e21a7d7d181ed922b5b"
+      }
+    ],
+    "function_tally": {
+      "complete": 34,
+      "partial": 3549,
+      "client_partial": 3544,
+      "engine_partial": 5
+    },
+    "limits": [
+      "Typed reaction target pointer separate from guarded raw98, no native object ABI claim.",
+      "Absent00459500/0052EAF0/00456860 entries receive no credit.",
+      "Remaining H8.2/H8.3/H8.4 source and actual application/desktop remain open."
+    ],
+    "cleanup": {
+      "temporary_sources_and_binaries_removed": true
+    }
   }
 }
