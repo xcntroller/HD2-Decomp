@@ -215,8 +215,63 @@ public:
         auto& human=selection_human(actor);auto* attachment=human.field160;
         return attachment&&attachment->base().type()==4&&car_field5e0(attachment);
     }
-    template<class Human>bool active_has_heavy_weapon(Human& human){
-        std::int32_t slot=7;return bool(find_human_weapon_candidate(human,dependencies().world_actors.items(),6u,false,false,slot));
+    template<class Human>bool active_has_heavy_weapon(Human& human){ //005328D0 is attachment B4 payload kind2, not a hand-inventory search.
+        return human.field160&&human_script_mounted_precise(human.field160,static_cast<std::int32_t>(human.field164));
+    }
+    template<class Human>bool active_mounted_precise(Human& human){ //00532910 dereferences the actual B4 definition BEFORE testing payload48.
+        if(!human.field160)throw std::logic_error("Mounted intervals require actual attachment");
+        if(!dependencies().first_players.seat_presentation().definition(human_pose_actor(human.field160),static_cast<std::int32_t>(human.field164)))
+            throw std::runtime_error("Mounted intervals reached native NULL B4 definition48 dereference");
+        return human_script_mounted_precise(human.field160,static_cast<std::int32_t>(human.field164));
+    }
+    const char* active_dog_target_bone(){return "c";} //008390F0.
+    template<class AI,class Actor>HumanVector active_special_mounted_target(AI&,Actor&,const HumanVector&,const HumanVector&){
+        throw std::runtime_error("Mounted target requires actual type34 frame240/type36 motion148 owner");
+    }
+    template<class AI>auto* active_mounted_idle_actor(AI& ai){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        if(ai.state().template get<std::uint32_t>(0x23c))throw std::runtime_error("Mounted idle target requires its actual type34/36 actor23C borrower");
+        return static_cast<Actor*>(nullptr);
+    }
+    template<class Actor>std::int32_t active_mounted_task_health(Actor& actor){
+        if(actor.base().type()!=3)throw std::runtime_error("Mounted task25/26 requires actual native targetEC word");
+        return human_frame_signed_word(selection_human(actor).properties.stats_ec[0]);
+    }
+    template<class Actor>bool active_mounted_actor_excluded(Actor& actor){
+        if(actor.base().type()!=3)return false;
+        auto& human=selection_human(actor);
+        return (human.properties.field19c==2&&human.loading_state&&human.loading_state->suppress_hostile_selection())||human_unavailable(human);
+    }
+    template<class Human>std::optional<float> active_mounted_fire_threshold(Human& human){
+        if(!human.field160)throw std::logic_error("Mounted trigger lost actual attachment");
+        if(human.field160->base().type()==34)throw std::runtime_error("Mounted trigger requires actual type34 word280 gate");
+        return .9900000095367432f;
+    }
+    template<class Actor,class Human>bool active_mounted_task_visible(Actor& actor,Human& human){ //00538B00.
+        if(actor.base().type()!=4&&actor.base().type()!=25)return false;
+        auto& frames=dependencies().scene.frames();const auto target=sight_position(human.head_marker);
+        const auto centre=frames.active_target_bound_centre(actor.base().frame());HumanVector delta{};
+        for(unsigned axis=0;axis!=3;++axis)delta[axis]=static_cast<float>(static_cast<long double>(target[axis])-centre[axis]);
+        const auto square=(static_cast<long double>(delta[0])*delta[0]+static_cast<long double>(delta[1])*delta[1])+static_cast<long double>(delta[2])*delta[2];
+        if(!(active_mounted_length(square)<=300.f))return false;
+        const auto hit=human_geometry_ray(centre,delta,0,0,false);if(!hit)return true;
+        if(!(human_geometry_flags(*hit)&0x40u))return false;
+        auto* contact=item_melee_actor(*hit);return contact&&(contact==&actor||contact==human.field160);
+    }
+    template<class AI>auto* active_mounted_dog_target(AI& ai,float radius){ //00532A20 on SAME Players C0.
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
+        auto& control=dependencies().players.control();const auto& dogs=control.sighted_dogs();
+        for(auto n=dogs.size();n;){const auto index=--n;auto* actor=dogs.at(index);auto* dog=dynamic_cast<Dog*>(actor);
+            if(!dog)throw std::runtime_error("Mounted Dog selection reached native NULL/nonDog C0 member");
+            const auto point=dog->base().world_position(),own=ai.human()->base().world_position();
+            const auto x=static_cast<long double>(point[0])-own[0],y=static_cast<long double>(point[1])-own[1],z=static_cast<long double>(point[2])-own[2];
+            const float square=static_cast<float>((x*x+y*y)+z*z);const float limit=static_cast<float>(static_cast<long double>(radius)*radius);
+            if(!(square<limit))continue;
+            if(human_frame_signed_word(dog->properties.fields4a0[0])<1){control.remove_sighted_dog_at(index);continue;}
+            if(square<16.f)return static_cast<Actor*>(dogs.at(index));
+            throw std::runtime_error("Mounted Dog selection requires actual Dog listener540/Sight feedback");
+        }
+        return static_cast<Actor*>(nullptr);
     }
     template<class Human>bool request_human_inventory_move(Human& human,std::int32_t identity,std::int32_t source,std::int32_t source_slot,std::int32_t destination,std::int32_t index){ //00587BF0, common B0 virtual74.
         const bool moved=receive_human_inventory_move(human,dependencies().world_actors.items(),*this,true,identity,source,source_slot,destination,index);
@@ -402,8 +457,9 @@ public:
     template<class Actor>bool active_task_actor_unavailable(Actor& target){ //00538A60, Actor ECX.
         switch(target.base().type()){
         case 3:return human_frame_signed_word(selection_human(target).properties.stats_ec[0])<1;
-        case 4:throw std::runtime_error("Active task capability requires H8.4 Car004DDCF0 receiver");
-        case 25:case 30:throw std::runtime_error("Active task capability requires H8.4 type25/A1 or type30/4A0 actor owner");
+        case 4:return human_action_car_disabled(target);
+        case 25:{auto* animation=dynamic_cast<AnimationSceneActor<typename Dependencies::ActorFrames>*>(&target);if(!animation)throw std::logic_error("Active type25 capability requires actual Animation owner");return animation->flaga1;}
+        case 30:{auto* dog=dynamic_cast<DogSceneActor<typename Dependencies::ActorFrames>*>(&target);if(!dog)throw std::logic_error("Active type30 capability requires actual Dog owner");return human_frame_signed_word(dog->properties.fields4a0[0])<1;}
         default:return false;
         }
     }
@@ -516,7 +572,6 @@ public:
         delay_active_focused_task(ai,*this);validate();
     }
     template<class AI>void active_completion_cover(AI& ai){
-        if(ai.human()->field160)throw std::runtime_error("Active completion cover requires H8.4 occupied005276E0 receiver");
         (void)advance_active_cover_decision(ai,dependencies().scene.frames(),*this);
     }
     template<class Human,class Actor>bool active_command_attack_pair(Human& human,Actor& target){
@@ -1630,7 +1685,10 @@ public:
     bool human_pose_actor_has_control(void* actor,std::uint32_t seat){ //Car004DA020, StaticWeapon00604D20.
         if(human_pose_actor_type(actor)==4)return static_cast<bool>(human_pose_car(actor).fields24b4.at(seat));
         if(human_pose_actor_type(actor)==21)return seat==0;
-        throw std::logic_error("Human attachment control query requires Car or StaticWeapon");
+        switch(human_pose_actor_type(actor)){
+        case 2:case 3:case 6:case 8:case 9:case 10:case 11:case 12:case 13:case 15:case 22:case 23:case 25:case 28:case 29:case 30:case 33:case 35:case 37:return false; //Actual0059C3B0 AL0/RET4.
+        default:throw std::runtime_error("Human attachment control query requires actual selected Actor98 receiver");
+        }
     }
     template<class Actor>std::array<float,3> human_grenade_lead_position(Actor& actor,float time){ //00558390 snapshots native1B0 before its model query.
         const auto velocity=selection_human(actor).activation.vector1b0;const auto p=sight_position(actor.base().frame());std::array<float,3> result;for(unsigned n=0;n<3;++n)result[n]=static_cast<float>(static_cast<long double>(time)*velocity[n]+p[n]);return result;
@@ -2517,10 +2575,7 @@ public:
         } queries{*this,runtime};
         if(kind==3){
             const auto prefix=factory.begin_active_authority(*state,elapsed,queries);
-            if(prefix.has_value()){
-                if(!human.field160)factory.advance_active_onfoot_authority(*state,elapsed,*prefix,runtime);
-                else runtime.advance_human_state(human,authority,elapsed); //H8.4 owns the occupied continuation.
-            }
+            if(prefix.has_value())factory.advance_active_authority_body(*state,elapsed,*prefix,runtime);
             return;
         }
         if(kind==1){factory.advance_player_frame(*state,authority,elapsed,queries,runtime);return;}

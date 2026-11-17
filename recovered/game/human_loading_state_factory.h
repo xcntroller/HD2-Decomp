@@ -131,6 +131,10 @@ public:
         if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Active authority prefix requires actual B0 family3");
         return static_cast<Active&>(state).begin_authority_frame(elapsed,queries);
     }
+    template<class Runtime>void advance_active_authority_body(Base& state,std::uint32_t elapsed,bool following,Runtime& runtime){
+        if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Active authority body requires actual B0 family3");
+        static_cast<Active&>(state).advance_authority_continuation(elapsed,following,control_,runtime);
+    }
     template<class Runtime>void advance_active_onfoot_authority(Base& state,std::uint32_t elapsed,bool following,Runtime& runtime){
         if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Active navigation requires actual B0 family3");
         static_cast<Active&>(state).advance_onfoot_navigation(elapsed,following,control_,runtime);

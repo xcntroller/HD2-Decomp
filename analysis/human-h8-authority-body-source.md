@@ -3,7 +3,7 @@
 2026-11-16, branch `feature/p22-hum-h8`, after9661f9e. Source integration;
 H8.2/H8/application loading and desktop acceptance remain open. PACK is finished;
 its general transfer body is reused without reopening PACK integration. H8.4
-occupied/Car/seat/absent-actor implementation remains with the other agent.
+occupied/Car/seat/absent-actor continuation is now owned by this branch. The [occupied follow-up](human-h8-occupied-authority-source.md) supersedes the blanket occupied-prefix guard recorded below.
 
 ## Result and containing order
 
@@ -14,7 +14,7 @@ The previously verified prefix and navigation/gait are followed by actual
 cover/event decisions, look policy,0058BAF0 items,005325C0 preset,00575940
 direction, processed-event retirement and00526400 self-treatment. There is no
 unconditional remaining-authority failure after that path. Attached Humans
-retain the separate H8.4 requirement after the same prefix.005328A0 genuinely
+now use the linked occupied follow-up after that same prefix.005328A0 genuinely
 returns false for an unattached Human;005335E0 is RET4.
 
 Implementation: `human_active_ai_authority_body.h`, actual Active/factory/World
@@ -524,3 +524,9 @@ near-zero/unordered gates, helmet geometry and separate CRT/engine drop behavior
 Actual merged World/factory/Active frame and explicit damage call compile/link,
 plus launcher/probe; no Windows execution or actual mission/application/desktop
 claim. Receipt `active_damage_follow_up` records fingerprints/fixture cleanup.
+
+
+The [2026-11-17 occupied authority follow-up](human-h8-occupied-authority-source.md)
+binds actual mounted target/input/path/common-tail dispatch and corrects the
+005328D0 cover predicate to actual attachment B4 payload kind2. Required
+specialized actor/interaction/application boundaries remain explicit.

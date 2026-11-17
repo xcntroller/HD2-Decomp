@@ -1,135 +1,107 @@
 # P22-HUM H8 handoff — 2026-11-17
 
 Actual worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8`, branch
-`feature/p22-hum-h8`. The environment cwd may instead point at retired
-`.codex/worktrees/3472/HD2-Decomp-p22-hum-h8` / `feature/p22-hum-h8-4`: always
-check and use the actual H8 worktree explicitly. H8.4 through4708ff9 was merged
-at906dc1b. Preserve that source and all other worktrees. PACK is finished.
+`feature/p22-hum-h8`. Environment cwd may be retired
+`.codex/worktrees/3472/HD2-Decomp-p22-hum-h8` / `feature/p22-hum-h8-4`:
+ALWAYS check and use actual worktree explicitly. Preserve merged906dc1b H8.4
+through4708ff9 and other worktrees. PACK is finished.
 
-USER: unavailable/asleep; no questions or stopping except task completion or a
-hard block on any progress. Continue ALL H8, including unfinished merged H8.4.
-After H8 source completion run a P22-HUM verification sweep BEFORE matrix
-resolved_source. If still away, continue P22-FRAME on its existing branch/worktree
-`../HD2-Decomp-p22-frame`. Check its checkout before acting. No push; never run
-original EXE/DLL/Proton or Windows fixtures. Heavy compile/Ghidra sequential.
-Source-only work may commit; actual interactive changes require user desktop
-acceptance. No desktop test has been performed for H8.
+USER: asleep/unavailable, no questions. Continue ALL H8, including unfinished
+merged H8.4, until complete or hard block on ANY progress. After H8 SOURCE
+completion do a P22-HUM verification sweep BEFORE matrix resolved_source. If
+still away, resume P22-FRAME on its existing branch/worktree
+`../HD2-Decomp-p22-frame`; check its checkout. No push. Never execute original
+EXE/DLL/Proton or Windows fixtures. Heavy compile/Ghidra SEQUENTIALLY. Source
+commits allowed; actual interactive changes need user desktop acceptance. No H8
+desktop test has occurred. Do not spawn other agents or add helper checkboxes.
 
 ## Latest result
 
-Latest runtime follow-up: [contract](analysis/human-h8-runtime-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-runtime-20261117.json). Script00591550
-alarm decisions now use actual B0/resources/item/hostile selector and CRT random;
-Runtime forwards to SAME World. Loose-item005B7320/005B7480 now advance actual
-Body/6B0 age/timers/fade/expiry/queued removal, closing age300 D4 dependency.
-00540090 suppressed Player uses actual sessionB8/B4/pending identity and Camera48.
-Native8400 policy checks/100 families PASS (explicit endpoints, not actual whole
-World); actual Script/loose/Body/Human/Camera i386 and launcher/probe compile/link
-PASS, exact tracker+27 PASS. Counts34 complete/3584 partial (client3579+engine5).
-Three new frozen partials, absent leaves zero credit; temporary successful audits
-fingerprinted/removed. Full MODULE fixture FAILED on missing Dog/Sight Runtime
-methods; preserved initial log and ongoing temporary source
-WORK/human-h8-containing-frame-i386.cpp (not removed, still in use). This is a
-real remaining integration boundary; narrower links do not close it.
+[Occupied authority](analysis/human-h8-occupied-authority-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json):
+actual World/factory/Active00526550 now continues occupied authority after SAME
+prefix. Controlled mounted00527FD0→00532BA0 targeting, actual driver inputs,
+vehicle path and proper shared Human tail; uncontrolled occupied actors omit
+on-foot navigation but keep common aim/target/movement tail. Actual two-origin
+0052C510 prediction and00532910 intervals,00538B00 visibility,00532A20 Dog-list
+selection and00538A60 Car/Animation/Dog availability are source-bound with limits.
+Corrected005328D0: actual attached B4 payload-kind2 predicate, false unattached;
+prior hand-inventory search was wrong. Removed obsolete occupied cover guard.
+Native2000/100 target/direction/input policy checks PASS with explicit endpoints;
+strict actual World/Human/occupied/Car/mounted/path authority+presentation i386
+and launcher/probe links PASS, exact tracker+27 PASS. Seven new frozen partials,
+counts34 complete/3591 partial (client3586+engine5), frozen18783. Temporary
+successful fixture pairs fingerprinted/removed. H8/matrix remain OPEN.
 
-Continue actual Dog/Sight owner integration and the remaining H8 scope. Existing
-research candidates are indexed in WORK/human-h8-dog-owner-index.txt and
-human-h8-dog-frame-index.txt. Native Dog activation/body/frame originals are in
-h8-4-dog-boundary-originals (005D4DB0/005C8370/005D5390/005D5620/005D5810),
-h8-4-dog-required-originals (005C7D30/005C6E10/005D5890/005D6000), and the live/
-typed-v2 directories referenced below. No new Dog export needed for these.
-Tutorial baseline has no Dog, ALPS1 has one, but only actual resolver/data/frame
-observations can establish current selected reachability; do not assert universal
-absence. Full H8 remains open; no matrix or desktop promotion.
+Earlier62db06e: [runtime](analysis/human-h8-runtime-source.md)/
+[receipt](analysis/checkpoints/p2.2-human-h8-runtime-20261117.json): Script00591550
+alarm, actual loose-item005B7320/005B7480 Body/age/timers/fades/expiry/queued
+removal, suppressed Player sessionB8/B4→Camera48 source. Native8400/100 and
+actual receiver/launcher links PASS. Full MODULE fixture FAILED on missing
+Dog/Sight Runtime methods. Initial log retained; ongoing TEMPORARY fixture
+WORK/human-h8-containing-frame-i386.cpp is still in use, not retired or passing.
+Do not infer module closure from narrower successful Human receiver links.
 
+Earlier7943db3/dbac1af: [projectile source](analysis/human-h8-projectile-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-projectile-20261117.json): SAME all-hit,
+bullet/capsule combat+visuals, shell/grenade/contact, actual module17 toggle,
+shared impact pool, Car DM/seat/Versions replacement outputs and derived D4 links.
+Reuse these owners and qualified native checks; no unchanged broad re-audits.
+Capsule2C SIGNED; bullet/grenade UNSIGNED. Equal hits reorder above16. Explosion
+texture48 then blood4C..60; bullet decals24.004458B0 toggles emission, not delete.
+Ordinary capsule90/incoming=false; positive command9 stays actual Camera guard.
+DOUBLE0080FAC8=9.99999993922529e-09. Shell00454680 NEGATES, reflection1.2,
+gravity3.8, old-position SOUND. Grenade Body before timers/close before blast.
 
-[Projectile source](analysis/human-h8-projectile-source.md),
-[receipt bullet_capsule_follow_up](analysis/checkpoints/p2.2-human-h8-projectile-20261117.json):
-SAME World bullet0044B910/capsule00449290 combat and visual0044B400/00449030,
-native0044A910/0044AE00 hit sort, actual module17 emission toggle004458B0,
-0044EBD0 shared impact pool,004E1530 Car DM/seat picking, Versions replacement
-Frame outputs, actual Physics/Script/StaticWeapon first-seat/Animation/loose-item
-D4 and checked SAME blast→Car link. Native211000 visual/sort,7500 combat/flyby,
-900 toggle,901 Car,1100 Versions,1400 ShotMgr impact pool and1800 Animation/link
-checks PASS; fixture endpoint qualifications are explicit in receipt. Strict full
-World/factory/Human/frame/projectile/derived i386 and launcher/probe compile/link
-PASS. Exact tracker and27 tests PASS. Counts34 complete/3581 partial
-(client3576+engine5), frozen18783.18 new claims partial only. Temporary audits
-fingerprinted/removed; original evidence/logs retained. H8.3/full H8 remain OPEN;
-no application/desktop delivery claimed.
+## Next — finish entire H8 on actual reached path
 
-Important: capsule2C is SIGNED FILD DWORD, bullet/grenade UNSIGNED. Equal-hit
-sort can reorder above16. Explosion texture is native48 followed by blood4C..60;
-fixed prior checkpoint's wrong decal24-array selection.004458B0 toggles emission,
-NOT deletion; retain points/B4 until00445800 retirement. Capsule ordinary producer
-90=false/incoming=false; positive command9 remains actual MissionCamera guard.
-Animation damage shares A3 with its frame owner, strict greater-than threshold;
-triggered track remains required. Loose-item D4 uses signed age300 then actual
-Body impulse; age/frame are now bound, positive non7 pose packets remain required.
+Use [six-checkbox H8 plan](analysis/p22-hum-h8-plan.md). No helper checklist
+expansion. H8.2/H8.3/H8.4/H8.5/H8.6 remain open. Finish actual module Runtime
+Dog/Sight bindings and reached actor/frame/interaction dependencies, containing
+verification and application/FRAME/OWN/render. Remaining selected Active tasks
+8..13/16/22, retreat40, delayed Players0053D5B0→00456020 recipients/producers,
+remaining00751480/00755500 interaction cases and Remote/non7/entry callbacks
+retain honest requirements. Aircraft20/type34 control and type34/36 mounted
+targets, nonHuman task25/26 EC, far Dog listener540 still require actual owners.
+Tutorial baseline has no Dog, ALPS1 has one; only actual current resolver/data
+observations establish selected reachability. Do not research adjacent variants
+merely because they exist or assert universal absence from historical samples.
 
-Previous dbac1af binds actual all-hit006FF140/static00700BC0/00701350,
-shell00454360/grenade0044D260→0044D290/contact0044D570 and material0044FBC0.
-DOUBLE0080FAC8=9.99999993922529e-09; shell00454680 NEGATES, reflection1.2,
-gravity3.8, old-position SOUND. Grenade Body precedes timers; strict fuse<age;
-close-before-blast. Reuse these owners; do not repeat their unchanged audits.
+[Dog contract](analysis/human-h8-dog-source.md): process23-row table/stride,
+7-bone geometry and D4 kernels ONLY, no live activation/frame. Research already
+indexed in WORK/human-h8-dog-{owner,frame,frame-dependencies,controller}-index.txt.
+Reuse h8-4-dog-boundary-originals (005D4DB0/005C8370/005D5390/005D5620/005D5810),
+h8-4-dog-required-originals (005C7D30/005C6E10/005D5890/005D6000),
+h8-4-dog-control-originals, h8-4-dog-live-originals/typed-v2 and NEW
+human-h8-dog-live-controller (005CF6C0/005CFA20/005CE650/005CE740). Latest controller
+tables: WORK/human-h8-dog-controller-tables.json.005C0F50 takes ONE pointer,
+pushed earlier005C8069. Kind4+04=005D5B00→005CE5D0, NOT005CE110; no bogus NULL
+constructor issue. Dog SOUND005D6000 is distinct from Human callback.
 
-Prior latest5738cca fixed actual Active BC dispatch0052EAF0→0052E7C0 (Remote
-RET24 still genuine), and bound Players98 reaction00459500/00456860 on actual
-process/roster/Sight/current-B0 order owners. Fixed100 fifth-hit logic, distinct
-helmet and hand drops: [authority contract](analysis/human-h8-authority-body-source.md),
-[receipt active_damage_follow_up](analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json).
-Existing on-foot authority through00526550 return, navigation, rifle/cautious/
-launcher/vector/close target, task25/26, group3/18/21, item6/loot23/handoff24/supply33,
-cover/hold completion32/40/41/42 and producers4/19/32/37 are source-bound there.
-No unconditional ordinary-authority tail failure remains. Reuse those owners.
-Task6 nativefalse propagates; handoff24 producer rejects Human type3; do not repair
-native behavior. Positive holder reload reaches native invalid NULL3C, an honest
-invalid-native failure. Actor lifetime metadata does not pin B0; reread current B0
-across callbacks. CRT and engine RandFloat remain distinct owners.
+Animation damage now shares actual A3, exposing required positive start/track
+005B5190 rather than silently idle. Loose-item age/frame is bound; positive
+non7 retained pose packet remains required. Actual World Actor98 common AL0 is
+proven in WORK/human-h8-actor-control98.json/.asm (including Mine00812F08).
+No credit for absent0059C3B0/005B5EB0 or delegated engine calls. D11 is resolved
+under FOUR explicitly user-authorized defaults; do not reopen.
 
-## Next work — entire H8, no helper checklist expansion
+[Authority body contract](analysis/human-h8-authority-body-source.md) holds prior
+on-foot/task/item/order/Active BC damage and actual Players98 source. Task6
+nativefalse propagates; handoff24 rejects Human3. Positive holder reload reaches
+native invalid NULL3C, an honest failure. Metadata does not pin B0: reread current
+B0 across callbacks. CRT rand and engine RandFloat are distinct actual owners.
 
-Continue remaining reached H8.2/H8.4 and containing projectile dependencies.
-Bullet/capsule workers and initial100 attached-bullet production are now source-bound;
-H8.3 remains open for reached Dog/Animation/runtime damage/frame paths and containing
-verification. Dog30 D4 still needs live loading/control/geometry, rather than calling
-the merged policy kernel with synthetic state. Animation25 damage now triggers actual
-A3, exposing its existing positive start/track requirement. Loose11 D4 and actual runtime Body/age/timers are now bound in the follow-up. Native type37
-Zone constructor005EBED0 installs00812B20 (common RET24); do not mislabel this as Fowl.
-StaticWeapon006057B0 is now bound to actual first seat, zone/miss, normalized direction
-and damage-before-Script hit. Type11/non7 packet and special capsule90 MissionCamera
-command9 stay conditional requirements, not selected ordinary producer substitutions.
-
-Then remaining reached H8.2 specialized seat8..13/action16/Car22/retreat40 pending
-and actual runtime callbacks (Script alarm, Human look/control motion, suppressed
-Player camera/inline commands, ladder contact), positive sound36 and singleton34.
-Do not assume existing World methods override Runtime's still-explicit stubs.
-No successful empty actor registry, no marking H8.2 complete from first frame alone.
-
-H8.4 now ours: [Dog contract](analysis/human-h8-dog-source.md) covers actual
-23-row GameAnimations table/stride, seven-bone geometry and D4 policy kernels,
-NOT live activation/frame. Reuse `h8-4-dog-live-originals` for actual
-005D5290→005D4DB0→005C8370→005C7D30 and005D5390 retirement/controller4/5.
-005C0F50 takes ONE pointer, pushed earlier at005C8069. Kind4+04 is005D5B00→
-005CE5D0, not005CE110; do not repeat wrong-vtable/null-input inference.
-[H8 plan](analysis/p22-hum-h8-plan.md) links merged occupied/Car/PhotoPlace/D8
-contracts. D11 is source-resolved under FOUR explicitly user-authorized defaults;
-do not reopen it. Actual occupied Human/Player/mounted, reached Aircraft/type34/
-entry/selected non7 and application/FRAME/OWN/render/desktop gates remain open.
-
-## Commands and evidence
+## Commands
 
 WORK=`analysis/work/mission-world-20261103`. Research index BEFORE new exports:
-`python3 -B tools/research_index.py find ADDRESS...`; use existing contracts and
-raw before more exports. Original SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
-Read-only/noanalysis Ghidra: `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`,
+`python3 -B tools/research_index.py find ADDRESS...`. Original static image
+`analysis/work/hd2.unpacked.exe`, SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+Read-only/noanalysis Ghidra `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`,
 project `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
-hd2.unpacked.exe. Check ERROR despite exit0. No project/type mutation.
-
-Build `make -C recovered -j1 application-launch startup-probe
+hd2.unpacked.exe, tools/ExportFunctions.java. Check ERROR despite exit0.
+`make -C recovered -j1 application-launch startup-probe
 WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
-Ledger `python3 -B tools/function_progress.py --render`/`--check` and
-`python3 -B tools/test_function_progress.py`. Native g++ ASan/UBSan/LSan uses
-`.tools/hd2-sanitizer-runtime/usr/lib64` link/rpath, strict warnings; temporary
-audits only. Consolidate notes/ledger/handoff at larger verified commits.
-Do not repeat unchanged H1–H7/PACK audits. Priority: finish Human and get in game.
+Native strict g++ ASan/UBSan/LSan link/rpath `.tools/hd2-sanitizer-runtime/usr/lib64`;
+fingerprint/remove temporary audits. Exact tracker `tools/function_progress.py
+--render`/`--check`,27 `tools/test_function_progress.py`. Consolidate docs/ledger
+at verified source checkpoints, then keep going. No Windows/native-original run.

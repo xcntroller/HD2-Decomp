@@ -85,6 +85,10 @@ public:
         for(auto n=dogs_.size();n;)if(dogs_[--n]==actor)return;
         dogs_.push_back(actor);
     }
+    void remove_sighted_dog_at(std::size_t index){ //00532A20: remove only an encountered nearby dead Dog.
+        if(index>=dogs_.size())throw std::logic_error("Sighted Dog removal lost its actual index");
+        dogs_[index]=dogs_.back();dogs_.pop_back();
+    }
     void post_loading() { //0045DDE0 after base00461D30 genuine RET4.
         index28_=index30_=-1;if(roster_.size()==1)index2c_=0;override58_=nullptr;
         selection_.clear();dogs_.clear();field34_=0; //Collected60/pending6C remain intact.

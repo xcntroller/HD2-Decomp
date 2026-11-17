@@ -46895,13 +46895,21 @@
       "program": "client",
       "entry": "00538a60",
       "status": "partial",
-      "coverage": "Actor ECX dispatch, signed Human healthEC and genuine defaultfalse; type4/25/30 requirements preserved.",
-      "limitations": "Source-only typed/STL adaptation. H8.4 occupied/Car/seat/absent-actor policies are external; specialized task/producer/Players/follow/authority, application and desktop remain open. Native frame/readiness/common endpoints are explicit doubles, concrete i386 linked only. No original ABI or delegated engine/callee credit.",
+      "coverage": "Actor ECX dispatch, signed Human healthEC and genuine defaultfalse; type4/25/30 requirements preserved. Car body-health, Animation A1 and Dog4A0 cases now bind their actual owners.",
+      "limitations": "Source-only typed/STL adaptation. H8.4 occupied/Car/seat/absent-actor policies are external; specialized task/producer/Players/follow/authority, application and desktop remain open. Native frame/readiness/common endpoints are explicit doubles, concrete i386 linked only. No original ABI or delegated engine/callee credit. Occupied follow-up scope/verification limits are stated in the linked contract; remaining selected family requirements persist.",
       "evidence": [
         "recovered/game/human_active_ai_task_execution.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-task-execution-source.md",
-        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json",
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
       ]
     },
     {
@@ -47085,8 +47093,8 @@
       "program": "client",
       "entry": "00526550",
       "status": "partial",
-      "coverage": "Bind SAME World/factory/Active ordinary on-foot authority through actual return: prior prefix/navigation, aim-result switch, target/movement, movement/endurance, ordinary reload, event/cover/look/item/preset/direction output, strict last processed-event retirement and medical tail. Occupied continuation remains separately required. Query-10 task25/26 replanning now executes actual navigation selection before task initialization and204/210 publication, or rejected speech before cancellation.",
-      "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit.",
+      "coverage": "Bind SAME World/factory/Active ordinary on-foot authority through actual return: prior prefix/navigation, aim-result switch, target/movement, movement/endurance, ordinary reload, event/cover/look/item/preset/direction output, strict last processed-event retirement and medical tail. Occupied continuation remains separately required. Query-10 task25/26 replanning now executes actual navigation selection before task initialization and204/210 publication, or rejected speech before cancellation. Actual SAME prefix now continues through occupied Actor98/mounted authority/driver inputs/vehicle path, then the proper controlled or uncontrolled shared Human tail.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit. Occupied follow-up scope/verification limits are stated in the linked contract; remaining selected family requirements persist.",
       "evidence": [
         "recovered/game/human_active_ai_authority_prefix.h",
         "recovered/game/human_active_ai_state_loading.h",
@@ -47102,7 +47110,12 @@
         "recovered/game/human_active_ai_authority_body.h",
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
-        "recovered/game/human_active_ai_specialized_target.h"
+        "recovered/game/human_active_ai_specialized_target.h",
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
       ]
     },
     {
@@ -47278,13 +47291,20 @@
       "program": "client",
       "entry": "005276e0",
       "status": "partial",
-      "coverage": "Recover ordinary on-foot timer/order gates, actual heavy-weapon eligibility, processed-event priorities/index sorting/filtering/return-before-compaction, actual roster/enemy fallback and head/body turning timers on SAME owners.",
-      "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit.",
+      "coverage": "Recover ordinary on-foot timer/order gates, actual heavy-weapon eligibility, processed-event priorities/index sorting/filtering/return-before-compaction, actual roster/enemy fallback and head/body turning timers on SAME owners. Attached B4 payload predicate corrected to actual005328D0; occupied completion guard removed using SAME event/cover owners.",
+      "limitations": "Source-only typed borrowers/STL/RAII replace original ABI/containers/SEH. Coverage is limited to the branches stated in the linked contract; required specialized/absent-actor/nonoffline receivers remain explicit. No whole Human-frame, application-loading or desktop acceptance claim. Delegated existing callee bodies receive no new credit. Occupied follow-up scope/verification limits are stated in the linked contract; remaining selected family requirements persist.",
       "evidence": [
         "recovered/game/human_active_ai_authority_body.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
       ]
     },
     {
@@ -48986,6 +49006,132 @@
         "recovered/host/game_runtime_actors.h",
         "analysis/human-h8-runtime-source.md",
         "analysis/checkpoints/p2.2-human-h8-runtime-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00527fd0",
+      "status": "partial",
+      "coverage": "Actual controlled mounted authority: perception look, target policy, actor/vector direction, actual ammunition/A4 direction, strict firing threshold and first/second input publication.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native target/direction/input policy checks use explicit AI/World/Frames/selector/cover/cautious/Body endpoint doubles. Actual full Human/occupied/control/Car/mounted/path receiver composition and launcher/probe compile/link only. Type34/36 actors, far Dog listener540, nonHuman task25/26 EC, selected Aircraft/non7 and remaining H8 module/Sight/entry/application/desktop requirements remain guarded. No absent/delegated-engine credit or whole-body equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00532ba0",
+      "status": "partial",
+      "coverage": "Actual occupied Active target policy: timers, selected task/saved-position/hostile/process/Dog/cover admission and native CRT/engine scan ordering.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native target/direction/input policy checks use explicit AI/World/Frames/selector/cover/cautious/Body endpoint doubles. Actual full Human/occupied/control/Car/mounted/path receiver composition and launcher/probe compile/link only. Type34/36 actors, far Dog listener540, nonHuman task25/26 EC, selected Aircraft/non7 and remaining H8 module/Sight/entry/application/desktop requirements remain guarded. No absent/delegated-engine credit or whole-body equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052c510",
+      "status": "partial",
+      "coverage": "Mounted actor prediction using actual two A8 origins, Human head/velocity/CRT noise, Car/Animation lazy bound centre/elevation, Dog bone c and final normalization; type34/36 requirements retained.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native target/direction/input policy checks use explicit AI/World/Frames/selector/cover/cautious/Body endpoint doubles. Actual full Human/occupied/control/Car/mounted/path receiver composition and launcher/probe compile/link only. Type34/36 actors, far Dog listener540, nonHuman task25/26 EC, selected Aircraft/non7 and remaining H8 module/Sight/entry/application/desktop requirements remain guarded. No absent/delegated-engine credit or whole-body equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00532910",
+      "status": "partial",
+      "coverage": "Mounted Human-actor/nonHuman-vector target publication, actual direction owners and attached B4 payload-dependent native intervals with null-definition failure prefix.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native target/direction/input policy checks use explicit AI/World/Frames/selector/cover/cautious/Body endpoint doubles. Actual full Human/occupied/control/Car/mounted/path receiver composition and launcher/probe compile/link only. Type34/36 actors, far Dog listener540, nonHuman task25/26 EC, selected Aircraft/non7 and remaining H8 module/Sight/entry/application/desktop requirements remain guarded. No absent/delegated-engine credit or whole-body equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00532a20",
+      "status": "partial",
+      "coverage": "Actual Players sighted-Dog reverse selection, signed health, nearby dead swap/pop and close16 gate; positive far listener540 feedback remains required.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native target/direction/input policy checks use explicit AI/World/Frames/selector/cover/cautious/Body endpoint doubles. Actual full Human/occupied/control/Car/mounted/path receiver composition and launcher/probe compile/link only. Type34/36 actors, far Dog listener540, nonHuman task25/26 EC, selected Aircraft/non7 and remaining H8 module/Sight/entry/application/desktop requirements remain guarded. No absent/delegated-engine credit or whole-body equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00538b00",
+      "status": "partial",
+      "coverage": "Actual Car/Animation centre-to-head visibility with lazy58 bounds, native300 range, SAME World ray and no-hit/target/attachment identities.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native target/direction/input policy checks use explicit AI/World/Frames/selector/cover/cautious/Body endpoint doubles. Actual full Human/occupied/control/Car/mounted/path receiver composition and launcher/probe compile/link only. Type34/36 actors, far Dog listener540, nonHuman task25/26 EC, selected Aircraft/non7 and remaining H8 module/Sight/entry/application/desktop requirements remain guarded. No absent/delegated-engine credit or whole-body equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005328d0",
+      "status": "partial",
+      "coverage": "Correct actual attached B4 payload kind2 predicate, genuine false when unattached; replaces erroneous hand-inventory search in cover selection.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native target/direction/input policy checks use explicit AI/World/Frames/selector/cover/cautious/Body endpoint doubles. Actual full Human/occupied/control/Car/mounted/path receiver composition and launcher/probe compile/link only. Type34/36 actors, far Dog listener540, nonHuman task25/26 EC, selected Aircraft/non7 and remaining H8 module/Sight/entry/application/desktop requirements remain guarded. No absent/delegated-engine credit or whole-body equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_active_ai_occupied.h",
+        "recovered/game/human_active_ai_authority_body.h",
+        "recovered/game/human_active_ai_state_loading.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_player_control_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-occupied-authority-source.md",
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
       ]
     }
   ]

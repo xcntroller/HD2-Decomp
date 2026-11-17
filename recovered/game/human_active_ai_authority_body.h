@@ -324,12 +324,12 @@ template<class AI,class World>std::vector<std::size_t> active_cover_event_candid
     }
     return result;
 }
-//005276E0 ordinary on-foot event/cover decision, including priority indices,
+//005276E0 actual event/cover decision, including priority indices,
 //native reverse selection-sort and selected-record return BEFORE compaction.
 template<class AI,class Frames,class World>bool advance_active_cover_decision(AI& ai,Frames& frames,World& world){
     auto& state=ai.state();if(state.template get<std::uint32_t>(0x198)||(ai.has_pending_orders_loading()&&(ai.words().template get<std::uint32_t>(0x50)&0x400u)))return false;
     auto* human=ai.human();const auto validate=world.human_common_receiver_guard(*human);
-    const bool exclude_armour=!world.active_has_heavy_weapon(*human);validate(); //005328D0 is false for this unattached path.
+    const bool exclude_armour=!world.active_has_heavy_weapon(*human);validate(); //005328D0 reads actual attachment B4, false when unattached.
     auto* command=ai.command();if(!command)throw std::logic_error("Active cover decision lost actual commandB4");
     auto& events=command->second.events;
     std::vector<std::size_t> candidates;
@@ -384,8 +384,9 @@ template<class AI,class Frames,class World>bool advance_active_cover_decision(AI
     state.set(0x198,static_cast<std::uint32_t>(human_animation_time_integer(static_cast<long double>(world.human_sound_random())*1000.f+3000.f)));return true;
 }
 //00526550 through its actual return, after navigation and movement policy.
-template<class AI,class Inline,class World,class Runtime>void finish_active_onfoot_authority(AI& ai,std::uint32_t elapsed,Inline& control,World& world,Runtime& runtime){
+template<class AI,class Inline,class World,class Runtime>void finish_active_onfoot_authority(AI& ai,std::uint32_t elapsed,Inline& control,World& world,Runtime& runtime,bool controlled_attachment=false){
     auto* human=ai.human();const auto validate=world.human_common_receiver_guard(*human);
+    if(!controlled_attachment){ //Native mounted-control branch jumps directly to0058BAF0.
     //005335E0 is RET4. Reuse the actual00583C30 and00588710 owners.
     ai.apply_frame_movement(control);validate();advance_human_endurance(*human,ai,control,elapsed);validate();
     world.active_frame_reload_policy(ai,control);validate();
@@ -395,6 +396,7 @@ template<class AI,class Inline,class World,class Runtime>void finish_active_onfo
         const auto square=(static_cast<long double>(v[2])*v[2]+static_cast<long double>(v[1])*v[1])+static_cast<long double>(v[0])*v[0];
         const bool busy=ai.resources().target().actor||square>=1.e-16f||!human->perception.lists()[0].empty();
         ai.resources().direction().look_interval(!busy,4000u);ai.look_command(busy?0u:4u,control);validate();
+    }
     }
     ai.apply_frame_items(control,world,runtime,elapsed,0u);validate();
     ai.select_frame_direction_preset();validate();ai.advance_frame_direction(elapsed,control);validate();

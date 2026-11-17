@@ -43,7 +43,7 @@ World→factory→SAME Active through00526550's actual return: existing prefix,
 avoidance/query/gait, aim result policy, ordinary movement/target policy,
 movement output/endurance, ordinary reload, actual event/roster/cover selection,
 look/items/preset/direction, processed-event retirement and self-treatment.
-There is no unconditional remaining-authority failure after this path.
+There is no unconditional remaining-authority failure after this path. The [occupied follow-up](human-h8-occupied-authority-source.md) now also binds controlled mounted aim, driver inputs, vehicle-path completion and the original common Human tail; remaining selected specialized families stay explicit.
 
 Item6, loot23, handoff24 and supply33 task effects now reuse actual PACK/storage,
 loose-item and SupplyBox owners, preserving partial moves and native false returns.

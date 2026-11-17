@@ -67,6 +67,10 @@ public:
     MissionLightProperties mission_light_properties(Frame frame)const {
         return {(field<std::uint32_t>(frame,0xe0)&1u)!=0,field<std::int32_t>(frame,0x164),field<std::uint32_t>(frame,0x160)};
     }
+    Vector active_target_bound_centre(Frame frame){ //0052C510/00538B00: actual lazy58 then native30 sphere centre.
+        if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
+        return field<Vector>(frame,0x30);
+    }
     Bounds mission_frame_world_bounds(Frame frame) {
         if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
         return field<Bounds>(frame,0x10);

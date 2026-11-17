@@ -17,6 +17,7 @@
 #include "game/human_active_ai_authority_prefix.h"
 #include "game/human_active_ai_avoidance.h"
 #include "game/human_active_ai_authority_body.h"
+#include "game/human_active_ai_occupied.h"
 
 namespace hd2::game {
 
@@ -150,6 +151,20 @@ public:
     void advance_onfoot_target_policy(std::uint32_t elapsed,bool following){
         advance_active_aim_policy(*this,elapsed,following,services_);
         advance_active_movement_policy(*this,elapsed,following,this->state_frames(),services_);
+    }
+    template<class Inline,class Runtime>void advance_authority_continuation(std::uint32_t elapsed,bool following,Inline& control,Runtime& runtime){ //00526550 after the SAME completed prefix.
+        auto* human=this->human();if(!human)throw std::logic_error("Active authority continuation lost Human44");
+        const auto validate=services_.human_common_receiver_guard(*human);
+        const bool controlled=human->field160&&services_.human_pose_actor_has_control(human->field160,human->field164);
+        bool occupied=false;
+        if(human->field160){const auto kind=human->field160->base().type();occupied=kind==4||kind==20||kind==21||kind==34;}
+        if(!occupied){advance_onfoot_navigation(elapsed,following,control,runtime);advance_onfoot_target_policy(elapsed,following);finish_onfoot_authority(elapsed,control,runtime);return;}
+        if(controlled){advance_active_mounted_authority(*this,elapsed,control,this->state_frames(),services_);validate();}
+        services_.human_attachment_frame_inputs(*this);validate();
+        if(services_.advance_script_vehicle_path(*this,elapsed))state_.set(0x200,std::uint8_t{1});
+        validate();
+        if(!controlled){advance_active_aim_policy(*this,elapsed,following,services_);validate();advance_active_movement_policy(*this,elapsed,following,this->state_frames(),services_);validate();}
+        finish_active_onfoot_authority(*this,elapsed,control,services_,runtime,controlled);
     }
     void saved_frame_position(bool enabled,const HumanVector& position){set_active_saved_position_mode(*this,enabled,position,services_);} //005382D0.
     template<class Inline,class Runtime>void finish_onfoot_authority(std::uint32_t elapsed,Inline& control,Runtime& runtime){finish_active_onfoot_authority(*this,elapsed,control,services_,runtime);}
