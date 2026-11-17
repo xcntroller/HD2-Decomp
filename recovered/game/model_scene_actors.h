@@ -36,6 +36,13 @@ public:
         std::uint32_t field1c=0xffffffffu,field20=0xffffffffu;};
     DogActorProperties properties;
     std::uint32_t field330=0xffffffffu,field334=0xffffffffu,field534=0;
+    //005D4DB0 publishes540 only after actual Sight target registration. Cold
+    //construction/initialize do not produce a valid handle; do not invent-1/0.
+    std::optional<std::int32_t> sight_listener540;
+    std::int32_t require_sight_listener()const {
+        if(!sight_listener540)throw std::runtime_error("Dog Sight query requires actual005D4DB0 listener540 producer");
+        return *sight_listener540;
+    }
     std::array<Record,5> records;
     std::array<std::vector<std::uint32_t>,3> lists; //005D4CF0 frees these before00610170.
 };

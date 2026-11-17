@@ -27670,8 +27670,8 @@
       "program": "client",
       "entry": "006ddd40",
       "status": "partial",
-      "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required. Reached Human D8=66 and actual D4 through SAME live loading owner, final hit0; record1C is a full-width typed borrowed Human source, not a scalar identity. Other actor/Versions positive receivers remain required. Actual runtime Mine D8 uses bound100, D4 is genuine empty005B88A0; no unknown-actor success fallback. Positive frameEC5 now binds SAME Versions actual part damage/transitions/retirement, through containing World module owner.",
-      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
+      "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required. Reached Human D8=66 and actual D4 through SAME live loading owner, final hit0; record1C is a full-width typed borrowed Human source, not a scalar identity. Other actor/Versions positive receivers remain required. Actual runtime Mine D8 uses bound100, D4 is genuine empty005B88A0; no unknown-actor success fallback. Positive frameEC5 now binds SAME Versions actual part damage/transitions/retirement, through containing World module owner. Actual picked Frame now reaches SAME actor material virtual; existing derived projectile D4 receives native final0 for common/Animation/loose-item/StaticWeapon families. Human/Car gateways remain.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open. Later H8.3 closure supersedes obsolete generic material/ordinary derived-D4 gaps; live Dog/absent actor owners remain H8.4 requirements.",
       "evidence": [
         "recovered/game/blast_wave_process.h",
         "analysis/blast-wave-process.md",
@@ -27690,7 +27690,12 @@
         "analysis/human-runtime-mine-source.md",
         "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json",
         "analysis/version-damage-transitions.md",
-        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json"
+        "analysis/checkpoints/p2.2-human-versions-transitions-20261112.json",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-blast-sight-source.md",
+        "analysis/human-h8-projectile-closure.md",
+        "analysis/checkpoints/p2.2-human-h8-blast-sight-20261117.json"
       ]
     },
     {
@@ -49138,7 +49143,7 @@
       "program": "client",
       "entry": "00532a20",
       "status": "partial",
-      "coverage": "Actual Players sighted-Dog reverse selection, signed health, nearby dead swap/pop and close16 gate; positive far listener540 feedback remains required.",
+      "coverage": "Actual Players sighted-Dog reverse selection, signed health, nearby dead swap/pop and close16 gate; positive far listener540 feedback remains required. Far branch now reads SAME Human258/Dog540 shared Sight feedback; zero continues, nonzero returns current entry. Actual Dog540 activation producer remains required, no cold handle invented.",
       "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native target/direction/input policy checks use explicit AI/World/Frames/selector/cover/cautious/Body endpoint doubles. Actual full Human/occupied/control/Car/mounted/path receiver composition and launcher/probe compile/link only. Type34/36 actors, far Dog listener540, nonHuman task25/26 EC, selected Aircraft/non7 and remaining H8 module/Sight/entry/application/desktop requirements remain guarded. No absent/delegated-engine credit or whole-body equivalence promotion.",
       "evidence": [
         "recovered/game/human_active_ai_occupied.h",
@@ -49149,7 +49154,12 @@
         "recovered/game/human_player_control_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/human-h8-occupied-authority-source.md",
-        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json",
+        "recovered/host/game_blast_waves.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-blast-sight-source.md",
+        "analysis/human-h8-projectile-closure.md",
+        "analysis/checkpoints/p2.2-human-h8-blast-sight-20261117.json"
       ]
     },
     {
@@ -49230,12 +49240,18 @@
       "program": "client",
       "entry": "0052b180",
       "status": "partial",
-      "coverage": "Actual task22 cached-position FLOAT range, visibility-before-query, replan/reset/arrival and fresh target return; same Players C0 nearby Dog health/reverse removal/short16 gate. Far positive540 feedback remains required.",
+      "coverage": "Actual task22 cached-position FLOAT range, visibility-before-query, replan/reset/arrival and fresh target return; same Players C0 nearby Dog health/reverse removal/short16 gate. Far positive540 feedback remains required. Far branch now reads SAME Human258/Dog540 shared Sight feedback; zero continues, nonzero returns current entry. Actual Dog540 activation producer remains required, no cold handle invented.",
       "limitations": "Source-only typed/STL/RAII adaptation; native verification uses actual target/direction/scalar owners and explicit adjacent World/inventory/engine endpoints. Actual full module/launcher compile/link only, no Windows execution. Original full object/container/allocator/SEH and host stack layout equivalence excluded. Required live Dog/Body/controller/Sight540, other selected specialized/Remote/non7/application/desktop owners remain open. Delegated callees receive no credit; no whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/human_active_ai_special_target.h",
         "analysis/human-h8-special-target-source.md",
-        "analysis/checkpoints/p2.2-human-h8-special-target-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-special-target-20261117.json",
+        "recovered/host/game_blast_waves.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-blast-sight-source.md",
+        "analysis/human-h8-projectile-closure.md",
+        "analysis/checkpoints/p2.2-human-h8-blast-sight-20261117.json"
       ]
     },
     {

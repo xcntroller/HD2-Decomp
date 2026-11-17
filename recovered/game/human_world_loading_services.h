@@ -1,6 +1,9 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_ai_target_output.h"
+#include "game/model_scene_actors.h"
+#include "game/document_place_scene_actor.h"
+#include "game/human_seat_action.h"
 #include "game/human_player_packet_action.h"
 #include "game/human_player_command_dispatch.h"
 #include "game/heavy_fire_mortar.h"
@@ -273,7 +276,7 @@ public:
             if(!owner)throw std::logic_error("Active nearby Dog list requires actual type30 owner");
             if(human_frame_signed_word(owner->properties.fields4a0[0])<1){players.remove_sighted_dog_at(n);continue;}
             if(square<16.f)return dog;
-            throw std::runtime_error("Active nearby-Dog query requires actual listener540/Sight feedback");
+            if(dependencies().sight.source().human_relation_feedback(human_frame_signed_word(ai.human()->field258),owner->require_sight_listener(),nullptr,nullptr))return dog;
         }
         return static_cast<Actor*>(nullptr);
     }
@@ -374,7 +377,7 @@ public:
             if(!(square<limit))continue;
             if(human_frame_signed_word(dog->properties.fields4a0[0])<1){control.remove_sighted_dog_at(index);continue;}
             if(square<16.f)return static_cast<Actor*>(dogs.at(index));
-            throw std::runtime_error("Mounted Dog selection requires actual Dog listener540/Sight feedback");
+            if(dependencies().sight.source().human_relation_feedback(human_frame_signed_word(ai.human()->field258),dog->require_sight_listener(),nullptr,nullptr))return dogs.at(index);
         }
         return static_cast<Actor*>(nullptr);
     }
@@ -2312,7 +2315,7 @@ public:
         const auto position=human_view_offset_enabled()?human_projectile_position():sight_position(human_command_head(*human));
         const auto* hit=[&]{
             auto& owner=human_inline(*human);owner.exclude_query(false);
-            struct Restore{std::remove_reference_t<decltype(owner)>& owner;~Restore(){owner.restore_query(false);}}restore{owner};
+            struct Restore{std::remove_reference_t<decltype(owner)>& borrower;~Restore(){borrower.restore_query(false);}}restore{owner};
             auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Player melee query requires actual loaded World");
             auto query=d.scene.door_queries();return query.nearest(position,direction,0,0);
         }();
@@ -2355,7 +2358,7 @@ public:
         auto* human=state.human();if(!human)throw std::logic_error("Player shot query requires its actual Human");
         const auto hit=[&]{
             auto& owner=human_inline(*human);owner.exclude_query(false);
-            struct Restore{std::remove_reference_t<decltype(owner)>& owner;~Restore(){owner.restore_query(false);}}restore{owner};
+            struct Restore{std::remove_reference_t<decltype(owner)>& borrower;~Restore(){borrower.restore_query(false);}}restore{owner};
             HumanVector displacement=direction;for(unsigned axis=0;axis!=3;++axis)displacement[axis]=static_cast<float>(static_cast<long double>(direction[axis])*500.f);
             return human_geometry_ray(camera,displacement,0x8001u,0u,false);
         }(); //Native restores exclusions BEFORE inspecting the result.

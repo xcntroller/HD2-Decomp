@@ -1,3 +1,5 @@
+Current: H8.3 ordinary offline source is complete; [closure and external H8.4/acceptance limits](human-h8-projectile-closure.md). Earlier open-state statements below describe preceding checkpoints.
+
 # H8 projectile frames — source checkpoint, 2026-11-17
 
 H8.3 remains open pending the reached derived-actor/containing dependencies.

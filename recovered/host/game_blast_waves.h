@@ -73,18 +73,11 @@ public:
             &d_.scene.collision_tree(),&d_.scene.buckets(),d_.scene.collision_resources(),d_.scene.frames());
         return bool(ray.ray(start,displacement,0xffffffffu,0xb10000u,false)); //B10000 is a MASK, not a pointer.
     }
-    std::int32_t blast_material_index(const Actor& actor,EngineFrame*){
-        if(actor.base().type()==3)return game::human_blast_material; //0059C2A0, absent frozen inventory.
-        if(actor.base().type()==12){
-            if(!dynamic_cast<const world_loading::Actors::Runtime::DetachedItem*>(&actor))throw std::logic_error("Blast material requires actual runtime Item12 owner");
-            return 11; //005FDDC0,00812E18 D8, genuine constant11/RET4; absent frozen.
-        }
-        if(actor.base().type()==2){
-            const auto* mine=dynamic_cast<const world_loading::Actors::Runtime::Mine*>(&actor);
-            if(!mine)throw std::logic_error("Blast material requires actual runtime Mine owner");
-            return mine->material(); //005FEEB0, actual bound100, absent frozen.
-        }
-        throw std::runtime_error("Blast damage requires actual actor virtualD8 material receiver");
+    std::int32_t blast_material_index(Actor& actor,EngineFrame* picked){
+        //006DDD40 passes the actual picked Frame to derived D8. SAME actor
+        //owners already provide their native material policies (including
+        //Human66, Item12/Mine11 and per-frame/model fallbacks).
+        return actor.material(picked);
     }
     std::uint32_t blast_material_absorption(std::int32_t index)const{return d_.startup.car_definitions().materials().at(index).word(0x28);}
     void blast_actor_damage(Actor& actor,std::uint32_t kind,float amount,const Vector& point,const Vector& impulse,Actor* source){
@@ -99,7 +92,11 @@ public:
             if(!car||!car->geometry)throw std::logic_error("Car blast damage requires actual initialized containing Car owner");
             game::apply_car_actor_damage(frames(),*this,*car,[&]()->auto&{if(!car->loading)throw std::logic_error("Car damage requires actual loading lifetime");return car->loading->cold_state();},kind,amount,point,impulse,source);return;
         }
-        throw std::runtime_error("Blast damage requires actual actor virtualD4 receiver");
+        //006DDD40's final D4 argument is literal0, not the candidate frame.
+        //Reuse the existing actual derived D4 bodies: Animation A3, loose Body,
+        //StaticWeapon first seat and confirmed common RET24 families. Dog and
+        //other absent positive owners retain the same explicit requirements.
+        services_.shot_actor_damage(actor,kind,amount,point,impulse,source,static_cast<EngineFrame*>(nullptr));
     }
     std::uint32_t car_damage_mode()const{return mode_flags();}
     std::uint32_t car_damage_role(Actor* actor){return d_.world_actors.human_loading_actor(actor).properties.field19c;}

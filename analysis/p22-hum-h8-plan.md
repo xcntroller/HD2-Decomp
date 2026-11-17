@@ -10,7 +10,7 @@ Proton or Windows-fixture execution; no push. Compile and Ghidra sequentially.
 
 - [x] H8.1 — Compose actual scene→B0/inline→DD0/E0/equipment/geometry on the SAME World. [Source composition](human-h8-frame-composition-source.md).
 - [ ] H8.2 — Complete the mandatory offline Human decision/action/callback receivers reached by that composition.
-- [ ] H8.3 — Complete reached ShotMgr async bullet/shell/capsule/grenade collision, damage, visual/contact frames and initial100 calls.
+- [x] H8.3 — Offline ShotMgr bullet/shell/capsule/grenade source, collision/damage/visual/contact and initial100 calls. [Source closure and external H8.4/acceptance limits](human-h8-projectile-closure.md).
 - [ ] H8.4 — Complete reached occupied/Car/entry/absent-actor dependencies; merged source remains below.
 - [ ] H8.5 — Verify the completed containing Human frame on actual owners, module/i386/launcher links and consolidated native positive/failure/lifetime checks.
 - [ ] H8.6 — Connect completed application/FRAME/OWN/render work and obtain actual mission/user desktop acceptance.
@@ -75,7 +75,7 @@ H8.3 dependencies. [Projectile source](human-h8-projectile-source.md) binds
 bullet/capsule combat/visuals, shell/grenade, all-hit collision, material marks,
 Car/StaticWeapon/Animation/loose-item damage and picked Versions outputs on the
 SAME World. Focused native sanitizers and actual World/launcher links pass;
-H8.3 remains open for reached derived/containing dependencies. [Runtime callbacks](human-h8-runtime-source.md) now bind Script alarm, actual loose-item Body/age/timers and suppressed Player camera; full module-frame instantiation now links with named failing Dog/Sight requirements; live Dog owners remain open when selected. [Timed action ends](human-h8-timed-interaction-source.md) now complete00751480 dispatch and00755500 default timer behavior on actual owners. [Live Animation](human-h8-animation-frame-source.md) now binds A3/start/track completion, static interaction masks and script HUMAN_Kill on the SAME owners. Continue actual
+H8.3 is now source-closed: ordinary derived runtime/Animation paths and shared blast material/D4 are connected; [closure and limits](human-h8-projectile-closure.md). [Runtime callbacks](human-h8-runtime-source.md) now bind Script alarm, actual loose-item Body/age/timers and suppressed Player camera; full module-frame instantiation now links with named failing Dog/Sight requirements; live Dog owners remain open when selected. [Timed action ends](human-h8-timed-interaction-source.md) now complete00751480 dispatch and00755500 default timer behavior on actual owners. [Live Animation](human-h8-animation-frame-source.md) now binds A3/start/track completion, static interaction masks and script HUMAN_Kill on the SAME owners. Continue actual
 Dog/runtime and Human callback integration; application/desktop remain
 explicit H8.6 gates.
 
