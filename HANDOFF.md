@@ -7,7 +7,7 @@ then H8.3. Another agent owns H8.4; preserve its occupied/Car/seat/absent-actor
 work and other worktrees. PACK is finished. No push, original EXE/DLL/Proton or
 Windows fixture execution. Heavy compile and Ghidra sequentially.
 
-Latest: actual item6/loot23/handoff24/supply33 after e8cb169, extending [on-foot authority through return](analysis/human-h8-authority-body-source.md),
+Latest: actual completion/hold and remaining on-foot producers after903c2f6, extending [on-foot authority through return](analysis/human-h8-authority-body-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json).
 Actual World→factory→SAME Active now runs the prior prefix/navigation AND ordinary
 00526550 body through actual return. Rifle range/burst/crouch, populated00537FB0
@@ -20,6 +20,7 @@ replanning on actual FIRST navigation,
 valid explicit reload source slots and actual hazard blast→packet/water command→HUD,
 actual distinct F8 group3/18/21 staging/arrival, posture and ranged task37,
 item6 direct pickup/supply false returns, actual loot23 and handoff24/supply33,
+standalone32/40/41/42 completion/hold and command4/19/32/37 production,
 look/items/preset/direction,
 last processed-event retirement and medical tail are bound. The unconditional
 remaining-authority failure on this path is removed. H8.2/full H8/application
@@ -44,6 +45,11 @@ full World/factory/Active i386 and launcher/probe links. No Windows execution.
 Temporary audits fingerprinted and removed. Do not repeat unchanged H1–H7/PACK.
 
 NEXT: continue positive process98 and remaining specialized task producers.
+Completion00535C00/00537E50 now reuse actual cover/cautious/cancel/follow owners;
+receipt `completion_follow_up`. Task32 waits for target unavailable.40/41/42
+pending progression (retreat40) is not claimed by the completion binding.
+Remaining specialized commands principally seat8..13, action16 target/navigation,
+Car/task22; H8.4 bodies stay external.
 Item effects6/23/24/33 are now bound; reuse `human_active_ai_loot.h` and receipt
 `loot_follow_up`. Native handoff producer24 rejects Human type3; do not repair it.
 Item6 selection accepts nonzero capacity, producer requires positive. Actual

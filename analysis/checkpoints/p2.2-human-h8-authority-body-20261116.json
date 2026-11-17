@@ -1755,5 +1755,207 @@
     "cleanup": {
       "temporary_sources_and_binaries_removed": true
     }
+  },
+  "completion_follow_up": {
+    "date": "2026-11-17",
+    "base_commit": "903c2f6ecde238abf3fee5656cb5ad54bf774f60",
+    "source_only": true,
+    "h8_2_complete": false,
+    "application_loading_enabled": false,
+    "desktop_verified": false,
+    "scope": "Actual standalone cover/hold completion and task4/19/32/37 producers; pending32 target-unavailable gate. PACK and H8.4 bodies unchanged.",
+    "source_files": [
+      {
+        "path": "recovered/game/human_active_ai_cautious.h",
+        "bytes": 4211,
+        "sha256": "6591a32a96ee6b024ae9aca2d7973eb69ea78454fc6ed6bb77d9863cf2a2bdc8"
+      },
+      {
+        "path": "recovered/game/human_active_ai_task_completion.h",
+        "bytes": 5161,
+        "sha256": "e4c7a4222dd0ddd726a218ddce304dc2845a89ff058ec5fb426ddbcbfc81c09a"
+      },
+      {
+        "path": "recovered/game/human_active_ai_commands.h",
+        "bytes": 15949,
+        "sha256": "e7ad2939b8a19048d862f2262ed304d0a52b0eb26f5c8d64f903df9e8ca911f8"
+      },
+      {
+        "path": "recovered/game/human_active_ai_pending.h",
+        "bytes": 10442,
+        "sha256": "2cd79a6a015921663ec6393d5ae9ef8f9c888bc5f1aafd7fd72f43024826fe7e"
+      },
+      {
+        "path": "recovered/game/human_world_loading_services.h",
+        "bytes": 256043,
+        "sha256": "454365249fa05f20e2bf590135cce4248ebaf7b0226c8bf81c4ba23203e6f4a3"
+      }
+    ],
+    "original_evidence": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-cover/00537e50.c",
+        "bytes": 1175,
+        "sha256": "9ee15abf7d7165984d0da930ee37d788c10b186a38189b578f7fb59c487570f8"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-pending-complete/00535c00.c",
+        "bytes": 2503,
+        "sha256": "9ae55d7e31b7a8cc9fc579cb84481d4eed0e3234f737b94311354a9ea538d93a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-command-producers/00534460.c",
+        "bytes": 913,
+        "sha256": "266c95aefb1e18d0db83d949e165c63c52a8fe27b8987432f48bbc46d896dd00"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-command-producers/00534b30.c",
+        "bytes": 722,
+        "sha256": "e8046dd68aaaca93b4df7c441d2205bba97e17916e9d5c4307c7101eef51cc20"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-command-producers/005353a0.c",
+        "bytes": 645,
+        "sha256": "f296bfefbe4843f4d2fc5fd3ca3c08360de3fcb467826f4d05949018e6174a09"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-command-producers/00535580.c",
+        "bytes": 783,
+        "sha256": "9031671f8e6c46a68825885a07e6450bcba4808ebb46487bb01023db9b103167"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-command-selection/0045bd10.c",
+        "bytes": 9315,
+        "sha256": "29267978a42b206175ca97c0dd0b2f8dff809b30143a91fe7b3b1bad94cbc5bc"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-active-frame-workers/00528950.c",
+        "bytes": 23856,
+        "sha256": "40a8e6e5aeafc8bafa5411b46eafd70a9c8738daa0e6ee2df9ad18a497f18b96"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-cautious-posture/00525c90.c",
+        "bytes": 1271,
+        "sha256": "061de6b12365a3304d99daddc16c2a3c7349c2f936fc8364f45d16f09b94a654"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-posture.asm",
+        "bytes": 6948,
+        "sha256": "02b97ebfbde4981c3d6942dc640e96224058038aa6fbbf24a1c0e051744400e3"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-hold.asm",
+        "bytes": 4338,
+        "sha256": "05ca5e06745bd994d3ac8935fd4204a728c28a370a2f2e6e12d4bf1434a09ee9"
+      }
+    ],
+    "verification": {
+      "native_sanitizers": {
+        "passed": true,
+        "result": "2900 completion/hold checks / 100 lifetimes PASS",
+        "flags": "-std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer",
+        "environment": "ASAN_OPTIONS=detect_leaks=1:abort_on_error=1 UBSAN_OPTIONS=halt_on_error=1",
+        "actual_owners": [
+          "HumanAIDirection",
+          "HumanJointWords",
+          "Existing cover/cautious direction policy",
+          "Existing cancellation/follow policy"
+        ],
+        "explicit_doubles": [
+          "Human/Actor/frame/leader endpoints",
+          "World cover decision and mode/posture/notification endpoints"
+        ],
+        "scope": "100 lifetimes: held no-op, follow disable, pre-failure direct output publication, cancellation query/path order, leader/selected fallback,5000/5001 boundary, missing-point retained17C, cover/current/posture/hold sequencing, pending short circuit, failure ordering. Earlier scopes not rerun.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-completion-native.cpp",
+          "bytes": 6765,
+          "sha256": "fd3e096d760d5a096a24ef5a8b3f19f8cc80aa5acd22081fcd57b305daeab01b"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-completion-native",
+          "bytes": 556424,
+          "sha256": "ad2aabc4e35d46888041131d6b3919f9c89c5a0b0672df0f5da13d381e3c8ad1"
+        }
+      },
+      "actual_human_scene_world_i386": {
+        "passed": true,
+        "scope": "Explicit actual World/factory/Active and Human scene frame including new completion/hold/producer bindings; compile/link only.",
+        "source": {
+          "path": "analysis/work/mission-world-20261103/human-h8-completion-host.cpp",
+          "bytes": 381,
+          "sha256": "7ab70f35c4b8f0049e437ac11cd0715bdc1c8bbc6c358d27819ab626a4f33519"
+        },
+        "binary": {
+          "path": "analysis/work/mission-world-20261103/human-h8-completion-host.exe",
+          "bytes": 9431040,
+          "sha256": "aca87a0118f71c82fc77e134a24caeb152b47f1b117c10bc11aa2a2ff9f47e35"
+        }
+      },
+      "launcher_probe": {
+        "passed": true,
+        "command": "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++"
+      },
+      "tracker_tests": {
+        "passed": true,
+        "tests": 27
+      },
+      "heavy_compile_ghidra_sequential": true,
+      "windows_binaries_executed": false
+    },
+    "logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-cover-export.log",
+        "bytes": 4456,
+        "sha256": "2224675810fa058807687611b6a40e8cd2cb94afeb00316666df35d3eaf04bd6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-host-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-launcher-build.log",
+        "bytes": 820,
+        "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-ledger-check.log",
+        "bytes": 437,
+        "sha256": "03af22579fc0deef0031a64ccc8f1f220bb6e6e2274810d4396d022ecb88220c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-ledger-render.log",
+        "bytes": 380,
+        "sha256": "9004ae017d1721e411de95e91a2dad6101d7fe0ceec847d8e0f4934eaad8bc0f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-native-build.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-native-run.log",
+        "bytes": 49,
+        "sha256": "a2529c7616bfeb6487f54718fb54cd42972e11b4e2814d1e0d83cce70999ec4b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-completion-tracker-tests.log",
+        "bytes": 126,
+        "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f"
+      }
+    ],
+    "function_tally": {
+      "complete": 34,
+      "partial": 3530,
+      "client_partial": 3525,
+      "engine_partial": 5
+    },
+    "limits": [
+      "Task40 retreat/pending progression remains separate from completed completion receivers.",
+      "Other specialized/occupied/absent-actor owners and positive process98 remain required where reached.",
+      "No original object/virtual ABI, loaded mission/application or desktop acceptance."
+    ],
+    "cleanup": {
+      "temporary_sources_and_binaries_removed": true
+    }
   }
 }

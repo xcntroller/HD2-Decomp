@@ -93,9 +93,9 @@ template<class Human,class Actor,class Frames,class World>Human* select_active_c
     case 18:
         for(auto* human:humans)if(world.active_group_grenade_available(*human))return human;
         return nullptr;
-    case 25:case 26:return select_active_attack_candidate(humans,action,target,world);
+    case 25:case 26:case 37:return select_active_attack_candidate(humans,action,target,world);
     case 24:return world.select_active_handoff_candidate(humans,target);
-    case 22:case 37:
+    case 22:
         return world.select_special_active_command_candidate(humans,action,target,secondary);
     default:return nullptr; //Native switch has no accepted candidate.
     }
@@ -206,13 +206,24 @@ template<class AI,class Actor,class Frames,class World>void produce_active_playe
     case 23:
         if(!target)throw std::runtime_error("Active loot producer dereferences native NULL target");
         if(!world.active_loot_target_dead(*target)){reject();return;}start();return;
+    case 4:
+        if(!target)throw std::runtime_error("Active explosive producer dereferences native NULL target");
+        if(!world.active_command_explosive_allowed(*ai.human(),*target)){reject();return;}
+        start();delay_active_focused_task(ai,world);return;
+    case 19:
+        if(!target)throw std::runtime_error("Active release producer dereferences native NULL target");
+        if(!world.active_command_release_allowed(*target)){reject();return;}
+        start();delay_active_focused_task(ai,world);return;
+    case 32:world.produce_active_formation_task(ai,target);return;
+    case 37:
+        if(!target)throw std::runtime_error("Active grenade producer dereferences native NULL target");
+        world.produce_active_target_grenade(ai,*target);return;
     case 24:
         if(!target)throw std::runtime_error("Active handoff producer dereferences native NULL target");
         //00534BF0 really REJECTS type3 before005A6380; do not repair it.
         if(target->base().type()==3){reject();return;}
         world.produce_special_active_player_command(ai,action,target,secondary);return;
-    case 4:case 8:case 9:case 10:case 11:case 12:case 13:case 16:
-    case 19:case 22:case 32:case 37:
+    case 8:case 9:case 10:case 11:case 12:case 13:case 16:case 22:
         world.produce_special_active_player_command(ai,action,target,secondary);return;
     default:return; //Native unhandled command still publishes188 in the caller.
     }

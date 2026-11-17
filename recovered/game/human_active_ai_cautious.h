@@ -48,18 +48,21 @@ template<class World>bool choose_active_cautious_direction(std::uint32_t mask,Hu
 }
 //00525C90: high-cover mask first, then crouched mask. Output publication
 //precedes the final leader-state query, including on that receiver's failure.
-template<class AI,class World>void select_active_cautious_posture(AI& ai,HumanVector& direction,std::uint32_t& posture,World& world){
+template<class AI,class World,class Publish>void select_active_cautious_posture(AI& ai,HumanVector& direction,std::uint32_t& posture,World& world,Publish&& publish){
     auto value=ai.target_direction();const auto position=ai.human()->base().world_position();
     std::uint32_t selected_posture=2;
     if(const auto* point=ai.point()){
         if(choose_active_cautious_direction(point->reserved17[1],value,position,world))selected_posture=4;
         else (void)choose_active_cautious_direction(point->reserved17[0],value,position,world);
     }
-    posture=selected_posture;direction=value;auto* leader=ai.human()->formation_leader;
+    posture=selected_posture;direction=value;publish(direction,posture);auto* leader=ai.human()->formation_leader;
     if(ai.state().template get<std::uint8_t>(0x189)&&leader){
         const auto flags=world.active_follow_state(*leader).words().template get<std::uint32_t>(0x50);
-        if((flags&1u)&&ai.words().template get<std::int32_t>(0xb0)>5000)posture=1;
+        if((flags&1u)&&ai.words().template get<std::int32_t>(0xb0)>5000){posture=1;publish(direction,posture);}
     }
+}
+template<class AI,class World>void select_active_cautious_posture(AI& ai,HumanVector& direction,std::uint32_t& posture,World& world){
+    select_active_cautious_posture(ai,direction,posture,world,[](const HumanVector&,std::uint32_t){});
 }
 } //namespace hd2::game
 #endif

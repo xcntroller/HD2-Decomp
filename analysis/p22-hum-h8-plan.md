@@ -32,6 +32,8 @@ There is no unconditional remaining-authority failure after this path.
 
 Item6, loot23, handoff24 and supply33 task effects now reuse actual PACK/storage,
 loose-item and SupplyBox owners, preserving partial moves and native false returns.
+Standalone cover/hold completion and commands4/19/32/37 now use existing actual
+owners; task32 retains its target-unavailable completion gate.
 H8.2 remains open: other specialized tasks/effects and the positive Players
 process98 producer still stop when selected. Populated group command18/21 and
 3/type8 production/arrival now use actual distinct F8 storage and current B0s. Task25/26 command admission/production,

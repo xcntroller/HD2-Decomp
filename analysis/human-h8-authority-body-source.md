@@ -411,3 +411,54 @@ and pickup false propagation at the effect boundary. Actual World/factory/Active
 and scene frame plus launcher/probe compile/link only; no Windows execution,
 loaded mission or desktop claim. Evidence/fingerprints and removed temporary
 fixtures are consolidated in receipt `loot_follow_up`.
+
+## Completion, hold and remaining on-foot producers — 2026-11-17
+
+Standalone00535C00 cases32/40/42 now clear198 BEFORE actual005276E0, snapshot
+actual direction124+0 into160, select leader or selected Player posture and
+request it, then run00537E50.41 directly runs that hold. Pending orders still
+return after202=1 without any of these effects. Actual leader B050 bit1 and own
+signed B0>5000 choose1; otherwise bit2 chooses2; otherwise actual A4 directional
+cover picks4,2,1. With no A4 and no qualifying leader/selected posture,17C is
+retained. C missed portions of the computed cover mask; raw535C49 onward
+confirms order and exact5000/5001 boundary. Occupied005276E0 remains the actual
+H8.4 requirement after198=0, not an on-foot substitution.
+
+00537E50's174 bit20 gate is a genuine no-op. Otherwise clear bit1/set20,
+optionally cancel active40/41/42 through existing00535730, then00525C90's outputs
+write actual17C and160 BEFORE its final leader query. An optional publisher on
+the existing selector preserves that ordering without changing its ordinary
+local-output callers. Disable follow if189, select mode6/7 from fresh188,
+snapshot current direction, request17C posture, stop actual path if occupied
+seat0, and optional empty-order notification. Native exceptions/invalid owners
+retain the earlier publications. Existing cancellation/query/formation/follow
+and path owners are reused; no Car body is imported.
+
+00534460 command32 now sets actual formation then enables follow (immediate0),
+reads OWN cached direction/position (no target model), initializes task32/radius.5,
+sets207/200/204 then notifies. Pending task32 is admitted and shares25/26's
+native target-unavailable gate: live target continues without206/202, rather than
+being prematurely completed as an ordinary task.40/41/42 pending progression's
+additional task40 retreat producer remains separate; implementing their
+completion receiver does not claim that progression or actor dependencies done.
+
+00534B30 actual explosive place22 checks requested definition BEFORE field94,
+then task4/radius1.5/notification and focus exit. Other actor94 layout remains
+required.005353A0 task19 requires Human005A6450 before initialization and focus
+exit.00535580 task37 requires ANY kind9 in actual inventory, then target model
+and existing00535910 ready/far gate, then fresh focus exit check even if the inner
+receiver rejected. Selector37 now uses native bidirectional hostility priority
+then all candidates, sharing25's policy rather than an invented kind9 filter.
+Other specialized producers remain explicit, principally seat8..13, action16's
+actual target/navigation policy and Car/task22. No additional plan checkbox.
+
+Research index preceded the sole new00537E50 read-only/noanalysis export under
+`human-h8-completion-cover`; producer and00535C00 sources reused. Raw evidence
+`human-h8-completion-{posture,hold}.asm` preserves branch/order details. Focused
+native checks:2900/100 lifetimes on actual HumanAIDirection, word, cover/cautious
+and cancellation/follow policies, with Human/leader/World-cover/mode callbacks
+explicit doubles. Timer boundaries, retained17C, held no-op, query/path cancel,
+pre-failure output publication and callback sequencing are covered. Actual
+World/factory/Active and Human scene-frame link plus launcher/probe are distinct
+compile-only checks; no Windows/mission/desktop claim. Receipt
+`completion_follow_up` stores fingerprints and temporary fixture cleanup.

@@ -46243,7 +46243,7 @@
       "program": "client",
       "entry": "00528950",
       "status": "partial",
-      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required. Task37 now shares actual pending/turn/completion; far ranged aim publishes position35 before actual grenade animation duration, preserving1500 prefix on failure. Task6 direct item/supply effects now propagate native false through turn/pending caller; Human posture/reproduction and task23/24/33 actual loot/handoff effects preserve timers, all calls, partial failures and clothing-before-head order.",
+      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required. Task37 now shares actual pending/turn/completion; far ranged aim publishes position35 before actual grenade animation duration, preserving1500 prefix on failure. Task6 direct item/supply effects now propagate native false through turn/pending caller; Human posture/reproduction and task23/24/33 actual loot/handoff effects preserve timers, all calls, partial failures and clothing-before-head order. Extended: Admit task32 and retain live target until00538A60 reports unavailable, matching its native bVar5 completion class.",
       "limitations": "Source-only typed/STL/RAII adaptation. Other specialized task/admission/action producers, positive process98 and H8.4 occupied/Car/seat/nonHuman actors remain required where reached. Existing ranged/group/item paths are described in linked current contracts. Native endpoint doubles and actual i386/launcher linking do not establish original ABI or loaded mission/application/desktop acceptance; no delegated engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_pending.h",
@@ -46265,7 +46265,8 @@
         "recovered/game/players_process.h",
         "recovered/game/human_world_loading_services.h",
         "recovered/game/human_active_ai_loot.h",
-        "recovered/game/human_active_ai_commands.h"
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_cautious.h"
       ]
     },
     {
@@ -46489,13 +46490,19 @@
       "program": "client",
       "entry": "00535c00",
       "status": "partial",
-      "coverage": "202-before-pending gate, ordinary/default standalone follow resume,3 target-kind and8-13/30 follow stops, offline7 name before retail logger and exact required combat prefixes.",
-      "limitations": "Source-only typed adaptation on actual Active/World owners. Combat/cover32/40/41/42, nonoffline005A81C0 and retired-target event policy remain required. Full target task/turn/occupied/follow/authority/application/desktop remains open. Native Human/name/pending endpoints are explicit doubles; actual host i386 is linked only. No delegated callee or engine credit.",
+      "coverage": "202-before-pending gate, ordinary/default standalone follow resume,3 target-kind and8-13/30 follow stops, offline7 name before retail logger and exact required combat prefixes. Extended: Complete standalone32/40/42 cover/current-direction/leader-or-selected-player/posture policy then actual00537E50;41 directly holds. Pending gate still precedes work. Occupied cover remains H8.4.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual direction, task/cancel/follow and existing cover owners reused; focused native checks explicitly double Human/frame/leader/World-cover/mode endpoints. Original ABI/allocator/SEH and engine bodies excluded. Remaining specialized/occupied/absent-actor owners remain required where reached. Actual World/frame and launcher i386 compile/link only; no loaded mission/application/desktop claim.",
       "evidence": [
         "recovered/game/human_active_ai_task_completion.h",
         "recovered/game/human_active_ai_state_loading.h",
         "analysis/human-h8-task-completion-source.md",
-        "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-task-completion-20261116.json",
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
       ]
     },
     {
@@ -47004,14 +47011,17 @@
       "program": "client",
       "entry": "00525c90",
       "status": "partial",
-      "coverage": "Capture actual target direction and cached own position, try actual A4 high-cover then crouched masks, publish direction/posture before leader lookup, and retain follow/prone/signed-B0>5000 override on the SAME owners.",
+      "coverage": "Capture actual target direction and cached own position, try actual A4 high-cover then crouched masks, publish direction/posture before leader lookup, and retain follow/prone/signed-B0>5000 override on the SAME owners. Extended: Optional direct-output publisher retains caller state17C/160 writes before final leader-state query, including failure; existing local-output callers unchanged.",
       "limitations": "Source-only typed data/borrowers replace original ABI/containers/SEH. Original initializer addresses are unclassified and receive no credit. Actual application/desktop delivery and remaining specialized receivers remain open. See separately qualified cautious follow-up verification.",
       "evidence": [
         "recovered/game/human_active_ai_cautious.h",
         "recovered/game/human_active_ai_authority_body.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_active_ai_task_completion.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h"
       ]
     },
     {
@@ -47431,6 +47441,86 @@
       "evidence": [
         "recovered/game/human_active_ai_loot.h",
         "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00537e50",
+      "status": "partial",
+      "coverage": "Actual hold174 gate, optional cancellation of40/41/42, cautious posture direct-output publication before final leader receiver, follow disable, first-mode6/7, current-direction snapshot/posture/path-stop and optional empty-order notification.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual direction, task/cancel/follow and existing cover owners reused; focused native checks explicitly double Human/frame/leader/World-cover/mode endpoints. Original ABI/allocator/SEH and engine bodies excluded. Remaining specialized/occupied/absent-actor owners remain required where reached. Actual World/frame and launcher i386 compile/link only; no loaded mission/application/desktop claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_completion.h",
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534460",
+      "status": "partial",
+      "coverage": "Set actual formation then enable follow, own cached position/direction task32 radius.5,207/200/204 and notification; positive task32 retains native target-unavailable completion semantics.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual direction, task/cancel/follow and existing cover owners reused; focused native checks explicitly double Human/frame/leader/World-cover/mode endpoints. Original ABI/allocator/SEH and engine bodies excluded. Remaining specialized/occupied/absent-actor owners remain required where reached. Actual World/frame and launcher i386 compile/link only; no loaded mission/application/desktop claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_completion.h",
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534b30",
+      "status": "partial",
+      "coverage": "Actual type22 definition admission before place94 gate, actual task4/radius1.5/notification then focus delay. Non-place94 layout remains required.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual direction, task/cancel/follow and existing cover owners reused; focused native checks explicitly double Human/frame/leader/World-cover/mode endpoints. Original ABI/allocator/SEH and engine bodies excluded. Remaining specialized/occupied/absent-actor owners remain required where reached. Actual World/frame and launcher i386 compile/link only; no loaded mission/application/desktop claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_completion.h",
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005353a0",
+      "status": "partial",
+      "coverage": "Actual Human005A6450 admission to task19/radius1.5/notification then focus exit; rejected targets retain speech path.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual direction, task/cancel/follow and existing cover owners reused; focused native checks explicitly double Human/frame/leader/World-cover/mode endpoints. Original ABI/allocator/SEH and engine bodies excluded. Remaining specialized/occupied/absent-actor owners remain required where reached. Actual World/frame and launcher i386 compile/link only; no loaded mission/application/desktop claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_completion.h",
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-authority-body-source.md",
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00535580",
+      "status": "partial",
+      "coverage": "Any kind9 in actual storage before target model and existing ready/far00535910, then fresh focus check/delay even if inner receiver rejected.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Actual direction, task/cancel/follow and existing cover owners reused; focused native checks explicitly double Human/frame/leader/World-cover/mode endpoints. Original ABI/allocator/SEH and engine bodies excluded. Remaining specialized/occupied/absent-actor owners remain required where reached. Actual World/frame and launcher i386 compile/link only; no loaded mission/application/desktop claim.",
+      "evidence": [
+        "recovered/game/human_active_ai_task_completion.h",
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"

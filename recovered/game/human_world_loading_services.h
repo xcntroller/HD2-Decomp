@@ -479,6 +479,40 @@ public:
     template<class State,class Actor>void produce_special_active_player_command(State&,std::uint32_t,Actor*,std::uint32_t){
         throw std::runtime_error("Active command requires its specialized00534460..00535630 task producer");
     }
+    template<class Human,class Actor>bool active_command_explosive_allowed(Human& human,Actor& target){ //00534B30, native94 AFTER definition admission.
+        using Place=ExplosivePlaceSceneActor<typename Dependencies::ActorFrames>;
+        auto* place=dynamic_cast<Place*>(&target);
+        if(target.base().type()==22){
+            if(!place)throw std::logic_error("Explosive producer lost actual type22 place");
+            if(!active_command_has_definition(human,place->properties.fielda0))return false;
+        }
+        if(!place)throw std::runtime_error("Explosive task admission requires its actual non-place native94 owner");
+        return place->field94==0;
+    }
+    template<class Actor>bool active_command_release_allowed(Actor& target){ //005353A0 ->005A6450.
+        if(target.base().type()!=3)return false;
+        auto& human=selection_human(target);return human.properties.field19c==2&&human.loading_state&&human.loading_state->suppress_hostile_selection();
+    }
+    template<class AI,class Actor>void produce_active_formation_task(AI& ai,Actor* target){ //00534460 uses OWN cached position, no target-model read.
+        auto& human=*ai.human();const auto validate=human_common_receiver_guard(human);
+        set_active_order_formation(ai,target?&selection_human(*target):nullptr);validate();
+        ai.enable_follow(false);validate();
+        const auto direction=human.base().world_direction(),position=human.base().world_position();
+        ai.initialize_task(target,32u,position,direction,false,.5f);
+        for(auto offset:{0x207u,0x200u,0x204u})ai.state().set(offset,std::uint8_t{1});
+        notify_human_active_ai_empty_orders(ai,*this);validate();
+    }
+    template<class AI,class Actor>void produce_active_target_grenade(AI& ai,Actor& target){ //00535580, ANY kind9 lookup precedes ready/far00535910.
+        auto& human=*ai.human();auto& d=dependencies();const auto validate=human_common_receiver_guard(human);
+        if(!find_human_inventory_kind(human,d.world_actors.items(),9)){reject_active_command(human);return;}
+        const auto matrix=d.scene.frames().actor_world_matrix(target.base().frame());
+        start_active_group_grenade(ai,{{matrix[12],matrix[13],matrix[14],matrix[15]}},*this);validate();
+        delay_active_focused_task(ai,*this);validate();
+    }
+    template<class AI>void active_completion_cover(AI& ai){
+        if(ai.human()->field160)throw std::runtime_error("Active completion cover requires H8.4 occupied005276E0 receiver");
+        (void)advance_active_cover_decision(ai,dependencies().scene.frames(),*this);
+    }
     template<class Human,class Actor>bool active_command_attack_pair(Human& human,Actor& target){
         return active_event_hostile(human,&target)||active_event_hostile(selection_human(target),&human);
     }
