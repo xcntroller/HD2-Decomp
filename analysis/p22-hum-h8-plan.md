@@ -67,7 +67,7 @@ The [occupied entry/follow](human-h8-entry-source.md) now binds driver/passenger
 
 The [specialized target follow-up](human-h8-special-target-source.md) now binds task22/vehicle attack, real vector/grenade aim, visibility/range/replan and actual occupant classification. Live Dog owner/Sight540 and other selected special families remain required.
 
-Current priority after the user’s return: the focused ordinary Human receiver boundary is source-complete; establish its exact FRAME handoff and finish reached H8.4 dependencies before expanding conditional actor variants. Application currently declines before World activation; conditional Dog source alone does not enable mission entry. Preserve and finish reviewable in-flight source, retain honest H8.4 requirements, and do not count compile/link as game entry.
+Current priority after the user’s return: the focused ordinary Human receiver boundary is source-complete; establish its exact FRAME handoff and finish reached H8.4 dependencies before expanding conditional actor variants. Committed OWN integration now calls real activation but rejects success before unbound frame scheduling; conditional Dog source alone does not enable mission entry. Preserve and finish reviewable in-flight source, retain honest H8.4 requirements, and do not count compile/link as game entry.
 
 Current implementation target: finish reached H8.2/H8.4 owners and containing
 H8.3 dependencies. [Projectile source](human-h8-projectile-source.md) binds
@@ -85,8 +85,9 @@ existing session coordinator/lifecycle with current H8 World/Players/Runtime.
 Input/fixed/update plus lifecycle binding compile/link on actual i386 owners;
 combined Players native sanitizers pass. The FRAME branch is unchanged. Preserve
 newer H8 loose-item/physics/walk/Human bridges when integrating its older source.
-Application still declines before activation; actual OWN/UI/controller/cutscene
-bindings, reached H8.4 and containing/desktop verification remain required.
+Committed OWN integration now invokes activation but retains the unbound-frame
+admission guard; actual OWN/UI/controller/cutscene bindings, reached H8.4 and
+containing/desktop verification remain required.
 This advances H8.5 dependencies without checking the unfinished full boundary.
 
 ## Existing evidence to reuse
@@ -121,3 +122,7 @@ until external/runtime installation. H8.4/.5/.6 remain open.
 input path to actual first-queue command10 after original cooldown gates/RNG.
 This removes the explicit Player drop missing-body guard; conditional actors and
 application/containing H8.4–.6 requirements remain open.
+
+[StaticWeapon Actor90](human-static-weapon-seat-frame-source.md) now completes
+the type21 mounted Player camera-frame dependency on the actual loaded seat
+owner. Conditional20/34 still require their owners; H8.4–.6 remain open.

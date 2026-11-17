@@ -260,3 +260,8 @@ H8 Player drop checkpoint (2026-11-17):0053E9D0 adds one frozen client
 partial, bound through actual Player/World first queue after live input gates.
 Combined count34 complete/3727 partial (client3722, engine5), denominator18783.
 [Source and limits](human-player-drop-source.md). No complete/readiness promotion.
+
+H8 StaticWeapon Actor90 checkpoint (2026-11-17):00604B70 adds one frozen
+client partial, combined34 complete/3728 partial (client3723, engine5), frozen
+denominator18783. [Contract](human-static-weapon-seat-frame-source.md). No
+complete or readiness promotion.

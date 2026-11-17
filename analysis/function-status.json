@@ -51405,6 +51405,20 @@
         "analysis/human-player-drop-source.md",
         "analysis/checkpoints/p22-h8-player-drop-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00604b70",
+      "status": "partial",
+      "coverage": "StaticWeapon Actor90 mounted Player reference-frame lookup over actual loaded seats: signed bounds, cached occupant unlink/relink, actual FPV/CC gating, fresh fallback marker/parent/name, and model update before return, through same-World presentation facade.",
+      "limitations": "Source-only typed owners/callbacks/STL/RAII replace native object/vtable/SEH ABI. Native owner/order audit uses explicit engine doubles; actual World i386 compile/link only. Conditional Aircraft20/type34 Actor90 and H8.4-.6 remain required; no integrated/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/static_weapon_seat_frame.h",
+        "recovered/host/game_occupied_actor_presentation.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-static-weapon-seat-frame-source.md",
+        "analysis/checkpoints/p22-h8-static-seat-frame-20261117.json"
+      ]
     }
   ]
 }

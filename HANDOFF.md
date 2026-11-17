@@ -5,20 +5,20 @@ Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8`, branch
 push, original EXE/DLL/Proton or Windows fixture execution. Source-only checkpoints
 need no invented desktop acceptance; interactive changes need user confirmation.
 
-## Latest source integration
+## Latest source result
 
-Imported committed OWN `1d54083` (which already contains H8 `24c7310`) into H8.
-This brings existing verified RENDER/LIFE/OWN source, actual mutable Player sender
-005A3DE0/0053BF90, HUD order queries, inactive Script cutscene end and ordinary
-Players selection/handover. Preserve the newer H8 World/Runtime/Car/Dog bodies.
-Contracts: [Player input](analysis/human-player-live-input-source.md),
-[selection](analysis/human-player-selection-source.md),
-[OWN integration](analysis/p22-own-frame-import.md).
-Forced strict O2 launcher/startup-probe compile/link PASS; outputs not run.
-[Import receipt](analysis/checkpoints/p22-h8-own-import-20261117.json).
-The OWN worktree and its uncommitted interactive candidate are untouched.
-This H8 checkout retains explicit missing_frames admission after actual activation;
-it does not claim installed application frames or desktop delivery.
+[StaticWeapon Actor90](analysis/human-static-weapon-seat-frame-source.md)
+00604B70 is now bound from actual Player0053BF90 through SAME World seat
+presentation/loading owners. Native18 ASan/UBSan/leak checks cover cached
+occupant vs changed seat occupant, fresh mode/marker/model, fallback, signed
+bounds and failure relink. Full actual World Player/Actor90 i386 link and forced strict O2 launcher/probe
+PASS; tracker check and27 existing tests PASS. Temporary audits removed.
+[Receipt](analysis/checkpoints/p22-h8-static-seat-frame-20261117.json).
+No Windows/original execution or application/desktop claim. H8.4–.6 stay open.
+
+Prior checkpoints67b4d52 imported committed OWN1d54083 and1748dee completed
+actual Player Drop request. OWN worktree/uncommitted desktop candidate untouched.
+H8 invokes actual activation but still rejects scheduling unbound frames.
 
 ## Next work
 
@@ -26,8 +26,8 @@ Finish [H8 plan](analysis/p22-hum-h8-plan.md): H8.1–.3 source checked; H8.4–
 and parent HUM remain open. Prioritize actual Human/Player containing dependencies;
 do not resume conditional Dog research without actual path evidence. The merged
 Player input positive drop005A2C50/0053E9D0 is now source-bound on the actual
-Player/World path; [contract](analysis/human-player-drop-source.md). NonCar Actor90
-remains conditional; OWN has uncommitted source for that dependency.
+Player/World path; [contract](analysis/human-player-drop-source.md). StaticWeapon21 Actor90 is now source-bound. Aircraft20/type34 Actor90 remains
+conditional. OWN uncommitted detached-focus/collision work is separate.
 Drop checkpoint: native28 ASan/UBSan/leak checks, actual World i386 sender
 instantiation and forced strict O2 launcher/probe all PASS; Windows outputs not
 run. Tracker check and27 existing tests PASS. Temporary audits removed.

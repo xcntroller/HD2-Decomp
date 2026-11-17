@@ -4,6 +4,7 @@
 #include "game/world_loading_dependency_link.h"
 #include "game/car_loading_activation.h"
 #include "game/static_weapon_loading.h"
+#include "game/static_weapon_seat_frame.h"
 #include <type_traits>
 namespace hd2::game {template<class Frames,class Services,class Items>class MountedWeaponControlLoading;}
 namespace hd2::host {
@@ -77,6 +78,16 @@ public:
         }
         if(actor.base().type()==21){auto& value=weapon(actor);(void)weapon_loading(value);return game::mounted_weapon_hud_progress(value.control);} //00604E10.
         return actor_receiver(actor).progress(actor,seat);
+    }
+    typename Frames::Frame reference_frame(Actor& actor,std::int32_t seat)override{
+        validate(actor);
+        if(actor.base().type()==21){
+            const auto& seats=weapon_loading(weapon(actor)).seats();
+            return game::static_weapon_seat_camera_frame<Actor>(seats,seat,d().scene.frames(),
+                [this]{const auto& view=d().first_person.view();return view.enabled()||view.secondary_enabled();},
+                [this,&actor](std::int32_t index){return hides_cursor(actor,index);});
+        }
+        return actor_receiver(actor).reference_frame(actor,seat);
     }
     bool hides_cursor(Actor& actor,std::int32_t seat)override{
         validate(actor);typename Frames::Frame marker{};

@@ -2011,7 +2011,7 @@ public:
     template<class Human>auto player_input_attachment_frame(Human& human,std::uint32_t seat){
         if(!human.field160)throw std::logic_error("Player input attachment frame lost native160");
         if(human.field160->base().type()==4)return human_car_seat_frame(human.field160,seat);
-        throw std::runtime_error("Player input requires actual selected nonCar Actor90 reference-frame owner");
+        return dependencies().first_players.seat_presentation().reference_frame(*human.field160,human_frame_signed_word(seat));
     }
     template<class Player>void player_input_drop_hand(Player& player){
         auto* human=player.human();if(!human)throw std::logic_error("Player input drop lost Human44");

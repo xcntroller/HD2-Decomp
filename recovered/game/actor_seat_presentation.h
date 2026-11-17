@@ -18,6 +18,7 @@ public:
     virtual void view(Actor&,std::int32_t,bool)=0; //C4.
     virtual std::optional<HumanHudProgress> progress(Actor&,std::int32_t)=0; //C8.
     virtual bool hides_cursor(Actor&,std::int32_t)=0; //CC.
+    virtual typename Actor::Frame reference_frame(Actor&,std::int32_t)=0; //90, actual family-owned camera marker.
 };
 //004C7670. Reload simulation publishes E0/E4 on the existing control owner.
 //An absent publication is an inactive result, including an attached Human.

@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-17",
+  "base": "1748dee",
+  "source_only": true,
+  "desktop_verified": false,
+  "contract": "analysis/human-static-weapon-seat-frame-source.md",
+  "new_frozen_partial": [
+    "00604b70"
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-static-seat-frame/00604b70.asm",
+      "bytes": 6133,
+      "sha256": "26c43959a26c7040c55341d5358b3d6d486de6a6165b205d7cc9ad44479728c8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-static-seat-frame/00604b70.c",
+      "bytes": 1757,
+      "sha256": "b2c8308001c84a73838ad7b607506fe0ebbe030931135f227125cf468e59eeed"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-static-seat-frame/00604b70.json",
+      "bytes": 5267,
+      "sha256": "3b865fbaabceef73e2f3410a556cc42703368b833656151f473bfa79b1f17002"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-static-seat-frame/vtable.json",
+      "bytes": 154,
+      "sha256": "ecd0b0520f48cdf6bbc1800fbd7dd7d8fb72462105a1969cbba744a25985e1c3"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/static_weapon_seat_frame.h",
+      "bytes": 1908,
+      "sha256": "7287a88c9ad2c3df957ad8b4adedcbb8c0b198db2eed1a1a7449ee2b77c5cdc8"
+    },
+    {
+      "path": "recovered/game/actor_seat_presentation.h",
+      "bytes": 4441,
+      "sha256": "00369af600a6a85f2c42763d307df4a28d6611f6bf112cf4d880a650cf714c93"
+    },
+    {
+      "path": "recovered/host/game_occupied_actor_presentation.h",
+      "bytes": 10167,
+      "sha256": "b77223c794a3b7ad374c3e79361cb7546c0ec2be7840bf2c43da02b4fa740877"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 312422,
+      "sha256": "d28dc00c2bf924e208c4e4ac3b30f82e3bc43322b3b7a552e8f41520a6cbea9e"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-static-seat-native.cpp",
+      "bytes": 3392,
+      "sha256": "d58c5d1f15a89d70b2224ad0788cf49a6745ae66febc10e51abd1aeb4e71124c"
+    },
+    {
+      "path": "/tmp/h8-static-seat-native.o",
+      "bytes": 786600,
+      "sha256": "b60ed8e662587d1e54ed4381a668346725c54b66f49395d138a80b979bb39c52"
+    },
+    {
+      "path": "/tmp/h8-static-seat-native",
+      "bytes": 444840,
+      "sha256": "1dca0711d6c41110de99a49a741e3c6254c12d909b44468f65f4bc40c2737660"
+    },
+    {
+      "path": "/tmp/h8-static-seat-module.cpp",
+      "bytes": 425,
+      "sha256": "d080a9d6d6bf20d772577e533fcfe862e1b702497f789e5a9a9c54edab0ca7ae"
+    },
+    {
+      "path": "/tmp/h8-static-seat-module.exe",
+      "bytes": 1559552,
+      "sha256": "bb4047784f4fcc9187500eda2c578a1ca73bd4dbbe3e2133d2fdd3b604b98a49"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "verification": {
+    "native": "PASS18 ASan/UBSan/leaks owner/query/failure checks; engine endpoints doubled",
+    "actual_i386": "PASS strict full actual World Player input/Actor90 source compile/link only",
+    "launcher_probe": "PASS forced strict O2 application-launch/startup-probe compile/link only",
+    "ledger": "PASS full function_progress check and27 existing tests"
+  },
+  "verification_logs": [
+    {
+      "path": "/tmp/h8-static-seat-native.log",
+      "bytes": 81,
+      "sha256": "bbe5d3763c657eb165905ee2b493d297b73534f4401d57da23c7a7b9f2b69a01"
+    },
+    {
+      "path": "/tmp/h8-static-seat-module.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/h8-static-seat-launch.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "/tmp/h8-static-seat-progress.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "limits": "H8.4/.5/.6 remain open; conditional20/34 Actor90 requires actual owners; source-only, no application/desktop or resolved_source promotion"
+}
