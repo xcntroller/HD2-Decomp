@@ -5,8 +5,27 @@ Environment cwd retired H8: always explicit workdir. Goal actual game entry,
 FRAME then OWN. No subagents/push/original/DLL/Proton/Windows execution/permanent
 tests. Heavy compiler and Ghidra sequential. Preserve OWN dirty work and review.
 
-LATEST USER: "Crashed,202 now. Is it possible to check ahead, so we don't end
-up fixing50 broken script commands?" Do not return to one-opcode retest batches.
+LATEST USER: cutscene played with wrong camera and visible HUD; application
+terminated afterward. Preserved exact41bb65eb exe/logs/screenshot in
+WORK/cutscene-vertex-failure. Actual host exception is checked vertex mesh
+format/count failure, result1 with orderly teardown, not access violation evidence.
+NEW SOURCE: original006CD940 tag22 WXYZ→XYZW rotation conversion was missing;
+fixed at serialized boundary, preserving runtime quaternion setter convention.
+UI now suppresses HUD prepass/draw on SAME Script824 cutscene-active state;
+text/effects remain. Explicit user-requested presentation policy, not native-body
+credit.22 native sanitizer checks PASS decoder geometry/actual camera records/
+truncation and HUD/text callbacks. Production main/review builds and diagnostic
+staging recorded in analysis/checkpoints/p22-frame-cutscene-diagnostics-20261117.json.
+Final diagnostic review launcher SHA73e4cd8048ed0af8c4ae7c5d0b566e247c1edc3e1fed1e026c0b1c6eab5c22f7,
+main/review full builds PASS; --stage-only complete, no agent execution.
+VERTEX FAILURE REMAINS OPEN: enhanced guard now names frame, LOD, definition/
+actual count and stride. Camera selections log actual world pose/forward. Need
+one user run for engine values; never clamp/skip/bypass the checked failure.
+NEXT: collect that diagnostic run and finish exact mesh binding discrepancy;
+visually confirm quaternion/HUD correction. Zero original/DLL/Proton/Windows
+execution by agent. No full FRAME/HUM/OWN acceptance.
+
+PREVIOUS CHECK-AHEAD BATCH (source263fa18):
 Read-only actual ResourceStore/actual MissionScriptCompiler inspection covers114
 Tutorial bindings PLUS17 recursive literal ScriptAssign resources: **131 programs**,
 all compile, no missing resources/includes/new predicate types. All initially
@@ -35,7 +54,7 @@ final full actual O2/Werror application/probe build, source/report/artifact hash
 and removed temporary audits. Static report WORK/startup-script-coverage-recursive-
 final.json. Source applied to review IN PLACE, OWN focus callback preserved.
 
-Latest observed external desktop run (not staged/executed by this batch) at
+Previous preflight external desktop run (not staged/executed by that batch) at
 17:43UTC again reaches activation/Scene78/fixed/input/update then required28
 (result1, orderly cleanup). SHA13feab9ee2862422fcc0ca8e8eb3ff54ea6de907b347b0c71a3a1c1e7eb5b16a.
 Exact exe/logs archived WORK/first-frame-script28-return-20261117T1743. Earlier
@@ -44,19 +63,11 @@ first-frame-script202-return. Preserve these. New batch staged ONLY with
 --stage-only; never claim a desktop run from that preparation. Old logs in the
 staged run directory refer to the preceding external run until user retries.
 
-NEXT: user Tutorial entry/continuation on the new staged batch. Investigate actual
-new log/failure, if any; zero dispatch-type gaps is not full gameplay proof.
-Positive command-modal GUI transitions, other SetActorState families, positive
-Dog-specific predicates, nonoffline publications and engine-dependent behavior
-remain explicit qualified boundaries, not successful defaults. Do not restart
-broad unchanged audits or add plan checkboxes. No full FRAME/HUM/OWN acceptance.
-
 REVIEW `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
 edebd81 + preserved OWN interactive overlay + later FRAME source. Mixed staged/
-unstaged expected. Interactive app adapter stays UNCOMMITTED until actual user
-acceptance per AGENTS. Main app still declines activation; source-only fixes are
+unstaged expected. Interactive app adapter remains UNCOMMITTED; preserve the current review. Main app still declines activation; source-only fixes are
 independently committable. Latest recoverable overlay patch:
-WORK/startup-recursive-review-final.patch (includes untracked recovered headers).
+WORK/cutscene-diagnostic-review-final.patch (includes untracked recovered headers).
 Do not replace whole HumanWorld services from Main onto Review; its OWN focus
 callback is the sole expected source difference in that file. No push.
 

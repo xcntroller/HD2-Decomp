@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-17",
+  "finalized_utc": "2026-11-17T18:26:25.913845+00:00",
+  "branch": "feature/p22-frame",
+  "source_base": "263fa18",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "desktop_observation": {
+    "user": "Cutscene ran with HUD visible and wrong camera; application terminated afterward.",
+    "exact_failure": "Vertex animation disagrees with actual mesh format/count",
+    "exit": "Handled exception, orderly teardown result1; no access violation evidence in captured host log.",
+    "executable_sha256": "41bb65eb045acff064baee568b43f07f775c882b50b5e6ae093338b9180e5583"
+  },
+  "changes": [
+    "Original006CD940 tag22 WXYZ-to-XYZW conversion before0041D180 engine setter; preserve runtime quaternion convention.",
+    "User-requested containing HUD prepass/draw suppression reads SAME Script824 cutscene state, retaining text/effects stages; integration policy, no native visibility body credit.",
+    "Retain vertex format/count guard and add frame name, LOD, definition/mesh counts and stride; log camera selection world pose for exact remaining diagnosis."
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/mission_scene_reader.h",
+      "bytes": 16691,
+      "sha256": "6ca1bf9deae0aeebb9ae680e242b46845b7d306f7037da121f33254837c98145"
+    },
+    {
+      "path": "recovered/game/mission_script_module_loading.h",
+      "bytes": 9641,
+      "sha256": "302146d64badc2b65b5a0dc0ad316305ad7a9f1142eb80f3507c4accea7251c9"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 144426,
+      "sha256": "a3cd25d533d8172d8e7b9a2f94f5ed1c404da01c8bf16efc9490c363b46cf678"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 142835,
+      "sha256": "ee8a5654f797cd88b14d114c1de1da009d036e8953cf33628852dc1d14b2afb1"
+    }
+  ],
+  "native_audit": {
+    "checks": 22,
+    "result": "PASS ASan/UBSan/leaks",
+    "files": [
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/cutscene-presentation-native.cpp",
+        "bytes": 3060,
+        "sha256": "e69ef050dacfa9344d519d0c2428164fac03763751f4f6e0312555a50ba06e8a"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/cutscene-presentation-native",
+        "bytes": 238424,
+        "sha256": "b6a00560c014a8dc469908f98fe0db3358302c96f40cb30bcf6b38305c2828d7"
+      }
+    ],
+    "removed": true
+  },
+  "builds": {
+    "main": "PASS actual application-launch/startup-probe full O2 Werror -j1",
+    "review": "PASS actual application-launch/startup-probe full O2 Werror -j1"
+  },
+  "staging": {
+    "result": "PASS --stage-only, no original/DLL/Proton/Windows execution",
+    "executable": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 13069824,
+      "sha256": "73e4cd8048ed0af8c4ae7c5d0b566e247c1edc3e1fed1e026c0b1c6eab5c22f7"
+    },
+    "probe": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "1177f82e4ff518653e5ac61642ef938efd38709dcdecc9cabce57dd8c8fe7962"
+    }
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-vertex-failure/manifest.json",
+      "bytes": 791,
+      "sha256": "d3562957f754351b3d5f2f66952fe68069f95adbbb10be034777e96784fa4c98"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-vertex-failure/user-cutscene.png",
+      "bytes": 380640,
+      "sha256": "dc4ec66997a1fce3ba4959963a3f7ed71890cc0654bddbfe98672e187bec1871"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-runtime-discrepancy-index.txt",
+      "bytes": 16169,
+      "sha256": "8892e2529d694d85c8c5687ab5a414abc087e8d90b1c15a61180158e28dfc91b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-rotation-index.txt",
+      "bytes": 9998,
+      "sha256": "630b82e8b27aedf1847c2585d89b0e2bf049072ca2871f465811fd853e0d1630"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-rotation-provenance.json",
+      "bytes": 803,
+      "sha256": "f7255879b3e0ad4b731b3f38d8f3c158c30c92dab7400357fa9ab3b3367c04d4"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-camera-scene-records.json",
+      "bytes": 6111,
+      "sha256": "330b045305615cf81d0b501823950f85023194383d8a3466e534bdd2bc9f5d3f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-native-audit-fingerprints.json",
+      "bytes": 506,
+      "sha256": "03ec76531f149233575ed5630e203e28a1fde1b7cf57f5454863a8d5c5cb8ae9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-presentation-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-presentation-native-run.log",
+      "bytes": 71,
+      "sha256": "c14d43998d72f8d87213b9cfcdefbf86a5956b9d1769da7c40e7d8910ec0eba1"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-diagnostic-main-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-diagnostic-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-diagnostic-stage-only.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-diagnostic-review-final.patch",
+      "bytes": 263668,
+      "sha256": "865a0fdbc2925a70da352e49a2fd864bb631badcf755b50401fa8524b5da9d77"
+    }
+  ],
+  "preservation": {
+    "own_six_dirty_sources": "Hash-verified unchanged",
+    "review_overlay": "Preserved in place; four changed source files match MAIN",
+    "native_fixture": "Source/binary fingerprinted and removed",
+    "ledger_identities_statuses": "Unchanged:34 complete/3815 partial; zero new function credit, zero desktop/matrix promotion"
+  },
+  "remaining": {
+    "vertex_failure": "UNRESOLVED. Needs actual engine frame/LOD/count/stride values from user diagnostic retry; no guard bypass or guessed clamping.",
+    "presentation": "Source correction and native checks are separate from user visual acceptance.",
+    "next": "User runs same review launcher, checks camera/HUD, lets cutscene finish; inspect new exact vertex error."
+  }
+}

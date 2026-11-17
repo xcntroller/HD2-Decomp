@@ -287,3 +287,41 @@ Dog-specific predicates and nonoffline publications are not promoted by this
 census. Do not reopen unchanged source audits or add delivery checkboxes. Next:
 user Tutorial entry/continuation; investigate the exact new runtime failure if
 one occurs. No FRAME/HUM/OWN desktop or whole-function/count promotion.
+
+Cutscene desktop discrepancy follow-up
+
+User reached and played the Tutorial cutscene on staged41bb65eb, with HUD visible
+and wrong view, then reported a crash. Actual preserved host log records orderly
+teardown result1 on `Vertex animation disagrees with actual mesh format/count`;
+it is a checked adapter failure, not proof of an access violation. Exact exe,
+logs and screenshot:WORK/cutscene-vertex-failure/manifest.json.
+
+A concrete Scene2 parser defect was confirmed against original006CD940 tag22:
+file words are WXYZ, copied to temporary XYZW before0041D180 writes engineC0 and
+normalizes. Our generic four-real read preserved WXYZ, incorrectly making the
+serialized scalar the engine X component. mission_scene_rotation now converts
+ONLY this serialized boundary. Existing runtime quaternion setters stay XYZW.
+Actual camera_1/camera_2 records and original source provenance are preserved in
+WORK/cutscene-camera-scene-records.json / cutscene-rotation-provenance.json.
+This affects all tag22 Scene2 orientations, not merely an invented camera offset.
+22 focused native ASan/UBSan/leak checks pass actual decoder geometry (identity,
+yaw and both captured cameras), truncation and HUD/text callback policy.
+
+As a containing presentation fix requested by the user, UI suppression now also
+queries SAME Script module824 cutscene state. It suppresses both HUD prepass and
+draw while keeping caption/fade/effects callbacks. End clears824 and restores
+normal HUD through the same live query; no extra saved flag/lifetime is added.
+This is an explicit integration policy, not a claim that original0049B7C0's
+retail RET4 secretly implements visibility or that native scene flags were set.
+Actual engine visual confirmation remains pending.
+
+The vertex guard stays enabled. The old message omitted the object and values
+needed to identify the mismatch. It now names the frame, LOD, definition vertex
+count, actual mesh vertex count and stride; active-camera changes also log names,
+world position and forward axis. Original00473960 does32-byte mesh writes;
+engine10030DB0/10031380 and existing collision evidence establish54 count/64 stride.
+No speculative clamping/skipping or out-of-bounds write replaces that guard.
+One user diagnostic run is required for these actual engine values; agent execution
+of the original/DLL/Proton/Windows application remains prohibited. The termination
+is NOT marked fixed or source-resolved before those values arrive. Updated source
+and diagnostics have production builds/receipt; final staging uses --stage-only.

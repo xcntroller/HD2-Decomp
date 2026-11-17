@@ -17,6 +17,11 @@ template<std::size_t N> inline std::array<float, N> mission_reals(SerializedByte
     return values;
 }
 
+//006CD940 tag22: file scalar first; the engine0041D180 stores scalar last.
+inline MissionQuaternion mission_scene_rotation(SerializedBytes& bytes){
+    const auto value=mission_reals<4>(bytes);return {{value[1],value[2],value[3],value[0]}};
+}
+
 // Persistent fields written by006CC760. A later actors/sounds file has no0001
 // header and uses the version established by Scene2; do not reset per file.
 struct MissionSceneFields {
@@ -156,7 +161,9 @@ private:
                 names_[backend_.frame_name(frame)] = frame;
                 break;
             case 0x20: position = mission_reals<3>(data); flags |= 1; break;
-            case 0x22: rotation = mission_reals<4>(data); flags |= 2; break;
+            case 0x22:{ //006CD940: serialized WXYZ becomes engine XYZW BEFORE0041D180.
+                rotation=mission_scene_rotation(data);flags|=2;break;
+            }
             case 0x2c: world_position = mission_reals<3>(data); break;
             case 0x2d: scale = mission_reals<3>(data); flags |= 4; break;
             case 0x2012:

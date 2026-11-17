@@ -1817,6 +1817,10 @@ public:
     void active_game_camera(Frame camera) {
         using Active=void(WINAPI*)(Frame,Frame);
         scene_method<Active>(scene_.frame(),module_,0x90,0x471a0)(scene_.frame(),camera);
+        if(camera){const auto world=actor_world_matrix(camera);const auto name=frame_name(camera);
+            std::fprintf(stderr,"Mission camera selected: name=%s position=(%.6g,%.6g,%.6g) forward=(%.6g,%.6g,%.6g)\n",
+                name.c_str(),double(world[12]),double(world[13]),double(world[14]),double(world[8]),double(world[9]),double(world[10]));}
+
     }
     float game_camera_fov_value(Frame camera){return field<float>(camera,0x120);} //00465E80.
     float game_camera_parameter78_value(Frame camera){return field<float>(camera,0x12c);} //00465E30.
@@ -1846,8 +1850,11 @@ public:
         const auto mesh=field<Frame>(frame,0x1e0);
         if(!mesh||index>=field<std::uint32_t>(mesh,0x44))throw std::runtime_error("Missing vertex animation LOD");
         const auto lod=call<Frame>(mesh,4,index);
-        if(!lod||field<std::uint32_t>(lod,0x64)!=32||count>field<std::uint32_t>(lod,0x54))
-            throw std::runtime_error("Vertex animation disagrees with actual mesh format/count");
+        if(!lod)throw std::runtime_error("Vertex animation LOD receiver returned NULL: "+frame_name(frame));
+        const auto stride=field<std::uint32_t>(lod,0x64),vertices=field<std::uint32_t>(lod,0x54);
+        if(stride!=32||count>vertices)
+            throw std::runtime_error("Vertex animation disagrees with actual mesh format/count: frame="+frame_name(frame)+
+                " lod="+std::to_string(index)+" definition_vertices="+std::to_string(count)+" mesh_vertices="+std::to_string(vertices)+" stride="+std::to_string(stride));
         auto* data=call<unsigned char*>(lod,4,std::uint32_t{0});
         {
             struct Unlock {

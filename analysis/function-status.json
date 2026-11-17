@@ -745,7 +745,7 @@
       "program": "client",
       "entry": "006cd940",
       "status": "partial",
-      "coverage": "Two fragments of ONE object-loader function: model-resource key processing and candidate-result classification. P2.2 source reconstruction at original entry 006cd940: Actual required Scene2 object/resource loading/parser policy and supported branches; engine model parsing remains delegated.",
+      "coverage": "Two fragments of ONE object-loader function: model-resource key processing and candidate-result classification. P2.2 source reconstruction at original entry 006cd940: Actual required Scene2 object/resource loading/parser policy and supported branches; engine model parsing remains delegated. Corrects tag22 serialized WXYZ to engine XYZW before unchanged0041D180 setter, matching original object-loader copy sequence; actual captured Tutorial camera records and geometric native checks verify the boundary. Desktop correction is pending.",
       "limitations": "The complete object loader, cache, retries, ownership, engine loading and logging are not reconstructed. P2.2 extensions remain source-only native subsets; branch/runtime integration exclusions are recorded in the linked current contract.",
       "evidence": [
         "analysis/reconstruction-map.json",
@@ -757,7 +757,9 @@
         "recovered/host/game_scene_objects.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/p22-frame-startup-script-preflight.md",
+        "analysis/checkpoints/p22-frame-cutscene-diagnostics-20261117.json"
       ]
     },
     {

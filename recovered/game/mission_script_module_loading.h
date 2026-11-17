@@ -74,6 +74,7 @@ public:
         if(presentation_.receive_opcode(opcode,*packet))return true;
         return visibility_.receive_opcode(opcode,*packet);
     }
+    bool cutscene_active()const noexcept{return static_cast<std::uint8_t>(fields824_[0])!=0;} //SAME live native824 used by start/end.
     void end_cutscene(){ //00423EB0: first native BYTE824 gate, before camera/engine/context calls.
         cutscenes_.end();
     }
