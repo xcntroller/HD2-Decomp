@@ -2,6 +2,7 @@
 #define HD2_GAME_MODEL_SCENE_ACTORS_H
 
 #include "game/scene_actor.h"
+#include "game/dog_body_orders.h"
 #include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/supply_box_geometry.h"
@@ -30,12 +31,13 @@ public:
     }
     void load(SerializedBytes& bytes) override {properties.load(bytes);} //005D6630.
     std::int32_t material(Frame)override{return 0x42;} //005D4CB0.
-    //Only1c/20 are initialized by005D4C70; native padding/unknown words are
-    //defined zero for safety and earn no original behavior credit.
-    struct Record {std::array<std::uint32_t,7> unknown_words{};
-        std::uint32_t field1c=0xffffffffu,field20=0xffffffffu;};
+    using Record=DogBodyOrderRecord;
     DogActorProperties properties;
-    std::uint32_t field330=0xffffffffu,field334=0xffffffffu,field534=0;
+    DogBodyOrders body_orders; //Actual current314/five338 records, no mirrored queue.
+    std::uint32_t& field330=body_orders.current.field1c;
+    std::uint32_t& field334=body_orders.current.field20;
+    std::array<Record,5>& records=body_orders.records;
+    std::uint32_t field534=0;
     //005D4DB0 publishes540 only after actual Sight target registration. Cold
     //construction/initialize do not produce a valid handle; do not invent-1/0.
     std::optional<std::int32_t> sight_listener540;
@@ -43,7 +45,6 @@ public:
         if(!sight_listener540)throw std::runtime_error("Dog Sight query requires actual005D4DB0 listener540 producer");
         return *sight_listener540;
     }
-    std::array<Record,5> records;
     std::array<std::vector<std::uint32_t>,3> lists; //005D4CF0 frees these before00610170.
 };
 

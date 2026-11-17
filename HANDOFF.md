@@ -16,7 +16,31 @@ interactive changes need actual user desktop acceptance. None has occurred.
 
 ## Latest result
 
-[Shared blast/Sight](analysis/human-h8-blast-sight-source.md),
+[Dog order storage](analysis/human-h8-dog-orders-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json): actual Dog
+owns current314/five338 records;330/334/records aliases, not mirrored queues.
+005C4B90/4C30/4C70/85A0/8600/8660 source, native bad HEAD wrap preserved and
+unproduced metadata rejected explicitly.175556 strict qualified native sanitizer
+checks/module+i386+forced launcher/probe PASS. Six partials;34 complete/3630
+partial(client3625+engine5), no complete promotions/live Dog claim. Temporary
+native/module successful audit pairs fingerprinted and removed.
+
+New exact raw: Actor+90→005C8370, clip initialization with Body+10, then
+Body005C7D30 with original base. Clip model+10 means Body20/ActorB0; don't lose
+multiple-base adjustment from C exports. Body278/27C/280 priorities and newly
+queued metadata have early reads still needing exact producer/order resolution.
+Do not silently zero or extend D11 defaults. This is an unresolved targeted risk,
+not proven global absence of aliases/writers. Original cold/factory/live-init
+raw and indexed contracts are retained.
+
+Type36 owner read-only Ghidra export005E3C90/005E3F10 completed PASS; no heavy
+job currently running. Constructor registers real008AC8B8 process table; destructor
+unregisters before five vector/base retirement. No implementation yet.
+Research index human-h8-type36-owner-index.txt already queried before export.
+These are the existing positive idle-look owner dependency, not new checklist
+scope. Resolve its constructor/destructor source before deciding implementation.
+
+Prior27a5d89 [Shared blast/Sight](analysis/human-h8-blast-sight-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-blast-sight-20261117.json):006DDD40
 picked Frame now reaches actual actor D8; nonHuman/nonCar damage reuses existing
 actual common/Animation/loose-item/StaticWeapon D4 with final0. Human/Car original
@@ -42,6 +66,20 @@ retreat/order/formation/target and position10/11 source. No remaining cover guar
 
 ## Next work — complete remaining H8.2/H8.4
 
+Concrete H8.2 follow-up identified:0045BD10 action22 candidate selection is still
+an explicit guard despite completed task22 producer. Existing selection C128..140
+requires, per candidate: nonarmoured target immediately accepts; else actual
+005328A0 mounted control AND005328D0 payloadkind2 accepts; otherwise actual
+005304B0(kind6,false,false,&scratch) nonNULL accepts. Sorted order already exists.
+Reuse active_vehicle_attack_armoured, human_pose_actor_has_control,
+active_has_heavy_weapon, find_human_weapon_candidate. Index files NEW
+human-h8-player-final-selector-index.txt and selector22-receivers-index.txt locate
+all source; no new exports needed. Also00528950 has NO action admission whitelist;
+recovered advance_human_active_pending_move still rejects task values before its
+already source-bound common path. Compare original to remove only that invented
+restriction, retain actual specialized/native-invalid-owner requirements.
+
+
 Finish actual reached actor owners, then containing-Human H8.5 sweep. Live Dog
 activation/Body/controller/Sight remains unavailable, despite completed process
 animations/geometry/D4 kernels. No fake Dog idle or handle. Full boundary research
@@ -60,8 +98,7 @@ exported then ERROR no function starts005CF0B0;005CFA00 was not exported. Do not
 create functions or report this whole batch PASS. Raw controller4/5-tick-tail.asm
 proves005CF0B0 and005CFA00 both JMP005CE110: actual virtual6C callbacks required
 inside005CE190. This is DISTINCT from bind04=005D5B00→005CE5D0 (prior correction).
-Reuse existing control-originals/005CE110.c, not another export. No Ghidra job
-currently running at latest checkpoint.
+Reuse existing control-originals/005CE110.c, not another export. That mixed batch has ended; see latest result for any newer job.
 
 Native Dog essentials: ActorBody+90; Body364=Actor3F4action. Seven borrowed bones
 Actor478..490 f,d,c,h,p,t,l.4A0 health/4B0backup;53C/540 Sight,548 SOUND.005C0F50

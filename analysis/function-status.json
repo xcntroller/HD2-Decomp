@@ -49687,6 +49687,84 @@
         "analysis/human-h8-player-cover-source.md",
         "analysis/checkpoints/p2.2-human-h8-player-cover-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005c4b90",
+      "status": "partial",
+      "coverage": "Actual Dog-owned five-record queue enqueue, cursor reset and overwrite-oldest; prior record data retained.",
+      "limitations": "Source-only typed current/five-record owner and provenance/invalid-index guards, not original native class/allocator/SEH/object ABI.175556 native queue checks do not execute live Dog activation/Body/controller/engine; required activation/metadata producers and containing H8/application/desktop remain open. No complete promotion or delegated-body credit.",
+      "evidence": [
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-orders-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c4c30",
+      "status": "partial",
+      "coverage": "Actual Dog-owned front removal, empty head and retained tail semantics.",
+      "limitations": "Source-only typed current/five-record owner and provenance/invalid-index guards, not original native class/allocator/SEH/object ABI.175556 native queue checks do not execute live Dog activation/Body/controller/engine; required activation/metadata producers and containing H8/application/desktop remain open. No complete promotion or delegated-body credit.",
+      "evidence": [
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-orders-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c4c70",
+      "status": "partial",
+      "coverage": "Actual Dog-owned last removal; raw-proven native HEAD=4 on negative tail retained, subsequent invalid reads fail explicitly.",
+      "limitations": "Source-only typed current/five-record owner and provenance/invalid-index guards, not original native class/allocator/SEH/object ABI.175556 native queue checks do not execute live Dog activation/Body/controller/engine; required activation/metadata producers and containing H8/application/desktop remain open. No complete promotion or delegated-body credit.",
+      "evidence": [
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-orders-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c85a0",
+      "status": "partial",
+      "coverage": "Actual Dog-owned last/current final-action metadata query with explicit unproduced-native-word provenance guard.",
+      "limitations": "Source-only typed current/five-record owner and provenance/invalid-index guards, not original native class/allocator/SEH/object ABI.175556 native queue checks do not execute live Dog activation/Body/controller/engine; required activation/metadata producers and containing H8/application/desktop remain open. No complete promotion or delegated-body credit.",
+      "evidence": [
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-orders-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c8600",
+      "status": "partial",
+      "coverage": "Actual Dog-owned last/current posture metadata query with explicit unproduced-native-word provenance guard.",
+      "limitations": "Source-only typed current/five-record owner and provenance/invalid-index guards, not original native class/allocator/SEH/object ABI.175556 native queue checks do not execute live Dog activation/Body/controller/engine; required activation/metadata producers and containing H8/application/desktop remain open. No complete promotion or delegated-body credit.",
+      "evidence": [
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-orders-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c8660",
+      "status": "partial",
+      "coverage": "Actual Dog-owned last/current stance metadata query with explicit unproduced-native-word provenance guard.",
+      "limitations": "Source-only typed current/five-record owner and provenance/invalid-index guards, not original native class/allocator/SEH/object ABI.175556 native queue checks do not execute live Dog activation/Body/controller/engine; required activation/metadata producers and containing H8/application/desktop remain open. No complete promotion or delegated-body credit.",
+      "evidence": [
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-orders-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json"
+      ]
     }
   ]
 }
