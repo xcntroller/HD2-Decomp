@@ -21,6 +21,9 @@ namespace hd2::host {
 class GameActorFrames : public GameCarFrames {
 public:
     using GameCarFrames::GameCarFrames;
+    void collision_debug_begin(){call<void>(driver_.frame(),0x44,Frame{},std::uint32_t{0});} //0071F850 actual driver, not scene.
+    void collision_debug_matrix(const Matrix& matrix){call<void>(driver_.frame(),0x84,matrix.data());}
+    void collision_debug_draw(std::uint32_t lines,const void* vertices){call<void>(driver_.frame(),0x88,std::uint32_t{1},lines,vertices,std::uint32_t{0});}
     void human_walk_debug_beep(){(void)::MessageBeep(0xffffffffu);} //007646F0's actual platform endpoint.
     MenuDriver::Owner retain_actor_frame(Frame frame) {return retain(frame);}
     std::uint32_t visual_lightmap_group(Frame frame)const{return field<std::uint32_t>(frame,0x210);}

@@ -1938,6 +1938,8 @@ public:
     template<class Human>void player_select_human(Human& human){dependencies().players.control().select_human(human);} //00461410→0045DA60.
     auto* current_human_frame_player(){return dependencies().players.control().current_player();}
     auto human_geometry_camera_target(){return dependencies().camera.target_frame();} //004650B0, Camera virtual6C.
+    auto& dog_physics_globals(){return dependencies().startup.human_physics_globals();}
+    void dog_physics_motion_line(const HumanVector& start,const HumanVector& end){dog_physics_globals().collision_lines.append(start,end,0xffff00u,0u);}
     auto& human_geometry_sweep(){return dependencies().sweep;}
     void refresh_human_presentation_camera(){ //0046C370, Camera virtual40(0).
         auto& d=dependencies();auto& view=d.first_person.view();

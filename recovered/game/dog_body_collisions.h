@@ -6,11 +6,13 @@
 namespace hd2::game {
 template<class Frame>class DogBodyCollisionLifetime {
 public:
-    using Descriptor=RigidBodyCollisionDescriptor<Frame>;
+    using Descriptor=RigidBodyCollisionDescriptor<Frame>;using Vector=std::array<float,4>;
     virtual ~DogBodyCollisionLifetime()=default;
     virtual void update()=0;
     virtual Descriptor* descriptor(unsigned)=0;
     virtual void remove(unsigned,bool required)=0;
+    virtual const Vector& anchor(unsigned)const=0;
+    virtual float radius(unsigned)const=0;
 };
 //The005C7D30 collision portion,005C1DC0 anchor producer and005C8B30's
 //post-model descriptor refresh. Body=Actor+90, first two1DC/1E0 are physical,
@@ -39,6 +41,8 @@ public:
     }
     ~DogBodyCollisions()override{clear();}
     Descriptor* descriptor(unsigned n)override{return descriptors_.at(n).get();}
+    const Vector& anchor(unsigned n)const override{const auto& value=centers_.at(n);if(!value)throw std::runtime_error("Dog motion requires actual collision anchor producer");return *value;}
+    float radius(unsigned n)const override{const auto& value=radii_.at(n);if(!value)throw std::runtime_error("Dog motion requires actual collision radius producer");return *value;}
     const auto& dummies()const{return dummy_;}
     const auto& centers()const{return centers_;}
     const auto& radii()const{return radii_;}

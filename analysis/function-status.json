@@ -33242,12 +33242,14 @@
       "program": "client",
       "entry": "007884f0",
       "status": "partial",
-      "coverage": "Actual swimming coordination, water direction/pitch, collision displacement, breath phase and water-exit state/equipment restoration.",
+      "coverage": "Actual swimming coordination, water direction/pitch, collision displacement, breath phase and water-exit state/equipment restoration. Reached Dog terrain +/-FLOATpi/2 X matrix wrapper now preserves native sin/cos slots and actual operator*=.",
       "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
       "evidence": [
         "recovered/game/human_water_motion.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
+        "recovered/game/dog_terrain_response.h",
+        "analysis/human-h8-dog-ground-motion-source.md"
       ]
     },
     {
@@ -50328,6 +50330,66 @@
         "recovered/game/dog_body_state.h",
         "analysis/human-h8-dog-frame-source.md",
         "analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c3420",
+      "status": "partial",
+      "coverage": "Compose actual Dog Body ground movement, existing same-World multisphere solver, step retry, responses, model-forward/terrain and shared diagnostic tail; retain conditional separate-normal requirement.",
+      "limitations": "Typed source replaces native object/allocator/register/vtable ABI. Native focused actual solver/policy checks and actual World i386 links; selected controller/activation/outer frame and conditional normal producer remain required. Renderer installation/desktop pending. X rotation covers reached fixed angles, not general x87 FSIN range/exception equivalence. No absent or engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_body_motion.h",
+        "analysis/human-h8-dog-ground-motion-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-ground-motion-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c2260",
+      "status": "partial",
+      "coverage": "Compose native Dog fall ray/sweep, actual Body gravity/plane/timers and Actor movement, preserving query/failure/lifetime order.",
+      "limitations": "Typed source replaces native object/allocator/register/vtable ABI. Native focused actual solver/policy checks and actual World i386 links; selected controller/activation/outer frame and conditional normal producer remain required. Renderer installation/desktop pending. X rotation covers reached fixed angles, not general x87 FSIN range/exception equivalence. No absent or engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_fall_response.h",
+        "analysis/human-h8-dog-ground-motion-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-ground-motion-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c43d0",
+      "status": "partial",
+      "coverage": "Compute Dog slope/direction correction and actual clip rate with native gates, retained fraction, product spills and late normal/clip requirements.",
+      "limitations": "Typed source replaces native object/allocator/register/vtable ABI. Native focused actual solver/policy checks and actual World i386 links; selected controller/activation/outer frame and conditional normal producer remain required. Renderer installation/desktop pending. X rotation covers reached fixed angles, not general x87 FSIN range/exception equivalence. No absent or engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_slope_response.h",
+        "analysis/human-h8-dog-ground-motion-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-ground-motion-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c26d0",
+      "status": "partial",
+      "coverage": "Compose real Dog terrain probes/retries/normal blend, engine AngleTo/rotations, Y limit and exact original no-hit X,Y,Y,Z publication.",
+      "limitations": "Typed source replaces native object/allocator/register/vtable ABI. Native focused actual solver/policy checks and actual World i386 links; selected controller/activation/outer frame and conditional normal producer remain required. Renderer installation/desktop pending. X rotation covers reached fixed angles, not general x87 FSIN range/exception equivalence. No absent or engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_terrain_response.h",
+        "analysis/human-h8-dog-ground-motion-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-ground-motion-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0071f700",
+      "status": "partial",
+      "coverage": "Append actual bounded process collision lines with15000 cap, two24-byte vertices, forced alpha and second-color fallback.",
+      "limitations": "Typed source replaces native object/allocator/register/vtable ABI. Native focused actual solver/policy checks and actual World i386 links; selected controller/activation/outer frame and conditional normal producer remain required. Renderer installation/desktop pending. X rotation covers reached fixed angles, not general x87 FSIN range/exception equivalence. No absent or engine-body credit.",
+      "evidence": [
+        "recovered/game/collision_debug_lines.h",
+        "analysis/human-h8-dog-ground-motion-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-ground-motion-20261117.json"
       ]
     }
   ]

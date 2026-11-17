@@ -1,0 +1,289 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "bf86358",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-dog-ground-motion-source.md",
+  "new_partial_client_bodies": [
+    "005c3420",
+    "005c2260",
+    "005c43d0",
+    "005c26d0",
+    "0071f700"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_body_motion.h",
+      "bytes": 10636,
+      "sha256": "f01bd0e3b6d443a0531d86e2266e3ccd4290006f5b642bc4598bf38ddb29fb07"
+    },
+    {
+      "path": "recovered/game/dog_fall_response.h",
+      "bytes": 3665,
+      "sha256": "c0a9555aec6d89962416234f5cc5d1aefd88670da56028ee7855d31abe3b5a88"
+    },
+    {
+      "path": "recovered/game/dog_slope_response.h",
+      "bytes": 4819,
+      "sha256": "e8ead0666b74a46cbec7add70c25e7f7e482cfdf2b66a32a5929fd1804648de6"
+    },
+    {
+      "path": "recovered/game/dog_terrain_response.h",
+      "bytes": 7296,
+      "sha256": "56475d6a6d43d2fb454579f18eea6374bf687e95652fb787cb9a9634f7fd898b"
+    },
+    {
+      "path": "recovered/game/collision_debug_lines.h",
+      "bytes": 1905,
+      "sha256": "b376cb5fec76dddbd7324beb1748c6a8a52c96fe10e813e81e3faa5ccdf92fd3"
+    },
+    {
+      "path": "recovered/game/human_physics_globals.h",
+      "bytes": 1153,
+      "sha256": "60e86403c256eea9e7833c1f3d12bcd08062581c86229796331760364c534246"
+    },
+    {
+      "path": "recovered/game/dog_body_collisions.h",
+      "bytes": 5744,
+      "sha256": "6773a0a48237fc0fac499fd2186502fadd20e0f0712ddc5d78742e9d966bc650"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 299524,
+      "sha256": "0d757df305a4cb11503e84d0fcac684c62477783466421c900b8dff5c2b8c06d"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 129595,
+      "sha256": "6b872cecc98bb2fd887a47354f589f950945b8dba37d89eb7cb81b6ba6a55527"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-motion-full.asm",
+      "bytes": 53781,
+      "sha256": "7bddac50ee3ff5b7bc08955998911aee395c21f298f97a7510d9b8af46fa53fc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-motion-constants.json",
+      "bytes": 554,
+      "sha256": "91e9bded6e21b2124695af6f0bcc222600c5fd8186bc20e842398ff4270b28be"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-fall-response.asm",
+      "bytes": 17376,
+      "sha256": "1583527e89d76ad96c34893cb3cc07514ccdd531d5c8b9f046764d965106fdeb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-fall-response-constants.json",
+      "bytes": 546,
+      "sha256": "ca73bfe9b88a8171335888805c46f6527201c9d3bc435eb21941693263346435"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-slope-response.asm",
+      "bytes": 22507,
+      "sha256": "29a60eebbfef23ca0a0c4014abbca2aa1bcf6ce4880fe7dab09718b604db7ee7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-slope-response-constants.json",
+      "bytes": 927,
+      "sha256": "9ca8acdb0d621be58411800557985d76db994ab6ca14ee7eefb16f8815013369"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-terrain-response.asm",
+      "bytes": 39675,
+      "sha256": "bc72a1d43d6d0802f44554bae1e1c428c1a7e2ba93e34ee9d585cfab34768509"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-terrain-response-constants.json",
+      "bytes": 377,
+      "sha256": "ce068adc1e64c7f5b91e8be191f14712977fbcc4ed454cd26c4addf4c8c5c6e0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-terrain-rotate.asm",
+      "bytes": 3896,
+      "sha256": "b1986725b4ea992c900c914930fb31f82de2f89735f88af64e1b61d3ce76f969"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-debug-index.txt",
+      "bytes": 997,
+      "sha256": "b2c8d8fba50b7c0a0c2fe24f10eb35858583fe8abba6a414f7091a582b4eb242"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-debug-raw-candidates.json",
+      "bytes": 5169,
+      "sha256": "9cb03e2c0c8ca5db05a39060c30c97e2bdb390bf18acaaab75df43626f21cc80"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-debug-neighbors.asm",
+      "bytes": 8341,
+      "sha256": "a787a402f5aa78afd9c51070f6928b8dcc7499fcb1f38ce6f5e8740b67569f0c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-tail-index.txt",
+      "bytes": 1783,
+      "sha256": "cb68fbaecb1f3f5ba6cd2e65493c4e5100f80f215c37dc18144416644ce758cb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-terrain-math-index.txt",
+      "bytes": 15079,
+      "sha256": "b644db0bc40cc84f7762bd97edba4bf53f7ac7c187cdf270c87e5283f3a316a4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-terrain-typed-v2-export.log",
+      "bytes": 4697,
+      "sha256": "e3ff800fd2fc8eb642b5bf8dc3f547334012e9fd418b25f18e39406dc20fcd76"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/ExportH8DogTerrainTypedV2.java",
+      "bytes": 2773,
+      "sha256": "0572cb38fd18efa9726185703d4a58a934e8fe742d7617b7693a65f35052b6cf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c2260.c",
+      "bytes": 4904,
+      "sha256": "e8c21d5d016b04965c5bffca1396e57d07dabcddd7eebfd3d2b271e8bd3ea490"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c2260.json",
+      "bytes": 22010,
+      "sha256": "e44c897146241c884e081ad316b2ba9540ce341fdc413105cbb4d3405080c24f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c26d0.c",
+      "bytes": 10432,
+      "sha256": "34d4ee0869d160c147f45b26f9da67e6b2c7c2c63a7e8f367de4c86036de979d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c26d0.json",
+      "bytes": 74683,
+      "sha256": "fd4bb045f0caf41fea0d38eddf3e512d20fee2d9d7941e8d93ffb6e1f1c02905"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c3420.c",
+      "bytes": 16814,
+      "sha256": "f26d13559f806becb224bfccf869950083e6d62fdc6d657a588724156311fd69"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c3420.json",
+      "bytes": 86374,
+      "sha256": "40981b23823a18b3bdde8618ff02a788799e8aa46472764390d2aa492bc1c00b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c43d0.c",
+      "bytes": 5504,
+      "sha256": "217bbc8f1db34efdecf3912e510fff496d265cec7e0f0312367a24c96884cba8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c43d0.json",
+      "bytes": 34959,
+      "sha256": "da73cdee48a5b15115bc081b0a4fa311b679b281c4614d53a686ecd57910f0eb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c6250.c",
+      "bytes": 521,
+      "sha256": "df6f2f71d5e096db3028d6f094181cae98d7da504bdc3899b0bcf6136a821e78"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c6250.json",
+      "bytes": 2635,
+      "sha256": "57cd37d51a53da6f372e9252bddd7dbaab0d4b768cac2fcd8ec6821bcaa561bc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c62c0.c",
+      "bytes": 726,
+      "sha256": "dd92246b3b6e663a04dc058ed08430d56d9009e1a5b39bf02b7ec52017836ef0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c62c0.json",
+      "bytes": 3523,
+      "sha256": "1631a43060a7da0a22eafc2c6676acc20b24622577fa7457c0308bc1b17b4707"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c6380.c",
+      "bytes": 797,
+      "sha256": "ce821878276edf66b66c464e2d7aa19a5ddbecf762936a7bedc7dca1317c240a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-originals/005c6380.json",
+      "bytes": 1825,
+      "sha256": "9b518aaeaa73ff5ecd6a606b32f59ac6a27d7e834dde9e166f5168942cdd0442"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-terrain-typed-v2-originals/005c26d0.c",
+      "bytes": 10497,
+      "sha256": "79bd972037cf73f0b7ea5093b248b65052ffb9c6fdbc4826e01bc7d7ae3478fb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-terrain-typed-v2-originals/005c26d0.json",
+      "bytes": 74683,
+      "sha256": "1ce0d23ef7f84fe6f46dccf5ba8b326158d0423867cf94b896e202f9dfbe9083"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-terrain-typed-v2-originals/007884f0.c",
+      "bytes": 394,
+      "sha256": "e52a516644934e92981e750c354feb00afe6691e3d4c717ae6c9687bb2b5da03"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-terrain-typed-v2-originals/007884f0.json",
+      "bytes": 2367,
+      "sha256": "04e8b0fb56d5250c0921d1aa58e68b6b424316229f5c469b1534ca2c6bf5455b"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-fall-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-fall-native-run.log",
+      "bytes": 175,
+      "sha256": "757a68592294b91e498654a659af4b1375a77a5cd714f0f1bbd53d4de1e7b307"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-ground-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-ground-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-fall-native.cpp",
+      "bytes": 21702,
+      "sha256": "96b2110bb0e3b752191b8ad713c126ec1043ead46b8c6e88a7b7673fcf78e98d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-fall-native",
+      "bytes": 2069912,
+      "sha256": "514f4c89faa4e382ecdea8901d12930a767c64ea6af56301a97c2b40ace43cd9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-ground-module.cpp",
+      "bytes": 1646,
+      "sha256": "0d2e4a72897402e6864c22987c84cf79cfab79b14bd0b01410d0d4e2da4d488e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-ground-module.exe",
+      "bytes": 11896320,
+      "sha256": "c7df5ff07bf4177a986fbe46a2dbf96179e7b22423734f0a75919a7d732a0330"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "verification": {
+    "native": "657 strict ASan/UBSan/leaks PASS; actual standing collision solver and composed Body policies; explicit ray/sweep/controller/engine/descriptor endpoints",
+    "normal_dependency": "128 arbitrary/NaN/Inf normal and flag rejected-gate equivalence cases; active influencing normal remains required",
+    "diagnostic": "actual bounded process owner,15000 capacity,zero-color fallback/reset and actual draw callback order",
+    "actual_i386": "PASS strict actual full World/module/ground-motion/terrain/same owner/debug driver API compile/link only; selected-controller boundary explicitly throwing",
+    "launcher": "PASS forced O2 application-launch/startup-probe compile/link only",
+    "tracker": "exact fingerprints/inventory/frozen counts and27 existing tests",
+    "limits": "No live activation, selected controller, complete outer frame, influencing separate normal or desktop claim. FRAME must install debug queue reset/draw. No absent/engine credit."
+  }
+}

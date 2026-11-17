@@ -17,6 +17,37 @@ acceptance. H8.1/H8.3 source checked; H8.2/H8.4/H8.5/H8.6 and HUM matrix OPEN.
 
 ## Latest verified checkpoint
 
+[Dog containing ground motion](analysis/human-h8-dog-ground-motion-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-dog-ground-motion-20261117.json).
+Actual005C3420 now composes SAME World0071BAF0 solver, step retry,005C2260 fall,
+005C43D0 slope,005C26D0 terrain, real model-forward/position/material tail and
+0071F700 shared diagnostic queue. Body collisions expose same guarded anchors/
+radii; Startup HumanPhysicsGlobals owns real bounded15000-line process storage.
+Actual driver44/84/88 draw endpoints + reset supplied; FRAME still must install
+original ordering. No private discarded per-Dog queue. No activation enabled.
+
+Native657 strict ASan/UBSan/leaks checks PASS: real solver + full Body response,
+Actor/material/gravity/counters, death expiry, stationary shortcut, callbacks,
+strict speed equality3/unordered4, unordered directionY both spheres, entry budget
+restoration,128 arbitrary/NaN/Inf normal/flag independence cases and15000-line
+capacity/color/reset/draw. Endpoint doubles explicit. Actual strict full World/
+i386 module + full Body/terrain/shared draw API PASS; controller remains explicitly
+throwing compile-only boundary. Forced O2 launcher/probe PASS; no Windows run.
+5 new frozen partials, existing7884F0 evidence extended;34 complete/3673 partial
+(client3668+engine5), frozen18783. Tracker exact+27 tests PASS. All temp audit
+pairs fingerprinted/removed. No heavy job running. CONTINUE, no questions.
+
+Separate native local270 normal/byte1 remains influencing-slope requirement.
+Its sole possible output consumer is43D0, and2260 uses only real support lowbyte.
+When other original slope gates reject, outputs are independent of BOTH unknown
+values (128 concrete comparisons). Composition passes possible-normal+NULL,
+failing only at the existing late normal read if other gates admit influence.
+This is NOT a zero/default/D11 extension or a walking-contact success claim.
+Normal production still needs precise evidence/defined policy when selected.
+
+Prior frame adapters checkpoint bf86358
+
+
 [Dog frame adapters](analysis/human-h8-dog-frame-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json).
 Actual Dog580/590/5A0 history005D64E0, Body turn005C89C0, gravity005C62C0/6250,
@@ -64,45 +95,41 @@ Prior checkpoints: a31f4dc [Body actions](analysis/human-h8-dog-actions-source.m
 
 ## Next — finish live Dog/remaining Human owners
 
-Next concrete dependency is actual selected controller/activation and containing
-frame collision-motion005C3420 plus005C43D0/2260/26D0, then remaining selected Human owners. Body and
-clip initialization source now exist in dog_body_state.h/dog_body_transform.h;
-use them rather than reimplementing. Runtime still fails live Dog entry.
-Actual direction/body-action emission adapter and controller owner are needed.
-Full005C3420 C is in human-h8-dog-body-dependencies (large positive motion body).
+Next: actual selected controller/activation + outer Dog frame005C8B30,
+005D5620/5810 and final Human callbacks. Body motion/ground responses now exist;
+do NOT reimplement or re-audit the solved clip/bootstrap/gravity/terrain kernels.
+Controller actual kind4/5, Body animation/action adapters, damage/Sight/SOUND and
+retirement must compose on same Actor/model/process owners. No live entry yet.
 
 WORK=`analysis/work/mission-world-20261103`. Reuse h8-4-dog-{boundary,required,
 control,live,typed-v2}-originals; human-h8-dog-{body-dependencies,
-controller-body-dependencies,live-controller}.005C7D30 C is under REQUIRED,
-005C8370 under BOUNDARY. Retained aligned motion/deceleration/transform/direction/
-bootstrap raw and exact constants are linked in the current contract.
-Original00811FBC=-10000.099609375 FLOAT, not timer-10000.
+controller-body-dependencies,live-controller}.005C7D30 C under REQUIRED,
+005C8370/8B30 under BOUNDARY. All ground evidence/typed revisions in contract.
 
-Fresh READ-ONLY containing motion exports are retained under
-human-h8-dog-motion-typed-v2-originals, PASS7 bodies. Script
-ExportH8DogMotionTyped.java aborts on absent starts and rolls back all changes.
-Original typed-v1 had WRONG fastcall query/exclusion declarations; retain as
-NONAUTHORITATIVE provenance. v2 correctly uses0071BAF0 thiscall(request), rays
-007183A0 thiscall6args/sweep00718530 thiscall7args;006EFB10 thiscall(array,count,
-NULL),006EFA70 thiscall(NULL,NULL). Typed v2 aliases are improved but x87 return
-casts and register/stack-vector names still require raw instructions, especially
-005C26D0 constructor/rotation helpers. Do not create absent original starts.
+Next raw already retained: human-h8-dog-body-authority-frame.asm aligned005C8B30
+through9040 (tail file also has adjacent bytes, no adjacent-function credit).
+It calls turn→clip displacement→fullBodymotion→optional bite49A0→timer370→
+position0D10→material hazards→TEMPORARY model alignment→same descriptors→model
+RESTORE. TEMPORARY model move is intentional, not permanent publication: raw
+005C8E54 sets moved byte ESP+0B=1 AFTER SceneE0 returns, descriptors update on
+aligned model, then native restores original model position/sector/24. Decompiler
+uStack68 aliases hide this bool. Need full native callback/cleanup order. Actual
+frames.human_scene_sector(point), actor_parent/frame_kind/link_scene_object,
+update_scene_object and model08 endpoints exist. Hazard D4 still needs actual
+Dog damage/controller/Sight/SOUND adapters; no successful stand-in.
 
-Full005C3420 existing C is495 lines. Reuses actual CollisionMotion<Hit> and
-advance_standing_collision_motion (0071BAF0), SAME World human_geometry_ray/
-sweep and SAME descriptor exclusions. Need complete setup/step/lateral/ground/
-direction response, not another private solver. Read all005C43D0/2260/26D0.
-005C6380 is now implemented against request.contacts with ALL contacts consumed,
-not Body fields.005C62C0 pure copied-speed integrator and005C6250 actual FLOAT
-speed/phase producer are now implemented, no need re-audit them.
+Terrain raw critical: NO-HIT Actor direction publication X,Y,Y,Z, including W=Z
+(raw31C3..31D3) retained in source. Positive path XYZ/unclaimedW. Corrected
+terrain-typed-v2 has engine vector AngleTo/operator*= STDCALL(self,...); v1 was
+wrong THISCALL and nonauthoritative. Client00404260/7884F0 remain THISCALL.
+X wrapper uses identity + FLOAT sin/cos slots5/10,6/9 + actual operator*=.
 
-Raw005C3420 scratch: ESPB0/B4/B8 local270/26C/268 normal is read by4001 and
-passed to005C43D0; provenance NOT yet classified. Constructor00401000 initializes
-10 records atrequest+100; main repstos zeroesrequest200 only. Do not blindlyzero
-this separate local normal/flag or infer global unproducedness from C names.
-Need aligned full raw before coding. Current partial objdump ranges starting
-inside instructions are NOT authoritative; re-export from real aligned start.
-Earlier Body278/27C/280 unresolved priority provenance also stays explicit.
+Shared diagnostic static data: buffer008CBC18..0097B898 exactly720000 bytes,
+cursor00844168 initially008CBC18, BSS count0. Two24-byte vertices perline,
+forcedFF alpha; secondcolor0 repeatsfirst. 0071F850 draw/0071F8A0 reset absent
+frozen entries are reconstructed source APIs with NO credit. Raw neighbor/index/
+raw-address candidates retained; candidate containing starts are NOT proof.
+Do not create absent original starts. FRAME installs reset/draw later.
 
 Native core details: ActorBody+90; clipBaseBody+10=ActorA0, clip model10=ActorB0.
 Body160 is actual Actor borrower. Body364=Actor3F4 action. Seven damage bones
