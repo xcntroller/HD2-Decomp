@@ -1,0 +1,110 @@
+{
+  "date": "2026-11-17",
+  "base": "20019a7",
+  "source_only": true,
+  "desktop_verified": false,
+  "new_frozen_partial": [
+    "005d7a10"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_head_look.h",
+      "bytes": 8375,
+      "sha256": "ed2dd01f3a11f90747fd641c8b6e4d60c77e41ecce94f6e51a033055dc8abdb0"
+    },
+    {
+      "path": "recovered/game/dog_head_animation.h",
+      "bytes": 2060,
+      "sha256": "83149d5a94905e4d973ff62ac7b08bc6780f2a0cd5a82c5f4327adbb062dbefa"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 8682,
+      "sha256": "4eda0b9dfbc7d50ccc0c5a4d126a81d94a76d825ff9bf4c07fdebceb2b6d9dd4"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 318163,
+      "sha256": "c6a9982bb5db89e5bbf2133ef644ff092603b0424d6de240a459562df9458ee7"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 134872,
+      "sha256": "f569a013306104c65fb0cfd38de23dd2a73238694a4fde5d5648791db9cc285a"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-head-presentation/005d4db0-resource-prefix.asm",
+      "bytes": 1824,
+      "sha256": "e5c70c5b2c63e963a0026f6878334b9e218188fc75080339cd79c0b9092462d3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-head-presentation/005d7a10.asm",
+      "bytes": 23859,
+      "sha256": "217bb2262c3e0e994e226ac304570037231aa27872775ff4a6d75e579ce5d9e4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-head-presentation/constants.json",
+      "bytes": 577,
+      "sha256": "4aca7a653365bc065da33e91d73cf7974c6da3f183123c571f2ad57ca9637921"
+    }
+  ],
+  "verification": {
+    "native": "PASS42 strict ASan/UBSan/leaks actual head presentation/resource lifetime source, explicit engine frame/math/resource endpoints",
+    "actual_i386": "PASS strict full actual World head request/update/presentation/resource close compile/link only; initialization explicitly invoked by fixture",
+    "launcher_probe": "PASS forced strict O2 actual i386 application-launch/startup-probe compile/link only",
+    "ledger": "PASS full function_progress check and27 existing tests"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-dog-head-presentation-native.cpp",
+      "bytes": 5945,
+      "sha256": "36105a8c0e080855e99e61f69c03f64c602fcfcc4674c9de66b9a11751adb376"
+    },
+    {
+      "path": "/tmp/h8-dog-head-presentation-native.o",
+      "bytes": 835672,
+      "sha256": "5bf7845f8dcce83597a060571bc00395e65022ffd5b481bf5eeaf6e705dc82d1"
+    },
+    {
+      "path": "/tmp/h8-dog-head-presentation-native",
+      "bytes": 460584,
+      "sha256": "3a9b66936595ac10f1814755860a30edef8db3142b0bf3b5e4485a9c0b63c9b9"
+    },
+    {
+      "path": "/tmp/h8-dog-head-presentation-module.cpp",
+      "bytes": 526,
+      "sha256": "beb33da731d48e14e378a00a7266cfffacc38dae9f5f48d132faf78bea09de34"
+    },
+    {
+      "path": "/tmp/h8-dog-head-presentation-module.exe",
+      "bytes": 630272,
+      "sha256": "bdb9e5417c0fd52f319edc2a97d12bbc21c30959f096c9dfa0e7f036819061a1"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "limits": "Full H8.4 remains active/open. No live Dog activation/controller/containing frame, original/Windows execution, application/desktop acceptance or complete promotion.",
+  "verification_logs": [
+    {
+      "path": "/tmp/h8-dog-head-presentation-native.log",
+      "bytes": 82,
+      "sha256": "3acbd5cf4484f27d2e862c254f7e2e2fb48dc677e6625d74f08fca9429979154"
+    },
+    {
+      "path": "/tmp/h8-dog-head-presentation-module.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/h8-dog-head-presentation-launch.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "/tmp/h8-dog-head-presentation-progress.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ]
+}

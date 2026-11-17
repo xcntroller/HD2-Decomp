@@ -3309,6 +3309,28 @@ public:
         } queries{*this,dog};
         dog.head_look.advance(elapsed,queries);
     }
+    template<class Dog>void bind_dog_head_animation(Dog& dog){
+        using Frames=typename Dependencies::ActorFrames;
+        if(dog.head_animation4e0)throw std::logic_error("Dog head animation requires prior retirement");
+        auto owner=std::make_unique<DogHeadAnimation<Frames>>(dependencies().scene.frames());
+        auto* actual=owner.get();dog.head_animation4e0=std::move(owner); //Publish4E0 before resource/model callbacks.
+        dog.head_marker4e4=actual->bind_model([&dog]{return dog.base().frame();});
+    }
+    template<class Dog>void present_dog_head_look(Dog& dog,std::uint32_t elapsed){
+        struct Queries {
+            HumanWorldLoadingServices& world;Dog& dog;
+            auto marker(){if(!dog.head_marker4e4||!*dog.head_marker4e4)throw std::runtime_error("Dog head presentation requires actual4E4 marker");return *dog.head_marker4e4;}
+            auto parent_inverse(){auto& frames=world.dependencies().scene.frames();const auto parent=frames.actor_parent(marker());if(!parent)throw std::runtime_error("Dog head presentation requires actual marker parent");auto matrix=frames.actor_world_matrix(parent);matrix[12]=matrix[13]=matrix[14]=0;return frames.car_inverse_matrix(matrix);}
+            HumanVector model_forward(){const auto m=world.dependencies().scene.frames().actor_world_matrix(dog.base().frame());return {{m[8],m[9],m[10],m[11]}};}
+            HumanVector head_position(){return world.sight_position(marker());}
+            HumanVector head_forward(){const auto m=world.dependencies().scene.frames().actor_world_matrix(marker());return {{m[8],m[9],m[10],m[11]}};}
+            void rotate_direction(HumanVector& value,float angle){auto& frames=world.dependencies().scene.frames();frames.car_transform_in_place(value,frames.human_axis_rotation({{0,1,0,0}},angle));}
+            void apply_inverse(HumanVector& value,const HumanMatrix& matrix){world.dependencies().scene.frames().car_transform_in_place(value,matrix);}
+            void reset_animation(){if(!dog.head_animation4e0)throw std::runtime_error("Dog head reset requires actual4E0 resource");dog.head_animation4e0->reset();}
+            void set_animation_direction(const HumanVector& value){if(!dog.head_animation4e0)throw std::runtime_error("Dog head direction requires actual4E0 resource");dog.head_animation4e0->direction(value);}
+        } queries{*this,dog};
+        dog.head_look.present(dog_signed_word(elapsed),queries);
+    }
     template<class Dog>void advance_dog_body(Dog& dog,std::uint32_t elapsed){advance_dog_body_frame(dog,elapsed,*this,dependencies().scene.frames(),dog.require_controller());}
     template<class Actor>void apply_dog_actor_damage(Actor& actor,std::uint32_t kind,float amount,const HumanVector& point,
             const HumanVector& direction,SceneActor<typename Dependencies::ActorFrames>* source,std::uint32_t extra){

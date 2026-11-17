@@ -51473,6 +51473,21 @@
         "analysis/human-h8-dog-head-look-source.md",
         "analysis/checkpoints/p22-h8-dog-head-look-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005d7a10",
+      "status": "partial",
+      "coverage": "Actual Dog head-look presentation over same4E8..52C owner: parent-space inverse, request504 target, first/subsequent500 yaw, original log/constant turn modes, step/cumulative cap, unordered completion and actual first-animation reset/direction publication via same-World engine resource owner.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/vtable/allocator/SEH ABI. Native checks double frame/math/resource endpoints; actual full World i386 link only. Required unproduced targets/yaw and singular inverse retain source guards; scratch fourth-lane provenance unclaimed. Live Dog activation/retirement/controller/actor frame and H8.4 remain open.",
+      "evidence": [
+        "recovered/game/dog_head_look.h",
+        "recovered/game/dog_head_animation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-dog-head-presentation-source.md",
+        "analysis/checkpoints/p22-h8-dog-head-presentation-20261117.json"
+      ]
     }
   ]
 }

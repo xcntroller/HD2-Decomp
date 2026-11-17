@@ -10,19 +10,20 @@ work; no unconfirmed interactive import/commit or silent restaging.
 
 ## Latest source
 
-[Head-look command/timer](analysis/human-h8-dog-head-look-source.md) supplies
-complete005D8070/005D82B0 on SAME Dog Actor4E8..52C; World binds actual CRT/
-engine random, model and quaternion-axis rotation. Native132 ASan/UBSan/leak
-checks and strict full actual World i386 request/update link PASS. Fixture
-explicitly initializes its source state; LIVE005D4DB0 is STILL REQUIRED. This
-is not enabled activation/dispatch. Strict O2 launcher/probe, tracker check and
-27 existing tests PASS; temporary audits fingerprinted/removed.
-[Receipt](analysis/checkpoints/p22-h8-dog-head-look-20261117.json).
-Two frozen partials only; H8.4 stays OPEN.
+[Head presentation/resource](analysis/human-h8-dog-head-presentation-source.md)
+completes005D7A10 over SAME Dog head-look state, actual World frame/math and
+real engine animation-set owner4E0. Original driver78/74("f"), set04, modelB4,
+first-entry reset08/direction1C and reverse resource retirement are source-bound.
+Native42 ASan/UBSan/leak checks, strict actual full World i386 head request/
+update/presentation/resource close PASS. Full live005D4DB0 is STILL REQUIRED;
+compile fixture initializes explicitly. Strict O2 launcher/probe, tracker check
+and27 existing tests PASS. Temporary audits fingerprinted/removed.
+[Receipt](analysis/checkpoints/p22-h8-dog-head-presentation-20261117.json).
+One frozen partial only; H8.4 stays OPEN.
 
-Prior5758e5f: actual controller6C005CE110 and Runtime→World→534005CE740 metric;
-native898+1664 and actual World/Body/i386/launcher PASS. Two authorized fixes
-are implemented; their original omission evidence is not reopened.
+Prior20019a7 completed005D8070/005D82B0 request/timer(native132);5758e5f supplied
+controller6C005CE110/metric005CE740(native898+1664) and authorized fixes.
+All are source-only; no actual Dog activation/frame or desktop claim.
 
 USER AUTHORIZATION:2026-11-17 “Authorize both fixes” means zero Body278/27C/280
 priorities immediately before bootstrap requests, and use actual selected
@@ -33,11 +34,13 @@ Prior confirmed omission evidence remains valid; no repeat producer search.
 
 ## Continue full H8.4
 
-Head-look next: actual005D7A10 presentation consumes4F0 and produces4E0/4E4
-engine animation state;005D82B0 command/timer is now present. Body presentation
-005C18C0 and outer005D5810 remain required. Retain exact source4F0 provenance
-and signed/unsigned timers/RNG, no generic Human-look replacement.
-
+Head-look source component is now complete; actual4DB0 must publish its real
+resource and initialization. Continue Body presentation005C18C0 and dependencies
+005C1B80 turn/clamp005C1DB0, event005C1600 and model interpolation005C1430.
+Research index already consulted; retained C under human-h8-dog-body-dependencies.
+005C1DB0 needs raw/ABI inspection (do not create absent original functions).
+Use SAME body/clip/transform/event buffers; no seeded successful producers.
+005C1430 C loses the SceneEC position scratch; raw must resolve it.
 
 [H8 plan](analysis/p22-hum-h8-plan.md). Next live Dog requirements are actual
 activation005D5290→005D4DB0→clip/Body bind, retirement005D5390, containing

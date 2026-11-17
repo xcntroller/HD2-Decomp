@@ -1632,6 +1632,28 @@ public:
     std::uint32_t animation_actor_clip_time(Frame model){return call<std::uint32_t>(model,0xa0,0u);}
     std::uint32_t animation_actor_clip_duration(Frame clip){return call<std::uint32_t>(clip,8);}
     void animation_actor_clip_start(Frame clip){put(clip,8,1u);} //005B55E0 overwrites actual clip+08.
+    MenuDriver::Owner create_dog_head_animation_set(){
+        const auto resource=call<Frame>(driver_.frame(),0x78);
+        if(!resource)throw std::runtime_error("Dog animation set allocation returned NULL");
+        return {resource,checked_engine_method<MenuDriver::Release>(resource,module_,0)};
+    }
+    void add_dog_head_animation(Frame collection,const char* name){
+        const auto resource=call<Frame>(driver_.frame(),0x74,name);
+        if(!resource)throw std::runtime_error("Dog head animation allocation returned NULL");
+        MenuDriver::Owner pending(resource,checked_engine_method<MenuDriver::Release>(resource,module_,0));
+        call<void>(collection,4,resource);(void)pending.release(); //Native performs no separate release after Add.
+    }
+    void bind_dog_head_animation(Frame model,Frame collection){call<void>(model,0xb4,collection);}
+    Frame first_dog_head_animation(Frame collection){
+        const auto array=field<Frame*>(collection,8);
+        if(!array||!*array)throw std::runtime_error("Dog head animation set lost its first entry");
+        return *array;
+    }
+    void reset_dog_head_animation(Frame collection){call<void>(first_dog_head_animation(collection),8);}
+    void set_dog_head_animation_direction(Frame collection,const Vector& value){call<void>(first_dog_head_animation(collection),0x1c,value.data(),std::uint32_t{0});}
+    void clear_dog_head_animations(Frame collection){
+        while(field<std::int32_t>(collection,0x10)>0)call<void>(collection,8,first_dog_head_animation(collection));
+    }
     MenuDriver::Owner create_animation_actor_model(){return driver_.create(9);}
     std::int32_t load_animation_actor_model(Frame model,const std::string& name){return resources_.load_model(model,recovered::model_resource_key(name),0x10);}
     void mine_model_name(Frame frame,const char* name){call<void>(frame,0x34,name);} //005FDF90 ignores HRESULT.
