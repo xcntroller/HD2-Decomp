@@ -289,3 +289,8 @@ H8 Dog activation/retirement/Sight (2026-11-17):005D5290/4DB0/5390/5CB0 add
 four frozen client partials; combined34 complete/3743 partial (client3738,
 engine5), frozen18783. [Contract](human-h8-dog-live-activation-source.md). No
 absent controller/E0/output helper or engine credit; full H8.4 remains open.
+
+H8 Dog SOUND/nearby producer (2026-11-17):005D6000/005D7760/005CE560 add
+three frozen client partials; combined34 complete/3746 partial (client3741,
+engine5), frozen18783. [Contract](human-h8-dog-sound-source.md). No absent
+controller or engine credit; no complete/readiness promotion. Full H8.4 open.

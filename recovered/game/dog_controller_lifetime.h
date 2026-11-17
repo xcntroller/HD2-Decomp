@@ -36,6 +36,8 @@ public:
     virtual void dog_control_presentation(std::uint32_t)=0; //14, selected4/5 wrappers tail-jump actual RET4.
     virtual void dog_control_sight_acquired(Actor*)=0; //4C.
     virtual void dog_control_sight_lost(Actor*)=0; //50.
+    virtual void dog_control_loud_sound()=0; //44, selected4/5 actual RET.
+    virtual void dog_control_heard(DogHeardRecord&)=0; //48.
     virtual void dog_control_publish_inputs()=0; //6C,005CF0B0/005CFA00 tail-jump005CE110.
 };
 }

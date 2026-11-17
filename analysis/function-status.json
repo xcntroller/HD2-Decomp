@@ -51646,6 +51646,54 @@
         "analysis/human-h8-dog-live-activation-source.md",
         "analysis/checkpoints/p22-h8-dog-live-activation-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005d6000",
+      "status": "partial",
+      "coverage": "Actual registered Dog SOUND source/filter/distance/event-score policy, reverse matching, distinct new/repeat clocks, actual heard pool/list and current selected4/5 controller callbacks.",
+      "limitations": "Source-only typed host-width loans/STL/RAII replace original memory/vtable/allocator/container/SEH ABI. Native audit doubles actor/base/frame/control/clock/Human endpoints; actual full World/i386/launcher compile/link only. Full Dog authority/controller decisions, selected containing H8.4 and desktop remain required; no additional native defaults or clock-unit correction authorized.",
+      "evidence": [
+        "recovered/game/dog_sound_notifications.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_dog_sound_loading.h",
+        "analysis/human-h8-dog-sound-source.md",
+        "analysis/checkpoints/p22-h8-dog-sound-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d7760",
+      "status": "partial",
+      "coverage": "Actual periodic nearby-Human synthetic sound producer with signed55C gate/reset, first32 Human identity rebuild, live friendly list and physical-position extended range/volume through SAME SOUND policy.",
+      "limitations": "Source-only typed host-width loans/STL/RAII replace original memory/vtable/allocator/container/SEH ABI. Native audit doubles actor/base/frame/control/clock/Human endpoints; actual full World/i386/launcher compile/link only. Full Dog authority/controller decisions, selected containing H8.4 and desktop remain required; no additional native defaults or clock-unit correction authorized.",
+      "evidence": [
+        "recovered/game/dog_sound_notifications.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_dog_sound_loading.h",
+        "analysis/human-h8-dog-sound-source.md",
+        "analysis/checkpoints/p22-h8-dog-sound-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ce560",
+      "status": "partial",
+      "coverage": "Actual process heard pool acquisition and same typed kind/position/strength/source/clock payload publication; no fabricated cold record values.",
+      "limitations": "Source-only typed host-width loans/STL/RAII replace original memory/vtable/allocator/container/SEH ABI. Native audit doubles actor/base/frame/control/clock/Human endpoints; actual full World/i386/launcher compile/link only. Full Dog authority/controller decisions, selected containing H8.4 and desktop remain required; no additional native defaults or clock-unit correction authorized.",
+      "evidence": [
+        "recovered/game/dog_sound_notifications.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_dog_sound_loading.h",
+        "analysis/human-h8-dog-sound-source.md",
+        "analysis/checkpoints/p22-h8-dog-sound-20261117.json"
+      ]
     }
   ]
 }

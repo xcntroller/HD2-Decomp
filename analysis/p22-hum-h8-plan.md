@@ -153,3 +153,8 @@ H8.4 dependencies remain open; no application or desktop readiness promotion.
 binds actual Scene2 dispatch to SAME World/head/control4/5/registrations/Body
 and positive/lost Sight. Native89 and actual World/Scene2/O2 links pass.
 SOUND005D6000 and authority/controller decisions remain required; full H8.4 open.
+
+[Dog SOUND and periodic nearby producer](human-h8-dog-sound-source.md) now
+bind005D6000/005D7760 to actual World/controllers and process005CE560 pool.
+Native98 and actual World/O2 links pass; authority/controller decision pipeline
+and other selected full H8.4 dependencies remain required.

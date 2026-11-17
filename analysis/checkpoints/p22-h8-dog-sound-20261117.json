@@ -1,0 +1,128 @@
+{
+  "date": "2026-11-17",
+  "base": "a6a7805",
+  "source_only": true,
+  "desktop_verified": false,
+  "verification": {
+    "native": "PASS98 strict ASan/UBSan/leaks actual SOUND/poll/process pool; actor/base/frame/control/clock/Human endpoints doubled",
+    "actual_i386": "PASS strict actual full World SOUND notification and nearby producer with actual selected controllers/process pool compile/link only",
+    "launcher_probe": "PASS forced strict O2 application-launch/startup-probe compile/link only",
+    "tracker": "PASS full ledger checker, render and 27 existing tests"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-dog-sound-module.cpp",
+      "bytes": 359,
+      "sha256": "35c32ef5d65692a2617ed37ff3629374dadbe7848c19f4f52914f86252c91a5f"
+    },
+    {
+      "path": "/tmp/h8-dog-sound-native.cpp",
+      "bytes": 8071,
+      "sha256": "126188ba20751122963d1e7ae038254cd6546db0fd8bb6610932f103a70885ee"
+    },
+    {
+      "path": "/tmp/h8-dog-sound-native.o",
+      "bytes": 1985856,
+      "sha256": "94fb65985f4c123c0227fa43f474116bddaef872d90b2331553220b043ccfb4f"
+    },
+    {
+      "path": "/tmp/h8-dog-sound-native",
+      "bytes": 1028808,
+      "sha256": "a601c0f45c834b7639a6ee37e2daab6dad56738c68eba2f64a321dd75d700116"
+    },
+    {
+      "path": "/tmp/h8-dog-sound-module.exe",
+      "bytes": 733696,
+      "sha256": "53e8968d0f8fff2ad8c41abe58358c982fde72752a44291bd783e181119f792e"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "new_frozen_partial": [
+    "005d6000",
+    "005d7760",
+    "005ce560"
+  ],
+  "absent_or_delegated_credit": [],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_sound_notifications.h",
+      "bytes": 5135,
+      "sha256": "373693f30b1881f24474f37bb08280f429607cfaa5e230ff1a0f532ff37a9b28"
+    },
+    {
+      "path": "recovered/game/dog_controller_process.h",
+      "bytes": 3611,
+      "sha256": "d8c5c34e7af3cdbb80e7f56bf5688e5db7252e88e0c6d07b2eace51786f9207f"
+    },
+    {
+      "path": "recovered/game/dog_controller_lifetime.h",
+      "bytes": 2552,
+      "sha256": "9bb2f3be518124324588a457aa3444ed270b9d2609e8f8dcfebd047d54cb044e"
+    },
+    {
+      "path": "recovered/game/dog_ai_controller.h",
+      "bytes": 13133,
+      "sha256": "75d3ec15df93fa24c663ea8108a3a0ade115d3d56e5ec2176e0bc5deaab6f2e3"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 325425,
+      "sha256": "cfac9997a14bfb4fd90314a4611a1c8cfff009f783d3c873e972d5721423dcdd"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-sound/005cddc0.asm",
+      "bytes": 3033,
+      "sha256": "bcd2af3ccaddcbf4648b922e13403c800cd184a8f2b69c241d592fb46559fe6c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-sound/005d6000.asm",
+      "bytes": 19385,
+      "sha256": "6b5b67a5f6abc58fcea9cbe1ab6310fe29ba38b6b2ac3983f7a81176e7d76122"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-sound/005d7760.asm",
+      "bytes": 7701,
+      "sha256": "646d8e337ce0e81750aa0fe5bd98b4928fab23dd51d5514739d59808441caca2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-sound/tables.json",
+      "bytes": 405,
+      "sha256": "b8342870d5a6db8564419015af44d83f9aa54156310ef0ad0de73e76b2f45cde"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller5-damage-sight.asm",
+      "bytes": 2586,
+      "sha256": "fe0732bba0cef6aaf2d0beb14f31bde438c37e559d9f732db630a9683e1622e2"
+    }
+  ],
+  "limits": "H8.4 remains open: full containing authority/controller decision pipeline and other selected dependencies. No Windows fixture execution, desktop, complete/engine/absent credit or new compatibility correction.",
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-sound/native.log",
+      "bytes": 42,
+      "sha256": "198971d06deaef7c2d758f6f23934b385b896309a61bebf00e28fc1611451647"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-sound/module.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-sound/launcher.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-sound/progress-check.log",
+      "bytes": 437,
+      "sha256": "1ce1bb8aceaccfced1203ad2ed4e24667540c9f876d5d3245caabec14a18646c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-sound/progress-tests.log",
+      "bytes": 126,
+      "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f"
+    }
+  ]
+}

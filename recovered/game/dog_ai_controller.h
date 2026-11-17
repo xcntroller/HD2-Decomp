@@ -76,6 +76,14 @@ public:
         if(state_.kind14==5)move(reinterpret_cast<void*>(std::uintptr_t{0x20}));
     }
     void dog_control_sight_lost(Actor*)override{} //005CB3B0 genuine RET4.
+    void dog_control_loud_sound()override{} //005CDDC0 genuine RET.
+    void dog_control_heard(DogHeardRecord& record)override{ //005CF0E0 genuine RET4;005CFB70 selected kind5.
+        if(state_.kind14==4)return;
+        if(!record.strength1c)throw std::runtime_error("Dog heard callback requires actual record1C producer");
+        if(*record.strength1c<=10)return;
+        if(!record.kind10)throw std::runtime_error("Dog heard callback requires actual record10 producer");
+        move(reinterpret_cast<void*>(std::uintptr_t{*record.kind10?1u:4u}));
+    }
     void dog_control_publish_inputs()override{publish_dog_controller_inputs(state_);}
     bool consume_flag(){const bool result=state_.flagb8;state_.flagb8=false;return result;} //005CB380.
     void move(void* movement){ //005CE700/005CF8E0: native bitwise complement test is tautologically nonzero.

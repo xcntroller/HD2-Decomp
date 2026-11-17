@@ -9,6 +9,7 @@
 #include "game/dog_body_presentation.h"
 #include "game/dog_loading.h"
 #include "game/dog_sight_notifications.h"
+#include "game/dog_sound_notifications.h"
 #include "game/dog_ai_controller.h"
 #include "game/human_ai_target_output.h"
 #include "game/model_scene_actors.h"
@@ -3293,7 +3294,26 @@ public:
     void dog_remove_sight_target(std::int32_t index){(void)dependencies().sight.source().remove_target(index);}
     auto dog_add_sound_listener(typename Dependencies::Frame model){return dependencies().world_actors.add_dog_sound_listener(model);}
     void dog_remove_sound_listener(std::int32_t index){dependencies().world_actors.remove_dog_sound_listener(index);}
-    template<class Event>void dog_sound_notification(const Event&){throw std::runtime_error("Dog SOUND requires actual005D6000 event/controller composition");}
+    template<class Input>void dog_sound_notification(const Input& input){
+        using Frames=typename Dependencies::ActorFrames;using Actor=SceneActor<Frames>;using Dog=DogSceneActor<Frames>;
+        auto& frames=dependencies().scene.frames();const auto model=static_cast<typename Frames::Frame>(input.listener);
+        const auto* data=model?frames.find_actor_frame_data(model):nullptr;
+        auto* actor=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+        auto* dog=dynamic_cast<Dog*>(actor);if(!dog)throw std::runtime_error("Dog SOUND requires actual listenerEC Dog owner");
+        HumanSoundEvent<typename Frames::Frame,Actor*> event{input.position,model,input.volume,static_cast<std::uint32_t>(input.group),static_cast<Actor*>(input.source)};
+        notify_dog_sound(*dog,event,frames,*this);
+    }
+    template<class Actor>auto dog_sound_human_kind(Actor& actor){return selection_human(actor).properties.field19c;}
+    template<class Actor>std::uint32_t dog_sound_human_movement(Actor& actor){ //005A5CC0, SAME B0 and inline movement mode.
+        auto& human=selection_human(actor);if(!human.loading_state)throw std::runtime_error("Dog sound source requires actual Human B0");
+        const auto flags=human.loading_state->words().template get<std::uint32_t>(0x50);
+        std::uint32_t movement=0xffffffffu;
+        if(flags&0xf8u){movement=human_inline(human).frame_movement_mode();if(movement==5&&!(flags&8u))movement=flags&0x10u?1u:2u;else if(movement==2&&(flags&0x10u))movement=1;}
+        return movement;
+    }
+    std::uint32_t dog_sound_ticks(){return ::timeGetTime();}
+    std::uint32_t dog_sound_microseconds(){return dependencies().clock.microseconds();}
+    template<class Dog>void poll_dog_nearby_sounds(Dog& dog){game::poll_dog_nearby_sounds(dog,dependencies().scene.frames(),*this);}
     void dog_script_alarm(void* context){
         if(!context)throw std::runtime_error("Dog script alarm reaches native NULL context");
         static_cast<MissionScriptContext<typename Dependencies::ActorFrames>*>(context)->alarm(dependencies().script_link.script_authority());

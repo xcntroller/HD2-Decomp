@@ -12,7 +12,12 @@ struct DogRoutePoint { //Native48-byte record, no cold payload writes.
     std::optional<std::uint8_t> type26;
     std::optional<float> radius28;
 };
-struct DogHeardRecord {std::array<std::optional<std::uint32_t>,8> words;}; //Native32-byte record; event producer remains required.
+struct DogHeardRecord { //Native32-byte record; typed source14 loan is host-width.
+    DogControllerVector position0;
+    std::optional<std::uint32_t> kind10,clock18;
+    std::optional<void*> source14;
+    std::optional<std::int32_t> strength1c;
+};
 template<class Record>class DogControllerPool {
 public:
     struct Node {Record* point=nullptr;Node* next=nullptr;};
@@ -47,6 +52,10 @@ public:
     std::array<float,64> first710{},second610{};
     DogControllerPool<DogRoutePoint> route;
     DogControllerPool<DogHeardRecord> heard;
+    DogHeardRecord& acquire_heard(std::uint32_t kind,const std::array<float,4>& position,void* source,std::uint32_t clock){ //005CE560.
+        auto& record=heard.take();record.kind10=kind;record.position0.assign(position);
+        record.strength1c=0;record.source14=source;record.clock18=clock;return record;
+    }
     DogRoutePoint& acquire_point(std::uint32_t index,const DogControllerVector& position,
             std::uint16_t flags,std::uint8_t type,std::uint8_t radius){ //005CE4C0, exact payload publication order.
         auto& point=route.take();point.index20=index;point.position0=position;point.original10=position;
