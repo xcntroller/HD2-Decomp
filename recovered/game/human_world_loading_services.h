@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_player_live_input.h"
+#include "game/human_player_selection.h"
 #include "game/dog_sight_geometry.h"
 #include "game/dog_body_sound.h"
 #include "game/dog_body_frame.h"
@@ -1976,6 +1977,18 @@ public:
     std::uint32_t player_item_spawn_delay_ms(){ //Actual game configuration250, DWORD multiplication before signed comparison.
         return static_cast<std::uint32_t>(dependencies().startup.game_configuration().rules228[10])*1000u;
     }
+    template<class Human>void select_loading_player(Human& human,bool enabled){
+        auto& owner=composition(human);owner.states().select_player(enabled,mode_flags(),human_current_player_id(),owner.control());
+    }
+    template<class Human>void restore_loading_player_model(Human* human){hd2::game::restore_loading_player_model(human,*this);}
+    template<class Human>void loading_player_model_visible(Human& human,bool enabled){dependencies().scene.frames().object_visible(human.base().frame(),enabled);}
+    void bind_loading_first_person_player(){dependencies().presentation.bind_first_person_player();}
+    void refresh_loading_first_person_visibility(){dependencies().presentation.refresh_first_person_visibility();}
+    template<class Human>void loading_selected_player_log(Human& human){(void)human_damage_display_name(human);} //005A8320 evaluated;0069BFE0 is retail RET.
+    void resume_loading_player_control(){hd2::game::resume_loading_player_control(dependencies().players.control(),*this);}
+    bool select_loading_player_index(std::int32_t index){return hd2::game::select_loading_player_index(dependencies().players.control(),index,*this);}
+    bool select_loading_command_player_index(std::int32_t index){return hd2::game::select_loading_command_player_index(dependencies().players.control(),index,*this);}
+    std::int32_t next_loading_player_index(bool reverse){return hd2::game::next_loading_player_index(dependencies().players.control(),reverse);}
     template<class Human>void process_human_live_player_input(Human& human,std::uint32_t* first,std::uint32_t* second){ //005A3DE0 directly calls0053BF90; it has no nonPlayer no-op gate.
         using Player=typename Dependencies::Composition::StateFactory::Player;
         auto* state=dynamic_cast<Player*>(human.loading_state);

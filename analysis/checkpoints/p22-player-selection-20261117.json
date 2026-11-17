@@ -1,0 +1,95 @@
+{
+  "date": "2026-11-17",
+  "base": "e2c8487",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_ui_bound": false,
+  "hum_complete": false,
+  "frame_complete": false,
+  "own_complete": false,
+  "contract": "analysis/human-player-selection-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_player_selection.h",
+      "bytes": 4390,
+      "sha256": "7daef436c0ae78711c215849de5663e9edfb27df51e946e513c4cfdfafc3dd0b"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 311942,
+      "sha256": "a35dbf100cbbb16d254e0ffa89dd746264dd9f389b6c8700bb399ab997a4d410"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-own-20261112/own-player-controls-index.txt",
+      "bytes": 9657,
+      "sha256": "a68e1f25c403ba24bef3b4520de4030548f44aca62393c9a386feb5a09133fbd"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/own-player-controls-abi.asm",
+      "bytes": 10559,
+      "sha256": "980a55c729d5f01a507027b8acf7fd2813c9b1f485fbdbee4a3daf65d785e6b4"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/own-player-selection-dependencies-index.txt",
+      "bytes": 10804,
+      "sha256": "1718e228ac176052421fd11702b74d34fa32ca31b6b72b253040d6169ae988e8"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/own-player-selection-dependencies-abi.asm",
+      "bytes": 2001,
+      "sha256": "f5c08be4b1160ae0eefeb857dc41ef9a88131d68675a13b227201fabac7c1aa9"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/own-player-model-type-table.json",
+      "bytes": 240,
+      "sha256": "ac6bf961e019db64f1a34e127a4b5df48e315dc96473d557962dea61e3539a55"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-own-20261112/player-selection-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-selection-native-run.log",
+      "bytes": 150,
+      "sha256": "654a3bbaa58bd8bf8a4c93c2d9bac3be6567f6544ec412f532c0e43d0713b443"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-selection-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "verification": [
+    "Native ASan/UBSan/leaks PASS 1032 checks: actual HumanPlayerControlLoading and HumanStateLoadingOwner; Factory/Base/Inline/model endpoints explicitly substituted.",
+    "Strict actual full World i386 module compile/link PASS; Windows executable not run.",
+    "Source guards and command target/current distinction compared against raw original0045DD12; different-target sanitizer case passes.",
+    "Staged desktop application artifact unchanged; no launcher rebuild or desktop claim for this source batch."
+  ],
+  "removed_temporary_audits": [
+    {
+      "path": "analysis/work/p22-own-20261112/player-selection-native.cpp",
+      "bytes": 7889,
+      "sha256": "7f9501ced9375cea508bdd7c9d1980bff029955adb48e00216ba065bb8d22b34"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-selection-native",
+      "bytes": 1053088,
+      "sha256": "d9b2ab7540707a5bf6641cdab58972e985a019f1a2288a4ae491fe353ba19874"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-selection-module.cpp",
+      "bytes": 369,
+      "sha256": "bad8109a92a0ce255bacc6abd9de53eb71d864f48fe8a07dff16819cdbc3ef22"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-selection-module.exe",
+      "bytes": 5033472,
+      "sha256": "1a38b5b86ba52e4bc7f186a32cb41b33e79f270f2e20212932eccb679287be5f"
+    }
+  ]
+}

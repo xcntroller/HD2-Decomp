@@ -51313,6 +51313,84 @@
         "analysis/human-player-live-input-source.md",
         "analysis/checkpoints/p22-player-live-input-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0045da40",
+      "status": "partial",
+      "coverage": "Resume actual roster[current2C] through existing Human B0 Player selection, with original -1 gate and no override58 lookup.",
+      "limitations": "Portable typed owners/borrowed roster and guarded missing native pointers replace original object ABI. Actual World/i386 link and native actual control/state owner audit pass with labelled endpoints; application UI forwarding and user desktop delivery remain open. No full-body promotion or delegated engine credit.",
+      "evidence": [
+        "recovered/game/human_player_selection.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-player-selection-source.md",
+        "analysis/checkpoints/p22-player-selection-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045dc20",
+      "status": "partial",
+      "coverage": "Validate soldier index/health/role, restore old model then demote freshly read current B0, publish current/previous/selected indices and call actual FPV/visibility/name endpoints in order.",
+      "limitations": "Portable typed owners/borrowed roster and guarded missing native pointers replace original object ABI. Actual World/i386 link and native actual control/state owner audit pass with labelled endpoints; application UI forwarding and user desktop delivery remain open. No full-body promotion or delegated engine credit.",
+      "evidence": [
+        "recovered/game/human_player_selection.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-player-selection-source.md",
+        "analysis/checkpoints/p22-player-selection-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045dcc0",
+      "status": "partial",
+      "coverage": "Command selection same-previous/-1 early returns and health/type validation; publish previous30, demote current2C when selected28 matches command target, then clear selected28.",
+      "limitations": "Portable typed owners/borrowed roster and guarded missing native pointers replace original object ABI. Actual World/i386 link and native actual control/state owner audit pass with labelled endpoints; application UI forwarding and user desktop delivery remain open. No full-body promotion or delegated engine credit.",
+      "evidence": [
+        "recovered/game/human_player_selection.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-player-selection-source.md",
+        "analysis/checkpoints/p22-player-selection-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045d660",
+      "status": "partial",
+      "coverage": "Native forward eligible-soldier cycling with fresh count, wrap/current gates, signed health/role and original empty/final-index behavior.",
+      "limitations": "Portable typed owners/borrowed roster and guarded missing native pointers replace original object ABI. Actual World/i386 link and native actual control/state owner audit pass with labelled endpoints; application UI forwarding and user desktop delivery remain open. No full-body promotion or delegated engine credit.",
+      "evidence": [
+        "recovered/game/human_player_selection.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-player-selection-source.md",
+        "analysis/checkpoints/p22-player-selection-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045d9d0",
+      "status": "partial",
+      "coverage": "Native reverse eligible-soldier cycling with fresh count, wrap/current gates, signed health/role and original empty/final-index behavior.",
+      "limitations": "Portable typed owners/borrowed roster and guarded missing native pointers replace original object ABI. Actual World/i386 link and native actual control/state owner audit pass with labelled endpoints; application UI forwarding and user desktop delivery remain open. No full-body promotion or delegated engine credit.",
+      "evidence": [
+        "recovered/game/human_player_selection.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-player-selection-source.md",
+        "analysis/checkpoints/p22-player-selection-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045db90",
+      "status": "partial",
+      "coverage": "Restore old Human model visibility using actual field160 Actor families 4/20/21/34 and Actor8C bit10; null Human no-op and actual frame visibility endpoint.",
+      "limitations": "Portable typed owners/borrowed roster and guarded missing native pointers replace original object ABI. Actual World/i386 link and native actual control/state owner audit pass with labelled endpoints; application UI forwarding and user desktop delivery remain open. No full-body promotion or delegated engine credit.",
+      "evidence": [
+        "recovered/game/human_player_selection.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-player-selection-source.md",
+        "analysis/checkpoints/p22-player-selection-20261117.json"
+      ]
     }
   ]
 }
