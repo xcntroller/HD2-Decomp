@@ -2775,6 +2775,14 @@ public:
     template<class Actor>auto sight_human_attachment(Actor actor){return selection_human(*actor).field160;}
     template<class Actor>void sight_exclude_human(Actor actor){human_inline(selection_human(*actor)).exclude_query(false);}
     template<class Actor>void sight_restore_human(Actor actor){human_inline(selection_human(*actor)).restore_query(false);}
+    template<class Actor>void sight_exclude_dog(Actor actor){ //0046DF80, actual Dog Actor26C physical descriptor pair.
+        using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
+        auto* dog=dynamic_cast<Dog*>(actor);
+        if(!dog)throw std::logic_error("Dog Sight exclusion requires actual type30 owner");
+        if(!dog->collisions)throw std::runtime_error("Dog Sight exclusion requires actual live Body collision producer");
+        std::array<typename DogBodyCollisionLifetime<typename Dependencies::Frame>::Descriptor*,2> descriptors{{dog->collisions->descriptor(0),dog->collisions->descriptor(1)}};
+        if(descriptors[0])dependencies().scene.exclusions().many(descriptors.data(),2,nullptr); //Native first-pointer gate; second NULL remains invalid if reached.
+    }
     void sight_restore_dog(){dependencies().scene.exclusions().clear();} //0046DF80 clears even with no populated Dog exclusions.
     struct SightRayHit{std::uint32_t flags;const void* actor;};
     auto human_geometry_ray(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags,bool normal=true){

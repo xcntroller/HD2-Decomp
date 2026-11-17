@@ -686,6 +686,7 @@ public:
         call<void>(reinterpret_cast<Frame>(address(frame,0x120)),8,group,index,weight);
     }
     Frame human_model_clip(Frame model,std::uint32_t slot) {return call<Frame>(model,0x88,slot);}
+    long double dog_model_weight(Frame model,std::uint32_t slot){return call<long double>(model,0x98,slot);} //005C6EE0 retains native ST0 through comparison.
     float human_model_weight(Frame model,std::uint32_t slot) {return call<float>(model,0x98,slot);}
     void human_model_weight(Frame model,std::uint32_t slot,float weight) {call<void>(model,0x94,slot,weight);}
     std::int32_t human_model_time(Frame model,std::uint32_t slot) {return call<std::int32_t>(model,0xa0,slot);}
