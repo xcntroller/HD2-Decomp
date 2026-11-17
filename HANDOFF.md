@@ -16,7 +16,33 @@ interactive changes need actual user desktop acceptance. None has occurred.
 
 ## Latest result
 
-[Human command/Active firing](analysis/human-h8-command-fire-line-source.md),
+[Dog Body actions](analysis/human-h8-dog-actions-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json): actual Dog
+owns SAME-queue005C5030 compositor,8490/8540/8570 priorities/death requests,
+4CB0 playback,8880 predicate,5BF0 action effects,4B50 speed and88B0 ground death/
+clip75C0 forced-motion source. Native early returns, fresh metadata, signed RNG,
+wrap timing and correct384/380 sound destinations preserved.4575872 strict native
+ASan/UBSan/leak checks PASS:100000 original-C differential compositor states,
+11040 playback cases, all24 action-effect policies plus failure/ground checks;
+adjacent controller/clip/audio/frame/sweep endpoints explicit. Strict actual
+module authority/presentation+Dog storage+ground/SAME sweep i386 and forced O2
+launcher/probe PASS. Ten partials;34 complete/3642 partial(client3637+engine5).
+Tracker exact+27 tests PASS. Successful native/module audit pairs fingerprinted
+and removed. No heavy job running, no live Dog/activation/desktop claim.
+
+Next: actual Dog collision geometry005C7D30/005C1DC0, clip005C6E10/005C6D10/
+005C7430 and live activation/retirement/controller. Reuse current evidence,
+including raw action-playback/effects/ground-death files; no new exports needed
+for those. Body action owner scalars/priority and queue provenance remain honest.
+Current geometry proof: native3 col_dummy frames must have kind6.005C1DC0
+updates each existing dummy matrix, copies XYZ with Y−FLOAT.1, radius=(highX130−
+lowX120)*FLOAT.35. First2 descriptors flags42/mask100001/radius*FLOAT1.65;
+last3 flags42000042/mask100002/Y+FLOAT.22/radius*FLOAT2.5. All borrow actual
+Actor/model, register006EF3E0 IN ORDER; retain partial-prefix cleanup. Missing
+dummy leaves native corresponding centre/radius unproduced; don't silently zero.
+Body3EC d is distinct from404 extra marker. Need exact raw for any field ambiguity.
+
+Prior456e7fa [Human command/Active firing](analysis/human-h8-command-fire-line-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-command-fire-line-20261117.json):
 0045BD10 action22 now uses actual mounted-control/payload and kind6 inventory;
 00528950's invented pre-common-path task whitelist is removed. Actual Active
@@ -27,7 +53,7 @@ actual module/UI/selector/Active i386 link and forced launcher/probe PASS. Nativ
 model/physics endpoints are qualified in receipt, not actual loaded engine runs.
 Audit source/binary pairs fingerprinted then removed. Tracker exact+27 tests PASS:
 34 complete/3632 partial(client3627+engine5), no complete promotions/desktop claim.
-No heavy job currently running. H8.2/H8.4/H8.5/H8.6 and HUM matrix remain OPEN.
+H8.2/H8.4/H8.5/H8.6 and HUM matrix remain OPEN.
 
 Prior96182e2 [Dog order storage](analysis/human-h8-dog-orders-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json): actual Dog

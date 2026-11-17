@@ -49807,6 +49807,146 @@
         "analysis/human-h8-command-fire-line-source.md",
         "analysis/checkpoints/p2.2-human-h8-command-fire-line-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005c5030",
+      "status": "partial",
+      "coverage": "Full actual Dog Body queue action/posture/stance compositor, native fresh last-metadata reads, four-command truncation, signed RNG, voice early returns and priority/metadata publication.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c8490",
+      "status": "partial",
+      "coverage": "Actual Dog Body signed action priority including death INT_MAX, same queue cancellation, required ground setup and ordered two-descriptor retirement before action publication.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c8540",
+      "status": "partial",
+      "coverage": "Actual Dog Body posture priority admission including equality, retaining unproduced native-word requirements.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c8570",
+      "status": "partial",
+      "coverage": "Actual Dog Body stance priority admission including equality, retaining unproduced native-word requirements.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c4cb0",
+      "status": "partial",
+      "coverage": "Actual Dog Body current/first-record animation selection/consumption, single skip/defer behavior, controller-speed substitution, signed wrapping time gate and required mixer/action-effect ordering.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c8880",
+      "status": "partial",
+      "coverage": "Actual Dog Body signed action transition-blocking predicate.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c5bf0",
+      "status": "partial",
+      "coverage": "Actual Dog Body action-entry speed, animation2 XYZ and separate37C/380/384 SOUND stop/reset/emit policy and publication.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c4b50",
+      "status": "partial",
+      "coverage": "Actual Dog Body248 speed setter on its same owned action state.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c88b0",
+      "status": "partial",
+      "coverage": "Actual Dog Body ground-death direction snapshot, ordered404/3EC marker reads, same sweep arguments and forced-motion/death state/timer publication.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c75c0",
+      "status": "partial",
+      "coverage": "Actual Dog clip100 four-word forced-motion copy,110 zero and114 duration stores, retaining Body+10 base adjustment.",
+      "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
+      "evidence": [
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_body_orders.h",
+        "recovered/game/model_scene_actors.h",
+        "analysis/human-h8-dog-actions-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+      ]
     }
   ]
 }

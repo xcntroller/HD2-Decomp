@@ -2,7 +2,7 @@
 #define HD2_GAME_MODEL_SCENE_ACTORS_H
 
 #include "game/scene_actor.h"
-#include "game/dog_body_orders.h"
+#include "game/dog_body_actions.h"
 #include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/supply_box_geometry.h"
@@ -34,6 +34,8 @@ public:
     using Record=DogBodyOrderRecord;
     DogActorProperties properties;
     DogBodyOrders body_orders; //Actual current314/five338 records, no mirrored queue.
+    DogClipForcedMotion clip_forced_motion; //Actual clip005C75C0 producer, no cold motion claim.
+    DogBodyActions body_actions{body_orders}; //005C5030/8490/8540/8570 use these SAME records.
     std::uint32_t& field330=body_orders.current.field1c;
     std::uint32_t& field334=body_orders.current.field20;
     std::array<Record,5>& records=body_orders.records;
