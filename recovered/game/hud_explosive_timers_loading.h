@@ -24,12 +24,13 @@ public:
         started_=true;root_=frames_.hud_find(scene,"explosivetimer",0xffff);scene_=scene;
         for(auto count=actors.size();count;)if(auto* actor=actors[--count])if(actor->type()==22)actors_.push_back(actor); //004B04A0 is vector insertion, not an explosive virtual call.
         for(unsigned n=0;n!=10;++n) {
-            require(root_);std::array<char,32> name{};std::snprintf(name.data(),name.size(),"timer_explosive%02u",n);
+            require(root_);std::array<char,32> name{};std::snprintf(name.data(),name.size(),"timer-explosive%02d",static_cast<int>(n));
             frames4_[n]=frames_.actor_find(root_,name.data(),1);
             texts2c_[n]=factory_.make_hud_text();if(!texts2c_[n])throw std::runtime_error("HUD explosive timer text factory returned null");
             auto& text=*texts2c_[n];bind_hud_text_geometry(frames_,text,scene,frames4_[n]);
             text.text.inset=0;text.text.append(std::make_shared<const std::string>(),0x48); //Inset AFTER geometry, preserving default10 geometry.
-            require(frames4_[n]);frames_.object_visible(frames4_[n],false);
+            if(!frames4_[n])throw std::runtime_error(std::string("Required HUD explosive timer artwork is missing: ")+name.data());
+            frames_.object_visible(frames4_[n],false);
         }
         if(layout_.capacity()<10)layout_.reserve(10); //Native54/58 reserve0x50 without constructing records.
     }

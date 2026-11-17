@@ -1,0 +1,169 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "0e69b80",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-loading-hud-source.md",
+  "actual_desktop_result": "0f5fd6a8 passes SupplyBox/spatial sound; HUD loading fails on Required HUD explosive timer artwork is missing and returns to Main. No mission activation or first gameplay frame observed.",
+  "gameplay_desktop_verified": false,
+  "agent_executed_original_dll_proton_or_windows": false,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "source_files": [
+    {
+      "path": "recovered/game/hud_explosive_timers_loading.h",
+      "bytes": 6581,
+      "sha256": "27587532025d844c655964fa8cae1e425973b21efba23ef149623a25ee55a91f"
+    }
+  ],
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-return/application_launch.exe",
+      "bytes": 12825088,
+      "sha256": "0f5fd6a86a29617680ad379816569bdce52859d9e647cfff5785ba1239346c08"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-return/host-output.log",
+      "bytes": 203957,
+      "sha256": "2614152bdc60141a05f3ac24087ecd097888fd5550fc9091490bd86d8341c778"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-return/host-runtime.log",
+      "bytes": 207040,
+      "sha256": "ddb8e36b5833cb6e8096925bbdfca2a9f275d4073c7cb953f2345fd97c27f158"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-return/inputs.json",
+      "bytes": 993,
+      "sha256": "0e0b7e6f78d4c2a0d66648dcd83ea658e02c90f1a382a5fc15863a83b1e39ee5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-return/steam-0.log",
+      "bytes": 341558,
+      "sha256": "69f65331e80b7e668e404943bc624b32657026b3a478cf795d7516e3a08aba2b"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-artwork-frames.json",
+      "bytes": 72895,
+      "sha256": "d9a999d699e6835b3165f6d0c5fa123193bc8956c37948d5fa474b135ca1bd44"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-startup-check.json",
+      "bytes": 3299,
+      "sha256": "85df8dbcf9b9adfa5d6e3c27f636d2c2533a4b73286d9bfe301a3eb729e7130b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-startup-literals.json",
+      "bytes": 10513,
+      "sha256": "170a968e25bec25d3b8e4205c935336b5e68ceeabb65e5b285f7e9a21e6b815e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-literals.json",
+      "bytes": 244,
+      "sha256": "3aab94978ae7deafba04fc48a5d1daade85f1f09244ee8ca5795143ad519f4a9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-model-names.json",
+      "bytes": 375,
+      "sha256": "fb1835c652f8c17cb37f28013a76f04f398899e012325a67218888e552f56829"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-command-index.txt",
+      "bytes": 5753,
+      "sha256": "7c415ed5b52d5ef9c24b7046bf021cb3683928bc86af66967be2aa7edb665541"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-startup-index.txt",
+      "bytes": 19565,
+      "sha256": "74ed845416a6a3e41cbb1a39edaa4a36220aba14ba9100715020b97d1183fd14"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-index.txt",
+      "bytes": 5462,
+      "sha256": "777796485d72a880daa9f46855c7f3198fa94635c690d501d910e4b18d28c0ee"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/hud-loading-panels-lifetime/004af630.c",
+      "bytes": 3542,
+      "sha256": "d9cea7ee9cbb41b4db93d0b81c3fb7d2fa780a6e8d58c185ee99dd3eb63df3a0"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/hud-loading-panels-lifetime/004af630.json",
+      "bytes": 8664,
+      "sha256": "d2aa8af51ecba707c54e10fd574b6ef192e5e68753e4b740d9d1f4f1823d7a8b"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/hud-explosive-timers-bind-close.asm",
+      "bytes": 13385,
+      "sha256": "72b42d16e5e10b1b4688726becb842801450e7b696a0665e0c690e6eea3494a9"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-timer-function-check.log",
+      "bytes": 103,
+      "sha256": "102a71cc5b46bcaa73572c8be998258a281298efd72822111cf489d0f6d382e3"
+    }
+  ],
+  "review": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+    "detached_base": "edebd81",
+    "interactive_overlay_committed": false,
+    "source_files": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/hud_explosive_timers_loading.h",
+        "bytes": 6581,
+        "sha256": "27587532025d844c655964fa8cae1e425973b21efba23ef149623a25ee55a91f"
+      }
+    ],
+    "built_artifacts": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+        "bytes": 12825088,
+        "sha256": "ef21bbe0316897e97702e5457262ef13f18c1ab7a06e691369b33441cbaa1dfe"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+        "bytes": 1175552,
+        "sha256": "b7ce53ec00e12ffed426dee6412d7e4691d5415a9c64b7566eef9358f64c64bb"
+      }
+    ],
+    "staged_artifact": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 12825088,
+      "sha256": "ef21bbe0316897e97702e5457262ef13f18c1ab7a06e691369b33441cbaa1dfe"
+    },
+    "recoverable_patch": {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-hud-review-final.patch",
+      "bytes": 54660,
+      "sha256": "906e4c1d1dd0d6579e5cb6e991e935f77cd4276992a11c9e922dcca0a0377dd6"
+    }
+  },
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "limitations": [
+    "Actual i386 O2/Werror application/probe compile and link, static original/model check only; no Windows/engine execution by agent. Revised candidate still requires user mission test.",
+    "75 remaining HUD startup keys corroborated, including 53 static original literals; down_panel is model-presence only. Case-insensitive model corroboration does not establish engine lookup semantics.",
+    "Source-only key correction; interactive OWN adapter remains uncommitted pending actual user desktop acceptance. No function-count or complete promotion."
+  ]
+}

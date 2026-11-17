@@ -467,7 +467,7 @@ GameActorServices::Actor type18 getter and explicit borrowed0089B3B0 registry.
 Find explosivetimer/FFFF/store scene60, append every nonnull actor type22 in
 REVERSE registry order, preserving duplicates and accepting more than10 actors.
 004B04A0 is vector insertion, not an explosive virtual service. Native actor
-owners must outlive this borrower list. Find10 root children timer_explosive%02d/
+owners must outlive this borrower list. Find10 root children timer-explosive%02d/
 mask1, allocate SAME text, bind geometry with DEFAULT inset10 THEN set inset0,
 append empty/style48,hide. This ordering differs from scoreboard. Reserve at
 least10 separate8-byte layout-record capacity after allslots; no fabricated
@@ -1270,3 +1270,12 @@ query contracts and same World/mission/Items identity. See
 and[receipt](checkpoints/p22-ui-info-20261111.json). Conditional network/help-ID
 producers and full containing frame remain explicit; no desktop/network-runtime
 acceptance, original ABI equivalence or complete-function promotion is claimed.
+
+
+2026-11-17 actual loading correction:004AF630's format at0083B280 is
+`timer-explosive%02d`. The earlier source mistook sanitized Ghidra symbol
+underscores for a literal underscore. Corrected to exact bytes; all10 direct
+children are verified in the installed602-frame gameinterface model. Remaining
+HUD bootstrap lookups are compared with existing original literals/model names;
+case differences already present in original Border/TMCamera spellings remain.
+[Current loading evidence](p22-frame-loading-hud-source.md).
