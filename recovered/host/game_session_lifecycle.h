@@ -114,7 +114,7 @@ public:
     template<class Runtime>GameSessionFrames<Runtime>& bind_frames(GameSessionFrameExternal& external,Runtime& runtime){
         require_open();if(frames_)throw std::logic_error("Session frame coordinator is already bound");
         if(frame_retirement_started_||boundary_.activation_progress().finished)throw std::logic_error("Cannot bind frames to a retiring session");
-        auto frames=std::make_unique<GameSessionFrames<Runtime>>(loading_->world(),parent_,activation_->selection(),*blast_,external,runtime);
+        auto frames=std::make_unique<GameSessionFrames<Runtime>>(loading_->world(),parent_,activation_->selection(),*blast_,external,runtime,ui_.get());
         auto& result=*frames;frames_=std::move(frames);return result; //Publish only a complete same-owner composition.
     }
     void retire_frames()noexcept{if(frames_){frames_->retire();frames_.reset();}}

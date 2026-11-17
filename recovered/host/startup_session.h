@@ -10,6 +10,12 @@
 #include "game/session_application_commands.h"
 #include "game/session_received_application.h"
 #include "game/session_peer_records.h"
+#include "game/session_match_frame.h"
+#include "game/session_peer_statistics_wire.h"
+#include "game/session_match_rules.h"
+#include "game/session_pending_spawn_packets.h"
+#include "game/session_frame_requests.h"
+#include "game/session_targeted_packets.h"
 #include "game/session_human_inputs.h"
 #include "game/session_entry_packets.h"
 #include "game/session_entry_inputs.h"
@@ -816,6 +822,7 @@ public:
         else control_frame_.reset();
     }
     auto& game_broadcast_packets(){return broadcast_packets_;}
+    auto& game_session_frame_process(){return session_frame_process_;}
     auto& game_local_packets(){return local_packets_;}
     void receive_control_connection_payload(const std::vector<unsigned char>& bytes,std::uint32_t channel,std::uint32_t flags){ //0072C360.
         game::deliver_session_connection_packet(gate_,bytes,channel,flags,local_packets_);
@@ -831,7 +838,60 @@ public:
     void queue_application_command(std::uint32_t kind,std::uint32_t target,std::uint32_t first,std::uint32_t second){
         application_commands_.enqueue({kind,first,second,target},gate_,*this);
     }
+    void queue_application_spawn(const std::shared_ptr<game::SessionPendingSpawn>& pending){
+        application_commands_.enqueue({3,0,0,0,pending},gate_,*this);
+    }
+    void write_application_spawn(game::SessionPacketStream& packet,game::SessionPendingSpawn& pending){ //0072A0B0 case3.
+        game::write_session_pending_spawn(packet,pending,control_data_,*this);
+    }
+    void write_application_match_sides(game::SessionPacketStream& packet){ //0072A0B0 case12, terminator0x21/6 bits.
+        enter_control_lock(0);struct Unlock{StartupSession& s;~Unlock(){s.leave_control_lock(0);}}unlock{*this};
+        for(std::size_t n=0;n<control_data_.records.size();++n)if(control_data_.records[n].byte(8).value()){
+            packet.write(static_cast<std::uint32_t>(n),6);packet.write(control_data_.records[n].word(0x64),2);
+        }
+        packet.write(0x21,6);
+    }
+    void write_application_match_statistics(game::SessionPacketStream& packet){ //0072F880.
+        if(!(gate_&1u))return;
+        enter_control_lock(0);
+        struct Unlock{StartupSession& s;bool held=true;void release(){if(held){held=false;s.leave_control_lock(0);}}~Unlock(){release();}}unlock{*this};
+        for(std::size_t n=0;n<control_data_.records.size();++n){
+            if(n==0&&(gate_&2u))control_data_.records[n].word(0x50,0);
+            else{
+                auto* server=control_frame_.state().server;if(!server)throw std::logic_error("Match statistics require actual authority transport00 connection-info owner");
+                std::array<std::uint32_t,23> info;info[0]=0x5c;
+                using Query=HRESULT(WINAPI*)(void*,std::uint32_t,void*,std::uint32_t);
+                const auto method=reinterpret_cast<Query>((*static_cast<void***>(server))[0x80/sizeof(void*)]);
+                if(FAILED(method(server,control_data_.records[n].word(0),info.data(),0)))throw std::runtime_error("Authority connection-info did not produce native match-statistic output");
+                control_data_.records.at(n).word(0x50,info[1]>>1);
+            }
+            if(control_data_.records[n].byte(8).value()&&control_data_.records[n].human_actor()){
+                packet.write(static_cast<std::uint32_t>(n),6);
+                game::write_session_peer_statistics(packet,[&](unsigned i){return control_data_.records.at(n).word(0x40+i*4);},[&](unsigned i,std::uint32_t value){control_data_.records.at(n).word(0x40+i*4,value);});
+            }
+        }
+        packet.write(0x21,6);
+        const auto round_time=packet_world_.frame_statistics_word(0x30),game_time=packet_world_.frame_statistics_word(0x28),losses=packet_world_.frame_statistics_word(0x84);
+        packet.write(round_time,32);packet.write(game_time,32);
+        if(game_configuration().remote_ai_enabled()){
+            if(!game_configuration().rules228[21])for(unsigned n=0;n!=6;++n){auto value=control_data_.records.at(n).word(0xb0);if(value>127)value=126;packet.write(value,7);}
+            else packet.write(losses,16);
+        }
+        unlock.release();
+        for(unsigned team=0;team!=2;++team)game::write_session_peer_statistics(packet,[&](unsigned i){return control_data_.team_statistics464[team].at(i);},[&](unsigned i,std::uint32_t value){control_data_.team_statistics464[team].at(i)=value;});
+        packet.write(static_cast<std::uint32_t>(game::frame_match_score(control_data_.team_scores44c[0])),10);
+        packet.write(static_cast<std::uint32_t>(game::frame_match_score(control_data_.team_scores44c[1])),10);
+        packet.write(control_data_.team_wins458[0],8);packet.write(control_data_.team_wins458[1],8);
+    }
+    void write_application_configuration(game::SessionPacketStream& packet){write_game_network_map(packet);} //Actual006AD590 over SAME application configuration.
+    void write_application_world_snapshot(game::SessionPacketStream& packet){packet_world_.write_application_world_snapshot(packet);}
     void drain_application_commands(){application_commands_.drain(*this);}
+    void queue_application_request(std::uint32_t kind,std::uint32_t first,std::uint32_t second){application_requests_.enqueue({kind,first,second},gate_,*this);}
+    void drain_application_requests(){application_requests_.drain(*this);}
+    auto& application_live_squad(){return pre_mission().squad();}
+    auto& begin_application_request(std::uint32_t kind){ //0072BDC0→0072BED0, local=false, no target or preflush.
+        auto& packet=broadcast_packets_.request_stream(0,gate_);packet.begin(20,0,0,false);packet.write(kind,32);return packet;
+    }
     std::uint32_t application_mode_flags()const{return gate_;}
     bool has_application_game()const{return game_views_.owner()!=nullptr;}
     std::int32_t application_local_peer()const{return local_player_identity();}
@@ -889,10 +949,11 @@ public:
     auto take_game_console_command(){return game_console().take_command();}
     void flush_application_command_packets(std::uint32_t elapsed){local_packets_.flush(elapsed);}
     auto& begin_application_command(std::uint32_t target,std::uint32_t kind){ //0072BDE0/0072BE00 local=true, priority0.
-        if(target)throw std::runtime_error("Application command requires actual targeted scratch/transport receiver");
-        auto& stream=broadcast_packets_.begin(20,0);stream.write(kind,32);return stream;
+        auto& stream=target?broadcast_packets_.targeted:broadcast_packets_.first;
+        stream.begin(20,0,target,true);stream.write(kind,32);return stream;
     }
-    void finish_application_command(game::SessionPacketStream& stream){stream.finish_broadcast();}
+    void finish_application_command(game::SessionPacketStream& stream){game::finish_session_application_packet(stream,control_data_,*this);}
+    void enqueue_application_presentation(const std::vector<unsigned char>& bytes){local_packets_.enqueue(false,bytes,0);}
     void bind_game_packet_world(game::SessionPacketWorld& world){packet_world_.bind(world);}
     void unbind_game_packet_world(game::SessionPacketWorld& world)noexcept{packet_world_.unbind(world);}
     void enter_control_lock(unsigned index) { lock_services_.enter_control_lock(index); }
@@ -1059,10 +1120,12 @@ private:
     ControlStartupServices lock_services_;
     ApplicationCommandLock application_command_lock_;
     game::SessionApplicationCommands application_commands_; //SAME process lifetime, survives World unbind.
+    game::SessionFrameRequests application_requests_;
     std::unique_ptr<GameConsole> console_;void* application_console_owner_=nullptr;
     std::function<bool()> application_console_route_;std::function<void()> application_console_close_;
     frontend::ProfileSelectionWords profile_words_;
     frontend::LocalizedTextCache text_;
+    game::SessionMatchFrameProcess session_frame_process_;
     std::uint32_t gate_ = 0;
     const char* missing_speech_caption_=nullptr; //Actual process fallback borrower; distinct from game+60 text entries.
     frontend::ColdControlFrame<StartupSession> control_frame_;

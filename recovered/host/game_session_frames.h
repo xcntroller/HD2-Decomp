@@ -4,8 +4,30 @@
 #include "host/game_mission_module_frames.h"
 #include "host/game_blast_waves.h"
 #include "game/session_frame_loading.h"
+#include "game/session_match_rules.h"
+#include "game/session_match_input.h"
+#include "game/session_match_peers.h"
+#include "game/human_damage_score.h"
+#include "host/game_ui_presentation.h"
 
 namespace hd2::host {
+//Actual process/transport/application/interactive-camera owners, distinct from
+//the containing FRAME policy. No default successes or manufactured data.
+class GameSessionMatchExternal {
+public:
+    virtual ~GameSessionMatchExternal()=default;
+    virtual world_loading::World& world()const=0;
+    virtual void system_console_command(const std::string&)=0; //0069F250/00742480.
+    virtual void control_heartbeat(std::uint32_t)=0; //0072DCD0, SAME0097D540.
+    virtual std::uint32_t connection_status()=0; //007316F0, fresh clock/40C/5044.
+    virtual void defer_network_close()=0; //0072E4E0(false), real process5070.
+    virtual void current_application_status(std::uint32_t)=0; //Current application virtual2C, NOT controller04 request.
+    virtual std::uint32_t current_game_phase()=0; //Fresh00698500 game88.
+    virtual void reset_round_world(bool)=0; //0069C390, actual retained-world/round reset; NOT pause/realtime toggle.
+    virtual void balance_peer_sides(std::uint32_t,std::uint32_t)=0; //007302D0, actual process records.
+    virtual void camera_command(std::uint32_t,std::uint32_t,std::uint32_t)=0; //Actual mission camera virtual44.
+    virtual void authority_hazard(world_loading::Human&)=0; //Human D4(12,-1), native unwritten vector source remains required.
+};
 //Required UI/controller and conditional non7 endpoints use the SAME World.
 //Source implementations on the owning branches still need actual application
 //binding; no successful fallback, default flag or copied input is installed.
@@ -29,6 +51,7 @@ public:
     virtual void end_session_cutscene()=0; //00423EB0 actual script process; no end flag substitute.
     virtual void process_nonoffline_session_input(std::uint32_t*,std::uint32_t*)=0; //0069AAB0.
     virtual Human* network_input_player()=0; //00730460 actual local peer3C borrower.
+    virtual GameSessionMatchExternal* match_frame_sources(){return nullptr;} //Required only at reached external leaves.
 };
 class GameSessionFrameCallbacks {
 public:
@@ -47,10 +70,11 @@ template<class Runtime>class GameSessionFrames final:public GameSessionFrameCall
 public:
     using World=world_loading::World;using Human=world_loading::Human;using Parent=World::Parent;
     GameSessionFrames(World& world,Parent& parent,const game::SessionSelection& selection,
-            GameBlastWaves& blast,GameSessionFrameExternal& external,Runtime& runtime)
+            GameBlastWaves& blast,GameSessionFrameExternal& external,Runtime& runtime,GameUiPresentation* presentation=nullptr)
         :world_(world),parent_(parent),d_(world.owners().dependencies()),selection_(selection),
-         blast_(blast),external_(external),modules_(world,runtime),camera_(world.owners()){
+         blast_(blast),external_(external),modules_(world,runtime),camera_(world.owners()),presentation_(presentation){
         if(!parent_.constructed()||&external_.world()!=&world_||&blast_.dependencies()!=&d_||
+           (presentation_&&presentation_->world_identity()!=&world_)||
            &d_.request!=&parent_.request()||selection_.accepted_request()!=&parent_.request()||
            d_.scene.frames().world_scene_frame()!=parent_.scene()->frame())
             throw std::logic_error("Session FRAME requires its SAME World/parent/selection/blast/external owners");
@@ -107,7 +131,9 @@ public:
     void objective_exit_camera(){ //0046CB20 command2(1,0) is a genuine offline7 early return.
         if((mode_flags()&7u)!=7u)throw std::runtime_error("Objective camera command requires actual nonoffline receiver");
     }
-    void finish_nonoffline_session_exit(){throw std::runtime_error("Session exit requires actual0072E4E0/0072A0B0 match/network receivers");}
+    void finish_nonoffline_session_exit(){MatchServices q{*this};q.frame_defer_network_close();if(mode_flags()&1u)q.frame_queue_command(1,0,0,0);}
+    void advance_nonoffline_fixed_frame(std::uint32_t elapsed){MatchServices q{*this};game::advance_nonoffline_fixed_frame(d_.session,q,elapsed);}
+    void advance_nonoffline_variable_frame(std::uint32_t elapsed){MatchServices q{*this};game::advance_nonoffline_variable_frame(d_.session,q,elapsed);}
     std::uint32_t player_control_surface_flags(Human& human){ //005A9720/004DD090.
         if(human.field160){
             if(human.field160->base().type()!=4)return 0;
@@ -148,11 +174,151 @@ public:
     bool hud_nonoffline_input_blocked(){return external_.hud_nonoffline_input_blocked();}
     bool hud_player_input_blocked(){return external_.hud_player_input_blocked();}
     void process_hud_controls(std::uint32_t* a,std::uint32_t* b){external_.process_hud_controls(a,b);}
-    void process_nonoffline_session_input(std::uint32_t* a,std::uint32_t* b){external_.process_nonoffline_session_input(a,b);}
+    void process_nonoffline_session_input(std::uint32_t*,std::uint32_t* b){MatchServices q{*this};game::process_nonoffline_frame_input(d_.session,q,b);}
     void end_session_cutscene(){external_.end_session_cutscene();}
-    Human* network_input_player(){return external_.network_input_player();}
+    Human* network_input_player(){MatchServices q{*this};return q.frame_local_human();}
     void process_network_player_input(Human& human,std::uint32_t* a,std::uint32_t* b){external_.process_player_input(human,a,b);}
 private:
+    struct MatchServices {
+        GameSessionFrames& f;
+        auto& data(){return f.d_.startup.game_control_records();}auto& startup(){return f.d_.startup;}
+        auto& world(){return f.world_.owners().human_services();}auto& state(){return f.d_.session;}
+        GameSessionMatchExternal& required(const char* address){auto* p=f.external_.match_frame_sources();
+            if(!p)throw std::runtime_error(std::string("Nonoffline FRAME requires actual external owner at ")+address);
+            if(&p->world()!=&f.world_)throw std::logic_error("Nonoffline FRAME external producer belongs to a different World");return *p;}
+        auto& presentation(){if(!f.presentation_)throw std::logic_error("Nonoffline FRAME requires its SAME lifecycle presentation");return *f.presentation_;}
+        std::uint32_t mode_flags(){return f.mode_flags();}
+        std::uint32_t frame_rule(unsigned offset){auto& c=startup().game_configuration();if(offset==0x224)return static_cast<std::uint32_t>(c.style224);
+            if(offset<0x228||offset>0x27c||(offset&3))throw std::out_of_range("FRAME configuration word");return static_cast<std::uint32_t>(c.rules228.at((offset-0x228)/4));}
+        bool frame_console_enabled(){return startup().game_configuration().flag170!=0;}
+        auto take_frame_console_command(){return startup().take_game_console_command();}
+        void process_frame_console_command(const std::string& text){required("0069F250/00742480").system_console_command(text);}
+        bool frame_remote_ai_enabled(){return startup().game_configuration().remote_ai_enabled();}
+        void frame_reset_scores(){game::reset_human_match_scores(data(),startup());}
+        Human* frame_local_human(){auto* p=game::local_session_peer_human(data(),startup().local_player_identity());
+            return p?&f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(p)):nullptr;}
+        auto* frame_human_state(Human& human){return human.loading_state;}
+        template<class State>bool frame_state_suppressed(State& value){return value.selection_suppressed();}
+        template<class State>void frame_suppress_state(State& value,bool suppressed){value.selection_suppressed(static_cast<std::uint8_t>(suppressed));}
+        template<class State>std::uint32_t frame_state_flags(State& value){return value.words().template get<std::uint32_t>(0x50);}
+        std::int32_t frame_human_age(Human& human){return game::human_frame_signed_word(human.field204);}
+        std::int32_t frame_human_health(Human& human){return game::human_frame_signed_word(human.properties.stats_ec[0]);}
+        std::int32_t frame_human_identity(Human& human){return human.base().id10();}
+        bool frame_human_controlled(Human& human){return game::script_human_player_controlled(human,mode_flags());}
+        std::uint32_t frame_human_side(Human& human){return world().human_specialization(human,false);}
+        std::uint32_t frame_local_human_side(){auto* p=frame_local_human();if(!p)throw std::logic_error("Spectator team query lost actual local Human");return frame_human_side(*p);}
+        Human* frame_spectator_candidate(std::uint32_t index){auto* p=f.d_.scene.frames().scene_actor_command_identity(game::human_frame_signed_word(index));
+            return p?&f.d_.world_actors.human_loading_actor(p):nullptr;}
+        bool frame_peer_spectator_only(std::int32_t identity){const auto i=static_cast<std::uint32_t>(identity);if(i>=data().records.size())return false;
+            auto& record=data().records[i];if(!record.byte(8).value())return false;
+            auto* p=record.human_actor();return game::hud_info_peer_unavailable(p?&f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(p)):nullptr);}
+        void frame_override_player(Human* human){f.d_.players.control().override_player(human);}
+        void frame_enable_first_person(bool enabled){f.d_.first_person.view().enable(mode_flags(),enabled);}
+        void frame_hud_spawn_mode(std::uint32_t value){world().spawn_hud_mode(value);}
+        void frame_hud_peer_human(Human* human){f.d_.hud.refresh_peer_human(human,mode_flags(),startup().local_player_identity());}
+        std::uint32_t frame_current_match_phase(){return required("00698500/88").current_game_phase();}
+        void frame_camera_command(std::uint32_t command,std::uint32_t present,std::uint32_t value){required("0046CB20").camera_command(command,present,value);}
+        void frame_reset_local_suppression(){if(auto* human=frame_local_human()){auto* state=human->loading_state;if(!state)throw std::logic_error("Match reset lost actual local B0");state->selection_suppressed(0);}}
+        void frame_clear_flag_actor_states(){for(std::size_t n=0;n<f.d_.scene.frames().scene_actor_identity_count();++n)
+            if(auto* actor=f.d_.scene.frames().scene_actor_command_identity(static_cast<std::int32_t>(n)))if(actor->base().type()==37u)static_cast<game::ZoneSceneActor<GameActorServices>*>(actor)->cursor100=0;}
+        void frame_prepare_peer_lives(){game::prepare_session_match_peer_lives(data(),startup());}
+        auto frame_live_team_counts(){return game::live_session_match_team_counts(data(),startup());}
+        void frame_queue_command(std::uint32_t kind,std::uint32_t target,std::uint32_t first,std::uint32_t second){startup().queue_application_command(kind,target,first,second);}
+        void frame_queue_pending_spawn(const std::shared_ptr<game::SessionPendingSpawn>& pending){startup().queue_application_spawn(pending);}
+        void frame_queue_request(std::uint32_t kind,std::uint32_t first,std::uint32_t second){startup().queue_application_request(kind,first,second);}
+        bool frame_first_prepared_player_valid(){const auto& squad=f.parent_.live_squad();if(squad.empty())throw std::logic_error("FRAME pending request requires actual first live soldier");return squad.front().network_identity!=-1;}
+        void frame_defer_network_close(){required("0072E4E0(false)").defer_network_close();}
+        void frame_current_application_status(std::uint32_t status){required("current application virtual2C").current_application_status(status);}
+        std::uint32_t frame_connection_status(){return required("007316F0").connection_status();}
+        void frame_control_heartbeat(std::uint32_t elapsed){required("0072DCD0").control_heartbeat(elapsed);}
+        void frame_countdown_hint(std::uint32_t id,std::uint32_t time){f.world_.owners().hud_panels().small().set_countdown_hint(id,time);}
+        void frame_set_hint(std::int32_t id){f.d_.hud.set_hint(id);}
+        void frame_connection_warning(std::uint32_t id,std::uint32_t time){f.d_.hud.set_injury_message(id,time);}
+        void frame_show_info(bool enabled){presentation().show_info(enabled);f.d_.hud.control_latches()[0]=static_cast<std::uint8_t>(enabled);}
+        void frame_advance_sync(std::uint32_t elapsed){game::advance_session_match_sync(startup().game_session_frame_process(),*this,elapsed);}
+        void frame_evaluate_rules(std::uint32_t elapsed){game::evaluate_session_match_rules(state(),startup().game_session_frame_process(),*this,elapsed);}
+        void frame_advance_hazards(std::uint32_t elapsed){game::advance_session_match_hazards(state(),startup().game_session_frame_process(),*this,elapsed);}
+        auto player_control_surface_flags(Human& human){return f.player_control_surface_flags(human);}
+        void frame_authority_hazards(){game::with_session_match_peers(data(),startup(),[&](auto& peers){for(std::size_t n=0;n<peers.size();++n)
+            if(peers[n].byte(8).value())if(auto* p=peers[n].human_actor()){
+                auto& human=f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(p));
+                if(player_control_surface_flags(human)&0x2000u){auto* fresh=peers.at(n).human_actor();if(!fresh)throw std::logic_error("Hazard lost fresh peer Human3C");
+                    required("Human D4(12,-1) native vector provenance").authority_hazard(f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(fresh)));}
+            }});}
+        bool frame_any_peer_below_life_limit(std::uint32_t limit){return game::any_session_match_peer_below_limit(data(),startup(),limit);}
+        std::int32_t frame_maximum_peer_score(){return game::maximum_session_match_score(data(),startup());}
+        float frame_team_score(std::uint32_t side){return data().team_scores44c.at(side);}
+        void frame_increment_team_win(std::uint32_t side){++data().team_wins458.at(side);}
+        auto& frame_objectives(){if(!state().mission)throw std::logic_error("Match objectives require actual missionA8");return state().mission->related;}
+        const auto& frame_objective_fields(std::size_t n){const auto& node=frame_objectives().at(n);if(!node||!node->network_objective)throw std::logic_error("Match requires actual kind12 objective metadata");return *node->network_objective;}
+        auto frame_first_objective_side(){return frame_objective_fields(0).side18;}
+        auto frame_objective_score(std::size_t n){return frame_objective_fields(n).score24;}
+        std::uint32_t frame_opposite_side(std::uint32_t side){return static_cast<std::uint32_t>(game::human_frame_signed_word(side+1u)%2);}
+        void frame_award_objective_points(std::uint32_t value,std::uint32_t side){world().award_human_objective_score(value,side);}
+        void frame_finish_objectives(std::uint32_t side){for(std::size_t n=0;n<frame_objectives().size();++n)if(frame_objectives().at(n)->word10==0u)
+            f.d_.script_link.set_human_objective_status(static_cast<std::int32_t>(n+1),frame_first_objective_side()!=side?2:1);}
+        bool frame_peer_team_alive(std::uint32_t side){return game::with_session_match_peers(data(),startup(),[&](auto& peers){
+            for(std::size_t n=0;n<peers.size();++n)if(peers[n].byte(8).value())if(auto* p=peers[n].human_actor())if(peers[n].word(0x64)==side){
+                auto& human=f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(p));
+                if(frame_human_health(human)>0&&human.loading_state&&!human.loading_state->selection_suppressed())return true;}
+            return false;});}
+        std::array<std::uint32_t,4> frame_flag_side_counts(){std::array<std::uint32_t,4> counts{};
+            for(std::size_t n=0;n<f.d_.scene.frames().scene_actor_identity_count();++n)if(auto* actor=f.d_.scene.frames().scene_actor_command_identity(static_cast<std::int32_t>(n)))if(actor->base().type()==37u){
+                ++counts[0];const auto side=static_cast<game::ZoneSceneActor<GameActorServices>*>(actor)->field98;
+                if(side>2u)throw std::out_of_range("Flag actor side exceeds native three counters");++counts.at(side+1);}
+            return counts;}
+        void frame_update_all_ranks(){game::with_session_match_peers(data(),startup(),[&](auto& peers){for(std::size_t n=0;n<peers.size();++n)game::update_human_score_rank(data(),static_cast<std::uint32_t>(n),world());});}
+        void frame_publish_match_result(std::uint32_t winner){if(!(mode_flags()&2u)){
+            startup().append_game_console(game::format_human_game_message(startup().application_localize(winner?0x22e6:0x22e5)));
+            const auto second=data().team_wins458[1];const auto right=startup().application_localize(0x22e8);
+            const auto first=data().team_wins458[0];const auto left=startup().application_localize(0x22e7);
+            startup().append_game_console(game::frame_match_result_text(left,first,right,second));}
+            frame_queue_command(8,0,0,0);frame_queue_command(13,0,winner,0);}
+        void frame_choose_objective_actor(){ //00699680: inclusive count+1 draw; floor is fed a DOUBLE, not a rounded FLOAT.
+            if(frame_rule(0x224)!=2u)return;
+            const auto side=frame_first_objective_side();const auto counts=game::count_session_match_teams(data(),startup(),true,true);
+            const auto count=counts[side==1u?0u:1u]+1u;
+            const double product=static_cast<double>(static_cast<long double>(game::human_frame_signed_word(startup().random_word()))*.000030518509447574615f*game::human_frame_signed_word(count));
+            const auto value=std::floor(product);
+            if(!std::isfinite(value)||value<std::numeric_limits<std::int32_t>::min()||value>std::numeric_limits<std::int32_t>::max())throw std::runtime_error("Objective actor draw exceeds native signed range");
+            auto draw=static_cast<std::int32_t>(value);if(game::human_frame_signed_word(count)<draw)draw=game::human_frame_signed_word(count);
+            game::with_session_match_peers(data(),startup(),[&](auto& peers){for(std::size_t n=0;n<peers.size();++n)
+                if(peers[n].word(0)!=0&&peers[n].word(0x64)!=side&&peers[n].human_actor()){
+                    draw=game::human_frame_signed_word(static_cast<std::uint32_t>(draw)-1u);
+                    if(draw<1){state().words.set(0x78,static_cast<std::uint32_t>(n));break;}
+                }});
+            state().words.set(0x70,std::uint8_t{0});
+        }
+        void frame_disable_peer_bodies(bool disabled){ //00699AA0,418 remains held across collision rebuild/model visibility.
+            game::with_session_match_peers(data(),startup(),[&](auto& peers){for(std::size_t n=0;n<peers.size();++n)if(peers[n].byte(8).value())if(auto* p=peers[n].human_actor()){
+                auto& human=f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(p));auto& owner=world().human_inline(human);
+                auto* control=owner.control();auto* look=owner.look();if(!control||!look)throw std::logic_error("Match body toggle requires actual Human A0/DC4/posture owner");
+                control->frame_collision_disabled(disabled,*look);
+            }});
+        }
+        void frame_begin_match_countdown(){ //00699890.
+            game::publish_session_match_peer_sides(data(),startup());frame_disable_peer_bodies(true);
+            if(frame_rule(0x248)){
+                if(!state().mission||!state().mission->network_mission)throw std::logic_error("Match balance requires actual missionA8 kind13 fields58/5C");
+                const auto& fields=state().mission->network_mission->words50;
+                required("007302D0").balance_peer_sides(fields[3].value(),fields[2].value());
+            }
+            state().words.set(0x88,3u);state().words.set(0x8c,state().words.template get<std::uint32_t>(0x28));frame_queue_command(12,0,0,0);
+        }
+        void frame_synchronize_other_peers(std::uint32_t selector){ //00699290.
+            game::with_session_match_peers(data(),startup(),[&](auto& peers){for(std::size_t n=0;n<peers.size();++n)
+                if(n!=static_cast<std::uint32_t>(startup().local_player_identity())&&peers[n].byte(8).value())frame_queue_command(selector,peers[n].word(0),0,0);});
+        }
+        void frame_restart_round(){ //006997B0, real shared round reset/snapshot and process packet owners.
+            required("0069C390").reset_round_world(true);frame_synchronize_other_peers(7);startup().drain_application_commands();
+            startup().flush_application_command_packets(1000);startup().begin_game_entry_connections();startup().reset_control_entry_packets(true);
+        }
+        void frame_rotate_map(const char* name){ //0069B9F0: nothing follows false006AD4D0; null means next map.
+            if(!frontend::select_network_map(startup().game_configuration(),name))return;
+            frame_synchronize_other_peers(6);startup().drain_application_commands();startup().flush_application_command_packets(1000);
+            data().team_wins458.fill(0);frame_current_application_status(9);
+        }
+    };
     auto store(){return d_.scene.frames().resource_observations();}
     void require_open(){
         if(retired_)throw std::logic_error("Session FRAME borrower is retired");
@@ -160,7 +326,7 @@ private:
         (void)world_.owners().dependencies();
     }
     World& world_;Parent& parent_;world_loading::Dependencies& d_;const game::SessionSelection& selection_;
-    GameBlastWaves& blast_;GameSessionFrameExternal& external_;GameMissionModuleFrames<Runtime> modules_;GameCameraLoading camera_;bool retired_=false;
+    GameBlastWaves& blast_;GameSessionFrameExternal& external_;GameMissionModuleFrames<Runtime> modules_;GameCameraLoading camera_;GameUiPresentation* presentation_;bool retired_=false;
 };
 } //namespace hd2::host
 #endif

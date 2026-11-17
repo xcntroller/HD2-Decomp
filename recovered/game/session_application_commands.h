@@ -4,6 +4,7 @@
 #include <list>
 #include <limits>
 #include <stdexcept>
+#include "game/session_pending_spawn.h"
 
 namespace hd2::game {
 //0072A0B0/0097C8F0 process FIFO, scalar commands reached by Human death/spawn rejection.
@@ -11,10 +12,11 @@ namespace hd2::game {
 //command families have owning payloads and require their separate producers.
 class SessionApplicationCommands {
 public:
-    struct Command {std::uint32_t kind,first,second,target;};
+    struct Command {std::uint32_t kind,first,second,target;std::shared_ptr<SessionPendingSpawn> pending_spawn{};};
     template<class Backend>void enqueue(Command command,std::uint32_t mode,Backend& backend){
-        if(command.kind!=10&&command.kind!=15&&command.kind!=17)
+        if(command.kind!=1&&command.kind!=3&&command.kind!=6&&command.kind!=7&&command.kind!=8&&command.kind!=10&&command.kind!=11&&command.kind!=12&&command.kind!=13&&command.kind!=15&&command.kind!=16&&command.kind!=17&&command.kind!=23)
             throw std::runtime_error("Required application command producer is not reconstructed");
+        if(command.kind==3&&!command.pending_spawn)throw std::logic_error("Application spawn command requires its typed transferred record");
         const bool locked=(mode&7u)!=7u;
         if(locked)backend.enter_application_command_lock(); //Actual application+2C, NOT control418/430 or peerB4.
         try{
@@ -32,8 +34,19 @@ public:
             const auto command=commands_.front();
             backend.flush_application_command_packets(1000); //Before EACH envelope; failure retains current node.
             auto& packet=backend.begin_application_command(command.target,command.kind); //0072BDE0→BE00, local=true.
-            packet.write(command.first,command.kind==10||command.kind==15?5:32);
-            packet.write(command.second,command.kind==10?4:command.kind==15?1:32);
+            switch(command.kind){
+            case 1:case 11:case 16:break; //Genuine default/no-payload arms in0072A0B0.
+            case 3:backend.write_application_spawn(packet,*command.pending_spawn);break;
+            case 6:backend.write_application_configuration(packet);break;
+            case 7:backend.write_application_world_snapshot(packet);break;
+            case 8:backend.write_application_match_statistics(packet);break;
+            case 12:backend.write_application_match_sides(packet);break;
+            case 13:packet.write(command.first,2);break;
+            case 23:packet.write(command.first,1);break;
+            default:
+                packet.write(command.first,command.kind==10||command.kind==15?5:32);
+                packet.write(command.second,command.kind==10?4:command.kind==15?1:32);break;
+            }
             backend.finish_application_command(packet); //0072BF90 precedes unlink/free.
             commands_.pop_front();
         }

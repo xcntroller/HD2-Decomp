@@ -17,6 +17,8 @@ public:
     virtual void receive_application_spawn_rejection(std::uint32_t)=0;
     virtual void append_application_message(const std::string&)=0;
     virtual HumanInputCallbacks* input_default_receiver(std::int32_t,bool)=0;
+    virtual std::uint32_t frame_statistics_word(unsigned)const=0; //Actual current game30/28/84, never a copied clock.
+    virtual void write_application_world_snapshot(SessionPacketStream&){throw std::runtime_error("Application command7 requires actual004782C0 populated module snapshot writer");}
 };
 class SessionPacketWorldLink {
 public:
@@ -33,6 +35,8 @@ public:
     void receive_application_spawn_rejection(std::uint32_t reason){world_.get().receive_application_spawn_rejection(reason);}
     void append_application_message(const std::string& message){world_.get().append_application_message(message);}
     HumanInputCallbacks* input_default_receiver(std::int32_t identity,bool secondary){return world_.get().input_default_receiver(identity,secondary);}
+    std::uint32_t frame_statistics_word(unsigned offset)const{return world_.bound()?world_.get().frame_statistics_word(offset):0u;} //0072F880's genuine absent-current-game0.
+    void write_application_world_snapshot(SessionPacketStream& packet){world_.get().write_application_world_snapshot(packet);}
 private:
     WorldLoadingDependencyLink<SessionPacketWorld> world_;
 };

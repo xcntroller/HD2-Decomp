@@ -88,6 +88,11 @@ public:
         copy_vector(0x20,{{initial[12],initial[13],initial[14],initial[15]}});
         copy_matrices();word(0x10,1);
     }
+    void refresh_bound_frame(Frame frame){ //004C8820 reuse by005B7DA0, AFTER actual descriptor removal.
+        if(!frame||frame!=frame_||descriptor_.bucket)throw std::logic_error("Rigid body refresh requires its SAME detached frame binding");
+        const auto current=frames_.actor_world_matrix(frame_);
+        copy_vector(0x20,{{current[12],current[13],current[14],current[15]}});copy_matrices();word(0x10,1);
+    }
     void configure(const Parameters& parameters) { //004CD6E0, before004C8980.
         if(!frame_)throw std::logic_error("Rigid body parameters require a bound frame");
         callback_=parameters.callback;callback_context_=parameters.callback_context;

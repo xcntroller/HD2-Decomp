@@ -112,6 +112,7 @@ struct ControlStartupState {
     //0097D070+44C/464 lie beyond .data's raw extent in the original image:
     //the loader zero-fills them. These are the SAME three process team records.
     std::array<float,3> team_scores44c{};
+    std::array<std::uint32_t,3> team_wins458{}; //Native0097D4C8..D0, SAME loader-zero-filled process tail.
     std::array<std::array<std::uint32_t,9>,3> team_statistics464{};
     std::int32_t handle4d3c = 0;
     std::uint8_t byte4df8 = 0;

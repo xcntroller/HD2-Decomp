@@ -101,6 +101,12 @@ public:
             static_cast<float>(std::asin(static_cast<long double>(value[1]))),0,0}};
         (void)write_vector(angles,secondary_quantizer(index),3);
     }
+    void write_axis_angle(const HumanVector& axis,float angle,std::int32_t index){ //0073D610, distinct from direction0073D6C0.
+        if(!std::isfinite(axis[1])||std::abs(axis[1])>1.f)throw std::runtime_error("Session rotation axis exceeds native asin domain");
+        const HumanVector value{{static_cast<float>(std::atan2(static_cast<long double>(axis[2]),static_cast<long double>(axis[0]))),
+            static_cast<float>(std::asin(static_cast<long double>(axis[1]))),angle,0}};
+        (void)write_vector(value,secondary_quantizer(index),7);
+    }
     void write_yaw(const HumanVector& value,std::int32_t index){ //0073D760, atan2(Z,X), secondary quantizer, mask1 ONLY.
         const HumanVector angle{{static_cast<float>(std::atan2(static_cast<long double>(value[2]),static_cast<long double>(value[0]))),0,0,0}};
         (void)write_vector(angle,secondary_quantizer(index),1);

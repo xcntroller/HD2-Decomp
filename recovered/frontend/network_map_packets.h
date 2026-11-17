@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_NETWORK_MAP_PACKETS_H
 #include "frontend/game_configuration.h"
 #include "game/session_network_parameters.h"
+#include "frontend/startup_language.h"
 #include <cstring>
 #include <limits>
 namespace hd2::frontend {
@@ -75,6 +76,22 @@ inline const GameConfiguration::Rotation& selected_network_map(const GameConfigu
     const auto index=configuration.rotation290;
     if(index>=configuration.rotations284.size()||!configuration.rotations284[index])throw std::out_of_range("Selected map has no actual rotation record");
     return *configuration.rotations284[index];
+}
+inline bool select_network_map(GameConfiguration& configuration,const char* name){ //006AD4D0: null advances; nonnull searches by NAME, not a previous-map flag.
+    if(!name){
+        const auto next=configuration.rotation290+1u;configuration.rotation290=next;
+        const auto count=configuration.rotations284.size();
+        if(!count)throw std::runtime_error("Native next-map rotation divides by an empty actual map vector");
+        if(count>std::numeric_limits<std::uint32_t>::max())throw std::length_error("Map rotation exceeds native DWORD count");
+        configuration.rotation290=next%static_cast<std::uint32_t>(count);return true;
+    }
+    for(std::size_t n=0;n<configuration.rotations284.size();++n){
+        const auto& map=configuration.rotations284[n];if(!map)throw std::logic_error("Map rotation lost its actual owned record");
+        if(startup_case_equal(name,map->text1?*map->text1:std::string{})){
+            configuration.rotation290=static_cast<std::uint32_t>(n);return true;
+        }
+    }
+    return false;
 }
 template<class Packet>void write_selected_network_map(Packet& packet,const GameConfiguration& configuration){write_network_map(packet,selected_network_map(configuration));} //006AD590.
 template<class Packet>void replace_selected_network_map(Packet& packet,GameConfiguration& configuration){ //006AD5B0.

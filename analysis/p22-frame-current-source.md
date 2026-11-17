@@ -1,4 +1,8 @@
-# FRAME current source boundary — 2026-11-17
+# FRAME offline composition baseline — 2026-11-17
+
+Later selected nonoffline and retained-item implementation supersedes the
+remaining blanket guards below: [current source checkpoint and exact gaps](p22-frame-match-source.md).
+This file retains the earlier offline verification boundary.
 
 Current source pin1d54083 combines FRAME9d53c06, H824c7310 and completed OWN/
 RENDER/input dependencies. This is a focused reassessment of the FRAME-owned

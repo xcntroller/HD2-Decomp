@@ -240,8 +240,10 @@ preparation, not a standalone audit-only milestone.
 [FRAME current source](analysis/p22-frame-current-source.md): offline session +
 actual Human Runtime/World/UI/input/lifecycle verified through1d54083 (strict
 actual i386 link, native1,248 ordering/pause/failure checks, O2 launcher/probe).
-Former import/5F9 blockers are superseded. Full FRAME still has non7 source gaps
-and external HUM/OWN/application/desktop requirements; matrix remains partial.
+Former import/5F9 blockers are superseded. [Selected FRAME continuation](analysis/p22-frame-match-source.md)
+adds conditional match/input/exit policies, actual peer/FIFO/packet consumers and
+positive retained-item restore. Round reset/runtime snapshot/spawn producers and
+required process/HUM/OWN/application/desktop consumers remain; matrix stays partial.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 

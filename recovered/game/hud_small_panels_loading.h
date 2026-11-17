@@ -48,6 +48,13 @@ public:
         if(!enabled){injury_.time=0;injury_.enabled=false;return;}
         injury_.time=time;text.text.append(factory_.hud_localized(id),0x4a);injury_.enabled=true;
     }
+    void set_countdown_hint(std::uint32_t id,std::uint32_t milliseconds){ //004AD790, SAME Htext owner as004AD880.
+        auto& text=required(hint_.text);text.text.clear();text.text.append(factory_.hud_localized(id),0x40);
+        const auto time=static_cast<std::int32_t>(milliseconds);std::array<char,32> value{};
+        const auto length=std::snprintf(value.data(),value.size(),"%02d:%02d",(time%3600000)/60000,(time%60000)/1000);
+        if(length<0||static_cast<std::size_t>(length)>=value.size())throw std::runtime_error("HUD match countdown formatting failed");
+        text.text.append(std::make_shared<const std::string>(value.data()),0x41);show(hint_.visual,true);
+    }
     void bind_status(Frame scene) { //004AAAC0.
         cold(status_.text);require_scene(scene);status_.scene=scene;
         constexpr std::array<const char*,8> names{{"tabl01","pkneel","play","mwalk","mrun","msprint","mpaxis","mpallied"}};

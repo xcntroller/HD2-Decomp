@@ -19089,13 +19089,15 @@
       "program": "client",
       "entry": "004c8820",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004c8820: Actual rigid-body ownership, collision registration/state change and actor borrower writes.",
+      "coverage": "P2.2 source reconstruction at original entry 004c8820: Actual rigid-body ownership, collision registration/state change and actor borrower writes. Actual same-frame rebind after descriptor close refreshes pose/matrices/state1 without allocating another body or resetting produced5F9 phase.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/rigid_body.h",
         "analysis/rigid-body-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
       ]
     },
     {
@@ -21652,7 +21654,7 @@
       "program": "client",
       "entry": "0072bef0",
       "status": "partial",
-      "coverage": "Selected broadcast stream active/priority/target/local fields and native five-bit kind prefix; messages append to current cursor. Human contact checkpoint adds the shared process2BC authority-request stream, native broadcast-before-request flush order and retry-safe pending terminators.",
+      "coverage": "Selected broadcast stream active/priority/target/local fields and native five-bit kind prefix; messages append to current cursor. Human contact checkpoint adds the shared process2BC authority-request stream, native broadcast-before-request flush order and retry-safe pending terminators. Actual same-process targeted2F8 scratch alongside existing broadcasts and request2BC; application target selects correct scratch.",
       "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
       "evidence": [
         "recovered/game/session_packet_stream.h",
@@ -21660,19 +21662,24 @@
         "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
         "analysis/checkpoints/p2.2-human-contact-player-20261111.json",
         "recovered/game/session_broadcast_packets.h",
-        "recovered/game/session_local_packets.h"
+        "recovered/game/session_local_packets.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "0072bf90",
       "status": "partial",
-      "coverage": "Target0 branch clears packet active1C while retaining pending bits; actual targeted/local/remote transport is excluded.",
+      "coverage": "Target0 branch clears packet active1C while retaining pending bits; actual targeted/local/remote transport is excluded. Actual targeted path clears active, appends terminator, maps transport under418, reads local identity afresh, submits local FIFO or existing connection sender, then resets cursor.",
       "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
       "evidence": [
         "recovered/game/session_packet_stream.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "recovered/game/session_targeted_packets.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
       ]
     },
     {
@@ -27401,7 +27408,7 @@
       "program": "client",
       "entry": "0069af10",
       "status": "partial",
-      "coverage": "Offline fixed-frame ordering over same session clock, required actual control/modules/shared transient receiver.",
+      "coverage": "Offline fixed-frame ordering over same session clock, required actual control/modules/shared transient receiver. Conditional nonoffline match reset/round/rule/sync policies now use same process/config/peer/World owners; positive external reset/transport receivers remain required.",
       "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/session_frame_loading.h",
@@ -27409,14 +27416,17 @@
         "analysis/checkpoints/p2.2-frame-render-source-20261110.json",
         "recovered/host/game_session_frames.h",
         "analysis/p22-frame-implementation.md",
-        "analysis/checkpoints/p22-frame-session-20261112.json"
+        "analysis/checkpoints/p22-frame-session-20261112.json",
+        "recovered/game/session_match_frame.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "0069b230",
       "status": "partial",
-      "coverage": "Offline update policy, same Music D0/application status/timers, native warming/pause/leaf ordering; positive actual endpoints required.",
+      "coverage": "Offline update policy, same Music D0/application status/timers, native warming/pause/leaf ordering; positive actual endpoints required. Conditional nonoffline hazard/countdown/status/info/heartbeat/pending-request/one-LIFO-spawn policies now have actual containing bodies and real process owners; positive external receivers remain required.",
       "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
       "evidence": [
         "recovered/game/session_frame_loading.h",
@@ -27424,7 +27434,10 @@
         "analysis/checkpoints/p2.2-frame-render-source-20261110.json",
         "recovered/host/game_session_frames.h",
         "analysis/p22-frame-implementation.md",
-        "analysis/checkpoints/p22-frame-session-20261112.json"
+        "analysis/checkpoints/p22-frame-session-20261112.json",
+        "recovered/game/session_match_frame.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
       ]
     },
     {
@@ -35299,13 +35312,15 @@
       "program": "client",
       "entry": "0072a0b0",
       "status": "partial",
-      "coverage": "Process-lifetime scalar FIFO kinds10/17, distinct application2C enqueue lock only in non7, separate explicit drain, flush1000 before each native envelope and unlink after finalization. Offline false appends without draining. Authority spawn checkpoint adds scalar rejection0F peer5/reason1 through SAME process FIFO and native lock/drain ordering.",
+      "coverage": "Process-lifetime scalar FIFO kinds10/17, distinct application2C enqueue lock only in non7, separate explicit drain, flush1000 before each native envelope and unlink after finalization. Offline false appends without draining. Authority spawn checkpoint adds scalar rejection0F peer5/reason1 through SAME process FIFO and native lock/drain ordering. Actual FRAME scalar/map/statistic/sides commands and typed transferred spawn3 are admitted; native parameter free-before-finalize and current-node failure retention preserved. Runtime snapshot remains a required actual owner.",
       "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
       "evidence": [
         "recovered/game/session_application_commands.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json",
-        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
       ]
     },
     {
@@ -35515,12 +35530,15 @@
       "program": "client",
       "entry": "006ad590",
       "status": "partial",
-      "coverage": "Serialize the actual currently selected map through its record codec.",
+      "coverage": "Serialize the actual currently selected map through its record codec. FRAME command6 now invokes the existing SAME configuration selected-map writer directly.",
       "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
       "evidence": [
         "recovered/frontend/network_map_packets.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
       ]
     },
     {
@@ -51012,7 +51030,7 @@
       "program": "client",
       "entry": "0069a500",
       "status": "partial",
-      "coverage": "Offline session exit publishes status6 and native500/1000 counters unless already6; supplied stack argument is unused. Conditional non7 tail remains required after the original state prefix.",
+      "coverage": "Offline session exit publishes status6 and native500/1000 counters unless already6; supplied stack argument is unused. Conditional non7 tail remains required after the original state prefix. Nonoffline containing exit preserves status/counters before required deferred close and authority event1.",
       "limitations": "Source-only typed C++ ownership/ABI adaptation. Native UI/controller/engine endpoints are explicit doubles; actual containing World/services are i386 compile/link only. Required external Human/UI/Runtime/packet/physics producers, original object/allocator/SEH layout and integrated engine/desktop acceptance remain excluded. No whole-body equivalence or delegated-callee credit.",
       "evidence": [
         "recovered/game/session_frame_loading.h",
@@ -51020,7 +51038,9 @@
         "analysis/p22-frame-implementation.md",
         "analysis/checkpoints/p22-frame-session-20261112.json",
         "analysis/human-h8-frame-integration-source.md",
-        "analysis/checkpoints/p2.2-human-h8-frame-integration-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-frame-integration-20261117.json",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
       ]
     },
     {
@@ -51390,6 +51410,294 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/human-player-selection-source.md",
         "analysis/checkpoints/p22-player-selection-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069aab0",
+      "status": "partial",
+      "coverage": "Actual nonoffline spectator/input policy: B0 suppression, FLOAT key55/56, original signed slot cycling, team/control/health filters and ordered FPV/HUD/camera effects.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_match_input.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699b50",
+      "status": "partial",
+      "coverage": "All four match rule styles over same clocks/objectives/teams/scores/lives and ordered score/result transitions.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_match_rules.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069eed0",
+      "status": "partial",
+      "coverage": "Original500ms process gate, phase exclusions, authority peer hazard traversal and two fresh local surface reads; actual Human D4 unwritten vector payload remains required.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_match_rules.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699320",
+      "status": "partial",
+      "coverage": "Same process accumulator, strict signed4999 threshold, reset before event8 enqueue.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_match_frame.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699680",
+      "status": "partial",
+      "coverage": "Actual objective-side/team draw with inclusive count+1, FLOAT constant then DOUBLE floor, transport00 scan/decrement before78 publication.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699890",
+      "status": "partial",
+      "coverage": "Actual side publication, peer collision/body suppression, required positive balance, phase3/clock and event12 ordering.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006997b0",
+      "status": "partial",
+      "coverage": "Containing reset\u2192other-peer snapshot\u2192actual FIFO drain/flush\u2192existing connection generation and input/selected FIFO reset ordering; actual retained World reset remains required.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069b9f0",
+      "status": "partial",
+      "coverage": "Actual selected-map rotation then other-peer configuration sync/drain/flush, team win reset and required current application status9.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699290",
+      "status": "partial",
+      "coverage": "Lock-held forward active nonlocal peer scan and actual transport-targeted command enqueue.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699360",
+      "status": "partial",
+      "coverage": "Actual nonrender console/localization/signed result formatting and application8 then13 FIFO enqueue.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00698ef0",
+      "status": "partial",
+      "coverage": "Actual objective walk/first descriptor side quirk and existing0069BA60 Script objective owner; required positive output consumers retained.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699aa0",
+      "status": "partial",
+      "coverage": "Same peer418 traversal into actual Human control DC4/collision/posture/model visibility body owner.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072fe60",
+      "status": "partial",
+      "coverage": "Actual locked active/Human-before-side0/1 peer counts.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_match_peers.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072ff50",
+      "status": "partial",
+      "coverage": "Actual locked live/pending side-before-optional-Human peer team counts.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_match_peers.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072ed40",
+      "status": "partial",
+      "coverage": "Actual locked named/Human peer maximum signed score, native zero initial maximum.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_match_peers.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007300d0",
+      "status": "partial",
+      "coverage": "Actual locked pending68 to live64 publication on named peer records.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_match_peers.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00749a70",
+      "status": "partial",
+      "coverage": "Actual46-bit peer/team statistic codec with signed score adjustment and ping clamp mutation before write.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_peer_statistics_wire.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b7ec0",
+      "status": "partial",
+      "coverage": "Positive same-list retained Item90 lookup, actual Runtime packet/opcode3bits, pose/body refresh, fresh quaternion axis-angle/position and finish; genuine offline7 RET retained.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/runtime_item_restore.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b7da0",
+      "status": "partial",
+      "coverage": "Same-item descriptor close, mass/category reads, same-model/body refresh/configure/reset/actor publication, preserving loose-item timers.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/dynamic_item_actor.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d610",
+      "status": "partial",
+      "coverage": "Actual axis yaw/pitch and angle FLOAT packet encoding using secondary profile and mask7, distinct from direction mask3.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ad790",
+      "status": "partial",
+      "coverage": "Same hint Htext clear, localized countdown style40 and signed minute/second style41 then visible publication.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/hud_small_panels_loading.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ad4d0",
+      "status": "partial",
+      "coverage": "Actual null next-map increment/modulo or nonnull case-insensitive first map-name selection, preserving missing-name false and empty-vector failure prefix.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072f880",
+      "status": "partial",
+      "coverage": "Actual same-process peer/connection-info ping,46-bit statistics, real World clocks/lives, team records/scores/wins and original lock-release ordering.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072b1c0",
+      "status": "partial",
+      "coverage": "Actual process request FIFO for FRAME commands0/1, original application lock gates, deferred fresh live-squad serialization and finish-before-node-retirement. Other command payload families remain required.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_frame_requests.h",
+        "analysis/p22-frame-match-source.md",
+        "analysis/checkpoints/p22-frame-match-20261117.json"
       ]
     }
   ]

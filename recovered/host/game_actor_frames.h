@@ -164,6 +164,12 @@ public:
         call<void>(frame,8,position.data());refresh_dynamic_human_model(frame);update_scene_object(frame);
     }
     void physics_restore_pose(Frame frame,const Vector& position,const Vector& rotation){object_rotation(frame,rotation);call<void>(frame,8,position.data());update_scene_object(frame);} //0040D1B1/0040D9BF, ONE24 after both writes, no SceneEC.
+    void restore_retained_item_pose(Frame frame,const Vector& position,const Vector& rotation){call<void>(frame,0x18,position.data(),rotation.data());update_scene_object(frame);} //005B7EC0, actual virtual18 before24.
+    std::pair<Vector,float> retained_item_axis_angle(const Vector& rotation){
+        Vector axis{};float angle;using Inverse=void(WINAPI*)(const void*,void*,float*);
+        exported<Inverse>("?Inverse@S_quat@@QBGXAAUS_vector@@AAM@Z",0x30160)(rotation.data(),axis.data(),&angle);
+        return {axis,angle};
+    }
     Vector physics_local_translation(Frame frame){const auto matrix=car_local_matrix(frame);return {{matrix[12],matrix[13],matrix[14],matrix[15]}};} //0040F5E3/58 lazy local matrix.
     Vector physics_local_sphere_centre(Frame frame){(void)rigid_visual_bounds(frame);return field<Vector>(frame,0x1c0);}
     Vector physics_rotate_about_axis(const Vector& rotation,const Vector& axis,float angle){

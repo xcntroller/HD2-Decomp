@@ -3,6 +3,7 @@
 
 #include "game/activation_flags.h"
 #include "game/session_lifetime_progress.h"
+#include "game/session_pending_spawn.h"
 #include <memory>
 #include <string>
 #include "game/mission_module_dispatch.h"
@@ -31,6 +32,7 @@ struct SessionActivationState {
     std::shared_ptr<const std::string> resource; //Actual game6A COW owner, distinct from descriptorA8.
     const frontend::GameDataNode* mission=nullptr;
     HumanJointWords<0x110> words; //Scalar slots only; native pointers are separate.
+    std::vector<std::shared_ptr<SessionPendingSpawn>> pending_frame_peers; //Native9C/A0 LIFO, SAME session owns transferred allocations.
 };
 
 //006989B0 normal offline7 path. All calls below require actual owners, including

@@ -3,6 +3,7 @@
 #include "game/session_activation.h"
 #include "game/game_music_references.h"
 #include "game/session_frame_input.h"
+#include "game/session_match_frame.h"
 namespace hd2::game {
 inline std::int32_t session_frame_signed(std::uint32_t bits){std::int32_t value;std::memcpy(&value,&bits,4);return value;}
 
@@ -39,7 +40,7 @@ template<class Services>void fixed_loading_session(SessionActivationState& state
         services.filter_hud_input(nullptr,nullptr);
         if(services.mode_flags()&2u)services.players_control_fixed(elapsed);
     }
-    if((services.mode_flags()&7u)!=7u)throw std::runtime_error("Fixed session frame requires actual nonoffline match/peer consumers");
+    if((services.mode_flags()&7u)!=7u)services.advance_nonoffline_fixed_frame(elapsed);
     if(!state.words.get<std::uint8_t>(0x64)){
         state.words.set(0x28,state.words.get<std::uint32_t>(0x28)+elapsed);
         if(!(services.mode_flags()&2u)){
@@ -65,8 +66,8 @@ template<class Services>void update_loading_session(SessionActivationState& stat
     const auto subtract=[&](std::uint32_t word){const auto value=word-elapsed;return session_frame_signed(value)<0?0u:value;};
     if(session_frame_signed(state.words.get<std::uint32_t>(0x38))>0)state.words.set(0x38,subtract(state.words.get<std::uint32_t>(0x38)));
     if(music.countdown)music.countdown=subtract(music.countdown); //Native tests nonzero, not signed>0.
-    if((services.mode_flags()&7u)!=7u)throw std::runtime_error("Session frame requires actual nonoffline clock/match/control consumers");
-    if(state.words.get<std::uint32_t>(0x88)==1&&state.words.get<std::uint32_t>(0x8c)+4000u<state.words.get<std::uint32_t>(0x28))
+    if((services.mode_flags()&7u)!=7u)services.advance_nonoffline_variable_frame(elapsed);
+    else if(state.words.get<std::uint32_t>(0x88)==1&&state.words.get<std::uint32_t>(0x8c)+4000u<state.words.get<std::uint32_t>(0x28))
         if(services.finish_offline_objective_delay())return; //Actual positive result/cutscene/controller receiver is required.
     services.recycle_collision_buckets(); //006EF330 even while game64 is set.
     if(!(services.mode_flags()&2u)){

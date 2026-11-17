@@ -188,6 +188,7 @@ public:
     void unbind_loaded_collisions(){require_open();sweep_.unbind(scene_.collision_tree());}
     bool session_loaded()const noexcept{return dependencies_.session.loaded;}
     Dependencies& dependencies(){require_open();return dependencies_;}
+    const Dependencies& dependencies()const{require_open();return dependencies_;}
     auto& presentation_dependencies(){require_open();return presentation_dependencies_;}
     Services& human_services(){require_open();return bindings_.services;}
     Scripts& scripts(){require_open();return *scripts_;}
@@ -347,6 +348,10 @@ public:
         owners_.scripts().runtime().receive_human_objective_status(static_cast<std::int32_t>(identity),static_cast<std::int32_t>(status));
     }
     void receive_application_peer_departure(std::uint32_t transport)override{owners_.human_services().retire_session_peer(transport);}
+    std::uint32_t frame_statistics_word(unsigned offset)const override{
+        if(offset!=0x30&&offset!=0x28&&offset!=0x84)throw std::out_of_range("Frame packet requested an unsupported game statistic");
+        return owners_.dependencies().session.words.template get<std::uint32_t>(offset);
+    }
     void receive_application_local_removal(std::uint32_t reason)override{
         game::receive_local_session_removal(owners_.dependencies().session,reason,owners_.dependencies().hud);
     }

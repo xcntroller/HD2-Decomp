@@ -106,6 +106,16 @@ public:
         if((activation_.mode_flags()&7u)!=7u)throw std::runtime_error("Loose item impulse requires actual non7 motion packet producer");
     }
     Entry entry() const {return entry_;}
+    void restore_retained_body(){ //005B7DA0, preserves actor6A0/6A4/6A8/6AC/6B0 timers.
+        if(!entry_)return;
+        body_.close(); //Actual virtual1C BEFORE parameter reads and model rebind.
+        auto& item=items_.runtime_item(entry_);
+        const auto mass=item.scalar(); //Native item2C BEFORE item30/category.
+        const auto category=frontend::pre_mission_detail::Bytes::integer(item.definition().category);
+        typename Body::Parameters parameters{{{0,0,0,0}},mass,.800000011920928955078125f,
+            [this](unsigned event,void* context,typename Body::ContactEvent* contact){return callback(event,context,contact?contact->primitive:nullptr);},this,false,category<2};
+        body_.refresh_bound_frame(item.model());body_.configure(parameters);body_.reset();body_.actor(this);
+    }
     Body& body() {return body_;}
     void thrown_lifetime(std::int32_t value){require_bound();field6ac_=value;} //00478EE0's nonoffline kind20 branch.
     std::int32_t lifetime() const {require_bound();return field6a0_;}

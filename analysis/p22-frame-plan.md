@@ -29,9 +29,10 @@ Older implementation/reassessment documents retain revision-qualified evidence.
 
 ## Remaining full closure and delivery
 
-- [ ] Conditional non7 fixed/update/input/exit policies and positive retained
-  restore still require actual match/peer/config/queue/transport consumers.
-  These are genuine source gaps, not completed by the offline verification.
+- [ ] Close remaining retained-round reset, runtime snapshot and pending-spawn
+  producers, plus required process/network consumers. Fixed/update/input/exit
+  policies and positive retained-item restore now have verified bodies and
+  concrete owners; [exact remaining dependencies](p22-frame-match-source.md).
 - [ ] Complete selected positive HUM/Actor/cutscene/UI command producers under
   their owning HUM/OWN paths, then install the actual application adapter.
   Current OWN desktop review is uncommitted; no source import enables it here.
@@ -41,7 +42,7 @@ Older implementation/reassessment documents retain revision-qualified evidence.
 
 Offline containing source is implemented and verified. **Full P22-FRAME remains
 partially_resolved**, with the above source/application boundaries explicit.
-Do not start unrelated nonoffline or unselected Dog research to increase source
-counts. Continue the first actually reached receiver failure under HUM/OWN.
+The user has now selected remaining FRAME source closure. Continue its concrete
+retained-round/Runtime dependencies; leave unrelated admin/chat/Dog research out.
 No new function credit, successful placeholder, application execution or desktop
 acceptance follows from this reconciliation.

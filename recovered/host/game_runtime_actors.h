@@ -11,6 +11,7 @@
 #include "game/car_scene_actor.h"
 #include "game/runtime_mine_creation.h"
 #include "game/runtime_actor_packets.h"
+#include "game/runtime_item_restore.h"
 #include "frontend/localized_text.h"
 
 namespace hd2::host {
@@ -61,8 +62,7 @@ public:
     }
     template<class Item>void loose_item_timed_effect(Item& actor){ //005B7EC0, actual retained item list, selected offline gate.
         if((mode_flags()&7u)==7u)return;
-        for(const auto& retained:retained_items_)if(retained.entry==actor.entry())
-            throw std::runtime_error("Retained loose item timed effect requires actual non7 pose/publication receiver005B7DA0");
+        game::restore_retained_runtime_item(actor,retained_items_,activation_.session_broadcast_packets(),frames_,mode_flags());
     }
     void damage_loose_item(Instance& borrowed,std::uint32_t kind,float amount,const game::HumanVector& point,const game::HumanVector& direction){
         if(!registry_.owns(&borrowed))throw std::logic_error("Shot loose item requires SAME live Runtime registry");

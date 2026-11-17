@@ -282,6 +282,7 @@ public:
     void hud_message_say(bool team){require_open();auto input=backend_.presentation_input();world_.owners().hud_panels().messages().say(team,input);}
     void render_mission_text(){require_open();d_.subtitles.draw(d_.startup.profile_settings().bytes[0x3a]!=0,backend_);} //0048F390.
     void render_effects_overlay(){require_open();d_.startup.frame_text_overlay().render();} //006E8490.
+    const world_loading::World* world_identity()const noexcept{return &world_;} //Read-only loan for containing FRAME identity checks.
     bool has_game()const{return true;}
     std::uint32_t game_status()const{return d_.session.status;}
     std::uint32_t game_word24()const{return d_.session.words.get<std::uint32_t>(0x24);}

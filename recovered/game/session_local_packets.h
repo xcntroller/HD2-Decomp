@@ -90,6 +90,7 @@ public:
         for(auto* stream:{&streams_.first,&streams_.second,&streams_.third})
             flush_stream(*stream,false,(mode_&1u)&&(mode_&2u));
         flush_stream(streams_.request,true,true); //Native2BC→0072C170, after all broadcasts.
+        streams_.targeted.position(0,0); //Native2F8 scratch reset, AFTER all four stream submissions.
         frame_.pending_words=frame_.pending_bits=0; //Native2F8 scratch cursor reset.
     }
     void clear() { //0072E4E0 queue portion, same430 lock; no implicit decoder/flush.
