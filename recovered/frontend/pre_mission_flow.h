@@ -28,7 +28,7 @@ template <class Humans,class Integrity> class PreMissionFlow {
         game_ = GameData{};
         if (!game_.load(files))
             return false;
-        for (auto &record : discoveries_)
+        for (auto &record : integrity_.pre_mission_progress_records())
             record.clear();
         return resources_.load(files, profile_directory, game_);
     }
@@ -52,10 +52,10 @@ template <class Humans,class Integrity> class PreMissionFlow {
     GameData &game() { return game_; }
     PreMissionResources &resources() { return resources_; }
     const PreMissionResources &resources() const { return resources_; }
-    // 006AE510/006A7820: the two transient profile discovery lists are
-    // cleared by006B6530. Save-load suppression belongs to the unavailable receiver.
+    //006AE510/006A7820: borrow SAME profile94/B8 pending arrays. Preparation
+    //and actual mission scripts append through the same suppression-aware owner.
     const std::vector<std::uint32_t> &discoveries(std::uint32_t root) const {
-        return discoveries_.at(root == 1 ? 1 : 0);
+        return integrity_.pre_mission_progress_records().at(root == 1 ? 1 : 0).pending;
     }
     PreMissionHero &hero() { return hero_; }
     PreMissionTeam &team() {
@@ -453,8 +453,8 @@ template <class Humans,class Integrity> class PreMissionFlow {
         screen_ = PreMissionScreen::none;
         if (!descriptor)
             return;
-        auto &discovery = discoveries_[route_.root_index() == 1 ? 1 : 0];
-        discovery.insert(discovery.end(), descriptor->items.begin(), descriptor->items.end());
+        auto &discovery = integrity_.pre_mission_progress_records().at(route_.root_index() == 1 ? 1 : 0);
+        for(const auto value:descriptor->items)discovery.append(value);
         if (descriptor->kind == 5) {
             screen_ = PreMissionScreen::movie;
             return;
@@ -546,7 +546,6 @@ template <class Humans,class Integrity> class PreMissionFlow {
     GameData game_;
     PreMissionRoute route_;
     PreMissionResources resources_;
-    std::array<std::vector<std::uint32_t>, 2> discoveries_;
     PreMissionHero hero_;
     std::optional<PreMissionTeam> team_;
     std::vector<PreMissionSoldier> squad_;

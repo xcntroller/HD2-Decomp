@@ -56,3 +56,7 @@ Windows fixtures. PE SHA256:
 8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
 Next: actual revised desktop continuation and its first concrete failure. Broader
 commands/cutscenes remain honest required boundaries; FRAME/HUM/OWN remain partial.
+
+Actual revised1361c82f user run passes the reached alarm/Run continuation and
+completed frame prefix, then handles missing AddDiaryText137. Exact executable
+and logs:WORK/first-frame-script137-return. Stable game remains unaccepted.

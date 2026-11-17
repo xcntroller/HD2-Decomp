@@ -524,6 +524,8 @@ public:
         if(!pre_mission_)throw std::logic_error("UI game-mode query requires actual preparation owner");
         return pre_mission_->route().game_mode();
     }
+    auto* script_profile_owner()noexcept{return data_.profile_owner();} //Borrow current application20; do not allocate preparation.
+    auto& pre_mission_progress_records(){return data_.profile().progress;}
     PreMission& pre_mission() {
         if (!pre_mission_) pre_mission_=std::make_unique<PreMission>(data_.humans(),*this);
         return *pre_mission_;

@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_PROFILE_SELECTION_H
 
 #include "frontend/profile_load.h"
+#include "frontend/profile_progress.h"
 #include "frontend/profile_settings.h"
 #include "frontend/startup_configuration.h"
 
@@ -13,6 +14,7 @@ struct ProfileState {
     ProfileDirectories directories;
     ProfileOptions options;
     ProfilePayload payload;
+    std::array<ProfileProgress,2> progress; //SAME profile94/B8, not a preparation/world-local copy.
 };
 
 // Explicit shared storage for 00868A2C..00868E28 inclusive. Wider consumers

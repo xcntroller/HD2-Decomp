@@ -1,0 +1,265 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "422d793",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-script-diary-source.md",
+  "source_files": [
+    {
+      "path": "recovered/frontend/profile_progress.h",
+      "bytes": 664,
+      "sha256": "abf170fd2b329ab8d398dfc709d707a133a6306b481752e0dbf567738dd64894"
+    },
+    {
+      "path": "recovered/frontend/profile_selection.h",
+      "bytes": 4630,
+      "sha256": "38a7e023060f43d740b14f8229d36c147ecc455e1fec07dc0a0c9882024d71db"
+    },
+    {
+      "path": "recovered/frontend/application_startup_data.h",
+      "bytes": 4646,
+      "sha256": "696d0d3e071d605c9d1ddf7f02007047a0df2a79bbded29c2b32c49579bc13e8"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_flow.h",
+      "bytes": 26396,
+      "sha256": "d7b3f5cdee1e5b7c90a5b18367b889ac339dbe520e4b3b4dc2feaf27abee4551"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 83896,
+      "sha256": "a71b10007dddcdba8fe8bbccd74275e7d4d943c8c62c8b0190a1c26e50fef7e4"
+    },
+    {
+      "path": "recovered/game/mission_script_profile_commands.h",
+      "bytes": 1468,
+      "sha256": "c034753367a31d598d9225afe8009ef8c5fec9519b6503c5e698102ceacdd3c4"
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "bytes": 9552,
+      "sha256": "caf2e1e9bf98768e2ddf93b05ccbdb441607d160f0de5a81b1bbacf856d14a2d"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 324031,
+      "sha256": "b7b317a817e92e9e1db6486ea0c2cdbb3b60912d4224bed01ba7ddca52e78708"
+    }
+  ],
+  "review_source_files": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/profile_progress.h",
+      "bytes": 664,
+      "sha256": "abf170fd2b329ab8d398dfc709d707a133a6306b481752e0dbf567738dd64894"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/profile_selection.h",
+      "bytes": 4630,
+      "sha256": "38a7e023060f43d740b14f8229d36c147ecc455e1fec07dc0a0c9882024d71db"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/application_startup_data.h",
+      "bytes": 4646,
+      "sha256": "696d0d3e071d605c9d1ddf7f02007047a0df2a79bbded29c2b32c49579bc13e8"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/pre_mission_flow.h",
+      "bytes": 26396,
+      "sha256": "d7b3f5cdee1e5b7c90a5b18367b889ac339dbe520e4b3b4dc2feaf27abee4551"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/startup_session.h",
+      "bytes": 83896,
+      "sha256": "a71b10007dddcdba8fe8bbccd74275e7d4d943c8c62c8b0190a1c26e50fef7e4"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_profile_commands.h",
+      "bytes": 1468,
+      "sha256": "c034753367a31d598d9225afe8009ef8c5fec9519b6503c5e698102ceacdd3c4"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_loading_runtime.h",
+      "bytes": 9552,
+      "sha256": "caf2e1e9bf98768e2ddf93b05ccbdb441607d160f0de5a81b1bbacf856d14a2d"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_world_loading_services.h",
+      "bytes": 324250,
+      "sha256": "fa3982e7dd70e28e26c606f6c8c14bb48b9679056b5554566b9096f6113a0537"
+    }
+  ],
+  "native_checks": 127,
+  "native_sanitizers": "ASan/UBSan/leaks PASS",
+  "native_scope": "Actual context, ProfileState/ProfileProgress, preparation borrower and command/predicate policies; explicit application/frame endpoints. Real Startup/World/VM integration compile/link verified.",
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-diary-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-diary-native-run.log",
+      "bytes": 66,
+      "sha256": "7b0cb9faa18dfd97905629e25d7488b6feb26316da7330306d6950ef41aa29be"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-diary-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-diary-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script137-index.txt",
+      "bytes": 8294,
+      "sha256": "c5e2909db3b18779070196983b9bef8f7aad18b4e8c3519d84adbe00d5fa5b1b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script137-dispatch.json",
+      "bytes": 108,
+      "sha256": "39bd75e7a54ffdd9f00903592bc29e9dfd20c4a8b97b417e23d8b10c38be1929"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script137-dispatch.asm",
+      "bytes": 1586,
+      "sha256": "5ed2b6860178ef18b2ac2a4485db6f84bf778b5c186da862cc4b756eaae8a042"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-diary-index.txt",
+      "bytes": 5537,
+      "sha256": "d59f9ef1c5e038cc4e687582f7e75a3d2a1415310ec7f1cbff36389bcffc4c2e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-diary-lifecycle-index.txt",
+      "bytes": 5928,
+      "sha256": "9af770a182f2bc82bf2af9eaf124a5e9a58a0c3223bc83c44615dbc5fa17f7ea"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-diary-owner-lifetime.asm",
+      "bytes": 4023,
+      "sha256": "d567fe5ff3b39c6720b9dfb00c5f4d0ae29fcb21940089956fde8116aa7931b9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-diary-record-index.txt",
+      "bytes": 2004,
+      "sha256": "4c65517406db21dbc7535ac24e29491ab7facd69f985bacf132e30aef11383b7"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-diary-record.asm",
+      "bytes": 2571,
+      "sha256": "42d4042af12c2c4b121f3a255bebd25315971664a76cfec8d18c80894f7500d5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-diary-profile-owner-index.txt",
+      "bytes": 3518,
+      "sha256": "35d751af33a4776bc9e86a3a2d355f910ebe588462cc28c2b0b26045c4c5f65f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-diary-record-constructor-index.txt",
+      "bytes": 1230,
+      "sha256": "c74a66c50bf97dd09a769ecf9851a2c287148d8c5547ad3d969556313256d5e7"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-diary-record-constructor.asm",
+      "bytes": 2091,
+      "sha256": "08dba7b1fb256e08ae8e85ff6ff2c0a68ea21e2a0b9e8037454f39f20e38d241"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-game-type-dispatch.json",
+      "bytes": 74,
+      "sha256": "4037c202390c4fc55e037c691648f01a6d0e257a4a22540f2ed2cda9b1c78fb8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-game-type.asm",
+      "bytes": 3101,
+      "sha256": "763b5e11dea4b1ca3065306798d38f67460453645e8993a72860b8da61e351f9"
+    }
+  ],
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script137-return/application_launch.exe",
+      "bytes": 12888064,
+      "sha256": "1361c82fcad8b8f34b7fe67588c8531e33c9cab2be0c6f142ee9e380e437a243"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script137-return/host-output.log",
+      "bytes": 255905,
+      "sha256": "b5b0ea25b5c22d0268e68a1259756d4e4a27ba7817cb7ff4be3d33a0323d5824"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script137-return/host-runtime.log",
+      "bytes": 259844,
+      "sha256": "ee489099e8dfd232fafc1b05b6495c80aecd5b339f45e0400e5b4a34c6bde389"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script137-return/inputs.json",
+      "bytes": 993,
+      "sha256": "29ef83e38a5b390bdf4728128340541b8688b37a79a1e92145c6425c6201f145"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script137-return/steam-0.log",
+      "bytes": 343767,
+      "sha256": "ca65725d2da5cb780121b068f5a750347a8431ee2de7d42636911ab6c722e215"
+    }
+  ],
+  "review_recoverable_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-diary-review-final.patch",
+    "bytes": 139477,
+    "sha256": "e1c865f915d23a3e754461b96661579313a1828cbab79ea02847ee03279ffea0"
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-diary-native.cpp",
+      "bytes": 4726,
+      "sha256": "c530c493f57b8c631e1518e477f0148aff15a4d2ac7dee96a8abb36d8c6eceb8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-diary-native",
+      "bytes": 2175344,
+      "sha256": "e48a7372e01cc43dfc312abc08bf6228f8d8e076ecd68ea6f56792c054ec9c11"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "gameplay_desktop_verified": false,
+  "full_frame_source_complete": false,
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "matrix_reconciliation": "partially_resolved",
+  "agent_executed_original_dll_proton_or_windows": false,
+  "actual_result": "1361c82f passes alarm/Run continuation and activation/render/fixed/input/update prefix; later required AddDiaryText137 exits result1. Revised diary/game-type candidate awaits user run.",
+  "full_actual_i386_O2_Werror_build": "PASS application-launch startup-probe",
+  "built_artifacts": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+      "bytes": 12890624,
+      "sha256": "d60751d1e56a45540e10e6d3d356e9c79bef86723aa34105d810284d3d991948"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "70a4a829e169b8b84c439bfbed27de75ddb0d609e18354c601cc2ac13e690c2d"
+    }
+  ],
+  "limitations": [
+    "Typed/STL/RAII owners differ from original object/container/allocator/SEH ABI. Native application/frame endpoints are explicit doubles; real host composition compile/link only.",
+    "Profile persistence/debrief/loaded-save suppression producers and broader VM/cutscene remain required. No fabricated save chunks, stored commit or diary presentation.",
+    "Stable scene/control/game entry and full FRAME/HUM/OWN remain unaccepted; interactive review overlay uncommitted."
+  ],
+  "staged_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+    "bytes": 12890624,
+    "sha256": "d60751d1e56a45540e10e6d3d356e9c79bef86723aa34105d810284d3d991948"
+  },
+  "stage_only": "PASS"
+}

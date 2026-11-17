@@ -46,6 +46,7 @@ public:
     GameData& game() { return *game_; }
     StartupConfiguration& configuration() { return *configuration_; }
     ProfileState& profile() { return *profile_; }
+    ProfileState* profile_owner()const noexcept{return profile_.get();} //0041D760 application20 nullable accessor.
     HumanStore<Graphics>& humans() { return *humans_; }
     std::uint8_t& first_person_preference(){return first_person_preference_;} //006B4A60 application+0C owns one byte initialized0;008AE908.
     std::uint32_t& game_mode_field4(){return game_mode_field4_;} //006B4670 native mode04;0069B230 reads actual008AE924+4.

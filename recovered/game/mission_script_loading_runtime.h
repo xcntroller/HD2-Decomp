@@ -9,6 +9,7 @@
 #include "game/mission_objective_status.h"
 #include "game/mission_script_render_commands.h"
 #include "game/mission_script_formation_commands.h"
+#include "game/mission_script_profile_commands.h"
 
 namespace hd2::game {
 
@@ -62,6 +63,11 @@ public:
             const MissionScriptProgram& program){
         if(!script_authority())return 0;
         if(const auto result=module().variables().evaluate(opcode,values,program,true))return *result;
+        if(opcode==0x1au){
+            const auto mode4=dependencies_.world.script_mode_field4();
+            const auto mode8=dependencies_.world.script_mode_field8();
+            return mission_script_game_type(mode4,mode8);
+        }
         if(const auto result=dependencies_.predicates.evaluate(context,opcode,values,program,*this))return *result;
         throw std::runtime_error("Required script predicate is not reconstructed: "+std::to_string(opcode));
     }
@@ -69,6 +75,7 @@ public:
         if(!script_authority())return;
         //00421C00/00421970 call base00416E10 BEFORE their derived switch.
         if(accept_base(module().execute(context,instruction),context))return;
+        if(accept_base(execute_mission_script_profile_command(context,instruction,dependencies_.world,*this),context))return;
         if(accept_base(execute_human_script_alarm_command<Frames,Human>(frames_,context,instruction,dependencies_.controls,*this),context))return;
         if(accept_base(execute_mission_render_command(context,instruction,dependencies_.effects,*this),context))return;
         if(accept_base(execute_formation_script_command<Frames,Human>(frames_,dependencies_.players,context,instruction,*this),context))return;

@@ -249,7 +249,8 @@ remains separate; earlier checkpoint evidence is revision-qualified.
 actual Player decoration bend/fade/bounce requests and lifetime ordering are
 source-bound and sanitizer-verified. User run completes activation, Scene78,
 fixed-update, input and full update; revised Door dispatch passes in the user run.
-Fade dispatch now passes; the next failure is SetAlarmType148. [Actual alarm mask/replay and immediate Run dependency](analysis/p22-frame-script-alarm-source.md)
+Fade/alarm/Run dispatch now passes; the next failure is AddDiaryText137.
+[Shared profile diary records and following game-type predicate](analysis/p22-frame-script-diary-source.md)
 are sanitizer-verified and rebuilt/staged; revised desktop continuation is pending.
 Stable scene/control/presentation and full FRAME/HUM/OWN remain unaccepted.
 

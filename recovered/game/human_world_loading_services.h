@@ -128,6 +128,12 @@ public:
     bool dependencies_bound()const noexcept{return dependencies_.bound();}
     std::uint32_t mode_flags()const{return dependencies().startup.application_flags();}
     std::int32_t human_current_player_id()const{return dependencies().startup.local_player_identity();}
+    auto* script_profile_owner(){return dependencies().startup.script_profile_owner();}
+    std::uint32_t script_profile_root(){ //SAME selected root adaptation as actual SessionSelection.
+        auto& d=dependencies();return d.request.network?d.startup.game_application_data().field_e8:d.request.preparation.root;
+    }
+    std::uint32_t script_mode_field4(){return dependencies().startup.game_mode_field4();}
+    std::uint32_t script_mode_field8(){return dependencies().startup.selected_game_mode();}
     bool human_remote_ai_enabled(){return dependencies().startup.human_remote_ai_enabled();}
     auto human_difficulty(){return dependencies().startup.human_difficulty();}
     std::uint32_t game_word28()const{return dependencies().session.words.template get<std::uint32_t>(0x28);}

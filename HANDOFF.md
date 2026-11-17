@@ -6,30 +6,34 @@ then FRAME/OWN. No subagents/push/original/DLL/Proton/Windows execution/permanen
 tests. Heavy compilation and Ghidra sequential. Preserve OWN dirty files/artifact.
 Continue the first concrete loading/frame failure, not broad admin/network work.
 
-LATEST USER: "Crashed. Another missing script." on b64c5168117cb0fa86f09deec32baad394cf8da81fb44f0d4bc6dc7aca08dd68.
-Fade dispatch passes; activation loaded1/status5, Scene78 render, fixed-update,
-input AND full update complete. Later148 SetAlarmType exits result1, no access
-violation. Exact executable/logs WORK/first-frame-script148-return. Stable scene/
-control/presentation remain unaccepted.
+LATEST USER: "Crashed. Script 137 now" on1361c82fcad8b8f34b7fe67588c8531e33c9cab2be0c6f142ee9e380e437a243.
+Alarm/Run continuation passes; activation loaded1/status5, Scene78/fixed/input/
+full update complete. AddDiaryText137 exits handled result1, no access violation.
+Exact exe/logs WORK/first-frame-script137-return. Stable game remains unaccepted.
 
-CURRENT: base00416E10 94 resolves SAME context100/EC Human, BOOL operand1 then
-mask0,005AF150 B0kind5 gate ->0058E650 suppression1B8. Enabling clears bits;
-disabling sets. Optional actual hostile replay after mask store uses one SAME
-CRT rand and existing B0+98 sight_enemy_acquired. No fake event/state/service.
-Captured T_EE_Target1..4 then immediately request Run; also supplied original
-00421C00 C4 ->005AF270(kind5) ->0058F2D0 exact1B0 &FFFF4FFF |4000. Existing
-Zombie/Suspend/frame consumers unchanged. Native1179692 focused actual policy/
-Controls/context/perception/ref assertions ASan/UBSan/leaks PASS; full production
-Script-state/Run/World wiring compile separately.
-[Contract](analysis/p22-frame-script-alarm-source.md),
-[receipt](analysis/checkpoints/p22-frame-script-alarm-20261117.json).
+CURRENT: original00416E10 89 ->00419D64 integer BEFORE nullable/repeated
+application20 lookup0041D760 ->006AE510 root record94/B8 ->006A7820 append.
+ProfileState now owns actual two suppression/stored/pending records; preparation
+discoveries borrow SAME records instead of separate flow-local arrays. Coldflag0
+proved006B5D20; clear006A77E0 preserves suppression/capacity. No fake save/persist/
+commit/diary-render service. Offline root adaptation matches SessionSelection's
+actual request/route; network reads actual application E8. No cached/extra profile.
+Captured TUT_Objectives then immediately queries _SPGetGameType; also bound
+original0041E3F0 1A ->0041E489 mode04 then08 wrapping sum, signed0..10 admission.
+Actual Startup mode4/route mode8, not configuration04/process flags. Native127
+actual context/profile/preparation/policies ASan/UBSan/leaks PASS with explicit
+application/frame endpoints. Review OWN overlay patched in place, never replaced.
+[Contract](analysis/p22-frame-script-diary-source.md),
+[receipt](analysis/checkpoints/p22-frame-script-diary-20261117.json).
 Full actual i386 O2/Werror application/probe and stage-only PASS.
-Revised candidate SHA256 1361c82fcad8b8f34b7fe67588c8531e33c9cab2be0c6f142ee9e380e437a243.
-NEXT: user desktop continuation; inspect new first concrete failure.
-Native audit fingerprinted/removed; OWN preserved.
-No agent Windows execution. Broader commands/cutscene remain required; no bypass.
-Previous d8c0f1d corrected raw Door null/wrong-target shared advance/true tail
-0041C8C6 and bound A0/A1 fades to SAME process owner. Receipts are revision-qualified.
+Staged candidate SHA256 d60751d1e56a45540e10e6d3d356e9c79bef86723aa34105d810284d3d991948.
+NEXT: actual user continuation; inspect the first concrete failure.
+Native audit fingerprinted/removed; OWN source/artifact unchanged.
+No original/DLL/Proton/Windows execution by agent. Broader script/cutscene and
+actual diary presentation/save-load remain required. No matrix/count promotion.
+
+Previous422d793 alarm mask/replay and immediate C4 Run;d8c0f1d A0/A1 fades and
+Door missing-target shared advance/true tail; all revision-qualified receipts.
 
 Positive Player decoration0047F4E0->0047FAE0->reverse0047F150/0047F200 is now
 source-bound: actual posture/repeated FPV/velocity, model/world/local-axis/alpha
@@ -81,7 +85,7 @@ REVIEW: `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
 edebd81 + preserved OWN interactive overlay/later FRAME source. Mixed staged and
 unstaged is expected, not a merge conflict. Interactive app adapter remains
 UNCOMMITTED pending actual user desktop acceptance per AGENTS. Source-only main
-fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-script-alarm-review-final.patch includes
+fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-script-diary-review-final.patch includes
 all untracked collision/decorations/input/water headers; fingerprinted in receipt. No accepted game yet.
 
 Desktop command, USER ONLY:
