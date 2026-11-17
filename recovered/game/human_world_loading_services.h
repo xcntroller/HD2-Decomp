@@ -11,6 +11,7 @@
 #include "game/heavy_fire_player_support.h"
 #include "game/human_active_ai_special_target.h"
 #include "game/human_ai_alignment.h"
+#include "game/human_active_ai_fire_line.h"
 #include "game/human_active_ai_authority_body.h"
 #include "game/human_vehicle_path.h"
 #include "game/human_inventory_counts.h"
@@ -324,6 +325,7 @@ public:
         return attachment&&attachment->base().type()==4&&car_field5e0(attachment);
     }
     template<class Human>bool active_has_heavy_weapon(Human& human){ //005328D0 is attachment B4 payload kind2, not a hand-inventory search.
+        if(!human.loading_state)throw std::runtime_error("Mounted payload query reaches native NULL Human B0");
         return human.field160&&human_script_mounted_precise(human.field160,static_cast<std::int32_t>(human.field164));
     }
     template<class Human>bool active_mounted_precise(Human& human){ //00532910 dereferences the actual B4 definition BEFORE testing payload48.
@@ -658,8 +660,13 @@ public:
         HumanPacketCommand command;command.kind=3;command.fields.set(8,5u);command.fields.set(0xc,identity);command.fields.set(0x10,0u);
         (void)composition(*state.human()).state_factory().common_command(state,command); //00587540 immediate DC only; no additional queue copy.
     }
-    template<class Humans,class Actor>auto select_special_active_command_candidate(Humans&,std::uint32_t,Actor&,std::uint32_t) -> typename Humans::value_type {
-        throw std::runtime_error("Players selection requires specialized0045BD10 item/attachment capability policy");
+    template<class Human>bool active_command_controlled_mount(Human& human){ //005328A0: current attachment then actual virtual98.
+        if(!human.loading_state)throw std::runtime_error("Vehicle attack control query reaches native NULL Human B0");
+        auto* attachment=human.field160;return attachment&&human_pose_actor_has_control(attachment,human.field164);
+    }
+    template<class Human>bool active_command_launcher_available(Human& human){ //005304B0(kind6,0,0,&local action word).
+        if(!human.loading_state)throw std::runtime_error("Vehicle attack launcher query reaches native NULL Human B0");
+        std::int32_t slot=7;return bool(find_human_weapon_candidate(human,dependencies().world_actors.items(),6,false,false,slot));
     }
     template<class State,class Actor>void produce_special_active_player_command(State& state,std::uint32_t action,Actor* target,std::uint32_t){
         if(action==16){if(!target)throw std::runtime_error("Placed task producer dereferences native NULL target");produce_active_placed_task(state,*target,dependencies().scene.frames(),*this);return;}
@@ -3280,6 +3287,7 @@ public:
     }
     template<class State>bool human_ai_line_of_fire(State& state,const HumanVector& direction){
         switch(state.words().template get<std::uint32_t>(0x48)){
+        case 3:return human_active_ai_line_clear(state,direction,dependencies().scene.frames(),*this); //0052F1F0.
         case 4:return human_ai_friendly_line_clear(state,direction,dependencies().scene.frames(),*this); //00558E50.
         case 5:case 6:case 8:return true; //005A4290/005A42E0/005A4510: actual MOV AL,1;RET4, absent frozen.
         default:throw std::runtime_error("AI aim line requires its actual derived virtual114 receiver");

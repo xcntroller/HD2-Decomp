@@ -87,11 +87,9 @@ template<class AI,class Frames,class World>bool process_human_active_pending_ord
 template<class AI>bool advance_human_active_pending_move(AI& ai){
     auto& state=ai.state();auto* human=ai.human();
     if(!human)throw std::logic_error("Active move task lost Human44");
-    switch(state.template get<std::uint32_t>(0x220)){
-    case 0:case 1:case 2:case 3:case 4:case 5:case 6:case 14:case 15:case 16:case 19:
-    case 22:case 23:case 24:case 25:case 26:case 27:case 28:case 32:case 33:case 34:case 37:case 38:case 40:case 41:case 42:case 52:break;
-    default:throw std::runtime_error("Active task requires its specialized00528950 action-family receivers");
-    }
+    //00528950 has no task admission whitelist. Its specific22/25/26/32
+    //gates coexist with a common path for every other task word; preserve
+    //actual downstream command/actor requirements instead of rejecting here.
     if(!state.template get<std::uint8_t>(0x205)&&!state.template get<std::uint8_t>(0x200)){
         if(ai.prepare_pending_task_attachment())return true;
         ai.pending_clear_item_ready(); //0058C400, before query/174/direction.

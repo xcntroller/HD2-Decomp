@@ -37,6 +37,18 @@ template<class Humans,class Actor,class World>auto select_active_attack_candidat
     }
     return nullptr;
 }
+//0045BD10 action22. Armor is reread for EACH candidate; mounted control98
+//short-circuits payload B4/48, then kind6 search runs on that SAME Human.
+//The containing selector already applied the native pointer-only ordering.
+template<class Humans,class Actor,class World>auto select_active_vehicle_attack_candidate(Humans& humans,Actor& target,World& world) -> typename Humans::value_type {
+    for(auto* human:humans){
+        if(!world.active_vehicle_attack_armoured(&target))return human;
+        if(!human)throw std::runtime_error("Vehicle attack selector reaches native NULL Human B0 dereference");
+        if(world.active_command_controlled_mount(*human)&&world.active_has_heavy_weapon(*human))return human;
+        if(world.active_command_launcher_available(*human))return human;
+    }
+    return nullptr;
+}
 //00459180. Native swaps ONLY Human pointers; the original distance array is
 //never swapped. A conventional sort changes the order for three+ candidates.
 template<class Human,class Frames>void order_active_command_candidates(std::vector<Human*>& humans,
@@ -62,6 +74,7 @@ template<class Human,class Actor,class Frames,class World>Human* select_active_c
     if(humans.empty())return nullptr;
     const auto m=frames.actor_world_matrix(target.base().frame());
     order_active_command_candidates(humans,{{m[12],m[13],m[14],m[15]}},frames);
+    (void)secondary;
     switch(action){
     case 0:case 1:
         for(auto* human:humans)if(world.active_command_has_definition(*human,world.active_command_definition(target,action)))return human;
@@ -96,7 +109,7 @@ template<class Human,class Actor,class Frames,class World>Human* select_active_c
     case 25:case 26:case 37:return select_active_attack_candidate(humans,action,target,world);
     case 24:return world.select_active_handoff_candidate(humans,target);
     case 22:
-        return world.select_special_active_command_candidate(humans,action,target,secondary);
+        return select_active_vehicle_attack_candidate(humans,target,world);
     default:return nullptr; //Native switch has no accepted candidate.
     }
 }

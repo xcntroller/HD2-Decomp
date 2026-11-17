@@ -46606,7 +46606,7 @@
       "program": "client",
       "entry": "00528950",
       "status": "partial",
-      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required. Task37 now shares actual pending/turn/completion; far ranged aim publishes position35 before actual grenade animation duration, preserving1500 prefix on failure. Task6 direct item/supply effects now propagate native false through turn/pending caller; Human posture/reproduction and task23/24/33 actual loot/handoff effects preserve timers, all calls, partial failures and clothing-before-head order. Extended: Admit task32 and retain live target until00538A60 reports unavailable, matching its native bVar5 completion class. Ordinary occupied driver/passenger prefix, controlled attack-seat waits/exit ordering, exact claim6C entry selection, Car pose/distance/re-approach/hold-trim fallback and pickup Human posture below squared16 now bind actual owners. Selected task22 now binds actual nearby range/visibility/replan, specialized vector or grenade-position aim, attack producer/inventory/control, pending completion and ignored-result Car occupant classification. See specialized-target contract for exact boundary. Adds actual placed16 admission and40/41/42 progression, task40 spatial point/clamp/retry, signed IDIV/live-roster timer and callback-before206 reread.",
+      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required. Task37 now shares actual pending/turn/completion; far ranged aim publishes position35 before actual grenade animation duration, preserving1500 prefix on failure. Task6 direct item/supply effects now propagate native false through turn/pending caller; Human posture/reproduction and task23/24/33 actual loot/handoff effects preserve timers, all calls, partial failures and clothing-before-head order. Extended: Admit task32 and retain live target until00538A60 reports unavailable, matching its native bVar5 completion class. Ordinary occupied driver/passenger prefix, controlled attack-seat waits/exit ordering, exact claim6C entry selection, Car pose/distance/re-approach/hold-trim fallback and pickup Human posture below squared16 now bind actual owners. Selected task22 now binds actual nearby range/visibility/replan, specialized vector or grenade-position aim, attack producer/inventory/control, pending completion and ignored-result Car occupant classification. See specialized-target contract for exact boundary. Adds actual placed16 admission and40/41/42 progression, task40 spatial point/clamp/retry, signed IDIV/live-roster timer and callback-before206 reread. Native common path now admits every task word; removed the reconstructed whitelist absent from original. Existing actual specialized/command/invalid-owner receivers remain in force.",
       "limitations": "Source-only typed/STL/RAII adaptation. Other specialized task/admission/action producers, positive process98 and H8.4 occupied/Car/seat/nonHuman actors remain required where reached. Existing ranged/group/item paths are described in linked current contracts. Native endpoint doubles and actual i386/launcher linking do not establish original ABI or loaded mission/application/desktop acceptance; no delegated engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_pending.h",
@@ -46640,7 +46640,10 @@
         "recovered/game/mission_navigation.h",
         "recovered/game/placed_item_actor.h",
         "analysis/human-h8-task-runtime-source.md",
-        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json",
+        "recovered/game/human_active_ai_fire_line.h",
+        "analysis/human-h8-command-fire-line-source.md",
+        "analysis/checkpoints/p2.2-human-h8-command-fire-line-20261117.json"
       ]
     },
     {
@@ -46660,7 +46663,7 @@
       "program": "client",
       "entry": "0045bd10",
       "status": "partial",
-      "coverage": "Selected ordinary target-model/sort-first candidate selection; definition lookups, first-candidate actions, type21 claim and Human focus gates; required specialized policies. Action15 now skips the target Human and selects the first medical-equipped candidate after native model/sort prefix. Attack25/26 selection now prefers actual bidirectional hostile-list membership, then retries all sorted candidates;26 tests definition22/7/260 quantities or actual non-pack ammunition counts on each pass. Action18 now chooses first sorted ready holster9 candidate. Kind11 action6 keeps its original specialized capability receiver, separate from attack selection. Item6 now uses actual capacity probe and native nonzero (including negative) selection before stricter producer; handoff24 uses actual clothing variants and native sort prefix.",
+      "coverage": "Selected ordinary target-model/sort-first candidate selection; definition lookups, first-candidate actions, type21 claim and Human focus gates; required specialized policies. Action15 now skips the target Human and selects the first medical-equipped candidate after native model/sort prefix. Attack25/26 selection now prefers actual bidirectional hostile-list membership, then retries all sorted candidates;26 tests definition22/7/260 quantities or actual non-pack ammunition counts on each pass. Action18 now chooses first sorted ready holster9 candidate. Kind11 action6 keeps its original specialized capability receiver, separate from attack selection. Item6 now uses actual capacity probe and native nonzero (including negative) selection before stricter producer; handoff24 uses actual clothing variants and native sort prefix. Actual action22 armoured/nonarmoured, mounted98\u2192payloadkind2\u2192same-Human kind6 candidate selection now source-bound.",
       "limitations": "Source-only typed/STL/RAII adaptation. Other specialized task/admission/action producers, positive process98 and H8.4 occupied/Car/seat/nonHuman actors remain required where reached. Existing ranged/group/item paths are described in linked current contracts. Native endpoint doubles and actual i386/launcher linking do not establish original ABI or loaded mission/application/desktop acceptance; no delegated engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_commands.h",
@@ -46673,7 +46676,11 @@
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
         "recovered/game/human_active_ai_group.h",
         "recovered/game/players_process.h",
-        "recovered/game/human_active_ai_loot.h"
+        "recovered/game/human_active_ai_loot.h",
+        "recovered/game/human_active_ai_fire_line.h",
+        "recovered/game/human_active_ai_pending.h",
+        "analysis/human-h8-command-fire-line-source.md",
+        "analysis/checkpoints/p2.2-human-h8-command-fire-line-20261117.json"
       ]
     },
     {
@@ -49184,7 +49191,7 @@
       "program": "client",
       "entry": "005328d0",
       "status": "partial",
-      "coverage": "Correct actual attached B4 payload kind2 predicate, genuine false when unattached; replaces erroneous hand-inventory search in cover selection.",
+      "coverage": "Correct actual attached B4 payload kind2 predicate, genuine false when unattached; replaces erroneous hand-inventory search in cover selection. Armoured candidate chain rereads current B0/payload after actual control98; native NULL B0 guard explicit.",
       "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native target/direction/input policy checks use explicit AI/World/Frames/selector/cover/cautious/Body endpoint doubles. Actual full Human/occupied/control/Car/mounted/path receiver composition and launcher/probe compile/link only. Type34/36 actors, far Dog listener540, nonHuman task25/26 EC, selected Aircraft/non7 and remaining H8 module/Sight/entry/application/desktop requirements remain guarded. No absent/delegated-engine credit or whole-body equivalence promotion.",
       "evidence": [
         "recovered/game/human_active_ai_occupied.h",
@@ -49195,7 +49202,12 @@
         "recovered/game/human_player_control_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/human-h8-occupied-authority-source.md",
-        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json",
+        "recovered/game/human_active_ai_fire_line.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h",
+        "analysis/human-h8-command-fire-line-source.md",
+        "analysis/checkpoints/p2.2-human-h8-command-fire-line-20261117.json"
       ]
     },
     {
@@ -49764,6 +49776,36 @@
         "recovered/game/model_scene_actors.h",
         "analysis/human-h8-dog-orders-source.md",
         "analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0052f1f0",
+      "status": "partial",
+      "coverage": "Actual final Active114 firing callback on SAME Players roster forward/fresh count, head260, signed-health/current-Human gates and DD0 primary spheres; native infinite-line projection and DOUBLE1.15 margin, including FLOAT/x87 spills/tiny/unordered behavior.",
+      "limitations": "Source-only typed reconstruction and invalid-native-owner guards; native policy/roster/scalar verification uses explicit adjacent frame/physical/inventory/control/query endpoints. Actual full World/module/i386/launcher compile/link only. No allocator/SEH/object/native stack ABI or whole H8/application/desktop equivalence; no delegated-body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_fire_line.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-command-fire-line-source.md",
+        "analysis/checkpoints/p2.2-human-h8-command-fire-line-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005328a0",
+      "status": "partial",
+      "coverage": "Actual candidate current Human B0/attachment and virtual98 control query, now bound to0045BD10 action22 before current payloadkind2 and same-Human kind6 weapon search.",
+      "limitations": "Source-only typed reconstruction and invalid-native-owner guards; native policy/roster/scalar verification uses explicit adjacent frame/physical/inventory/control/query endpoints. Actual full World/module/i386/launcher compile/link only. No allocator/SEH/object/native stack ABI or whole H8/application/desktop equivalence; no delegated-body credit.",
+      "evidence": [
+        "recovered/game/human_active_ai_fire_line.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_pending.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-command-fire-line-source.md",
+        "analysis/checkpoints/p2.2-human-h8-command-fire-line-20261117.json"
       ]
     }
   ]

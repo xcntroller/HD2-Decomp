@@ -16,29 +16,37 @@ interactive changes need actual user desktop acceptance. None has occurred.
 
 ## Latest result
 
-[Dog order storage](analysis/human-h8-dog-orders-source.md),
+[Human command/Active firing](analysis/human-h8-command-fire-line-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-command-fire-line-20261117.json):
+0045BD10 action22 now uses actual mounted-control/payload and kind6 inventory;
+00528950's invented pre-common-path task whitelist is removed. Actual Active
+virtual114=0052F1F0 now reads SAME Players forward/fresh roster and actual DD0
+spheres, preserving native infinite-line math and DOUBLE1.15 margin.833 selector/
+pending and10023 Active line native ASan/UBSan/leak/Werror checks PASS; strict
+actual module/UI/selector/Active i386 link and forced launcher/probe PASS. Native
+model/physics endpoints are qualified in receipt, not actual loaded engine runs.
+Audit source/binary pairs fingerprinted then removed. Tracker exact+27 tests PASS:
+34 complete/3632 partial(client3627+engine5), no complete promotions/desktop claim.
+No heavy job currently running. H8.2/H8.4/H8.5/H8.6 and HUM matrix remain OPEN.
+
+Prior96182e2 [Dog order storage](analysis/human-h8-dog-orders-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-dog-orders-20261117.json): actual Dog
 owns current314/five338 records;330/334/records aliases, not mirrored queues.
 005C4B90/4C30/4C70/85A0/8600/8660 source, native bad HEAD wrap preserved and
 unproduced metadata rejected explicitly.175556 strict qualified native sanitizer
-checks/module+i386+forced launcher/probe PASS. Six partials;34 complete/3630
-partial(client3625+engine5), no complete promotions/live Dog claim. Temporary
-native/module successful audit pairs fingerprinted and removed.
+checks/module+i386+forced launcher/probe PASS. Six partials; no live Dog claim.
 
-New exact raw: Actor+90→005C8370, clip initialization with Body+10, then
-Body005C7D30 with original base. Clip model+10 means Body20/ActorB0; don't lose
-multiple-base adjustment from C exports. Body278/27C/280 priorities and newly
-queued metadata have early reads still needing exact producer/order resolution.
-Do not silently zero or extend D11 defaults. This is an unresolved targeted risk,
-not proven global absence of aliases/writers. Original cold/factory/live-init
-raw and indexed contracts are retained.
+Exact raw: Actor+90→005C8370, clip initialization with Body+10, then
+Body005C7D30 with original base. Clip model+10 means Body20/ActorB0. Body278/27C/280
+priorities and newly queued metadata have early reads still needing exact
+producer/order resolution; do not silently zero or extend D11 defaults. This is
+an unresolved targeted risk, not proven global absence of aliases/writers.
 
-Type36 owner read-only Ghidra export005E3C90/005E3F10 completed PASS; no heavy
-job currently running. Constructor registers real008AC8B8 process table; destructor
-unregisters before five vector/base retirement. No implementation yet.
-Research index human-h8-type36-owner-index.txt already queried before export.
-These are the existing positive idle-look owner dependency, not new checklist
-scope. Resolve its constructor/destructor source before deciding implementation.
+Type36 owner read-only Ghidra export005E3C90/005E3F10 completed PASS.
+Constructor registers real008AC8B8 process table; destructor unregisters before
+five vector/base retirement. No implementation yet. Existing index
+human-h8-type36-owner-index.txt preceded export. This is a positive idle-look
+owner dependency, not new checklist scope.
 
 Prior27a5d89 [Shared blast/Sight](analysis/human-h8-blast-sight-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-blast-sight-20261117.json):006DDD40
@@ -66,19 +74,12 @@ retreat/order/formation/target and position10/11 source. No remaining cover guar
 
 ## Next work — complete remaining H8.2/H8.4
 
-Concrete H8.2 follow-up identified:0045BD10 action22 candidate selection is still
-an explicit guard despite completed task22 producer. Existing selection C128..140
-requires, per candidate: nonarmoured target immediately accepts; else actual
-005328A0 mounted control AND005328D0 payloadkind2 accepts; otherwise actual
-005304B0(kind6,false,false,&scratch) nonNULL accepts. Sorted order already exists.
-Reuse active_vehicle_attack_armoured, human_pose_actor_has_control,
-active_has_heavy_weapon, find_human_weapon_candidate. Index files NEW
-human-h8-player-final-selector-index.txt and selector22-receivers-index.txt locate
-all source; no new exports needed. Also00528950 has NO action admission whitelist;
-recovered advance_human_active_pending_move still rejects task values before its
-already source-bound common path. Compare original to remove only that invented
-restriction, retain actual specialized/native-invalid-owner requirements.
-
+The mandatory Active firing and selector22/common task guards are now resolved;
+do not repeat their unchanged audits. Continue the actual remaining H8.2/H8.4
+owners. Positive type36/type34 idle-look owners are still explicit failures;
+actual constructors and005E8B70 selection evidence already exist. Index005E2CC0
+before any new export and resolve its ray ABI from raw, not inferred C arguments.
+Type36 native130/138/148 require their real activation/frame producers.
 
 Finish actual reached actor owners, then containing-Human H8.5 sweep. Live Dog
 activation/Body/controller/Sight remains unavailable, despite completed process
