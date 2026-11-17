@@ -49443,7 +49443,7 @@
       "entry": "0053d5b0",
       "status": "partial",
       "coverage": "Actual Player inline4E0 expiry forwards through SAME World to process dispatcher; no DD0 command substitution.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49459,7 +49459,7 @@
       "entry": "00455d40",
       "status": "partial",
       "coverage": "Actual Active per-recipient follow/cancel/hold/retreat/action/saved/grenade/support/group and pending-order policies, fresh selected Human.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49475,7 +49475,7 @@
       "entry": "0045b890",
       "status": "partial",
       "coverage": "Actual two-pass attachment effects then six-offset point tasks, ordered actual matrix transform, skip passengers without consuming offset.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49491,7 +49491,7 @@
       "entry": "00535440",
       "status": "partial",
       "coverage": "Actual position task42/radius2.5,190 clear,204/1C0/188/214200 before mode/notification/group posture.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49507,7 +49507,7 @@
       "entry": "00537c60",
       "status": "partial",
       "coverage": "Actual three-attempt retreat task40 producer, cached source direction and model point, flag/mode/notification/group posture ordering.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49523,7 +49523,7 @@
       "entry": "00538430",
       "status": "partial",
       "coverage": "Actual front order kind6 completion byte48 store, genuine empty/other-kind no effect.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49539,7 +49539,7 @@
       "entry": "00538460",
       "status": "partial",
       "coverage": "Actual front order kind7 completion byte48 store, genuine empty/other-kind no effect.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49555,7 +49555,7 @@
       "entry": "00538490",
       "status": "partial",
       "coverage": "Actual pending-order18D pause/resume with202/200 gates, active-query stop or task1E0 request.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49571,7 +49571,7 @@
       "entry": "0053d910",
       "status": "partial",
       "coverage": "Actual signal head260 world point plus embedded kind3 payload copied into owned first80 command12; native pointer payload validated against SAME source owners.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49587,7 +49587,7 @@
       "entry": "005a45e0",
       "status": "partial",
       "coverage": "Actual Human signal forward to published Player queue producer through concrete UI signal/World source borrower.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49603,7 +49603,7 @@
       "entry": "00535a60",
       "status": "partial",
       "coverage": "Actual support kind5 hand3/holder2 selection, native unordered amount/count policy and ignored source2 transfer results, task52 flags/focus/notification.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49619,7 +49619,7 @@
       "entry": "00597b40",
       "status": "partial",
       "coverage": "Actual formation mode getter used after scale in process commands24/25; existing owned mode slot reused.",
-      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.00459740 cover assignment remains required; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
+      "limitations": "Source-only typed STL/RAII, original32-bit pointer guards and unclaimed native W/allocation states.Cover assignment has separate source evidence; no application/desktop, whole Human/dispatcher/native ABI or delegated engine credit.",
       "evidence": [
         "recovered/game/human_frame_runtime.h",
         "recovered/game/human_player_state_loading.h",
@@ -49628,6 +49628,48 @@
         "recovered/host/game_human_signal_commands.h",
         "analysis/human-h8-player-dispatch-source.md",
         "analysis/checkpoints/p2.2-human-h8-player-dispatch-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00459740",
+      "status": "partial",
+      "coverage": "Actual Player commands8/9 cover admission, five ideal slots, sparse rejection, stable extras separation/reassignment, nearest Human dispatch and random near fallback on SAME World navigation/collision/Scene/B0.",
+      "limitations": "Source-only typed scratch/RAII and explicit invalid native storage guards; unwritten W lanes, allocator/SEH/object ABI and delegated engine calls unclaimed. Full H8/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/human_player_cover_move.h",
+        "recovered/game/human_player_command_dispatch.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-player-cover-source.md",
+        "analysis/checkpoints/p2.2-human-h8-player-cover-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00537a40",
+      "status": "partial",
+      "coverage": "Actual task41 near DOUBLE comparison/speech refusal, state initialization and mode8/9 then notification/group posture on existing Human owners.",
+      "limitations": "Source-only typed scratch/RAII and explicit invalid native storage guards; unwritten W lanes, allocator/SEH/object ABI and delegated engine calls unclaimed. Full H8/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/human_player_cover_move.h",
+        "recovered/game/human_player_command_dispatch.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-player-cover-source.md",
+        "analysis/checkpoints/p2.2-human-h8-player-cover-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005245c0",
+      "status": "partial",
+      "coverage": "Actual first low set bit selects original eight direction vectors, including zero-mask row0 and unnormalized diagonals; CRT table initialization proven by raw static stores.",
+      "limitations": "Source-only typed scratch/RAII and explicit invalid native storage guards; unwritten W lanes, allocator/SEH/object ABI and delegated engine calls unclaimed. Full H8/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/human_player_cover_move.h",
+        "recovered/game/human_player_command_dispatch.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-player-cover-source.md",
+        "analysis/checkpoints/p2.2-human-h8-player-cover-20261117.json"
       ]
     }
   ]

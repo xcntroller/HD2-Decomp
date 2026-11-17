@@ -224,7 +224,7 @@ public:
         auto selected=player_command_recipients(command,4u);auto* target=player_command_actor_pointer(command.word(0x28));
         dispatch_active_player_commands(selected,command.word(0x24),target,immediate,command.word(0x2c),dependencies().scene.frames(),*this);
     }
-    template<class Command>void player_command_cover_move(Command&,bool){throw std::runtime_error("Players cover move requires actual00459740 candidate assignment");}
+    template<class Command>void player_command_cover_move(Command& command,bool immediate){dispatch_player_cover_move(command,immediate,dependencies().scene.frames(),*this);}
     template<class Command>void player_command_position_move(Command& command,bool immediate){dispatch_player_position_move(command,immediate,dependencies().scene.frames(),*this);}
     template<class Human>void player_command_common_action(Human& human,std::uint32_t action,std::int32_t identity,std::uint32_t argument){
         auto* state=composition(human).states().get();if(!state)throw std::runtime_error("Players common command lost actual B0");state->emit_common_action(action,identity,argument);

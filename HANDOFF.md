@@ -17,28 +17,34 @@ desktop test has occurred. Do not spawn other agents or add helper checkboxes.
 
 ## Latest result
 
-[Player dispatch](analysis/human-h8-player-dispatch-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-player-dispatch-20261117.json):
-actual UI signal→Player first80 command12 producer, inline4E0 timer dispatch,
-process recipient policies0..5, ordinary00455D40 recipients, formation21..25,
-target53/56, retreat4/5, order27..32, support20 and position10/11 task42 source.
-Native262 qualified ASan/UBSan/leak checks and strict actual full module+concrete
-UI producer i386 link PASS; forced launcher/probe/tracker receipts retained.
-Twelve new partials;34 complete/3621 partial(client3616+engine5), frozen18783.
+[Cover commands](analysis/human-h8-player-cover-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-player-cover-20261117.json):
+00459740 actions8/9 now bind actual five ideals89ABD0, sector/light/normal-ray
+admission, sparse rejection, stable extras separation/reassignment/nearest
+fallback, closest remaining Human and actual00537A40 task41/speech refusal.
+Inverse005245C0 table proven by CRT005244C0 raw stores; no engine/CRT count.
+1364 qualified ASan/UBSan/leak checks PASS; actual full module/UI i386 link and
+forced launcher/probe rebuild PASS. Native/module temporary pairs fingerprinted
+then removed. Three new partials;34 complete/3624 partial(client3619+engine5).
 H8/matrix OPEN, no application/desktop acceptance.
 
-NEXT: remaining00459740 cover move (commands8/9) must be implemented before
-claiming this dispatcher complete. Current required failure is honest. Reuse
-human-h8-player-command-dispatch/00459740.c and NEW ABI variant
-human-h8-player-command-typed/00459740.c. ExportHumanPlayerCommandsABI.java uses
-TEMPORARY transaction/finally rollback, no persisted Ghidra changes. It clarifies
-engine/direct call purges but stack-local aliasing remains; raw
-human-h8-player-cover-move.asm is authoritative. Actual ideal table is89ABD0
-(CRT004595F0, human-h8-player-cover-ideal-offsets.asm), NOT adjacent89AB80. Read
-actual matrix loop raw4599FB..459A3F. Inverse direction005245C0/raw table8AAC00
-still needs actual static initialization evidence. Existing spatial-cover,
-light-values/cover masks, collision ray and Scene region endpoints should be
-reused. Research-index lookup before any new exports; no new helper checkboxes.
+NEXT: review the actual remaining containing boundary, close satisfied H8
+checkboxes with explicit source/acceptance limits, then implement remaining
+mandatory H8.2/H8.4 owners. The prior cover guard is GONE. Actual ordinary
+projectile/Animation/loose-item derived paths have since been bound; assess H8.3
+against its delivery definition rather than retaining stale generic gaps.
+Dog live activation/Body/controller/Sight remains honest failure. Human motion
+contact kinds14/5 are reached only with actual actors (factory currently lacks
+both); do not implement invented actor58 behavior. Read indexed00788840 evidence
+in WORK/human-h8-motion-contact-index.txt and existingraw before new exports.
+No new helper checkboxes. Source checkpoint commit allowed; continue afterwards.
+
+Prior6dbb440 [Player dispatch](analysis/human-h8-player-dispatch-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-player-dispatch-20261117.json): actual
+UI→Player command12 producer, inline4E0 timer, process recipient0..5, ordinary
+00455D40 recipients, formation21..25, target53/56, retreat4/5, order27..32,
+support20 and position10/11 task42. Native262 qualified checks/module/UI/forced
+launcher/probe PASS. Twelve new partials; no application/desktop claim.
 
 Important Player contracts: apply_player_packet_action ALREADY copies inline
 4E4/4F0..510 and speech520; prior "no producer" notes were wrong. Native action20

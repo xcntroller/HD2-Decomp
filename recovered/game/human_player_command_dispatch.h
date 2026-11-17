@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_PLAYER_COMMAND_DISPATCH_H
 #define HD2_GAME_HUMAN_PLAYER_COMMAND_DISPATCH_H
 #include "game/human_active_ai_retreat.h"
+#include "game/human_player_cover_move.h"
 #include "game/human_active_ai_task_completion.h"
 #include "game/human_packet_commands.h"
 #include <functional>

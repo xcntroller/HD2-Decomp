@@ -1,3 +1,5 @@
+Cover-command follow-up:00459740 and00537A40 are now source-bound on the same owners; [contract/verification](human-h8-player-cover-source.md). Earlier cover-required statements below describe the preceding checkpoint.
+
 # H8 Player signal producer and delayed command dispatch
 
 The actual Player presentation timer now calls0053D5B0→process00456020 on its
