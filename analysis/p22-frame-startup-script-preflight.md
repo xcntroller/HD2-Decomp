@@ -360,3 +360,66 @@ for deleting an invalid metadata predicate; earlier interpolation/ownership audi
 remain revision-qualified and unchanged. No Windows/DLL/Proton execution or
 new desktop, function-count or matrix promotion. User continuation remains next.
 Receipt:analysis/checkpoints/p22-frame-vertex-flags-20261117.json.
+
+
+Gameplay return: movement, spawn events and cutscene projection
+
+User confirms actual Tutorial gameplay entry and correctly hidden cutscene HUD
+on ac6c4b78. This accepts those two observations only. Cutscene view, duplicate
+selected/placeholder soldiers, missing helmet/backpack and movement remain reported
+failures. Exact executable and logs are preserved in
+WORK/gameplay-movement-crash-return/manifest.json. Movement is now an actual engine
+access violation: LS3DF10018E5B indexes its frame-kind table with EBX=4A4F5250
+(PROJ); client return0045F795 is the footprint creation path.
+
+Original004546E0 creates PROJ through driver virtual50 (visual subtype), while
+our host incorrectly passed that FourCC to virtual54 (frame kind). Corrected
+ShotSurface, and the same concrete mistake in shell00454190 (OBJ_) and trace
+0044B030 (BBRD). Shell raw bytes00454201..207 and indexed original exports confirm
+all three virtual50 calls. Engine/model RAII ownership, clone/update calls and
+pool lifetimes remain unchanged. No frame-kind success fallback or disabled
+footprint replaces the failed call. Focused scan found no remaining literal
+FourCC passed to driver_.create in the host.
+
+Original00611C90's trailing0 to0041D960 was mistakenly translated as the source
+method's authority gate. Native0041D960 actually reads process00982100 bit1;
+the trailing0 is not that gate. PreparedHumanLoading now rereads actual mode bit1
+at the existing late frameEC/context event boundary, preserving identity match,
+publication and activation order. No alternative actor or extra script tick is
+introduced. Tutorial Player_1..4 OnUse assigns NPC1..4 to the actual spawned Human;
+without the event, Player_2..4 run their delayed placeholder branch instead.
+The existing T_panak scripts suspend placeholders. The newly reached Player_2
+OnUse also contains a Human-only1C instruction on its base SpawnPoint context.
+Static native dispatch maps opcode28 through selector118 to0041861C, RETfalse
+without advancement or side effects. Preserve that exact known decline rather
+than aborting as an unknown receiver; Human-derived1C still executes its real
+item receiver. The base context parks there after assigning NPC2, as in native.
+NPC scripts grant actual
+item80 into holder0 and item101 into holder5. Selected items.sav confirms80 is
+kind16 B_EN_HELMPAR and101 is kind17 EN_bag01. Thus the repaired event also restores
+the original equipment-request path; no hardcoded starting inventory is added.
+Actual visible equipment/placeholder behavior still needs user confirmation.
+
+A separate confirmed cutscene defect is the projection source: original006CC760
+root3010 writes native gameBC; our Scene2 parser retains that same property in
+MissionSceneFields, already borrowed by normal camera/FPV. Script startup instead
+read an unwritten scalar at session.words[BC], giving zero field of view. It now
+borrows the SAME loaded scene field through World, without a second projection
+copy. Actual Tutorial root3010 is1.3962633609771729 radians; root3011 far clip120.
+This explains the zoomed cutscene despite corrected orientation/look targeting.
+Existing camera selection, target, projection-save/restore and HUD policy stay in
+place. Source correction is not visual acceptance.
+
+Verification:34 focused native ASan/UBSan/leak checks exercise the actual
+PreparedHumanLoading notifier, captured Player_2/3/4 compiler/VM and actual frame
+commands: authority-disabled calls leave PC unchanged, offline calls enter OnUse,
+real-player NPC assignment occurs exactly once without placeholder assignment,
+Player_2's base1C parks without a false item request while Human-derived NPC
+scripts request both original equipment definitions, all retained frames are
+released, context mismatch still fails and Script FOV dynamically follows its
+borrowed owner. Engine/item/binding leaves are explicit doubles. No engine or
+Windows execution occurs. The actual interactive REVIEW launcher and probe must
+also rebuild sequentially, then stage only. Receipt:
+analysis/checkpoints/p22-frame-gameplay-spawn-20261117.json. Keep camera, movement,
+loadout and squad visual acceptance open until the user's next run; no new broad
+FRAME/HUM/OWN matrix or whole-function/count promotion.

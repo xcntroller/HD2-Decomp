@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-17",
+  "finalized_utc": "2026-11-17T19:00:37.362827+00:00",
+  "branch": "feature/p22-frame",
+  "source_base": "abf6f6dc34b57bda7800f8f37b7d36c73a308ce5",
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "source_only_checkpoint": true,
+  "user_observations": {
+    "executable": "ac6c4b78201db168626c70b34a55ccfe5fccfda49c1bff4098cd858cef64abeb",
+    "confirmed": [
+      "Tutorial gameplay entry",
+      "Cutscene HUD correctly hidden"
+    ],
+    "open": [
+      "Movement crash",
+      "Cutscene camera view",
+      "Selected squad overlaps placeholders",
+      "Helmet/backpack absent"
+    ]
+  },
+  "root_causes": [
+    "Footprint PROJ subtype passed to driver54 frame-kind table; actual AV10018E5B EBX4A4F5250. Same constructor error in shell OBJ_ and trace BBRD. All three now use actual driver50 visual factory.",
+    "Spawn notifier passedfalse to source authority gate; native0041D960 gates on real process bit1 and native trailing0 is not that gate. Original late event now reads modebit1.",
+    "Restored Player_2 OnUse reaches base1C; native opcode28 selector118\u21920041861C returnsfalse without advancement or side effects. Preserve exact known decline; derived Human inventory dispatch remains real.",
+    "Cutscene FOV read unwritten session scalarBC instead of SAME parsed MissionSceneFields3010, the source representation of native gameBC. Now borrows that loaded value through World."
+  ],
+  "original_evidence": {
+    "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "addresses": [
+      "004546E0",
+      "00454190",
+      "0044B030",
+      "00611C90",
+      "0041D960",
+      "00416E10",
+      "0041861C",
+      "006CC760",
+      "00423C70"
+    ],
+    "research": "Reused indexed exports; targeted static PE reads only. No new Ghidra export needed."
+  },
+  "source_files": [
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 144407,
+      "sha256": "fb63760efb6481257c3e9c7398c4ba7194ce3c7089b52dbfbca9edd5e101958a"
+    },
+    {
+      "path": "recovered/game/prepared_human_loading.h",
+      "bytes": 6712,
+      "sha256": "534c269687bfe03f807f26d030e31e490535e2468754ec40ce7c06baccfa6037"
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "bytes": 13049,
+      "sha256": "f4933b63c107dd2411a41197e554cebb5b8e25cf03059cbb55664dbda0953360"
+    },
+    {
+      "path": "recovered/game/mission_script_context.h",
+      "bytes": 15980,
+      "sha256": "eb1a4c875c59bc68c80080788ff506858bd3d173da782189f56207f8483e5f2f"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 333974,
+      "sha256": "b2539768af7389d227890b8e1447d9fb618e7447dae425fad45e07f70c8e8cfd"
+    }
+  ],
+  "verification": {
+    "native": "PASS34 ASan/UBSan/leak checks: actual PreparedHumanLoading notifier, actual captured Player2/3/4 compiler/VM/frame commands, base1C decline, Human NPC item requests, mode/context/frame retirement and dynamic FOV borrowing. Engine/item/binding endpoints explicit doubles.",
+    "production_build": "PASS actual interactive REVIEW application-launch/startup-probe, full O2/Werror -j1; repeated after final base1C correction.",
+    "asset_preflight": "Actual Tutorial FOV1.3962633609771729; item80 kind16 B_EN_HELMPAR; item101 kind17 EN_bag01.",
+    "stage": "PASS --stage-only, final compiled/staged launcher bytes match.",
+    "desktop": "Pending user retry for the four reported failures. Agent did not execute Windows/original/DLLs/Proton.",
+    "ledger": "Unchanged34 complete/3815 partial; frozen18783. No full FRAME/HUM/OWN or whole-function promotion."
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-movement-crash-return/manifest.json",
+      "bytes": 577,
+      "sha256": "8cf8ab66564f3617112cd47d4bc4516b5252d67944f63c55babda0c95c1fc2ab"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-entry-dependencies-index.txt",
+      "bytes": 14852,
+      "sha256": "e91f0004f19e799a1472f4b00d55ec26e913fb80cdf8783ff5e4d89b07658de2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-use-shell-index.txt",
+      "bytes": 9710,
+      "sha256": "5a9a94dd870d68dafb38a0281306a9be86689a304e86cae204a865e6f0a351b0"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-bind-shell-index.txt",
+      "bytes": 11796,
+      "sha256": "428261c99b9d54c862ef3d4b4015b04ecabc86890338a948959ada9cb25afddf"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-shell-factory.asm",
+      "bytes": 3905,
+      "sha256": "909f6af20c8bac563b38d1f62d8aca2371d7bda5d38878ca66283fd15687826d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-session-constructor-index.txt",
+      "bytes": 5901,
+      "sha256": "bda07510edc09dcb6b754215bcdf0b3cdc713320527d3fe8cc38508d0e816d6e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-scene-fields-index.txt",
+      "bytes": 5985,
+      "sha256": "42b7bab383c313aced76ba0436100b9ef0226bf29fb3b9d2cd7dd07efc955e33"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-base-item-dispatch.json",
+      "bytes": 62,
+      "sha256": "8ccd786948b3baf52c172aa47d1544176e66d447670eacb176209306dd11b548"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-script-dispatch-index.txt",
+      "bytes": 4351,
+      "sha256": "31927d22873f3079663d74072ea5b90a776765c23638c14e14fd0b4c96b5dc4c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-spawn-assets.json",
+      "bytes": 636,
+      "sha256": "a61a055c9e761eebacf52c656c08749874e0ee73c9b9aa545ef20d86c4eaf105"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-spawn-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-spawn-native-run.log",
+      "bytes": 159,
+      "sha256": "bca0b253a81e8c10347965f37b533b45ded07bc97150b8f287f278de81f5d1e6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-spawn-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-spawn-stage-only.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-spawn-review-final.patch",
+      "bytes": 208503,
+      "sha256": "59870e9212e990cb6f5555e08b5f840c6df8c937a62f7e7bfa20407dbd48ef20"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-spawn-preservation.json",
+      "bytes": 237,
+      "sha256": "01a22d07f0aaa739f909b2ac82cd739b5fc6c7f56d86ceaafd6adbbdbb9364c4"
+    }
+  ],
+  "review_build": [
+    {
+      "path": "REVIEW/recovered/build/application_launch.exe",
+      "bytes": 13067776,
+      "sha256": "4efed3f51f6afe8aec859f7de34a8c4378564cc06f88fe4208b537f70bde0d26"
+    },
+    {
+      "path": "REVIEW/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "febfdc6a9c862cd32f52cdf9dc2f150484070d1bdb7704f3daf78e5cfd0b5a21"
+    },
+    {
+      "path": "REVIEW/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 13067776,
+      "sha256": "4efed3f51f6afe8aec859f7de34a8c4378564cc06f88fe4208b537f70bde0d26"
+    }
+  ],
+  "temporary_audit": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-spawn-audit.cpp",
+      "bytes": 6715,
+      "sha256": "80501c5624fb5620c9acf426602eee49eadc82d044d8360c32c03db039725ffc"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-spawn-audit",
+      "bytes": 4443104,
+      "sha256": "59354e8e4e31603da8ed2e1f33ce9de730068e52854e9ae642e93f9a78114309"
+    }
+  ],
+  "temporary_audit_removed": true,
+  "preservation": {
+    "own_head_unchanged": "1d540834b9e36023fb09cf51047ce041c9610a6f",
+    "own_overlay_files_unchanged": 6,
+    "own_staged_exe_unchanged": true,
+    "review_shared_changed_headers_match": 4,
+    "review_human_world_own_focus_preserved": true
+  }
+}

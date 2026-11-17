@@ -81,7 +81,7 @@ public:
         auto* context=d_.script_link.context_for_frame(frame);
         if(!context||reinterpret_cast<std::uintptr_t>(context)!=data->words[1])
             throw std::logic_error("Spawn event requires SAME actual frame Script context");
-        context->use(false);
+        context->use((mode_flags()&1u)!=0); //0041D960 gates on process authority; native trailing0 is not this gate.
     }
 private:
     Dependencies& d_;DubbingModels dubbing_;Clothing clothing_;

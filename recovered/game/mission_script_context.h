@@ -233,6 +233,12 @@ private:
             if(integer(instruction,1))field14_&=~mask;else field14_|=mask;
             advance(runtime);return;
         }
+        case 0x1c:
+            //00416E10 opcode28 maps to0041861C RETfalse in a BASE context.
+            //No advancement/retry or item side effect. Tutorial Player_2 reaches
+            //this after assigning NPC2; only the Human-derived context grants it.
+            if(family()==0)return;
+            [[fallthrough]];
         default:runtime.execute_script_command(*this,instruction);return; //Required actual base/Human/Dog receivers; no default success.
         }
     }

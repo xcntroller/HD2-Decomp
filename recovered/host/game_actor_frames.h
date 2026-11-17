@@ -1345,7 +1345,7 @@ public:
     }
     MenuDriver::Owner create_shot_model(){return driver_.create(9);}
     MenuDriver::Owner create_shot_shell(Frame source){
-        auto owner=driver_.create(0x5f4a424fu);if(!owner)throw std::runtime_error("Shell requires actual driver object");
+        auto owner=create_visual(0x5f4a424fu);if(!owner)throw std::runtime_error("Shell requires actual driver object");
         call<void>(owner.get(),0x4c,source);return owner;
     }
     void shot_projectile_root(Frame frame){human_sound_link(frame,field<Frame>(scene_.frame(),0x1f8));}
@@ -1403,7 +1403,7 @@ public:
         while(count)call<void>(sectors[--count],0x78,light);
     }
     MenuDriver::Owner create_shot_trace(Frame source,const Vector& position){ //0044B030, nonzero trace branch.
-        auto owner=driver_.create(0x44524242u);const auto frame=owner.get();
+        auto owner=create_visual(0x44524242u);const auto frame=owner.get();
         if(!frame)throw std::runtime_error("Bullet trace requires actual driver visual");
         call<void>(frame,0x4c,source);
         const auto mesh=field<Frame>(frame,0x1e0);
@@ -1432,7 +1432,7 @@ public:
         }
         return owner;
     }
-    MenuDriver::Owner create_shot_surface(){return driver_.create(0x4a4f5250u);} //004546E0, PROJ driver extension.
+    MenuDriver::Owner create_shot_surface(){return create_visual(0x4a4f5250u);} //004546E0, driver50 visual subtype PROJ; driver54 accepts frame kinds.
     std::uint32_t shot_frame_native_type(Frame frame){return call<std::uint32_t>(frame,4);}
     std::uint32_t shot_impact_visual_flags(Frame frame)const{return field<std::uint32_t>(frame,0x1d0);}
     void shot_surface_white(Frame frame){const std::array<float,3> white{{1,1,1}};call<void>(frame,0xb0,white.data());}

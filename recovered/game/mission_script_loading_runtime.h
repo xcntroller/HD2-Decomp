@@ -77,7 +77,7 @@ public:
     void script_show_command(bool enabled){dependencies_.world.script_show_command(enabled);}
     void script_cutscene_window_query(){dependencies_.world.script_cutscene_window_query();}
     void script_player_input(bool enabled){dependencies_.session.words.set(0x6e,std::uint8_t(enabled));}
-    float script_cutscene_fov(){return dependencies_.session.words.template get<float>(0xbc);}
+    float script_cutscene_fov(){return dependencies_.world.script_cutscene_fov();}
     void script_clear_dubbing(){dependencies_.world.script_clear_dubbing();}
     void script_cutscene_actor(Context& context,bool enabled){dependencies_.world.script_cutscene_actor(context,enabled);}
     void script_restore_first_person(){dependencies_.world.script_restore_first_person();}

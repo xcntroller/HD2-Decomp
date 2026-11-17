@@ -192,6 +192,7 @@ public:
         default:return; //Native default performs the shared guarded advance without an actor-state call.
         }
     }
+    float script_cutscene_fov(){return dependencies().scene.documents().fields().field_of_view;} //006CC760 root3010 owns native gameBC; borrow SAME parsed mission value.
     void script_clear_hints(){dependencies().hud.script_clear_hints();}
     void script_add_hint(std::uint32_t identity){dependencies().hud.script_add_hint(identity);}
     void script_play_music(std::uint32_t identity){dependencies().startup.select_game_secondary_music(human_frame_signed_word(identity));} //SOUND68=00436F60.
