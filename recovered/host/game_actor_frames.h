@@ -421,7 +421,6 @@ public:
         const auto group=call<Frame>(first,0x14,std::uint32_t{0});const auto count=field<std::uint32_t>(group,8);
         const auto lod=call<Frame>(mesh,4,std::uint32_t{0});const auto* vertices=call<const unsigned char*>(lod,4,std::uint32_t{0});
         const auto material=field<Frame>(group,4);const auto vertex_count=field<std::uint32_t>(lod,0x54);
-        if(field<std::uint32_t>(lod,0x64)!=32)throw std::runtime_error("Fragment source requires original32-byte vertex format");
         for(auto n=count;n;){const auto* indices=call<const std::uint16_t*>(group,0xc,std::uint32_t{0});
             if(!indices||!vertices)throw std::runtime_error("Fragment source has no actual face/vertex data");
             const auto triangle=--n;std::array<game::CarFragmentVertex,3> input;
@@ -1851,10 +1850,12 @@ public:
         if(!mesh||index>=field<std::uint32_t>(mesh,0x44))throw std::runtime_error("Missing vertex animation LOD");
         const auto lod=call<Frame>(mesh,4,index);
         if(!lod)throw std::runtime_error("Vertex animation LOD receiver returned NULL: "+frame_name(frame));
-        const auto stride=field<std::uint32_t>(lod,0x64),vertices=field<std::uint32_t>(lod,0x54);
-        if(stride!=32||count>vertices)
-            throw std::runtime_error("Vertex animation disagrees with actual mesh format/count: frame="+frame_name(frame)+
-                " lod="+std::to_string(index)+" definition_vertices="+std::to_string(count)+" mesh_vertices="+std::to_string(vertices)+" stride="+std::to_string(stride));
+        //LOD64 is mutable render/stream FLAGS (10031815/10031CCA), not a stride.
+        //The base lock uses the32-byte allocation100311E0, independently of those flags.
+        const auto vertices=field<std::uint32_t>(lod,0x54);
+        if(count>vertices)
+            throw std::runtime_error("Vertex animation exceeds actual mesh capacity: frame="+frame_name(frame)+
+                " lod="+std::to_string(index)+" definition_vertices="+std::to_string(count)+" mesh_vertices="+std::to_string(vertices));
         auto* data=call<unsigned char*>(lod,4,std::uint32_t{0});
         {
             struct Unlock {

@@ -319,9 +319,44 @@ The vertex guard stays enabled. The old message omitted the object and values
 needed to identify the mismatch. It now names the frame, LOD, definition vertex
 count, actual mesh vertex count and stride; active-camera changes also log names,
 world position and forward axis. Original00473960 does32-byte mesh writes;
-engine10030DB0/10031380 and existing collision evidence establish54 count/64 stride.
+engine100311E0/10031380 and existing collision evidence establish54 count and
+the fixed32-byte BASE buffer. The initial diagnostic mislabeled64 as stride; the
+following correction establishes it as mutable render/stream flags.
 No speculative clamping/skipping or out-of-bounds write replaces that guard.
 One user diagnostic run is required for these actual engine values; agent execution
 of the original/DLL/Proton/Windows application remains prohibited. The termination
 is NOT marked fixed or source-resolved before those values arrive. Updated source
 and diagnostics have production builds/receipt; final staging uses --stage-only.
+
+Vertex flags guard correction
+
+User diagnostic run on73e4cd80 identifies `la_GB_flag_1.vlajka`, LOD0, definition
+224 vertices and actual224 vertices, but the diagnostic's mislabeled stride=0.
+Archive:WORK/vertex-zero-flags-return/manifest.json. The error is in our metadata
+interpretation: LOD64 is mutable render/stream FLAGS, not vertex width. Native
+10031815 ORs8,10031CCA ORs20 and10031C19..22 clears20; zero is valid after render
+preparation. Constructor10030DB0 setting64=20(hex) was misleading without these
+consumers.10031900 also tests these flags to prepare a distinct render stream.
+Actual base allocation100311E0 passes fixed32 to10066BF0;10031380 returns the
+base lock through LOD34/38/3C. Client00473960 writes eight-DWORD/32-byte rows,
+independent of flags64. New original static evidence under WORK/vertex-lod-state.asm,
+vertex-buffer-allocation.asm,vertex-lod-vtable.json and the lookup receipts.
+
+Removed all five mistaken flags==32 checks: animation, fragment source, Car
+deformation and both Car strip paths. Keep exact base row width, actual vertex
+counts/index/capacity checks, null-buffer checks and existing lock/unlock/invalidate
+ordering. Vertex capacity failures still report frame/LOD/definition/actual counts;
+there is no guessed stride, render-flag mutation, missing animation skip or
+successful missing buffer. The same host's face writer already correctly uses
+LOD64 as flags; those legitimate writes are unchanged.
+
+Read-only asset preflight independently compares all four actual Tutorial flag
+instances, their selected Vertanim definitions and decoded la_GB_flag.4ds base
+geometry: every LOD0 count is224 and base row is32 bytes. Saved selected-byte
+fingerprints and counts:WORK/vertex-flags-asset-preflight.json. Actual review
+application-launch/startup-probe full O2/Werror sequential rebuild PASS; new
+executable staged ONLY via --stage-only. No new mirror-only native test was added
+for deleting an invalid metadata predicate; earlier interpolation/ownership audits
+remain revision-qualified and unchanged. No Windows/DLL/Proton execution or
+new desktop, function-count or matrix promotion. User continuation remains next.
+Receipt:analysis/checkpoints/p22-frame-vertex-flags-20261117.json.

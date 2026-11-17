@@ -18875,7 +18875,7 @@
       "program": "client",
       "entry": "00473960",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00473960: Actual vertex animation instance definition/loading/reference/retirement source. Corrected padded definition normal words4..6 to packed mesh words3..5 from original assembly; mesh words6/7 remain untouched.",
+      "coverage": "P2.2 source reconstruction at original entry 00473960: Actual vertex animation instance definition/loading/reference/retirement source. Corrected padded definition normal words4..6 to packed mesh words3..5 from original assembly; mesh words6/7 remain untouched. Host adapter corrects false LOD64==32 rejection:64 is mutable render/stream flags; actual100311E0 base allocation and00473960 rows stay32 bytes. Preserve54 capacity checks and existing lock/unlock/invalidation; actual Tutorial four flag definitions/model counts independently match224. Desktop continuation remains pending.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_vertex_instances.h",
@@ -18883,7 +18883,9 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/animation-supply-loading.md",
-        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json",
+        "analysis/p22-frame-startup-script-preflight.md",
+        "analysis/checkpoints/p22-frame-vertex-flags-20261117.json"
       ]
     },
     {

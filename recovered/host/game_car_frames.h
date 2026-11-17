@@ -245,9 +245,9 @@ public:
     Frame car_deform_lod(Frame mesh,unsigned lod){return call<Frame>(mesh,4,lod);}
     std::uint32_t car_deform_lod_count(Frame mesh)const{return field<std::uint32_t>(mesh,0x44);}
     std::size_t car_deform_vertex_count(Frame lod)const{return field<std::uint32_t>(lod,0x54);}
+    //All these locks borrow the fixed32-byte base buffer; LOD64 is render flags.
     unsigned char* car_lock_deform_vertices(Frame lod){
         if(!lod)throw std::runtime_error("Car deformation has no actual mesh LOD");
-        if(field<std::uint32_t>(lod,0x64)!=32)throw std::runtime_error("Unsupported Car deformation vertex format");
         return call<unsigned char*>(lod,4,std::uint32_t{0});
     }
     void car_unlock_deform_vertices(Frame lod){call<void>(lod,8);}
@@ -401,7 +401,6 @@ public:
         if(!mesh||!field<std::uint32_t>(mesh,0x44))throw std::runtime_error("Car strip has no LOD0 mesh");
         const auto lod=call<Frame>(mesh,4,std::uint32_t{0}); //10031E20.
         const auto count=field<std::uint32_t>(lod,0x54);
-        if(field<std::uint32_t>(lod,0x64)!=32)throw std::runtime_error("Unsupported Car strip vertex format");
         const auto data=call<const unsigned char*>(lod,4,std::uint32_t{0}); //10031380, writable lock.
         struct Unlock {
             Frame lod;HMODULE module;
@@ -420,7 +419,6 @@ public:
         const auto mesh=car_mesh(visual);
         if(!mesh||!field<std::uint32_t>(mesh,0x44))throw std::runtime_error("Car strip update requires its actual LOD0 mesh");
         const auto lod=call<Frame>(mesh,4,std::uint32_t{0});const auto count=field<std::uint32_t>(lod,0x54);
-        if(field<std::uint32_t>(lod,0x64)!=32)throw std::runtime_error("Unsupported Car strip update vertex format");
         auto* data=call<unsigned char*>(lod,4,std::uint32_t{0});bool locked=true;
         struct Unlock {Frame lod;HMODULE module;bool& locked;~Unlock(){if(locked){using Method=void(WINAPI*)(Frame);checked_engine_method<Method>(lod,module,8)(lod);}}} unlock{lod,module_,locked};
         if(count&&!data)throw std::runtime_error("Cannot lock Car strip update vertices");

@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-17",
+  "finalized_utc": "2026-11-17T18:32:59.877839+00:00",
+  "branch": "feature/p22-frame",
+  "source_base": "e9da171",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "reported_failure": "la_GB_flag_1.vlajka LOD0:224 definition/224 mesh, incorrectly labeled stride0",
+  "root_cause": "Host treated mutable native LOD64 render/stream flags as vertex stride. Native sets/clears flags and0 is valid. Base allocation/lock remains32-byte rows.",
+  "original_evidence": [
+    "00473960 fixed32-byte client writes",
+    "100311E0 fixed32-byte base allocation via10066BF0",
+    "10031380 actual base lock through LOD34/38/3C",
+    "10031815 OR8 at LOD64",
+    "10031CCA OR20 at LOD64",
+    "10031C19..22 clear20 at LOD64",
+    "10031900 derived render stream conversion consumes LOD64 flags"
+  ],
+  "changes": [
+    "Remove five false flags==32 rejections: animation, fragments, Car deformation and both strip paths.",
+    "Retain actual54 count/capacity/index, null-buffer, base-width and existing lock/unlock/invalidation behavior.",
+    "Preserve legitimate face-mesh writes to LOD64 flags."
+  ],
+  "source_files": [
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 144373,
+      "sha256": "882b20ba0397f8a5c28fd5990d5df5a6fcdd2e33414f0846c44d7372c3b20764"
+    },
+    {
+      "path": "recovered/host/game_car_frames.h",
+      "bytes": 28349,
+      "sha256": "78fa1e29eb57626226a6f4aceaf5edfd2e40d7265e7bead3ea1461b358515035"
+    }
+  ],
+  "verification": {
+    "asset_preflight": "PASS actual selected resources: all four Tutorial flag instance/definition/model LOD0 counts224,32-byte base rows",
+    "build": "PASS actual REVIEW application-launch/startup-probe full O2/Werror -j1",
+    "native_tests": "No new mirror-only fixture for removing invalid metadata predicates; unchanged prior interpolation/ownership checks remain separately revision-qualified.",
+    "desktop": "Pending user continuation; no original/DLL/Proton/Windows execution by agent."
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-zero-flags-return/manifest.json",
+      "bytes": 788,
+      "sha256": "836d488ca7c92b6a0900997371c69e18081beede340238c509ddcfacb8346e2e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-stride-lifetime-index.txt",
+      "bytes": 6258,
+      "sha256": "c4730b42f2dafc2d7e4a4a69f4f93f3a8ecc24c40d69ee0b7efecabc49b9150c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-buffer-allocation-index.txt",
+      "bytes": 1727,
+      "sha256": "48baab5e39d5d05fdcdc3f4061db035d22bb025f3a1c628d7f23b91c54e53241"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-buffer-allocation.asm",
+      "bytes": 7863,
+      "sha256": "eeaceef07cb83ac9c44bc53ddf37fcc612935c9d37647894493d77f68350c028"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-model-reader.asm",
+      "bytes": 32450,
+      "sha256": "336030885f939bff94ff21c8c93ae13f46bc1d77dec44156b2fd7da0fe9db464"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-lod-state.asm",
+      "bytes": 75751,
+      "sha256": "2326c5a66b73bdeff35d389de132cedf98c9ceb0766937d11af0f8f203cbe0ef"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-lod-vtable.json",
+      "bytes": 465,
+      "sha256": "f2fe5709e8c62e324e40e61b06006fe325a91f8aaed5600d6e1727699c30688f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-flags-asset-preflight.json",
+      "bytes": 1687,
+      "sha256": "106c17ee9801e9be8e9ca241a1c60d74db50be148a59f455c55e1d8cbe32c9ba"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-flags-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-flags-stage-only.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/vertex-flags-review-final.patch",
+      "bytes": 266887,
+      "sha256": "ac3a32ac7845b4fff4ae13b509e4fa4931331e4476b581930ac7dfae98d1e731"
+    }
+  ],
+  "staging": {
+    "result": "PASS --stage-only",
+    "executable": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 13067776,
+      "sha256": "ac6c4b78201db168626c70b34a55ccfe5fccfda49c1bff4098cd858cef64abeb"
+    },
+    "probe": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "42b1a7ba131bf3a7347dc7d50dd355da8273422f22cd4187eb776db0368223b6"
+    },
+    "old_runtime_logs": "Refer to archived73e4cd80 failure, not new executable."
+  },
+  "preservation": {
+    "own_head": "1d540834b9e36023fb09cf51047ce041c9610a6f",
+    "own_six_source_hashes": "Unchanged",
+    "own_staged_executable": "Unchanged",
+    "review_source": "Two updated headers byte-match MAIN; full existing overlay retained",
+    "ledger_counts": {
+      "partial": 3815,
+      "complete": 34
+    },
+    "new_function_credit": 0,
+    "desktop_matrix_promotion": false
+  },
+  "next": "User Tutorial continuation and actual visual verification of prior quaternion/HUD fixes."
+}
