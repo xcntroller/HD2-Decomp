@@ -26,6 +26,8 @@ public:
         return bytes?read(SerializedBytes(*bytes)):false;
     }
     bool enabled()const{return bytes_[0]!=0;} //Native10C.
+    bool camera_wobble_enabled()const{return bytes_[1]!=0;} //Native10D.
+    bool underwater()const{return bytes_[156]!=0;} //Actual mutable1A8, cleared by004885D0 after settings read.
     bool use_scene_water()const{return bytes_[2]!=0;} //Native10E.
     bool restore_child_visibility()const{return bytes_[157]!=0;} //Native1A9,00486520.
     void initial_camera(const std::array<float,3>& values){std::memcpy(bytes_.data()+16,values.data(),12);bytes_[156]=0;} //004885D0 overwrites11C/120/124 and clears1A8.

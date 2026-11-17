@@ -7,14 +7,14 @@ namespace hd2::game {
 //00487240's source loading update composition. All arguments borrow the actual
 //module/process owners; remaining positive water/weather/colour receivers
 //reject before success. Decorations use the actual containing World receiver.
-template<class Frames,class Process,class Effects,class Birds,class Movie,class Session,class Players,class Startup,class Decorations>
+template<class Frames,class Process,class Effects,class Birds,class Movie,class Session,class Players,class Startup,class Decorations,class Water>
 void update_loading_effects(std::uint32_t elapsed,Frames& frames,Process& process,Effects& effects,Birds& birds,Movie& movie,
-                            Session& session,Players& players,Startup& startup,Decorations&& decorations){
+                            Session& session,Players& players,Startup& startup,Decorations&& decorations,Water&& water){
         //304 pose and210 fade-in producers remain separate.
         effects.special_model().update(elapsed); //00487416 BEFORE fade/time224.
         process.fade.update(elapsed);process.field224+=elapsed;
         if((session.status==1||session.status==5||session.status==6)&&process.water.enabled()&&players.current_player())
-            throw std::runtime_error("GEffects water camera update requires actual00487240 retained-camera transitions");
+            water();
         effects.frame_fades().update(elapsed);effects.human_fades().update(elapsed);
         if(process.sun1b0){
             const auto camera=frames.active_game_camera();

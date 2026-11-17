@@ -6,41 +6,50 @@ then FRAME/OWN. No subagents/push/original/DLL/Proton/Windows execution/permanen
 tests. Heavy compilation and Ghidra sequential. Preserve OWN dirty files/artifact.
 Continue the first concrete loading/frame failure, not broad admin/network work.
 
-LATEST USER: "Crashes after pressing space to continue". Exact cb8b636c exe/logs
-archived WORK/loading-first-frame-input-return. Actual log: loaded1/status5
-activation succeeds, SAME-World FRAME binds, Scene78 render AND fixed-update
-complete. Then handled `Game input requires the actual two mutable64-word
-controller views`; clean teardown result1. No access violation/old decoration/
-collision-retirement error this run. Startup63 bindings/63/63 output words.
-No user-accepted stable world presentation/input/update/gameplay yet.
-[Current source/result](analysis/p22-frame-loading-decoration-source.md),
-[receipt](analysis/checkpoints/p22-frame-loading-decoration-20261117.json).
+LATEST USER: "Crashes" on revised water-gate candidate e9d90e1e. Actual log
+passes activation loaded1/status5, Scene78 render, fixed-update AND input. Full
+update now fails on `Decoration movement contact requires actual0047FAE0
+bend/opacity requests`. Clean result1/no access violation. Exact binary +logs
+archived WORK/first-frame-decoration-contact-return. No stable full update or
+user-accepted scene/control/presentation. [Latest water correction/result](analysis/p22-frame-water-gates-source.md),
+[receipt](analysis/checkpoints/p22-frame-water-gates-20261117.json).
 
-NEXT: user retest revised staged input-allocation candidate, then inspect first
-actual exception AND completed input/update/render markers. The latest user
-Space report belongs to PREVIOUS cb8b636c. Current staged SHA256
-b5ed6752615d72f4094718cee2fc95940e3cbdf1d6fe85345a3ffd758b7a492b.
-[Input source correction](analysis/p22-frame-input-allocation-source.md),
-[receipt](analysis/checkpoints/p22-frame-input-allocation-20261117.json).
-Async desktop retest request already sent; no response yet. Do not restage or
-repeat another request before checking NEW logs/user reply. Actual stable scene,
-input/update/control/presentation and whole P22 remain unaccepted.
+NEXT: implement actually reached positive Player decoration contact, not another
+retest that will hit the known guard. Original0047F4E0 posture/first-person/
+velocity ->0047FAE0 cell selection/bend/opacity requests ->reverse0047F150/
+0047F200 update/retirement. Reused complete C/ABI/raw evidence already in WORK:
+loading-decoration-abi-original/{0047fae0,0047f200}.c and .json;
+loading-decoration-grid-original/0047f4e0.c; loading-decoration-request.asm;
+loading-decoration-constants.json. Need raw0047FAE0 and double00810178, and
+007885B0 signed determinant helper if not already indexed. INDEX before exports.
+Research boundary: actual Player velocity is nonzero even controls untouched,
+so cannot use stationary RET or change input/quality to bypass. Tutorial motion
+modes are all0, so nonnull wind capture is not reached. Vehicle0047F730 is still
+required only at actual speed>=.1 and nearby; preserve that gate/order.
+Current code has no bend requests; Cell.fieldc is raw cold0 and RuntimeModel
+has visible/update/opacity/base_opacity/position/direction/scale endpoints. Add
+actual typed request owners and matching model world/local-axis/opacity getters;
+query/pool/flag/last-reference retirement order must match original. Do not mark
+all grass/HUM/FRAME complete merely after this dependency. Main has NO contact
+edits yet. No new retest request until this positive path is concrete.
 
-Original006C7480 repeatedly appends zero outputs;0045CCC0 size+max(size,1)
-growth creates64 allocated words for primary mode2's63 logical entries.
-006C72B0 reports63; original HUD0049C1D0/Player0053BF90 write64 words. New checked
-BindingOutputWords keeps logical/allocated extents separate, live Word objects
-through physical capacity and spare bytes UNWRITTEN from actual allocation.
-No extra binding63, neutral word, view copy or polling change. Controller strict
-same-pointer/64-live-object validation remains; ordinary std::vector still needs
-64 logical elements. Logical query count remains63; actual Human/HUD/producer
-share SAME arrays. Clear retains bytes/capacity; mode3 really installs63 in place.
-Complete raw input/client_input.h/006C7480 is unchanged. Native34209 ASan/UBSan/
-leaks checks pass original growth/defaults/controller/Human/consumption/failures;
-i386 original manager offsets/installer and full actual O2 application/probe
-compile/link PASS. Temporary audits fingerprinted/removed. Latest recoverable
-complete review overlay WORK/first-frame-input-review-final.patch includes all
-three untracked headers (collision, decorations, input output owner).
+Latest source water gate: original48765E calls SAME HumanA0/DD0 query007860B0,
+ignores AL, tests explicit below byte, attached actor type20, then retained1A8.
+All false skips native transition at4879F4. Actual World callback now does that;
+process BSS0089B650 height retains prior bytes if sentinel query leaves unwritten.
+Native977 ASan/UBSan/leaks plus full O2 application/probe passed; actual revised
+user run passed water and hit contact. Positive retained camera/wobble still fail
+explicitly; no disabled water/placeholder receiver. Temporary audits removed.
+Water source-only checkpoint committable; interactive review overlay uncommitted.
+
+Previous74a6dd7 input allocation: original006C7480->0045CCC0 repeated growth
+creates64 allocated words for mode2's63 logical entries. BindingOutputWords owns
+live Word objects through physical extent, spare bytes UNWRITTEN from allocation;
+controller strict identity/64-live-word check remains, query reports63. No fake
+binding63/neutral word/view copy/re-poll. Actual Human/HUD/producer same arrays.
+Native34209 and i386 offsets/full O2 passed; latest user inputs now complete.
+Complete raw input/client_input.h/006C7480 unchanged. Native audits removed.
+[Input contract](analysis/p22-frame-input-allocation-source.md).
 
 Most recent source: prepared Human direct00611C90->Human.activate bypassed
 GameWorldActors' activation journal. Scene2 skipped derived retirement and deleted
@@ -65,8 +74,8 @@ REVIEW: `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
 edebd81 + preserved OWN interactive overlay/later FRAME source. Mixed staged and
 unstaged is expected, not a merge conflict. Interactive app adapter remains
 UNCOMMITTED pending actual user desktop acceptance per AGENTS. Source-only main
-fixes independently committable; main app still declines activation. Historical loading overlay WORK/loading-decoration-review-final.patch includes
-collision/decorations; latest input overlay is identified above. No accepted game yet.
+fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-water-review-final.patch includes
+all untracked collision/decorations/input/water headers; fingerprinted in receipt. No accepted game yet.
 
 Desktop command, USER ONLY:
 `cd /home/control/Documents/Projects/HD2-Decomp-p22-frame-review && python3 -B tools/run_application_launch.py --game-dir '/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2' --work-dir analysis/work/frame-own-review-runtime`

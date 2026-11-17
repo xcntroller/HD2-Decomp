@@ -23563,7 +23563,7 @@
       "program": "client",
       "entry": "00487240",
       "status": "partial",
-      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded. Also source Human228 pass: reverse borrowed-Human updates, signed elapsed/FLOAT stores, native completion/NaN and ordered erase after actual model call; other passes remain excluded. Actual bounded loading update now composes same fade/time224, frame200/Human228 queues, current-camera sun, shared borrowed-Bird motion, profile4/empty-decoration gates and mesh movie update, in native order. Positive water/game64 weather/rain/grass/colour and unproduced pose304/fade-in210 remain excluded. Fade uses signed FILD elapsed, FLOAT .001 and extended post-FSTS overshoot/sentinel semantics. Adds actual special2E0 pass before fade/time224: SAME extended RandFloat result, stored FLOAT power, native visible/update gates, deferred restoration and signed wrapping timer expiry for next update.",
+      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded. Also source Human228 pass: reverse borrowed-Human updates, signed elapsed/FLOAT stores, native completion/NaN and ordered erase after actual model call; other passes remain excluded. Actual bounded loading update now composes same fade/time224, frame200/Human228 queues, current-camera sun, shared borrowed-Bird motion, profile4/empty-decoration gates and mesh movie update, in native order. Positive water/game64 weather/rain/grass/colour and unproduced pose304/fade-in210 remain excluded. Fade uses signed FILD elapsed, FLOAT .001 and extended post-FSTS overshoot/sentinel semantics. Adds actual special2E0 pass before fade/time224: SAME extended RandFloat result, stored FLOAT power, native visible/update gates, deferred restoration and signed wrapping timer expiry for next update. Actual first-update water gate now borrows SAME selected Human inline98/DD0 query007860B0, ignores AL, retains process0089B650 output and tests below-head/type20/underwater in native order. Genuine negative bypass is source-bound; positive retained-camera/wobble transitions remain required errors.",
       "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
       "evidence": [
         "recovered/game/effects_frame_fades.h",
@@ -23575,7 +23575,9 @@
         "analysis/mission-loading-integration.md",
         "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json",
         "recovered/game/effects_special_model.h",
-        "analysis/checkpoints/p22-render-bindings-20261111.json"
+        "analysis/checkpoints/p22-render-bindings-20261111.json",
+        "analysis/p22-frame-water-gates-source.md",
+        "analysis/checkpoints/p22-frame-water-gates-20261117.json"
       ]
     },
     {

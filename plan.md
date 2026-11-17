@@ -245,11 +245,12 @@ Actual application/menu provider, console/general network/history/close and HUM/
 consumers keep the matrix partial. Actual mission/failure/repeat/user acceptance
 remains separate; earlier checkpoint evidence is revision-qualified.
 
-[Latest actual frame correction](analysis/p22-frame-input-allocation-source.md):
-user run activates and completes Scene78/fixed-update, then exits at input. Native
-63 logical/64 allocated word storage and SAME input views are now reconstructed;
-strict native/i386/application checks pass. Revised desktop continuation remains
-pending; input/update/stable scene and positive movement/wind are unaccepted.
+[Latest actual frame correction](analysis/p22-frame-water-gates-source.md):
+user run activates and completes Scene78/fixed/input, then exits at GEffects.
+Original DD0 head/surface/attachment/underwater gates now replace the overly broad
+water-settings rejection. Native/application verification and revised desktop
+continuation remain distinct. Revised user run passes water and reaches positive
+decoration bending; stable update/scene/control remain unaccepted.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 

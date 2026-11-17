@@ -1,0 +1,261 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "74a6dd7",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-water-gates-source.md",
+  "actual_desktop_result": "b5ed6752 passes actual activation/render/fixed/input, then handled overly broad water-settings guard, clean result1.",
+  "gameplay_desktop_verified": false,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "agent_executed_original_dll_proton_or_windows": false,
+  "native_checks": 977,
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "source_files": [
+    {
+      "path": "recovered/game/effects_water_update.h",
+      "bytes": 1487,
+      "sha256": "fe7368bafe55f152f3b1d0cfb43853eda1c6c4e62c7864a497b53de155a1737e"
+    },
+    {
+      "path": "recovered/game/effects_water_settings.h",
+      "bytes": 2469,
+      "sha256": "74f66c597142cee39914c68e4fcb7098f950cd961e681fb1d3f3f2269d67dd1c"
+    },
+    {
+      "path": "recovered/game/effects_loading_process.h",
+      "bytes": 1345,
+      "sha256": "2ec6ceac8e7fabf65e97d8e395dea19d9d99a9bff1101b22bb4ace9092ed44a0"
+    },
+    {
+      "path": "recovered/game/effects_loading_update.h",
+      "bytes": 2598,
+      "sha256": "9290848dbc8b570040a29458565626dd2922d38bed53617d8bce0b9e8ed30c01"
+    },
+    {
+      "path": "recovered/game/effects_module_loading.h",
+      "bytes": 11322,
+      "sha256": "9ce1e0183f9ebc1b91ec81d8aedefcf348fa4c13a2c908fe7944160a2712f82b"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "bytes": 33927,
+      "sha256": "b6c569f30febfe925f8b4cf54b3a520d9070c307eea9ae2b85557e82e3e7b748"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/physics-effects-fade-lifetime/00487240.c",
+      "bytes": 26164,
+      "sha256": "1338e807a3261fb9bd5d87f78fe950d2400b340930c2bbfe05de744e18795a47"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/physics-effects-fade-lifetime/00487240.json",
+      "bytes": 47658,
+      "sha256": "42b190ba3633022c9b04b6680f5379cc9827f9dc4b98bca753f5c0472d45eebc"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/camera-human-required-getters/007860b0.c",
+      "bytes": 1022,
+      "sha256": "49029c811f064022c94dccb5214fe0ab11f2d51f0180f2571259c0d1b9994f74"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/camera-human-required-getters/007860b0.json",
+      "bytes": 2878,
+      "sha256": "08f6e229b886207e9abe8c2518a71837ac359e71ce253a0663e20b6f27d583d7"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/camera-height-offset-producers/00465ee0.c",
+      "bytes": 172,
+      "sha256": "11cfcafc3360ff8e86459534592e2d5835287aa8444c765858c5c941c86250ab"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-index.txt",
+      "bytes": 5171,
+      "sha256": "467872acce48ec8290073d3d2b30e82c3f905d523f1fabd31ca996785cd029a4"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-gates-index.txt",
+      "bytes": 6958,
+      "sha256": "06dba663e077d78d6447d8eb662c3135c351923580a170f5b2152ac1ec258df7"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-gates.asm",
+      "bytes": 28521,
+      "sha256": "ac2984253753bd628c71c6b777d5e506a6b33c291f801cb15796b7ce9bd60145"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-data.json",
+      "bytes": 712,
+      "sha256": "046b5e9125ca532f12151479428697553022e11018c0cba234dd475c99a27afc"
+    }
+  ],
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-return/application_launch.exe",
+      "bytes": 12854784,
+      "sha256": "b5ed6752615d72f4094718cee2fc95940e3cbdf1d6fe85345a3ffd758b7a492b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-return/host-output.log",
+      "bytes": 259333,
+      "sha256": "16270efa298acc1d210072e76b2ea3cab072f4cbaf76d96c80512b1fb8a6d09b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-return/host-runtime.log",
+      "bytes": 263332,
+      "sha256": "a72d9aef64cf25dc9b0159d8a6f346a048b80bb6c1307062a7e134a6dc302ff6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-return/inputs.json",
+      "bytes": 993,
+      "sha256": "772a190358c793685a0fba4e843efc67d82748e51ae2d3adcfbecda9a3eb8bff"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-return/steam-0.log",
+      "bytes": 341742,
+      "sha256": "61f9eb6ca0b05c18727ebc957b482438e803804c0982f8b8a2045bc18c061133"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-native-run.log",
+      "bytes": 63,
+      "sha256": "7a052d25f23690a73fd1e75adcceb220bfb63203a2d98b8a91bc578cb534b420"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    }
+  ],
+  "review": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+    "detached_base": "edebd81",
+    "interactive_overlay_committed": false,
+    "source_files": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_water_update.h",
+        "bytes": 1487,
+        "sha256": "fe7368bafe55f152f3b1d0cfb43853eda1c6c4e62c7864a497b53de155a1737e"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_water_settings.h",
+        "bytes": 2469,
+        "sha256": "74f66c597142cee39914c68e4fcb7098f950cd961e681fb1d3f3f2269d67dd1c"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_loading_process.h",
+        "bytes": 1345,
+        "sha256": "2ec6ceac8e7fabf65e97d8e395dea19d9d99a9bff1101b22bb4ace9092ed44a0"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_loading_update.h",
+        "bytes": 2598,
+        "sha256": "9290848dbc8b570040a29458565626dd2922d38bed53617d8bce0b9e8ed30c01"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_module_loading.h",
+        "bytes": 11322,
+        "sha256": "9ce1e0183f9ebc1b91ec81d8aedefcf348fa4c13a2c908fe7944160a2712f82b"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_world_loading.h",
+        "bytes": 33927,
+        "sha256": "b6c569f30febfe925f8b4cf54b3a520d9070c307eea9ae2b85557e82e3e7b748"
+      }
+    ],
+    "built_artifacts": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+        "bytes": 12860416,
+        "sha256": "e9d90e1e02e1c880a283f8581e0e2c74f4a452b1fd1e9cb4a2665d79e23726b9"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+        "bytes": 1176576,
+        "sha256": "ebcdb3b03b4d2ad745804adb0c1d782609b5577004e81dfe7ec44f2368085abb"
+      }
+    ],
+    "staged_artifact": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 12860416,
+      "sha256": "e9d90e1e02e1c880a283f8581e0e2c74f4a452b1fd1e9cb4a2665d79e23726b9"
+    },
+    "recoverable_patch": {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-review-final.patch",
+      "bytes": 103632,
+      "sha256": "e9dd08f68d2eca780b5f90f6cc559693b24ac881c30b4300349218f0d620851f"
+    }
+  },
+  "revised_actual_user_run": {
+    "executable_sha256": "e9d90e1e02e1c880a283f8581e0e2c74f4a452b1fd1e9cb4a2665d79e23726b9",
+    "water_gate_passed": true,
+    "observed": "Same activation/render/fixed/input prefix; full update now stops on Decoration movement contact requires actual0047FAE0 bend/opacity requests. Clean result1, no access violation.",
+    "gameplay_accepted": false,
+    "evidence": [
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-return/application_launch.exe",
+        "bytes": 12860416,
+        "sha256": "e9d90e1e02e1c880a283f8581e0e2c74f4a452b1fd1e9cb4a2665d79e23726b9"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-return/host-output.log",
+        "bytes": 259826,
+        "sha256": "05d02bdc0031be678db38d6bc8af485466ddb5591acf2c5700f101698b365075"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-return/host-runtime.log",
+        "bytes": 263835,
+        "sha256": "6a4ac5ff14df15f66e3934f5ac5f248e1253f3e1869ca58820fbc010e90d1575"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-return/inputs.json",
+        "bytes": 993,
+        "sha256": "0af83bf12fbc3170831a14285d784da1e2319f6d2cda9af4feb347a2e9188556"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-return/steam-0.log",
+        "bytes": 343236,
+        "sha256": "798073a0121ade4560dc8ec72c6f37d0942b517df93719e3c79afbf2e7168f96"
+      }
+    ]
+  },
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-native.cpp",
+      "bytes": 4838,
+      "sha256": "9dfb38f15c71281a85be25268f2ecbbcc27744cf4c8fcfd8ca196524167570bb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-water-native",
+      "bytes": 1002608,
+      "sha256": "a6a1a51be792fce5fb95cf896712d4f99eeecb5cfd9b8088404a615e96b0830b"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "limitations": [
+    "Native actual water/frame policies with explicit DD0/frame/device endpoints; existing DD0 implementation reused unchanged, full production composition compile/link. Original ABI/allocator/SEH and engine execution not claimed.",
+    "Positive retained water-camera transitions and wobble stay required failures. Genuine no-transition path uses actual query and original gates; no disabled setting or synthetic successful receiver.",
+    "Revised user run passes water gate but reaches actual required positive decoration contact. No stable scene/full update/control/presentation acceptance or source/matrix/count promotion."
+  ]
+}
