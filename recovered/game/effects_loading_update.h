@@ -5,11 +5,11 @@
 #include <stdexcept>
 namespace hd2::game {
 //00487240's source loading update composition. All arguments borrow the actual
-//module/process owners; positive water/weather/grass/colour receivers still
-//reject before success. Empty queues are actual absent producers, not defaults.
-template<class Frames,class Process,class Effects,class Birds,class Movie,class Session,class Players,class Startup>
+//module/process owners; remaining positive water/weather/colour receivers
+//reject before success. Decorations use the actual containing World receiver.
+template<class Frames,class Process,class Effects,class Birds,class Movie,class Session,class Players,class Startup,class Decorations>
 void update_loading_effects(std::uint32_t elapsed,Frames& frames,Process& process,Effects& effects,Birds& birds,Movie& movie,
-                            Session& session,Players& players,Startup& startup){
+                            Session& session,Players& players,Startup& startup,Decorations&& decorations){
         //304 pose and210 fade-in producers remain separate.
         effects.special_model().update(elapsed); //00487416 BEFORE fade/time224.
         process.fade.update(elapsed);process.field224+=elapsed;
@@ -33,7 +33,7 @@ void update_loading_effects(std::uint32_t elapsed,Frames& frames,Process& proces
         }
         if(weather_allowed&&process.flag24c)
             throw std::runtime_error("GEffects weather requires actual rain/particle/collision producers");
-        if(process.active248)process.decorations.update_loading(startup.profile_settings().quality_byte(4)!=0);
+        if(process.active248)process.decorations.update_loading(startup.profile_settings().quality_byte(4)!=0,[&]{decorations(elapsed);});
         if(process.colour2f4[0]!=process.colour2f4[1])
             throw std::runtime_error("GEffects colour interpolation requires actual004884A6 scalar producer/update");
         movie.update();

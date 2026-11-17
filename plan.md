@@ -245,10 +245,12 @@ Actual application/menu provider, console/general network/history/close and HUM/
 consumers keep the matrix partial. Actual mission/failure/repeat/user acceptance
 remains separate; earlier checkpoint evidence is revision-qualified.
 
-[Latest actual loading correction](analysis/p22-frame-loading-hud-source.md):
-user run passes SupplyBox/spatial sound and reaches HUD; exact original timer
-artwork format corrected and75 remaining startup keys corroborated. Revised
-review build awaits desktop mission entry; no successful first frame claimed.
+[Latest actual loading correction](analysis/p22-frame-loading-decoration-source.md):
+user run reaches bar end; recovered late-spawn teardown journal and required
+original decoration grid/model pooling. Strict native/application checks pass;
+actual retest activates and completes Scene78/fixed-update, then exits on the
+63-word allocation versus64-word input contract. Input/update/stable scene and
+positive movement/wind remain unaccepted; no source-complete claim.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 

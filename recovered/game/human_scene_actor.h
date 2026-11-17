@@ -114,6 +114,10 @@ public:
     void load(SerializedBytes& bytes) override {properties.load(bytes);} //0059E800.
     void activate(bool authority) {
         if(!loading_lifetime)throw std::runtime_error("Human activation requires its actual containing loading owner");
+        //00611C90 also enters here directly AFTER Scene2's captured module pass.
+        //Journal before a mutating receiver, so reserved Humans retire their
+        //containing DD0/B0/collision owners before00476260 deletes the actor.
+        this->loading_activation_passes|=authority?1u:2u;
         loading_lifetime->activate(authority);
     }
     void deactivate(bool authority) {

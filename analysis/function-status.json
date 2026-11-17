@@ -21397,7 +21397,7 @@
       "program": "client",
       "entry": "00611c90",
       "status": "partial",
-      "coverage": "Offline authority prepared spawn with actual identity/default clothing/split/model producer, activation passes and required real packet/event publication. Authority spawn checkpoint: actual normal style-dependent zone/identity selection,31 fallback attempts, supplied stats, same factory/A8, late mode/A8 activation, match/flags/voice, direct-versus-wire publication and final Script event; actual session activation now invokes this same policy.",
+      "coverage": "Offline authority prepared spawn with actual identity/default clothing/split/model producer, activation passes and required real packet/event publication. Authority spawn checkpoint: actual normal style-dependent zone/identity selection,31 fallback attempts, supplied stats, same factory/A8, late mode/A8 activation, match/flags/voice, direct-versus-wire publication and final Script event; actual session activation now invokes this same policy. Direct late prepared-Human activations now journal entered source passes at HumanSceneActor before the required lifetime receiver, so Scene2 retires that same composition before reserved actor deletion, including activation failure.",
       "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
       "evidence": [
         "recovered/game/prepared_human_spawn.h",
@@ -21405,7 +21405,9 @@
         "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
         "recovered/game/session_human_spawn.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json",
+        "analysis/p22-frame-loading-decoration-source.md",
+        "analysis/checkpoints/p22-frame-loading-decoration-20261117.json"
       ]
     },
     {
@@ -27260,12 +27262,14 @@
       "program": "client",
       "entry": "0047bcc0",
       "status": "partial",
-      "coverage": "Reached loading update profile4 transition through actual enable/disable and genuine disabled/empty-definition gates. Positive decoration spatial/model update explicitly requires its actual remaining producer.",
+      "coverage": "Profile4 transition and actual group98/9C gates; same-World listener/current-Player anchor, ordered positive rolling decoration grid, actual static ground/material/model pooling and byte-mask opacity are source-bound. Positive wind mesh/Player/vehicle contact producers remain explicit required boundaries.",
       "limitations": "Source-only typed STL/RAII owners and checked native-width borrowers replace original object/container/allocator/SEH ABI. Actual host composition is compile-only; native engine/archive/clock/profile leaves are explicit doubles. Required positive and retained-game paths described in the contract remain excluded. No whole-body equivalence, application mission loading, first frame or desktop acceptance.",
       "evidence": [
         "recovered/game/effects_decorations_loading.h",
         "analysis/mission-loading-integration.md",
-        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json",
+        "analysis/p22-frame-loading-decoration-source.md",
+        "analysis/checkpoints/p22-frame-loading-decoration-20261117.json"
       ]
     },
     {

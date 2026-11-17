@@ -1653,6 +1653,31 @@ public:
     }
     void prepare_supply_morph(Frame morph){call<void>(morph,0xa0);}
     void supply_model_tick(Frame model,std::uint32_t elapsed){call<void>(model,0x20,elapsed);}
+    MenuDriver::Owner create_decoration_model(){return driver_.create(9);} //0047B500, actual driver54(kind9).
+    std::int32_t load_decoration_model(Frame model,const std::string& key){return resources_.load_model(model,key,0);}
+    void clone_decoration_model(Frame model,Frame source){(void)call<std::int32_t>(model,0xd8,source);}
+    void link_decoration_model(Frame model){(void)call<std::int32_t>(model,0x38,field<Frame>(scene_.frame(),0x1f8),std::uint32_t{0});}
+    void prepare_decoration_material(Frame model){ //0047B70F..7A9: first visual/LOD/group only, exact material setters.
+        const auto visual=call<Frame>(model,0x40,std::uint32_t{0});
+        if(!visual)throw std::runtime_error("Decoration model has no actual visual0");
+        const auto mesh=field<Frame>(visual,0x1e0);if(!mesh)throw std::runtime_error("Decoration visual has no actual mesh");
+        const auto lod=call<Frame>(mesh,4,std::uint32_t{0});if(!lod)throw std::runtime_error("Decoration mesh has no actual LOD0");
+        const auto group=call<Frame>(lod,0x14,std::uint32_t{0});if(!group)throw std::runtime_error("Decoration LOD0 has no actual group0");
+        const auto material=field<Frame>(group,4);if(!material)throw std::runtime_error("Decoration group has no actual material");
+        put(material,8,field<std::uint32_t>(material,8)|0x08000000u);
+        const std::array<float,3> white{{1,1,1}},black{{0,0,0}};
+        call<void>(material,0xc,white.data());call<void>(material,4,black.data());call<void>(material,0x10,black.data());call<void>(material,0x14,0.f);
+    }
+    void decoration_direction(Frame model,const Vector& value,float roll){call<void>(model,0x1c,value.data(),roll);}
+    void decoration_base_opacity(Frame model,float value){put(model,0xec,value);} //Source float loan, not ActorFrameData/EC metadata.
+    void decoration_scale(Frame model,float value){ //Only XYZ lanes are written; native scale W is unwritten.
+        for(unsigned axis=0;axis!=3;++axis)put(model,0xd0+axis*4,value);
+        if(!(field<std::uint32_t>(model,0xe0)&8u)){
+            using Make=void(WINAPI*)(void*,const void*);
+            exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(address(model,0xc0),address(model,0x80));
+        }
+        put(model,0xe0,(field<std::uint32_t>(model,0xe0)&0xfffffecbu)|0x40000008u);
+    }
     MenuDriver::Owner create_fowl_model(){return driver_.create(9);}
     Frame animation_actor_clip(Frame model){return call<Frame>(model,0x88,0u);}
     std::uint32_t animation_actor_clip_time(Frame model){return call<std::uint32_t>(model,0xa0,0u);}

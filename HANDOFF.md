@@ -1,80 +1,81 @@
 # P22-FRAME handoff — 2026-11-17
 
-Active `/home/control/Documents/Projects/HD2-Decomp-p22-frame`, branch
-feature/p22-frame. Environment cwd is retired H8: use explicit workdir. Priority
-is actual game entry, then FRAME/OWN. No subagents, push, original/DLL/Proton/
-Windows execution or permanent tests. Heavy compilation and Ghidra sequential.
-Preserve OWN dirty source and its earlier staged artifact. Continue the first
-actual loading/frame failure, not unrelated admin/network research.
+Active `/home/control/Documents/Projects/HD2-Decomp-p22-frame`, feature/p22-frame.
+Environment cwd retired H8: explicit workdir. Priority actual P22 game entry,
+then FRAME/OWN. No subagents/push/original/DLL/Proton/Windows execution/permanent
+tests. Heavy compilation and Ghidra sequential. Preserve OWN dirty files/artifact.
+Continue the first concrete loading/frame failure, not broad admin/network work.
 
-LATEST USER TEST:0f5fd6a8 passed SupplyBox clips and spatial sound, loaded
-humanzones/gameinterface/ingame_info, then returned to Main on
-`Required HUD explosive timer artwork is missing`. Actual executable and three
-logs archived WORK/loading-hud-timer-return. No activation/first gameplay frame.
-[Current correction](analysis/p22-frame-loading-hud-source.md),
-[receipt](analysis/checkpoints/p22-frame-loading-hud-20261117.json).
+LATEST USER: "Crashes after pressing space to continue". Exact cb8b636c exe/logs
+archived WORK/loading-first-frame-input-return. Actual log: loaded1/status5
+activation succeeds, SAME-World FRAME binds, Scene78 render AND fixed-update
+complete. Then handled `Game input requires the actual two mutable64-word
+controller views`; clean teardown result1. No access violation/old decoration/
+collision-retirement error this run. Startup63 bindings/63/63 output words.
+No user-accepted stable world presentation/input/update/gameplay yet.
+[Current source/result](analysis/p22-frame-loading-decoration-source.md),
+[receipt](analysis/checkpoints/p22-frame-loading-decoration-20261117.json).
 
-Original004AF630 format0083B280 is timer-explosive%02d, not the sanitized Ghidra
-symbol's underscore. Corrected exact key, retained failure/ownership/prefix
-ordering. Actual installed gameinterface4DS602 frames has all10 exact direct
-children. Focused75 remaining HUD startup keys corroborated:53 static original
-literals plus native formats; down_panel model presence only. Original Border/
-TMCamera case remains, supported by actual original bytes. No placeholders.
-Full actual review i386 O2 application/probe compile/link PASS; stage-only done.
-Candidate SHA256ef21bbe0316897e97702e5457262ef13f18c1ab7a06e691369b33441cbaa1dfe.
+NEXT: resolve original input manager allocated storage versus64-word consumers.
+Do NOT just weaken guard or append fake binding63: original HUD0049C1D0 and
+Player0053BF90 actually write64 words, while primary mode2 settings install0..62.
+Native006C7480 appends output words one-by-one with0045CCC0 growth; existing
+raw input::client::Vector models size+max(size,1), leaving spare allocated bytes
+unwritten. Portable adapter bulk std::vector::resize differs. Need verify helper
+raw/export and preserve honest unwritten allocation semantics and SAME buffers.
+Index batches WORK/first-frame-input*-index.txt; new growth export is in progress
+or completed WORK/first-frame-input-growth-original, log same prefix. Current
+main source has NO input edits yet. Check current files/status before acting.
 
-NEXT: user run SAME revised review command below, inspect first actual exception
-AND activation/first-completed-stage markers. Clean result0 can still be handled
-mission failure. Agent NEVER executes Windows/original/DLL/Proton. Archive actual
-run before restaging. No first frame, presentation or gameplay acceptance yet.
+Most recent source: prepared Human direct00611C90->Human.activate bypassed
+GameWorldActors' activation journal. Scene2 skipped derived retirement and deleted
+reserved Human first; later external composition faulted in command.clear_empty
+at rebuilt0051F722. Human dispatcher now journals before required receiver (also
+throw), so original mode retirement removes B0/DD0/collision BEFORE actor deletion.
+Native61 ASan/UBSan/leaks passes real dispatcher/registry/helper with explicit
+lifetime/frame endpoints. Revised user run passed prior fault/retirement errors.
 
+Actual decoration0047BCC0 groups98/9C gate, SAME listener/conditional Player
+anchor,0047EB80 rolling grid and0047E2D0 static ray/material selection now source-
+bound.0047B500 LIFO model/template pool, genuine failed-load latch, real engine
+material/root/transform/opacity and0047D110 mask sampling use actual World.
+Tutorial87x87 grid; all10 named4DS geometry/LOD/group/material data decoded.
+Native22868 ASan/UBSan/leaks passed actual parsers/grid/pools/mask/failure prefixes
+with explicit engine/ground endpoints. Full actual i386 O2/probe PASS; cb8b636c
+was stage-only then user-executed. Temporary native fixtures removed/fingerprinted.
+Positive Player/vehicle bends and wind mesh capture still fail explicitly; no
+fabricated request vector/readiness/success. Do not mark whole decoration complete.
+
+REVIEW: `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
+edebd81 + preserved OWN interactive overlay/later FRAME source. Mixed staged and
+unstaged is expected, not a merge conflict. Interactive app adapter remains
+UNCOMMITTED pending actual user desktop acceptance per AGENTS. Source-only main
+fixes independently committable; main app still declines activation. Latest full
+recoverable overlay WORK/loading-decoration-review-final.patch includes both
+untracked collision_slide.h and game_decorations_runtime.h. No accepted game yet.
+
+Desktop command, USER ONLY:
 `cd /home/control/Documents/Projects/HD2-Decomp-p22-frame-review && python3 -B tools/run_application_launch.py --game-dir '/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2' --work-dir analysis/work/frame-own-review-runtime`
+Inspect NEW host-runtime/steam logs AND actual completion markers. Archive each
+run before restaging. Do not ask another retest until next correction is concrete.
 
-Review tree is DETACHED edebd81 plus preserved OWN interactive overlay and later
-FRAME source fixes. Mixed staged/unstaged files are expected, not an active merge.
-Actual application adapter remains UNCOMMITTED pending successful user desktop
-acceptance per AGENTS. Source-only fixes on FRAME are independently committable;
-main application still declines activation. Full recoverable review patch now
-WORK/loading-hud-review-final.patch, fingerprinted in receipt.
+Prior source fixes:e3f3a84 exact HUD timer-explosive%02d (0083B280),75 startup keys;
+0e69b80 actual sound scene + late SAME-camera RAII loan;6f37c21 #crate clips;
+8167e7c sound root/footprint failure status RET. Contracts/receipts remain linked
+in analysis/p22-frame-loading-*.md. No need to repeat unchanged audits.
+Earlier FRAME9289d4f/edebd81/3be24f5/03da7f3/4da1639/6b6d292 retained source.
+Ledger34 complete/3815 partial total(client3810/engine5), frozen18783. No new
+counts/promotions. FRAME/HUM/OWN partial; nonoffline app/menu, console catalogue,
+general network/history/close/special packets remain external to current path.
 
-PRIOR SOURCE FIXES (do not repeat unchanged audits):
--0e69b80: removed never-published WorldViews.sound snapshot; scene emission,
-tracking/attenuation/portals use actual constructed game scene. Environment reads
-late actual camera sector through SAME-World RAII loan. Loan retained through
-failed unload, withdrawn before camera/World destruction. Listener and transform
-ordering preserves original00433FA0/00432710/004368D0. Native63 ASan/UBSan/leaks
-PASS, actual O2 link. [Contract](analysis/p22-frame-loading-spatial-source.md).
--6f37c21: original #cratefly/#crateopen/#crateclosed/#cratedrop strings corrected
-from sanitized symbol underscores; installed5DS bytes decoded. Actual user passed.
-[Contract](analysis/checkpoints/p22-frame-loading-supply-20261117.json).
--8167e7c: loading sound root query uses actual constructed World; later actual
-user run passed old null crash. Original0078A4F0 stops on first failed texture
-status and retains acquired prefix;00785BE0 continues/shared count increments.
-Actual absent d_l/d_r remains honest; no fake textures. Native4803 status/ownership
-checks and earlier sound38 passed. [Footprint contract](analysis/p22-frame-loading-footprints-source.md),
-[sound contract](analysis/p22-frame-loading-sound-failure.md).
-
-Prior containing FRAME source:9289d4f delayed exit;edebd81 warmup/countdown/manual/
-side;3be24f5 config/result/vote;03da7f3 Runtime snapshot/stats;4da1639 balance/spawn;
-6b6d292 Human/Actor/all18 retained reset modules. Receipts revision-qualified.
-Ledger34 complete/3815 partial total(client3810/engine5), frozen18783; no new
-counts/promotions for this correction. FRAME remains partially_resolved for
-nonoffline application/menu provider, console catalogue, general network/history/
-close and specialized packets. Selected offline7 source and actual adapter are
-under desktop review; HUM/OWN/application acceptance remains separate.
-
-OWN feature/p22-own HEAD1d54083 dirty app/camera/collision/lifecycle sources and
-collision_slide.h remain unchanged; no stash/reset/overwrite/merge/rebase.
-Captured source hashes WORK/own-review-overlay-inputs.json and prior OWN runtime
-artifact d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c
-verified preserved. OWN runtime is distinct from revised isolated review runtime.
-Review-only focus fixes and one-time AFTER-real-call activation/frame diagnostics
-remain in patch. They do not publish readiness or prove rendering/presentation.
+OWN branch feature/p22-own HEAD1d54083 dirty sources and older staged exe
+SHA d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c
+remain unchanged; source manifest WORK/own-review-overlay-inputs.json rechecked.
+No stash/reset/overwrite/merge/rebase. OWN runtime differs from review runtime.
 
 WORK=analysis/work/p22-frame-closure-20261117. H8=/home/control/Documents/Projects/
-HD2-Decomp-p22-hum-h8. Research index BEFORE new exports; H8 snapshot misses newer
-FRAME source/WORK. OriginalSHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
-Original HUD exports/raw already in H8 WORK/mission-world-20261103: reuse.
+HD2-Decomp-p22-hum-h8; research index before new exports (H8 snapshot misses newer
+FRAME). OriginalSHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
 Compiler H8/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++;
-native sanitizer lib H8/.tools/hd2-sanitizer-runtime/usr/lib64. Ghidra readOnly,
-noanalysis; sequential with compilation. Windows fixtures compile/link only.
+ASan runtime H8/.tools/hd2-sanitizer-runtime/usr/lib64. Ghidra under H&D2 Decomp4,
+Projects/HD2ResearchProject HD2Research, readOnly/noanalysis. Sequential heavy jobs.

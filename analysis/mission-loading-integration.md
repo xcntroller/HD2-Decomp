@@ -108,3 +108,9 @@ zero complete promotions. Continue the SAME full checkbox: actual activation/
 shutdown/spawn coordinator, meaningful guard observations and any reached
 positive consumers, then first camera/update/render, failure/repeat and actual
 user Python desktop acceptance. Source session/loader remain UNCALLED by app.
+
+2026-11-17 actual loading follow-up:0047BCC0 group-vector gate, positive rolling
+grid/ground/model-pool/mask path and prepared-Human direct activation retirement
+are now source-bound. The old generic positive-grid failure is superseded;
+positive movement/wind interactions still fail explicitly.
+[Current contract](p22-frame-loading-decoration-source.md). No desktop promotion.

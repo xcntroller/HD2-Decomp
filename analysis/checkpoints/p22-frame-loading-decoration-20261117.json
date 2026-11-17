@@ -1,0 +1,665 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "e3f3a84",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-loading-decoration-source.md",
+  "actual_desktop_result": "ef21bbe0 reached bar end, then failed on the required decoration producer and faulted during late-spawn Human cleanup at rebuilt0051F722. No mission activation or first gameplay frame observed.",
+  "gameplay_desktop_verified": false,
+  "agent_executed_original_dll_proton_or_windows": false,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "native_checks": {
+    "late_spawn_human_registry_retirement": 61,
+    "decoration_grid_model_pool_mask_failures": 22868
+  },
+  "source_files": [
+    {
+      "path": "recovered/game/human_scene_actor.h",
+      "bytes": 9290,
+      "sha256": "04b0a537fb34a05b3f736dfa162062c3e589d893e291e4187ce6521691040047"
+    },
+    {
+      "path": "recovered/game/effects_decorations_loading.h",
+      "bytes": 23770,
+      "sha256": "9c08e65c007733d745aaaa3ea2e9b0bfac5956b08189e3cbfdb80ca46e5d0874"
+    },
+    {
+      "path": "recovered/game/effects_loading_update.h",
+      "bytes": 2673,
+      "sha256": "a74f5084e455b03930d4ea0ac6f0d78e79149c192a1183384ca4ea5d345b41a8"
+    },
+    {
+      "path": "recovered/game/effects_module_loading.h",
+      "bytes": 11131,
+      "sha256": "58c49ed2f2b6463c3dc5c7b5f25f234fc7d23d5c95ad0ffc17dad061c5d174b9"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 137994,
+      "sha256": "e29c50dc1524e687db5fed41b03bd6a6623ee2f3612c658283766d6bd6f51ff5"
+    },
+    {
+      "path": "recovered/host/game_decorations_runtime.h",
+      "bytes": 6191,
+      "sha256": "7de64d6c5492903d92572aa5639946467149fedf3165d677dcc6f304e91cfb85"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "bytes": 33734,
+      "sha256": "2f03409d2f3184782d4fcd9885152405a9e3334acd5405217030035761ac41f8"
+    }
+  ],
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-crash/application_launch.exe",
+      "bytes": 12825088,
+      "sha256": "ef21bbe0316897e97702e5457262ef13f18c1ab7a06e691369b33441cbaa1dfe"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-crash/host-output.log",
+      "bytes": 258497,
+      "sha256": "61a46807a06d620b4105150cfb0808df7f5700bf03125db00f61780e13313f46"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-crash/host-runtime.log",
+      "bytes": 262480,
+      "sha256": "99550d796ff6e69b9ffb627dac6cddf459e566b7ee0b3b541bbcfbb5daa98145"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-crash/inputs.json",
+      "bytes": 993,
+      "sha256": "54ec1f509d7cb233aeeb66372254eac92b845afbdb21caa1d1b5f0c7af8a1797"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-crash/steam-0.log",
+      "bytes": 388727,
+      "sha256": "163b193c6413b7addf6c1a4f79b8eff8fb29ff8acd22a3f1a761d83749d20080"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047b500.c",
+      "bytes": 5888,
+      "sha256": "0a2351c394d56efdbff5776baddd67b64523639767702228d24553dc728115f1"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047b500.json",
+      "bytes": 12019,
+      "sha256": "7c813063c0696e6a6c0afc63d46572715ac72bd5bd5d7b2e333e34006b57bb4c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047d110.c",
+      "bytes": 1047,
+      "sha256": "fb15749f4cde41cbd61964cfd5ca4f558c9470c8f463b498e7bced575fb2dcd8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047d110.json",
+      "bytes": 5380,
+      "sha256": "d26ff5b60e00b6187d2ba4d77e36e72f3bf3c076637891c7d18d2a86b9acc978"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047e2d0.c",
+      "bytes": 8936,
+      "sha256": "894ca765494d0510d011ed6a0c4984037b3c75de6968597774d306b1280c20f3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047e2d0.json",
+      "bytes": 23717,
+      "sha256": "0d773aec8ae2e2bdba259fe96e8279b642ab488bf4b09d743939c68d9e937ccf"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047eb80.c",
+      "bytes": 7819,
+      "sha256": "23d8073cc7f4a4c6bf09852cb1d0049b0dcc83f075d2bbe47ea0b6e2f1a455d5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047eb80.json",
+      "bytes": 35469,
+      "sha256": "43785b788ebe8e522d38b6178f7e50966c69ccddf8610799749be897819f4cba"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047f200.c",
+      "bytes": 3637,
+      "sha256": "988547744bba7d076b42cb23c878ccc1d41da79e9768b9628b84818f6548e7e5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047f200.json",
+      "bytes": 15918,
+      "sha256": "5171daddc7f956eddcb3ce5d9b45238d7d6c0237754620b0795cb90896858cb1"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047fae0.c",
+      "bytes": 9984,
+      "sha256": "8107b84d9dfdf24631b0c4d8d1ecf16baf248be215019a75bce25e2586b6cb7f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-original/0047fae0.json",
+      "bytes": 24534,
+      "sha256": "d329e0e4f53735eb60b0f29e7bfba4d7859fd3622b6aaa1f008cc863b553915d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-factory-original/0047b500.c",
+      "bytes": 7299,
+      "sha256": "8cef4ad0637fcedaed5fdd923d2da552976be3f80c08497c59e9a032ccf086fc"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-factory-original/0047b500.json",
+      "bytes": 11927,
+      "sha256": "fc2e7cc6bb32d4730f830f51819f9f784a96fcaa37d50f2bac37bc71d2be26b3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-factory-original/0047d0f0.c",
+      "bytes": 277,
+      "sha256": "6d88ef9604dd5b7e39a287b4ffc0bf0d8f3a3010e8f932b4c99995201a0d3979"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-factory-original/0047d0f0.json",
+      "bytes": 1184,
+      "sha256": "390b383d42a5c09ed655a6038c7db5fd44d8f1ed532cd32cf499879cdd317a19"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-factory-original/0047fae0.c",
+      "bytes": 9637,
+      "sha256": "7ce8ccdff4bdfb17366a79f4709348f52c654edef761a79853a09391df3f947f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-factory-original/0047fae0.json",
+      "bytes": 24421,
+      "sha256": "446da646e9b216c62c644ac4f1e386343b19b322316e3a20941fe12e657df7fd"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047e2d0.c",
+      "bytes": 8632,
+      "sha256": "328c9da3a6c25ee8af112c7c4cf7364bcb3558e3bbe8ffafc3552636eb2b640b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047e2d0.json",
+      "bytes": 23679,
+      "sha256": "d074cfb13c5cfac9e5d994004876d9fb7e621efbe3ebe71c8928df8f4313a68f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047e930.c",
+      "bytes": 244,
+      "sha256": "888b533007b55a8aea48d8f9bd328ad84ce1ff965e07ee4e76df7b8dd38271cc"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047e930.json",
+      "bytes": 1068,
+      "sha256": "cc5f6832eb9c38dc16d9dc73e405cf872d1035629eed180204177979eaae8c52"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047e960.c",
+      "bytes": 452,
+      "sha256": "826bd6b8c09ca56691feed9ff9410ae75a79a53ebec62443121e3bf0b0f151eb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047e960.json",
+      "bytes": 1107,
+      "sha256": "e613223baaa53bda7a6ad4fd94c5c426ab6f29170f0c9dbe9e5b0e7e8e2f4d06"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047e9b0.c",
+      "bytes": 650,
+      "sha256": "4437e8646d5e93b0bb65af19e432aadc928148e72ce92dac3da83bf231b60463"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047e9b0.json",
+      "bytes": 1107,
+      "sha256": "9d5e18fbb10916ccc91e66faca9483e3ab9c56a576727f01740d0d71a9ebb5a4"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047ea00.c",
+      "bytes": 260,
+      "sha256": "5dc1b2bf02fecfbefd90a3bcde3b6b4920bae755b3503a22ace8d2094381541d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047ea00.json",
+      "bytes": 1278,
+      "sha256": "2f121203e7c5a58ab40314ca7e71398b10dce770b7ecaa0d14ef24a4e4bef08e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047ea30.c",
+      "bytes": 235,
+      "sha256": "c47580e14d3d6e2db02434a8511e71a2bb13e35e2a714d1f14b99159228e6fed"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047ea30.json",
+      "bytes": 1209,
+      "sha256": "6e9970462c371a63d377de50fb2670ed2576ed04f393b3c20845851a8b52d398"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047f200.c",
+      "bytes": 3283,
+      "sha256": "28e94f72313a815c5386a97f849997bcd19e6c2369aec09ddd9e22a131a7f83f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047f200.json",
+      "bytes": 15890,
+      "sha256": "f26874bafe2279128db48c0193013f2da4ca904e80d813490951236fe70f9009"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047f4e0.c",
+      "bytes": 2887,
+      "sha256": "bc60b7ebd812c11443096e88cfa50be33b359cc5d921033a8dc08f8c9a9b4e03"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047f4e0.json",
+      "bytes": 9760,
+      "sha256": "9fd49ceb45f932f9e3687711e6e0607629b38e993e56287aaa45e6c04f2b993f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047f730.c",
+      "bytes": 4337,
+      "sha256": "b2787925d27907dc1050279f1994efcefcbb45bf1add869e66972ef5fb4b47c9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-original/0047f730.json",
+      "bytes": 21320,
+      "sha256": "764de6d8f7d38275401003ed6f2f791765ad955bdc765371504521cbbedb3ead"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047b480.c",
+      "bytes": 459,
+      "sha256": "dc5cd00b75215796dbd853b18047f933dcd53f50827a864543061f201996af72"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047b480.json",
+      "bytes": 1275,
+      "sha256": "7762e6ceacffc6670d6288413e5ca2f41d1b54632fcf386f71011ba35cfc43ce"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047b8e0.c",
+      "bytes": 2214,
+      "sha256": "4ac70159638aa551bf4e740ce9a4bfd141c433b90d87c430caea9e5aaa1ad1e4"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047b8e0.json",
+      "bytes": 6626,
+      "sha256": "9e1c7ad4a36b2d90066ee5c772b889132db3a9b60e3fb70d40eabf2efac373b8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047d110.c",
+      "bytes": 1097,
+      "sha256": "22cdd7783e123a238f7afb66387d8b01a49339ad16622b707dc7591c89c1664b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047d110.json",
+      "bytes": 5339,
+      "sha256": "6517fabc3d8a1007e09791a32ea2696cb51c9547731fb8e19c2e04757971576b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047e240.c",
+      "bytes": 419,
+      "sha256": "efa5ad6b615273c8a36551e91c9e9543d0f0c42a2a1887a835250f35e863aa2c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047e240.json",
+      "bytes": 1779,
+      "sha256": "eed69f352b396f4db027cd41de2587bd8a5fa6903f56c7903731c46712aa6927"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047e290.c",
+      "bytes": 264,
+      "sha256": "7f8c023555897bfab1b1c81d1f9a0a937420b02a98586831a31df6a953f676d2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-original/0047e290.json",
+      "bytes": 1072,
+      "sha256": "383e29b166e4f1754e3a8c3caaf1ea7a3316d2f2af9ca166a08ca61069c457cb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-spatial-original/0047eb80.c",
+      "bytes": 6628,
+      "sha256": "424bb6b406e5058179cef53e7f7055590532f6cdfbe73df0caf31e06de9d183f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-spatial-original/0047eb80.json",
+      "bytes": 35429,
+      "sha256": "2d74e283844bade484110e6f5795729ecfffb941f5e6a90223b4c5d1878d4edb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-spatial-original/0047f150.c",
+      "bytes": 1213,
+      "sha256": "058b33399352a28dd38fde8885c6ebcf1e7fa8eda20e9ed1dc73da057e703f0d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-spatial-original/0047f150.json",
+      "bytes": 2974,
+      "sha256": "b2d09c6e0a99c891e65751d5cf532ef5850a66afd32bdae91b394b76e69bfd0b"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-normal-spawn-leaves-abi-v4/00611c90.c",
+      "bytes": 8355,
+      "sha256": "b5e2f96fc04782334907f4b36b467c61d15613332a55f631e61a65eceaf7de8f"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-containing-listeners/0059fa60.c",
+      "bytes": 4843,
+      "sha256": "b78879a0a497d493ff93ee3cc34e26e2b7dc6329129d34127ca10fbaff2b20d5"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/derived-activation-cleanup-receivers/00476260.c",
+      "bytes": 938,
+      "sha256": "04d68a04610ea73e7d917eeeb3aa5237e095086aa50cade193c78bdb0691b838"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/actor-cold-lifetime/0059e3e0.c",
+      "bytes": 1799,
+      "sha256": "0190bfeaefc596a1f4ff6ebc6dd0af3d1ef1b56d29a960371eeda83f6996a380"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/version-and-decoration-module-dependencies/0047e0f0.c",
+      "bytes": 1221,
+      "sha256": "01f10ada6883b120d32ab915b6ad57e4bb81def0380578cbe6ed74f22b63adf5"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/decorations-loading-required/0047c930.c",
+      "bytes": 4062,
+      "sha256": "848876919b1387f239f799b57279e35e3fad8278f4eca99a44c0540b00eded47"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-cell.asm",
+      "bytes": 24430,
+      "sha256": "d243871e7eb6d04d99a2f659ebf4b0f034f02453c02231e0c8399cce96f429db"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-factory.asm",
+      "bytes": 17855,
+      "sha256": "6b5ae78d07acc0f5ab33bf210efd46dcd163c27fe5e280b899d40d8d8003e1ff"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid.asm",
+      "bytes": 27757,
+      "sha256": "1e574f03f145dcf38c655f866511ee049c8d7001f8cbf466a46972db6433d8f3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-mask.asm",
+      "bytes": 3814,
+      "sha256": "8745b24201fcb2d1ad81b220cb43f854e475870f5469bfc8779467f5c9214964"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-request.asm",
+      "bytes": 11570,
+      "sha256": "4713189949e6c9c751ccf113ef32d74f2ed904936ca3af2ec5410a16caa0d613"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-tick.asm",
+      "bytes": 14340,
+      "sha256": "7365a33ff927b4aa8c2a1ee51a57af06ae1b7f3910d4c320bfa3c65f4c650600"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-constants.json",
+      "bytes": 1398,
+      "sha256": "b6c97e70807602314a43202d1db296ba0bb7806c5bed142064a5623d8e48e3d5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-tutorial-definitions.json",
+      "bytes": 4189,
+      "sha256": "9b97fd34745c597d402f5fe96e4fa448878dde3b259b4cd24b6f60ac04edafe9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-tutorial-models.json",
+      "bytes": 94416,
+      "sha256": "9c405a70816981adcfac0d78a4915af9380f62798773581c9f75d872b99f9c96"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-dependencies-index.txt",
+      "bytes": 14935,
+      "sha256": "b6c4d3ba3df0fa0c81a97169fc68e741c9a981baf1d170f77a428ac2ab36c92f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-factory-index.txt",
+      "bytes": 2145,
+      "sha256": "d295c3c45d579b29bb5a10eecfe2942c47ba6f67fd41cdb01232109364a45b7e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-index.txt",
+      "bytes": 9579,
+      "sha256": "e285a6b88a2145a82dd1c6e17046b575a639cba0711382e2a7487753ef237138"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-index.txt",
+      "bytes": 4476,
+      "sha256": "fc589daf25a616a8dd828fd288eabf4f138371b938be0096d1fa643ad4d4ab81"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-index.txt",
+      "bytes": 9065,
+      "sha256": "e33117d40b437fc6456eefbda9e0466fcf468b789ae808e409003a18d8893af2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/HD2DecorationsABI.java",
+      "bytes": 2683,
+      "sha256": "edfc9619f8be0d7d5991207b582af2107d0daf4faabbdd2e378373afff82e72c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-crash-map.txt",
+      "bytes": 53837,
+      "sha256": "071bb4ed467a228a463e24b399a7cc02d4e8baeeb0a65055b469f61dd4f11daf"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spawn-retirement-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spawn-retirement-native-run.log",
+      "bytes": 57,
+      "sha256": "35d8e974df1475dd9f0c830e236ae4cbadade3a4a8538ed260013ed28f4e4203"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-native-run.log",
+      "bytes": 62,
+      "sha256": "fac14a91d73d4df59f5c8d4194a9e327150d37c6172e6d6eecc1ff54df033896"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-function-check.log",
+      "bytes": 110,
+      "sha256": "0b3a4d015929d3f1ec7754459dcbb108e39c4279c9b0e6096c184b8f31094150"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-export.log",
+      "bytes": 4458,
+      "sha256": "2452ef2708ae2f66b6f6195a1a83dee3567e1850a71232c9d931823e96916187"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-spatial-export.log",
+      "bytes": 4569,
+      "sha256": "24aade07c70348d1aed9a04ac921b6ef743b9c67e31382523b540a25b6dd7d58"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-grid-export.log",
+      "bytes": 5287,
+      "sha256": "d35901974c7677e4ea6a9bd6545d923682e85921b47de3bd117b16092e5d88a6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-model-export.log",
+      "bytes": 4876,
+      "sha256": "8eca683083d98d73c5382d32a216a12da87c2ee13089a596e874e327e07b4649"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-factory-export.log",
+      "bytes": 4672,
+      "sha256": "371446ff42079b89248b8c5a116414bcff1d7ffba27bb7057349638a76865ac6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-abi-export.log",
+      "bytes": 5409,
+      "sha256": "07c5448c4fc5d4e88715acfda018cebc51b06fb64ca16d4b82b20e15b321ebdd"
+    }
+  ],
+  "review": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+    "detached_base": "edebd81",
+    "interactive_overlay_committed": false,
+    "source_files": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_scene_actor.h",
+        "bytes": 9290,
+        "sha256": "04b0a537fb34a05b3f736dfa162062c3e589d893e291e4187ce6521691040047"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_decorations_loading.h",
+        "bytes": 23770,
+        "sha256": "9c08e65c007733d745aaaa3ea2e9b0bfac5956b08189e3cbfdb80ca46e5d0874"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_loading_update.h",
+        "bytes": 2673,
+        "sha256": "a74f5084e455b03930d4ea0ac6f0d78e79149c192a1183384ca4ea5d345b41a8"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_module_loading.h",
+        "bytes": 11131,
+        "sha256": "58c49ed2f2b6463c3dc5c7b5f25f234fc7d23d5c95ad0ffc17dad061c5d174b9"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_actor_frames.h",
+        "bytes": 137994,
+        "sha256": "e29c50dc1524e687db5fed41b03bd6a6623ee2f3612c658283766d6bd6f51ff5"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_decorations_runtime.h",
+        "bytes": 6191,
+        "sha256": "7de64d6c5492903d92572aa5639946467149fedf3165d677dcc6f304e91cfb85"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_world_loading.h",
+        "bytes": 33734,
+        "sha256": "2f03409d2f3184782d4fcd9885152405a9e3334acd5405217030035761ac41f8"
+      }
+    ],
+    "built_artifacts": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+        "bytes": 12853760,
+        "sha256": "cb8b636cebe29036d9c063bd18fdba9f2facb6d318807a156bcab571993c6c28"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+        "bytes": 1175552,
+        "sha256": "d507f2a7e3f1db38e1f75b94a6199ef09d354fb7c0e0f609878e4c1d211d6681"
+      }
+    ],
+    "staged_artifact": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 12853760,
+      "sha256": "cb8b636cebe29036d9c063bd18fdba9f2facb6d318807a156bcab571993c6c28"
+    },
+    "recoverable_patch": {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-review-final.patch",
+      "bytes": 90295,
+      "sha256": "32675ec8059fb617c1838d9d679da43d2c02af2213ee330f632bfb6feed154f5"
+    }
+  },
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "temporary_native_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spawn-retirement-native.cpp",
+      "bytes": 3873,
+      "sha256": "1c315784c12f7d76e7fcdeb2ea614264873b92e20ab882ac64ab33278eab993d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spawn-retirement-native",
+      "bytes": 3270360,
+      "sha256": "52e397da5e9423133e93d04542c4ecc79210a4dfe799127bbf80866705e26fe8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-native.cpp",
+      "bytes": 5690,
+      "sha256": "1ab570d73fbc2115423f3b05c1c301b153b796bbd24bdde0ec5d5ccfc2db8666"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-native",
+      "bytes": 2099368,
+      "sha256": "f3b137d4d884d658430cc4832258b3402ed60d5153c4ba90b145a9b6730417d2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-audit-decorations.bin",
+      "bytes": 667,
+      "sha256": "cff800dd6a7c7953c704d48582ab24931382f1780778b313d57f2a94f8f2b184"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-decoration-audit-decorator_sl.bin",
+      "bytes": 97405,
+      "sha256": "505916a47a19d40fd164eba187858a904e4526889da848107610c43f94489672"
+    }
+  ],
+  "temporary_native_audits_removed": true,
+  "limitations": [
+    "Native late-spawn checks execute actual HumanSceneActor/SceneActorRegistry/deactivate_human_loading_owner with explicit lifetime/frame endpoints. Full production B0/DD0/World ownership composition i386 compile/link only. No native ABI/container/allocator/SEH equivalence claimed.",
+    "Native decoration checks execute actual serializer, grid, pool, mask and failure policies with explicit engine/ground endpoints, plus actual installed definition/mask input bytes. Read-only4DS decoding verifies ten named resources. Actual DLL playback/render/engine allocation remains for user desktop test.",
+    "Positive Player bending0047FAE0, vehicle bending0047F730, dynamic wind mesh0047BAA0 and retained request producers remain explicit required failures. Cold stationary native gates return honestly; no successful substitutes or new readiness flags.",
+    "Source-only checkpoint on main; interactive OWN overlay remains uncommitted pending actual user desktop acceptance. No new function-count/complete/matrix promotion. Source comments clarified after compilation; executable statements unchanged."
+  ],
+  "revised_actual_user_run": {
+    "executable_sha256": "cb8b636cebe29036d9c063bd18fdba9f2facb6d318807a156bcab571993c6c28",
+    "observed": [
+      "Mission activation returned: loaded=1 status=5; same-World FRAME bound",
+      "Mission first completed stage: Scene78 render status=5",
+      "Mission first completed stage: fixed-update status=5"
+    ],
+    "next_failure": "Game input requires the actual two mutable64-word controller views",
+    "startup_input_words": [
+      63,
+      63
+    ],
+    "process_result": 1,
+    "access_violation_observed": false,
+    "gameplay_or_present_accepted": false,
+    "evidence": [
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/application_launch.exe",
+        "bytes": 12853760,
+        "sha256": "cb8b636cebe29036d9c063bd18fdba9f2facb6d318807a156bcab571993c6c28"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/host-output.log",
+        "bytes": 258827,
+        "sha256": "6440b1d9d8e81a3c28100672cd6c215b4b1e29998a579adfb2d30e8d18e0e528"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/host-runtime.log",
+        "bytes": 262817,
+        "sha256": "717ab3de3c9d18c3f55fb226f650acc2b655157038e716d6141d04a2d53908b2"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/inputs.json",
+        "bytes": 993,
+        "sha256": "d5b5c3275aa7c710f86f1bd12a5c37bad9bdaf256749d9de15e54c0c20d9ba99"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/steam-0.log",
+        "bytes": 336370,
+        "sha256": "eb069385fedbcda5cfae0f5ead11d01149589c795540e1d5de04c83848fd07ab"
+      }
+    ]
+  }
+}
