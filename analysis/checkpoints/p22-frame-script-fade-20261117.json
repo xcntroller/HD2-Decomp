@@ -1,0 +1,147 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "d3f1fe4",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-script-fade-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/mission_script_render_commands.h",
+      "bytes": 1629,
+      "sha256": "1c3ff0ae96277779a43034015082ec2d8919ed75565ee0e8a0edb43cf337107d"
+    },
+    {
+      "path": "recovered/game/mission_script_door_commands.h",
+      "bytes": 1500,
+      "sha256": "e912d2352916ba9a24ede2ac0cc12a2178b06206af85f7d99cfc524dfe99e472"
+    }
+  ],
+  "native_checks": 54,
+  "native_sanitizers": "ASan/UBSan/leaks PASS",
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-fade-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-fade-native-run.log",
+      "bytes": 72,
+      "sha256": "a260a12c8475d5487446140183fcc1a16323902855b3de4ab91c9dc4a8a76e8f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-fade-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-fade-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script160-index.txt",
+      "bytes": 8294,
+      "sha256": "c5e2909db3b18779070196983b9bef8f7aad18b4e8c3519d84adbe00d5fa5b1b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-fade-index.txt",
+      "bytes": 7336,
+      "sha256": "9a1272eeb8cfb3e6cd988e1f9ebbeadf8d2582819b03afe93575b9897d42eac1"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script160-dispatch.json",
+      "bytes": 230,
+      "sha256": "9d8069f672ef4a9439fe8ecb605e38e1b8e7fdf6b75511c5b658ba48f09fd7f1"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script160-dispatch.asm",
+      "bytes": 6949,
+      "sha256": "8a52464ac1f8a342ff0b92099689b82e58645f7607f7bf4ba5449ee02f5e5126"
+    }
+  ],
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script160-return/application_launch.exe",
+      "bytes": 12874240,
+      "sha256": "b4708c75d80a6a1399cf8ebe6ddc9735510251b5503fae9e811287276abb91de"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script160-return/host-output.log",
+      "bytes": 256455,
+      "sha256": "bf3e4fdb4ca5ccfd7dd4fd5ce9e344d8cd9e28ad8fc669baeab2b8408bed3704"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script160-return/host-runtime.log",
+      "bytes": 260405,
+      "sha256": "4aab9d4b5a5775a2211e120f64448ce6a51438524ea7a88ea3923b899ffd5c3c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script160-return/inputs.json",
+      "bytes": 993,
+      "sha256": "fe9752142338fbd96fdde3ad4c3431d6f1e59e252e84f76803ba6ef65dea82f5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script160-return/steam-0.log",
+      "bytes": 342551,
+      "sha256": "5080d2dfcc3d4764dd05f1637b3f57c8686729f769f1919814c4e647db678381"
+    }
+  ],
+  "review_recoverable_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-fade-review-final.patch",
+    "bytes": 122450,
+    "sha256": "8237b8396b84842be229252fcdbd91948816904940f932d6cff2be26b881cd29"
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-fade-native.cpp",
+      "bytes": 6513,
+      "sha256": "d4f7cd0170d5bcbd7c2dddcf01c9864f12323c56120cdcf0cc9ab4f813d93f1f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-fade-native",
+      "bytes": 2483056,
+      "sha256": "ff7d44909f6d8b6d918d07b00e13841f271ece5b28aac9692d6f3bc44e797d83"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "gameplay_desktop_verified": false,
+  "full_frame_source_complete": false,
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "matrix_reconciliation": "partially_resolved",
+  "agent_executed_original_dll_proton_or_windows": false,
+  "actual_result": "b4708c75 passes reached Door dispatch and activation/Scene78/fixed/input/update; later required CSC_FadeIn160 exits result1. Revised fade candidate awaits actual user run.",
+  "correction": "Prior d3f1fe4 Door missing/wrong target basefalse expectation is disproven by shared-tail raw branches to0041C8C6. Corrected skip mutation/integer and guarded advance/true; actual type6 receiver unchanged.",
+  "limitations": [
+    "Typed native owners/STL/RAII do not establish original ABI equivalence. Frame/reference/backend boundaries are explicit audit leaves; actual containing application is compile/link verified only.",
+    "Other commands, including positive cutscene, remain required; stable mission scene/control/presentation and full FRAME/HUM/OWN remain unaccepted. Interactive overlay remains uncommitted."
+  ],
+  "built_artifacts": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+      "bytes": 12874240,
+      "sha256": "b64c5168117cb0fa86f09deec32baad394cf8da81fb44f0d4bc6dc7aca08dd68"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "cacebd57d5be44c2ffe10e599820ddf2be30c10c2f3adcb36b4ca44c52c90158"
+    }
+  ],
+  "staged_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+    "bytes": 12874240,
+    "sha256": "b64c5168117cb0fa86f09deec32baad394cf8da81fb44f0d4bc6dc7aca08dd68"
+  },
+  "full_actual_i386_O2_Werror_build": "PASS application-launch startup-probe",
+  "stage_only": "PASS"
+}

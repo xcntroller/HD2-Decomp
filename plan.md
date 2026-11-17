@@ -248,9 +248,9 @@ remains separate; earlier checkpoint evidence is revision-qualified.
 [Latest actual frame correction](analysis/p22-frame-decoration-contact-source.md):
 actual Player decoration bend/fade/bounce requests and lifetime ordering are
 source-bound and sanitizer-verified. User run completes activation, Scene78,
-fixed-update, input and full update; later script command154 DOOR_Lock exits.
-[Original Door dispatch](analysis/p22-frame-script-door-source.md) is now
-sanitizer-verified and rebuilt/staged; revised desktop continuation is pending.
+fixed-update, input and full update; revised Door dispatch passes in the user run.
+The next failure is CSC_FadeIn160. [Original fade dispatch and shared-tail correction](analysis/p22-frame-script-fade-source.md)
+are sanitizer-verified and rebuilt/staged; revised desktop continuation is pending.
 Stable scene/control/presentation and full FRAME/HUM/OWN remain unaccepted.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.

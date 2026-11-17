@@ -11,11 +11,11 @@ The command descriptor calls154/9A DOOR_Lock with frame then integer operands.
 Original PE translation byte at0041CE55 is41; jump table0041CBE0 maps that dispatch
 to00417992 inside00416E10. Raw instructions confirm pool90 operand0, nonnull frame,
 frameEC, actorEC[0], actor type6, THEN integerA0 operand1. Missing frame/data/actor
-or wrong type returns base false. Nonzero integer calls005FF650 with this SAME
+or wrong type skips mutation and integer access, then guarded-advances and returns
+true at0041C8C6 (corrected after the initial checkpoint; see below). Nonzero integer calls005FF650 with this SAME
 Door's230 key; zero calls005FF5F0 with its230 key. Both ignore the bool result,
 then invoke guarded00416CF0 and returntrue. This is not a script-supplied key or a
-one-bit/truncated boolean. The existing derived Human/Dog false-result policy is
-retained by the containing runtime.
+one-bit/truncated boolean. Unknown commands still retain their existing required boundaries.
 
 The new base command receiver uses actual DoorSceneActor::key_lock, reconstructed
 previously from005FF650/005FF5F0. Thus existing locks, open-Door refusal, actual
@@ -43,3 +43,11 @@ WORK=analysis/work/p22-frame-closure-20261117. Original PE SHA256:
 00416E10 remains partial; no new inventory count or promotion. Broader commands
 still fail explicitly. Next is actual user continuation and its first concrete
 failure; no full FRAME/HUM/OWN or game-delivery claim follows compile-only checks.
+
+Correction after d3f1fe4: raw004179A2/B0/BA/C4 targets0041C8C6, proving the
+shared advance/true tail for missing/wrong targets. The initial source and its
+native fixture expectedfalse on these paths; that expectation was incorrect.
+[Fade/shared-tail correction](p22-frame-script-fade-source.md) records revised
+source, actual native checks and evidence. Initial receipt hashes describe the
+old revision. The actual b4708c75 user run passed reached Door dispatch and now
+stops at CSC_FadeIn160; exact logs WORK/first-frame-script160-return.

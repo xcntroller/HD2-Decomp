@@ -6,9 +6,9 @@
 
 namespace hd2::game {
 //00416E10 opcode9A -> dispatch41/00417992. Resolve actual pool90 frame/EC
-//actor0 BEFORE integerA0. A missing/wrong actor is native base false; the
-//containing derived VM applies its own default/advance policy. Successful
-//Door dispatch ignores the key receiver's bool and calls guarded00416CF0.
+//actor0 BEFORE integerA0. Missing/wrong actor skips the mutation but reaches
+//the SAME guarded00416CF0 tail at0041C8C6. Actual Door dispatch ignores the
+//key receiver's bool; only an unknown opcode returns nullopt.
 template<class Frames,class Context,class Runtime>
 std::optional<bool> execute_mission_script_door_command(Frames& frames,Context& context,
         const MissionScriptInstruction& instruction,SessionBroadcastPackets& packets,Runtime& runtime){
@@ -17,11 +17,12 @@ std::optional<bool> execute_mission_script_door_command(Frames& frames,Context& 
     const auto frame=context.slot(instruction.operands.at(0));
     const auto* data=frame?frames.find_actor_frame_data(frame):nullptr;
     auto* actor=data?reinterpret_cast<SceneActor<Frames>*>(data->words[0]):nullptr;
-    if(!actor||actor->base().type()!=6)return false;
-    auto* door=dynamic_cast<DoorSceneActor<Frames>*>(actor);
-    if(!door)throw std::logic_error("Script DOOR_Lock requires its actual Door actor");
-    const bool lock=context.program().integers.at(instruction.operands.at(1)).value!=0;
-    (void)door->key_lock(door->properties.field230,lock,packets);
+    if(actor&&actor->base().type()==6){
+        auto* door=dynamic_cast<DoorSceneActor<Frames>*>(actor);
+        if(!door)throw std::logic_error("Script DOOR_Lock requires its actual Door actor");
+        const bool lock=context.program().integers.at(instruction.operands.at(1)).value!=0;
+        (void)door->key_lock(door->properties.field230,lock,packets);
+    }
     context.advance(runtime);return true;
 }
 } //namespace hd2::game
