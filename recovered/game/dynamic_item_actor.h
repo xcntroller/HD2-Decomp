@@ -7,6 +7,7 @@
 #include "frontend/pre_mission_data.h"
 #include "game/dynamic_item_contact_sound.h"
 #include "game/loose_item_handoff.h"
+#include "game/dynamic_item_frames.h"
 #include <limits>
 
 namespace hd2::game {
@@ -85,6 +86,9 @@ public:
     }
     void release_item_to_inventory(){ //005B6980, frame EC BEFORE item loan/frame reference; body closes later in00477190.
         release_loose_item_to_inventory(this->backend_,this->base_,entry_);
+    }
+    template<class World>void update(bool authority,std::uint32_t elapsed,World& world){
+        advance_loose_item_frame(*this,{field6a0_,field6a4_,flag6a8_,field6ac_,field6b0_},authority,elapsed,world);
     }
     void damage(std::uint32_t kind,float amount,const Vector& point,const Vector& direction) { //005B74D0.
         std::int32_t age;std::memcpy(&age,&field6b0_,4);if(age<300)return;

@@ -48933,6 +48933,60 @@
         "analysis/human-h8-projectile-source.md",
         "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00591550",
+      "status": "partial",
+      "coverage": "Actual Script alarm decision on SAME B0/resources/item/selector/readiness owners; strict kind/range/draw/query/timer publication, with Runtime-to-World dispatch.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native policy checks explicitly double resources/selector/item/Body/Frames/packet/callback endpoints; actual World/Script/loose-item/Body/Human/Camera i386 and launcher compile/link only. Full module-frame instantiation still fails on missing Dog/Sight Runtime methods; failure retained. Positive non7 retained pose packets, delayed Players/remaining interactions/occupied and full containing H8/application/desktop remain required. No absent/delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_script_alarm.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/dynamic_item_frames.h",
+        "recovered/game/dynamic_item_actor.h",
+        "recovered/game/human_frame_runtime.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_runtime_actors.h",
+        "analysis/human-h8-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-runtime-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b7320",
+      "status": "partial",
+      "coverage": "Actual loose-item authority frame: age6B0, mode2 Body gate, wrapping timers, thrown-effect offline gate, actual fade/hide/expiry packet and queued registry removal ordering.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native policy checks explicitly double resources/selector/item/Body/Frames/packet/callback endpoints; actual World/Script/loose-item/Body/Human/Camera i386 and launcher compile/link only. Full module-frame instantiation still fails on missing Dog/Sight Runtime methods; failure retained. Positive non7 retained pose packets, delayed Players/remaining interactions/occupied and full containing H8/application/desktop remain required. No absent/delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_script_alarm.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/dynamic_item_frames.h",
+        "recovered/game/dynamic_item_actor.h",
+        "recovered/game/human_frame_runtime.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_runtime_actors.h",
+        "analysis/human-h8-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-runtime-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b7480",
+      "status": "partial",
+      "coverage": "Actual loose-item presentation: embedded Body always runs before sound cooldown subtraction, including NULL item90; negative-only clamp.",
+      "limitations": "Source-only typed/STL/RAII, not original allocator/class/SEH/register ABI. Native policy checks explicitly double resources/selector/item/Body/Frames/packet/callback endpoints; actual World/Script/loose-item/Body/Human/Camera i386 and launcher compile/link only. Full module-frame instantiation still fails on missing Dog/Sight Runtime methods; failure retained. Positive non7 retained pose packets, delayed Players/remaining interactions/occupied and full containing H8/application/desktop remain required. No absent/delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_script_alarm.h",
+        "recovered/game/human_script_ai_state_loading.h",
+        "recovered/game/dynamic_item_frames.h",
+        "recovered/game/dynamic_item_actor.h",
+        "recovered/game/human_frame_runtime.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_runtime_actors.h",
+        "analysis/human-h8-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-runtime-20261117.json"
+      ]
     }
   ]
 }

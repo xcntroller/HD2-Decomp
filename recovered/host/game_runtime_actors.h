@@ -53,6 +53,11 @@ public:
         if(!actor)throw std::logic_error("Human motion target requires actual type35 owner");
         return actor->apply_motion(direction,false,activation_);
     }
+    template<class Item>void loose_item_timed_effect(Item& actor){ //005B7EC0, actual retained item list, selected offline gate.
+        if((mode_flags()&7u)==7u)return;
+        for(const auto& retained:retained_items_)if(retained.entry==actor.entry())
+            throw std::runtime_error("Retained loose item timed effect requires actual non7 pose/publication receiver005B7DA0");
+    }
     void damage_loose_item(Instance& borrowed,std::uint32_t kind,float amount,const game::HumanVector& point,const game::HumanVector& direction){
         if(!registry_.owns(&borrowed))throw std::logic_error("Shot loose item requires SAME live Runtime registry");
         auto* item=dynamic_cast<LooseItemActor*>(&borrowed);

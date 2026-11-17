@@ -45,10 +45,11 @@ public:
         }
         throw std::runtime_error("Human frame requires actual Remote B0 frame receiver");
     }
-    template<class State>void choose_script_alarm_action(State&){throw std::runtime_error("Script alarm requires actual00591550 decision receiver");}
+    template<class Item>void update_loose_item(Item& item,bool authority,std::uint32_t elapsed){world_.update_loose_item(item,authority,elapsed);}
+    template<class State>void choose_script_alarm_action(State& state){world_.choose_script_alarm_action(state);}
     template<class Control,class... Args>void apply_human_look_interaction(Control&,Args&&...){throw std::runtime_error("Human interaction requires remaining00751480 action receivers");}
     template<class Control>void advance_human_control_motion(Control&,std::uint32_t){throw std::runtime_error("Human interaction requires remaining00755500 action frame");}
-    template<class State,class Human>void refresh_suppressed_player_camera(State&,Human&){throw std::runtime_error("Suppressed Player requires actual00540090 World B8/B4 camera receiver");}
+    template<class State,class Human>void refresh_suppressed_player_camera(State& state,Human& human){world_.refresh_suppressed_player_camera(state,human);}
     template<class State>void dispatch_player_inline_command(State&){throw std::runtime_error("Player delayed command requires actual0053D5B0 Players virtual0");}
     template<class State>void advance_player_remote_inputs(State&,std::uint32_t){throw std::runtime_error("Remote Player inputs require actual0053F520");}
     template<class State>void advance_player_input_transport(State&,std::uint32_t){throw std::runtime_error("Player input transport requires actual0053F9B0 non7 history publication");}

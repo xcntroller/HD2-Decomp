@@ -71,7 +71,7 @@ H8.3 dependencies. [Projectile source](human-h8-projectile-source.md) binds
 bullet/capsule combat/visuals, shell/grenade, all-hit collision, material marks,
 Car/StaticWeapon/Animation/loose-item damage and picked Versions outputs on the
 SAME World. Focused native sanitizers and actual World/launcher links pass;
-H8.3 remains open for reached derived/containing dependencies. Continue actual
+H8.3 remains open for reached derived/containing dependencies. [Runtime callbacks](human-h8-runtime-source.md) now bind Script alarm, actual loose-item Body/age/timers and suppressed Player camera; full module-frame instantiation still requires actual Dog/Sight callbacks. Continue actual
 Dog/Animation/runtime and Human callback integration; application/desktop remain
 explicit H8.6 gates.
 

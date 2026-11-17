@@ -17,6 +17,32 @@ acceptance. No desktop test has been performed for H8.
 
 ## Latest result
 
+Latest runtime follow-up: [contract](analysis/human-h8-runtime-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-runtime-20261117.json). Script00591550
+alarm decisions now use actual B0/resources/item/hostile selector and CRT random;
+Runtime forwards to SAME World. Loose-item005B7320/005B7480 now advance actual
+Body/6B0 age/timers/fade/expiry/queued removal, closing age300 D4 dependency.
+00540090 suppressed Player uses actual sessionB8/B4/pending identity and Camera48.
+Native8400 policy checks/100 families PASS (explicit endpoints, not actual whole
+World); actual Script/loose/Body/Human/Camera i386 and launcher/probe compile/link
+PASS, exact tracker+27 PASS. Counts34 complete/3584 partial (client3579+engine5).
+Three new frozen partials, absent leaves zero credit; temporary successful audits
+fingerprinted/removed. Full MODULE fixture FAILED on missing Dog/Sight Runtime
+methods; preserved initial log and ongoing temporary source
+WORK/human-h8-containing-frame-i386.cpp (not removed, still in use). This is a
+real remaining integration boundary; narrower links do not close it.
+
+Continue actual Dog/Sight owner integration and the remaining H8 scope. Existing
+research candidates are indexed in WORK/human-h8-dog-owner-index.txt and
+human-h8-dog-frame-index.txt. Native Dog activation/body/frame originals are in
+h8-4-dog-boundary-originals (005D4DB0/005C8370/005D5390/005D5620/005D5810),
+h8-4-dog-required-originals (005C7D30/005C6E10/005D5890/005D6000), and the live/
+typed-v2 directories referenced below. No new Dog export needed for these.
+Tutorial baseline has no Dog, ALPS1 has one, but only actual resolver/data/frame
+observations can establish current selected reachability; do not assert universal
+absence. Full H8 remains open; no matrix or desktop promotion.
+
+
 [Projectile source](analysis/human-h8-projectile-source.md),
 [receipt bullet_capsule_follow_up](analysis/checkpoints/p2.2-human-h8-projectile-20261117.json):
 SAME World bullet0044B910/capsule00449290 combat and visual0044B400/00449030,
@@ -39,7 +65,7 @@ NOT deletion; retain points/B4 until00445800 retirement. Capsule ordinary produc
 90=false/incoming=false; positive command9 remains actual MissionCamera guard.
 Animation damage shares A3 with its frame owner, strict greater-than threshold;
 triggered track remains required. Loose-item D4 uses signed age300 then actual
-Body impulse; containing age/frame work and non7 packet remain required.
+Body impulse; age/frame are now bound, positive non7 pose packets remain required.
 
 Previous dbac1af binds actual all-hit006FF140/static00700BC0/00701350,
 shell00454360/grenade0044D260→0044D290/contact0044D570 and material0044FBC0.
@@ -68,8 +94,7 @@ Bullet/capsule workers and initial100 attached-bullet production are now source-
 H8.3 remains open for reached Dog/Animation/runtime damage/frame paths and containing
 verification. Dog30 D4 still needs live loading/control/geometry, rather than calling
 the merged policy kernel with synthetic state. Animation25 damage now triggers actual
-A3, exposing its existing positive start/track requirement. Loose11 D4 binds actual
-item/Body but runtime first-frame/age advancement remains required. Native type37
+A3, exposing its existing positive start/track requirement. Loose11 D4 and actual runtime Body/age/timers are now bound in the follow-up. Native type37
 Zone constructor005EBED0 installs00812B20 (common RET24); do not mislabel this as Fowl.
 StaticWeapon006057B0 is now bound to actual first seat, zone/miss, normalized direction
 and damage-before-Script hit. Type11/non7 packet and special capsule90 MissionCamera

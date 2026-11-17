@@ -6,6 +6,7 @@
 #include "game/human_script_timed_output.h"
 #include "game/human_script_attachment_output.h"
 #include "game/human_ai_frame_metrics.h"
+#include "game/human_script_alarm.h"
 
 namespace hd2::game {
 
@@ -169,6 +170,7 @@ public:
             if(context_)contexts_.finish_human_script_navigation(*context_,pc);
         });
     }
+    template<class World>void choose_alarm_action(World& world){choose_human_script_alarm(*this,state_,alarm_target_,alarm_target_id_,world);}
 private:
     Formation* formation_=nullptr;
     Actor* attack_actor_=nullptr;Frame attack_frame_{}; //Native1C4/1C8 loans, retired before Scene/frame destruction.

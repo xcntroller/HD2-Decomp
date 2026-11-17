@@ -1424,6 +1424,33 @@ public:
     template<class State,class Queue>void dispatch_script_ai_event(State& state,Queue& queue,std::size_t index){
         dispatch_human_script_event(state,queue,index,*this);
     }
+    template<class Item>void update_loose_item(Item& item,bool authority,std::uint32_t elapsed){item.update(authority,elapsed,*this);}
+    template<class Body>void advance_loose_item_body(Body& body,std::uint32_t elapsed){dependencies().world_actors.update_detached_body(body,elapsed);}
+    template<class Item>void loose_item_timed_effect(Item& item){dependencies().world_actors.runtime().loose_item_timed_effect(item);}
+    template<class Frame>void restore_loose_item_opacity(Frame frame){dependencies().world_actors.restore_detached_camera_amount(frame);} //00486E90.
+    template<class Frame>void fade_loose_item(Frame frame,std::int32_t time){dependencies().world_actors.fade_detached(frame,time);} //00488D60(frame,time,0).
+    template<class Frame>void hide_loose_item(Frame frame){auto& frames=dependencies().scene.frames();frames.object_visible(frame,false);frames.update_scene_object(frame);}
+    void publish_loose_item_expiry(std::int32_t identity){
+        auto& packet=begin_runtime_actor_message(dependencies().broadcast_packets,identity,true);packet.write(0,2);packet.finish_broadcast();
+    }
+    template<class Item>void remove_loose_item(Item& item){dependencies().world_actors.runtime().remove(&item);}
+    template<class State,class Human>void refresh_suppressed_player_camera(State&,Human&){ //00540090, caller already checked suppressed/mode/local identity.
+        if(dependencies().session.words.template get<std::uint32_t>(0xb8))return;
+        if(dependencies().session.words.template get<std::int32_t>(0xb4)<0)return;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(dependencies().session.words.template get<std::int32_t>(0xb4));
+        if(!actor)return;
+        dependencies().camera.set_direction(human_camera_target_direction(selection_human(*actor))); //0080FDD0+48→00465EA0.
+    }
+    template<class State>void choose_script_alarm_action(State& state){state.choose_alarm_action(*this);}
+    template<class Human,class Actor>long double script_alarm_distance(Human& human,Actor& target){return human_ai_actor_distance(human,target,dependencies().scene.frames());}
+    template<class State>auto* script_alarm_target(State& state){
+        using Human=typename Dependencies::Composition::Human;
+        return select_human_hostile<Human>(state,dependencies().scene.frames(),*this);
+    }
+    template<class State>void script_alarm_clear_item(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("Script alarm lost Human44");
+        clear_script_formation_item_ready(state,human_inline(*human));
+    }
     template<class State,class Inline>void clear_script_formation_item_ready(State& state,Inline& control){ //0058C400.
         auto* human=state.human();if(!human)throw std::logic_error("Script formation readiness lost actual Human");
         control.clear_frame_item_ready([&](std::uint32_t value){human_frame_first_person_state(*human,value);});
