@@ -5,6 +5,7 @@
 #include "frontend/cleanup.h"
 #include "game/human_joint_owners.h"
 #include "game/shot_surface_marks.h"
+#include "game/shot_impact_marks.h"
 #include "game/shot_blood_marks.h"
 #include "game/shot_bullet_record.h"
 #include "game/shot_muzzle_flash.h"
@@ -52,7 +53,8 @@ template<class Frames>struct ShotManagerLoadingState {
     using Bullet=ShotBulletRecord<Frames>;using RuntimeRecord=ShotRuntimeRecord<Frames>;using Shell=ShotShellRecord<Frames>;
     using Capsule=ShotCapsuleRecord<Frames>;
     ShotColdPool<Bullet> marks;ShotColdPool<Shell> decals; //Native0C/64; historical cold labels retained.
-    std::vector<RuntimeRecord*> render; //Native80, positive producer remains required.
+    using ImpactMark=ShotImpactMark<Frames>;
+    std::vector<std::unique_ptr<ImpactMark>> render; //Native80, actual owned material projections.
     using MuzzleFlash=ShotMuzzleFlash<Frames>;
     std::vector<std::unique_ptr<MuzzleFlash>> muzzle_flashes; //NativeB0/B4/B8, SAME process owner.
     using BloodMark=ShotBloodMark<Frames>;
@@ -137,8 +139,7 @@ public:
         }
         for(auto& mark:state_.surfaces)(void)mark->tick(frames_,elapsed);
         for(auto& mark:state_.blood_marks)(void)mark->tick(frames_,elapsed);
-        //Native render80 vector is not updated here. Actual populated queue
-        //producers/records remain unavailable; never dispatch an opaque pointer.
+        //Native material projections80 deliberately receive no per-frame call.
     }
     void finish_loading(bool)noexcept{} //004115E0 genuine RET4, module14 virtual14.
     void activate(bool authority){
@@ -172,7 +173,7 @@ public:
         if(authority){state_.hit_zones.reset();authority_started_=false;} //00455520 leaves borrowed marker entries intact.
         else{
             while(!state_.shells.empty()){state_.shells.back()->retire();state_.shells.pop_back();}
-            require_empty(state_.render);
+            while(!state_.render.empty()){state_.render.back()->clear();state_.render.pop_back();}
             while(!state_.blood_marks.empty()){state_.blood_marks.back()->clear();state_.blood_marks.pop_back();}
             //0044E110 retires A0 in reverse before B0, BEFORE texture60 and Scene retirement.
             while(!state_.surfaces.empty()){state_.surfaces.back()->clear();state_.surfaces.pop_back();}
@@ -208,6 +209,7 @@ public:
         while(!state_.shells.empty()){
             errors.attempt([&]{state_.shells.back()->retire();});state_.shells.pop_back();
         }
+        while(!state_.render.empty()){errors.attempt([&]{state_.render.back()->clear();});state_.render.pop_back();}
         if(had_runtime){state_.marks.clear();state_.decals.clear();}
         state_.world=nullptr;
         if(errors.failed())try{errors.rethrow();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}

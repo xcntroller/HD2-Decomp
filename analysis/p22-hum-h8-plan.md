@@ -66,9 +66,12 @@ owners; no private empty registry is substituted. H8.4 owns Dog/attachment/
 Car/seat/Aircraft bodies. Follow actual reached dependencies rather than trying
 to finish all specialized families before integration.
 
-Next implementation target: the next reached offline frame failure, with
-specialized task/effect and actual actor receivers still explicit. After H8.2, continue H8.3. Loading
-activation and desktop acceptance remain explicit H8.6 gates.
+Current implementation target: finish H8.3 bullet/capsule combat and visual
+workers. [Projectile source](human-h8-projectile-source.md) now binds the SAME
+all-hit query, shell motion, grenade authority/presentation/contact, material
+projections and picked-part Versions damage;33,408+9,901+800 focused checks and
+actual World/launcher links pass. H8.3 is still open. Continue remaining reached
+H8.2/H8.4 owners afterwards; loading/desktop remain explicit H8.6 gates.
 
 ## Existing evidence to reuse
 

@@ -10062,7 +10062,7 @@
       "entry": "004d4ca0",
       "status": "partial",
       "coverage": "P2.2 source reconstruction at original entry 004d4ca0: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Positive part detachment now clones and launches actual shared-registry Item12/rigid body before link invalidation/hide; full rigid-body authority motion remains required.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/car_contact_callbacks.h",
         "analysis/car-geometry-loading.md",
@@ -10080,7 +10080,7 @@
       "entry": "004d4eb0",
       "status": "partial",
       "coverage": "P2.2 source reconstruction at original entry 004d4eb0: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Positive wheel detachment now clones and launches actual shared-registry Item12/rigid wheel; remaining event2 publication and authority motion retain required failures.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/car_contact_callbacks.h",
         "analysis/car-geometry-loading.md",
@@ -17758,7 +17758,7 @@
       "program": "client",
       "entry": "0052f750",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0052f750: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual sector and target context now bound; assembly-preserved extended (Z²+X²)+Y² comparisons.",
+      "coverage": "P2.2 source reconstruction at original entry 0052f750: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual sector and target context now bound; assembly-preserved extended (Z\u00b2+X\u00b2)+Y\u00b2 comparisons.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_weapon_selection.h",
@@ -17799,7 +17799,7 @@
       "program": "client",
       "entry": "00530b30",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00530b30: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual target context resolves after item/alternate/ammunition rejection; assembly-preserved FLOAT (Z²+Y²)+X² distance.",
+      "coverage": "P2.2 source reconstruction at original entry 00530b30: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual target context resolves after item/alternate/ammunition rejection; assembly-preserved FLOAT (Z\u00b2+Y\u00b2)+X\u00b2 distance.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_weapon_selection.h",
@@ -19074,7 +19074,7 @@
       "entry": "004c8980",
       "status": "partial",
       "coverage": "P2.2 source reconstruction at original entry 004c8980: Actual rigid-body ownership, collision registration/state change and actor borrower writes. Accept actual produced wheel004CD550 configuration without inventing part geometry; preserve5FB/root-position branches and SAME descriptor/buckets/actor order. Reset additionally clears the SAME typed point actor/surface state.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open. Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Authorized D11 compatibility supplies part5F9 phase0 and wheel695 retirementtrue. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open. Source-only typed/template/STL/RAII adaptation; native object/container/allocator/SEH/virtual ABI and exact original trajectory/convergence excluded. Native100 repeated families use actual RigidBody/geometry/buckets/exclusions with explicit engine/frame/math, ray/actor and particle doubles; actual nested World/Human/Car/Item12/Physics i386 and launcher/probe compile/link only. Authorized D11 compatibility supplies part5F9 phase0 and wheel695 retirementtrue. Engine/math callees receive no credit. Wider Car event2/timed-DM/deformed mesh, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/rigid_body.h",
         "analysis/rigid-body-loading.md",
@@ -19205,7 +19205,7 @@
       "entry": "004770b0",
       "status": "partial",
       "coverage": "P2.2 source reconstruction at original entry 004770b0: Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches. Actual runtime type2 Mine factory now shares SAME initialization/EC/identity/activation-before-bind source path. Runtime factory now admits actual type12 through SAME ownership/publication/mode activation and source frame data, alongside existing2/11/35.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/runtime_actor_registry.h",
         "analysis/actor-loading-ownership.md",
@@ -25774,7 +25774,7 @@
       "program": "client",
       "entry": "0058f680",
       "status": "partial",
-      "coverage": "EndScript state selection from property19C and actual command14: player select_script, enemy8/4,3→6,4/5→3; no stale Script borrower after selection.",
+      "coverage": "EndScript state selection from property19C and actual command14: player select_script, enemy8/4,3\u21926,4/5\u21923; no stale Script borrower after selection.",
       "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
       "evidence": [
         "analysis/mission-script-runtime-composition.md",
@@ -25992,7 +25992,7 @@
       "program": "client",
       "entry": "005a88b0",
       "status": "partial",
-      "coverage": "Actual missing/non3 B0→-1, else SAME Active AI virtual13C source pending/current first-mode getter.",
+      "coverage": "Actual missing/non3 B0\u2192-1, else SAME Active AI virtual13C source pending/current first-mode getter.",
       "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
       "evidence": [
         "analysis/hud-player-presentation-loading.md",
@@ -26003,7 +26003,7 @@
       "program": "client",
       "entry": "005a88d0",
       "status": "partial",
-      "coverage": "Actual missing/non3 B0→-1, else SAME Active AI virtual140 source pending/current second-mode getter.",
+      "coverage": "Actual missing/non3 B0\u2192-1, else SAME Active AI virtual140 source pending/current second-mode getter.",
       "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
       "evidence": [
         "analysis/hud-player-presentation-loading.md",
@@ -26027,7 +26027,7 @@
       "program": "client",
       "entry": "0049fbf0",
       "status": "partial",
-      "coverage": "Actual inventory-root visibility gate then SAME UI-bound004A49F0→004A26D0 refresh over original World/Human/Items owners. Hidden path remains genuine return; absent containing UI receiver still rejects.",
+      "coverage": "Actual inventory-root visibility gate then SAME UI-bound004A49F0\u2192004A26D0 refresh over original World/Human/Items owners. Hidden path remains genuine return; absent containing UI receiver still rejects.",
       "limitations": "Source-only typed native UI over existing World/HUD/77 TextState/Players/Human/Items/storage/scroll/map/command/camera owners. Human command/transfer, typed focus, occupied actor, conditional nonoffline and non-Human178 producers remain explicit; no successful placeholder executor. Native engine/font/actor/query endpoints are doubles; actual host and temporary latest-master composition strictly compile but are not real mission population/rendering. Inventory transfer/drag/input controls, full command routes/frame, map/info/scoreboard/full0049BD50 and FRAME/RENDER/OWN activation remain pending. Defined cold/invalid-index/retirement guards replace unsafe original ABI. No whole-body or desktop acceptance claim.",
       "evidence": [
         "recovered/game/hud_panels_loading.h",
@@ -26276,7 +26276,7 @@
       "program": "client",
       "entry": "005a6280",
       "status": "partial",
-      "coverage": "Actual Human16C FLOAT→signed64 truncate low DWORD interpreted signed, clamp0..100.",
+      "coverage": "Actual Human16C FLOAT\u2192signed64 truncate low DWORD interpreted signed, clamp0..100.",
       "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
       "evidence": [
         "recovered/game/human_speech_loading.h",
@@ -27576,7 +27576,7 @@
       "entry": "006df170",
       "status": "partial",
       "coverage": "Construct actual shared blast record, immediate100ms advance, conditional append and consumed-wave true return. Actual Request source is a typed Actor* borrower forwarded unchanged through construction/advancement; the World Human damage receiver is now bound.",
-      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process→damage→Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/blast_wave_process.h",
         "analysis/blast-wave-process.md",
@@ -27593,7 +27593,7 @@
       "entry": "006ddfc0",
       "status": "partial",
       "coverage": "Blast candidate point/radius query, repeated Human child dedup, camera notification, reverse retained-frame node geometry and native tail insertion. Native source1C now retains the actual typed borrowed Human pointer, without ownership transfer or DWORD truncation.",
-      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process→damage→Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/blast_wave_process.h",
         "analysis/blast-wave-process.md",
@@ -27658,7 +27658,7 @@
       "entry": "006ddd40",
       "status": "partial",
       "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required. Reached Human D8=66 and actual D4 through SAME live loading owner, final hit0; record1C is a full-width typed borrowed Human source, not a scalar identity. Other actor/Versions positive receivers remain required. Actual runtime Mine D8 uses bound100, D4 is genuine empty005B88A0; no unknown-actor success fallback. Positive frameEC5 now binds SAME Versions actual part damage/transitions/retirement, through containing World module owner.",
-      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process→damage→Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/blast_wave_process.h",
         "analysis/blast-wave-process.md",
@@ -30899,7 +30899,7 @@
       "program": "client",
       "entry": "00563f90",
       "status": "partial",
-      "coverage": "Allocate the shared movement search’s 200 aligned work records and ten selected-route records.",
+      "coverage": "Allocate the shared movement search\u2019s 200 aligned work records and ten selected-route records.",
       "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
@@ -32140,7 +32140,7 @@
       "program": "client",
       "entry": "00475570",
       "status": "partial",
-      "coverage": "Actual module13 authority-request wrapper and Human identity10 prefix, including boolean1 to priority0 mapping for the recovered kind6 producer. Motion4 now preserves false→priority3→clamp2, lazy ordinary/motion groups and motion-before-ordinary finalization; authority FIRST request alias retains native append order.",
+      "coverage": "Actual module13 authority-request wrapper and Human identity10 prefix, including boolean1 to priority0 mapping for the recovered kind6 producer. Motion4 now preserves false\u2192priority3\u2192clamp2, lazy ordinary/motion groups and motion-before-ordinary finalization; authority FIRST request alias retains native append order.",
       "limitations": "Source-only typed native owners/containers replace original allocator, object/vtable and SEH ABI. Recovered kind6 producer/payload only. Positive Player weapon/input/FPV, moving-Car damage, nonoffline transport, other command payloads and containing application integration remain required. Explicit boundary doubles and compilation do not establish desktop delivery.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -32158,7 +32158,7 @@
       "program": "client",
       "entry": "00475530",
       "status": "partial",
-      "coverage": "Actual module13 broadcast wrapper and Human identity10 prefix, including boolean1 to priority0 mapping for the recovered kind6 producer. Motion4 now preserves false→priority3→clamp2, lazy ordinary/motion groups and motion-before-ordinary finalization; authority FIRST request alias retains native append order.",
+      "coverage": "Actual module13 broadcast wrapper and Human identity10 prefix, including boolean1 to priority0 mapping for the recovered kind6 producer. Motion4 now preserves false\u2192priority3\u2192clamp2, lazy ordinary/motion groups and motion-before-ordinary finalization; authority FIRST request alias retains native append order.",
       "limitations": "Source-only typed native owners/containers replace original allocator, object/vtable and SEH ABI. Recovered kind6 producer/payload only. Positive Player weapon/input/FPV, moving-Car damage, nonoffline transport, other command payloads and containing application integration remain required. Explicit boundary doubles and compilation do not establish desktop delivery.",
       "evidence": [
         "analysis/human-frame-source.md",
@@ -35077,7 +35077,7 @@
       "entry": "005a1c90",
       "status": "partial",
       "coverage": "Actual authority damage controller, hit/difficulty/death/state/effect/retaliation sequence and nonoffline configuration policy through SAME Human/World owners; required external effects remain explicit. Actual containing blast006DDD40 now reaches SAME Human lifetime/damage body with kind2/4, source pointer and final hit0; no separate health-only effect. Native actual-owner verification additionally covers living kind9 damage into SAME Look/passive B0 and corpse impulse admission/consumption in real joints. Extended: Actual B0 BC dispatch now includes Active0052EAF0/0052E7C0 rather than incorrect RET24 skip; existing Human D4 producer remains the containing caller.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance. The containing-blast extension has native ASan/UBSan/LSan actual process→damage→Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
+      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance. The containing-blast extension has native ASan/UBSan/LSan actual process\u2192damage\u2192Player Base/B0 queue checks with geometry/ray/Versions/other damage doubles, plus actual World/i386/launcher compile/link only. Source owner-map key guard is actual-host compile-verified; full actor/Versions, application/frame/desktop integration remain open.",
       "evidence": [
         "recovered/game/human_damage.h",
         "analysis/human-ragdoll-source.md",
@@ -35869,7 +35869,7 @@
       "program": "client",
       "entry": "004a5630",
       "status": "partial",
-      "coverage": "Master checkpoint scope: P2.2 Human presentation spawn source: Reached false/false body, true absent-center no-op, flag24 before center/map hide and kind-dependent SAME pointer hide. Authority spawn checkpoint adds true/false present-center show, shared pointer0 and actual zone/goal refresh, retaining missing-center no-op. UI checkpoint scope: Actual map nullable-center show/hide, independent camera flag24, center/map visibility, pointer state and positive zone→goal refresh order, bound through SAME UI panel owner.",
+      "coverage": "Master checkpoint scope: P2.2 Human presentation spawn source: Reached false/false body, true absent-center no-op, flag24 before center/map hide and kind-dependent SAME pointer hide. Authority spawn checkpoint adds true/false present-center show, shared pointer0 and actual zone/goal refresh, retaining missing-center no-op. UI checkpoint scope: Actual map nullable-center show/hide, independent camera flag24, center/map visibility, pointer state and positive zone\u2192goal refresh order, bound through SAME UI panel owner.",
       "limitations": "Master checkpoint scope: Source-only typed/STL/RAII adaptation. Only reached branches described in the contract; positive menu/input and offline pause propagation, normal authority spawn/entry/transport, original allocator/object/SEH ABI and delegated engine/interface bodies remain excluded. Invalid native bounds fail explicitly. Full Human/application/desktop acceptance remains open; no whole-body equivalence claim. UI checkpoint scope: Source-only typed UI over SAME World/HUD/Players/Human/camera/mission/Items/live-squad/input owners. Conditional network/team/objective/speech/kind37 population remains explicit; actual kind37 group loader is unavailable. Native panel/text/ordering policies use engine/data doubles; host borrower checks strictly compile but Windows host/desktop/rendering is not executed. General controls, actual Human order/path producer, composed frame execution and FRAME/RENDER/OWN remain pending. No whole-body ABI/desktop claim.",
       "evidence": [
         "recovered/game/hud_map_loading.h",
@@ -36686,8 +36686,8 @@
       "program": "client",
       "entry": "00451a80",
       "status": "partial",
-      "coverage": "Reached material=-1 effect wrapper: SAME ShotMgr D0 group6/position/flags1/sound entry/null borrowers, preserve other request fields, real SOUND emit before particle call.",
-      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "coverage": "SAME reused ShotMgr D0 group6/position/flags1/sound/null borrowers; SOUND before negative/positive material effect chain, preserve other request fields.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
       "evidence": [
         "recovered/game/mine_scene_actor.h",
         "recovered/game/shot_effect.h",
@@ -36698,15 +36698,25 @@
         "recovered/host/game_car_callbacks.h",
         "recovered/host/game_blast_waves.h",
         "analysis/human-runtime-mine-source.md",
-        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json",
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "00451db0",
       "status": "partial",
-      "coverage": "Reached negative-material branch uses existing00445150/module17 with original definition/pose/NULL parent/orientation1/flag0; positive material surface/additional particle branches remain required.",
-      "limitations": "Source-only typed/STL/RAII reconstruction, not original class/allocator/aligned/SEH/register/virtual ABI. Native ASan/UBSan/LSan actual Mine/common actor/runtime registry/buckets and shared ShotMgr request checks use explicit frames/localization/grid geometry/sound/particle endpoints and a test-adapter removal predicate. Actual complete World host binding/factory/frame/packet leaf/material/effect composition compile/link only. Native unproduced fields, missing grid, invalid rearm/short payload fail honestly; source cleanup retracts failed registration before descriptor free. Full00478B90 resource/pose/ground producer,00478CC0 wire/module12 envelopes, populated108 table/save restore, positive-material shot effects and full containing Human/application/desktop acceptance remain required; no complete promotion or new delegated engine/absent-body credit.",
+      "coverage": "Negative material base particle plus positive material reverse-normal0044FBC0 projection, base particle and material4C particle, all using actual shared ShotMgr/module17/frame owners.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
       "evidence": [
         "recovered/game/mine_scene_actor.h",
         "recovered/game/shot_effect.h",
@@ -36717,7 +36727,17 @@
         "recovered/host/game_car_callbacks.h",
         "recovered/host/game_blast_waves.h",
         "analysis/human-runtime-mine-source.md",
-        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json"
+        "analysis/checkpoints/p2.2-human-runtime-mine-20261112.json",
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
       ]
     },
     {
@@ -37442,7 +37462,7 @@
       "entry": "00479450",
       "status": "partial",
       "coverage": "Actual visual-subtype gate/clone/pose/update prefix, SAME module74 clone counter, explicit old+1000000 runtime type12 identity, original publication and factory-reference release order.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/host/game_runtime_actors.h",
         "analysis/human-car-item12-source.md",
@@ -37457,7 +37477,7 @@
       "entry": "005fda20",
       "status": "partial",
       "coverage": "Actual runtime factory type12 now creates its dedicated existing-registry DetachedItemActor/body lifetime; native scalar allocator/SEH ABI excluded.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/host/game_runtime_actors.h",
         "analysis/human-car-item12-source.md",
@@ -37472,7 +37492,7 @@
       "entry": "005fdab0",
       "status": "partial",
       "coverage": "Actual type12 common actor plus embedded SAME rigid body registry/lifetime; native690/694 producers retained and authorized D11 compatibility defaults695 retirementtrue. No inventory entry or Physics substitute.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/detached_item_actor.h",
         "analysis/human-car-item12-source.md",
@@ -37487,7 +37507,7 @@
       "entry": "005fdbd0",
       "status": "partial",
       "coverage": "Close actual body BEFORE common runtime actor deactivation, preserving model ownership until ordered common cleanup.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/detached_item_actor.h",
         "analysis/human-car-item12-source.md",
@@ -37502,7 +37522,7 @@
       "entry": "005fdc00",
       "status": "partial",
       "coverage": "Actual wheel launch: ENGINE lifetime FTOL publication, body bind, native wheel parameters, reset then actor publication. Authorized D11 compatibility supplies fresh695 retirementtrue; explicit part flags still override.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/detached_item_actor.h",
         "analysis/human-car-item12-source.md",
@@ -37517,7 +37537,7 @@
       "entry": "005fdc50",
       "status": "partial",
       "coverage": "Actual part launch: ENGINE lifetime then695 argument, SAME body bind/part configure/reset/actor publication and failed prefix retained in registry.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/detached_item_actor.h",
         "analysis/human-car-item12-source.md",
@@ -37532,7 +37552,7 @@
       "entry": "004cd550",
       "status": "partial",
       "coverage": "Actual wheel mass/radius/width/isotropic inertia/motion, native low-motion state order, coefficients/gravity/mode/callback/flags in SAME rigid body and existing reset/buckets.",
-      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000→wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
+      "limitations": "Source-only typed/template/STL/RAII/checked-frame adaptation; native object/allocator/SEH/virtual ABI and complete trajectory equivalence excluded. Native100 repeated families exercise400 wheel and300 part actual common actor/Item12/runtime registry/rigid body/dynamic bucket lifetimes with explicit engine/frame/math/activation/reset/body-authority/effect endpoint doubles. Strict actual nested World/Car/Item12/Physics/Human i386 and launcher/probe compile/link pass. Actual004C9000\u2192wheel004C94B0/part004CB2B0 now has a separate source checkpoint through SAME World/body/buckets. Authorized D11 compatibility initializes part5F9 phase0; fresh source motion now passes. No stationary/lifetime-only substitute. Authorized D11 compatibility defaults fresh wheel695 retirement totrue. Wider rebind/contact, Car event2/timed-DM, full Human entry/frame/failure/re-entry/retirement and application/desktop acceptance remain open.",
       "evidence": [
         "recovered/game/rigid_body.h",
         "analysis/human-car-item12-source.md",
@@ -39219,7 +39239,7 @@
       "entry": "0069ae80",
       "status": "partial",
       "coverage": "Original configuration230 minutes*60000 minus actual game30, DWORD wrapping then sign-bit negative clamp to0; UI adapter reads actual configuration/session owners.",
-      "limitations": "Source-only typed adaptation, no original ABI or complete-body promotion. Actual TextState/TextObject records exercised with font/frame/actor/network-query doubles; actual World UI composition and temporary master composition strictly compile. Process97D4BC/C0 scores, nonoffline/nonremote-AI005A8820→00730530 team and0072EC70 peer/0072ED30 lock owner remain explicit required network producers. No menu-discovery score reuse or fabricated population. Ordinary offline7 style-1 remains a real no-op. Full HUD/FRAME/RENDER/OWN activation and desktop rendering remain pending.",
+      "limitations": "Source-only typed adaptation, no original ABI or complete-body promotion. Actual TextState/TextObject records exercised with font/frame/actor/network-query doubles; actual World UI composition and temporary master composition strictly compile. Process97D4BC/C0 scores, nonoffline/nonremote-AI005A8820\u219200730530 team and0072EC70 peer/0072ED30 lock owner remain explicit required network producers. No menu-discovery score reuse or fabricated population. Ordinary offline7 style-1 remains a real no-op. Full HUD/FRAME/RENDER/OWN activation and desktop rendering remain pending.",
       "evidence": [
         "recovered/game/hud_scoreboard_loading.h",
         "recovered/host/game_ui_presentation.h",
@@ -39232,7 +39252,7 @@
       "entry": "0069aeb0",
       "status": "partial",
       "coverage": "Original configuration23C seconds*1000 minus actual game7C with DWORD wrapping, preserving negative result; UI adapter reads actual configuration/session owners.",
-      "limitations": "Source-only typed adaptation, no original ABI or complete-body promotion. Actual TextState/TextObject records exercised with font/frame/actor/network-query doubles; actual World UI composition and temporary master composition strictly compile. Process97D4BC/C0 scores, nonoffline/nonremote-AI005A8820→00730530 team and0072EC70 peer/0072ED30 lock owner remain explicit required network producers. No menu-discovery score reuse or fabricated population. Ordinary offline7 style-1 remains a real no-op. Full HUD/FRAME/RENDER/OWN activation and desktop rendering remain pending.",
+      "limitations": "Source-only typed adaptation, no original ABI or complete-body promotion. Actual TextState/TextObject records exercised with font/frame/actor/network-query doubles; actual World UI composition and temporary master composition strictly compile. Process97D4BC/C0 scores, nonoffline/nonremote-AI005A8820\u219200730530 team and0072EC70 peer/0072ED30 lock owner remain explicit required network producers. No menu-discovery score reuse or fabricated population. Ordinary offline7 style-1 remains a real no-op. Full HUD/FRAME/RENDER/OWN activation and desktop rendering remain pending.",
       "evidence": [
         "recovered/game/hud_scoreboard_loading.h",
         "recovered/host/game_ui_presentation.h",
@@ -39699,7 +39719,7 @@
       "program": "client",
       "entry": "004a65b0",
       "status": "partial",
-      "coverage": "Network map current/VIP/reserved-roster gates, original speech label geometry/signed opacity/stale-label policy and VIP→kind20→goals→zones tail order.",
+      "coverage": "Network map current/VIP/reserved-roster gates, original speech label geometry/signed opacity/stale-label policy and VIP\u2192kind20\u2192goals\u2192zones tail order.",
       "limitations": "Source-only typed UI over SAME World/HUD/Players/Human/camera/mission/Items/live-squad/input owners. Conditional network/team/objective/speech/kind37 population remains explicit; actual kind37 group loader is unavailable. Native panel/text/ordering policies use engine/data doubles; host borrower checks strictly compile but Windows host/desktop/rendering is not executed. General controls, actual Human order/path producer, composed frame execution and FRAME/RENDER/OWN remain pending. No whole-body ABI/desktop claim.",
       "evidence": [
         "recovered/game/hud_map_loading.h",
@@ -47564,7 +47584,7 @@
       "program": "client",
       "entry": "00479600",
       "status": "partial",
-      "coverage": "First qualifying kind3/4/5/6/12 loose item in actual runtime ownership order; actual lazy actor model and native extended (Z²+X²)+Y² versus spilled radius², including unordered admission.",
+      "coverage": "First qualifying kind3/4/5/6/12 loose item in actual runtime ownership order; actual lazy actor model and native extended (Z\u00b2+X\u00b2)+Y\u00b2 versus spilled radius\u00b2, including unordered admission.",
       "limitations": "Source-only typed/STL/RAII adaptation. Focused native checks use actual storage, inventory lookup/count/transfer and runtime registry; Human/item/frame/AI command endpoints are explicit doubles. Original object/virtual/allocator/SEH ABI and delegated engine bodies excluded. H8.4 occupied/nonHuman actor bodies remain separate. Actual World/frame and launcher i386 compile/link only; no loaded mission/application/desktop acceptance.",
       "evidence": [
         "recovered/game/human_active_ai_loot.h",
@@ -48093,6 +48113,300 @@
         "recovered/game/players_process.h",
         "analysis/human-h8-authority-body-source.md",
         "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ff140",
+      "status": "partial",
+      "coverage": "All-hit SAME loaded tree/dynamic buckets query: distinct masks and forward dynamic/static traversal, identity-before-first-greater stable insertion, original dynamic primitive normal signs and normalized positioned hit records; no iterative nearest-ray substitute.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00700bc0",
+      "status": "partial",
+      "coverage": "All-hit static triangle consumer: exact flags/bounds, FLOAT Z/Y/X dot, original barycentric1..7, endpoint1, identity dedup and stable parameter insertion without sorted-X early exit.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00701350",
+      "status": "partial",
+      "coverage": "Reached all-hit static80/81/82/83/84 primitive branches with native endpoint/bounds/DOUBLE epsilon, sphere spills and radial84 without Y bounds; genuine empty85/86/87 switch branches retained.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00454360",
+      "status": "partial",
+      "coverage": "Actual pooled shell ray/motion receiver: SAME source exclusion/ray layers1 flags0, state3/age2000, coincident stop, native .1 speed gate, 1.2 reflection/negation, old-position SOUND and visual-before-gravity order.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00454660",
+      "status": "partial",
+      "coverage": "Shell dot helper Z/Y/X extended sum with actual reflected velocity and query normal.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00454680",
+      "status": "partial",
+      "coverage": "Shell negative-normal correction negates XYZ, preserving unclaimed W; no invented normalization.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044d260",
+      "status": "partial",
+      "coverage": "Actual grenade authority wrapper: state1 early return; common0044D290 only without presentation bit2; return freshly produced state.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044d290",
+      "status": "partial",
+      "coverage": "SAME grenade Body update before timer/state reads; close before contact-normal-offset or strict-fuse blast/effect, existing World explosion owner and actual native payload offsets, signed15001 retirement.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044d570",
+      "status": "partial",
+      "coverage": "Grenade contact0/1/2/3 with actual source grace/self/D8, static77/76, unsigned material2C penetration, detailed Versions pick/single-part damage, fuse0 state2, Human D4 kind5 and ordered impact sound.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044d4c0",
+      "status": "partial",
+      "coverage": "Actual signed698<50/positive694 impact sound gate, model world position and fresh group5/flags1 SOUND request, then698=2000; no fabricated timer update.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044fbc0",
+      "status": "partial",
+      "coverage": "Actual native80 material projection owner/producer: quality/static ray/texture gates, exact-maximum oldest recycle, original two engine draws, pose/scale/texture/light/explicit sector flag1 and update/publication order.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c660",
+      "status": "partial",
+      "coverage": "Picked-frame Versions damage validates actual Master EC14 and Part EC18, calls SAME damage_part with local frame output/presentation0; null/mismatched metadata false, stale Part failure.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004511e0",
+      "status": "partial",
+      "coverage": "Picked-frame material parser uses actual case-sensitive matid substring/atoi-equivalent bounded conversion, native null/absent -1 result; selected invalid table index fails honestly.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044e4c0",
+      "status": "partial",
+      "coverage": "Reached material projection retirement releases its actual frame; selected0044FBC0 constructor makes native COW field4 null. Nonnull COW retirement is not claimed.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original allocator/class/SEH/register ABI; all frozen claims remain partial. Native ASan/UBSan/LSan covers actual tree/buckets/records/projection and selected Versions owners with explicit geometry/Frames/Body/Human/blast/SOUND/module17 endpoints as recorded. Actual full World/contact/effects and launcher/probe compile/link only. Unused native lanes unclaimed, invalid coordinates/metadata/required endpoints fail. Bullet/capsule combat and visual workers, remaining H8 decisions/occupied/absent actors and actual application/desktop acceptance remain required. Absent0044D240 and delegated engine bodies earn no credit.",
+      "evidence": [
+        "recovered/game/collision_ray_all.h",
+        "recovered/game/shot_motion_frames.h",
+        "recovered/game/shot_impact_marks.h",
+        "recovered/game/shot_grenade_record.h",
+        "recovered/game/shot_manager_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/version_contact_link.h",
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_world_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-projectile-source.md",
+        "analysis/checkpoints/p2.2-human-h8-projectile-20261117.json"
       ]
     }
   ]

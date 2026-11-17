@@ -14,6 +14,7 @@
 #include "host/game_fowl_sound_loading.h"
 #include "game/fowl_generator_loading.h"
 #include "game/collision_ray.h"
+#include "game/collision_ray_all.h"
 #include "host/game_animation_actor_events.h"
 #include "game/animation_actor_loading.h"
 #include "game/supply_box_loading.h"
@@ -50,6 +51,12 @@ public:
     ~GameWorldActors(){close();}
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
+    auto shot_ray_all(const game::HumanVector& start,const game::HumanVector& displacement,std::uint32_t layers,std::uint32_t flags){
+        require_open();
+        game::CollisionRayAll<GameActorServices::Frame,typename Scene::Descriptor,GameCollisionResources,GameActorServices>
+            query(scene_.collision_tree(),scene_.buckets(),scene_.collision_resources(),scene_.frames());
+        return query.ray(start,displacement,layers,flags);
+    }
     void update_detached_body(Body& body,std::uint32_t elapsed){require_open();body.update(elapsed,*this);}
     auto& rigid_exclusions(){require_open();return scene_.exclusions();}
     std::optional<typename Body::MotionHit> rigid_ray(const GameActorServices::Vector& start,const GameActorServices::Vector& displacement,
@@ -106,6 +113,7 @@ public:
     }
     template<class Versions>void bind_versions(Versions& versions){require_open();versions_contact_.bind(versions);}
     template<class Versions>void unbind_versions(Versions& versions)noexcept{versions_contact_.unbind(versions);}
+    bool version_frame_contact(std::uintptr_t handle,GameActorServices::Frame picked,std::int32_t damage){require_open();return versions_contact_.frame(handle,picked,damage);}
     bool version_contact(std::uintptr_t handle,std::int32_t damage,std::uint32_t effects){require_open();return versions_contact_.contact(handle,damage,effects);}
     template<class Callbacks>void bind_car_physics(Callbacks& callbacks){
         require_open();

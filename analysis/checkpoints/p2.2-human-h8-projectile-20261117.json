@@ -1,0 +1,383 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "5738cca",
+  "source_only": true,
+  "h8_3_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-projectile-source.md",
+  "scope": "All-hit collision query and actual shell/grenade/contact/material-effects/SAME picked-part Versions source; bullet/capsule and containing H8 remain open.",
+  "original_image_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/collision_ray.h",
+      "bytes": 19359,
+      "sha256": "045906ff5bdb82ddf5bc89b3c8e2de39f22420820f229a8bb6ab9d6ad301181e"
+    },
+    {
+      "path": "recovered/game/collision_ray_all.h",
+      "bytes": 13867,
+      "sha256": "a16e01b2c64bb721f44c5a7af732ee773c85643c75e2230bcd221e2137f1f30e"
+    },
+    {
+      "path": "recovered/game/shot_motion_frames.h",
+      "bytes": 8116,
+      "sha256": "c623b16130d43e7ef4f9012551d96777fc699c8888ad52a6d54c0a873bf409ab"
+    },
+    {
+      "path": "recovered/game/shot_impact_marks.h",
+      "bytes": 3756,
+      "sha256": "766f3489af11042819a1151a1cedaa0d675ab2b16eb054d32b072fce6c363750"
+    },
+    {
+      "path": "recovered/game/shot_grenade_record.h",
+      "bytes": 4792,
+      "sha256": "35968b99d60f750c2773d5f88566c10431f06cd9bf148f30e0e3ff11c23a2f36"
+    },
+    {
+      "path": "recovered/game/shot_manager_loading.h",
+      "bytes": 15087,
+      "sha256": "6d0da19b2ffd0490d121e1e0dc076b6438d829fa11cdfc744edabfb54ad971ae"
+    },
+    {
+      "path": "recovered/game/version_contact_link.h",
+      "bytes": 1932,
+      "sha256": "09ae2406c631a0d233e2ec558813407bece8d02958bda166a0d10ba811232394"
+    },
+    {
+      "path": "recovered/game/version_module_loading.h",
+      "bytes": 23314,
+      "sha256": "c13447b29709d8a4bff0c50657b58af8023bd70ad81463d69298ef7de325bb5e"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 262742,
+      "sha256": "2017c3305308c909b37ffd84c60a901164fd3c853d271be8d75036559914064c"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 126499,
+      "sha256": "8ced922d82bef7c1fa7042e017b2a1313a82831ee6c97bbbadcb912ca3d4b8b5"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "bytes": 33605,
+      "sha256": "0b5fd9c4cffd1c71a4fd5f0393b80f4157988f57196d6c64c1b3eb8e45e46a30"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-grenade-contact.asm",
+      "bytes": 15591,
+      "sha256": "442f7c058bb8353f9582c26a5b3567cd89ba44c8c95d8a7a5dd1ddfe8e8f8c24"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-grenade-frame-wrappers.asm",
+      "bytes": 1611,
+      "sha256": "a4b9096a48afffba53208ec2f0d37c1f1b2d525aa886c84a82043baf08584b40"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-grenade-impact.log",
+      "bytes": 4453,
+      "sha256": "b494441e71dde3e884a75d161d7d7a7285992a004cf806a32c161dbfc0947570"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-grenade-impact/0044d4c0.c",
+      "bytes": 968,
+      "sha256": "c03c195ff27f9d4b68433bb5e4d9915ce09b0956a0ee138738b00c6fe5063b41"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-grenade-impact/0044d4c0.json",
+      "bytes": 3359,
+      "sha256": "3050b0dc12b94b2fb0ec980e570096c4f666b7211ed53d2646b2201c22f0b021"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-all-shapes.asm",
+      "bytes": 37493,
+      "sha256": "eb3945ddb9018be93a342002f14fa6b1551f44a31f6b7379efd721498f785622"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-all-triangles.asm",
+      "bytes": 30862,
+      "sha256": "340d90fb975aa43ef700a3d10a932d574367628fca5f39e7dfc6d6e30cc0dddf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/00448380.c",
+      "bytes": 2719,
+      "sha256": "538c65a2d58b6427411cf741ff6d1bb79e2232491e9fc185a965e1eea6214108"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/00448380.json",
+      "bytes": 15674,
+      "sha256": "03ba095b9f34da58882689d8599118fad6ae0d45e4aec205dc33add644e33e00"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/00449030.c",
+      "bytes": 2885,
+      "sha256": "5a0e7c26bb102b5b96702dbf89b70079e086f83f9d9511cfef68e3c4c251fc2a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/00449030.json",
+      "bytes": 8783,
+      "sha256": "44dcdba252085192bf167e04956e5629623dab2329da89f1a00e0d94dc1917d8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/00449290.c",
+      "bytes": 18076,
+      "sha256": "e24851aabd5133ea14425b56a681383f4d3169ee595ce4a8bb0e179cd5234a9b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/00449290.json",
+      "bytes": 41974,
+      "sha256": "564a03e6ae864640014391e6fe353637506d403f05bae0f7ff285ab8a1e54489"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/0044a910.c",
+      "bytes": 8675,
+      "sha256": "c53eb0a9bfec2c41bc4fa1a04d134823453ab136cf251c3aad18ad8505707edd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/0044a910.json",
+      "bytes": 12898,
+      "sha256": "977b5d09e3dae8e7e014b7d84bd670e1b4d79f30ba42595c4c6cd7124cb4ae27"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/0044b3b0.c",
+      "bytes": 525,
+      "sha256": "fd294e38def0a2f65bb2932f91edfd39ed48019f29b755ca6c3e163f583b698e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/0044b3b0.json",
+      "bytes": 1653,
+      "sha256": "bb5d396b8a9aa25bf67711b94762e57d56d1b450c37c79dea5f15bfe59298ee9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/0044d290.c",
+      "bytes": 2831,
+      "sha256": "5de5be927bd8cad38b43ff78515cb4f67dd96b5463d39a06d0fd18c58a444d0b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/0044d290.json",
+      "bytes": 7009,
+      "sha256": "3927c4bd739f0615b3810fc0233972925849c17703956b84f7ea079d2ce8f141"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/0044d570.c",
+      "bytes": 3176,
+      "sha256": "bfb949f8102002b3c94d85cf44fc33790d7501caefd9010d1e2b9a5b1b8eb0cf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/0044d570.json",
+      "bytes": 11390,
+      "sha256": "122884feab50a3d577191cb0a9ab26e79b68aa859d2dbf4b1442850e9b83be4e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/006ff140.c",
+      "bytes": 23069,
+      "sha256": "bc9e14e601b735730c2f64c758c0421201c2448c29098b749c3461e3428a49ef"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-collision/006ff140.json",
+      "bytes": 144967,
+      "sha256": "9364b9e59590f089bdd1d783ac25f60a13207e264d7c9d0b0a881eaf149aede1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-constants.json",
+      "bytes": 670,
+      "sha256": "3db7276fe22ecd6e2097c0cb3b449f86fa90a158e5faa62f5c62545793056202"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-hit-order.asm",
+      "bytes": 899,
+      "sha256": "8db22ca00bd866b0f6e8828b94dc9c4000417771e697126074b9db857f103b23"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-material-leaves.asm",
+      "bytes": 5000,
+      "sha256": "638922c15c05fcc3addbaabb988dba1784cd20bb2b522bb75152b5da73e28fe3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-primitives/00701350.c",
+      "bytes": 7625,
+      "sha256": "a4f759249011379256b70584828c67221a33a3b26be35c1d1ecfa0ae64de7804"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-primitives/00701350.json",
+      "bytes": 44271,
+      "sha256": "8bbc6fd21b3b25e307cf07396699080a59d9a4080b67e689ca4680b1179a2865"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-sphere-insertion.asm",
+      "bytes": 11455,
+      "sha256": "a797870f554cfbc5413e27609530d81ef693bf3d81206f8549cee8f8aaacf56e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-static/00700bc0.c",
+      "bytes": 9292,
+      "sha256": "cd55bbf1ffe9c19e3185cbc5104f0460b478ede12272e1168fe740dd6c512738"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-static/00700bc0.json",
+      "bytes": 43708,
+      "sha256": "883685c68c77e92e3d4bbfa4a304b458bc3133684264fb0ac6a3742083fd45f5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-workers/0044d260.c",
+      "bytes": 292,
+      "sha256": "77dc0a44e74c3634996766e2b9d51b9d16b16bd98c53fe8add6857b06d06585f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-workers/0044d260.json",
+      "bytes": 1308,
+      "sha256": "11c16801d524bd59a5f4885ff3f949c6e2fdfbcb5114963f79eb2f69db30a6f2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-workers/00454360.c",
+      "bytes": 3282,
+      "sha256": "19de4eef7f2dcad529edfc66711d2c9df09145327f8132f3a0175e6fbb76b153"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-workers/00454360.json",
+      "bytes": 8475,
+      "sha256": "1c294b4c4c094e386cf73add2bfa8c412ee312e3f5d4cb92f016081f20755dad"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-shell-motion.asm",
+      "bytes": 15820,
+      "sha256": "dde064261b7abd5ca04df7c5dee3535665ea5a3c1e27c9759a0eca43fbd363bd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-shot-material-effects.asm",
+      "bytes": 16912,
+      "sha256": "1a203e1e9586133be5bd9c53b4aa0c54c060ccf41ad2cafa4c24bd2a963ed8f4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-shot-material-effects.log",
+      "bytes": 4460,
+      "sha256": "786f1cc41225f66523caf0cb57bf5e084deba66fc0899dc9d46d27a9d298ce57"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-shot-material-effects/0044fbc0.c",
+      "bytes": 5479,
+      "sha256": "fede1fd7e0155784c8b25a23474119ec6a26f27b18f650f230f9ba5b175d6987"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-shot-material-effects/0044fbc0.json",
+      "bytes": 13799,
+      "sha256": "993d0cf57403ab76771771f423871f863356e1248812a601a9d890687427d18b"
+    }
+  ],
+  "export_failure": "First projectile-workers export stopped on absent frozen0044D240 after exporting preceding00454360 and0044D260. Kept failed log; separate completed read-only/noanalysis exports and raw leaf bytes reused; no absent-body credit.",
+  "verification": {
+    "all_hit_query": "PASS33408/32 native ASan/UBSan/LSan; actual CollisionTree/DynamicCollisionBuckets and primitive/math policies with explicit geometry/matrix endpoints; independent analytic triangle intersections, endpoints, identities, masks and normal signs.",
+    "motion_contact_effects": "PASS9901/100 native ASan/UBSan/LSan; actual shell/grenade record words and projection owner/queue; explicit Body/Frames/ray/Human/blast/material/Versions/SOUND endpoints. Body endpoint is NOT actual rigid solver verification.",
+    "selected_versions": "PASS800/100 native ASan/UBSan/LSan; actual two-part Master/Part/ActorFrameDataStore/buckets/contact link and selected damage; explicit geometry/resources/frame/scripts/effects/Physics endpoints. Only new picked API exercised.",
+    "world_i386": "PASS strict actual full World/Active/factory frame plus explicit concrete shell/grenade authority/presentation/contact/material effects compile/link, O0 Wall Wextra Wpedantic Werror. Never executed.",
+    "launcher_probe": "PASS make application-launch startup-probe -j1 O2 strict compile/link only.",
+    "fixture_correction": "Early fixture asserted unused W=0 against actual matrix W=1; corrected fixture to XYZ. Source padding remains unclaimed. GCC16 optional fake-owner destructor inline warning removed by noinline on fixture endpoint, without suppressing warnings.",
+    "tracker": "PASS exact fingerprints/frozen inventory/README/evidence and27 tracker tests; git diff --check PASS."
+  },
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-query-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-query-native-run.log",
+      "bytes": 46,
+      "sha256": "4100c926db6c1be09f995c090b076b1561b90c3ed59164ddd1611ebb954df104"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-motion-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-motion-native-run.log",
+      "bytes": 63,
+      "sha256": "f45447b969e95b173b86d1c580b698beabf33161f0b5876d5f023daa5e1478ac"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-versions-picked-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-versions-picked-native-run.log",
+      "bytes": 77,
+      "sha256": "e7db537ba3d802bf48964596686ce9b81e26bb057a1236b16c832dea3bf584b8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-frame-i386.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-launcher.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-query-native.cpp",
+      "bytes": 6620,
+      "sha256": "4279bd7fda80ab50a71885ed4633290abad5cec48c4d97043ddb2c56c8ffa1ee"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-query-native",
+      "bytes": 2723120,
+      "sha256": "3bc7998bfe4cd85cf5a71f3c45ea887c0586cfb0b6d2e34ac62291ecc2f01dcd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-motion-native.cpp",
+      "bytes": 10721,
+      "sha256": "253acc9ca214a6aeba65266633155bbb9df425a64c382a52673ea1c7445cba64"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-motion-native",
+      "bytes": 1231016,
+      "sha256": "c6593a83f8df06a6c6e5640aa3f13e906cf06d4b9967cbf849cd88e0ecd18ba4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-versions-picked-native.cpp",
+      "bytes": 9821,
+      "sha256": "5570c8613ca4717c7c2a40cddb399c90d8030001bd440f79c1d4474c4f8ae88d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-versions-picked-native",
+      "bytes": 5176104,
+      "sha256": "7f04d4ebfbe6bca4a5a34887b9aeb9dfa12a44f3021a4c45212535244c8db8f2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-frame-i386.cpp",
+      "bytes": 909,
+      "sha256": "7becbe6d5781be865a1526c2498d39b653b7702d2cb7bce82bfa66e9eb217254"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-projectile-frame-i386.exe",
+      "bytes": 9669632,
+      "sha256": "8a31182e8f5fb5ef212d82be1d3d11ca4e6d6358d29965fba31caa6c675691b4"
+    }
+  ],
+  "cleanup": {
+    "temporary_audits_removed": true,
+    "original_evidence_retained": true
+  },
+  "remaining_requirements": [
+    "Bullet0044B910 and0044B400; capsule00449290 and00449030, reached camera/sound/damage/effect helpers and initial100 orchestration.",
+    "Remaining H8.2 specialized/action callbacks and merged H8.4 actual occupied/Car/entry/Dog/Aircraft owners.",
+    "H8.5 containing verification and requested P22-HUM sweep before matrix resolved_source.",
+    "H8.6 actual application/FRAME/OWN/render loading and user desktop acceptance; no desktop claim.",
+    "After HUM source closure/sweep, continue P22-FRAME on its existing branch if user still unavailable."
+  ],
+  "function_tally": {
+    "complete": 34,
+    "partial": 3563,
+    "client_partial": 3558,
+    "engine_partial": 5,
+    "frozen_internal_non_thunk": 18783
+  }
+}

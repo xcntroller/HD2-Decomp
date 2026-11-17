@@ -54,12 +54,12 @@ public:
         body().configure(parameters);body().reset();words.set(0x698,0u);words.set(0x694,item.definition().fields38[0]);
     }
     HumanJointWords<0x6a0> words;SceneActor<Frames>* source=nullptr;const frontend::PreMissionItemPayload* payload=nullptr;
-private:
     std::uint32_t payload_word(std::size_t offset)const{
         if(!payload||offset>payload->bytes.size()||payload->bytes.size()-offset<4)throw std::runtime_error("Grenade requires complete native weapon payload");
         return frontend::pre_mission_detail::Bytes::word(payload->bytes.data()+offset);
     }
     float payload_real(std::size_t offset)const{return frontend::pre_mission_detail::Bytes::real(payload_word(offset));}
+private:
     Frames& frames_;std::unique_ptr<Body> body_;std::optional<Owner> visual_;
     std::function<unsigned(std::uint32_t)> authority_;std::function<void(std::uint32_t)> presentation_;
 };

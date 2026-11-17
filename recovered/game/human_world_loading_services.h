@@ -59,6 +59,7 @@
 #include "game/static_weapon_actor.h"
 #include "game/car_steering.h"
 #include "game/shot_surface_marks.h"
+#include "game/shot_motion_frames.h"
 #include "game/human_state_damage.h"
 #include "game/human_inventory_retirement.h"
 #include "game/mission_particle_emission.h"
@@ -1776,6 +1777,9 @@ public:
         play_human_following_shot_sounds(item,human,*this);
     }
     void stop_shot_particle(std::int32_t identity){dependencies().startup.mission_effects_process().stop(identity);}
+    auto shot_collision_results(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags){
+        return dependencies().world_actors.shot_ray_all(start,displacement,layers,flags);
+    }
     template<class Bullet>unsigned advance_shot_bullet_authority(Bullet&,std::uint32_t){
         throw std::runtime_error("ShotMgr bullet requires actual0044B910 collision/damage receiver");
     }
@@ -1805,8 +1809,50 @@ public:
     }
     template<class Human>bool shot_actor_in_scene(Human& human){return dependencies().scene.frames().shot_actor_in_scene(human.base().frame());}
     template<class Human>const HumanVector& shot_human_velocity(Human& human){return human.activation.vector1b0;}
-    template<class Shell>unsigned advance_shot_shell(Shell&,std::uint32_t){
-        throw std::runtime_error("ShotMgr shell requires actual00454360 collision/motion receiver");
+    template<class Shell>unsigned advance_shot_shell(Shell& shell,std::uint32_t elapsed){return shot_motion::shell(shell,elapsed,*this);}
+    template<class Record>auto shot_shell_ray(Record& record,const HumanVector& position,const HumanVector& displacement){
+        auto& d=dependencies();auto& human=d.world_actors.human_loading_actor(record.source);auto& control=human_inline(human);
+        control.exclude_query(false);
+        const auto hit=[&]{try{return d.world_actors.rigid_ray(position,displacement,1,0);}
+            catch(...){control.restore_query(false);throw;}}();
+        control.restore_query(false);return hit;
+    }
+    void shot_shell_sound(const HumanVector& position,std::int32_t command){
+        frontend::SpatialSoundRequest request;request.position={{position[0],position[1],position[2]}};
+        request.flags=1;request.source=nullptr;request.relative=nullptr;request.group=5;request.entry=command;request.voice_group=2;
+        (void)dependencies().sound.emit(request);
+    }
+    template<class Frame>void shot_motion_position(Frame frame,const HumanVector& position){
+        auto& frames=dependencies().scene.frames();frames.car_sound_head(frame,position);frames.update_scene_object(frame);
+    }
+    template<class Frame>HumanVector shot_motion_world_position(Frame frame){
+        const auto matrix=dependencies().scene.frames().actor_world_matrix(frame);return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    }
+    template<class Record>void shot_grenade_body(Record& record,std::uint32_t elapsed){
+        auto& d=dependencies();auto& human=d.world_actors.human_loading_actor(record.source);auto& control=human_inline(human);
+        control.exclude_query(false);
+        try{d.world_actors.update_detached_body(record.body(),elapsed);}
+        catch(...){control.restore_query(false);throw;}
+        control.restore_query(false);
+    }
+    template<class Record>void shot_grenade_explosion(Record& record,const HumanVector& position){
+        auto& d=dependencies();(void)d.world_actors.human_loading_actor(record.source);
+        d.world_actors.mine_explosion(record.source,position,record.payload_real(0x5c),record.payload_real(0x58),human_frame_signed_word(record.payload_word(0x54)));
+    }
+    auto shot_material_texture(std::uint32_t material){
+        auto& d=dependencies();const auto index=d.car_definitions.materials().at(material).word(0x54);
+        const auto& texture=d.startup.shot_manager_process().decal_textures.at(index);return texture?texture->get():typename Dependencies::Frame{};
+    }
+    template<class Record>void shot_grenade_effect(Record& record,const HumanVector& position,std::int32_t material){
+        shot_explosion_effect(position,record.words.template get<HumanVector>(0x680),record.payload_word(0x50),material,human_frame_signed_word(record.payload_word(0x54)));
+    }
+    void shot_explosion_effect(const HumanVector& position,const HumanVector& normal,std::uint32_t particle,std::int32_t material,std::int32_t sound){
+        auto& d=dependencies();auto& state=d.startup.shot_manager_process();auto& request=state.hit_sound;
+        request.group=6;state.hit_sound_position=position;request.position={{position[0],position[1],position[2]}};
+        request.flags=1;request.entry=sound;request.source=nullptr;request.relative=nullptr;(void)d.sound.emit(request);
+        if(material>=0){auto reverse=normal;for(unsigned a=0;a!=3;++a)reverse[a]=-reverse[a];emit_shot_material_mark(state,d.scene.frames(),*this,static_cast<std::uint32_t>(material),position,reverse);}
+        (void)emit_human_particle(particle,position,normal,typename Dependencies::Frame{},true,false);
+        if(material>=0)(void)emit_human_particle(d.car_definitions.materials().at(static_cast<unsigned>(material)).word(0x4c),position,normal,typename Dependencies::Frame{},true,false);
     }
     template<class Human,class Frame>void emit_item_shell(Human& human,Frame marker,std::uint32_t command){
         auto& d=dependencies();produce_item_shell(d.startup.shot_manager_process(),d.scene.frames(),*this,human,marker,command);
@@ -1823,9 +1869,38 @@ public:
         if((mode_flags()&7u)==7u)notify_item_grenade(human,position,direction);
         remove_human_inventory_item(human,d.world_actors.items(),item.identity,true,*this); //005A7B70 AFTER notification.
     }
-    template<class Record>unsigned advance_shot_grenade_authority(Record&,std::uint32_t){throw std::runtime_error("Grenade requires actual0044D260 combat frame");}
-    template<class Record>void advance_shot_grenade_presentation(Record&,std::uint32_t){throw std::runtime_error("Grenade requires actual0044D240 presentation frame");}
-    template<class Record,class Event>int shot_grenade_contact(Record&,unsigned,Event*){throw std::runtime_error("Grenade requires actual0044D570 rigid contact receiver");}
+    template<class Record>unsigned advance_shot_grenade_authority(Record& record,std::uint32_t elapsed){return shot_motion::grenade_authority(record,elapsed,*this);}
+    template<class Record>void advance_shot_grenade_presentation(Record& record,std::uint32_t elapsed){shot_motion::grenade_presentation(record,elapsed,*this);}
+    template<class Record,class Event>int shot_grenade_contact(Record& record,unsigned kind,Event* event){return shot_motion::grenade_contact(record,kind,event,*this);}
+    template<class Record>bool shot_grenade_initial_passthrough(Record& record){
+        if((mode_flags()&7u)!=7u)return false;
+        auto& source=dependencies().world_actors.human_loading_actor(record.source);
+        return !human_is_player(source)&&source.properties.field19c==1&&record.words.template get<std::int32_t>(0x670)<=200;
+    }
+    template<class Primitive>auto* shot_contact_actor(const Primitive& primitive){return static_cast<SceneActor<typename Dependencies::ActorFrames>*>(primitive.actor);}
+    template<class Actor>auto shot_contact_type(Actor& actor){return actor.base().type();}
+    template<class Actor,class Frame>auto shot_contact_material(Actor& actor,Frame frame){return actor.material(frame);}
+    template<class Frame>auto shot_contact_pick(const HumanVector& start,const HumanVector& displacement,Frame root){return dependencies().scene.frames().car_damage_pick(start,displacement,root,0);}
+    template<class Frame>std::uintptr_t shot_frame_versions(Frame frame){
+        const auto* data=dependencies().scene.frames().find_actor_frame_data(frame);return data?data->words[5]:0;
+    }
+    template<class Frame>std::uint32_t shot_picked_material(Frame frame){ //004511E0: same case-sensitive matid parser; native -1 remains invalid if selected for a table read.
+        return static_cast<std::uint32_t>(actor_frame_material(dependencies().scene.frames(),frame));
+    }
+    std::uint32_t shot_material_threshold(std::uint32_t material){return dependencies().car_definitions.materials().at(material).word(0x2c);}
+    template<class Frame>void shot_versions_damage(std::uintptr_t master,Frame picked,std::int32_t damage){(void)dependencies().world_actors.version_frame_contact(master,picked,damage);}
+    template<class Actor>void shot_grenade_human_damage(Actor& target,const HumanVector& point,const HumanVector& direction,Actor* source){
+        auto& human=dependencies().world_actors.human_loading_actor(&target);
+        auto* from=source?&dependencies().world_actors.human_loading_actor(source):nullptr;
+        apply_human_damage(human,5,1.f,point,direction,from,0);
+    }
+    template<class Record>void shot_grenade_impact_sound(Record& record){ //0044D4C0, signed698<50 and positive694; set2000 AFTER emit.
+        if(record.words.template get<std::int32_t>(0x698)>=50||record.words.template get<std::int32_t>(0x694)<=0)return;
+        frontend::SpatialSoundRequest request;const auto position=shot_motion_world_position(record.frame());
+        request.position={{position[0],position[1],position[2]}};request.flags=1;request.relative=nullptr;request.source=nullptr;
+        request.group=5;request.entry=record.words.template get<std::int32_t>(0x694);(void)dependencies().sound.emit(request);
+        record.words.set(0x698,2000u);
+    }
     template<class Item,class Human,class Frame>void emit_item_capsule(Item& item,Human& human,const HumanVector& position,
             const HumanVector& direction,Frame model,std::uint32_t argument){
         auto& d=dependencies();auto& state=d.startup.shot_manager_process();

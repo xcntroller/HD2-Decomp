@@ -199,16 +199,16 @@ private:
 //006F7C90's directional dominant-axis grid traversal;006F5890's near-vertical
 //branch instead visits the bounding cells Z/Y/X. Y cell limits use the ORIGINAL
 //full segment, even after a dynamic hit shortens the static bounds.
-template<class Frame,class Resources,class Shapes>
-void visit_collision_ray_cells(const CollisionTree<Frame>& tree,CollisionRayState& s,
-                               float original_low_y,float original_high_y,Resources& resources,Shapes& shapes,bool vertical) {
+template<class Frame,class Visit>
+void visit_collision_ray_grid(const CollisionTree<Frame>& tree,CollisionRayState& s,
+                               float original_low_y,float original_high_y,bool vertical,Visit&& consume) {
     if(tree.cell_fields8.size()!=tree.cells.size())throw std::runtime_error("Ray cell Y limits are missing");
     const auto x=collision_sweep_cell_range(s.minimum[0],s.maximum[0],tree.bounds_and_steps[0],tree.bounds_and_steps[4],tree.count_x);
     const auto z=collision_sweep_cell_range(s.minimum[2],s.maximum[2],tree.bounds_and_steps[1],tree.bounds_and_steps[5],tree.count_z);
     const auto y=collision_sweep_cell_range(s.minimum[1],s.maximum[1],tree.fields20[1],tree.fields20[3],tree.count_y);
     auto visit=[&](std::int32_t ix,std::int32_t iy,std::int32_t iz) {
         const auto index=tree.cell_index(std::size_t(ix),std::size_t(iy),std::size_t(iz));const auto limits=tree.cell_fields8.at(index);
-        if(original_low_y<=limits[0]&&limits[1]<=original_high_y)filter_collision_ray_cell(tree,tree.cells.at(index),s,resources,shapes);
+        if(original_low_y<=limits[0]&&limits[1]<=original_high_y)consume(tree.cells.at(index));
     };
     if(vertical) {
         for(auto iz=z.begin;iz<z.end;++iz)for(auto iy=y.begin;iy<y.end;++iy)for(auto ix=x.begin;ix<x.end;++ix)visit(ix,iy,iz);
@@ -231,6 +231,13 @@ void visit_collision_ray_cells(const CollisionTree<Frame>& tree,CollisionRayStat
         const auto endpoint=static_cast<long double>(s.parameter)*s.displacement[major]+s.start[major];
         if(negative?edges.at(std::size_t(p))<=endpoint:endpoint<=edges.at(std::size_t(p+1)))break;
     }
+}
+
+template<class Frame,class Resources,class Shapes>
+void visit_collision_ray_cells(const CollisionTree<Frame>& tree,CollisionRayState& s,
+                               float original_low_y,float original_high_y,Resources& resources,Shapes& shapes,bool vertical) {
+    visit_collision_ray_grid(tree,s,original_low_y,original_high_y,vertical,
+        [&](const auto& cell){filter_collision_ray_cell(tree,cell,s,resources,shapes);});
 }
 
 template<class Frame,class Object,class Resources,class Math>class CollisionRay {

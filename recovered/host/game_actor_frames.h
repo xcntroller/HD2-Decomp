@@ -1312,6 +1312,9 @@ public:
         return owner;
     }
     MenuDriver::Owner create_shot_surface(){return driver_.create(0x4a4f5250u);} //004546E0, PROJ driver extension.
+    void shot_surface_projection(Frame frame,bool value){call<void>(frame,0xa4,std::uint32_t(value));}
+    Frame shot_material_sector(const Vector& position){return call<Frame>(scene_.frame(),0xe0,position.data(),std::uint32_t{1});}
+    float shot_scene_light(const Vector& position){return call<float>(scene_.frame(),0x8c,position.data(),Frame{},std::uint32_t{0},std::uint32_t{0});}
     void shot_surface_texture(Frame frame,Frame texture){call<void>(frame,0x9c,texture);}
     void shot_surface_scale(Frame frame,float x,float y,float z){
         put(frame,0xd0,x);put(frame,0xd4,y);put(frame,0xd8,z); //Native DC is unwritten; retain its known prior lane.
