@@ -8,7 +8,7 @@ invented desktop acceptance. H8 and parent P22-HUM remain OPEN.
 Parallel H8.4 work uses `feature/p22-hum-h8-4`, managed worktree
 `/home/control/.codex/worktrees/3472/HD2-Decomp-p22-hum-h8`, forked at529b9a9.
 Agent1 continues H8.2 on the original branch; no post-fork H8.2 changes are imported here.
-Latest H8.4: [running finalizer source](human-h8-car-finalizer-source.md); engine audio, active skid and particle workers are bound; [active lighting](human-h8-car-lights-source.md) now covers all nine families; [Occupied offline presentation](human-h8-car-occupied-source.md) now passes source-owner admission/input/frame/removal/re-entry checks; complete Human/Player/mounted composition and non7 remain required. H8.4/D4/D5 remain OPEN. [D11 compatibility corrections](human-h8-d11-compatibility.md) resolve the four original-state omissions under explicit user authorization.
+Latest H8.4: [Dog animation/geometry/damage source](human-h8-dog-source.md) adds the actual process table/cache and verified D4 policy; live Dog activation/Body/controller/perception remains required. [Running finalizer source](human-h8-car-finalizer-source.md); engine audio, active skid and particle workers are bound; [active lighting](human-h8-car-lights-source.md) now covers all nine families; [Occupied offline presentation](human-h8-car-occupied-source.md) now passes source-owner admission/input/frame/removal/re-entry checks; complete Human/Player/mounted composition and non7 remain required. H8.4/D4/D5 remain OPEN. [D11 compatibility corrections](human-h8-d11-compatibility.md) resolve the four original-state omissions under explicit user authorization.
 
 User authorized the D11 compatibility route to advance HUM. Its four defaults
 are a documented behavior-policy exception; other fidelity requirements remain.
@@ -35,7 +35,8 @@ checks are not application delivery. Use the research index before exports.
   OWN/FRAME interfaces: existing D4/D5/D6–D9/D11 remain required when selected;
   [Photo-place type15](human-h8-photo-place-source.md) now supplies action3 completion;
   [Actor material receivers](human-h8-actor-material-source.md) now bind actual D8 policies;
-  absent Dog/Aircraft/type34 owners cannot report success.
+  [Dog shared animations/damage kernels](human-h8-dog-source.md) are source-verified;
+  live Dog/Aircraft/type34 owners remain required when selected.
   [Offline Car authority checkpoint](human-h8-car-authority-source.md) binds mounted
   frames, unstable-seat exit requests and engine hearing. [Occupied offline presentation](human-h8-car-occupied-source.md) removes the empty-seat guard; full D5 remains open.
   [Gear/clutch dependencies](human-h8-car-gear-source.md) add actual gear request,

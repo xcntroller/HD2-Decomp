@@ -328,6 +328,7 @@ public:
          vertices_(scene_.frames(),startup.game_vertex_definitions(),startup.application_flags_owner(),startup.game_vertex_clock()),
          owners_(bindings_,scene_,parent,backend,startup,session,vertices_,clock,catalogue,suffix,startup.car_definitions(),startup.car_materials()),
          modules_(owners_,vertices_){
+        scene_.frames().bind_dog_animations(startup.game_animations()); //Before Scene2 parses any cold Dog constructors.
         scene_.frames().bind_vertex_animation_preference([&startup]{return startup.profile_settings().quality_byte(1)!=0;});
         startup_.bind_game_packet_world(*this);
         std::printf("P2.2 event=world_constructed result=success loaded14=%u\n",session.loaded?1u:0u);

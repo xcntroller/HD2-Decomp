@@ -13,38 +13,43 @@ a238bc8: part5F9 phase0; fresh wheel695 retirementtrue (explicit part flag wins)
 EXPL8 instance-1; absent-DM smoke14 definition-1, retaining authored/default95
 for real models. Do not reopen confirmed omissions or expand guessed defaults.
 
-Latest: [actor D8 material source](analysis/human-h8-actor-material-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-actor-material-20261117.json).
-The common Actor vtable's actual D8 is constant11; concrete owners now override
-with their actual policies. HUM melee dispatches to the same typed actor.
-Car/Animation/placed reject all negative IDs; Door/Photo/Explosive fall back only
-for exactly-1, then own model, then11. Actual Ladder geometry/Mine definition
-remain required producers; Human/Dog66, Supply25, Document85. All D8 leaves are
-absent from frozen inventory: no new credit. Source ABI is typed C++ virtual.
-Native ASan/UBSan/leak PASS26976 checks /32 repeated families, including actual
-00451230 HUM melee on seven typed families. Engine/query/payload/terminal effect
-endpoints explicit. Strict all supported Scene2/runtime factory/HUM i386 full
-link and launcher/probe pass; tracker exact check/27 tests pass. Temporary audits
-fingerprinted/removed. Counts unchanged34 complete/3471 partial (3466 client+5
-engine), frozen18783. No complete promotion, absent-body or engine credit.
+Latest: [Dog source](analysis/human-h8-dog-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-dog-source-20261117.json).
+Actual process GameAnimations now owns23 Dog clip/metadata/stride rows with
+category3 resolution and incremental retry; World binds it before Scene2 cold
+Dog construction, replacing unused per-World69DWORD mirror. Seven-bone geometry,
+005D73B0 scaling,005D86F0 categories and005D7180 D4 policy are implemented as
+source kernels/views. **Live Dog activation/frame and HUM callback remain
+guarded**: views do not supply missing Body/controller/perception producers.
+Native ASan/UBSan/leak PASS45408 checks /32 families; actual cold Dog/table/
+geometry/integrity, explicit engine/resource/live-effect doubles. Strict actual
+World/process/table/geometry i386 O0 full link and launcher/probe pass. Tracker
+exact check/27 tests pass.3 new frozen partials;34 complete/3474 partial
+(client3469+engine5), frozen18783. No complete/absent D4/engine credit. Temp audits
+fingerprinted/removed. Typed-v1 Float10 Ghidra result is rejected (false sret);
+v2 double clarifies pointers only; raw x87 establishes math. See contract.
 
-Previous85dc76f: [PhotoPlace/type15](analysis/human-h8-photo-place-source.md)
-factory/lifetime/collision, action3 targetECX91 completion, properties/snapshot,
-empty frame/packet leaves and material. Native3168 checks/128 lifetimes, host
-links pass; four new frozen partials.309d700 occupied offline Car presentation:
-actual shared admission/input/controller/mass/solver/finalizer/camera/removal/
-re-entry passes596 checks. Full Human/Player/mounted lifetime is not implied.
+Previous7c20a15: [actual D8 material](analysis/human-h8-actor-material-source.md)
+on SAME typed actors; native26976 checks, no new inventory credit.85dc76f
+Photo-place/type15 lifetime/collision/action3 completion;309d700 occupied offline
+Car admission/input/controller/mass/camera/removal/re-entry source596 checks.
+Full Human/Player/mounted lifetime is not implied.
 
 **NEXT H8.4:** Dog D4 damage and actual selected owner, then Aircraft/type34
 borrowers and remaining occupied Human/Player/mounted/selected entry composition.
 Dog is a real cold type30 factory but activation/frame are still guards.
-Indexed005D7180 (D4, no existing export); vtable008120E0 pins authority005D5620,
+D4 source kernel exists; actual owner is still required. Vtable008120E0 pins authority005D5620,
 presentation005D5810, activation005D5290 and deactivation005D5390. Existing
 activation C244 bytes calls005D6700 global resource setup,005D4DB0 geometry/
-runtime1238 bytes and005C8370(37 bytes). These helpers are indexed but unexported;
+runtime1238 bytes and005C8370(37 bytes). These helpers are exported under WORK h8-4-dog-boundary/required/typed-v2;
 research the whole reached boundary before implementation, not only a leaf.
 Do not turn NULL/populated534 control requirements into fake success.
-WORK receipts h8-4-dog-{vtable,damage-index,activation-index,owner-index}.
+WORK receipts h8-4-dog-{vtable,damage-index,activation-index,owner-index,
+live-required-index,control-init-index}. Next research005C6D10, kind4+04
+005D5B00→005CE5D0 (NOT005CE110). Body005C0F50 takes ONE stack pointer:
+raw005C8069 pushes3B0 long before005C80A2; previous no-argument inference was
+wrong. Caller argument and callee005C0F59 agree. Do not repeat that mistake or
+invent a NULL-input initialization bug. Dog SOUND005D6000 needs its own callback.
 
 D5 non-Car9A8/4A0 in004D3D10 remains a selected non7 unowned-contact obligation;
 offline7 is owned unconditionally004D3EF0/004DE800. Entry D6–D9 are conditional,

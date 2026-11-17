@@ -9132,14 +9132,17 @@
       "program": "client",
       "entry": "005d4b00",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005d4b00: Known cold constructor/property fields for required actor families, without unwritten native padding or unsupported runtime producers. Required model/supply actor construction, property/model loading and matching cleanup.",
+      "coverage": "P2.2 source reconstruction at original entry 005d4b00: Known cold constructor/property fields for required actor families, without unwritten native padding or unsupported runtime producers. Required model/supply actor construction, property/model loading and matching cleanup. H8.4 constructor reset now clears the actual borrowed process Dog animation table, rejecting a missing process binding.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/actor_initial_properties.h",
         "recovered/game/model_scene_actors.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-h8-dog-source.md",
+        "recovered/host/game_actor_services.h",
+        "recovered/host/game_animations.h"
       ]
     },
     {
@@ -46954,6 +46957,45 @@
         "analysis/human-h8-photo-place-source.md",
         "analysis/checkpoints/p2.2-human-h8-photo-place-20261116.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005d6700",
+      "status": "partial",
+      "coverage": "Decode the23 actual Dog name20/metadata4 rows incrementally, resolve SAME category3 resources, sample anim root stride and preserve row1-only activation gate on the actual process owner.",
+      "limitations": "Source typed ownership releases refs on constructor reset rather than leaking raw globals; malformed/short streams reject. Engine cache/sampling delegated. Actual Dog activation/frame/teardown remain required.",
+      "evidence": [
+        "analysis/human-h8-dog-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-source-20261117.json",
+        "recovered/game/dog_animation_tables.h"
+      ],
+      "verification": "Native ASan/UBSan/leak PASS45408 checks/32 repeated families; actual cold Dog/table/geometry/integrity/damage source. Engine/resources/live Body/controller/perception are named doubles. Source-only; Dog activation/HUM callback guards remain."
+    },
+    {
+      "program": "client",
+      "entry": "005d73b0",
+      "status": "partial",
+      "coverage": "Actual seven-bone nearest-location damage scaling with raw x87 spill/order boundaries and initialized SAME mission-integrity index39 mismatch multiplier.",
+      "limitations": "Typed geometry producer/borrowed frame view, not original object ABI. Actual Dog activation/Body/controller/perception composition remains required; standalone damage-view inputs are not producer closure.",
+      "evidence": [
+        "analysis/human-h8-dog-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-source-20261117.json",
+        "recovered/game/dog_damage.h"
+      ],
+      "verification": "Native ASan/UBSan/leak PASS45408 checks/32 repeated families; actual cold Dog/table/geometry/integrity/damage source. Engine/resources/live Body/controller/perception are named doubles. Source-only; Dog activation/HUM callback guards remain."
+    },
+    {
+      "program": "client",
+      "entry": "005d86f0",
+      "status": "partial",
+      "coverage": "Map all signed Dog Body action values to native categories0..7, including19/20 category6 survivor-damage suppression.",
+      "limitations": "Typed scalar helper in the source D4 kernel, not enabled Dog simulation or an exact binary/ABI promotion.",
+      "evidence": [
+        "analysis/human-h8-dog-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-source-20261117.json",
+        "recovered/game/dog_damage.h"
+      ],
+      "verification": "Native ASan/UBSan/leak PASS45408 checks/32 repeated families; actual cold Dog/table/geometry/integrity/damage source. Engine/resources/live Body/controller/perception are named doubles. Source-only; Dog activation/HUM callback guards remain."
     }
   ]
 }

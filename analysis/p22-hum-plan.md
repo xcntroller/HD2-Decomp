@@ -206,12 +206,12 @@ resolved by the completed H4/H6 source imports. Full World integration remains H
 Parallel H8.4 [offline authority source checkpoint](human-h8-car-authority-source.md)
 now consumes actual mounted controls, requests unstable-seat exits through SAME B0
 and publishes engine hearing through SAME SOUND. D4/D5 stay open: running engine,
-occupied presentation and non7 consumers remain required; D11 failures are unchanged.
+full occupied presentation and non7 consumers remain required. D11 is now source-resolved under the [authorized compatibility policy](human-h8-d11-compatibility.md).
 Its [gear/clutch dependencies](human-h8-car-gear-source.md) bind request/force/audio
 and correct retained shift state. The [controller policy](human-h8-car-controller-source.md)
 now binds running/input/automatic decisions and SAME driver state. The
 [powered step](human-h8-car-powered-source.md) binds drive/brake forces and live160;
-[running finalizer](human-h8-car-finalizer-source.md) now binds engine audio, active skids and positive particle workers on SAME owners. [Active-light rendering00501CB0](human-h8-car-lights-source.md) is now source-bound. [Occupied offline presentation](human-h8-car-occupied-source.md) now shares actual Car admission/input/controller/mass/camera state through the containing source frame; full Human/Player/mounted composition, non7 and D11 remain open.
+[running finalizer](human-h8-car-finalizer-source.md) now binds engine audio, active skids and positive particle workers on SAME owners. [Active-light rendering00501CB0](human-h8-car-lights-source.md) is now source-bound. [Occupied offline presentation](human-h8-car-occupied-source.md) now shares actual Car admission/input/controller/mass/camera state through the containing source frame; full Human/Player/mounted composition and selected non7 remain open. D11 is source-resolved under the authorized compatibility policy. [Dog shared animations/damage](human-h8-dog-source.md) add verified source kernels; its actual activation/Body/controller frame remains required.
 
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,
