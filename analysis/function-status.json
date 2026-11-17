@@ -35799,8 +35799,8 @@
       "program": "client",
       "entry": "00728450",
       "status": "partial",
-      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication. Authority spawn checkpoint adds0F peer5/reason1 and local-only actual00699620, without inventing an absent-game or authority-mode bypass. Process-spawn checkpoint: Actual case3 fully consumes quantized prepared/stat payload on all hosts; nonauthority invokes same-Human0069D780. Received-state checkpoint: Actual7 reset-before-Runtime snapshot and8 process statistics decode now bind same-owner sources. Received-match checkpoint: actual6 configuration replacement/current-game status callback,13 result2-bit and23 vote1-bit consumers bind actual owners.",
-      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native383 received-match/map/format/localization-loan/vote/reset-control borrower checks use explicit adjacent UI/locale/current-app/World endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME/HUD and6/13/23 i386 plus O2 launcher/probe compile/link only. Original unsafe format bounds/undefined padding and delegated engine bodies excluded. Mandatory current-application status remains a real OWN loan;11/12/16/console/general non7 networking/history/close/application and desktop acceptance remain required; no whole-function promotion.",
+      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication. Authority spawn checkpoint adds0F peer5/reason1 and local-only actual00699620, without inventing an absent-game or authority-mode bypass. Process-spawn checkpoint: Actual case3 fully consumes quantized prepared/stat payload on all hosts; nonauthority invokes same-Human0069D780. Received-state checkpoint: Actual7 reset-before-Runtime snapshot and8 process statistics decode now bind same-owner sources. Received-match checkpoint: actual6 configuration replacement/current-game status callback,13 result2-bit and23 vote1-bit consumers bind actual owners. Warmup checkpoint:11 warmup,12 process/application-owned side list before current-World countdown,16 signed clock/manual respawn/menu coordinator supplied; actual menu provider remains required.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native582 warmup/countdown/wave/manual/side/process-application-loan checks use explicit adjacent application/menu/Human/Players/UI/physics/OS endpoints; actual World/Startup/HumanFrameRuntime/FRAME/manual Human/DD0/Players/HUD i386 and O2 launcher/probe compile/link only. Actual nonoffline retaining menu provider remains unbound and required on OWN;0069E620/00685260 declarations earn no credit. Absent World/nonNULL Human owner, console/general non7 transport/history/close/other packets/application/desktop remain required; unsafe native ABI/padding/bounds excluded, no whole-function promotion.",
       "evidence": [
         "recovered/game/session_received_application.h",
         "recovered/game/session_peer_records.h",
@@ -35816,7 +35816,9 @@
         "analysis/p22-frame-presentation-state-source.md",
         "analysis/checkpoints/p22-frame-presentation-state-20261117.json",
         "analysis/p22-frame-match-control-source.md",
-        "analysis/checkpoints/p22-frame-match-control-20261117.json"
+        "analysis/checkpoints/p22-frame-match-control-20261117.json",
+        "analysis/p22-frame-warmup-source.md",
+        "analysis/checkpoints/p22-frame-warmup-20261117.json"
       ]
     },
     {
@@ -52535,6 +52537,62 @@
         "recovered/host/game_session_frames.h",
         "analysis/p22-frame-match-control-source.md",
         "analysis/checkpoints/p22-frame-match-control-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699900",
+      "status": "partial",
+      "coverage": "Actual warmup clock/body/hint/B0/phase prefix and direct clothing request1; real process application provider preserves distinct current-state and original-game menu receiver order, with actual menu bodies still required on OWN.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native582 warmup/countdown/wave/manual/side/process-application-loan checks use explicit adjacent application/menu/Human/Players/UI/physics/OS endpoints; actual World/Startup/HumanFrameRuntime/FRAME/manual Human/DD0/Players/HUD i386 and O2 launcher/probe compile/link only. Actual nonoffline retaining menu provider remains unbound and required on OWN;0069E620/00685260 declarations earn no credit. Absent World/nonNULL Human owner, console/general non7 transport/history/close/other packets/application/desktop remain required; unsafe native ABI/padding/bounds excluded, no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_received_match.h",
+        "recovered/host/game_session_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-warmup-source.md",
+        "analysis/checkpoints/p22-frame-warmup-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699810",
+      "status": "partial",
+      "coverage": "Actual received countdown info/hint/body policy, same Players selection and fresh B0 suppression, then spawn phase2/88/late8C publication.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native582 warmup/countdown/wave/manual/side/process-application-loan checks use explicit adjacent application/menu/Human/Players/UI/physics/OS endpoints; actual World/Startup/HumanFrameRuntime/FRAME/manual Human/DD0/Players/HUD i386 and O2 launcher/probe compile/link only. Actual nonoffline retaining menu provider remains unbound and required on OWN;0069E620/00685260 declarations earn no credit. Absent World/nonNULL Human owner, console/general non7 transport/history/close/other packets/application/desktop remain required; unsafe native ABI/padding/bounds excluded, no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_received_match.h",
+        "recovered/host/game_session_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-warmup-source.md",
+        "analysis/checkpoints/p22-frame-warmup-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059f010",
+      "status": "partial",
+      "coverage": "Actual manual respawn signed age>3000, retained DD01AC then9C0 zero gates and actual process request1 FIFO; distinct automatic request preserved.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native582 warmup/countdown/wave/manual/side/process-application-loan checks use explicit adjacent application/menu/Human/Players/UI/physics/OS endpoints; actual World/Startup/HumanFrameRuntime/FRAME/manual Human/DD0/Players/HUD i386 and O2 launcher/probe compile/link only. Actual nonoffline retaining menu provider remains unbound and required on OWN;0069E620/00685260 declarations earn no credit. Absent World/nonNULL Human owner, console/general non7 transport/history/close/other packets/application/desktop remain required; unsafe native ABI/padding/bounds excluded, no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_received_match.h",
+        "recovered/host/game_session_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-warmup-source.md",
+        "analysis/checkpoints/p22-frame-warmup-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072ec20",
+      "status": "partial",
+      "coverage": "Actual explicit signed-slot bounds/null and same3C Human borrower, without active/name/lock/retain gate; bound to real warmup lookup.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native582 warmup/countdown/wave/manual/side/process-application-loan checks use explicit adjacent application/menu/Human/Players/UI/physics/OS endpoints; actual World/Startup/HumanFrameRuntime/FRAME/manual Human/DD0/Players/HUD i386 and O2 launcher/probe compile/link only. Actual nonoffline retaining menu provider remains unbound and required on OWN;0069E620/00685260 declarations earn no credit. Absent World/nonNULL Human owner, console/general non7 transport/history/close/other packets/application/desktop remain required; unsafe native ABI/padding/bounds excluded, no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_peer_records.h",
+        "recovered/host/game_session_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-warmup-source.md",
+        "analysis/checkpoints/p22-frame-warmup-20261117.json"
       ]
     }
   ]

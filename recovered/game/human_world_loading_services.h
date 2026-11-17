@@ -3,6 +3,7 @@
 #include "game/human_player_live_input.h"
 #include "game/session_pending_spawn_prepare.h"
 #include "game/session_spawn_admission.h"
+#include "game/session_received_match.h"
 #include "game/human_session_respawn.h"
 #include "game/human_player_selection.h"
 #include "game/dog_sight_geometry.h"
@@ -2939,6 +2940,7 @@ public:
     template<class Human>auto& human_state_factory(Human& human){return composition(human).state_factory();}
     template<class Human>auto& human_state_owner(Human& human){return composition(human).states();}
     struct HumanRespawnConfiguration{std::int32_t style;std::uint32_t delay,enabled;};
+    template<class Human>void request_manual_human_respawn(Human& human){request_settled_human_respawn(human,*this);} //0059F010, actual same DD0 words and process FIFO.
     void request_human_respawn(){dependencies().startup.queue_application_request(1,0,0);} //0059FE30 autoscheduled direct0072B1C0, not gated manual0059F010.
     HumanRespawnConfiguration human_respawn_configuration(){
         const auto& config=dependencies().startup.game_configuration();

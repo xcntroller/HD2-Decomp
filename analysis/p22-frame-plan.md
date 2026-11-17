@@ -30,8 +30,9 @@ Older implementation/reassessment documents retain revision-qualified evidence.
 ## Remaining full closure and delivery
 
 - [ ] Close remaining required process/packet and current-application consumers.
-  [Current boundary](p22-frame-match-control-source.md): all18 resets,
-  balance/spawn, Runtime/statistics and6/13/23 are bound;11/12/16 and process leaves remain.
+  [Current boundary](p22-frame-warmup-source.md): reset/spawn/Runtime/statistics
+  and selected match packet policies are supplied; actual application/menu
+  provider, console and general network/history/close remain.
 - [ ] Complete selected positive HUM/Actor/cutscene/UI command producers under
   their owning HUM/OWN paths, then install the actual application adapter.
   Current OWN desktop review is uncommitted; no source import enables it here.

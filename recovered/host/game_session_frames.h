@@ -99,7 +99,10 @@ public:
     void receive_frame_control(std::uint32_t kind,std::uint32_t value)override{
         require_open();MatchServices services{*this};
         if(kind==6){(void)frontend::select_network_map(d_.startup.game_configuration(),nullptr);services.frame_current_application_status(9);return;} //0069B9D0.
+        if(kind==11){game::finish_session_match_warmup(d_.session,services);return;}
+        if(kind==12){game::receive_session_match_countdown(d_.session,services);return;}
         if(kind==13){game::receive_session_match_result(d_.session,value,services);return;}
+        if(kind==16){game::receive_session_spawn_wave(d_.session,services);return;}
         throw std::runtime_error("Required current-Frame presentation control receiver is unavailable");
     }
     void retire()noexcept override{if(retired_)return;retired_=true;world_.unbind_frame_reset(*this);} //Consumes the source borrower; does not finish/simulate the World.
@@ -292,6 +295,14 @@ private:
         void frame_countdown_hint(std::uint32_t id,std::uint32_t time){f.world_.owners().hud_panels().small().set_countdown_hint(id,time);}
         void frame_set_hint(std::int32_t id){f.d_.hud.set_hint(id);}
         void frame_connection_warning(std::uint32_t id,std::uint32_t time){f.d_.hud.set_injury_message(id,time);}
+        game::SessionMatchApplication& frame_match_application(){return startup().match_application();}
+        Human* frame_explicit_local_human(){auto* borrower=game::explicit_session_peer_human(data(),startup().local_player_identity());
+            return borrower?&f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(borrower)):nullptr;}
+        bool frame_first_clothing_respawn_ready(){const auto& squad=f.parent_.live_squad();if(squad.empty())throw std::logic_error("Match receiver requires actual first live soldier");
+            return squad.front().equipment[1].item!=-1&&squad.front().equipment[1].count==1;}
+        void frame_manual_human_respawn(Human& human){world().request_manual_human_respawn(human);}
+        void frame_select_human(Human& human){f.d_.players.control().select_human(human);}
+        void frame_set_spawn_phase(std::uint32_t phase){world().set_spawn_match_phase(phase);}
         void frame_hide_map(){f.d_.hud.hide_map();}
         std::uint32_t frame_team_win(unsigned side){return data().team_wins458.at(side);}
         void frame_result_hint(std::uint32_t label,std::uint32_t first,std::uint32_t second){f.d_.hud.set_result_hint(label,first,second);}

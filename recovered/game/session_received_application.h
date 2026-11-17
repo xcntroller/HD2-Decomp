@@ -43,6 +43,8 @@ template<class Runtime>void receive_session_application_packet(std::uint32_t kin
         if(!(runtime.application_mode_flags()&1u))runtime.receive_application_peer_removal(reason,identity);
         return;
     }
+    case 11:case 16:runtime.receive_application_match_control(kind);return;
+    case 12:runtime.receive_application_match_sides(packet);return;
     case 13:runtime.receive_application_match_result(packet.read(2));return;
     case 23:runtime.receive_application_vote_result(packet.read(1)!=0);return;
     case 15:{

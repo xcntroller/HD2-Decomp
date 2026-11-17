@@ -19,10 +19,11 @@ template<class Locks>void set_session_peer_side(frontend::ControlStartupState& s
     struct Unlock{Locks& locks;~Unlock(){locks.leave_control_lock(0);}}unlock{locks};
     state.records.at(slot).word(pending?0x68:0x64,side);
 }
-inline void* local_session_peer_human(const frontend::ControlStartupState& state,std::int32_t local){ //00730460, unsigned bounds, no lock/retain.
+inline void* explicit_session_peer_human(const frontend::ControlStartupState& state,std::int32_t local){ //0072EC20, explicit signed slot, no name/active/lock/retain gate.
     const auto slot=static_cast<std::uint32_t>(local);
     return slot<state.records.size()?state.records[slot].human_actor():nullptr;
 }
+inline void* local_session_peer_human(const frontend::ControlStartupState& state,std::int32_t local){return explicit_session_peer_human(state,local);} //00730460, same bounded3C loan with global local identity.
 //00612A60's late publication. Scene identity is NOT this peer slot. Setup has
 //already completed; keep418 across3C, multimedia ticks/A8 and auxiliary virtual8.
 template<class Human,class Runtime>void publish_session_peer_human(frontend::ControlStartupState& state,

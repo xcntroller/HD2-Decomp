@@ -237,11 +237,11 @@ preparation, not a standalone audit-only milestone.
 
 ## 2. Load an original mission to its first world frame
 
-[FRAME current source](analysis/p22-frame-match-control-source.md): same-World
+[FRAME current source](analysis/p22-frame-warmup-source.md): same-World
 input/fixed/update/UI/lifecycle and all18 retained reset modules are source-bound.
-Actual process balance/spawn, received Runtime/statistics and6/13/23 consumers
-compile with real owners; focused native and actual i386/O2 evidence is linked.
-Remaining11/12/16, console/general network/history/close and HUM/OWN/application
+Actual process balance/spawn, received Runtime/statistics and selected match
+packet policies compile with real owners; native/i386/O2 evidence is linked.
+Actual application/menu provider, console/general network/history/close and HUM/OWN/application
 consumers keep the matrix partial. Actual mission/failure/repeat/user acceptance
 remains separate; earlier checkpoint evidence is revision-qualified.
 

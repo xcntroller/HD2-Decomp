@@ -1,6 +1,6 @@
 # FRAME offline composition baseline — 2026-11-17
 
-Latest continuation: [received configuration/result/vote6/13/23 and automatic respawn request](p22-frame-match-control-source.md) follow actual Runtime/statistics, balance/spawn and all18 retained module bindings. Evidence below retains its original revision/verification boundary;11/12/16, process/network/other packets and application delivery remain.
+Latest continuation: [warmup/countdown/manual respawn and pre-World peer sides](p22-frame-warmup-source.md) follow earlier reset/spawn/Runtime/statistics/result policies. Evidence below retains its original revision/verification boundary; actual application/menu provider, console/network/history/close/other packets and delivery remain.
 
 
 Later selected nonoffline and retained-item implementation supersedes the

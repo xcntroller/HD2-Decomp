@@ -1,0 +1,177 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "3be24f5e0d9ff4ae36ce4a1e1902d9f9473ffe8d",
+  "source_only": true,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "application_installed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "contract": "analysis/p22-frame-warmup-source.md",
+  "native_checks": 582,
+  "new_partial_inventory_entries": [
+    "00699900",
+    "00699810",
+    "0059f010",
+    "0072ec20"
+  ],
+  "complete_promotions": 0,
+  "absent_function_credit": 0,
+  "source_files": [
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 323527,
+      "sha256": "73979810b7e98c4335d37ca53193304b4b18d354329f45e7868f34548408c126"
+    },
+    {
+      "path": "recovered/game/session_match_application.h",
+      "bytes": 1825,
+      "sha256": "8f9d55ef8f8bbdbd0dcffa7a717b0dda7a9810c44ab9d15240df02365d31a52a"
+    },
+    {
+      "path": "recovered/game/session_peer_records.h",
+      "bytes": 2449,
+      "sha256": "78aad72b338f79b60c9c9de6d12e8c2574e3a254a33dd7b68ef67be9ee3d8450"
+    },
+    {
+      "path": "recovered/game/session_received_application.h",
+      "bytes": 3705,
+      "sha256": "56697773a3255ec36ce80af50a9f2a33215a020ead028370a1b88e574f154d7f"
+    },
+    {
+      "path": "recovered/game/session_received_match.h",
+      "bytes": 6163,
+      "sha256": "0ff8646589928acfc92886c8b0a740bff65cd6a8ee2764ddd7e8358cf76c1eea"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 36747,
+      "sha256": "e9c8ffbb4d15ec5051ec8f8e6249bcbfe4de49043050f7fd14c8da035282de25"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 83603,
+      "sha256": "57b929bbf2a988ece26ecb580a4d8aafab7a922474f4c0b4ffc27aa4203e5cde"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/menu-route-extra-20261031/00699900.c",
+      "bytes": 1526,
+      "sha256": "ee09cc7370788b24323c6006383964ee8b88509f691bdc9c512b1547d02190fc"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/menu-route-extra-20261031/00699900.json",
+      "bytes": 6315,
+      "sha256": "38feaf17b9297350524b79c1820402749438c5d144f11ddba22fee4b3d93a476"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/menu-route-extra-20261031/00728450.c",
+      "bytes": 32585,
+      "sha256": "b9c8016db7a09c41f356be16f9dbb10905e2d7263dfecb5bbaef86bd46eedbc2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/00699810.c",
+      "bytes": 451,
+      "sha256": "64a938c27b89b60d12f2027e03aea13af8531fec9fb487a377fe2747f173396f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/00699810.json",
+      "bytes": 2800,
+      "sha256": "6da208d0047a01117601d80aa9529300fd1abfe8e07e8a8be95c22444ac3c433"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-control-leaves/0059f010.c",
+      "bytes": 433,
+      "sha256": "eb11b5a967fbbc4e52265628b48b7f4ac39dc3181f8d5e5fb377552192d7bd77"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-control-leaves/0059f010.json",
+      "bytes": 1500,
+      "sha256": "4a1c805ac7ed398e235b1cc05783ddda1d79c5ddd90b536062c3af94d1ed8b31"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/named-peer-human-abi.asm",
+      "bytes": 1913,
+      "sha256": "55e6659cbba29d87d581bae9b6bacd6cea309d4fe0be2773d814e1a0541a8a9f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-warmup-abi.asm",
+      "bytes": 5633,
+      "sha256": "2eecb3263896ad16578bf76166fe28c15e6a5278ace29c19bd2f31b0b1d61bec"
+    }
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-native-run.log",
+      "bytes": 45,
+      "sha256": "6102d8e72abf51af1440b641e368fbb65e4f582a78f46694f8a7495f5ad8e393"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-actual-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-launcher-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-function-render.log",
+      "bytes": 380,
+      "sha256": "20140c88f15feb60b91d4521f745adf4ba542b2e4d3bf2af6154a5e68ab2318d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-function-check.log",
+      "bytes": 437,
+      "sha256": "3b7b5583389bd9dfe5db7912c7a84170b4de68e23efef45e31b79b11eae4d292"
+    }
+  ],
+  "limitations": [
+    "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native582 warmup/countdown/wave/manual/side/process-application-loan checks use explicit adjacent application/menu/Human/Players/UI/physics/OS endpoints; actual World/Startup/HumanFrameRuntime/FRAME/manual Human/DD0/Players/HUD i386 and O2 launcher/probe compile/link only. Actual nonoffline retaining menu provider remains unbound and required on OWN;0069E620/00685260 declarations earn no credit. Absent World/nonNULL Human owner, console/general non7 transport/history/close/other packets/application/desktop remain required; unsafe native ABI/padding/bounds excluded, no whole-function promotion.",
+    "Side processing is process/application-owned before any World/Frame; only complete-list countdown needs current World. Actual menu construction/old-game retention is not supplied by endpoint doubles. OWN worktree and staged desktop artifact unchanged."
+  ],
+  "build_outputs": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 9746944,
+      "sha256": "cdd30c67ebe1304f3930818b4bfeb4a229c6c134598e3203582df81a70d5f01f"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1175552,
+      "sha256": "5d4cd989bdd04a5affefa5e5cd0e31caefc31de743a8572e3dff1a8752c6e560"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-native.cpp",
+      "bytes": 12053,
+      "sha256": "b557290970c84d72ba0b99af24b4ed9135ecb8026f5d88cf246265d7edc479ae"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-native",
+      "bytes": 2408912,
+      "sha256": "c8f3a5b7a7f159c71667b9172af5ef1be7b3ac852e8490a05422ca647c251ce4"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-actual.cpp",
+      "bytes": 1340,
+      "sha256": "eb74e3f0951b2f6203aa196ddb1061268e354e0109b82a711ce722fdc1ed1030"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/warmup-actual.exe",
+      "bytes": 17857536,
+      "sha256": "30d676f9fc1a0773107f1f90b67852ccc3d722bb3019f79e81131d56391e1cf5"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "launcher_probe_build": "PASS forced sequential O2 compile/link; outputs not executed"
+}

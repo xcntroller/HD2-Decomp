@@ -10,6 +10,7 @@
 #include "game/session_application_commands.h"
 #include "game/session_received_application.h"
 #include "game/session_received_match.h"
+#include "game/session_match_application.h"
 #include "game/session_peer_records.h"
 #include "game/session_match_frame.h"
 #include "game/session_peer_statistics_wire.h"
@@ -924,6 +925,12 @@ public:
     void dispatch_application_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority){
         game::receive_session_application_packet(kind,packet,authority,*this);
     }
+    void bind_match_application(game::SessionMatchApplication& owner){match_application_.bind(owner);}
+    void unbind_match_application(game::SessionMatchApplication& owner)noexcept{match_application_.unbind(owner);}
+    game::SessionMatchApplication& match_application(){return match_application_.get();}
+    void receive_application_match_sides(game::SessionPacketStream& packet){game::receive_session_match_sides(control_data_,packet,*this);}
+    void receive_application_match_control(std::uint32_t kind){if(has_application_game())packet_world_.receive_frame_control(kind,0);
+        else if(kind==16u&&game::local_session_peer_human(control_data_,local_player_identity()))throw std::runtime_error("Spawn wave Human requires actual containing World/manual respawn owner");}
     void receive_application_configuration(game::SessionPacketStream& packet){game::receive_session_configuration(packet,*this);} //00728450 case6→0069B9D0.
     void receive_current_frame_control(std::uint32_t kind,std::uint32_t value){packet_world_.receive_frame_control(kind,value);}
     void receive_application_match_result(std::uint32_t result){if(has_application_game())packet_world_.receive_frame_control(13,result);}
@@ -1162,6 +1169,7 @@ private:
     ApplicationCommandLock application_command_lock_;
     game::SessionApplicationCommands application_commands_; //SAME process lifetime, survives World unbind.
     game::SessionFrameRequests application_requests_;
+    game::SessionMatchApplicationLink match_application_{this};
     game::SessionMatchHeartbeat session_match_heartbeat_;
     std::unique_ptr<GameConsole> console_;void* application_console_owner_=nullptr;
     std::function<bool()> application_console_route_;std::function<void()> application_console_close_;
