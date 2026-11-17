@@ -22757,7 +22757,7 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Base opcodes2..C now bind actual Players subgroup create/delete/add/remove/modes/percent scale before derived Human/Dog PC policy.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Base opcodes2..C now bind actual Players subgroup create/delete/add/remove/modes/percent scale before derived Human/Dog PC policy. Adds original opcode32 HUMAN_Kill: actual frame-slot EC actor0 dispatch to Human D4(4,-1,zero,zero,NULL,0) or Animation start(false), native false and guarded advancement retained.",
       "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
       "evidence": [
         "analysis/mission-script-loading.md",
@@ -22773,7 +22773,12 @@
         "analysis/mission-script-runtime-composition.md",
         "recovered/game/mission_script_loading_runtime.h",
         "analysis/human-players-subgroup-source.md",
-        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json"
+        "analysis/checkpoints/p22-hum-h4-subgroup-20261112.json",
+        "recovered/game/animation_actor_frame.h",
+        "recovered/game/animation_actor_loading.h",
+        "recovered/game/mission_script_actor_lifecycle.h",
+        "analysis/human-h8-animation-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json"
       ]
     },
     {
@@ -23861,24 +23866,32 @@
       "program": "client",
       "entry": "005b5000",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005b5000: Actual Animation helper/event/material/cold-collider-update and matching retirement source. Interaction, active tracks and special wings excluded.",
+      "coverage": "Actual common-first deactivation, mode2 skip and interaction flags restoration before existing helper/event retirement. Prior helper/event/material/cold collision source retained; ancillary wings remain required.",
       "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
       "evidence": [
         "recovered/game/animation_actor_loading.h",
         "analysis/animation-supply-loading.md",
-        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json",
+        "recovered/game/animation_actor_frame.h",
+        "recovered/game/mission_script_actor_lifecycle.h",
+        "analysis/human-h8-animation-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "005b5190",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005b5190: Actual Animation helper/event/material/cold-collider-update and matching retirement source. Interaction, active tracks and special wings excluded.",
+      "coverage": "Actual A3 start, wrapping predicted track-time completion, pause/tick and collision-countdown progression. Prior helper/event/material/cold collision source retained; ancillary wings remain required.",
       "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
       "evidence": [
         "recovered/game/animation_actor_loading.h",
         "analysis/animation-supply-loading.md",
-        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json",
+        "recovered/game/animation_actor_frame.h",
+        "recovered/game/mission_script_actor_lifecycle.h",
+        "analysis/human-h8-animation-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json"
       ]
     },
     {
@@ -49260,6 +49273,62 @@
         "recovered/game/human_active_ai_special_target.h",
         "analysis/human-h8-special-target-source.md",
         "analysis/checkpoints/p2.2-human-h8-special-target-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b55e0",
+      "status": "partial",
+      "coverage": "Actual Animation interaction flags, collision retirement, effects, helper/original visibility and Script death start ordering.",
+      "limitations": "Source-only typed STL/RAII adaptation; wings/non7 packet/persistence remain required. No application/desktop, whole-body/native ABI equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/animation_actor_frame.h",
+        "recovered/game/animation_actor_loading.h",
+        "recovered/game/mission_script_actor_lifecycle.h",
+        "analysis/human-h8-animation-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b50c0",
+      "status": "partial",
+      "coverage": "Actual helper track final tick and helper-model BODYCOLB rebuild before A0 clear.",
+      "limitations": "Source-only typed STL/RAII adaptation; wings/non7 packet/persistence remain required. No application/desktop, whole-body/native ABI equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/animation_actor_frame.h",
+        "recovered/game/animation_actor_loading.h",
+        "recovered/game/mission_script_actor_lifecycle.h",
+        "analysis/human-h8-animation-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b5550",
+      "status": "partial",
+      "coverage": "Actual static collision mask20 set/restore through006FB660, exact frame and family0..4.",
+      "limitations": "Source-only typed STL/RAII adaptation; wings/non7 packet/persistence remain required. No application/desktop, whole-body/native ABI equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/animation_actor_frame.h",
+        "recovered/game/animation_actor_loading.h",
+        "recovered/game/mission_script_actor_lifecycle.h",
+        "analysis/human-h8-animation-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006fb660",
+      "status": "partial",
+      "coverage": "Actual static shape family0..4 ordered exact-frame flags lookup, missing-tree preserves output.",
+      "limitations": "Source-only typed STL/RAII adaptation; wings/non7 packet/persistence remain required. No application/desktop, whole-body/native ABI equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/animation_actor_frame.h",
+        "recovered/game/animation_actor_loading.h",
+        "recovered/game/mission_script_actor_lifecycle.h",
+        "analysis/human-h8-animation-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json"
       ]
     }
   ]

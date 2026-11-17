@@ -1569,6 +1569,10 @@ public:
     void prepare_supply_morph(Frame morph){call<void>(morph,0xa0);}
     void supply_model_tick(Frame model,std::uint32_t elapsed){call<void>(model,0x20,elapsed);}
     MenuDriver::Owner create_fowl_model(){return driver_.create(9);}
+    Frame animation_actor_clip(Frame model){return call<Frame>(model,0x88,0u);}
+    std::uint32_t animation_actor_clip_time(Frame model){return call<std::uint32_t>(model,0xa0,0u);}
+    std::uint32_t animation_actor_clip_duration(Frame clip){return call<std::uint32_t>(clip,8);}
+    void animation_actor_clip_start(Frame clip){put(clip,8,1u);} //005B55E0 overwrites actual clip+08.
     MenuDriver::Owner create_animation_actor_model(){return driver_.create(9);}
     std::int32_t load_animation_actor_model(Frame model,const std::string& name){return resources_.load_model(model,recovered::model_resource_key(name),0x10);}
     void mine_model_name(Frame frame,const char* name){call<void>(frame,0x34,name);} //005FDF90 ignores HRESULT.

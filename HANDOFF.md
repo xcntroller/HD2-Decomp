@@ -17,20 +17,23 @@ desktop test has occurred. Do not spawn other agents or add helper checkboxes.
 
 ## Latest result
 
-[Specialized target22](analysis/human-h8-special-target-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-special-target-20261117.json):
-0052B180 actual range/visibility/replan and Dog health/near16,0052B580 real
-Car/StaticWeapon/Animation/Dog vector or grenade-position aim,00535250 attack
-producer/weapon selection,00538980 and ignored-result004DDEE0 occupant-side are
-source-bound. Strict ordered ranges, FLOAT vs extended sums and callback order
-come from raw instructions. **5389FD copies output-slot POINTER LOW BYTE into
-priority byte0**; actual borrowed-address dependency retained, host stack ABI
-not claimed equivalent. Actual inventory/control/Car/model/head owners reused.
-Native3804 ASan/UBSan/leak checks with qualified endpoints, full module i386,
-launcher/probe and exact tracker+27 PASS. Five frozen partials;34 complete/3599 partial
-(client3594+engine5), frozen18783; source only.
-No live Dog/540, other special-family/application or desktop closure. Successful
-temporary pairs fingerprinted and removed; H8/matrix remain OPEN.
+[Live Animation](analysis/human-h8-animation-frame-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json):
+005B5190 A3→005B55E0 actual interaction/static flags, descriptor retirement,
+SOUND/particles/helper visibility/Script death and005B50C0 helper-pose rebuild;
+00416E10 opcode32 HUMAN_Kill now reaches actual Human D4 or Animation start.
+Raw SP adjustment resolves predicted clip time; pause still compares duration.
+Startup owns process008AC488 BSS, no recovered persistence writer claim.
+Wings/non7 publication remain honest requirements. Native26607/19 qualified
+ASan/UBSan/leak checks and actual World/module/Animation i386 link PASS; launcher
+and tracker receipts below. Four new partials,34 complete/3603 partial
+(client3598+engine5), frozen18783. H8/matrix remain OPEN, no desktop acceptance.
+
+Prior71007f8: [specialized target22](analysis/human-h8-special-target-source.md)
+binds actual range/visibility/replan, vector/grenade aim, attack producer and
+ignored-result Car occupant classification.5389FD's output-slot POINTER LOW BYTE
+feeds priority byte0; actual borrowed-address dependency retained, host stack ABI
+not claimed equivalent. Native3804, actual module/forced launcher/tracker27 PASS.
 
 Prior5dc8f33:
 
@@ -106,8 +109,7 @@ tables: WORK/human-h8-dog-controller-tables.json.005C0F50 takes ONE pointer,
 pushed earlier005C8069. Kind4+04=005D5B00→005CE5D0, NOT005CE110; no bogus NULL
 constructor issue. Dog SOUND005D6000 is distinct from Human callback.
 
-Animation damage now shares actual A3, exposing required positive start/track
-005B5190 rather than silently idle. Loose-item age/frame is bound; positive
+Animation positive start/track is now source-bound; ancillary wings/non7 packets remain required. Loose-item age/frame is bound; positive
 non7 retained pose packet remains required. Actual World Actor98 common AL0 is
 proven in WORK/human-h8-actor-control98.json/.asm (including Mine00812F08).
 No credit for absent0059C3B0/005B5EB0 or delegated engine calls. D11 is resolved

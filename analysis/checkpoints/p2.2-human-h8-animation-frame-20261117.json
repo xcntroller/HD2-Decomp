@@ -1,0 +1,245 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "71007f8",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-animation-frame-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/animation_actor_collisions.h",
+      "bytes": 7541,
+      "sha256": "7f61f02471c12df01d052245ea6e4a2a850d317967827a6c5a1b024dc5e76b58"
+    },
+    {
+      "path": "recovered/game/animation_actor_loading.h",
+      "bytes": 8362,
+      "sha256": "f846d9d5a1fc0ec1b820811127136949db50183b626e8ea34ff476af4f8aecbb"
+    },
+    {
+      "path": "recovered/game/animation_loading_lifetime.h",
+      "bytes": 469,
+      "sha256": "477e5813017b4aac3fd106a00fdaf2b5e1465b7e7e4dcb4cf7057892650a645c"
+    },
+    {
+      "path": "recovered/game/mission_script_actor_lifecycle.h",
+      "bytes": 4360,
+      "sha256": "097359f4a48a05ead3f723d56ffc7fb0ebb7920e744cf18c6d93ba5d24c40948"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 6573,
+      "sha256": "2bfd7a136cfa2ccdc481e13c3aa8133d81a48b849680f4699da47770d2ed86e7"
+    },
+    {
+      "path": "recovered/game/world_actor_loading_consumers.h",
+      "bytes": 12488,
+      "sha256": "18b59e2c67e2329c9cd3f1a2380abf663b85430411c3eec4af7705ed1fbc5b12"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 128640,
+      "sha256": "540fe2a7019b4a26a2912cc6e96edc103708e17b5d2972806b6e93a76ed7bdcb"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "bytes": 35266,
+      "sha256": "b105f00aec012edf2aa10ea00aa5d7ba39067085e066be25c682c59ff54a1876"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 72355,
+      "sha256": "0723a6a2d1398660499d3fc6fec8754cca530831c82a08c17dc30f46eb47ba7a"
+    },
+    {
+      "path": "recovered/game/animation_actor_frame.h",
+      "bytes": 4046,
+      "sha256": "86a11861167913b6970a039c4d947ea7e51fa7b27c7e574549c67c54bd9947c3"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-live/005b55e0.c",
+      "bytes": 3588,
+      "sha256": "272a88503b1b6520aca1093b49771f7a59aba402e3659bd87c33387012518e1f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-live/005b55e0.json",
+      "bytes": 12327,
+      "sha256": "a71738ccbe33b07a28d65a7816b5dfbdeebb29a5e6b82e6ff1d17b7d0845bb94"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-live/005b50c0.c",
+      "bytes": 1107,
+      "sha256": "76154fa8c0b8d2559ffc8626dda3802679c046594f247321fb3a036dced0d0db"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-live/005b50c0.json",
+      "bytes": 2497,
+      "sha256": "3027f11643b7257813850451719e26c383297cab510bc25a5c4a5f22b539de5c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-live/005b5fb0.c",
+      "bytes": 1985,
+      "sha256": "17bf0cd63766f1fd58ee8334a3a158345f0ae1393d51634c85e2f43b3551c871"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-live/005b5fb0.json",
+      "bytes": 4018,
+      "sha256": "b6a54794576638936c60bf08eff25cf5530a9ecdee33e415248442272dd44652"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-collision-query/006fb660.c",
+      "bytes": 2742,
+      "sha256": "38294be290065052624574db80dbef72b85daf8ee4f6e345c23222aa2bcb50f7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-collision-query/006fb660.json",
+      "bytes": 7058,
+      "sha256": "d8f57fd62d3638bb7dc9d512af6b9d326762512d5064157c65b93d6852510a10"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-links/005b5550.c",
+      "bytes": 844,
+      "sha256": "24c8a45b1bc1fc1582eebe314e815adf24e7575088ca427e328eeeb0373d7c4a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-links/005b5550.json",
+      "bytes": 4246,
+      "sha256": "5a4aed9c6ef02b1de7f52de9da84c08eae39be15fc61a0d117ca3a63c0363af7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-track-frame.asm",
+      "bytes": 4120,
+      "sha256": "2046c5b31312f35bcd210ca3f169c7cea5207fb5bf5892e681cf250fce8e89b8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-script-dispatch.asm",
+      "bytes": 1934,
+      "sha256": "62425d8c49ba83f79d63cb5750bd365640dbf2ed94b94808d5d8d66cf3a83428"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-script-kill.asm",
+      "bytes": 3225,
+      "sha256": "b6eb7c817603c1bea5cd5edf67ac41afb32d3e84ae291c2991ae2fbd677c4c8a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-suppression-uses.asm",
+      "bytes": 1183,
+      "sha256": "b947f7a0b63c4e25ca9e2cd99076e52efd403c82d68aea3586e11dc812abf4ba"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-live-export.log",
+      "bytes": 4659,
+      "sha256": "d51376351314434d7499cf957ed9a07929cb3f023cee4974ffce66023e2006fb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-collision-query-export.log",
+      "bytes": 4464,
+      "sha256": "d6223897c0d1b8499aca098d174e6165fb1242220e2e74a2faeaa3e29ddde7d5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-links-export.log",
+      "bytes": 5636,
+      "sha256": "6c7d12434b596a3e123091e035b28c3488321132af90ed9db53985bd0cf86a42"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-script-operands.asm",
+      "bytes": 1323,
+      "sha256": "e5391869dc47edf63d7dcad48a402328e6ecc105efd7797a7d29b3402b2f1576"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-native-run.log",
+      "bytes": 65,
+      "sha256": "9866b03e8ccc0ba6e15e7a205401005239b6f259d1a0dee3682bc86cf4e098ae"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-script-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-script-native-run.log",
+      "bytes": 101,
+      "sha256": "bcc203c46bdae31af3c069ebff74a01e52b775d889414f7f256508be6973c601"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-tracker-render.log",
+      "bytes": 380,
+      "sha256": "5884892a839e83165fdaa1aecf73409aeeee7017498f45ebac89feaa81418205"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-tracker-check.log",
+      "bytes": 437,
+      "sha256": "c73e4dd826bef6ac610863a67ce5c75a3811665423454a57b8f32de0f47381f9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "removed_temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-native.cpp",
+      "bytes": 7286,
+      "sha256": "2c13306949c3edfa31bd3e4f1ac28b7fb97019fc5a2e6446cb7a4995a2b5c168"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-native",
+      "bytes": 1456752,
+      "sha256": "9571fb3bad7a8a0a576f44b035dd77777867b359c27c918baa054f81ed842233"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-script-native.cpp",
+      "bytes": 4469,
+      "sha256": "553bee0919b9beccbdc3fc4dfc9e8e68e1c64eb2fd504f1a625802e752d11598"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-script-native",
+      "bytes": 2282376,
+      "sha256": "5f65e11b1231a3c4209c9280fcb03efa26d851143f75bc0153b46e1fd1b2bc74"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-i386.cpp",
+      "bytes": 750,
+      "sha256": "012536cd3a0069ab4e1373eb882f783e9d40a5d324afaacebb33f695d23908dd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-animation-frame-i386.exe",
+      "bytes": 11895808,
+      "sha256": "fa11f2d47b761df0e445292c6018f6d69a406c8d40512432e929dc8ecb8c841c"
+    }
+  ],
+  "verification": {
+    "animation_native": "PASS26607, ASan/UBSan/leaks, explicit engine/World endpoints",
+    "script_native": "PASS19, actual lifecycle/context/Animation actor; explicit Human damage/backend endpoints",
+    "i386": "PASS strict full module and actual Animation activate/damage/update/deactivate, compile/link only; existing model_resource_key.cpp linked",
+    "launcher": "PASS forced make -B -j1 application-launch startup-probe",
+    "ghidra": "live/query PASS; links exported005B5550 then ERROR no function starts005B3450; no persistence claim",
+    "tracker": "PASS exact fingerprints/frozen inventory/evidence and27 tests"
+  },
+  "limitations": [
+    "No application or desktop acceptance",
+    "Wings, non7 publication and persistence not completed",
+    "Source STL/RAII typed adaptation; no native ABI or engine callee equivalence"
+  ]
+}

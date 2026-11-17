@@ -309,6 +309,16 @@ public:
     void install_animation_actor_events(GameActorServices::Frame frame,GameActorServices::Frame group){animation_events_.install(frame,group);}
     void remove_animation_actor_events(GameActorServices::Frame group){animation_events_.remove(group);}
     void rethrow_animation_actor_event_failure(){animation_events_.rethrow_failure();}
+    auto& animation_actor_process(){return consumers_.animation_actor_process();}
+    void animation_interaction_collision(GameActorServices::Frame frame,bool restore){
+        if(!scene_.collision_tree_if_loaded())return; //006FB660 genuine NULL-tree return; no private empty tree.
+        game::set_animation_interaction_collision(&scene_.collision_tree(),frame,restore);
+    }
+    template<class Actor>void animation_start_sound(Actor& actor,GameActorServices::Frame frame,std::uint32_t id){consumers_.animation_start_sound(actor,frame,id);}
+    void animation_start_particle(GameActorServices::Frame frame,std::uint32_t id){consumers_.animation_start_particle(frame,id);}
+    void animation_script_death(GameActorServices::Frame frame){consumers_.animation_script_death(frame);}
+    template<class Actor>void publish_animation_started(Actor& actor,bool replicated){consumers_.publish_animation_started(actor,replicated);}
+
     std::uint32_t animation_actor_material_word(std::uint32_t id,unsigned offset){
         const auto& records=consumers_.car_definitions().materials();if(id>=records.size())throw std::runtime_error("Animation actor requires its actual HD material definition");
         return records[id].word(offset);

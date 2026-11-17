@@ -35,6 +35,7 @@
 #include "frontend/sound_listeners.h"
 #include "frontend/pre_mission_flow.h"
 #include "host/game_animations.h"
+#include "game/animation_actor_frame.h"
 #include "host/game_frame_text_overlay.h"
 #include "host/game_scene_actors.h"
 #include "host/game_spatial_sound.h"
@@ -324,6 +325,7 @@ public:
     const frontend::LocalizedTextCache& text() const { return text_; }
     LoadedResources& loaded_resources() { return loaded_resources_; }
     GameAnimations& game_animations() { return game_animations_; }
+    game::AnimationActorProcessState& animation_actor_process(){return animation_actor_process_;}
     game::HumanSoundVariants& human_sound_variants() {return human_sound_variants_;}
     game::HumanInputShared& human_input_shared() {return human_input_shared_;}
     std::uint64_t performance_frequency()const{
@@ -981,6 +983,7 @@ private:
     io::ResourceDirectoryCaches<GraphicsResourceDirectories> caches_;
     LoadedResources loaded_resources_;
     GameAnimations game_animations_;
+    game::AnimationActorProcessState animation_actor_process_; //Actual008AC488 BSS, shared across Worlds.
     game::HumanSoundVariants human_sound_variants_;
     game::HumanInputShared human_input_shared_;
     game::SessionBroadcastPackets broadcast_packets_; //SAME native208/244/280, process/control-lived, not World-owned.

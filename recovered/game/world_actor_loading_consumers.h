@@ -105,6 +105,17 @@ public:
     void emit_supply_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_fowl_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_animation_actor_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
+    auto& animation_actor_process(){return d().startup.animation_actor_process();}
+    template<class Actor>void animation_start_sound(Actor& actor,typename Dependencies::Frame relative,std::uint32_t id){
+        frontend::SpatialSoundRequest request;request.flags=1;request.group=6;request.entry=static_cast<std::int32_t>(id);request.relative=relative;request.source=&actor;(void)d().sound.emit(request);
+    }
+    void animation_start_particle(typename Dependencies::Frame frame,std::uint32_t id){(void)d().startup.mission_effects_process().emit(id,d().scene.frames().actor_world_matrix(frame),typename Dependencies::Frame{},true,false);}
+    void animation_script_death(typename Dependencies::Frame frame){
+        const auto* data=d().scene.frames().find_actor_frame_data(frame);if(!data||!data->words[1])return;
+        auto* context=script_context_for_frame(frame);if(!context)throw std::logic_error("Animation script metadata lost its actual context");context->death(d().script_link);
+    }
+    template<class Actor>void publish_animation_started(Actor&,bool){throw std::runtime_error("Non7 Animation start requires actual Scene2 actor packet publication");}
+
     void emit_mine_effect(const HumanVector& position,const HumanVector& direction,std::uint32_t particle,std::int32_t sound){
         auto& world=d();emit_shot_effect_without_material(world.startup.shot_manager_process(),world.sound,
             world.startup.mission_effects_process(),world.scene.frames(),position,direction,particle,sound);

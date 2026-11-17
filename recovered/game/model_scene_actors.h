@@ -74,9 +74,9 @@ public:
     }
     AnimationActorProperties properties;
     std::vector<std::uint32_t> fieldc4;
-    std::unique_ptr<AnimationActorCollisionLifetime> collisions;
+    std::unique_ptr<AnimationActorCollisionLifetime<Frame>> collisions;
     std::unique_ptr<AnimationLoadingLifetime<Frame>> loading;
-    std::uint32_t field98=0,fieldd8=3;
+    Frame field98{};std::uint32_t fieldd8=3;
     float fieldd4=0;
     bool flaga0=false,flaga1=false,flaga3=false;
 private:

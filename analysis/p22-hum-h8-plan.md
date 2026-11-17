@@ -75,8 +75,8 @@ H8.3 dependencies. [Projectile source](human-h8-projectile-source.md) binds
 bullet/capsule combat/visuals, shell/grenade, all-hit collision, material marks,
 Car/StaticWeapon/Animation/loose-item damage and picked Versions outputs on the
 SAME World. Focused native sanitizers and actual World/launcher links pass;
-H8.3 remains open for reached derived/containing dependencies. [Runtime callbacks](human-h8-runtime-source.md) now bind Script alarm, actual loose-item Body/age/timers and suppressed Player camera; full module-frame instantiation now links with named failing Dog/Sight requirements; live Dog owners remain open when selected. [Timed action ends](human-h8-timed-interaction-source.md) now complete00751480 dispatch and00755500 default timer behavior on actual owners. Continue actual
-Dog/Animation/runtime and Human callback integration; application/desktop remain
+H8.3 remains open for reached derived/containing dependencies. [Runtime callbacks](human-h8-runtime-source.md) now bind Script alarm, actual loose-item Body/age/timers and suppressed Player camera; full module-frame instantiation now links with named failing Dog/Sight requirements; live Dog owners remain open when selected. [Timed action ends](human-h8-timed-interaction-source.md) now complete00751480 dispatch and00755500 default timer behavior on actual owners. [Live Animation](human-h8-animation-frame-source.md) now binds A3/start/track completion, static interaction masks and script HUMAN_Kill on the SAME owners. Continue actual
+Dog/runtime and Human callback integration; application/desktop remain
 explicit H8.6 gates.
 
 ## Existing evidence to reuse
