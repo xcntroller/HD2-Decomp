@@ -40,14 +40,19 @@ public:
         if(!motion_started()){packet.write(0,1);return;}
         packet.write(1,1);packet.write_yaw({{motion_[0],motion_[1],motion_[2],motion_w_}},-1);
     }
+    template<class Packet>void read_initial_motion(Packet& packet){ //005E29A0, no authored motion-field store or outbound echo.
+        if(packet.read(1))receive_client_motion(packet.read_yaw(-1));
+    }
+    void receive_client_motion(const std::array<float,4>& motion){ //005E25C0, fresh mode gate then Physics90 virtual14(3,motion,NULL).
+        if(activation_.mode_flags()&1u)return;
+        if(!physics_object_)throw std::logic_error("Placed client motion requires actual Physics90 borrower");
+        if(activation_.placed_physics_contact(physics_object_,motion))reconnect_navigation();
+    }
     template<class Services>bool apply_motion(const std::array<float,4>& motion,bool hide,Services& services){ //005E2510.
         if(!physics_object_)throw std::logic_error("Placed motion requires actual Physics90 borrower");
         if(!services.placed_physics_contact(physics_object_,motion))return false;
         if(hide)services.hide_placed_replacement(physics_object_); //00408750, independent of pickup branch.
-        if((activation_.mode_flags()&7u)==7u){ //005E2480, no authority gate.
-            (void)navigation_.connect_runtime_points(points_[0],points_[1]);
-            for(auto point:points_)if(point!=0xffff)navigation_.point_byte(point,7); //005E2420, pair failure still marks.
-        }
+        reconnect_navigation(); //005E2480, fresh gate after Physics callback.
         services.publish_placed_motion(this->base_.id10(),motion);
         services.placed_script_use(this->base_.frame()); //Fresh EC/context after packet finish, optional native absence.
         for(unsigned n=0;n!=3;++n)motion_[n]=motion[n];
@@ -81,6 +86,11 @@ public:
         errors.rethrow();
     }
 private:
+    void reconnect_navigation(){ //005E2480, also used by client005E25C0; no publication or motion-field copy.
+        if((activation_.mode_flags()&7u)!=7u)return;
+        (void)navigation_.connect_runtime_points(points_[0],points_[1]);
+        for(auto point:points_)if(point!=0xffff)navigation_.point_byte(point,7);
+    }
     Activation& activation_;
     MissionNavigation& navigation_;
     void* physics_object_=nullptr; //Borrowed00407390 object, NOT a007D instance or actor entry.

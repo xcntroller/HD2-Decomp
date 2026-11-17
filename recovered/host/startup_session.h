@@ -12,6 +12,7 @@
 #include "game/session_peer_records.h"
 #include "game/session_match_frame.h"
 #include "game/session_peer_statistics_wire.h"
+#include "game/session_received_statistics.h"
 #include "game/session_match_rules.h"
 #include "game/session_pending_spawn_packets.h"
 #include "game/session_frame_requests.h"
@@ -922,6 +923,11 @@ public:
     void dispatch_application_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority){
         game::receive_session_application_packet(kind,packet,authority,*this);
     }
+    void receive_application_world_snapshot(game::SessionPacketStream& packet){if(has_application_game())packet_world_.reset_round_from_packet();packet_world_.read_application_world_snapshot(packet);}
+    void receive_application_match_statistics(game::SessionPacketStream& packet){game::read_session_match_statistics(control_data_,packet,*this);}
+    bool received_statistics_remote_ai(){return game_configuration().remote_ai_enabled();}
+    bool received_statistics_shared_lives(){return game_configuration().rules228[(0x27c-0x228)/4]!=0;}
+    void receive_application_statistics_clock(std::uint32_t round,std::uint32_t game,std::uint32_t losses){packet_world_.receive_application_statistics_clock(round,game,losses);}
     void receive_application_objective(std::uint32_t identity,std::uint32_t status){packet_world_.receive_application_objective(identity,status);}
     void receive_application_peer_departure(std::uint32_t transport){
         if(!has_application_game())throw std::runtime_error("Departure receiver lost its actual current game");

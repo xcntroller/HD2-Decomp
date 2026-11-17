@@ -13,6 +13,8 @@ template<class Runtime>void receive_session_application_packet(std::uint32_t kin
     if(authority){receive_authority_spawn_request(kind,packet,runtime);return;}
     switch(kind){
     case 3:read_session_pending_spawn(packet,runtime);return;
+    case 7:runtime.receive_application_world_snapshot(packet);return;
+    case 8:runtime.receive_application_match_statistics(packet);return;
     case 2:{
         const auto transport=packet.read(32);
         if(!(runtime.application_mode_flags()&1u)&&runtime.has_application_game()){

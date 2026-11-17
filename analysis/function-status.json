@@ -8143,12 +8143,14 @@
       "program": "client",
       "entry": "00749ae0",
       "status": "partial",
-      "coverage": "Decode original 11-bit signed score and the 10/10/10/5-bit player statistic fields, preserving the positive1024 edge.",
-      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "coverage": "Decode original 11-bit signed score and the 10/10/10/5-bit player statistic fields, preserving the positive1024 edge. Received-state checkpoint: Actual incremental process peer/team decode, preserving1024 positive edge and partial writes, uses actual same storage.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
       "evidence": [
         "analysis/multiplayer-pipeline.md",
         "analysis/multiplayer-function-audit.md",
-        "recovered/frontend/multiplayer_discovery.h"
+        "recovered/frontend/multiplayer_discovery.h",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
       ]
     },
     {
@@ -34823,12 +34825,14 @@
       "program": "client",
       "entry": "004790c0",
       "status": "partial",
-      "coverage": "Existing-Human inventory/model branch of received loose-item creation through SAME Items/runtime registry; new-definition branch excluded.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Existing-Human inventory/model branch of received loose-item creation through SAME Items/runtime registry; new-definition branch excluded. Received-state checkpoint: New-definition/owner=-1 snapshot branch now supplies actual unheld Items/flag1C/model/Runtime/loose-body lifetime prefix.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
       "evidence": [
         "recovered/game/human_world_loading_services.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
       ]
     },
     {
@@ -35795,8 +35799,8 @@
       "program": "client",
       "entry": "00728450",
       "status": "partial",
-      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication. Authority spawn checkpoint adds0F peer5/reason1 and local-only actual00699620, without inventing an absent-game or authority-mode bypass. Process-spawn checkpoint: Actual case3 fully consumes quantized prepared/stat payload on all hosts; nonauthority invokes same-Human0069D780.",
-      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
+      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication. Authority spawn checkpoint adds0F peer5/reason1 and local-only actual00699620, without inventing an absent-game or authority-mode bypass. Process-spawn checkpoint: Actual case3 fully consumes quantized prepared/stat payload on all hosts; nonauthority invokes same-Human0069D780. Received-state checkpoint: Actual7 reset-before-Runtime snapshot and8 process statistics decode now bind same-owner sources.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
       "evidence": [
         "recovered/game/session_received_application.h",
         "recovered/game/session_peer_records.h",
@@ -35808,7 +35812,9 @@
         "analysis/checkpoints/p2.2-human-application-packets-20261111.json",
         "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json",
         "analysis/p22-frame-process-spawn-source.md",
-        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
       ]
     },
     {
@@ -45159,11 +45165,13 @@
       "program": "client",
       "entry": "005e2480",
       "status": "partial",
-      "coverage": "Actual offline7 same-navigation link pairing followed by both valid point16=7 writes even if pairing returns false.",
-      "limitations": "Source-only typed owners/STL/native safety adaptations, not original allocator/object/thiscall/SEH equivalence. Focused native actual ray/navigation/table/type35 owners with explicit engine/Mine/Physics/packet/Script endpoint doubles; actual i386 World composition links only. Physics00407BD0 and type15 actor factory, remaining H4 and actual mission/desktop execution remain open.",
+      "coverage": "Actual offline7 same-navigation link pairing followed by both valid point16=7 writes even if pairing returns false. Received-state checkpoint: Shared navigation reconnection also bound to exact client005E25C0 successful-contact path, without author motion publication.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
       "evidence": [
         "analysis/p22-hum-h4-implementation.md",
-        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json"
+        "analysis/checkpoints/p22-hum-h4-ground-placed-motion-20261112.json",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
       ]
     },
     {
@@ -52372,6 +52380,90 @@
         "recovered/host/game_world_loading.h",
         "analysis/p22-frame-process-spawn-source.md",
         "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072f680",
+      "status": "partial",
+      "coverage": "Actual418 peer/stat/time/life decode, disposable authority/ineligible scratch, nonauthority same-World clock/losses and unlocked team statistics/scores/wins; exact widths, sign extension and fresh mode gates.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_received_statistics.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069aed0",
+      "status": "partial",
+      "coverage": "Actual round30 publication with preserved whole signed prior7C seconds and new signed remainder, using source DWORD wrap.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_received_statistics.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00478520",
+      "status": "partial",
+      "coverage": "Actual signed16 Runtime70 before six-bit type rows, type2/11 real factories and retained35 lookup/actual54, genuine other type/id-only skip; bound World packet7 reset-before-read.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/runtime_actor_snapshot.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005e29a0",
+      "status": "partial",
+      "coverage": "Actual placed initial-state virtual54 flag1 then yaw-only decode and real client physical-motion receiver; no invented field copy or outbound echo.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/placed_item_actor.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005e25c0",
+      "status": "partial",
+      "coverage": "Actual authority gate, same Physics90 contact3/motion/NULL and successful fresh005E2480 navigation policy, without author-side publication.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/placed_item_actor.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d7a0",
+      "status": "partial",
+      "coverage": "Actual secondary-profile/mask1 yaw-only reader, cos/zero/sin XYZ; no pitch-presence bit or native undefined W value claim.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-presentation-state-source.md",
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
       ]
     }
   ]

@@ -29,9 +29,9 @@ Older implementation/reassessment documents retain revision-qualified evidence.
 
 ## Remaining full closure and delivery
 
-- [ ] Close remaining required process/network consumers. [Retained Human/Actor
-  reset and all18 module callbacks](p22-frame-actor-reset-source.md) are source-bound;
-  [balance, authority spawn0/1 admission/decoder and matching respawn3](p22-frame-process-spawn-source.md) now bind actual owners; console/general close/pump/history and remaining packets remain.
+- [ ] Close remaining required process/packet and current-application consumers.
+  [Current boundary](p22-frame-presentation-state-source.md): all18 resets,
+  balance/spawn and Runtime7/statistics8 are bound; console/network/other packets remain.
 - [ ] Complete selected positive HUM/Actor/cutscene/UI command producers under
   their owning HUM/OWN paths, then install the actual application adapter.
   Current OWN desktop review is uncommitted; no source import enables it here.

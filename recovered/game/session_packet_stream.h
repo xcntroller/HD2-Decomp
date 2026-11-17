@@ -132,6 +132,10 @@ public:
         const auto c=std::cos(pitch);
         return {{static_cast<float>(std::cos(yaw)*c),static_cast<float>(std::sin(pitch)),static_cast<float>(std::sin(yaw)*c),0}};
     }
+    HumanVector read_yaw(std::int32_t index){ //0073D7A0, mask1 ONLY; no pitch-presence bit.
+        const auto angles=read_vector(secondary_quantizer(index),1);const auto yaw=static_cast<long double>(angles[0]);
+        return {{static_cast<float>(std::cos(yaw)),0,static_cast<float>(std::sin(yaw)),0}}; //Native W is unwritten.
+    }
     //0072BEF0 selected-stream writes. The containing session chooses a stream
     //BEFORE this method. Messages append;0072BF90(target0) only clears active.
     void begin(std::uint32_t kind,std::int32_t priority,std::uint32_t target,bool local) {

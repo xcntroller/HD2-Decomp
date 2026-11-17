@@ -1,0 +1,281 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "4da16397e0fa93157b05a023752c1dadc7dd1e3b",
+  "source_only": true,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "application_installed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "contract": "analysis/p22-frame-presentation-state-source.md",
+  "native_checks": {
+    "statistics_clock": 4122,
+    "runtime_snapshot_factory_loan": 109
+  },
+  "new_partial_inventory_entries": [
+    "0072f680",
+    "0069aed0",
+    "00478520",
+    "005e29a0",
+    "005e25c0",
+    "0073d7a0"
+  ],
+  "complete_promotions": 0,
+  "absent_function_credit": 0,
+  "source_files": [
+    {
+      "path": "recovered/game/placed_item_actor.h",
+      "bytes": 5826,
+      "sha256": "3fd4a0a1b91c59a0f3dc0dadb156ed737969fdf0d404fca372856d4c3910ce68"
+    },
+    {
+      "path": "recovered/game/runtime_actor_registry.h",
+      "bytes": 9987,
+      "sha256": "135c67e34029c9aadd1188a809861bf5729cc8385c2cc3f8b215c93b59af4215"
+    },
+    {
+      "path": "recovered/game/runtime_actor_snapshot.h",
+      "bytes": 4251,
+      "sha256": "deb5b918c0d078b97d646a9f57c1cd1466a8a2c39cdb4787f3170f63514b42d4"
+    },
+    {
+      "path": "recovered/game/session_packet_stream.h",
+      "bytes": 10729,
+      "sha256": "1afde8bea7d3d23879dc6ff5b8051f18de8c847b0837fed7ab021ff93a33647e"
+    },
+    {
+      "path": "recovered/game/session_packet_world.h",
+      "bytes": 5696,
+      "sha256": "42116d6db5d25bca57798a62b321b05b482afdb25c8f1e95a86587330ba7fc0f"
+    },
+    {
+      "path": "recovered/game/session_peer_statistics_wire.h",
+      "bytes": 1078,
+      "sha256": "28ddbd42d8416888b032368fc420c19220b083e7ef655764162a39005b25e202"
+    },
+    {
+      "path": "recovered/game/session_received_application.h",
+      "bytes": 3336,
+      "sha256": "e1ac583e242509c28144ac5c054b36c12fe5c20c4e56242e06d162c8832ca14a"
+    },
+    {
+      "path": "recovered/game/session_received_statistics.h",
+      "bytes": 2874,
+      "sha256": "746e448f2f8a55b417561a1b602155ea8e6b6f69874da20ca91388a72b9cf6f5"
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "bytes": 21733,
+      "sha256": "634f776bc763e552f2dec8a0508b4889fb6547db7ab22cd32e687a72ef0cf8f9"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 34734,
+      "sha256": "67652fa646955d216de0514488555a005018041c42aaf912f543c6059d2ca23d"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "bytes": 33206,
+      "sha256": "0039829ec2cbf697d74d2c648648e11509c0308ba484c4209331bcd8dd63940c"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 81914,
+      "sha256": "67515b2c2eeeaa5472a4acc58a4005df2e7f3b01d2ff8f28592310dc841d48c8"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/00478520.c",
+      "bytes": 2929,
+      "sha256": "66a71f6753cbaa673b75addd5c0a46c10f31eb6c059bd3900cc64ca7ada2e3b5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/00478520.json",
+      "bytes": 14610,
+      "sha256": "19d4a05399308ee106f321f6d8435a554e590097720648b4d4e4704e83848a32"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/0072f680.c",
+      "bytes": 1981,
+      "sha256": "80fcdeb339dd6eef2710f84d02702a6bc7f935ec97cd1068ffd3a4603cb4f644"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/0072f680.json",
+      "bytes": 11408,
+      "sha256": "6bd28fa6641ea5647bc8e0883aa510b7b4a9aa14165fbc711747ffd13ba45f37"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/00699810.c",
+      "bytes": 451,
+      "sha256": "64a938c27b89b60d12f2027e03aea13af8531fec9fb487a377fe2747f173396f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/00699810.json",
+      "bytes": 2800,
+      "sha256": "6da208d0047a01117601d80aa9529300fd1abfe8e07e8a8be95c22444ac3c433"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/00699590.c",
+      "bytes": 532,
+      "sha256": "59920dd6dac019e3b138a31f86e6a5403c538240d77339855ef0a73e2b8f0a21"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/00699590.json",
+      "bytes": 2503,
+      "sha256": "df306f3a7fa87f04d294abb9f875b1ebe19545c5ba05eb54ab9aeee660e2cc26"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/0069b9d0.c",
+      "bytes": 155,
+      "sha256": "5f750feca52f015ddd4edd9aa444bf721ff4319f30031a36f32e0478ff3cfba9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-presentation-export/0069b9d0.json",
+      "bytes": 1170,
+      "sha256": "754d41785700dffc0ca2c49a8139d3abbb68df60ce7c5ca2608770682c312a92"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/receive-clock-abi.asm",
+      "bytes": 1464,
+      "sha256": "c6fec4ecf30e3e3f4f9ddf6bcd0bda4da41a660cadb4ec5e59f99beeab93d2f0"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/placed-snapshot-read-abi.asm",
+      "bytes": 4202,
+      "sha256": "a96bcaebc321e714fc128069e5aa135df4c7cc9cae5e8160b1ae5c73e706317a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/placed-client-motion-abi.asm",
+      "bytes": 1217,
+      "sha256": "363f6ddf2841a0bdc314ce5cf84097ffaf46bd94e4559cff419c01874b106196"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-yaw-abi.asm",
+      "bytes": 3000,
+      "sha256": "8cd2654024644787b0248525f6a8097abc7f1b7487bef73da001a71fc37ea1d5"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-control-score-region.asm",
+      "bytes": 204212,
+      "sha256": "4713f6b584870ef32aac6cb42065230a3af7824a781592e869e1c507c8b56895"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-damage-presentation-abi-v3/004790c0.c",
+      "bytes": 3632,
+      "sha256": "4abbc92dd2c221f086a477d4419377fd91ba84fa63d8588cbe322eaafd3e1ce6"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-damage-presentation-abi-v3/004790c0.json",
+      "bytes": 23415,
+      "sha256": "5ecb1ec7b4ec2878db0b16796b59e847fa2dd77d2385191e1d4419cd42c0d118"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/multiplayer-player-wire-20261101/00749ae0.c",
+      "bytes": 509,
+      "sha256": "ddbc7a9d0b9ed9c8d91840889c96105bd7ca078bb1d51538897e18a963069445"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/menu-route-extra-20261031/00728450.c",
+      "bytes": 32585,
+      "sha256": "b9c8016db7a09c41f356be16f9dbb10905e2d7263dfecb5bbaef86bd46eedbc2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/placed-snapshot-target.json",
+      "bytes": 201,
+      "sha256": "0291f4b47e5a6eccf3807ffc8bf11ef2ff3b78fcc0a2c414df0243654b712a16"
+    }
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/statistics-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/statistics-native-run.log",
+      "bytes": 34,
+      "sha256": "910e7782bfd24a9e8d9d40b86f2cd120e997696ac36a9c783b42c8f450ef328a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-read-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-read-native-run.log",
+      "bytes": 38,
+      "sha256": "4d2ade60f7f13279003837621a3890358be8d212b596081a551ee9e924d63842"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/statistics-actual-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/presentation-launcher-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/presentation-function-render.log",
+      "bytes": 380,
+      "sha256": "92f0cfda42c6ff63f549e340ebfbdc46ead035e1fea91a1cee6aede5a425f28b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/presentation-function-check.log",
+      "bytes": 437,
+      "sha256": "10769f1b2c70553382338a6f79b460429844071270b60071920ba19335a629f9"
+    }
+  ],
+  "limitations": [
+    "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
+    "Source Frame reset loan is same-World and unpublished before retirement; actual lifecycle execution remains pending. Native physical contact and full placed actor are compile/link only. Items/Runtime prefix remains owned on model/bind failure."
+  ],
+  "build_outputs": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 9738752,
+      "sha256": "42d2588968d393198a5917bae03b111962ec67b7100b9c48815209e6ae785698"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1175552,
+      "sha256": "c63b1fa01323315540cc4b9604263111d70a019ac6320d5ce4ffbef1cc6c9f35"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/statistics-native.cpp",
+      "bytes": 6145,
+      "sha256": "dfea8f373d8dea6f373ca656c9a7d2feaa73b1212ffce3b3618399db4543e4bd"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/statistics-native",
+      "bytes": 1604152,
+      "sha256": "6763b589662846a0fc603aecab8db0ef87e52aedad56e223ce111d391f8e8d42"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/statistics-actual.cpp",
+      "bytes": 1123,
+      "sha256": "0bf82deb22c5155299614b57f6328d4841c4626c1295641c0b43b2c6c344e1fc"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/statistics-actual.exe",
+      "bytes": 17789952,
+      "sha256": "437182f6374c81e95123a97b8de6ec654557e5ac09dd2a246d9614247890c7af"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-read-native.cpp",
+      "bytes": 7379,
+      "sha256": "da43e21bfd95acfb334f1aff6a389ada37d4e3a07db02fa06c7c7ec673b8df98"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-read-native",
+      "bytes": 1441584,
+      "sha256": "9ba94dc0b34e1ac6c3ab4470d5996c38922f9da1b77b98dc7b6e783a3cbcc20b"
+    }
+  ],
+  "temporary_audits_removed": true
+}

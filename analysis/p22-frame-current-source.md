@@ -1,6 +1,6 @@
 # FRAME offline composition baseline — 2026-11-17
 
-Latest continuation: [process balance/authority spawn0/1 and matching presentation respawn3](p22-frame-process-spawn-source.md) follow retained Human/Actor44/all18 module bindings. Evidence below retains its original revision/verification boundary; console/general networking/history/remaining packets and application delivery remain.
+Latest continuation: [received Runtime7/statistics8 and same-World reset loan](p22-frame-presentation-state-source.md) follow actual balance/spawn0/1/3 and all18 retained module bindings. Evidence below retains its original revision/verification boundary; console/general networking/history/other packets and application delivery remain.
 
 
 Later selected nonoffline and retained-item implementation supersedes the

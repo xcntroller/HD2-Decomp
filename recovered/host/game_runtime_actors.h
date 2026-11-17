@@ -192,6 +192,16 @@ public:
         });
     }
     void clear() noexcept {registry_.clear();}
+    Instance* present_snapshot_loose_item(std::int32_t identity,std::int32_t definition,std::int32_t item_identity,
+            const game::HumanVector& position,const game::HumanVector& direction){ //004790C0, owner=-1/new-definition branch.
+        return game::present_runtime_snapshot_loose_item(frames_,*this,items_,identity,definition,item_identity,position,direction);
+    }
+    void receive_runtime_snapshot_tail(Instance& actor,game::SessionPacketStream& packet){
+        if(actor.base().type()==2||actor.base().type()==11)return; //005B8880/005B70F0 genuine RET4.
+        if(actor.base().type()==35){static_cast<ItemActor&>(actor).read_initial_motion(packet);return;}
+        throw std::runtime_error("Runtime snapshot requires actual actor virtual54 receiver");
+    }
+    void read_initial_snapshot(game::SessionPacketStream& packet){game::read_runtime_actor_snapshot(registry_,packet,*this);}
     void write_initial_snapshot(game::SessionPacketStream& packet){game::write_runtime_actor_snapshot(registry_,packet,*this);}
     std::int32_t snapshot_mine_human_identity(std::size_t n){
         auto* mine=dynamic_cast<Mine*>(registry_.owned_at(n));if(!mine)throw std::logic_error("Runtime snapshot type2 lost its actual Mine owner");

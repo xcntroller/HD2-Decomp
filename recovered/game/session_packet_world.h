@@ -7,11 +7,32 @@
 namespace hd2::game {
 //Source binding of native current game00698500 to actual0048DC50/70 packet
 //receivers. Queue/stream owners remain process/control-lived across world exit.
+class SessionRoundResetReceiver {
+public:
+    virtual ~SessionRoundResetReceiver()=default;
+    virtual const void* round_reset_world_identity()const noexcept=0;
+    virtual void reset_round(bool)=0;
+};
+class SessionRoundResetLink {
+public:
+    explicit SessionRoundResetLink(const void* world):world_(world){if(!world_)throw std::invalid_argument("Round reset requires actual World identity");}
+    void bind(SessionRoundResetReceiver& receiver){
+        if(receiver.round_reset_world_identity()!=world_)throw std::logic_error("FRAME round reset borrower belongs to a different World");
+        receiver_.bind(receiver);
+    }
+    void unbind(SessionRoundResetReceiver& receiver)noexcept{receiver_.unbind(receiver);}
+    void reset(){receiver_.get().reset_round(true);}
+private:
+    const void* world_;WorldLoadingDependencyLink<SessionRoundResetReceiver> receiver_;
+};
 class SessionPacketWorld {
 public:
     virtual ~SessionPacketWorld()=default;
     virtual bool world_loaded()const=0;
     virtual bool dispatch_packet(std::uint32_t,SessionPacketStream&,bool)=0;
+    virtual void reset_round_from_packet()=0;
+    virtual void read_application_world_snapshot(SessionPacketStream&)=0;
+    virtual void receive_application_statistics_clock(std::uint32_t,std::uint32_t,std::uint32_t)=0;
     virtual void receive_application_respawn(std::uint32_t,const HumanVector&,const HumanVector&,frontend::PreMissionSoldier&,const std::array<std::uint32_t,12>&)=0;
     virtual void admit_application_spawn(std::uint32_t,frontend::PreMissionSoldier&,const std::array<std::uint32_t,12>*)=0;
     virtual void receive_application_objective(std::uint32_t,std::uint32_t)=0;
@@ -33,6 +54,9 @@ public:
     bool dispatch_packet(std::uint32_t kind,SessionPacketStream& packet,bool authority){
         return world_.bound()&&world_.get().dispatch_packet(kind,packet,authority);
     }
+    void reset_round_from_packet(){world_.get().reset_round_from_packet();}
+    void read_application_world_snapshot(SessionPacketStream& packet){world_.get().read_application_world_snapshot(packet);}
+    void receive_application_statistics_clock(std::uint32_t round,std::uint32_t game,std::uint32_t losses){world_.get().receive_application_statistics_clock(round,game,losses);}
     void receive_application_respawn(std::uint32_t peer,const HumanVector& position,const HumanVector& direction,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>& stats){world_.get().receive_application_respawn(peer,position,direction,soldier,stats);}
     void admit_application_spawn(std::uint32_t peer,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats){world_.get().admit_application_spawn(peer,soldier,stats);}
     void receive_application_objective(std::uint32_t identity,std::uint32_t status){world_.get().receive_application_objective(identity,status);}

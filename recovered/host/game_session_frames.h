@@ -65,7 +65,7 @@ public:
 //the supplied actual Runtime and External until retire(), BEFORE lifecycle
 //finish/unload/World destruction. No scheduling, presentation or activation is
 //moved out of the application frame. No second camera/clock/process is owned.
-template<class Runtime>class GameSessionFrames final:public GameSessionFrameCallbacks {
+template<class Runtime>class GameSessionFrames final:public GameSessionFrameCallbacks,public game::SessionRoundResetReceiver {
 public:
     using World=world_loading::World;using Human=world_loading::Human;using Parent=World::Parent;
     GameSessionFrames(World& world,Parent& parent,const game::SessionSelection& selection,
@@ -77,7 +77,10 @@ public:
            &d_.request!=&parent_.request()||selection_.accepted_request()!=&parent_.request()||
            d_.scene.frames().world_scene_frame()!=parent_.scene()->frame())
             throw std::logic_error("Session FRAME requires its SAME World/parent/selection/blast/external owners");
+        world_.bind_frame_reset(*this); //Publish only AFTER all actual members and same-owner checks.
     }
+    ~GameSessionFrames(){retire();}
+    const void* round_reset_world_identity()const noexcept override{return &world_;}
     GameSessionFrames(const GameSessionFrames&)=delete;GameSessionFrames& operator=(const GameSessionFrames&)=delete;
     void input(std::uint32_t* first,std::uint32_t* second)override{
         require_open();io::observe_data_operation(store(),"0069A560 session input",[&]{(void)game::input_loading_session(d_.session,*this,first,second);});
@@ -88,11 +91,11 @@ public:
     void update(std::uint32_t elapsed)override{
         require_open();io::observe_data_operation(store(),"0069B230 variable session frame",[&]{game::update_loading_session(d_.session,d_.music,*this,elapsed);});
     }
-    void reset_round(bool restart){
+    void reset_round(bool restart)override{
         require_open();RoundServices services{*this};
         io::observe_data_operation(store(),"0069C390 retained round reset",[&]{game::reset_retained_session_round(d_.session,restart,services);});
     }
-    void retire()noexcept override{retired_=true;} //Consumes the source borrower; does not finish/simulate the World.
+    void retire()noexcept override{if(retired_)return;retired_=true;world_.unbind_frame_reset(*this);} //Consumes the source borrower; does not finish/simulate the World.
     std::uint32_t mode_flags()const{return d_.startup.application_flags();}
     bool is_current_application_state(){return external_.is_current_application_state();}
     bool full_viewport()const{return d_.startup.scene_presentation_flags().full_viewport;}
