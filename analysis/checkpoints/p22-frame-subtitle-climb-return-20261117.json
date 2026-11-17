@@ -1,0 +1,165 @@
+{
+  "date": "2026-11-17",
+  "finalized_utc": "2026-11-17T20:01:19.544148+00:00",
+  "branch": "feature/p22-frame",
+  "source_base": "2429e1929fd9552d44586aad22bcb4091717384b",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "user_return": {
+    "exe_sha256": "c35be79387debd4074d3e1d37e2dda12cbe859d650b32f8947bb6594af9dffb7",
+    "rejected": [
+      "Subtitle overlap after viewport change",
+      "Upward Ladder exit jitter/stuck after input release",
+      "Standalone climb plays unrelated animation"
+    ],
+    "initial_runtime_result": "Clean exit0; no desktop acceptance inferred",
+    "later_runtime_result": "Fresh logs during work end with known unrecovered application transition; archived separately"
+  },
+  "corrections": [
+    "Prior climb mapping missed005ABD90 kind4 decoder005ABE30. Its subtype1E requests PRIMARY6A via0077EC00 after offline/player/authority gate. Bind that arm to SAME DD0/E0; existing0077DE30/0074A690 selects actual step. Neither movement30 nor action30 is correct.",
+    "Restore native process.full_viewport consumers for subtitle0048EE50 and stage2 text viewport006C9260. The prior policy put text into lower black bar outside world redraw; screenshot persistence is an inference, not engine-executed proof. Caption records already correctly replace row0. Keep separate Script824 HUD/skip policy."
+  ],
+  "ladder": {
+    "status": "UNRESOLVED; do not mark source-resolved or accepted",
+    "source_investigation": [
+      "00768230",
+      "0074A690",
+      "00777AD0",
+      "00779E60",
+      "00767D40",
+      "0075CD50",
+      "0075BC80"
+    ],
+    "next_evidence": "User-only actual engine/geometry retry. Changed-reason Human step probe diagnostics distinguish travel-obstruction, clearance rejection stages, top-exit success/rejection and stationary state, with actual IDs,988/B8/posture/9AC/HD/position/sphere/rise.",
+    "semantics": "Observation only. Original collision rejection, queue and occupant/equipment/animation lifecycle remain unchanged; no forced successful climb."
+  },
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "verification": {
+    "native": "PASS78 focused ASan/UBSan/leak checks on actual probe request/Look authority and mask gates, actual Ladder step14 selection and upward/forward/headroom rejection with diagnostic/query restoration, actual subtitle single-record replacement/timer/native rectangle. Geometry/control leaves doubled.",
+    "production": "PASS full actual REVIEW launcher and startup-probe O2/Werror rebuild -j1; heavy work sequential.",
+    "staging": "PASS --stage-only; compiled and staged launcher identical. No original/Windows/DLL/Proton execution.",
+    "desktop": "Required for subtitle and standalone climb changes; Ladder currently not established fixed.",
+    "preservation": "OWN HEAD1d54083/six dirty source hashes unchanged; six REVIEW batch sources equal except preserved OWN focus callback; full content/index recovery patches saved.",
+    "cleanup": "Temporary audit source and binary fingerprinted and removed; no permanent tests.",
+    "ledger": "Unchanged34 complete/3815 partial, frozen18783. No full FRAME/HUM/OWN, ledger-body or matrix promotion."
+  },
+  "remaining": [
+    "User-only retry for actual geometry/track evidence before Ladder fix",
+    "Desktop verification of restored subtitle and corrected standalone climb request",
+    "Pause14 retained-menu transition and distinct selector producer remain separate"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/human_common_command.h",
+      "bytes": 10965,
+      "sha256": "d1d586027f81fd3ad44a8423d1f6167acccb077f58afeec6b91be308db6eabd8"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 67817,
+      "sha256": "b06775578883dec3e6d201676f0cd80351ada96e265c9ddc909e785d08816302"
+    },
+    {
+      "path": "recovered/game/human_ladder_control.h",
+      "bytes": 23274,
+      "sha256": "501a8069d5800c394edeabd790a58c1edc74c9ffe858d8dc3a9511d849d19313"
+    },
+    {
+      "path": "recovered/game/human_step_preparation.h",
+      "bytes": 8968,
+      "sha256": "09f2457d2f1fee22728ec66af594db39307de95a78030ef941a94d3a73753e72"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 334249,
+      "sha256": "688c564b2ed8dc78e245e3845f0eeb49cde12b553e2315546f03f2824fd85848"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 142953,
+      "sha256": "9564ff60ad60699d7c3dac14972bec32116ae57fff6be6b5936b1237df8fbd13"
+    }
+  ],
+  "compiled_launcher": {
+    "path": "recovered/build/application_launch.exe",
+    "bytes": 13117952,
+    "sha256": "30ede22548e5e20f9c8e7b416723d2f92efb2ee2d9dde3fd0852982715920eb1"
+  },
+  "staged_launcher": {
+    "path": "analysis/work/frame-own-review-runtime/run/application_launch.exe",
+    "bytes": 13117952,
+    "sha256": "30ede22548e5e20f9c8e7b416723d2f92efb2ee2d9dde3fd0852982715920eb1"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-ladder-exit-index.txt",
+      "bytes": 15246,
+      "sha256": "d2317fafd51caacc6a668e95083b636ef071d61e2cf7e34181a43a2b4d7cd5a5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-subtitle-climb-index.txt",
+      "bytes": 10609,
+      "sha256": "7a1212bfc93507731b22abab40727fef3b9de796806d43d32d0db5bc77adfe04"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-subtitles-climb-return/manifest.json",
+      "bytes": 575,
+      "sha256": "166c176feaecfc11f3c7f086749db1957c5a8a79e352b05a401cf72913fab979"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-subtitles-climb-return/subtitle-overlap.png",
+      "bytes": 2818801,
+      "sha256": "868828db80b1cdd34475ba7d2fcea2bd5429f3edcd6ff06a8717e55bd5702bd5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-subtitles-climb-return-later/manifest.json",
+      "bytes": 812,
+      "sha256": "345258c39e6211e29e3e3be9e2f755ba5f781bc3495c1852df16a1e48f3c3630"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/subtitle-step-return-audit-cleanup.json",
+      "bytes": 433,
+      "sha256": "e9972d523d452873896b55af753f51eb9d71feb455b9e07d940903cadca3fa55"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/subtitle-step-return-climb-decoder.asm",
+      "bytes": 4277,
+      "sha256": "7667b6f4a3435ce337084299f1350a10dff0a7d71f26dc29f45790a3950e6ee3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/subtitle-step-return-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/subtitle-step-return-native-run.log",
+      "bytes": 242,
+      "sha256": "c143da5b7861d93f64c5a59ae30213a493380ba3caae599401be6b4af18bed2d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/subtitle-step-return-preservation.json",
+      "bytes": 158,
+      "sha256": "f45fbc2b247ae8db533de2091ecab0002b5f726453212742ca2980ebc4cee9ef"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/subtitle-step-return-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/subtitle-step-return-review-final.patch",
+      "bytes": 316517,
+      "sha256": "15631a9e517eba57095b512f978ddf7b4bf1155428b5e4324dacdadcad94211b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/subtitle-step-return-review-index.patch",
+      "bytes": 18868,
+      "sha256": "376a03ba0e1252d429352ab63c46cb407f65756b2194c753047c61c0c3568c08"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/subtitle-step-return-stage-only.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    }
+  ]
+}

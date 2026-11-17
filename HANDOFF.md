@@ -6,78 +6,79 @@ then OWN. Preserve other work. No original/DLL/Proton/Windows execution by agent
 no push/subagents. Heavy compilation/Ghidra sequential. User revoked the earlier
 AGENTS instructions; do not invent a new approval requirement from that file.
 
-LATEST USER accepts preceding4efed3f5 fixes: cutscene projection/HUD, movement
-crash, selected/placeholder overlap and starting equipment all fixed. New reports:
-stationary cutscene/barracks soldiers, skip unavailable, possibly high subtitles,
-prone teleport, climb mapped to prone, Ladder upward top jitter and chat Enter
-failure. Downward Ladder exit works. Exact clarified error: Console command
-requires its actual Human/application/packet producer. Fresh logs confirm it:
-WORK/gameplay-ladder-chat-return/manifest.json. Earlier controls archive contains
-a separate missing HUD selector producer; do not conflate them.
+LATEST USER on c35be793 rejects subtitle overlap, upward Ladder top jitter/stuck
+on release and standalone climb's unrelated animation. Actual initial run exits0,
+not proof of success. Exact exe/logs/screenshot archived
+WORK/gameplay-subtitles-climb-return. Fresher logs during work end with known
+Unrecovered application state transition; separate archive
+WORK/gameplay-subtitles-climb-return-later (same preceding c35be793).
 
-CURRENT SOURCE CHECKPOINT fixes all those new concrete gameplay paths:
-- HUMAN_Move005AF210/0058E8A0 uses actual Human state.navigation() FIRST, not
-  vehicle SECOND. All46 actual Tutorial soldier route names FIRST only; existing
-  navigation/AI/completion remains owner. Vehicle lookup remains SECOND.
--00586200 climb action1F sends action1E via E0 kind4/0077F050. Old movement
-  kind1/30 requested prone. Correct actual Look48/dirty2 producer now used.
-- Prone bone22: original007AB589 reads world coordinates then engine virtual08
-  world SetPos1001C9F0, which applies inverse parent. Old localB0 setter caused
-  moving-parent accumulation. Use actual world setter, leaving local writers.
-- Ladder top0074A690 upward sphere originY must be baseY+radius, not baseY.
-  Preserve XZ Ladder shift, masks/radii, collision rejection, descriptor14 and
-  actual occupant/equipment/root-motion lifecycle. Source/geometry-double verified;
-  actual user's upward exit still needs desktop retry.
-- Skip0069A560, subtitle geometry and text viewport now use SAME Script824 live
-  cutscene flag as accepted HUD policy, through checked existing module link.
-  Process full_viewport has no source writer; retail0049B7C0 RET4 is not one.
-  Explicit containing integration policy, no setter body credit.800x600 subtitle
-  bounds bottom594/top528 vs prior normal-layout510/444. Escape reaches real skip.
-- Chat default ConsoleQueries borrows real StartupSession producer. Actual
-  request3→0072B1C0→authority00727800/3→0072A0B0/4→presentation00728450 now source-bound.
-  Owning bounded text, real peerA8 clock/418 ordering,32/32/1/string grammar,
-  both payload FREEs before packet finish, node unlink after finish, team/alive/
-  ADMIN/byte-font policies and existing HUD output. Native unwritten108 is an
-  ignored wire word, source initialized0; no fabricated routing/target.
-  Offline005A9B30 genuinely RET; required nonoffline text/timer still guarded.
+CURRENT CORRECTION:
+- Prior2429e19 climb fix was WRONG: command kind4 does not mean Look action.
+  Original00586200 common1F ->005A45F0 ->005ABD90 kind4 ->005ABE30 subtype1E
+  requests0077EC00 PRIMARY6A after offline/player/authority gate. Source helper
+  request_human_step_motion binds that actual arm to SAME DD0/E0. Existing
+  0077DE30/0074A690 then selects actual step8..14. Prior movement30 and action30
+  both wrong. The previous native dirty2 test verified the wrong endpoint.
+- Prior full-viewport subtitle policy also exceeded retail evidence. Restore
+  0048EE50 and006C9260 consumers to process.full_viewport, retaining Script824
+  only for accepted HUD suppression and independent skip input. Native ordinary
+  subtitle bounds1600x1200 bottom1020/top888,800x600510/444. The prior geometry put
+  text in lower black bar outside Scene redraw, consistent with accumulating old
+  pixels. That pixel explanation remains inference, not agent-executed engine
+  proof. Actual subtitle records correctly replace row0 and expire; no duplicate
+  string cache or invented black-bar clear needed.
+- LADDER TOP IS STILL UNRESOLVED. Earlier sphere-center fix matches native but
+  did not fix actual user exit. Focused compare00768230/0074A690/00777AD0/
+  00779E60/00767D40/0075CD50/0075BC80 has not established another concrete cause.
+  Need actual engine/geometry/track observation; agent Windows/DLL/Proton
+  execution prohibited. Do not force detach/collision success or mark resolved.
+- Added observation-only changed-reason logs `Human step probe`, phase=clearance
+  or ladder-motion. Reports no-upper-surface/low-surface/upward-obstruction/
+  forward-obstruction/headroom/posture deferral/etc, or travel-obstruction/
+  top-exit-rejected/accepted/stationary/advancing, plus actual active/queued IDs,
+  988/B8/posture/9AC,HD marker,position,first sphere,rise. Per-Control reason dedup
+  prevents unchanged per-frame spam. No owner/queue/collider/equipment lifecycle
+  changes. These logs are diagnostic, not a Ladder fix or native body credit.
 
-237 focused native ASan/UBSan/leak checks PASS (159 controls +78 Ladder/chat).
-Actual Tutorial table/codecs/control/Script/step/FIFO helpers used; engine rotation,
-geometry, clocks and final HUD endpoints explicit doubles. Temporary cpp/binaries
-fingerprinted and removed; logs retained. Actual REVIEW launcher/probe full
-sequential O2/Werror rebuild PASS and --stage-only PASS. New compiled/staged SHA
-c35be79387debd4074d3e1d37e2dda12cbe859d650b32f8947bb6594af9dffb7.
-[Receipt](analysis/checkpoints/p22-frame-gameplay-controls-20261117.json),
+78 focused native ASan/UBSan/leak checks PASS: actual corrected request/Look
+masks/authority gates, step14 clear/blocked diagnostic/query restoration and actual
+subtitle one-record replacement/timer/native rectangle. Geometry/control endpoints
+explicit doubles; no engine execution. Temporary cpp/binary fingerprinted/removed.
+Actual REVIEW launcher/probe full sequential O2/Werror rebuild PASS; --stage-only
+PASS. NEW staged SHA30ede22548e5e20f9c8e7b416723d2f92efb2ee2d9dde3fd0852982715920eb1.
+[Receipt](analysis/checkpoints/p22-frame-subtitle-climb-return-20261117.json),
 [consolidated contract](analysis/p22-frame-startup-script-preflight.md).
-No Windows/original/DLL/Proton execution; new fixes await desktop acceptance.
-No full FRAME/HUM/OWN, stable-play, function-ledger or matrix promotion.
+No new checkbox, whole-function/function-ledger or FRAME/HUM/OWN matrix promotion.
 Ledger34 complete/3815 partial, frozen18783 unchanged.
 
-NEXT: user retry cutscene skip/soldier motion/subtitle baseline, prone/climb,
-upward Ladder exit and chat Enter. Source/build verification cannot establish
-actual rendered success. Pause still reaches unimplemented application status14:
-retained menu/resume graph is plan section5; do not swallow/reset status. The
-separate archived selector-producer failure remains OWN/UI work. General network,
-console actions and nonoffline completion remain explicit dependencies. Keep
-next work focused on actual gameplay blockers/FRAME then OWN, not new broad audits.
+NEXT: user-only retry verifies restored subtitle and corrected standalone climb,
+then read fresh `Human step probe` lines to identify the actual remaining Ladder
+blocker. Preserve real failure and finish its reached dependency before claiming
+climb completion. This specific runtime evidence is unavailable to the agent.
+Pause14/retained menu graph stays plan section5; archived separate selector
+producer stays OWN/UI. No new broad research/audit cycle.4efed3f5 accepted earlier
+camera/HUD,ordinary movement,selected/placeholder and equipment fixes remain
+revision-qualified. c35be793 returned controls batch is not accepted; soldier,
+prone,skip/chat not independently confirmed by the latest user.
 
 REVIEW `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
 edebd81 + preserved OWN overlay + later FRAME source. Mixed staged/unstaged and
 untracked recovered headers expected; interactive adapter remains uncommitted.
-Full final content/untracked recovery patch WORK/gameplay-controls-review-final.patch;
-index separately WORK/gameplay-controls-review-index.patch. Main still declines
+Full final content/untracked recovery patch WORK/subtitle-step-return-review-final.patch;
+index separately WORK/subtitle-step-return-review-index.patch. Main still declines
 activation; REVIEW is actual user launcher. HumanWorld has a preexisting OWN
 focus_loading_command_human callback absent Main: never copy that file whole.
-All18 batch sources synced except preserved callback. Never reset/stash others.
+All6 correction batch sources synced except preserved callback. Never reset/stash others.
 
 USER ONLY desktop command:
 `cd /home/control/Documents/Projects/HD2-Decomp-p22-frame-review && python3 -B tools/run_application_launch.py --game-dir '/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2' --work-dir analysis/work/frame-own-review-runtime`
 Agent may --stage-only, never execute Windows. Archive fresh logs/exe before staging;
-current runtime logs refer to preceding4efed3f5 until user retries.
+current runtime logs refer to precedingc35be793 until user retries.
 
 OWN `/home/control/Documents/Projects/HD2-Decomp-p22-own`, feature/p22-own HEAD1d54083:
 six dirty sources match WORK/own-review-overlay-inputs.json, untouched. Latest
-preservation record WORK/gameplay-controls-final-preservation.json. Older OWN
+preservation record WORK/subtitle-step-return-preservation.json. Older OWN
 staged exe SHA d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c.
 
 WORK=analysis/work/p22-frame-closure-20261117. H8 research root

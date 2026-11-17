@@ -5,17 +5,28 @@
 
 namespace hd2::game {
 
+//005ABE30 subtype1E, reached by00586200 common command1F through005ABD90/4.
+//This is a primary6A probe request; the actual step worker selects8..14 later.
+template<class Control,class Look,class Publish>
+void request_human_step_motion(Control& control,Look& look,Publish& publish){
+    if((control.mode_flags()&7u)==7u||control.human_is_player()||control.animation_authority_actor())
+        look.frame_movement_animation(0x6a,publish,true);
+}
+
 //0074A690. The shared step/climb clearance worker is also called at a Ladder's
 //top exit. It uses the SAME queued primary descriptor, physical spheres and E0.
 template<class Control,class Look,class Human,class Services,class Frames,class Runtime,class Publish>
 bool prepare_human_step_motion(Control& control,Look& look,Human& human,Services& services,
-        Frames& frames,Runtime& runtime,Publish& publish){
+        Frames& frames,Runtime& runtime,Publish& publish,const char** diagnostic=nullptr){
+    if(diagnostic)*diagnostic="accepted";
+    const auto reject=[&](const char* reason){if(diagnostic)*diagnostic=reason;return false;};
     const bool offline=(control.mode_flags()&7u)==7u;
     if(!offline&&!control.human_is_player()&&!control.animation_authority_actor())return true;
-    if(human.activation.vector1b0[1]<=-.08f)return false;
+    if(human.activation.vector1b0[1]<=-.08f)return reject("falling");
     auto& physical=control.physical();auto& state=physical.control_frame_words();
     const auto word=[&](unsigned offset){return state.template get<std::int32_t>(offset);};
-    if(word(0xa2c)!=-10000||word(0xa30)!=-10000||(word(0x1d8)>7&&word(0x1d8)<15))return false;
+    if(word(0xa2c)!=-10000||word(0xa30)!=-10000)return reject("attachment");
+    if(word(0x1d8)>7&&word(0x1d8)<15)return reject("already-stepping");
     const auto initial=physical.posture_spheres()[0]; //Native copies BEFORE rebind0075BC80.
     const auto direction=human.base().world_direction();
     const auto posture=look.state().template get<std::uint32_t>(0x4c);
@@ -56,10 +67,10 @@ bool prepare_human_step_motion(Control& control,Look& look,Human& human,Services
         origin[0]=static_cast<float>(static_cast<long double>(direction[0])*.15f+origin[0]);
         origin[2]=static_cast<float>(static_cast<long double>(direction[2])*.15f+origin[2]);
     }
-    if(step==-10000.099609375f)return false;
+    if(step==-10000.099609375f)return reject("no-upper-surface");
     const auto surface_offset=static_cast<long double>(step)-radius;
     const float stored_offset=static_cast<float>(surface_offset);
-    if(surface_offset-base_y<=.45f&&!control.movement().frame_words().template get<std::uint32_t>(0xf0))return false;
+    if(surface_offset-base_y<=.45f&&!control.movement().frame_words().template get<std::uint32_t>(0xf0))return reject("low-surface");
     const float rise=stored_offset-base_y;
     HumanVector forward{{direction[0]*.45f,0,direction[2]*.45f,direction[3]}};
     //0074A690 local_2ac = base_y + radius: sweep the sphere CENTER, not its foot.
@@ -78,10 +89,10 @@ bool prepare_human_step_motion(Control& control,Look& look,Human& human,Services
         CollisionMotion<std::decay_t<decltype(*hit)>> contact;
         contact.position=hit->position;contact.append(*hit,0);
         (void)resolve_human_motion_contacts(control,look,human,services,contact,true,runtime);
-        return false;
+        return reject("upward-obstruction");
     }
     start={{initial[0],raised+base_y,initial[2],0}};
-    if(sweep.sweep(start,forward,query_radius,mask(),0x230000u))return false;
+    if(sweep.sweep(start,forward,query_radius,mask(),0x230000u))return reject("forward-obstruction");
     start={{static_cast<float>(initial[0]+static_cast<long double>(forward[0])*.8f),
         static_cast<float>((static_cast<long double>(height)+base_y)+static_cast<long double>(forward[1])*.8f),
         static_cast<float>(initial[2]+static_cast<long double>(forward[2])*.8f),0}};
@@ -91,7 +102,7 @@ bool prepare_human_step_motion(Control& control,Look& look,Human& human,Services
         const auto available=(static_cast<long double>(clearance->position[1])-rise)-base_y;
         const auto full=static_cast<long double>(state.template get<float>(0x744))*.95f+radius;
         if(!(full<=available)){
-            if(available<static_cast<long double>(state.template get<float>(0x744))*.45f+radius)return false;
+            if(available<static_cast<long double>(state.template get<float>(0x744))*.45f+radius)return reject("headroom");
             shortened=true;
         }
     }
@@ -99,7 +110,7 @@ bool prepare_human_step_motion(Control& control,Look& look,Human& human,Services
         physical.publish_step_secondary(forward,shortened?raised:rise,shortened);
         state.set(0x958,rise);
         if(word(0x988)==-10000){
-            if(rise<=.45f)return false;
+            if(rise<=.45f)return reject("short-rise");
             std::uint32_t animation=10;
             if(rise>=1.5499999523162842f)animation=13;
             else if(rise>=1.0779999494552612f)animation=12;
@@ -108,12 +119,12 @@ bool prepare_human_step_motion(Control& control,Look& look,Human& human,Services
         }else state.set(0x1fc,14u);
         normalize_human_primary_animation(state,0x1fc);
     }
-    if((word(0x1fc)==10||word(0x1fc)==9)&&shortened)return false;
+    if((word(0x1fc)==10||word(0x1fc)==9)&&shortened)return reject("shortened-low-step");
     if(defer){
-        auto& queue=physical.control_action_queue();if(!queue.empty())return false;
+        auto& queue=physical.control_action_queue();if(!queue.empty())return reject("posture-queue-busy");
         queue.push_back({{1500,4,0}});queue.push_back({{500,posture==1?1u:2u,0}});
         look.frame_posture(0,publish);
-        return false;
+        return reject("posture-deferred");
     }
     state.set(0x200,0u);normalize_human_primary_animation(state,0x1fc);
     if(!offline){

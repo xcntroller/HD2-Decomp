@@ -267,7 +267,8 @@ template<class Human,class Geometry>void project_human_ladder_position(const Hum
 
 template<class Control,class Look,class Human,class Services,class Runtime,class Publish>
 void advance_human_ladder_motion(Control& control,Look& look,Human& human,Services& services,
-        std::int32_t elapsed,Runtime& runtime,Publish& publish){ //00768230, SAME AC0 movement and DD0 actor borrower.
+        std::int32_t elapsed,Runtime& runtime,Publish& publish,const char** diagnostic=nullptr){ //00768230, SAME AC0 movement and DD0 actor borrower.
+    if(diagnostic)*diagnostic="advancing";
     auto position=human.base().world_position();
     if((control.mode_flags()&7u)!=7u&&!control.human_is_player()&&!control.animation_authority_actor())return;
     control.prepare_motion_velocity(look,true); //0076B670, actual shared animation velocity selector.
@@ -291,8 +292,10 @@ void advance_human_ladder_motion(Control& control,Look& look,Human& human,Servic
     const auto finish_top=[&]{
         state.set(0x1fc,10u);normalize_human_primary_animation(state,0x1fc);
         if(!control.prepare_step_motion(look,runtime)){ //0074A690, actual queued primary descriptor.
+            if(diagnostic)*diagnostic="top-exit-rejected";
             state.set(0x1fc,206u);normalize_human_primary_animation(state,0x1fc);return false;
         }
+        if(diagnostic)*diagnostic="top-exit-accepted";
         look.control_movement_mode(0,false,publish);state.set(0x988,std::int32_t{-10000});
         look.frame_movement_animation(206,publish,false);
         services.human_presentation_equipment(human).set_hidden(false);ladder.remove_occupant(human);
@@ -314,6 +317,7 @@ void advance_human_ladder_motion(Control& control,Look& look,Human& human,Servic
             return services.human_geometry_sweep().sweep(origin,displacement,sphere[3]-.05f,0xcc002u,0xffffffffu);
         }();
         if(hit){
+            if(diagnostic)*diagnostic="travel-obstruction";
             CollisionMotion<std::decay_t<decltype(*hit)>> contact;contact.count=1;contact.position=hit->position;contact.append(*hit,0);
             (void)resolve_human_motion_contacts(control,look,human,services,contact,true,runtime);return; //00788840 with one actual contact.
         }
@@ -337,7 +341,7 @@ void advance_human_ladder_motion(Control& control,Look& look,Human& human,Servic
     }
     const auto square=(static_cast<long double>(displacement[2])*displacement[2]+
         static_cast<long double>(displacement[1])*displacement[1])+static_cast<long double>(displacement[0])*displacement[0];
-    if(!((square>=1.e-16f&&animation<190)||phase>0))return;
+    if(!((square>=1.e-16f&&animation<190)||phase>0)){if(diagnostic)*diagnostic="stationary";return;}
     for(unsigned axis=0;axis!=3;++axis)position[axis]+=displacement[axis];
     const auto queued=state.template get<std::int32_t>(0x1fc);
     if(near_top()&&animation==106&&(queued==106||queued==206)&&!finish_top())return;

@@ -83,7 +83,7 @@ template<class State,class World>bool execute_human_common_command(State& state,
             const auto position=state.climb_history_position(); //Actual7C history1 / position-value+2C.
             world.replay_human_climb_position(*human,position); //00759E20, SAME DD0.
         }
-        world.begin_human_climb_animation(state); //E0 kind4, movement1E, changed1 AFTER replay.
+        world.begin_human_climb_animation(state); //E0 command kind4/subtype1E ->005ABE30 -> primary6A probe AFTER replay.
         return true;
     }
     if(fields.template get<std::uint32_t>(8)==5u){ //00586200→virtualE4/00585A60, reached attached exit.

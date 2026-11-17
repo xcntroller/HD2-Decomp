@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_CONTROL_LOADING_H
 #define HD2_GAME_HUMAN_CONTROL_LOADING_H
 #include "game/human_track_equipment_events.h"
+#include <cstdio>
 #include "game/human_track_control_events.h"
 #include "game/human_track_effect_events.h"
 
@@ -470,7 +471,11 @@ public:
                     if(mode==5)advance_human_water_motion(*this,look,*human_,services_,frames_,runtime,publish,step); //00768E50, actual water mode and collision owner.
                     else if(interaction)advance_human_step_motion(*this,*human_,services_,frames_,step); //00767D40, actual HD displacement and height curve.
                     else if(special)advance_special_ground_motion(step,runtime); //00768170.
-                    else advance_human_ladder_motion(*this,look,*human_,services_,step,runtime,publish); //00768230.
+                    else{
+                        const char* diagnostic=nullptr;
+                        advance_human_ladder_motion(*this,look,*human_,services_,step,runtime,publish,&diagnostic); //00768230.
+                        observe_step_probe("ladder-motion",diagnostic,last_ladder_diagnostic_,look);
+                    }
                 }else advance_human_walk_motion(*this,look,*human_,services_,step,runtime,publish); //007646F0.
             }
         }
@@ -619,7 +624,10 @@ public:
     }
     template<class Look,class Runtime>bool prepare_step_motion(Look& look,Runtime& runtime){
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
-        return prepare_human_step_motion(*this,look,*human_,services_,frames_,runtime,publish);
+        const char* diagnostic=nullptr;
+        const auto result=prepare_human_step_motion(*this,look,*human_,services_,frames_,runtime,publish,&diagnostic);
+        observe_step_probe("clearance",diagnostic,last_step_diagnostic_,look);
+        return result;
     }
     template<class Look>void retire_look_mount(Look& look,Frame model){
         auto* actor=services_.template human_mounted_model_actor<Human>(model);
@@ -966,6 +974,18 @@ private:
     template<class Work>void attempt(Work&& work) noexcept {
         try{work();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
     }
+    //Source-only observation of a user-reported engine/geometry discrepancy.
+    //Never changes probe admission or turns a required rejection into success.
+    template<class Look>void observe_step_probe(const char* phase,const char* diagnostic,const char*& previous,const Look& look){
+        if(!human_is_player()||!diagnostic||diagnostic==previous)return;
+        previous=diagnostic;
+        const auto& state=physical_.control_frame_words();const auto position=human_->base().world_position();
+        const auto sphere=physical_.posture_spheres()[0];
+        std::printf("Human step probe: actor=%d phase=%s result=%s active=%d queued=%d ladder=%d mode=%u posture=%u transition=%d marker=%u pos=(%.4f,%.4f,%.4f) sphere=(%.4f,%.4f,%.4f,%.4f) rise=%.4f\n",
+            human_->base().id10(),phase,diagnostic,state.template get<std::int32_t>(0x1d8),state.template get<std::int32_t>(0x1fc),
+            state.template get<std::int32_t>(0x988),look.state().template get<std::uint32_t>(0xb8),look.state().template get<std::uint32_t>(0x4c),
+            state.template get<std::int32_t>(0x9ac),unsigned(action_.marker()!=Frame{}),position[0],position[1],position[2],sphere[0],sphere[1],sphere[2],sphere[3],state.template get<float>(0x958));
+    }
     Frames& frames_;Audio& audio_;Random& random_;Effects& effects_;Presentation& presentation_;Services& services_;
     HumanPhysicsGlobals& physics_globals_;
     std::optional<PoolLease> pool_;Geometry geometry_;Face face_;Physical physical_;Movement movement_;
@@ -974,7 +994,7 @@ private:
     std::array<std::optional<BoneOwner>,25> bones_{};
     float amount_=0;std::uint32_t field_dc8_=0;
     bool started_=false,active_=false,registered_=false,presentation_acquired_=false;
-    bool flag_dc4_=false;
+    bool flag_dc4_=false;const char* last_step_diagnostic_=nullptr;const char* last_ladder_diagnostic_=nullptr;
 };
 } //namespace hd2::game
 #endif

@@ -515,3 +515,69 @@ not swallow Escape or reset status as a substitute. The archived selector-produc
 failure also remains separate required OWN/UI work. Neither optional issue blocks
 staging these focused gameplay fixes. No whole FRAME/HUM/OWN, stable-play,
 function-ledger or matrix promotion; new desktop acceptance remains pending.
+
+
+Returned controls build: subtitle overlap and still-blocked climbing
+
+User's c35be793 run (2429e19 source) exits cleanly but returns three failures:
+subtitle captions visibly overlap in the lower black bar, upward Ladder exit
+still jitters and now remains stuck after releasing input, and standalone climb
+plays an unrelated reaction-like animation. No acceptance for these behaviors.
+Exact exe/logs/screenshot archived at
+WORK/gameplay-subtitles-climb-return/manifest.json. Preserve the preceding
+4efed3f5 accepted camera/ordinary movement/spawn/equipment observations separately.
+
+The earlier climb correction stopped one decoder too soon. Original00586200
+common1F constructs command kind4/subtype1E and005A45F0 forwards through005ABD90.
+Kind4 calls005ABE30, not005ABB50/0077F050.005ABE30 subtype1E gates offline/player/
+authority then calls0077EC00(primary6A,changed1). The real0077DE30 treats6A as a
+probe, selects descriptor10, invokes0074A690 clearance and keeps only the actual
+selected8..14 step. Thus neither movement30 nor action30 is a valid translation.
+Source now binds this actual decoder arm in request_human_step_motion through
+SAME inline98 DD0/E0 and existing publish callback. No guessed animation resource,
+forced collision success or primary descriptor bypass. Saved index before lookup
+and static native decoder disassembly, with the already indexed C export reused.
+This supersedes the earlier dirty2/action48 claim, whose native audit verified the
+wrong endpoint. The previous237 checks did not establish this decoder mapping.
+
+The earlier subtitle/full-text viewport integration policy also exceeded the
+retail evidence. Source already replaces renderer record0 for each new subtitle;
+focused checks confirm one record through successive captions and timer expiry.
+There is no accumulating logical subtitle list. The new geometry put text in the
+lower black bar outside the Scene viewport, consistent with old caption pixels
+persisting between world redraws. Actual graphics/black-bar clearing has not been
+agent-executed, so pixel persistence is an inference from the screenshot and
+viewport path, not a new native renderer-body claim. Restore native0048EE50 and
+006C9260 consumers to actual process.full_viewport, retaining Script824 policy
+ONLY for cutscene HUD suppression and the separate0069A560 skip consumer.
+At1600x1200 ordinary original bounds are bottom1020/top888; at800x600510/444.
+The earlier claim that normal-layout subtitle height was itself wrong is retracted.
+No speculative black-bar clear, fake font layer or extra caption copies added.
+
+Ladder top remains UNRESOLVED. The earlier sphere-center correction matches
+0074A690 but did not fix the user's actual exit. Focused source comparison of
+00768230,0074A690,00777AD0/00779E60,00767D40,0075CD50 and shared collider ownership
+has not established another concrete cause. Actual engine geometry/track progress
+is needed to distinguish the rejecting call; agent execution is prohibited.
+New observation-only diagnostics report changed reasons per actual Player owner:
+`Human step probe` phase=clearance shows falling/attachment/already-stepping/
+no-upper-surface/low-surface/upward-obstruction/forward-obstruction/headroom/
+posture deferral/accepted; phase=ladder-motion distinguishes travel-obstruction,
+advancing, stationary, top-exit-rejected/accepted. Each log includes actual active/
+queued descriptor,988/B8/posture/9AC,HD marker presence, actor position, first
+posture sphere and958 rise. Separate per-Control dedup fields prevent unchanged
+per-frame logging. No new gameplay state, blocker swallowing, forced detach,
+queue reset or occupant/equipment/clip ordering change. Diagnostics are not a fix
+or ledger credit. Required failure paths continue to reject.
+
+78 focused ASan/UBSan/leak checks pass actual corrected probe request/Look mask and
+authority gates, actual Ladder worker descriptor14 selection and upward/forward/
+headroom rejections with query restoration and returned diagnostic reason, and
+actual subtitle record replacement/timer/original geometry. Collision, authority
+and control leaves are explicit doubles; no actual engine or Windows run. Native
+audit sources/binaries are temporary and removed after fingerprinting. Actual
+REVIEW full O2/Werror launcher/probe build and stage-only evidence is in
+analysis/checkpoints/p22-frame-subtitle-climb-return-20261117.json. Desktop retry
+must verify subtitle/standalone climb behavior and collect the Ladder probe reason;
+Ladder is not source-resolved or accepted. No new broad audit/checkbox/tally or
+FRAME/HUM/OWN promotion. Pause14 and selector producer remain separate.

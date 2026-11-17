@@ -198,9 +198,9 @@ public:
     void script_play_music(std::uint32_t identity){dependencies().startup.select_game_secondary_music(human_frame_signed_word(identity));} //SOUND68=00436F60.
     std::uint32_t script_speech_length(std::uint32_t identity){return dependencies().startup.game_speech_length(human_frame_signed_word(identity));}
     void script_subtitles_show(bool visible){auto& d=dependencies();
-        d.subtitles.show(visible,(d.startup.scene_presentation_flags().full_viewport||d.script_link.cutscene_active()),[&]{return d.scene.frames().script_text_dimensions();});}
+        d.subtitles.show(visible,d.startup.scene_presentation_flags().full_viewport,[&]{return d.scene.frames().script_text_dimensions();});}
     void script_subtitles_select(std::uint32_t identity){auto& d=dependencies();
-        d.subtitles.select(identity,(d.startup.scene_presentation_flags().full_viewport||d.script_link.cutscene_active()),[&]{return d.scene.frames().script_text_dimensions();});}
+        d.subtitles.select(identity,d.startup.scene_presentation_flags().full_viewport,[&]{return d.scene.frames().script_text_dimensions();});}
     template<class Frame>void script_frame_speech(Frame frame,std::uint32_t identity,float near_range,float far_range){auto& d=dependencies();
         (void)d.startup.play_game_speech(nullptr,frame,human_frame_signed_word(identity),near_range,far_range,true,d.dubbing);}
     bool script_command_visible(){return dependencies().hud.command_owner().visible();}
@@ -3255,7 +3255,12 @@ public:
     }
     template<class State>void begin_human_climb_animation(State& state){
         auto* human=state.human();if(!human)throw std::logic_error("Human climb lost its actual Human");
-        human_look_control(*human).action_command(0x1e,true); //005ABD90 kind4→0077F050; movement kind1/30 requests prone.
+        //005ABD90 kind4 ->005ABE30 subtype1E ->0077EC00(6A,1).
+        //6A is the probe request;0077DE30 selects a real step descriptor8..14.
+        auto* control=human_inline(*human).control();
+        if(!control)throw std::logic_error("Human climb requires its SAME DD0 control");
+        auto publish=[&](std::uint32_t flags){state.publish_frame_command_flags(flags);};
+        request_human_step_motion(*control,human_look_control(*human),publish);
     }
     auto* human_command_actor(std::int32_t identity){return dependencies().scene.frames().scene_actor_command_identity(identity);} //00475D50.
     template<class Entry>std::uint32_t human_command_item_kind(Entry item){return dependencies().world_actors.items().runtime_item(item).definition().kind();}
