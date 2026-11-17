@@ -1,7 +1,7 @@
 # H8 Human frame — delivery plan
 
 Worktree `HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`.
-Agent 1 now owns continuation of H8.2/H8.3 and the merged H8.4 work.
+H8.2/H8.3 Human-owned source is closed; this worktree owns the remaining H8.4–H8.6 work.
 H8.4 branch4708ff9 was merged at the user’s request; preserve its verified
 occupied/Car/seat/absent-actor source. PACK is finished. No original EXE/DLL,
 Proton or Windows-fixture execution; no push. Compile and Ghidra sequentially.
@@ -9,7 +9,7 @@ Proton or Windows-fixture execution; no push. Compile and Ghidra sequentially.
 ## Delivery boundary
 
 - [x] H8.1 — Compose actual scene→B0/inline→DD0/E0/equipment/geometry on the SAME World. [Source composition](human-h8-frame-composition-source.md).
-- [ ] H8.2 — Complete the mandatory offline Human decision/action/callback receivers reached by that composition.
+- [x] H8.2 — Human-owned offline decision/action/callback receivers — **source-only**. [Closure and continuing H8.4/verification/application requirements](human-h8-human-receiver-closure.md).
 - [x] H8.3 — Offline ShotMgr bullet/shell/capsule/grenade source, collision/damage/visual/contact and initial100 calls. [Source closure and external H8.4/acceptance limits](human-h8-projectile-closure.md).
 - [ ] H8.4 — Complete reached occupied/Car/entry/absent-actor dependencies; merged source remains below.
 - [ ] H8.5 — Verify the completed containing Human frame on actual owners, module/i386/launcher links and consolidated native positive/failure/lifetime checks.
@@ -36,7 +36,7 @@ Full Human/Player/mounted composition, reached Aircraft/type34/entry and selecte
 non7 work remain required. Follow the actual selected path; these notes do not
 make all neighboring Dog functions a mandatory detour before integration.
 
-## Current H8.2 path and next failure
+## H8.2 source boundary and continuing H8.4 requirements
 
 The [ordinary on-foot authority](human-h8-authority-body-source.md) now runs from
 World→factory→SAME Active through00526550's actual return: existing prefix,
@@ -50,17 +50,14 @@ loose-item and SupplyBox owners, preserving partial moves and native false retur
 Standalone cover/hold completion and commands4/19/32/37 now use existing actual
 owners; task32 retains its target-unavailable completion gate.
 Active BC damage and the actual Players process98 producer/borrower now use the
-existing shared damage/Sight/order owners. H8.2 remains open: other specialized
-tasks/effects still stop when selected. Populated group command18/21 and
+existing shared damage/Sight/order owners. Human-owned H8.2 source is closed by the [containing receiver review](human-h8-human-receiver-closure.md); conditional nonHuman/actor owners remain required under H8.4. Populated group command18/21 and
 3/type8 production/arrival now use actual distinct F8 storage and current B0s. Task25/26 command admission/production,
 selection, pending progression and
 query-10 replanning, explicit valid reload sources, hazard blast/packet and water
 command/HUD orchestration now use their existing actual owners. Saved-position/vector aim and launcher/close-combat branches now
 use their actual target, collision, inline/common-command and item owners. Ordinary
 rifle target range/burst/crouch, cautious posture/admission, populated stance and005318C0
-pack→holster ammunition are now source-bound. [Placed16 and retreat continuation](human-h8-task-runtime-source.md) now bind actual placed motion, two-route choice and spatial cover/retry; [Player dispatcher](human-h8-player-dispatch-source.md), signal queue, retreat and position-move producers are now source-bound; [cover assignment00459740/task41](human-h8-player-cover-source.md), [vehicle-attack selector, native common task domain and Active firing callback](human-h8-command-fire-line-source.md) are now source-bound; other specialized task/effect producers, populated
-remaining reached offline action callbacks must also retain
-honest requirements until implemented or shown outside the selected path.
+pack→holster ammunition are now source-bound. [Placed16 and retreat continuation](human-h8-task-runtime-source.md) now bind actual placed motion, two-route choice and spatial cover/retry; [Player dispatcher](human-h8-player-dispatch-source.md), signal queue, retreat and position-move producers are now source-bound; [cover assignment00459740/task41](human-h8-player-cover-source.md), [vehicle-attack selector, native common task domain and Active firing callback](human-h8-command-fire-line-source.md) are now source-bound; remaining populated nonHuman owner callbacks retain honest H8.4 requirements. The last general inventory request bridge and handoff producer are recorded in the [H8.2 source closure](human-h8-human-receiver-closure.md).
 Type36 sound look selection and positive type34 singleton look require actual
 owners; no private empty registry is substituted. H8.4 owns Dog/attachment/
 Car/seat/Aircraft bodies. Follow actual reached dependencies rather than trying
@@ -70,7 +67,7 @@ The [occupied entry/follow](human-h8-entry-source.md) now binds driver/passenger
 
 The [specialized target follow-up](human-h8-special-target-source.md) now binds task22/vehicle attack, real vector/grenade aim, visibility/range/replan and actual occupant classification. Live Dog owner/Sight540 and other selected special families remain required.
 
-Current priority after the user’s return: finish the focused ordinary Human receiver boundary and its exact FRAME handoff before expanding conditional actor variants. Application currently declines before World activation; conditional Dog source alone does not enable mission entry. Preserve and finish reviewable in-flight source, retain honest H8.4 requirements, and do not count compile/link as game entry.
+Current priority after the user’s return: the focused ordinary Human receiver boundary is source-complete; establish its exact FRAME handoff and finish reached H8.4 dependencies before expanding conditional actor variants. Application currently declines before World activation; conditional Dog source alone does not enable mission entry. Preserve and finish reviewable in-flight source, retain honest H8.4 requirements, and do not count compile/link as game entry.
 
 Current implementation target: finish reached H8.2/H8.4 owners and containing
 H8.3 dependencies. [Projectile source](human-h8-projectile-source.md) binds

@@ -15963,21 +15963,26 @@
       "program": "client",
       "entry": "005a2b40",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005a2b40: Offline AI same-Human source1/2-to-empty-hand3 loading command/caller and source identity lookup; queued player/remote/nonoffline packet and general transfers excluded.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Actual Human inventory request routes general AI source/destination slots through SAME canonical World receiver; Player/Remote remains queued.",
+      "limitations": "Typed source/STL/RAII instead of original pointer/register/vtable/container ABI. Native73 policy checks use named Items/queue/World/engine endpoints; actual World/module and launcher i386 compile/link only. Non7 forwarding, nonHuman handoff EC/B0/19C owner and conditional H8.4 actors remain required. H8.5/application/desktop pending; no complete/absent or engine credit.",
       "evidence": [
         "recovered/game/human_loading_inventory.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_inventory_packet.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-human-receiver-closure.md",
+        "analysis/checkpoints/p2.2-human-h8-human-receivers-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "00587bf0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00587bf0: Offline AI same-Human source1/2-to-empty-hand3 loading command/caller and source identity lookup; queued player/remote/nonoffline packet and general transfers excluded. Runtime offline Active ammunition requests now reuse SAME general received-move/transfer owner for source6 to holster1, preserving transfer-before-non7-publication ordering.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Actual common AI move request reuses general received transfer and only requires non7 forwarding after successful effects.",
+      "limitations": "Typed source/STL/RAII instead of original pointer/register/vtable/container ABI. Native73 policy checks use named Items/queue/World/engine endpoints; actual World/module and launcher i386 compile/link only. Non7 forwarding, nonHuman handoff EC/B0/19C owner and conditional H8.4 actors remain required. H8.5/application/desktop pending; no complete/absent or engine credit.",
       "evidence": [
         "recovered/game/human_loading_inventory.h",
         "analysis/human-state-loading.md",
@@ -15985,7 +15990,11 @@
         "analysis/checkpoints/p2.2-20261109.json",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_inventory_packet.h",
+        "recovered/game/human_active_ai_commands.h",
+        "analysis/human-h8-human-receiver-closure.md",
+        "analysis/checkpoints/p2.2-human-h8-human-receivers-20261117.json"
       ]
     },
     {
@@ -20584,12 +20593,17 @@
       "program": "client",
       "entry": "005a2bb0",
       "status": "partial",
-      "coverage": "Same-Human weapon command identity lookup and offline AI B0 dispatch; reject queued player/remote paths before mutation.",
-      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "coverage": "Actual explicit-Human clothing eligibility before B0/item identity, then queued Player/Remote or general AI swap on same authority owner.",
+      "limitations": "Typed source/STL/RAII instead of original pointer/register/vtable/container ABI. Native73 policy checks use named Items/queue/World/engine endpoints; actual World/module and launcher i386 compile/link only. Non7 forwarding, nonHuman handoff EC/B0/19C owner and conditional H8.4 actors remain required. H8.5/application/desktop pending; no complete/absent or engine credit.",
       "evidence": [
         "recovered/game/human_loading_inventory.h",
         "analysis/human-equipment-loading.md",
-        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json",
+        "recovered/game/human_inventory_packet.h",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-human-receiver-closure.md",
+        "analysis/checkpoints/p2.2-human-h8-human-receivers-20261117.json"
       ]
     },
     {
@@ -47831,14 +47845,18 @@
       "program": "client",
       "entry": "00534bf0",
       "status": "partial",
-      "coverage": "Original producer rejects Human type3 before005A6380; nonHuman layout/capability remains required. No invented successful Human admission.",
-      "limitations": "Source-only typed/STL/RAII adaptation. Focused native checks use actual storage, inventory lookup/count/transfer and runtime registry; Human/item/frame/AI command endpoints are explicit doubles. Original object/virtual/allocator/SEH ABI and delegated engine bodies excluded. H8.4 occupied/nonHuman actor bodies remain separate. Actual World/frame and launcher i386 compile/link only; no loaded mission/application/desktop acceptance.",
+      "coverage": "Human-owned handoff producer preserves type3 rejection, exact required nonHuman predicate, false rejection and positive task24/false/1.5/notification publication.",
+      "limitations": "Typed source/STL/RAII instead of original pointer/register/vtable/container ABI. Native73 policy checks use named Items/queue/World/engine endpoints; actual World/module and launcher i386 compile/link only. Non7 forwarding, nonHuman handoff EC/B0/19C owner and conditional H8.4 actors remain required. H8.5/application/desktop pending; no complete/absent or engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_loot.h",
         "recovered/game/human_active_ai_commands.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-authority-body-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "recovered/game/human_loading_inventory.h",
+        "recovered/game/human_inventory_packet.h",
+        "analysis/human-h8-human-receiver-closure.md",
+        "analysis/checkpoints/p2.2-human-h8-human-receivers-20261117.json"
       ]
     },
     {

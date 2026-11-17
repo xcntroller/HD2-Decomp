@@ -211,6 +211,12 @@ template<class AI,class Actor,class Frames,class World>void produce_active_medic
     }
     start_active_target_task(ai,target,15u,false,1.5f,true,frames,world);delay_active_focused_task(ai,world);
 }
+//00534BF0 intentionally rejects Human3 BEFORE005A6380. Its nonHuman layout
+//predicate is a separate required owner; do not replace it with Actor capability.
+template<class AI,class Actor,class Frames,class World>void produce_active_handoff_task(AI& ai,Actor& target,Frames& frames,World& world){
+    if(target.base().type()==3||!world.active_handoff_native_predicate(target)){world.reject_active_command(*ai.human());return;}
+    start_active_target_task(ai,target,24u,false,1.5f,true,frames,world);
+}
 //Selected ordinary00458E50 task producers. Full task execution is separate;
 //unsupported producers throw before claiming publication or completion.
 template<class AI,class Actor,class Frames,class World>void produce_active_player_command(AI& ai,
@@ -264,9 +270,7 @@ template<class AI,class Actor,class Frames,class World>void produce_active_playe
         world.produce_active_target_grenade(ai,*target);return;
     case 24:
         if(!target)throw std::runtime_error("Active handoff producer dereferences native NULL target");
-        //00534BF0 really REJECTS type3 before005A6380; do not repair it.
-        if(target->base().type()==3){reject();return;}
-        world.produce_special_active_player_command(ai,action,target,secondary);return;
+        produce_active_handoff_task(ai,*target,frames,world);return;
     case 8:case 9:case 10:case 11:case 12:case 13:case 16:case 22:
         world.produce_special_active_player_command(ai,action,target,secondary);return;
     default:return; //Native unhandled command still publishes188 in the caller.

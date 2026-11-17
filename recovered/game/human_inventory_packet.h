@@ -3,6 +3,15 @@
 #include "game/human_inventory_lookup.h"
 #include "game/human_inventory_swap.h"
 namespace hd2::game {
+//005A2BB0: clothing eligibility precedes B0 and item identity reads. The
+//native source pointer is nonNULL for this explicit-Human request boundary.
+template<class Human,class Unavailable>bool human_inventory_swap_admitted(Human& human,Human& source,
+        std::int32_t selected_slot,Unavailable unavailable){
+    if(selected_slot!=4)return true;
+    if(human.properties.field1a0!=source.properties.field1a0)return false;
+    if(!unavailable(human)&&!unavailable(source))return false;
+    return !human.properties.flags1a4[1]&&!source.properties.flags1a4[1];
+}
 //005A2D50/005A2E10: authority is slot-scoped; presentation searches the
 //source's whole inventory and ignores the ordinary transfer result. Received
 //commands never reenter the queued B0+74 request producer.

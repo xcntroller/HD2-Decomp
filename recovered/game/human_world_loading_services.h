@@ -392,6 +392,14 @@ public:
         if(moved&&(mode_flags()&7u)!=7u)throw std::runtime_error("Human inventory request requires00587BF0 second command7 publication after successful transfer");
         return moved;
     }
+    template<class Human>bool human_inventory_swap_eligible(Human& human,Human& source,std::int32_t selected_slot){ //005A2BB0 prefix, before either item identity/B0 read.
+        return human_inventory_swap_admitted(human,source,selected_slot,[this](auto& actor){return this->human_unavailable(actor);});
+    }
+    template<class Human>bool request_human_inventory_swap(Human& human,std::int32_t current,std::int32_t current_slot,std::int32_t source,std::int32_t selected,std::int32_t selected_slot){ //00587E00, actual common B0 virtual78.
+        const bool moved=receive_human_inventory_swap(human,dependencies().world_actors.items(),*this,true,current,current_slot,source,selected,selected_slot);
+        if(moved&&(mode_flags()&7u)!=7u)throw std::runtime_error("Human inventory swap requires00587E00 command8 publication after successful swap");
+        return moved;
+    }
     template<class Actor>bool active_loot_target_dead(Actor& target){ //00534AF0 reads EC directly, not00538A60.
         if(target.base().type()!=3)throw std::runtime_error("Active loot admission requires actual nonHuman native EC field owner");
         return human_frame_signed_word(selection_human(target).properties.stats_ec[0])<1;
@@ -430,11 +438,7 @@ public:
         own();other();return moved;
     }
     template<class Human,class Entry>bool active_request_inventory_swap(Human& human,Entry current,std::int32_t current_slot,Human& source,Entry selected,std::int32_t selected_slot){ //005A2BB0 ->00587E00 ->005A2E90.
-        if(selected_slot==4){
-            if(human.properties.field1a0!=source.properties.field1a0)return false;
-            if(!human_unavailable(human)&&!human_unavailable(source))return false;
-            if(human.properties.flags1a4[1]||source.properties.flags1a4[1])return false;
-        }
+        if(!human_inventory_swap_eligible(human,source,selected_slot))return false;
         if(!current||!selected)throw std::runtime_error("Active inventory swap reached native NULL item identity dereference");
         auto& items=dependencies().world_actors.items();const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);
         const bool moved=receive_human_inventory_swap(human,items,*this,true,items.runtime_item(current).identity,current_slot,&source==&human?-1:source.base().id10(),items.runtime_item(selected).identity,selected_slot);
@@ -678,7 +682,10 @@ public:
         if(action>=8&&action<=13){if(!target)throw std::runtime_error("Seat approach producer dereferences native NULL target");
             const auto position=target->base().world_position(); //00458E50 copies cached Actor30, no model update.
             produce_active_seat_approach(state,*target,action,position,*this);return;}
-        throw std::runtime_error("Active command requires its specialized00534460..00535630 task producer");
+        throw std::logic_error("Active specialized producer received an unsupported internal selector");
+    }
+    template<class Actor>bool active_handoff_native_predicate(Actor&){
+        throw std::runtime_error("Handoff005A6380 requires actual nonHuman EC/B0/19C field owner (H8.4)");
     }
     template<class Actor>bool active_placed_motion_started(Actor& target){return dependencies().world_actors.runtime().human_placed_item(target).motion_started();}
     template<class Actor>auto active_placed_navigation_points(Actor& target){return dependencies().world_actors.runtime().human_placed_item(target).navigation_points();}

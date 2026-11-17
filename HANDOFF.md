@@ -7,7 +7,7 @@ H8.4 and other worktrees. PACK finished. No push/original EXE/DLL/Proton/Windows
 fixture execution. Heavy compilation and Ghidra SEQUENTIALLY; poll completion.
 No subagents/permanent tests. Commit verified source checkpoints and CONTINUE.
 Source commits need no invented desktop test; interactive delivery requires user
-acceptance. H8.1/H8.3 checked; H8.2/H8.4/H8.5/H8.6 and HUM matrix OPEN.
+acceptance. H8.1/H8.2/H8.3 SOURCE checked; H8.4/H8.5/H8.6 and HUM matrix OPEN.
 
 USER IS BACK and asks why H8 is still unfinished / whether work was sidetracked.
 I answered candidly: conditional Dog chain took too much priority over proving
@@ -20,7 +20,35 @@ continue until tasks complete or hard block on ANY progress; when H8 source-
 complete, verify HUM BEFORE matrix resolved_source, then FRAME on its branch.
 No question is pending. Do not infer loaded mission population from captures.
 
-## Latest verified source checkpoint
+## Latest verified Human receiver source checkpoint
+
+[H8.2 Human-owned closure](analysis/human-h8-human-receiver-closure.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-human-receivers-20261117.json).
+H8.2 Human-owned offline source is checked, with H8.4 conditional nonHuman
+owners/fields, H8.5 containing verification and H8.6 application/desktop OPEN.
+No arbitrary mission population or successful conditional-actor claim. MODE7
+initial/Script/Player selection proves nonRemote B0; kinds1/3/4/5/6/8 dispatch
+actual source;6 genuinely RETURNS before Runtime filter.7 requires non7 initial
+selection; mode guards retain respawn/visibility/fall/history/objective limits.
+
+Last real Human integration gap fixed: AI loading-inventory move/swap/weapon
+selection no longer enter old restricted same-Human/slot/fallback kernels.
+They use SAME completed general00587BF0/00587E00→005A2D50/2E90 World/Items/
+230/FPV/HUD owners. Player/Remote remain QUEUED. Clothing005A2BB0 eligibility
+precedes B0/item reads. General cross-Human/slots now source; non7 publication
+fails only AFTER success, as native. Legacy narrow helpers still exist but
+are no longer this AI call path. Native73 ASan/UBSan/leak checks PASS; actual
+full World/module both passes + directmove/swap/select_weapon/handoff i386PASS;
+forced O2 launcher/probePASS. Temps fingerprinted/removed; no heavy job running.
+No new function credit;34 complete/3699 partial(client3694+engine5), frozen18783.
+
+00534BF0 Human-owned producer now supplies whole reject/predicate/task24 flow.
+Actual nonHuman EC/B0/19C predicate remains H8.4 required at its native call;
+mock positives are NOT that producer. Generic specialized-producer guard now
+only rejects invalid internal selectors, not a missing ordinary Human producer.
+H8.2 closure details all continuing conditional guards; HUM matrix still PARTIAL.
+
+## Prior verified Dog source
 
 [Selected Dog controller owner/follow](analysis/human-h8-dog-controller-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json).
@@ -53,8 +81,8 @@ launcher PASS.4B0/53C/540/548 remain late-read optionals until actual activation
 ## Next: focused Human boundary / FRAME dependency triage
 
 Read latest p22-hum-h8-plan. The pending batch is now verified; consolidate its
-commit, then focus remaining H8.2 Human-owned boundaries before optional Dog.
-New guard-map WORK/human-h8-remaining-world-guards-20261117.txt is text evidence,
+commit, then use the H8.2 closure to refresh the FRAME dependency handoff and finish reached H8.4.
+Guard-map WORK/human-h8-remaining-world-guards-20261117.txt is text evidence,
 NOT an audit verdict: most entries are real invariant guards. Relevant actual
 positive requirements: action24 NonHumanEC predicate, populated type34/36 look/
 target, Aircraft20/Actor58 types14/5, non7/Remote/debug. Distinguish H8.4 owner
@@ -71,12 +99,11 @@ Player signals/cover, ShotMgr, hazard/water/damage and animation. Reuse.
 
 Action24: actual00534BF0 REJECTS Human3, then calls005A6380 on NONHuman layout.
 Native005A6380 reads signedActorEC first; if<=0 returnsfalse; then ActorB0,
-Actor19C !=1 and B0flags50 bit4000000. Current command24 rejects Human correctly,
-then calls produce_special_active_player_command, whose remaining generic guard
-has only this selector left (16/22/8..13 are implemented). Finishing Human-owned
-producer can expose exact required NonHuman predicate and use existing actual
-start_target_task(24,target,false,1.5,true), retaining rejection/order; do not
-invent nonHuman native fields or use type-specific capability substitute.
+Actor19C !=1 and B0flags50 bit4000000. Current command24 has actual produce_active_handoff_task with exact required
+active_handoff_native_predicate at native5A6380 read, then existing actual task24
+publication/notification. NonHuman predicate still throws: do not invent fields
+or substitute type-specific capability. This is H8.4, not an ordinary Human
+producer gap.
 Existing C/raw indexed in human-h8-remaining-human-path-index.txt.
 
 Human contact virtual58 only follows no-frameECphysics borrower, descriptor40,
