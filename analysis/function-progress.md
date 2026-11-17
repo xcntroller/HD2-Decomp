@@ -279,3 +279,8 @@ H8 Dog head presentation/resource (2026-11-17):005D7A10 adds one frozen
 client partial; combined34 complete/3733 partial(client3728, engine5), frozen
 18783. [Contract](human-h8-dog-head-presentation-source.md). No additional
 count for engine wrappers or partial activation-resource prefix. H8.4 open.
+
+H8 Dog Body/outer presentation (2026-11-17):005C1430/1600/18C0/1B80/1DB0 and
+005D5810 add six frozen client partials; combined34 complete/3739 partial
+(client3734, engine5), frozen18783. [Contract](human-h8-dog-body-presentation-source.md).
+Absent controller wrappers and engine calls earn no credit; full H8.4 stays open.

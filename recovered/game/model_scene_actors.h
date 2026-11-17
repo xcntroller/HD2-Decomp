@@ -51,6 +51,7 @@ public:
     std::unique_ptr<DogHeadAnimationLifetime> head_animation4e0;
     std::optional<Frame> head_marker4e4; //Native produced NULL remains distinct from cold.
     DogHeadLook head_look; //Actual Actor4E8..52C; live activation initializes it.
+    std::optional<bool> suspended530; //Actual005D4DB0 producer; no cold success.
     DogFrameHistory frame_history; //Actual Actor580/590/5A0, produced by activation.
     std::optional<Frame> sight_marker544; //Unproduced differs from a produced native NULL.
     std::uint32_t& field330=body_orders.current.field1c;

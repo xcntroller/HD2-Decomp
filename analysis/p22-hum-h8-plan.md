@@ -142,3 +142,9 @@ actual005D8070/005D82B0 and same-owner World bindings; actual presentation
 completes005D7A10 on SAME request/timer owner, with actual World frame/math and
 real animation-set lifetime. Full live005D4DB0/005D5390, Body/controller/actor
 frame and the selected H8.4 containing boundary remain open.
+
+[Dog Body and outer presentation](human-h8-dog-body-presentation-source.md) now
+completes005C18C0/005D5810 with same-owner live events, model interpolation,
+turn and actual World receivers; native70 and actual World/O2 links pass.
+Full activation/retirement, authority/controller decisions and selected containing
+H8.4 dependencies remain open; no application or desktop readiness promotion.

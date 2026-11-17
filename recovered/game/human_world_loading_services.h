@@ -6,6 +6,7 @@
 #include "game/dog_sight_metric.h"
 #include "game/dog_body_sound.h"
 #include "game/dog_body_frame.h"
+#include "game/dog_body_presentation.h"
 #include "game/dog_ai_controller.h"
 #include "game/human_ai_target_output.h"
 #include "game/model_scene_actors.h"
@@ -3331,6 +3332,19 @@ public:
         } queries{*this,dog};
         dog.head_look.present(dog_signed_word(elapsed),queries);
     }
+    template<class Dog>void update_dog(Dog& dog,bool authority,std::uint32_t elapsed){
+        if(authority)throw std::runtime_error("Dog authority frame requires actual005D5620 live Body/controller composition");
+        game::present_dog_scene_actor(dog,elapsed,*this,dependencies().scene.frames());
+    }
+    template<class Dog>void present_dog_body(Dog& dog,std::uint32_t elapsed){game::present_dog_body(dog,elapsed,*this,dependencies().scene.frames());}
+    template<class Dog>void dog_footstep(Dog& dog,std::int32_t material){
+        const auto entry=human_frame_signed_word(dependencies().car_definitions.materials().at(static_cast<std::size_t>(material)).word(0x24));
+        if(entry<0)return;
+        frontend::SpatialSoundRequest request;request.position=sight_position(dog.base().frame());request.entry=entry;
+        (void)dependencies().sound.emit(request);
+    }
+    template<class Dog>void poll_dog_manual_control(Dog&){throw std::runtime_error("Selected Dog controller1 requires actual005CF1B0 driver/input receiver");}
+    void dog_manual_camera_direction(const HumanVector& value){dependencies().camera.set_direction(value);}
     template<class Dog>void advance_dog_body(Dog& dog,std::uint32_t elapsed){advance_dog_body_frame(dog,elapsed,*this,dependencies().scene.frames(),dog.require_controller());}
     template<class Actor>void apply_dog_actor_damage(Actor& actor,std::uint32_t kind,float amount,const HumanVector& point,
             const HumanVector& direction,SceneActor<typename Dependencies::ActorFrames>* source,std::uint32_t extra){

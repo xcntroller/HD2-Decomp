@@ -151,6 +151,7 @@ public:
     Frame find_physics_replacement_frame(Frame model,const std::string& name){return call<Frame>(model,0x48,name.c_str(),std::uint32_t{0xffff});}
     void detach_physics_replacement_frame(Frame model,Frame frame){call<void>(model,0x80,frame);}
     void physics_replacement_position(Frame model,const Vector& position){call<void>(model,8,position.data());}
+    void dog_place_body_scene(Frame model,const Vector& position){call<void>(scene_.frame(),0xec,model,position.data());} //005C1430, computed point with Y+.5.
     void dog_body_link_sector(Frame model,Frame sector){call<void>(model,0x38,sector,std::uint32_t{0});} //005C8B30 ignores engine link status.
     Matrix dog_cached_world_matrix(Frame model){return field<Matrix>(model,0x40);} //005CDE60, no additional UpdateWMatrixProc.
     void physics_replacement_direction(Frame model,const Vector& direction){call<void>(model,0xc,direction.data(),std::uint32_t{0});}

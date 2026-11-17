@@ -19,6 +19,9 @@ public:
     virtual void advance_motion(std::int32_t,const Vector&)=0;
     virtual void decelerate(const Vector&,std::int32_t)=0;
     virtual const Vector& movement()const=0;
+    virtual bool consume_changed()=0;
+    virtual std::int32_t take_event_count(unsigned)=0;
+    virtual std::uint32_t event_value(unsigned,unsigned)const=0;
 };
 //005C6D10/6E10/7430/6EE0. Clip base is Actor+A0=Body+10. Model10 is
 //the SAME ActorB0 slot. Two group records alternate engine slots0/1 and2/3;
@@ -54,6 +57,7 @@ public:
     const auto& groups()const{return groups_;}const auto& blends()const{return blends_;}
     auto& group(unsigned index){require();return groups_.at(index);}auto& blend(unsigned index){require();return blends_.at(index);}
     bool changed()const{return changed_;}
+    bool consume_changed()override{require();const bool value=changed_;changed_=false;return value;}
     void bind(const Requests& requests)override{ //005C7430, caller's two five-word descriptors.
         require();
         for(unsigned n=0;n!=2;++n){const auto& request=requests[n];if(!request.clip)continue;
@@ -79,7 +83,8 @@ public:
     void rate(unsigned index,float value)override{require();const auto& g=groups_.at(index);if(g.slot!=-1)blends_.at(slot(index,g.slot)).rate=value;} //005C7930.
     void pause(unsigned index,std::int32_t lock){require();auto& g=groups_.at(index);if(!g.paused){blends_.at(slot(index,g.slot)).rate=0;g.lock=lock;}} //005C7A70, absent frozen.
     void resume(unsigned index){require();auto& g=groups_.at(index);if(g.lock){g.lock=-1;blends_.at(slot(index,g.slot)).rate=1;}} //005C7AB0, absent frozen.
-    std::int32_t take_event_count(unsigned index){require();auto& g=groups_.at(index);const auto result=g.event_count;g.event_count=0;return result;} //005C7AE0.
+    std::int32_t take_event_count(unsigned index)override{require();auto& g=groups_.at(index);const auto result=g.event_count;g.event_count=0;return result;} //005C7AE0.
+    std::uint32_t event_value(unsigned group,unsigned index)const override{require();return required(groups_.at(group).events.at(index),"Dog Body event reads unproduced clip marker");}
     long double fraction(unsigned index){ //005C7B00, unlike tick its inactive-negative path returns1.
         require();fraction_=0;const auto& g=groups_.at(index);if(g.slot==-1)return fraction_;
         const auto& b=blends_.at(slot(index,g.slot));if(b.elapsed<0)return 1.L;

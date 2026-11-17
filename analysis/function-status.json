@@ -51488,6 +51488,96 @@
         "analysis/human-h8-dog-head-presentation-source.md",
         "analysis/checkpoints/p22-h8-dog-head-presentation-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005c1430",
+      "status": "partial",
+      "coverage": "Actual same-Body model interpolation: free/finite signed clocks, extended/FLOAT spills, interval retirement, frame08 then computed Y+.5 SceneEC then fresh model24, callback/failure prefixes and232 retirement.",
+      "limitations": "Source-only typed owners/STL/RAII replace native memory/vtable/allocator/SEH ABI. Native audit explicitly doubles frame/control/clip/SOUND endpoints; actual World i386 compile/link only. Invalid/unproduced state remains guarded; scratch W provenance unclaimed. Full live Dog activation/retirement/authority/controller, selected containing H8.4 and desktop delivery remain open.",
+      "evidence": [
+        "recovered/game/dog_body_presentation.h",
+        "recovered/game/dog_clip_mixer.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-dog-body-presentation-source.md",
+        "analysis/checkpoints/p22-h8-dog-body-presentation-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c1600",
+      "status": "partial",
+      "coverage": "Actual same-clip group event count consume/live word dispatch; material24 footstep request, Actor direction jump/deceleration with LAST posture, and268 bite event publication/reset.",
+      "limitations": "Source-only typed owners/STL/RAII replace native memory/vtable/allocator/SEH ABI. Native audit explicitly doubles frame/control/clip/SOUND endpoints; actual World i386 compile/link only. Invalid/unproduced state remains guarded; scratch W provenance unclaimed. Full live Dog activation/retirement/authority/controller, selected containing H8.4 and desktop delivery remain open.",
+      "evidence": [
+        "recovered/game/dog_body_presentation.h",
+        "recovered/game/dog_clip_mixer.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-dog-body-presentation-source.md",
+        "analysis/checkpoints/p22-h8-dog-body-presentation-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c18c0",
+      "status": "partial",
+      "coverage": "Composed actual Dog Body presentation: speed ramp, clip rate/tick, turn/camera/direction, changed anim2 reset, native clock/events/model interpolation on same owners; selected manual controller1 retains exact receiver requirement.",
+      "limitations": "Source-only typed owners/STL/RAII replace native memory/vtable/allocator/SEH ABI. Native audit explicitly doubles frame/control/clip/SOUND endpoints; actual World i386 compile/link only. Invalid/unproduced state remains guarded; scratch W provenance unclaimed. Full live Dog activation/retirement/authority/controller, selected containing H8.4 and desktop delivery remain open.",
+      "evidence": [
+        "recovered/game/dog_body_presentation.h",
+        "recovered/game/dog_clip_mixer.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-dog-body-presentation-source.md",
+        "analysis/checkpoints/p22-h8-dog-body-presentation-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c1b80",
+      "status": "partial",
+      "coverage": "Actual Dog presentation direction turn from Body180 to Actor40, real constant-true clamp, late controller/LAST posture rate, snap/rotate with preserved ActorY and231 publication.",
+      "limitations": "Source-only typed owners/STL/RAII replace native memory/vtable/allocator/SEH ABI. Native audit explicitly doubles frame/control/clip/SOUND endpoints; actual World i386 compile/link only. Invalid/unproduced state remains guarded; scratch W provenance unclaimed. Full live Dog activation/retirement/authority/controller, selected containing H8.4 and desktop delivery remain open.",
+      "evidence": [
+        "recovered/game/dog_body_presentation.h",
+        "recovered/game/dog_clip_mixer.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-dog-body-presentation-source.md",
+        "analysis/checkpoints/p22-h8-dog-body-presentation-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c1db0",
+      "status": "partial",
+      "coverage": "Actual five-byte Body turn admission returns AL1/RET4 and leaves caller angle untouched; consumed by005C1B80, not an invented eligibility implementation.",
+      "limitations": "Source-only typed owners/STL/RAII replace native memory/vtable/allocator/SEH ABI. Native audit explicitly doubles frame/control/clip/SOUND endpoints; actual World i386 compile/link only. Invalid/unproduced state remains guarded; scratch W provenance unclaimed. Full live Dog activation/retirement/authority/controller, selected containing H8.4 and desktop delivery remain open.",
+      "evidence": [
+        "recovered/game/dog_body_presentation.h",
+        "recovered/game/dog_clip_mixer.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-dog-body-presentation-source.md",
+        "analysis/checkpoints/p22-h8-dog-body-presentation-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d5810",
+      "status": "partial",
+      "coverage": "Actual outer Dog presentation through Runtime/World: produced530/final death gate, frame history, current controller14, head/Body composition and fresh model tick/update; live initialization still required.",
+      "limitations": "Source-only typed owners/STL/RAII replace native memory/vtable/allocator/SEH ABI. Native audit explicitly doubles frame/control/clip/SOUND endpoints; actual World i386 compile/link only. Invalid/unproduced state remains guarded; scratch W provenance unclaimed. Full live Dog activation/retirement/authority/controller, selected containing H8.4 and desktop delivery remain open.",
+      "evidence": [
+        "recovered/game/dog_body_presentation.h",
+        "recovered/game/dog_clip_mixer.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_frame_runtime.h",
+        "analysis/human-h8-dog-body-presentation-source.md",
+        "analysis/checkpoints/p22-h8-dog-body-presentation-20261117.json"
+      ]
     }
   ]
 }

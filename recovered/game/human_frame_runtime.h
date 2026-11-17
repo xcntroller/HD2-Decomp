@@ -44,13 +44,10 @@ public:
         }
         throw std::runtime_error("Human frame requires actual Remote B0 frame receiver");
     }
-    //The module facade instantiates all family branches, including unsupported
-    //Dog activation. Keep those requirements callable and failing at selection;
-    //a missing C++ member must not prevent the supported Human frame from linking.
-    //These guards recover no Dog behavior and earn no function credit.
-    template<class Dog>void update_dog(Dog&,bool authority,std::uint32_t){
-        throw std::runtime_error(authority?"Dog frame requires actual005D5620 live Body/controller":"Dog frame requires actual005D5810 live Body/controller");
-    }
+    //Same-World Dog presentation is source-bound. Authority and live activation
+    //retain their exact required receivers; a named failure still links all
+    //module branches without supplying a successful unavailable implementation.
+    template<class Dog>void update_dog(Dog& dog,bool authority,std::uint32_t elapsed){world_.update_dog(dog,authority,elapsed);}
     template<class Actor>void sight_exclude_dog(Actor actor){world_.sight_exclude_dog(actor);}
     template<class Actor>std::optional<HumanVector> sight_dog_origin(Actor actor){return world_.sight_dog_origin(actor);}
     template<class Actor>HumanMatrix sight_dog_head_matrix(Actor actor){return world_.sight_dog_head_matrix(actor);}

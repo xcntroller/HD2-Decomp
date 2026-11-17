@@ -71,6 +71,7 @@ public:
         const float square=static_cast<float>((z*z+y*y)+x*x);std::uint32_t bits;std::memcpy(&bits,&square,4);
         return dog_signed_word(bits)<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1)<9.99999993922529e-09f?1.L:std::sqrt(static_cast<long double>(square));
     }
+    void dog_control_presentation(std::uint32_t)override{} //005CF0C0/005CFA10→005CE180, genuine RET4.
     void dog_control_publish_inputs()override{publish_dog_controller_inputs(state_);}
     bool consume_flag(){const bool result=state_.flagb8;state_.flagb8=false;return result;} //005CB380.
     void move(void* movement){ //005CE700: native bitwise complement test is tautologically nonzero.
