@@ -1,4 +1,8 @@
-# Hidden & Dangerous 2 reconstruction
+# THIS PROJECT IS CURRENTLY DORMANT. THERE IS [ANOTHER DECOMP](https://github.com/RellHaiser/HD2_SabreSquadron/) THAT IS WAY FURTHER AHEAD.
+I might pick this up sometime, as it has different philosophies and implementations but probably not. Guess it remains to be seen.
+
+
+## Hidden & Dangerous 2 reconstruction
 
 Rebuilding the base game as readable C++, initially using its original LS3D
 engine. Original game assets and `LS3DF.dll` are required.
