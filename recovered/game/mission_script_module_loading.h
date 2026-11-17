@@ -9,6 +9,7 @@
 #include "game/mission_script_variables.h"
 #include "game/mission_script_rotations.h"
 #include "game/mission_script_output_commands.h"
+#include "game/mission_script_door_commands.h"
 
 namespace hd2::game {
 
@@ -22,12 +23,12 @@ public:
     using Visibility=MissionScriptVisibility<Frames,Snapshots,Models>;
     MissionScriptModuleLoading(frontend::ClientModuleRegistry& registry,Frames& frames,Files& files,Runtime& runtime,
                                 Models& models,SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,MissionScriptVariables& variables)
-        :registration_(registry,4,"Script"),frames_(frames),files_(files),runtime_(runtime),resource_(std::move(resource)),mode_(mode),
+        :registration_(registry,4,"Script"),frames_(frames),files_(files),runtime_(runtime),resource_(std::move(resource)),mode_(mode),packets_(packets),
          contexts_(frames,files,runtime,resource_),frame_commands_(frames,contexts_),snapshots_(frames),rotations_(frames,snapshots_),visibility_(frames,snapshots_,models,packets,mode),variables_(variables){}
     MissionScriptModuleLoading(frontend::ClientModuleRegistry& registry,Frames& frames,Files& files,Runtime& runtime,
                                 Models& models,SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,MissionScriptVariables& variables,
                                 frontend::ClientModuleRegistration& shared_registration)
-        :registration_(registry,shared_registration,4,"Script"),frames_(frames),files_(files),runtime_(runtime),resource_(std::move(resource)),mode_(mode),
+        :registration_(registry,shared_registration,4,"Script"),frames_(frames),files_(files),runtime_(runtime),resource_(std::move(resource)),mode_(mode),packets_(packets),
          contexts_(frames,files,runtime,resource_),frame_commands_(frames,contexts_),snapshots_(frames),rotations_(frames,snapshots_),visibility_(frames,snapshots_,models,packets,mode),variables_(variables){}
     auto& registration(){return registration_.get();}auto& contexts(){return contexts_;}auto& variables(){return variables_;}
     Runtime& runtime(){return runtime_;} //Containing source identity check, no new original-function credit.
@@ -73,6 +74,7 @@ public:
     }
     std::optional<bool> execute(typename Contexts::Context& context,const MissionScriptInstruction& instruction) {
         if(const auto result=frame_commands_.execute(context,instruction,runtime_))return result;
+        if(const auto result=execute_mission_script_door_command(frames_,context,instruction,packets_,runtime_))return result;
         if(const auto result=execute_mission_script_output(context,instruction,runtime_))return result;
         if(const auto result=variables_.execute(context,instruction,runtime_))return result;
         if(const auto result=snapshots_.execute(context,instruction,runtime_))return result;
@@ -97,7 +99,7 @@ public:
     }
 private:
     frontend::ClientModuleBinding registration_;
-    Frames& frames_;Files& files_;Runtime& runtime_;std::string resource_;std::uint32_t& mode_;
+    Frames& frames_;Files& files_;Runtime& runtime_;std::string resource_;std::uint32_t& mode_;SessionBroadcastPackets& packets_;
     Contexts contexts_;MissionScriptFrameCommands<Frames,Contexts> frame_commands_;Snapshots snapshots_;MissionScriptRotations<Frames,Snapshots> rotations_;Visibility visibility_;MissionScriptVariables& variables_;MissionScriptBindings bindings_; //SAME process module4 bank, not reset by world destruction/finish.
     std::vector<MissionScriptBindings::Binding> failed_bindings_;
     std::array<std::uint32_t,5> fields824_{};std::uint32_t timer_=0;bool loaded_=false,flag11_=false,flag825_=false,activation_started_=false;

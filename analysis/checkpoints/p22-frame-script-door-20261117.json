@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "8d0d1f2",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-script-door-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/mission_script_door_commands.h",
+      "bytes": 1498,
+      "sha256": "2d680ea1398064b18ade7f17b4b96aee7bfc34c92926a60e63760bf37f4eef4e"
+    },
+    {
+      "path": "recovered/game/mission_script_module_loading.h",
+      "bytes": 7875,
+      "sha256": "e0389de747f2815313363b725c54affce5317cb9436d7d9323bd8b96423d8ef9"
+    }
+  ],
+  "native_checks": 48,
+  "native_sanitizers": "ASan/UBSan/leaks PASS",
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-native-run.log",
+      "bytes": 65,
+      "sha256": "af4fb35e279f5627f8db725b4920936ed63337458d80e1ebc524f439b5d66b51"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-index.txt",
+      "bytes": 6277,
+      "sha256": "535d7633453f90a8465f347d58b8edadc5d9afd7e7dac2af33210d2db6aa3aeb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-dispatch.json",
+      "bytes": 197,
+      "sha256": "f0cd157d54448dbbdf51df3beb8622d3c9e648c41a8660dd4dc49e85282bd216"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-dispatch.asm",
+      "bytes": 2465,
+      "sha256": "edc4eac0e03a0d6a640700f659686bcc32aac2b2856f0a203ace0a9c93ee32da"
+    }
+  ],
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/application_launch.exe",
+      "bytes": 12871168,
+      "sha256": "a27a24a5392a6769718dd23d2c9f14f7d30c89b1b68e56166e2027c05285a574"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/host-output.log",
+      "bytes": 259261,
+      "sha256": "f2e99e548ecbe7a5a7115a2212a98d7b69613368d3a16d0a11406e10a9b65c50"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/host-runtime.log",
+      "bytes": 263259,
+      "sha256": "8fdc9441b6af5feb1de4cf130091cb62b7749091f5a03daa372df6f63a8e656c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/inputs.json",
+      "bytes": 993,
+      "sha256": "23277ae5eb8c2fe6bf06a7a0d94b97807933b18d8012a31ac93bdde5af8287a5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/steam-0.log",
+      "bytes": 342788,
+      "sha256": "43017301ef61ea3b3bad7d1479876c7173a7d35995435fc405944911915c12b0"
+    }
+  ],
+  "review_recoverable_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-review-final.patch",
+    "bytes": 120636,
+    "sha256": "ef3937413691c2c6c135a5e313ac9f0e30687bdd87436c08e5a0425a88c68beb"
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-native.cpp",
+      "bytes": 4530,
+      "sha256": "a294bda99f29f79204b5a5a8d7a68e2e30c9cc5bced2a9bd8f4ff981b3e35a59"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-door-native",
+      "bytes": 2532144,
+      "sha256": "fefe7db30d52efbc79c15e979389164885d02d186649566b2c40ce19f5c7c257"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "gameplay_desktop_verified": false,
+  "full_frame_source_complete": false,
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "matrix_reconciliation": "partially_resolved",
+  "agent_executed_original_dll_proton_or_windows": false,
+  "actual_result": "Prior user run a27a24a5 completes activation/render/fixed/input/update; later unreconstructed opcode154 exits result1. Revised Door candidate awaits actual desktop run.",
+  "limitations": [
+    "Typed native owners/STL/RAII do not establish original ABI equivalence. Frame/reference endpoints are explicit native audit leaves; actual containing World is compile/link verified only.",
+    "Other script commands remain required; FRAME/HUM/OWN and stable scene/control/presentation remain unaccepted. Interactive overlay remains uncommitted."
+  ],
+  "built_artifacts": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+      "bytes": 12874240,
+      "sha256": "b4708c75d80a6a1399cf8ebe6ddc9735510251b5503fae9e811287276abb91de"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "66571ce39e24dce097d5977653fb277c65773ba64a8828c1ade813460e9d6515"
+    }
+  ],
+  "staged_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+    "bytes": 12874240,
+    "sha256": "b4708c75d80a6a1399cf8ebe6ddc9735510251b5503fae9e811287276abb91de"
+  },
+  "full_actual_i386_O2_Werror_build": "PASS application-launch startup-probe",
+  "stage_only": "PASS"
+}

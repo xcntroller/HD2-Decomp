@@ -12,12 +12,16 @@ update complete. Later script execution exits on required command154 DOOR_Lock.
 Clean result1, no access violation. Exact exe/logs WORK/first-frame-script154-return.
 No stable scene/control/presentation acceptance.
 
-NEXT: actual base00416E10 opcode9A (compressed dispatch41/004179xx): frame pool90
-->EC actor0 type6, integer second operand ->005FF5F0 unlock /005FF650 lock using
-SAME Door230 key, ignore result, then00416CF0 advance; missing actor returns false.
-Existing Door.key_lock already owns actual linked mutation/packet receiver. Read
-raw dispatcher mapping before implementation. Index00416E10 already queried;
-typed export script-actor-command-typed-required/00416e10.c has exact branch.
+CURRENT correction: base00416E10 opcode9A DOOR_Lock now uses actual pool90/EC
+Door, integerA0, its own230 key and existing005FF5F0/005FF650 receiver. SAME process
+packets, ignoredbool/guarded00416CF0, missing/wrong actor basefalse retained.
+Native48 actual Context/Door/linked/packet/PC/lifetime ASan/UBSan/leak checks PASS.
+[Contract](analysis/p22-frame-script-door-source.md),
+[receipt](analysis/checkpoints/p22-frame-script-door-20261117.json).
+Full actual i386 O2/Werror application/probe build and stage-only PASS.
+Staged candidate SHA256 b4708c75d80a6a1399cf8ebe6ddc9735510251b5503fae9e811287276abb91de.
+NEXT: actual user continuation; inspect latest logs and first concrete failure.
+No agent execution. Temporary native fixtures fingerprinted/removed.
 
 Positive Player decoration0047F4E0->0047FAE0->reverse0047F150/0047F200 is now
 source-bound: actual posture/repeated FPV/velocity, model/world/local-axis/alpha
@@ -69,7 +73,7 @@ REVIEW: `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
 edebd81 + preserved OWN interactive overlay/later FRAME source. Mixed staged and
 unstaged is expected, not a merge conflict. Interactive app adapter remains
 UNCOMMITTED pending actual user desktop acceptance per AGENTS. Source-only main
-fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-decoration-contact-review-final.patch includes
+fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-script-door-review-final.patch includes
 all untracked collision/decorations/input/water headers; fingerprinted in receipt. No accepted game yet.
 
 Desktop command, USER ONLY:
