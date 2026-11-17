@@ -148,3 +148,9 @@ with the denominator18,783 unchanged. Subsequent user direction postpones the
 standalone completion pass: bring required producer/lifetime/startup or cursor
 work into the [Phase2 delivery milestones](phase2-delivery-plan.md) when needed.
 The previous numerical/owner batch is retained as backlog, not the next task.
+
+2026-11-17 application follow-up: the portable manager output allocation now
+preserves the original63 logical/64 allocated word boundary and SAME mutable
+controller/Human/HUD loans. Raw client ABI bodies remain unchanged.
+[Current allocation contract](p22-frame-input-allocation-source.md); actual
+Space-to-continue acceptance remains separate.

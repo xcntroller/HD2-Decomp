@@ -3,6 +3,7 @@
 
 #include "frontend/opening_video.h"
 #include "frontend/cleanup.h"
+#include "input/binding_output_words.h"
 #include <cstring>
 #include <memory>
 #include <limits>
@@ -16,10 +17,12 @@ struct WritableControllerInput {std::uint32_t* first;std::uint32_t* second;};
 //Kind1 consumes bindings in the SAME mutable process vectors exposed by
 //006C72B0. Recover writable provenance from their owner, never a const_cast of
 //an arbitrary ApplicationState input argument. No copy/re-poll changes order.
-inline WritableControllerInput writable_controller_input(
-        std::vector<std::uint32_t>& first,std::vector<std::uint32_t>& second,
+template<class Buffer>std::size_t writable_controller_word_count(const Buffer& buffer){return buffer.size();}
+inline std::size_t writable_controller_word_count(const input::BindingOutputWords& buffer){return buffer.writable_size();}
+template<class First,class Second>inline WritableControllerInput writable_controller_input(
+        First& first,Second& second,
         const std::uint32_t* first_view,const std::uint32_t* second_view){
-    if(first.size()<64||second.size()<64||first_view!=first.data()||second_view!=second.data())
+    if(writable_controller_word_count(first)<64||writable_controller_word_count(second)<64||first_view!=first.data()||second_view!=second.data())
         throw std::invalid_argument("Game input requires the actual two mutable64-word controller views");
     return {first.data(),second.data()};
 }
@@ -27,8 +30,8 @@ inline WritableControllerInput writable_controller_input(
 // 006c72b0: expose the selected vector's begin pointer without consuming it.
 // An empty vector leaves the caller's output untouched; only the low mode bit
 // selects the second buffer. Native storage replaces the original vector ABI.
-inline std::int32_t query_controller_input(const std::vector<std::uint32_t>& first,
-                                          const std::vector<std::uint32_t>& second,
+template<class First,class Second>inline std::int32_t query_controller_input(const First& first,
+                                          const Second& second,
                                           const std::uint32_t*& output,
                                           std::uint8_t mode) {
     const auto& selected = (mode & 1u) ? second : first;

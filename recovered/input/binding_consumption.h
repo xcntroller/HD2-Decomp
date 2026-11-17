@@ -19,7 +19,7 @@ template<class Clear>void consume_binding_scan(const BindingInputState& state,st
 class BindingInputViews {
 public:
     BindingInputViews(BindingInputState& state,std::uint32_t* first=nullptr,std::uint32_t* second=nullptr,std::size_t count=0):state_(state){
-        if(!first||!second){first_=state.first.data();second_=state.second.data();count_=std::min(state.first.size(),state.second.size());}
+        if(!first||!second){first_=state.first.data();second_=state.second.data();count_=std::min(state.first.writable_size(),state.second.writable_size());}
         else{first_=first;second_=second;count_=count;}
         if(count_<state.bindings.size())throw std::invalid_argument("Input views do not cover actual binding records");
     }

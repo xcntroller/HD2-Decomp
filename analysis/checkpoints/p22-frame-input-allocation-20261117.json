@@ -1,0 +1,269 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "e341c06",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-input-allocation-source.md",
+  "actual_desktop_result": "cb8b636c activates loaded1/status5, completes Scene78 render and fixed-update, then handles64-word input-owner guard and exits result1. Actual startup logical input words63/63. No access violation in this run.",
+  "gameplay_desktop_verified": false,
+  "stable_world_presentation_accepted": false,
+  "agent_executed_original_dll_proton_or_windows": false,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "native_checks": 34209,
+  "source_files": [
+    {
+      "path": "recovered/input/binding_output_words.h",
+      "bytes": 3785,
+      "sha256": "0a97c134fdaa3dcb4e2ce2ba51d32b0da169e4b0e000319ebe0dbbb745e4a144"
+    },
+    {
+      "path": "recovered/input/binding_producer.h",
+      "bytes": 9005,
+      "sha256": "3c398524a7a8812a9793ce5b4a5cf55e8c665d9979b723fab52b80f341ce107f"
+    },
+    {
+      "path": "recovered/input/input_manager.h",
+      "bytes": 7043,
+      "sha256": "eeec8e4375a7938aa146a35ebfcfc210e402667ce16273f24ee4c646e5cdd11e"
+    },
+    {
+      "path": "recovered/input/binding_consumption.h",
+      "bytes": 2665,
+      "sha256": "4e18b15aa15581c0f3339ff0591636dae2cdd7d71e0b72d41efba1ca60496f1c"
+    },
+    {
+      "path": "recovered/frontend/application_controller.h",
+      "bytes": 13631,
+      "sha256": "1a229e2cd9ed603f5e75886ea58b36db7d06e2b260eddbe324bee45aeaa95c1f"
+    }
+  ],
+  "unchanged_original_abi_source": {
+    "path": "recovered/input/client_input.h",
+    "bytes": 15382,
+    "sha256": "50526fc5bf19f9cabc324af66bac793169d875b596fd3589af2ca8efb30d864c"
+  },
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/application_launch.exe",
+      "bytes": 12853760,
+      "sha256": "cb8b636cebe29036d9c063bd18fdba9f2facb6d318807a156bcab571993c6c28"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/host-output.log",
+      "bytes": 258827,
+      "sha256": "6440b1d9d8e81a3c28100672cd6c215b4b1e29998a579adfb2d30e8d18e0e528"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/host-runtime.log",
+      "bytes": 262817,
+      "sha256": "717ab3de3c9d18c3f55fb226f650acc2b655157038e716d6141d04a2d53908b2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/inputs.json",
+      "bytes": 993,
+      "sha256": "d5b5c3275aa7c710f86f1bd12a5c37bad9bdaf256749d9de15e54c0c20d9ba99"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-first-frame-input-return/steam-0.log",
+      "bytes": 336370,
+      "sha256": "eb069385fedbcda5cfae0f5ead11d01149589c795540e1d5de04c83848fd07ab"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-growth-original/0045ccc0.c",
+      "bytes": 3421,
+      "sha256": "e19b0b1c2c2884c5663cae43d18b11c2c5b2459d99d40bc2dcea143da2c2559d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-growth-original/0045ccc0.json",
+      "bytes": 8619,
+      "sha256": "6bc72761428c377fda015e05cb96ce6d217dd13b083a0750ad7911b11afa19f8"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/launch-controller-finalizers/006c72b0.c",
+      "bytes": 735,
+      "sha256": "58dd88df0f410626c3e24b9f8f75eb82b8a28371984f1f3d7465ee9556fc28f3"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/launch-controller-helpers/006c31d0.c",
+      "bytes": 316,
+      "sha256": "2b0a3ad6ecb5271cd6711d11b1144d86659824a08aca14646d5446479d2cc68f"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/input-binding-installation/006c7480.c",
+      "bytes": 4483,
+      "sha256": "9aefbf2b29ac5ed1103494aeb046cc34c768cd77eab0caf2fbbf225db5793efa"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/input-binding-installation/006c7480.json",
+      "bytes": 13817,
+      "sha256": "8a0baafae7a469d32c5f2795a787f847f7f30ebc12b7ed21c9049a8a5a8f9041"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/input-manager-lifetime/006c6a20.c",
+      "bytes": 667,
+      "sha256": "bd73c34ae7197599dc4e5a12647fea7198abd63b504cada419137b1a1526a03e"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/input-binding-context/006a8c00.c",
+      "bytes": 16424,
+      "sha256": "493fd19f6204e66cb237f1617613103d9581bc47d5c927eb8f9f35ecf996e23a"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/input-binding-context/006a8690.c",
+      "bytes": 184,
+      "sha256": "e8ce1027aae8882488b88b6091e3cfa5c6cbcffbb3dad0180ece0ba69a2120e5"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-allocation-index.txt",
+      "bytes": 1566,
+      "sha256": "6a156d5cd40ef9f0b8b42b30144073c5d9bc9bb7d23c4a2435962619c0dc8802"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-context-index.txt",
+      "bytes": 10436,
+      "sha256": "91b50cb62703e2ec333bf331e0af5e159f783a685cfdc76f52057c2baa7dd2bf"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-growth-index.txt",
+      "bytes": 11717,
+      "sha256": "c5cdef722b0ac0c28bff7c9277aac76b6e880ede3e80776b700b00a8f9037c70"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-index.txt",
+      "bytes": 14200,
+      "sha256": "75ad3ed04a05e1a0e30fdce0bf55d6cf247ce60d038de438bca5c6714613e9f0"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-native-run.log",
+      "bytes": 81,
+      "sha256": "4113445844a537f4ec8a6dd5c4dc6024363ccda2bad3c1d41fa601d24397e91a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-growth-export.log",
+      "bytes": 4464,
+      "sha256": "9e00875d4f9c62ea08a409059ada3e591684478648d90bad95e39892a719bd99"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-function-check.log",
+      "bytes": 437,
+      "sha256": "3b7b5583389bd9dfe5db7912c7a84170b4de68e23efef45e31b79b11eae4d292"
+    }
+  ],
+  "review": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+    "detached_base": "edebd81",
+    "interactive_overlay_committed": false,
+    "source_files": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/input/binding_output_words.h",
+        "bytes": 3785,
+        "sha256": "0a97c134fdaa3dcb4e2ce2ba51d32b0da169e4b0e000319ebe0dbbb745e4a144"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/input/binding_producer.h",
+        "bytes": 9005,
+        "sha256": "3c398524a7a8812a9793ce5b4a5cf55e8c665d9979b723fab52b80f341ce107f"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/input/input_manager.h",
+        "bytes": 7043,
+        "sha256": "eeec8e4375a7938aa146a35ebfcfc210e402667ce16273f24ee4c646e5cdd11e"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/input/binding_consumption.h",
+        "bytes": 2665,
+        "sha256": "4e18b15aa15581c0f3339ff0591636dae2cdd7d71e0b72d41efba1ca60496f1c"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/application_controller.h",
+        "bytes": 13631,
+        "sha256": "1a229e2cd9ed603f5e75886ea58b36db7d06e2b260eddbe324bee45aeaa95c1f"
+      }
+    ],
+    "built_artifacts": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+        "bytes": 12854784,
+        "sha256": "b5ed6752615d72f4094718cee2fc95940e3cbdf1d6fe85345a3ffd758b7a492b"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+        "bytes": 1176576,
+        "sha256": "52d5cd301ca763a37046d9eb5ad40948cd940dcd413958cfb81153e0f7c26960"
+      }
+    ],
+    "staged_artifact": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 12854784,
+      "sha256": "b5ed6752615d72f4094718cee2fc95940e3cbdf1d6fe85345a3ffd758b7a492b"
+    },
+    "recoverable_patch": {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-review-final.patch",
+      "bytes": 99319,
+      "sha256": "e73f0621b045b21011b56ecfd1939926d0465f0d458307ed8ceca77b63b46c33"
+    }
+  },
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-native.cpp",
+      "bytes": 5477,
+      "sha256": "e24059eec703f9f01367d236d7cfd73e7f68e4715feb716f21f390c6c5a3aa08"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-native",
+      "bytes": 965592,
+      "sha256": "773ffc8a6027867448fa6a3a2d9805544e2bdc14aad7faa8e38b33f657aab9f3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-i386.cpp",
+      "bytes": 686,
+      "sha256": "a41fae3f8e9c883d3972fdc5483bcd99b2819b2b5f74a835c168e455021b7444"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-input-i386.o",
+      "bytes": 10985,
+      "sha256": "7115aa3781715a98f560b13d4c6a5c27e70c8e09852ccf732674f5838f9387d9"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "limitations": [
+    "Native source checks use explicit device and deterministic allocator endpoints to observe untouched spare bytes. Actual production owner has no filling hook; spare bytes retain real allocation contents. No binary execution/engine/allocator ABI equivalence inferred.",
+    "Original raw complete006C7480 remains byte/source-body unchanged. New portable output owner is a checked adaptation preserving repeated growth, logical query counts and allocated object extent; it receives no original complete-body credit.",
+    "Actual first application activation/render/fixed calls are logged but stable user presentation/input/update/control remain unaccepted. Revised candidate needs user Space-to-continue test. Positive decoration movement/wind boundaries remain explicit."
+  ]
+}

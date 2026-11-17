@@ -1,6 +1,7 @@
 #ifndef HD2_INPUT_BINDING_PRODUCER_H
 #define HD2_INPUT_BINDING_PRODUCER_H
 #include "input/axis_limits.h"
+#include "input/binding_output_words.h"
 
 #include <array>
 #include <cmath>
@@ -48,7 +49,7 @@ struct BindingInputState {
     std::array<std::uint8_t, 6> mouse_binding_counts{};
     BindingAxisLimits mouse_axis_limits;
     std::vector<InputBinding> bindings;
-    std::vector<std::uint32_t> first, second;
+    BindingOutputWords first, second;
     std::uint64_t key_gate = 0;
     std::uint32_t mouse_gate = 0;
 };

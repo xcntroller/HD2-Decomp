@@ -29,8 +29,8 @@ public:
     ~InputManager() {
         detach();
         // Original destructor releases vector allocations in this order.
-        std::vector<std::uint32_t>{}.swap(state_.second);
-        std::vector<std::uint32_t>{}.swap(state_.first);
+        BindingOutputWords{}.swap(state_.second);
+        BindingOutputWords{}.swap(state_.first);
         std::vector<InputBinding>{}.swap(state_.bindings);
         std::vector<JoystickInput>{}.swap(state_.joysticks);
     }

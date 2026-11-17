@@ -1629,7 +1629,9 @@
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "analysis/function-completion-audit.md",
-        "analysis/phase1-traversal.md"
+        "analysis/phase1-traversal.md",
+        "analysis/p22-frame-input-allocation-source.md",
+        "analysis/checkpoints/p22-frame-input-allocation-20261117.json"
       ]
     },
     {
@@ -1729,7 +1731,7 @@
       "program": "client",
       "entry": "006c72b0",
       "status": "partial",
-      "coverage": "Expose selected input buffer begin pointer and count without consumption; low mode bit selects second buffer and empty queries preserve output.",
+      "coverage": "Expose selected input buffer begin pointer and count without consumption; low mode bit selects second buffer and empty queries preserve output. Actual host output owner now preserves native repeated word growth and physical spare extent while this query continues reporting its logical size; same-pointer64-word gameplay views are separately validated without extra bindings.",
       "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
@@ -1738,7 +1740,9 @@
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "analysis/function-completion-audit.md",
-        "analysis/phase1-traversal.md"
+        "analysis/phase1-traversal.md",
+        "analysis/p22-frame-input-allocation-source.md",
+        "analysis/checkpoints/p22-frame-input-allocation-20261117.json"
       ]
     },
     {
