@@ -2,9 +2,12 @@
 #define HD2_GAME_VOLUMETRIC_LIGHTS_H
 
 #include "game/serialized_bytes.h"
+#include "frontend/cleanup.h"
+#include "io/resource_observations.h"
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <functional>
 #include <limits>
 #include <memory>
 #include <optional>
@@ -41,12 +44,37 @@ public:
         std::array<std::array<float,2>,3> ribbon_uv{};
     };
     struct Volume {
+        using NativePayload=std::array<unsigned char,0x48>;
+    private:
+        //Declared first so payload retirement follows all typed metadata and
+        //particle storage, like the native object's final operator_delete.
+        std::unique_ptr<NativePayload> native_payload_;
+        bool history_written_=false;
+    public:
+        explicit Volume(std::unique_ptr<NativePayload> payload):native_payload_(std::move(payload)){
+            if(!native_payload_)throw std::logic_error("Volumetric allocation payload is missing");
+        }
         Frame light{};
+        std::string light_name; //Owning diagnostic copy of the actual serialized reference; no native field claim.
         float field18=10,field1c=0,field20=0,field28=0,field2c=0,field30=30,field34=25,plane38=0,distance44=0;
+        //00481320 leaves3C/40 unwritten. Their actual allocation bytes are
+        //consumed through the platform endpoint, never as indeterminate C++
+        //float lvalues. No historical heap values or first angle are assumed.
+        std::array<std::uint32_t,2> history_words(Frames& frames)const{
+            return frames.volume_allocation_history(native_payload_->data()+0x3c);
+        }
+        void history_direction(const std::array<float,2>& direction)noexcept{
+            std::memcpy(native_payload_->data()+0x3c,&direction[0],4);
+            std::memcpy(native_payload_->data()+0x40,&direction[1],4);
+            history_written_=true;
+        }
+        bool history_written()const noexcept{return history_written_;} //Source provenance only.
+        float render_distance14=0;bool visible24=false;
         std::vector<std::unique_ptr<Particle>> particles;
         ~Volume() {while(!particles.empty())particles.pop_back();} //004813D0/00480D00.
     };
-    explicit VolumetricLights(Frames& frames) : frames_(frames) {}
+    explicit VolumetricLights(Frames& frames,std::function<void()> retire_procedural={})
+        :frames_(frames),retire_procedural_(std::move(retire_procedural)) {}
     ~VolumetricLights() {clear();}
     VolumetricLights(const VolumetricLights&)=delete;
     VolumetricLights& operator=(const VolumetricLights&)=delete;
@@ -120,12 +148,95 @@ public:
         for(auto& particle:volume.particles)render_particle(*particle,time,spin,alpha,draw);
         return true;
     }
-    void clear() noexcept {while(!volumes_.empty())volumes_.pop_back();} //00482D70.
+    //00482260 containing traversal. Procedural is the SEPARATE process0089B63C
+    //receiver, called even with no volumes. Original unwritten initial history
+    //uses this Volume's actual allocation, preserving allocator dependence.
+    template<class Draw,class Procedural>void render(std::int32_t time,Draw& draw,Procedural& procedural){
+        const auto driver=std::uint32_t(draw.hud_driver_state(3)!=0);
+        const auto graph14=std::uint32_t(draw.volume_graphics_state(14)!=0);
+        const auto graph13=std::uint32_t(draw.volume_graphics_state(13)!=0);
+        frontend::CleanupErrors errors;
+        try{
+            io::observe_bound_data(frames_,"execution","00482260 input","clock224 bits",static_cast<std::uint32_t>(time));
+            draw.volume_graphics_state(14,0);
+            procedural.render(time);
+            draw.hud_driver_state(3,1);
+            const auto camera=draw.volume_render_camera();
+            const auto position=frames_.car_world_matrix(camera);
+            observe_float("00482260 camera","position X bits",position[12]);
+            observe_float("00482260 camera","position Y bits",position[13]);
+            observe_float("00482260 camera","position Z bits",position[14]);
+            const auto orientation=frames_.car_world_matrix(draw.volume_render_camera());
+            auto forward=normalize({orientation[8],orientation[9],orientation[10]});
+            forward=normalize({forward[0],0,forward[2]});
+            if(!camera_history_)throw std::runtime_error("00482260 requires original owner18/1C angular history");
+            observe_float("00482260 camera","previous horizontal X bits",(*camera_history_)[0]);
+            observe_float("00482260 camera","previous horizontal Z bits",(*camera_history_)[1]);
+            phase_=static_cast<float>(static_cast<long double>(phase_)+angle_delta(*camera_history_,{forward[0],forward[2]}));
+            camera_history_=std::array<float,2>{forward[0],forward[2]};
+            observe_float("00482260 camera","current horizontal X bits",forward[0]);
+            observe_float("00482260 camera","current horizontal Z bits",forward[2]);
+            observe_float("00482260 camera","phase10 bits",phase_);
+            for(std::size_t n=0;n<volumes_.size();){
+                auto& volume=*volumes_[n];
+                io::observe_bound_data(frames_,"execution","00482260 selected volume",volume.light_name.c_str(),n);
+                const auto relation=draw.volume_visibility_relation(volume.light);
+                if(!relation){volumes_.erase(volumes_.begin()+n);continue;}
+                volume.visible24=draw.volume_relation_visible(relation);
+                if(volume.visible24){
+                    const auto light=frames_.car_world_matrix(volume.light);
+                    const float x=static_cast<float>(static_cast<long double>(light[12])-position[12]);
+                    const float z=static_cast<float>(static_cast<long double>(light[14])-position[14]);
+                    const auto direction=normalize({x,0,z});
+                    if(static_cast<long double>(direction[0])*forward[0]+static_cast<long double>(direction[1])*forward[1]+static_cast<long double>(direction[2])*forward[2]<0)
+                        volume.visible24=false;
+                    else{
+                        const float squared=static_cast<float>(static_cast<long double>(x)*x+static_cast<long double>(z)*z);
+                        std::int32_t bits;std::memcpy(&bits,&squared,4);
+                        volume.render_distance14=bits<0x322bcc77?0:std::abs(static_cast<long double>(squared)-1)<9.99999993922529e-09f?1:static_cast<float>(std::sqrt(static_cast<long double>(squared)));
+                        if(volume.render_distance14<volume.field30){
+                            observe_float("00482260 volume","distance14 bits",volume.render_distance14);
+                            observe_float("00482260 volume","angular44 before update bits",volume.distance44);
+                            observe_float("00482260 volume","field2C bits",volume.field2c);
+                            observe_float("00482260 volume","current direction X bits",direction[0]);
+                            observe_float("00482260 volume","current direction Z bits",direction[2]);
+                            const auto history=volume.history_words(frames_);
+                            io::observe_bound_data(frames_,"execution","00482260 volume","history3C40 previously written",volume.history_written());
+                            io::observe_bound_data(frames_,"execution","00482260 volume","previous direction3C bits",history[0]);
+                            io::observe_bound_data(frames_,"execution","00482260 volume","previous direction40 bits",history[1]);
+                            std::array<float,2> previous;
+                            std::memcpy(previous.data(),history.data(),sizeof previous);
+                            volume.distance44=static_cast<float>(static_cast<long double>(volume.distance44)+angle_delta(previous,{direction[0],direction[2]}));
+                            volume.history_direction({direction[0],direction[2]});
+                        }else volume.visible24=false;
+                    }
+                }
+                ++n;
+            }
+            const std::array<float,4> eye{position[12],position[13],position[14],position[15]};
+            //Native pairwise swapping mutates the retained owner order. Invisible
+            //slots stay in place; using std::sort would change ties and later calls.
+            for(std::size_t n=0;n<volumes_.size();++n)if(volumes_[n]->visible24){
+                for(std::size_t j=n+1;j<volumes_.size();++j)
+                    if(volumes_[j]->visible24&&volumes_[n]->render_distance14<volumes_[j]->render_distance14)
+                        std::swap(volumes_[n],volumes_[j]);
+                auto& volume=*volumes_[n];
+                render_volume(volume,time,eye,volume.render_distance14,volume.distance44,phase_,draw);
+            }
+        }catch(...){errors=frontend::CleanupErrors(std::current_exception());}
+        errors.attempt([&]{draw.hud_driver_state(3,driver);});
+        errors.attempt([&]{draw.volume_graphics_state(14,graph14);});
+        errors.attempt([&]{draw.volume_graphics_state(13,graph13);});errors.rethrow();
+    }
+    void clear() noexcept {if(retire_procedural_)retire_procedural_();while(!volumes_.empty())volumes_.pop_back();camera_history_={{1,0}};phase_=0;} //00482D70.
     bool read(SerializedBytes bytes) {
         clear();auto root=next_mission_chunk(bytes);
         if(!root||root->id!=1)return false;
         while(auto record=next_mission_chunk(root->bytes)) {
-            auto volume=std::make_unique<Volume>();
+            //00482BB8: allocate48 WITHOUT value initialization, before typed
+            //sidecar construction. make_unique<NativePayload>() would zero it.
+            auto payload=std::unique_ptr<typename Volume::NativePayload>(new typename Volume::NativePayload);
+            auto volume=std::make_unique<Volume>(std::move(payload));
             volume->distance44=static_cast<float>(static_cast<long double>(frames_.volume_random_unit())*6.2831854820251465f);
             read_volume(record->bytes,*volume);volumes_.push_back(std::move(volume));
         }
@@ -198,6 +309,30 @@ public:
         }
     }
 private:
+    void observe_float(const char* operation,const char* detail,float value)noexcept{
+        std::uint32_t bits;std::memcpy(&bits,&value,sizeof bits);
+        io::observe_bound_data(frames_,"execution",operation,detail,bits);
+    }
+    static long double angle_delta(const std::array<float,2>& old,const std::array<float,2>& next){
+        auto delta=std::atan2(static_cast<long double>(next[1]),static_cast<long double>(next[0]))-
+                   std::atan2(static_cast<long double>(old[1]),static_cast<long double>(old[0]));
+        if(delta<-3.1415927410125732421875f)delta+=6.283185482025146484375f;
+        if(delta>3.1415927410125732421875f)delta-=6.283185482025146484375f;
+        return delta; //007885B0; no randomness.
+    }
+    static std::array<float,3> normalize(std::array<float,3> value){
+        const float squared=static_cast<float>(static_cast<long double>(value[0])*value[0]+static_cast<long double>(value[1])*value[1]+static_cast<long double>(value[2])*value[2]);
+        if(!std::isfinite(squared))throw std::runtime_error("Non-finite volumetric direction");
+        if(std::abs(static_cast<long double>(squared)-1)>=9.99999993922529e-09f){
+            if(squared>=9.99999993922529e-09f){
+                const auto scale=1.L/std::sqrt(static_cast<long double>(squared));
+                for(auto& lane:value)lane=static_cast<float>(lane*scale);
+            }else if(value[0]!=0)value[0]=value[0]<0?-1:1;
+            else if(value[2]!=0)value[2]=value[2]<0?-1:1;
+            else value[1]=value[1]<0?-1:1;
+        }
+        return value;
+    }
     static std::uint32_t colour(float alpha) {
         const float scaled=static_cast<float>(static_cast<long double>(alpha)*255.f);
         const auto rounded=std::nearbyint(static_cast<long double>(scaled)); //FISTP current rounding mode.
@@ -244,7 +379,8 @@ private:
             auto& value=chunk->bytes;
             switch(chunk->id) {
             case 10:
-                volume.light=frames_.find_scene_frame(text(value),2);
+                volume.light_name=text(value);
+                volume.light=frames_.find_scene_frame(volume.light_name,2);
                 if(!volume.light)return; //Original leaves the volume; refresh deletes it.
                 seed=distance(volume.light);break;
             case 0x14:volume.field18=value.real();break;
@@ -266,7 +402,9 @@ private:
             }
         }
     }
+    std::optional<std::array<float,2>> camera_history_{{{1,0}}};float phase_=0;
     Frames& frames_;
+    std::function<void()> retire_procedural_; //Production00482D70 retires SAME process0089B63C first.
     std::vector<std::unique_ptr<Volume>> volumes_;
 };
 

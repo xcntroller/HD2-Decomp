@@ -345,6 +345,11 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
 
+P22-RENDER: [implementation plan](analysis/p22-render-plan.md) **source complete (RENDER-owned scope)**. Original unwritten history now reads actual owned allocation bytes, preserving allocator dependence without an initial-angle policy. Positive procedural/debug/special-frame/VM/callback services and native/i386/application checks pass. UI/FRAME/OWN integration, engine runtime observation and desktop acceptance remain separate; [completion receipt](analysis/checkpoints/p22-render-allocation-20261112.json).
+
+P22-RENDER merged wiring: [implementation](analysis/p22-render-wiring-implementation.md) connects same-World UI modal/render services, callback lifetime and actual GameApplicationState render→bound Scene78. Native sanitizers and actual i386/application links pass; no activation/desktop claim. FRAMEc36bba8 input/update coordinator is still unmerged; OWN lifecycle installation and genuine loading remain.
+
+P22-OWN: [plan](analysis/p22-own-plan.md), [implementation](analysis/p22-own-implementation.md) connect actual application/lifecycle/loading/activation, UI/RENDER callbacks, input provenance, process fields and failure retirement over masterfa94dee3. Available work verified; overall blocked by FRAMEc36bba8 import/Runtime/UI producers and positive Script cutscene graph. No successful mission activation or desktop claim.
 P22-HUM H4 common-output source is complete on existing actor owners:
 [source closure / selected-call inventory and external limits](analysis/human-h4-source-closure.md),
 [receipt](analysis/checkpoints/p22-hum-h4-source-20261112.json). Vehicle path/VM

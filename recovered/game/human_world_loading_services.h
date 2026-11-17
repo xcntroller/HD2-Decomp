@@ -1,5 +1,7 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
+#include "game/human_player_live_input.h"
+#include "game/human_player_selection.h"
 #include "game/dog_sight_geometry.h"
 #include "game/dog_body_sound.h"
 #include "game/dog_body_frame.h"
@@ -191,6 +193,23 @@ public:
     template<class Human>std::size_t player_command_pending_count(Human& human){ //005A5F00.
         if(!human.loading_state||human.loading_state->words().template get<std::uint32_t>(0x48)!=3u)return 0;
         auto& state=active_command_state(human);(void)state.has_pending_orders_loading();return state.pending_orders().size();
+    }
+    template<class Human>bool human_display_orders_changed(Human& human){ //005A5ED0.
+        auto* base=human.loading_state;if(!base)throw std::logic_error("HUD orders require native B0");
+        const auto kind=base->words().template get<std::uint32_t>(0x48);
+        if(kind==3u)return active_command_state(human).orders_recently_changed();
+        if(kind==1u){using Player=typename Dependencies::Composition::StateFactory::Player;auto* player=dynamic_cast<Player*>(base);
+            if(!player)throw std::logic_error("HUD order changed query requires actual Player B0");return player->player_words().template get<std::uint8_t>(0x525)!=0;}
+        return false;
+    }
+    template<class Human>std::int32_t human_display_order_count(Human& human){ //005A5F00, native B0 dereference precedes kind gate.
+        if(!human.loading_state)throw std::logic_error("HUD order count requires native B0");
+        const auto count=player_command_pending_count(human);if(count>0x7fffffffu)throw std::length_error("Human order count exceeds native signed domain");return static_cast<std::int32_t>(count);
+    }
+    template<class Human>std::array<std::uint32_t,3> human_display_order(Human& human,std::uint32_t index){ //005A5F50 virtual138, reached actual Active record.
+        auto& state=active_command_state(human);(void)state.has_pending_orders_loading();
+        auto* order=state.pending_orders().at(index).get();if(!order)throw std::logic_error("HUD order record requires actual process lease");
+        return {{order->state.template get<std::uint32_t>(0xc),order->state.template get<std::uint32_t>(0x10),order->state.template get<std::uint8_t>(0x4a)}};
     }
     auto* player_command_actor_pointer(std::uint32_t word){ //Offline native fields28/30 contain source pointers, not actor IDs.
         using Actor=SceneActor<typename Dependencies::ActorFrames>;if(!word)return static_cast<Actor*>(nullptr);
@@ -1957,6 +1976,50 @@ public:
     }
     std::uint32_t player_item_spawn_delay_ms(){ //Actual game configuration250, DWORD multiplication before signed comparison.
         return static_cast<std::uint32_t>(dependencies().startup.game_configuration().rules228[10])*1000u;
+    }
+    template<class Human>void select_loading_player(Human& human,bool enabled){
+        auto& owner=composition(human);owner.states().select_player(enabled,mode_flags(),human_current_player_id(),owner.control());
+    }
+    template<class Human>void restore_loading_player_model(Human* human){hd2::game::restore_loading_player_model(human,*this);}
+    template<class Human>void loading_player_model_visible(Human& human,bool enabled){dependencies().scene.frames().object_visible(human.base().frame(),enabled);}
+    void bind_loading_first_person_player(){dependencies().presentation.bind_first_person_player();}
+    void refresh_loading_first_person_visibility(){dependencies().presentation.refresh_first_person_visibility();}
+    template<class Human>void loading_selected_player_log(Human& human){(void)human_damage_display_name(human);} //005A8320 evaluated;0069BFE0 is retail RET.
+    void resume_loading_player_control(){hd2::game::resume_loading_player_control(dependencies().players.control(),*this);}
+    bool select_loading_player_index(std::int32_t index){return hd2::game::select_loading_player_index(dependencies().players.control(),index,*this);}
+    bool select_loading_command_player_index(std::int32_t index){return hd2::game::select_loading_command_player_index(dependencies().players.control(),index,*this);}
+    std::int32_t next_loading_player_index(bool reverse){return hd2::game::next_loading_player_index(dependencies().players.control(),reverse);}
+    template<class Human>void process_human_live_player_input(Human& human,std::uint32_t* first,std::uint32_t* second){ //005A3DE0 directly calls0053BF90; it has no nonPlayer no-op gate.
+        using Player=typename Dependencies::Composition::StateFactory::Player;
+        auto* state=dynamic_cast<Player*>(human.loading_state);
+        if(!state)throw std::logic_error("Application Player input requires actual current Player B0");
+        process_live_player_input(*state,first,second,*this,dependencies().scene.frames());
+    }
+    bool player_camera_input_suppressed(){return dependencies().camera.hud_suppressed();}
+    bool player_input_view_toggle_allowed(){return dependencies().startup.game_configuration().rules228[9]!=0;} //Native24C.
+    bool player_input_mouse_inverted(){return dependencies().startup.camera_mouse_inverted();}
+    template<class Player>void toggle_player_input_view(Player& player){
+        auto& d=dependencies();d.first_person.view().enable(mode_flags(),!human_view_offset_enabled());
+        auto& preference=d.startup.first_person_preference();preference=static_cast<std::uint8_t>(human_view_offset_enabled());
+        if(!human_view_offset_enabled())set_player_frame_mode(player,0);
+    }
+    void player_input_camera_direction(const HumanVector& direction){dependencies().camera.set_direction(direction);}
+    template<class Human>bool player_input_animation_blocked(Human& human){ //005AC2B0, same DD0 state used by frame motion.
+        auto* control=human_inline(human).control();if(!control)throw std::logic_error("Player input requires actual DD0 animation owner");
+        const auto state=control->animation_state_word(0x1d8);return state==8u||state==14u||(state>=106u&&state<=108u);
+    }
+    template<class Human>auto player_input_attachment_frame(Human& human,std::uint32_t seat){
+        if(!human.field160)throw std::logic_error("Player input attachment frame lost native160");
+        if(human.field160->base().type()==4)return human_car_seat_frame(human.field160,seat);
+        throw std::runtime_error("Player input requires actual selected nonCar Actor90 reference-frame owner");
+    }
+    template<class Player>void player_input_drop_hand(Player& player){
+        auto* human=player.human();if(!human)throw std::logic_error("Player input drop lost Human44");
+        auto* storage=human->base().storage();if(!storage||!storage->holder(3))throw std::logic_error("Player input drop requires actual inventory hand3");
+        const auto entry=storage->holder(3)->entry();if(!entry)return;
+        const auto& item=human_frame_output_item(entry);
+        if(item.field14>game_word28()||(item.field60&2u)||item.field14>game_word28()||human_frame_signed_word(game_word28()-item.field58)<0)return;
+        throw std::runtime_error("Player input drop requires actual005A2C50/0053E9D0 randomized request producer after hand/cooldown gates");
     }
     bool player_item_controls_available(){return dependencies().first_person.view().item_controls_available();}
     template<class Human>bool player_attachment_blocks_item(Human& human){ //005433B0 Actor98(seat), SAME H3/UI owner.

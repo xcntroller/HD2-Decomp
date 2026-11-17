@@ -1,0 +1,221 @@
+{
+  "date": "2026-11-11",
+  "branch": "feature/p22-render",
+  "fetched_sha": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "actual_implementation_base": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "previous_checkpoint": "5fa8494",
+  "source_only": true,
+  "render_implementation_complete": false,
+  "independent_positive_services_complete": true,
+  "application_loading_enabled": false,
+  "original_code_executed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "new_partial_client_entries": [
+    "00482260",
+    "00482e50",
+    "00483e50",
+    "00483de0",
+    "0079ac40",
+    "0079b760"
+  ],
+  "complete_promotions": 0,
+  "no_credit_absent_wrappers": [
+    "0069b870",
+    "00486bf0",
+    "00485b50"
+  ],
+  "source_fingerprints": {
+    "recovered/game/procedural_clouds.h": {
+      "sha256": "42ddf06b2718f86bdd94dcbf4c16e449c353ce4894b91929d13cbfc427abe6aa",
+      "bytes": 7791
+    },
+    "recovered/game/render_debug_skeleton.h": {
+      "sha256": "a162575d74a27045d54ff0d0f9cfd1ae2babcf7eb2bd1234f07c684ca3e68407",
+      "bytes": 3010
+    },
+    "recovered/game/volumetric_lights.h": {
+      "sha256": "fdaf04b0fb93c54277177aac44a62707ab41425b773d0a9e47fa1b9e203fc964",
+      "bytes": 22603
+    },
+    "recovered/game/effects_module_loading.h": {
+      "sha256": "0f13ea8210d57bacd127798587dcb012edd5673abca57f6f6adc853729513bdd",
+      "bytes": 9216
+    },
+    "recovered/host/game_render_stages.h": {
+      "sha256": "9779040701738d9bfd91cd8105717c763eb7a87e87120e0ad0f519efb5b9f33c",
+      "bytes": 2288
+    },
+    "recovered/host/game_session_lifecycle.h": {
+      "sha256": "6966a6bf326ce6926c906e83630328c36d520b44d9b9e97d429da74899c7b631",
+      "bytes": 7582
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "91e69fc9f5077f6baef3239f9c7febe61402333ce1c4fc2d9a2fe1ef82151578",
+      "bytes": 60431
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "60529a8b85597cfa6bce1ce75cd1d5b6a5fb48ca8b9e842fe475ca0808c64b3b",
+      "bytes": 97118
+    },
+    "recovered/host/game_data_observations.h": {
+      "sha256": "18eb4c43febb07cc13de4aa54256fab99d1cafafebc37839b600527349b230f3",
+      "bytes": 2379
+    }
+  },
+  "ledger_fingerprint": {
+    "sha256": "bfd5d3f28c619fd140c14b59c65e8871309145c480ca3a01d7052b3a60e8df22",
+    "bytes": 2397382
+  },
+  "frozen_inventory": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/function-progress/client.json",
+    "sha256": "ae9a1cc1687bd8b471aee634e8977df63c1f4a9a4568842cd6bcf6ee9d5b61ad",
+    "bytes": 6291591,
+    "membership_verified": [
+      "00482260",
+      "00482e50",
+      "00483e50",
+      "00483de0",
+      "0079ac40",
+      "0079b760"
+    ]
+  },
+  "original_client": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "bytes": 6889472
+  },
+  "static_resource_requirements": {
+    "names": [
+      "clouder.tga",
+      "clouder2.tga"
+    ],
+    "secondary": null,
+    "flags": 1282,
+    "geometry_buffers_bytes": [
+      248832,
+      248832
+    ],
+    "evidence": "00483E50 instructions / original PE strings839658/839648"
+  },
+  "selected_resource_fingerprints": {},
+  "resource_evidence_limit": "Static requirements and actual source load out-pointer/status observations only. No engine-selected texture bytes or actual mission population captured. Empty initial texture slots are not proof of inactive future branches.",
+  "verification": {
+    "native_cloud": "PASS ASan/UBSan/LSan: generated positive two texture batches,100 resource lifetimes,missing texture0/1,partial configure/retry,volume-clear process retirement,all reached operation failure prefixes,malformed camera. Explicit engine doubles; no seeded procedural collections.",
+    "native_debug": "PASS ASan/UBSan/LSan:20 exact bone pairs,max21,reverse traversal,WORD indices,RGBA/padding/alignment,100 lifetimes,40 bone-failure/retry paths and malformed null bone. Explicit engine/Human doubles.",
+    "i386": "PASS strict actual World/GEffects/frame/geometry/debug/DATA/Scene/UI callback and lifecycle-owned GameRenderStages composition compile+link. No rendering receivers replaced by doubles; fixture Controller type is unused by these methods. Engine/OS remain declarations linked via dynamic checked endpoints, not executed.",
+    "application_link": "PASS make -C recovered -j1 application-launch, existing target. Output not executed.",
+    "diff_check": "PASS",
+    "tracker": "BLOCKED existing missing ignored evidence0062D880 analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm. Ledger+6 partial; README generated tally not refreshed because validator refuses.",
+    "callback_lifetime": "Concrete install/retirement compiled/linked and source ownership checked; actual engine callback replacement/retirement execution remains unobserved."
+  },
+  "remaining_render_body_boundary": "00482260 reached initial volume3C/40 read: native00481320/read/refresh leave those lanes unwritten; source rejects instead of inventing initial angles.",
+  "external_integration": [
+    "VM/configuration actual GEffects virtualB8 caller; concrete configure receiver implemented, no direct CALL ref in inspected binary",
+    "UI positive receivers on unmerged9ff6d0d and current Human/occupied actor/FPV/console producers",
+    "OWN lifecycle install/activation and FRAME scheduling/camera updates",
+    "Fresh selected resource bytes,populations,executed branches,user desktop acceptance"
+  ],
+  "artifacts": {
+    "analysis/work/p22-render-20261111/cloud-native.log": {
+      "sha256": "3920ffe2741bb276f49f78248d434f5982fe386ff2a8924a0c0370851589122b",
+      "bytes": 211,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/debug-native.log": {
+      "sha256": "18520eab332fa00de65789e995ffe671e8924c8c0cbeb53f4a78012f4c27a5b1",
+      "bytes": 154,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/cloud-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/services-application.log": {
+      "sha256": "cc787481df22b89e4d709da27543a17909d56390a81dc91c200bf3ddfeb8fe3d",
+      "bytes": 615,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/services-tracker.log": {
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/procedural.asm": {
+      "sha256": "060f479a5ac611b66c3dcd8e3f531159b0293b26e2fed264116e06ac976ee6ed",
+      "bytes": 53838,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/debug-export.log": {
+      "sha256": "7100cdb63b62716252311f892c239b58603159e12486a7a2435fa50aa1753272",
+      "bytes": 4228,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/debug-export/79ac40.c": {
+      "sha256": "b0593fc41d580a1032006d39c69279d62ec2fb184cb2dab4fbeac2d92be42c48",
+      "bytes": 21453,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/debug-export/79b760.c": {
+      "sha256": "bdfcfe961771c77a080f2fd8d38aa27494b7fee7795a83e35f63f12a328c3b92",
+      "bytes": 1994,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/debug-export/provenance.txt": {
+      "sha256": "72942eadf4fe668b465116b28ceabad9e256e5cadf58a190190ef6eef0909922",
+      "bytes": 123,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/debug-export/debug.asm": {
+      "sha256": "1c048a13ee6247cd98cdbf0157273471942f44400f14f32afa9570e943a62c13",
+      "bytes": 55631,
+      "retained": true
+    },
+    "/tmp/p22-cloud-native.cpp": {
+      "sha256": "59843617c8d093d53ed13674017f8a9423d952e3946c113ea12d0f8164184dae",
+      "bytes": 4976,
+      "retained": false
+    },
+    "/tmp/p22-cloud-native": {
+      "sha256": "34736a0cc263c1599612a69a4c9b8fb10dd7fbc5bbd622b16e77ee2f16b0e9c3",
+      "bytes": 1461800,
+      "retained": false
+    },
+    "/tmp/p22-debug-native.cpp": {
+      "sha256": "6d1cbcad2c9e33256bfba052d9e6065fa555f3f39b9dc7ef8173110367113b75",
+      "bytes": 2412,
+      "retained": false
+    },
+    "/tmp/p22-debug-native": {
+      "sha256": "70d305e7be3ddb653773c244809a30eea3d7b6bd44e8b717a6d1a9379f0eff86",
+      "bytes": 306672,
+      "retained": false
+    },
+    "/tmp/p22-cloud-i386.cpp": {
+      "sha256": "e71600d8ee0aa9a94583512de8d0c9721cfa35a37c66b4e73d22850e8c2f43d8",
+      "bytes": 541,
+      "retained": false
+    },
+    "/tmp/p22-cloud-i386.exe": {
+      "sha256": "a489958ee0be8493f4646083abf554ddbb99baa2876fdf50636b99755f66ed9d",
+      "bytes": 543232,
+      "retained": false
+    },
+    "/tmp/ExportRenderDebug.java": {
+      "sha256": "1af1f86824d3b6058c72df0009f64ba977864733a264e081f412c1e8e721e605",
+      "bytes": 1694,
+      "retained": false
+    },
+    "/tmp/p22-procedural.asm": {
+      "sha256": "060f479a5ac611b66c3dcd8e3f531159b0293b26e2fed264116e06ac976ee6ed",
+      "bytes": 53838,
+      "retained": false
+    },
+    "/tmp/p22-cloud-write.py": {
+      "sha256": "deb36f0655dc95996cb0b04c0d927bab179b6d0a13da1f65c45c19848fc597df",
+      "bytes": 397,
+      "retained": false
+    }
+  }
+}

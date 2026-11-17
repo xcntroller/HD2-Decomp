@@ -107,3 +107,12 @@ exports. Existing00526550 is under `frame-human-script-and-active-workers`;
 0052B810/005276E0 under `human-h8-authority-policy`; movement helpers under
 `human-h8-authority-movement`. Read raw bytes when C loses arguments, x87 values
 or apparently unreachable returns. Do not repeat unchanged H1–H7/PACK audits.
+
+## Committed OWN source imported into H8 — 2026-11-17
+
+OWN1d54083 adds actual Player mutable sender, HUD order queries, ordinary
+selection/handover, inactive Script cutscene end, RENDER and application lifecycle
+source to the reconciled H8/FRAME owners. Reuse their linked native receipts;
+this import adds no new body credit. OWN uncommitted desktop adapter is excluded.
+Actual activation is now called, but missing_frames still rejects its success
+until external/runtime installation. H8.4/.5/.6 remain open.

@@ -1,0 +1,322 @@
+{
+  "date": "2026-11-11",
+  "branch": "feature/p22-render",
+  "fetched_sha": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "actual_implementation_base": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "previous_checkpoint": "64891ba3ab0d7181f9aabe87199a3e890ea95bea",
+  "source_only": true,
+  "render_source_complete": false,
+  "independent_render_work_complete": true,
+  "stop_condition": "Genuinely blocked original allocator-residual per-volume3C/40 first read; user requires original behavior. No invented history. External integration remains separate.",
+  "application_loading_enabled": false,
+  "original_code_executed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "observed_ui_revision": "74220d455a58354aec9c3e728cda4247a2a48f79",
+  "observed_origin_master_not_imported": "05dbdee51cc366476317011b91b1a1863041dcee",
+  "original_resources": {
+    "client": {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "bytes": 6889472
+    },
+    "engine": {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "bytes": 864256
+    },
+    "actual_engine_selected_texture_bytes": "unobserved; native texture endpoints are explicit doubles; static clouder names/flags retained from prior checkpoint"
+  },
+  "new_partial_entries": [
+    "004871a0"
+  ],
+  "expanded_partial_entries": [
+    "00416e10",
+    "00487240"
+  ],
+  "complete_promotions": 0,
+  "no_credit_absent": [
+    "004870a0",
+    "004888c0",
+    "00485b50",
+    "00486bf0",
+    "0069b870"
+  ],
+  "delegated_engine_credit": 0,
+  "diagnostic_exception_guard_credit": 0,
+  "ledger_counts": {
+    "client": {
+      "complete": 34,
+      "partial": 2594
+    },
+    "engine": {
+      "complete": 0,
+      "partial": 5
+    }
+  },
+  "ledger_fingerprint": {
+    "sha256": "b3804f8a71297bfd3dcb39f897ac095db35701e9cf4348f9d1e2315836de1f66",
+    "bytes": 2399219
+  },
+  "frozen_client_inventory": {
+    "sha256": "ae9a1cc1687bd8b471aee634e8977df63c1f4a9a4568842cd6bcf6ee9d5b61ad",
+    "bytes": 6291591
+  },
+  "source_fingerprints": {
+    "recovered/game/effects_special_model.h": {
+      "sha256": "83a6148865f9d6135609dea9646c6e80c9aa3af4cc893f55596e79c5a4900fa1",
+      "bytes": 5342
+    },
+    "recovered/game/mission_script_render_commands.h": {
+      "sha256": "e34a000252477df919858ec7240b54d7ce838c18c05ae49f28d95de169b8bc54",
+      "bytes": 1168
+    },
+    "recovered/game/effects_shadow_models.h": {
+      "sha256": "bb6e690740f167bcd90fe081e1f74c2da9229df8c5d8fd9683f4b9ba9de6470e",
+      "bytes": 12270
+    },
+    "recovered/game/effects_loading_update.h": {
+      "sha256": "287f5859819927de4e1435f1a3cce72164e865dac841b76f57235713cecd7ff5",
+      "bytes": 2606
+    },
+    "recovered/game/effects_module_loading.h": {
+      "sha256": "0523738c4ffe3e28e71ddaaa3799080fa02ca5c31e0b4d47bed3a66741f7b1d3",
+      "bytes": 10287
+    },
+    "recovered/game/mission_script_loading_runtime.h": {
+      "sha256": "58fed4457a5e167ba8352b15bfb45257cc7fcfd87c818fcb15d1263d253118f8",
+      "bytes": 8654
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "8f3d01e21432b134808f8bbc23625a71dfb1533e83c58988138aa413d10df11a",
+      "bytes": 97779
+    },
+    "recovered/host/game_scene.h": {
+      "sha256": "2516368e0dda209ebde31cbbba24f7b9e92558cab28b799232d3e115db60e335",
+      "bytes": 14165
+    },
+    "recovered/host/game_world_scene.h": {
+      "sha256": "c40a09d77451390c9fb0eb2229d267804e0b11f4f90bf7727e4107546565e0db",
+      "bytes": 6942
+    },
+    "recovered/host/game_data_observations.h": {
+      "sha256": "06941ddc544b95605a759f64363a5b28f15999795bb2212c37416ac932f4f524",
+      "bytes": 2879
+    }
+  },
+  "verification": {
+    "native_special": "PASS ASan/UBSan/LSan:100 actual compiler/context BB lifetimes; positive/hidden/NaN/extended versus FLOAT; exact random count; deferred/timed/wrapped expiry; each reached initialization/restoration/positive-update failure prefix and retry. Engine endpoints doubled.",
+    "native_module": "PASS ASan/UBSan/LSan:100 actual EffectsModuleLoading constructors -> actual configuration loan -> compiler/context AD -> actual procedural resources; competing/wrong-process rejection, cold close, special finish, loan retirement/rebind, partial texture retry. Engine/camera endpoints doubled.",
+    "native_procedural": "PASS ASan/UBSan/LSan: actual compiler/context AD -> effects loan -> real cloud geometry both batches;100 lifetimes, authority, side effects before advance gate, partial retry, retired/unbound rejection. Engine/texture endpoints doubled.",
+    "native_scene": "PASS ASan/UBSan/LSan: actual GameScene + scene_callback + session_render source, engine/platform/UI endpoint doubles;100 lifetimes, sequence/gates/raw viewport payloads/competing owners/replacement/retirement, five Scene operations plus loading callbacks primary/secondary exception handling,400 constructor failure/retries. Native64 not original i386 ABI.",
+    "i386": "PASS strict C++17 Werror full actual World construction/destruction + module bindings + VM dispatch + special/procedural/debug/DATA + owned host UI callbacks/lifecycle->actual Scene78 linked. Not executed.",
+    "application": "PASS existing make -C recovered -j1 application-launch compile/link after final source changes. Not executed.",
+    "tracker": "Focused PASS: frozen inventories/baseline, ledger uniqueness, new004871A0 membership/status/evidence, existing00416E10/00487240 statuses/new evidence. Full --render blocked by pre-existing0062D880 missing ignored analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm; README progress block intentionally not regenerated. No complete promotions.",
+    "diff_check": "PASS"
+  },
+  "evidence_levels": {
+    "historical_resolver_bytes": "Prior DATA/provenance receipts, unchanged; not selected current resources.",
+    "static_requirements": "Fingerprinted native instructions, MP_Lightning/.5/AD/BB dispatch; textures from prior checkpoint.",
+    "loaded_populations": "Actual observation bindings include procedural textures and special-frame presence/state; native audit populations only, no actual mission.",
+    "executed_runtime_branches": "Native source audits with labelled endpoints; no original engine/runtime/desktop branch claim."
+  },
+  "remaining_external": [
+    "UI import/OWN integration of unmerged command HUD consumer; stage2 offline7 HUD4 visible command branch fails base004B6720 explicitly.",
+    "Latest UI modal special retirement can call actual effects.configure_special_model(false,nullptr,true); UI must bind its full external modal source.",
+    "FRAME actual render-before-update scheduling/camera/effects order; timed lightning live weather/network caller separate.",
+    "OWN/LIFE actual activation/install/ordered retirement; no successful application loading enabled.",
+    "Authorized original engine workflow and user desktop acceptance."
+  ],
+  "artifacts": {
+    "analysis/work/p22-render-bindings-20261111/RandFloat-ST0.asm": {
+      "sha256": "dcddc4802597261ae417661ecccf3dbfbd9212637194eddcc90fd1f946194845",
+      "bytes": 446,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/application.log": {
+      "sha256": "cc787481df22b89e4d709da27543a17909d56390a81dc91c200bf3ddfeb8fe3d",
+      "bytes": 615,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/clouder-command-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/clouder-command-native.log": {
+      "sha256": "254b78836566f68918e05f459954f857758ea1f9003eec93002c0aa96eb29a1a",
+      "bytes": 245,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/module-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/module-native.log": {
+      "sha256": "da0521592f912fc85bb7707968c79f663eb225a99d4e7a323701210ea03d2631",
+      "bytes": 285,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-after.log": {
+      "sha256": "9f0080b790dc621bcabfdc60ab345fb9b02d233ae14d774484e4e20268ca383e",
+      "bytes": 207,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-baseline.log": {
+      "sha256": "9f0080b790dc621bcabfdc60ab345fb9b02d233ae14d774484e4e20268ca383e",
+      "bytes": 207,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-construction-after.log": {
+      "sha256": "298792e148e0e7966f7de5fd3e6dfc56effb7baf059275d02ab8a5f6b556cb5a",
+      "bytes": 74,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-endpoints-after.log": {
+      "sha256": "bc579b9d08a054252b56a3eeefcc396c851a711823a3e7b5857c800ff1e2697f",
+      "bytes": 108,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-registration-after.log": {
+      "sha256": "8b14c6b86f049d68440ed4bb293eeb050b8afb7a03ccd032dd9bf019aa59c8f0",
+      "bytes": 24,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-registration-before.log": {
+      "sha256": "d9d94deb46c920c9a9ab3eb80076611f7cdad82f8229924d3486027bb98df3e1",
+      "bytes": 121,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-renew-after.log": {
+      "sha256": "195c926312616ad993568ac6aac0dfc3ab1431bccaee642d949e6e207ddfd99f",
+      "bytes": 67,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-renew-before.log": {
+      "sha256": "9a6cf6683c0fabe0cae4bf3f26a150289fdfade098bd1a49c266dffbe4bcb55a",
+      "bytes": 158,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-secondary-after.log": {
+      "sha256": "a4b661a2fbb63b251d538d204af9c192046d81ea190439ce0140b6deb6d9331c",
+      "bytes": 63,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/scene-secondary-before.log": {
+      "sha256": "8efe33b616e3d2e74ac316cf9b68ebdf2d9700f77f68c7752a3291cc55196b56",
+      "bytes": 188,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/script-procedural.asm": {
+      "sha256": "cb8d673d6e1756477b22eb700d5c0910ba7c36f7f064ebe4d0784d0aa0412982",
+      "bytes": 1180,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/script-special.asm": {
+      "sha256": "51f16457bf75ea08fadd93bcccf7a88535b368e3f9135ee33067083bfbd0a6f1",
+      "bytes": 1774,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/special-config-timed.asm": {
+      "sha256": "fc245948b8236ed97077dfc3f7b1c529f3ec43e16a9dff2a6b887e4c9615dded",
+      "bytes": 5935,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/special-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/special-native.log": {
+      "sha256": "d9d4e958518ac5ab576a6c06b601dc6e966825b6ca4ac23e8991000e36b669b1",
+      "bytes": 286,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/special-update.asm": {
+      "sha256": "4ada682ae1b979b1ef754007fb0bb7b21ef4fc28312cfa49d79c3a26c68d4854",
+      "bytes": 2692,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/static-values.json": {
+      "sha256": "a606e702f99f78b97d15f9915627f898868313a60f8974d49ad4e5ff1d266c01",
+      "bytes": 455,
+      "retained": true
+    },
+    "/tmp/p22-special-native.cpp": {
+      "sha256": "ced78fd658d251d52cd34d72d1fe175ae0fd0c454a5b2a4a539fae8148386798",
+      "bytes": 7982,
+      "retained": false
+    },
+    "/tmp/p22-special-native": {
+      "sha256": "4ebccb7959ae030820fe121ebe08d10c055a6642ccd854f4233eda50eede62ae",
+      "bytes": 4117920,
+      "retained": false
+    },
+    "/tmp/p22-module-native.cpp": {
+      "sha256": "9e4b25e09bc95cb8693e57a591d0c54dee5f41acef5312a5c721368bd90c90a4",
+      "bytes": 8829,
+      "retained": false
+    },
+    "/tmp/p22-module-native": {
+      "sha256": "ed50ac9abc33e37e8e133bae8f095b930672f2fcaddc6e36e97b232bb499c93d",
+      "bytes": 5591560,
+      "retained": false
+    },
+    "/tmp/p22-clouder-command-native.cpp": {
+      "sha256": "e48e2d3ba0b99484127ff597cabc6fea749c51b2129b2d84521ceb246a467567",
+      "bytes": 7533,
+      "retained": false
+    },
+    "/tmp/p22-clouder-command-native": {
+      "sha256": "7cc4213a471f0d8f0ecda049e4c59795e85d121bfc8a59c689d5b5ca0acd3f07",
+      "bytes": 4327536,
+      "retained": false
+    },
+    "/tmp/p22-composition-i386.cpp": {
+      "sha256": "ef45f1808a995702a59654cf1409c245507cb113a19d72671160e13ba035ab51",
+      "bytes": 1845,
+      "retained": false
+    },
+    "/tmp/p22-composition-i386.exe": {
+      "sha256": "cd616d75f19fd3a92a82848312e1d35ccc24032a5f894d08ae348aa85ae9a3f5",
+      "bytes": 7819264,
+      "retained": false
+    },
+    "/tmp/p22-scene-native.cpp": {
+      "sha256": "99b3d0b4da4a7f15bd3dc41543ba1d30f31e6892ac0f1a78900df2d116a4860e",
+      "bytes": 7740,
+      "retained": false
+    },
+    "/tmp/p22-scene-native": {
+      "sha256": "ab765f065dd4116675cd9dca84c8c3901e90e0141ca8a5e4cc1ce0c6fec599db",
+      "bytes": 1174480,
+      "retained": false
+    },
+    "/tmp/p22-scene-stubs/host/graphics_interface.h": {
+      "sha256": "5d2ef5bb725d9efa57e97ef7259380452042ba4dbea2c185ecb5caae0186265c",
+      "bytes": 149,
+      "retained": false
+    },
+    "/tmp/p22-scene-stubs/host/menu_scene.h": {
+      "sha256": "fa6f8c75408c86668c46c40677fea78be308936b97d6fd5bcd575c0285fafd16",
+      "bytes": 3691,
+      "retained": false
+    },
+    "analysis/work/p22-render-bindings-20261111/tracker.log": {
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109,
+      "retained": true
+    },
+    "analysis/work/p22-render-bindings-20261111/ledger-focused.log": {
+      "sha256": "9e801a637870e07ffff5899f12f4bb8524188518af0ba0a2091a484384f7d06a",
+      "bytes": 239,
+      "retained": true
+    }
+  }
+}

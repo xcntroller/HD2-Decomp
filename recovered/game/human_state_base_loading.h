@@ -207,7 +207,8 @@ public:
     }
     HumanFrameInputBuffer* first_frame_inputs()const{return first_frame_inputs_;}
     HumanFrameInputBuffer* second_frame_inputs()const{return second_frame_inputs_;}
-    void bind_frame_inputs(HumanFrameInputBuffer& first,HumanFrameInputBuffer& second){first_frame_inputs_=&first;second_frame_inputs_=&second;}
+    void bind_frame_inputs(HumanFrameInputBuffer& first,HumanFrameInputBuffer& second){bind_frame_input_pointers(&first,&second);}
+    void bind_frame_input_pointers(HumanFrameInputBuffer* first,HumanFrameInputBuffer* second)noexcept{first_frame_inputs_=first;second_frame_inputs_=second;}
     template<class Queries>void advance_frame_timers(std::uint32_t elapsed,Queries& queries){advance_human_base_frame_timers(*this,elapsed,queries);} //00588010.
     Input* input()const{return input_;}MissionNavigation* navigation()const{return navigation_;}
     MissionTableRecord* point()const{return point_;}

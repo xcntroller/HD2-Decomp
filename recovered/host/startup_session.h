@@ -53,6 +53,8 @@
 #include "game/shot_manager_loading.h"
 #include "game/heavy_fire_module_loading.h"
 #include "game/effects_loading_process.h"
+#include "game/procedural_clouds.h"
+#include "game/render_debug_skeleton.h"
 #include "game/item_hand_models.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
@@ -275,6 +277,8 @@ public:
         multiplayer_request_.reset();
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
         errors.attempt([&] { modules_.shutdown(gate_,human_projection_process_); }); //0048DA80, after data; actual Items3 pool retirement.
+        render_debug_skeleton_.clear(); //Source process-buffer fallback, no frame borrowers.
+        procedural_clouds_.clear(); //00483DE0 process fallback before graphics/module retirement.
         frame_text_overlay_.reset(); //006E85A0, after module retirement and before driver/device shutdown.
         item_hand_models_.clear();
         game_animations_.close();
@@ -300,6 +304,7 @@ public:
     EngineFrame* graphics() const { return static_cast<EngineFrame*>(input_setup_.graphics()); }
     std::uint32_t application_flags() const { return gate_; }
     std::uint32_t& application_flags_owner(){return gate_;} //SAME00982100 for source module/runtime borrowers; no per-world mode copy.
+    std::string& item_model_suffix(){return item_model_suffix_;} //0084E8E4 ->00867980 initially empty; borrowed by actual item caches.
     std::int32_t& local_player_identity(){return control_frame_.state().local_peer;} //SAME00982104, not a per-world ID copy.
     const std::int32_t& local_player_identity()const{return control_frame_.state().local_peer;}
     bool application_input_enabled() const { return application_input_enabled_; }
@@ -318,6 +323,8 @@ public:
     game::ShotManagerLoadingState<GameActorServices>& shot_manager_process(){return shot_manager_process_;}
     game::HeavyFireLoadingState& heavy_fire_process(){return heavy_fire_process_;}
     auto& effects_loading_process(){return effects_loading_process_;}
+    auto& procedural_clouds(){return procedural_clouds_;}
+    auto& render_debug_skeleton(){return render_debug_skeleton_;}
     using BlastWaves=game::BlastWaveProcess<MenuDriver::Owner,GameSceneActors::Instance>;
     BlastWaves& blast_wave_process(){return blast_wave_process_;} //SAME fixed-update and finish owner.
     auto& human_projection_process(){return human_projection_process_;} //0098AD28/38/44, SAME records/pool and process timers.
@@ -471,6 +478,7 @@ public:
     bool human_face_quality_enabled(){return profile_settings().quality_byte(3)!=0;} //006B6740→006B33E0(3).
     frontend::GameConfiguration& game_configuration(){return data_.game_configuration();}
     frontend::GameData& game_application_data(){return data_.game();} //SAME application+04, distinct from preparation's reloaded graph.
+    std::uint32_t& game_mode_field4(){return data_.game_mode_field4();} //Actual006B4670 initialized mode04, NOT GameData/application04.
     void read_game_network_map(game::SessionPacketStream& packet){frontend::replace_selected_network_map(packet,game_configuration());}
     void write_game_network_map(game::SessionPacketStream& packet){frontend::write_selected_network_map(packet,game_configuration());}
     void read_game_network_rules(game::SessionPacketStream& packet){frontend::read_network_rules(packet,game_configuration(),game_network_parameters());}
@@ -940,6 +948,7 @@ public:
         }
     }
 private:
+    std::string item_model_suffix_; //Process lifetime, never a temporary per-World suffix.
     GameConsole& game_console(){ //0069F1E0, publish before Win32 CreateWindow re-entry.
         if(!console_)console_=std::make_unique<GameConsole>([this]{
             if(!application_console_close_)throw std::logic_error("Console close requires the actual current application state");
@@ -1014,6 +1023,8 @@ private:
     game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;
     game::HeavyFireLoadingState heavy_fire_process_;
     game::EffectsLoadingProcess<EngineFrame*> effects_loading_process_;
+    game::ProceduralClouds<GameActorServices::ResourceOwner> procedural_clouds_;
+    game::RenderDebugSkeleton render_debug_skeleton_;
     BlastWaves blast_wave_process_;
     game::HumanProjectionProcess<MenuDriver::Owner> human_projection_process_;
     game::ItemHandModels<GameActorServices> item_hand_models_;

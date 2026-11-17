@@ -70,8 +70,9 @@ Windows World, original object ABI equivalence or desktop acceptance.
   command producers/queues and retirement. Never replace these with success.
 - [ ] **P22-FRAME:** invoke completed UI endpoints with actual session time,
   input/camera/realtime/Human data in original containing fixed/variable order.
-- [ ] **P22-RENDER:** actual scene/volume/procedural/pre-scene/debug/special-model
-  and general graphics presentation through existing UI callback ordering.
+- [x] **P22-RENDER:** merged same-World scene/volume/procedural/debug/modal-effect
+  services and callback lifetime are bound; [wiring](p22-render-wiring-implementation.md).
+  Application activation, FRAME imports and engine execution remain separate.
 - [ ] **P22-OWN/LIFE:** actual activation/callback installation, loaded/status,
   rollback/finish/unload and borrower-before-owner lifetime.
 - [ ] Actual populated runtime observations and user desktop acceptance:

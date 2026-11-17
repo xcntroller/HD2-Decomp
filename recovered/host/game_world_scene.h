@@ -81,6 +81,7 @@ public:
     void close()noexcept {
         if(closed_)return;
         closed_=true;
+        try{effects_.configure_special_model(false,nullptr,true);}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
         exclusions_.clear(); //Must stop querying while its actual descriptors still live.
         effects_.human_fades().clear(); //Borrowed Human228 records before Scene2 Human deletion.
         frames_.clear_scene_actors(); //Car borrowers retire while cars_ still lives.

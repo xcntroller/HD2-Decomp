@@ -375,16 +375,16 @@
         "data": {
           "id": "P22-RENDER",
           "title": "Pre-scene/render callback service graph",
-          "classification": "missing_implementation",
+          "classification": "implemented_and_bound",
           "requirement": "required",
           "boundary": "A",
           "addresses": "0069B870 006C9260 00486BF0 00482260 00482E50",
-          "source": "game/scene_callback.h",
-          "status": "Scene render policy and leaf source remain available. Application rendering callbacks, real volumetric visibility/history and positive procedural rendering remain open.",
-          "batch": "Bind actual Scene rendering and callbacks using GEffects+C4 owner and224 clock. Resolve active camera/initial history and reached procedural geometry.",
+          "source": "host/game_render_stages.h",
+          "status": "RENDER-owned source is complete on unmerged feature/p22-render: actual same-World pre-scene, volume/procedural/debug/special-light services and lifecycle-owned Scene callbacks/render entry are implemented. Actual application execution and desktop presentation remain pending.",
+          "batch": "Integrate branch services with current master UI and FRAME under existing OWN/LIFE. Invoke callable lifecycle render at the original schedule; retire callbacks/stages/frame borrowers before World. VIS/REPEAT/SECOND own actual engine/desktop acceptance.",
           "predecessors": "UI",
-          "overlap": "Independent render evidence; Agent1 integration pending",
-          "source_commit_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+          "overlap": "RENDER implementation complete at345a390; branch base447e073. Master2c96a7d already contains full UI7a3f7b7. Combine lifecycle render/FRAME borrowers through existing owners; no combined current-master build is claimed.",
+          "source_commit_sha": "345a390809297b7d267db67445f6993ee39812ac",
           "original_addresses": [
             "0069b870",
             "006c9260",
@@ -399,32 +399,53 @@
             }
           ],
           "desktop_acceptance": "unknown",
-          "critical_path_reason": "Scene render policy and leaf source remain available. Application rendering callbacks, real volumetric visibility/history and positive procedural rendering remain open.",
-          "closure_evidence": "visibility/procedural owners execute real positive operations, preserve original camera/history and restore driver states on success/failure; callbacks reach actual Scene rendering.",
-          "reconciliation": "unchanged",
-          "delta": "Scene render policy and leaf source remain available. Application rendering callbacks, real volumetric visibility/history and positive procedural rendering remain open.",
-          "world_binding": "draw leaves present; visibility/procedural/application pending",
-          "remaining": "Bind actual Scene rendering and callbacks using GEffects+C4 owner and224 clock. Resolve active camera/initial history and reached procedural geometry.",
-          "original_research": "Confirm original scene camera fields, first volume history and positive draw state.",
-          "desktop_unknown": "Actual selected branch/resource/state population and engine result. ",
+          "critical_path_reason": "Completed RENDER source prerequisite is supplied by an unmerged branch. Remaining work is current UI/FRAME/OWN integration and actual engine/desktop execution; no separate historical volume-history producer remains on the source critical path.",
+          "closure_evidence": "All36 receipt source/doc observations and70 retained evidence entries match, with21 current source pins. Independently matched9413 original instruction bytes across13 static ranges. Upstream native100-family sanitizers, actual full World/lifecycle/i386 link and application link PASS reported; audits not rerun. Full tracker has explicit pre-existing missing WORK evidence limitation.",
+          "reconciliation": "resolved_source",
+          "delta": "Supersedes missing containing00482260, positive00482E50/process resources, concrete render stages/debug, opcodeAD/BB producers and per-volume history guard.345a390 reads current unwritten allocation bytes at the original gate, then stores current direction; no first-angle initialization or numerical fallback.",
+          "world_binding": "GameRenderStages invokes SAME modules.game_effects().render_before_scene over C4/clock224 and actual Scene15C/graphics endpoints. GameSessionLifecycle owns stages/callbacks, binds Scene dispatcher and calls session policy/actual Scene78. Process procedural configuration and special-light owners bind to existing World/Startup/VM lifetimes.",
+          "remaining": "Branch and current UI/FRAME integration; OWN invokes activation/render/update/present with existing lifecycle. UI modal special-frame retirement needs its containing action forwarder. Conditional water/weather/game64/colour update producers remain required when reached. Engine/desktop mission/failure/repeat/second mission remain unobserved.",
+          "original_research": "Original allocation/constructor/read/refresh leaves3C/40 unwritten;00482843/4E reads prior values before00482862/64 stores current direction. Source preserves allocation-dependent behavior using Volume-owned48-byte raw payload and OS copy, not a historical-heap value producer. Native allocation/sidecar ABI and heap/pixel equivalence are explicitly excluded.",
+          "desktop_unknown": "Selected active camera/Scene15C state, allocator-dependent first history, actual volume/cloud/special-light/debug populations and reached branches, real draw/Scene completion/present after fade, conditional effects update failures, repeat and second mission.",
           "source_paths": [
-            "recovered/host/game_owner.h",
+            "recovered/game/volumetric_lights.h",
+            "recovered/game/effects_module_loading.h",
+            "recovered/host/game_actor_frames.h",
+            "recovered/host/game_session_lifecycle.h",
+            "recovered/game/procedural_clouds.h",
+            "recovered/game/render_debug_skeleton.h",
+            "recovered/host/game_render_stages.h",
+            "recovered/host/startup_session.h",
+            "recovered/host/game_data_observations.h",
+            "recovered/game/effects_special_model.h",
+            "recovered/game/mission_script_render_commands.h",
+            "recovered/game/effects_shadow_models.h",
+            "recovered/game/effects_loading_update.h",
+            "recovered/game/mission_script_loading_runtime.h",
+            "recovered/host/game_scene.h",
+            "recovered/host/game_world_scene.h",
             "recovered/game/session_render.h",
             "recovered/game/scene_callback.h",
-            "recovered/game/volumetric_lights.h",
-            "recovered/game/effects_module_loading.h"
+            "recovered/host/game_ui_presentation.h",
+            "recovered/host/game_owner.h",
+            "recovered/host/game_world_loading.h"
           ],
-          "verification": "Source audit at pinned revision. Upstream checks are reported in evidence/overnight-checkpoints.json.",
-          "remaining_blocker": true,
+          "verification": "See render-verification.json: independent fingerprints/original instruction-byte comparison and source binding review. Upstream native/i386/link PASS reported with engine/UI doubles and explicit tracker limitation; not rerun.",
+          "remaining_blocker": false,
           "verification_levels": {
-            "original_behavior_researched": "bounded contracts; remaining original unknowns explicit",
-            "source_body_implemented": "draw leaves present; visibility/procedural/application pending",
-            "world_owner_binding": "draw leaves present; visibility/procedural/application pending",
-            "application_execution": "pending",
-            "native_i386": "See pinned checkpoint summaries for changed source; unchanged paths retain prior checks",
+            "original_behavior_researched": "Bounded render/allocation contracts checked against original bytes. No separate historical first-value initializer is required. Runtime heap/pixel equivalence is not claimed.",
+            "source_body_implemented": "yes, RENDER-owned source scope at345a390; original functions remain partial where ABI/external contracts differ",
+            "world_owner_binding": "yes, concrete same-World render stages and callable lifecycle/Scene78; process resource/VM/special-light loans bound in source",
+            "application_execution": "not enabled; current GameApplicationState still declines loading, and OWN/FRAME integration must invoke the callable source services",
+            "native_i386": "Reported native100-family ASan/UBSan/LSan policies, actual full World/render/callback/lifecycle i386 compile/link and KERNEL32 ReadProcessMemory import; application link PASS. Engine/UI endpoints doubled. Audits not rerun; full tracker blocked by legacy missing ignored evidence.",
             "desktop_observed": false,
             "user_accepted": false
-          }
+          },
+          "source_ref": "origin/feature/p22-render",
+          "merged_into_master": false,
+          "reviewed_master_sha": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+          "checkpoint_receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+          "verification_record": "analysis/p2.2-critical-path/evidence/render-verification.json"
         }
       },
       {
@@ -1110,8 +1131,12 @@
               "path": "analysis/p2.2-critical-path/implementation-order.md"
             }
           ],
-          "satisfied_at_source_level": false,
-          "remaining_scheduling_blocker": true
+          "satisfied_at_source_level": true,
+          "remaining_scheduling_blocker": false,
+          "implementation_revision": "345a390809297b7d267db67445f6993ee39812ac",
+          "implementation_ref": "origin/feature/p22-render",
+          "requires_integration": true,
+          "merged_into_master": false
         }
       },
       {
@@ -1241,8 +1266,12 @@
               "path": "analysis/p2.2-critical-path/implementation-order.md"
             }
           ],
-          "satisfied_at_source_level": false,
-          "remaining_scheduling_blocker": true
+          "satisfied_at_source_level": true,
+          "remaining_scheduling_blocker": false,
+          "implementation_revision": "345a390809297b7d267db67445f6993ee39812ac",
+          "implementation_ref": "origin/feature/p22-render",
+          "requires_integration": true,
+          "merged_into_master": false
         }
       }
     ]
@@ -1254,7 +1283,13 @@
     },
     {
       "id": "P22-RENDER-volume-history",
-      "reason": "Original first phase/history and actual active camera relation unresolved"
+      "reason": "Original history contract is source-resolved at345a390: read current allocation bytes then store direction. Actual first bytes, Scene15C/camera state and engine result remain runtime observations under VIS.",
+      "classification": "runtime_dependent_unknown",
+      "original_contract_status": "resolved_source",
+      "remaining_scheduling_blocker": false,
+      "owning_blocker": "P22-VIS",
+      "source_commit_sha": "345a390809297b7d267db67445f6993ee39812ac",
+      "provenance": "analysis/p2.2-critical-path/evidence/render-verification.json"
     },
     {
       "id": "P22-DATA-runtime-populations",
@@ -1262,5 +1297,5 @@
     }
   ],
   "previous_source_commit_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
-  "targeted_review_note": "UI individually verified at feature/p22-ui ebdcbf5, unmerged into reviewed masterb132e6d. UI source prerequisite edges are satisfied on that branch; integration remains under FRAME/RENDER/OWN. Other blocker revisions retain prior reviews."
+  "targeted_review_note": "RENDER individually verified at feature/p22-render345a390, unmerged into master2c96a7d. Its source prerequisite edges are satisfied; actual integration/desktop work remains. Master UI adapter availability checked separately; other blocker source pins retain prior reviews."
 }

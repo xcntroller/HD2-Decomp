@@ -1,0 +1,482 @@
+{
+  "schema_version": 1,
+  "checkpoint": "P22-OWN available application ownership composition",
+  "date": "2026-11-12",
+  "branch": "feature/p22-own",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-own",
+  "fetched_origin_master": "fa94dee38922a21397289a7b5746819c83b42d89",
+  "implementation_base": "fa94dee38922a21397289a7b5746819c83b42d89",
+  "status": "available OWN scope implemented/verified; overall OWN blocked, not source-complete",
+  "read_only_refs_inspected": {
+    "FRAME": "c36bba8c5aa2855a02c11ce832810cebe39e8d10",
+    "UI": "7a3f7b786498cca8618a654031ca7191d572982a",
+    "HUM_latest_inspected": "b99f0882597a264f9522f05c2cba23bc6073bf4b",
+    "research_p22": "2ea24636a9f323c608fe404e177d65ac7ae4eedd"
+  },
+  "implemented": [
+    "mandatory actual kind7 session factory and one existing lifecycle/World over same parent/status/request/live squad/Startup/device/catalogue/clock",
+    "actual006989B0 ->006CA780 source invocation; original loaded14/status5 publication only",
+    "actual UI/RENDER registration/render/callback identity/retirement; no competing renderer",
+    "mutable original64-word process input provenance, application forwarding with required missing-FRAME failure",
+    "controller04 deferred request and exact active identity, mode04 initialized scalar query,0067FAA0 objective save predicate",
+    "actual localized session warning first zero-INT and second no-argument format ->same HUD/console",
+    "DATA observation scopes around actual operations; failure-retaining cleanup and borrower/World before parent destruction; final view retraction",
+    "persistent original item-model suffix in Startup and same existing FrameClock lifetime"
+  ],
+  "blocked_remaining": [
+    {
+      "owner": "P22-FRAME import",
+      "dependency": "game_session_frames.h and lifecycle bind_frames/input/fixed/update/retire_frames absent in base; require actual coordinator/Runtime then remove final admission guard",
+      "trigger": "successful006989B0 result and every concrete input/fixed/update dispatch",
+      "guard": "GameApplicationSession::missing_frames; no successful placeholder"
+    },
+    {
+      "owner": "P22-FRAME/Script module4 and HUM producers; OWN integration remains open",
+      "dependency": "positive00423EB0 needs real camera828/82C/830/cutscene834, reverse contexts/Human receivers, frame lists868/87C/88C and retirement; current zeroed fields824 array lacks typed producer graph",
+      "trigger": "session input2E while full viewport / cutscene end",
+      "source_body": "unimplemented; original929-byte body inspected, retained disassembly"
+    },
+    {
+      "owner": "P22-UI integration and HUM/Actor/PACK",
+      "dependency": "FRAME filter0049FC10 and predicates0049F090/0049D300 require actual HUD2F30/map/command/inventory/message state accessors; merged advance_hud/process_hud_controls/advance_first_person exist and need real source loans",
+      "trigger": "actual session frame/input branches; conditionality unobserved"
+    },
+    {
+      "owner": "HUM/Player/Items/Dog/Sight/PACK Runtime",
+      "dependency": "FRAME documented54 required Runtime contracts and positive retained restore; source presence elsewhere is not absence and no Tutorial branch reachability claimed",
+      "trigger": "actual loaded actors/positive module/input/restore branches"
+    },
+    {
+      "owner": "VIS/REPEAT/user acceptance",
+      "dependency": "actual selected resources/populations, engine draw/present, mission/failure/return/repeat/desktop not executed"
+    }
+  ],
+  "verification": {
+    "native": "PASS100 ASan/UBSan/LSan ownership/alias/admission/false/primary-secondary/retirement/retry/provenance/controller04/receiver-fallback/objective-predicate/warning families; strict C++17 warnings-as-errors",
+    "native_doubles": [
+      "engine",
+      "World/lifecycle service",
+      "FRAME",
+      "application/parent endpoints for receiver test"
+    ],
+    "concrete_i386": "PASS strict C++17/O0 full actual application launch/World construction/loading/activation/UI/render/callback/lifecycle compile+link, including defined production factory/virtual receivers; no PE execution",
+    "application_link": "PASS existing make -B -C recovered -j1 application-launch, O2 strict compile/link; normal ignored output retained, never executed",
+    "function_progress_full": "blocked by inherited missing0062D880 analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm; not fabricated",
+    "function_progress_focused": "PASS full frozen fingerprints/baseline, ledger uniqueness,6 changed rows/evidence and README counts; one new0067FAA0 partial only",
+    "native_compiler": "GCC16.2.1 20261029",
+    "i386_compiler": "llvm-mingw20261020 clang23.1.4",
+    "original_execution": false,
+    "windows_fixture_execution": false,
+    "application_engine_execution": false,
+    "desktop_observed": false,
+    "user_accepted": false
+  },
+  "commands": {
+    "native_build": "c++ -std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -I recovered WORK/ownership_audit.cpp -L'MAIN/.tools/hd2-sanitizer-runtime/usr/lib64' -Wl,-rpath,'MAIN/.tools/hd2-sanitizer-runtime/usr/lib64' -o WORK/ownership_audit",
+    "native_run": "ASAN_OPTIONS=detect_leaks=1 WORK/ownership_audit",
+    "i386_link": "MAIN/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -ferror-limit=0 -I recovered -static -municode recovered/host/application_launch.cpp recovered/scene/model_resource_key.cpp recovered/host/bitmap_font.cpp recovered/host/multiplayer_discovery.cpp recovered/frontend/control_events.cpp recovered/frontend/menu_event_queue.cpp -lwinmm -lole32 -ladvapi32 -lgdi32 -o WORK/concrete-application-i386.exe",
+    "application_link": "make -B -C recovered -j1 application-launch WINDOWS_CXX=MAIN/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++",
+    "MAIN": "/home/control/Documents/Projects/H&D2 Decomp 4",
+    "WORK": "analysis/work/p22-own-20261112"
+  },
+  "ledger": {
+    "new_frozen_partials": [
+      "client:0067faa0"
+    ],
+    "complete_promotions": [],
+    "base_partial_count": 3004,
+    "inherited_readme_partial_count": 2997,
+    "actual_final_complete": 34,
+    "actual_final_partial": 3005,
+    "denominator": 18783,
+    "new_credit_for_bindings_instrumentation_or_absent_inventory": false
+  },
+  "evidence_levels": {
+    "historical_resolver_bytes": "existing DATA evidence preserved, not newly captured",
+    "static_requirements": "current source and read-only FRAME/UI/HUM/research inspection",
+    "actual_loaded_populations": "unobserved; callable production DATA scopes/snapshots bound",
+    "actually_executed_runtime_branches": "native audit doubles only; no engine mission execution"
+  },
+  "suffix_initial_image": {
+    "pointer_address": "0084e8e4",
+    "pointer_value": "00867980",
+    "first_byte": 0,
+    "source": "fingerprinted client PE bounded read; no invented extension"
+  },
+  "source_fingerprints": [
+    {
+      "path": "recovered/game/application_mission.h",
+      "bytes": 4207,
+      "sha256": "99ba894d1d6bd785381e9d234f4d56f2e2fc16192fbc5db3f945e888a2d5a8dd"
+    },
+    {
+      "path": "recovered/game/mission_save_predicate.h",
+      "bytes": 930,
+      "sha256": "ab68f229771c84f1d9db3791fd6e896aad171d29b420e74f5b9daeb02b674668"
+    },
+    {
+      "path": "recovered/game/session_warning.h",
+      "bytes": 2310,
+      "sha256": "53e3cf44c39f4a0012165b12f019835215be4e71323c4d30a7b66734f7128c89"
+    },
+    {
+      "path": "recovered/frontend/application_controller.h",
+      "bytes": 13322,
+      "sha256": "dac75503570063289278aeaab9c3e1bdda70c86006c33f60289625dd0bf9aa60"
+    },
+    {
+      "path": "recovered/frontend/application_startup_data.h",
+      "bytes": 4530,
+      "sha256": "3783eba5c812be21e1aa80d813b6f5147003c144e2e86fa6d2af2eacc307f195"
+    },
+    {
+      "path": "recovered/host/game_owner.h",
+      "bytes": 22017,
+      "sha256": "d9ec781f2d7b438772595a3e1a8387e7a910167e10a09f48b41aa19fd3be744c"
+    },
+    {
+      "path": "recovered/host/game_application_session.h",
+      "bytes": 4183,
+      "sha256": "3417c6ca40302fdbfb3cf7c0881114d030c67fbb90cad9020b51c0e9e9807511"
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "bytes": 8315,
+      "sha256": "bd71a34950604c57d869d64d4a06415f11b4ed9613f99c47516e1f1a65e974ed"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 69264,
+      "sha256": "4e2f45b38a5f4a900ed9f33ab52d3a50adee3fef6557304bc38d2ebd91c07539"
+    },
+    {
+      "path": "recovered/host/application_launch.cpp",
+      "bytes": 38141,
+      "sha256": "71b7bdc00e9cb1522481e7b96b253ce84ef94f84bbb2f39681baa7063ee45542"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 140832,
+      "sha256": "cf7dbd526f4de5bdf9e25d1e3337387f9cb101d37c2454fa0613c5f68ab3b03f"
+    },
+    {
+      "path": "recovered/host/game_ui_scene_callbacks.h",
+      "bytes": 2260,
+      "sha256": "f3c40e9e320fafd3cbfb696c750cba122660bcd8e6b98da92beab257e21e49a0"
+    },
+    {
+      "path": "recovered/host/game_render_stages.h",
+      "bytes": 2986,
+      "sha256": "35b735462d6ab530dfc384b126d050f068ab720fceface90c63cc1994c19c761"
+    },
+    {
+      "path": "recovered/host/game_mission_loading.h",
+      "bytes": 15670,
+      "sha256": "6cfcf672270ac587a224946cf8a6dcbdaae7a271cf97c5d4aac4734328a88c4b"
+    },
+    {
+      "path": "recovered/host/game_session_activation.h",
+      "bytes": 9564,
+      "sha256": "eb133d14e0e1921d827ee45b4de24fc931eac35128c0286576e26a99d3930621"
+    },
+    {
+      "path": "recovered/game/session_activation.h",
+      "bytes": 8625,
+      "sha256": "64a408e0db83434d126bea50fe6caf07c7263d7b61b71eeb12f7949e4d5cd172"
+    },
+    {
+      "path": "recovered/game/session_lifecycle.h",
+      "bytes": 2261,
+      "sha256": "b63d64e4cf6fc9dd7c14e0bfb7ca5684078e1b9b78e57bb73dd452afff2f9396"
+    },
+    {
+      "path": "recovered/game/session_finish.h",
+      "bytes": 4975,
+      "sha256": "abdcc4be938d681c74eb7a096d815ea593dc34b0158ecf43093b42248ea7b933"
+    },
+    {
+      "path": "recovered/game/receive_request.h",
+      "bytes": 1656,
+      "sha256": "8a6561cf9c3d11504123f8842ce1f7c0ee3d5e8553bf830caa19e3e43b1d3769"
+    },
+    {
+      "path": "recovered/game/world_views.h",
+      "bytes": 996,
+      "sha256": "375408e74c9950d81e7cb5f61c064b84d7e307b98743ed29ef3d4191faa3fefd"
+    },
+    {
+      "path": "analysis/function-status.json",
+      "bytes": 2947886,
+      "sha256": "7e7355a8a40222c00ea9dae55d4ddf4767801f08f3c6bf5cc827d3976832cea8"
+    },
+    {
+      "path": "analysis/function-baseline.json",
+      "bytes": 1133,
+      "sha256": "fae7472dde156f6a6de2388545912b54a58e27c479afb406503bb2387870f257"
+    },
+    {
+      "path": "README.md",
+      "bytes": 20493,
+      "sha256": "2981539b50746cc9fcddd0351d8e2f8eba83bbc24c4d67b4677a10188bb16291"
+    },
+    {
+      "path": "analysis/function-progress.md",
+      "bytes": 15054,
+      "sha256": "1cdb41fd8d4108ee6b1aa42d329f39fe237f5a64dd01e5f0057c271730e09a39"
+    },
+    {
+      "path": "analysis/p22-own-plan.md",
+      "bytes": 5189,
+      "sha256": "f9fa99fac73ad84f82604da5059d802b6822f0d7e1cc43f5a3039ed47b7eecb7"
+    },
+    {
+      "path": "analysis/p22-own-implementation.md",
+      "bytes": 14044,
+      "sha256": "d64e5280d8ff45f1561ed92b221e1d1791d609fe98c45956c2e5c634e657127c"
+    },
+    {
+      "path": "HANDOFF.md",
+      "bytes": 3903,
+      "sha256": "d2700997872a3ae2160aa7d3c766b643c184b0e32369b0bd5202c01c7755c338"
+    },
+    {
+      "path": "plan.md",
+      "bytes": 27076,
+      "sha256": "a3c8883d49a45f1af42a46dd75cc835af82a62eea0d7eec017fe11d0fc8cce1c"
+    }
+  ],
+  "original_evidence_fingerprints": [
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+      "bytes": 6889472,
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/function-progress/client.json",
+      "bytes": 6291591,
+      "sha256": "ae9a1cc1687bd8b471aee634e8977df63c1f4a9a4568842cd6bcf6ee9d5b61ad"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/function-progress/engine.json",
+      "bytes": 592813,
+      "sha256": "1db6631b073ac89507d23be866ddab21dfbc71decf7123864c1b73e95669cbd5"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/loader-module-composition/006989b0.c",
+      "bytes": 7596,
+      "sha256": "beb93c7e6b001637abc9912f34089d1ad279bc66f6bcf2c09a7ccd1bbd1c6b47"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/loader-module-composition/006989b0.json",
+      "bytes": 31467,
+      "sha256": "4a52b0377cb2a64209f8b66c754c898339fe074301eeea3b3068aae2186acdd9"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/loader-module-composition/006ca780.c",
+      "bytes": 4812,
+      "sha256": "d1085778cd82058e99e9fb5cb7a6520d1cb4fdc4cc664a9bcb75040bbafd86bb"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/loader-module-composition/006ca780.json",
+      "bytes": 34746,
+      "sha256": "ecf37eb8854ee0308e177dda4fa0a5f9102aaa5ec65830761cf1f0b3b5808d06"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/engine-loop/006c0750.c",
+      "bytes": 416,
+      "sha256": "0204c740fa955eda3d63e1460ed384a88ae57f2b6609ff30ad4838fe219e20dc"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/engine-loop/006c0750.json",
+      "bytes": 844,
+      "sha256": "fa6be3cd12167f95e129cdda44873bd1fb65d392df917f140b0b3a03d5c4bc22"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/engine-loop/006c20f0.c",
+      "bytes": 16039,
+      "sha256": "1b0c1acf970fa072e2f00e84475fdd939c97eae19e09da598afef89f0468a579"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/profile-selection-dependencies/006dc940.c",
+      "bytes": 60,
+      "sha256": "bff62cfe95c865c70d2fd54e5ce5208764217d0bf099182cee5ec068779366a6"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/single-pipeline-live-inventory-20261031/006b4670.c",
+      "bytes": 153,
+      "sha256": "67144acde09f87592f803ef1219d9581c0f221ced57cec20bd442d1859893d55"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/single-pipeline-live-inventory-20261031/006b4670.json",
+      "bytes": 642,
+      "sha256": "2149f2ceaedd5268cd5b666f524429cbad62f0a4b4c56f104721748767ab2ab1"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/game-state-frame-consumers/0049fc10.c",
+      "bytes": 600,
+      "sha256": "f2c18db50f76b368f408085c6e416b4a428daf9f97acac53f59e36e899110c88"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/game-state-frame-coordination/0069a560.c",
+      "bytes": 6523,
+      "sha256": "f8be841fdaff4c917a86b121497fd873230c8471d5caf0dbc4787cfa5c3652ac"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/game-state-frame-coordination/0069b230.c",
+      "bytes": 7936,
+      "sha256": "62946c4b1119d69a5b70c6bfbcc5b43ac7a65ce414090174fb9882f2dd480dbf"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-damage-messages-abi-v2/0069bf70.c",
+      "bytes": 377,
+      "sha256": "cffe7fa380a36b1aedc19059a7538a0af600b9a823ff9472795c296790c0f92d"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/item-model-ownership/007df750.c",
+      "bytes": 1914,
+      "sha256": "e73068ef8f1149377951bfa74a778eb5a135d4fa35ac626c5dd9b2f5779b0c02"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2/LS3DF.dll",
+      "bytes": 864256,
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee"
+    }
+  ],
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/p22-own-20261112/ownership_audit.cpp",
+      "bytes": 11450,
+      "sha256": "406af1bc3511a137f64a60a315655b543fa0a60535f6df4427785af504490025"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/ownership_audit",
+      "bytes": 1784312,
+      "sha256": "9badc6960afb4da66dac458a4d868ddbd1b328667d7e67329e28e3aff5cf8f1c"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/concrete-application-i386.exe",
+      "bytes": 21287936,
+      "sha256": "d9707a5e7c6486d48c2ead12ebbc2cf776645326a8b9032b9633c412b55e040a"
+    }
+  ],
+  "retained_artifacts": [
+    {
+      "path": "analysis/work/p22-own-20261112/application-final.log",
+      "bytes": 626,
+      "sha256": "98717db53f0a481de3d70ae26b852142aa24952021c364b630f04fa49424c2d4"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/application-first.log",
+      "bytes": 626,
+      "sha256": "98717db53f0a481de3d70ae26b852142aa24952021c364b630f04fa49424c2d4"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/controller-index.log",
+      "bytes": 7079,
+      "sha256": "be4eddb90fbfcefdcb578aaae5bda10df875ba4907d545d55624d45fcb92a938"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/controller2-index.log",
+      "bytes": 3740,
+      "sha256": "ce1a98a2066ad3bde1bdb4eeaeb5c604c4c275eb4006881cad8d4cdc4866454e"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/hud-nonoffline-query.asm",
+      "bytes": 642,
+      "sha256": "2c7ef41079755e1715e117458a998258365eb2bc70308782687bac87d6a2f9ba"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/hud-player-query.asm",
+      "bytes": 1026,
+      "sha256": "af848113034b202b17c43e8b8c99e3230527514c1aeb43828341618b527e4e03"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/i386-link.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/mission-save-predicate.asm",
+      "bytes": 2331,
+      "sha256": "0ca1d1ae55dd036f2b0591798fd0aaec58e1f8bb8a22b2e6bce4609e71ec7d31"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/mode-constructor.asm",
+      "bytes": 805,
+      "sha256": "6b5452ef1fabc634a8b967009714a73ae30890f4a90c2e9f5f73819ed01f516b"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/mode-index.log",
+      "bytes": 3554,
+      "sha256": "d4a16b32e85a1b4d8b05becb6af21178e036465452dc46cabafacf7d628ed576"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/mode-neighbors.log",
+      "bytes": 699,
+      "sha256": "30a821cdebd196e2617ba2ac97ab76ed0af4a3e2b7ce0ffd3d77245b2628e93f"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/native-run.log",
+      "bytes": 237,
+      "sha256": "2dbe822e09eee840413e15528114f9636e6ce686e47e1e9c0224fcc4b4a00d2e"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/original-evidence-fingerprints.json",
+      "bytes": 4391,
+      "sha256": "9544c03851503b498866c6d502f15e95f9fa199d31acd5552fd1a363f1e82a50"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/saved-descriptor-index.log",
+      "bytes": 1573,
+      "sha256": "4fc7cdec9a8d872a1075a29b48731514841f1a52025d34f068b304d04adc53d7"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/script-end-cutscene.asm",
+      "bytes": 14510,
+      "sha256": "160ebbe30d52642035ceb804c807748d89c1018bf5432ac7669cd9fcb57d5eb6"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/services-index.log",
+      "bytes": 7522,
+      "sha256": "99787c039872ae08a6827f91aa2e618e16fde87d87d03ddc2ca62481e59e0462"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/suffix-index.log",
+      "bytes": 1760,
+      "sha256": "5a9e4b91714b2c8b8e92d08c28acebcea0d1d087ee64703a6b39f9ef3aea850f"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/temporary-audit-fingerprints.json",
+      "bytes": 542,
+      "sha256": "0695d39e959e364b56309a3b7ce31e9affbef67d6fb28782e771c979ffbecc13"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/tracker-focused.log",
+      "bytes": 339,
+      "sha256": "987a14b686d6d5efcc4b0fe0e9bbc09400acba8cb38f878c1b1f976bca964748"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/tracker-full.log",
+      "bytes": 109,
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/verification.log",
+      "bytes": 559,
+      "sha256": "7effdac280dbe2e7bbb035d67b47de67732357af7b2082b7d6dcf1e1b26b1287"
+    },
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 8602624,
+      "sha256": "fd666b72dc6b6420a58c6e6cae5de48ab2b3cbc86bb60c95030b7cf0fa28f36d"
+    }
+  ],
+  "no_other_checkout_mutation": true,
+  "pushed": false,
+  "merged": false
+}

@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-17",
+  "base": "24c7310",
+  "imported": "1d54083",
+  "source_only": true,
+  "desktop_verified": false,
+  "new_body_claims": [],
+  "source_files": [
+    {
+      "path": "recovered/host/game_application_session.h",
+      "sha256": "3417c6ca40302fdbfb3cf7c0881114d030c67fbb90cad9020b51c0e9e9807511"
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "sha256": "6cbdc1c5a06681394357c1806da62522ba744cd6d6e6abe627ee519cc594d9b3"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "a35dbf100cbbb16d254e0ffa89dd746264dd9f389b6c8700bb399ab997a4d410"
+    },
+    {
+      "path": "recovered/game/human_player_live_input.h",
+      "sha256": "70233c19a2b6776e8ac436693367f44ff48d1011a4c910d9a4939bee27e0f25c"
+    },
+    {
+      "path": "recovered/game/human_player_selection.h",
+      "sha256": "7daef436c0ae78711c215849de5663e9edfb27df51e946e513c4cfdfafc3dd0b"
+    }
+  ],
+  "verification": {
+    "launcher_probe": "PASS forced O2 strict actual i386 compile/link; outputs not executed",
+    "log_sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9",
+    "native": "Existing Player input3248/runtime lifetime2112/selection1032 sanitizer receipts retained; unchanged source not re-audited"
+  },
+  "limits": "H8.4/.5/.6 remain open; committed OWN source only; uncommitted OWN desktop candidate excluded"
+}

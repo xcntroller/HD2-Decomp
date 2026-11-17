@@ -1,0 +1,1346 @@
+{
+  "result": "PASS",
+  "date_utc": "2026-11-12T08:00:40.954258+00:00",
+  "source_sha": "345a390809297b7d267db67445f6993ee39812ac",
+  "source_ref": "origin/feature/p22-render",
+  "reviewed_master_sha": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+  "merged_into_reviewed_master": false,
+  "source_only": true,
+  "source_inputs": [
+    {
+      "path": "recovered/game/volumetric_lights.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "sha256": "8cf058b505c35dcdb38023c3004362ca864308607b58a53b93f532e10fa0ebf2",
+      "bytes": 26386
+    },
+    {
+      "path": "recovered/game/effects_module_loading.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "sha256": "0523738c4ffe3e28e71ddaaa3799080fa02ca5c31e0b4d47bed3a66741f7b1d3",
+      "bytes": 10287
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "sha256": "ea1e8b762af84c332b077e33e0bccdf6a7f4bdae53618e8cd0f09887b486843c",
+      "bytes": 98405
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "sha256": "8bc9633d8a0b6d95d6772ca143c992e40ecbe251836aaa98194b5df6288ff2c5",
+      "bytes": 7815
+    },
+    {
+      "path": "recovered/game/procedural_clouds.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "sha256": "42ddf06b2718f86bdd94dcbf4c16e449c353ce4894b91929d13cbfc427abe6aa",
+      "bytes": 7791
+    },
+    {
+      "path": "recovered/game/render_debug_skeleton.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "sha256": "a162575d74a27045d54ff0d0f9cfd1ae2babcf7eb2bd1234f07c684ca3e68407",
+      "bytes": 3010
+    },
+    {
+      "path": "recovered/host/game_render_stages.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "sha256": "625f0e0553fdbd30f6dfe88753b7cdfbcebc40511949b144f5fd1cdd1dedf0a7",
+      "bytes": 2574
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "sha256": "91e69fc9f5077f6baef3239f9c7febe61402333ce1c4fc2d9a2fe1ef82151578",
+      "bytes": 60431
+    },
+    {
+      "path": "recovered/host/game_data_observations.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "sha256": "8789407ab66f5cb3c3d4f2884208fab454acc32db11d8f8b66291fab37e27cf0",
+      "bytes": 2894
+    },
+    {
+      "path": "recovered/game/effects_special_model.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "sha256": "83a6148865f9d6135609dea9646c6e80c9aa3af4cc893f55596e79c5a4900fa1",
+      "bytes": 5342
+    },
+    {
+      "path": "recovered/game/mission_script_render_commands.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "sha256": "e34a000252477df919858ec7240b54d7ce838c18c05ae49f28d95de169b8bc54",
+      "bytes": 1168
+    },
+    {
+      "path": "recovered/game/effects_shadow_models.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "sha256": "bb6e690740f167bcd90fe081e1f74c2da9229df8c5d8fd9683f4b9ba9de6470e",
+      "bytes": 12270
+    },
+    {
+      "path": "recovered/game/effects_loading_update.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "sha256": "287f5859819927de4e1435f1a3cce72164e865dac841b76f57235713cecd7ff5",
+      "bytes": 2606
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "sha256": "58fed4457a5e167ba8352b15bfb45257cc7fcfd87c818fcb15d1263d253118f8",
+      "bytes": 8654
+    },
+    {
+      "path": "recovered/host/game_scene.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "sha256": "2516368e0dda209ebde31cbbba24f7b9e92558cab28b799232d3e115db60e335",
+      "bytes": 14165
+    },
+    {
+      "path": "recovered/host/game_world_scene.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "sha256": "c40a09d77451390c9fb0eb2229d267804e0b11f4f90bf7727e4107546565e0db",
+      "bytes": 6942
+    },
+    {
+      "path": "recovered/game/session_render.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "sha256": "ebf8ffdd0cf66ba621d0f1e56fef2d12feccab95fb52409fdd6a87ee01e60ddb",
+      "bytes": 555
+    },
+    {
+      "path": "recovered/game/scene_callback.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "sha256": "61632a5d1809a2cd4aa1f6d479d4ca131837a211fbcd0d45823dab4ef075c61d",
+      "bytes": 2146
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "sha256": "d1b8d4653d24925b3f1515403265de4f5f572a8315244a5ab660492121bdc5e6",
+      "bytes": 7051
+    },
+    {
+      "path": "recovered/host/game_owner.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "sha256": "0f628ff205477dd98cb32a8505e2cc168f9a12d6e97ba55be81a4660c275da10",
+      "bytes": 15764
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "sha256": "83bcc8b697ebd7c4cfcc71fa2a9d19c9f35d016e5db6f48947f929c94982f4ca",
+      "bytes": 26647
+    }
+  ],
+  "receipt_source_observations": [
+    {
+      "path": "recovered/game/volumetric_lights.h",
+      "revision": "5fa8494da0ecb03c4ca27dfcb0faf4cd89aa5535",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "match": true,
+      "sha256": "794cf312e0176d4d1a2a38ccb053ad27df0dda53a4c85af6c13d17eeaad5e510",
+      "bytes": 22336
+    },
+    {
+      "path": "recovered/game/effects_module_loading.h",
+      "revision": "5fa8494da0ecb03c4ca27dfcb0faf4cd89aa5535",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "match": true,
+      "sha256": "bd56f02b90d71131ab494caa0446f454f32f9d5a39b6cab2749fb49fd4f0f14a",
+      "bytes": 8684
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "revision": "5fa8494da0ecb03c4ca27dfcb0faf4cd89aa5535",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "match": true,
+      "sha256": "06b274612236d50e40511bbb293a3bee7dd795ba0516dd38d6bbe398b20f3e2b",
+      "bytes": 95755
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "revision": "5fa8494da0ecb03c4ca27dfcb0faf4cd89aa5535",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "match": true,
+      "sha256": "e7069647456d33c68f90683d698b0daa858c9e92d30e5eb1f4c9987d1c927a8e",
+      "bytes": 7214
+    },
+    {
+      "path": "recovered/game/procedural_clouds.h",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "match": true,
+      "sha256": "42ddf06b2718f86bdd94dcbf4c16e449c353ce4894b91929d13cbfc427abe6aa",
+      "bytes": 7791
+    },
+    {
+      "path": "recovered/game/render_debug_skeleton.h",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "match": true,
+      "sha256": "a162575d74a27045d54ff0d0f9cfd1ae2babcf7eb2bd1234f07c684ca3e68407",
+      "bytes": 3010
+    },
+    {
+      "path": "recovered/game/volumetric_lights.h",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "match": true,
+      "sha256": "fdaf04b0fb93c54277177aac44a62707ab41425b773d0a9e47fa1b9e203fc964",
+      "bytes": 22603
+    },
+    {
+      "path": "recovered/game/effects_module_loading.h",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "match": true,
+      "sha256": "0f13ea8210d57bacd127798587dcb012edd5673abca57f6f6adc853729513bdd",
+      "bytes": 9216
+    },
+    {
+      "path": "recovered/host/game_render_stages.h",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "match": true,
+      "sha256": "9779040701738d9bfd91cd8105717c763eb7a87e87120e0ad0f519efb5b9f33c",
+      "bytes": 2288
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "match": true,
+      "sha256": "6966a6bf326ce6926c906e83630328c36d520b44d9b9e97d429da74899c7b631",
+      "bytes": 7582
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "match": true,
+      "sha256": "91e69fc9f5077f6baef3239f9c7febe61402333ce1c4fc2d9a2fe1ef82151578",
+      "bytes": 60431
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "match": true,
+      "sha256": "60529a8b85597cfa6bce1ce75cd1d5b6a5fb48ca8b9e842fe475ca0808c64b3b",
+      "bytes": 97118
+    },
+    {
+      "path": "recovered/host/game_data_observations.h",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "match": true,
+      "sha256": "18eb4c43febb07cc13de4aa54256fab99d1cafafebc37839b600527349b230f3",
+      "bytes": 2379
+    },
+    {
+      "path": "recovered/game/volumetric_lights.h",
+      "revision": "64891ba3ab0d7181f9aabe87199a3e890ea95bea",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "match": true,
+      "sha256": "2e99bd9bb7c560b679ef6119e0ba900c2c81d11f1d03a8a74c0ec4f29a23635a",
+      "bytes": 25028
+    },
+    {
+      "path": "recovered/host/game_data_observations.h",
+      "revision": "64891ba3ab0d7181f9aabe87199a3e890ea95bea",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "match": true,
+      "sha256": "d32cea2cfba7dd8daac36bc3b6c5891a17744f890e8b1b24df3d0e83f79323ef",
+      "bytes": 2500
+    },
+    {
+      "path": "recovered/host/game_render_stages.h",
+      "revision": "64891ba3ab0d7181f9aabe87199a3e890ea95bea",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "match": true,
+      "sha256": "625f0e0553fdbd30f6dfe88753b7cdfbcebc40511949b144f5fd1cdd1dedf0a7",
+      "bytes": 2574
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "revision": "64891ba3ab0d7181f9aabe87199a3e890ea95bea",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "match": true,
+      "sha256": "8bc9633d8a0b6d95d6772ca143c992e40ecbe251836aaa98194b5df6288ff2c5",
+      "bytes": 7815
+    },
+    {
+      "path": "recovered/game/effects_special_model.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "83a6148865f9d6135609dea9646c6e80c9aa3af4cc893f55596e79c5a4900fa1",
+      "bytes": 5342
+    },
+    {
+      "path": "recovered/game/mission_script_render_commands.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "e34a000252477df919858ec7240b54d7ce838c18c05ae49f28d95de169b8bc54",
+      "bytes": 1168
+    },
+    {
+      "path": "recovered/game/effects_shadow_models.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "bb6e690740f167bcd90fe081e1f74c2da9229df8c5d8fd9683f4b9ba9de6470e",
+      "bytes": 12270
+    },
+    {
+      "path": "recovered/game/effects_loading_update.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "287f5859819927de4e1435f1a3cce72164e865dac841b76f57235713cecd7ff5",
+      "bytes": 2606
+    },
+    {
+      "path": "recovered/game/effects_module_loading.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "0523738c4ffe3e28e71ddaaa3799080fa02ca5c31e0b4d47bed3a66741f7b1d3",
+      "bytes": 10287
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "58fed4457a5e167ba8352b15bfb45257cc7fcfd87c818fcb15d1263d253118f8",
+      "bytes": 8654
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "8f3d01e21432b134808f8bbc23625a71dfb1533e83c58988138aa413d10df11a",
+      "bytes": 97779
+    },
+    {
+      "path": "recovered/host/game_scene.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "2516368e0dda209ebde31cbbba24f7b9e92558cab28b799232d3e115db60e335",
+      "bytes": 14165
+    },
+    {
+      "path": "recovered/host/game_world_scene.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "c40a09d77451390c9fb0eb2229d267804e0b11f4f90bf7727e4107546565e0db",
+      "bytes": 6942
+    },
+    {
+      "path": "recovered/host/game_data_observations.h",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "group": "source_fingerprints",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "match": true,
+      "sha256": "06941ddc544b95605a759f64363a5b28f15999795bb2212c37416ac932f4f524",
+      "bytes": 2879
+    },
+    {
+      "path": "recovered/game/volumetric_lights.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "group": "source_files",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "match": true,
+      "sha256": "8cf058b505c35dcdb38023c3004362ca864308607b58a53b93f532e10fa0ebf2",
+      "bytes": 26386
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "group": "source_files",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "match": true,
+      "sha256": "ea1e8b762af84c332b077e33e0bccdf6a7f4bdae53618e8cd0f09887b486843c",
+      "bytes": 98405
+    },
+    {
+      "path": "recovered/host/game_data_observations.h",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "group": "source_files",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "match": true,
+      "sha256": "8789407ab66f5cb3c3d4f2884208fab454acc32db11d8f8b66291fab37e27cf0",
+      "bytes": 2894
+    },
+    {
+      "path": "HANDOFF.md",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "group": "documentation_and_ledger",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "match": true,
+      "sha256": "48da7577c436c79066126886160f3abb62a2c6d1cacb501bfa58a91b7d3d9f93",
+      "bytes": 4234
+    },
+    {
+      "path": "analysis/function-status.json",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "group": "documentation_and_ledger",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "match": true,
+      "sha256": "6ee890f8fc6ae30c9ef24bbf5a1c3ba7ad4940448d3b3c25be5cf0d25586c221",
+      "bytes": 2400320
+    },
+    {
+      "path": "analysis/p22-render-history.md",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "group": "documentation_and_ledger",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "match": true,
+      "sha256": "304c93c3cfc238e80cacd6a3a2fbbb3b7504f3dc8ee3d9fd111435a70e0b7e94",
+      "bytes": 11133
+    },
+    {
+      "path": "analysis/p22-render-implementation.md",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "group": "documentation_and_ledger",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "match": true,
+      "sha256": "67f082a6b7ed48be5d43305faf113c864b26ef65ed654a14446583d1cfa13e87",
+      "bytes": 22825
+    },
+    {
+      "path": "analysis/p22-render-plan.md",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "group": "documentation_and_ledger",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "match": true,
+      "sha256": "5ebefc7a0752bae256c1dd60a01f8b35bf03c24bf9c4a12e07830841b3600c62",
+      "bytes": 5713
+    },
+    {
+      "path": "plan.md",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "group": "documentation_and_ledger",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "match": true,
+      "sha256": "4fadf0f82581ee4f48538fe5e2fcfff06cef4012880075fd2e54f580867490f5",
+      "bytes": 25089
+    }
+  ],
+  "retained_artifact_observations": [
+    {
+      "path": "analysis/work/p22-render-20261111/native.log",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "de7a4785cadddb61929675af5546a4fcad4e351bd8e317ebe55cfd8b4cf85e40",
+      "bytes": 146
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/i386.log",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/application.log",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "cc787481df22b89e4d709da27543a17909d56390a81dc91c200bf3ddfeb8fe3d",
+      "bytes": 615
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/tracker.log",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/volume-containing.asm",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "d81530f8cac2e82738cc5458a00ad368732f7180251666d6c6525e3f794dd96d",
+      "bytes": 50161
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/volume-constructor.asm",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "9117e291267983ffa0d2e04da7f8ee9224080e88715163bcc970fe85178e0f19",
+      "bytes": 2052
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "original_evidence",
+      "match": true,
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "bytes": 6889472
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-effects-render-required/00482260.c",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "original_evidence",
+      "match": true,
+      "sha256": "9e44fb511b8f2fc12d76ddf076e52f68ef88ecd5ec017f2508bfe9a9fae2ba3a",
+      "bytes": 9004
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-effects-render-required/00482260.json",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "original_evidence",
+      "match": true,
+      "sha256": "47ae4975aa70a2b58918264cb022ebdfa392dc177cb07f596a1252bbec4dee11",
+      "bytes": 25464
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-overlay-init-volume-geometry/00482e50.c",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "original_evidence",
+      "match": true,
+      "sha256": "4385f07e0470e2a25ea2333d1d96cbd27d2804c423cde4c1b36ab8556055827d",
+      "bytes": 17584
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-overlay-and-volume-owners/007885b0.c",
+      "receipt": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "group": "original_evidence",
+      "match": true,
+      "sha256": "4c044e08b02c6757ee348f25f71f276407bd4387911598eb0ea3161303cd757d",
+      "bytes": 542
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/cloud-native.log",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "3920ffe2741bb276f49f78248d434f5982fe386ff2a8924a0c0370851589122b",
+      "bytes": 211
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/debug-native.log",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "18520eab332fa00de65789e995ffe671e8924c8c0cbeb53f4a78012f4c27a5b1",
+      "bytes": 154
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/cloud-i386.log",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/services-application.log",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "cc787481df22b89e4d709da27543a17909d56390a81dc91c200bf3ddfeb8fe3d",
+      "bytes": 615
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/services-tracker.log",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/procedural.asm",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "060f479a5ac611b66c3dcd8e3f531159b0293b26e2fed264116e06ac976ee6ed",
+      "bytes": 53838
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/debug-export.log",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "7100cdb63b62716252311f892c239b58603159e12486a7a2435fa50aa1753272",
+      "bytes": 4228
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/debug-export/79ac40.c",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "b0593fc41d580a1032006d39c69279d62ec2fb184cb2dab4fbeac2d92be42c48",
+      "bytes": 21453
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/debug-export/79b760.c",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "bdfcfe961771c77a080f2fd8d38aa27494b7fee7795a83e35f63f12a328c3b92",
+      "bytes": 1994
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/debug-export/provenance.txt",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "72942eadf4fe668b465116b28ceabad9e256e5cadf58a190190ef6eef0909922",
+      "bytes": 123
+    },
+    {
+      "path": "analysis/work/p22-render-20261111/debug-export/debug.asm",
+      "receipt": "analysis/checkpoints/p22-render-services-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "1c048a13ee6247cd98cdbf0157273471942f44400f14f32afa9570e943a62c13",
+      "bytes": 55631
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/allocator.asm",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "3e695005b9e9fc0b997dc629c7a95e4156c1616cc23bd0453a5524faed58c72e",
+      "bytes": 5515
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/application.log",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "cc787481df22b89e4d709da27543a17909d56390a81dc91c200bf3ddfeb8fe3d",
+      "bytes": 615
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/i386.log",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/native.log",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "b7fcf14ab5916bd3e220a921a007dabd141d2c70c02c86e40acda3125d2929e9",
+      "bytes": 237
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/operator-new.asm",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "158a5e4fa8e052307b9a27a4feac5c4f8e883c670b80dd3304eebab9af7ce353",
+      "bytes": 437
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/small-block-allocator.asm",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "7dbe44747fe88b42291e3ae5c4a4a17176ab615fe9bc03f2eef6bd910eb6f020",
+      "bytes": 15214
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/volume-allocation.asm",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "7842a43aa03fb7a12f8c74030793afa9e9ab99419e9f5a44fec9112e3a64cf93",
+      "bytes": 2012
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/volume-constructor.asm",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "ef849ede13ed5dfaa942c4fb51cc79615505b770800f886605a0008e85570e09",
+      "bytes": 1656
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/volume-reader.asm",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "852531666a56d3f51a6528af9c8291b3ad4a22a50078a04b27db6c13788b8ac7",
+      "bytes": 17329
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/volume-refresh.asm",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "238206081069ed2497a8a3c66f3370e854ed63ddab4628b5921fc4bff62f788d",
+      "bytes": 4421
+    },
+    {
+      "path": "analysis/work/p22-render-history-20261111/volume-renderer.asm",
+      "receipt": "analysis/checkpoints/p22-render-history-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "2eafbc0972980b0b45bfe9bd9214ae11ec900a777ea3909247662edb64c4c5bc",
+      "bytes": 29154
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/RandFloat-ST0.asm",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "dcddc4802597261ae417661ecccf3dbfbd9212637194eddcc90fd1f946194845",
+      "bytes": 446
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/application.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "cc787481df22b89e4d709da27543a17909d56390a81dc91c200bf3ddfeb8fe3d",
+      "bytes": 615
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/clouder-command-build.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/clouder-command-native.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "254b78836566f68918e05f459954f857758ea1f9003eec93002c0aa96eb29a1a",
+      "bytes": 245
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/i386.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/module-native-build.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/module-native.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "da0521592f912fc85bb7707968c79f663eb225a99d4e7a323701210ea03d2631",
+      "bytes": 285
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-after.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "9f0080b790dc621bcabfdc60ab345fb9b02d233ae14d774484e4e20268ca383e",
+      "bytes": 207
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-baseline.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "9f0080b790dc621bcabfdc60ab345fb9b02d233ae14d774484e4e20268ca383e",
+      "bytes": 207
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-construction-after.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "298792e148e0e7966f7de5fd3e6dfc56effb7baf059275d02ab8a5f6b556cb5a",
+      "bytes": 74
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-endpoints-after.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "bc579b9d08a054252b56a3eeefcc396c851a711823a3e7b5857c800ff1e2697f",
+      "bytes": 108
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-registration-after.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "8b14c6b86f049d68440ed4bb293eeb050b8afb7a03ccd032dd9bf019aa59c8f0",
+      "bytes": 24
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-registration-before.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "d9d94deb46c920c9a9ab3eb80076611f7cdad82f8229924d3486027bb98df3e1",
+      "bytes": 121
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-renew-after.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "195c926312616ad993568ac6aac0dfc3ab1431bccaee642d949e6e207ddfd99f",
+      "bytes": 67
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-renew-before.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "9a6cf6683c0fabe0cae4bf3f26a150289fdfade098bd1a49c266dffbe4bcb55a",
+      "bytes": 158
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-secondary-after.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "a4b661a2fbb63b251d538d204af9c192046d81ea190439ce0140b6deb6d9331c",
+      "bytes": 63
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/scene-secondary-before.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "8efe33b616e3d2e74ac316cf9b68ebdf2d9700f77f68c7752a3291cc55196b56",
+      "bytes": 188
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/script-procedural.asm",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "cb8d673d6e1756477b22eb700d5c0910ba7c36f7f064ebe4d0784d0aa0412982",
+      "bytes": 1180
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/script-special.asm",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "51f16457bf75ea08fadd93bcccf7a88535b368e3f9135ee33067083bfbd0a6f1",
+      "bytes": 1774
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/special-config-timed.asm",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "fc245948b8236ed97077dfc3f7b1c529f3ec43e16a9dff2a6b887e4c9615dded",
+      "bytes": 5935
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/special-native-build.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/special-native.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "d9d4e958518ac5ab576a6c06b601dc6e966825b6ca4ac23e8991000e36b669b1",
+      "bytes": 286
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/special-update.asm",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "4ada682ae1b979b1ef754007fb0bb7b21ef4fc28312cfa49d79c3a26c68d4854",
+      "bytes": 2692
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/static-values.json",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "a606e702f99f78b97d15f9915627f898868313a60f8974d49ad4e5ff1d266c01",
+      "bytes": 455
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/tracker.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    {
+      "path": "analysis/work/p22-render-bindings-20261111/ledger-focused.log",
+      "receipt": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "group": "artifacts",
+      "match": true,
+      "sha256": "9e801a637870e07ffff5899f12f4bb8524188518af0ba0a2091a484384f7d06a",
+      "bytes": 239
+    },
+    {
+      "path": "analysis/work/p22-render-allocation-20261112/native-build.log",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "verification_artifacts",
+      "match": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-render-allocation-20261112/native.log",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "verification_artifacts",
+      "match": true,
+      "sha256": "6c479b5de300756ffaeea433f97c23eb91b22a06759685e5bcb5f07a2dc6b506",
+      "bytes": 192
+    },
+    {
+      "path": "analysis/work/p22-render-allocation-20261112/i386.log",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "verification_artifacts",
+      "match": true,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-render-allocation-20261112/imports.log",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "verification_artifacts",
+      "match": true,
+      "sha256": "0f07b526fcf77383878d8334bb509768a5e988567ee6621e05a25f47f5f42ef7",
+      "bytes": 643
+    },
+    {
+      "path": "analysis/work/p22-render-allocation-20261112/application.log",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "verification_artifacts",
+      "match": true,
+      "sha256": "b4896cf991f69bb4547b29751314f7a8a0c5f8bcf2d5258c6cab3fa94c91ced4",
+      "bytes": 632
+    },
+    {
+      "path": "analysis/work/p22-render-allocation-20261112/ledger-focused.log",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "verification_artifacts",
+      "match": true,
+      "sha256": "b59d27354f273ee98407c40f5b1fc4c978950299db69095ffda0e751468ac523",
+      "bytes": 615
+    },
+    {
+      "path": "analysis/work/p22-render-allocation-20261112/tracker.log",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "verification_artifacts",
+      "match": true,
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    {
+      "path": "analysis/work/p22-render-allocation-20261112/products.log",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "verification_artifacts",
+      "match": true,
+      "sha256": "49e7ba69301473f1e9bceaf5fb3b6150deb92cb2c9098528bd2287bb3edff130",
+      "bytes": 222
+    },
+    {
+      "path": "analysis/work/p22-render-allocation-20261112/compiled-read-prefix.asm",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "verification_artifacts",
+      "match": true,
+      "sha256": "0a846aea91a50f84d5d14b1321c364061ceefa1c1e23eed92b4f85b070b0afc6",
+      "bytes": 30232
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "original_client",
+      "match": true,
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "bytes": 6889472
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2/LS3DF.dll",
+      "receipt": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "group": "original_engine",
+      "match": true,
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "bytes": 864256
+    }
+  ],
+  "source_and_artifact_mismatches": [],
+  "receipts": [
+    {
+      "path": "analysis/checkpoints/p22-render-containing-20261111.json",
+      "revision": "5fa8494da0ecb03c4ca27dfcb0faf4cd89aa5535",
+      "sha256": "3500d805a7cd24a2b80383075e18caea71ed861c0c8946a09151f31f97f18df3",
+      "bytes": 5150,
+      "verification": {
+        "native": "PASS ASan/UBSan/LSan positive source traversal/draw and injected failures; explicit engine/procedural doubles and seeded audit history, not production binding",
+        "i386": "PASS concrete World/frame/GEffects rendering and callable lifecycle/Scene compile+link; throwing procedural audit double; no execution",
+        "application": "PASS make application-launch; no execution",
+        "diff_check": "PASS",
+        "tracker": "BLOCKED existing missing ignored evidence analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm; ledger unchanged"
+      },
+      "source_only": true,
+      "desktop_verified": false
+    },
+    {
+      "path": "analysis/checkpoints/p22-render-services-20261111.json",
+      "revision": "c1bbd09d5c56130290fe3db224d118340898899d",
+      "sha256": "351fd1ceb3d8f0544170993cc31ad6771e3a3e563152dfb1bc40c0a19f4c0f7b",
+      "bytes": 9274,
+      "verification": {
+        "native_cloud": "PASS ASan/UBSan/LSan: generated positive two texture batches,100 resource lifetimes,missing texture0/1,partial configure/retry,volume-clear process retirement,all reached operation failure prefixes,malformed camera. Explicit engine doubles; no seeded procedural collections.",
+        "native_debug": "PASS ASan/UBSan/LSan:20 exact bone pairs,max21,reverse traversal,WORD indices,RGBA/padding/alignment,100 lifetimes,40 bone-failure/retry paths and malformed null bone. Explicit engine/Human doubles.",
+        "i386": "PASS strict actual World/GEffects/frame/geometry/debug/DATA/Scene/UI callback and lifecycle-owned GameRenderStages composition compile+link. No rendering receivers replaced by doubles; fixture Controller type is unused by these methods. Engine/OS remain declarations linked via dynamic checked endpoints, not executed.",
+        "application_link": "PASS make -C recovered -j1 application-launch, existing target. Output not executed.",
+        "diff_check": "PASS",
+        "tracker": "BLOCKED existing missing ignored evidence0062D880 analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm. Ledger+6 partial; README generated tally not refreshed because validator refuses.",
+        "callback_lifetime": "Concrete install/retirement compiled/linked and source ownership checked; actual engine callback replacement/retirement execution remains unobserved."
+      },
+      "source_only": true,
+      "desktop_verified": false
+    },
+    {
+      "path": "analysis/checkpoints/p22-render-history-20261111.json",
+      "revision": "64891ba3ab0d7181f9aabe87199a3e890ea95bea",
+      "sha256": "d5b2ee24a63e94dd61ef0ebb626572be6f99c681e5eddce0ec47d52b7651c81a",
+      "bytes": 8599,
+      "verification": {
+        "native": "PASS ASan/UBSan/LSan. Actual decoder/render guard; enabled/disabled/saturated diagnostics, exact bits/reference/coefficient, no extra frame reads, unknown state retained, primary guard error survives cleanup failure.",
+        "i386": "PASS strict concrete World/GEffects/Scene/UI/RENDER/lifecycle/DATA compile+link; actual service bodies, no rendering substitutes. ControllerDouble only unused type parameter. Not executed.",
+        "application": "PASS existing application-launch compile+link; not executed.",
+        "diff_check": "PASS",
+        "tracker": "Prior known missing ignored0062D880 rule-refresh.asm evidence remains; ledger unchanged, broad audit not repeated."
+      },
+      "source_only": true,
+      "desktop_verified": false
+    },
+    {
+      "path": "analysis/checkpoints/p22-render-bindings-20261111.json",
+      "revision": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+      "sha256": "6c970208a3a2224611f6caf2e53682621c2b4c07c0c587d52720036d6225920a",
+      "bytes": 14637,
+      "verification": {
+        "native_special": "PASS ASan/UBSan/LSan:100 actual compiler/context BB lifetimes; positive/hidden/NaN/extended versus FLOAT; exact random count; deferred/timed/wrapped expiry; each reached initialization/restoration/positive-update failure prefix and retry. Engine endpoints doubled.",
+        "native_module": "PASS ASan/UBSan/LSan:100 actual EffectsModuleLoading constructors -> actual configuration loan -> compiler/context AD -> actual procedural resources; competing/wrong-process rejection, cold close, special finish, loan retirement/rebind, partial texture retry. Engine/camera endpoints doubled.",
+        "native_procedural": "PASS ASan/UBSan/LSan: actual compiler/context AD -> effects loan -> real cloud geometry both batches;100 lifetimes, authority, side effects before advance gate, partial retry, retired/unbound rejection. Engine/texture endpoints doubled.",
+        "native_scene": "PASS ASan/UBSan/LSan: actual GameScene + scene_callback + session_render source, engine/platform/UI endpoint doubles;100 lifetimes, sequence/gates/raw viewport payloads/competing owners/replacement/retirement, five Scene operations plus loading callbacks primary/secondary exception handling,400 constructor failure/retries. Native64 not original i386 ABI.",
+        "i386": "PASS strict C++17 Werror full actual World construction/destruction + module bindings + VM dispatch + special/procedural/debug/DATA + owned host UI callbacks/lifecycle->actual Scene78 linked. Not executed.",
+        "application": "PASS existing make -C recovered -j1 application-launch compile/link after final source changes. Not executed.",
+        "tracker": "Focused PASS: frozen inventories/baseline, ledger uniqueness, new004871A0 membership/status/evidence, existing00416E10/00487240 statuses/new evidence. Full --render blocked by pre-existing0062D880 missing ignored analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm; README progress block intentionally not regenerated. No complete promotions.",
+        "diff_check": "PASS"
+      },
+      "source_only": true,
+      "desktop_verified": false
+    },
+    {
+      "path": "analysis/checkpoints/p22-render-allocation-20261112.json",
+      "revision": "345a390809297b7d267db67445f6993ee39812ac",
+      "sha256": "0536ecbcd5cbaccf86ed64a273f90e30cfbff74186139efd8a25db090ec3e893",
+      "bytes": 10526,
+      "verification": {
+        "native": "PASS ASan/UBSan/LSan100 repeat families: actual decoder, owned raw allocation, unseeded first history, positive sorted volume/particle leaves, repeat current-direction stores, refresh/reconstruction, missing texture/light, malformed data, raw/sidecar allocation failures, read/render failures and all state restoration attempts with original primary precedence. Actual POSIX process_vm_readv is a labelled platform replacement for Win32; engine/procedural endpoints are doubles. Separate known-prior fixtures verify raw signed-zero/finite/infinity/quiet/signalling-NaN and NaN propagation; not mission state or a production first-sample initializer.",
+        "i386": "PASS strict -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror actual full World construction, GEffects finish_loading(false) including real files/decode/raw allocation/refresh, GameRenderStages, actual Scene/callback/lifecycle render and close compile/link. Actual KERNEL32 ReadProcessMemory import verified. Controller boundary double is defined throwing; existing unavailable UI body remains explicit. PE not run.",
+        "compiled_allocation": "Actual instantiated production VolumetricLights<GameSceneActors>::read disassembly shows operator new(0x48) before typed sidecar construction and existing volume_random_unit. No raw history clear; prefix retained in ignored WORK.",
+        "application": "PASS existing make -B -C recovered -j1 application-launch after final source change; PE not run. Heavy final native/i386/application work sequential.",
+        "ledger": "PASS frozen client/engine inventory/baseline/full ledger uniqueness and changed-entry/evidence validation. No new inventory entries or complete promotions. Existing coverage expanded00482A00/00482260; stale shared render limitation text corrected on five other existing partials. Full tracker still limited by unrelated legacy missing0062D880 WORK rule-refresh.asm; counts unchanged.",
+        "engine_runtime": "NOT RUN",
+        "desktop": "NOT RUN"
+      },
+      "source_only": true,
+      "desktop_verified": false
+    }
+  ],
+  "independent_source_anchors": {
+    "recovered/game/volumetric_lights.h": [
+      "new typename Volume::NativePayload",
+      "procedural.render(time)",
+      "volume.history_words(frames_)",
+      "volume.history_direction",
+      "render_volume(volume,time",
+      "errors.attempt([&]{draw.volume_graphics_state(13,graph13);})"
+    ],
+    "recovered/host/game_actor_frames.h": [
+      "::ReadProcessMemory(::GetCurrentProcess(),address,result.data(),sizeof result,&copied)",
+      "field<Frame>(scene_.frame(),0x15c)",
+      "graphics_.methods->draw_primitive",
+      "checked_engine_method<Draw>(driver_.frame(),module_,0x30)"
+    ],
+    "recovered/game/effects_module_loading.h": [
+      "effects_.bind_procedural_configuration",
+      "volumes_.render(time,draw,procedural)",
+      "startup.procedural_clouds().render(time,frames)",
+      "effects_.configure_special_model(false,Frame{},true)"
+    ],
+    "recovered/game/mission_script_loading_runtime.h": [
+      "execute_mission_render_command"
+    ],
+    "recovered/game/procedural_clouds.h": [
+      "frames.volume_draw",
+      "load_procedural_cloud_texture(\"clouder.tga\")"
+    ],
+    "recovered/host/game_render_stages.h": [
+      "class GameRenderStages final:public GameUiRenderStages",
+      "world_.modules().game_effects().render_before_scene()",
+      "d.startup.render_debug_skeleton().render(*this)"
+    ],
+    "recovered/host/game_session_lifecycle.h": [
+      "std::make_unique<GameRenderStages>",
+      "std::make_unique<GameUiSceneCallbacks>",
+      "parent_.scene()->bind_callbacks(*callbacks)",
+      "game::render_session(*this)",
+      "parent_.scene()->render()",
+      "callbacks_.reset()",
+      "render_stages_.reset()"
+    ],
+    "recovered/host/game_scene.h": [
+      "0x78,0x46860",
+      "borrowed_callbacks_=previous",
+      "catch(...){rethrow_callback_failure();throw;}"
+    ]
+  },
+  "upstream_final_verification": {
+    "native": "PASS ASan/UBSan/LSan100 repeat families: actual decoder, owned raw allocation, unseeded first history, positive sorted volume/particle leaves, repeat current-direction stores, refresh/reconstruction, missing texture/light, malformed data, raw/sidecar allocation failures, read/render failures and all state restoration attempts with original primary precedence. Actual POSIX process_vm_readv is a labelled platform replacement for Win32; engine/procedural endpoints are doubles. Separate known-prior fixtures verify raw signed-zero/finite/infinity/quiet/signalling-NaN and NaN propagation; not mission state or a production first-sample initializer.",
+    "i386": "PASS strict -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror actual full World construction, GEffects finish_loading(false) including real files/decode/raw allocation/refresh, GameRenderStages, actual Scene/callback/lifecycle render and close compile/link. Actual KERNEL32 ReadProcessMemory import verified. Controller boundary double is defined throwing; existing unavailable UI body remains explicit. PE not run.",
+    "compiled_allocation": "Actual instantiated production VolumetricLights<GameSceneActors>::read disassembly shows operator new(0x48) before typed sidecar construction and existing volume_random_unit. No raw history clear; prefix retained in ignored WORK.",
+    "application": "PASS existing make -B -C recovered -j1 application-launch after final source change; PE not run. Heavy final native/i386/application work sequential.",
+    "ledger": "PASS frozen client/engine inventory/baseline/full ledger uniqueness and changed-entry/evidence validation. No new inventory entries or complete promotions. Existing coverage expanded00482A00/00482260; stale shared render limitation text corrected on five other existing partials. Full tracker still limited by unrelated legacy missing0062D880 WORK rule-refresh.asm; counts unchanged.",
+    "engine_runtime": "NOT RUN",
+    "desktop": "NOT RUN"
+  },
+  "upstream_evidence_levels": {
+    "historical_resolver_bytes": "Existing DATA/proof receipts preserved; no new historical heap-byte claim.",
+    "static_requirements": "Original allocator/constructor/read/store instructions plus actual current source/compiled allocation/API contracts verified.",
+    "actual_loaded_populations": "No real mission loaded. Native decoded names/geometry/resources are labelled fixture populations.",
+    "actually_executed_runtime_branches": "Native allocation/traversal/draw-to-doubles only. No original engine draw/present, actual mission reachability or desktop acceptance."
+  },
+  "upstream_external_remaining": {
+    "ui": "Unmerged source-complete ebdcbf59bc6a59880bb664c0a5934e46105669d6 GameUiPresentation consumers with actual Human/order/Sight/console loans and special-model retirement forwarding.",
+    "frame": "c36bba8c5aa2855a02c11ce832810cebe39e8d10 coordinator/scheduling integration and actual updates, with its existing external Runtime contracts.",
+    "own_life": "Actual application activation/install/forwarding; combine source frame/render borrower retirement before Scene/World/camera/texture destruction. No application enabling here.",
+    "runtime_desktop": "Actual loaded resources/populations, executed engine branches, first-frame/present and user failure/return/repeat acceptance."
+  },
+  "source_abi_limit": "Port CRT/sidecar allocations/instrumentation/OS-copy differ from original allocator/object ABI; identical historical heap bytes, pixel output and trajectory are not claimed. This does not require a missing gameplay producer or another P22 dependency.",
+  "original_history_proof": {
+    "path": "analysis/checkpoints/p22-render-history-20261111.json",
+    "sha256": "d5b2ee24a63e94dd61ef0ebb626572be6f99c681e5eddce0ec47d52b7651c81a",
+    "bytes": 8599,
+    "findings": "00482BB8 allocates48;00481320/read/refresh leave3C/40 unwritten;00482843..64 consumes previous bytes then writes current direction. Those original findings remain valid; requiring a historical heap snapshot was the erroneous completion condition."
+  },
+  "audits_rerun": false,
+  "original_execution": false,
+  "windows_execution": false,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "limitations": [
+    "Upstream native/i386/link checks reviewed and retained fingerprints/logs checked; audits not rerun.",
+    "Full tracker reports existing0062D880 missing ignored rule-refresh.asm; focused ledger checks pass.",
+    "Branch actual containing World/lifecycle render receivers are callable source; actual GameApplicationState still declines loading.",
+    "Current master/UI/FRAME composition and desktop/mission/failure/repeat/second mission acceptance are not verified by branch fixtures."
+  ],
+  "independent_original_byte_verification": {
+    "result": "PASS",
+    "method": "Bounded preferred-image PE reads; retained disassembly instruction bytes compared directly with fingerprinted original client. No original execution.",
+    "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "files": [
+      {
+        "path": "analysis/work/p22-render-history-20261111/volume-allocation.asm",
+        "sha256": "7842a43aa03fb7a12f8c74030793afa9e9ab99419e9f5a44fec9112e3a64cf93",
+        "instruction_or_byte_lines": 38,
+        "verified_bytes": 122
+      },
+      {
+        "path": "analysis/work/p22-render-history-20261111/volume-constructor.asm",
+        "sha256": "ef849ede13ed5dfaa942c4fb51cc79615505b770800f886605a0008e85570e09",
+        "instruction_or_byte_lines": 26,
+        "verified_bytes": 85
+      },
+      {
+        "path": "analysis/work/p22-render-history-20261111/volume-reader.asm",
+        "sha256": "852531666a56d3f51a6528af9c8291b3ad4a22a50078a04b27db6c13788b8ac7",
+        "instruction_or_byte_lines": 340,
+        "verified_bytes": 1117
+      },
+      {
+        "path": "analysis/work/p22-render-history-20261111/volume-refresh.asm",
+        "sha256": "238206081069ed2497a8a3c66f3370e854ed63ddab4628b5921fc4bff62f788d",
+        "instruction_or_byte_lines": 85,
+        "verified_bytes": 221
+      },
+      {
+        "path": "analysis/work/p22-render-history-20261111/volume-renderer.asm",
+        "sha256": "2eafbc0972980b0b45bfe9bd9214ae11ec900a777ea3909247662edb64c4c5bc",
+        "instruction_or_byte_lines": 549,
+        "verified_bytes": 1813
+      },
+      {
+        "path": "analysis/work/p22-render-history-20261111/operator-new.asm",
+        "sha256": "158a5e4fa8e052307b9a27a4feac5c4f8e883c670b80dd3304eebab9af7ce353",
+        "instruction_or_byte_lines": 6,
+        "verified_bytes": 14
+      },
+      {
+        "path": "analysis/work/p22-render-history-20261111/allocator.asm",
+        "sha256": "3e695005b9e9fc0b997dc629c7a95e4156c1616cc23bd0453a5524faed58c72e",
+        "instruction_or_byte_lines": 108,
+        "verified_bytes": 300
+      },
+      {
+        "path": "analysis/work/p22-render-history-20261111/small-block-allocator.asm",
+        "sha256": "7dbe44747fe88b42291e3ae5c4a4a17176ab615fe9bc03f2eef6bd910eb6f020",
+        "instruction_or_byte_lines": 275,
+        "verified_bytes": 777
+      },
+      {
+        "path": "analysis/work/p22-render-bindings-20261111/script-procedural.asm",
+        "sha256": "cb8d673d6e1756477b22eb700d5c0910ba7c36f7f064ebe4d0784d0aa0412982",
+        "instruction_or_byte_lines": 22,
+        "verified_bytes": 69
+      },
+      {
+        "path": "analysis/work/p22-render-bindings-20261111/script-special.asm",
+        "sha256": "51f16457bf75ea08fadd93bcccf7a88535b368e3f9135ee33067083bfbd0a6f1",
+        "instruction_or_byte_lines": 34,
+        "verified_bytes": 100
+      },
+      {
+        "path": "analysis/work/p22-render-bindings-20261111/special-config-timed.asm",
+        "sha256": "fc245948b8236ed97077dfc3f7b1c529f3ec43e16a9dff2a6b887e4c9615dded",
+        "instruction_or_byte_lines": 121,
+        "verified_bytes": 404
+      },
+      {
+        "path": "analysis/work/p22-render-bindings-20261111/special-update.asm",
+        "sha256": "4ada682ae1b979b1ef754007fb0bb7b21ef4fc28312cfa49d79c3a26c68d4854",
+        "instruction_or_byte_lines": 52,
+        "verified_bytes": 169
+      },
+      {
+        "path": "analysis/work/p22-render-20261111/procedural.asm",
+        "sha256": "060f479a5ac611b66c3dcd8e3f531159b0293b26e2fed264116e06ac976ee6ed",
+        "instruction_or_byte_lines": 1017,
+        "verified_bytes": 4222
+      }
+    ],
+    "total_verified_bytes": 9413,
+    "focused_contract": [
+      "00482BB8 push48; loader constructor/read allocation chain verified.",
+      "00481320 ctor writes44 and other explicit fields;3C/40 omitted. Read/refresh/allocator ranges inspected.",
+      "00482843 computes old3C address;0048284E delta;00482862/64 stores current direction afterward.",
+      "Actual opcodeAD/BB special-light and procedural instruction ranges match original client."
+    ]
+  },
+  "master_ui_context": {
+    "source_revision": "2c96a7d177a4e8ab85eea2b20dfe595f22c9007d",
+    "ui_source_revision": "7a3f7b786498cca8618a654031ca7191d572982a",
+    "merge_commit": "415e850",
+    "scope": "Only full GameUiPresentation adapter availability checked: master file equals verified UI7a3f7b7; UI is already merged. Other UI source/desktop claims not globally refreshed.",
+    "source_path": "recovered/host/game_ui_presentation.h",
+    "sha256": "63b8f972fc76f6308b41f74b2554f6c1641cbf2df862257eb88d6659cb3692da",
+    "bytes": 142192
+  },
+  "source_scope": "RENDER-owned callable World/lifecycle render services, volumetric/procedural/debug/special-light policies and original allocation-state behavior. External UI/FRAME/OWN composition, conditional effects update producers and actual engine/desktop acceptance remain required.",
+  "tracker_limitation": "Full tracker records existing missing0062D880 ignored analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm. Focused frozen-inventory/ledger/changed-evidence checks reported PASS; no complete tracker PASS claimed.",
+  "conditional_reached_dependencies": [
+    "EffectsLoadingUpdate still rejects reached water camera/weather/game64/colour transitions. Their presence is conditional; completed pre-scene draw services do not implement every effects update.",
+    "Timed MP_Lightning receiver exists; live weather/network caller is external and selected mission reachability remains unknown.",
+    "Native positive fixtures establish bounded source behavior, not active installed resolver populations or actual engine drawing."
+  ],
+  "integration_notes": [
+    "feature/p22-render is based on447e073 and is not merged into reviewed master2c96a7d. No merge or combined current-master build performed.",
+    "Master already contains full UI7a3f7b7; render handoff references to UI being unmerged describe its older branch baseline.",
+    "Combine RENDER-owned callback/stages lifetime with FRAME coordinator retirement through the existing LIFE owner. Do not introduce a second World/Scene/camera/clock/process owner.",
+    "UI modal retirement must forward to world.scene().effects().configure_special_model(false,nullptr,true); the receiver is implemented, containing action producer remains external.",
+    "Callbacks retire before render stages; both retire before World/Scene/camera/texture teardown. Actual application still deliberately declines loading."
+  ],
+  "research_validation": {
+    "result": "PASS",
+    "date_utc": "2026-11-12T08:06:05.550028+00:00",
+    "nodes": 13,
+    "edges": 17,
+    "pinned_source_document_master_files": 34,
+    "checks": [
+      "Other12 blocker rows and graph nodes retain exact prior observations.",
+      "Stable node/edge IDs, original prerequisite direction, types and blocking semantics preserved.",
+      "Only RENDER source prerequisites marked satisfied; unmerged branch integration explicit.",
+      "History reference now tracks runtime observation, not a missing source initializer.",
+      "All scoped source/document/master fingerprints match pinned Git objects.",
+      "Graph references resolve; blocking DAG acyclic; conditional edges nonblocking.",
+      "Local Markdown links resolve; advisory has at most five findings.",
+      "All changes restricted to requested research directory; no implementation or original execution.",
+      "Native/i386 results remain reported, not independently rerun; tracker missing-evidence limit explicit."
+    ]
+  }
+}
