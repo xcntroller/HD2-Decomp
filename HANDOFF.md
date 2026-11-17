@@ -17,6 +17,22 @@ acceptance. H8.1/H8.3 source checked; H8.2/H8.4/H8.5/H8.6 and HUM matrix OPEN.
 
 ## Latest verified checkpoint
 
+[Dog frame adapters](analysis/human-h8-dog-frame-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json).
+Actual Dog580/590/5A0 history005D64E0, Body turn005C89C0, gravity005C62C0/6250,
+actual multisphere support005C6380 and signed movement limit005C8B10 now exist.
+World/Runtime Dog Sight uses same optional544 marker; World SOUND uses actual
+Body3EC minus snapshotted Actor position and fresh model-relative pointer.
+Native1641 strict ASan/UBSan/leak checks PASS. Actual strict full World/i386
+module + these APIs and forced O2 launcher/probe PASS (compile/link only).
+Controller is an explicitly throwing compile-fixture endpoint, no live Dog
+activation/controller/frame/motion closure claimed.6 frozen partials;34 complete/
+3668 partial(client3663+engine5), frozen18783. Tracker exact+27 tests PASS.
+Temps fingerprinted/removed. No heavy job running. Continue; no user questions.
+
+Prior motion/bootstrap checkpoint e7e1635
+
+
 [Dog motion/transform/Body bootstrap](analysis/human-h8-dog-motion-bootstrap-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json).
 Actual Dog owns clip005C71E0 displacement,005C7600 deceleration/getter005C75B0,
@@ -48,8 +64,8 @@ Prior checkpoints: a31f4dc [Body actions](analysis/human-h8-dog-actions-source.m
 
 ## Next — finish live Dog/remaining Human owners
 
-Next concrete dependency is actual controller/bootstrap/activation and containing
-frame collision-motion005C3420, then remaining selected Human owners. Body and
+Next concrete dependency is actual selected controller/activation and containing
+frame collision-motion005C3420 plus005C43D0/2260/26D0, then remaining selected Human owners. Body and
 clip initialization source now exist in dog_body_state.h/dog_body_transform.h;
 use them rather than reimplementing. Runtime still fails live Dog entry.
 Actual direction/body-action emission adapter and controller owner are needed.
@@ -62,14 +78,31 @@ controller-body-dependencies,live-controller}.005C7D30 C is under REQUIRED,
 bootstrap raw and exact constants are linked in the current contract.
 Original00811FBC=-10000.099609375 FLOAT, not timer-10000.
 
-Fresh READ-ONLY next evidence already retained: human-h8-dog-frame-history-index.txt,
-.asm (005D64C0..6700), -constants.json.005D64E0 copies590→580 BEFORE actual matrix,
-new XYZ590, subtract XYZ with FLOAT spills, sum(X²+Y²)+Z² retained extended.
-Strict ordered squared-distance<1.0000000168623835e-16 skips scaling. Otherwise
-scale=-1000/exact signed PREVIOUS5A0 in x87 (NO FLOAT factor spill), then stores
-new supplied elapsed5A0 AFTER scaling. Initial5A0=0 preserves native NaN/Inf,
-not a guard. Not implemented/credited yet.005D64C0 forwards actual controller1C
-unless kind1, which is genuineRET12. Raw evidence added after latest receipt.
+Fresh READ-ONLY containing motion exports are retained under
+human-h8-dog-motion-typed-v2-originals, PASS7 bodies. Script
+ExportH8DogMotionTyped.java aborts on absent starts and rolls back all changes.
+Original typed-v1 had WRONG fastcall query/exclusion declarations; retain as
+NONAUTHORITATIVE provenance. v2 correctly uses0071BAF0 thiscall(request), rays
+007183A0 thiscall6args/sweep00718530 thiscall7args;006EFB10 thiscall(array,count,
+NULL),006EFA70 thiscall(NULL,NULL). Typed v2 aliases are improved but x87 return
+casts and register/stack-vector names still require raw instructions, especially
+005C26D0 constructor/rotation helpers. Do not create absent original starts.
+
+Full005C3420 existing C is495 lines. Reuses actual CollisionMotion<Hit> and
+advance_standing_collision_motion (0071BAF0), SAME World human_geometry_ray/
+sweep and SAME descriptor exclusions. Need complete setup/step/lateral/ground/
+direction response, not another private solver. Read all005C43D0/2260/26D0.
+005C6380 is now implemented against request.contacts with ALL contacts consumed,
+not Body fields.005C62C0 pure copied-speed integrator and005C6250 actual FLOAT
+speed/phase producer are now implemented, no need re-audit them.
+
+Raw005C3420 scratch: ESPB0/B4/B8 local270/26C/268 normal is read by4001 and
+passed to005C43D0; provenance NOT yet classified. Constructor00401000 initializes
+10 records atrequest+100; main repstos zeroesrequest200 only. Do not blindlyzero
+this separate local normal/flag or infer global unproducedness from C names.
+Need aligned full raw before coding. Current partial objdump ranges starting
+inside instructions are NOT authoritative; re-export from real aligned start.
+Earlier Body278/27C/280 unresolved priority provenance also stays explicit.
 
 Native core details: ActorBody+90; clipBaseBody+10=ActorA0, clip model10=ActorB0.
 Body160 is actual Actor borrower. Body364=Actor3F4 action. Seven damage bones

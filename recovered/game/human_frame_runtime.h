@@ -52,8 +52,8 @@ public:
         throw std::runtime_error(authority?"Dog frame requires actual005D5620 live Body/controller":"Dog frame requires actual005D5810 live Body/controller");
     }
     template<class Actor>void sight_exclude_dog(Actor actor){world_.sight_exclude_dog(actor);}
-    template<class Actor>std::optional<HumanVector> sight_dog_origin(Actor){throw std::runtime_error("Dog Sight origin requires actual live Actor544 marker");}
-    template<class Actor>HumanMatrix sight_dog_head_matrix(Actor){throw std::runtime_error("Human-to-Dog Sight requires actual live Actor544 marker");}
+    template<class Actor>std::optional<HumanVector> sight_dog_origin(Actor actor){return world_.sight_dog_origin(actor);}
+    template<class Actor>HumanMatrix sight_dog_head_matrix(Actor actor){return world_.sight_dog_head_matrix(actor);}
     template<class Actor>void sight_dog_marker_metric(Actor,Actor,std::uint32_t&,float&){throw std::runtime_error("Dog Sight metric requires actual005D64C0 controller534 virtual1C");}
     template<class Item>void update_loose_item(Item& item,bool authority,std::uint32_t elapsed){world_.update_loose_item(item,authority,elapsed);}
     template<class State>void choose_script_alarm_action(State& state){world_.choose_script_alarm_action(state);}

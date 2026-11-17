@@ -1,5 +1,7 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
+#include "game/dog_sight_geometry.h"
+#include "game/dog_body_sound.h"
 #include "game/human_ai_target_output.h"
 #include "game/model_scene_actors.h"
 #include "game/document_place_scene_actor.h"
@@ -3187,6 +3189,18 @@ public:
     float human_sound_random(){return dependencies().scene.frames().volume_random_unit();} //Actual LS3DF RandFloat, distinct from CRT rand.
     template<class Human,class Actor>void player_sight_dog(Human&,Actor& actor){dependencies().players.control().add_sighted_dog(&actor);} //0045D4A0.
     template<class Human,class Actor>bool network_human_sight_friendly(Human&,Actor&){throw std::runtime_error("Nonoffline Sight requires actual005A09A0 friendship receiver");}
+    template<class Dog>std::int32_t dog_emit_body_voice(Dog& dog,std::uint32_t flags,std::int32_t entry){return emit_dog_body_voice(dog,dependencies().scene.frames(),dependencies().sound,flags,entry);}
+    void dog_stop_body_voice(std::int32_t& voice){dependencies().startup.stop_game_sound_voice(voice);}
+    template<class Actor>auto sight_dog_head_matrix(Actor actor){
+        using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
+        auto* dog=dynamic_cast<Dog*>(actor);if(!dog)throw std::logic_error("Dog Sight head requires SAME actual type30 actor");
+        return dog_sight_head_matrix(*dog,dependencies().scene.frames());
+    }
+    template<class Actor>auto sight_dog_origin(Actor actor){
+        using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
+        auto* dog=dynamic_cast<Dog*>(actor);if(!dog)throw std::logic_error("Dog Sight origin requires SAME actual type30 actor");
+        return dog_sight_origin(*dog,dependencies().scene.frames());
+    }
     template<class Actor>void dog_sight_changed(Actor& actor,bool,std::uint32_t){ //005D5CB0's genuine cold null534 gate.
         using Dog=typename std::decay_t<decltype(dependencies().scene.frames())>::Dog;
         auto* dog=dynamic_cast<Dog*>(&actor);if(!dog)throw std::logic_error("Dog Sight requires its actual actor family");

@@ -28190,7 +28190,7 @@
       "program": "client",
       "entry": "0046e3b0",
       "status": "partial",
-      "coverage": "Dog marker advance and signed deadlines, required actual metric, hit-only target identity ray policy and score clearing.",
+      "coverage": "Dog marker advance and signed deadlines, required actual metric, hit-only target identity ray policy and score clearing. Bind actual Dog marker/SOUND World adapters with snapshots and required producer failures.",
       "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
       "evidence": [
         "recovered/game/sight_loading.h",
@@ -28200,7 +28200,8 @@
         "recovered/host/game_sight_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/sight-shot-frame-source.md",
-        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json",
+        "analysis/human-h8-dog-frame-source.md"
       ]
     },
     {
@@ -28244,7 +28245,7 @@
       "program": "client",
       "entry": "0056fc80",
       "status": "partial",
-      "coverage": "AI Human-to-Dog metric state/kind gates, actual target head dependency,100/view range cap and symmetric triangle. Occupied observer direction binds actual Actor98 thenA4; actual Dog544 marker producer remains required.",
+      "coverage": "AI Human-to-Dog metric state/kind gates, actual target head dependency,100/view range cap and symmetric triangle. Occupied observer direction binds actual Actor98 thenA4; actual Dog544 marker producer remains required. Bind actual Dog marker/SOUND World adapters with snapshots and required producer failures.",
       "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
       "evidence": [
         "recovered/game/sight_loading.h",
@@ -28257,7 +28258,8 @@
         "analysis/checkpoints/p2.2-sight-frame-20261110.json",
         "recovered/game/human_active_ai_entry.h",
         "analysis/human-h8-entry-source.md",
-        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json",
+        "analysis/human-h8-dog-frame-source.md"
       ]
     },
     {
@@ -49896,14 +49898,15 @@
       "program": "client",
       "entry": "005c5bf0",
       "status": "partial",
-      "coverage": "Actual Dog Body action-entry speed, animation2 XYZ and separate37C/380/384 SOUND stop/reset/emit policy and publication.",
+      "coverage": "Actual Dog Body action-entry speed, animation2 XYZ and separate37C/380/384 SOUND stop/reset/emit policy and publication. Bind actual Dog marker/SOUND World adapters with snapshots and required producer failures.",
       "limitations": "Source-only typed action/queue reconstruction. Live Dog Body activation, geometry/controller/clip mixer and SOUND integration remain required; native malformed/unproduced words fail explicitly. Focused native sanitizer checks use explicit adjacent controller/clip/audio/frame/sweep endpoints; actual World/module/i386/launcher compile/link only, no native object/allocator/SEH ABI, application or desktop equivalence. No delegated/absent body credit.",
       "evidence": [
         "recovered/game/dog_body_actions.h",
         "recovered/game/dog_body_orders.h",
         "recovered/game/model_scene_actors.h",
         "analysis/human-h8-dog-actions-source.md",
-        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-dog-actions-20261117.json",
+        "analysis/human-h8-dog-frame-source.md"
       ]
     },
     {
@@ -50253,6 +50256,78 @@
         "recovered/game/dog_body_state.h",
         "analysis/human-h8-dog-motion-bootstrap-source.md",
         "analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d64e0",
+      "status": "partial",
+      "coverage": "Compose actual Dog580/590/5A0 history, retained failure prefixes, exact previous signed elapsed and extended scaling.",
+      "limitations": "Typed source owners replace native object/vtable/allocator ABI. Qualified native sanitizers and actual World i386 source links; actual selected controller/activation/containing motion and desktop delivery remain required. No engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_frame_history.h",
+        "analysis/human-h8-dog-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c89c0",
+      "status": "partial",
+      "coverage": "Turn supplied Body direction using actual Actor snapshot, late control/posture, original angle/step gates and engine rotation with saved Y.",
+      "limitations": "Typed source owners replace native object/vtable/allocator ABI. Qualified native sanitizers and actual World i386 source links; actual selected controller/activation/containing motion and desktop delivery remain required. No engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_body_turn.h",
+        "analysis/human-h8-dog-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c62c0",
+      "status": "partial",
+      "coverage": "Integrate copied Dog gravity velocity/85ms phase with retained extended speed and displacement.",
+      "limitations": "Typed source owners replace native object/vtable/allocator ABI. Qualified native sanitizers and actual World i386 source links; actual selected controller/activation/containing motion and desktop delivery remain required. No engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_ground_query.h",
+        "analysis/human-h8-dog-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c6250",
+      "status": "partial",
+      "coverage": "Advance actual FLOAT Dog gravity speed/phase references with strict85ms stepping and signed time conversion.",
+      "limitations": "Typed source owners replace native object/vtable/allocator ABI. Qualified native sanitizers and actual World i386 source links; actual selected controller/activation/containing motion and desktop delivery remain required. No engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_ground_query.h",
+        "analysis/human-h8-dog-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c6380",
+      "status": "partial",
+      "coverage": "Consume every actual multisphere contact and evaluate native slope/descriptor support without losing unordered normals.",
+      "limitations": "Typed source owners replace native object/vtable/allocator ABI. Qualified native sanitizers and actual World i386 source links; actual selected controller/activation/containing motion and desktop delivery remain required. No engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_ground_query.h",
+        "analysis/human-h8-dog-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c8b10",
+      "status": "partial",
+      "coverage": "Return actual4.5 or0 from signed Body24C support-failure count greater than5.",
+      "limitations": "Typed source owners replace native object/vtable/allocator ABI. Qualified native sanitizers and actual World i386 source links; actual selected controller/activation/containing motion and desktop delivery remain required. No engine-body credit.",
+      "evidence": [
+        "recovered/game/dog_body_state.h",
+        "analysis/human-h8-dog-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json"
       ]
     }
   ]

@@ -7,6 +7,7 @@
 #include "game/dog_clip_mixer.h"
 #include "game/dog_body_transform.h"
 #include "game/dog_body_state.h"
+#include "game/dog_frame_history.h"
 #include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/supply_box_geometry.h"
@@ -44,6 +45,8 @@ public:
     DogBodyActions body_actions{body_orders}; //005C5030/8490/8540/8570 use these SAME records.
     DogBodyTransform body_transform{body_actions}; //Same3E0 flags, no mirrored pose/control owner.
     DogBodyState<Frame> body; //Actual bootstrap markers/scalars, shared by controller and damage.
+    DogFrameHistory frame_history; //Actual Actor580/590/5A0, produced by activation.
+    std::optional<Frame> sight_marker544; //Unproduced differs from a produced native NULL.
     std::uint32_t& field330=body_orders.current.field1c;
     std::uint32_t& field334=body_orders.current.field20;
     std::array<Record,5>& records=body_orders.records;

@@ -9,11 +9,12 @@ template<class Frame>struct DogBodyState {
     using Vector=std::array<float,4>;
     Frame animation2_164{},ground404{};std::array<Frame,7> damage_bones{};
     Vector direction180{},surface210{{0,-1,0,0}},surface220{{0,-1,0,0}};
-    std::uint32_t field24c=0,field240=0,field250=0,field254=0,field264=0,field1fc=0,
+    std::uint32_t field24c=0,field240=0,field264=0,
         field23c=0,field234=0,field238=0,field388=0;
-    float speed244=1,field258=0,field1f8=0,field200=1;
+    float speed244=1,field250=0,field254=0,field1fc=0,field258=0,field1f8=0,field200=1;
     std::int32_t field25c=-10000,material1f0=-1,field1f4=-420;
     bool flag230=false,flag231=false,flag232=false,flag268=false,flag3e4=false;
+    long double movement_limit()const{return dog_order_signed(field24c)>5?0.L:4.5L;} //005C8B10, signed support-failure counter.
     bool initialized=false; //Source provenance only, never substitutes for a reached receiver.
 };
 //005C7D30 following the actual005C6E10 clip publication/initialization. The
