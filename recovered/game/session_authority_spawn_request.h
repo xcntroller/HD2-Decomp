@@ -2,6 +2,7 @@
 #define HD2_GAME_SESSION_AUTHORITY_SPAWN_REQUEST_H
 #include "game/prepared_spawn_packets.h"
 #include "game/human_score_presentation.h"
+#include "game/session_chat.h"
 namespace hd2::game {
 inline std::array<std::uint32_t,12> application_spawn_stat_defaults(){return {{800,80,80,80,80,80,50,30,20,50,0,80}};}
 template<class Runtime>void initialize_application_spawn_stats(std::array<std::uint32_t,12>& stats,
@@ -13,7 +14,8 @@ template<class Runtime>void initialize_application_spawn_stats(std::array<std::u
         }
     }
 }
-template<class Packet,class Runtime>void receive_authority_spawn_request(std::uint32_t kind,Packet& packet,Runtime& r){ //00727800 cases0/1 ONLY, distinct presentation grammar.
+template<class Packet,class Runtime>void receive_authority_spawn_request(std::uint32_t kind,Packet& packet,Runtime& r){ //00727800 spawn0/1 and chat3, distinct presentation grammar.
+    if(kind==3){receive_session_chat_request(packet,r);return;}
     if(kind!=0&&kind!=1)throw std::runtime_error("Required authority application command is not reconstructed");
     const auto peer=packet.read(32);
     if(kind==0){

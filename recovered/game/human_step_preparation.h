@@ -62,7 +62,8 @@ bool prepare_human_step_motion(Control& control,Look& look,Human& human,Services
     if(surface_offset-base_y<=.45f&&!control.movement().frame_words().template get<std::uint32_t>(0xf0))return false;
     const float rise=stored_offset-base_y;
     HumanVector forward{{direction[0]*.45f,0,direction[2]*.45f,direction[3]}};
-    HumanVector start{{initial[0],base_y,initial[2],0}};
+    //0074A690 local_2ac = base_y + radius: sweep the sphere CENTER, not its foot.
+    HumanVector start{{initial[0],base_y+radius,initial[2],0}};
     if(word(0x988)!=-10000){
         const auto& ladder=services.human_ladder_geometry(physical.control_action_actor());
         start[0]=static_cast<float>(static_cast<long double>(ladder.direction()[0])*-.3f+initial[0]);

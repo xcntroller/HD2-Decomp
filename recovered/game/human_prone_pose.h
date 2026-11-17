@@ -259,7 +259,7 @@ private:
         for(unsigned axis=0;axis!=3;++axis)offset[axis]=static_cast<float>(shift*vectors_[4][1][axis]);
         const auto anchor=skeleton.bones()[22].frame;
         const auto anchor_world=frames.actor_world_matrix(anchor);
-        frames.object_position(anchor,{{anchor_world[12]+offset[0],anchor_world[13]+offset[1],anchor_world[14]+offset[2]}});
+        frames.human_prone_anchor_position(anchor,{{anchor_world[12]+offset[0],anchor_world[13]+offset[1],anchor_world[14]+offset[2],anchor_world[15]}});
         const auto front=section_direction(normal,up,spheres,0);
         rotate_bone(frames,skeleton,13,normal,front,periodic_normalize);
         rotate_bone(frames,skeleton,8,front,vectors_[4][0],periodic_normalize);

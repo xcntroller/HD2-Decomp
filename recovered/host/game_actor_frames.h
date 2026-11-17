@@ -1012,6 +1012,7 @@ public:
     void mounted_local_direction(Frame frame,const Vector& direction){call<void>(frame,0x1c,direction.data(),std::uint32_t{0});}
     MenuDriver::Owner mounted_shell_visual(Frame source){auto result=create_visual(0x5f4a424fu);if(!result)throw std::runtime_error("Cannot create mounted casing visual");call<void>(result.get(),0x4c,source);human_seat_link(result.get(),camera_root_sector());place_human_reaction_model(result.get());return result;}
     void mounted_shell_position(Frame frame,const Vector& position){auto flags=field<std::uint32_t>(frame,0xe0);if(!(flags&0x80u)){for(unsigned axis=0;axis!=3;++axis)put(frame,0xb0+axis*4,position[axis]);put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);}}
+    void human_prone_anchor_position(Frame frame,const Vector& position){call<void>(frame,8,position.data());} //007A8520 uses WORLD SetPos; engine1001C9F0 converts through parent inverse.
     void human_control_set_position(Frame frame,const Vector& position){ //007599F0.
         call<void>(frame,0x08,position.data());
         call<void>(scene_.frame(),0x144,frame);

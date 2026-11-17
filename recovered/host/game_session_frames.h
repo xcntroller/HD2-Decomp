@@ -109,7 +109,7 @@ public:
     void retire()noexcept override{if(retired_)return;retired_=true;world_.unbind_frame_reset(*this);} //Consumes the source borrower; does not finish/simulate the World.
     std::uint32_t mode_flags()const{return d_.startup.application_flags();}
     bool is_current_application_state(){return external_.is_current_application_state();}
-    bool full_viewport()const{return d_.startup.scene_presentation_flags().full_viewport;}
+    bool full_viewport()const{return d_.startup.scene_presentation_flags().full_viewport||d_.script_link.cutscene_active();}
     bool hud_enabled()const{return parent_.hud()->enabled();}
     void filter_hud_input(std::uint32_t* a,std::uint32_t* b){external_.filter_hud_input(a,b);}
     void update_loaded_hud(std::uint32_t elapsed){external_.update_loaded_hud(elapsed);}

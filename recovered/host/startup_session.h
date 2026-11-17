@@ -909,6 +909,25 @@ public:
     void write_application_world_snapshot(game::SessionPacketStream& packet){packet_world_.write_application_world_snapshot(packet);}
     void drain_application_commands(){application_commands_.drain(*this);}
     void queue_application_request(std::uint32_t kind,std::uint32_t first,std::uint32_t second){application_requests_.enqueue({kind,first,second},gate_,*this);}
+    void queue_application_chat(std::string_view text,bool team){ //0072EA90 -> actual process request FIFO3.
+        application_requests_.enqueue({3,0,0,game::make_session_chat(text,local_player_identity(),team)},gate_,*this);
+    }
+    void touch_application_chat_peer(std::uint32_t peer){
+        enter_control_lock(0);struct Unlock{StartupSession& s;~Unlock(){s.leave_control_lock(0);}}unlock{*this};
+        control_data_.records.at(peer).word(0xa8,timeGetTime());
+    }
+    void queue_application_chat_presentation(std::shared_ptr<game::SessionChatMessage> message){
+        application_commands_.enqueue({4,0,0,0,{},std::move(message)},gate_,*this);
+    }
+    void receive_application_chat(game::SessionPacketStream& packet){game::receive_session_chat(packet,control_data_,*this);}
+    std::int32_t application_chat_health(void* human){return packet_world_.application_chat_health(human);}
+    void present_application_chat(const std::string& name,const std::string& text,void* human,bool admin){
+        const auto message=name+": "+text;
+        if(message.size()>=512)throw std::length_error("Chat exceeds native0069BF70 output buffer");
+        if(gate_&2u)packet_world_.append_application_coloured_message(message,admin?std::array<float,3>{{160,160,160}}:std::array<float,3>{{255,255,255}});
+        else append_game_console(message);
+        if(!admin&&human)packet_world_.notify_application_chat_human(human,text);
+    }
     void drain_application_requests(){application_requests_.drain(*this);}
     auto& application_live_squad(){return pre_mission().squad();}
     auto& begin_application_request(std::uint32_t kind){ //0072BDC0→0072BED0, local=false, no target or preflush.

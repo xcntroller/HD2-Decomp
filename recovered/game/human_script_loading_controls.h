@@ -31,7 +31,9 @@ public:
     void ai_mode(Human& human,std::uint32_t mode){if(auto* state=script(human))state->ai_mode(mode);}
     bool move(Human& human,const std::string& name,std::int32_t pc){ //005AF210 then005AF1D0.
         auto* state=script(human);if(!state)return false;
-        const auto point=lookup_.human_vehicle_named_point(name);if(point==0xffff)return false;
+        auto* navigation=state->navigation(); //0058E8A0 uses this Script AI's A0, the FIRST table.
+        if(!navigation)throw std::logic_error("Script Move requires its actual Human navigation owner");
+        const auto point=navigation->named_point(name);if(point==0xffff)return false;
         state->request_navigation_point(point,pc,lookup_.human_state_factory(human).control(),lookup_);return true;
     }
     void guard_mode(Human& human){if(auto* state=script(human))state->request_guard_mode();}

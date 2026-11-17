@@ -128,7 +128,7 @@ class GameUiConsoleActions {
 public:
     virtual ~GameUiConsoleActions()=default;
     virtual void system_command(world_loading::World&,const std::string& command)=0; //Actual process98C0FC/007422D0/00742480 application/network console.
-    virtual void chat(world_loading::World&,std::string_view text,std::int32_t sender,bool team)=0; //0072EA90: one typed payload, application kind3 THEN control scalar kind3; actual application supplies unwritten target108 before serialization.
+    virtual void chat(world_loading::World&,std::string_view text,std::int32_t sender,bool team)=0; //0072EA90: transferred payload to request FIFO3; optional external console owner.108 is an ignored wire word.
     virtual void network_kill(world_loading::World&,std::int32_t identity)=0; //Application kind4 THEN control scalar4, zero remaining arguments.
     virtual void kill_human(world_loading::World&,world_loading::Human&)=0; //Required original D4(6,-1,zero,zero,NULL,0) only on older Human checkpoints.
     virtual void set_health_percent(world_loading::World&,world_loading::Human&,std::int32_t)=0; //Actual005A6060, not direct HUD/stat mutation.
@@ -294,7 +294,7 @@ public:
     std::uint32_t game_status()const{return d_.session.status;}
     std::uint32_t game_word24()const{return d_.session.words.get<std::uint32_t>(0x24);}
     bool suppress_hud()const{return d_.startup.scene_presentation_flags().suppress_hud||world_.owners().scripts().module().cutscene_active();} //Containing cutscene HUD policy; text/effects remain in their scene callback stages.
-    bool full_viewport()const{return d_.startup.scene_presentation_flags().full_viewport;}
+    bool full_viewport()const{return d_.startup.scene_presentation_flags().full_viewport||d_.script_link.cutscene_active();}
     bool debug_enabled()const{return d_.startup.scene_presentation_flags().debug;}
     bool hud_enabled(){require_open();return parent_.hud()->enabled();}
     CursorViewport graphics_viewport(){
@@ -510,7 +510,10 @@ private:
         std::uint32_t mode(){return ui.d_.startup.application_flags();}std::uint32_t difficulty(){return ui.d_.startup.human_difficulty();}
         void sensitivity(std::int32_t value){(void)input::set_binding_axis_limits(ui.d_.startup.presentation_input_bindings(),value,value,1);} //006C6C90, SAME input manager, no profile/settings rewrite.
         void system_command(const std::string& line){required().system_command(ui.world_,line);}
-        void chat(std::string_view text,bool team){required().chat(ui.world_,text,ui.d_.startup.local_player_identity(),team);}
+        void chat(std::string_view text,bool team){
+            if(actions)actions->chat(ui.world_,text,ui.d_.startup.local_player_identity(),team);
+            else ui.d_.startup.queue_application_chat(text,team); //Same application owner; no console-wide fake adapter.
+        }
         auto* current_human(){auto* human=ui.d_.first_players.current_player();if(human)ui.require_actor_borrower(human);return human;}
         std::int32_t identity(world_loading::Human& human){ui.require_actor_borrower(&human);return human.base().id10();}
         std::int32_t local_identity(){return ui.d_.startup.local_player_identity();}

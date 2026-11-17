@@ -91,17 +91,7 @@ template<class State,class World>void steer(State& state,void* car,const HumanVe
 }
 //0051E1A0→0051C800, actual16-byte case-insensitive point name.
 inline std::uint16_t named_point(MissionTableSet& table,const std::string& name){
-
-        if(table.count0c&&!table.data10)throw std::logic_error("Vehicle named point requires actual SECOND table names");
-        const auto* records=static_cast<const MissionTableVectorRecord*>(table.data10);
-        for(unsigned i=0;i<table.count0c;++i){const auto* bytes=reinterpret_cast<const unsigned char*>(records[i].words.data());bool match=true;
-            for(unsigned n=0;n<16;++n){const unsigned a=bytes[n],b=n<name.size()?static_cast<unsigned char>(name[n]):0u;
-                const auto fold=[](unsigned c){return c>='A'&&c<='Z'?c+32:c;};
-                if(!a||!b){if(a!=b)match=false;break;}if(fold(a)!=fold(b)){match=false;break;}}
-            if(match)return records[i].value;
-        }
-        return 0xffff;
-
+    return MissionNavigation(table).named_point(name);
 }
 //00421C00 op2B: reverse roster, nearest eligible actor and filtered reachable points.
 template<class Frame,class World>std::optional<std::uint16_t> chase_point(Frame frame,World& world){

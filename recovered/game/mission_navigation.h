@@ -18,6 +18,21 @@ namespace hd2::game {
 class MissionNavigation {
 public:
     explicit MissionNavigation(MissionTableSet& table) : table_(table) {}
+    std::uint16_t named_point(std::string_view name)const { //0051E1A0→0051C800, SAME selected table's fixed16 label.
+        if(table_.count0c&&!table_.data10)throw std::logic_error("Named point requires actual navigation labels");
+        const auto* records=static_cast<const MissionTableVectorRecord*>(table_.data10);
+        for(unsigned i=0;i<table_.count0c;++i){
+            const auto* label=reinterpret_cast<const unsigned char*>(records[i].words.data());bool match=true;
+            for(unsigned n=0;n<16;++n){
+                const unsigned a=label[n],b=n<name.size()?static_cast<unsigned char>(name[n]):0u;
+                const auto fold=[](unsigned c){return c>='A'&&c<='Z'?c+32:c;};
+                if(!a||!b){if(a!=b)match=false;break;}
+                if(fold(a)!=fold(b)){match=false;break;}
+            }
+            if(match)return records[i].value;
+        }
+        return 0xffff;
+    }
     void append_named_references(std::string_view prefix,std::vector<std::uint16_t>& output)const { //0051C9C0/0051C840.
         if(table_.count0c&&!table_.data10)throw std::runtime_error("Navigation named references require actual label records");
         const auto* records=static_cast<const MissionTableVectorRecord*>(table_.data10);

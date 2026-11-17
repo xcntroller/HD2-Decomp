@@ -5,6 +5,7 @@
 #include <limits>
 #include <stdexcept>
 #include "game/session_pending_spawn.h"
+#include "game/session_chat.h"
 
 namespace hd2::game {
 //0072A0B0/0097C8F0 process FIFO, scalar commands reached by Human death/spawn rejection.
@@ -12,16 +13,17 @@ namespace hd2::game {
 //command families have owning payloads and require their separate producers.
 class SessionApplicationCommands {
 public:
-    struct Command {std::uint32_t kind,first,second,target;std::shared_ptr<SessionPendingSpawn> pending_spawn{};};
+    struct Command {std::uint32_t kind,first,second,target;std::shared_ptr<SessionPendingSpawn> pending_spawn{};std::shared_ptr<SessionChatMessage> chat{};};
     template<class Backend>void enqueue(Command command,std::uint32_t mode,Backend& backend){
-        if(command.kind!=1&&command.kind!=3&&command.kind!=6&&command.kind!=7&&command.kind!=8&&command.kind!=10&&command.kind!=11&&command.kind!=12&&command.kind!=13&&command.kind!=15&&command.kind!=16&&command.kind!=17&&command.kind!=23)
+        if(command.kind!=1&&command.kind!=3&&command.kind!=4&&command.kind!=6&&command.kind!=7&&command.kind!=8&&command.kind!=10&&command.kind!=11&&command.kind!=12&&command.kind!=13&&command.kind!=15&&command.kind!=16&&command.kind!=17&&command.kind!=23)
             throw std::runtime_error("Required application command producer is not reconstructed");
         if(command.kind==3&&!command.pending_spawn)throw std::logic_error("Application spawn command requires its typed transferred record");
+        if(command.kind==4&&!command.chat)throw std::logic_error("Chat presentation requires its transferred payload");
         const bool locked=(mode&7u)!=7u;
         if(locked)backend.enter_application_command_lock(); //Actual application+2C, NOT control418/430 or peerB4.
         try{
             if(commands_.size()==std::numeric_limits<std::uint32_t>::max())throw std::length_error("Application command FIFO count");
-            commands_.push_back(command);
+            commands_.push_back(std::move(command));
         }catch(...){if(locked)backend.leave_application_command_lock();throw;}
         if(locked)backend.leave_application_command_lock();
         //Native offline false also only appends; drain is the distinct ELSE.
@@ -31,12 +33,15 @@ public:
         draining_=true;
         struct Reset{bool& flag;~Reset(){flag=false;}}reset{draining_};
         while(!commands_.empty()){
-            const auto command=commands_.front();
+            auto& command=commands_.front();
             backend.flush_application_command_packets(1000); //Before EACH envelope; failure retains current node.
             auto& packet=backend.begin_application_command(command.target,command.kind); //0072BDE0→BE00, local=true.
             switch(command.kind){
             case 1:case 11:case 16:break; //Genuine default/no-payload arms in0072A0B0.
             case 3:backend.write_application_spawn(packet,*command.pending_spawn);break;
+            case 4:
+                if(!command.chat)throw std::logic_error("Chat presentation payload was consumed before failed packet finalization");
+                write_session_chat(packet,*command.chat);command.chat.reset();break; //Native FREE before finish.
             case 6:backend.write_application_configuration(packet);break;
             case 7:backend.write_application_world_snapshot(packet);break;
             case 8:backend.write_application_match_statistics(packet);break;

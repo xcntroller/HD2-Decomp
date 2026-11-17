@@ -1,0 +1,346 @@
+{
+  "date": "2026-11-17",
+  "finalized_utc": "2026-11-17T19:40:37.331339+00:00",
+  "branch": "feature/p22-frame",
+  "source_base": "16ab5336ab530fba919da8fdff5cee37db63e495",
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "source_only_checkpoint": true,
+  "user_confirmed_previous_4efed3f5": [
+    "Cutscene projection and HUD",
+    "Ordinary movement no longer crashes",
+    "Selected squad and placeholders correctly separated",
+    "Helmet/backpack equipment visible"
+  ],
+  "source_corrections": [
+    "HUMAN_Move reads same state navigation FIRST; vehicle named point remains SECOND.46 actual Tutorial routes FIRST only.",
+    "Climb action1E uses E0 kind4/Look48 dirty2, rather than movement kind1/30 requesting prone.",
+    "Prone bone22 uses original engine world SetPos virtual08, with parent inverse, rather than localB0 write.",
+    "Ladder upward step clearance starts at baseY+radius; preserves collision rejection and selects exit descriptor14.",
+    "Cutscene skip/full text viewport/subtitle geometry borrow SAME Script824 active state through checked link; explicit integration policy, no retail RET setter credit.",
+    "Default chat uses real Startup request3, authority3, presentation4 FIFO/packet/receiver. Owning text and real control records, exact free-before-finish, team/alive/admin/byte-font gates; ignored native unwritten108 initialized0."
+  ],
+  "original_evidence": {
+    "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "addresses": [
+      "005AF210",
+      "0058E8A0",
+      "0051E1A0",
+      "00586200",
+      "005ABD90",
+      "0077F050",
+      "007AB589",
+      "1001C9F0",
+      "0074A690",
+      "00768230",
+      "0069A560",
+      "0049B7C0",
+      "0072EA90",
+      "0072B1C0",
+      "00727800",
+      "0072A0B0",
+      "00728450",
+      "0064D6C0",
+      "005A9B30"
+    ],
+    "research": "Reused indexed original exports and targeted static PE disassembly. No new Ghidra export or original execution."
+  },
+  "source_files": [
+    {
+      "path": "recovered/game/human_prone_pose.h",
+      "bytes": 19251,
+      "sha256": "0cf95b2c63d5324c02fc591a1fe6b4038b8bc33410e6195069773d9e9b1cdee5"
+    },
+    {
+      "path": "recovered/game/human_script_loading_controls.h",
+      "bytes": 16696,
+      "sha256": "decdd32139804128e7baef1292e5d2ff43b6b3f730cdcb7d86fc2ab2cd469ae6"
+    },
+    {
+      "path": "recovered/game/human_step_preparation.h",
+      "bytes": 8107,
+      "sha256": "0c9509ab9f56c5e9e252c0be30aef9145520ff3195f059b6e5a055a43a589210"
+    },
+    {
+      "path": "recovered/game/human_vehicle_path.h",
+      "bytes": 19812,
+      "sha256": "b1d71dda8a7adb5729ae27cdad69cc509c2531d897e758e4c3a050c6e6fefcc9"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 333987,
+      "sha256": "48cdb17897c9bc6ffdb4ae282c73405bc53bd272c0c16748eefde9fe4d0b5bdb"
+    },
+    {
+      "path": "recovered/game/mission_navigation.h",
+      "bytes": 36714,
+      "sha256": "a87914cef39d5ea5859619af6246fd5053107e4fc29a4fc9c5af4c182a3c6538"
+    },
+    {
+      "path": "recovered/game/mission_script_world_link.h",
+      "bytes": 3628,
+      "sha256": "03ce4bb32976bf5a272593c0af0a56717e26cfc0e7a5c065c147bbd9c451e00b"
+    },
+    {
+      "path": "recovered/game/session_application_commands.h",
+      "bytes": 3978,
+      "sha256": "bb71b0306da65e78f0dfa31931ffa0f6fe607636eb3ebc18f265f5e1aaa1ee87"
+    },
+    {
+      "path": "recovered/game/session_authority_spawn_request.h",
+      "bytes": 2451,
+      "sha256": "f1907e6970a822bc15078a147b57e9ad8a4d0344bd50992c6901bfc903a716bd"
+    },
+    {
+      "path": "recovered/game/session_frame_requests.h",
+      "bytes": 2746,
+      "sha256": "4120726ad46703c08c789a22048119fad4f164e6ebd57286773d3a7e8ea587ad"
+    },
+    {
+      "path": "recovered/game/session_packet_world.h",
+      "bytes": 6713,
+      "sha256": "083f0df50b8a417664e4ded01d4f94f880c422d1677ed2fc8f0ef110c2f339de"
+    },
+    {
+      "path": "recovered/game/session_received_application.h",
+      "bytes": 4136,
+      "sha256": "81beac9c3ed1770d4f2d19031e3339bd22b0d9074baf94744aac373f44bb5b9d"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 144596,
+      "sha256": "af386b542fce147ff501354270d0adaf3fd5d1a1d33251eb74dbe84cb77ae40c"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 36947,
+      "sha256": "8235ec60f64383273c48bd3a826774cd9589fd791626f7b5bee937a5e3e0858b"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 142987,
+      "sha256": "e501bc96b073012034e54aa4dd8f9064a76cdaee33e3e507eebf5f93407c98f0"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "bytes": 34681,
+      "sha256": "846e29caca0fe149734b06cd261706d11b2f39f82da4d1575d24aaedfa21fe0c"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 85520,
+      "sha256": "025f3489171c7a7761aaeae0c3206440caf15680167bacf6a97166baa8cc82c6"
+    },
+    {
+      "path": "recovered/game/session_chat.h",
+      "bytes": 4253,
+      "sha256": "61d7c7a3de08bbb99428d4844a777e525267b46750e97a0af6ff2164093cacd9"
+    }
+  ],
+  "verification": {
+    "native": "PASS159+78=237 focused ASan/UBSan/leak checks. Actual Tutorial tables, navigation/Look/prone/skip/subtitle and actual Ladder worker/chat FIFOs/codecs/authority/presentation helpers. Engine rotation, collision, clock and final HUD endpoints explicitly doubled.",
+    "production": "PASS full actual REVIEW application-launch and startup-probe O2/Werror -j1 rebuild; sequential, no Ghidra in parallel.",
+    "stage": "PASS --stage-only; compiled/staged executable bytes identical. No Windows/original/DLL/Proton execution.",
+    "desktop": "New fixes pending user desktop verification. Source/build checks do not establish rendered behavior or stable gameplay.",
+    "preservation": "OWN HEAD1d54083 and six dirty source hashes unchanged; REVIEW preexisting focused-camera callback preserved. Shared18 batch sources equal apart from that callback.",
+    "cleanup": "Temporary audit sources and native executables fingerprinted and removed. Logs retained; no permanent tests.",
+    "ledger": "Unchanged34 complete/3815 partial, frozen18783. No whole-function or full FRAME/HUM/OWN matrix promotion."
+  },
+  "remaining": [
+    "Pause application status14: retained actual menu/resume owner graph, plan section5. No status swallow/reset.",
+    "Distinct HUD selector producer remains required OWN/UI.",
+    "Nonoffline005A9B30 Human chat text/timer producer remains guarded; no nonoffline completion claim.",
+    "Actual desktop acceptance for new controls/cutscene/soldier/Ladder/chat behavior."
+  ],
+  "compiled_launcher": {
+    "path": "recovered/build/application_launch.exe",
+    "bytes": 13112320,
+    "sha256": "c35be79387debd4074d3e1d37e2dda12cbe859d650b32f8947bb6594af9dffb7"
+  },
+  "staged_launcher": {
+    "path": "analysis/work/frame-own-review-runtime/run/application_launch.exe",
+    "bytes": 13112320,
+    "sha256": "c35be79387debd4074d3e1d37e2dda12cbe859d650b32f8947bb6594af9dffb7"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-chat-decode-index.txt",
+      "bytes": 7033,
+      "sha256": "bbf791962e1d659f808531ef5675695a007beb631dcc4e3eb16d65b93112b48d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-chat-index.txt",
+      "bytes": 2426,
+      "sha256": "0b3a757fed6b58e9cf52259f636e307af75b72c972be8a588278c007c8f088a6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-chat-multibyte.asm",
+      "bytes": 3352,
+      "sha256": "7c37d4c1e04bf51ec5bd63302f73ccb1dc029acd6ee7f2324417215603175b45"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-chat-producer.asm",
+      "bytes": 1410,
+      "sha256": "1a7445af88d2c91594c3c8b4b41d1e09f70c61a29c1b725d35c36b78767be7d1"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-chat-queue-index.txt",
+      "bytes": 6610,
+      "sha256": "8c2e919084b8418ff69b84a5bb2a60f266cbb5d694531290a48ac40310c82113"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-chat-request-drain.asm",
+      "bytes": 8280,
+      "sha256": "c071b5785be10036f268502a45fe995c5c0e11819faf93460ccfc4469a468089"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-chat-request-fifo.asm",
+      "bytes": 3720,
+      "sha256": "649ae334052f72d785d386039982d8cdddb0693caa883d41359f115fb125da50"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-final-preservation.json",
+      "bytes": 206,
+      "sha256": "91727e06abc2b0674f83ac61ff41273551fd283a85d3af371998102175ca754c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-final-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-foot-route-names.txt",
+      "bytes": 403,
+      "sha256": "516f3533b54612c6c62908dc8e5e48be43c4a75e40ed728da66fc69c5f23bf2f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-input-index.txt",
+      "bytes": 9889,
+      "sha256": "a3c0d5377fa3db06e0f2eb36a295e4b64c0b6ed14cf3e0da27808dd2eaa992a6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-native-run.log",
+      "bytes": 225,
+      "sha256": "f4c7a9af8ccb7006384b4c9daa9684ba3cd4ce0b78ed1e1774bac72adfe85462"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-preservation.json",
+      "bytes": 194,
+      "sha256": "8ce1e05e7e019e8b2632dc9440484dfe3dd7ad0e065902a6b354148001d853c3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-return/manifest.json",
+      "bytes": 577,
+      "sha256": "d275043f92c4585b5792d1a5b6e4a219eb84cbc9a9df59ffadf5fbe1a4745319"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-review-final.patch",
+      "bytes": 302519,
+      "sha256": "424b6a95bc1096ce2cc402d87867a5ea54f3585bdf3e2164a0dd62f1499f3e36"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-review-index.patch",
+      "bytes": 18868,
+      "sha256": "376a03ba0e1252d429352ab63c46cb407f65756b2194c753047c61c0c3568c08"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-stage-only.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-temporary-audit-cleanup.json",
+      "bytes": 838,
+      "sha256": "212c60ee7c3f5b3fc93854ac823ee251a5bf69e3b994983a100c7d2502111c07"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-controls-tutorial-tables.bin",
+      "bytes": 46330,
+      "sha256": "2164a9ce012c30841e9c4bcd05ee5a609c5026f56ff6b0da6f8e3a677464425f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-cutscene-flag-index.txt",
+      "bytes": 4993,
+      "sha256": "56af740cc4107f1ef85844e692ad06759a31c22e29bc292402623f272d91b7de"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-frame-world-position.asm",
+      "bytes": 4840,
+      "sha256": "1ebfe3e6fe6d18c0f7ea6d87f8ac094892c8c7c161259658d243796d78948c7b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-human-move-owner.asm",
+      "bytes": 285,
+      "sha256": "8424b7f287b0084dec2586a053ed483363541107ed8e52322aa5bcda13047870"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-human-move.asm",
+      "bytes": 3341,
+      "sha256": "3533ce8e55c586f06d5294ad44eec7b26a62b84eb5ee1ded089a7a5e0d6924e3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-ladder-chat-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-ladder-chat-native-run.log",
+      "bytes": 143,
+      "sha256": "78dc4260ff933287eedf8ca1dd518be9b8c797664e7699d902dcb76f6dfa84ef"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-ladder-chat-return/manifest.json",
+      "bytes": 855,
+      "sha256": "9a62a560ad6085be7c828ecdd3cbc721b62803e16b6cde76787fbfea0c5066ea"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-ladder-step-clearance.asm",
+      "bytes": 5078,
+      "sha256": "ba7e39daffabc49b1e869b1c987b2290809a1353921297d75d77b8e5b6a0f882"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-motion-index.txt",
+      "bytes": 17206,
+      "sha256": "c03851b13af94625e637fb3ac7a87f18504ac9b8e90111fbcf826ad3a0abf5f5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-prone-pose-index.txt",
+      "bytes": 4585,
+      "sha256": "6cfd8a81a032bd7b617f3b510b5f100b896e31127bd279d93d8d4fc93ed37348"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-prone-world-call.asm",
+      "bytes": 1891,
+      "sha256": "ff52a61d93b3a11a7083a0ad60c131b33d6603a4beb0f7ab34e16b77d5920a3a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-prone-world-evidence.json",
+      "bytes": 407,
+      "sha256": "ed83ffba7b366bfb79728818c04ba034ff46ce4e7c920880c4f41f47579e595e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-script-move-index.txt",
+      "bytes": 2714,
+      "sha256": "6a9f422efe18b0159d184389ff3229a43c7b6fde7bde48a7bd73eaaa990d07c1"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-script-name-index.txt",
+      "bytes": 1323,
+      "sha256": "b753104e352981850987cca60a61a23436edf86ac8a635c02cd359f1b4322508"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-step-animation-index.txt",
+      "bytes": 7743,
+      "sha256": "ea3d7fd403adaa25cef79c54791f80f789e1771991ba635b24e960f69220211d"
+    }
+  ]
+}

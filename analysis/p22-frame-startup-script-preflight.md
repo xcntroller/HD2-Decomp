@@ -37,7 +37,8 @@ clear1D1 BEFORE actual inline action1D/26 when set, then return without rewritin
 1B0; otherwise clear low bits3/set4. Native0058F390/0058F420 proves this distinction.
 Walk/silent/lie/crouch and aggressive/defensive share existing real state consumers.
 
-Actual HUMAN_Move1F now performs005AF210→0058E8A0/0051E1A0 on SAME SECOND table,
+Actual HUMAN_Move1F performs005AF210→0058E8A0/0051E1A0 on its own navigation
+owner (FIRST table; corrected in the gameplay-controls checkpoint below),
 missing name advances; valid name invokes005AF1D0→0058E780 and parks PC. That body
 refreshes alarm action BEFORE reading current point, updates real query54/request
 point, publishes1D8 PC before optional0058C400 readiness callback. Equal point
@@ -423,3 +424,94 @@ also rebuild sequentially, then stage only. Receipt:
 analysis/checkpoints/p22-frame-gameplay-spawn-20261117.json. Keep camera, movement,
 loadout and squad visual acceptance open until the user's next run; no new broad
 FRAME/HUM/OWN matrix or whole-function/count promotion.
+
+
+Gameplay controls: cutscene, soldier routes, prone, climb and chat
+
+User accepts the preceding4efed3f5 run: camera projection, movement crash,
+selected/placeholder overlap and missing equipment are all fixed. Keep that
+acceptance revision-qualified. New reports are stationary cutscene soldiers and
+barracks return, unavailable cutscene skip, suspected subtitle height, prone
+teleporting, climb requesting prone, upward Ladder top jitter, chat Enter failing
+with missing console producer, and pause status14. Downward Ladder exit works.
+Exact archived executable/logs:WORK/gameplay-controls-return/manifest.json. That
+archive also contains a distinct missing HUD selector producer; it does not explain
+the user's clarified chat Enter error.
+
+The original005AF210→0058E8A0 loads this Human B0's navigation atA0 before
+0051E1A0. Its factory borrows FIRST. Our script adapter instead called the
+vehicle SECOND-table lookup. HUMAN_Move now reads the SAME state.navigation()
+and MissionNavigation named lookup; vehicles retain their SECOND dataset.
+All46 route names in actual Tutorial T_CSCSol1..5 resolve to valid FIRST points
+and are absent from SECOND. Actual check2.bin SHA
+2164a9ce012c30841e9c4bcd05ee5a609c5026f56ff6b0da6f8e3a677464425f.
+This restores requests to the existing navigation/path/AI/completion owners;
+no invented route, extra tick, direct teleport or replacement animation.
+
+Original00586200 action1F sends E0 kind4/action1E through005ABD90/0077F050.
+The adapter called movement kind1/0077EC00 with30, which requests prone. It now
+uses the real Look action_command(0x1e,true), preserving the actual48/dirty2 gate.
+Prone has a separate coordinate error: original007AB589..007AB5E1 reads bone22
+world coordinates then calls virtual08. The real joint implementation1001C9F0
+converts world position through the parent inverse at1001CA4B..1001CAC6. Our
+adapter instead stored those world coordinates directly as localB0. Bone22 now
+uses that actual world setter; shared local position writers are unchanged.
+
+For upward Ladder exit, original0074A690's local_2ac is baseY+radius. The source
+started the upward sphere sweep at baseY, embedding the query radius in the
+floor. The failed clearance worker then returnsfalse and00768230 queuesCE,
+repeating on subsequent frames. Start at the original sphere center; preserve
+Ladder backwardXZ offset, radii/masks, obstruction rejection, descriptor14,
+occupant/equipment/control lifecycle and subsequent root motion. Downward path
+is unchanged. This is a source correction with doubled collision geometry, not
+an observed desktop climb completion.
+
+Cutscene skip0069A560 and subtitle rectangles both read process0086922C, whose
+source full_viewport has no live writer. Retail0049B7C0 is RET4, not a recovered
+setter. Use the SAME actual Script824 cutscene state already selected for HUD
+suppression, through the existing checked module link, for these containing
+consumers and the text-stage viewport. This is explicit integration policy, not
+native setter-body credit. Script link unbind retires the callback before World
+owners. At800x600 original full-viewport subtitle bounds are bottom594/top528;
+normal reduced layout is bottom510/top444. The previous path selected the latter
+during the cutscene, explaining the suspected high position. Actual presentation
+and Escape skip remain desktop verification.
+
+Chat uses actual0072EA90 request3 →0072B1C0 FIFO →00727800 authority3 →0072A0B0
+presentation4 →00728450 receiver. It is unrelated to spawn presentation3 and to
+the scalar control FIFO. The default console chat endpoint now borrows the real
+StartupSession producer; unrelated console commands still require their own
+services. Enqueue owns bounded99-byte text/sender/team, without a Human or input
+buffer borrower. Request3 reads the local peer at production, serializes32/32/1
+and NUL text, releases its payload BEFORE0072BF90, and removes the node only after
+finish. Authority updates real recordA8 under418 with multimedia time BEFORE
+reading text, then transfers an owned message to broadcast4. That FIFO retains
+1000ms preflush/envelope order and likewise releases the message before finish.
+Failed finish does not resurrect a consumed payload or report successful send.
+
+The original producer leaves payload108 unwritten. Both queues forward it and
+the presentation receiver reads/discards it. Source initializes this opaque word
+to0; it is not a fabricated target or routing ID. Received values remain opaque
+through forwarding. Presentation preserves sender/team/dead-vs-alive filtering,
+418 scope, <TEAM> prefix, ADMIN handling and actual byte-font UTF8 masking from
+0064D6C0. Text reaches the existing colored HUD message owner.005A9B30 genuinely
+returns in offline7; its nonoffline Human text/timer producer still fails honestly
+when required. No network/peer UI or nonoffline completion is claimed.
+
+Focused native ASan/UBSan/leak verification:159 checks for actual loaded Tutorial
+route lookup, Look action field/dirty gate, 12-frame translated-parent prone pose,
+live Script link/bind/unbind, actual skip branch and actual subtitle geometry;
+78 additional checks execute the real Ladder step worker (clear exit selects14,
+blocked exit rejects/restores query) and real chat FIFOs/header/string codecs/
+authority/presentation helper, transfer/free-before-finish, team/alive/admin gates,
+clipping, UTF8 byte policy and failed-finalization ownership. Geometry, engine
+rotation, clocks and final HUD endpoints are explicit doubles. Production review
+launcher/probe rebuild and stage-only receipt:
+analysis/checkpoints/p22-frame-gameplay-controls-20261117.json.
+
+Pause still reaches unimplemented application transition14. The retained in-game
+menu/resume flow belongs to plan section5 and needs its actual owner graph; do
+not swallow Escape or reset status as a substitute. The archived selector-producer
+failure also remains separate required OWN/UI work. Neither optional issue blocks
+staging these focused gameplay fixes. No whole FRAME/HUM/OWN, stable-play,
+function-ledger or matrix promotion; new desktop acceptance remains pending.

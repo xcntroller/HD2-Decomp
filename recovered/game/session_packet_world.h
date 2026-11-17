@@ -34,6 +34,8 @@ public:
     virtual bool dispatch_packet(std::uint32_t,SessionPacketStream&,bool)=0;
     virtual void receive_frame_control(std::uint32_t,std::uint32_t)=0;
     virtual void append_application_coloured_message(const std::string&,const std::array<float,3>&)=0;
+    virtual std::int32_t application_chat_health(void*)=0;
+    virtual void notify_application_chat_human(void*,const std::string&)=0;
     virtual void reset_round_from_packet()=0;
     virtual void read_application_world_snapshot(SessionPacketStream&)=0;
     virtual void receive_application_statistics_clock(std::uint32_t,std::uint32_t,std::uint32_t)=0;
@@ -60,6 +62,8 @@ public:
     }
     void receive_frame_control(std::uint32_t kind,std::uint32_t value){world_.get().receive_frame_control(kind,value);}
     void append_application_coloured_message(const std::string& text,const std::array<float,3>& colour){world_.get().append_application_coloured_message(text,colour);}
+    std::int32_t application_chat_health(void* human){return world_.get().application_chat_health(human);}
+    void notify_application_chat_human(void* human,const std::string& text){world_.get().notify_application_chat_human(human,text);}
     void reset_round_from_packet(){world_.get().reset_round_from_packet();}
     void read_application_world_snapshot(SessionPacketStream& packet){world_.get().read_application_world_snapshot(packet);}
     void receive_application_statistics_clock(std::uint32_t round,std::uint32_t game,std::uint32_t losses){world_.get().receive_application_statistics_clock(round,game,losses);}

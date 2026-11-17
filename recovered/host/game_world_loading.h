@@ -360,6 +360,13 @@ public:
     void unbind_frame_reset(game::SessionRoundResetReceiver& receiver)noexcept{frame_reset_.unbind(receiver);}
     void receive_frame_control(std::uint32_t kind,std::uint32_t value)override{frame_reset_.receive(kind,value);}
     void append_application_coloured_message(const std::string& text,const std::array<float,3>& colour)override{owners_.dependencies().hud.append_message(text.c_str(),colour);}
+    std::int32_t application_chat_health(void* human)override{return owners_.human_services().human_objective_score_health(human);}
+    void notify_application_chat_human(void* human,const std::string&)override{
+        (void)owners_.human_services().human_score_actor(human); //Validate the actual Scene2 borrower.
+        if((startup_.application_flags()&7u)!=7u&&(startup_.application_flags()&2u))
+            throw std::runtime_error("Nonoffline chat requires actual005A9B30 Human text/timer producer");
+        //005A9B30 genuinely returns without mutation in offline7.
+    }
     void reset_round_from_packet()override{frame_reset_.reset();}
     void read_application_world_snapshot(game::SessionPacketStream& packet)override{owners_.dependencies().world_actors.runtime().read_initial_snapshot(packet);}
     void receive_application_statistics_clock(std::uint32_t round,std::uint32_t time,std::uint32_t losses)override{
