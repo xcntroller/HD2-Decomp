@@ -250,9 +250,9 @@ actual Player decoration bend/fade/bounce requests and lifetime ordering are
 source-bound and sanitizer-verified. User run completes activation, Scene78,
 fixed-update, input and full update; revised Door dispatch passes in the user run.
 [Tutorial startup preflight](analysis/p22-frame-startup-script-preflight.md) now
-covers all114 selected programs. The13 initial command gaps and three automatic
-predicate gaps now have verified source.22 delayed/event command types remain;
-continue the opening cutscene chain after its2000ms wait before another retest.
+covers131 programs including recursive ScriptAssign. Initial gaps and opening
+cutscene/continuation now have verified source. Seven full-program command types
+remain; finish those concrete dependencies before another user retest.
 Stable scene/control/presentation and full FRAME/HUM/OWN remain unaccepted.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.

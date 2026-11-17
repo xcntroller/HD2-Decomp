@@ -17,7 +17,7 @@ public:
             SessionActivationState& session,const std::uint32_t& mode)
         :frames_(frames),camera_(camera),fpv_(fpv),effects_(effects),session_(session),mode_(mode){}
     template<class Runtime>std::optional<bool> execute(Context& context,const MissionScriptInstruction& instruction,Runtime& runtime) {
-        switch(instruction.opcode){case 0x3a:case 0x7b:case 0x7c:case 0x7d:case 0xfd:break;default:return std::nullopt;}
+        switch(instruction.opcode){case 0x3a:case 0x7b:case 0x7c:case 0x7d:case 0x84:case 0xfd:break;default:return std::nullopt;}
         if(!runtime.script_authority())return false;
         switch(instruction.opcode){
         case 0x3a:{
@@ -60,6 +60,9 @@ public:
             break;
         }
         case 0x7d:camera_.look_target(context.slot(instruction.operands.at(0)),-1);break;
+        case 0x84:{const auto frame=context.slot(instruction.operands.at(0));
+            const auto word=context.program().integers.at(instruction.operands.at(1)).value;std::int32_t angle;std::memcpy(&angle,&word,4);
+            camera_.look_target(frame,angle);break;}
         case 0xfd:session_.words.set(0x36,std::uint8_t(context.program().integers.at(instruction.operands.at(0)).value!=0));break;
         default:throw std::logic_error("Unreachable script view command");
         }

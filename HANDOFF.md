@@ -1,140 +1,105 @@
 # P22-FRAME handoff — 2026-11-17
 
 Active `/home/control/Documents/Projects/HD2-Decomp-p22-frame`, feature/p22-frame.
-Environment cwd retired H8: explicit workdir. Priority actual P22 game entry,
-then FRAME/OWN. No subagents/push/original/DLL/Proton/Windows execution/permanent
-tests. Heavy compilation and Ghidra sequential. Preserve OWN dirty files/artifact.
-Continue the first concrete loading/frame failure, not broad admin/network work.
+Environment cwd retired H8: always explicit workdir. Goal actual game entry,
+FRAME then OWN. No subagents/push/original/DLL/Proton/Windows execution/permanent
+tests. Heavy compiler and Ghidra sequential. Preserve OWN dirty work and review.
 
-LATEST USER: "Crashed, 202 now. Is it possible to check ahead, so we don't end
-up fixing 50 broken script commands?" Actual d60751d1e56a45540e10e6d3d356e9c79bef86723aa34105d810284d3d991948
-passes diary/game type continuation and activation/Scene78/fixed/input/update,
-then handles202 HUMAN_SETMODE_Stand result1. Exact exe/logs WORK/first-frame-
-script202-return. No stable game acceptance.
+LATEST USER: "Crashed,202 now. Is it possible to check ahead, so we don't end
+up fixing50 broken script commands?" Actual staged d60751d1 passes activation,
+Scene78/fixed/input/update then handles required202 (result1, no access violation).
+Exact exe/logs WORK/first-frame-script202-return. No stable gameplay acceptance.
+Do NOT request another one-opcode retest. User explicitly wants check-ahead batch.
 
-ACTIVE BATCH: user explicitly wants CHECK AHEAD, not another one-opcode retest.
-Current resolver114 selected binding sources all compile with actual compiler.
-Static control flow up to first yield/park finds13 missing types (HumanMove,
-Stand, frame animation, car fuel,9 weather); automatic Whenever adds predicates
-SeeEnemy/FrameInRange/IsInInventory. Full/event-only report separately lists wider
-cutscene/speech/subtitle/hint/actor-state work; not all proven startup-reachable.
-[Boundary/current group](analysis/p22-frame-startup-script-preflight.md).
-Raw files WORK/startup-script-{inputs,programs,coverage-before,predicate-census}.json.
-Native dump/extraction scripts and selected inputs currently retained for ongoing
-inspection; no successful dummy runtime or original binary execution.
+CURRENT VERIFIED SOURCE: all13 initially missing command types and three automatic
+predicate types now supplied. Human Stand/modes/navigation290 native checks;
+actual automatic predicates/inventory/language/alarm and Car fuel27; model clip/
+World tick/Script queue/snapshot8 restoration and marker lifetime77; weather9
+commands plus actual positive splash/static ray/particles/Player/shelter chain2399.
+Commits b17e68f/8ff34af/b188f7f. SAME actual owners, native ordering, honest required
+conditional failures. Source boundaries/receipts linked in
+[preflight contract](analysis/p22-frame-startup-script-preflight.md).
 
-CURRENT source group: full Human walk/silent/lie/crouch/Stand/StandFast/AI modes
-and actual HUMAN_Move named SECOND-table point request with real query/PC/ready
-ordering. Stand positive1D1 action first clearsbyte, calls actual inline1D/26,
-returns WITHOUT changing1B0.290 native ASan/UBSan/leaks PASS actual policies/query/
-table with explicit action/context leaves. Actual full application/probe O2/Werror build PASS; log WORK/startup-human-navigation-review-build.log. Main human mode/navigation changes are verified/copy-matched in review.
-Receipt analysis/checkpoints/p22-frame-startup-human-navigation-20261117.json;
-native audit fingerprinted/removed; preflight tools retained while batch active.
-SECOND source group now actual27 native ASan/UBSan/leaks PASS and full actual
-O2/Werror application/probe PASS: periodic predicates0D/0F/13 plus language0A/
-Human alarm12; actual Car62 signedFILD*FLOAT.1 through SAME core. World inventory
-uses actual reverse roster and Items. Dog alarm/nonoffline Car publication remain
-honest required paths. Main+review source synced by in-place changes. Receipt
-analysis/checkpoints/p22-frame-startup-predicates-fuel-20261117.json.
-THIRD source group now complete and verified: model5D actual cache/slot/clip-mode,
-Script87C/88C and World48 registration, snapshot8 model reload/external attachment
-restoration, SAME marker00774D80/SOUND callback lifetime.77 native ASan/UBSan/leaks
-PASS. Weather9 commands actual module4 broadcast/decoder/scene11C + SAME24C flag;
-positive00487240 client splash cadence/static-ray/material/particle/Player head/
-engine blocker/random collected-frame chain is now source-bound.2399 native
-ASan/UBSan/leaks PASS. Actual full O2/Werror application/probe PASS in review.
-Receipt analysis/checkpoints/p22-frame-startup-animation-weather-20261117.json.
-No staging/retest yet. Initial dispatch gaps now0, **full-program still22**;
-TUT_Instructor1's2000ms delay resumes CSC_RunCutscene162. Continue actual opening
-sequence, not a knowingly broken desktop request. Keep later event-only work
-qualified, do not infer predicate truth/frame admission from static report.
-NEXT:00423C70/00423EB0 full cutscene camera/HUD/context/animation ownership and
-opening body dependencies (Human animation/turn, subtitles/speech/camera slide).
-Index consulted; raw WORK/startup-cutscene-lifetime.asm. Read-only Ghidra export
-of2 containing functions started to startup-cutscene-lifetime-original; log WORK/
-startup-cutscene-lifetime-export.log. No compiler alongside Ghidra. Existing
-00774D80 typed exports/source already supply callback; a redundant headless
-attempt failed on undefined analysis function, raw/existing typed source reused.
-Current staged user exe deliberately remainsd60751d1 until batch is concrete.
+LATEST OPENING GROUP: actual cutscene00423C70/00423EB0 start/end camera/HUD/context/
+Human activity/FPV/dubbing/animation retirement and500ms game6E input timer;
+Human named special animation/working mode/nearest-player/Stop; real speech73 VM
+delay/FIFO, subtitle geometry gates, camera slide, hint-ID list, secondary music,
+Door6 SetActorState.86 cutscene +396 Human +38 VM/presentation native ASan/UBSan/
+leak checks PASS; full actual application/probe FINAL O2/Werror build PASS
+WORK/startup-opening-final-review-build.log. Latest source checkpoint receipt:
+analysis/checkpoints/p22-frame-startup-opening-20261117.json. Native fixtures
+fingerprinted/removed. Source copied to review IN PLACE; OWN differences preserved.
+Positive command-modal GUI transitions and other95 actor families remain explicit
+required boundaries; Tutorial false/hidden path calls actual current-Human refresh.
+No desktop/matrix/function-count promotion. No user staging/retest yet.
 
-Previous7762daa diary/profile records and game type;422d793 alarm masks/Run;
-d8c0f1d fades/Door skip-tail. No source-complete/matrix/count promotions.
+CHECK-AHEAD: actual CURRENT ResourceStore selected114 binding sources; compiler
+inspection uses actual MissionScriptCompiler. Recursive literal ScriptAssign
+closure adds17 selected files, **131 programs all compile**, no missing resources/
+includes/new predicate types. Initial (before first wait) dispatch gaps0. Full
+recursive coverage still has **7 missing types**:
+28 HUMAN_CreateItemInStore;100 FRM_TeleportNearCheckpoint;114 ITEM_Teleport;
+127 FRM_CreateParticle;145 SetNPCTeamStatus;146 MakeExplosion;
+254 HUMAN_RemoveItemsFromStore. These are decimal IDs.
+NEXT: finish these concrete dependencies/positive receivers, starting reached
+NPC1..4 creation/team status and simple particle packet binding. Do not stage a
+known failed startup merely because first-wait coverage is0. Full event-only work
+and predicate truth/frame admission remain qualified, not assumed executed.
 
-Positive Player decoration0047F4E0->0047FAE0->reverse0047F150/0047F200 is now
-source-bound: actual posture/repeated FPV/velocity, model/world/local-axis/alpha
-receivers; one-shot fade and bounce damping; grid query-before-recycle, request
-retirement before model deletion. Native15229 ASan/UBSan/leaks and full actual O2
-application/probe PASS. User full update confirms reached prefix; no whole grass
-or FRAME completion. Vehicle/wind remain honest required failures. Temporary
-audits removed/fingerprinted. [Contract](analysis/p22-frame-decoration-contact-source.md),
-[receipt](analysis/checkpoints/p22-frame-decoration-contact-20261117.json).
+Evidence already read for NEXT: WORK/startup-opening-command-dispatch.json maps
+VM targets; original typed00416E10/00421C00 and decoder0042B650 in H8 mission-world
+exports. Index WORK/startup-item-script-index.txt covers007D7810/005A7B30/005B7920.
+Raw005AF760 calls SAME Items007D7810(definition,slot,Human,-1), without state5 gate;
+actual create_prepared_human_item already source-bound.005A7B30 repeatedly finds
+actual definition005A78F0(def,0), removes item identity10 via005A7B70(id,true), then
+unconditionally Human178=true.005B7920 calls005B76A0(frame), then non7 publication
+required (offline7 returns). Read-only bounded raw was viewed; save evidence before
+new edits.127 writer uses8-bit definition then actual slot1 frame NAME, no null gate;
+decoder reads8/stringFF, scene findFFFF, real world matrix then SAME process.emit
+(def,matrix,frame,true,false). Never replace full matrix with direction-only emit.
+No fresh Ghidra needed until indexed dependencies need a new export.
 
-Latest source water gate: original48765E calls SAME HumanA0/DD0 query007860B0,
-ignores AL, tests explicit below byte, attached actor type20, then retained1A8.
-All false skips native transition at4879F4. Actual World callback now does that;
-process BSS0089B650 height retains prior bytes if sentinel query leaves unwritten.
-Native977 ASan/UBSan/leaks plus full O2 application/probe passed; actual revised
-user run passed water and hit contact. Positive retained camera/wobble still fail
-explicitly; no disabled water/placeholder receiver. Temporary audits removed.
-Water source-only commit e667395; interactive review overlay uncommitted.
+WORK=analysis/work/p22-frame-closure-20261117. Raw compiler inputs/programs:
+startup-script-inputs.json / startup-script-programs.json (114), plus
+startup-script-recursive-{inputs,programs,coverage}.json (131).
+Read-only extraction/compiler inspection utilities remain for ongoing closure;
+not a successful dummy gameplay runtime. Original/current reports fingerprinted
+at checkpoints. Source/user staging separate. Newer staged exe/run appeared during checkpoint validation (not staged/executed
+by this batch): SHA9ecf206f56e2b16b93a7fcac31ef4b19709cb284703c0b3b7c2c15512b758c8b,
+mtime17:32UTC. Actual run reaches activation/Scene78/fixed/input/update, then
+required28 CreateItemInStore result1. Archive WORK/first-frame-script28-return-
+20261117T1732. Preserve this newer staged file; do not overwrite from old d607.
 
-Previous74a6dd7 input allocation: original006C7480->0045CCC0 repeated growth
-creates64 allocated words for mode2's63 logical entries. BindingOutputWords owns
-live Word objects through physical extent, spare bytes UNWRITTEN from allocation;
-controller strict identity/64-live-word check remains, query reports63. No fake
-binding63/neutral word/view copy/re-poll. Actual Human/HUD/producer same arrays.
-Native34209 and i386 offsets/full O2 passed; latest user inputs now complete.
-Complete raw input/client_input.h/006C7480 unchanged. Native audits removed.
-[Input contract](analysis/p22-frame-input-allocation-source.md).
+REVIEW `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
+edebd81 + preserved OWN interactive overlay + later FRAME source. Mixed staged/
+unstaged is expected. Interactive app adapter stays UNCOMMITTED until actual user
+acceptance per AGENTS. Main app still declines activation; source-only fixes are
+independently committable. Latest recoverable overlay:
+WORK/startup-opening-review-final.patch (includes untracked recovered headers).
+No push. Do not replace whole HumanWorld services from Main onto Review.
 
-Most recent source: prepared Human direct00611C90->Human.activate bypassed
-GameWorldActors' activation journal. Scene2 skipped derived retirement and deleted
-reserved Human first; later external composition faulted in command.clear_empty
-at rebuilt0051F722. Human dispatcher now journals before required receiver (also
-throw), so original mode retirement removes B0/DD0/collision BEFORE actor deletion.
-Native61 ASan/UBSan/leaks passes real dispatcher/registry/helper with explicit
-lifetime/frame endpoints. Revised user run passed prior fault/retirement errors.
-
-Actual decoration0047BCC0 groups98/9C gate, SAME listener/conditional Player
-anchor,0047EB80 rolling grid and0047E2D0 static ray/material selection now source-
-bound.0047B500 LIFO model/template pool, genuine failed-load latch, real engine
-material/root/transform/opacity and0047D110 mask sampling use actual World.
-Tutorial87x87 grid; all10 named4DS geometry/LOD/group/material data decoded.
-Native22868 ASan/UBSan/leaks passed actual parsers/grid/pools/mask/failure prefixes
-with explicit engine/ground endpoints. Full actual i386 O2/probe PASS; cb8b636c
-was stage-only then user-executed. Temporary native fixtures removed/fingerprinted.
-Positive vehicle bends and wind mesh capture still fail explicitly; no
-fabricated request vector/readiness/success. Do not mark whole decoration complete.
-
-REVIEW: `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
-edebd81 + preserved OWN interactive overlay/later FRAME source. Mixed staged and
-unstaged is expected, not a merge conflict. Interactive app adapter remains
-UNCOMMITTED pending actual user desktop acceptance per AGENTS. Source-only main
-fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/startup-animation-weather-review-final.patch includes
-all untracked collision/decorations/input/water headers; fingerprinted in receipt. No accepted game yet.
-
-Desktop command, USER ONLY:
+User desktop command, USER ONLY, after batch is ready:
 `cd /home/control/Documents/Projects/HD2-Decomp-p22-frame-review && python3 -B tools/run_application_launch.py --game-dir '/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2' --work-dir analysis/work/frame-own-review-runtime`
-Inspect NEW host-runtime/steam logs AND actual completion markers. Archive each
-run before restaging. Do not ask another retest until next correction is concrete.
+Archive new logs/exe BEFORE restaging. Agent may --stage-only, never run Windows.
 
-Prior source fixes:e341c06 decoration grid/late-spawn retirement; e3f3a84 exact HUD timer-explosive%02d (0083B280),75 startup keys;
-0e69b80 actual sound scene + late SAME-camera RAII loan;6f37c21 #crate clips;
-8167e7c sound root/footprint failure status RET. Contracts/receipts remain linked
-in analysis/p22-frame-loading-*.md. No need to repeat unchanged audits.
-Earlier FRAME9289d4f/edebd81/3be24f5/03da7f3/4da1639/6b6d292 retained source.
-Ledger34 complete/3815 partial total(client3810/engine5), frozen18783. No new
-counts/promotions. FRAME/HUM/OWN partial; nonoffline app/menu, console catalogue,
-general network/history/close/special packets remain external to current path.
+OWN `/home/control/Documents/Projects/HD2-Decomp-p22-own`, branch feature/p22-own
+HEAD1d54083, six dirty source hashes manifest WORK/own-review-overlay-inputs.json
+remain unchanged. Older OWN staged exe SHA
+**d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c**.
+No stash/reset/overwrite/rebase/merge. OWN runtime differs from review runtime.
 
-OWN branch feature/p22-own HEAD1d54083 dirty sources and older staged exe
-SHA d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c
-remain unchanged; source manifest WORK/own-review-overlay-inputs.json rechecked.
-No stash/reset/overwrite/merge/rebase. OWN runtime differs from review runtime.
+Earlier source contracts/receipts preserved: diary/profile7762daa, alarm/Run422d793,
+fades/Door skip d8c0f1d; decoration contact8d0d1f2, water e667395, input allocation
+74a6dd7, Scene2 Human activation journal e341c06; sound/HUD/crate loading contracts.
+Do not re-audit unchanged paths. Positive vehicle/wind decoration, retained water
+camera, game64 weather/HUD gate and other unsupported families remain honest
+required paths. Ledger34 complete/3815 partial, frozen18783; no new credit/promotion.
 
-WORK=analysis/work/p22-frame-closure-20261117. H8=/home/control/Documents/Projects/
-HD2-Decomp-p22-hum-h8; research index before new exports (H8 snapshot misses newer
-FRAME). OriginalSHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
-Compiler H8/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++;
+H8 `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8`; index before exports:
+`python3 -B tools/research_index.py --root H8 --db analysis/work/research-index/c34e7937c6f2f7d6-v4.sqlite3 --no-refresh find ADDRESSES`.
+Index H8 snapshot misses newer FRAME source: also rg local.
+Original client H8/analysis/work/hd2.unpacked.exe SHA
+8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+Compiler H8/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
 ASan runtime H8/.tools/hd2-sanitizer-runtime/usr/lib64. Ghidra under H&D2 Decomp4,
-Projects/HD2ResearchProject HD2Research, readOnly/noanalysis. Sequential heavy jobs.
+Projects/HD2ResearchProject HD2Research, readOnly/noanalysis. No heavy job running.

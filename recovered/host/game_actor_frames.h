@@ -30,6 +30,19 @@ public:
     std::uint32_t visual_lightmap_group(Frame frame)const{return field<std::uint32_t>(frame,0x210);}
     void set_visual_lightmap_group(Frame frame,std::uint32_t group){call<void>(frame,0xc8,group);} //0048D270/0048C790.
     std::int32_t vertex_random(){return std::rand();} //00474B40, SAME process CRT stream.
+    std::array<std::uint32_t,2> script_text_dimensions(){return {{static_cast<std::uint32_t>(graphics_.methods->width(&graphics_)),static_cast<std::uint32_t>(graphics_.methods->height(&graphics_))}};}
+    void script_cutscene_initial_viewport(){ //00423C70 uses native scene24C/250, not another graphics query.
+        const auto width=field<std::uint32_t>(scene_.frame(),0x24c),height=field<std::uint32_t>(scene_.frame(),0x250);
+        const auto rectangle=game::mission_script_cutscene_viewport(width,height);script_cutscene_rectangle(rectangle);
+    }
+    void script_cutscene_full_viewport(){ //00423EB0: height query BEFORE width.
+        const auto height=graphics_.methods->height(&graphics_);const auto width=graphics_.methods->width(&graphics_);
+        std::int32_t w,h;std::memcpy(&w,&width,4);std::memcpy(&h,&height,4);script_cutscene_rectangle({{0,0,w,h}});
+    }
+    void script_cutscene_rectangle(const std::array<std::int32_t,4>& rectangle){
+        using Set=void(WINAPI*)(Frame,std::int32_t,std::int32_t,std::int32_t,std::int32_t);
+        scene_method<Set>(scene_.frame(),module_,0x148,0x48440)(scene_.frame(),rectangle[0],rectangle[1],rectangle[2],rectangle[3]);
+    }
     void script_cutscene_viewport() { //00428B30, same actual graphics and world scene.
         const auto width=graphics_.methods->width(&graphics_);const auto height=graphics_.methods->height(&graphics_);
         const auto rectangle=game::mission_script_cutscene_viewport(width,height);

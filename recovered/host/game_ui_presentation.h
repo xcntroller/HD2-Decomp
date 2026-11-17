@@ -233,12 +233,19 @@ public:
         std::function<void(const void*,bool)> ordinary=[this](const void* actor,bool reset){retire_dialog_actor(false,actor,reset);};
         std::function<void(const void*,bool)> command=[this](const void* actor,bool reset){retire_dialog_actor(true,actor,reset);};
         std::function<void()> inventory=[this]{refresh_inventory();};
+        d_.hud.check_script_command_binding();std::function<void(bool)> script_command=[this](bool enabled){script_show_command(enabled);};
         panels.dialogs().bind_retirement(this,std::move(ordinary));panels.command_roll().bind_retirement(this,std::move(command));panels.inventory().bind_refresh(this,std::move(inventory));
         d_.world_actors.items().bind_ui_retirement(this,[](void* context,world_loading::Actors::Items::Entry item)noexcept{auto& ui=*static_cast<GameUiPresentation*>(context);auto& panels=ui.world_.owners().hud_panels();panels.inventory().retire_item(item);panels.selector().retire_item(item);});
+        d_.hud.bind_script_command(this,std::move(script_command));
     }
-    ~GameUiPresentation(){auto& panels=world_.owners().hud_panels();d_.world_actors.items().unbind_ui_retirement(this);panels.inventory().unbind_refresh(this);panels.dialogs().unbind_retirement(this);panels.command_roll().unbind_retirement(this);unbind_signal_sources();}
+    ~GameUiPresentation(){d_.hud.unbind_script_command(this);auto& panels=world_.owners().hud_panels();d_.world_actors.items().unbind_ui_retirement(this);panels.inventory().unbind_refresh(this);panels.dialogs().unbind_retirement(this);panels.command_roll().unbind_retirement(this);unbind_signal_sources();}
     GameUiPresentation(const GameUiPresentation&)=delete;
     GameUiPresentation& operator=(const GameUiPresentation&)=delete;
+    void script_show_command(bool enabled){
+        require_open();auto& panels=world_.owners().hud_panels();
+        if(enabled||panels.command().visible())throw std::runtime_error("Positive Script command modal transition requires actual command camera/order producers");
+        panels.post_bind(d_.startup.application_flags(),parent_.hud()->flags); //0049F410 false/hidden still refreshes current Human.
+    }
     void bind_render_stages(const void* callback,GameUiRenderStages& stages){require_open();render_binding_.bind(callback,stages);}
     void unbind_render_stages(const void* callback)noexcept{render_binding_.unbind(callback);}
     GameUiRenderStages& render_stages(const void* callback){require_open();return render_binding_.get(callback);}

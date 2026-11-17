@@ -172,6 +172,7 @@ public:
     Frame script_attack_frame()const{return attack_frame_;}
     Frame script_turn_frame()const{return turn_frame_;}
     void publish_script_turn_frame(Frame frame){turn_frame_=frame;}
+    template<class World>void stop_script_commands(World& world){stop_human_script_commands(*this,[&]{stop_human_ai_aim(*this,0,world);});}
     template<class World>void turn_at_frame(Frame frame,World& world){turn_human_script_at_frame(*this,frame,this->state_frames(),world);}
     template<class World>void advance_attachment(World& world){advance_human_script_attachment(*this,this->state_frames(),world);}
     void publish_script_attack_actor(Actor* actor){attack_actor_=actor;}

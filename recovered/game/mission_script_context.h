@@ -167,6 +167,7 @@ public:
         if(!runtime.script_authority()||!runtime.script_can_advance())return;
         ++pc_;ready_=valid_pc();
     }
+    void defer_speech_duration(std::uint32_t duration){delay_=duration;} //00416E10 op73, no PC advance or ready publication.
     void defer_actor_suspend() { //00421C00/00421970 first suspend invocation.
         delay_=2000;--pc_;ready_=true;
     }

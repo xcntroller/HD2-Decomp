@@ -29,6 +29,14 @@ public:
             records_.pop_back();return;
         }
     }
+    template<class Restore>void end_cutscene(Restore&& restore){ //00423EB0: only records with parallel88C byte set.
+        for(auto n=records_.size();n;)if(records_[--n].cutscene){
+            const auto frame=records_[n].model.get();runtime_.script_animation_marker(frame,false);frames_.unregister_animated_model(frame);
+            restore(frame);records_[n].model.reset();
+            if(n+1!=records_.size())records_[n]=std::move(records_.back());
+            records_.pop_back();
+        }
+    }
     void clear(){ //00427B80, AFTER contexts Exit/destroy. Preserve cleanup after a required failure.
         std::exception_ptr failure;
         while(!records_.empty()){

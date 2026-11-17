@@ -483,6 +483,9 @@ public:
     void update_game_dubbing(std::uint32_t elapsed){dubbing_sound_.update(elapsed);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void retire_game_dubbing(EngineFrame* frame){dubbing_sound_.retire_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void finish_game_dubbing(){dubbing_sound_.clear(false);sound_backend_.rethrow_dubbing_cleanup_failure();} //0071DE60: no morph neutral on native mission finish.
+    void script_cutscene_window_query(){
+        (void)steam_window_probe({25,0x423d96,0x0437e723,0x923a1,true},[](HWND value){return static_cast<std::uint32_t>(IsIconic(value));});
+    }
     void clear_game_dubbing(){dubbing_sound_.clear();sound_backend_.rethrow_dubbing_cleanup_failure();}
     frontend::VertexAnimations& game_vertex_definitions(){return modules_.vertices;} //Same process module9 definitions; world registry borrows these.
     const io::ResourceDirectoryList& model_resource_directories() const { return caches_.client(1); }

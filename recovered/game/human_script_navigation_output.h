@@ -2,6 +2,12 @@
 #define HD2_GAME_HUMAN_SCRIPT_NAVIGATION_OUTPUT_H
 #include "game/human_joint_owners.h"
 namespace hd2::game {
+template<class State,class StopAim>void stop_human_script_commands(State& state,StopAim&& stop_aim){ //0058F640.
+    auto& words=state.state();if(words.template get<std::uint8_t>(0x198))words.set(0x19c,0x80u);
+    words.set(0x1c0,0u);
+    if(state.words().template get<std::uint32_t>(0x50)&0x200000u)stop_aim();
+    if(auto* query=state.resources().query_if_present())query->state.set(0x50,query->state.template get<std::uint32_t>(0x50)|0x2000u);
+}
 template<class State,class Inline>void request_human_script_stand(State& state,bool fast,Inline& control){ //0058F390/0058F420.
     auto& words=state.state();
     if(words.template get<std::uint8_t>(0x1d1)){

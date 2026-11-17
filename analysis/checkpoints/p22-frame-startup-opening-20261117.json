@@ -1,0 +1,313 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "b188f7f",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "source_files": [
+    {
+      "path": "recovered/game/hud_scene_loading.h",
+      "bytes": 15920,
+      "sha256": "077709a9f95c9ae1aa6d485cf5af2e5fd5606d705620e18c6e0ffb4b1b8595f1"
+    },
+    {
+      "path": "recovered/game/human_ai_resources.h",
+      "bytes": 15635,
+      "sha256": "7f044d9408d57714586eec37e50f6eb3bd10c201b12c1140e7a77457690e89e7"
+    },
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "bytes": 18368,
+      "sha256": "98502013a699774d2c3f62ddd3e23732ab285f2089308647a64840319f43c335"
+    },
+    {
+      "path": "recovered/game/human_script_loading_controls.h",
+      "bytes": 15700,
+      "sha256": "daaff981b47f7a500a8c44a0c35d3410bb26cd4c77eb9bb196fb2cc3176e0a45"
+    },
+    {
+      "path": "recovered/game/human_script_navigation_output.h",
+      "bytes": 2208,
+      "sha256": "39fc8890c89210df032b97d45bda0bea1498caf32ca70d1fbfec94c0e33b4d8f"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 330293,
+      "sha256": "e1ea48caf92863b9e000c42e003f48950191516371f3e9cc883fc7007b48e4f7"
+    },
+    {
+      "path": "recovered/game/mission_script_actor_lifecycle.h",
+      "bytes": 6097,
+      "sha256": "170cd8a1a3f66965c49e69ff2243ac3ad80ebc92d5318f02a4849fcf9cb1835c"
+    },
+    {
+      "path": "recovered/game/mission_script_context.h",
+      "bytes": 15656,
+      "sha256": "ae39f261de9a295e465b658ca514e2c13d40d0211bc8b0570a19183e58d91956"
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "bytes": 12276,
+      "sha256": "7346df0402ab38c406e4d999ba4c6d3bcb1aa76a13b23d5340d209c68ef62921"
+    },
+    {
+      "path": "recovered/game/mission_script_model_animations.h",
+      "bytes": 6003,
+      "sha256": "b68cfac898f70f7ba619096a87d744388df6a839df8421482c1d38b6e012c066"
+    },
+    {
+      "path": "recovered/game/mission_script_module_loading.h",
+      "bytes": 9506,
+      "sha256": "aee0b6039b67bd0ccd34d1bfbee6e592cb2d33ddfea67dd20ce7d71cf5739153"
+    },
+    {
+      "path": "recovered/game/mission_script_view_commands.h",
+      "bytes": 4644,
+      "sha256": "2606c4271de4f4b5e2c94d40bdd90605117dbe036c4db327b76737a6966a27d7"
+    },
+    {
+      "path": "recovered/game/mission_subtitles_loading.h",
+      "bytes": 9021,
+      "sha256": "80bbeb79b81ac2818764cdeba76f85d0f4dc93448d13b2bb27d265e009561716"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 143125,
+      "sha256": "fe062283b1dee8a6532080cc641fc19ec91bee3e9de54f580df29620bf2dd218"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 142695,
+      "sha256": "66c75be81822057644528940236b0be97ac3d3d604944d26348a0e2a6c00bbf5"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 84084,
+      "sha256": "2ba24a05178811be6beaa69b00f788cb39880439938ff0372c866cd9c5a1c550"
+    },
+    {
+      "path": "recovered/game/human_script_nearest_player.h",
+      "bytes": 1525,
+      "sha256": "58c445616121a9c93aabed7c9675158cb7c87f0c42d72e602a06ce1c29ad21d3"
+    },
+    {
+      "path": "recovered/game/mission_script_cutscenes.h",
+      "bytes": 5146,
+      "sha256": "944cf3f9fd035cebbcf57672ab6c3cc1cc76e8f58e656ca27d17f129a0fcbb19"
+    },
+    {
+      "path": "recovered/game/mission_script_presentation_commands.h",
+      "bytes": 3088,
+      "sha256": "1a3d794927b550810f2282ef7fb8898ce7d679197dbd48f598148bb1350c73d3"
+    }
+  ],
+  "review_source_files": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/hud_scene_loading.h",
+      "bytes": 15920,
+      "sha256": "077709a9f95c9ae1aa6d485cf5af2e5fd5606d705620e18c6e0ffb4b1b8595f1"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_ai_resources.h",
+      "bytes": 15635,
+      "sha256": "7f044d9408d57714586eec37e50f6eb3bd10c201b12c1140e7a77457690e89e7"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_script_ai_state_loading.h",
+      "bytes": 18368,
+      "sha256": "98502013a699774d2c3f62ddd3e23732ab285f2089308647a64840319f43c335"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_script_loading_controls.h",
+      "bytes": 15700,
+      "sha256": "daaff981b47f7a500a8c44a0c35d3410bb26cd4c77eb9bb196fb2cc3176e0a45"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_script_navigation_output.h",
+      "bytes": 2208,
+      "sha256": "39fc8890c89210df032b97d45bda0bea1498caf32ca70d1fbfec94c0e33b4d8f"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_world_loading_services.h",
+      "bytes": 330512,
+      "sha256": "4fac66302b69400eac495267bb5979bc35671e12919a0766fc53b5ea20a84e31"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_actor_lifecycle.h",
+      "bytes": 6097,
+      "sha256": "170cd8a1a3f66965c49e69ff2243ac3ad80ebc92d5318f02a4849fcf9cb1835c"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_context.h",
+      "bytes": 15656,
+      "sha256": "ae39f261de9a295e465b658ca514e2c13d40d0211bc8b0570a19183e58d91956"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_loading_runtime.h",
+      "bytes": 12276,
+      "sha256": "7346df0402ab38c406e4d999ba4c6d3bcb1aa76a13b23d5340d209c68ef62921"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_model_animations.h",
+      "bytes": 6003,
+      "sha256": "b68cfac898f70f7ba619096a87d744388df6a839df8421482c1d38b6e012c066"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_module_loading.h",
+      "bytes": 9506,
+      "sha256": "aee0b6039b67bd0ccd34d1bfbee6e592cb2d33ddfea67dd20ce7d71cf5739153"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_view_commands.h",
+      "bytes": 4644,
+      "sha256": "2606c4271de4f4b5e2c94d40bdd90605117dbe036c4db327b76737a6966a27d7"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_subtitles_loading.h",
+      "bytes": 9021,
+      "sha256": "80bbeb79b81ac2818764cdeba76f85d0f4dc93448d13b2bb27d265e009561716"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_actor_frames.h",
+      "bytes": 143125,
+      "sha256": "fe062283b1dee8a6532080cc641fc19ec91bee3e9de54f580df29620bf2dd218"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_ui_presentation.h",
+      "bytes": 142695,
+      "sha256": "66c75be81822057644528940236b0be97ac3d3d604944d26348a0e2a6c00bbf5"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/startup_session.h",
+      "bytes": 84084,
+      "sha256": "2ba24a05178811be6beaa69b00f788cb39880439938ff0372c866cd9c5a1c550"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_script_nearest_player.h",
+      "bytes": 1525,
+      "sha256": "58c445616121a9c93aabed7c9675158cb7c87f0c42d72e602a06ce1c29ad21d3"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_cutscenes.h",
+      "bytes": 5146,
+      "sha256": "944cf3f9fd035cebbcf57672ab6c3cc1cc76e8f58e656ca27d17f129a0fcbb19"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_presentation_commands.h",
+      "bytes": 3088,
+      "sha256": "1a3d794927b550810f2282ef7fb8898ce7d679197dbd48f598148bb1350c73d3"
+    }
+  ],
+  "native_checks": {
+    "cutscene_and_animation_retirement": 86,
+    "actual_VM_packet_speech_subtitle_hint_music": 38,
+    "Human_Stop_and_nearest_player": 396
+  },
+  "sanitizers": "ASan/UBSan/leaks PASS",
+  "native_scope": "Actual policies/context VM/packet/snapshot queue/nullable query/scalar owners with explicit platform/engine/World/context/SOUND endpoints. Production DD0 special animation, GUI and full owners separately compile/link verified; unchanged workers reused.",
+  "full_actual_i386_O2_Werror_build": "PASS application-launch startup-probe",
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-cutscene-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-cutscene-native-run.log",
+      "bytes": 78,
+      "sha256": "693f8010cdab5463c2754adab98b545d5e5615e5ac1ac8e9239dc8a58adecf81"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-presentation-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-presentation-native-run.log",
+      "bytes": 63,
+      "sha256": "699b9f8f7622dde066a25bbd6a552e3cbd6e7a4a7be9609c2486c34d730b109b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-human-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-human-native-run.log",
+      "bytes": 72,
+      "sha256": "c0e259e9c590b2338b79635adec15062562adf7d58ed206f15a2307f4e1ee94e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-final-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    }
+  ],
+  "removed_native_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-cutscene-native.cpp",
+      "bytes": 5700,
+      "sha256": "b349a457032b86ccbdf7073cd61a8f8d5d4137c40b6f4c85de4b7e0d990416de"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-cutscene-native",
+      "bytes": 1979520,
+      "sha256": "f0093edb0775a7a14570ff5da0ae51fd25d69405483ec1a66dcc73a2c8ce6140"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-presentation-native.cpp",
+      "bytes": 6458,
+      "sha256": "02bfe18695891bcaf4f3fb327bb68eeda3cd8ec3be066fd875f67f360b530023"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-presentation-native",
+      "bytes": 3177240,
+      "sha256": "5f9dfd3bc902610d3f1ac0e1c56cc509829ce6065a10ee407b4225ae454f7c3f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-human-native.cpp",
+      "bytes": 4018,
+      "sha256": "be43b149130d4ac2e42e3e225fa35a7b9e333e61bbf7bbfafbea7fa0ff7dae86"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-human-native",
+      "bytes": 552048,
+      "sha256": "06ab6779109331ee5b540bc30c9b4a167e767d00413f001cf2c09f52fe246d04"
+    }
+  ],
+  "recursive_preflight": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-recursive-inputs.json",
+      "bytes": 9301,
+      "sha256": "489757b3ebd80799a55f562f85ea08aab4a2964090d8e415a043c51a7f1930ad"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-recursive-programs.json",
+      "bytes": 806323,
+      "sha256": "3d0d8f66fac1638563b5d4aee514a44663972ac2f219aa9851e4d7280a81ac04"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-recursive-coverage.json",
+      "bytes": 13976,
+      "sha256": "14267096295a7e20ad1daa3bf6cadbb9bb2af4ff34c9352355f8c9776f1f5834"
+    }
+  ],
+  "recoverable_review_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/startup-opening-review-final.patch",
+    "bytes": 224087,
+    "sha256": "91b98c8d1d570853b1f930513833b45a8ac4a3ef6994619e28e7af95770efcf9"
+  },
+  "own_preserved": true,
+  "own_staged_executable": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "user_staged_executable_preserved": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+    "bytes": 13029888,
+    "sha256": "9ecf206f56e2b16b93a7fcac31ef4b19709cb284703c0b3b7c2c15512b758c8b"
+  },
+  "new_external_run": "New staged executable/run appeared during checkpoint checks; batch did not stage or execute it. Actual newer run result1 required28, archived first-frame-script28-return-20261117T1732. No whole desktop acceptance inferred.",
+  "limitations": "Seven full-program command types remain in131-program recursive closure. Other native positive SetActorState families, command-modal GUI transitions/nonoffline publication, absent spline producer and broader World behavior remain required where reached. Dispatch coverage is not predicate truth/frame admission, delegated engine bodies or desktop acceptance. No user staging/retest or count/matrix promotion."
+}

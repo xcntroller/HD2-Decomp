@@ -50,6 +50,15 @@ public:
         if(!state_.renderer)return false;
         state_.byte8=wide?26:8;state_.enabled=1;return true;
     }
+    template<class Dimensions>void show(bool visible,bool full_viewport,Dimensions&& dimensions){
+        if(state_.renderer&&visible){const auto size=dimensions();show(visible,full_viewport,size[0],size[1]);}
+        else {state_.visible=visible;state_.index=-1;}
+    }
+    template<class Dimensions>void select(std::uint32_t id,bool full_viewport,Dimensions&& dimensions){
+        if(!state_.enabled)return;
+        if(!state_.visible)show(true,full_viewport,dimensions);
+        select(id,full_viewport,0,0); //Already visible: original select performs no geometry query.
+    }
     void show(bool visible,bool full_viewport,std::uint32_t width,std::uint32_t height) { //0048EE50/00644B80.
         if(state_.renderer&&visible) {
             state_.byte0=full_viewport;

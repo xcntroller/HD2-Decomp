@@ -60,6 +60,24 @@ public:
     bool human_selected_suppressed(Human& human){return dependencies_.world.human_selected_suppressed(human);}
     bool script_human_sees_enemy(Human& human){return dependencies_.controls.sees_enemy(human);}
     std::uint32_t script_human_alarm_type(Human& human){return dependencies_.controls.alarm_type(human);}
+    void script_actor_state(SceneActor<Frames>& actor,std::uint32_t state){dependencies_.world.script_actor_state(actor,state);}
+    void script_clear_hints(){dependencies_.world.script_clear_hints();}
+    void script_add_hint(std::uint32_t identity){dependencies_.world.script_add_hint(identity);}
+    void script_play_music(std::uint32_t identity){dependencies_.world.script_play_music(identity);}
+    std::uint32_t script_speech_length(std::uint32_t identity){return dependencies_.world.script_speech_length(identity);}
+    void script_subtitles_show(bool visible){dependencies_.world.script_subtitles_show(visible);}
+    void script_subtitles_select(std::uint32_t identity){dependencies_.world.script_subtitles_select(identity);}
+    void script_frame_speech(typename Frames::Frame frame,std::uint32_t identity,float near_range,float far_range){dependencies_.world.script_frame_speech(frame,identity,near_range,far_range);}
+    bool script_command_visible(){return dependencies_.world.script_command_visible();}
+    void script_show_command(bool enabled){dependencies_.world.script_show_command(enabled);}
+    void script_cutscene_window_query(){dependencies_.world.script_cutscene_window_query();}
+    void script_player_input(bool enabled){dependencies_.session.words.set(0x6e,std::uint8_t(enabled));}
+    float script_cutscene_fov(){return dependencies_.session.words.template get<float>(0xbc);}
+    void script_clear_dubbing(){dependencies_.world.script_clear_dubbing();}
+    void script_cutscene_actor(Context& context,bool enabled){dependencies_.world.script_cutscene_actor(context,enabled);}
+    void script_restore_first_person(){dependencies_.world.script_restore_first_person();}
+    void script_restore_secondary_view(){dependencies_.world.script_restore_secondary_view();}
+    void script_cutscene_fade(){dependencies_.effects.fade().configure(0,true,nullptr);}
     void script_weather_parameter(std::uint32_t parameter,std::uint32_t value){dependencies_.world.script_weather_parameter(parameter,value);}
     void script_weather_splashes(bool enabled){dependencies_.world.script_weather_splashes(enabled);}
     void script_animation_marker(typename Frames::Frame frame,bool enabled){dependencies_.world.script_animation_marker(frame,enabled);}

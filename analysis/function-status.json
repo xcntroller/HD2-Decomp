@@ -22810,14 +22810,16 @@
       "program": "client",
       "entry": "004167b0",
       "status": "partial",
-      "coverage": "Source mission script one-instruction tick with periodic and delay scheduling. Containing runtime uses actual clock microseconds, shared process008692D0/game28 advancement and source lifecycle/predicate/command receivers.",
+      "coverage": "Source mission script one-instruction tick with periodic and delay scheduling. Containing runtime uses actual clock microseconds, shared process008692D0/game28 advancement and source lifecycle/predicate/command receivers. Source-only73 delayed speech now supplies actual duration store without advance and is exercised through this real context countdown; zero duration remains parked.",
       "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source runtime/objective/look update verified separately; containing world remains unintegrated.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_context.h",
         "analysis/checkpoints/p2.2-script-compiler-context-20261109.json",
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/mission_script_loading_runtime.h"
+        "recovered/game/mission_script_loading_runtime.h",
+        "analysis/p22-frame-startup-script-preflight.md",
+        "analysis/checkpoints/p22-frame-startup-opening-20261117.json"
       ]
     },
     {
@@ -22850,7 +22852,7 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Base opcodes2..C now bind actual Players subgroup create/delete/add/remove/modes/percent scale before derived Human/Dog PC policy. Adds original opcode32 HUMAN_Kill: actual frame-slot EC actor0 dispatch to Human D4(4,-1,zero,zero,NULL,0) or Animation start(false), native false and guarded advancement retained. OWN/RENDER opcodeAD procedural and BB thunderstorm dispatch is also preserved alongside the disjoint formation2..C domain, with original conditional return/advancement ordering. Original opcode9A DOOR_Lock now resolves actual pool90/EC Door before integerA0, uses its own230 key and SAME broadcast stream, ignores lock result and applies guarded PC advancement; native missing/wrong actor skips mutation/integer access but reaches shared guarded-advance tail. Original A0/A1 CSC_FadeIn/Out signed duration now configures SAME GEffects fade owner with targetfalse/true, null colour and guarded PC advancement; update/render owners reused unchanged. Original94 SetAlarmType now resolves SAME context100/EC Human before BOOL/mask integers, current B0kind5 and native mask/replay receiver, then guarded advance; missing/wrong actors skip operands and advance. Opcode89 AddDiaryText now reads raw integer before nullable/repeated actual application profile lookup, selects SAME profile94/B8 pending record, respects suppression and preserves duplicates/order before guarded advance. Preparation and script now share actual profile-owned records. Actual62 Car_SetFuel now reaches SAME initialized core with signed FILD*FLOAT0.1, slot/type gates before integer and shared guarded advance; nonoffline publication remains required. Source-only5D now binds actual model clip/cache/queue/snapshot restoration and9 weather commands actual module4 writer, signed extended clamps, RGBA/direction and packet/direct conversion distinctions.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Base opcodes2..C now bind actual Players subgroup create/delete/add/remove/modes/percent scale before derived Human/Dog PC policy. Adds original opcode32 HUMAN_Kill: actual frame-slot EC actor0 dispatch to Human D4(4,-1,zero,zero,NULL,0) or Animation start(false), native false and guarded advancement retained. OWN/RENDER opcodeAD procedural and BB thunderstorm dispatch is also preserved alongside the disjoint formation2..C domain, with original conditional return/advancement ordering. Original opcode9A DOOR_Lock now resolves actual pool90/EC Door before integerA0, uses its own230 key and SAME broadcast stream, ignores lock result and applies guarded PC advancement; native missing/wrong actor skips mutation/integer access but reaches shared guarded-advance tail. Original A0/A1 CSC_FadeIn/Out signed duration now configures SAME GEffects fade owner with targetfalse/true, null colour and guarded PC advancement; update/render owners reused unchanged. Original94 SetAlarmType now resolves SAME context100/EC Human before BOOL/mask integers, current B0kind5 and native mask/replay receiver, then guarded advance; missing/wrong actors skip operands and advance. Opcode89 AddDiaryText now reads raw integer before nullable/repeated actual application profile lookup, selects SAME profile94/B8 pending record, respects suppression and preserves duplicates/order before guarded advance. Preparation and script now share actual profile-owned records. Actual62 Car_SetFuel now reaches SAME initialized core with signed FILD*FLOAT0.1, slot/type gates before integer and shared guarded advance; nonoffline publication remains required. Source-only5D now binds actual model clip/cache/queue/snapshot restoration and9 weather commands actual module4 writer, signed extended clamps, RGBA/direction and packet/direct conversion distinctions. Source-only opening commands now bind cutscene start/end and input timer; actual module4 speech/subtitle packets, delayed speech PC policy, camera slide, hint-ID vector/secondary music and Door6 SetActorState. Other native actor-state families stay required.",
       "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
       "evidence": [
         "analysis/mission-script-loading.md",
@@ -22890,7 +22892,8 @@
         "analysis/checkpoints/p22-frame-startup-animation-weather-20261117.json",
         "recovered/game/mission_script_model_animations.h",
         "recovered/game/mission_script_weather_commands.h",
-        "recovered/game/effects_weather_update.h"
+        "recovered/game/effects_weather_update.h",
+        "analysis/checkpoints/p22-frame-startup-opening-20261117.json"
       ]
     },
     {
@@ -23188,7 +23191,7 @@
       "program": "client",
       "entry": "0042b650",
       "status": "partial",
-      "coverage": "SetOn decoder scene-before-driver lookup, actual light enable/reset, retained snapshot, same Human DD0/230 and FPV or model/animation/effects visibility. Source-only9 weather payloads now reach SAME scene11C and GEffects24C, retaining absent-scene payload consumption and flag ordering; Space decoder uses original unsigned FILD64.",
+      "coverage": "SetOn decoder scene-before-driver lookup, actual light enable/reset, retained snapshot, same Human DD0/230 and FPV or model/animation/effects visibility. Source-only9 weather payloads now reach SAME scene11C and GEffects24C, retaining absent-scene payload consumption and flag ordering; Space decoder uses original unsigned FILD64. Source-only6C/FA/FB payloads now reach actual NULL-actor SOUND50 and SAME subtitle renderer/list with geometry-query gates. No direct authority shortcut or fake frame lookup.",
       "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "analysis/mission-script-receivers.md",
@@ -23198,7 +23201,8 @@
         "analysis/checkpoints/p22-frame-startup-animation-weather-20261117.json",
         "recovered/game/mission_script_model_animations.h",
         "recovered/game/mission_script_weather_commands.h",
-        "recovered/game/effects_weather_update.h"
+        "recovered/game/effects_weather_update.h",
+        "analysis/checkpoints/p22-frame-startup-opening-20261117.json"
       ]
     },
     {
@@ -25730,7 +25734,7 @@
       "program": "client",
       "entry": "00421c00",
       "status": "partial",
-      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion. Actual op3E TurnAt frame-slot forwarding through SAME Script5 controls, original normal instruction advance. Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer. Actual vehicle op26 named SECOND point and op2B live-roster/reachable selection, numeric signed speed0.28 and PC park/advance policy. Actual reached-prefix C4 Run now dispatches SAME Human B0kind5 to0058F2D0 exact1B0 bit request, then guarded advance; later frame consumes the request. Human1F named point lookup/admission and0058E780 real query/PC/ready/completion path; original C5/C6/C8/C9/CA/CB and CD/CE modes now route actual state5, including positive1D1 Stand/StandFast action-before-return. Required script preflight remaining groups are explicit.",
+      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion. Actual op3E TurnAt frame-slot forwarding through SAME Script5 controls, original normal instruction advance. Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer. Actual vehicle op26 named SECOND point and op2B live-roster/reachable selection, numeric signed speed0.28 and PC park/advance policy. Actual reached-prefix C4 Run now dispatches SAME Human B0kind5 to0058F2D0 exact1B0 bit request, then guarded advance; later frame consumes the request. Human1F named point lookup/admission and0058E780 real query/PC/ready/completion path; original C5/C6/C8/C9/CA/CB and CD/CE modes now route actual state5, including positive1D1 Stand/StandFast action-before-return. Required script preflight remaining groups are explicit. Source-only named special animation/working mode reuse SAME kind5/DD0 owners; Stop and nearest-player preserve original nullable query, roster/gate/getter/distance ordering. Nonoffline named-animation publication stays required after the actual local effect.",
       "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
       "evidence": [
         "recovered/game/human_script_loading_controls.h",
@@ -25746,7 +25750,8 @@
         "analysis/p22-frame-script-alarm-source.md",
         "analysis/checkpoints/p22-frame-script-alarm-20261117.json",
         "analysis/p22-frame-startup-script-preflight.md",
-        "analysis/checkpoints/p22-frame-startup-human-navigation-20261117.json"
+        "analysis/checkpoints/p22-frame-startup-human-navigation-20261117.json",
+        "analysis/checkpoints/p22-frame-startup-opening-20261117.json"
       ]
     },
     {

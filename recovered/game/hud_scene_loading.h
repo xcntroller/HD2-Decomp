@@ -7,6 +7,7 @@
 #include "game/hud_frame.h"
 #include "frontend/cleanup.h"
 #include <memory>
+#include <functional>
 #include <optional>
 #include <stdexcept>
 #include <string>
@@ -133,8 +134,18 @@ public:
     }
     Frame scene()const{return scene_?scene_->get():Frame{};}Frame camera()const{return camera_?camera_->get():Frame{};}
     Frame model()const{return model_?model_->get():Frame{};}Frame down_panel()const{return down_panel_;}
+    void script_clear_hints(){panels_.info().help_ids().clear();} //00420390, native help end←begin.
+    void script_add_hint(std::uint32_t identity){panels_.info().help_ids().push_back(identity);} //004205C0, duplicates retained.
+    void check_script_command_binding()const{if(script_command_owner_)throw std::logic_error("HUD Script command callback already has a UI owner");}
+    void bind_script_command(const void* owner,std::function<void(bool)> receiver){
+        if(!owner||!receiver||script_command_owner_)throw std::logic_error("HUD Script command receiver requires one actual UI owner");
+        script_command_=std::move(receiver);script_command_owner_=owner;
+    }
+    void unbind_script_command(const void* owner)noexcept{if(script_command_owner_==owner){script_command_={};script_command_owner_=nullptr;}}
+    void script_show_command(bool enabled){if(!script_command_)throw std::runtime_error("Script command visibility requires its actual UI owner");script_command_(enabled);}
     auto& command_owner(){return panels_.command();} //Borrow SAME actual command pool for0058C5A0/0058D6C0.
 private:
+    const void* script_command_owner_=nullptr;std::function<void(bool)> script_command_;
     void refresh_panel_geometry(){for(unsigned n=6;n;)panels_.soldiers()[--n].refresh_geometry();panels_.hands().refresh_geometry();panels_.dialogs().refresh_signal_geometry();panels_.dialogs().refresh_roll_geometry();}
     Text& debug_text(){for(const auto& owner:hud_.text_owners())if(owner.original_offset==0x6b85c)return *owner.text;throw std::logic_error("HUD lost SAME inline debug text");}
     void retire(){

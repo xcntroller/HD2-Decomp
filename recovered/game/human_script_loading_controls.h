@@ -56,6 +56,17 @@ public:
         if(auto* state=script(human))(void)lookup_.request_human_vehicle_point(*state,*point,speed,*point==0xffff?-1:pc);
         return *point!=0xffff;
     }
+    void stop(Human& human){if(auto* state=script(human))state->stop_script_commands(lookup_);} //005AF430→0058F640.
+    void named_animation(Human& human,const std::string& name,std::int32_t blend,std::int32_t fade,bool loop){ //005AF780→00591230.
+        if(!script(human))return;
+        auto* control=lookup_.human_state_factory(human).control().control();
+        if(!control)throw std::runtime_error("Script named animation requires actual DD0/C00");
+        control->special_animation(name.c_str(),blend,fade,loop); //005A9C20→005AC4A0, BEFORE nonoffline publication.
+        if((mode_flags()&7u)!=7u)throw std::runtime_error("Script named animation requires actual nonoffline command18 state/publication");
+    }
+    void turn_at_nearest_player(Human& human,typename Frames::Frame source){
+        if(const auto target=lookup_.script_nearest_player_frame(source))turn_at(human,target);
+    }
     void turn_at(Human& human,typename Frames::Frame frame){if(auto* state=script(human))state->turn_at_frame(frame,lookup_);} //005AF660→005904C0.
     void working_mode(Human& human,std::int32_t mode) { //005AF5C0→0058FCC0.
         if(auto* state=script(human)){
@@ -151,7 +162,7 @@ template<class Frames,class Human,class Controls,class Runtime>std::optional<boo
 //actual base00416E10 receiver first, then this derived Human receiver.
 template<class Frames,class Human,class Controls,class Runtime>std::optional<bool> execute_human_loading_script_command(
         MissionScriptContext<Frames>& context,const MissionScriptInstruction& instruction,Controls& controls,Runtime& runtime){
-    switch(instruction.opcode){case 0x1f:case 0xc5:case 0xc6:case 0xc8:case 0xc9:case 0xca:case 0xcb:case 0xcd:case 0xce:case 0xc4:case 0x1d:case 0x21:case 0x26:case 0x2b:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:case 0x44:break;default:return std::nullopt;}
+    switch(instruction.opcode){case 0x25:case 0x38:case 0x3f:case 0x43:case 0x1f:case 0xc5:case 0xc6:case 0xc8:case 0xc9:case 0xca:case 0xcb:case 0xcd:case 0xce:case 0xc4:case 0x1d:case 0x21:case 0x26:case 0x2b:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:case 0x44:break;default:return std::nullopt;}
     if(context.family()!=1)return std::nullopt;
     if(!runtime.script_authority())return false;
     auto* derived=dynamic_cast<ActorMissionScriptContext<Frames,1>*>(&context);
@@ -170,6 +181,15 @@ template<class Frames,class Human,class Controls,class Runtime>std::optional<boo
         if(controls.vehicle_path(*human,context.program().strings.at(instruction.operands.at(0)),value,context.pc()))return true;
         break;
     }
+    case 0x25:controls.stop(*human);break;
+    case 0x38:{
+        const auto name=context.program().strings.at(instruction.operands.at(0));
+        const auto blend=context.program().integers.at(instruction.operands.at(1)).value,fade=context.program().integers.at(instruction.operands.at(2)).value;
+        std::int32_t signed_blend,signed_fade;std::memcpy(&signed_blend,&blend,4);std::memcpy(&signed_fade,&fade,4);
+        controls.named_animation(*human,name,signed_blend,signed_fade,context.program().integers.at(instruction.operands.at(3)).value!=0);break;
+    }
+    case 0x3f:{const auto word=context.program().integers.at(instruction.operands.at(0)).value;std::int32_t mode;std::memcpy(&mode,&word,4);controls.working_mode(*human,mode);break;}
+    case 0x43:controls.turn_at_nearest_player(*human,context.frame());break;
     case 0x3e:controls.turn_at(*human,context.slot(instruction.operands.at(0)));break;
     case 0x21:case 0x30:
         controls.attack(*human,context.slot(instruction.operands.at(0)),context.program().integers.at(instruction.operands.at(1)).value,instruction.opcode==0x30,context.pc());

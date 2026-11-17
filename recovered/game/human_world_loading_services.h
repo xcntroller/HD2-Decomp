@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_player_live_input.h"
+#include "game/human_script_nearest_player.h"
 #include "game/session_pending_spawn_prepare.h"
 #include "game/session_spawn_admission.h"
 #include "game/session_received_match.h"
@@ -140,6 +141,42 @@ public:
         if(!hit->static_identity||hit->dynamic_identity)throw std::logic_error("Weather ray requires its actual static collision identity");
         const auto id=*hit->static_identity;const auto& tree=dependencies().scene.collision_tree();
         return WeatherGroundHit{hit->position,id.kind?tree.shapes.at(id.kind-0x80).at(id.index).flags:tree.triangles.at(id.index).flags};
+    }
+    auto script_nearest_player_frame(typename Dependencies::Frame source){ //00421C00 op43, reverse actual primary/auxiliary roster.
+        auto& d=dependencies();auto& roster=human_remote_ai_enabled()?d.players.auxiliary().human_roster():d.players.control().human_roster();
+        return nearest_human_script_player(source,roster,d.scene.frames(),*this);
+    }
+    template<class Actor>void script_actor_state(Actor& actor,std::uint32_t state){ //00416E10's actual family switch, no generic virtual setter.
+        switch(actor.base().type()){
+        case 6:human_navigation_door(&actor).change_state(3u-std::uint32_t(state!=0),true,false,false,dependencies().world_actors);return;
+        case 7:case 9:case 13:case 14:case 21:case 22:case 23:case 25:case 28:case 29:case 34:case 35:case 38:
+            throw std::runtime_error("SetActorState requires its actual family receiver: "+std::to_string(actor.base().type()));
+        default:return; //Native default performs the shared guarded advance without an actor-state call.
+        }
+    }
+    void script_clear_hints(){dependencies().hud.script_clear_hints();}
+    void script_add_hint(std::uint32_t identity){dependencies().hud.script_add_hint(identity);}
+    void script_play_music(std::uint32_t identity){dependencies().startup.select_game_secondary_music(human_frame_signed_word(identity));} //SOUND68=00436F60.
+    std::uint32_t script_speech_length(std::uint32_t identity){return dependencies().startup.game_speech_length(human_frame_signed_word(identity));}
+    void script_subtitles_show(bool visible){auto& d=dependencies();
+        d.subtitles.show(visible,d.startup.scene_presentation_flags().full_viewport,[&]{return d.scene.frames().script_text_dimensions();});}
+    void script_subtitles_select(std::uint32_t identity){auto& d=dependencies();
+        d.subtitles.select(identity,d.startup.scene_presentation_flags().full_viewport,[&]{return d.scene.frames().script_text_dimensions();});}
+    template<class Frame>void script_frame_speech(Frame frame,std::uint32_t identity,float near_range,float far_range){auto& d=dependencies();
+        (void)d.startup.play_game_speech(nullptr,frame,human_frame_signed_word(identity),near_range,far_range,true,d.dubbing);}
+    bool script_command_visible(){return dependencies().hud.command_owner().visible();}
+    void script_show_command(bool enabled){dependencies().hud.script_show_command(enabled);}
+    void script_cutscene_window_query(){dependencies().startup.script_cutscene_window_query();}
+    void script_clear_dubbing(){dependencies().startup.clear_game_dubbing();}
+    void script_restore_first_person(){dependencies().first_person.view().enable(mode_flags(),true);}
+    void script_restore_secondary_view(){dependencies().first_person.view().secondary_view(mode_flags(),true);}
+    template<class Context>void script_cutscene_actor(Context& context,bool enabled){
+        auto& d=dependencies();const auto frame=context.frame();const auto* data=frame?d.scene.frames().find_actor_frame_data(frame):nullptr;
+        auto* actor=data?reinterpret_cast<SceneActor<typename Dependencies::ActorFrames>*>(data->words[0]):nullptr;
+        if(!actor||actor->base().type()!=3)return;
+        auto& human=selection_human(*actor);if(human.properties.field19c==1)return;
+        if(enabled&&human_script_suspended(human))return;
+        d.scene.frames().set_scene_actor_active(human.base(),enabled);
     }
     void script_weather_parameter(std::uint32_t parameter,std::uint32_t value){dependencies().scene.frames().script_weather_parameter(parameter,value);}
     void script_weather_splashes(bool enabled){dependencies().startup.effects_loading_process().flag24c=enabled;} //004863E0, SAME process24C.

@@ -137,3 +137,60 @@ do not hide known delayed failures behind the first-yield report. Full report:
 WORK/startup-script-coverage-initial-batch.json. No desktop verification, matrix
 promotion or new function-count credit. Native audits fingerprinted/removed at
 the source checkpoint; extraction/compiler inspection tools remain while needed.
+
+Fourth group: opening cutscene and continuation
+
+Known2000ms continuation now has actual00423C70/00423EB0 source:824 publishes
+first; save actual command visibility, hide through SAME UI, retain camera828,
+reverse context cutscene notification and conditional nonplayer Human activity;
+real IsIconic Steam site25 action, game6E input disable, scene24C/250 initial
+rectangle, actual current-camera82C/830 projection save, native aspect/FOV and
+SAME dubbing retirement. End clears824 before restoring/releasing saved camera,
+notifies cutscene-done contexts, conditionally reactivates non-suspended Humans,
+consumes saved FPV/secondary flags, sets actual500ms timer, restores full viewport
+and native4:3 aspect, configures fade and retires ONLY cutscene87C/88C records in
+marker→World unregister→snapshot destructor→Script Release order. Timer00428490
+uses original signed/wrapping decrement before loaded/context filtering and then
+reenables game6E. Finish invokes this after context/animation retirement, before
+its existing final fade reset. No868 spline producer is enabled by these commands.
+86 native ASan/UBSan/leak checks pass actual cutscene/animation queue policy with
+explicit context/camera/HUD/platform leaves; actual production ownership separately
+compiles. Current UI false/hidden branch performs original current-Human refresh;
+positive command-modal transitions still honestly require camera/order producers.
+No HUD flag/readiness default or successful missing GUI service was installed.
+
+Human commands38 named special animation and3F working mode reuse actual DD0/C00
+and state5 owners.005AF780→00591230 in offline7 calls actual005A9C20/005AC4A0/
+0077CE10; nonoffline publication remains an explicit AFTER-effect boundary.
+43 nearest player traverses SAME selected primary/auxiliary roster, health then
+005A63F0/005A63B0, source-before-target world getters, strict extended squared
+distance and FLOAT best with reverse ties.25 Stop preserves00591ED0 alarm request,
+1C0 clear, optional SAME00572C20 aim stop, then a fresh nullable12C query2000 OR.
+396 native ASan/UBSan/leak checks pass actual nearest/Stop policies, real query/
+scalar owners and explicit aim/roster/engine endpoints; unchanged special-animation
+workers were reused, not comprehensively re-audited.
+
+6C/73 speech uses real module4 name/32/8/8 packet; decoder resolves actual scene
+frame and invokes SAME SOUND50 with NULL actor/subtitles true.73 delays by actual
+SOUND94 even on null frame, parks PC, and uses the actual MissionScriptContext
+countdown; no implicit advance for zero duration. FA/FB subtitles use actual
+renderer/list, preserving geometry queries only when required.84 camera slide
+uses existing real look-target angle receiver. FF/100 retain exact ordered hint-ID
+vector and duplicate entries;8F uses actual SOUND68 secondary-music selector.
+95 SetActorState now supplies actual Door6 request3-(value!=0),true,false,false;
+null/default native type gates are retained and other native positive families
+still reject explicitly.38 native ASan/UBSan/leak checks pass actual VM/FIFO/
+speech/subtitle/hint/music policies with explicit scene/SOUND/UI endpoints. Full
+actual application/probe final O2/Werror build PASS. No user staging yet.
+
+The check-ahead closure now also follows literal ScriptAssign targets recursively:
+**131 programs** (114 initial plus17 additional selected resources), all compile;
+no missing resources/includes/new predicate types. NPC1..4 are real reached
+assignments, not event-only hypothetical content. Full recursive report currently
+has **7 missing command types**:28 CreateItemInStore,64 TeleportNearCheckpoint,
+72 ITEM_Teleport,7F CreateParticle,91 SetNPCTeamStatus,92 MakeExplosion,FE
+RemoveItemsFromStore (hex). The original114-only report had6; recursive91 was the
+additional gap. Continue these concrete dependencies and conditional positive
+receivers before desktop retest. Source-dispatch coverage is never engine/runtime
+or full-function equivalence. Receipt links exact files, reports and logs; no
+matrix/count promotion. Temporary audits fingerprinted/removed at checkpoint.

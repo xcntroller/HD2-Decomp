@@ -23,8 +23,16 @@ public:
         if(human.loading_state->words().template get<std::uint32_t>(0x48)==5){controls_.working_mode(human,0);controls_.suspend(human,false);}
     }
     template<class Runtime>std::optional<bool> execute(Context& context,const MissionScriptInstruction& instruction,Runtime& runtime){
-        if(instruction.opcode!=0xf9u&&instruction.opcode!=0x32u&&instruction.opcode!=0x62u)return std::nullopt;
+        if(instruction.opcode!=0xf9u&&instruction.opcode!=0x32u&&instruction.opcode!=0x62u&&instruction.opcode!=0x95u)return std::nullopt;
         if(!runtime.script_authority())return false;
+        if(instruction.opcode==0x95u){ //00417A74 SetActorState: null frame skips integer; EC is resolved before it.
+            if(const auto frame=context.slot(instruction.operands.at(0))){
+                const auto* data=frames_.find_actor_frame_data(frame);auto* value=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+                const auto state=context.program().integers.at(instruction.operands.at(1)).value;
+                if(value)runtime.script_actor_state(*value,state);
+            }
+            context.advance(runtime);return true;
+        }
         if(instruction.opcode==0x62u){ //0041A001 Car_SetFuel, slot/type gates BEFORE integer.
             const auto frame=context.slot(instruction.operands.at(0));
             const auto* data=frame?frames_.find_actor_frame_data(frame):nullptr;
