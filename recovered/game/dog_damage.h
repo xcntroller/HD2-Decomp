@@ -7,6 +7,7 @@
 #include <cstdint>
 #include <cstring>
 #include <stdexcept>
+#include <optional>
 
 namespace hd2::game {
 
@@ -75,20 +76,23 @@ inline std::int32_t dog_action_category(std::int32_t action){ //005D86F0.
 
 //A borrowed view of actual Actor/Body state. None of the reference fields is
 //a cold/default producer;005D5290/005D4DB0/005C7D30 must supply the live owner.
-template<class Geometry>struct DogDamageView {
+template<class T>T& dog_damage_required(T& value){return value;}
+template<class T>T& dog_damage_required(std::optional<T>& value){if(!value)throw std::runtime_error("Dog damage requires actual live field producer");return *value;}
+template<class T>const T& dog_damage_required(const std::optional<T>& value){if(!value)throw std::runtime_error("Dog damage requires actual live field producer");return *value;}
+template<class Geometry,class Initial=std::uint32_t,class Handle=std::int32_t,class Action=std::int32_t>struct DogDamageView {
     std::uint32_t& health4a0;
-    const std::uint32_t& initial_health4b0;
-    const std::int32_t& current_action3f4;
-    std::int32_t& sight_source53c;
-    std::int32_t& sight_listener540;
-    std::int32_t& sound548;
+    const Initial& initial_health4b0;
+    const Action& current_action3f4;
+    Handle& sight_source53c;
+    Handle& sight_listener540;
+    Handle& sound548;
     Geometry& geometry;
 };
 
 //005D7180, native D4 RET24: kind,amount,point,direction,source,extra.
 //The final argument and direction are genuinely unused here. Effects are
 //mandatory callbacks to the SAME Dog controller/Body/Sight/SOUND, never noops.
-template<class Geometry,class Actor,class Receivers>void apply_dog_damage(DogDamageView<Geometry> dog,
+template<class Geometry,class Initial,class Handle,class Action,class Actor,class Receivers>void apply_dog_damage(DogDamageView<Geometry,Initial,Handle,Action> dog,
         std::uint32_t mode,std::uint32_t kind,float damage,const std::array<float,4>& point,
         const std::array<float,4>&,Actor* source,std::uint32_t,MissionIntegrityTables& integrity,Receivers& receivers){
     const auto health=dog_signed_word(dog.health4a0);
@@ -105,15 +109,18 @@ template<class Geometry,class Actor,class Receivers>void apply_dog_damage(DogDam
         dog.health4a0=0;
         receivers.dog_control_dead(); //005CE6E0, controller flags20|=800.
         receivers.dog_request_body_action(5,0); //005C8490: queue cancellation/ground/death collision removal remain required.
-        if(dog.sight_source53c>=0){receivers.dog_remove_sight_source(dog.sight_source53c);dog.sight_source53c=-1;}
-        if(dog.sight_listener540>=0){receivers.dog_remove_sight_listener(dog.sight_listener540);dog.sight_listener540=-1;}
-        if(dog.sound548!=-1){receivers.dog_remove_sound(dog.sound548);dog.sound548=-1;}
+        auto& source_handle=dog_damage_required(dog.sight_source53c);
+        if(source_handle>=0){receivers.dog_remove_sight_source(source_handle);source_handle=-1;}
+        auto& listener_handle=dog_damage_required(dog.sight_listener540);
+        if(listener_handle>=0){receivers.dog_remove_sight_listener(listener_handle);listener_handle=-1;}
+        auto& sound_handle=dog_damage_required(dog.sound548);
+        if(sound_handle!=-1){receivers.dog_remove_sound(sound_handle);sound_handle=-1;}
         return;
     }
-    if(dog_action_category(dog.current_action3f4)!=6&&dog_action_category(receivers.dog_next_body_action())!=6)
+    if(dog_action_category(dog_signed_word(static_cast<std::uint32_t>(dog.current_action3f4)))!=6&&dog_action_category(receivers.dog_next_body_action())!=6)
         receivers.dog_request_body_action(6,2);
     receivers.dog_control_damage(kind,source); //Actual virtual54, source is fifth D4 stack argument.
-    if(dog_signed_word(dog.health4a0)<dog_signed_word(dog.initial_health4b0)/8)
+    if(dog_signed_word(dog.health4a0)<dog_signed_word(dog_damage_required(dog.initial_health4b0))/8)
         receivers.dog_body_timed_action(2,10000); //005C8540, after control54.
 }
 

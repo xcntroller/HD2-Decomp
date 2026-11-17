@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/dog_sight_geometry.h"
 #include "game/dog_body_sound.h"
+#include "game/dog_body_frame.h"
 #include "game/human_ai_target_output.h"
 #include "game/model_scene_actors.h"
 #include "game/document_place_scene_actor.h"
@@ -2160,6 +2161,7 @@ public:
             const HumanVector& direction,Actor* source,Frame frame){
         //Actual derived D4 tables: common005B88A0 and four distinct RET24 leaves.
         switch(target.base().type()){
+        case 30:apply_dog_actor_damage(target,kind,amount,point,direction,source,0);return;
         case 2:case 6:case 8:case 9:case 10:case 12:case 13:case 15:case 22:case 23:case 28:case 29:case 33:case 35:case 37:return;
         case 11:dependencies().world_actors.runtime().damage_loose_item(target,kind,amount,point,direction);return;
         case 4:dependencies().world_actors.shot_actor_damage(&target,kind,amount,point,direction,source,frame);return;
@@ -2311,8 +2313,8 @@ public:
     template<class Actor,class Frame>std::uint32_t item_melee_material(Actor& actor,Frame picked){
         return static_cast<std::uint32_t>(actor.material(picked)); //Actual typed virtualD8; each concrete native family supplies its own receiver.
     }
-    template<class Actor,class Human>void item_melee_dog_damage(Actor&,float,const HumanVector&,const HumanVector&,Human&){
-        throw std::runtime_error("Melee requires actual type30 Dog factory/D4 damage receiver (H8)");
+    template<class Actor,class Human>void item_melee_dog_damage(Actor& actor,float amount,const HumanVector& point,const HumanVector& direction,Human& source){
+        apply_dog_actor_damage(actor,3,amount,point,direction,&source,0);
     }
     void item_melee_material_effect(std::uint32_t material,const HumanVector& point,const HumanVector& normal){
         if(material==0xffffffffu)return;
@@ -3193,6 +3195,36 @@ public:
     template<class Human,class Actor>bool network_human_sight_friendly(Human&,Actor&){throw std::runtime_error("Nonoffline Sight requires actual005A09A0 friendship receiver");}
     template<class Dog>std::int32_t dog_emit_body_voice(Dog& dog,std::uint32_t flags,std::int32_t entry){return emit_dog_body_voice(dog,dependencies().scene.frames(),dependencies().sound,flags,entry);}
     void dog_stop_body_voice(std::int32_t& voice){dependencies().startup.stop_game_sound_voice(voice);}
+    template<class Dog>void advance_dog_body(Dog& dog,std::uint32_t elapsed){advance_dog_body_frame(dog,elapsed,*this,dependencies().scene.frames(),dog.require_controller());}
+    template<class Actor>void apply_dog_actor_damage(Actor& actor,std::uint32_t kind,float amount,const HumanVector& point,
+            const HumanVector& direction,SceneActor<typename Dependencies::ActorFrames>* source,std::uint32_t extra){
+        using Frames=typename Dependencies::ActorFrames;using Dog=DogSceneActor<Frames>;
+        auto* dog=dynamic_cast<Dog*>(&actor);if(!dog)throw std::logic_error("Dog D4 requires SAME actual type30 owner");
+        DogDamageGeometry<Frames> geometry(dependencies().scene.frames(),dog->body.damage_bones);
+        using View=DogDamageView<decltype(geometry),std::optional<std::uint32_t>,std::optional<std::int32_t>,std::uint32_t>;
+        View view{dog->properties.fields4a0[0],dog->initial_health4b0,dog->body_actions.current364,
+            dog->sight_source53c,dog->sight_listener540,dog->sound548,geometry};
+        struct Receivers {
+            Dog& dog;HumanWorldLoadingServices& world;
+            void dog_control_dead(){dog.require_controller().dog_control_dead();}
+            void dog_control_damage(std::uint32_t kind,SceneActor<Frames>* source){dog.require_controller().dog_control_damage(kind,source);}
+            void dog_request_body_action(std::uint32_t action,std::int32_t priority){dog.body_actions.request_action(action,priority,*this);}
+            std::int32_t dog_next_body_action(){return dog_order_signed(dog.body_orders.next_action());}
+            void dog_body_timed_action(std::uint32_t posture,std::int32_t priority){dog.body_actions.request_posture(posture,priority);}
+            void dog_ground_death_setup(){prepare_dog_ground_death(dog.body_actions,dog.clip_forced_motion,dog,dog.body.ground404,dog.body.damage_bones[1],world.dependencies().scene.frames(),world.human_geometry_sweep());}
+            void dog_remove_body_collision(unsigned n){if(!dog.collisions)throw std::runtime_error("Dog death requires actual collision owner");dog.collisions->remove(n,true);}
+            void dog_remove_sight_source(std::int32_t slot){world.dependencies().sight.source().remove_observer(slot);}
+            void dog_remove_sight_listener(std::int32_t slot){world.dependencies().sight.source().remove_target(slot);}
+            void dog_remove_sound(std::int32_t slot){world.dependencies().startup.remove_game_sound_listener(slot);}
+        } receivers{*dog,*this};
+        game::apply_dog_damage(view,mode_flags(),kind,amount,point,direction,source,extra,dependencies().startup.mission_integrity_tables(),receivers);
+    }
+    template<class Dog>void dog_surface_damage(Dog& dog,std::uint32_t kind,float amount,const HumanVector& point,const HumanVector& direction){apply_dog_actor_damage(dog,kind,amount,point,direction,nullptr,0);}
+    template<class Actor>void dog_bite_damage(Actor& actor,float amount,const HumanVector& point,const HumanVector& direction){
+        if(actor.base().type()==3){apply_human_damage(selection_human(actor),8,amount,point,direction,static_cast<SceneActor<typename Dependencies::ActorFrames>*>(nullptr),0);return;}
+        shot_actor_damage(actor,8,amount,point,direction,static_cast<SceneActor<typename Dependencies::ActorFrames>*>(nullptr),typename Dependencies::Frame{});
+    }
+    template<class Dog>void dog_bite_observed(Dog& dog){dependencies().players.control().add_sighted_dog(&dog);}
     template<class Actor>auto sight_dog_head_matrix(Actor actor){
         using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
         auto* dog=dynamic_cast<Dog*>(actor);if(!dog)throw std::logic_error("Dog Sight head requires SAME actual type30 actor");

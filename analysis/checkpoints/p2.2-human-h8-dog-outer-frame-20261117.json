@@ -1,0 +1,125 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "4d1aa41",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-dog-outer-frame-source.md",
+  "new_partial_client_bodies": [
+    "005c49a0"
+  ],
+  "extended_partial_client_bodies": [
+    "005c8b30"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_body_frame.h",
+      "bytes": 4908,
+      "sha256": "4655a995f4e227acf3fc9732efc15636af38b7486add02f80d97cbd4ed13edd4"
+    },
+    {
+      "path": "recovered/game/dog_controller_lifetime.h",
+      "bytes": 756,
+      "sha256": "749745ede64bce7730264ebbc5396319d7e82587dab784c15206a8ec8530ddc4"
+    },
+    {
+      "path": "recovered/game/dog_damage.h",
+      "bytes": 7024,
+      "sha256": "e1a147eab65f84e7e776bf0ceefe257a35036aa85e05bc4cd108269dc14bde70"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 303129,
+      "sha256": "2b5a6a3c9ac283f149c37ee95ee02fabbb856130bc0ca06039045fc6faf229bd"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 8373,
+      "sha256": "73ab774e3f73afa5d054b473ca5a497d551997bf3b0156d3e80c0196b80ba485"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 129739,
+      "sha256": "869ebb1f55dad8a1465bc2697ca70d813ca28b58d8485866e79e376ed58dc812"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-authority-frame.asm",
+      "bytes": 24345,
+      "sha256": "be668d4b753519210de02ea96766d83f24392dc5ff8888520ebd984eae69effc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-bite.asm",
+      "bytes": 6604,
+      "sha256": "3b7199bcc8b045ca961c2b32d40726fe850887ceb40f9357d8929bf25e3a4a15"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-boundary-originals/005c8b30.c",
+      "bytes": 7027,
+      "sha256": "c28840518a48f4cae232b387f63d5d57b9b8ee7153d6d658110ac8a0b4ec0f9d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c49a0.c",
+      "bytes": 2177,
+      "sha256": "714f17814ab16148a66c237014952cba2531bf67e7d26b4607eb07ce9f2494a1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005d7180.c",
+      "bytes": 1917,
+      "sha256": "474cae623e63d79387b0a13258ff09ed5dd27363bda35217b75be06567cb26fe"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-outer-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-outer-native-run.log",
+      "bytes": 110,
+      "sha256": "0a5943363f086395595f883e853988e62fa3481177027c0c81df210ea4b56af5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-outer-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-outer-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-outer-native.cpp",
+      "bytes": 7227,
+      "sha256": "5b4e1b5d06cc4f016f782fceba0bb91f448a4f7c8bee784197ee18fee0a32f68"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-outer-native",
+      "bytes": 858368,
+      "sha256": "9ee337deaf21121499c5e910b497193de70bd3f48c10a881f12edb178f024c81"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-outer-module.cpp",
+      "bytes": 902,
+      "sha256": "081dd1eb13abe20c73a123a9c7304382c5114889aabedb66f888727ca90f03ef"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-outer-module.exe",
+      "bytes": 11938304,
+      "sha256": "98d8fe9df32669bd48590bf59ff418a29a39f35dbdebba69a0880abadd318b0b"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "verification": {
+    "native": "PASS34 strict ASan/UBSan/leaks cases; new pose/bite/late damage producer policies; explicit frame/controller/damage endpoints",
+    "actual_i386": "PASS strict actual full World/module both passes, entire Body/frame and shot/melee/Dog D4 compile/link only; abstract required controller, no live activation",
+    "launcher": "PASS forced O2 launcher/probe compile/link only",
+    "limits": "H8.2/H8.4/H8.5/H8.6 and HUM matrix remain open; missing controller and live activation, conditional normal and priority provenance remain honest; no desktop, absent or engine credit"
+  }
+}

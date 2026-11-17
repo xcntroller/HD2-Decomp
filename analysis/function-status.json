@@ -49993,17 +49993,17 @@
       "program": "client",
       "entry": "005c8b30",
       "status": "partial",
-      "coverage": "Post-model collision tail only: same marker refresh, signed-live physical and unconditional present damage descriptor updates on actual grid; containing locomotion/model/sector source excluded.",
-      "limitations": "Source-only typed partial-body/owner reconstruction as specified. Full Dog Body movement/controllers/bootstrap/activation/frame remain required; no cold readiness, invented native values, original ABI, engine body, application or desktop equivalence. Native audit uses explicit frame/bounds/engine endpoints; actual full World/module/i386/launcher compile/link only. Absent callback/helper bodies receive no credit.",
+      "coverage": "Whole containing Dog Body frame: same turn/clip/motion, cleared bite flag, signed wrapping timer, position request, material hazards, temporary model/sector alignment, same descriptors and original model/sector restore.",
+      "limitations": "Typed source/borrowed owner and exception cleanup, not original object/allocator/register/vtable ABI or native engine exception equivalence. Full actual World/i386 composition links; controller constructor/frame and activation remain required. Existing motion conditional normal producer and cold-priority provenance remain explicit; no mission/application/desktop claim, absent or engine credit.",
       "evidence": [
-        "recovered/game/dog_body_collisions.h",
-        "recovered/game/dog_clip_mixer.h",
-        "recovered/game/dog_animation_events.h",
+        "recovered/game/dog_body_frame.h",
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_damage.h",
+        "recovered/game/human_world_loading_services.h",
         "recovered/game/model_scene_actors.h",
-        "recovered/host/game_dog_animation_events.h",
         "recovered/host/game_actor_frames.h",
-        "analysis/human-h8-dog-collision-clip-source.md",
-        "analysis/checkpoints/p2.2-human-h8-dog-collision-clip-20261117.json"
+        "analysis/human-h8-dog-outer-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-outer-frame-20261117.json"
       ]
     },
     {
@@ -50390,6 +50390,23 @@
         "recovered/game/collision_debug_lines.h",
         "analysis/human-h8-dog-ground-motion-source.md",
         "analysis/checkpoints/p2.2-human-h8-dog-ground-motion-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c49a0",
+      "status": "partial",
+      "coverage": "Actual Dog bite admission, fresh target reread, stage5 integrity/low32 signed damage multiplier, target kind8 D4 and SAME Players sighted-Dog publication.",
+      "limitations": "Typed source/borrowed owner and exception cleanup, not original object/allocator/register/vtable ABI or native engine exception equivalence. Full actual World/i386 composition links; controller constructor/frame and activation remain required. Existing motion conditional normal producer and cold-priority provenance remain explicit; no mission/application/desktop claim, absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_body_frame.h",
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_damage.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/model_scene_actors.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/human-h8-dog-outer-frame-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-outer-frame-20261117.json"
       ]
     }
   ]

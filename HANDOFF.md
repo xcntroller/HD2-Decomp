@@ -5,191 +5,131 @@ Actual worktree `/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8`, branch
 `.codex/worktrees/3472/HD2-Decomp-p22-hum-h8`/feature/p22-hum-h8-4. Preserve merged
 H8.4 and other worktrees. PACK is finished.
 
-USER asleep/unavailable: no questions, continue ALL H8 including merged H8.4
+USER asleep/unavailable: no questions; continue ALL H8 including merged H8.4
 until complete or hard block on ANY progress. When H8 SOURCE-complete, sweep
-P22-HUM BEFORE marking matrix resolved_source; then resume existing
+P22-HUM BEFORE matrix resolved_source; then resume existing
 `../HD2-Decomp-p22-frame`, feature/p22-frame, if still absent. Inspect checkout
 first. No push/original EXE/DLL/Proton/Windows-fixture execution. Heavy compilation
-and Ghidra SEQUENTIALLY, poll completion before next heavy job. No subagents or
+and Ghidra SEQUENTIALLY; poll completion before next heavy job. No subagents or
 permanent tests. Commit verified larger source checkpoints and CONTINUE. Source
 commits need no invented desktop test; interactive delivery requires actual user
 acceptance. H8.1/H8.3 source checked; H8.2/H8.4/H8.5/H8.6 and HUM matrix OPEN.
 
-## Latest verified checkpoint
+## Latest checkpoint
 
-[Dog containing ground motion](analysis/human-h8-dog-ground-motion-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-dog-ground-motion-20261117.json).
-Actual005C3420 now composes SAME World0071BAF0 solver, step retry,005C2260 fall,
-005C43D0 slope,005C26D0 terrain, real model-forward/position/material tail and
-0071F700 shared diagnostic queue. Body collisions expose same guarded anchors/
-radii; Startup HumanPhysicsGlobals owns real bounded15000-line process storage.
-Actual driver44/84/88 draw endpoints + reset supplied; FRAME still must install
-original ordering. No private discarded per-Dog queue. No activation enabled.
+[Outer Dog Body frame/bite/World damage](analysis/human-h8-dog-outer-frame-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-dog-outer-frame-20261117.json).
+Whole005C8B30 now composes existing turn/clip/motion, bite flag clear, timer,
+position, actual material hazards and temporary model/sector→same descriptors→
+model/sector RESTORE. Actual World method advance_dog_body instantiates whole.
+005C49A0 actual target reread, integrity stage5 and LOW32 signed damage, SAME
+Players add-Dog. World shot/common blast/melee now use actual Dog D4 policy with
+SAME skeletal/health/Body/controller/Sight/SOUND. Native melee kind3, bite kind8.
+Controller534 is actual unique typed mandatory interface, replacing numeric flag;
+no concrete controller factory/activation was enabled.4B0/53C/540/548 remain
+optionals checked only at native READ, retaining prefixes and removal order.
 
-Native657 strict ASan/UBSan/leaks checks PASS: real solver + full Body response,
-Actor/material/gravity/counters, death expiry, stationary shortcut, callbacks,
-strict speed equality3/unordered4, unordered directionY both spheres, entry budget
-restoration,128 arbitrary/NaN/Inf normal/flag independence cases and15000-line
-capacity/color/reset/draw. Endpoint doubles explicit. Actual strict full World/
-i386 module + full Body/terrain/shared draw API PASS; controller remains explicitly
-throwing compile-only boundary. Forced O2 launcher/probe PASS; no Windows run.
-5 new frozen partials, existing7884F0 evidence extended;34 complete/3673 partial
-(client3668+engine5), frozen18783. Tracker exact+27 tests PASS. All temp audit
-pairs fingerprinted/removed. No heavy job running. CONTINUE, no questions.
+Native34 strict ASan/UBSan/leak cases PASS (explicit engine/controller/damage
+endpoints): model/sector/descriptor ordering + each engine failure, cleanup
+primary error, bite distance equality/NaN/wrap/fresh target/observer ordering,
+late optional damage fields. Actual full World/module i386 both passes plus
+whole outer Body and actual shot/melee/Dog damage compile/link PASS; forced O2
+launcher/probe PASS, Windows not run. Temp audits fingerprinted/removed. One new
+frozen partial005C49A0, existing8B30 coverage expanded;34 complete/3674 partial
+(client3669+engine5), frozen18783.005D7180 absent frozen entry, no credit.
+Tracker exact+27 tests. No heavy job running. CONTINUE, no questions.
 
-Separate native local270 normal/byte1 remains influencing-slope requirement.
-Its sole possible output consumer is43D0, and2260 uses only real support lowbyte.
-When other original slope gates reject, outputs are independent of BOTH unknown
-values (128 concrete comparisons). Composition passes possible-normal+NULL,
-failing only at the existing late normal read if other gates admit influence.
-This is NOT a zero/default/D11 extension or a walking-contact success claim.
-Normal production still needs precise evidence/defined policy when selected.
+## Next — selected actual controller/activation + containing Dog frame
 
-Prior frame adapters checkpoint bf86358
+Keep working the actual owner chain.005D5890 must construct new while OLD534 is
+still published, publish NEW534, ALWAYS NEW.virtual00(actualActor). Only if old,
+REREAD currentNEW534.virtual10(old), then OLD.virtual0C close and08 delete.
+Kind4+00 CF0A0→CE630 sets Actor10 then04=D5B00→CE5D0; latter copies actualActor40
+FULL4 words to40/50, zeros1C/20/18/60/64. Kind5+00 CF6C0 adds actual modelECword1
+intoC0 (NULL when absent; bind return ignored);04 D5B80 addsC4=−1 AFTER CE5D0.
+Do NOT invoke04/6C as00 or bind OLD. Raw bind/retire retained in WORK.
+CE650 restore flags20=0, copiesOLD30/40/50 FULL4words, invokesNEW30(OLD18), THEN
+60/64=NULL. Full vector30 W remains unproduced constructor; preserve provenance.
 
+CB190 kind4/5 constructor: Actor10=NULL,kind14,flags20=2000,30/40XYZ=(0,0,1),
+60/64=NULL,68=0,byte74=kind,route78/7C/80=NULL;CB0D0 borrows actual World54 into70,
+90/A0 XYZ=−10000 (Wunwritten);88/8C/18=NULL,B0/B4/84/BC=0,B8false.
+Actual target getter24=CB390 reads88, NOT18. Kind4damage54 CDF30:80000 clears88
+andflag, B4=200−signedCRT%1500; ifflags200/source.type3 publish8C/source+400.
+Native kind4 sourceNULL when200 set is invalid, preserve late requirement.
+Kind5damage54 CFB40 skips first block and HAS NULLsource check. Raw retained.
+Virtual28 CDE60 is actual MODEL DISTANCE to target88, return ST0; no-target
+FLOAT0080F7B0 (read constant before coding). Updates own model matrix then target
+matrix; delta extended `(dz²+dy²)+dx²`, FLOATsquare, signed bit tiny threshold,
+unit tolerance / sqrt(FLOAT). Native name speed in source is historical naming.
+CE700 move38: NULL clears1C/flags80000000; nonNULL always assigns1C/setbit (raw
+~(flags&80000000) is ALWAYS nonzero). Do not "fix" its tautology.
+CB380 2C consumes B8 thenfalse. CB2D0/2E0/340/350/3A0/3B0 are actual RETs;
+kind4+40 CB2E0 script binding is genuine RET, kind5+40 D5BC0 storesC0.
 
-[Dog frame adapters](analysis/human-h8-dog-frame-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-dog-frame-20261117.json).
-Actual Dog580/590/5A0 history005D64E0, Body turn005C89C0, gravity005C62C0/6250,
-actual multisphere support005C6380 and signed movement limit005C8B10 now exist.
-World/Runtime Dog Sight uses same optional544 marker; World SOUND uses actual
-Body3EC minus snapshotted Actor position and fresh model-relative pointer.
-Native1641 strict ASan/UBSan/leak checks PASS. Actual strict full World/i386
-module + these APIs and forced O2 launcher/probe PASS (compile/link only).
-Controller is an explicitly throwing compile-fixture endpoint, no live Dog
-activation/controller/frame/motion closure claimed.6 frozen partials;34 complete/
-3668 partial(client3663+engine5), frozen18783. Tracker exact+27 tests PASS.
-Temps fingerprinted/removed. No heavy job running. Continue; no user questions.
+CE190 authority:if!800→CDF90 timers→actual shared INPUT008AC710/610 clear64DWORDs
+EACH/publish60/64→CDFF0 sound-age→CD1F0 target→CD890 follow→CBF00 path→virtual6C
+CE110 inputs→CEC60 Body requests→clear80000→Body1E60 direction40.
+Kind4 CF0B0 and5 CFA00 absent frozen JMP CE110 at virtual6C, NOTbind04.
+CDF90: signed-positive B0/BC/84 wrapping subtractelapsed; negative84 clamped0.
+CD1F0 targetNULLkind4 with actual Dog574 AND564 lists empty genuinely returns;
+else B4>=1201 callsCD0A0. Positive target/follow/path require actual owners; no
+private empty registry. PerceptionCE740 (~300lines) already exported.
 
-Prior motion/bootstrap checkpoint e7e1635
+WORK=`analysis/work/mission-world-20261103`: existing
+h8-4-dog-{boundary,required,control,live,typed-v2}-originals;
+human-h8-dog-{body-dependencies,controller-body-dependencies,live-controller}.
+Latest indices `human-h8-dog-controller-{owner,slots}-index.txt`; raw new
+`human-h8-dog-controller-{bind-retire,speed-damage,move,5-damage-sight,accessors}.asm`
+(note5 filename actually `human-h8-dog-controller5-damage-sight.asm`).
+Expanded kind4/5 vtables0..70 JSON retained; don't extend kind1/7 past68.
+005D5620 outer authority and5810 presentation remain required; Body18C0/1430/1600,
+005D82B0/8070/7760/7A10 need binding with actual owners.005D5390 normal retirement
+must controller0C/08 before Body/Sight/SOUND/cache/property/pose cleanup.
 
+## Reuse verified Body source; do not repeat unchanged audits
 
-[Dog motion/transform/Body bootstrap](analysis/human-h8-dog-motion-bootstrap-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json).
-Actual Dog owns clip005C71E0 displacement,005C7600 deceleration/getter005C75B0,
-Body005C0F50/0D10/0D60 transform and005C8370/7D30 bootstrap composition. Shared
-3E0 flags, forced-motion owner, five descriptors, eight marker lookups and SAME
-seven damage-bone slots. Cold278/27C/280 priorities remain honestly unproduced;
-bootstrap finite-position postconditions are proven independent of old3A0, not
-an additional D11 default. Native319938+123365+9563 strict ASan/UBSan/leak checks
-PASS; all21 bootstrap endpoint failures tested. Strict actual World module link
-and forced O2 launcher/probe PASS; Windows not run.7 frozen partials, no complete/
-absent/engine credit. Tracker exact +27 tests PASS;34 complete/3662 partial
-(client3657+engine5), frozen18783. Temp audit pairs fingerprinted/removed.
+4d1aa41 [ground motion](analysis/human-h8-dog-ground-motion-source.md): full3420
+actual standing solver/step/fall2260/slope43D0/terrain26D0/7884F0, shared process
+0071F700 bounded15000-line diagnostics owner. Native657 PASS, actual module and
+launcher PASS. Separate local270 normal/byte1 producer remains unclassified;
+only late influencing slope43D0 read can fail, rejected gates proven independent
+of BOTH. Not contactnormal/zero/default; do not extendD11. FRAME must install
+real debug queue draw/reset order; absentdraw/reset receive no credit.
 
-Prior [collision/clip](analysis/human-h8-dog-collision-clip-source.md) checkpoint
-8c743cb: actual Dog owns five same-grid descriptors, same-model mixer and actual
-parentEC callbacks. Human Sight exclusions borrow same first two descriptors.
-Native38153+309 checks and actual module/forced launcher PASS. Native names
-`col dummy1`,`col dummy2`,`col dummy` (spaces, third unnumbered), Body404=`w`,
-Body3EC=`d`. Do not repeat unchanged audit. No live activation enabled.
+bf86358 [frame adapters](analysis/human-h8-dog-frame-source.md):actual580/590/5A0
+history,89C0 turn,gravity62C0/6250,allcontact6380 and signed8B10. World actual544
+Sight +same SOUND body relative/model. Native1641/actualmodule/launcher PASS.
+e7e1635 [motion/bootstrap](analysis/human-h8-dog-motion-bootstrap-source.md):
+clip71E0/7600/75B0,Body0F50 ONEpointer/0D10/0D60 and8370/7D30. SevenSAMEdamage
+bones, lookupd,w,f,c,h,p,t,l. Cold278/27C/280 unproduced: honest late priority
+failure aftermarkers/voices BEFOREanim2clear. No silent cold-zero/D11 correction.
+Native319938+123365+9563/actualmodule/launcher PASS.
+8c743cb [collisions/clip](analysis/human-h8-dog-collision-clip-source.md): SAME
+five descriptors, dummies with spaces, callback parent108→EC→sameDog.clip. Native
+38153+309/module/launcher PASS. a31f4dc [actions](analysis/human-h8-dog-actions-source.md)
+4575872 checks.96182e2 [orders](analysis/human-h8-dog-orders-source.md).
+Other prior contracts linked from p22-hum-h8-plan; use them instead of rereading.
 
-Prior checkpoints: a31f4dc [Body actions](analysis/human-h8-dog-actions-source.md)
-(4575872 qualified checks, actual queue/priority/death/ground/playback/effects);
-456e7fa [Human command/Active firing](analysis/human-h8-command-fire-line-source.md)
-(selector22, removed invented pending whitelist, actual Active114 infinite line);
-96182e2 [actual Dog orders](analysis/human-h8-dog-orders-source.md);27a5d89
-[shared blast/Sight](analysis/human-h8-blast-sight-source.md) and [H8.3 closure](analysis/human-h8-projectile-closure.md);
-5827965 [Player cover](analysis/human-h8-player-cover-source.md),6dbb440
-[Player dispatch](analysis/human-h8-player-dispatch-source.md). Reuse these sources.
-
-## Next — finish live Dog/remaining Human owners
-
-Next: actual selected controller/activation + outer Dog frame005C8B30,
-005D5620/5810 and final Human callbacks. Body motion/ground responses now exist;
-do NOT reimplement or re-audit the solved clip/bootstrap/gravity/terrain kernels.
-Controller actual kind4/5, Body animation/action adapters, damage/Sight/SOUND and
-retirement must compose on same Actor/model/process owners. No live entry yet.
-
-WORK=`analysis/work/mission-world-20261103`. Reuse h8-4-dog-{boundary,required,
-control,live,typed-v2}-originals; human-h8-dog-{body-dependencies,
-controller-body-dependencies,live-controller}.005C7D30 C under REQUIRED,
-005C8370/8B30 under BOUNDARY. All ground evidence/typed revisions in contract.
-
-Next raw already retained: human-h8-dog-body-authority-frame.asm aligned005C8B30
-through9040 (tail file also has adjacent bytes, no adjacent-function credit).
-It calls turn→clip displacement→fullBodymotion→optional bite49A0→timer370→
-position0D10→material hazards→TEMPORARY model alignment→same descriptors→model
-RESTORE. TEMPORARY model move is intentional, not permanent publication: raw
-005C8E54 sets moved byte ESP+0B=1 AFTER SceneE0 returns, descriptors update on
-aligned model, then native restores original model position/sector/24. Decompiler
-uStack68 aliases hide this bool. Need full native callback/cleanup order. Actual
-frames.human_scene_sector(point), actor_parent/frame_kind/link_scene_object,
-update_scene_object and model08 endpoints exist. Hazard D4 still needs actual
-Dog damage/controller/Sight/SOUND adapters; no successful stand-in.
-
-Terrain raw critical: NO-HIT Actor direction publication X,Y,Y,Z, including W=Z
-(raw31C3..31D3) retained in source. Positive path XYZ/unclaimedW. Corrected
-terrain-typed-v2 has engine vector AngleTo/operator*= STDCALL(self,...); v1 was
-wrong THISCALL and nonauthoritative. Client00404260/7884F0 remain THISCALL.
-X wrapper uses identity + FLOAT sin/cos slots5/10,6/9 + actual operator*=.
-
-Shared diagnostic static data: buffer008CBC18..0097B898 exactly720000 bytes,
-cursor00844168 initially008CBC18, BSS count0. Two24-byte vertices perline,
-forcedFF alpha; secondcolor0 repeatsfirst. 0071F850 draw/0071F8A0 reset absent
-frozen entries are reconstructed source APIs with NO credit. Raw neighbor/index/
-raw-address candidates retained; candidate containing starts are NOT proof.
-Do not create absent original starts. FRAME installs reset/draw later.
-
-Native core details: ActorBody+90; clipBaseBody+10=ActorA0, clip model10=ActorB0.
-Body160 is actual Actor borrower. Body364=Actor3F4 action. Seven damage bones
-Actor478..490=`f,d,c,h,p,t,l`; bootstrap lookup order differs and includes extra
-`w`. Clip marker callback `a`:005C7960 and005C79B0 are absent frozen entries;
-raw callback ABI is stdcall(Frame,event,text,time), return0, actual parent108→EC→
-Actor then+A0. Event queues have THREE words before count; fourth write overlaps
-counter. Current source guards that native-invalid state, adds no absent credit.
-Clip bind uses alternating model slots0/1 and2/3. Tick first elapsed is unused,
-second signed elapsed drives all; first four engine deltas scale UINT32 bits by
-rates then64-bit __ftol/low32, last four use signed delta. Sum keeps exact signed
-integer through comparison, FLOAT step/sum feed blend helper. Raw unordered
-elapsed proceeds; normal positive-duration and falloff-weight gates are ordered.
-Host dog_model_weight preserves ST0. Do not replace with a float-spilled getter.
-
-Native Body278/27C/280 priorities and new queued metadata can be read before
-known production. Current optionals/provenance keep failures honest; common
-005C5030 tail produces priorities0. Do not silently zero/extend D11 defaults or
-claim global absence of aliases/writers. Body initialization must preserve the
-actual callback and early-return order. Sound producer is actual default request,
-Body3EC relative position, actual model relative, group11/sourceNULL; see raw.
-
-Live controller graph already researched. human-h8-dog-live-boundary-graph.json
-is STAGE1 direct calls only; fingerprinted, write a NEW revision if updating.
-Kind4/5 vtable native0..70 is retained; do not extend kind1/7 beyond68 into next
-table. Mixed controller-body export ended ERROR at absent005CF0B0;005CFA00 wasn't
-exported. Both raw JMP005CE110, actual virtual6C needed within005CE190. Bind04 is
-005D5B00→005CE5D0, not005CE110.005D5890 publishes NEW534 then ALWAYS invokes new.virtual00(actual Actor);
-005CE630 stores Actor10 then virtual04→005D5B00→005CE5D0. Only if OLDnonnull,
-new.virtual10(old) runs before old.virtual0C/08 close/delete.005D5390 common first, reverse tracks, controller0C before
-native NULL check, Body retirement, queues/Sight/SOUND/cache/property/pose restore.
-005C0F50 has ONE pointer (pushed earlier005C8069).005D64E0 retains native zero
-previous-elapsed division. Activation bone b..y mask400 early return still falls
-through caller Body init. Respect every reached required callback.
-
-Other conditional owners: type34/36 look/target/sound, Aircraft20, nonHuman EC,
-contact14/5 actor58; non7 Remote/transport/visibility/fall/respawn, debug A8 and
-Animation ancillary wings/non7. Follow actual selected data/branches; no private
-empty registry, fake actor or success. Tutorial historical baseline no Dog and
-ALPS1 one is NOT fresh resolver/loaded-population proof. Type36 conditional
-constructor/activation/frame read-only exports now exist under type36-live-
-boundary-v2 (PASS); earlier v1 stopped at absent005E3EE0. No implementation/credit.
-005E2CC0 actual material4C/4D continuation ray is exported; see idle-line-query.
-
-D11 FOUR authorized corrections are source-resolved; don't reopen. PACK finished.
-Source H1–H7 and prior H8 ordinary Human/Player/mounted/Car/timed/Animation/
-ShotMgr are verified; no unchanged broad re-audits. H8.5 containing verification
-and application/desktop still required. FRAME handoff91a7d33 has stale pre-H8
-source blockers; don't blindly repeat them when moving there.
+H8.2 remaining: special action24 intentionally REJECTS Human3 before534BF0;
+nonHumanEC/types34/36/actual populated idle-look registries,Aircraft20,actor58
+14/5 and selectedotherpositives need actualowners. No fake empty registry/EC.
+Do not expand non7/debug/render adjacency without actual selection. Human door
+request uses State overload already source, not guarded void* overload.
+D11 FOUR authorized corrections resolved;PACKfinished. H8.5 containing sweep and
+application/desktop required. FRAME91a7d33 handoff has obsoletepre-H8 blockers.
 
 ## Commands
 
 Index BEFORE new exports: `python3 -B tools/research_index.py find ADDRESS...`.
-Static image `analysis/work/hd2.unpacked.exe`, SHA2568c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
-Read-only/noanalysis Ghidra `../H&D2 Decomp 4/ghidra/support/analyzeHeadless`,
-project `/home/control/Documents/Projects/HD2ResearchProject HD2Research`, process
-hd2.unpacked.exe, tools/ExportFunctions.java. Check ERROR despite exit0.
-Forced build: `make -B -C recovered -j1 application-launch startup-probe
+Static image `analysis/work/hd2.unpacked.exe`, SHA256
+8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+Ghidra readOnly/noanalysis, existing starts ONLY, rollback typed transactions.
+Forced `make -B -C recovered -j1 application-launch startup-probe
 WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`.
-Actual module fixtures include host/game_blast_waves.h and
-host/game_mission_module_frames.h, tick both passes; compile/link only. Native
-g++ ASan/UBSan/leak links+rpaths `.tools/hd2-sanitizer-runtime/usr/lib64`.
-Fingerprint/remove temporary audits; tracker render/check+27 existing tests.
+Actual module fixtures include winsock2.h BEFORE host headers, then
+host/game_blast_waves.h and host/game_mission_module_frames.h; both tick passes.
+Native g++ strict ASan/UBSan/leaks with .tools/hd2-sanitizer-runtime/usr/lib64
+link+rpath. set-e before build/run, never execute stale failed-build binary.
+Fingerprint/remove temp audit pairs; function_progress render/check +
+`python3 -B tools/test_function_progress.py`27tests. No permanent tests.

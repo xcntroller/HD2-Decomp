@@ -8,6 +8,7 @@
 #include "game/dog_body_transform.h"
 #include "game/dog_body_state.h"
 #include "game/dog_frame_history.h"
+#include "game/dog_controller_lifetime.h"
 #include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/supply_box_geometry.h"
@@ -32,7 +33,7 @@ public:
     }
     bool initialize(Frame frame) override { //005D4D70, retain precedes model-kind check.
         if(!this->base_.initialize_frame(frame)||this->backend_.frame_kind(frame)!=9)return false;
-        field534=0;return true;
+        field534.reset();return true;
     }
     void load(SerializedBytes& bytes) override {properties.load(bytes);} //005D6630.
     std::int32_t material(Frame)override{return 0x42;} //005D4CB0.
@@ -50,7 +51,10 @@ public:
     std::uint32_t& field330=body_orders.current.field1c;
     std::uint32_t& field334=body_orders.current.field20;
     std::array<Record,5>& records=body_orders.records;
-    std::uint32_t field534=0;
+    std::unique_ptr<DogControllerLifetime<Backend>> field534; //SAME actual controller owner, published by005D5890.
+    std::optional<std::uint32_t> initial_health4b0; //005D5290 snapshot, not a cold/default value.
+    std::optional<std::int32_t> sight_source53c,sound548;
+    auto& require_controller(){if(!field534)throw std::runtime_error("Dog requires actual published534 controller");return *field534;}
     //005D4DB0 publishes540 only after actual Sight target registration. Cold
     //construction/initialize do not produce a valid handle; do not invent-1/0.
     std::optional<std::int32_t> sight_listener540;
