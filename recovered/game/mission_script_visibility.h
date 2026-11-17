@@ -35,6 +35,10 @@ public:
         if(!packet)return false;
         const auto opcode=packet->read(8);
         if(!(mode_&2u))return true; //Wrapper consumes opcode;0042B650 genuinely does nothing without presentation.
+        return receive_opcode(opcode,*packet);
+    }
+    bool receive_opcode(std::uint32_t opcode,SessionPacketStream& stream) {
+        auto* packet=&stream;
         if(opcode!=0x5f)throw std::runtime_error("Required script presentation opcode is unavailable: "+std::to_string(opcode));
         const auto name=packet->read_string(0xfe);const bool enabled=packet->read(1)!=0;
         if(!frames_.has_scene())return true; //Payload is consumed even without the scene.

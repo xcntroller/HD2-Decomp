@@ -17,8 +17,8 @@ struct MissionScriptLightSnapshot {std::array<float,4> colour{};std::uint32_t pa
 
 //00423670 and00423BF0: capture once, OR later masks, retain BOTH frame and
 //original parent.00427B80 performs a visibility pass before destroying these
-//records. SetOn masks20/30 and rotation mask2 are supported; other transform/
-//model-animation mutators must supply their actual restoration pass first.
+//records. SetOn20/30, rotation2 and model8 restore through their actual
+//containing owners; other transform mutators still require restoration.
 template<class Frames>class MissionScriptFrameSnapshots {
 public:
     using Frame=typename Frames::Frame;
@@ -36,7 +36,7 @@ public:
     const auto& records()const{return records_;}
     void remember(Frame frame,std::uint32_t mask) {
         if(!frame)throw std::logic_error("Script frame snapshot requires an actual frame");
-        if(mask&~0x32u)throw std::runtime_error("Script frame snapshot requires actual position/animation restoration");
+        if(mask&~0x3au)throw std::runtime_error("Script frame snapshot requires actual position/animation restoration");
         for(std::size_t n=records_.size();n;)if(records_[--n]->frame->get()==frame){records_[n]->mask|=mask;return;}
         auto record=std::make_unique<Record>();record->frame.emplace(frames_.retain_actor_frame(frame));
         const auto parent=frames_.object_parent(frame);
@@ -46,12 +46,21 @@ public:
         if(frames_.frame_kind(frame)==4)record->light=frames_.script_light_snapshot(frame);
         record->mask=mask;records_.push_back(std::move(record));
     }
-    void clear() { //Supported2/20/30 subset of00427B80, then00423BF0 for EVERY record.
+    void replace_saved_parent(Frame frame,Frame parent){ //00427B80: replace ONLY an existing retained parent.
+        for(std::size_t n=records_.size();n;)if(records_[--n]->frame->get()==frame){
+            auto& saved=records_[n]->parent;
+            if(saved){saved.reset();saved.emplace(frames_.retain_actor_frame(parent));}
+            return;
+        }
+    }
+    void clear(){clear([](Frame){throw std::runtime_error("Script animation snapshot requires its containing model restoration owner");});}
+    template<class RestoreAnimation>void clear(RestoreAnimation&& restore_animation) { //00427B80 then00423BF0 for EVERY record.
         std::exception_ptr failure;
         const auto attempt=[&](auto&& action){try{action();}catch(...){if(!failure)failure=std::current_exception();}};
         for(std::size_t n=records_.size();n;) {
             auto& record=*records_[--n];if(record.mask&0x20u)attempt([&]{frames_.object_visible(record.frame->get(),record.visible);});
             if(record.mask&2u)attempt([&]{frames_.object_rotation(record.frame->get(),record.rotation);});
+            if(record.mask&8u)attempt([&]{restore_animation(record.frame->get());});
         }
         while(!records_.empty()) {
             auto record=std::move(records_.back());records_.pop_back();attempt([&]{retire(*record);});

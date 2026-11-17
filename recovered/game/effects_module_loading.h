@@ -21,9 +21,10 @@ public:
     using Frame=typename Frames::Frame;using Process=EffectsLoadingProcess<Frame>;
     EffectsModuleLoading(frontend::ClientModuleRegistry& registry,frontend::ClientModuleRegistration& registration,
             Frames& frames,Files& files,Effects& effects,Process& process,Random& random,Camera& camera,View& view,Startup& startup,
-            const std::uint32_t& mode,std::string resource,const float& far_clip,std::function<void(std::uint32_t)> decorations,std::function<void()> water)
+            const std::uint32_t& mode,std::string resource,const float& far_clip,std::function<void(std::uint32_t)> decorations,std::function<void()> water,std::function<void(std::uint32_t)> weather)
         :registration_(registry,registration,1,"GEffects"),frames_(frames),files_(files),effects_(effects),process_(process),
-         birds_(frames,random,far_clip),volumes_(frames,[this]{if(process_.world==this)startup_.procedural_clouds().clear();}),movie_(frames),camera_(camera),view_(view),startup_(startup),mode_(mode),resource_(std::move(resource)),decorations_(std::move(decorations)),water_(std::move(water)){
+         birds_(frames,random,far_clip),volumes_(frames,[this]{if(process_.world==this)startup_.procedural_clouds().clear();}),movie_(frames),camera_(camera),view_(view),startup_(startup),mode_(mode),resource_(std::move(resource)),decorations_(std::move(decorations)),water_(std::move(water)),weather_(std::move(weather)){
+        if(!weather_)throw std::logic_error("GEffects requires its actual World weather receiver");
         if(!water_)throw std::logic_error("GEffects requires its actual World water-query receiver");
         if(!decorations_)throw std::logic_error("GEffects requires its actual World decoration grid receiver");
         if(process_.world||process_.water_camera1ac)throw std::logic_error("Retire actual GEffects world/camera borrowers first");
@@ -123,7 +124,7 @@ public:
     }
     template<class Session,class Players>void update_loading(std::uint32_t elapsed,Session& session,Players& players){ //00487240, actual loading-screen+10 receiver.
         require_open();
-        update_loading_effects(elapsed,frames_,process_,effects_,birds_,movie_,session,players,startup_,decorations_,water_);
+        update_loading_effects(elapsed,frames_,process_,effects_,birds_,movie_,session,players,startup_,decorations_,water_,weather_);
     }
     void close()noexcept{
         effects_.retire_procedural_configuration(this); //Retract only this loan, even after a process-owner replacement.
@@ -146,7 +147,7 @@ private:
     void set_water_frames(){set_water_pair(0);set_water_pair(1);}
     frontend::ClientModuleBinding registration_;Frames& frames_;Files& files_;Effects& effects_;Process& process_;
     EffectsBirdsLoading<Frames,Random> birds_;VolumetricLights<Frames> volumes_;MeshMovie<Frames> movie_;
-    Camera& camera_;View& view_;Startup& startup_;const std::uint32_t& mode_;std::string resource_;std::function<void(std::uint32_t)> decorations_;std::function<void()> water_;bool finished_=true,unloaded_=true; //Cold construction has no activation prefix. Source destructor guards, not native readiness.
+    Camera& camera_;View& view_;Startup& startup_;const std::uint32_t& mode_;std::string resource_;std::function<void(std::uint32_t)> decorations_;std::function<void()> water_;std::function<void(std::uint32_t)> weather_;bool finished_=true,unloaded_=true; //Cold construction has no activation prefix. Source destructor guards, not native readiness.
 };
 } //namespace hd2::game
 #endif

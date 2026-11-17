@@ -60,6 +60,9 @@ public:
     bool human_selected_suppressed(Human& human){return dependencies_.world.human_selected_suppressed(human);}
     bool script_human_sees_enemy(Human& human){return dependencies_.controls.sees_enemy(human);}
     std::uint32_t script_human_alarm_type(Human& human){return dependencies_.controls.alarm_type(human);}
+    void script_weather_parameter(std::uint32_t parameter,std::uint32_t value){dependencies_.world.script_weather_parameter(parameter,value);}
+    void script_weather_splashes(bool enabled){dependencies_.world.script_weather_splashes(enabled);}
+    void script_animation_marker(typename Frames::Frame frame,bool enabled){dependencies_.world.script_animation_marker(frame,enabled);}
     bool script_inventory_has_definition(std::int32_t definition){return dependencies_.world.script_inventory_has_definition(definition);}
     std::uint32_t evaluate_script_predicate(Context& context,std::uint32_t opcode,
             const std::array<std::uint32_t,4>& values,const std::array<std::uint32_t,4>&,

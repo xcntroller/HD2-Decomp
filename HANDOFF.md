@@ -36,20 +36,25 @@ Human alarm12; actual Car62 signedFILD*FLOAT.1 through SAME core. World inventor
 uses actual reverse roster and Items. Dog alarm/nonoffline Car publication remain
 honest required paths. Main+review source synced by in-place changes. Receipt
 analysis/checkpoints/p22-frame-startup-predicates-fuel-20261117.json.
-CURRENT initial gaps are FRM_SetAnimation5D +9 WEATHER commands; automatic
-predicate TYPE gaps gone. Coverage-middle.json reflects source dispatch only.
-NEXT: continue full startup batch, NO RETEST REQUEST/STAGING yet. Ghidra read-only
-frame animation exports DONE; log WORK/startup-script-
-frame-animation-export.log to startup-script-frame-animation-original for
-00424310/00424260/0041D4C0/00423BF0. Index already consulted. Need snapshotmask8,
-model animation record/lifetime and finish ordering before enabling5D.
-Weather: Engine scene11C parameters are real delegated receivers; packet module4
-visibility currently handles5F only. Need actual9 commands/write/decode plus
-GEffects40 flag24C positive splash update (defaults250 density200,254 radius8;
-processBSS0089BAA4 counter0 and008396E8 cadence3), actual ray/particles/Player
-head/blocker handling. Original00487240 weather source lines491..~690 and raw
-references487EA4..48849B; no fake disabled weather. Full selected dummy_weather
-script sets rain500/speed40/size2,.006/space12,30/dir(-20,-98,0)/enabled1/mode0.
+THIRD source group now complete and verified: model5D actual cache/slot/clip-mode,
+Script87C/88C and World48 registration, snapshot8 model reload/external attachment
+restoration, SAME marker00774D80/SOUND callback lifetime.77 native ASan/UBSan/leaks
+PASS. Weather9 commands actual module4 broadcast/decoder/scene11C + SAME24C flag;
+positive00487240 client splash cadence/static-ray/material/particle/Player head/
+engine blocker/random collected-frame chain is now source-bound.2399 native
+ASan/UBSan/leaks PASS. Actual full O2/Werror application/probe PASS in review.
+Receipt analysis/checkpoints/p22-frame-startup-animation-weather-20261117.json.
+No staging/retest yet. Initial dispatch gaps now0, **full-program still22**;
+TUT_Instructor1's2000ms delay resumes CSC_RunCutscene162. Continue actual opening
+sequence, not a knowingly broken desktop request. Keep later event-only work
+qualified, do not infer predicate truth/frame admission from static report.
+NEXT:00423C70/00423EB0 full cutscene camera/HUD/context/animation ownership and
+opening body dependencies (Human animation/turn, subtitles/speech/camera slide).
+Index consulted; raw WORK/startup-cutscene-lifetime.asm. Read-only Ghidra export
+of2 containing functions started to startup-cutscene-lifetime-original; log WORK/
+startup-cutscene-lifetime-export.log. No compiler alongside Ghidra. Existing
+00774D80 typed exports/source already supply callback; a redundant headless
+attempt failed on undefined analysis function, raw/existing typed source reused.
 Current staged user exe deliberately remainsd60751d1 until batch is concrete.
 
 Previous7762daa diary/profile records and game type;422d793 alarm masks/Run;
@@ -105,7 +110,7 @@ REVIEW: `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
 edebd81 + preserved OWN interactive overlay/later FRAME source. Mixed staged and
 unstaged is expected, not a merge conflict. Interactive app adapter remains
 UNCOMMITTED pending actual user desktop acceptance per AGENTS. Source-only main
-fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/startup-script-predicates-review-final.patch includes
+fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/startup-animation-weather-review-final.patch includes
 all untracked collision/decorations/input/water headers; fingerprinted in receipt. No accepted game yet.
 
 Desktop command, USER ONLY:

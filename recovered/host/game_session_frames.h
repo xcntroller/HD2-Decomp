@@ -123,7 +123,7 @@ public:
     void recycle_collision_buckets(){d_.scene.buckets().recycle_empty();}
     void advance_first_person(std::uint32_t elapsed){external_.advance_first_person(elapsed);}
     void advance_engine_scene(std::uint32_t elapsed){parent_.scene()->advance(elapsed);}
-    void advance_animated_models(std::uint32_t elapsed){d_.scene.frames().advance_animated_models(elapsed);}
+    void advance_animated_models(std::uint32_t elapsed){d_.scene.frames().advance_animated_models(elapsed);d_.animation_events.rethrow_animation_event_failure();}
     void advance_dubbing(std::uint32_t elapsed){d_.startup.update_game_dubbing(elapsed);}
     void synchronize_dubbing_attachments(){d_.startup.synchronize_game_dubbing();}
     void advance_mission_text(std::uint32_t elapsed){if(parent_.text())d_.subtitles.tick(elapsed);}

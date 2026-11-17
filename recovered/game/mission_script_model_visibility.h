@@ -16,6 +16,7 @@ public:
     MissionScriptModelVisibility(Frames& frames,Effects& effects,Humans& humans,Animation& animation,
                                  Players& players,View& view,std::uint32_t& mode)
         :frames_(frames),effects_(effects),humans_(humans),animation_(animation),players_(players),view_(view),mode_(mode){}
+    void script_restore_model_shadows(Frame frame){(void)effects_.build(mode_,frame,false);} //00427B80 GEffects+78.
     void script_model_visibility(Frame frame,bool enabled) {
         const auto* data=frames_.find_actor_frame_data(frame);
         auto* actor=data?reinterpret_cast<SceneActor<Frames>*>(data->words[0]):nullptr;

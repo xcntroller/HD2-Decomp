@@ -1,0 +1,270 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "8ff34af",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "source_files": [
+    {
+      "path": "recovered/game/effects_loading_process.h",
+      "bytes": 1581,
+      "sha256": "17db722c71ec6b8fa66f0125cf820ff55081742bd360bc1fa931a33024d38874"
+    },
+    {
+      "path": "recovered/game/effects_loading_update.h",
+      "bytes": 2552,
+      "sha256": "b06d0834ea81e033f251308e3550ff493bda0a33b40d28add03d285a19043fec"
+    },
+    {
+      "path": "recovered/game/effects_module_loading.h",
+      "bytes": 11547,
+      "sha256": "1b78e09487546b32b1daed6c4c138cb3b6bc71725b487087a21ef0c6c6ba17d4"
+    },
+    {
+      "path": "recovered/game/human_player_control_loading.h",
+      "bytes": 8611,
+      "sha256": "065e0b62d913a0062d4fa6d51337f1591ed3f1c771979c723dafd02fe44c3155"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 326832,
+      "sha256": "b9098a88aa087e0bfa81bc92060326d0b6ac5e004ef59583b5db5ca420468af8"
+    },
+    {
+      "path": "recovered/game/mission_script_frame_snapshots.h",
+      "bytes": 5615,
+      "sha256": "fe8f97a1edb2db91174032262b2d24d7b7d68843d7dbf88aabc0aa1ad47bc92d"
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "bytes": 10398,
+      "sha256": "b3e4410a936c72d11b3dd698afa81b9d1f72b7524dc453176ddd25a5092dbb9b"
+    },
+    {
+      "path": "recovered/game/mission_script_model_visibility.h",
+      "bytes": 3425,
+      "sha256": "1de465061938732f7cd01129fd4501d5588169520befbe588161014cd637b058"
+    },
+    {
+      "path": "recovered/game/mission_script_module_loading.h",
+      "bytes": 8839,
+      "sha256": "9547e97df1e1cc9999c43be396106bb9c8a307e786c457e589c9aaa423a580d7"
+    },
+    {
+      "path": "recovered/game/mission_script_visibility.h",
+      "bytes": 3930,
+      "sha256": "55d709caf9fb0f0be00ff38749bc7df8bf405594388b5db40cc149d5bc1fd69b"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 141935,
+      "sha256": "8ed1267a743d6891f4eb595653ecd92216698075ccd14c7ea6b2b6783aef2f68"
+    },
+    {
+      "path": "recovered/host/game_human_animation_events.h",
+      "bytes": 3940,
+      "sha256": "608617bec1fbfd19cf9cb2edfaae8abadbcf300dc4dc793d48cb3364f48b03b0"
+    },
+    {
+      "path": "recovered/host/game_scene_objects.h",
+      "bytes": 19348,
+      "sha256": "fceba89f01e0b1a9635fc0189a2d3bc25a7610f44b003dcf0e3369ad4ac252c5"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 36913,
+      "sha256": "cdef31d5cd1c9a43a9c0835507a963ac7d364500d7fbfb2fb9ff9c1731cea8d3"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "bytes": 34100,
+      "sha256": "0317639b076901a8491b489293464611f2f74c990eca6bc8f7ea81c9d65cc0d1"
+    },
+    {
+      "path": "recovered/game/effects_weather_update.h",
+      "bytes": 4652,
+      "sha256": "61dcd577f06e316f936cf872af4ca40dc81368499d3b80a7fac3743be90e89c9"
+    },
+    {
+      "path": "recovered/game/mission_script_model_animations.h",
+      "bytes": 5500,
+      "sha256": "1dc487455a1d8b7de8312d8d3552c072985508862fa06139877433f50ccf5838"
+    },
+    {
+      "path": "recovered/game/mission_script_weather_commands.h",
+      "bytes": 6233,
+      "sha256": "ab570471249ac56064984cd89fc37efc99b2242d23401963b26998dfb9b4936e"
+    }
+  ],
+  "review_source_files": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_loading_process.h",
+      "bytes": 1581,
+      "sha256": "17db722c71ec6b8fa66f0125cf820ff55081742bd360bc1fa931a33024d38874"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_loading_update.h",
+      "bytes": 2552,
+      "sha256": "b06d0834ea81e033f251308e3550ff493bda0a33b40d28add03d285a19043fec"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_module_loading.h",
+      "bytes": 11547,
+      "sha256": "1b78e09487546b32b1daed6c4c138cb3b6bc71725b487087a21ef0c6c6ba17d4"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_player_control_loading.h",
+      "bytes": 8611,
+      "sha256": "065e0b62d913a0062d4fa6d51337f1591ed3f1c771979c723dafd02fe44c3155"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_world_loading_services.h",
+      "bytes": 327051,
+      "sha256": "380b20fdeb8ed2883715984702e80623987db31d4dcdb1ee3094c4e53012d1c1"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_frame_snapshots.h",
+      "bytes": 5615,
+      "sha256": "fe8f97a1edb2db91174032262b2d24d7b7d68843d7dbf88aabc0aa1ad47bc92d"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_loading_runtime.h",
+      "bytes": 10398,
+      "sha256": "b3e4410a936c72d11b3dd698afa81b9d1f72b7524dc453176ddd25a5092dbb9b"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_model_visibility.h",
+      "bytes": 3425,
+      "sha256": "1de465061938732f7cd01129fd4501d5588169520befbe588161014cd637b058"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_module_loading.h",
+      "bytes": 8839,
+      "sha256": "9547e97df1e1cc9999c43be396106bb9c8a307e786c457e589c9aaa423a580d7"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_visibility.h",
+      "bytes": 3930,
+      "sha256": "55d709caf9fb0f0be00ff38749bc7df8bf405594388b5db40cc149d5bc1fd69b"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_actor_frames.h",
+      "bytes": 141935,
+      "sha256": "8ed1267a743d6891f4eb595653ecd92216698075ccd14c7ea6b2b6783aef2f68"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_human_animation_events.h",
+      "bytes": 3940,
+      "sha256": "608617bec1fbfd19cf9cb2edfaae8abadbcf300dc4dc793d48cb3364f48b03b0"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_scene_objects.h",
+      "bytes": 19348,
+      "sha256": "fceba89f01e0b1a9635fc0189a2d3bc25a7610f44b003dcf0e3369ad4ac252c5"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_session_frames.h",
+      "bytes": 36913,
+      "sha256": "cdef31d5cd1c9a43a9c0835507a963ac7d364500d7fbfb2fb9ff9c1731cea8d3"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_world_loading.h",
+      "bytes": 34100,
+      "sha256": "0317639b076901a8491b489293464611f2f74c990eca6bc8f7ea81c9d65cc0d1"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/effects_weather_update.h",
+      "bytes": 4652,
+      "sha256": "61dcd577f06e316f936cf872af4ca40dc81368499d3b80a7fac3743be90e89c9"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_model_animations.h",
+      "bytes": 5500,
+      "sha256": "1dc487455a1d8b7de8312d8d3552c072985508862fa06139877433f50ccf5838"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_weather_commands.h",
+      "bytes": 6233,
+      "sha256": "ab570471249ac56064984cd89fc37efc99b2242d23401963b26998dfb9b4936e"
+    }
+  ],
+  "native_checks": {
+    "animation": 77,
+    "weather": 2399
+  },
+  "native_scope": "Actual command/packet/normalization/cadence/queue/snapshot/restoration/Player splash policies with explicit engine/World/marker leaves. Containing production owners separately compile/link verified; no engine execution inferred.",
+  "sanitizers": "ASan/UBSan/leaks PASS",
+  "full_actual_i386_O2_Werror_build": "PASS application-launch startup-probe",
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-animation-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-animation-native-run.log",
+      "bytes": 56,
+      "sha256": "d5e37f2584d0db8db075235a60effa146e0654f5cb0479a5969e3e0f117a5b2d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-weather-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-weather-native-run.log",
+      "bytes": 70,
+      "sha256": "b0cb53d1292a28c3ae513c3e2d6ed66e40776c74cecdbe21d8c47fcddc87277c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-animation-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-weather-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    }
+  ],
+  "removed_native_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-animation-native.cpp",
+      "bytes": 6228,
+      "sha256": "050727d00d1abaf1f66ee4a316a69105023d715106c3038ff98a946548b45a8a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-animation-native",
+      "bytes": 2480616,
+      "sha256": "a6fff2cbb70cd50453eb161a39ec89916781be8737cc9000acdc899e5099b894"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-weather-native.cpp",
+      "bytes": 8763,
+      "sha256": "8359dd95a0307b5d62d6fa9ae91eca4139c9d7cff2a24ca4c91653f9815b56c6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-weather-native",
+      "bytes": 2476600,
+      "sha256": "f80cd7b164fb19fa79844206f5be4f696f163ceb9e346a31987a6b4d87c5fbe6"
+    }
+  ],
+  "preflight": {
+    "path": "analysis/work/p22-frame-closure-20261117/startup-script-coverage-initial-batch.json",
+    "bytes": 52678,
+    "sha256": "8f1f3ad5a6fcb037026408b29ce9b1734dc1da8328e4bf02b48128347b0c21a4"
+  },
+  "recoverable_review_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/startup-animation-weather-review-final.patch",
+    "bytes": 189033,
+    "sha256": "101539c18d2a7d8f07b5b3a46f70da00c0daa1149347b823ea5eec91126cd4ac"
+  },
+  "own_preserved": true,
+  "own_staged_executable": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "user_staging": "Unchanged d60751d1e56a45540e10e6d3d356e9c79bef86723aa34105d810284d3d991948; NOT rebuilt/staged for user retest. Review build output is newer and intentionally unstaged.",
+  "remaining": "22 full-program command types; initial before-first-wait gaps0 does not mean launcher ready. Opening sequence reaches162 after2000ms; continue cutscene/Human speech/subtitle/camera dependencies before retest. No matrix/count promotion."
+}

@@ -42,6 +42,13 @@ public:
         frames_.human_animation_callback(marker,nullptr,0);
         if(found!=bindings_.end())bindings_.erase(found);
     }
+    void install_script_animation_events(Frame marker){install_animation_events(marker,*this);} //00776070, SAME00774D80 dispatch/SOUND owner.
+    void clear_script_animation_events(Frame marker){ //007760C0 clears any nonnull callback after the unbound-model gate.
+        const auto found=bindings_.find(marker);
+        if(found!=bindings_.end()&&found->second.owner!=this)throw std::runtime_error("Script animation callback belongs to a different World");
+        frames_.human_animation_callback(marker,nullptr,0);
+        if(found!=bindings_.end())bindings_.erase(found);
+    }
     void animation_player_check(Frame model){actors_.animation_player_check(model);}
     float animation_time_scale(){return actors_.animation_time_scale();}
     void rethrow_animation_event_failure() const {if(failure_)std::rethrow_exception(failure_);}

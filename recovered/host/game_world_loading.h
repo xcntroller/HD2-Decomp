@@ -262,7 +262,8 @@ public:
          effects_(registry(),registration(1),d_.scene.frames(),d_.startup.pre_mission_files(),d_.scene.effects(),d_.startup.effects_loading_process(),
              d_.audio.random_source(),d_.camera,d_.first_person.view(),d_.startup,d_.startup.application_flags_owner(),d_.request.preparation.mission_resource,d_.scene.documents().fields().far_clip,[this](std::uint32_t elapsed){
                  GameDecorationsRuntime<Dependencies> runtime(d_);d_.startup.effects_loading_process().decorations.update_runtime(elapsed,runtime);
-             },[this]{game::update_loading_water_camera(d_.startup.effects_loading_process(),d_.scene.frames(),d_.players.control(),d_.human_factory.world_services());}),
+             },[this]{game::update_loading_water_camera(d_.startup.effects_loading_process(),d_.scene.frames(),d_.players.control(),d_.human_factory.world_services());},
+             [this](std::uint32_t elapsed){game::update_loading_weather(elapsed,d_.startup.effects_loading_process(),d_.scene.frames(),d_.human_factory.world_services());}),
          versions_(registry(),registration(7),d_.scene.frames(),d_.scene.buckets(),d_.startup.application_flags_owner()),
          lightmaps_(registry(),registration(8),d_.scene.frames()),shifts_(registry(),registration(10)),
          shots_(registry(),registration(14),d_.scene.frames(),d_.startup.shot_manager_process(),d_.startup.application_flags_owner()),

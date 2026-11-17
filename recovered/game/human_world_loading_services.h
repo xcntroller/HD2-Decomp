@@ -128,6 +128,24 @@ public:
     bool dependencies_bound()const noexcept{return dependencies_.bound();}
     std::uint32_t mode_flags()const{return dependencies().startup.application_flags();}
     std::int32_t human_current_player_id()const{return dependencies().startup.local_player_identity();}
+    std::int32_t fowl_random_word(){return static_cast<std::int32_t>(human_frame_random_word());} //00475190, SAME CRT stream.
+    auto weather_player_count(){return dependencies().players.control().human_roster().size();}
+    auto& weather_player(std::int32_t index){auto* human=dependencies().players.control().human_roster().at(index);
+        if(!human)throw std::runtime_error("Weather reached native NULL roster Human");return *human;}
+    template<class Human>auto weather_player_sector(Human& human){return human_inline(human).scene_sector();} //005AC4C0.
+    auto weather_player_random_frame(std::int32_t index){return dependencies().players.control().random_collected_frame(index,[this]{return human_frame_random_word();});}
+    struct WeatherGroundHit{HumanVector position;std::uint32_t flags;};
+    std::optional<WeatherGroundHit> weather_ground_ray(const HumanVector& start,const HumanVector& direction){
+        const auto hit=human_geometry_ray(start,direction,0xffffffffu,0u,false);if(!hit)return std::nullopt;
+        if(!hit->static_identity||hit->dynamic_identity)throw std::logic_error("Weather ray requires its actual static collision identity");
+        const auto id=*hit->static_identity;const auto& tree=dependencies().scene.collision_tree();
+        return WeatherGroundHit{hit->position,id.kind?tree.shapes.at(id.kind-0x80).at(id.index).flags:tree.triangles.at(id.index).flags};
+    }
+    void script_weather_parameter(std::uint32_t parameter,std::uint32_t value){dependencies().scene.frames().script_weather_parameter(parameter,value);}
+    void script_weather_splashes(bool enabled){dependencies().startup.effects_loading_process().flag24c=enabled;} //004863E0, SAME process24C.
+    template<class Frame>void script_animation_marker(Frame frame,bool enabled){
+        auto& d=dependencies();d.scene.frames().script_animation_marker(frame,enabled,d.animation_events);
+    }
     bool script_language_matches(const std::string& text){return frontend::startup_case_equal(dependencies().startup.language(),text);}
     bool script_inventory_has_definition(std::int32_t definition){ //0045E9A0, SAME reverse live roster/Items.
         auto& d=dependencies();auto& roster=d.players.control().human_roster();

@@ -84,3 +84,56 @@ setters. Automatic predicate dispatch gaps are closed for the inspected114
 programs, conditional positive receivers remain revision-qualified. Do not stage
 or ask another desktop run merely because those TYPE gaps are gone: GEffects
 positive weather splash/actor paths and frame-animation cleanup must be supplied.
+
+Third group: model animation lifecycle and weather
+
+FRM_SetAnimation5D now supplies the actual model-kind9 gate, copied string/slot,
+cache3 clip mode1, model84→clip Release→model9C→snapshot8→registration→model24
+order. Short/failed clips take9C→8C→84(null)→unregister; they do not snapshot or
+claim an animation.00424260/00424310 retain/deduplicate Script87C and parallel88C
+flags, separately from actual World48 ticking.00776070/C0 use the exact literal
+`a`, actual parent-model EC actor gate and callbackF4 gate; positive unbound
+markers reuse SAME existing00774D80 registry/SOUND owner, not an original address.
+World animation ticks now propagate that callback's captured failure immediately.
+0069A360 raw proves Release then replacement by last entry/pop, not ordered erase.
+
+Finish restores snapshot8 BEFORE contexts Exit: remove slots6..0, enumerate
+004281D0's external immediate attachments, copy parent names before detaching,
+reload actual model134, build SAME GEffects shadow, update, then reverse reattach
+to matching reloaded parents/fallback model and replace existing retained snapshot
+parents. Context destruction precedes Script animation queue retirement.77 native
+ASan/UBSan/leak checks verify actual dispatch/queue/snapshot policy with explicit
+engine/World/marker endpoints. No delegated engine body credit or desktop claim.
+
+The9 selected WEATHER commands now write actual module4/priority0 broadcasts;
+the containing decoder reads opcode once and consumes real payloads. Speed/size
+use signed FILD with extended clamp and final FLOAT spill; direction preserves
+Z's retained FILD precision/near-one/tiny behavior. Colours clamp and pack actual
+RGBA bytes. Mode writes input==1; decoder toggles SAME GEffects24C after scene14,
+even without a scene. Space decoder0042B90C uses **unsigned** DWORD→FILD64→FLOAT,
+whereas authority-only direct mode uses signed FILD32; raw assembly resolves the
+otherwise misleading decompilation. Actual scene+11C owns rain rendering.
+
+Positive client splash00487240 is supplied, rather than disabling24C: persistent
+BSS0089BAA4/008396E8 accumulation/cadence, original250 density200/254 radius8,
+100ms periods, SAME CRT00475190 (not Engine RandFloat), static-only005E2CC0 rays,
+material10000 choice44/45 and exact .02/up/orientation outputs through SAME
+00445150/module17 owner. Every third period uses fresh camera/root/epoch, actual
+reverse Players roster/head260, Engine scene60-byte shelter records, engine
+inverse/vector transform and lower-inclusive/upper-exclusive bbox, then actual
+0045D6D0 random collected marker and attached44 emission. Count-before-pointer,
+random Z-before-X and normal-tail counter publication are retained. No replacement
+Players list, collision tree, RNG or particle service is introduced.2399 native
+ASan/UBSan/leak checks verify actual packet/normalization/cadence/splash/Player
+policy with explicit engine/World leaves. Full actual O2/Werror application/probe
+build PASS; new source is applied in-place to review preserving OWN differences.
+
+After all three groups, **initial dispatch gaps=0**, but this is NOT a launcher
+acceptance boundary. Full-program report still has22 missing types. In particular
+TUT_Instructor1 resumes its2000ms Delay into CSC_RunCutscene162, whose full
+camera/HUD/context/animation start/end ownership is the next required chain.
+Continue that opening sequence and automatic handlers before staging/retesting;
+do not hide known delayed failures behind the first-yield report. Full report:
+WORK/startup-script-coverage-initial-batch.json. No desktop verification, matrix
+promotion or new function-count credit. Native audits fingerprinted/removed at
+the source checkpoint; extraction/compiler inspection tools remain while needed.

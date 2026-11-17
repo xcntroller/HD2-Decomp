@@ -1,5 +1,6 @@
 #ifndef HD2_HOST_GAME_ACTOR_FRAMES_H
 #define HD2_HOST_GAME_ACTOR_FRAMES_H
+#include "game/effects_weather_update.h"
 #include "game/car_mesh_fragments.h"
 
 #include "game/mission_script_rotations.h"
@@ -1651,6 +1652,29 @@ public:
     MenuDriver::Owner load_supply_animation(const std::string& name){
         MenuDriver::Owner result(nullptr,nullptr);if(resources_.cache(3).get(name,result)!=0)result.reset();return result; //0041FC10.
     }
+    void script_animation_clip_mode(Frame clip,std::uint32_t mode){put(clip,8,mode);} //0041D4C0.
+    template<class Events>void script_animation_marker(Frame model,bool enabled,Events& events){ //00776070/007760C0.
+        if(!model||frame_kind(model)!=9)return;
+        const auto marker=actor_find(model,"a",0xffffu);if(!marker)return; //00839100 literal.
+        const auto data=actor_opaque_data(model);if(data&&*static_cast<void**>(data))return;
+        const auto callback=field<void*>(marker,0xf4);
+        if(enabled){
+            if(!callback)events.install_script_animation_events(marker);
+        }else if(callback)events.clear_script_animation_events(marker);
+    }
+    template<class Visit>void enumerate_script_model_frames(Frame model,Visit&& visit){ //004281D0 caller: model+44.
+        using Visitor=std::remove_reference_t<Visit>;
+        struct Context{
+            Visitor& visit;std::exception_ptr failure;
+            static std::int32_t WINAPI invoke(Frame frame,void* opaque)noexcept{
+                auto& c=*static_cast<Context*>(opaque);
+                if(!c.failure)try{c.visit(frame);}catch(...){c.failure=std::current_exception();}
+                return 0;
+            }
+        } context{visit,{}};
+        call<std::int32_t>(model,0x44,&Context::invoke,&context,std::uint32_t{0xffff},static_cast<const char*>(nullptr));
+        if(context.failure)std::rethrow_exception(context.failure);
+    }
     void prepare_supply_morph(Frame morph){call<void>(morph,0xa0);}
     void supply_model_tick(Frame model,std::uint32_t elapsed){call<void>(model,0x20,elapsed);}
     MenuDriver::Owner create_decoration_model(){return driver_.create(9);} //0047B500, actual driver54(kind9).
@@ -1739,6 +1763,23 @@ public:
         }
     }
     void effects_link_root(Frame frame){actor_link_preserving_world(frame,camera_root_sector());}
+    std::uint32_t weather_blocker_count(){return call<std::uint32_t>(scene_.frame(),0x130);}
+    const unsigned char* weather_blocker_array(){return call<const unsigned char*>(scene_.frame(),0x134);}
+    auto weather_blocker(const unsigned char* array,std::uint32_t index){ //00488289: actual60-byte scene record.
+        if(!array)throw std::runtime_error("Weather blocker count has no actual engine array");
+        const auto* record=array+std::size_t(index)*0x60;
+        return game::EffectsWeatherBlocker<Frame>{field<Frame>(record,0),field<Vector>(record,0x40),field<float>(record,0x4c)};
+    }
+    std::uint32_t weather_frame_epoch(Frame frame)const{return field<std::uint32_t>(frame,0x11c);}
+    bool weather_blocker_contains(Frame frame,const Vector& point){
+        if(!frame)throw std::runtime_error("Weather blocker has no actual engine frame");
+        const auto low=field<Vector>(frame,0x120),high=field<Vector>(frame,0x130); //Bounds copied BEFORE lazy world update.
+        const auto world=actor_world_matrix(frame);auto inverse=world;
+        using Inverse=std::uint8_t(WINAPI*)(void*,const void*);
+        (void)exported<Inverse>("?Inverse@S_matrix@@QAG_NABU1@@Z",0x2c620)(inverse.data(),world.data());
+        return game::effects_weather_in_box(formation_transform(point,inverse),low,high);
+    }
+    void script_weather_parameter(std::uint32_t parameter,std::uint32_t value){call<void>(scene_.frame(),0x11c,parameter,value);}
     void effects_scene_water(){call<void>(scene_.frame(),0x11c,std::uint32_t{0},std::uint32_t{0});}
     void effects_restore_water_children(bool visible){ //00486520, actual scene1FC child methods3C/40, reverse order.
         const auto sector=field<Frame>(scene_.frame(),0x1fc);

@@ -18,6 +18,8 @@ template<class Frame>struct EffectsLoadingProcess {
     Frame sun1b0{},water_camera1ac{};std::array<Frame,4> water_frames238{};
     std::array<float,4> sun_position10{};
     float water_query_height=0; //Process BSS0089B650, retained when007860B0 leaves output unwritten.
+    std::uint32_t weather_elapsed=0,weather_cadence=3; //Process BSS0089BAA4/008396E8; persist across worlds/reset.
+    std::int32_t weather_density=200;float weather_radius=8; //004860B0 fields250/254; independent of scene rain count.
     std::uint32_t field224=0; //Native2D0/2D4 belong exclusively to fade above.
     bool flag220=false,active248=false,flag24c=false;
     const void* world=nullptr; //Typed borrower guard, not native readiness.

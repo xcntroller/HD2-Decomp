@@ -82,6 +82,12 @@ public:
         auto& record=*collected_[static_cast<std::size_t>(index)];record.frames.clear();
         frames_.enumerate_human_control_frames(human->base().frame(),[&](Frame frame){record.frames.push_back(frame);});
     }
+    template<class Random>Frame random_collected_frame(std::int32_t index,Random&& random){ //0045D6D0: rand BEFORE DIV/count gate.
+        const auto& record=*collected_.at(static_cast<std::size_t>(index));const auto count=record.frames.size();
+        const auto value=random();
+        if(!count)throw std::runtime_error("Weather Player frame query reached native empty collected-frame DIV");
+        return record.frames.at(value%count);
+    }
     void add_sighted_dog(Actor actor) { //0045D4A0, reverse identity check then append, NULL is not specially rejected.
         for(auto n=dogs_.size();n;)if(dogs_[--n]==actor)return;
         dogs_.push_back(actor);

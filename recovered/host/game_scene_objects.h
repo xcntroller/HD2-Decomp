@@ -143,6 +143,14 @@ public:
         for (const auto& value : animated_) if (value.get() == frame) return;
         if (call<std::uint32_t>(frame, 0xd0)) animated_.push_back(retain(frame));
     }
+    void unregister_animated_model(Frame frame) { //0069A360: Release, replace with last, pop.
+        if(!frame)return;
+        for(std::size_t n=animated_.size();n;)if(animated_[--n].get()==frame){
+            animated_[n].reset();
+            if(n+1!=animated_.size())animated_[n]=std::move(animated_.back());
+            animated_.pop_back();return;
+        }
+    }
     void advance_animated_models(std::uint32_t elapsed){ //0069AF10/0069B230, reverse actual game48 references.
         for(std::size_t n=animated_.size();n;){--n;call<void>(animated_.at(n).get(),0x20,elapsed);}
         scene_.rethrow_callback_failure();
