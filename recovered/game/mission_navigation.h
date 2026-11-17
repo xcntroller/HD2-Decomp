@@ -120,6 +120,45 @@ public:
             if(point->reserved17[0]|point->reserved17[1]|point->reserved17[2])output.push_back(index); //00524B10(7).
         return true;
     }
+    bool append_spatial_cover(const std::array<float,3>& position,float radius,std::vector<std::uint16_t>& output)const { //0051F830→0051DBD0/0051D460.
+        if(!table_.count0)return false;
+        if(!std::isfinite(position[0])||!std::isfinite(position[1])||!std::isfinite(position[2])||!std::isfinite(radius)||position[1]<-100000.f||position[1]>100000.f)
+            throw std::runtime_error("Spatial cover reaches native uninitialized/nonfinite navigation marks");
+        std::vector<std::uint8_t> marked(table_.count0,radius==0.f?1u:0u);
+        if(radius!=0.f){
+            const float limit=static_cast<float>(static_cast<long double>(radius)*radius+.0010000000474974513f); //0080F514.
+            if(!std::isfinite(limit))throw std::runtime_error("Spatial navigation radius exceeds finite native traversal");
+            const auto cell=x_band(position[0]);auto left=cell,right=cell;
+            float left_distance=static_cast<float>(static_cast<long double>(position[0])-static_cast<long double>(cell)*10.f);
+            float right_distance=static_cast<float>(10.L-left_distance);
+            const auto visit=[&](std::int32_t band_index){
+                const auto found=search(band_index,position[2],0xffffu,0xffffu);
+                const auto pivot=found==0xffffu?std::uint32_t(table_.count0):std::uint32_t(found);
+                const auto point=[&](std::uint32_t index){
+                    const auto& value=*record(static_cast<std::uint16_t>(index));if(band(value)!=band_index)return false;
+                    const auto z=static_cast<long double>(position[2])-real(value,8),z2=z*z;
+                    if(!(z2<limit))return false;
+                    const auto x=static_cast<long double>(position[0])-real(value,0),y=static_cast<long double>(position[1])-real(value,4);
+                    if((y*y+x*x)+z2<limit)marked[index]=1;
+                    return true;
+                };
+                for(auto n=pivot;n<table_.count0;++n)if(!point(n))break;
+                for(auto n=static_cast<std::int32_t>(pivot)-1;n>=0;--n)if(!point(static_cast<std::uint32_t>(n)))break;
+            };
+            visit(cell);
+            for(;;){
+                const bool visit_left=static_cast<long double>(left_distance)*left_distance<limit;
+                if(visit_left){if(left==std::numeric_limits<std::int32_t>::min())throw std::runtime_error("Spatial navigation band underflow");--left;left_distance=static_cast<float>(static_cast<long double>(left_distance)+10.f);visit(left);}
+                if(static_cast<long double>(right_distance)*right_distance<limit){if(right==std::numeric_limits<std::int32_t>::max())throw std::runtime_error("Spatial navigation band overflow");++right;right_distance=static_cast<float>(static_cast<long double>(right_distance)+10.f);visit(right);}
+                else if(!visit_left)break;
+            }
+        }
+        for(std::uint32_t n=0;n<table_.count0;++n)if(marked[n]){
+            const auto* value=record(static_cast<std::uint16_t>(n));
+            if(value->reserved17[0]|value->reserved17[1]|value->reserved17[2])output.push_back(static_cast<std::uint16_t>(n)); //00524B10(7), ascending.
+        }
+        return true;
+    }
     //005223B0 -> 00521B60. Search scratch is indexed by the original point
     //number; all positions, flags and edges still belong to the loaded table.
     bool find_route(std::uint16_t start,std::uint16_t destination,std::uint32_t mask,

@@ -17,17 +17,32 @@ desktop test has occurred. Do not spawn other agents or add helper checkboxes.
 
 ## Latest result
 
-[Live Animation](analysis/human-h8-animation-frame-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json):
-005B5190 A3→005B55E0 actual interaction/static flags, descriptor retirement,
-SOUND/particles/helper visibility/Script death and005B50C0 helper-pose rebuild;
-00416E10 opcode32 HUMAN_Kill now reaches actual Human D4 or Animation start.
+[Task runtime](analysis/human-h8-task-runtime-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json):
+005E24C0/00534C40 task16 binds actual runtime placed35 motion94/96, two actual
+routes and native failed-route rejection.00528950 task40 progression now binds
+00525260 spatial cover/actual engine rotation and selected point clamp, native
+signed IDIV stagger/one-member exception, ordered retry publications and callbacks.
+Native3481/1280 ASan/UBSan/leak checks, strict actual module i386 and forced
+launcher/probe links PASS; tracker receipt records exact checks. Six new partials,
+34 complete/3609 partial(client3604+engine5), frozen18783. H8/matrix remain OPEN.
+
+NEXT: actual delayed Player0053D5B0→00456020 dispatcher. IMPORTANT: its inline
+producer DOES exist in apply_player_packet_action: writes4E4 and4F0..510 with
+520 speech timer. Earlier "no producer" notes/comments are stale. Do not treat
+its reached guard as optional. Original native action20 maps to Player500;
+recipient30 maps510; use actual scalar payload, EC/identity and process/roster.
+Reuse human-h8-player-dispatch-index;00459740/0045B890/00455D40 need exports;
+0045CA80 source already indexed; formation mode/scale and roster count exist.
+Retreat research includes00537A40/00537C60/00537D20 in human-h8-retreat-edges;
+producer00537C60 is NOT implemented/credited by this checkpoint. No extra checkbox.
+
+Priorce2a7cf: [live Animation](analysis/human-h8-animation-frame-source.md)
+binds A3/start/track, interaction masks, effects/Script death and helper-pose
+collision rebuild; opcode32 HUMAN_Kill reaches same Human D4 or Animation start.
 Raw SP adjustment resolves predicted clip time; pause still compares duration.
-Startup owns process008AC488 BSS, no recovered persistence writer claim.
-Wings/non7 publication remain honest requirements. Native26607/19 qualified
-ASan/UBSan/leak checks and actual World/module/Animation i386 link PASS; launcher
-and tracker receipts below. Four new partials,34 complete/3603 partial
-(client3598+engine5), frozen18783. H8/matrix remain OPEN, no desktop acceptance.
+Startup owns008AC488 BSS, no recovered persistence writer. Native26607/19, actual
+module/Animation i386, forced launcher/tracker27 PASS. Wings/non7 remain required.
 
 Prior71007f8: [specialized target22](analysis/human-h8-special-target-source.md)
 binds actual range/visibility/replan, vector/grenade aim, attack producer and
@@ -90,7 +105,7 @@ gravity3.8, old-position SOUND. Grenade Body before timers/close before blast.
 
 Use [six-checkbox H8 plan](analysis/p22-hum-h8-plan.md). No helper checklist
 expansion. H8.2/H8.3/H8.4/H8.5/H8.6 remain open. Finish selected live Dog/Sight and reached actor/frame dependencies, containing
-verification and application/FRAME/OWN/render. Remaining selected Active task16, retreat40, delayed Players0053D5B0→00456020 recipients/producers,
+verification and application/FRAME/OWN/render. Remaining selected delayed Players0053D5B0→00456020 recipients/producers and retreat command producers,
 Remote/non7/entry callbacks
 retain honest requirements. Aircraft20/type34 control and type34/36 mounted
 targets, nonHuman task25/26 EC, far Dog listener540 still require actual owners.

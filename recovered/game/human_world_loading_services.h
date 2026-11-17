@@ -165,6 +165,7 @@ public:
     bool active_authority_nearby(const HumanVector& position){return active_nearby_runtime_actor(dependencies().world_actors.runtime(),dependencies().scene.frames(),position,3u);}
     void active_avoidance_clamp(HumanVector& position,bool enabled,const HumanVector& original){clamp_active_avoidance_position(dependencies().navigation,position,enabled,original);}
     auto& active_task_navigation(){return dependencies().navigation;} //Actual game54,00532190.
+    std::uint32_t active_retreat_live_count(){return dependencies().players.control().human_roster().live_count();} //00461410→004622C0.
     auto* active_avoidance_player(){return dependencies().players.control().selected_player(mode_flags());}
     auto* active_process_target(){ //00456860 on SAME process98 borrower, produced by Active BC.
         using Actor=SceneActor<typename Dependencies::ActorFrames>;
@@ -503,7 +504,7 @@ public:
         case 1:return human_navigation_door(&target()).properties.flag234!=0;
         case 4:{auto* place=dynamic_cast<ExplosivePlaceSceneActor<Frames>*>(&target());if(!place)throw std::runtime_error("Active task4 requires actual target94 owner");return place->field94==0;}
         case 15:return !active_task_actor_unavailable(target());
-        case 16:throw std::runtime_error("Active task16 requires actual005E24C0 target actor capability");
+        case 16:return !active_placed_motion_started(target());
         case 19:{
             auto& actor=target();bool allowed=false;
             if(actor.base().type()==3){auto& human=selection_human(actor);
@@ -584,12 +585,15 @@ public:
         throw std::runtime_error("Players selection requires specialized0045BD10 item/attachment capability policy");
     }
     template<class State,class Actor>void produce_special_active_player_command(State& state,std::uint32_t action,Actor* target,std::uint32_t){
+        if(action==16){if(!target)throw std::runtime_error("Placed task producer dereferences native NULL target");produce_active_placed_task(state,*target,dependencies().scene.frames(),*this);return;}
         if(action==22){produce_active_vehicle_attack(state,target,dependencies().scene.frames(),*this);return;}
         if(action>=8&&action<=13){if(!target)throw std::runtime_error("Seat approach producer dereferences native NULL target");
             const auto position=target->base().world_position(); //00458E50 copies cached Actor30, no model update.
             produce_active_seat_approach(state,*target,action,position,*this);return;}
         throw std::runtime_error("Active command requires its specialized00534460..00535630 task producer");
     }
+    template<class Actor>bool active_placed_motion_started(Actor& target){return dependencies().world_actors.runtime().human_placed_item(target).motion_started();}
+    template<class Actor>auto active_placed_navigation_points(Actor& target){return dependencies().world_actors.runtime().human_placed_item(target).navigation_points();}
     template<class Human,class Actor>bool active_command_explosive_allowed(Human& human,Actor& target){ //00534B30, native94 AFTER definition admission.
         using Place=ExplosivePlaceSceneActor<typename Dependencies::ActorFrames>;
         auto* place=dynamic_cast<Place*>(&target);

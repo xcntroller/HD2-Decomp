@@ -111,6 +111,7 @@ public:
         const auto matrix=this->state_frames().actor_world_matrix(human->base().frame());return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
     }
     bool advance_pending_task(std::uint32_t elapsed){return advance_human_active_pending_task(*this,elapsed);}
+    bool advance_pending_retreat(){return advance_active_retreat_task(*this,this->state_frames(),services_);}
     HumanVector pending_task_forward(){
         auto* human=this->human();if(!human)throw std::logic_error("Active task forward lost Human44");
         const auto matrix=this->state_frames().actor_world_matrix(human->base().frame());return {{matrix[8],matrix[9],matrix[10],matrix[11]}};

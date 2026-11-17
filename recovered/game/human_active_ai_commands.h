@@ -136,6 +136,37 @@ template<class AI,class World>void delay_active_focused_task(AI& ai,World& world
     world.active_command_exit_focus(ai,ai.state().template get<std::int32_t>(0x20c));
     ai.state().set(0x214,1000u); //Only AFTER actual00587540 returns.
 }
+//00534C40 uses the actual placed35 A0 motion and94/96 navigation points.
+//Both route lengths spill FLOAT. Native failed-shortest quirks are intentional.
+template<class AI,class Actor,class Frames,class World>void produce_active_placed_task(AI& ai,Actor& target,Frames& frames,World& world){
+    if(world.active_placed_motion_started(target)){world.reject_active_command(*ai.human());return;}
+    start_active_target_task(ai,target,16u,false,.75f,true,frames,world);
+    const auto points=world.active_placed_navigation_points(target);
+    if(ai.point()&&points[0]!=0xffffu&&points[1]!=0xffffu){
+        auto& navigation=world.active_task_navigation();std::uint16_t start=0xffffu;
+        if(const auto* begin=navigation.record(0)){
+            const auto address=reinterpret_cast<std::uintptr_t>(ai.point()),base=reinterpret_cast<std::uintptr_t>(begin);
+            if(address>=base){const auto offset=address-base,index=offset/sizeof(*begin);
+                if(!(offset%sizeof(*begin))&&index<0xffffu&&navigation.record(static_cast<std::uint16_t>(index))==ai.point())start=static_cast<std::uint16_t>(index);
+            }
+        }
+        std::vector<std::uint16_t> route;float first=-1,second=-1;
+        if(navigation.find_route(start,points[0],0u,route))first=static_cast<float>(navigation.route_length(route));
+        route.clear();
+        if(navigation.find_route(start,points[1],0u,route))second=static_cast<float>(navigation.route_length(route));
+        std::uint16_t selected;
+        if(first<second&&first>=0.f)selected=points[0];
+        else{
+            //534E40/534E57 test x87 C0 directly, which includes unordered.
+            if(!(first>=second)||!(second>=0.f)){world.reject_active_command(*ai.human());return;}
+            selected=points[1];
+        }
+        const auto position=navigation.position(selected);
+        for(unsigned n=0;n!=3;++n)ai.state().set(0x1e0+n*4,position[n]);
+        //Native scratch W is unwritten; retain the typed lane without a value claim.
+    }
+    delay_active_focused_task(ai,world);
+}
 //005346C0, item/focus/supply producer. Occupied exit is AFTER task publication;
 //its actual common-command/Car receiver remains owned by H8.4.
 template<class AI,class Actor,class Frames,class World>void produce_active_pickup_task(AI& ai,Actor& target,std::uint32_t secondary,Frames& frames,World& world){

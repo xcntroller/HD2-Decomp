@@ -58,7 +58,7 @@ query-10 replanning, explicit valid reload sources, hazard blast/packet and wate
 command/HUD orchestration now use their existing actual owners. Saved-position/vector aim and launcher/close-combat branches now
 use their actual target, collision, inline/common-command and item owners. Ordinary
 rifle target range/burst/crouch, cautious posture/admission, populated stance and005318C0
-pack→holster ammunition are now source-bound. Task16/retreat and other specialized task/effect producers, populated
+pack→holster ammunition are now source-bound. [Placed16 and retreat continuation](human-h8-task-runtime-source.md) now bind actual placed motion, two-route choice and spatial cover/retry; delayed Player dispatcher/retreat producers and other specialized task/effect producers, populated
 remaining reached offline action callbacks must also retain
 honest requirements until implemented or shown outside the selected path.
 Type36 sound look selection and positive type34 singleton look require actual

@@ -53,6 +53,12 @@ public:
         if(!actor)throw std::logic_error("Human motion target requires actual type35 owner");
         return actor->apply_motion(direction,false,activation_);
     }
+    ItemActor& human_placed_item(Instance& borrowed){
+        if(!registry_.owns(&borrowed))throw std::logic_error("Human placed query requires SAME live runtime registry");
+        auto* actor=dynamic_cast<ItemActor*>(&borrowed);
+        if(!actor)throw std::logic_error("Human placed query requires actual type35 owner");
+        return *actor;
+    }
     template<class Item>void loose_item_timed_effect(Item& actor){ //005B7EC0, actual retained item list, selected offline gate.
         if((mode_flags()&7u)==7u)return;
         for(const auto& retained:retained_items_)if(retained.entry==actor.entry())

@@ -46601,7 +46601,7 @@
       "program": "client",
       "entry": "00528950",
       "status": "partial",
-      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required. Task37 now shares actual pending/turn/completion; far ranged aim publishes position35 before actual grenade animation duration, preserving1500 prefix on failure. Task6 direct item/supply effects now propagate native false through turn/pending caller; Human posture/reproduction and task23/24/33 actual loot/handoff effects preserve timers, all calls, partial failures and clothing-before-head order. Extended: Admit task32 and retain live target until00538A60 reports unavailable, matching its native bVar5 completion class. Ordinary occupied driver/passenger prefix, controlled attack-seat waits/exit ordering, exact claim6C entry selection, Car pose/distance/re-approach/hold-trim fallback and pickup Human posture below squared16 now bind actual owners. Selected task22 now binds actual nearby range/visibility/replan, specialized vector or grenade-position aim, attack producer/inventory/control, pending completion and ignored-result Car occupant classification. See specialized-target contract for exact boundary.",
+      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required. Task37 now shares actual pending/turn/completion; far ranged aim publishes position35 before actual grenade animation duration, preserving1500 prefix on failure. Task6 direct item/supply effects now propagate native false through turn/pending caller; Human posture/reproduction and task23/24/33 actual loot/handoff effects preserve timers, all calls, partial failures and clothing-before-head order. Extended: Admit task32 and retain live target until00538A60 reports unavailable, matching its native bVar5 completion class. Ordinary occupied driver/passenger prefix, controlled attack-seat waits/exit ordering, exact claim6C entry selection, Car pose/distance/re-approach/hold-trim fallback and pickup Human posture below squared16 now bind actual owners. Selected task22 now binds actual nearby range/visibility/replan, specialized vector or grenade-position aim, attack producer/inventory/control, pending completion and ignored-result Car occupant classification. See specialized-target contract for exact boundary. Adds actual placed16 admission and40/41/42 progression, task40 spatial point/clamp/retry, signed IDIV/live-roster timer and callback-before206 reread.",
       "limitations": "Source-only typed/STL/RAII adaptation. Other specialized task/admission/action producers, positive process98 and H8.4 occupied/Car/seat/nonHuman actors remain required where reached. Existing ranged/group/item paths are described in linked current contracts. Native endpoint doubles and actual i386/launcher linking do not establish original ABI or loaded mission/application/desktop acceptance; no delegated engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_pending.h",
@@ -46630,7 +46630,12 @@
         "analysis/checkpoints/p2.2-human-h8-entry-20261117.json",
         "recovered/game/human_active_ai_special_target.h",
         "analysis/human-h8-special-target-source.md",
-        "analysis/checkpoints/p2.2-human-h8-special-target-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-special-target-20261117.json",
+        "recovered/game/human_active_ai_retreat.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/placed_item_actor.h",
+        "analysis/human-h8-task-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json"
       ]
     },
     {
@@ -46916,7 +46921,7 @@
       "program": "client",
       "entry": "005387c0",
       "status": "partial",
-      "coverage": "Selected actual task target Door locks/phase, ExplosivePlace94, Human availability/friendly/actor capability and DocumentPlace148 readiness; defaulttrue and reached required families. Selected task22 now binds actual nearby range/visibility/replan, specialized vector or grenade-position aim, attack producer/inventory/control, pending completion and ignored-result Car occupant classification. See specialized-target contract for exact boundary.",
+      "coverage": "Selected actual task target Door locks/phase, ExplosivePlace94, Human availability/friendly/actor capability and DocumentPlace148 readiness; defaulttrue and reached required families. Selected task22 now binds actual nearby range/visibility/replan, specialized vector or grenade-position aim, attack producer/inventory/control, pending completion and ignored-result Car occupant classification. See specialized-target contract for exact boundary. Task16 now queries actual placed35 motion capability instead of an unconditional required failure.",
       "limitations": "Source-only typed/STL adaptation. H8.4 occupied/Car/seat/absent-actor policies are external; specialized task/producer/Players/follow/authority, application and desktop remain open. Native frame/readiness/common endpoints are explicit doubles, concrete i386 linked only. No original ABI or delegated engine/callee credit.",
       "evidence": [
         "recovered/game/human_active_ai_task_execution.h",
@@ -46925,7 +46930,13 @@
         "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json",
         "recovered/game/human_active_ai_special_target.h",
         "analysis/human-h8-special-target-source.md",
-        "analysis/checkpoints/p2.2-human-h8-special-target-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-special-target-20261117.json",
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_retreat.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/placed_item_actor.h",
+        "analysis/human-h8-task-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json"
       ]
     },
     {
@@ -49329,6 +49340,102 @@
         "recovered/game/mission_script_actor_lifecycle.h",
         "analysis/human-h8-animation-frame-source.md",
         "analysis/checkpoints/p2.2-human-h8-animation-frame-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005e24c0",
+      "status": "partial",
+      "coverage": "Actual placed35 motion-vector capability: extended (X\u00b2+Y\u00b2)+Z\u00b2 strictly below FLOAT0080F948 returns0; equality/above/unordered returns1.",
+      "limitations": "Source-only typed STL/RAII adaptation, native unwritten/invalid states guarded or explicitly unclaimed; no containing application/desktop or engine/allocator/ABI equivalence. Delayed Player producers remain required.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_retreat.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/placed_item_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534c40",
+      "status": "partial",
+      "coverage": "Actual placed35 task16 producer, native two-route selection/failure quirks, XYZ task destination and focus-exit ordering.",
+      "limitations": "Source-only typed STL/RAII adaptation, native unwritten/invalid states guarded or explicitly unclaimed; no containing application/desktop or engine/allocator/ABI equivalence. Delayed Player producers remain required.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_retreat.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/placed_item_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00525260",
+      "status": "partial",
+      "coverage": "Actual retreat spatial cover choice, directional posture3 filter, unsigned candidate index and signed actual-engine yaw, point-radius output.",
+      "limitations": "Source-only typed STL/RAII adaptation, native unwritten/invalid states guarded or explicitly unclaimed; no containing application/desktop or engine/allocator/ABI equivalence. Delayed Player producers remain required.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_retreat.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/placed_item_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051f830",
+      "status": "partial",
+      "coverage": "Actual ascending append of marked spatial-cover point references, same first navigation table.",
+      "limitations": "Source-only typed STL/RAII adaptation, native unwritten/invalid states guarded or explicitly unclaimed; no containing application/desktop or engine/allocator/ABI equivalence. Delayed Player producers remain required.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_retreat.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/placed_item_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051dbd0",
+      "status": "partial",
+      "coverage": "Actual finite spatial mark traversal, zero-radius all marks and strict FLOAT radius\u00b2+.001 band search.",
+      "limitations": "Source-only typed STL/RAII adaptation, native unwritten/invalid states guarded or explicitly unclaimed; no containing application/desktop or engine/allocator/ABI equivalence. Delayed Player producers remain required.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_retreat.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/placed_item_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051d460",
+      "status": "partial",
+      "coverage": "Actual search pivot, forward/reverse same-band strict Z cutoff and extended point-distance mark test.",
+      "limitations": "Source-only typed STL/RAII adaptation, native unwritten/invalid states guarded or explicitly unclaimed; no containing application/desktop or engine/allocator/ABI equivalence. Delayed Player producers remain required.",
+      "evidence": [
+        "recovered/game/human_active_ai_commands.h",
+        "recovered/game/human_active_ai_retreat.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/placed_item_actor.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-task-runtime-source.md",
+        "analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json"
       ]
     }
   ]

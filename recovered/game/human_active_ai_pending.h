@@ -3,6 +3,7 @@
 #include "game/human_ai_shot_direction.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_active_ai_task_execution.h"
+#include "game/human_active_ai_retreat.h"
 namespace hd2::game {
 //00529F60. The first order is borrowed across callbacks; kind4 can reset the
 //owning sequence, so its caller must reread native begin[0] afterwards.
@@ -87,8 +88,8 @@ template<class AI>bool advance_human_active_pending_move(AI& ai){
     auto& state=ai.state();auto* human=ai.human();
     if(!human)throw std::logic_error("Active move task lost Human44");
     switch(state.template get<std::uint32_t>(0x220)){
-    case 0:case 1:case 2:case 3:case 4:case 5:case 6:case 14:case 15:case 19:
-    case 22:case 23:case 24:case 25:case 26:case 27:case 28:case 32:case 33:case 34:case 37:case 38:case 52:break;
+    case 0:case 1:case 2:case 3:case 4:case 5:case 6:case 14:case 15:case 16:case 19:
+    case 22:case 23:case 24:case 25:case 26:case 27:case 28:case 32:case 33:case 34:case 37:case 38:case 40:case 41:case 42:case 52:break;
     default:throw std::runtime_error("Active task requires its specialized00528950 action-family receivers");
     }
     if(!state.template get<std::uint8_t>(0x205)&&!state.template get<std::uint8_t>(0x200)){
@@ -135,6 +136,8 @@ template<class AI>bool advance_human_active_pending_move(AI& ai){
         if(!state.template get<std::uint8_t>(0x203))state.set(0x202,std::uint8_t{1});
         state.set(0x206,std::uint8_t{1});
     }
+    (void)ai.advance_pending_retreat();
+    if(!state.template get<std::uint8_t>(0x206))return true;
     ai.complete_pending_task(state.template get<std::uint32_t>(0x220)); //Actual00535C00, including pending/standalone gates.
     return true;
 }

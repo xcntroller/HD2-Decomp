@@ -32,6 +32,10 @@ public:
     void physics_object(void* value) {physics_object_=value;} //004794D0 publishes90 after runtime construction/activation.
     const std::array<std::uint16_t,2>& navigation_points() const {return points_;}
     const std::array<float,3>& motion() const {return motion_;}
+    bool motion_started()const { //005E24C0: ordered less returns0; equality/unordered returns1.
+        const long double x=motion_[0],y=motion_[1],z=motion_[2];
+        return !(((x*x+y*y)+z*z)<1.0000000168623835e-16f); //0080F948 FLOAT.
+    }
     template<class Services>bool apply_motion(const std::array<float,4>& motion,bool hide,Services& services){ //005E2510.
         if(!physics_object_)throw std::logic_error("Placed motion requires actual Physics90 borrower");
         if(!services.placed_physics_contact(physics_object_,motion))return false;
