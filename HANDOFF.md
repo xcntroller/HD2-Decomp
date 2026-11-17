@@ -1,44 +1,69 @@
-# P22-OWN handoff — 2026-11-17
+# P22-OWN / actual input handoff — 2026-11-17
 
-Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-own`, feature/p22-own.
-User priority: finish P22/get in game through HUM, FRAME, then OWN on this branch.
-No original EXE/DLL/Proton/Windows fixtures, push or permanent tests/subagents.
-Heavy compilation and Ghidra sequential. Source-only commits need no fabricated
-user desktop test; interactive delivery requires actual acceptance.
+Actual worktree `/home/control/Documents/Projects/HD2-Decomp-p22-own`, branch
+feature/p22-own. ALWAYS explicit path; environment cwd is retired H8.4. Preserve
+all other work. User priority HUM→FRAME→OWN/P22/get in game; no unselected Dog
+research. Original EXE/DLL/Proton/Windows fixtures NEVER executed. No subagents,
+permanent tests or push without specific instruction. Heavy compile/Ghidra
+sequential. Interactive changes need actual desktop confirmation before commit.
 
-Latest [FRAME/HUM import](analysis/p22-own-frame-import.md),
-[receipt](analysis/checkpoints/p22-own-frame-import-20261117.json): OWN939fb70 plus
-FRAME9d53c06/currentH824c7310. Conflicts resolved, both lifecycle frame/render
-owners and script renderAD/BB +formation2..C dispatch retained. Both ledger
-histories preserved. Forced actual O2 application/probe link PASS. No runtime
-execution. Source counts34 complete/3715 partial(client3710+engine5).
+## Current source work
 
-FRAME has current actual session coordinator, Human World bridge, Items/physics,
-Players fixed/presentation and actual HUD input filter/queries. Native4175 and
-actual UI/session i386+launcher pass at9d53c06. H8.1/.2/.3 Human-owned source is
-checked but full HUM/H8.4/.5/.6 and application remain open. Do not infer a loaded
-mission from historic captures or expand conditional Dog before actual path proof.
+Base3c8fce0 merges current FRAME9d53c06/H824c7310 into OWN939fb70. Real current
+World/activation/Human/physics/Render/lifecycle coexist. User accidentally ran a
+pull/rebase; explicitly authorized abort. Aborted, restored clean3c8fce0 before
+new source edits. No rebase/merge should remain. FRAME branch9d53c06 is unchanged.
 
-Continue GameApplicationSession external adapter/Runtime installation on SAME
-lifecycle World, then actual admission. It still calls missing_frames after real
-activation success; input/fixed/update remain failing, not successful callbacks.
-Mandatory first concrete gap: local-input producer0053BF90(3492bytes), invoked by
-005A3DE0, has NO current implementation;0053F9B0's frame/local buffering is separate.
-The original producer stores actual mutable74/78 pointers, camera/mouse/invert/
-attachment/zoom/look-direction and command/latch/posture changes. Do not substitute
-snapshot copies or bypass it. Existing change_breath_hold0053CD90, FPV modes,
-camera and items are source; reuse them. Human order queries005A5ED0/5F00/5F50
-are tiny wrappers over actual kind3 pending orders/recent-change; general count
-exists as player_command_pending_count but HUD bridge remains unbound.
+[Actual Player sender](analysis/human-player-live-input-source.md),
+[receipt](analysis/checkpoints/p22-player-live-input-20261117.json):005A3DE0 direct
+current Player→whole3492-byte0053BF90 policy, mutable actual74/78 views and owned
+packet/local value copies, original argument-vs-fresh state pointer order, view/
+mouse/attachment/math/latches/breath/posture. Native3248 ASan/UBSan/leaks PASS;
+actual World sender/HUD queries/Script end i386 link PASS. Runtime lifetime policy
+native2112 PASS with actual ApplicationMission and explicit endpoint doubles.
+Final launcher result/temps in receipt; do not reuse a stale failed binary.
 
-Index results in FRAME WORK/frame-live-human-bridge-index.txt; frozen original
-C0053BF90 under H8 WORK/player-view-composition-required. Read complete original
-and raw before implementation. Look up helper addresses first; raw static objdump
-is allowed. Positive cutscene00423EB0 and UI producers/conditional actors retain
-precise required owners; OWN notes record known missing fields, not defaults.
+Source-only checkpoint is verified and committed BEFORE installing the candidate app
+adapter. No interactive route has changed yet: existing GameApplicationSession
+still calls missing_frames after actual activation and its input/update throw.
+New ApplicationFrameRuntime binds real Runtime candidate then same coordinator;
+retire coordinator BEFORE Runtime, callbacks and World, including failure/retry.
+HUD005A5ED0/5F00/5F50 now read actual B0/typed order owner. Script00423EB0 has
+actual BYTE824 zero RET; positive saved camera/frame/context owners still fail.
 
-Tools: H8 ignored .tools compiler/sanitizer runtime and static client/work exports
-are reused via absolute paths. This checkout has inventories/required ledger
-ignored evidence copied. Research index --root H8 was done in FRAME; reuse that
-cache or copy exact candidates, not a broad export pass. Freeze/fingerprint/remove
-temp audits at checkpoints. Full function_progress checker currently passes.
+Remaining input-specific requirements: Player drop005A2C50/0053E9D0 randomized
+request after fresh hand/cooldown gate; selected nonCar Actor90 reference-frame.
+No successful replacements. Human Runtime still has conditional Dog/Aircraft/
+Remote/non7/Actor58 owners as documented in H8; matrix/HUM/FRAME not resolved.
+
+## Next
+
+Prepared complete candidate is ignored WORK/p22-own-20261112/
+game_application_session-candidate.h. After source-only checkpoint, install it
+into host/game_application_session.h; add logical const world() accessor to
+GameSessionLifecycle so External::world()const returns SAME actual World.
+Candidate derives real GameSessionFrameExternal + actual ordinary Human HUD
+order source; passes existing UI operations, input producer, Script end gate,
+controller/save/warnings to same owners. It binds actual HumanFrameRuntime after
+real activation, forwards input/fixed/update, scopes DATA observation, retires
+frames before close. Optional positive UI command/selector/peer sources remain
+honest required branches; no default producer is fabricated. Verify/reconcile
+those reached first-frame needs before claiming app readiness. App activation
+change stays uncommitted until required user desktop acceptance.
+
+Use actual application i386/O2 compile after candidate install, plus native
+Runtime ownership receipt already prepared; no original/Windows execution.
+Proceed actual game-entry integration, preserve failures and keep source-only
+separate. Do not stop merely at this source checkpoint. Full P22 HUM sweep and
+matrix promotion only after source boundary genuinely complete.
+
+## Evidence/tools
+
+WORK=`analysis/work`. Input original/index/raw/constants/branch-table/vtable
+proof lives in p22-own-20261112. Index was queried BEFORE all new static reads.
+Existing3492-byte C copied from H8; original SHA256
+8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+Use H8 absolute .tools compiler/sanitizer runtimes. OWN inventories/needed ignored
+ledger evidence copied; full function_progress check works. tools/research_index
+--root H8 --db FRAME/analysis/work/research-index/c34e7937c6f2f7d6-v4.sqlite3
+--no-refresh reuses original lookup cache; review versions before exports.

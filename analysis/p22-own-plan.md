@@ -1,3 +1,5 @@
+Latest input dependency2026-11-17: [actual Player sender and Human HUD queries](human-player-live-input-source.md) now exist on the SAME owners. Native input3248 and lifetime2112 checks plus actual World/i386 link pass. The application frame adapter is prepared but not yet installed; admission still rejects missing_frames. Positive drop/nonCar reference/cutscene and reached UI/actor requirements stay explicit. No source-complete or desktop claim.
+
 Current2026-11-17: [FRAME/HUM source import](p22-own-frame-import.md) combines
 939fb70 with FRAME9d53c06/currentH8. Actual launcher/probe link passes. Old
 "FRAME unmerged" statements below describe the former base. Current remaining

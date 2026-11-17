@@ -96,6 +96,10 @@ public:
         presentation.set_player_mode(*this,*human,0,mode); //Actual005469E0, even when its mode is already zero.
         this->clear_human_reference();bound_=false; //Do not call base close or remove shared input.
     }
+    void bind_application_inputs(std::uint32_t* first,std::uint32_t* second)noexcept{
+        live_input_views_[0].borrow(first);live_input_views_[1].borrow(second);
+        this->bind_frame_input_pointers(first?&live_input_views_[0]:nullptr,second?&live_input_views_[1]:nullptr);
+    }
     auto& player_words(){return state_;}const auto& player_words()const{return state_;}
     std::uint32_t derived_loading_word(unsigned offset)const override {
         if(offset!=0x528&&offset!=0x548&&offset!=0x52c&&offset!=0x4d4)throw std::runtime_error("Unrecovered player handover word");
@@ -291,6 +295,7 @@ private:
         if(input->second_owner==this){input->second_receiver=nullptr;input->auxiliary_receiver=nullptr;input->second_owner=nullptr;}
     }
     Inputs& inputs_;HumanInputCallbacks& callbacks_;HumanJointWords<0x560> state_;
+    std::array<HumanFrameInputBuffer,2> live_input_views_; //Actual mutable74/78 application loans, not another input manager.
     std::array<HumanFrameInputBuffer,2> local_inputs_; //Native C4/1C4, outside scalar/pointer storage.
     bool bound_=false;
     std::uint32_t bound_mode_=0;

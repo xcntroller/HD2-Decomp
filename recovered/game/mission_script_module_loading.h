@@ -56,6 +56,10 @@ public:
         if(loaded_)contexts_.tick_contexts(elapsed,fields824_[0]!=0);
     }
     bool receive(SessionPacketStream* packet){return visibility_.receive(packet);}
+    void end_cutscene(){ //00423EB0: first native BYTE824 gate, before camera/engine/context calls.
+        if(!static_cast<std::uint8_t>(fields824_[0]))return;
+        throw std::runtime_error("Positive00423EB0 requires actual saved camera828/82C/830, cutscene834 and868/87C/88C ownership");
+    }
     void frame_update(std::int32_t elapsed) { //00428B30; not gated by loaded10.
         rotations_.update(elapsed);
         if(fields824_[0])frames_.script_cutscene_viewport(); //Actual IGraph dimensions→scene+148 receiver.

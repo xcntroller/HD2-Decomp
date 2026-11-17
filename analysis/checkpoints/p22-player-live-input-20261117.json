@@ -1,0 +1,209 @@
+{
+  "date": "2026-11-17",
+  "base": "3c8fce0",
+  "source_only": true,
+  "hum_complete": false,
+  "frame_complete": false,
+  "own_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-player-live-input-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/application_frame_runtime.h",
+      "bytes": 1610,
+      "sha256": "345c53697255d271077ac48fc5d068e561d5793ea297b9eef1aa2e8493d400cd"
+    },
+    {
+      "path": "recovered/game/human_frame_inputs.h",
+      "bytes": 2065,
+      "sha256": "2569662b58d9701e462757499e81ff99a80f5bd0320b2d756bf91c3277724cd0"
+    },
+    {
+      "path": "recovered/game/human_player_live_input.h",
+      "bytes": 10736,
+      "sha256": "70233c19a2b6776e8ac436693367f44ff48d1011a4c910d9a4939bee27e0f25c"
+    },
+    {
+      "path": "recovered/game/human_player_state_loading.h",
+      "bytes": 19300,
+      "sha256": "71438d5f39d7b269375d28a5f1f31bca2d75b4e830cf14def7c99bbcdd8ea877"
+    },
+    {
+      "path": "recovered/game/human_state_base_loading.h",
+      "bytes": 17524,
+      "sha256": "838d79e1f2bf34a0302c683ead075d06a63c98b479e58013ad6168ef06ee11fa"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 310430,
+      "sha256": "834e2e784d7f6e6881ef4cadd67f38ec35d31c0bb99e279fce90d0a252b581e7"
+    },
+    {
+      "path": "recovered/game/mission_script_module_loading.h",
+      "bytes": 7207,
+      "sha256": "ae54b7973d749854a0f3183672770c731453a1f66ef29887adfd36dcda792ec6"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-own-20261112/frame-live-human-bridge-index.txt",
+      "bytes": 14029,
+      "sha256": "27ffff02cc6266aa40284f50a5ddd6b937416486839f073502e787845a3e1891"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-dependencies-index.txt",
+      "bytes": 19551,
+      "sha256": "bd0783771b08c476b5b30173c3e0b37c9998d6772d1f6101e7d7367f57b96135"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-drop-order-index.txt",
+      "bytes": 1056,
+      "sha256": "4aaa8308c954e08b0947f06ab127c09d87bbc5d75a44edc0798321794b4bae27"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/0053bf90-original.c",
+      "bytes": 19550,
+      "sha256": "aad22d7fdf1d2d04b1f6d01b13933a745e317b4b12e7354d25bfef1aa20530b7"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-full.asm",
+      "bytes": 53182,
+      "sha256": "6434e6d8ea67beecf2ae455ad8be13c2f537a9ded6b41cc344cf68eb6b214afc"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-query-abi.asm",
+      "bytes": 9592,
+      "sha256": "b6a22834aab8bad26861e613797716f5f16917bfa176fd3bee29ec93fa558de0"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-dependency-abi.asm",
+      "bytes": 1884,
+      "sha256": "32bf91ad6b794ec03a7f3f5d666d36f4c54a62a15ff51d768e9082fb334ab3b6"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-constants.json",
+      "bytes": 1781,
+      "sha256": "6862624faef0f2669ede38c1c816da0fdd1222f5f30284b0c0c3587c4632a4d9"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-branch-table.json",
+      "bytes": 429,
+      "sha256": "250baead0b0d8a73e63045d21734343e8c18b955f54f3794a2c78312d64c4b57"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/human-display-order-vtable.json",
+      "bytes": 113,
+      "sha256": "251c7f7c3e8ae51e68271670061af789207ec1bff760dcec403f989d65005bfc"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/human-display-orders-slots-index.txt",
+      "bytes": 5367,
+      "sha256": "e6e55d88995aede2df8a4e684ea5a05eb528a1d027173d69d5447679ff9d0a34"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/human-display-orders-slots.asm",
+      "bytes": 2222,
+      "sha256": "e72573c8cdcc44ce4b1428a9d2cab3c4fb1144c510b08171d60e3395d87cbb00"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/frame-cutscene-end-index.txt",
+      "bytes": 2366,
+      "sha256": "10ba1f0801548aea40ced36321f968cede21bc928ec4526606e11fbaa7b47a71"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/script-end-cutscene.asm",
+      "bytes": 14510,
+      "sha256": "160ebbe30d52642035ceb804c807748d89c1018bf5432ac7669cd9fcb57d5eb6"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-native-run.log",
+      "bytes": 162,
+      "sha256": "f113893a9d85061ec3229c5cb82d77f74e95c59090332ef81396d839fc251cbf"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-launcher-build.log",
+      "bytes": 935,
+      "sha256": "f1cf9c0ba222219c57fde3c07144392779a8db97bd89ffbee0f4d0fd188d2e00"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/application-frame-runtime-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/application-frame-runtime-native-run.log",
+      "bytes": 151,
+      "sha256": "cad78e45e19feb3489d1a27adad79d1470e5541e1ac41a1fba98b900bf9853cf"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-native.cpp",
+      "bytes": 9241,
+      "sha256": "30fb3bc7b17add92a57ae90185da5539a25b300c796a4ce287cc8b7698a06521"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-native",
+      "bytes": 777112,
+      "sha256": "b2b4a6716d2aec61c02d1a630a4297eda461330687c14e0b5b9aed9762be195f"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-module.cpp",
+      "bytes": 542,
+      "sha256": "14c1e5c8fa709e71cf2c72b62828308220f96a432b44d979b67ba48556c8867b"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/player-live-input-module.exe",
+      "bytes": 844288,
+      "sha256": "3131f180398b4f0853aa337077ae146f4cc7daa1ba3817403ff50ce23f443fbe"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/application-frame-runtime-native.cpp",
+      "bytes": 4032,
+      "sha256": "224f343f6b7c187f66ae46d84eca70505dc53d6c79abf93fbc431818ec0d432d"
+    },
+    {
+      "path": "analysis/work/p22-own-20261112/application-frame-runtime-native",
+      "bytes": 595536,
+      "sha256": "c1c141e83dc6e241efe4ef1be8bddbee868a9a38856d29be07df1e6eef02013e"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "new_partial_client_bodies": [
+    "0053bf90",
+    "005a3de0",
+    "005a5ed0",
+    "005a5f50",
+    "00423eb0"
+  ],
+  "extended_partial_client_bodies": [
+    "005a5f00"
+  ],
+  "complete_promotions": [],
+  "counts": {
+    "complete": 34,
+    "partial": 3720,
+    "client_partial": 3715,
+    "engine_partial": 5,
+    "frozen_denominator": 18783
+  },
+  "verification": {
+    "native_input": "PASS3248 strict ASan/UBSan/leaks actual borrowed/value buffers and complete sender policy with explicit Player/World/Frames endpoints",
+    "native_lifetime": "PASS2112 actual ApplicationMission and Runtime lifetime policy; lifecycle/Runtime/World endpoints explicit",
+    "actual_i386": "PASS actual World complete sender/HUD queries/Script entry compile/link only",
+    "launcher": "PASS final forced O2 launcher/probe compile/link only"
+  },
+  "limitations": "Application frame candidate is not installed yet. Positive Player randomized drop005A2C50/0053E9D0, nonCar Actor90, cutscene, selected UI/actor/non7 requirements remain failing. No original/Windows execution or whole-HUM/FRAME/OWN readiness/matrix claim."
+}

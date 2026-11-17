@@ -48276,7 +48276,7 @@
       "program": "client",
       "entry": "005a5f00",
       "status": "partial",
-      "coverage": "Reached process reaction count gate reads actual current kind3 pending order owner; non3 returns no count. General UI count-return binding remains separate.",
+      "coverage": "Reached process reaction count gate reads actual current kind3 pending order owner; non3 returns no count. General UI count-return binding remains separate. General HUD count now binds the same actual kind3 pending owner; missing B0 rejects at native dereference and other kinds return0.",
       "limitations": "Source-only typed/STL/RAII adaptation; Actor pointer98 is a typed borrower with separate raw-word guard, not a serialized identity or original object ABI. Native focused checks use actual process/roster/target/storage with explicit Human/World/shared-damage/Sight/drop/mode endpoints. Actual merged World/factory/frame/damage i386 and launcher compile/link only, no mission/application/desktop acceptance. Absent00459500/0052EAF0 wrapper entries and delegated engine calls receive no credit.",
       "evidence": [
         "recovered/game/human_active_ai_damage.h",
@@ -48285,7 +48285,9 @@
         "recovered/game/human_world_loading_services.h",
         "recovered/game/players_process.h",
         "analysis/human-h8-authority-body-source.md",
-        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json",
+        "analysis/human-player-live-input-source.md",
+        "analysis/checkpoints/p22-player-live-input-20261117.json"
       ]
     },
     {
@@ -51220,6 +51222,96 @@
         "recovered/game/mission_save_predicate.h",
         "recovered/host/game_owner.h",
         "analysis/p22-own-implementation.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0053bf90",
+      "status": "partial",
+      "coverage": "Whole application Player input sender source: publish actual mutable74/78 before NULL gates; view toggle/filtering, original-argument versus fresh-state input reads, mouse/attached camera/direction math, latches/breath/posture, on SAME actual World. Positive drop and selected nonCar reference consumers remain explicit requirements.",
+      "limitations": "Source-only typed C++/borrowed-memory/RAII adaptation; native input and Runtime lifetime policies verified with labelled Player/World/Frames/lifecycle endpoints, actual World/i386 and O2 application compile/link only. Required positive external drop/reference/cutscene/UI/actor callbacks remain honest failures. Original native class/vtable/allocator/SEH/libm ABI and integrated engine/application/desktop delivery excluded; no delegated engine or complete-function claim.",
+      "evidence": [
+        "recovered/game/application_frame_runtime.h",
+        "recovered/game/human_frame_inputs.h",
+        "recovered/game/human_player_live_input.h",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_state_base_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_module_loading.h",
+        "analysis/human-player-live-input-source.md",
+        "analysis/checkpoints/p22-player-live-input-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a3de0",
+      "status": "partial",
+      "coverage": "Direct current B0 load to actual0053BF90 source receiver, preserving mutable input pair; source guard rejects invalid/nonPlayer owner rather than supplying a nonPlayer no-op.",
+      "limitations": "Source-only typed C++/borrowed-memory/RAII adaptation; native input and Runtime lifetime policies verified with labelled Player/World/Frames/lifecycle endpoints, actual World/i386 and O2 application compile/link only. Required positive external drop/reference/cutscene/UI/actor callbacks remain honest failures. Original native class/vtable/allocator/SEH/libm ABI and integrated engine/application/desktop delivery excluded; no delegated engine or complete-function claim.",
+      "evidence": [
+        "recovered/game/application_frame_runtime.h",
+        "recovered/game/human_frame_inputs.h",
+        "recovered/game/human_player_live_input.h",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_state_base_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_module_loading.h",
+        "analysis/human-player-live-input-source.md",
+        "analysis/checkpoints/p22-player-live-input-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5ed0",
+      "status": "partial",
+      "coverage": "Actual current B0 kind3 recent-change virtual130, kind1 Player525 byte, otherwise false; no private or guessed changed flag.",
+      "limitations": "Source-only typed C++/borrowed-memory/RAII adaptation; native input and Runtime lifetime policies verified with labelled Player/World/Frames/lifecycle endpoints, actual World/i386 and O2 application compile/link only. Required positive external drop/reference/cutscene/UI/actor callbacks remain honest failures. Original native class/vtable/allocator/SEH/libm ABI and integrated engine/application/desktop delivery excluded; no delegated engine or complete-function claim.",
+      "evidence": [
+        "recovered/game/application_frame_runtime.h",
+        "recovered/game/human_frame_inputs.h",
+        "recovered/game/human_player_live_input.h",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_state_base_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_module_loading.h",
+        "analysis/human-player-live-input-source.md",
+        "analysis/checkpoints/p22-player-live-input-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5f50",
+      "status": "partial",
+      "coverage": "Reached actual Active B0 virtual138 order-record read, publishing native0C/10/4A for in-call HUD display over SAME typed pending process lease, with invalid positive record safety guard.",
+      "limitations": "Source-only typed C++/borrowed-memory/RAII adaptation; native input and Runtime lifetime policies verified with labelled Player/World/Frames/lifecycle endpoints, actual World/i386 and O2 application compile/link only. Required positive external drop/reference/cutscene/UI/actor callbacks remain honest failures. Original native class/vtable/allocator/SEH/libm ABI and integrated engine/application/desktop delivery excluded; no delegated engine or complete-function claim.",
+      "evidence": [
+        "recovered/game/application_frame_runtime.h",
+        "recovered/game/human_frame_inputs.h",
+        "recovered/game/human_player_live_input.h",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_state_base_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_module_loading.h",
+        "analysis/human-player-live-input-source.md",
+        "analysis/checkpoints/p22-player-live-input-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00423eb0",
+      "status": "partial",
+      "coverage": "Actual first BYTE824 zero return before any camera/context/engine operation. Positive saved camera/cutscene/frame-list owners remain explicitly required; no positive cutscene completion or flag reset is supplied.",
+      "limitations": "Source-only typed C++/borrowed-memory/RAII adaptation; native input and Runtime lifetime policies verified with labelled Player/World/Frames/lifecycle endpoints, actual World/i386 and O2 application compile/link only. Required positive external drop/reference/cutscene/UI/actor callbacks remain honest failures. Original native class/vtable/allocator/SEH/libm ABI and integrated engine/application/desktop delivery excluded; no delegated engine or complete-function claim.",
+      "evidence": [
+        "recovered/game/application_frame_runtime.h",
+        "recovered/game/human_frame_inputs.h",
+        "recovered/game/human_player_live_input.h",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_state_base_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_module_loading.h",
+        "analysis/human-player-live-input-source.md",
+        "analysis/checkpoints/p22-player-live-input-20261117.json"
       ]
     }
   ]
