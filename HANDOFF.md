@@ -17,6 +17,23 @@ desktop test has occurred. Do not spawn other agents or add helper checkboxes.
 
 ## Latest result
 
+[Specialized target22](analysis/human-h8-special-target-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-special-target-20261117.json):
+0052B180 actual range/visibility/replan and Dog health/near16,0052B580 real
+Car/StaticWeapon/Animation/Dog vector or grenade-position aim,00535250 attack
+producer/weapon selection,00538980 and ignored-result004DDEE0 occupant-side are
+source-bound. Strict ordered ranges, FLOAT vs extended sums and callback order
+come from raw instructions. **5389FD copies output-slot POINTER LOW BYTE into
+priority byte0**; actual borrowed-address dependency retained, host stack ABI
+not claimed equivalent. Actual inventory/control/Car/model/head owners reused.
+Native3804 ASan/UBSan/leak checks with qualified endpoints, full module i386,
+launcher/probe and exact tracker+27 PASS. Five frozen partials;34 complete/3599 partial
+(client3594+engine5), frozen18783; source only.
+No live Dog/540, other special-family/application or desktop closure. Successful
+temporary pairs fingerprinted and removed; H8/matrix remain OPEN.
+
+Prior5dc8f33:
+
 [Occupied entry/follow](analysis/human-h8-entry-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-entry-20261117.json): actual00528950
 Car driver/passenger prefix, claim-based seat selection and entry approach,
@@ -70,7 +87,7 @@ gravity3.8, old-position SOUND. Grenade Body before timers/close before blast.
 
 Use [six-checkbox H8 plan](analysis/p22-hum-h8-plan.md). No helper checklist
 expansion. H8.2/H8.3/H8.4/H8.5/H8.6 remain open. Finish selected live Dog/Sight and reached actor/frame dependencies, containing
-verification and application/FRAME/OWN/render. Remaining selected Active tasks16/22, retreat40, delayed Players0053D5B0→00456020 recipients/producers,
+verification and application/FRAME/OWN/render. Remaining selected Active task16, retreat40, delayed Players0053D5B0→00456020 recipients/producers,
 Remote/non7/entry callbacks
 retain honest requirements. Aircraft20/type34 control and type34/36 mounted
 targets, nonHuman task25/26 EC, far Dog listener540 still require actual owners.

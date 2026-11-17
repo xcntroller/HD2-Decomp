@@ -58,7 +58,7 @@ query-10 replanning, explicit valid reload sources, hazard blast/packet and wate
 command/HUD orchestration now use their existing actual owners. Saved-position/vector aim and launcher/close-combat branches now
 use their actual target, collision, inline/common-command and item owners. Ordinary
 rifle target range/burst/crouch, cautious posture/admission, populated stance and005318C0
-pack→holster ammunition are now source-bound. Task22/Dog and other specialized task/effect producers, populated
+pack→holster ammunition are now source-bound. Task16/retreat and other specialized task/effect producers, populated
 remaining reached offline action callbacks must also retain
 honest requirements until implemented or shown outside the selected path.
 Type36 sound look selection and positive type34 singleton look require actual
@@ -67,6 +67,8 @@ Car/seat/Aircraft bodies. Follow actual reached dependencies rather than trying
 to finish all specialized families before integration.
 
 The [occupied entry/follow](human-h8-entry-source.md) now binds driver/passenger task motion, claim/occupant-distinct seat choice, approach8..13, assigned-seat follow and occupied Human Sight.
+
+The [specialized target follow-up](human-h8-special-target-source.md) now binds task22/vehicle attack, real vector/grenade aim, visibility/range/replan and actual occupant classification. Live Dog owner/Sight540 and other selected special families remain required.
 
 Current implementation target: finish reached H8.2/H8.4 owners and containing
 H8.3 dependencies. [Projectile source](human-h8-projectile-source.md) binds

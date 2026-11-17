@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_HUMAN_ACTIVE_AI_AUTHORITY_BODY_H
 #define HD2_GAME_HUMAN_ACTIVE_AI_AUTHORITY_BODY_H
+#include "game/human_active_ai_special_target.h"
 #include "game/human_ai_frame_metrics.h"
 #include "game/human_frame_stats.h"
 #include "game/human_animation_requests.h"
@@ -199,10 +200,15 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
     decrement(0x198);decrement(0x1a0);decrement(0x19c);
     if(!state.template get<std::uint32_t>(0x19c)&&ai.words().template get<std::uint8_t>(0xac)){ai.pending_clear_item_ready();validate();}
     auto* threat=world.active_nearby_dog(ai,7.f);validate();
-    if(threat)throw std::runtime_error("Active movement requires0052B580 Dog-target policy");
     const auto task=state.template get<std::uint32_t>(0x220);bool specialized=false;
-    if(!state.template get<std::uint8_t>(0x202)&&task==22)throw std::runtime_error("Active movement requires0052B810 specialized task22 policy");
     const auto flags=state.template get<std::uint32_t>(0x174);
+    if(threat){aim_active_special_target(ai,*threat,frames,world);validate();}
+    else if(!state.template get<std::uint8_t>(0x202)&&task==22){
+        ai.require_live_task_target();if(!ai.task_target)throw std::runtime_error("Specialized aim dereferences native NULL224");
+        if(world.active_task_actor_unavailable(*ai.task_target)){state.set(0x200,std::uint8_t{1});state.set(0x206,std::uint8_t{1});}
+        else aim_active_special_target(ai,*ai.task_target,frames,world);
+        validate();
+    }else{
     if(flags&0x10u){
         const auto own=human->base().world_position();
         if(!state.template get<std::uint32_t>(0x194)){ai.saved_frame_position(false,own);validate();}
@@ -251,12 +257,13 @@ template<class AI,class Frames,class World>void advance_active_movement_policy(A
         }
     }
     }
+    }
     //Fresh target after the preceding publications, as in the native tail.
     auto& target=ai.resources().target();
     if(target.actor){auto& other=world.human_ai_target_human(*target.actor);if(((other.properties.field19c==2&&other.loading_state&&other.loading_state->suppress_hostile_selection())||world.human_unavailable(other))&&(!specialized||target.actor!=ai.task_target))target.bind_actor(nullptr);}
     if(!active_movement_has_aim(ai)){
         threat=world.active_nearby_dog(ai,30.f);validate();
-        if(threat&&threat->base().type()==30)throw std::runtime_error("Active movement requires0052B580 distant Dog-target policy");
+        if(threat&&threat->base().type()==30){aim_active_special_target(ai,*threat,frames,world);validate();}
     }
     if(target.actor&&world.active_armoured_target(*target.actor)&&ai.item()&&world.active_follow_item_kind(ai.item())!=6)target.bind_actor(nullptr);
     if(active_weapon_selection_due(ai)){(void)ai.reselect_weapon();validate();}

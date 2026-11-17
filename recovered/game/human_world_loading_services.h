@@ -5,6 +5,7 @@
 #include "game/heavy_fire_mortar.h"
 #include "game/heavy_fire_aircraft.h"
 #include "game/heavy_fire_player_support.h"
+#include "game/human_active_ai_special_target.h"
 #include "game/human_ai_alignment.h"
 #include "game/human_active_ai_authority_body.h"
 #include "game/human_vehicle_path.h"
@@ -183,16 +184,21 @@ public:
         if(!state.template get<std::uint8_t>(0x202)){
             const auto task=state.template get<std::uint32_t>(0x220);
             if(task==25||task==26){ai.require_live_task_target();if(ai.task_target&&ai.task_target->base().type()==30)return ai.task_target;}
-            else if(task==22&&ai.task_target&&ai.item())throw std::runtime_error("Active nearby-target query requires0052B180 task22 completion/replan policy");
+            else if(task==22&&ai.task_target&&ai.item())return active_task22_nearby_target(ai,dependencies().scene.frames(),*this);
         }
-        const auto& dogs=dependencies().players.control().sighted_dogs();
+        auto& players=dependencies().players.control();const auto& dogs=players.sighted_dogs();
         for(auto n=dogs.size();n;){
             auto* dog=dogs[--n];if(!dog)throw std::runtime_error("Active nearby-Dog query reached native NULL Dog dereference");
             const auto a=dog->base().world_position(),b=ai.human()->base().world_position();
             const auto x=static_cast<long double>(a[0])-b[0],y=static_cast<long double>(a[1])-b[1],z=static_cast<long double>(a[2])-b[2];
             const auto square=(z*z+y*y)+x*x; //52B488..A2 retains the sum in x87 through comparison.
             const float limit=static_cast<float>(static_cast<long double>(radius)*radius);
-            if(square<limit)throw std::runtime_error("Active nearby-Dog query requires H8.4 actual Dog4A0/540 health and relation owner");
+            if(!(square<limit))continue;
+            using Dog=DogSceneActor<typename Dependencies::ActorFrames>;auto* owner=dynamic_cast<Dog*>(dog);
+            if(!owner)throw std::logic_error("Active nearby Dog list requires actual type30 owner");
+            if(human_frame_signed_word(owner->properties.fields4a0[0])<1){players.remove_sighted_dog_at(n);continue;}
+            if(square<16.f)return dog;
+            throw std::runtime_error("Active nearby-Dog query requires actual listener540/Sight feedback");
         }
         return static_cast<Actor*>(nullptr);
     }
@@ -211,6 +217,29 @@ public:
             throw std::runtime_error("Active idle look requires H8.4 actual type34 singleton005F0E60 receiver");
         ai.state().set(0x23c,0u); //Both native queries returned NULL;240 is intentionally untouched.
     }
+    template<class Human>std::optional<std::uint32_t> active_hand_item_kind(Human& human){ //0052B580 reads actual holder3, not B0 cache.
+        auto* storage=human.base().storage();if(!storage||!storage->holder(3))throw std::runtime_error("Special target aim reached native missing hand holder");
+        const auto entry=storage->holder(3)->entry();if(!entry)return std::nullopt;return dependencies().world_actors.items().runtime_item(entry).definition().kind();
+    }
+    template<class Actor>bool active_vehicle_attack_armoured(Actor* actor){
+        if(!actor)return false;if(actor->base().type()==4)return car_field5e0(actor);
+        if(actor->base().type()!=25)return false;using Animation=AnimationSceneActor<typename Dependencies::ActorFrames>;auto* animation=dynamic_cast<Animation*>(actor);
+        if(!animation)throw std::logic_error("Vehicle weapon target25 requires actual Animation owner");return animation->fieldd8==2;
+    }
+    template<class AI,class Actor>auto active_vehicle_attack_weapon(AI& ai,Actor* target,std::int32_t& slot){ //00538980.
+        using Entry=std::decay_t<decltype(ai.human()->base().storage()->holder(3)->entry())>;
+        if(!target)return Entry{};auto* human=ai.human();if(!human||!human->loading_inventory)throw std::logic_error("Vehicle weapon selection requires actual Human inventory");
+        if(active_vehicle_attack_armoured(target))return find_human_weapon_candidate(*human,dependencies().world_actors.items(),6,false,false,slot);
+        //5389FD copies the LOW BYTE OF THE OUTPUT POINTER into priority byte0.
+        //Retain that native dependency on the actual borrowed output address;
+        //typed host stack layout is not claimed equivalent to the original ABI.
+        const bool alternate=(reinterpret_cast<std::uintptr_t>(&slot)&0xffu)!=0;
+        return human->loading_inventory->preferred_weapon(target,alternate,slot);
+    }
+    template<class Human,class Entry>void active_select_vehicle_attack_weapon(Human& human,Entry selected,std::int32_t slot){
+        if(!human.loading_inventory)throw std::logic_error("Vehicle weapon transfer requires actual inventory owner");human.loading_inventory->select_weapon(selected,slot);
+    }
+    template<class Actor>std::uint32_t active_car_occupant_side(Actor& actor){return classify_active_car_occupants(human_pose_car(&actor),*this);} //004DDEE0.
     template<class Actor>bool active_armoured_target(Actor& actor){
         if(actor.base().type()!=3)return false;
         auto& human=selection_human(actor);auto* attachment=human.field160;
@@ -483,7 +512,7 @@ public:
             return !active_task_actor_unavailable(target())&&allowed;
         }
         case 22:
-            if(!state.human()->field160&&target().base().type()==4)throw std::runtime_error("Active task22 requires H8.4 Car004DDEE0 receiver");
+            if(!state.human()->field160&&target().base().type()==4)(void)active_car_occupant_side(target()); //Native return deliberately ignored before false.
             return false;
         case 27:case 28:{
             const auto& properties=human_navigation_door(&target()).properties;
@@ -555,6 +584,7 @@ public:
         throw std::runtime_error("Players selection requires specialized0045BD10 item/attachment capability policy");
     }
     template<class State,class Actor>void produce_special_active_player_command(State& state,std::uint32_t action,Actor* target,std::uint32_t){
+        if(action==22){produce_active_vehicle_attack(state,target,dependencies().scene.frames(),*this);return;}
         if(action>=8&&action<=13){if(!target)throw std::runtime_error("Seat approach producer dereferences native NULL target");
             const auto position=target->base().world_position(); //00458E50 copies cached Actor30, no model update.
             produce_active_seat_approach(state,*target,action,position,*this);return;}
