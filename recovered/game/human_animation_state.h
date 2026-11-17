@@ -37,18 +37,16 @@ public:
         typename Tracks::Secondary secondary{{31+(control_.animation_look_word5c()!=0),0}},third{{75,0}};
         initialize(model);
         try {
-            tracks_.initialize(model_);
-            const auto kind=control_.animation_property_a0();
-            if(kind!=1&&kind!=2)throw std::runtime_error("Human activation has no actual animation table");
-            //Native compact65C is row135's reference in a12-byte row, not a serialized offset.
-            const auto clip=control_.human_animation_resource(static_cast<unsigned>(kind-1),135);
-            typename Tracks::Requests requests{};
-            requests[0].animation=clip;requests[0].weight=1;requests[0].flags=2;requests[0].blend=100;
-            if(clip)frames_.human_clip_word8(clip,2);
-            tracks_.select(requests,primary,secondary,third,false);
-            tracks_.update(1000,true,&requests);tracks_.update(1000,false);
+            select_loading_pose(primary,secondary,third);
             words_.set(0x10,std::uint8_t{1});
         }catch(...){deactivate();throw;}
+    }
+    void reset_round(){ //0075AC60: reset actual CD0 then reuse SAME track owner.
+        reset();
+        typename Tracks::Primary primary{{45,0,1}};
+        typename Tracks::Secondary secondary{{31+(control_.animation_look_word5c()!=0),0}},third{{75,0}};
+        select_loading_pose(primary,secondary,third);
+        opacity_.bind_sector(frames_,sector_); //00789FC0 after the two1000ms pose updates.
     }
     void reset() { //00757C20.
         require_model();
@@ -230,6 +228,18 @@ public:
     }
     bool active() const{return words_.template get<std::uint8_t>(0x10)!=0;}
 private:
+    void select_loading_pose(const typename Tracks::Primary& primary,const typename Tracks::Secondary& secondary,
+            const typename Tracks::Secondary& third){ //00757E10/0075AC60 shared pose producer.
+        tracks_.initialize(model_);
+        const auto kind=control_.animation_property_a0();
+        if(kind!=1&&kind!=2)throw std::runtime_error("Human pose requires its actual animation table");
+        const auto clip=control_.human_animation_resource(static_cast<unsigned>(kind-1),135);
+        typename Tracks::Requests requests{};
+        requests[0].animation=clip;requests[0].weight=1;requests[0].flags=2;requests[0].blend=100;
+        if(clip)frames_.human_clip_word8(clip,2);
+        tracks_.select(requests,primary,secondary,third,false);
+        tracks_.update(1000,true,&requests);tracks_.update(1000,false);
+    }
     template<class Events>void dispatch_track_events(Events& events){ //00758D20's native early return still allows the caller to advance.
         for(unsigned group=0;group!=3;++group){
             const auto count=tracks_.event_count(group);

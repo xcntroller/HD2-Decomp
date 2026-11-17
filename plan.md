@@ -244,7 +244,7 @@ Former import/5F9 blockers are superseded. [Selected FRAME continuation](analysi
 adds conditional match/input/exit policies, actual peer/FIFO/packet consumers and
 positive retained-item restore. [Populated runtime snapshot](analysis/p22-frame-runtime-snapshot-source.md) is now supplied.
 [Pending spawn and same-Human respawn](analysis/p22-frame-pending-spawn-source.md) now have actual World/Items/input/Players/HUD/camera bindings.
-[Containing retained-round reset and17/18 module callbacks](analysis/p22-frame-retained-round-source.md) now bind actual owners. Module13 Human/Actor44 and required process/HUM/OWN/application/desktop consumers remain; matrix stays partial.
+[Containing retained-round reset](analysis/p22-frame-retained-round-source.md) and [actual Human/Actor44 plus all18 module callbacks](analysis/p22-frame-actor-reset-source.md) now bind existing owners. Required process/network/admission/HUM/OWN/application/desktop consumers remain; matrix stays partial.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 

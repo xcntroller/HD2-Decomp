@@ -30,12 +30,7 @@ public:
     }
     void complete(Frames& frames,Frame model) {
         if(model!=model_||completed_)throw std::logic_error("SupplyBox geometry initialization repeated or mismatched");
-        wall_=frames.actor_find(model,"Steny02",0x10001);
-        if(wall_&&frames.visual_type(wall_)!=0x5f4a424f)wall_=Frame{}; //OBJ_.
-        for(unsigned i=0;i!=ammo_.size();++i) {
-            const auto name=std::string(i<10?"Ammo0":"Ammo")+std::to_string(i);
-            ammo_[i]=frames.actor_find(model,name.c_str(),0x10001);
-        }
+        refresh_actor_markers(frames);
         if(!wall_)throw std::runtime_error("SupplyBox requires Steny02 object geometry");
         const auto bounds=frames.actor_bounds(model);
         //Original uses half the EXTENT, without adding the minimum Y.
@@ -60,6 +55,14 @@ public:
         if(distance(corners_[0],corners_[2])>distance(corners_[0],corners_[3]))
             std::swap(corners_[2],corners_[3]);
         completed_=true;
+    }
+    void refresh_actor_markers(Frames& frames){ //005F98E0; retains original corner/pose snapshots.
+        wall_=frames.actor_find(model_,"Steny02",0x10001);
+        if(wall_&&frames.visual_type(wall_)!=0x5f4a424f)wall_=Frame{}; //OBJ_.
+        for(unsigned i=0;i!=ammo_.size();++i) {
+            const auto name=std::string(i<10?"Ammo0":"Ammo")+std::to_string(i);
+            ammo_[i]=frames.actor_find(model_,name.c_str(),0x10001);
+        }
     }
     Frame wall() const {return wall_;}
     void refresh(Frames& frames){completed_=false;complete(frames,model_);} //005F98E0 is also called at every actual activation.

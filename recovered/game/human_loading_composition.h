@@ -67,6 +67,10 @@ public:
         activation_.deactivate(authority);retired_|=authority?2u:1u;
         if(retired_==3u)started_=false;
     }
+    void reset_round(bool restart)override{
+        if(closing_||!started_||human_.loading_lifetime!=this)throw std::logic_error("Human round reset requires the SAME active containing owner");
+        activation_.reset_round(restart);
+    }
     void damage(std::uint32_t kind,float amount,const HumanVector& point,const HumanVector& impulse,void* source,std::uint32_t hit_kind)override{
         activation_.damage(kind,amount,point,impulse,source,hit_kind);
     }

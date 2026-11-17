@@ -9,6 +9,7 @@ public:
     virtual Frame helper(unsigned)const=0;
     virtual std::uint32_t pickup_flags()const=0;
     virtual void consume_item()=0;
+    virtual void reset_round(bool restart)=0;
 };
 } //namespace hd2::game
 #endif

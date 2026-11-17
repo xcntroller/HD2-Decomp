@@ -6,6 +6,7 @@
 #include "game/human_loading_lifetime.h"
 #include "game/human_formation.h"
 #include "game/speech_definitions.h"
+#include "game/human_round_reset.h"
 #include "frontend/cleanup.h"
 #include <cstdio>
 
@@ -107,6 +108,10 @@ public:
     }
     SpeechDefinition* speech_definition()const{return human_.speech_definition;}
     bool initialized()const{return human_.flag90;}
+    void reset_round(bool restart)override{ //0059D100, actual virtual44.
+        if(!human_.flag90||!local_started_)throw std::logic_error("Human retained reset requires completed local activation");
+        reset_retained_human_round(human_,frames_,control_,states_,services_,effects_,sight_,sound_,proximity_,restart);
+    }
 private:
     static std::int32_t signed_word(std::uint32_t bits){std::int32_t value;std::memcpy(&value,&bits,4);return value;}
     template<class Work>static void remove_index(std::uint32_t& index,Work&& work,frontend::CleanupErrors& errors) {

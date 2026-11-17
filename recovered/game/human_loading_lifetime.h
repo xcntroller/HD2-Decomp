@@ -9,6 +9,7 @@ public:
     virtual ~HumanLoadingLifetime()=default;
     virtual void activate(bool authority)=0;
     virtual void deactivate(bool authority)=0;
+    virtual void reset_round(bool restart)=0;
     virtual void damage(std::uint32_t kind,float amount,const HumanVector& point,const HumanVector& impulse,void* source,std::uint32_t hit_kind)=0;
     virtual bool actor_contact(void* source,const HumanVector& point)=0;
 };

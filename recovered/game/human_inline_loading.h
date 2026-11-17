@@ -45,6 +45,13 @@ public:
         if(control_)control_->deactivate();
         look_.reset();control_.reset();equipment_.reset();human_=nullptr;initialized_=false;
     }
+    void reset_round(){ //005AB4C0: retain SAME E0/230/DD0 lifetimes.
+        if(!initialized_||!human_||!look_||!equipment_||!control_)throw std::logic_error("Human inline round reset requires its actual live owners");
+        flag14_=false;
+        look_->reset(look_->state().template get<std::uint32_t>(0xa0)); //0077DE20 retains current property.
+        equipment_->deactivate();equipment_->activate(*human_); //007938B0.
+        control_->reset_round();
+    }
     Human* human()const{return human_;}Look* look()const{return look_.get();}
     Control* control()const{return control_.get();}Equipment* equipment()const{return equipment_.get();}
     bool initialized()const{return initialized_;}

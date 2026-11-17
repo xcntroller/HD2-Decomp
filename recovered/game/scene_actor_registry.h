@@ -76,7 +76,8 @@ public:
             if(frame)backend_.unbind_scene_actor_frame(frame);
             auto owner=std::move(owners_[i].owner);
             if(i+1!=owners_.size())owners_[i]=std::move(owners_.back());
-            owners_.pop_back();owner.reset();return;
+            owners_.pop_back();if(single_human54_==actor)single_human54_=nullptr; //Source loan guard before actual destruction; counters retain native writes.
+            owner.reset();return;
         }
     }
     template<class Retire>void retire(Actor* actor,Retire&& retire_actor,std::uint32_t milliseconds=20000) { //00475C50(false)→00476680.
@@ -110,6 +111,7 @@ public:
             remove_active(actor);
             auto record=std::move(pending_[index].record);
             if(record.frame)backend_.unbind_scene_actor_frame(record.frame); //Native lifetime guard before destruction.
+            if(single_human54_==actor)single_human54_=nullptr; //Same loan guard for the pending-retirement owner.
             record.owner.reset();
             if(index+1!=pending_.size())pending_[index]=std::move(pending_.back());
             pending_.pop_back(); //Revisit the swapped record, including its elapsed subtraction.
@@ -132,6 +134,7 @@ public:
                 remove_active(record.owner.get());
                 if(record.frame)backend_.unbind_scene_actor_frame(record.frame);
             }
+            if(record.owner.get()==single_human54_)single_human54_=nullptr;
             record.owner.reset();
         }
         identities_.resize(32);for(auto& actor:identities_)actor=nullptr;

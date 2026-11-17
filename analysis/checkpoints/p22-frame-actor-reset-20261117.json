@@ -1,0 +1,563 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "6884179498b26e248c8b512622921add8c816e42",
+  "source_only": true,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "application_installed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "contract": "analysis/p22-frame-actor-reset-source.md",
+  "native_checks": {
+    "retained_human_state_registry": 8867,
+    "retained_physics": 990
+  },
+  "new_partial_inventory_entries": [
+    "004762f0",
+    "0059d100",
+    "0059c4d0",
+    "0059ca00",
+    "0059cec0",
+    "005ab4c0",
+    "0077de20",
+    "007938b0",
+    "00784950",
+    "007631f0",
+    "00772070",
+    "0075ac60",
+    "00782870",
+    "0079d0d0",
+    "00610710",
+    "00602400",
+    "005fc480",
+    "006050b0",
+    "006117f0",
+    "00613290",
+    "005b8990",
+    "005ba1c0",
+    "005e2ad0"
+  ],
+  "complete_promotions": 0,
+  "absent_function_credit": 0,
+  "source_files": [
+    {
+      "path": "recovered/game/human_animation_state.h",
+      "bytes": 16543,
+      "sha256": "0689b00935f945d1d35a06c33916ac446c3adf617a2344e73813bb915ceb4593"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 66085,
+      "sha256": "115efb8dded4d4ba4bcdb0d7382651e835cb58ca2fd11e021b120d64d27babe3"
+    },
+    {
+      "path": "recovered/game/human_inline_loading.h",
+      "bytes": 12060,
+      "sha256": "a05dce15cffdb9a0c45517b3e91e7066bf69cbd7781b9f8af64af47be9f6959c"
+    },
+    {
+      "path": "recovered/game/human_loading_activation.h",
+      "bytes": 10825,
+      "sha256": "88c44629f3410f935d903c7efe16d951b9b554adaf5faa6ed3b83198d83a80c0"
+    },
+    {
+      "path": "recovered/game/human_loading_composition.h",
+      "bytes": 6107,
+      "sha256": "725327839f6e25bd283a5000e0458a555fa69bee5ab194631bccec545e90b490"
+    },
+    {
+      "path": "recovered/game/human_loading_lifetime.h",
+      "bytes": 770,
+      "sha256": "42f7dcd93c5334e55aab8a3044192c247815445a82fe60ce1f63b02f2c6a3a31"
+    },
+    {
+      "path": "recovered/game/human_loading_presentation.h",
+      "bytes": 4098,
+      "sha256": "c830485cc304d487f910416a07cffa986cc1671ff4edf84e83157e6c1f99afb3"
+    },
+    {
+      "path": "recovered/game/human_model_geometry.h",
+      "bytes": 114633,
+      "sha256": "2f794cd92abd08a134d523c99da4308c774286ab0ee3fc18cb0ab22ac6099cd1"
+    },
+    {
+      "path": "recovered/game/human_physics_loading.h",
+      "bytes": 38680,
+      "sha256": "717b15ede072c5f68cd95e0f7ac9938b195ddb05809cbb90af631ed5f88031fe"
+    },
+    {
+      "path": "recovered/game/human_projection_models.h",
+      "bytes": 8215,
+      "sha256": "a88d8600ab6f6a52f2c020aba66b35ed1cc73cf7665b9d91f5fc049376d75c90"
+    },
+    {
+      "path": "recovered/game/human_round_reset.h",
+      "bytes": 5539,
+      "sha256": "42e48b54837cbed33b833e4b6dc3569263e789a256742c9e94c9826a2b6548f9"
+    },
+    {
+      "path": "recovered/game/human_scene_actor.h",
+      "bytes": 8993,
+      "sha256": "7f295891292911f9584199238e884b1129a6f6e7f584d04031e1c05eb2818824"
+    },
+    {
+      "path": "recovered/game/human_state_loading_owner.h",
+      "bytes": 5667,
+      "sha256": "43d5005b7bb8018f5f5bee27379fdc754585adf2ca159a6e14a636b58ffe62e0"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 321491,
+      "sha256": "c42d14db5a28dd44af7864008c15c893a25b2ccb95599a8db3c08b3289c4c3ae"
+    },
+    {
+      "path": "recovered/game/scene_actor_registry.h",
+      "bytes": 15452,
+      "sha256": "631d169f5e05f18941fa23aa861dfe80bfe11ac76129f805a6a0a6ad3356f879"
+    },
+    {
+      "path": "recovered/game/supply_box_geometry.h",
+      "bytes": 4579,
+      "sha256": "b4cafdbd77952b18c67e4a72ea8ef172644eafdeaff4eec5a4a12a1b2220d21c"
+    },
+    {
+      "path": "recovered/game/supply_box_loading.h",
+      "bytes": 14661,
+      "sha256": "eeae41671c5986a33f4375aa47c7d9f9688aafa10bd1ce4b47ed86d60857b16b"
+    },
+    {
+      "path": "recovered/game/supply_box_loading_lifetime.h",
+      "bytes": 557,
+      "sha256": "4720bbeb48cdd49aac9a1b386e4cccabee49c1bc3d09b6bc9085784abc685a3a"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 135066,
+      "sha256": "493b8db51e613eaa27d9feb820fc5bb2fcb37608ff33ff5168d0a22ef8abab26"
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "bytes": 17123,
+      "sha256": "01894bdf85e03b6e2db54bd2e080353d690597743d3f9c3c3d3102667f93af46"
+    },
+    {
+      "path": "recovered/host/game_scene_actors.h",
+      "bytes": 24925,
+      "sha256": "d3a02add40bdf2662a849e2764735c8c39ab1f6c186407a58cf7c2f3b91500d5"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 34330,
+      "sha256": "b6502d6cf824fe6db263f7f7680dc88a0d1626be3252678130ef31dae522f974"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/0059d100.c",
+      "bytes": 813,
+      "sha256": "77c203e9ac28c786029cd0d17867fd7c809c311e6188c73ae109c53b191d2754"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005b31c0.c",
+      "bytes": 405,
+      "sha256": "5257ae0956177b5bd47008e936dd78937f15717de3cfa55d96301445e01a1218"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005b8990.c",
+      "bytes": 134,
+      "sha256": "6a0cb3d727fda69bd59cb8cdaf2187cd1a228597d5798707fdb917a16387802c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005ba1c0.c",
+      "bytes": 134,
+      "sha256": "95f58ac1045290ce013a7e2606f3dab2918b54ad2bb286116607879b3e8e6152"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005d45f0.c",
+      "bytes": 2606,
+      "sha256": "12d2b79a135fbe1645022d33ddda12f7dfcb38181eba236a351f142de2993e0c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005e2ad0.c",
+      "bytes": 134,
+      "sha256": "9f907e57871f3ce99434d121c4172910bb395a7fe677514ee699598cacf59446"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005ea4d0.c",
+      "bytes": 325,
+      "sha256": "2c75efea541cfd56e80927e93a65aee607893056f0fe6a8a9820391821444452"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005fc480.c",
+      "bytes": 740,
+      "sha256": "c2684d8e14161616e90cd08a53f5c1c74c0a0aa490ea1a2f29d6dcdfb2884b94"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/00602400.c",
+      "bytes": 1338,
+      "sha256": "f91dac338a363e5bd6bcdafdb2df9d37e9d7ceb96bdb77bb7dc5fabc30d54186"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/006050b0.c",
+      "bytes": 509,
+      "sha256": "83786978d9cb062fba4b6e5e2718fd70f2986b190cfd332432ca5a35cf3bd40f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/0060cf20.c",
+      "bytes": 411,
+      "sha256": "e067e3f68e01608bb92cf847408fd34f63ba01602ff006d4d1b97ecc6c082a2e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/006117f0.c",
+      "bytes": 723,
+      "sha256": "b1388bc4c839fe6947d062ae2dbff67d34d46b3c5eaf1789fb2e395a16829050"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/00613290.c",
+      "bytes": 173,
+      "sha256": "c1d306a3cb791896b8986cb51d219c5a0500c4b6d202aef967c7c357c2db9158"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/0059d100.json",
+      "bytes": 298,
+      "sha256": "2f49f6b16212a0aa5d3c9b61af0c888d3ef617b2e826bf5aa613b69f6ed59f9e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005b31c0.json",
+      "bytes": 313,
+      "sha256": "6e4bc415010073914d06901882400661116902e48546d0549638cb0d4bf6ebb4"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005b8990.json",
+      "bytes": 297,
+      "sha256": "a576266ca6f1a1e22a97b18a2e1070f78a1ce198c21998a15ece444a785d75eb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005ba1c0.json",
+      "bytes": 297,
+      "sha256": "92c6a4dab918b1ac787d6bd8339bc02dc5cf14213b95c9dc7691a4af42ddd920"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005d45f0.json",
+      "bytes": 298,
+      "sha256": "c9e5b88859e99f9c384f9939f66847c0d69fcf6188d081cd484a652d3613ba74"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005e2ad0.json",
+      "bytes": 297,
+      "sha256": "5dc29ad0ef1e10fbe9ab501aa880bb83ddbf80fc1cf1992c1b1330af4fb9548b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005ea4d0.json",
+      "bytes": 313,
+      "sha256": "4bae088be94187da1144a665d0937d78a7429e1884ddd4c5d3b7bff36bb48719"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/005fc480.json",
+      "bytes": 298,
+      "sha256": "d705be0a10873a073d16aaa8a1f445d40de8acdd8d1420c7f5fe3f40e97a30ec"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/00602400.json",
+      "bytes": 298,
+      "sha256": "e3b6e1fa6bfa13e68fe4208d5d6629a00e678c251299b8240bac0324c0d33617"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/006050b0.json",
+      "bytes": 298,
+      "sha256": "49aee8750a249b7465e29ff01119f6e1320e4931316cb29c0d4ba57954ed49aa"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/0060cf20.json",
+      "bytes": 313,
+      "sha256": "b5d3fc23000e4021bf03228361dfa4f2f3bcf1ac209688a6d2930acb06d9b9f7"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/006117f0.json",
+      "bytes": 298,
+      "sha256": "3a5d7fde1c840e0028e86acec9474422bbe7e0402780c75140869e24b16b6185"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-round-research/00613290.json",
+      "bytes": 297,
+      "sha256": "6b6fd2b960237da2dbd9bb9510a375d921c95b880994f77f86243bfb310510c2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/00428ca0.c",
+      "bytes": 312,
+      "sha256": "aed07b36cddc1f0406dd42314b25ba4edf6ea61f9967d82d250acf3f8c12312d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/00498ec0.c",
+      "bytes": 300,
+      "sha256": "cb7f924489fdb4388a1c28dc6bedfb6ec6d5fec810d2efe6e2111b47d010974e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/0059c4d0.c",
+      "bytes": 6511,
+      "sha256": "ac4045e9a04d5e4306124c4585ea06e55a65139bf288a4acbe2f180e486c70d2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/0059ca00.c",
+      "bytes": 6488,
+      "sha256": "b3df473932ede97684abb84a6e18911b23f52d867f77df3525c0419dac7fb3e9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/0059cec0.c",
+      "bytes": 3306,
+      "sha256": "fd640d85fb823ee5f63bf5f6c94c06b582016a2d720b7f5a7169325c63555d4a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/00610710.c",
+      "bytes": 505,
+      "sha256": "0b0e57badc9e593b359948bc0eb3113e2c71557be0b8c71807d2a42e2675d172"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/00428ca0.json",
+      "bytes": 565,
+      "sha256": "a4e5503a3c8a9cf61df530f72a139b72a201c8149894292553b5be362dbcf796"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/00498ec0.json",
+      "bytes": 802,
+      "sha256": "89aa31f2238b8fd082841c5bb0584471420d2fa9b8d06c38879654151f4cba03"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/0059c4d0.json",
+      "bytes": 17271,
+      "sha256": "1b2c69af883e1f9d522139a51b57c3f7ebf6af70fa21935c4adab3711381c8ce"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/0059ca00.json",
+      "bytes": 17381,
+      "sha256": "3b3a8445b013268e2ab1ada6781eb2e0aae74f742063cb1e03aebec11202c82a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/0059cec0.json",
+      "bytes": 5418,
+      "sha256": "1066e2aafce3be9b78fbb6eb5f79c9103a3038eaf32694dca0b25cc2f6663ad0"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-leaves/00610710.json",
+      "bytes": 3334,
+      "sha256": "e6aadfedda29ad717c1aebce3ff6d20d33192b718479567929dca6464932312f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-inline-leaves/0077de20.c",
+      "bytes": 108,
+      "sha256": "0735b55ad8b42faae26cba7cd3cd315aba7767b58ac052cfeea8840c01d0ff3e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-inline-leaves/00784950.c",
+      "bytes": 1529,
+      "sha256": "2938b646d13c77ca4e209c559dd7ba42bf5482872c731091ea179aa2e0b9372b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-inline-leaves/007938b0.c",
+      "bytes": 77,
+      "sha256": "70d14e2c55a5d6cdb236fa6a97a95e03db01bef1720d007f003254a9c6360be3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-inline-leaves/0077de20.json",
+      "bytes": 735,
+      "sha256": "e29590bb9baaa99d1e807ab245e5cbeafb4f96e519e6ef2ebe43b8db43b9e3a7"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-inline-leaves/00784950.json",
+      "bytes": 5632,
+      "sha256": "c51b4bce68dd738ad068f13592610428bf0f590e156ce6febf8ea88f13544176"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-inline-leaves/007938b0.json",
+      "bytes": 998,
+      "sha256": "1d93d8b704239ccd7462cfecb84a558b144d663195d6fb2294d6276a392d9125"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/007506a0.c",
+      "bytes": 41,
+      "sha256": "793a307652c7558a59179e9b44b34d9edc97cd776aa9d4d04e74fa90b27e6288"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/0075ac60.c",
+      "bytes": 1252,
+      "sha256": "e635c2cb5fadd0e563cc4b66a5f44c3f77c55ab797dc84acd221fcc3dece2387"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/007631f0.c",
+      "bytes": 3222,
+      "sha256": "0363363b128181d9988e69c6e9e8ece748b895eeff7b15bf50cfaafd95b3dab8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/00772070.c",
+      "bytes": 78,
+      "sha256": "efb0cfdf909172b2c73448b0d9e854bee2ab6e6bc989ac7dcbfdc662f6d4b0ce"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/00782870.c",
+      "bytes": 112,
+      "sha256": "7c0a225bc094aae875faa11359dbf7c3e403813440a7ce1fc9cba5a25ef44ecd"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/0079d0d0.c",
+      "bytes": 106,
+      "sha256": "a61f3e1ca1a7f9753a33e225c9d531f82c2228ed3eb258653fe9b208e39857c6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/007506a0.json",
+      "bytes": 296,
+      "sha256": "cf02bd0e343b0196fe2ac0d970e6bbeea9ab19b11bdfdaeb8f37dce78c03dd97"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/0075ac60.json",
+      "bytes": 298,
+      "sha256": "64195e6651ee54c4cd2935f0d8228a60a3eaf55abf3bb2d36a9780f733496ab5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/007631f0.json",
+      "bytes": 298,
+      "sha256": "f6f07228d97da8c54765b652e6153025df51b92b777c3a925b6ec887984cd99a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/00772070.json",
+      "bytes": 297,
+      "sha256": "b71591d42c549c25d19623763dc8cd1c144e007b349b8e8d0f44924415e76e1b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/00782870.json",
+      "bytes": 297,
+      "sha256": "ced8121d17352efaa2125b3dc8a2cf3e84cb84c5d7ab909b1b32e6b7fd74f0f3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-control-leaves/0079d0d0.json",
+      "bytes": 297,
+      "sha256": "feb0ef7514442fad6e1ad97600751db8ace1e8c6d74c466f4d0e006939cba06a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-model-leaf/005ab4c0.c",
+      "bytes": 152,
+      "sha256": "143d4c9ac4ec2732cf54418dbe13c0e64e4330b83e33738c9d1c5c144fa43c40"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-model-leaf/005ab4c0.json",
+      "bytes": 1409,
+      "sha256": "8352e7f644c8e3bdecf8d9d104674115db325d90bcc964ae3c86e921c540d43d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/retained-actor-reset-targets.json",
+      "bytes": 1575,
+      "sha256": "672d6f3ce57da825a7e3337e3b8b954ac3f8be628277d639b26a8de224a5c685"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/retained-human-reset-abi.asm",
+      "bytes": 3380,
+      "sha256": "fb445d94c589f8b1718115ce982c5b885ecc9e5efe4fa7f3cc1b87b541ddde1a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/retained-human-reset-abi-full.asm",
+      "bytes": 58134,
+      "sha256": "f50df32cecd4616a1e99ade3159c6d56c0988d63fd2762d28f0540b954d96c40"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/retained-inline-reset-abi.asm",
+      "bytes": 807,
+      "sha256": "f4be663ae2bf5e494778b9419762abd5d240fa0d4ba124c188573ca0be8fa3e7"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/retained-dd0-reset-abi.asm",
+      "bytes": 8407,
+      "sha256": "aedcc486d8bda34fa27b37641699d84ef5575b811b86814cc1aa09f70fc0b315"
+    }
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-native-run.log",
+      "bytes": 87,
+      "sha256": "41a0dd16e112e0c457cdca9950c35cf9be47024173067c75e0072f14624d513e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-physics-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-physics-native-run.log",
+      "bytes": 100,
+      "sha256": "1f09f89dd05543608661a1d5306f9b16e569d6a82add4bc3430b933dbbb7c18b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-physics-actual-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-reset-launcher-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-reset-function-render.log",
+      "bytes": 380,
+      "sha256": "e74e2399b17ea75f09e0bd70c5eba8ee40325544a045650dac8dbcd660764a5b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actor-reset-function-check.log",
+      "bytes": 437,
+      "sha256": "5b9ea026c0c75873ca6485756672b5afea1d80c576662ab1e078968d3603c6d9"
+    }
+  ],
+  "build_outputs": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 9710592,
+      "sha256": "a5d882713f6a3b2a3af3c21d9c929e3d8e03a6588f2ea7b4801887926cf8ae52"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1175552,
+      "sha256": "16d4860bd8b025175cfe41860dc414609ed348a10f59931c60aad2d55e19bdfd"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-native.cpp",
+      "bytes": 11051,
+      "sha256": "05aab1d00a5147e007b739d74cfd9cac61a5992a116c501decf89fe0af3106df"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-human-native",
+      "bytes": 2245328,
+      "sha256": "95400cc89100fc5d57543250189fa3527b5085f86a952ba2f7f7fc14381ec776"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-physics-native.cpp",
+      "bytes": 4311,
+      "sha256": "e8200e6a06a4a7f3ba5fcfcba5f4cbb8b4a82ccc34a85eb4beca765b7a35b4eb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-physics-native",
+      "bytes": 1655448,
+      "sha256": "debfadabf60290a5a47cb9cf8776d40ee30b57a7c72b4a343441f9666ea7b71c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-physics-actual.cpp",
+      "bytes": 421,
+      "sha256": "a922f838a49872b3bdd21833dc1e686d9469e6ca03d0ea004348f5124a57e631"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-physics-actual.exe",
+      "bytes": 11221504,
+      "sha256": "f1c33add0d6eb5cc5f01f3e3fdfae28207e8a2d6600383df312e3f579b72b1f3"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "limitations": [
+    "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+    "Dog30 and unsupported non7 specialized activation paths retain required failures. UI single-selected loan retraction is source safety, not native behavior credit.007506A0 comment-only RET receives no credit."
+  ]
+}

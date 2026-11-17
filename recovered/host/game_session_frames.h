@@ -23,7 +23,7 @@ public:
     virtual void defer_network_close()=0; //0072E4E0(false), real process5070.
     virtual void current_application_status(std::uint32_t)=0; //Current application virtual2C, NOT controller04 request.
     virtual std::uint32_t current_game_phase()=0; //Fresh00698500 game88.
-    virtual void reset_round_world(bool)=0; //0069C390, actual retained-world/round reset; NOT pause/realtime toggle.
+    virtual void reset_round_world(bool)=0; //Legacy external loan; FRAME006997B0 now invokes its SAME-World source directly.
     virtual void balance_peer_sides(std::uint32_t,std::uint32_t)=0; //007302D0, actual process records.
     virtual void camera_command(std::uint32_t,std::uint32_t,std::uint32_t)=0; //Actual mission camera virtual44.
 };

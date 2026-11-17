@@ -16247,7 +16247,7 @@
       "program": "client",
       "entry": "0079bd30",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0079bd30: Actual Human geometry/skeleton/model loading and ordinary offline face lifetime; preserve-pose replacement/simulation excluded. Actual retained secondary clip state, direction-work defaults and loading preference defaults support the new live pose consumers. Actual retained prone normal/contact histories, interpolation counters and shared attachment graph state now support the remaining normal model consumers.",
+      "coverage": "P2.2 source reconstruction at original entry 0079bd30: Actual Human geometry/skeleton/model loading and ordinary offline face lifetime; preserve-pose replacement/simulation excluded. Actual retained secondary clip state, direction-work defaults and loading preference defaults support the new live pose consumers. Actual retained prone normal/contact histories, interpolation counters and shared attachment graph state now support the remaining normal model consumers. Actual retained round reset now binds the same owners; restart byte is preserved.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_model_geometry.h",
@@ -16256,7 +16256,9 @@
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
-        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-model-presentation-20261111.json",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
       ]
     },
     {
@@ -41265,14 +41267,16 @@
       "program": "client",
       "entry": "004dd0d0",
       "status": "partial",
-      "coverage": "Offline7 true reset over SAME activation/body/wheel/mesh/Door/collision/skid/particle/navigation owners: restore prefix, late proximity overwrite, ascending seat removal, suspend, saved pose, settings/special collision, body flag1, physical reset,5ms settle/finalize, fuel, source/driver/latch/navigation/model/pending retirement. Positive mounted004C6620 and non7 consumers remain required. H3: Existing offline reset additionally invokes actual mounted004C6620 after each ascending seat removal.",
+      "coverage": "Offline7 true reset over SAME activation/body/wheel/mesh/Door/collision/skid/particle/navigation owners: restore prefix, late proximity overwrite, ascending seat removal, suspend, saved pose, settings/special collision, body flag1, physical reset,5ms settle/finalize, fuel, source/driver/latch/navigation/model/pending retirement. Positive mounted004C6620 and non7 consumers remain required. H3: Existing offline reset additionally invokes actual mounted004C6620 after each ascending seat removal. Actual retained round reset now binds the same owners; restart byte is preserved.",
       "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/car_loading_activation.h",
         "analysis/human-car-frame-events-source.md",
         "analysis/checkpoints/p2.2-human-car-frame-events-20261112.json",
         "analysis/human-seat-interaction-source.md",
-        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
       ]
     },
     {
@@ -51853,26 +51857,30 @@
       "program": "client",
       "entry": "0069c390",
       "status": "partial",
-      "coverage": "Containing status/retained gate, original scalar/life stores, queue owner drain, distinct offline removal/spawn, ordered module/UI/query/entry/Music/speech/face tail over SAME World. Module13 actual derived Actor44 remains required and failing.",
-      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "coverage": "Containing status/retained gate, original scalar/life stores, queue owner drain, distinct offline removal/spawn, ordered module/UI/query/entry/Music/speech/face tail over SAME World. Actual module13 and all16 activation-supported derived Actor44 receivers now bind the same live owners.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
       "evidence": [
         "recovered/game/session_round_reset.h",
         "recovered/host/game_session_frames.h",
         "analysis/p22-frame-retained-round-source.md",
-        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "0048dbc0",
       "status": "partial",
-      "coverage": "Fresh ascending registered module2C dispatch including slot18, forwarding original restart byte; actual17/18 receivers supplied, module13 remains a required failure.",
-      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "coverage": "Fresh ascending registered module2C dispatch including slot18, forwarding original restart byte; all18 actual registered receivers supplied, including retained Human/Actor reset.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
       "evidence": [
         "recovered/game/mission_module_dispatch.h",
         "recovered/host/game_session_frames.h",
         "analysis/p22-frame-retained-round-source.md",
-        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
       ]
     },
     {
@@ -51990,6 +51998,300 @@
         "recovered/host/game_session_frames.h",
         "analysis/p22-frame-retained-round-source.md",
         "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004762f0",
+      "status": "partial",
+      "coverage": "Actual retained registry/module13 callback binds all16 activation-supported derived Actor44 families, preserving shared proximity/count snapshot/fresh-slot/summary order.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059d100",
+      "status": "partial",
+      "coverage": "Actual retained Human44 wrapper, common reset, offline/remote-AI/local selection and restart/presentation clothing/alignment tail over SAME Human.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_round_reset.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059c4d0",
+      "status": "partial",
+      "coverage": "Offline retained Human reset, repeated common reset, state close/commands/delete, actual live-squad configuration, roster and Sound/Sight/proximity order.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_round_reset.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059ca00",
+      "status": "partial",
+      "coverage": "Remote-AI retained Human reset with distinct formation/perception/collision/state/listener/authority policies.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_round_reset.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059cec0",
+      "status": "partial",
+      "coverage": "Local retained Human reset preserving distinct BC/C0/perception state and skipping authority registration.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_round_reset.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ab4c0",
+      "status": "partial",
+      "coverage": "Actual same-inline Look/currentA0, equipment and retained DD0 reset ordering.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077de20",
+      "status": "partial",
+      "coverage": "Retained Look reset reads actual current A0 property.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007938b0",
+      "status": "partial",
+      "coverage": "Retained equipment deactivate/activate reset over same owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00784950",
+      "status": "partial",
+      "coverage": "Retained DD0 reset, same model unregister/tracks/physical/movement/action/pose/motion/face/geometry/light/register order; stable borrowers.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_control_loading.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007631f0",
+      "status": "partial",
+      "coverage": "Actual physical retained reset returns sounds, resets face/surface/scalars, removes and rebuilds SAME descriptor owners with live DC4 and four CRT draws.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_physics_loading.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00772070",
+      "status": "partial",
+      "coverage": "Retained movement state retirement/reset via actual movement owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_control_loading.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075ac60",
+      "status": "partial",
+      "coverage": "Retained animation pose CD0/reset/track initialize/clip selection/two1000 updates/ambient binding.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_animation_state.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00782870",
+      "status": "partial",
+      "coverage": "Retained face bind then schedule(true) over same face/Human owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_control_loading.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0079d0d0",
+      "status": "partial",
+      "coverage": "Retained geometry reset validates SAME model/Human/DD0, retires body/point/effect/face/camera in order, then initializes graph/pose/movement/joints.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00610710",
+      "status": "partial",
+      "coverage": "Actual common frame reset restores nonzero-source position and authored quaternion/scale before derived retained reset.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/actor_base.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00602400",
+      "status": "partial",
+      "coverage": "Actual Door retained reset through existing pose/lock/portal/collision owners, now bound to real derived44.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fc480",
+      "status": "partial",
+      "coverage": "Actual retained SupplyBox dummy/parachute/collision/common/clip/markers/vertex reset over same lifetime.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006050b0",
+      "status": "partial",
+      "coverage": "Actual Switch suppress-notification then authority deactivate/activate reset.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006117f0",
+      "status": "partial",
+      "coverage": "Actual StaticWeapon retained seat/state/control reset with restart-specific state1.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/static_weapon_loading.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00613290",
+      "status": "partial",
+      "coverage": "Actual Spawn retained script-use/reset guard now bound to derived44.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/world_actor_loading_consumers.h",
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b8990",
+      "status": "partial",
+      "coverage": "Actual Pike authority deactivate/activate reset through same owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ba1c0",
+      "status": "partial",
+      "coverage": "Actual Fowl authority deactivate/activate reset through same owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005e2ad0",
+      "status": "partial",
+      "coverage": "Actual Null authority deactivate/activate reset through same owner.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native8867 retained policy/state/registry and990 actual physical checks use explicit adjacent engine/World/UI/audio/bucket endpoints; actual World/Composition/Human/DD0/all18 modules i386 and O2 launcher/probe compile/link only. Undefined native padding, delegated engines and absent frozen starts excluded. Required process/network/admission/application and desktop delivery remain open; no whole-function promotion.",
+      "evidence": [
+        "recovered/host/game_scene_actors.h",
+        "analysis/p22-frame-actor-reset-source.md",
+        "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
       ]
     }
   ]

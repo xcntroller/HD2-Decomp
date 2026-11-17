@@ -26,6 +26,7 @@ public:
     void acquire(){dependencies().shared.acquire();}
     void release()noexcept{dependencies().shared.release();}
     const auto& settings()const{return dependencies().shared.settings();}
+    void clear_surface_positions(){dependencies().shared.projection_models().clear_surface_positions();} //0078A7D0, SAME process owner.
     template<class Player,class Human>void set_player_mode(Player& state,Human& human,std::int32_t value,std::uint32_t mode){
         dependencies().player_modes.set_player_mode(state,human,value,mode);
     }

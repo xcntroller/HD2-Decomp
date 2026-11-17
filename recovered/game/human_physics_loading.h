@@ -141,6 +141,37 @@ public:
             state_.set(0x994,handle);
         }
     }
+    template<class Pool,class ClearSurface>void reset_round(std::uint32_t mode,const bool& collision_disabled,
+            Pool& pool,ClearSurface&& clear_surface){ //007631F0, retain SAME allocated descriptors/bones.
+        if(!active_||!human_)throw std::logic_error("Human physical reset requires its actual live DD0 owner");
+        close_audio(mode,pool); //0075EAA0(true), then0075EEB0.
+        face_.close_sound(pool);face_.bind(*human_);face_.schedule(true);
+        clear_surface(); //0078A7D0, before0075AE40 and bucket retirement.
+        state_.set(0x1c8,.8f);state_.set(0x1cc,1.f);state_.set(0x1d0,1.f);reset();
+        if(primary_count()>4||state_.template get<std::int32_t>(0x984)>4)throw std::logic_error("Human physical reset exceeds actual four-descriptor owners");
+        for(int n=0;n<4;++n){
+            if(n<primary_count())collisions_.remove(required(primary_,n));
+            if(state_.template get<std::int32_t>(0x980)>0&&n<state_.template get<std::int32_t>(0x984))collisions_.remove(required(secondary_,n));
+        }
+        for(int n=0;n<2;++n)collisions_.remove(required(shot_,n));
+        state_.set(0x980,0u);state_.set(0x984,0u);state_.set(0x69c,0u);
+        if(!collision_disabled){
+            shot_spheres();state_.set(0x698,0u);rebind_posture(0);
+            for(int n=0;n<primary_count();++n){
+                auto& first=required(primary_,n);auto& second=required(secondary_,n);
+                first.position=second.position=posture_.at(static_cast<std::size_t>(n));
+                first.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(0x1c8))*first.position[3]);
+                second.radius=second.position[3];
+            }
+            for(int n=0;n<state_.template get<std::int32_t>(0x69c);++n){
+                auto& shot=required(shot_,n);shot.position=shots_.at(static_cast<std::size_t>(n));
+                shot.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(n?0x1d0:0x1cc))*shot.position[3]);
+                collisions_.insert(shot);
+            }
+        }
+        constexpr std::array<unsigned,4> moduli{{200,300,400,600}};
+        for(unsigned n=0;n!=moduli.size();++n)state_.set(0xa80+n*4,audio_.random_source()()%moduli[n]);
+    }
     template<class Services>void play_frame_climb_voice(Services& services){ //0075EDE0, actual Ladder178 and shared SOUND handle994.
         if(!interaction_actor_)return;
         const auto entry=human_frame_signed_word(services.human_ladder(interaction_actor_).properties.settings170[2]);

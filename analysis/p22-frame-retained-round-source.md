@@ -1,5 +1,7 @@
 # FRAME retained-round reset — source checkpoint, 2026-11-17
 
+Latest continuation: [actual retained Human/Actor44 and all18 module callbacks](p22-frame-actor-reset-source.md) supersede the earlier module13 failure. Evidence below retains its original revision/verification boundary. FRAME still requires owning-process/network/application work.
+
 Active branch feature/p22-frame; source base d64ce5d. This extends the verified
 [pending spawn/respawn](p22-frame-pending-spawn-source.md) source. **FRAME remains
 partially_resolved.** The containing0069C390 body and17 of18 registered module2C

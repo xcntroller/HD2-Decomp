@@ -91,6 +91,7 @@ public:
         case 10:bound(module,d_.texture_shifts);return; //00411620 RET4.
         case 11:bound(module,d_.players);d_.players.reset(restart);return;
         case 12:d_.world_actors.runtime().reset_round(restart);return;
+        case 13:d_.scene.frames().reset_scene_actors(restart,d_.world_actors,d_.scene.buckets(),d_.human_services);return;
         case 14:bound(module,d_.shots);d_.shots.reset_round();return;
         case 15:d_.human_services.reset_round_camera();return;
         case 16:bound(module,d_.heavy_fire);return; //00411620 RET4.

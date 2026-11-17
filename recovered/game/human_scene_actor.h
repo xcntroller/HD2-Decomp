@@ -120,6 +120,10 @@ public:
         if(!loading_lifetime)throw std::runtime_error("Human retirement requires its actual containing loading owner");
         loading_lifetime->deactivate(authority);
     }
+    void reset_round(bool restart){
+        if(!loading_lifetime)throw std::logic_error("Human round reset requires its actual containing lifetime");
+        loading_lifetime->reset_round(restart);
+    }
     HumanActorProperties properties;
     std::string fieldbc;
     std::array<std::uint32_t,9> fieldc0{{0,0x3f000000,0,0x3f800000,0,0,0,0,0}}; //0059C270.

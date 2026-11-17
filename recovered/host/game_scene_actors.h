@@ -211,6 +211,53 @@ public:
                                             [&]{return authority||!(activation.mode_flags()&1);});});
         errors.rethrow();
     }
+    template<class Activation,class Collisions,class Services>void reset_scene_actors(bool restart,Activation& activation,
+            Collisions& collisions,Services& services){ //004762F0, actual virtual44 dispatch.
+        actors_.reset_round(restart,[&]{services.reset_scene_actor_proximity();},
+            [&](Instance& actor,bool value){reset_scene_actor(actor,value,activation,collisions);},
+            [&]{actors_.summarize_humans(services);});
+    }
+    template<class Activation,class Collisions>void reset_scene_actor(Instance& actor,bool restart,Activation& activation,Collisions& collisions){
+        const auto deactivate=[&](bool authority){deactivate_scene_actor(actor,authority,activation,collisions);};
+        const auto activate=[&](bool authority,auto&& receiver){actor.loading_activation_passes|=authority?1u:2u;receiver(authority);};
+        switch(actor.base().type()){
+        case 3:static_cast<Human&>(actor).reset_round(restart);return; //0059D100.
+        case 4:{auto& a=static_cast<game::CarSceneActor<GameActorServices>&>(actor);
+            if(!a.loading)throw std::logic_error("Round reset Car has no actual active owner");a.loading->reset_round(restart);return;}
+        case 6:static_cast<game::DoorSceneActor<GameActorServices>&>(actor).reset_round(activation,collisions);return;
+        case 8:static_cast<game::LadderSceneActor<GameActorServices>&>(actor).reset_round();return;
+        case 9:{auto& a=static_cast<game::SupplyBoxSceneActor<GameActorServices>&>(actor);
+            if(!a.loading)throw std::logic_error("Round reset SupplyBox has no actual active owner");a.loading->reset_round(restart);return;}
+        case 10:activation.reset_spawn(static_cast<Spawn&>(actor));return;
+        case 13:{auto& a=static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor);a.state.suppress_notification(true);
+            deactivate(true);activate(true,[&](bool authority){a.activate(authority,activation,collisions);});return;}
+        case 15:static_cast<game::PhotoPlaceSceneActor<GameActorServices>&>(actor).reset_completion();return;
+        case 21:{auto& a=static_cast<game::StaticWeaponSceneActor<GameActorServices>&>(actor);
+            if(!a.loading)throw std::logic_error("Round reset StaticWeapon has no actual active owner");a.loading->reset_round(restart);return;}
+        case 22:case 23:{ //0060CF20/0060E560: presentation finish BEFORE authority finish/rebind.
+            if(activation.mode_flags()&2u)deactivate(false);
+            if(activation.mode_flags()&1u){deactivate(true);if(activation.mode_flags()&1u)activate(true,[&](bool authority){
+                if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);
+                else static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);});}
+            if(activation.mode_flags()&2u)activate(false,[&](bool authority){
+                if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);
+                else static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);});
+            return;
+        }
+        case 25:{auto& a=static_cast<game::AnimationSceneActor<GameActorServices>&>(actor); //005B31C0: authority finish first.
+            if(activation.mode_flags()&1u)deactivate(true);if(activation.mode_flags()&2u)deactivate(false);
+            if(activation.mode_flags()&1u)activate(true,[&](bool authority){activation.activate_animation(a,authority);});
+            if(activation.mode_flags()&2u)activate(false,[&](bool authority){activation.activate_animation(a,authority);});return;}
+        case 28:{auto& a=static_cast<game::PikeSceneActor<GameActorServices>&>(actor);deactivate(true);
+            activate(true,[&](bool authority){a.activate(authority,activation,collisions);});return;}
+        case 29:{auto& a=static_cast<game::FowlGeneratorSceneActor<GameActorServices>&>(actor);deactivate(true);
+            activate(true,[&](bool authority){activation.activate_fowl(a,authority);});return;}
+        case 33:{auto& a=static_cast<game::NullSceneActor<GameActorServices>&>(actor);deactivate(true);
+            activate(true,[&](bool authority){a.activate(authority,activation);});return;}
+        case 37:activation.reset_zone(static_cast<game::ZoneSceneActor<GameActorServices>&>(actor));return;
+        default:throw std::runtime_error("Required retained Scene2 actor reset is unavailable: "+std::to_string(actor.base().type()));
+        }
+    }
     template<class Activation,class Collisions>void deactivate_scene_actor(Instance& actor,bool authority,Activation& activation,Collisions& collisions) {
         if(!actor.loading_activation_passes)return; //Source guard: no derived receiver was entered, including rejected Dog/cold tail actors.
         switch(actor.base().type()) {

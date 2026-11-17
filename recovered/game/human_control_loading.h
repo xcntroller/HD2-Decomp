@@ -113,6 +113,41 @@ public:
         if(!human_||!active_)throw std::logic_error("Clothing refresh requires actual active DD0");
         rebind_human_clothing_control(*this,*human_,frames_);
     }
+    void reset_round_physics(){ //00784950's007631F0 stage; same active DD0/DC4/pool and shared surface owner.
+        if(!active_||!pool_)throw std::logic_error("Human round physics requires actual active DD0 resources");
+        physical_.reset_round(mode_flags(),flag_dc4_,pool_->pool(),[&]{presentation_.clear_surface_positions();});
+    }
+    void reset_round(){ //00784950, retain DD0/model/bones/process/geometry owners.
+        if(!active_||!human_||!pool_)throw std::logic_error("Retained Human DD0 reset requires its actual active owner");
+        const auto model=human_->base().frame();frames_.unregister_human_model(model);registered_=false;
+        for(unsigned slot=0;slot!=8;++slot)frames_.human_model_animation(model,Frame{},slot,1.f,0);
+        reset_round_physics();
+        movement_.retire_motion_audio(frames_,pool_->pool());movement_.reset(frames_,services_.human_geometry_sweep()); //00772070.
+        //007506A0 is genuine RET. The C00 owner resets before the CD0 pose.
+        action_.reset();animation_.reset_round();motion_.initialize(random_);
+        face_.bind(*human_);face_.schedule(true); //00782870.
+        std::optional<typename Geometry::OfflineBinding> offline;
+        if((mode_flags()&7u)==7u){
+            const bool quality=services_.human_face_quality_enabled();
+            geometry_.configure_offline_faces(services_.human_face_resources(),quality,services_.human_face_camouflage());
+            if(quality){auto* storage=human_->base().storage();auto* holder=storage?storage->holder(0):nullptr;
+                if(!holder)throw std::logic_error("Retained Human face reset requires actual clothing holder0");
+                std::optional<float> clothing;if(const auto entry=holder->entry())clothing=frames_.entry_scalar(entry);
+                offline=typename Geometry::OfflineBinding{human_->properties.field19c==1,clothing};}
+        }
+        geometry_.reset_round(mode_flags(),offline);opacity_.bind_sector(frames_,animation_.sector());
+        physical_.exclude_query(false);
+        try{
+            const auto marker=physical_.bones().at(16); //Actual native810+16*12=8D0, name a.
+            if(!marker)throw std::logic_error("Retained Human light reset lost actual DD0 bone8D0");
+            const auto matrix=frames_.actor_world_matrix(marker);
+            opacity_.observe(frames_,services_,animation_.sector(),model,HumanVector{{matrix[12],matrix[13],matrix[14],matrix[15]}},true,
+                [&](auto frame,float value){human_opacity_changed(frame,value);});
+            opacity_.update(model,10000,0,*this);
+        }catch(...){try{physical_.restore_query(false);}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}throw;}
+        physical_.restore_query(false);field_dc8_=0;
+        registered_=frames_.register_replaced_human_model(model);
+    }
     void retire_clothing_bone(unsigned n){if(!bones_.at(n))throw std::logic_error("Clothing refresh lost retained Human bone");bones_[n].reset();}
     void retain_clothing_bone(unsigned n){bones_.at(n).emplace(frames_.retain_actor_frame(physical_.bones().at(n)));}
     void refresh_clothing_bindings(){ //0075D1C0/0075D080,0077D410,0079C320(2),007936E0 in native order.

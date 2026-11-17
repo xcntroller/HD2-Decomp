@@ -110,6 +110,7 @@ public:
         }
         process_.per_human.fill(0);
     }
+    void clear_surface_positions(){process_.clear_surface_positions();} //0078A7D0, retain live projection queues/textures.
 private:
     Frames& frames_;Process& process_;
 };

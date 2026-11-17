@@ -897,6 +897,26 @@ public:
         if(!human.loading_state)throw std::logic_error("Respawn controlled Human lost actual B0");human.loading_state->selection_suppressed(0);
     }
     void respawn_refresh_visibility(){dependencies().presentation.refresh_first_person_visibility();}
+    template<class Human>void round_human_projection_visibility(Human& human){
+        auto& d=dependencies();d.presentation_shared.projection_models().visibility(d.scene.frames(),&human,true,mode_flags());
+    }
+    template<class Human>void round_reconfigure_live_soldier(Human& human){ //006B7390 reverse live-squad Human3C lookup.
+        auto& d=dependencies();auto& squad=d.startup.pre_mission().squad();
+        for(auto n=squad.size();n;)if(squad[--n].human==human_frame_signed_word(human.properties.field170)){
+            PreparedHumanLoading<Dependencies> factory(d);
+            factory.configure_session_data(human,squad[n],human.properties.field19c,human.properties.field1a0,nullptr,0xffffffffu);return;}
+    }
+    template<class Human>void round_append_player_human(Human& human){(void)dependencies().players.control().add_human(&human);}
+    void round_refresh_human_view(){auto& view=dependencies().first_person.view();
+        const bool enabled=view.enabled()||view.secondary_enabled();view.enable(mode_flags(),enabled);view.bind_player(mode_flags());}
+    void reset_scene_actor_proximity(){dependencies().proximity.clear();} //006E07C0.
+    template<class Actor>SceneHumanFrameSummary human_frame_summary(Actor& actor){return summarize_frame_human(selection_human(actor),*this);}
+    template<class Human>void round_restore_human_clothing(Human& human){
+        auto* storage=human.base().storage();auto* holder=storage?storage->holder(0):nullptr;
+        if(!holder)throw std::logic_error("Retained Human reset lost actual clothing holder0");
+        if(const auto entry=holder->entry()){PreparedHumanLoading<Dependencies> factory(dependencies());
+            (void)factory.apply_clothing(human,dependencies().world_actors.items().runtime_item(entry).identity);}
+    }
     std::int32_t zone_style(){return dependencies().startup.game_configuration().style224;}
     bool zone_next_spawn_pose(std::int32_t identity,HumanVector& position,HumanVector& direction,bool cycle){
         auto* actor=dependencies().scene.frames().scene_actor_command_identity(identity);

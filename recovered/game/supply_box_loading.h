@@ -30,6 +30,17 @@ public:
             deplete_supply_box(actor_,frames_,clips_[2]?clips_[2]->get():Frame{},[&](const auto& request){services_.emit_supply_sound(request);});
         },[&]{refresh_ammo();});
     }
+    void reset_round(bool restart)override{ //005FC480; restart only reaches common00610710 (whose argument is unused).
+        (void)restart;if(!ready_||!actor_.geometry)throw std::logic_error("Supply round reset requires its actual live owner");
+        frames_.object_visible(helper(0),false);frames_.actor_link_preserving_world(helper(1),Frame{});
+        frames_.actor_link_preserving_world(actor_.base().frame(),Frame{});
+        if(descriptor_){collisions_.remove(*descriptor_);descriptor_.reset();}
+        actor_.base().reset_frame(services_);stop_animation();update_animation(1);actor_.flag90=false;
+        actor_.field138=6000;actor_.field130=actor_.properties.field12c;actor_.field244=0;actor_.field248=0xffffffffu;
+        actor_.field24c=5;actor_.field250=actor_.field254=0;actor_.flag224=false;actor_.properties.field210=0x1bfa;
+        actor_.geometry->refresh_actor_markers(frames_);initialize_vertex_and_collision();
+        set_flags(actor_.properties.field120|0x18u);actor_.flag90=true;
+    }
     void activate(bool authority)override { //005FAC80, genuine once guard BEFORE common activation.
         if(actor_.flag90){if(!ready_)throw std::logic_error("Retire partial SupplyBox activation before retry");return;}
         if(descriptor_)throw std::logic_error("Retire actual SupplyBox resources before retry");
@@ -73,6 +84,7 @@ private:
         const auto* definition=vertices_.definition("ammobox");
         const auto morph=frames_.actor_find(helper(1),"morph",0x10001);
         if(!morph||frames_.visual_type(morph)!=0x5f4a424f)throw std::runtime_error("SupplyBox parachute requires actual morph OBJ_ geometry");
+        if(vertex_){vertices_.unregister_borrowed(*vertex_);vertex_.reset();} //004746B0(false) BEFORE replacement allocation.
         vertex_=std::make_unique<Vertex>();
         if(definition) {
             frames_.prepare_supply_morph(morph);vertices_.bind(*vertex_,morph,definition);vertex_->finished=true;vertices_.reset_geometry(*vertex_);

@@ -60,20 +60,14 @@ public:
         clear();model_=model;human_=human;control_=human?control:nullptr;reset_loading();
         if(!model)return;
         try {
-            skeleton_.bind_graph(frames_,model);
-            bind_frames();
-            for(const auto& bone:skeleton_.bones()) {
-                if(!bone.frame)throw std::runtime_error("Required Human skeleton marker is absent");
-                frames_.human_unit_pose(bone.frame);
-            }
-            frames_.human_unit_pose(model);
-            if((mode&7)==7&&offline_quality_) {
-                face_model_=std::make_unique<HumanFaceModel<Frames>>(frames_,*offline_faces_);
-                face_model_->bind(model,offline->player,offline_camouflage_,offline->clothing,0);
-            }
-            reset_movement();
-            if(human)joints_.build();
+            initialize_reset_model(mode,offline);
         }catch(...) {clear();throw;}
+    }
+    void reset_round(std::uint32_t mode,std::optional<OfflineBinding> offline){ //0079D0D0→0079BD30(model,Human,false).
+        if(!model_||!human_||!control_)throw std::logic_error("Retained Human geometry reset requires its original model/Human/DD0 borrowers");
+        if((mode&7u)==7u&&(!offline_faces_||(offline_quality_&&!offline)))
+            throw std::logic_error("Retained Human geometry reset requires actual offline face bindings");
+        reset_loading(true);initialize_reset_model(mode,offline);
     }
     void rebind_clothing_model(std::uint32_t mode,std::optional<OfflineBinding> offline){ //0079C320(2), no movement/joint/effect reset.
         if(!model_)throw std::logic_error("Human geometry refresh requires bound model");
@@ -1366,6 +1360,19 @@ public:
         if(runtime.human_model_debug_enabled())runtime.present_human_model_debug(*this);
     }
 private:
+    void initialize_reset_model(std::uint32_t mode,const std::optional<OfflineBinding>& offline){
+        skeleton_.bind_graph(frames_,model_);bind_frames();
+        for(const auto& bone:skeleton_.bones()){
+            if(!bone.frame)throw std::runtime_error("Required Human skeleton marker is absent");
+            frames_.human_unit_pose(bone.frame);
+        }
+        frames_.human_unit_pose(model_);
+        if((mode&7u)==7u&&offline_quality_){
+            face_model_=std::make_unique<HumanFaceModel<Frames>>(frames_,*offline_faces_);
+            face_model_->bind(model_,offline->player,offline_camouflage_,offline->clothing,0);
+        }
+        reset_movement();if(human_)joints_.build();
+    }
     void capture_effect_camera(){ //007B0910's6830 publication in both retained-clip and joint branches.
         const auto camera=camera_fpv();
         if(!camera)throw std::runtime_error("Human geometry effect requires its actual FPV camera");
@@ -1692,16 +1699,18 @@ private:
         }
         frames_.human_geometry_weapon_link(weapon,parent);
     }
-    void reset_loading() { //0079BD30(false), state written before any model-dependent work.
+    void reset_loading(bool retained=false) { //0079BD30(false), state written before any model-dependent work.
         const auto random=random_();if(random>0x7fff)throw std::runtime_error("Human geometry requires shared CRT random");
         seed_=random+1;
         look_={};
         prone_pose_.reset();
+        if(retained)joints_.clear(); //Body/point trees before6840 and62B0 retirement.
         saved_body_angles_.fill(0); //0079C18B..0079C1A1 clears eleven words at691C.
         geometry_effect_.reset();
         rest_surface_emitted_=false; //0079BD30 clears native6740.
         attachment_pose_.clear();
         secondary_pose_=Frame{}; //0079BD30 clears6630, scratch6638/6694 is reset by007AE320.
+        if(retained)face_model_.reset(); //Retire face before0079C320 releases/rebinds camera references.
     }
     void bind_frames() {
         camera3rd_.reset();auto camera=frames_.actor_find(model_,"camera3RD",0xffff);

@@ -80,6 +80,10 @@ public:
         if(previous_){errors.attempt([&]{factory_.close_human_state(*previous_);});previous_.reset();}
         failed_=false;errors.rethrow();
     }
+    template<class Commands>void retire_round(Commands&& commands){ //0059C4D0/CA00/CEC0: close B0, commands, delete, publish null.
+        if(!current_||previous_||binding_||failed_)throw std::logic_error("Human round reset requires its actual settled B0");
+        factory_.close_human_state(*current_);commands();current_.reset();factory_.publish_human_state(human_,nullptr);
+    }
 private:
     Human& human_;Factory& factory_;std::unique_ptr<Base> current_,previous_;bool failed_=false,binding_=false;
 };

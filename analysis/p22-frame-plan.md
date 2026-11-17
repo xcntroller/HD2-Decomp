@@ -29,10 +29,9 @@ Older implementation/reassessment documents retain revision-qualified evidence.
 
 ## Remaining full closure and delivery
 
-- [ ] Finish retained Actor reset and required process/network consumers.
-  [Containing reset and17/18 module callbacks](p22-frame-retained-round-source.md)
-  are verified; module13 requires actual Human/Actor44. Pending spawn/respawn,
-  runtime snapshot, match/input/exit and retained-item source is already supplied.
+- [ ] Close remaining required process/network consumers. [Retained Human/Actor
+  reset and all18 module callbacks](p22-frame-actor-reset-source.md) are source-bound;
+  console/balance, authority admission/decoder and general close/pump remain.
 - [ ] Complete selected positive HUM/Actor/cutscene/UI command producers under
   their owning HUM/OWN paths, then install the actual application adapter.
   Current OWN desktop review is uncommitted; no source import enables it here.
