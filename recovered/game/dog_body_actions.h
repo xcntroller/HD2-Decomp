@@ -114,6 +114,15 @@ public:
     static bool action_blocks_transition(std::int32_t action){ //005C8880, signed comparison includes negative values.
         return !((action<13||action==18)&&action!=5&&action!=6);
     }
+    void cancel_bite(){ //005C5A90. At most one5/6 command is consumed, never a queue-wide filter.
+        if(current364==5||current364==6)flag36c=true;
+        if(orders_.current.exhausted()){
+            if(orders_.empty())return;
+            orders_.take_first();
+        }
+        const auto action=orders_.current.action();
+        if(action==5||action==6){orders_.current.consume();if(orders_.current.exhausted()&&!orders_.empty())orders_.take_first();}
+    }
     //005C4CB0. The clip receiver is005C7430 at Body+10; it is required,
     //never replaced by a successful model-only animation shortcut.
     template<class Tables,class Frames,class Receivers>void advance_animation(Tables& tables,Frames& frames,Receivers& receivers){

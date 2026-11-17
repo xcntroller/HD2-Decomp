@@ -4,6 +4,9 @@
 #include "game/dog_damage.h"
 #include "game/dog_route_geometry.h"
 #include "game/dog_controller_inputs.h"
+#include "game/dog_controller_follow.h"
+#include "game/dog_controller_targets.h"
+#include "game/dog_controller_actions.h"
 #include <cmath>
 #include <exception>
 #include <limits>
@@ -93,6 +96,59 @@ public:
     void advance_timers(std::uint32_t elapsed){ //005CDF90.
         for(auto* timer:{&state_.timerb0,&state_.timerbc,&state_.timer84})if(*timer>0)*timer=dog_signed_word(static_cast<std::uint32_t>(*timer)-elapsed);
         if(state_.timer84<0)state_.timer84=0;
+    }
+    void advance_follow(){
+        struct Queries {
+            DogAIController& owner;
+            auto follow_position(){return owner.follow_position().full();}
+            auto actor_position(){if(!owner.state_.actor10)throw std::runtime_error("Dog follow frame requires actual Actor10");return owner.state_.actor10->base().world_position();}
+            auto actor_direction(){if(!owner.state_.actor10)throw std::runtime_error("Dog follow frame requires actual Actor10 direction");return owner.state_.actor10->base().world_direction();}
+            auto follow_direction(){if(!owner.state_.follow18)throw std::runtime_error("Dog follow frame lost actual follow18 direction");return owner.state_.follow18->base().world_direction();}
+            auto follow_actor_position(){if(!owner.state_.follow18)throw std::runtime_error("Dog follow frame lost actual follow18 position");return owner.state_.follow18->base().world_position();}
+            void set_speed(float value){if(!owner.state_.actor10)throw std::runtime_error("Dog follow speed requires actual Actor10");owner.world_.dog_set_body_speed(*owner.state_.actor10,value);}
+            void clear_route(){owner.clear_route();}
+        } queries{*this};
+        advance_dog_controller_follow(state_,queries);
+    }
+    void select_target(bool force){
+        struct Queries {
+            DogAIController& owner;
+            auto& dog(){if(!owner.state_.actor10)throw std::runtime_error("Dog target scan requires actual Actor10");return owner.world_.dog_controller_actor(*owner.state_.actor10);}
+            auto health(Actor& actor){return owner.world_.dog_sighted_human_health(actor);}
+            bool attached(Actor& actor){return owner.world_.dog_target_attached(actor);}
+            Actor* source_actor(void* source){return static_cast<Actor*>(source);}
+            void target_event(){owner.world_.dog_target_selected_event(owner.state_);}
+        } queries{*this};
+        select_dog_controller_target(state_,force,queries);
+    }
+    void clear_target(){
+        struct Queries {DogAIController& owner;void target_finished(void* context){owner.world_.dog_script_route_finished(context);}} queries{*this};
+        clear_dog_controller_target(state_,queries);
+    }
+    void publish_actions(){
+        struct Queries {
+            DogAIController& owner;
+            auto& dog(){if(!owner.state_.actor10)throw std::runtime_error("Dog actions require actual Actor10");return owner.world_.dog_controller_actor(*owner.state_.actor10);}
+            void action(std::uint32_t value){owner.world_.dog_controller_action(dog(),value);}
+            void posture(std::uint32_t value){dog().body_actions.request_posture(value,0);}
+            auto next_stance(){return dog().body_orders.next_stance();}
+            void stance(std::uint32_t value){dog().body_actions.request_stance(value,0);}
+            void turn_body(){turn_dog_controller_body(dog(),owner.world_.dog_controller_process().turn_count4a8,owner.frames_);}
+        } queries{*this};
+        publish_dog_controller_actions(state_,queries);
+    }
+    void publish_body_direction(){
+        if(!state_.actor10)throw std::runtime_error("Dog direction publication requires actual Actor10");
+        auto& dog=world_.dog_controller_actor(*state_.actor10);request_dog_body_direction(dog.body,dog.body_orders,state_.direction40);
+    }
+    void retire_heard(){
+        struct Queries {
+            DogAIController& owner;
+            auto& dog(){if(!owner.state_.actor10)throw std::runtime_error("Dog heard retirement requires actual Actor10");return owner.world_.dog_controller_actor(*owner.state_.actor10);}
+            auto microseconds(){return owner.world_.dog_sound_microseconds();}
+            void release(DogHeardRecord* record){owner.world_.dog_controller_process().heard.release(record);}
+        } queries{*this};
+        retire_dog_controller_heard(queries);
     }
     DogControllerVector follow_position(){ //005CD690. NULL genuinely leaves the caller output untouched.
         if(!state_.follow18)throw std::runtime_error("Dog follow position requires actual nonNULL follow18");

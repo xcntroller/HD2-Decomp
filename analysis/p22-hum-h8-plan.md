@@ -158,3 +158,9 @@ SOUND005D6000 and authority/controller decisions remain required; full H8.4 open
 bind005D6000/005D7760 to actual World/controllers and process005CE560 pool.
 Native98 and actual World/O2 links pass; authority/controller decision pipeline
 and other selected full H8.4 dependencies remain required.
+
+[Dog follow/target/action decisions](human-h8-dog-controller-decisions-source.md)
+now supply complete component policies on SAME control/Body/perception/events:
+follow, target scan/clear, heard retirement, action/direction publication and bite
+cancellation. Native91 and actual World/O2 links pass. Containing pursuit/route/
+authority and other selected full H8.4 dependencies remain open.

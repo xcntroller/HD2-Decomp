@@ -10,25 +10,22 @@ work; no unconfirmed interactive import/commit or silent restaging.
 
 ## Latest source
 
-[Dog SOUND/nearby producer](analysis/human-h8-dog-sound-source.md) now binds
-005D6000/005D7760 through actual listenerEC, same World/564 heard list/process
-005CE560 pool and selected4/5 callbacks. Native98 strict ASan/UBSan/leaks,
-actual World/i386 fixture and forced O2 launcher/probe PASS;3 frozen partials.
-Temporary audits fingerprinted/removed in the
-[receipt](analysis/checkpoints/p22-h8-dog-sound-20261117.json). No new defaults or
-clock-unit correction: original new=timeGetTime, repeat=performance microseconds.
-SOUND callback failure remains latched/rethrown by actual module frame.
+[Dog controller decisions](analysis/human-h8-dog-controller-decisions-source.md)
+now binds full005CD890 follow/005CC5F0 direction,005CC8D0/005CC7A0 target scan
+with actual Human follow-event queue,005CD120 clear,005CDFF0 heard retirement,
+005CEC60 actions,005C1E60/005C6C70 Body direction and005C5A90 bite cancellation.
+Native91 strict ASan/UBSan/leaks, full actual World/i386 link, forced O2 launcher/
+probe and full tracker/27 tests PASS;10 frozen partials only. Temporary audits
+fingerprinted/removed in the
+[receipt](analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json).
+These are COMPONENTS; containing005CE190/005D5620 stays required. H8.4 OPEN.
 
-a6a7805 supplied actual Scene2→World activation/retirement/Sight(native89),
-head/history/control4/5/registrations/clip/Body bind and model/resource retirement.
-Non7 controller7 remains required if selected. H8.4 stays OPEN.
-
-9126eec supplied005C18C0/005D5810 Body/outer presentation(native70);b4db3b3
-supplied head presentation/resource005D7A10(native42). Both source-only.
-
-Prior20019a7 completed005D8070/005D82B0 request/timer(native132);5758e5f supplied
-controller6C005CE110/metric005CE740(native898+1664) and authorized fixes.
-Prior checkpoints are source-only; full Dog authority/frame and desktop remain open.
+72cf0d7 supplied SOUND/nearby005D6000/005D7760/process005CE560(native98);
+a6a7805 actual Scene2→World activation/retirement/Sight(native89), head/history/
+control4/5/registrations/clip/Body bind.9126eec supplied Body/outer presentation
+005C18C0/005D5810(native70);b4db3b3 head presentation005D7A10(native42).
+Earlier20019a7 request/timer,5758e5f actual6C/metric and authorized fixes.
+All source-only; no game or Windows fixture execution/desktop claim.
 
 USER AUTHORIZATION:2026-11-17 “Authorize both fixes” means zero Body278/27C/280
 priorities immediately before bootstrap requests, and use actual selected
@@ -39,22 +36,33 @@ Prior confirmed omission evidence remains valid; no repeat producer search.
 
 ## Continue full H8.4
 
-Actual selected4/5 activation/presentation/Sight/SOUND components are source-bound.
-Continue containing authority005D5620/controller005CE190,
-including selected4/5 decision pipeline. Reuse retained C/raw; index before exports.
-Pipeline C retained under WORK/h8-4-dog-control-originals/005ce190.c and
-WORK/h8-4-dog-live-originals/{005cdff0,005cd1f0,005cd890,005cbf00,005cec60}.c;
-kind5 containing005CFA20 is under human-h8-dog-live-controller. Index batch
-already recorded in WORK/human-h8-dog-sound/authority-{next,pipeline}-index.txt.
-Native005CDFF0 has unusual now+2500000<record.clock predicate and swap/pop
-followed by index increment; inspect raw and preserve it, no correction assumed.
-New heard records are typed position0/kind10/source14/clock18/strength1C;
-old raw words array no longer exists.005CEC60 movement W is unproduced padding.
-No new guessed defaults are authorized. Controller1 manual poll and non7 kind7
-remain required if selected. Use SAME Body/clip/transform/event/head/perception/heard
-owners. [H8 plan](analysis/p22-hum-h8-plan.md). Prior controller6C/metric are
-source, NOT a completed decision frame. Native invalid/unproduced state remains
-explicit; actual application/containing verification is not desktop acceptance.
+Continue containing authority005D5620/controller005CE190. Remaining stages are
+pursuit005CD1F0 (retarget005CD0A0, target-route005CCCC0), route movement005CBF00
+with actual validation005CA5A0, route completion005CC420/follow-route005CCEC0,
+then selected kind5 wrapper005CFA20. Research their full dependency boundary;
+use SAME control/body/perception/AI event/process pools, not successful leaves.
+
+Reuse C: WORK/h8-4-dog-live-originals/{005cd1f0,005cbf00}.c, containing005ce190
+under h8-4-dog-control-originals, kind5 containing005cfa20 under
+human-h8-dog-live-controller. Newly recovered005cc7a0/005cccc0/005ccec0 C/metadata
+are in human-h8-dog-controller-targets;7A0 is source, CCC0/CEC0 are research-only.
+Other reached helpers in human-h8-dog-controller-body-dependencies. Index
+receipts in human-h8-dog-controller-decisions and earlier human-h8-dog-sound;
+index before NEW exports. No compiler/Ghidra process remains live at handoff.
+
+Raw confirms virtual34/005CB2C0 returns CURRENT follow18; positive Human B4
+queue producer is source. Native target scores intentionally compute
+(1000000-distance)+distance (first equal-score candidate stays); never fix this
+silently.005CDFF0 now+2500000<record.clock and increment-after-swap skip are
+source, with original mixed clocks retained. New heard records use typed
+position0/kind10/source14/clock18/strength1C.005CEC60 movement W and005CC5F0
+direction W are unproduced padding, unclaimed; no fresh producer search needed.
+Process turn_count4a8 initial0 is proven ZERO-FILLED .data tail, not a raw file
+read past raw_size. Preserve native counter and previously authorized fixes.
+
+Prior actual4/5 activation/presentation/Sight/SOUND are source-bound. Controller1
+manual and non7 controller7 remain required if selected; no guessed defaults.
+[H8 plan](analysis/p22-hum-h8-plan.md). Continue full H8.4 after checkpoints.
 
 The full boundary also retains reached nonHuman EC/B0/19C, type34/36,
 Aircraft20, Actor58 types14/5, full Human/Player/Car containing composition and

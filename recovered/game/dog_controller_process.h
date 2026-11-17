@@ -50,6 +50,7 @@ private:
 class DogControllerProcess {
 public:
     std::array<float,64> first710{},second610{};
+    std::int32_t turn_count4a8=0; //Actual008AC4A8 zero-filled .data tail; persists across World/Dog table resets.
     DogControllerPool<DogRoutePoint> route;
     DogControllerPool<DogHeardRecord> heard;
     DogHeardRecord& acquire_heard(std::uint32_t kind,const std::array<float,4>& position,void* source,std::uint32_t clock){ //005CE560.

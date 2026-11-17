@@ -1,0 +1,185 @@
+{
+  "date": "2026-11-17",
+  "base": "72cf0d7",
+  "source_only": true,
+  "desktop_verified": false,
+  "verification": {
+    "native": "PASS91 strict ASan/UBSan/leaks actual decision policies/Body orders/actions/process pools/AI event producer; actor/frame/query/Script endpoints doubled",
+    "actual_i386": "PASS strict actual full World selected control/Body/event/pool methods and cancellation compile/link only",
+    "launcher_probe": "PASS forced strict O2 application-launch/startup-probe compile/link only",
+    "tracker": "PASS full checker, render and27 existing tests"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-dog-decisions-module.cpp",
+      "bytes": 553,
+      "sha256": "5e6f65ef37c3f9f951c0d9c22d6e775eb8479053f697011af1f16cdd1b4ab0b6"
+    },
+    {
+      "path": "/tmp/h8-dog-decisions-native.cpp",
+      "bytes": 14948,
+      "sha256": "23d8c62692ae9daafa28c7d30b926a9dd1ae9bb9e2ed38e8918709e442a2c317"
+    },
+    {
+      "path": "/tmp/h8-dog-decisions-native.o",
+      "bytes": 3446544,
+      "sha256": "633172f1286f0526da8224734ed9b13336239902db33d5286cb16661fdd91a5c"
+    },
+    {
+      "path": "/tmp/h8-dog-decisions-native",
+      "bytes": 1794056,
+      "sha256": "e012be235c384852455a0597feeec83af99f12b977a8801683cecf781d22fedd"
+    },
+    {
+      "path": "/tmp/h8-dog-decisions-module.exe",
+      "bytes": 857088,
+      "sha256": "dd13b68a1c86af9856c39539c41c6fd38f0ef3c5b1b06e30e698e5c8696f4c1b"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "new_frozen_partial": [
+    "005cd890",
+    "005cc5f0",
+    "005cc7a0",
+    "005cc8d0",
+    "005cd120",
+    "005cdff0",
+    "005cec60",
+    "005c1e60",
+    "005c6c70",
+    "005c5a90"
+  ],
+  "absent_or_delegated_credit": [],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_controller_follow.h",
+      "bytes": 4161,
+      "sha256": "8d0e2c9ccb907e68a8ddf2aabb4d78a77cad3ed759e1f015f32e1e51eb479c81"
+    },
+    {
+      "path": "recovered/game/dog_controller_targets.h",
+      "bytes": 5598,
+      "sha256": "defb44257baa2a0ff9a8ab2f2a0bdd1921c1f205670925974f3b3c169c9961b2"
+    },
+    {
+      "path": "recovered/game/dog_controller_actions.h",
+      "bytes": 2471,
+      "sha256": "160c746c19a5f375ec927075695ec8a39081dfe3581c3f166430bb727e9e88d3"
+    },
+    {
+      "path": "recovered/game/dog_ai_controller.h",
+      "bytes": 17141,
+      "sha256": "7993715be6ab350c75009f71f04cf7f65892600db40de297b226e3ea0e79c0fc"
+    },
+    {
+      "path": "recovered/game/dog_body_actions.h",
+      "bytes": 13101,
+      "sha256": "c639de7dca2dbd176746e43d06fe7438ebf3f7a0e24765ce606b652daab1fd9f"
+    },
+    {
+      "path": "recovered/game/dog_controller_process.h",
+      "bytes": 3726,
+      "sha256": "5f5d319b98fff24d1879a136d1d4735af69d4cacfb79d5162cc53a2fdd7f9751"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 327422,
+      "sha256": "350a0efe9b0df99414d11c211be9111196a39e451a32c14ed5d90aa1aa57c577"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005c1e60.asm",
+      "bytes": 1847,
+      "sha256": "e0e6ac6f97ccc55e49ed71a3e650911dad37c522012b0009d1dbd4908b62b467"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005c5a90.asm",
+      "bytes": 6186,
+      "sha256": "05cc16a217d10c6bf7ac99afdef7df1aaf6fe1b40780a39bc0c2bb6187a32bff"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005c6c70.asm",
+      "bytes": 2964,
+      "sha256": "21362512c2dfcf3e03fab5e6d2f8444ec36fd8dce65ccecbda9e7a53a661d0ec"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cc5f0.asm",
+      "bytes": 7740,
+      "sha256": "2d9575f397713f578bfdf1137f05ce12c5834ffb120020a8a418d1b77b8d2078"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cc7a0.asm",
+      "bytes": 5045,
+      "sha256": "762aa9d588a4920b3b76eda29ddc2865ffef8336376e026466619ee21849aada"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cc8d0.asm",
+      "bytes": 16123,
+      "sha256": "1123979b6d6f299552f28c7cc31d5aa27b84cdbb4b6125a1ef5f6f0484405ea1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cd120.asm",
+      "bytes": 3454,
+      "sha256": "a4b8cccc5bb390d78177edc7ec1a6d226b610cd5a2ac9c098ff5661c8030aed6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cd890.asm",
+      "bytes": 21951,
+      "sha256": "088a06840a6da594dca9b3cd41c4eb9f24fb30e86c69d5e5e1e046cfe41f35e3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cdff0.asm",
+      "bytes": 4813,
+      "sha256": "67eb4ed6bbac5fc0b34841f71e745b14b26cebd972a6b72938bb63e36c94cff8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cec60.asm",
+      "bytes": 7080,
+      "sha256": "b6730114f767f8925c4248d8fbac4f371735f58b6f06d8790b125c33a3681ff5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/follow-constants.json",
+      "bytes": 1347,
+      "sha256": "5b7e75f6384da70a97a05058e423452523c793926f15e29b1347c04487656146"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/target-and-counter-constants.json",
+      "bytes": 524,
+      "sha256": "abe12e8e98e490f2c6a67b1f380074f863125b2a9b8d86e61fd86e46879bc884"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/targets-export.log",
+      "bytes": 4702,
+      "sha256": "98926c3fb00ef3857787efe3f88f24588c3191fc0f458a4d4d5826b3c025975a"
+    }
+  ],
+  "limits": "Full H8.4 active/open: containing pursuit/route/authority decisions, selected nonHuman callbacks and other full containing dependencies. No complete/engine/absent/research-only export credit, scratch W values, application/desktop claim.",
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/native.log",
+      "bytes": 55,
+      "sha256": "1c955e7d5917e81b44158544b58fc6d0d349f535729071dec5d3ec44c3c18b0e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/module.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/launcher.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/progress-check.log",
+      "bytes": 437,
+      "sha256": "baa3debaeb4210bdfc1acf403c93dcf511df79abb088257ba209e2616081fb7c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/progress-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ]
+}

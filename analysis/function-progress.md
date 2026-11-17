@@ -294,3 +294,9 @@ H8 Dog SOUND/nearby producer (2026-11-17):005D6000/005D7760/005CE560 add
 three frozen client partials; combined34 complete/3746 partial (client3741,
 engine5), frozen18783. [Contract](human-h8-dog-sound-source.md). No absent
 controller or engine credit; no complete/readiness promotion. Full H8.4 open.
+
+H8 Dog controller decisions (2026-11-17):10 frozen client partials add follow,
+target selection/clear, heard retirement, Body action/direction publication and
+bite cancellation; combined34 complete/3756 partial (client3751,engine5), frozen
+18783. [Contract](human-h8-dog-controller-decisions-source.md). No researched-only
+exports, wrapper/delegated/engine or complete credit. Full H8.4 remains open.

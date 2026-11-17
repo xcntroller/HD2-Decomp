@@ -51694,6 +51694,186 @@
         "analysis/human-h8-dog-sound-source.md",
         "analysis/checkpoints/p22-h8-dog-sound-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005cd890",
+      "status": "partial",
+      "coverage": "Entire selected controller follow frame, actual follow-point/physical positions, native spacing/dot/speed/gait/distance and route/Script-aware near/far/stop direction policy.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cc5f0",
+      "status": "partial",
+      "coverage": "Actual current direction40 planar XYZ request with native float square/unit/tiny/root normalization, including zero fallback and explicit unproduced W.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cc7a0",
+      "status": "partial",
+      "coverage": "Actual candidate health/attachment/physical-distance and capped constant-score replacement policy, preserving first equal-score candidate.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cc8d0",
+      "status": "partial",
+      "coverage": "Actual damage override, force/current-target scoring, live spotted/heard candidate scans and positive Human-follow actual process AI event/first queue composition for selected4/5.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cd120",
+      "status": "partial",
+      "coverage": "Actual target/follow-vector reset, flags/pointers clear, kind5 Script completion and post-callback request flag retirement.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cdff0",
+      "status": "partial",
+      "coverage": "Actual heard record clock query, original unsigned future-time predicate, process return, swap/pop and forward index increment.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cec60",
+      "status": "partial",
+      "coverage": "Actual movement zero, native ordered input-buffer reads and same Body action/posture/stance priority requests with conditional shared-counter turn.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c1e60",
+      "status": "partial",
+      "coverage": "Actual XYZ change and LAST stance admission for Body direction180; produced fourth lane copy, native unproduced padding unclaimed.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c6c70",
+      "status": "partial",
+      "coverage": "Actual process zero-filled counter decrement/zero branch, engine Actor direction rotation and same Body request before final zero store.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c5a90",
+      "status": "partial",
+      "coverage": "Actual active bite interruption flag and current/queued order record handling, consuming at most one bite command with native optional next-copy order.",
+      "limitations": "Source-only typed/STL/RAII owners replace original object/vtable/allocator/container/SEH ABI. Native audit doubles actor/frame/query/Script endpoints; actual full World/i386/launcher compile/link only. Selected4/5 source; nonHuman follow B4 and original leaks/diagnostics/scratch W values unclaimed. Remaining containing pursuit/route/controller authority and full H8.4/application/desktop remain open.",
+      "evidence": [
+        "recovered/game/dog_controller_follow.h",
+        "recovered/game/dog_controller_targets.h",
+        "recovered/game/dog_controller_actions.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_body_actions.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-controller-decisions-source.md",
+        "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
+      ]
     }
   ]
 }

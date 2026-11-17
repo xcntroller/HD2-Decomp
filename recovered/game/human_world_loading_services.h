@@ -3353,6 +3353,30 @@ public:
         auto* dog=dynamic_cast<DogSceneActor<typename Dependencies::ActorFrames>*>(&actor);
         if(!dog)throw std::logic_error("Dog movement limit requires SAME actual Dog");return dog->body.movement_limit();
     }
+    template<class Actor>void dog_set_body_speed(Actor& actor,float value){
+        auto* dog=dynamic_cast<DogSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!dog)throw std::logic_error("Dog controller speed requires SAME actual Dog");dog->body_actions.set_speed(value);
+    }
+    template<class Actor>auto& dog_controller_actor(Actor& actor){
+        auto* dog=dynamic_cast<DogSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!dog)throw std::logic_error("Dog controller requires SAME actual Actor10 Dog");return *dog;
+    }
+    template<class Actor>bool dog_target_attached(Actor& actor){return selection_human(actor).field160!=nullptr;}
+    template<class Dog>void dog_controller_action(Dog& dog,std::uint32_t value){
+        struct Receivers {
+            Dog& dog;HumanWorldLoadingServices& world;
+            void dog_ground_death_setup(){prepare_dog_ground_death(dog.body_actions,dog.clip_forced_motion,dog,dog.body.ground404,dog.body.damage_bones[1],world.dependencies().scene.frames(),world.human_geometry_sweep());}
+            void dog_remove_body_collision(unsigned n){if(!dog.collisions)throw std::runtime_error("Dog controller death requires actual collisions");dog.collisions->remove(n,true);}
+        } receivers{dog,*this};
+        dog.body_actions.request_action(value,0,receivers);
+    }
+    template<class State>void dog_target_selected_event(State& state){ //005CC8D0 virtual34 getter, then actual Human005A8B30.
+        if(!state.follow18)return;
+        auto event=make_dog_target_event(state,dependencies().startup.human_ai_event_pool());
+        if(!state.follow18)throw std::runtime_error("Dog target event reaches native NULL virtual34 recipient");
+        auto& human=selection_human(*state.follow18); //NonHuman B4 remains an explicit selected-family requirement.
+        if(human.command){human.command->first.events.bind(dependencies().startup.human_ai_event_pool());human.command->first.events.push(std::move(event));}
+    }
     std::uint32_t dog_control_random(){return dependencies().startup.random_word();}
     template<class Dog>void replace_dog_control(Dog& dog,std::int32_t kind){
         using Frames=typename Dependencies::ActorFrames;using Controller=DogAIController<Frames,HumanWorldLoadingServices>;
