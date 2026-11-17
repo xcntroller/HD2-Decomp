@@ -107,6 +107,12 @@ public:
         if(context_)contexts_.finish_human_script_alarm(*context_);
         this->look_command(0,control);
     }
+    void alarm_types(std::uint32_t mask,bool enabled){ //005AF150 ->0058E650.
+        change_human_script_alarm_types(*this,mask,enabled,[this]{return contexts_.human_script_random();});
+    }
+    void request_run_mode(){ //005AF270 ->0058F2D0; preserve all other1B0 bits.
+        state_.set(0x1b0,(state_.template get<std::uint32_t>(0x1b0)&0xffff4fffu)|0x4000u);
+    }
     void set_alarm(bool enabled) { //0058E710; true is genuinely empty.
         if(enabled)return;
         this->words().set(0x50,this->words().template get<std::uint32_t>(0x50)&0x7fffffffu);

@@ -1,0 +1,197 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "d8c0f1d",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-script-alarm-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_script_alarm.h",
+      "bytes": 3781,
+      "sha256": "5d299629d4a14655de9f3910971dfbe7d074494a9664766d7611d8debefb86d7"
+    },
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "bytes": 16969,
+      "sha256": "e419101bdb22be91d848d72fda367e1328ff147b2b7344f8042863c47e48ca7a"
+    },
+    {
+      "path": "recovered/game/human_script_loading_controls.h",
+      "bytes": 12125,
+      "sha256": "c0b0d4bd25922a17e2d74fc4147d759e59604ed267c622f990b3e8ad3bf0e4b4"
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "bytes": 9139,
+      "sha256": "bff483053cea3729cb95a7844917f2fb2ac51fb17b47d2d215c0b08257fba2e1"
+    }
+  ],
+  "native_assertions": 1179692,
+  "native_sanitizers": "ASan/UBSan/leaks PASS",
+  "native_scope": "Actual base VM receiver, HumanScriptLoadingControls/script-kind gate and scalar mask policy with actual Context/perception/reference owners. Human/state/frame/random/virtual-notification leaves are explicit. Production Script-state/Run/World composition compile-only.",
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-native-run.log",
+      "bytes": 78,
+      "sha256": "2bb8ed69e63b45070dfce494c5d6f08ecac5bd8fb198afbff57e67dba93addfa"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script148-index.txt",
+      "bytes": 8294,
+      "sha256": "c5e2909db3b18779070196983b9bef8f7aad18b4e8c3519d84adbe00d5fa5b1b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script148-dispatch.json",
+      "bytes": 108,
+      "sha256": "485cbc7eab7e1fe582389354d58ad4a5721cf965f51f5bacd4914890aca59bad"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script148-dispatch.asm",
+      "bytes": 1845,
+      "sha256": "48347a2ca4f616f024b94c3636fa6cb6dfc6b9cbd54c9bd3738ebddd4e361774"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-index.txt",
+      "bytes": 1266,
+      "sha256": "caf7a987d02ea80a6578b8d2344d5cb81e3f1318619e9b4f7da379c54c6a78b7"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-receiver.asm",
+      "bytes": 566,
+      "sha256": "60e496d01daf9bb0f9f9a377c7a0b514bc0c7290b61cd4103b8f5d5c0e786446"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-mask-index.txt",
+      "bytes": 721,
+      "sha256": "c7aec296712f3948a4c58ae0cfe333b79c77137e7cfb94f7c3a497030f7cec81"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-mask.asm",
+      "bytes": 4048,
+      "sha256": "4c1abe0bf21e53792760706247fb3a7378852033a99c8ee0b90dca97ae701d05"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-run-index.txt",
+      "bytes": 7521,
+      "sha256": "9965ced27981e04a549f4c95c5201f43e19e4b6e9f505ccdc0ea702aa860f8ca"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-run-mask-index.txt",
+      "bytes": 720,
+      "sha256": "ee4710406992a69609cd740a0e45ec33fc3557905cf269fa43c4eb2a1c50708b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-run-receiver.asm",
+      "bytes": 2129,
+      "sha256": "cdfddec2b286d6658e7ab16492fc1e0ca449bfaf0021dea271e21c5a3bbe3cf3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-run-dispatch.json",
+      "bytes": 108,
+      "sha256": "735bec9b024ab6e85cbd6b3355b08d697e6476ab4ded6830c5ee0ac9b77468fb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-run-dispatch.asm",
+      "bytes": 738,
+      "sha256": "a611540e0e1248a22d02a914f6a3b9c289ea084d03cb9a65397c4d7b86c212b7"
+    }
+  ],
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script148-return/application_launch.exe",
+      "bytes": 12874240,
+      "sha256": "b64c5168117cb0fa86f09deec32baad394cf8da81fb44f0d4bc6dc7aca08dd68"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script148-return/host-output.log",
+      "bytes": 255709,
+      "sha256": "21b0cc216cafd3dc87c9efddbf0b577d0032cf60d9b103f2fffd1a6193e660f5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script148-return/host-runtime.log",
+      "bytes": 259645,
+      "sha256": "2a82a89487f45ed4727619049014379a1468c14ee30e58f648dbf9709d571ebe"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script148-return/inputs.json",
+      "bytes": 993,
+      "sha256": "78314fd8f5370454b7eebc25e84975e3a3b369a0e72cefa22c68267eaf6f0f1f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script148-return/steam-0.log",
+      "bytes": 344157,
+      "sha256": "41545463f829ab6ec3c4eccf6e23e3a44107674f759d869870d9cc5faeac6976"
+    }
+  ],
+  "review_recoverable_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-review-final.patch",
+    "bytes": 130049,
+    "sha256": "14cecb42160d9bafd8af3c3c673e68988e6dd2742d2d4ae45f02c1cc12518f45"
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-native.cpp",
+      "bytes": 6404,
+      "sha256": "4847a4c81b567f386768c8635eb3bdb753c03ff60ed0289275d38b4de10f876a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script-alarm-native",
+      "bytes": 1657976,
+      "sha256": "5398cceabd0386f85f71a43bc0daa32ba74bf7322b1c812a5e43cde1b0595200"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "gameplay_desktop_verified": false,
+  "full_frame_source_complete": false,
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "matrix_reconciliation": "partially_resolved",
+  "agent_executed_original_dll_proton_or_windows": false,
+  "actual_result": "b64c5168 passes fade dispatch and activation/Scene78/fixed/input/update; later required SetAlarmType148 exits result1. Revised alarm/Run candidate awaits user run.",
+  "full_actual_i386_O2_Werror_build": "PASS application-launch startup-probe",
+  "built_artifacts": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+      "bytes": 12888064,
+      "sha256": "1361c82fcad8b8f34b7fe67588c8531e33c9cab2be0c6f142ee9e380e437a243"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "2b17bca68ab04cc98c2da2f31fe865f653a6c825a4d25c7672ff634eb666fba9"
+    }
+  ],
+  "limitations": [
+    "Native source checks do not establish original object/container/allocator/SEH ABI or production renderer/engine execution. Existing sight/interrupt/frame consumers reused unchanged; actual composition is compile/link verified.",
+    "Broader script/cutscene commands and stable scene/control/presentation remain unaccepted; FRAME/HUM/OWN remain partial. Interactive review overlay stays uncommitted."
+  ],
+  "staged_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+    "bytes": 12888064,
+    "sha256": "1361c82fcad8b8f34b7fe67588c8531e33c9cab2be0c6f142ee9e380e437a243"
+  },
+  "stage_only": "PASS"
+}

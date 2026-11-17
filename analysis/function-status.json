@@ -22850,7 +22850,7 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Base opcodes2..C now bind actual Players subgroup create/delete/add/remove/modes/percent scale before derived Human/Dog PC policy. Adds original opcode32 HUMAN_Kill: actual frame-slot EC actor0 dispatch to Human D4(4,-1,zero,zero,NULL,0) or Animation start(false), native false and guarded advancement retained. OWN/RENDER opcodeAD procedural and BB thunderstorm dispatch is also preserved alongside the disjoint formation2..C domain, with original conditional return/advancement ordering. Original opcode9A DOOR_Lock now resolves actual pool90/EC Door before integerA0, uses its own230 key and SAME broadcast stream, ignores lock result and applies guarded PC advancement; native missing/wrong actor skips mutation/integer access but reaches shared guarded-advance tail. Original A0/A1 CSC_FadeIn/Out signed duration now configures SAME GEffects fade owner with targetfalse/true, null colour and guarded PC advancement; update/render owners reused unchanged.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime. Base opcodes2..C now bind actual Players subgroup create/delete/add/remove/modes/percent scale before derived Human/Dog PC policy. Adds original opcode32 HUMAN_Kill: actual frame-slot EC actor0 dispatch to Human D4(4,-1,zero,zero,NULL,0) or Animation start(false), native false and guarded advancement retained. OWN/RENDER opcodeAD procedural and BB thunderstorm dispatch is also preserved alongside the disjoint formation2..C domain, with original conditional return/advancement ordering. Original opcode9A DOOR_Lock now resolves actual pool90/EC Door before integerA0, uses its own230 key and SAME broadcast stream, ignores lock result and applies guarded PC advancement; native missing/wrong actor skips mutation/integer access but reaches shared guarded-advance tail. Original A0/A1 CSC_FadeIn/Out signed duration now configures SAME GEffects fade owner with targetfalse/true, null colour and guarded PC advancement; update/render owners reused unchanged. Original94 SetAlarmType now resolves SAME context100/EC Human before BOOL/mask integers, current B0kind5 and native mask/replay receiver, then guarded advance; missing/wrong actors skip operands and advance.",
       "limitations": "Source-only typed/STL/RAII owners replace native object/container/allocator/SEH ABI. Engine/Human/B0/seat endpoints are explicit native-audit doubles; actual World/VM signatures fully linked without execution. Car pose needs completed H3 query exposure, Aircraft/type20 owner remains absent, H3/H5 imports and whole H4/Human/World/application/desktop remain open. Finite/native-defined inputs supported; uninitialized scratch and invalid inputs use explicit guards.",
       "evidence": [
         "analysis/mission-script-loading.md",
@@ -22880,7 +22880,9 @@
         "analysis/p22-frame-script-door-source.md",
         "analysis/checkpoints/p22-frame-script-door-20261117.json",
         "analysis/p22-frame-script-fade-source.md",
-        "analysis/checkpoints/p22-frame-script-fade-20261117.json"
+        "analysis/checkpoints/p22-frame-script-fade-20261117.json",
+        "analysis/p22-frame-script-alarm-source.md",
+        "analysis/checkpoints/p22-frame-script-alarm-20261117.json"
       ]
     },
     {
@@ -25706,7 +25708,7 @@
       "program": "client",
       "entry": "00421c00",
       "status": "partial",
-      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion. Actual op3E TurnAt frame-slot forwarding through SAME Script5 controls, original normal instruction advance. Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer. Actual vehicle op26 named SECOND point and op2B live-roster/reachable selection, numeric signed speed0.28 and PC park/advance policy.",
+      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension. H4 actual op21/30 retained frame/EC target selection, integer duration/ill-fire/current-PC producers; PC stays parked until same-context timed completion. Actual op3E TurnAt frame-slot forwarding through SAME Script5 controls, original normal instruction advance. Dispatch Human loading commands1D/2F/44/C7/CF/F8 with actual actor/context/B0;44 numerically converts signed A0 integer radius to FLOAT and reaches actual005AF700/005AE610 producer. Actual vehicle op26 named SECOND point and op2B live-roster/reachable selection, numeric signed speed0.28 and PC park/advance policy. Actual reached-prefix C4 Run now dispatches SAME Human B0kind5 to0058F2D0 exact1B0 bit request, then guarded advance; later frame consumes the request.",
       "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
       "evidence": [
         "recovered/game/human_script_loading_controls.h",
@@ -25718,7 +25720,9 @@
         "analysis/human-guard-area-source.md",
         "analysis/checkpoints/p2.2-human-guard-area-source-20261112.json",
         "analysis/human-h4-source-closure.md",
-        "analysis/checkpoints/p22-hum-h4-source-20261112.json"
+        "analysis/checkpoints/p22-hum-h4-source-20261112.json",
+        "analysis/p22-frame-script-alarm-source.md",
+        "analysis/checkpoints/p22-frame-script-alarm-20261117.json"
       ]
     },
     {

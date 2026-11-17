@@ -249,7 +249,7 @@ remains separate; earlier checkpoint evidence is revision-qualified.
 actual Player decoration bend/fade/bounce requests and lifetime ordering are
 source-bound and sanitizer-verified. User run completes activation, Scene78,
 fixed-update, input and full update; revised Door dispatch passes in the user run.
-The next failure is CSC_FadeIn160. [Original fade dispatch and shared-tail correction](analysis/p22-frame-script-fade-source.md)
+Fade dispatch now passes; the next failure is SetAlarmType148. [Actual alarm mask/replay and immediate Run dependency](analysis/p22-frame-script-alarm-source.md)
 are sanitizer-verified and rebuilt/staged; revised desktop continuation is pending.
 Stable scene/control/presentation and full FRAME/HUM/OWN remain unaccepted.
 

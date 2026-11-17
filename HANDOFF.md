@@ -6,26 +6,30 @@ then FRAME/OWN. No subagents/push/original/DLL/Proton/Windows execution/permanen
 tests. Heavy compilation and Ghidra sequential. Preserve OWN dirty files/artifact.
 Continue the first concrete loading/frame failure, not broad admin/network work.
 
-LATEST USER: "Crashed" on b4708c75d80a6a1399cf8ebe6ddc9735510251b5503fae9e811287276abb91de.
-Actual Door dispatch passes; activation loaded1/status5, Scene78 render,
-fixed-update, input AND full update complete. Later command160 CSC_FadeIn exits
-handled result1, no access violation. Exact exe/logs WORK/first-frame-script160-return.
-No stable scene/control/presentation acceptance.
+LATEST USER: "Crashed. Another missing script." on b64c5168117cb0fa86f09deec32baad394cf8da81fb44f0d4bc6dc7aca08dd68.
+Fade dispatch passes; activation loaded1/status5, Scene78 render, fixed-update,
+input AND full update complete. Later148 SetAlarmType exits result1, no access
+violation. Exact executable/logs WORK/first-frame-script148-return. Stable scene/
+control/presentation remain unaccepted.
 
-CURRENT correction: base00416E10 A0/A1 CSC_FadeIn/Out dispatch to SAME actual
-EffectsFade signed duration, false/true target, null colour, guarded PC. Existing
-update/render owners unchanged. Raw shared tail also disproves old Door missing/
-wrong-target basefalse claim:004179A2/B0/BA/C4 ->0041C8C6 advance/returntrue. Fixed
-skip without reading integer; actual type6 key/linked/packet receiver unchanged.
-Native54 actual Context/fade/render/Door/packet/ref ASan/UBSan/leaks PASS.
-[Contract](analysis/p22-frame-script-fade-source.md),
-[receipt](analysis/checkpoints/p22-frame-script-fade-20261117.json).
-Actual i386 O2/Werror application/probe build and stage-only PASS.
-Revised staged SHA256 b64c5168117cb0fa86f09deec32baad394cf8da81fb44f0d4bc6dc7aca08dd68.
-NEXT: actual user desktop continuation; inspect first concrete failure.
-Do not claim stable game. Captured Tutorial scripts call CSC_RunCutscene after
-delay; positive00423C70/00423EB0 remains required, index lookup retained. No
-invented cutscene/no-op/permission bypass. No agent Windows execution.
+CURRENT: base00416E10 94 resolves SAME context100/EC Human, BOOL operand1 then
+mask0,005AF150 B0kind5 gate ->0058E650 suppression1B8. Enabling clears bits;
+disabling sets. Optional actual hostile replay after mask store uses one SAME
+CRT rand and existing B0+98 sight_enemy_acquired. No fake event/state/service.
+Captured T_EE_Target1..4 then immediately request Run; also supplied original
+00421C00 C4 ->005AF270(kind5) ->0058F2D0 exact1B0 &FFFF4FFF |4000. Existing
+Zombie/Suspend/frame consumers unchanged. Native1179692 focused actual policy/
+Controls/context/perception/ref assertions ASan/UBSan/leaks PASS; full production
+Script-state/Run/World wiring compile separately.
+[Contract](analysis/p22-frame-script-alarm-source.md),
+[receipt](analysis/checkpoints/p22-frame-script-alarm-20261117.json).
+Full actual i386 O2/Werror application/probe and stage-only PASS.
+Revised candidate SHA256 1361c82fcad8b8f34b7fe67588c8531e33c9cab2be0c6f142ee9e380e437a243.
+NEXT: user desktop continuation; inspect new first concrete failure.
+Native audit fingerprinted/removed; OWN preserved.
+No agent Windows execution. Broader commands/cutscene remain required; no bypass.
+Previous d8c0f1d corrected raw Door null/wrong-target shared advance/true tail
+0041C8C6 and bound A0/A1 fades to SAME process owner. Receipts are revision-qualified.
 
 Positive Player decoration0047F4E0->0047FAE0->reverse0047F150/0047F200 is now
 source-bound: actual posture/repeated FPV/velocity, model/world/local-axis/alpha
@@ -77,7 +81,7 @@ REVIEW: `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
 edebd81 + preserved OWN interactive overlay/later FRAME source. Mixed staged and
 unstaged is expected, not a merge conflict. Interactive app adapter remains
 UNCOMMITTED pending actual user desktop acceptance per AGENTS. Source-only main
-fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-script-fade-review-final.patch includes
+fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-script-alarm-review-final.patch includes
 all untracked collision/decorations/input/water headers; fingerprinted in receipt. No accepted game yet.
 
 Desktop command, USER ONLY:

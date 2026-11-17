@@ -69,6 +69,7 @@ public:
         if(!script_authority())return;
         //00421C00/00421970 call base00416E10 BEFORE their derived switch.
         if(accept_base(module().execute(context,instruction),context))return;
+        if(accept_base(execute_human_script_alarm_command<Frames,Human>(frames_,context,instruction,dependencies_.controls,*this),context))return;
         if(accept_base(execute_mission_render_command(context,instruction,dependencies_.effects,*this),context))return;
         if(accept_base(execute_formation_script_command<Frames,Human>(frames_,dependencies_.players,context,instruction,*this),context))return;
         if(accept_base(dependencies_.views.execute(context,instruction,*this),context))return;

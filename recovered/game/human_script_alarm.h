@@ -3,6 +3,22 @@
 #include "game/human_ai_frame_metrics.h"
 #include "game/human_packet_commands.h"
 namespace hd2::game {
+//0058E650.1B8 suppresses alarm categories: enabling clears bits, disabling
+//sets them. Commit the new mask BEFORE the optional actual B0+98 replay.
+template<class State,class Random>void change_human_script_alarm_types(
+        State& state,std::uint32_t mask,bool enabled,Random&& random){
+    const auto old=state.state().template get<std::uint32_t>(0x1b8);
+    const bool replay=!(state.words().template get<std::uint32_t>(0x50)&0x80000000u)&&
+        enabled&&(old&mask&0x20u);
+    state.state().set(0x1b8,enabled?old&~mask:old|mask);
+    if(!replay)return;
+    auto* human=state.human();if(!human)throw std::logic_error("Alarm type replay requires its actual Human");
+    const auto& enemies=human->perception.lists()[0];
+    if(enemies.empty())return;
+    auto* target=dynamic_cast<std::remove_pointer_t<decltype(human)>*>(enemies.at(random()%enemies.size()));
+    if(!target)throw std::runtime_error("Alarm type replay requires its actual perceived Human");
+    state.sight_enemy_acquired(*target);
+}
 //00591550. CRT rand is independent of engine RandFloat. No random draw occurs
 //for state20/other states; failed item/target/range admission takes one retry draw.
 template<class State,class Words,class Human,class World>void choose_human_script_alarm(

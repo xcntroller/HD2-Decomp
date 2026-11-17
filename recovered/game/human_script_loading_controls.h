@@ -18,6 +18,8 @@ public:
     HumanScriptLoadingControls(Frames& frames,Scene& scene,Sight& sight,Sound& sound,Players& players,FPV& fpv,Lookup& lookup)
         :frames_(frames),scene_(scene),sight_(sight),sound_(sound),players_(players),fpv_(fpv),lookup_(lookup){}
     std::uint32_t mode_flags(){return scene_.mode_flags();}
+    void set_alarm_types(Human& human,std::uint32_t mask,bool enabled){if(auto* state=script(human))state->alarm_types(mask,enabled);} //005AF150.
+    void run_mode(Human& human){if(auto* state=script(human))state->request_run_mode();} //005AF270.
     void set_alarm(Human& human,bool enabled){if(auto* state=script(human))state->set_alarm(enabled);}
     void guard_mode(Human& human){if(auto* state=script(human))state->request_guard_mode();}
     void zombie_mode(Human& human){if(auto* state=script(human))state->ai_mode(0x400);}
@@ -112,11 +114,31 @@ private:
     Frames& frames_;Scene& scene_;Sight& sight_;Sound& sound_;Players& players_;FPV& fpv_;Lookup& lookup_;
 };
 
+//Base00416E10 opcode94, BEFORE Human/Dog derived dispatch. Resolve context100
+//frameEC actor0/type3 before either integer. Native skips missing/wrong actors
+//to shared0041C8C6 advance/true. No context family restriction exists here.
+template<class Frames,class Human,class Controls,class Runtime>std::optional<bool> execute_human_script_alarm_command(
+        Frames& frames,MissionScriptContext<Frames>& context,const MissionScriptInstruction& instruction,Controls& controls,Runtime& runtime){
+    if(instruction.opcode!=0x94u)return std::nullopt;
+    if(!runtime.script_authority())return false;
+    const auto frame=context.frame();
+    const auto* data=frame?frames.find_actor_frame_data(frame):nullptr;
+    auto* actor=data?reinterpret_cast<SceneActor<Frames>*>(data->words[0]):nullptr;
+    if(actor&&actor->base().type()==3){
+        auto* human=dynamic_cast<Human*>(actor);
+        if(!human)throw std::logic_error("SetAlarmType requires its actual Human actor");
+        const bool enabled=context.program().integers.at(instruction.operands.at(1)).value!=0;
+        const auto mask=context.program().integers.at(instruction.operands.at(0)).value;
+        controls.set_alarm_types(*human,mask,enabled);
+    }
+    context.advance(runtime);return true;
+}
+
 //00421C00's initial loading commands. The containing runtime must try the
 //actual base00416E10 receiver first, then this derived Human receiver.
 template<class Frames,class Human,class Controls,class Runtime>std::optional<bool> execute_human_loading_script_command(
         MissionScriptContext<Frames>& context,const MissionScriptInstruction& instruction,Controls& controls,Runtime& runtime){
-    switch(instruction.opcode){case 0x1d:case 0x21:case 0x26:case 0x2b:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:case 0x44:break;default:return std::nullopt;}
+    switch(instruction.opcode){case 0xc4:case 0x1d:case 0x21:case 0x26:case 0x2b:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:case 0x44:break;default:return std::nullopt;}
     if(context.family()!=1)return std::nullopt;
     if(!runtime.script_authority())return false;
     auto* derived=dynamic_cast<ActorMissionScriptContext<Frames,1>*>(&context);
@@ -145,6 +167,7 @@ template<class Frames,class Human,class Controls,class Runtime>std::optional<boo
         controls.sniper_area(*human,enabled,static_cast<float>(radius));break;
     }
     case 0x1d:controls.set_alarm(*human,context.program().integers.at(instruction.operands.at(0)).value!=0);break;
+    case 0xc4:controls.run_mode(*human);break;
     case 0xc7:controls.guard_mode(*human);break;
     case 0xcf:controls.zombie_mode(*human);break;
     case 0xf8:controls.events(*human,context.program().integers.at(instruction.operands.at(0)).value!=0);break;

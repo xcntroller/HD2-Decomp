@@ -50,3 +50,8 @@ No new inventory entries/promotions;00416E10 and FRAME/HUM/OWN remain partial.
 Next is actual revised desktop continuation and its first concrete failure.
 Existing captured Tutorial scripts call CSC_RunCutscene after delay; that owner
 remains required (index lookup retained), not silently bypassed or claimed ready.
+
+Actual revised b64c5168 user run passes fade dispatch and the same completed
+frame prefix, then handles missing SetAlarmType148. Exact executable/logs are
+WORK/first-frame-script148-return. This validates the reached continuation, not
+stable game entry or all fade visual transitions.
