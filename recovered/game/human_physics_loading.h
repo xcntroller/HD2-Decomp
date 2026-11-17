@@ -354,6 +354,13 @@ public:
         for(unsigned index=0;index!=2;++index)for(unsigned axis=0;axis!=3;++axis)
             shots_[index][axis]=shot_relative_[index][axis]+position[axis];
     }
+    void publish_dog_target_geometry(bool enlarged){ //00770530, current Human6E0 spheres and SAME720 descriptors.
+        for(int index=0;index<primary_count();++index){
+            auto& descriptor=required(primary_,index);descriptor.position=posture_.at(static_cast<std::size_t>(index));
+            descriptor.radius=static_cast<float>(static_cast<long double>(descriptor.position[3])*(enlarged?1.25f:state_.template get<float>(0x1c8)));
+            collisions_.move(descriptor);
+        }
+    }
     void publish_ground_geometry(std::uint32_t posture){ //00763EC0 descriptor tail, actual SAME buckets.
         rebind_posture(posture);
         for(int index=0;index<primary_count();++index){

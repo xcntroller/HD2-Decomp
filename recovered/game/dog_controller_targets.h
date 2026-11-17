@@ -17,7 +17,8 @@ inline long double dog_controller_length(float square){
     std::int32_t bits;std::memcpy(&bits,&square,4);
     return bits<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1)<9.99999993922529e-09f?1.L:std::sqrt(static_cast<long double>(square));
 }
-inline float dog_controller_square(const std::array<float,4>& from,const std::array<float,4>& to,bool reverse=false){
+template<std::size_t From,std::size_t To>inline float dog_controller_square(const std::array<float,From>& from,const std::array<float,To>& to,bool reverse=false){
+    static_assert(From>=3&&To>=3);
     const auto x=static_cast<long double>(to[0])-from[0],y=static_cast<long double>(to[1])-from[1],z=static_cast<long double>(to[2])-from[2];
     return static_cast<float>(reverse?(z*z+y*y)+x*x:(x*x+y*y)+z*z);
 }

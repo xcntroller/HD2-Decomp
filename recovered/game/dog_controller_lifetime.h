@@ -33,6 +33,7 @@ public:
     virtual void dog_control_follow(Actor*)=0; //30.
     virtual void dog_control_close()=0; //0C, followed separately by delete08.
     virtual void dog_control_script(void*)=0; //40.
+    virtual void dog_control_authority(std::uint32_t)=0; //18, actual005CF0D0→005CE190 or005CFA20.
     virtual void dog_control_presentation(std::uint32_t)=0; //14, selected4/5 wrappers tail-jump actual RET4.
     virtual void dog_control_sight_acquired(Actor*)=0; //4C.
     virtual void dog_control_sight_lost(Actor*)=0; //50.

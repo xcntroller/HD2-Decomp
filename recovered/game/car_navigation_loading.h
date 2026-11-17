@@ -69,6 +69,11 @@ public:
             }
         }
     }
+    bool contains_loading_mark(std::uint32_t identity)const{ //004DAB20: native ushort comparison, reverse SAME259C marks.
+        const auto narrowed=static_cast<std::uint16_t>(identity);
+        for(auto row=loading_.rbegin();row!=loading_.rend();++row)if(row->identity==narrowed)return true;
+        return false;
+    }
     std::size_t loading_marks()const{return loading_.size();}
     void observe_loading_marks()const{ //004D3336..335D: reverse game54/0051D5A0; result unused.
         for(auto row=loading_.rbegin();row!=loading_.rend();++row)(void)navigation_.record(row->identity);

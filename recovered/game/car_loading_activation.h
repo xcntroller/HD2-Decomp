@@ -60,6 +60,7 @@ public:
         navigation_.close();if(proximity_!=-1)errors.attempt([&]{services_.remove_car_proximity(proximity_);proximity_=-1;});
         if(errors.failed())try{errors.rethrow();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
     }
+    bool navigation_contains(std::uint32_t identity)const override{return navigation_.contains_loading_mark(identity);}
     void activate(bool authority)override{
         require_mode();require_geometry();
         actor_.flag254a=false;actor_.flag2548=false;actor_.flag2549=false;actor_.model254c.reset();actor_.damage2550=actor_.source2554=-1;

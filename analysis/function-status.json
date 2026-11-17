@@ -51874,6 +51874,406 @@
         "analysis/human-h8-dog-controller-decisions-source.md",
         "analysis/checkpoints/p22-h8-dog-controller-decisions-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005cd1f0",
+      "status": "partial",
+      "coverage": "Actual target pursuit, prediction, health/attachment retirement, current/LAST Body categories, near bite and gait/reselection decisions.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cd0a0",
+      "status": "partial",
+      "coverage": "Actual signed random retarget timer, forced selection, target route flags and failure timer.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cccc0",
+      "status": "partial",
+      "coverage": "Actual target-route distance/retention/replan/validation and failure state order.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ccec0",
+      "status": "partial",
+      "coverage": "Actual follow-route model range, A0 displacement, navigation request and failure publication.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cc420",
+      "status": "partial",
+      "coverage": "Actual route completion, fresh target/follow replanning, singleton Script range/radius callback.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cb480",
+      "status": "partial",
+      "coverage": "Actual position-aim admission and native unused first argument, including zero-position no-op.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cbf00",
+      "status": "partial",
+      "coverage": "Actual route validation, angle flags, history projection, single point retirement/recompletion and timer84.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ce190",
+      "status": "partial",
+      "coverage": "Actual selected controller common authority pipeline, process scratch and Body publication order.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cfa20",
+      "status": "partial",
+      "coverage": "Actual kind5 common-policy plus C4 timed group11/entry10 SOUND through real marker/model.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d5620",
+      "status": "partial",
+      "coverage": "Actual containing Dog authority on SAME controller/Body/head/Human target geometry/perception owners.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c9fe0",
+      "status": "partial",
+      "coverage": "First contiguous route0200 span with unchanged absent outputs.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ca030",
+      "status": "partial",
+      "coverage": "Reverse actual registered Car selection requiring every inclusive route20 low16 mark.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ca0c0",
+      "status": "partial",
+      "coverage": "Rectangle segment crossings with native wall order, strict endpoints and x87/FLOAT boundaries.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c93b0",
+      "status": "partial",
+      "coverage": "Native forward/reverse wall-corner index walks, retaining forward corner4.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c9080",
+      "status": "partial",
+      "coverage": "Actual model rectangle-inside/nearest-side escape point from SAME process pool.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c95b0",
+      "status": "partial",
+      "coverage": "Native one/two crossing route rewrite, four corners, direction metrics, pool retirement/insertion; unproduced corner4 guarded.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ca5a0",
+      "status": "partial",
+      "coverage": "Actual marked Car bounds/BODY matrix, escape, affine polyline crossing and route detour composition.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dab20",
+      "status": "partial",
+      "coverage": "Actual SAME Car259C loading-mark membership with native low16 identity comparison.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dac00",
+      "status": "partial",
+      "coverage": "Actual SAME Car210/220 expanded bounds and1068 BODY reference, consumed by route validator.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00770530",
+      "status": "partial",
+      "coverage": "Actual SAME Human primary posture sphere descriptor publication and bite/restoration radius scale/bucket moves.",
+      "limitations": "Source-only typed/STL/RAII reconstruction replaces original vtable/container/allocator/SEH ABI. Actual World/i386/launcher compile/link only; native audit doubles actor/frame/Script/SOUND/Human-geometry endpoints. Native unproduced corner4 remains an explicit provenance failure, with no correction authorized. Selected4/5; selected1/7 and other full H8.4/application/desktop requirements remain open. No engine/absent-wrapper credit or scratch W value claim.",
+      "evidence": [
+        "recovered/game/dog_controller_pursuit.h",
+        "recovered/game/dog_controller_movement.h",
+        "recovered/game/dog_route_obstacles.h",
+        "recovered/game/dog_route_rectangle.h",
+        "recovered/game/dog_authority_frame.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_physics_loading.h",
+        "recovered/game/car_navigation_loading.h",
+        "analysis/human-h8-dog-authority-route-source.md",
+        "analysis/checkpoints/p22-h8-dog-authority-route-20261117.json"
+      ]
     }
   ]
 }

@@ -1,0 +1,245 @@
+{
+  "date": "2026-11-17",
+  "base": "2c1f28d",
+  "source_only": true,
+  "desktop_verified": false,
+  "verification": {
+    "native": "PASS199 strict ASan/UBSan/leaks actual policies, Body orders/actions, process pools; actor/frame/Script/SOUND/Human geometry endpoints doubled",
+    "actual_i386": "PASS strict actual full World selected controller creation/vtables/authority/Human target geometry/clip/head/damage/SOUND compile/link only",
+    "launcher_probe": "PASS forced strict O2 launcher/probe compile/link only",
+    "tracker": "PASS full checker/render and27 existing tests"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-dog-pursuit-native.cpp",
+      "bytes": 23413,
+      "sha256": "02039a175d94d1451da882ee1c8e8043cc07d550a2493d3d8696543cd157155f"
+    },
+    {
+      "path": "/tmp/h8-dog-pursuit-native.o",
+      "bytes": 6027984,
+      "sha256": "27f20e677fae2f71dbc97639489276778a760a59e481901c4b918316c86a08b9"
+    },
+    {
+      "path": "/tmp/h8-dog-pursuit-native",
+      "bytes": 3217704,
+      "sha256": "5f1581285d26948413222ffa2ce7479f83d890b9251dc8380222fce4407118ca"
+    },
+    {
+      "path": "/tmp/h8-dog-pursuit-module.cpp",
+      "bytes": 665,
+      "sha256": "680342b3831ccfeb13afb8ad1f5dca10e72e83238b2d88d81ebc81eb6fbd07c9"
+    },
+    {
+      "path": "/tmp/h8-dog-pursuit-module.exe",
+      "bytes": 4755456,
+      "sha256": "7f9fa952171e4ceb53cd5a1b70812f2f1822733c89f25caf9b8e94c9a422edd8"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "new_frozen_partial": [
+    "005cd1f0",
+    "005cd0a0",
+    "005cccc0",
+    "005ccec0",
+    "005cc420",
+    "005cb480",
+    "005cbf00",
+    "005ce190",
+    "005cfa20",
+    "005d5620",
+    "005c9fe0",
+    "005ca030",
+    "005ca0c0",
+    "005c93b0",
+    "005c9080",
+    "005c95b0",
+    "005ca5a0",
+    "004dab20",
+    "004dac00",
+    "00770530"
+  ],
+  "absent_or_delegated_credit": [],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_controller_pursuit.h",
+      "bytes": 8393,
+      "sha256": "ac8a43209f50a33f1102557b6bab3e5ea4aeb8ed511746a01bb5bb7ea86af3f8"
+    },
+    {
+      "path": "recovered/game/dog_controller_movement.h",
+      "bytes": 6235,
+      "sha256": "9a6f8cb1bd93b7d4429bfac95a6b088457f9a4d105059151a41c1fb16b10212e"
+    },
+    {
+      "path": "recovered/game/dog_route_obstacles.h",
+      "bytes": 1457,
+      "sha256": "53fc39dfd0bd64aa955c93d652d99c13410db1cedc938ef51c62c50e029c1952"
+    },
+    {
+      "path": "recovered/game/dog_route_rectangle.h",
+      "bytes": 12555,
+      "sha256": "f88d6013ef0c77bbe9415a09954d460c6c6ed80c7d5750aadeaa4747972c0350"
+    },
+    {
+      "path": "recovered/game/dog_authority_frame.h",
+      "bytes": 1825,
+      "sha256": "e06912ddcafaabd20a23532c6051a30b6a44b869cfe68a2d4f070d8013b77adb"
+    },
+    {
+      "path": "recovered/game/dog_ai_controller.h",
+      "bytes": 24388,
+      "sha256": "4c3f604e7d432ca0d23a0837ffadcfff851f3d79c0b814ffcca2b2919cb22a3e"
+    },
+    {
+      "path": "recovered/game/dog_controller_lifetime.h",
+      "bytes": 2653,
+      "sha256": "0faf5706e95a3208fe9678e58d40dba0c45e17590cc4a5e8055d7e4165b032fc"
+    },
+    {
+      "path": "recovered/game/dog_controller_process.h",
+      "bytes": 3846,
+      "sha256": "53ab1d7630e551fe58eb86480f2534be626c3e08eb3148db5650147e183069e1"
+    },
+    {
+      "path": "recovered/game/dog_controller_targets.h",
+      "bytes": 5678,
+      "sha256": "7b408436b65549eb4e4f5a512ce1371d94d1218c13a674341ee52288495d06dc"
+    },
+    {
+      "path": "recovered/game/human_physics_loading.h",
+      "bytes": 36930,
+      "sha256": "5cb62373f661e7e71cd531540c877477da2cd920d60b8db8a1c5509f4afc968c"
+    },
+    {
+      "path": "recovered/game/car_navigation_loading.h",
+      "bytes": 4956,
+      "sha256": "66848fa18e92466f09a61189df82c2d67e1b324e2af39d6aa08b062b8562f040"
+    },
+    {
+      "path": "recovered/game/car_loading_lifetime.h",
+      "bytes": 3483,
+      "sha256": "72106edfe0c920175bc323d5c4a3b6457ccda158a0e2558fad9bbb04c430fb21"
+    },
+    {
+      "path": "recovered/game/car_loading_activation.h",
+      "bytes": 25513,
+      "sha256": "fa126b2eb13775f815bc9f1818933cc902db2b5ea8bc522b00c712c9798ecefb"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 332996,
+      "sha256": "a1b745599293e3f6205153faff1a570400ab4d7cdc82e37c7a4a91dcc280d767"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 6776,
+      "sha256": "034bb8cc39d6e7d50566989ee157faa66ff1f5242544a3949ce68821cda96e16"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005ca5a0.asm",
+      "bytes": 31211,
+      "sha256": "b5eeb3f354754a468eee0323ad7ab3ca4f9ea69a814359cb183ffbdde6f8e9f1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005c95b0.asm",
+      "bytes": 41872,
+      "sha256": "ed07b827651e21a5723f9f14f63c84ee52688aad0fa964ea291cb0725bb1bd17"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cbf00.asm",
+      "bytes": 20830,
+      "sha256": "a0e6bc92de3b12cbb2387cf3b44788d2e30dab1639fe9333fda2bf10f8c8769b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cd1f0.asm",
+      "bytes": 18762,
+      "sha256": "c05125c04e500ee0d0e7f25b2912fbc057c6fb425025b0fb0d99b2188f3c5ea8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cb480.asm",
+      "bytes": 2533,
+      "sha256": "5a699d0355f17a7c74d92f24fdb19b8f2597673f56249041327906a8760c51c3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005cfa20.asm",
+      "bytes": 4636,
+      "sha256": "b5fd9d606f0710a995e7c36cc69220bd05c69b003776bd0cb2a60d40dc5bd6e5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005d5620.asm",
+      "bytes": 7416,
+      "sha256": "7816558db2b1c4a2eb980fadbb5731818e3fa2ac77696377dcc699221cd0945f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/00770530.asm",
+      "bytes": 3221,
+      "sha256": "76cfe6f28bf84c69fa8e700603ab5ab2ef2d74728777da47f63728b4df0d1ca2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/car-body-reference-producer.asm",
+      "bytes": 2762,
+      "sha256": "a1cb622f115a083fc161e0469b974462e3384aa3dea6e4e69070cec5b2b983e8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/car-bounds-producer.asm",
+      "bytes": 3912,
+      "sha256": "d1bf8854061a174e4ee2aecce33e6fd82a45c963cf98e2217abe23e637e507ec"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/0040e0b0.asm",
+      "bytes": 2052,
+      "sha256": "58acab39cf162958b61da9bb97f9d39b08b88ecab9d68a56aacb2d53b567db34"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/005ca0c0.asm",
+      "bytes": 20806,
+      "sha256": "35f8be71cdafa0d32d0c77209b63cd197c27e15218a6164f69891587020e305b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/route-refresh.asm",
+      "bytes": 16895,
+      "sha256": "03984ce4a2bc70e87953a72fae67820fe71f2c9bad1fd454da17e07ec174ed24"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/route-completion.asm",
+      "bytes": 8186,
+      "sha256": "d1c131155a97308b30753864665580ad93b1546b325b85c9ab2d3f703ce78276"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/pursuit-route-constants.json",
+      "bytes": 340,
+      "sha256": "a71a693294faa23b479fb66df4130e837f1f6792f54a1b5a16a1fa23ed58c82e"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/pursuit-native-run.log",
+      "bytes": 42,
+      "sha256": "246ae68669b18e5577f87575d3d7e200b834411b9ab204c4481674b2b166aad5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/pursuit-module.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/pursuit-launcher.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/pursuit-progress-check.log",
+      "bytes": 437,
+      "sha256": "9c11d26d387f3171fa463f634968cf12a298df1e3c2a911b4a094ccb4cd0cd4b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-decisions/pursuit-progress-tests.log",
+      "bytes": 126,
+      "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f"
+    }
+  ],
+  "limits": "Full H8.4 remains OPEN for other reached nonHuman/occupied/entry/containing dependencies. Native forward corner4 is an explicit unproduced-state failure; no wrap/fifth payload or further correction authorized. Selected4/5, with selected1/7 required if reached. No scratch W, engine/absent-wrapper, application entry or desktop claim."
+}

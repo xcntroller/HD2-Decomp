@@ -164,3 +164,11 @@ now supply complete component policies on SAME control/Body/perception/events:
 follow, target scan/clear, heard retirement, action/direction publication and bite
 cancellation. Native91 and actual World/O2 links pass. Containing pursuit/route/
 authority and other selected full H8.4 dependencies remain open.
+
+[Containing Dog authority/routes](human-h8-dog-authority-route-source.md) now
+bind actual005D5620→selected4/5 common005CE190/kind5 frame, pursuit/replans,
+Car mark/BODY rectangle detours, route movement/completion, Body action/clip
+advancement and actual Human target spheres. Native199 and actual World/O2
+links pass. The native forward corner4 read remains a precise unproduced-state
+failure; no additional correction is authorized. Continue other reached H8.4
+nonHuman/occupied/entry families; the full checkbox remains open.

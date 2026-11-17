@@ -7,12 +7,14 @@
 #include "game/dog_controller_follow.h"
 #include "game/dog_controller_targets.h"
 #include "game/dog_controller_actions.h"
+#include "game/dog_controller_movement.h"
+#include "game/dog_route_rectangle.h"
 #include <cmath>
 #include <exception>
 #include <limits>
 namespace hd2::game {
-//Actual kind4/5 controller owner. The common lifecycle/damage/distance bodies
-//are source; remaining positive route/decision receivers remain explicit.
+//Actual kind4/5 controller owner on the SAME Body, process scratch/pools and
+//World. Native unproduced detour payloads remain explicit provenance failures.
 template<class Frames,class World>class DogAIController final:public DogControllerLifetime<Frames> {
 public:
     using Actor=SceneActor<Frames>;using State=DogControllerState<Frames>;
@@ -74,6 +76,7 @@ public:
         const float square=static_cast<float>((z*z+y*y)+x*x);std::uint32_t bits;std::memcpy(&bits,&square,4);
         return dog_signed_word(bits)<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1)<9.99999993922529e-09f?1.L:std::sqrt(static_cast<long double>(square));
     }
+    void dog_control_authority(std::uint32_t elapsed)override{DecisionQueries q{*this};advance_dog_selected_controller(state_,elapsed,q);}
     void dog_control_presentation(std::uint32_t)override{} //005CF0C0/005CFA10→005CE180, genuine RET4.
     void dog_control_sight_acquired(Actor*)override{ //005CF0F0 genuine RET4;005CFBA0→kind5 virtual38(20).
         if(state_.kind14==5)move(reinterpret_cast<void*>(std::uintptr_t{0x20}));
@@ -150,6 +153,32 @@ public:
         } queries{*this};
         retire_dog_controller_heard(queries);
     }
+    void advance_route(){DecisionQueries q{*this};advance_dog_controller_route(state_,q);}
+    void advance_decisions(std::uint32_t elapsed){DecisionQueries q{*this};advance_dog_controller_decisions(state_,elapsed,q);}
+    bool target_route(){DecisionQueries q{*this};return refresh_dog_target_route(state_,q);}
+    bool follow_route(){DecisionQueries q{*this};return refresh_dog_follow_route(state_,q);}
+    void retarget(){DecisionQueries q{*this};retarget_dog_controller(state_,q);}
+    void advance_pursuit(std::uint32_t elapsed){DecisionQueries q{*this};advance_dog_controller_pursuit(state_,elapsed,q);}
+    bool complete_route(){DecisionQueries q{*this};return complete_dog_controller_route(state_,q);}
+    bool validate_route(){ //005CA5A0 on SAME route/Car/body frames and process pool.
+        if(!state_.route78.empty()&&(dog_route_required(dog_route_point(state_.route78[0]).flags24)&0x1000u))return true;
+        if(state_.route78.size()>1&&(dog_route_required(dog_route_point(state_.route78[1]).flags24)&0x1000u))return true;
+        std::size_t first=0,last=0;if(!dog_route_marked_span(state_.route78,first,last))return true;
+        auto* car=world_.dog_route_marking_car(state_.route78,first,last);if(!car)return true;
+        const auto bounds=world_.dog_route_car_rectangle(*car);
+        const auto matrix=world_.dog_route_car_matrix(*car);world_.dog_controller_process().obstacle_matrix5d0=matrix;
+        const auto inverse=frames_.car_inverse_matrix(matrix);
+        struct Queries {
+            DogAIController& owner;Actor& car;const typename Frames::Matrix& matrix;const typename Frames::Matrix& inverse;
+            auto model_position(){return DecisionQueries{owner}.model_position();}
+            auto obstacle_position(){return car.base().world_position();}
+            auto to_local(const std::array<float,4>& point){return owner.frames_.car_transform(point,inverse);}
+            auto to_world(const std::array<float,4>& point){return owner.frames_.car_transform(point,matrix);}
+            auto& acquire(const DogControllerVector& point){return owner.world_.dog_controller_process().acquire_point(0xffffffffu,point,0,0,0);}
+            void release(DogRoutePoint* point){owner.world_.dog_controller_process().route.release(point);}
+        } queries{*this,*car,matrix,inverse};
+        return validate_dog_route_rectangle(state_.route78,bounds,first,last,queries);
+    }
     DogControllerVector follow_position(){ //005CD690. NULL genuinely leaves the caller output untouched.
         if(!state_.follow18)throw std::runtime_error("Dog follow position requires actual nonNULL follow18");
         auto direction=state_.follow18->base().world_direction();
@@ -209,6 +238,54 @@ public:
         return true;
     }
 private:
+    struct DecisionQueries {
+        DogAIController& owner;
+        auto& state(){return owner.state_;}
+        auto& dog(){if(!state().actor10)throw std::runtime_error("Dog decisions require actual Actor10");return owner.world_.dog_controller_actor(*state().actor10);}
+        Actor& target(){if(!state().target88)throw std::runtime_error("Dog decisions require actual target88");return *state().target88;}
+        auto actor_position(){if(!state().actor10)throw std::runtime_error("Dog decision position requires actual Actor10");return state().actor10->base().world_position();}
+        auto model_position(){if(!state().actor10)throw std::runtime_error("Dog decision model requires actual Actor10");const auto matrix=owner.frames_.actor_world_matrix(state().actor10->base().frame());return std::array<float,4>{{matrix[12],matrix[13],matrix[14],matrix[15]}};}
+        auto follow_position(){return owner.follow_position().full();}
+        auto actor_direction(){if(!state().actor10)throw std::runtime_error("Dog route angle requires actual Actor10");return state().actor10->base().world_direction();}
+        auto vector_angle(const std::array<float,4>& first,const std::array<float,4>& second){return owner.frames_.car_vector_angle(first,second);}
+        auto history_velocity(){return dog().frame_history.velocity580;}
+        auto history_position(){const auto& value=dog().frame_history.position590;if(!value)throw std::runtime_error("Dog route requires actual history590 producer");return *value;}
+        auto history_elapsed(){const auto& value=dog().frame_history.elapsed5a0;if(!value)throw std::runtime_error("Dog route requires actual history5A0 producer");return *value;}
+        void release(DogRoutePoint* point){owner.world_.dog_controller_process().route.release(point);}
+        bool complete_route(){return owner.complete_route();}
+        auto random_unit(){return owner.world_.human_sound_random();}
+        void decisions(std::uint32_t elapsed){owner.advance_decisions(elapsed);}
+        void timed_voice(){if(!state().actor10)throw std::runtime_error("Dog kind5 timed voice requires actual Actor10");owner.world_.dog_controller_timed_voice(*state().actor10);}
+        void timers(std::uint32_t elapsed){owner.advance_timers(elapsed);}
+        void bind_zeroed_inputs(){auto& process=owner.world_.dog_controller_process();process.first710.fill(0);process.second610.fill(0);state().first60=&process.first710;state().second64=&process.second610;}
+        void retire_heard(){owner.retire_heard();}
+        void pursuit(std::uint32_t elapsed){owner.advance_pursuit(elapsed);}
+        void follow(){owner.advance_follow();}
+        void route(){owner.advance_route();}
+        void publish_inputs(){owner.dog_control_publish_inputs();}
+        void publish_actions(){owner.publish_actions();}
+        void publish_direction(){owner.publish_body_direction();}
+        auto target_distance(){return owner.dog_control_speed();}
+        auto movement_limit(){if(!state().actor10)throw std::runtime_error("Dog decision movement limit requires actual Actor10");return owner.world_.dog_body_movement_limit(*state().actor10);}
+        auto target_health(){return owner.world_.dog_sighted_human_health(target());}
+        bool target_attached(){return owner.world_.dog_target_attached(target());}
+        auto target_velocity(){return owner.world_.dog_target_velocity(target());}
+        auto current_category(){return dog_action_category(dog_signed_word(dog().body_actions.current364));}
+        auto next_category(){return dog_action_category(dog_signed_word(dog().body_orders.next_action()));}
+        bool perception_nonempty(){return !dog().spotted574.empty()||!dog().heard564.empty();}
+        void set_speed(float value){dog().body_actions.set_speed(value);}
+        void cancel_bite(){dog().body_actions.cancel_bite();}
+        void clear_target(){owner.clear_target();}
+        void clear_route(){owner.clear_route();}
+        void select_target(bool force){owner.select_target(force);}
+        void retarget(){owner.retarget();}
+        bool target_route(){return owner.target_route();}
+        bool follow_route(){return owner.follow_route();}
+        bool validate_route(){return owner.validate_route();}
+        bool request_route(const std::array<float,4>& from,const std::array<float,4>& to){DogControllerVector origin,destination;origin.assign(from);destination.assign(to);return owner.request_route(origin,destination);}
+        auto random_word(){return owner.world_.dog_control_random();}
+        void route_finished(void* context){owner.world_.dog_script_route_finished(context);}
+    };
     State state_;Frames& frames_;World& world_;
 };
 //005D5890 selected kind4/5. Construction keeps old534 published;00 is ALWAYS

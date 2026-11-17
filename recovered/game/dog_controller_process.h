@@ -50,6 +50,7 @@ private:
 class DogControllerProcess {
 public:
     std::array<float,64> first710{},second610{};
+    std::optional<std::array<float,16>> obstacle_matrix5d0; //005CA5A0 actual008AC5D0 publication; no cold value claim.
     std::int32_t turn_count4a8=0; //Actual008AC4A8 zero-filled .data tail; persists across World/Dog table resets.
     DogControllerPool<DogRoutePoint> route;
     DogControllerPool<DogHeardRecord> heard;

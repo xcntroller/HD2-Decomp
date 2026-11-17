@@ -26,6 +26,7 @@ public:
 template<class Frames>class CarLoadingLifetime {
 public:
     virtual ~CarLoadingLifetime()=default;
+    virtual bool navigation_contains(std::uint32_t)const=0; //004DAB20 on SAME259C loading marks.
     virtual void activate(bool authority)=0;
     virtual void deactivate(bool authority)=0;
     virtual void update(bool authority,std::uint32_t milliseconds)=0;

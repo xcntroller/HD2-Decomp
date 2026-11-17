@@ -11,6 +11,7 @@
 #include "game/dog_sight_notifications.h"
 #include "game/dog_sound_notifications.h"
 #include "game/dog_ai_controller.h"
+#include "game/dog_authority_frame.h"
 #include "game/human_ai_target_output.h"
 #include "game/model_scene_actors.h"
 #include "game/document_place_scene_actor.h"
@@ -3362,6 +3363,28 @@ public:
         if(!dog)throw std::logic_error("Dog controller requires SAME actual Actor10 Dog");return *dog;
     }
     template<class Actor>bool dog_target_attached(Actor& actor){return selection_human(actor).field160!=nullptr;}
+    template<class Actor>auto dog_target_velocity(Actor& actor){return selection_human(actor).activation.vector1b0;}
+    auto* dog_route_marking_car(const std::vector<DogRoutePoint*>& route,std::size_t first,std::size_t last){
+        auto& frames=dependencies().scene.frames();
+        return game::dog_route_marking_car(route,first,last,frames.car_actors(),[&](auto* actor,std::uint32_t index){
+            auto* car=dynamic_cast<CarSceneActor<typename Dependencies::ActorFrames>*>(actor);
+            if(!car||!car->loading)throw std::runtime_error("Dog route Car membership requires actual registered Car259C owner");
+            return car->loading->navigation_contains(index);
+        });
+    }
+    template<class Actor>auto& dog_route_car(Actor& actor){
+        auto* car=dynamic_cast<CarSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!car||!car->geometry)throw std::runtime_error("Dog route rectangle requires actual Car geometry");return *car;
+    }
+    template<class Actor>DogRouteRectangle dog_route_car_rectangle(Actor& actor){ //004DAC00, then005CA5A0 FLOAT .85 scale.
+        const auto bounds=dog_route_car(actor).geometry->auxiliary().collision_bounds();DogRouteRectangle result;
+        for(unsigned n=0;n!=2;++n){const auto axis=n*2;
+            const float minimum=static_cast<float>(static_cast<long double>(bounds.minimum[axis])-.5f),maximum=static_cast<float>(static_cast<long double>(bounds.maximum[axis])+.5f);
+            result.minimum[n]=static_cast<float>(static_cast<long double>(minimum)*.8500000238418579f);result.maximum[n]=static_cast<float>(static_cast<long double>(maximum)*.8500000238418579f);
+        }
+        return result;
+    }
+    template<class Actor>auto dog_route_car_matrix(Actor& actor){auto& car=dog_route_car(actor);return dependencies().scene.frames().actor_world_matrix(car.geometry->body());} //Actual Car1068=BodyFD8.
     template<class Dog>void dog_controller_action(Dog& dog,std::uint32_t value){
         struct Receivers {
             Dog& dog;HumanWorldLoadingServices& world;
@@ -3418,9 +3441,48 @@ public:
         } queries{*this,dog};
         dog.head_look.present(dog_signed_word(elapsed),queries);
     }
+    template<class Actor>void dog_controller_timed_voice(Actor& actor){ //005CFA20 after C4 publication.
+        auto& frames=dependencies().scene.frames();const auto origin=actor.base().world_position();
+        const auto marker=frames.actor_find(actor.base().frame(),"d",0xffffu);
+        if(!marker)throw std::runtime_error("Dog kind5 timed voice reaches native NULL d marker");
+        const auto matrix=frames.actor_world_matrix(marker);frontend::SpatialSoundRequest request;
+        for(unsigned n=0;n!=3;++n)request.position[n]=static_cast<float>(static_cast<long double>(matrix[12+n])-origin[n]);
+        request.group=11;request.entry=10;request.flags=1;request.relative=actor.base().frame();request.source=nullptr;
+        (void)dependencies().sound.emit(request);
+    }
+    template<class Dog>struct DogActionReceivers {
+        Dog& dog;HumanWorldLoadingServices& world;
+        auto& clip(){if(!dog.clip)throw std::runtime_error("Dog animation advancement requires actual clip owner");return *dog.clip;}
+        auto dog_action_random(){return world.dog_control_random();}
+        auto dog_control_target(){return dog.require_controller().dog_control_target();}
+        auto dog_control_speed(){return dog.require_controller().dog_control_speed();}
+        auto dog_clip_time(unsigned group){return clip().time(group);}
+        auto dog_clip_duration(unsigned group){return clip().duration(group);}
+        void dog_bind_body_clip(typename Dependencies::Frame animation,float stride,float weight,float blend,bool separate){
+            typename DogClipLifetime<typename Dependencies::Frame>::Requests request{};request[0]={animation,stride,weight,blend,separate};clip().bind(request);
+        }
+        void dog_stop_body_voice(std::int32_t& voice){world.dog_stop_body_voice(voice);}
+        auto dog_emit_body_voice(std::uint32_t flags,std::int32_t entry){return world.dog_emit_body_voice(dog,flags,entry);}
+        void dog_clear_animation2_position(){world.dependencies().scene.frames().dog_clear_animation2_position(dog.body.animation2_164);}
+    };
     template<class Dog>void update_dog(Dog& dog,bool authority,std::uint32_t elapsed){
-        if(authority)throw std::runtime_error("Dog authority frame requires actual005D5620 live Body/controller composition");
-        game::present_dog_scene_actor(dog,elapsed,*this,dependencies().scene.frames());
+        if(!authority){game::present_dog_scene_actor(dog,elapsed,*this,dependencies().scene.frames());return;}
+        struct Queries {
+            Dog& dog;HumanWorldLoadingServices& world;
+            auto mode_flags(){return world.mode_flags();}
+            void history(std::uint32_t time){dog.frame_history.advance(dog,dog_order_signed(time),world.dependencies().scene.frames());}
+            auto model_y(){return world.dependencies().scene.frames().actor_world_matrix(dog.base().frame())[13];}
+            void below_world_damage(){world.apply_dog_actor_damage(dog,0,1000.f,{{0,0,0,0}},{{0,0,0,0}},nullptr,0);}
+            void manual_inputs(){world.poll_dog_manual_control(dog);}
+            void body_actions(){DogActionReceivers<Dog> receivers{dog,world};dog.body_actions.compose(receivers);}
+            void body_animation(){DogActionReceivers<Dog> receivers{dog,world};dog.body_actions.advance_animation(world.dependencies().animations.dog_tables(),world.dependencies().scene.frames(),receivers);}
+            void head_timer(std::uint32_t time){world.advance_dog_head_look(dog,time);}
+            void target_geometry(SceneActor<typename Dependencies::ActorFrames>& actor,bool enlarged){auto* control=world.human_inline(world.selection_human(actor)).control();if(!control)throw std::runtime_error("Dog bite target geometry requires actual Human DD0");control->physical().publish_dog_target_geometry(enlarged);}
+            void body(std::uint32_t time){world.advance_dog_body(dog,time);}
+            void head_request(std::uint32_t mode,std::uint32_t parameter){world.request_dog_head_look(dog,{{0,0,0,0}},mode,parameter);}
+            void nearby_sounds(){world.poll_dog_nearby_sounds(dog);}
+        } queries{dog,*this};
+        advance_dog_authority(dog,elapsed,queries);
     }
     template<class Dog>void present_dog_body(Dog& dog,std::uint32_t elapsed){game::present_dog_body(dog,elapsed,*this,dependencies().scene.frames());}
     template<class Dog>void dog_footstep(Dog& dog,std::int32_t material){
