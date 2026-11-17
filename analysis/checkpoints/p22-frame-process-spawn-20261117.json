@@ -1,0 +1,232 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "6b6d292a0fbad0b1ef03e041c334b88bdef65798",
+  "source_only": true,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "application_installed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "contract": "analysis/p22-frame-process-spawn-source.md",
+  "native_checks": 28798,
+  "new_partial_inventory_entries": [
+    "00730040",
+    "007302d0",
+    "00727800",
+    "0069e340",
+    "00730210"
+  ],
+  "complete_promotions": 0,
+  "absent_function_credit": 0,
+  "source_files": [
+    {
+      "path": "recovered/frontend/control_frame.h",
+      "bytes": 8397,
+      "sha256": "8097c136a2dca565773216559a0911cb0bf7df2d3d89eabf772c594719315f5a"
+    },
+    {
+      "path": "recovered/frontend/control_startup.h",
+      "bytes": 8450,
+      "sha256": "382b0b695504dfc62aee99784d3748491573888a8513fcbf6bdf5e65f19ebe1e"
+    },
+    {
+      "path": "recovered/game/human_score_presentation.h",
+      "bytes": 3010,
+      "sha256": "8c62934a306c93f798184cb9cbb40ed6005257e810407e02fe7f4d310ae887c0"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 323158,
+      "sha256": "b325c921d3503b8e2b06bfcd57e706c045f295d5082339510e50f13bf2afdafc"
+    },
+    {
+      "path": "recovered/game/session_authority_spawn_request.h",
+      "bytes": 2351,
+      "sha256": "813cd81e45677eb8fd6c51180d51d3d123ab599d5d6c4618b7254bd3b5cacf0f"
+    },
+    {
+      "path": "recovered/game/session_match_peers.h",
+      "bytes": 5818,
+      "sha256": "77b6a2fc08edf239466d8e5ac0da050b772e15fde2249fc52d5b9f8f9a838bee"
+    },
+    {
+      "path": "recovered/game/session_packet_world.h",
+      "bytes": 4226,
+      "sha256": "cd293d673173f64385a800c72ed9f187bb5cf55ac69a304860517995cd063b3d"
+    },
+    {
+      "path": "recovered/game/session_pending_spawn_packets.h",
+      "bytes": 2165,
+      "sha256": "c248a49479343821530f234438f4ddc01ff809276a52d5ba21e8b8ba1e24179c"
+    },
+    {
+      "path": "recovered/game/session_received_application.h",
+      "bytes": 3194,
+      "sha256": "288ea21371727e354741926250740d2580f57beccf97f407a032d302a5d8a1d9"
+    },
+    {
+      "path": "recovered/game/session_spawn_admission.h",
+      "bytes": 2933,
+      "sha256": "3b69af3b714567798e89da860ad1571222928ddc6b7fad239e15791a5e896eec"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 34411,
+      "sha256": "ffad1562adacbec9060038562eb9f6f416783de006690bdda434028ce310dd2f"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "bytes": 32379,
+      "sha256": "96284a195c8a8be174fbed847fa6389b5ea31e3b760f60e4d815f994f2310662"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 81147,
+      "sha256": "a6687b741d71688b657bdf4600336a7521672b5cb6ae5788df5e5ea5c33e1d82"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-positive-export/007302d0.c",
+      "bytes": 1833,
+      "sha256": "8aa1fd686dffe059a2e2f9a2462a6fbeedad3d1145646c79d8c38f45ed3c61fa"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-positive-export/007302d0.json",
+      "bytes": 5247,
+      "sha256": "2bfe4a9e70c568ded56187f52f48fe68ef902f5cf061bf7d0a862b17cea6c82c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/balance-peers-abi.asm",
+      "bytes": 6860,
+      "sha256": "0d69fb7c145a521951c744720b37bde4b5eb1f6b9d6558b41dd55f6bdaa8beef"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/balance-constant.txt",
+      "bytes": 127,
+      "sha256": "4943a3b410f0e3793c2e719c3ba7a3d38ce9e95a49cbd97cfdffa6e2cf7113d7"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/authority-spawn-request-abi.asm",
+      "bytes": 26438,
+      "sha256": "227d380f02333ad0c8448c96c08964e389405c48c50718311881817f2f2e8677"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/authority-spawn-request-tail-abi.asm",
+      "bytes": 30465,
+      "sha256": "94fb0021c403eac0975662301094fe78359c18e0e7108521606a2b8f447d1301"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/spawn-peer-rank-abi.asm",
+      "bytes": 1677,
+      "sha256": "fb35827bd04a68a07a60e842ac54f1f01a221dd778b566271f20d87efbd68863"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-control-score-region.asm",
+      "bytes": 204212,
+      "sha256": "4713f6b584870ef32aac6cb42065230a3af7824a781592e869e1c507c8b56895"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-peer-lifecycle-reused-originals/0069e340.c",
+      "bytes": 3598,
+      "sha256": "cfb9914bbb24b68ec49a9b8696557d5985130ad4d940be74f762b3f9d9c5990e"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-peer-lifecycle-reused-originals/0069e340.json",
+      "bytes": 15558,
+      "sha256": "3c602c4c81a3f04791fc6b5f1d932bb66f31efec6c3b3ff62547f08d66373a1c"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-application-reused-originals/00727800.c",
+      "bytes": 13145,
+      "sha256": "b1af6be5a0fe390a95ab9c3beff603d0df4a9c44a4512e4beb02359a261aeee0"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-application-reused-originals/00727800.json",
+      "bytes": 66445,
+      "sha256": "23aa600531dce66fe161c68a62a4bf1c28e2e6559d3cc02aa9c8800bbcda7534"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/menu-route-extra-20261031/00728450.c",
+      "bytes": 32585,
+      "sha256": "b9c8016db7a09c41f356be16f9dbb10905e2d7263dfecb5bbaef86bd46eedbc2"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-rank-stat-conversion.asm",
+      "bytes": 4697,
+      "sha256": "eb64ac2d27ae740870af372858e171d4304c35c4bd2ef092402b48342016d934"
+    }
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-native-run.log",
+      "bytes": 52,
+      "sha256": "7b313ca6707d788db738131c89ec8e796cb68b2b83e7b935f75055d486b0a6c9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-actual-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-launcher-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-function-render.log",
+      "bytes": 380,
+      "sha256": "e53a115862534e8e924dc84737d25a1cf3433a196215e3529127afcfbeeff315"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-function-check.log",
+      "bytes": 437,
+      "sha256": "5d0342e3419ba83a1aea81bd1c9b2e8908eec37e914557f58670f54540a8f77a"
+    }
+  ],
+  "limitations": [
+    "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
+    "Deferred close publication is only0072E4E0(false), not full live teardown. Initial admission does not own pending respawn payloads. Source RAII reclaims untransferred allocations on failure/life-limit return."
+  ],
+  "build_outputs": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 9722368,
+      "sha256": "991650fca25a6950772034cc14f83cc9214590fe92bdfdebe81e9733a6e445d0"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1175552,
+      "sha256": "ce77bb600de0cefbc4dd18c5534d28c7a188afa7e8159b3a168b4e89a28afe2b"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-native.cpp",
+      "bytes": 13574,
+      "sha256": "a376ae82617af964f4e8aba493e8026f9bba6c0bb4f1af2fadedb5e7221e7af6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-native",
+      "bytes": 2639768,
+      "sha256": "641128af009d35278ccc1928a38b4ef6913754cb8da1b7600fe579e3e498b7f6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-actual.cpp",
+      "bytes": 1057,
+      "sha256": "36a2e94d2624bc4521f9cc123a10918ab65f9b51b11c27b967cf4dec301e3792"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/process-actual.exe",
+      "bytes": 17781760,
+      "sha256": "27a7ce9e3c3197e997013be387199ad1444a23446e7ed8001bd8f785e996be35"
+    }
+  ],
+  "temporary_audits_removed": true
+}

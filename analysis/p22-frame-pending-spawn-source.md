@@ -1,6 +1,6 @@
 # FRAME pending spawn and existing-Human respawn — 2026-11-17
 
-Latest continuation: [actual retained Human/Actor44 and all18 module callbacks](p22-frame-actor-reset-source.md) supersede the earlier module13 failure. Evidence below retains its original revision/verification boundary. FRAME still requires owning-process/network/application work.
+Latest continuation: [process balance/authority spawn0/1 and matching presentation respawn3](p22-frame-process-spawn-source.md) follow retained Human/Actor44/all18 module bindings. Evidence below retains its original revision/verification boundary; console/general networking/history/remaining packets and application delivery remain.
 
 
 Continuation of7f8cc90 on feature/p22-frame. Actual0069D9C0 pending-spawn

@@ -35018,24 +35018,28 @@
       "program": "client",
       "entry": "0072f4c0",
       "status": "partial",
-      "coverage": "Actual40..60 peer-stat view used by Player rank decoder; source bounds guard native unchecked identity.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Actual40..60 peer-stat view used by Player rank decoder; source bounds guard native unchecked identity. Process-spawn checkpoint: Actual authority respawn caller reads peer54 from unlocked native40..60 view; raw ABI confirms no418 lock.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
       "evidence": [
         "recovered/game/human_world_loading_services.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "006a1cb0",
       "status": "partial",
-      "coverage": "Actual profile FLOAT rank scaling, retained x87 factor, FTOL low DWORD, upper100 clamp and missing-profile defaults.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Actual profile FLOAT rank scaling, retained x87 factor, FTOL low DWORD, upper100 clamp and missing-profile defaults. Process-spawn checkpoint: In-place rank update preserves initial stat3 and9..11 for authority respawn; existing default-producing callers unchanged.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
       "evidence": [
         "recovered/game/human_score_presentation.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
       ]
     },
     {
@@ -35791,8 +35795,8 @@
       "program": "client",
       "entry": "00728450",
       "status": "partial",
-      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication. Authority spawn checkpoint adds0F peer5/reason1 and local-only actual00699620, without inventing an absent-game or authority-mode bypass.",
-      "limitations": "Source-only typed/STL/RAII replaces original object/allocator/SEH/virtual ABI; native ASan/UBSan/LSan fixtures use explicit platform/log/HUD/Scene endpoint doubles. Strict actual World and launcher compile/link only. Authority00727800 uses different grammar and remains a required failure; unknown presentation commands, domain1 service pump, input-history decoder, non7 flush/transport, full entry/canonical input ownership and application/desktop acceptance remain required. No full-function promotion.",
+      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication. Authority spawn checkpoint adds0F peer5/reason1 and local-only actual00699620, without inventing an absent-game or authority-mode bypass. Process-spawn checkpoint: Actual case3 fully consumes quantized prepared/stat payload on all hosts; nonauthority invokes same-Human0069D780.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
       "evidence": [
         "recovered/game/session_received_application.h",
         "recovered/game/session_peer_records.h",
@@ -35802,7 +35806,9 @@
         "recovered/host/game_world_loading.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-application-packets-20261111.json",
-        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json"
+        "analysis/checkpoints/p2.2-human-authority-spawn-map-20261112.json",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
       ]
     },
     {
@@ -35875,8 +35881,8 @@
       "program": "client",
       "entry": "0072e4e0",
       "status": "partial",
-      "coverage": "Reached cold/offline control reset recognizes only its actual owned process14, flushes first, publishes mode7 before registered-input clear, then actual peer/record/queue retirement; retains manager/embedded30/defaults. Live transport branches remain required failures. Reached same-owner packet reset now serializes existing mode7 publication with worker B4 before wrapper deletion/stop; observed packet counts are atomic, no second mode or packet owner.",
-      "limitations": "Source-only typed/STL/RAII adaptation, not original class/allocator/SEH/virtual ABI. Native ASan/UBSan/LSan covers actual manager/Remote bind/retirement, Player Base plus required retired-input close failure, actual control/entry reset policies with explicit frames/clock/Scene getter/presentation doubles; strict actual World/launcher compile/link only. Cold source graph lazily acquires real manager if absent; full native control initialization and both entry callers including00724110 optional service,00730A40/00731610, non7 transport/history and application/desktop acceptance remain open. No full-function promotion or atomic replacement guarantee. Current retained-message dependency: Source-only typed/template/vector/shared-owner/atomic/checked-span adaptation, not original pool/allocator/refcount/list/SEH/vtable ABI equivalence. SAME retained record across actual queue/container owners; source RAII additionally reclaims native undelivered incoming/completion leaks. Native100 ASan/UBSan/LSan message/queue/connection/worker/fragment/process-FIFO/reset families with explicit OS/pump endpoints; actual source callback threads and same430 authority/presentation owners. Strict actual StartupSession i386 and launcher/probe compile/link only. Admission/current-app callbacks, non7 entry/frame and D5/D7-D12 remain open; no TSan/original/Windows/network/World/application/desktop execution claim.",
+      "coverage": "Reached cold/offline control reset recognizes only its actual owned process14, flushes first, publishes mode7 before registered-input clear, then actual peer/record/queue retirement; retains manager/embedded30/defaults. Live transport branches remain required failures. Reached same-owner packet reset now serializes existing mode7 publication with worker B4 before wrapper deletion/stop; observed packet counts are atomic, no second mode or packet owner. Process-spawn checkpoint: False call now directly publishes actual process5070=1 without teardown; true cold reset clears5070 after flush.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
       "evidence": [
         "recovered/game/session_human_inputs.h",
         "recovered/game/session_entry_records.h",
@@ -35887,7 +35893,9 @@
         "analysis/checkpoints/p2.2-human-process-input-20261112.json",
         "analysis/human-retained-message-source.md",
         "analysis/checkpoints/p2.2-human-retained-messages-20261112.json",
-        "recovered/game/session_local_packets.h"
+        "recovered/game/session_local_packets.h",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
       ]
     },
     {
@@ -51487,12 +51495,14 @@
       "program": "client",
       "entry": "00699890",
       "status": "partial",
-      "coverage": "Actual side publication, peer collision/body suppression, required positive balance, phase3/clock and event12 ordering.",
-      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "coverage": "Actual side publication, peer collision/body suppression, required positive balance, phase3/clock and event12 ordering. Process-spawn checkpoint: Actual countdown directly invokes007302D0 over SAME process records/locks.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
       "evidence": [
         "recovered/host/game_session_frames.h",
         "analysis/p22-frame-match-source.md",
-        "analysis/checkpoints/p22-frame-match-20261117.json"
+        "analysis/checkpoints/p22-frame-match-20261117.json",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
       ]
     },
     {
@@ -52292,6 +52302,76 @@
         "recovered/host/game_scene_actors.h",
         "analysis/p22-frame-actor-reset-source.md",
         "analysis/checkpoints/p22-frame-actor-reset-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00730040",
+      "status": "partial",
+      "coverage": "Actual same-record active transport00/08 count under418, preserving read order and fresh ascending records.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_match_peers.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007302d0",
+      "status": "partial",
+      "coverage": "Actual signed percentage/x87 constant/truncate target, separate418 side count,0/\u00b11 no-op, reverse active pending68 then fresh current64 migration; now directly bound to00699890.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_match_peers.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00727800",
+      "status": "partial",
+      "coverage": "Actual authority cases0/1 prepared soldier/stack split/profile/clothing stats and distinct initial admission or owned pending respawn with fresh rank/profile scaling; other authority cases remain required.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_authority_spawn_request.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069e340",
+      "status": "partial",
+      "coverage": "Actual initial authority spawn admission, non7 existing-peer short circuit, four style-specific Zone/objective/side policies, available SpawnPoint00611C90 and late local map hide, distinct from pending respawn.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_spawn_admission.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00730210",
+      "status": "partial",
+      "coverage": "Actual418-protected current-team active/name/Human/health/B0/suppression query bound to initial admission.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native28798 process peer/policy/prepared-stream/rank/pending-wire checks use explicit adjacent World/Human/Zone/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME i386 and O2 launcher/probe compile/link only. Original unsafe bounds/undefined padding and delegated engines excluded. Other authority/presentation commands, console, general non7 transport/history/close, application and user desktop delivery remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-process-spawn-source.md",
+        "analysis/checkpoints/p22-frame-process-spawn-20261117.json"
       ]
     }
   ]

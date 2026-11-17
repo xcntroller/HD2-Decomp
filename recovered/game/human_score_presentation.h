@@ -7,16 +7,19 @@
 namespace hd2::game {
 //006A1CB0, actual HumanStore48..68 FLOATs. Rank factor stays on the x87
 //stack through the eight FTOL calls. Missing profile preserves native defaults.
-inline std::array<std::uint32_t,12> human_rank_statistics(const frontend::HumanRecord* profile,std::uint32_t rank){
-    std::array<std::uint32_t,12> values{{800,80,80,80,80,80,50,30,20,50,0,80}};
-    if(!profile)return values;
+inline void apply_human_rank_statistics(std::array<std::uint32_t,12>& values,const frontend::HumanRecord* profile,std::uint32_t rank){
+    if(!profile)return;
     const auto stat=[&](unsigned n){float value;std::memcpy(&value,&profile->stats[n+1],4);return value;};
     const auto factor=static_cast<long double>(human_frame_signed_word(rank))*.029999999329447746f+1.f;
     values[0]=human_loading_stat_word(stat(0));values[1]=human_loading_stat_word(stat(1));
     for(auto n:{2u,4u,5u,6u,7u,8u}){
         values[n]=human_loading_stat_word(factor*stat(n));if(human_frame_signed_word(values[n])>100)values[n]=100;
     }
-    return values;
+    //Native leaves stat3 and9..11 unchanged in the caller's existing allocation.
+}
+inline std::array<std::uint32_t,12> human_rank_statistics(const frontend::HumanRecord* profile,std::uint32_t rank){
+    std::array<std::uint32_t,12> values{{800,80,80,80,80,80,50,30,20,50,0,80}};
+    apply_human_rank_statistics(values,profile,rank);return values;
 }
 template<class Human>void publish_human_rank_statistics(Human& human,const std::array<std::uint32_t,12>& values){ //005A96A0.
     for(auto n:{2u,1u,4u,6u,7u,8u})human.properties.stats_ec[n]=values[n];

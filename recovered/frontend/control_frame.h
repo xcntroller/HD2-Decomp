@@ -82,7 +82,7 @@ private:
         backend_.restore_cold_firewall(state_.firewall_changed);
         backend_.restore_graphics_flags(state_.saved_graphics_flags);
         flush_packets();
-        startup_.word448=0;startup_.byte4df8=0;startup_.word5044=0;publish_reset_mode();
+        startup_.byte5070=0;startup_.word448=0;startup_.byte4df8=0;startup_.word5044=0;publish_reset_mode();
         if(startup_.service14)backend_.clear_control_input_records(); //0072E4E0→0073F5A0, manager and embedded30 survive.
         reset_connections(); //00746890→334 clear→00746840, BEFORE418 record retirement.
         {Lock records(backend_,0);startup_.records.clear();}

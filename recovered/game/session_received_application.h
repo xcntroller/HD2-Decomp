@@ -1,6 +1,8 @@
 #ifndef HD2_GAME_SESSION_RECEIVED_APPLICATION_H
 #define HD2_GAME_SESSION_RECEIVED_APPLICATION_H
 #include "game/session_packet_stream.h"
+#include "game/session_authority_spawn_request.h"
+#include "game/session_pending_spawn_packets.h"
 #include "game/human_damage_messages.h"
 namespace hd2::game {
 //00728450 presentation cases reached by Human death/disconnect. Application
@@ -8,8 +10,9 @@ namespace hd2::game {
 //grammar; never replay these payloads through that switch.
 template<class Runtime>void receive_session_application_packet(std::uint32_t kind,
         SessionPacketStream& packet,bool authority,Runtime& runtime){
-    if(authority)throw std::runtime_error("Application packet requires actual authority request decoder");
+    if(authority){receive_authority_spawn_request(kind,packet,runtime);return;}
     switch(kind){
+    case 3:read_session_pending_spawn(packet,runtime);return;
     case 2:{
         const auto transport=packet.read(32);
         if(!(runtime.application_mode_flags()&1u)&&runtime.has_application_game()){

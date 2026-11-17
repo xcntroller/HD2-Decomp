@@ -349,6 +349,8 @@ public:
     }
     void receive_application_peer_departure(std::uint32_t transport)override{owners_.human_services().retire_session_peer(transport);}
     void write_application_world_snapshot(game::SessionPacketStream& packet)override{owners_.dependencies().world_actors.runtime().write_initial_snapshot(packet);}
+    void receive_application_respawn(std::uint32_t peer,const game::HumanVector& position,const game::HumanVector& direction,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>& stats)override{owners_.human_services().pending_spawn_reinitialize_peer(peer,position,direction,soldier,stats);}
+    void admit_application_spawn(std::uint32_t peer,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats)override{owners_.human_services().admit_application_spawn(peer,soldier,stats);}
     void queue_application_pending_spawn(std::uint32_t peer,std::unique_ptr<frontend::PreMissionSoldier>& soldier,
             std::unique_ptr<std::array<std::uint32_t,12>>& stats)override{owners_.human_services().queue_pending_human_spawn(peer,soldier,stats);}
     std::uint32_t frame_statistics_word(unsigned offset)const override{

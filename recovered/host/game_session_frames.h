@@ -20,11 +20,11 @@ public:
     virtual ~GameSessionMatchExternal()=default;
     virtual world_loading::World& world()const=0;
     virtual void system_console_command(const std::string&)=0; //0069F250/00742480.
-    virtual void defer_network_close()=0; //0072E4E0(false), real process5070.
+    virtual void defer_network_close()=0; //Legacy compatibility loan; FRAME now writes actual process5070 directly.
     virtual void current_application_status(std::uint32_t)=0; //Current application virtual2C, NOT controller04 request.
     virtual std::uint32_t current_game_phase()=0; //Fresh00698500 game88.
     virtual void reset_round_world(bool)=0; //Legacy external loan; FRAME006997B0 now invokes its SAME-World source directly.
-    virtual void balance_peer_sides(std::uint32_t,std::uint32_t)=0; //007302D0, actual process records.
+    virtual void balance_peer_sides(std::uint32_t,std::uint32_t)=0; //Legacy compatibility loan; FRAME now balances actual process records directly.
     virtual void camera_command(std::uint32_t,std::uint32_t,std::uint32_t)=0; //Actual mission camera virtual44.
 };
 //Required UI/controller and conditional non7 endpoints use the SAME World.
@@ -275,7 +275,7 @@ private:
         void frame_queue_pending_spawn(const std::shared_ptr<game::SessionPendingSpawn>& pending){startup().queue_application_spawn(pending);}
         void frame_queue_request(std::uint32_t kind,std::uint32_t first,std::uint32_t second){startup().queue_application_request(kind,first,second);}
         bool frame_first_prepared_player_valid(){const auto& squad=f.parent_.live_squad();if(squad.empty())throw std::logic_error("FRAME pending request requires actual first live soldier");return squad.front().network_identity!=-1;}
-        void frame_defer_network_close(){required("0072E4E0(false)").defer_network_close();}
+        void frame_defer_network_close(){startup().defer_control_close();}
         void frame_current_application_status(std::uint32_t status){required("current application virtual2C").current_application_status(status);}
         std::uint32_t frame_connection_status(){return startup().game_connection_status();}
         void frame_control_heartbeat(std::uint32_t elapsed){startup().advance_game_match_heartbeat(elapsed);}
@@ -354,7 +354,7 @@ private:
             if(frame_rule(0x248)){
                 if(!state().mission||!state().mission->network_mission)throw std::logic_error("Match balance requires actual missionA8 kind13 fields58/5C");
                 const auto& fields=state().mission->network_mission->words50;
-                required("007302D0").balance_peer_sides(fields[3].value(),fields[2].value());
+                game::balance_session_match_peer_sides(data(),startup(),fields[3].value(),fields[2].value());
             }
             state().words.set(0x88,3u);state().words.set(0x8c,state().words.template get<std::uint32_t>(0x28));frame_queue_command(12,0,0,0);
         }

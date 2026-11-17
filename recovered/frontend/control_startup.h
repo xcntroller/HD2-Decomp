@@ -124,7 +124,11 @@ struct ControlStartupState {
     std::array<std::array<std::uint32_t,7>,3> world_buffers{}; //4FB4/4FD0/4FEC,00724EC0.
     std::uint8_t byte5060 = 0;
     std::uint32_t word5064 = 0, word5068 = 0, word506c = 0;
+    std::uint8_t byte5070 = 0; //Loader-zero-filled deferred close,0072E4E0(false).
 };
+
+//0072E4E0(false) is ONLY a deferred-close publication; no flush or teardown here.
+inline void defer_control_close(ControlStartupState& state){state.byte5070=1;}
 
 // 0072E1A0, called at006DC1AA with ECX0097D070 before graphics initialization.
 // Deliberately no gate test, device creation, interface factory or release.

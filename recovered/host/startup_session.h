@@ -824,6 +824,7 @@ public:
     void control_maintenance(std::uint32_t milliseconds){
         if(source_packet_path())local_packets_.maintain(milliseconds);else control_frame_.maintain(milliseconds);
     }
+    void defer_control_close(){frontend::defer_control_close(control_data_);} //0072E4E0(false), SAME process5070.
     void reset_control(){
         if(source_packet_path())control_frame_.reset_packets([&](std::uint32_t elapsed){local_packets_.flush(elapsed);},[&]{local_packets_.clear();});
         else control_frame_.reset();
@@ -928,6 +929,17 @@ public:
     }
     void receive_application_local_removal(std::uint32_t reason){packet_world_.receive_application_local_removal(reason);}
     void receive_application_spawn_rejection(std::uint32_t reason){packet_world_.receive_application_spawn_rejection(reason);}
+    const frontend::HumanRecord* application_spawn_profile(std::int32_t identity){return data_.humans().record(identity);}
+    float application_spawn_clothing_weight(std::int32_t identity){
+        if(!pre_mission_)throw std::logic_error("Authority spawn requires its actual shared item catalogue");
+        const auto* item=pre_mission_->resources().catalogue.item(identity);
+        if(!item)throw std::runtime_error("Authority spawn clothing has no actual definition");return item->weight;
+    }
+    std::uint32_t application_spawn_peer_rank(std::uint32_t peer){ //0072F4C0 is an unlocked40..60 view; native caller reads54.
+        return control_data_.records.at(peer).word(0x54);
+    }
+    void receive_application_respawn(std::uint32_t peer,const game::HumanVector& position,const game::HumanVector& direction,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>& stats){packet_world_.receive_application_respawn(peer,position,direction,soldier,stats);}
+    void admit_application_spawn(std::uint32_t peer,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats){packet_world_.admit_application_spawn(peer,soldier,stats);}
     void receive_application_pending_spawn(std::uint32_t peer,std::unique_ptr<frontend::PreMissionSoldier>& soldier,
             std::unique_ptr<std::array<std::uint32_t,12>>& stats){packet_world_.queue_application_pending_spawn(peer,soldier,stats);}
     void receive_application_peer_removal(std::uint32_t reason,std::uint32_t identity){

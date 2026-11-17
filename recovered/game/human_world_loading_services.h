@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_player_live_input.h"
 #include "game/session_pending_spawn_prepare.h"
+#include "game/session_spawn_admission.h"
 #include "game/human_session_respawn.h"
 #include "game/human_player_selection.h"
 #include "game/dog_sight_geometry.h"
@@ -825,6 +826,26 @@ public:
     template<class Spawn>void notify_authority_spawn_created(Spawn& spawn){PreparedHumanLoading<Dependencies> factory(dependencies());factory.spawn_model_created(spawn.base().frame());}
     auto spawn_position_sweep(const HumanVector& start,const HumanVector& displacement,float radius){return dependencies().sweep.sweep(start,displacement,radius,0,0,false);} //007184C0, no output normal.
     bool spawn_position_occupied(const HumanVector& position){return human_spawn_position_occupied(*this,position);}
+    void admit_application_spawn(std::uint32_t peer,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats){
+        admit_session_spawn(dependencies().session,peer,soldier,stats,*this);
+    }
+    bool admission_actor_exists(std::uint32_t peer){return dependencies().scene.frames().scene_actor_identity(human_frame_signed_word(peer))!=nullptr;}
+    auto* admission_zone(std::int32_t identity){
+        auto* actor=dependencies().scene.frames().scene_actor_identity(identity);
+        if(actor&&actor->base().type()!=37u)throw std::logic_error("Admission requires an actual Zone identity");
+        return static_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(actor);
+    }
+    void admission_publish_side(std::uint32_t peer,std::uint32_t side){set_session_peer_side(dependencies().startup.game_control_records(),dependencies().startup,peer,side,false);}
+    auto* admission_spawn_point(){return dependencies().scene.frames().loading_spawn_point(1);}
+    bool admission_team_alive(std::uint32_t side){ //00730210,418 held through actual state64 query.
+        auto& d=dependencies();return with_session_match_peers(d.startup.game_control_records(),d.startup,[&](auto& peers){
+            for(std::size_t n=0;n<peers.size();++n)if(peers[n].byte(8).value())if(auto* actor=peers[n].human_actor())if(peers[n].word(0x64)==side){
+                auto& human=human_score_actor(actor);
+                if(human_frame_signed_word(human.properties.stats_ec[0])>0&&human.loading_state&&!human.loading_state->selection_suppressed())return true;
+            }
+            return false;
+        });
+    }
     void queue_pending_human_spawn(std::uint32_t peer,std::unique_ptr<frontend::PreMissionSoldier>& soldier,
             std::unique_ptr<std::array<std::uint32_t,12>>& stats){prepare_session_pending_spawn(dependencies().session,peer,soldier,stats,*this);}
     std::uint32_t pending_spawn_rule(unsigned offset){

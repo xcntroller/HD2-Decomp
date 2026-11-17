@@ -12,6 +12,8 @@ public:
     virtual ~SessionPacketWorld()=default;
     virtual bool world_loaded()const=0;
     virtual bool dispatch_packet(std::uint32_t,SessionPacketStream&,bool)=0;
+    virtual void receive_application_respawn(std::uint32_t,const HumanVector&,const HumanVector&,frontend::PreMissionSoldier&,const std::array<std::uint32_t,12>&)=0;
+    virtual void admit_application_spawn(std::uint32_t,frontend::PreMissionSoldier&,const std::array<std::uint32_t,12>*)=0;
     virtual void receive_application_objective(std::uint32_t,std::uint32_t)=0;
     virtual void receive_application_peer_departure(std::uint32_t)=0;
     virtual void receive_application_local_removal(std::uint32_t)=0;
@@ -31,6 +33,8 @@ public:
     bool dispatch_packet(std::uint32_t kind,SessionPacketStream& packet,bool authority){
         return world_.bound()&&world_.get().dispatch_packet(kind,packet,authority);
     }
+    void receive_application_respawn(std::uint32_t peer,const HumanVector& position,const HumanVector& direction,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>& stats){world_.get().receive_application_respawn(peer,position,direction,soldier,stats);}
+    void admit_application_spawn(std::uint32_t peer,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats){world_.get().admit_application_spawn(peer,soldier,stats);}
     void receive_application_objective(std::uint32_t identity,std::uint32_t status){world_.get().receive_application_objective(identity,status);}
     void receive_application_peer_departure(std::uint32_t transport){world_.get().receive_application_peer_departure(transport);}
     void receive_application_local_removal(std::uint32_t reason){world_.get().receive_application_local_removal(reason);}
