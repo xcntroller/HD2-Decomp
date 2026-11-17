@@ -17,6 +17,19 @@ desktop test has occurred. Do not spawn other agents or add helper checkboxes.
 
 ## Latest result
 
+[Timed interaction completion](analysis/human-h8-timed-interaction-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-timed-interaction-20261117.json):
+actual00751480 timed ends now retire front-only queue records, preserve lock
+exceptions, equipment event/visibility order, forced animation and movement130
+500/scale timer. All native switch defaults are actual no-action returns.
+00755500 has no cases beyond13: default now retains A34 and wraps timer A38,
+rather than the invented required Runtime receiver. Removed obsolete Runtime
+methods. Native102824 ASan/UBSan/leak checks, strict actual World/Human i386
+and launcher/probe links, exact tracker+27 tests PASS. Successful temporary
+pairs fingerprinted/removed. Counts unchanged; H8/matrix remain OPEN.
+
+Prior a93906d:
+
 [Occupied authority](analysis/human-h8-occupied-authority-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json):
 actual World/factory/Active00526550 now continues occupied authority after SAME
@@ -60,7 +73,7 @@ expansion. H8.2/H8.3/H8.4/H8.5/H8.6 remain open. Finish actual module Runtime
 Dog/Sight bindings and reached actor/frame/interaction dependencies, containing
 verification and application/FRAME/OWN/render. Remaining selected Active tasks
 8..13/16/22, retreat40, delayed Players0053D5B0→00456020 recipients/producers,
-remaining00751480/00755500 interaction cases and Remote/non7/entry callbacks
+Remote/non7/entry callbacks
 retain honest requirements. Aircraft20/type34 control and type34/36 mounted
 targets, nonHuman task25/26 EC, far Dog listener540 still require actual owners.
 Tutorial baseline has no Dog, ALPS1 has one; only actual current resolver/data

@@ -47,8 +47,6 @@ public:
     }
     template<class Item>void update_loose_item(Item& item,bool authority,std::uint32_t elapsed){world_.update_loose_item(item,authority,elapsed);}
     template<class State>void choose_script_alarm_action(State& state){world_.choose_script_alarm_action(state);}
-    template<class Control,class... Args>void apply_human_look_interaction(Control&,Args&&...){throw std::runtime_error("Human interaction requires remaining00751480 action receivers");}
-    template<class Control>void advance_human_control_motion(Control&,std::uint32_t){throw std::runtime_error("Human interaction requires remaining00755500 action frame");}
     template<class State,class Human>void refresh_suppressed_player_camera(State& state,Human& human){world_.refresh_suppressed_player_camera(state,human);}
     template<class State>void dispatch_player_inline_command(State&){throw std::runtime_error("Player delayed command requires actual0053D5B0 Players virtual0");}
     template<class State>void advance_player_remote_inputs(State&,std::uint32_t){throw std::runtime_error("Remote Player inputs require actual0053F520");}

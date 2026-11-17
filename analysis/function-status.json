@@ -33057,7 +33057,7 @@
       "program": "client",
       "entry": "00751480",
       "status": "partial",
-      "coverage": "Door/model actions plus occupied entry2/4/6/B/D and exit3/5/7/C requests, real previous-seat initialization, timers/locks, live/dead displacement and immediate nonplayer advance. Reached timed starts E/10/12/14/16/18/1A/1C/1E/20/24 now bind actual DD0 queue, tracks, equipment, locks, pose/direction and damage; containing remaining action/frame cases stay H8.",
+      "coverage": "Door/model actions plus occupied entry2/4/6/B/D and exit3/5/7/C requests, real previous-seat initialization, timers/locks, live/dead displacement and immediate nonplayer advance. Reached timed starts E/10/12/14/16/18/1A/1C/1E/20/24 now bind actual DD0 queue, tracks, equipment, locks, pose/direction and damage; containing remaining action/frame cases stay H8. Matching timed common-action ends now preserve exact front-only queue retirement, D4 lock exceptions, equipment event/visibility ordering, E0 override/animation and movement130 scaled delay. Actual00751480 switch defaults have no action effects;00755500 default retains A34 and wraps A38 subtraction.",
       "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/human_door_action.h",
@@ -33067,14 +33067,17 @@
         "analysis/human-seat-interaction-source.md",
         "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json",
         "analysis/human-h8-pack-common-source.md",
-        "analysis/checkpoints/p2.2-human-pack-common-20261113.json"
+        "analysis/checkpoints/p2.2-human-pack-common-20261113.json",
+        "recovered/game/human_timed_interaction.h",
+        "analysis/human-h8-timed-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-h8-timed-interaction-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "00755500",
       "status": "partial",
-      "coverage": "Door/model actions plus occupied seat completion, race rejection, animation/posture/attachment/equipment/shadow publication, failed-exit402 and actual exit cleanup.",
+      "coverage": "Door/model actions plus occupied seat completion, race rejection, animation/posture/attachment/equipment/shadow publication, failed-exit402 and actual exit cleanup. Matching timed common-action ends now preserve exact front-only queue retirement, D4 lock exceptions, equipment event/visibility ordering, E0 override/animation and movement130 scaled delay. Actual00751480 switch defaults have no action effects;00755500 default retains A34 and wraps A38 subtraction.",
       "limitations": "Source-only typed/STL/RAII reconstruction; original full object/container/allocator/SEH ABI and malformed-pointer behavior excluded. Engine/CRT/math/resource calls remain delegated, with no callee credit. Native checks use explicit adjacent Human/Car/engine/query/Items endpoints; actual nested World i386 instantiates and launcher/probe compile/link only. Full occupied Car frame/non7 input remain D5, shooting producers H4/H6, full Human frame H8, application loading/render/desktop acceptance open. No whole-function equivalence promotion.",
       "evidence": [
         "recovered/game/human_door_action.h",
@@ -33082,7 +33085,10 @@
         "analysis/checkpoints/p2.2-human-motion-pose-20261111.json",
         "recovered/game/human_seat_action.h",
         "analysis/human-seat-interaction-source.md",
-        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json"
+        "analysis/checkpoints/p2.2-human-seat-interaction-20261112.json",
+        "recovered/game/human_timed_interaction.h",
+        "analysis/human-h8-timed-interaction-source.md",
+        "analysis/checkpoints/p2.2-human-h8-timed-interaction-20261117.json"
       ]
     },
     {

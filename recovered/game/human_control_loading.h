@@ -217,9 +217,12 @@ public:
             auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
             (void)begin_human_timed_interaction(*this,look,*human_,target,flags,services_,frames_,publish);return;
         }
-        default:break;
+        case 0xf:case 0x11:case 0x13:case 0x15:case 0x17:case 0x19:case 0x1b:case 0x1d:case 0x1f:case 0x21:case 0x25:{
+            auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+            end_human_timed_interaction(*this,look,*human_,flags,services_,publish);return;
         }
-        runtime.apply_human_look_interaction(*this,target,flags,argument); //00751480's remaining required action cases.
+        default:return; //00751480 switch default, including22/23: genuine AL1 without action effects.
+        }
     }
     template<class Look>void advance_model_action(Look& look,std::uint32_t elapsed){
         const auto flags=physical_.control_frame_words().template get<std::uint32_t>(0xa34);

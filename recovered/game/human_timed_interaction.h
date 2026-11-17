@@ -119,5 +119,48 @@ bool begin_human_timed_interaction(Control& control,Look& look,Human& human,Acto
     if(posture()==1||posture()==2)append(delay(2500),posture(),0);
     append(delay(500),12,0);return true;
 }
+//00751480's matching common-action ends. Queue retirement is deliberately
+//conditional on the actual front record, never a search or whole-queue clear.
+template<class Control,class Look,class Human,class Services,class Publish>
+void end_human_timed_interaction(Control& control,Look& look,Human& human,
+        std::uint32_t flags,Services& services,Publish& publish){
+    const auto validate=services.human_common_receiver_guard(human);
+    const auto action=flags&0x3ffu;
+    auto& words=control.physical().control_frame_words();
+    auto& request=look.frame_words();auto& queue=control.physical().control_action_queue();
+    const auto front=[&](std::uint32_t command){return !queue.empty()&&queue.front()[1]==command;};
+    const auto pop=[&](std::uint32_t command){if(front(command))queue.pop_front();};
+    const auto unlock=[&]{request.set(0xd4,request.template get<std::uint32_t>(0xd4)&~0xb4bu);}; //007553F0.
+    const auto animation=[&](std::uint32_t command){
+        look.force_frame_commands(true);look.frame_movement_animation(command,publish);validate();look.force_frame_commands(false);
+    };
+    const auto delay=[&]{control.movement().frame_words().set(0x130,
+        human_loading_stat_word(500.L/services.human_control_animation_scale()));}; //754B02 and755003 x87.
+    if(action==0x21){pop(17);return;} //Native break/AL1: no unlock, animation or delay.
+    if(action==0x1b){pop(10);animation(0x62);delay();return;} //Also deliberately retains D4 locks.
+    switch(action){case 0xf:case 0x11:case 0x13:case 0x15:case 0x17:case 0x19:case 0x1d:case 0x1f:case 0x25:break;
+    default:throw std::logic_error("Human timed completion requires its actual selected action");}
+    if((action==0x15||action==0x17)&&request.template get<std::uint32_t>(0xb8)!=5){
+        services.human_presentation_equipment(human).set_hidden(false);validate(); //00755470 before lock retirement.
+    }
+    unlock();
+    if(action==0x11){
+        if(front(1)&&queue.front()[2]==2){
+            queue.pop_front();if(front(2)||front(0))queue.pop_front();
+        }else if(front(1)&&queue.front()[2]==3)queue.pop_front();
+        delay();return; //No forced animation on this end.
+    }
+    if(action==0xf||action==0x25){
+        if(front(1)){queue.pop_front();pop(action==0xf?5u:18u);if(front(2)||front(0))queue.pop_front();}
+        else pop(action==0xf?5u:18u);
+        if(action==0xf||words.template get<std::uint32_t>(0xa34)<=1u)animation(45);
+    }else{
+        if(action==0x1d){services.human_presentation_equipment(human).transfers().event(8);validate();}
+        const auto command=action==0x13?6u:action==0x15||action==0x17?8u:action==0x19?9u:action==0x1d?11u:16u;
+        pop(command);animation(45);
+    }
+    delay();
+}
+
 }
 #endif
