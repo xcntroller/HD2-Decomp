@@ -64,3 +64,29 @@ The production adapter remains uncommitted; OWN source/older artifact remain
 preserved. Revised staged candidate still needs an actual user mission test.
 No FRAME/HUM/OWN source or desktop promotion, new function count, original ABI/
 allocator/SEH equivalence or original/DLL/Proton/Windows execution by the agent.
+
+## Next actual run: SupplyBox literal correction
+
+The user reran the f5cbd39f candidate and again returned to the menu. Fresh logs
+show `Human footprint texture loading stopped: name=d_l.tga status=80000001`,
+then the next real actor dependency: `Required SupplyBox animation is unavailable`.
+This establishes that original nonfatal footprint handling now continues Human
+initialization; it does not establish mission activation or a gameplay frame.
+The exact new executable/logs are archived under WORK/loading-supply-return.
+
+The actual original005FAC80 references literals at0083E9D4/C8/B8/AC. Their bytes
+are **#cratefly, #crateopen, #crateclosed, #cratedrop**. Earlier reconstruction
+mistook Ghidra symbol names `s__crate...` for actual leading-underscore strings.
+The installed Models archive contains all four `models/#crate*.5ds` payloads.
+Original bytes, source table and decoded installed payloads were cross-checked
+and fingerprinted after research-index lookup. The actual cache3 loader and
+ownership stay intact; the four keys are corrected, and any genuine missing
+clip still fails with its exact name included. No placeholder clip, renamed
+asset, alias or blanket missing-animation suppression is introduced.
+
+A focused literal/payload check and full strict actual application/probe build
+verify this small correction; unchanged ownership/policy sanitizer suites were
+not repeated. [SupplyBox correction receipt](checkpoints/p22-frame-loading-supply-20261117.json)
+records the new source/build/stage fingerprints. Actual next mission loading
+and successful frame execution still need user observation; the interactive
+adapter remains uncommitted.

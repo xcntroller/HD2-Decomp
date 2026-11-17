@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "8167e7c",
+  "contract": "analysis/p22-frame-loading-footprints-source.md#next-actual-run-supplybox-literal-correction",
+  "source_only_checkpoint": true,
+  "matrix_reconciliation": "partially_resolved",
+  "actual_desktop_result": "f5cbd39f candidate continues past corrected footprint texture status, then returns to Main on Required SupplyBox animation is unavailable; shutdown result0, no gameplay frame accepted.",
+  "gameplay_desktop_verified": false,
+  "agent_executed_original_dll_proton_or_windows": false,
+  "new_inventory_entries": 0,
+  "native_tests_repeated": false,
+  "verification": "Small literal correction: source names compared against original bytes; four actual installed 5DS payloads read-only decoded/fingerprinted; full production review i386 O2/Werror application and probe compile/link PASS. No repeat audit of unchanged policies.",
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-return/application_launch.exe",
+      "bytes": 12814848,
+      "sha256": "f5cbd39ffc97ee1027df863410382734fccd40f3ce8c93cf8af881037011ed75"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-return/host-output.log",
+      "bytes": 201938,
+      "sha256": "8aac32cd93468dea5300e9a053a77878998e4cfe215136fb106c658ed848e068"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-return/host-runtime.log",
+      "bytes": 204993,
+      "sha256": "d7a351f4d60ae4db3375094bd677150d8bb3f079d16800af1d7b8eedf87dee58"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-return/inputs.json",
+      "bytes": 993,
+      "sha256": "723253fecbe0dc37b430a8b129c5672b7dd6c087fb21ac37b5dda16e8f29da91"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-return/steam-0.log",
+      "bytes": 339363,
+      "sha256": "aef275e8ee9ce93db4f4ac3db8018d35f1b9158a5b4d7e85de51fe96af7dfb11"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/supply_box_loading.h",
+      "bytes": 14685,
+      "sha256": "c0796b942a6ca72391825157f3e6d6db74693ef2a2ce3e353e85f83146172d87"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-index.txt",
+      "bytes": 6310,
+      "sha256": "44264eff920c6d9a948d36c3e319913d3a0940bcf51b8601fbd54e3a39cc2fac"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-literals.json",
+      "bytes": 548,
+      "sha256": "53d138d9ca2e1b33b758acf249c3014032435a443f0ff4d2ab429066f77235e2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-static-verification.json",
+      "bytes": 2580,
+      "sha256": "9be48a59ceecf6e633bcd555c689bd8837653652b88197a846b77428d198f85f"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/actor-activation/005fac80.c",
+      "bytes": 7451,
+      "sha256": "2b35e06a0f114018c1957c53f4000d8e89f545a59b870a4dc8c5759886ee815c"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/actor-activation/005fac80.json",
+      "bytes": 24359,
+      "sha256": "fc60ce748d3e50f4c068b1c583ca2c0f102b5849d22b4ec1236756da270dc8ef"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-function-check.log",
+      "bytes": 437,
+      "sha256": "3b7b5583389bd9dfe5db7912c7a84170b4de68e23efef45e31b79b11eae4d292"
+    }
+  ],
+  "review": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+    "detached_base": "edebd81",
+    "interactive_overlay_committed": false,
+    "source_file": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/supply_box_loading.h",
+      "bytes": 14685,
+      "sha256": "c0796b942a6ca72391825157f3e6d6db74693ef2a2ce3e353e85f83146172d87"
+    },
+    "built_artifacts": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+        "bytes": 12815360,
+        "sha256": "5f044176e2060e87137c190b9589f62f19ff09b64fbcdc5aabb270e49f8a27c9"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+        "bytes": 1175552,
+        "sha256": "9a739b0ce609671f6eb9339c28325ccf85265272d3125fb3d7ee216cb06a88f1"
+      }
+    ],
+    "recoverable_patch": {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-supply-review-final.patch",
+      "bytes": 36443,
+      "sha256": "c2da77cd0836163ef0111585d3a070c3da012e194e95a9c8063cdaaad25de647"
+    },
+    "staged_artifact": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 12815360,
+      "sha256": "5f044176e2060e87137c190b9589f62f19ff09b64fbcdc5aabb270e49f8a27c9"
+    }
+  },
+  "limitations": [
+    "Corrects four leading # characters mistakenly taken from sanitized Ghidra symbols. Original cache/animation owners and genuine clip failure remain; no asset modification, aliases or synthetic success.",
+    "Actual engine loading of corrected clip names and next mission/frame path still require user desktop test. Existing Human/Frame/OWN integration gaps remain; no whole-body/ABI/delegated/desktop promotion."
+  ],
+  "own_preserved": true
+}

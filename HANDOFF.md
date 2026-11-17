@@ -7,11 +7,24 @@ source and its earlier staged artifact. No subagents, push, original/DLL/Proton/
 Windows execution or permanent tests. Heavy compilation and Ghidra sequential.
 Continue the first actual loading/frame failure, not unrelated admin/network work.
 
-LATEST USER TEST: user reported no crash/seemed successful. Logs show sound
-crash fixed and clean result0 shutdown, BUT Tutorial entry failed on
-`Required Human presentation texture failed: d_l.tga`, then returned to Main.
-No gameplay frame accepted. Exact cb657c0c executable +host-runtime/host-output/
-steam logs archived in WORK/loading-return before revised staging.
+LATEST USER TEST: f5cbd39f passed the corrected nonfatal footprint return, then
+returned to Main on `Required SupplyBox animation is unavailable`. No first
+loaded mission/frame accepted. Exact executable +three logs saved in
+WORK/loading-supply-return. [Continuation contract](analysis/p22-frame-loading-footprints-source.md#next-actual-run-supplybox-literal-correction),
+[receipt](analysis/checkpoints/p22-frame-loading-supply-20261117.json).
+
+FIX: original005FAC80 literals at0083E9D4/C8/B8/AC are #cratefly/#crateopen/
+#crateclosed/#cratedrop, NOT sanitized Ghidra symbol underscores. Corrected
+four source keys on FRAME/review; required missing-clip failure remains, with
+exact failed key now logged. Original/source literals and all four installed
+5DS payloads independently compared/decoded/fingerprinted. No resource aliases,
+synthetic clips or asset changes. Full review O2/probe/staging in receipt.
+Next user run should enter Tutorial with revised candidate, then read actual
+activation/first-completed-stage diagnostics, not infer success from Main/result0.
+
+Earlier cb657c0c user run: sound crash gone and clean result0 shutdown, BUT
+Tutorial entry failed on d_l.tga. Source checkpoint8167e7c records sound and
+original footprint status RET corrections. Exact run remains WORK/loading-return.
 
 [Sound correction and retest](analysis/p22-frame-loading-sound-failure.md),
 [receipt](analysis/checkpoints/p22-frame-loading-sound-20261117.json): rebuilt
@@ -79,4 +92,5 @@ sources and collision_slide.h. No stash/reset/overwrite/merge/rebase. All origin
 captured source hashes and earlier staged artifact d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c
 remain unchanged; its old runtime is distinct from this review. Last complete
 recoverable review overlay WORK/combined-own-review-final.patch is historical;
-latest receipt captures updated overlay with sound/footprints/diagnostics.
+latest receipt captures WORK/loading-supply-review-final.patch with corrected
+#crate keys, sound/footprints and diagnostics.

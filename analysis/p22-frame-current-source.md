@@ -1,3 +1,5 @@
+Subsequent actual run passed the footprint status RET, then failed on mis-transcribed SupplyBox animation keys. [Corrected original #crate literals and exact payload verification](p22-frame-loading-footprints-source.md#next-actual-run-supplybox-literal-correction) preserve genuine required failures; next staged candidate still needs actual mission testing.
+
 Latest retest: sound crash gone and clean shutdown, but mission entry returned to Main on d_l.tga. [Original footprint partial-status RET and correction](p22-frame-loading-footprints-source.md) preserve acquired references without inventing complete texture readiness. No gameplay frame accepted.
 
 Latest actual desktop run FAILED during loading: [null sound scene lookup and corrected source](p22-frame-loading-sound-failure.md). Prior source verification remains valid within its bounds; no loaded frame/desktop acceptance is established.

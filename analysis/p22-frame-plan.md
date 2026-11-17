@@ -11,7 +11,9 @@ sector initialization; [source correction and retest](p22-frame-loading-sound-fa
 use the actual constructed scene separately from the later listener view.
 Actual retest passed the old sound fault, then returned to Main on an incorrect
 fatal footprint-texture status. [Original partial-status correction](p22-frame-loading-footprints-source.md)
-is now supplied; successful loading/gameplay acceptance remains pending.
+is now supplied. The next actual run passed that gate and exposed wrong SupplyBox
+animation prefixes; original `#crate...` keys are corrected and verified against
+installed payloads. Successful loading/gameplay acceptance remains pending.
 Older implementation/reassessment documents retain revision-qualified evidence.
 
 ## Implemented and verified offline source

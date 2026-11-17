@@ -56,8 +56,8 @@ public:
         helpers_[2].emplace(frames_.create_supply_helper(6));require_helper(2);
         helpers_[1].emplace(frames_.create_supply_helper(9));require_helper(1);
         if(frames_.load_supply_model(helper(1),"parachute",0)!=0)throw std::runtime_error("Required SupplyBox parachute model is unavailable");
-        const char* names[]={"_cratefly","_crateopen","_crateclosed","_cratedrop"};
-        for(unsigned i=0;i!=4;++i){clips_[i].emplace(frames_.load_supply_animation(names[i]));if(!clips_[i]->get())throw std::runtime_error("Required SupplyBox animation is unavailable");}
+        const char* names[]={"#cratefly","#crateopen","#crateclosed","#cratedrop"};
+        for(unsigned i=0;i!=4;++i){clips_[i].emplace(frames_.load_supply_animation(names[i]));if(!clips_[i]->get())throw std::runtime_error(std::string("Required SupplyBox animation is unavailable: ")+names[i]);}
         initialize_vertex_and_collision();actor_.base().name(services_.actor_localized(actor_.properties.field210));ready_=true;
     }
     void deactivate(bool authority)override { //005FB220.

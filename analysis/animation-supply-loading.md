@@ -42,8 +42,10 @@ Vtable00812D10:3C→005FAC80,40→005FB220,14→005FB380,18→005FBD20.
 geometry, resets scalar/animation state and preserves parent through common
 activation. Real driver9 `cratedummy` loads flags10, driver6 dummy and driver9
 `parachute` (verbatim category1/004290A0 key, flags0) are owned. Required cache3
-clips are `_cratefly`, `_crateopen`, `_crateclosed`, `_cratedrop`; missing assets
-cannot report successful loading. The two unused native clip slots stay empty.
+clips are `#cratefly`, `#crateopen`, `#crateclosed`, `#cratedrop`; missing assets
+cannot report successful loading. The two unused native clip slots stay empty. Original bytes at0083E9D4/C8/B8/AC
+confirm the leading `#`; Ghidra symbol underscores were mistakenly transcribed
+in the earlier source and corrected after the actual2026-11-17 loading failure.
 
 005F9A60 finds shared exact `ammobox` definition and actual `morph` OBJ_ visual.
 Actor-owned214 is registered in the SAME ordered MissionVertexInstances registry
