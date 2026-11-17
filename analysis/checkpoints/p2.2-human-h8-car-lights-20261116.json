@@ -1,0 +1,258 @@
+{
+  "checkpoint": "H8.4 active Car light policy source",
+  "date": "2026-11-16",
+  "branch": "feature/p22-hum-h8-4",
+  "base": "eb8bce9",
+  "contract": "analysis/human-h8-car-lights-source.md",
+  "original_pe_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "scope": "Full nine-type00501CB0 on SAME geometry/paired flags/sector/physical forward, recovered544 initialization and live160 actor publication; no H8.4 or World delivery closure",
+  "original_or_windows_execution": false,
+  "agent1_worktree_modified": false,
+  "push": false,
+  "ghidra": "readOnly/noanalysis; bounded temporary ABI overrides in rolled-back transaction; project not saved",
+  "evidence_fingerprints": [
+    {
+      "path": "analysis/work/mission-world-20261103/ExportCarActiveLightsABI.java",
+      "bytes": 2670,
+      "sha256": "0e706cb029e263702c55fcedf9fd3caaf5e3f016736d823c7b67f20be15f8a70"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-original.asm",
+      "bytes": 317027,
+      "sha256": "4d7a9b745fba6442dc2a8ace6f1411448acd94f9fc647cbbc345bea08e6bd8d2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-light-direction.asm",
+      "bytes": 6248,
+      "sha256": "de9309b15720f4d93ddd2da358d09bfc666044421989fcbbcafc46bb1f234de6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-index.txt",
+      "bytes": 3731,
+      "sha256": "51c8273c2a1ab9cca9287f22628184921fd9447c26bf3cacec53d0400e8b2619"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-dependency-index.txt",
+      "bytes": 8708,
+      "sha256": "5da20121c1a35c2deb0b96c4a45d7619d147c577c97dc3de261d891aee8869ec"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-initialization-index.txt",
+      "bytes": 3180,
+      "sha256": "2cc69da06baa3a406877b92902b95310530684b7667ba93d168b0363f7f55582"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/FindCarInsideUses.java",
+      "bytes": 843,
+      "sha256": "17fbd7e1740a784a8b3d71db90b85f6fb7af6c25fb0b79fc02d5a491d34eba11"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-inside-uses.log",
+      "bytes": 5226,
+      "sha256": "6b43739f2b313a902b649f3a76da2fca1e3c2a26a9598bf58cedce76af7015fa"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-occupied-presentation-index.txt",
+      "bytes": 4712,
+      "sha256": "8874be4dda79d09401c0d88409f0695cbcfea24ccca4d6c0bf72f0f11a3f0509"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-occupied-pose-index.txt",
+      "bytes": 2639,
+      "sha256": "f9e6de2f4b655c984687fcd081cec73a880534c12d4530af0de9a8d319c5ab41"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/0041d160.c",
+      "bytes": 182,
+      "sha256": "f97d768dfea8b8e10a1a5e2b85077bc49e9fd59cd78f171e74f75cd9c293228e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/0041d160.json",
+      "bytes": 1090,
+      "sha256": "725f5ae93061781e783c000ffe6ce36dad70498d254b1507bfcb743af725a6cd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/0041d200.c",
+      "bytes": 1489,
+      "sha256": "c387b295eed351cf6b120d84c9159429855bc447986731b511bd78fdc4ba07f4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/0041d200.json",
+      "bytes": 10194,
+      "sha256": "baec51704ee1b7883df05e203829f93cac1975f0c24a654d0f2bb319879b530c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/0041d4b0.c",
+      "bytes": 88,
+      "sha256": "cfc00dc83772869fc9b09c7aec80b22bdaef6bb7a33a0740ad34ff1adadb3886"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/0041d4b0.json",
+      "bytes": 553,
+      "sha256": "e57ecc8f18d74258612c7e0ec27893aa119b5e8f60c652383751b96df7c3c64e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/00501cb0.c",
+      "bytes": 116506,
+      "sha256": "dc3adc55cde06577d0574d3f6c1bfeb8720451c70c3445c24cf37b101ce9ba78"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/00501cb0.json",
+      "bytes": 209301,
+      "sha256": "979e056163491deb5a873f83e7913bec15e135717ea858bcb8988a3e5b4daa18"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/00509a40.c",
+      "bytes": 118,
+      "sha256": "9f6900eb75098aac9bd10579c38df6688d29264741543f3dab6b0923de9c21c9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/00509a40.json",
+      "bytes": 638,
+      "sha256": "ebc83ad82c14412ccaed2b5d48cb263ce192c0a2c29624a1972c848686f252df"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/00509a50.c",
+      "bytes": 118,
+      "sha256": "17c01c195b9327c1cad3a6a9088ebe50d29f012b16c965310d3c471bb58c2347"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-active-lights-typed/00509a50.json",
+      "bytes": 638,
+      "sha256": "e0649ccf4f68ff4352f01083cb16a3252dd90af90f3daa2b5f976db416cdbef2"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/actor-cold-lifetime/004e2900.c",
+      "bytes": 5427,
+      "sha256": "458a60dd09d8ca0bee8ed0cf4ae4227c8ec06ddb2c8077afff5758d9f212f979"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/car-runtime-typed-v3-required/004ea780.c",
+      "bytes": 43486,
+      "sha256": "0435e8f30adcc17ac4489eed2c3a4de9c71ec3e9e96e52f99907c3db9e90d716"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/car-activation-required/004d3110.c",
+      "bytes": 2988,
+      "sha256": "37dfea6a55da64115f210ee738623d4f3b76ff02a53665867350ff8ac14a4aeb"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/car-loading-runtime-required/004d38f0.c",
+      "bytes": 866,
+      "sha256": "cb41f82db891fe980086d964b737a73d3ea34c7756c0f78f0c5bf2f97e49bc1f"
+    }
+  ],
+  "native_audit": {
+    "result": "PASS",
+    "asan": true,
+    "ubsan": true,
+    "leak_detection": true,
+    "checks": 7170816,
+    "original_policy_transcription_comparisons": 16000,
+    "failure_prefixes": 139,
+    "direction_relative_tolerance": 1e-06,
+    "comparison": "Separate bounded original switch transcription; exact events/flags/timers/frame state and tolerant normalization; no original binary or whole Car frame execution",
+    "real_source": "CarLighting discovery and full00501CB0 policy",
+    "doubles": [
+      "resource/frame/world matrix/position/direction/sector/visibility/update engine endpoints",
+      "marker geometry and damaged/command state injections"
+    ],
+    "final_authoritative_executable": "/tmp/h8-lights-audit-sanitized"
+  },
+  "strict_actual_host_i386_full_link": "PASS: O0 -std=c++17 -Wall -Wextra -Wpedantic -Werror -static -municode; actual activation/both frame passes/retirement instantiated; Windows output not executed",
+  "launcher_probe_compile_link": "PASS: both rebuilt sequentially from final source; Windows artifacts not executed",
+  "tracker": "PASS: exact fingerprints/full inventories/frozen counts/unique statuses/evidence/README and27 existing tracker tests",
+  "temporary_audit_fingerprints": [
+    {
+      "path": "/tmp/h8-lights-audit.cpp",
+      "bytes": 12788,
+      "sha256": "5266128a52cf81eb52b406df3278b07b912d3a2b3a603a11660f4a85e3cd807a"
+    },
+    {
+      "path": "/tmp/h8-lights-audit",
+      "bytes": 761824,
+      "sha256": "a206a8e3f711d0928a5c25a768c270f5ae984dc954839391658fee3223af919b"
+    },
+    {
+      "path": "/tmp/h8-lights-audit-sanitized",
+      "bytes": 1914664,
+      "sha256": "5d52551de26c0e39c51f80fc08a1ef1e52abe992e73205cc7a214fa8c21cc279"
+    },
+    {
+      "path": "/tmp/h8-lights-host.cpp",
+      "bytes": 387,
+      "sha256": "2a73ea6136c6dd1056067c23a7ddc7263a1481addd04d46ef8f51e223e85b475"
+    },
+    {
+      "path": "/tmp/h8-lights-host.exe",
+      "bytes": 4398592,
+      "sha256": "1cb478ec4a82e65d65aae53353d7b2c68f35ffb322cf78c2a7c37a31f212b0c5"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "ledger": {
+    "new_partial_entries": [],
+    "updated_partial_entries": [
+      "00501cb0",
+      "004e7450",
+      "004ea780",
+      "004d3110"
+    ],
+    "complete": 34,
+    "partial": 3467,
+    "client_partial": 3462,
+    "engine_partial": 5,
+    "frozen_inventory": 18783,
+    "complete_promotions": 0,
+    "delegated_engine_body_credit": 0
+  },
+  "remaining": [
+    "actual H3 occupied entry/input through containing Car presentation",
+    "non7 and entry dependencies D6-D9",
+    "native debug-selected drawing",
+    "D11 confirmed fresh part5F9/wheel695/EXPL8/smoke14 omissions",
+    "containing Runtime/World/OWN/FRAME/application/desktop acceptance"
+  ],
+  "adaptations": [
+    "typed/STL/RAII owners and checked frame endpoints; native object/container/allocator/SEH ABI unclaimed",
+    "unified projector vector with unused nonpaired flag entries",
+    "explicit failure on absent mandatory native companion/source rather than null dereference"
+  ],
+  "verification_log_fingerprints": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-sanitizer-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-sanitizer-run.log",
+      "bytes": 70,
+      "sha256": "8b849e2c0ceccfeab3e09c23188aafe1178a9f6841091044f2a57c74647a1abe"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-host-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-application-build.log",
+      "bytes": 930,
+      "sha256": "4fd12cb475e84990a6514cb4e337f3ee6957fecd0e2088f4bfa2dde2591d73f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-tracker-check.log",
+      "bytes": 437,
+      "sha256": "0a742d43d05d598768d61fd310f8e159325fd0287281a040824d8735db8649a2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-lights-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ]
+}

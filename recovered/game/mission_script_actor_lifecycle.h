@@ -3,11 +3,12 @@
 
 #include "game/mission_script_context.h"
 #include "game/model_scene_actors.h"
+#include "game/human_joint_math.h"
 
 namespace hd2::game {
 
 //Actual00416DB0 Human cleanup AFTER MissionScriptContext stores104=0/D4=1,
-//plus00416E10 F9 EndScript. Frame EC actor0 is independent of context family.
+//plus00416E10 32 HUMAN_Kill and F9 EndScript. Frame EC actor0 is independent of context family.
 //Controls is the SAME HumanScriptLoadingControls used by derived commands.
 template<class Frames,class Human,class Controls,class Players>class MissionScriptActorLifecycle {
 public:
@@ -21,8 +22,24 @@ public:
         if(human.loading_state->words().template get<std::uint32_t>(0x48)==5){controls_.working_mode(human,0);controls_.suspend(human,false);}
     }
     template<class Runtime>std::optional<bool> execute(Context& context,const MissionScriptInstruction& instruction,Runtime& runtime){
-        if(instruction.opcode!=0xf9u)return std::nullopt;
+        if(instruction.opcode!=0xf9u&&instruction.opcode!=0x32u)return std::nullopt;
         if(!runtime.script_authority())return false;
+        if(instruction.opcode==0x32u){ //00419258, NOT compressed switch case/opcode6.
+            const auto frame=context.slot(instruction.operands.at(0));
+            const auto* data=frame?frames_.find_actor_frame_data(frame):nullptr;
+            auto* value=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+            if(!value)return false;
+            if(value->base().type()==3){
+                auto& human=as_human(*value);
+                if(!human.loading_lifetime)throw std::runtime_error("Script Kill requires its actual Human damage owner");
+                const HumanVector zero{};human.loading_lifetime->damage(4,-1.f,zero,zero,nullptr,0);
+            }else if(value->base().type()==25){
+                auto* animation=dynamic_cast<AnimationSceneActor<Frames>*>(value);
+                if(!animation||!animation->loading)throw std::runtime_error("Script Kill requires its actual Animation start owner");
+                animation->loading->start(false);
+            }else return false;
+            context.advance(runtime);return true;
+        }
         context.begin_end_script();
         if(auto* value=actor(context)){
             if(value->base().type()==3){

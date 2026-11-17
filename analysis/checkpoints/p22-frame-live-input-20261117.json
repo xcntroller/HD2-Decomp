@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-17",
+  "base": "24c7310",
+  "source_only": true,
+  "frame_complete": false,
+  "hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/p22-frame-live-input-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/hud_session_input.h",
+      "bytes": 1145,
+      "sha256": "0306943ebcae02e831980cf5725b0f7163f2ad2e65161d999701b4c80c2ce466"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 143263,
+      "sha256": "36482eefd24b4bd67e39897e2ff4186d3b9c1eb5d443720d15fc44c1fd3153cd"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-owner-abi.asm",
+      "bytes": 7449,
+      "sha256": "3b2eaee7dc464267ab10936f37aae2afc8a10eb793504c064743f78b853e7d53"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/game-state-frame-consumers/0049fc10.c",
+      "bytes": 600,
+      "sha256": "f2c18db50f76b368f408085c6e416b4a428daf9f97acac53f59e36e899110c88"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-index.txt",
+      "bytes": 5398,
+      "sha256": "283c12ffa1b7398d88b2672b0050416537538e3551508d56dae1fc9393218e53"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-owners-index.txt",
+      "bytes": 7859,
+      "sha256": "4aa4caf7ec4502f9527b7e9231bd55029d2d8d02103c6b1adf6637970621e536"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-native-run.log",
+      "bytes": 136,
+      "sha256": "99f0c62930b19c2ef440d2dd6fe6b95d83ec758ce738a021c14237c3481a27ec"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-launcher-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-native.cpp",
+      "bytes": 3640,
+      "sha256": "b940d52b19989ae492a41355c5de0071c1ad5be627b997ac90da56d7c1f8d037"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-native",
+      "bytes": 525800,
+      "sha256": "bb07fe6beb50cc31e80a0ef4e7ed7747ad3e7146357e3b20c9b2ac2c3e5a3acd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-module.cpp",
+      "bytes": 547,
+      "sha256": "6c3bd5be24949c987fbc4856932d7cd2e4074f567d413bc546d7e2d88642ee05"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-ui-input-module.exe",
+      "bytes": 12017664,
+      "sha256": "874c4aa1704fc107d0a8a616e02903f2eb92d8dba71293b2ca16de87a15fe0b5"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "new_partial_client_bodies": [
+    "0049fc10",
+    "0049f090",
+    "0049d300"
+  ],
+  "complete_promotions": [],
+  "verification": {
+    "native": "PASS4175 strict ASan/UBSan/leaks actual binding state/views and policy with explicit panel endpoints",
+    "actual_i386": "PASS actual UI + current World/GameSessionFrames all entry points compile/link only",
+    "launcher": "PASS forced O2 launcher/probe compile/link only"
+  },
+  "limitations": "Containing OWN external bindings, positive cutscene/conditional actors and application/desktop remain open."
+}

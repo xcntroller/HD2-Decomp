@@ -2,6 +2,7 @@
 #define HD2_GAME_SIMPLE_SCENE_ACTORS_H
 
 #include "game/scene_actor.h"
+#include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/sound_emission.h"
 #include "game/rigid_body.h"
@@ -53,6 +54,7 @@ class ExplosivePlaceSceneActor final : public SceneActor<Backend> {
 public:
     using Frame=typename Backend::Frame;
     using Descriptor=RigidBodyCollisionDescriptor<Frame>;
+    std::int32_t material(Frame picked)override{return actor_picked_or_model_material(this->backend_,picked,this->base_.frame());} //0060CEE0.
     explicit ExplosivePlaceSceneActor(Backend& backend) : SceneActor<Backend>(backend,22),
         properties(initial_explosive_place_properties()) {} //0060C230.
     bool initialize(Frame frame) override {return this->base_.initialize_frame(frame);} //0060C2F0.
@@ -136,6 +138,8 @@ public:
     }
     const Descriptor& collision_descriptor()const{return descriptor_;}Frame on_frame()const{return on_;}Frame off_frame()const{return off_;}
     std::uint32_t countdown()const{return timer_c8_;}
+    std::uint32_t placer_identity()const{return fieldc4_;}
+    void placer_identity(std::uint32_t value){fieldc4_=value;} //0060D6F0, actual placer C4; not the Actor identity.
     ExplosivePlaceActorProperties properties;
     bool flag90=false,flag170=false;
     std::uint32_t field94=4,fieldb0=0,fieldb4=0;

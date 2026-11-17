@@ -5,6 +5,57 @@
 
 namespace hd2::game {
 
+//004E95B0(2), reached by004DD0D0. This suspends the SAME live physical graph;
+//it does not retire/reconstruct its owners. Bit1's permanent skid detachment
+//belongs to other callers and is not implied by this reset entry.
+template<class Frames,class Geometry,class State,class Pool,class Contacts>
+void suspend_car_for_reset(Frames& frames,Geometry& geometry,State& state,Pool& pool,Contacts& contacts){
+    state.skids.hide_first();
+    frames.car_transform_in_place(state.body().motion().angular_velocity,state.body().pose().inverse_rotation);
+    frames.car_transform_in_place(state.body().motion().velocity,state.body().pose().inverse_rotation);
+    for(auto n=geometry.lighting().lights().size();n;){const auto& light=geometry.lighting().lights()[--n];
+        if(light.projector==CarLighting<Frames>::none||(light.flags10&0x80000000u))continue;
+        const auto& projector=geometry.lighting().projectors().at(light.projector);
+        if(projector.visual){frames.car_reset_link(projector.visual.get(),typename Frames::Frame{});
+            if(projector.light)frames.car_reset_link(projector.light.get(),typename Frames::Frame{});}
+    }
+    for(auto n=geometry.lighting().projectors().size();n;){const auto index=--n;const auto& projector=geometry.lighting().projectors()[index];
+        bool paired=false;for(const auto& light:geometry.lighting().lights())if(light.shared&&light.projector==index){paired=true;break;}
+        if(!paired)continue;
+        frames.car_reset_link(projector.visual.get(),typename Frames::Frame{});
+        if(projector.light)frames.car_reset_link(projector.light.get(),typename Frames::Frame{});
+    }
+    for(auto& wheel:state.wheels)if(wheel.effect>=0){retire_car_particle(pool,wheel.effect);wheel.effect=-1;}
+    for(auto n=state.finalizer.particles.exhausts.size();n;){auto& slot=state.finalizer.particles.exhausts[--n];if(slot>=0){retire_car_particle(pool,slot);slot=-1;}}
+    if(state.finalizer.particles.damage>=0){retire_car_particle(pool,state.finalizer.particles.damage);state.finalizer.particles.damage=-1;}
+    state.collision.set_enabled(false,false);
+    std::vector<CarBodyContactRecord>().swap(contacts.records); //Native798/79C/7A0; preserve other BODYCOL state.
+    for(auto n=state.finalizer.particles.impacts.size();n;){auto& slot=state.finalizer.particles.impacts[--n];if(slot>=0){retire_car_particle(pool,slot);slot=-1;}}
+    state.sounds.stop_all();
+}
+
+//004DCE40: DM reset and254A precede the optional original-mesh restore. Missing
+//factory/rejected load returns before physical reset, matching native behavior.
+template<class Frames,class Car,class PhysicalReset>void restore_car_actor(Frames& frames,Car& car,PhysicalReset&& reset){
+    car.ancillary->reset_loading(frames,car.geometry->auxiliary().seats().size());car.flag254a=false;
+    if(car.flag2548){
+        auto model=frames.create_car_restore_model();if(!model)return;
+        auto resource=frames.car_model_resource(car.base().frame());const auto slash=resource.rfind('\\');
+        if(slash!=std::string::npos)resource=resource.substr(slash+1);
+        if(!frames.load_car_ancillary_model(model.get(),resource))return;
+        for(auto n=car.occupants.size();n;){if(auto* occupant=car.occupants[--n])frames.car_reaction_mesh_link(occupant->base().frame(),typename Frames::Frame{});}
+        //004DCFE0 uses the same name/mesh/update sequence as004DCDE0.
+        frames.car_destroyed_meshes(car.base().frame(),model.get());frames.update_scene_object(car.base().frame());
+        for(auto n=car.occupants.size();n;){const auto index=--n;if(auto* occupant=car.occupants[index]){
+            frames.car_reaction_mesh_link(occupant->base().frame(),car.geometry->auxiliary().seats().at(index).frame);
+            frames.update_scene_object(car.occupants[index]->base().frame());
+        }}
+        car.flag2548=false;
+        auto& parts=car.geometry->deformables().parts();for(auto n=parts.size();n;){auto& part=parts[--n];part.mesh=frames.car_mesh(part.frame);}
+    }
+    reset();
+}
+
 //004E9DB0, RET8. Engine and part restore receivers borrow the SAME initialized
 //Car. A failing prefix stays published; this is not a new cold initialization.
 template<class Frames,class Geometry,class State,class Engine,class Restore>
@@ -32,7 +83,7 @@ void reset_car_physics(Frames& frames,Geometry& geometry,State& state,float spee
     }
     state.body().reset_pose();
     state.finalizer.sector=frames.object_parent(model);frames.car_place_in_scene(model,state.body().pose().centre);
-    state.drive.changing_gear=false; //2293, distinct from engine-running22A2.
+    state.drive.flag2293=false; //2293, distinct from engine-running22A2.
     for(unsigned a=0;a!=3;++a){state.body().motion().angular_velocity[a]=0;state.body().motion().velocity[a]=0;}
     state.body().motion().direction=state.body().motion().velocity;state.drive.body_flags=1;
     state.audio.reset_skid();state.brake_ramp=0;state.solver.mass_changed=false;state.solver.speed=0;
@@ -50,7 +101,7 @@ void reset_car_physics(Frames& frames,Geometry& geometry,State& state,float spee
         state.body().motion().direction=direction;state.solver.speed=std::abs(speed);
     }
     engine(speed!=0); //004F2530(speed!=0,true), BEFORE gear/wheel/health reset.
-    state.drive.gear=state.drive.requested_gear=1;state.reset_fields.field78c=0;state.brake_amount=0;
+    state.drive.gear=state.drive.requested_gear=1;state.drive.torque_amount=0;state.brake_amount=0;
     state.solver.substeps.field724=0;state.drive.clutch=1;state.steering.current=0;state.drive.brake=0;
     state.health.destroyed=false;state.drive.throttle=state.drive.second_throttle=0;state.steering.requested=0;
     state.reset_fields.signal2294=state.reset_fields.signal2295=false;state.reset_fields.field780=0;state.steering.difference=0;
@@ -68,7 +119,7 @@ void reset_car_physics(Frames& frames,Geometry& geometry,State& state,float spee
             static_cast<float>(static_cast<long double>(wheel.vectors.at(0x40)[a])-static_cast<long double>(wheel.scalars.get(0x1e4))*up[a]);previous[a]=anchor[a]-up[a];}
         wheel.vectors[0x50]=anchor;wheel.vectors[0x60]=previous;
     }
-    state.controller().desired_clutch=state.drive.clutch_target=1;state.drive.transmission&=0xffffffe0u;state.reset_fields.fieldf68=0;
+    state.controller().desired_clutch=state.drive.clutch_target=1;state.drive.transmission&=0xffffffe0u;state.solver.speed_angle=0;
     if(restore){reset_car_health(frames,geometry.physics(),state.drive,state.health,state.wheels,geometry.lighting(),state.paired_flags);restore_parts();}
     state.finalizer.air_requested=false; //228E.
     for(auto n=geometry.lighting().lights().size();n;){const auto& light=geometry.lighting().lights()[--n];
@@ -83,7 +134,7 @@ void reset_car_physics(Frames& frames,Geometry& geometry,State& state,float spee
         if(!paired)continue;
         frames.car_reset_link(projector.visual.get(),state.finalizer.sector);if(projector.light)frames.car_reset_link(projector.light.get(),state.finalizer.sector);
     }
-    update_car_wheel_rotation(frames,geometry.physics(),state.body(),state.wheels,state.drive,state.solver.queries,state.solver.wheel_spin,1.f);
+    update_car_wheel_rotation(frames,geometry.physics(),state.body(),state.wheels,state.drive,state.solver.queries,state.controller().frame_simulated,1.f);
     state.collision.pose(state.body().pose().world,state.body().pose().inverse);state.collision.set_enabled(true,true);
     state.solver.mass_changed=true;state.reset_fields.field22c1=false;state.drive.brake=0;
     state.control_requests.second=state.control_requests.first=0;state.reset_fields.fields4f0={};

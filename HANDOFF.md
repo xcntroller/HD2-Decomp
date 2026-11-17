@@ -1,57 +1,44 @@
-# P22-OWN handoff —2026-11-12
+# P22-OWN handoff — 2026-11-17
 
-Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-own`, branch
-`feature/p22-own`. Fetched origin/master and actual base
-`fa94dee38922a21397289a7b5746819c83b42d89`. No master/other checkout changes,
-merge or push. No original/Windows execution or desktop acceptance.
+Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-own`, feature/p22-own.
+User priority: finish P22/get in game through HUM, FRAME, then OWN on this branch.
+No original EXE/DLL/Proton/Windows fixtures, push or permanent tests/subagents.
+Heavy compilation and Ghidra sequential. Source-only commits need no fabricated
+user desktop test; interactive delivery requires actual acceptance.
 
-[Plan](analysis/p22-own-plan.md),
-[implementation and exact dependencies](analysis/p22-own-implementation.md),
-[receipt](analysis/checkpoints/p22-own-20261112.json).
+Latest [FRAME/HUM import](analysis/p22-own-frame-import.md),
+[receipt](analysis/checkpoints/p22-own-frame-import-20261117.json): OWN939fb70 plus
+FRAME9d53c06/currentH824c7310. Conflicts resolved, both lifecycle frame/render
+owners and script renderAD/BB +formation2..C dispatch retained. Both ledger
+histories preserved. Forced actual O2 application/probe link PASS. No runtime
+execution. Source counts34 complete/3715 partial(client3710+engine5).
 
-Available OWN application composition is implemented; **overall OWN is blocked**.
-- Real kind7 factory installs one existing lifecycle/World over SAME parent,
-  status_storage/request/live squad/Startup/device/catalogue and existing clock.
-  Actual006989B0 ->006CA780 replaces the unconditional failed-load lambda.
-- Real UI/RENDER presentation/callback binding, application render forwarding,
-  DATA operation/population observation, primary failure/cleanup-secondary,
-  retry and graph-before-parent teardown. Final destructor retracts game views.
-- Input resolves mutable64-word SAME process vectors without const cast/copy;
-  input/fixed/update forward to the owned boundary but concrete FRAME is absent.
-- Available current controller identity/deferred controller04 request,
-  original0067FAA0 mission save predicate, initialized mode04 saved-state query,
-  actual localized warning ->same HUD/console, persistent item suffix and clock.
-  Mode04 is008AE924+4, NOT GameData/application04 or a descriptor pointer.
-- Actual activation success still throws the explicit missing-FRAME failure,
-  then closes. No successful placeholder coordinator/HUD/producer is installed.
+FRAME has current actual session coordinator, Human World bridge, Items/physics,
+Players fixed/presentation and actual HUD input filter/queries. Native4175 and
+actual UI/session i386+launcher pass at9d53c06. H8.1/.2/.3 Human-owned source is
+checked but full HUM/H8.4/.5/.6 and application remain open. Do not infer a loaded
+mission from historic captures or expand conditional Dog before actual path proof.
 
-Native ASan/UBSan/LSan PASS100 ownership/alias/prefix/failure/retirement/retry/
-input provenance/controller04/receiver fallback/objective/warning families;
-World/engine/FRAME/application/parent doubles explicitly labelled. Strict actual
-O0 i386 concrete application/World/loading/activation/UI/render/callback/lifecycle
-link and existing application build compile/link only; final hashes in receipt.
-Only0067FAA0 adds one frozen partial. Base ledger already3,004 partial vs stale
-README2,997; now34 complete/3,005 partial. No complete promotion/denominator change.
-Full tracker still has unrelated missing0062D880 ignored evidence; focused frozen
-fingerprint/baseline/uniqueness/changed evidence checks pass. No fabricated proof.
+Continue GameApplicationSession external adapter/Runtime installation on SAME
+lifecycle World, then actual admission. It still calls missing_frames after real
+activation success; input/fixed/update remain failing, not successful callbacks.
+Mandatory first concrete gap: local-input producer0053BF90(3492bytes), invoked by
+005A3DE0, has NO current implementation;0053F9B0's frame/local buffering is separate.
+The original producer stores actual mutable74/78 pointers, camera/mouse/invert/
+attachment/zoom/look-direction and command/latch/posture changes. Do not substitute
+snapshot copies or bypass it. Existing change_breath_hold0053CD90, FPV modes,
+camera and items are source; reuse them. Human order queries005A5ED0/5F00/5F50
+are tiny wrappers over actual kind3 pending orders/recent-change; general count
+exists as player_command_pending_count but HUD bridge remains unbound.
 
-Exact next work:
-1. Import FRAMEc36bba8 through user merge workflow. Reconcile its lifecycle with
-   current callbacks; retire_frames/frame_retirement_started BEFORE Scene suspend,
-   UI/render loan retirement or World close. Supply actual GameSessionFrames and
-   its mandatory Runtime; do not copy another coordinator into OWN.
-2. Finish same-World GameSessionFrameExternal with actual UI source producers.
-   HUD input filter0049FC10 and predicates0049F090/0049D300 need UI-owned
-   accessors/state mapping; advance_hud/controls/FPV already exist on merged UI.
-   Current-state/request/save predicate/saved-mode query/warnings are now ready.
-3. P22-FRAME/Script module4 cutscene00423EB0 needs positive camera828/82C/830/834 and
-   frame868/87C/88C owners/producers. Current module's private zeroed824 array
-   lacks this graph. Original929-byte containing body is inspected; do not
-   substitute a flag reset. This OWN integration body remains explicitly open.
-4. Required positive HUM/Player/Items/Dog/Sight/PACK Runtime services remain with
-   their owning parts. Latest inspected HUMb99f088 has Car event source and exact
-   fresh-part5F9/wheel695 source guards; no fixture seeding or guessed defaults.
-   Source presence/contract count does not prove reachability in Tutorial.
-5. Only remove final activation/FRAME guards after these real bindings; then
-   authorized actual mission/resource/frame/present/failure/return/repeat and
-   user desktop acceptance. No further independently available OWN slice selected.
+Index results in FRAME WORK/frame-live-human-bridge-index.txt; frozen original
+C0053BF90 under H8 WORK/player-view-composition-required. Read complete original
+and raw before implementation. Look up helper addresses first; raw static objdump
+is allowed. Positive cutscene00423EB0 and UI producers/conditional actors retain
+precise required owners; OWN notes record known missing fields, not defaults.
+
+Tools: H8 ignored .tools compiler/sanitizer runtime and static client/work exports
+are reused via absolute paths. This checkout has inventories/required ledger
+ignored evidence copied. Research index --root H8 was done in FRAME; reuse that
+cache or copy exact candidates, not a broad export pass. Freeze/fingerprint/remove
+temp audits at checkpoints. Full function_progress checker currently passes.

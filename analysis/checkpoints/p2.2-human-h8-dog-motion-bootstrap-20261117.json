@@ -1,0 +1,212 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "8c743cb",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-dog-motion-bootstrap-source.md",
+  "new_partial_client_bodies": [
+    "005c71e0",
+    "005c7600",
+    "005c75b0",
+    "005c0f50",
+    "005c0d10",
+    "005c0d60",
+    "005c8370"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_clip_mixer.h",
+      "bytes": 16726,
+      "sha256": "48474f5233a2e71121c9dcc25425b0984e1b8f238cd28a23273cb9724c3e29e4"
+    },
+    {
+      "path": "recovered/game/dog_body_actions.h",
+      "bytes": 12422,
+      "sha256": "c0c2b41241fabad59a08bbd10df7f98e2a061a3ace47d01e104b41af69e6cd34"
+    },
+    {
+      "path": "recovered/game/dog_body_state.h",
+      "bytes": 4264,
+      "sha256": "6ed8b8885afa2442fcec72f67c4ebd69b1b6a171bb21def15417fa8890fef822"
+    },
+    {
+      "path": "recovered/game/dog_body_transform.h",
+      "bytes": 6535,
+      "sha256": "94ee61de43f258ebfcf798d60b7097573aa20cfee7cb0decce399880c27508d8"
+    },
+    {
+      "path": "recovered/game/dog_damage.h",
+      "bytes": 6247,
+      "sha256": "dd997fc920dcaf224d12387b0acdfb0ad1c3653bb30466070b7562e6e5b03a68"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 7733,
+      "sha256": "73895e4d2792246710178cc762f78796cc0c20022aef0bc3d24065277613e309"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 129206,
+      "sha256": "e987aee5e433579804d5a878aa59ad5978f846ffdb7d53aff3d953253bc8c365"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-motion.asm",
+      "bytes": 9354,
+      "sha256": "21fab341748548a6246856a12008068cf9efb1346955a30810d988c0b29f598c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-deceleration.asm",
+      "bytes": 10489,
+      "sha256": "d4a4afb4fe07fe2e5e2893ca596f12c2adf0a5466817fb8d0fa83cbe51d070a8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-transform-full.asm",
+      "bytes": 20833,
+      "sha256": "1ecf96d4a0d57d5d7134d57f94735f2b868ddb7da7fcf350f6f0beda90a04cb8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-direction.asm",
+      "bytes": 8236,
+      "sha256": "d3b403dcb02954e4c688436fd32006b40eb5f7ab9df425b6a7ae4a6f985b5200"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-bootstrap-full.asm",
+      "bytes": 24833,
+      "sha256": "1c4e336d91a0bb9358452733312fd0874c8856e95553d4e98b3a755abbdc274b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-motion-constants.json",
+      "bytes": 732,
+      "sha256": "2e1247b74a54551a0dda94750c8c8ddddac59b4405c60dd53d337a2879c34bf7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-bootstrap-constant.json",
+      "bytes": 94,
+      "sha256": "60b0856750bd2ab804610d8ba0e1715e0d28c49800bc1efbb2a0fca2f5b9d7aa"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-bind-index.txt",
+      "bytes": 21172,
+      "sha256": "9b5fd741e98a91d5c8e7dae799fcbf98d18cb9cd0316941d15105b679e4e41c3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-motion-index.txt",
+      "bytes": 9366,
+      "sha256": "e011cbdc8577ed8816a8fdf502005aa8c63225cd691035f16e980f0cd0ed4761"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-transform-index.txt",
+      "bytes": 11195,
+      "sha256": "8104b086c3ebfe186202f0778c90530583183d9869505b16c87da213a135cd11"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-motion-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-motion-native-run.log",
+      "bytes": 188,
+      "sha256": "9de6fb34a5c7659d3bb0a8ff0638d237e0890a44a0842dc8b04206b696aa8bd3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-transform-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-transform-native-run.log",
+      "bytes": 188,
+      "sha256": "cc858186ea9a49bcd67115e60087a8c496573c9050b16c6cb57d103c8fdebbf3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-bootstrap-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-bootstrap-native-run.log",
+      "bytes": 138,
+      "sha256": "62c11726ab0e9d3e885a4781103b358c4afbc7d44ccda6280bf4710f406990a6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-motion-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-motion-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-motion-native.cpp",
+      "bytes": 5753,
+      "sha256": "d5a223ed52a1f729b17c3d3686b4a918d47c12c4529f8c411cdc063068c67b3e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-motion-native",
+      "bytes": 618472,
+      "sha256": "5423c4028ed687069649cb740afa6d2d8267a14de8284b71d070a57f7df034c6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-motion-module.cpp",
+      "bytes": 1443,
+      "sha256": "5e94fe91ec8a89750934a3cb8632cc4763a610f053043600c918b3d52a2dfa74"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-motion-module.exe",
+      "bytes": 11917312,
+      "sha256": "fc15845c8ea5de6696fca9aa3f1762525ea884e2d13a4ba9531d2ca8085c6b0f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-transform-native.cpp",
+      "bytes": 6859,
+      "sha256": "d654d786dc3e64333542fff4463ecaa33aabda3a11ce5cc9d5617ec9697ea7b7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-transform-native",
+      "bytes": 556368,
+      "sha256": "a63ca24f1303a1837469a415548f63f41c207257bfd0885bb25a42109c3c1da1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-bootstrap-native.cpp",
+      "bytes": 6279,
+      "sha256": "c5c414a91ca07f48b346aa526716c6ae1aa80b0c2c0a22032ddbb79ae56c2b3d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-bootstrap-native",
+      "bytes": 1774888,
+      "sha256": "2a9484f51cae35e94332b66ecc0069ac73c451813a96833d6be6e73407dc0d38"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-motion-module.cpp",
+      "bytes": 1806,
+      "sha256": "70a1fdb979be3dbb72d54838ada29e33ef0c00a243c055745478fab3dccd62a5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-motion-module.exe",
+      "bytes": 11951616,
+      "sha256": "07bff45316e5a0543cc345b7cda1864ecc792a3b8b2276d24a199352c975789b"
+    }
+  ],
+  "verification": {
+    "clip_native_checks": 319938,
+    "transform_native_checks": 123365,
+    "bootstrap_native_checks": 9563,
+    "sanitizers": "ASan+UBSan+leaks PASS strict native",
+    "actual_i386_world_module": "PASS compile/link only",
+    "forced_launcher_startup_probe": "PASS compile/link only",
+    "tracker": "exact inventories/frozen baseline +27 existing tests",
+    "boundaries": "Native endpoint doubles explicitly declared; actual i386 World graph compile only. Cold priorities still unproduced; no live activation or desktop claim."
+  },
+  "removed_temporary_audits": true
+}

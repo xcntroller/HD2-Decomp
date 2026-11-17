@@ -16,7 +16,7 @@ struct CarWheelTractionTotals {
 //No surface or contact is fabricated when the actual tyre registry lacks one.
 template<class Frames>CarWheelTractionTotals prepare_car_wheel_traction(Frames& frames,
         std::vector<CarWheelRuntime<Frames>>& wheels,const CarTyres& tyres,
-        const typename Frames::Vector& up,float additional_grip){
+        const typename Frames::Vector& up,float additional_grip,typename Frames::Vector* diagnostic=nullptr){
     using Vector=typename Frames::Vector;CarWheelTractionTotals totals;unsigned side=0;
     for(auto index=wheels.size();index;side^=1u){
         auto& wheel=wheels[--index];auto& scalars=wheel.scalars;
@@ -62,7 +62,7 @@ template<class Frames>CarWheelTractionTotals prepare_car_wheel_traction(Frames& 
         if(slope>=.5f){const auto scale=1/slope;for(unsigned axis=0;axis!=3;++axis)spring[axis]=static_cast<float>(spring[axis]*scale);}
         else for(unsigned axis=0;axis!=3;++axis)spring[axis]+=spring[axis];
         wheel.vectors[0x70]=spring;
-        for(unsigned axis=0;axis!=3;++axis)totals.spring_force[axis]+=spring[axis];
+        for(unsigned axis=0;axis!=3;++axis){totals.spring_force[axis]+=spring[axis];if(diagnostic)(*diagnostic)[axis]+=spring[axis];}
         const auto limit=coefficient(slipping?0x1c4:0x18c,slipping?8:0);
         scalars.set(0x1b0,std::min(scalars.get(0x1b0),limit));scalars.set(0x1b4,std::min(scalars.get(0x1b4),limit));
         if((wheel.flags&0x102u)&&!(wheel.flags&0x400u))totals.driven_limits[side]+=scalars.get(0x1b0);

@@ -6,6 +6,8 @@
 #include "frontend/cleanup.h"
 #include "frontend/pre_mission_data.h"
 #include "game/dynamic_item_contact_sound.h"
+#include "game/loose_item_handoff.h"
+#include "game/dynamic_item_frames.h"
 #include <limits>
 
 namespace hd2::game {
@@ -81,6 +83,27 @@ public:
     }
     template<class Sound>void contact_sound(Sound& sound) { //005B7570, actual item definition38 and world pose.
         emit_dynamic_item_contact(this->backend_,items_,entry_,this->base_.frame(),field6a4_,sound);
+    }
+    void release_item_to_inventory(){ //005B6980, frame EC BEFORE item loan/frame reference; body closes later in00477190.
+        release_loose_item_to_inventory(this->backend_,this->base_,entry_);
+    }
+    template<class World>void update(bool authority,std::uint32_t elapsed,World& world){
+        advance_loose_item_frame(*this,{field6a0_,field6a4_,flag6a8_,field6ac_,field6b0_},authority,elapsed,world);
+    }
+    void damage(std::uint32_t kind,float amount,const Vector& point,const Vector& direction) { //005B74D0.
+        std::int32_t age;std::memcpy(&age,&field6b0_,4);if(age<300)return;
+        if(!entry_)throw std::logic_error("Loose item D4 requires its actual item90");
+        const auto definition_kind=items_.runtime_item(entry_).definition().kind();
+        if(definition_kind==20||definition_kind==21)return;
+        auto impulse=direction;
+        if(kind==1){const float factor=static_cast<float>(static_cast<long double>(amount)*.05000000074505806f);
+            for(unsigned axis=0;axis!=3;++axis)impulse[axis]=static_cast<float>(static_cast<long double>(impulse[axis])*factor);}
+        apply_motion(impulse,point);
+    }
+    void apply_motion(const Vector& force,const Vector& point) { //005B79C0: body BEFORE the late offline check.
+        if(!entry_)return;
+        body_.apply_impulse(force,point);
+        if((activation_.mode_flags()&7u)!=7u)throw std::runtime_error("Loose item impulse requires actual non7 motion packet producer");
     }
     Entry entry() const {return entry_;}
     Body& body() {return body_;}

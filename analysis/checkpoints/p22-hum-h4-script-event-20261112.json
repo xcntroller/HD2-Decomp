@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 C4 Script event output",
+  "implementation_base": "0a5f19d",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "verification": {
+    "native": "PASS43 ASan/UBSan/LSan O1 strict: actual shared event/perception pools, deque retirement and Human list; Scene/time/B4 endpoints explicit doubles; failure/pool-retirement/retry/repeated lifetimes",
+    "i386": "PASS O0 strict actual World construction/destruction and actual Script->World->event/perception owners->own/group B4->actual factory/hearing/Scene FULL LINK. No selected-family endpoint doubles. Compile/link only.",
+    "application": "PASS existing launcher/startup-probe O2 strict links, no execution",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_acceptance": false
+  },
+  "source_files": [
+    {
+      "path": "recovered/game/human_ai_event_queue.h",
+      "sha256": "173e91aefe99fb79c517b2ca4bad7fedff28e23583bb446bdbe54069f4fcf09a",
+      "bytes": 8575
+    },
+    {
+      "path": "recovered/game/human_perception_records.h",
+      "sha256": "e9dbd818537c8addf16142101aa7243d78b58564d3bb976e29de3f8cfdb5de95",
+      "bytes": 5240
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "4b8a7a08a743f42d373c421622b00e36a3ff7a486c7f0209c29a71d3f7ef8e03",
+      "bytes": 125944
+    },
+    {
+      "path": "recovered/game/human_script_event_output.h",
+      "sha256": "a592d6805083be0736e3112cd6eb3c100e5e22019e6913afff5d6ec43c447b71",
+      "bytes": 1824
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-original.asm",
+      "sha256": "e783c3348cb3819d1651aa82a09c55d06e24e5cfd18d99048255997d3c99efc9",
+      "bytes": 10469
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/remaining-original/00591f00.c",
+      "sha256": "9470b9669a871c7845934bbe0c61958046d878e21462e49a0a951dece0e50db2",
+      "bytes": 3421
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/remaining-original/00591f00.json",
+      "sha256": "dce7e37f2f0ad746447b1a54181dd16084c55d089f7f3a660ce2073571897540",
+      "bytes": 8481
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-followup-original/005cc8d0.c",
+      "sha256": "aa47a2d35b5efba14cadacfcf42266e2cb8e072932fd5a81b512ea0bedf4b196",
+      "bytes": 5080
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-followup-original/005cc8d0.json",
+      "sha256": "8c51cc74f54f3d81bddbc3405057751d7d116b3ab676a5fb950b37c87502b0a7",
+      "bytes": 18812
+    }
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-native-run.log",
+      "sha256": "389dca911bfc685a53fd5352f7b79bc0e07c473cc8fb12fbd16ac83e04f5a6aa",
+      "bytes": 65
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-progress.log",
+      "sha256": "eec60ccd8b652354ce3d7d31e6748949e6db753140ff63d4eca8cef2b14a8011",
+      "bytes": 241
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-native.cpp",
+      "sha256": "16914826b6b04b12c3e9a287c770f38ae281e4ac29df426a07e3119dce51bcc8",
+      "bytes": 4103
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-native",
+      "sha256": "1905e6db2dce2ebceae1987879de3674d830e9422c1adfe91b2ab369ff444399",
+      "bytes": 2249520
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-host.cpp",
+      "sha256": "8d05f7ef93f9999531b54611b72222fd4bd54e7354525f759539bf39639d78dd",
+      "bytes": 951
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/script-event-host.exe",
+      "sha256": "f0fa6dfca7e7290ac5097a78a0a88c4a64bf9204aa45678094e4efd4e4a9f2ea",
+      "bytes": 5880320
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "0058fd30"
+    ],
+    "complete": 34,
+    "partial": 3020,
+    "client_partial": 3015,
+    "engine_partial": 5,
+    "denominator": 18783,
+    "vector_insert_00591f00_credit": false
+  },
+  "limitations": [
+    "Original005CC8D0 selected actor/owner/virtual34 producer and005A8B30 distribution need containing runtime source admission; no fixture/direct-call reachability claim",
+    "Command78 actor identity group population/retirement and other H4 consumers remain open",
+    "Full ledger checker inherited missing0062D880 ignored evidence remains; focused selected checks pass"
+  ]
+}

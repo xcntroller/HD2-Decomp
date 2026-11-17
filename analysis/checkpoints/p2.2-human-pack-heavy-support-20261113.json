@@ -1,0 +1,179 @@
+{
+  "date": "2026-11-13",
+  "source_only": true,
+  "p22_hum_complete": false,
+  "p22_pack_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "base_commit": "6d799e8ca210d1da3e2d393ce13223df553ecaa1",
+  "source_files": [
+    {
+      "path": "recovered/game/heavy_fire_aircraft.h",
+      "bytes": 9282,
+      "sha256": "30665fbf815aaf33fe5ede87e13ba4f2571815e131167a14e47ed7731d147dba"
+    },
+    {
+      "path": "recovered/game/heavy_fire_definitions.h",
+      "bytes": 2785,
+      "sha256": "0f3cc39b22f613f0a6883520423f1a17b59c95962fbe7bc767d5963f280faea0"
+    },
+    {
+      "path": "recovered/game/heavy_fire_mortar.h",
+      "bytes": 3721,
+      "sha256": "9dd9ad0f7bcff45a73aae28225f8420259756badec8e481811f0c1612964a2d1"
+    },
+    {
+      "path": "recovered/game/heavy_fire_player_support.h",
+      "bytes": 2335,
+      "sha256": "2220b0064bfb43c6386e1a0951b8ef3df595ea4d371c3c89b4ba9e524eedbfd2"
+    },
+    {
+      "path": "recovered/game/heavy_fire_requests.h",
+      "bytes": 3101,
+      "sha256": "53a13ea69bba30f5b82f8266482bd8be45a91b82476bc09d038c6b3f4eafffd9"
+    },
+    {
+      "path": "recovered/game/heavy_fire_module_loading.h",
+      "bytes": 7147,
+      "sha256": "e4423dd397e4ca0c2c3c670701fd18f90413d7f88e9f6f0352924fce38cbd16b"
+    },
+    {
+      "path": "recovered/game/explosion_contact_link.h",
+      "bytes": 4821,
+      "sha256": "dc6fffc5a7930e34041dfd3a8a2303ecfa770d164dfee3e98076c24a5d050f59"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 213075,
+      "sha256": "c730d3717f2503c524979795807e481bc9a0c180808d30c3e151865622b25ced"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 125324,
+      "sha256": "ae28b01097f404422f8bbcd860595fd5f84f8665433a862ecd543879aa626d30"
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "bytes": 14456,
+      "sha256": "e6a51ea7a712aa4e78dd6e0813a71597ee0dacd6ee92220b901c1da438e45c79"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "bytes": 30983,
+      "sha256": "6e3d2014f2fa9a27c174f8501a4ec4eef4838014cd0cee7136195938df13b0f9"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "bytes": 30885,
+      "sha256": "6303f36a2048a8c670bc4c674bcee2b758798b1717815ef4c2e1773906afc744"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 72110,
+      "sha256": "1e9859b14dfa6ea6d18159d110810e219e477379e2ac70d0160f5aa376964981"
+    }
+  ],
+  "verification": {
+    "native_sanitizers": "PASS ASan/UBSan/leaks:100 lifetimes each config, request/list, mortar, aircraft and combined Human12 codec/support/module16 chain. Explicit actor/mission/ray/engine/SOUND/blast/particle endpoint doubles; no engine execution.",
+    "actual_host_i386": "PASS full link: actual Human packet dispatcher/support, World services, both support object types, module16 packet receiver, real engine/ray/SOUND/blast interfaces; executable not run.",
+    "launcher_probe": "PASS latest strict rebuild; not run",
+    "logs": [
+      "analysis/work/mission-world-20261103/human-pack-heavy-heavy-definitions.log",
+      "analysis/work/mission-world-20261103/human-pack-heavy-heavy-owner.log",
+      "analysis/work/mission-world-20261103/human-pack-heavy-mortar.log",
+      "analysis/work/mission-world-20261103/human-pack-heavy-air.log",
+      "analysis/work/mission-world-20261103/human-pack-heavy-combined.log",
+      "analysis/work/mission-world-20261103/human-pack-heavy-support-host-final.log",
+      "analysis/work/mission-world-20261103/human-pack-heavy-support-build-final.log"
+    ]
+  },
+  "temporary_audits_fingerprinted_for_removal": [
+    {
+      "path": "/tmp/p22-pack-resume/support-host-final.exe",
+      "bytes": 3352064,
+      "sha256": "44b50e4a6e53ea640d2eb89d0752ca40974ced5bfe3beb671d0a5c49a1a8a843"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/combined",
+      "bytes": 2376968,
+      "sha256": "cdc9996f24cabef57a249aef84525a8d31a144d5317f908958da0e3075c88f98"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/combined.cpp",
+      "bytes": 5962,
+      "sha256": "8cd4d5b4bb714673b921cccbdd0aced81b9d863d40127e865a5ddddbe3212c1b"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/heavy-owner",
+      "bytes": 1162152,
+      "sha256": "ab07a0dd62d20054bd397d4f9cfd07bc0652b64a255a7bca1791b61398014737"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/air",
+      "bytes": 953864,
+      "sha256": "0a4b6bcbbccd6efca13563937626d60788660aefe11c58cce2eccdce5dae9bfb"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/support-host.exe",
+      "bytes": 3084288,
+      "sha256": "14e74f202166e80e5cc31f87cfaae6a9d31ad570afbec1bb0b2ea6f3522731a3"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/air.cpp",
+      "bytes": 2947,
+      "sha256": "57adca2a13fc749ab4e56037f54fce600f2826d64491026f524704139b3af84e"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/mortar-host.exe",
+      "bytes": 3053568,
+      "sha256": "2cacdb846097536f0d3e6067e21ff136c9fd500fb781179ee18e9dd494f6abd2"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/mortar-host.cpp",
+      "bytes": 638,
+      "sha256": "a87614eb518507cd1a051303bfabdb2a91d509c2698a940867ddabbf3db5f1b0"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/mortar",
+      "bytes": 145456,
+      "sha256": "993814c7bb9ed5627130f0cfa3e8de0fac750bed53294dd988061dfbaf91665e"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/mortar.cpp",
+      "bytes": 1852,
+      "sha256": "8bf728b7b14594aa4b8e1a54e4aefd67051ee05a92853e6a6fdc0636e25994fb"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/heavy-host.exe",
+      "bytes": 3043840,
+      "sha256": "adafea8db218808d4560dd676eb46a15d5ffb1687fcd35bfaa8029e16229b880"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/heavy-owner.cpp",
+      "bytes": 3494,
+      "sha256": "1c39fba5dabec8c399e00993404205bdebecd544757f75e650839cafc198af95"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/heavy-definitions",
+      "bytes": 490848,
+      "sha256": "15c04309c2e7e7bb25bcf48fa7c98227256ad7a5f9d130f5b6dcc72635c43f31"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/heavy-definitions.cpp",
+      "bytes": 1758,
+      "sha256": "809cd123c47ba3bfe834ee493acd61acb4b753caccc787efeab580c39fc91860"
+    }
+  ],
+  "native_unsafe_source_guards": [
+    "nonnull Human writer emits-1; null Human absolute10 read rejects",
+    "ordinary kind3 native mission allocation50 bytes cannot supply descriptor50/54 support read; actual extended kind13 fields remain typed",
+    "zero-plane frame first-element dereference rejects",
+    "received mortar side2 cleanup flag index4 beyond four support flags rejects",
+    "unproduced table/action/type bounds reject instead of undefined native memory access"
+  ],
+  "remaining": [
+    "common3 remaining selected subtype effects",
+    "consolidated Human/PACK integration and actual stream/FIFO/module graph checks",
+    "full H8/frame/application/desktop acceptance"
+  ]
+}

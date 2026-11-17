@@ -1,0 +1,183 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "e7e1635",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-dog-frame-source.md",
+  "new_partial_client_bodies": [
+    "005d64e0",
+    "005c89c0",
+    "005c62c0",
+    "005c6250",
+    "005c6380",
+    "005c8b10"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_body_state.h",
+      "bytes": 4393,
+      "sha256": "c5a1f5f4b21670861129ef7505484349d91c8b7fee4a72d0dd81f5fb1a8bc871"
+    },
+    {
+      "path": "recovered/game/dog_frame_history.h",
+      "bytes": 1764,
+      "sha256": "63c9ee13a04bd9bff70c07073b1a1f3e9cce3ed7ee41f2e0d5c3c21024a0ab3d"
+    },
+    {
+      "path": "recovered/game/dog_body_turn.h",
+      "bytes": 1179,
+      "sha256": "9b204694e659eefc439df966586e73c3887c3441b8cf2deb21262b11060f9100"
+    },
+    {
+      "path": "recovered/game/dog_ground_query.h",
+      "bytes": 2534,
+      "sha256": "cdeb2e1a6bdcf8125afe20529c1bae30ef9d9614742b86fdfcde330140184931"
+    },
+    {
+      "path": "recovered/game/dog_sight_geometry.h",
+      "bytes": 1155,
+      "sha256": "d29f903c00022f497c1d0ed10c45487bd070a95157cd03c08dd32ab6eb8ff3c3"
+    },
+    {
+      "path": "recovered/game/dog_body_sound.h",
+      "bytes": 1009,
+      "sha256": "b2c314a310c6890162b835ff315486827ac73fa0c7124ef55584066f232302f9"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 7947,
+      "sha256": "529b6df3fc84865854c931b24c8e63bc3d76694ac0ea0cb95adc23893aa67baf"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 7010,
+      "sha256": "9c11db3eefd3b2a91c304a70fe918573e32e0bc59d0090a48c84bafd1281b132"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 299283,
+      "sha256": "fdaea33a897c03a92ca869398abd079b823269f366f675ccae6d83aae30540cb"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-history.asm",
+      "bytes": 11908,
+      "sha256": "2132806f9eff699f67964b06e11981fc9c6317c0b0216a77d29e21f90cf99a34"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-history-constants.json",
+      "bytes": 182,
+      "sha256": "899d9e9bf968554fa38ce75dc79df5d03300d47b679a4e032e0b0f44fc0e2591"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-history-index.txt",
+      "bytes": 12251,
+      "sha256": "cbec78aed03aeb5d4f30b6a219107613c23f48f7fbf207964631534a2c19852f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-turn.asm",
+      "bytes": 6536,
+      "sha256": "0a4f2a21cd30e394fad05c3ec2b512926ea862ecb1e5719c8cfb584110e3bce7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-turn-constants.json",
+      "bytes": 456,
+      "sha256": "b4aee9a650a3251800e484870743b41e28e33b2ab189bc7676fe8f5cb10e79d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-gravity.asm",
+      "bytes": 3857,
+      "sha256": "8258765ac530a428472548de38854f0c5a202f8c83c322a970c39ad8575ceb63"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-gravity-step.asm",
+      "bytes": 2248,
+      "sha256": "9ede3d6c87e4764e48ed62262f5cb0e3825a1402ac5939731dd412abb8910efa"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-gravity-constants.json",
+      "bytes": 436,
+      "sha256": "9a132be6f3e4854378b85731b3a00345f75c5e8cc30776552a814919dad860b5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-support.asm",
+      "bytes": 2350,
+      "sha256": "5cd3c01b1ac734ffcd829963307f4db8487a6f9994d18071889b268c174bac5f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-ground-query-index.txt",
+      "bytes": 7208,
+      "sha256": "fb283f97c16dc58444d9764be943a3e0aff814028ad5525af8353cf35910c65c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-frontier-index.txt",
+      "bytes": 16513,
+      "sha256": "a6c98b1f94cbf1a140f1705c26abbae721f99e3f29be4d322e6e1ba3c1f13d5b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/ExportH8DogMotionTyped.java",
+      "bytes": 2207,
+      "sha256": "39fd58a890bb125a23554422c772037ff3da62ea715611ee1f6ab3123f6c880d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-motion-typed-v2-export.log",
+      "bytes": 5150,
+      "sha256": "78c1790ed17187fcb5f8bf4981dacb11cb519a0384c50ad45e7fe8cadf15a049"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-native-run.log",
+      "bytes": 138,
+      "sha256": "b8c9de3975c5938ab929e42267c9afff07e69719cb16b17697e1f728c14a1dee"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-native.cpp",
+      "bytes": 8113,
+      "sha256": "653c5c703f01e8a734b72e6023502be9364f79a25fcf54ddef9f84357ccf5822"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-native",
+      "bytes": 627008,
+      "sha256": "6f4ad64945acfcd8050fec46b45eb6e4745d4fb05952c73c5959bbf98fcdc372"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-module.cpp",
+      "bytes": 1638,
+      "sha256": "6614a7de3d6cee1253a4514bf24d01adc01d77a8a1327533a6039ddd40ffa176"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-frame-module.exe",
+      "bytes": 11866112,
+      "sha256": "548cde6c8391401e04b89b6e25b782f7953051b8aedc8b4f653ebc971e5269e2"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "verification": {
+    "native": "1641 checks PASS strict ASan/UBSan/leaks; explicit model/math/audio/contact endpoints",
+    "actual_module": "PASS strict i386 full World authority/presentation + new APIs; compile/link only, required controller endpoint remains named and throwing",
+    "launcher": "PASS forced O2 application-launch/startup-probe, compile/link only",
+    "tracker": "exact inventory/frozen baseline check +27 existing tests",
+    "limits": "No activation/controller/motion closure or desktop claim. v2 original export corrects temporary v1 ABI mistakes; no absent starts created, transaction rolled back."
+  }
+}

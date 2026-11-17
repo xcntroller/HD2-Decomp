@@ -9,6 +9,32 @@
 
 namespace hd2::game {
 
+//005A7810/005A7770: forward ALL seven storage receivers. A holder compares
+//its one entry; a stack owner visits occupied stacks forward, entries reverse.
+//No quantity/cooldown/holster-only filter. Optional slot is written on match.
+template<class Human,class Items>auto find_human_inventory_kind(Human& human,Items& items,
+        std::uint32_t kind,std::int32_t* slot=nullptr){
+    using Entry=std::decay_t<decltype(human.base().storage()->holder(0)->entry())>;
+    auto* storage=human.base().storage();
+    if(!storage||storage->single())throw std::logic_error("Human kind lookup requires its actual seven storage receivers");
+    const auto matches=[&](Entry entry){return items.runtime_item(entry).definition().kind()==kind;};
+    for(unsigned index=0;index!=7;++index){
+        if(auto* holder=storage->holder(index)){
+            if(const auto entry=holder->entry();entry&&matches(entry)){
+                if(slot){*slot=static_cast<std::int32_t>(index);}return entry;
+            }
+        }else if(auto* stacks=storage->slots(index)){
+            for(std::size_t n=0;n<stacks->occupied_stacks();++n){
+                const auto& entries=stacks->slots().at(n).entries;
+                for(auto at=entries.rbegin();at!=entries.rend();++at)if(matches(*at)){
+                    if(slot){*slot=static_cast<std::int32_t>(index);}return *at;
+                }
+            }
+        }
+    }
+    return Entry{};
+}
+
 //005A6FF0 searches THIS Human's storage, not the global Items registry. Holder
 //order3/0/2/4/5, then stack arrays1/6 ascending with entries reversed. Runtime
 //instances are resolved through their SAME owning item module before ID reads.

@@ -1,0 +1,168 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "27a5d89",
+  "source_only": true,
+  "h8_4_complete": false,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-dog-orders-source.md",
+  "new_partial_client_bodies": [
+    "005c4b90",
+    "005c4c30",
+    "005c4c70",
+    "005c85a0",
+    "005c8600",
+    "005c8660"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_body_orders.h",
+      "bytes": 5196,
+      "sha256": "80cb7f97c7c32d8e2dcdf0d293d7dccded2ad4d56cbb5d47e56f5ee99ba2cff2"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 6969,
+      "sha256": "9fce367c1894646d50db47e2270f74d623f962429e93aec900d4433d837dc36c"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-order-index.txt",
+      "bytes": 6933,
+      "sha256": "4123683b9cd9051ac58f80bd6bc48f68a2569a577710b741eb7263f12485ba41"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-order-queue.asm",
+      "bytes": 4404,
+      "sha256": "90137f0cc456245c7af81bfce92dfcc995c5c111436b4c011b5bda17b7961ac4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-base-adjustment.asm",
+      "bytes": 1121,
+      "sha256": "5a06843943af75ccd0acb7bb00684e1c1e04d3c2644c9ce6cbd17362b2f61173"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-activate-body-base.asm",
+      "bytes": 4584,
+      "sha256": "d4ec007b2dc82a7fd628aee11f053854914e1e239952010e5ac099db0ad5de0f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-cold-constructor.asm",
+      "bytes": 5422,
+      "sha256": "ea132a8f7b9ea4efafb30a0f1e57453467b465433e1959291a97cd28acb29783"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-live-initialize.asm",
+      "bytes": 24833,
+      "sha256": "1c4e336d91a0bb9358452733312fd0874c8856e95553d4e98b3a755abbdc274b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/actor-factory-bodies/005d4a60.c",
+      "bytes": 470,
+      "sha256": "c6c4a2d8cba24f7ae71efba0e12b8b76783f0714006afdf4a889ee09d96d2c7e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005c4c30.c",
+      "bytes": 374,
+      "sha256": "98cc451ba168f8dc253c67411602c1a3620e5d3fb333b4b110bb6d4c908baf16"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-required-originals/005c85a0.c",
+      "bytes": 503,
+      "sha256": "9b208c07717482fa56c3b4472d90b4d5f2ea6269d022ab95fdb01f299f7d459e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c4b90.c",
+      "bytes": 902,
+      "sha256": "9cba3819dc3a5087b3174ff12d2d68a9b1e64ad2bb67b1fd31bfff51f3fcb317"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c4c70.c",
+      "bytes": 403,
+      "sha256": "3082309284e01fea85ca928c1e9297ddadb07607c88c1e67012084e2ebfb4888"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c8600.c",
+      "bytes": 503,
+      "sha256": "5600eda6fa527377457ec78e481bd494ee123e19eb20739b6e565917a299d115"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c8660.c",
+      "bytes": 501,
+      "sha256": "969887089419c5a1302ec649141ba18788fd3361289759ecc2028e1d9c9e1344"
+    }
+  ],
+  "verification": {
+    "native": "PASS175556 ASan/UBSan/leak and Werror checks, actual current/five-record source with independent deque model, no engine/live Dog/activation execution",
+    "i386": "PASS actual full module both frame passes and direct SAME Dog order storage compile/link, Werror, never executed",
+    "launcher": "PASS forced O2 application-launch/startup-probe Werror compile/link, never executed",
+    "tracker": "PASS exact inventories/fingerprints/counts/evidence/README and27 tracker tests; git diff --check PASS"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-native.cpp",
+      "bytes": 3345,
+      "sha256": "d278a88c4ec77d59f96757e77f3b95b44b3374b4127ca6c0f1c3046221ab70eb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-native",
+      "bytes": 705832,
+      "sha256": "ab6fe0ee99c47c8d3478c8a0c4a36c493e6cc1f2845c3234e6c62eb17430ba80"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-native-run.log",
+      "bytes": 141,
+      "sha256": "4c674becbf269b2b85aa3e84d99ec36ab6b9d4ebfc755da593a12faf874b2eb1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-module.cpp",
+      "bytes": 579,
+      "sha256": "e99749a41d2970f589a6450dc45a3001b0f677ab116fdea73f34b73ab3ef89b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-module.exe",
+      "bytes": 11851264,
+      "sha256": "deca9d66cb3097a36f96fad7c960b4242ea72b4527addc42325c0b4adecb117a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-progress-render.log",
+      "bytes": 380,
+      "sha256": "e35a11f34f41aef02740d9dad5cdb26305ffe8ba831a4efc9abe805ac459876f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-progress-check.log",
+      "bytes": 437,
+      "sha256": "27705ae679dfaa713a1ed7dabbf1be0794e8ca5fe368f022a91a328c41b9ed6f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-orders-progress-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_audits": "Native/module source/binary pairs fingerprinted then removed; logs and static research retained.",
+  "limits": [
+    "No live Dog activation/Body/controller/physics/Sight producer or whole H8 claim.",
+    "Native HEAD write on negative tail preserved; invalid native reads fail explicitly.",
+    "Native unwritten metadata requires actual producer; no invented cold metadata/queue readiness.",
+    "No allocator/SEH/object ABI/undefined-word equivalence; no absent/inlined/delegated-body count.",
+    "Early native priorities/metadata remain targeted source-order/provenance risk, no new D11 compatibility default."
+  ]
+}

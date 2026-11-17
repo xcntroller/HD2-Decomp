@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 original timed inventory transfer and actual notification binding",
+  "implementation_base": "1bd7650",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_track_equipment_events.h",
+      "sha256": "b469c9f96117a3090b5b4637523b814074dbce90cf04222bbdfce76e6ccdeee2",
+      "bytes": 4776
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "sha256": "e1e36a072111c0224e66a4a098bbabb15b7594c8b9d0fff581f19beebc5a133f",
+      "bytes": 58199
+    },
+    {
+      "path": "recovered/game/human_equipment_services.h",
+      "sha256": "1d17691fb3f1f32f2e2e1401d59897dc6db1ceb546170c26c16f4963daf0c51a",
+      "bytes": 6436
+    },
+    {
+      "path": "recovered/game/human_equipment_transfers.h",
+      "sha256": "a10b559c6fbb8a73d7bffdc889d9d507ee8455c5e373d4c367f78b5e6b214791",
+      "bytes": 12184
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-inventory-transfer.asm",
+      "sha256": "5f63a8f70e4065fc20a646b5874fa07db2bfdd0745449bc69eb0df21fba2c20f",
+      "bytes": 4352
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/inventory-added-original.asm",
+      "sha256": "967c9d763f655f826f6bf8bdf2dd54bc9ab95104ff2cb2cb261a25e43bca552a",
+      "bytes": 6051
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-track-original/00758170.c",
+      "sha256": "c6cabfa7c2a1d248f8ecb210540b15912935665e9788e758ee4f849426ccbe3f",
+      "bytes": 1436
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-track-original/00758170.json",
+      "sha256": "525a84eda62d95881a7de8e5d57effbea4d102f94ebed7d42446651a7ded93f8",
+      "bytes": 5334
+    }
+  ],
+  "external_original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-inventory-equipment-callbacks/00792590.c",
+      "sha256": "b0d4c7fe418e87508dc6f46bfcc89ba9dba7ef3bda533dc0b9a4032ed57d6911",
+      "bytes": 1787
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-inventory-equipment-callbacks/00792590.json",
+      "sha256": "48ce86d73c7669da78a571cb91719beb92370768d63f180517b0943373bbe758",
+      "bytes": 6420
+    }
+  ],
+  "verification": {
+    "native": "PASS142 strictO1 ASan/UBSan/LSan actual frame-word owner + policy; explicit peer/graphics endpoint doubles. Gate combinations, late E0, shadow absence/replacement, positive/negative/zero scale, reached failure prefixes and false-branch preservation.",
+    "i386": "PASS strictO0 FULL LINK actual World00792590 slot3 -> SAME230/Services/DD0/00758170(true)/transfers/Items/frame/Scene/SOUND. No selected-family double.",
+    "application": "PASS existing application-launch/startup-probe strictO2 full links; no execution.",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/timed-transfer-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/timed-transfer-native-run.log",
+      "sha256": "95710f270bafeccbadb001da745ea67e6cc58b44a88fe218747128d460f70503",
+      "bytes": 108
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/timed-transfer-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/timed-transfer-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/timed-transfer-audit.cpp",
+      "sha256": "8df058819eca3464fb3f02cc55b52f015710881b39087e04f313be0ca93713b4",
+      "bytes": 4083
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/timed-transfer-audit",
+      "sha256": "29dca96193bc7d5ec120010558b87be9c39836c26114827fa9e100c2c1a0cfc1",
+      "bytes": 910704
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/timed-transfer-host.cpp",
+      "sha256": "282c45983d34ce2de34a33d544e2eb8582e969a1099aa082b3f55ac90985b504",
+      "bytes": 432
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/timed-transfer-host.exe",
+      "sha256": "9f899eb12c34eb00e26c8fb4feb3c024517294c975cfd2adccf8ea8bd66fe6ea",
+      "bytes": 1405952
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [],
+    "extended": [
+      "00758170",
+      "00792590"
+    ],
+    "complete": 34,
+    "partial": 3029,
+    "client_partial": 3024,
+    "engine_partial": 5,
+    "denominator": 18783
+  },
+  "remaining": "Original H4 Script/completion/subgroup families remain open. Callable source binding is distinct from no-source notification population or actual mission execution."
+}

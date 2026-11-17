@@ -83,6 +83,7 @@ public:
     using ItemModelOwner=typename ItemFrameTree<Frames>::Owner;
     ItemPrimaryModelCache(Frames& frames,const Catalogue& catalogue,const std::string& suffix)
         : frames_(frames),catalogue_(catalogue),suffix_(suffix) {}
+    const std::string& resource_suffix()const{return suffix_;} //Actual borrowed0084E8E4, shared with named Human animation.
     ~ItemPrimaryModelCache() {clear();}
     ItemPrimaryModelCache(const ItemPrimaryModelCache&)=delete;
     ItemPrimaryModelCache& operator=(const ItemPrimaryModelCache&)=delete;

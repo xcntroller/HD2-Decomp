@@ -39,15 +39,39 @@ public:
     template<class Blast>void bind(Blast& blast){
         if(owner_||&blast.frames()!=&frames_)throw std::logic_error("Explosion requires SAME actual World/frame owner");
         std::function<void(Actor*,const Vector&,float,float,std::int32_t)> receiver=[&blast](auto* source,const auto& position,auto radius,auto power,auto sound){blast.explode(source,position,radius,power,sound);};
-        receiver_=std::move(receiver);owner_=&blast;
+        std::function<bool(Actor*,const Vector&,float,float)> wave=[&blast](auto* source,const auto& position,float radius,float power){
+            typename Blast::Request request;request.source=source;request.centre=position;request.radius=radius;request.power=power;request.same_sector=false;
+            return blast.create(request);
+        };
+        receiver_=std::move(receiver);wave_=std::move(wave);owner_=&blast;
     }
-    template<class Blast>void unbind(Blast& blast)noexcept{if(owner_==&blast){receiver_={};owner_=nullptr;}}
+    template<class Blast>void bind_damage(Blast& blast){
+        if(owner_!=&blast||damage_owner_||&blast.frames()!=&frames_)throw std::logic_error("Shot damage requires SAME bound blast/World owner");
+        std::function<void(Actor*,std::uint32_t,float,const Vector&,const Vector&,Actor*,typename Frames::Frame)> next=
+            [&blast](auto* actor,auto kind,auto amount,const auto& point,const auto& direction,auto* source,auto frame){blast.shot_actor_damage(*actor,kind,amount,point,direction,source,frame);};
+        damage_=std::move(next);damage_owner_=&blast;
+    }
+    template<class Blast>void unbind(Blast& blast)noexcept{
+        if(damage_owner_==&blast){damage_={};damage_owner_=nullptr;}
+        if(owner_==&blast){receiver_={};wave_={};owner_=nullptr;}
+    }
+    void damage(Actor* actor,std::uint32_t kind,float amount,const Vector& point,const Vector& direction,Actor* source,typename Frames::Frame frame){
+        if(!damage_owner_||owner_!=damage_owner_)throw std::logic_error("Shot D4 requires actual containing damage owner");
+        damage_(actor,kind,amount,point,direction,source,frame);
+    }
+    bool wave(Actor* source,const Vector& position,float radius,float power){
+        if(!owner_)throw std::logic_error("Blast wave has no actual containing owner");
+        return wave_(source,position,radius,power);
+    }
     void explode(Actor* source,const Vector& position,float radius,float power,std::int32_t sound){
         if(!owner_)throw std::logic_error("Explosion has no actual containing blast owner");
         receiver_(source,position,radius,power,sound);
     }
 private:
+    const void* damage_owner_=nullptr;
+    std::function<void(Actor*,std::uint32_t,float,const Vector&,const Vector&,Actor*,typename Frames::Frame)> damage_;
     Frames& frames_;const void* owner_=nullptr;std::function<void(Actor*,const Vector&,float,float,std::int32_t)> receiver_;
+    std::function<bool(Actor*,const Vector&,float,float)> wave_;
 };
 }
 #endif

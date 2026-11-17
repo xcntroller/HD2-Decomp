@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H6 actual shell/capsule/grenade producer lifetime",
+  "implementation_base": "0398a50",
+  "source_only": true,
+  "H6_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-item-projectile-production-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 158271,
+      "sha256": "e9554dc35d4987f0e6d5495cd3504b76ff3d3ec75478e6dc620eb943fe729d0e"
+    },
+    {
+      "path": "recovered/game/shot_manager_loading.h",
+      "bytes": 14899,
+      "sha256": "6e3198be5bcf091b68d5a3acf48eacc014ba343268f3cc024d1f5310421e9ff6"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 118465,
+      "sha256": "ccdaefc6ab327fa2e87e46a586bb6d88d05812d6119024c2e7a1f7ff64bda81d"
+    },
+    {
+      "path": "recovered/host/game_data_observations.h",
+      "bytes": 2250,
+      "sha256": "34e2763431c461b04c730c50b5a4d6f112e268f1b8f96db529e6974468e29ddb"
+    },
+    {
+      "path": "recovered/game/shot_capsule_record.h",
+      "bytes": 4762,
+      "sha256": "3d9df7c3dd7185461e9f3f01f27fd8c93ed0e56950c1df6a29d7050e0225be67"
+    },
+    {
+      "path": "recovered/game/shot_grenade_record.h",
+      "bytes": 4792,
+      "sha256": "fc08fbdf9129a6d948ebf653e5f17024a25e5cf19629dbf00b6998e654fb59f0"
+    },
+    {
+      "path": "recovered/game/shot_shell_record.h",
+      "bytes": 2891,
+      "sha256": "f1da76325d10c8a545e0f99d3679c16f7de1c9f015bbf0a1e2f899ea6bc14b1c"
+    },
+    {
+      "path": "recovered/game/shot_shell_production.h",
+      "bytes": 2296,
+      "sha256": "7570ace558a8bd4be5e444e214fd4e9e7ad30ee02835c95b1510ff5f330db7c8"
+    }
+  ],
+  "verification": {
+    "shell": "PASS100 actual same64 pool/134 owner/clone reuse; engine/selection/motion endpoints explicit doubles.",
+    "projectiles": "PASS2505 across100 actual capsule/grenade lifetimes plus actual ShotMgr retirement; engine/particle/Body/async callback endpoints explicit doubles.",
+    "i386": "PASS strict actual nested World/RuntimeItem/Human/ShotMgr/RigidBody source COMPILE only, not full application execution.",
+    "application": "PASS latest launcher/probe rebuild/link; no execution."
+  },
+  "ledger": {
+    "added_partial": [
+      "0044e5d0",
+      "00454190",
+      "004546c0",
+      "00451670",
+      "00448ce0",
+      "00448fc0",
+      "00450400",
+      "0044cff0",
+      "0044d210",
+      "004505b0"
+    ],
+    "extended_partial": [
+      "0044db10"
+    ],
+    "complete": 34,
+    "partial": 3276,
+    "client_partial": 3271,
+    "engine_partial": 5,
+    "complete_promotions": 0,
+    "no_credit": [
+      "Async projectile/rigid/combat guards",
+      "00451EC0/00451FB0 absent frozen",
+      "delegated LS3DF bodies"
+    ]
+  },
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-shell-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-shell-native.log",
+      "bytes": 286,
+      "sha256": "c1610697badaaaa0dc74ab241ece0cd9071661d67d5c3d62d964b667667bd1bd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-projectile-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-projectile-native-run.log",
+      "bytes": 308,
+      "sha256": "82afdf317f42d5cc6df847de47dc428fc93971873e2b3257f4c72cecbd5bfc49"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-shell-host-i386.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-projectile-application-link.log",
+      "bytes": 820,
+      "sha256": "9bdc4fb1756a31d97bb7aedf79405fad9d9537a8a20de16f22dd16076815a5dd"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-grenade-retirement.asm",
+      "bytes": 1185,
+      "sha256": "8b158b60dff67bf1b3990e518b10dcd2e4f8477766e8e0ae2d45fcba9986225c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-capsule-retirement.asm",
+      "bytes": 2000,
+      "sha256": "ba497313c8481ca45ef09f962644a706ae037a9c7e4807f8cb90820e482f5ea5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-grenade-body-config.asm",
+      "bytes": 4567,
+      "sha256": "30b94d34b3f042c63df93b1bd589ae9d4c4c1e71e42e62200b5f9c07be22a47b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-grenade-destructor.asm",
+      "bytes": 1856,
+      "sha256": "4331809dd7eba1599066e1234b928b6243264e47d76c872d469651991649b445"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-grenade-notification/0045eab0.c",
+      "bytes": 487,
+      "sha256": "24b07f2b3412981ff41d8be07a7ca0fbd035bd58f8c3aa8669653330660047a4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-positive-dependencies/0044cff0.c",
+      "bytes": 2726,
+      "sha256": "2d645aad4e5d373bd5efc0b1b50a991fc4ae9c1575a5a3cfcd751f47cfa36884"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-shot-record-dependencies/00448ce0.c",
+      "bytes": 4092,
+      "sha256": "03f778c3ab361a7031433cc10d3845d624136fbba6135da1f6feb6c0d837f783"
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-shell-native.cpp",
+      "bytes": 6686,
+      "sha256": "c1bb13da63399ad9d86be5e5cbbacd44e5c8d78c73ad0c77561a212f8da2cd64"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-shell-native",
+      "bytes": 2439824,
+      "sha256": "99a9a37a117b66ec33fbdaa64268f1bff3205512afc949184904656825992b38"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-projectile-native.cpp",
+      "bytes": 10438,
+      "sha256": "2a2613d2f30c561926fec145fba2813fdc340fd646846449530e91aaba50a0b5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-projectile-native",
+      "bytes": 3334304,
+      "sha256": "1cc68e91c011c2d0907556f1b35e8a83b3e16368ae4d599bd25d10c8a0f2cfab"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-shell-host-i386.cpp",
+      "bytes": 681,
+      "sha256": "5f708c16b6c9fb919e4de1360e386e9063ea620fe1a1e53f8e1e2ef6247652b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-shell-host-i386.o",
+      "bytes": 19055592,
+      "sha256": "3c4ef3efb5a6c520f2d1ebda2178257a60c8c14fba35857bd897945a821c2aa1"
+    }
+  ],
+  "required_next": [
+    "Import completed HUMb9d67aa and replace old notification guard",
+    "Immediate melee00451230/hit zones/existing H2 damage",
+    "Player medicine00546DC0",
+    "H6 final composition; H8 full async/application/desktop separate"
+  ]
+}

@@ -1,6 +1,43 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
+#include "game/dog_sight_geometry.h"
+#include "game/dog_body_sound.h"
+#include "game/dog_body_frame.h"
+#include "game/dog_ai_controller.h"
+#include "game/human_ai_target_output.h"
+#include "game/model_scene_actors.h"
+#include "game/document_place_scene_actor.h"
+#include "game/human_seat_action.h"
+#include "game/human_player_packet_action.h"
+#include "game/human_player_command_dispatch.h"
+#include "game/heavy_fire_mortar.h"
+#include "game/heavy_fire_aircraft.h"
+#include "game/heavy_fire_player_support.h"
+#include "game/human_active_ai_special_target.h"
+#include "game/human_ai_alignment.h"
+#include "game/human_active_ai_fire_line.h"
+#include "game/human_active_ai_authority_body.h"
+#include "game/human_vehicle_path.h"
+#include "game/human_inventory_counts.h"
+#include "game/human_inventory_packet.h"
 #include "game/car_actor_authority.h"
+#include "game/car_targeted_placement.h"
+#include "game/car_scene_actor.h"
+#include "game/car_seat_frame.h"
+#include "game/human_ai_order_marker.h"
+#include "game/human_active_ai_commands.h"
+#include "game/human_active_ai_loot.h"
+#include "game/first_person_human_items.h"
+#include "game/human_player_item_notification.h"
+#include "game/human_player_shot_direction.h"
+#include "game/human_hud_loading.h"
+#include "game/human_item_shot_sound.h"
+#include "game/human_item_fire.h"
+#include "game/human_item_melee.h"
+#include "game/shot_human_hit_zones.h"
+#include "game/shot_bullet_production.h"
+#include "game/shot_shell_production.h"
+#include "game/shot_grenade_record.h"
 
 #include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
@@ -14,20 +51,27 @@
 #include "game/human_frame_feedback.h"
 #include "game/human_item_frame_execution.h"
 #include "game/human_scene_frame.h"
+#include "game/human_frame_runtime.h"
 #include "game/human_mine_contact.h"
 #include "game/human_state_action_completion.h"
+#include "game/human_action_completion_effects.h"
 #include "game/human_objective_experience.h"
 #include "game/human_ai_shot_direction.h"
 #include "game/human_weapon_reload.h"
+#include "game/human_ground_frame_receivers.h"
 #include "game/human_frame_stats.h"
 #include "game/human_actor_contact.h"
 #include "game/human_frame_commands.h"
 #include "game/scene_light_sample.h"
 #include "game/geometry_scene_actors.h"
 #include "game/simple_scene_actors.h"
+#include "game/photo_place_scene_actor.h"
 #include "game/static_weapon_actor.h"
 #include "game/car_steering.h"
 #include "game/shot_surface_marks.h"
+#include "game/shot_motion_frames.h"
+#include "game/shot_visual_frames.h"
+#include "game/shot_combat_frames.h"
 #include "game/human_state_damage.h"
 #include "game/human_inventory_retirement.h"
 #include "game/mission_particle_emission.h"
@@ -36,10 +80,14 @@
 #include "game/human_damage_policy.h"
 #include "game/human_damage_messages.h"
 #include "game/human_damage_score.h"
+#include "game/human_player_treatment.h"
 #include "game/human_packet_receiver.h"
 #include "game/human_packet_notifications.h"
 #include "game/human_script_loading_controls.h"
+#include "game/human_script_event_output.h"
+#include "game/human_sound_state_callbacks.h"
 #include "game/human_squad_snapshot.h"
+#include "game/human_hud_names.h"
 #include "game/human_score_presentation.h"
 #include "game/human_death_objective.h"
 #include "game/human_peer_removal.h"
@@ -48,6 +96,8 @@
 #include "game/session_spawn_match.h"
 #include "game/session_transmit_targets.h"
 #include "game/prepared_human_loading.h"
+#include "game/human_item_pickup.h"
+#include "game/human_supply_pickup.h"
 #include "game/human_spawn_position.h"
 #include "game/zone_scene_actor.h"
 #include "game/session_human_spawn.h"
@@ -78,6 +128,645 @@ public:
     std::uint32_t game_frame_serial()const{return dependencies().session.words.template get<std::uint32_t>(0x2c);}
     auto& human_ai_event_pool(){return dependencies().startup.human_ai_event_pool();}
     auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
+    template<class State,class Actor>void dispatch_active_pending_command(State& state,std::uint32_t action,Actor* target,std::uint32_t secondary){
+        auto* human=state.human();if(!human)throw std::logic_error("Active pending command lost explicit Human44");
+        std::vector<decltype(human)> selected{human}; //00458E50's explicit-Human branch, no group4 lookup.
+        dispatch_active_player_commands(selected,action,target,false,secondary,dependencies().scene.frames(),*this);
+    }
+    template<class Human>auto& active_command_state(Human& human){
+        using Active=typename Dependencies::Composition::StateFactory::Active;
+        auto* state=dynamic_cast<Active*>(human.loading_state);
+        if(!state)throw std::logic_error("Players command requires actual published Active B0");
+        return *state;
+    }
+    template<class Human>void reject_active_command(Human& human){queue_active_ai_speech(active_command_state(human),0x68u,true,300u,false);}
+    template<class Human>void active_task_completion_debug_name(Human& human){
+        if((mode_flags()&7u)!=7u)throw std::runtime_error("Active completion name requires actual nonoffline005A81C0 peer/profile receiver");
+        (void)offline_human_hud_name(dependencies().scene.frames(),human);
+    }
+    template<class Human>auto& active_follow_state(Human& human){
+        auto* state=composition(human).states().get();
+        if(!state||state!=human.loading_state)throw std::logic_error("Active follow requires actual published SAME-World B0");
+        return *state;
+    }
+    auto* active_follow_identity(std::int32_t identity){return dependencies().scene.frames().scene_actor_command_identity(identity);} //00475D50.
+    template<class Human>HumanVector active_follow_current_direction(Human& human){return active_follow_state(human).current_direction();} //005A80D0.
+    template<class Human>bool active_follow_floor(Human& human){return human_inline(human).frame_navigation_floor();}
+    auto active_follow_root_sector(){return dependencies().scene.frames().camera_root_sector();}
+    template<class Human>auto active_follow_sector(Human& human){return human_inline(human).scene_sector();}
+    auto active_follow_probe_sector(const HumanVector& position){return dependencies().scene.frames().human_scene_sector(position);}
+    void active_task_group_arrival(){dependencies().startup.players_process().notify_group_arrival(*this);} //Direct00456F00, task204/208.
+    void active_follow_query_changed(){ //Players virtual20 at final0080FB28 is00459490 (absent frozen), not00456F00.
+        using Active=typename Dependencies::Composition::StateFactory::Active;
+        auto& d=dependencies();d.startup.players_process().template postpone_follow_queries<Active>(d.players.control(),mode_flags());
+    }
+    template<class Human>bool active_follow_force_sight(Human& human,Human& leader){return dependencies().sight.force_human_target(human,leader);}
+    template<class Entry>auto active_follow_item_command(Entry entry){return dependencies().world_actors.items().runtime_item(entry).definition().equipment_command();}
+    template<class Entry>auto active_follow_item_kind(Entry entry){return dependencies().world_actors.items().runtime_item(entry).definition().kind();}
+    template<class Human>auto active_self_treatment_health(Human& human){return human_hud_health_percent(human);} //005A5FF0, signed.
+    template<class Actor>auto active_medical_target_health(Actor& target){return human_frame_signed_word(selection_human(target).properties.stats_ec[0]);}
+    template<class Human>std::optional<std::int32_t> active_self_treatment_item(Human& human){ //005A7E00, holder5 BEFORE timed reverse holsters.
+        auto& items=dependencies().world_actors.items();const auto entry=find_human_medical_item(human,items,game_word28());
+        if(!entry)return std::nullopt;
+        return items.runtime_item(entry).identity;
+    }
+    float active_self_treatment_random(){return dependencies().scene.frames().volume_random_unit();} //ENGINE RandFloat, not CRT.
+    bool active_authority_nearby(const HumanVector& position){return active_nearby_runtime_actor(dependencies().world_actors.runtime(),dependencies().scene.frames(),position,3u);}
+    void active_avoidance_clamp(HumanVector& position,bool enabled,const HumanVector& original){clamp_active_avoidance_position(dependencies().navigation,position,enabled,original);}
+    auto& active_task_navigation(){return dependencies().navigation;} //Actual game54,00532190.
+    std::uint32_t active_retreat_live_count(){return dependencies().players.control().human_roster().live_count();} //00461410→004622C0.
+    template<class State>void dispatch_player_inline_command(State& state){dispatch_delayed_player_command(state,*this);}
+    template<class Human,class Request>void queue_player_signal(Human& human,const Request& request){
+        using Player=typename Dependencies::Composition::StateFactory::Player;
+        auto* player=dynamic_cast<Player*>(human.loading_state);if(!player)throw std::runtime_error("Human signal requires actual Player B0 virtualE8 receiver");
+        queue_player_signal_command(*player,request,dependencies().scene.frames(),*this);
+    }
+    template<class Actor>std::uint32_t player_command_pointer_word(Actor* actor){
+        if(!actor)return 0;
+        const auto value=reinterpret_cast<std::uintptr_t>(actor);
+        if(value>std::numeric_limits<std::uint32_t>::max())throw std::runtime_error("Offline Players pointer payload requires actual32-bit source ABI");
+        if(dependencies().world_actors.runtime().owns(actor))return static_cast<std::uint32_t>(value);
+        (void)active_event_actor_guard(*actor)();return static_cast<std::uint32_t>(value);
+    }
+    template<class Human>std::size_t player_command_pending_count(Human& human){ //005A5F00.
+        if(!human.loading_state||human.loading_state->words().template get<std::uint32_t>(0x48)!=3u)return 0;
+        auto& state=active_command_state(human);(void)state.has_pending_orders_loading();return state.pending_orders().size();
+    }
+    auto* player_command_actor_pointer(std::uint32_t word){ //Offline native fields28/30 contain source pointers, not actor IDs.
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;if(!word)return static_cast<Actor*>(nullptr);
+        auto& frames=dependencies().scene.frames();
+        for(std::size_t n=0;n<frames.scene_actor_identity_count();++n){auto* actor=frames.scene_actor_identity(static_cast<std::int32_t>(n));
+            if(actor&&reinterpret_cast<std::uintptr_t>(actor)==word)return actor;
+        }
+        if(auto* actor=dependencies().world_actors.runtime().first_owned_forward([&](auto& value){return reinterpret_cast<std::uintptr_t>(&value)==word;}))return actor;
+        throw std::runtime_error("Offline Players command pointer has no SAME live Scene2/Runtime source owner");
+    }
+    template<class Command>auto player_command_recipients(Command& command,std::uint32_t mode){
+        using Human=typename Dependencies::Composition::Human;std::vector<Human*> output;
+        if(const auto word=command.word(0x30)){auto* actor=player_command_actor_pointer(word);auto* human=dynamic_cast<Human*>(actor);
+            if(!human)throw std::runtime_error("Players explicit recipient is not its actual Human owner");
+            output.push_back(human);return output;
+        }
+        return collect_player_command_recipients(dependencies().startup.players_process(),dependencies().players.control(),mode,*this);
+    }
+    template<class Human,class Command>void receive_player_command(Human& human,Command& command){
+        auto* selected=active_selected_player();auto& state=active_command_state(human);
+        receive_active_player_command(state,command,selected,dependencies().scene.frames(),*this);
+    }
+    template<class Human>void player_command_selected_mode(Human& human,std::uint32_t action){
+        if(!human.loading_state||human.loading_state->words().template get<std::uint32_t>(0x48)!=1u)return;
+        using Player=typename Dependencies::Composition::StateFactory::Player;
+        auto* player=dynamic_cast<Player*>(human.loading_state);if(!player)throw std::logic_error("Players mode target lost actual Player B0");player->player_words().set(0x548,action);
+    }
+    template<class Human>void player_command_formation(Human* selected,std::uint32_t action){ //00456020 cases21..25.
+        auto& process=dependencies().startup.players_process();auto& words=process.words();
+        const auto old=words.template get<std::int32_t>(0x120);
+        if((action==24u&&old>0)||(action==25u&&old<7)){words.set(0x120,static_cast<std::uint32_t>(old)+(action==24u?0xffffffffu:1u));process.update_formation_scale();}
+        if(!selected||!selected->formation)return;
+        const auto validate=human_common_receiver_guard(*selected);
+        const auto formation=[&]() -> auto& {validate();if(!selected->formation)throw std::runtime_error("Players command lost native formation owner");return *selected->formation;};
+        if(action<=23u){formation().select_mode(action==21u?0:action==22u?1:3);formation().scale(process.formation_scale());}
+        else{formation().scale(process.formation_scale());const auto mode=formation().mode();formation().select_mode(mode);}
+    }
+    template<class Command>void player_command_target_dispatch(Command& command,bool immediate){ //Actual process virtual28→00458E50.
+        auto selected=player_command_recipients(command,4u);auto* target=player_command_actor_pointer(command.word(0x28));
+        dispatch_active_player_commands(selected,command.word(0x24),target,immediate,command.word(0x2c),dependencies().scene.frames(),*this);
+    }
+    template<class Command>void player_command_cover_move(Command& command,bool immediate){dispatch_player_cover_move(command,immediate,dependencies().scene.frames(),*this);}
+    template<class Command>void player_command_position_move(Command& command,bool immediate){dispatch_player_position_move(command,immediate,dependencies().scene.frames(),*this);}
+    template<class Human>void player_command_common_action(Human& human,std::uint32_t action,std::int32_t identity,std::uint32_t argument){
+        auto* state=composition(human).states().get();if(!state)throw std::runtime_error("Players common command lost actual B0");state->emit_common_action(action,identity,argument);
+    }
+    template<class AI>void start_active_player_support(AI& ai,const HumanVector& position){ //00535A60, hand3/holder2, actual kind5.
+        auto& human=*ai.human();auto* storage=human.base().storage();if(!storage||!storage->holder(3)||!storage->holder(2))throw std::runtime_error("Players support requires actual hand3 and holder2");
+        auto& items=dependencies().world_actors.items();const auto hand=storage->holder(3)->entry(),holster=storage->holder(2)->entry();auto selected=hand;
+        if(!selected||items.runtime_item(selected).definition().kind()!=5u){selected=holster;if(!selected||items.runtime_item(selected).definition().kind()!=5u)return;}
+        auto& item=items.runtime_item(selected);const auto ammunition=item.definition().ammunition();
+        if(item.amount()<0.f&&human_frame_signed_word(count_human_ammunition(human,items,ammunition,false))<=0)return; //535AF3 also accepts unordered amount without count.
+        if(selected!=hand){auto& inventory=composition(human).inventory();if(hand)(void)inventory.swap(hand,3,human,selected,2);else (void)inventory.move(selected,human,2,3,0);}
+        ai.initialize_task(nullptr,52u,position,human.base().world_direction(),false,2.5f);ai.state().set(0x200,std::uint8_t{1});
+        ai.state().set(0x174,(ai.state().template get<std::uint32_t>(0x174)&~0x10u)|0x200u);
+        delay_active_focused_task(ai,*this);notify_human_active_ai_empty_orders(ai,*this);
+    }
+    auto* active_avoidance_player(){return dependencies().players.control().selected_player(mode_flags());}
+    auto* active_process_target(){ //00456860 on SAME process98 borrower, produced by Active BC.
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        return static_cast<Actor*>(dependencies().startup.players_process().reaction_target());
+    }
+    template<class Human>void active_player_damage_reaction(Human& source){auto& d=dependencies();d.startup.players_process().react_to_player_damage(&source,d.players.control(),*this);}
+    template<class AI,class Human>void active_shared_damage(AI& ai,std::uint32_t kind,std::uint32_t hit,std::int32_t health,Human* source,const HumanVector& point,const HumanVector& direction){
+        notify_human_ai_damage(ai,kind,hit,health,source,point,direction,*this,dependencies().scene.frames());
+    }
+    template<class Entry>bool active_special_hand(Entry entry){return human_special_hand_definition(dependencies().world_actors.items().runtime_item(entry).definition());}
+    template<class Human>bool active_has_ammunition(Human& human,std::uint32_t definition){
+        return bool(find_human_inventory_definition(human,dependencies().world_actors.items(),human_frame_signed_word(definition)));
+    }
+    template<class AI>auto* active_nearby_dog(AI& ai,float radius){ //0052B180; C0 is the SAME sighted-Dog list.
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        auto& state=ai.state();
+        if(!state.template get<std::uint8_t>(0x202)){
+            const auto task=state.template get<std::uint32_t>(0x220);
+            if(task==25||task==26){ai.require_live_task_target();if(ai.task_target&&ai.task_target->base().type()==30)return ai.task_target;}
+            else if(task==22&&ai.task_target&&ai.item())return active_task22_nearby_target(ai,dependencies().scene.frames(),*this);
+        }
+        auto& players=dependencies().players.control();const auto& dogs=players.sighted_dogs();
+        for(auto n=dogs.size();n;){
+            auto* dog=dogs[--n];if(!dog)throw std::runtime_error("Active nearby-Dog query reached native NULL Dog dereference");
+            const auto a=dog->base().world_position(),b=ai.human()->base().world_position();
+            const auto x=static_cast<long double>(a[0])-b[0],y=static_cast<long double>(a[1])-b[1],z=static_cast<long double>(a[2])-b[2];
+            const auto square=(z*z+y*y)+x*x; //52B488..A2 retains the sum in x87 through comparison.
+            const float limit=static_cast<float>(static_cast<long double>(radius)*radius);
+            if(!(square<limit))continue;
+            using Dog=DogSceneActor<typename Dependencies::ActorFrames>;auto* owner=dynamic_cast<Dog*>(dog);
+            if(!owner)throw std::logic_error("Active nearby Dog list requires actual type30 owner");
+            if(human_frame_signed_word(owner->properties.fields4a0[0])<1){players.remove_sighted_dog_at(n);continue;}
+            if(square<16.f)return dog;
+            if(dependencies().sight.source().human_relation_feedback(human_frame_signed_word(ai.human()->field258),owner->require_sight_listener(),nullptr,nullptr))return dog;
+        }
+        return static_cast<Actor*>(nullptr);
+    }
+    template<class AI>void active_idle_look(AI& ai){ //0052CEA0 ->005E8B70, then005F0E40.
+        auto& d=dependencies();auto* human=ai.human();
+        if(!human->head_marker)throw std::logic_error("Active idle look requires actual Human260 head frame");
+        (void)d.scene.frames().actor_world_matrix(human->head_marker); //Even the empty sound registry updates the head first.
+        //005E3C90 registers EVERY type36;005E3F10 unregisters before actor
+        //retirement. No type36 in the SAME live registry proves this cold list empty.
+        if(d.world_actors.runtime().any_owned_reverse([](auto& actor){return actor.base().type()==36;}))
+            throw std::runtime_error("Active idle look requires actual005E8B70 type36 sound registry/collision receiver");
+        //005EF180 constructs type34 and publishes008AC8D4;005EF450 clears
+        //it on destruction. The cold first10000ms005F0E60 return is genuine.
+        if(d.world_actors.runtime().any_owned_reverse([](auto& actor){return actor.base().type()==34;})&&
+           d.session.words.template get<std::int32_t>(0x2c)>=10000)
+            throw std::runtime_error("Active idle look requires H8.4 actual type34 singleton005F0E60 receiver");
+        ai.state().set(0x23c,0u); //Both native queries returned NULL;240 is intentionally untouched.
+    }
+    template<class Human>std::optional<std::uint32_t> active_hand_item_kind(Human& human){ //0052B580 reads actual holder3, not B0 cache.
+        auto* storage=human.base().storage();if(!storage||!storage->holder(3))throw std::runtime_error("Special target aim reached native missing hand holder");
+        const auto entry=storage->holder(3)->entry();if(!entry)return std::nullopt;return dependencies().world_actors.items().runtime_item(entry).definition().kind();
+    }
+    template<class Actor>bool active_vehicle_attack_armoured(Actor* actor){
+        if(!actor)return false;if(actor->base().type()==4)return car_field5e0(actor);
+        if(actor->base().type()!=25)return false;using Animation=AnimationSceneActor<typename Dependencies::ActorFrames>;auto* animation=dynamic_cast<Animation*>(actor);
+        if(!animation)throw std::logic_error("Vehicle weapon target25 requires actual Animation owner");return animation->fieldd8==2;
+    }
+    template<class AI,class Actor>auto active_vehicle_attack_weapon(AI& ai,Actor* target,std::int32_t& slot){ //00538980.
+        using Entry=std::decay_t<decltype(ai.human()->base().storage()->holder(3)->entry())>;
+        if(!target)return Entry{};auto* human=ai.human();if(!human||!human->loading_inventory)throw std::logic_error("Vehicle weapon selection requires actual Human inventory");
+        if(active_vehicle_attack_armoured(target))return find_human_weapon_candidate(*human,dependencies().world_actors.items(),6,false,false,slot);
+        //5389FD copies the LOW BYTE OF THE OUTPUT POINTER into priority byte0.
+        //Retain that native dependency on the actual borrowed output address;
+        //typed host stack layout is not claimed equivalent to the original ABI.
+        const bool alternate=(reinterpret_cast<std::uintptr_t>(&slot)&0xffu)!=0;
+        return human->loading_inventory->preferred_weapon(target,alternate,slot);
+    }
+    template<class Human,class Entry>void active_select_vehicle_attack_weapon(Human& human,Entry selected,std::int32_t slot){
+        if(!human.loading_inventory)throw std::logic_error("Vehicle weapon transfer requires actual inventory owner");human.loading_inventory->select_weapon(selected,slot);
+    }
+    template<class Actor>std::uint32_t active_car_occupant_side(Actor& actor){return classify_active_car_occupants(human_pose_car(&actor),*this);} //004DDEE0.
+    template<class Actor>bool active_armoured_target(Actor& actor){
+        if(actor.base().type()!=3)return false;
+        auto& human=selection_human(actor);auto* attachment=human.field160;
+        return attachment&&attachment->base().type()==4&&car_field5e0(attachment);
+    }
+    template<class Human>bool active_has_heavy_weapon(Human& human){ //005328D0 is attachment B4 payload kind2, not a hand-inventory search.
+        if(!human.loading_state)throw std::runtime_error("Mounted payload query reaches native NULL Human B0");
+        return human.field160&&human_script_mounted_precise(human.field160,static_cast<std::int32_t>(human.field164));
+    }
+    template<class Human>bool active_mounted_precise(Human& human){ //00532910 dereferences the actual B4 definition BEFORE testing payload48.
+        if(!human.field160)throw std::logic_error("Mounted intervals require actual attachment");
+        if(!dependencies().first_players.seat_presentation().definition(human_pose_actor(human.field160),static_cast<std::int32_t>(human.field164)))
+            throw std::runtime_error("Mounted intervals reached native NULL B4 definition48 dereference");
+        return human_script_mounted_precise(human.field160,static_cast<std::int32_t>(human.field164));
+    }
+    const char* active_dog_target_bone(){return "c";} //008390F0.
+    template<class AI,class Actor>HumanVector active_special_mounted_target(AI&,Actor&,const HumanVector&,const HumanVector&){
+        throw std::runtime_error("Mounted target requires actual type34 frame240/type36 motion148 owner");
+    }
+    template<class AI>auto* active_mounted_idle_actor(AI& ai){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        if(ai.state().template get<std::uint32_t>(0x23c))throw std::runtime_error("Mounted idle target requires its actual type34/36 actor23C borrower");
+        return static_cast<Actor*>(nullptr);
+    }
+    template<class Actor>std::int32_t active_mounted_task_health(Actor& actor){
+        if(actor.base().type()!=3)throw std::runtime_error("Mounted task25/26 requires actual native targetEC word");
+        return human_frame_signed_word(selection_human(actor).properties.stats_ec[0]);
+    }
+    template<class Actor>bool active_mounted_actor_excluded(Actor& actor){
+        if(actor.base().type()!=3)return false;
+        auto& human=selection_human(actor);
+        return (human.properties.field19c==2&&human.loading_state&&human.loading_state->suppress_hostile_selection())||human_unavailable(human);
+    }
+    template<class Human>std::optional<float> active_mounted_fire_threshold(Human& human){
+        if(!human.field160)throw std::logic_error("Mounted trigger lost actual attachment");
+        if(human.field160->base().type()==34)throw std::runtime_error("Mounted trigger requires actual type34 word280 gate");
+        return .9900000095367432f;
+    }
+    template<class Actor,class Human>bool active_mounted_task_visible(Actor& actor,Human& human){ //00538B00.
+        if(actor.base().type()!=4&&actor.base().type()!=25)return false;
+        auto& frames=dependencies().scene.frames();const auto target=sight_position(human.head_marker);
+        const auto centre=frames.active_target_bound_centre(actor.base().frame());HumanVector delta{};
+        for(unsigned axis=0;axis!=3;++axis)delta[axis]=static_cast<float>(static_cast<long double>(target[axis])-centre[axis]);
+        const auto square=(static_cast<long double>(delta[0])*delta[0]+static_cast<long double>(delta[1])*delta[1])+static_cast<long double>(delta[2])*delta[2];
+        if(!(active_mounted_length(square)<=300.f))return false;
+        const auto hit=human_geometry_ray(centre,delta,0,0,false);if(!hit)return true;
+        if(!(human_geometry_flags(*hit)&0x40u))return false;
+        auto* contact=item_melee_actor(*hit);return contact&&(contact==&actor||contact==human.field160);
+    }
+    template<class AI>auto* active_mounted_dog_target(AI& ai,float radius){ //00532A20 on SAME Players C0.
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
+        auto& control=dependencies().players.control();const auto& dogs=control.sighted_dogs();
+        for(auto n=dogs.size();n;){const auto index=--n;auto* actor=dogs.at(index);auto* dog=dynamic_cast<Dog*>(actor);
+            if(!dog)throw std::runtime_error("Mounted Dog selection reached native NULL/nonDog C0 member");
+            const auto point=dog->base().world_position(),own=ai.human()->base().world_position();
+            const auto x=static_cast<long double>(point[0])-own[0],y=static_cast<long double>(point[1])-own[1],z=static_cast<long double>(point[2])-own[2];
+            const float square=static_cast<float>((x*x+y*y)+z*z);const float limit=static_cast<float>(static_cast<long double>(radius)*radius);
+            if(!(square<limit))continue;
+            if(human_frame_signed_word(dog->properties.fields4a0[0])<1){control.remove_sighted_dog_at(index);continue;}
+            if(square<16.f)return static_cast<Actor*>(dogs.at(index));
+            if(dependencies().sight.source().human_relation_feedback(human_frame_signed_word(ai.human()->field258),dog->require_sight_listener(),nullptr,nullptr))return dogs.at(index);
+        }
+        return static_cast<Actor*>(nullptr);
+    }
+    template<class Human>bool request_human_inventory_move(Human& human,std::int32_t identity,std::int32_t source,std::int32_t source_slot,std::int32_t destination,std::int32_t index){ //00587BF0, common B0 virtual74.
+        const bool moved=receive_human_inventory_move(human,dependencies().world_actors.items(),*this,true,identity,source,source_slot,destination,index);
+        if(moved&&(mode_flags()&7u)!=7u)throw std::runtime_error("Human inventory request requires00587BF0 second command7 publication after successful transfer");
+        return moved;
+    }
+    template<class Human>bool human_inventory_swap_eligible(Human& human,Human& source,std::int32_t selected_slot){ //005A2BB0 prefix, before either item identity/B0 read.
+        return human_inventory_swap_admitted(human,source,selected_slot,[this](auto& actor){return this->human_unavailable(actor);});
+    }
+    template<class Human>bool request_human_inventory_swap(Human& human,std::int32_t current,std::int32_t current_slot,std::int32_t source,std::int32_t selected,std::int32_t selected_slot){ //00587E00, actual common B0 virtual78.
+        const bool moved=receive_human_inventory_swap(human,dependencies().world_actors.items(),*this,true,current,current_slot,source,selected,selected_slot);
+        if(moved&&(mode_flags()&7u)!=7u)throw std::runtime_error("Human inventory swap requires00587E00 command8 publication after successful swap");
+        return moved;
+    }
+    template<class Actor>bool active_loot_target_dead(Actor& target){ //00534AF0 reads EC directly, not00538A60.
+        if(target.base().type()!=3)throw std::runtime_error("Active loot admission requires actual nonHuman native EC field owner");
+        return human_frame_signed_word(selection_human(target).properties.stats_ec[0])<1;
+    }
+    template<class Human,class Entry>auto active_inventory_capacity(Human& human,Entry entry){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;auto& d=dependencies();
+        return probe_human_inventory_capacity(d.scene.frames(),static_cast<Actor*>(&human),d.world_actors.items(),*this,entry);
+    }
+    template<class Human,class Actor>auto active_loose_target_capacity(Human& human,Actor& actor){
+        using Runtime=std::remove_reference_t<decltype(dependencies().world_actors.runtime())>;
+        auto* loose=dynamic_cast<typename Runtime::LooseItemActor*>(&actor);
+        if(!loose)throw std::logic_error("Active capacity requires actual loose item11");
+        return active_inventory_capacity(human,loose->entry());
+    }
+    template<class AI>void active_command_exit_attachment(AI& ai){
+        auto* human=ai.human();HumanPacketCommand command;command.kind=3;command.fields.set(8,5u);
+        command.fields.set(0xc,human->base().id10());command.fields.set(0x10,human->field164);
+        (void)composition(*human).state_factory().common_command(ai,command);
+    }
+    template<class AI>void active_task_pickup_effect(AI& ai,std::uint32_t kind){ //Actual AI6C=00587BC0,7C=00587BA0, both direct validators.
+        ai.require_live_task_target();if(!ai.task_target)throw std::runtime_error("Active pickup effect lost native target224");
+        auto& human=*ai.human();const auto validate=human_common_receiver_guard(human);const auto identity=ai.task_target->base().id10();
+        std::int32_t slot=7;
+        if(kind==11)(void)validate_human_item_pickup(human,identity,slot,*this);
+        else{std::int32_t item=-1;(void)validate_human_supply_pickup(human,identity,ai.state().template get<std::int32_t>(0x210),slot,item,*this);}
+        validate();human.activation.flag178=true; //005A2D20/2CF0 even when validator returnedfalse.
+    }
+    template<class Human,class Entry>bool active_request_inventory_move(Human& human,Human& source,Entry entry,std::int32_t slot,std::int32_t destination){
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);
+        const bool moved=request_human_inventory_move(human,dependencies().world_actors.items().runtime_item(entry).identity,&source==&human?-1:source.base().id10(),slot,destination,0);
+        own();other();return moved;
+    }
+    template<class Human,class Entry>bool active_receive_inventory_move(Human& human,Human& source,Entry entry,std::int32_t slot){ //Direct005A2D50, NO B0 request/forwarding.
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);std::int32_t destination=7;
+        const bool moved=receive_human_inventory_move(human,dependencies().world_actors.items(),*this,true,dependencies().world_actors.items().runtime_item(entry).identity,source.base().id10(),slot,destination,0);
+        own();other();return moved;
+    }
+    template<class Human,class Entry>bool active_request_inventory_swap(Human& human,Entry current,std::int32_t current_slot,Human& source,Entry selected,std::int32_t selected_slot){ //005A2BB0 ->00587E00 ->005A2E90.
+        if(!human_inventory_swap_eligible(human,source,selected_slot))return false;
+        if(!current||!selected)throw std::runtime_error("Active inventory swap reached native NULL item identity dereference");
+        auto& items=dependencies().world_actors.items();const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);
+        const bool moved=receive_human_inventory_swap(human,items,*this,true,items.runtime_item(current).identity,current_slot,&source==&human?-1:source.base().id10(),items.runtime_item(selected).identity,selected_slot);
+        own();other();if(moved&&(mode_flags()&7u)!=7u)throw std::runtime_error("Active inventory swap requires second command8 forwarding after transfer");
+        return moved;
+    }
+    template<class Human,class Entry>void active_apply_loot_clothing(Human& human,Entry entry){ //Direct005A6930, not005A6920/B0+68 producer.
+        if(!entry)throw std::runtime_error("Active clothing callback reached native NULL item dereference");
+        const auto validate=human_common_receiver_guard(human);PreparedHumanLoading<Dependencies> clothing(dependencies());
+        (void)clothing.apply_clothing(human,dependencies().world_actors.items().runtime_item(entry).identity);validate();
+    }
+    template<class Humans,class Actor>auto select_active_handoff_candidate(Humans& humans,Actor& target)->typename Humans::value_type{ //0045BD10/task24.
+        const auto selected=active_handoff_entry(selection_human(target),4);if(!selected)return nullptr;
+        auto& items=dependencies().world_actors.items();const auto variant=[&](auto entry){auto& item=items.runtime_item(entry);
+            if(!item.definition().payloads[0].type)throw std::runtime_error("Handoff selection reached native NULL payload dereference");
+            return item.primary_payload_command()==1;
+        };
+        const bool wanted=variant(selected);
+        for(auto* human:humans){const auto own=active_handoff_entry(*human,4);if(!own||variant(own)!=wanted)return human;}
+        return nullptr;
+    }
+    auto* active_nearby_loose_weapon(const HumanVector& origin,float radius){ //00479600, SAME runtime ownership vector, forward FIRST.
+        auto& d=dependencies();using Runtime=std::remove_reference_t<decltype(d.world_actors.runtime())>;
+        auto* actor=d.world_actors.runtime().first_owned_forward([&](auto& candidate){
+            if(candidate.base().type()!=11)return false;
+            auto* item=dynamic_cast<typename Runtime::LooseItemActor*>(&candidate);if(!item)throw std::logic_error("Loose weapon query lost actual item11");
+            const auto kind=d.world_actors.items().runtime_item(item->entry()).definition().kind();
+            if(kind!=3&&kind!=4&&kind!=5&&kind!=6&&kind!=12)return false;
+            const auto matrix=d.scene.frames().actor_world_matrix(candidate.base().frame());
+            return active_loose_weapon_in_radius(origin,{{matrix[12],matrix[13],matrix[14],matrix[15]}},radius);
+        });
+        return static_cast<typename Runtime::LooseItemActor*>(actor);
+    }
+    template<class Human,class Entry>void active_drop_loot_weapon(Human& human,Entry entry,const HumanVector& direction){
+        const auto validate=human_common_receiver_guard(human);drop_human_damage_item(human,entry,direction);validate();
+    }
+    template<class Human,class Actor>auto active_loot_borrowers(Human& human,Human& source,Actor* loose){
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);
+        const auto entry=loose?loose->entry():decltype(loose->entry()){};
+        const auto frame=loose?loose->base().frame():typename Dependencies::Frame{};
+        return [this,own,other,loose,entry,frame]{own();other();if(loose&&(!dependencies().world_actors.runtime().owns(loose)||loose->entry()!=entry||loose->base().frame()!=frame))throw std::runtime_error("Active loot callback retired or replaced loose-item borrower");};
+    }
+    template<class Human>auto active_inventory_pair_borrowers(Human& human,Human& source){
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(source);return [own,other]{own();other();};
+    }
+    template<class Human,class Actor>bool active_receive_loose_weapon(Human& human,Actor& actor){
+        if(!dependencies().world_actors.runtime().owns(&actor))throw std::runtime_error("Active loot lost actual loose actor before pickup");
+        const auto validate=human_common_receiver_guard(human);std::int32_t slot=7;
+        const bool moved=validate_human_item_pickup(human,actor.base().id10(),slot,*this);validate();return moved;
+    }
+    template<class AI>bool active_task_loot_effect(AI& ai,std::uint32_t action){
+        ai.require_live_task_target();auto* human=ai.human();auto* target=ai.task_target;
+        if(!human)throw std::logic_error("Active loot task lost Human44");
+        auto* source=target?&selection_human(*target):nullptr;auto& items=dependencies().world_actors.items();
+        if(action==23)return active_loot_human(*human,source,items,*this);
+        if(action==24){if(!source)throw std::runtime_error("Active handoff reached native NULL target dereference");return active_handoff_inventory(*human,*source,*this);}
+        if(!source)throw std::runtime_error("Active task33 reached native NULL target dereference");
+        const bool first=active_take_inventory_kind(*human,*source,items,*this,20);
+        const bool second=active_take_inventory_kind(*human,*source,items,*this,22);
+        const bool third=active_take_inventory_kind(*human,*source,items,*this,21);
+        return first|second|third;
+    }
+    template<class Human>bool active_holster_spare_ammunition(Human& human){ //005318C0 ->005A2B40 ->B0 virtual74.
+        auto* storage=human.base().storage();auto* hand=storage?storage->holder(3):nullptr;
+        if(!hand)throw std::logic_error("Active ammunition policy requires actual Human holder3");
+        const auto entry=hand->entry();if(!entry)return false;
+        auto& items=dependencies().world_actors.items();auto& weapon=items.runtime_item(entry);
+        if(weapon.capacity()==-1.f)return false;
+        const auto ammunition=find_human_inventory_definition(human,items,weapon.definition().ammunition());
+        if(!ammunition)return false;
+        //Native source6 is FIXED even if005A78F0 found this definition in
+        //another slot. The request's false result is deliberately ignored.
+        (void)request_human_inventory_move(human,items.runtime_item(ammunition).identity,-1,6,1,0);
+        return true;
+    }
+    template<class AI,class Inline>void active_frame_reload_policy(AI& ai,Inline& control){ //00526550 after endurance, BEFORE cover decisions.
+        const auto entry=ai.item();if(!entry)return;
+        auto& items=dependencies().world_actors.items();auto& item=items.runtime_item(entry);
+        if(item.capacity()==-1.f)return;
+        const auto kind=item.definition().kind();if(!((kind>1&&kind<7)||kind==12))return;
+        std::int32_t slot=7;const auto ammunition=find_human_inventory_definition(*ai.human(),items,item.definition().ammunition(),&slot);
+        if(ammunition){
+            const auto amount=item.amount();
+            if(amount==0.f||(!ai.state().template get<std::uint32_t>(0x19c)&&
+               static_cast<long double>(amount)+1.f<items.runtime_item(ammunition).amount()&&!item.allows_partial_reload())){
+                std::int32_t consumed=-1;
+                if(reload_human_ai_weapon(item,*ai.human(),consumed,false,static_cast<std::uint32_t>(slot))){
+                    control.set_frame_item_action(3);ai.state().set(0x19c,5000u);
+                }
+                return; //Native reload branch skips the separate forced-flag clear even on failure.
+            }
+        }
+        item.field60&=~2u;
+    }
+    template<class Human,class Actor>bool active_event_hostile(Human& human,Actor* actor){
+        const auto& enemies=human.perception.lists()[0];return std::find(enemies.rbegin(),enemies.rend(),actor)!=enemies.rend(); //005A5E50.
+    }
+    template<class Actor>auto* active_event_selected(Actor& actor){ //B0 virtualA4; actual AI D4, Base/Player/Remote returnNULL.
+        using AI=typename Dependencies::Composition::StateFactory::AI;
+        auto& human=selection_human(actor);auto* state=dynamic_cast<AI*>(human.loading_state);
+        return state?state->resources().selected_actor():nullptr;
+    }
+    template<class Actor>auto* active_movement_selected(Actor& actor){
+        if(!selection_human(actor).loading_state)throw std::runtime_error("Active cautious query requires actual enemy B0 virtualA4");
+        return active_event_selected(actor);
+    }
+    template<class Actor,class Human>bool active_movement_target_friendly(Actor& selected,Human& human){return human_sound_friendly(selection_human(selected),&human);} //0052F160 ->selected005A0AB0(own).
+    template<class Actor>bool active_event_roster_member(Actor& actor){
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=dynamic_cast<Human*>(&actor);return human&&dependencies().players.control().human_roster().contains(human); //00461A20.
+    }
+    template<class Actor,class Human>bool active_event_attacker_hostile(Actor& actor,Human& human){return dependencies().sight.human_sight_hostile(&selection_human(actor),&human);} //005A0980.
+    template<class Actor>auto active_event_actor_guard(Actor& actor){
+        const auto id=actor.base().id10();auto* expected=&actor;
+        return [this,id,expected]{if(dependencies().scene.frames().scene_actor_identity(id)!=expected)throw std::runtime_error("Active F4 callback retired its selected Actor borrower");};
+    }
+    template<class State>void active_follow_ready_item(State& state){ //0058C330, same E0 then actual B0 virtual08.
+        auto* human=state.human();if(!human)throw std::logic_error("Active follow readiness lost Human44");
+        human_inline(*human).set_frame_item_ready(true,[&](std::uint32_t value){human_frame_first_person_state(*human,value);});
+        human_state_factory(*human).notify_inline_frame_command(state,1u);
+    }
+    template<class Human,class Formation>auto active_follow_guard(Human& human,Human& leader,Formation* formation){
+        const auto own=human_common_receiver_guard(human),other=human_common_receiver_guard(leader);
+        return [own,other,&human,&leader,formation]{
+            own();other();
+            if(human.formation_leader!=&leader||leader.formation.get()!=formation)
+                throw std::runtime_error("Active follow callback retired or replaced its formation borrower");
+        };
+    }
+    template<class Actor>auto active_task_arrival_frame(Actor& target){
+        if(target.base().type()==4)return dependencies().scene.frames().actor_find(target.base().frame(),"body",0xffffu); //Native83918C, fresh actual child query.
+        return target.base().frame();
+    }
+    template<class Actor>bool active_task_actor_unavailable(Actor& target){ //00538A60, Actor ECX.
+        switch(target.base().type()){
+        case 3:return human_frame_signed_word(selection_human(target).properties.stats_ec[0])<1;
+        case 4:return human_action_car_disabled(target);
+        case 25:{auto* animation=dynamic_cast<AnimationSceneActor<typename Dependencies::ActorFrames>*>(&target);if(!animation)throw std::logic_error("Active type25 capability requires actual Animation owner");return animation->flaga1;}
+        case 30:{auto* dog=dynamic_cast<DogSceneActor<typename Dependencies::ActorFrames>*>(&target);if(!dog)throw std::logic_error("Active type30 capability requires actual Dog owner");return human_frame_signed_word(dog->properties.fields4a0[0])<1;}
+        default:return false;
+        }
+    }
+    template<class State>bool active_task_effect_ready(State& state){ //005387C0, same typed task224.
+        using Frames=typename Dependencies::ActorFrames;
+        const auto target=[&]() -> auto& {
+            state.require_live_task_target();if(!state.task_target)throw std::runtime_error("Active task effect dereferences native NULL224");return *state.task_target;
+        };
+        switch(state.state().template get<std::uint32_t>(0x220)){
+        case 0:return !human_navigation_door(&target()).properties.flag234;
+        case 1:return human_navigation_door(&target()).properties.flag234!=0;
+        case 4:{auto* place=dynamic_cast<ExplosivePlaceSceneActor<Frames>*>(&target());if(!place)throw std::runtime_error("Active task4 requires actual target94 owner");return place->field94==0;}
+        case 15:return !active_task_actor_unavailable(target());
+        case 16:return !active_placed_motion_started(target());
+        case 19:{
+            auto& actor=target();bool allowed=false;
+            if(actor.base().type()==3){auto& human=selection_human(actor);
+                allowed=!human_unavailable(human)&&human.properties.field19c==2&&human.loading_state&&human.loading_state->suppress_hostile_selection();
+            }
+            return !active_task_actor_unavailable(target())&&allowed;
+        }
+        case 22:
+            if(!state.human()->field160&&target().base().type()==4)(void)active_car_occupant_side(target()); //Native return deliberately ignored before false.
+            return false;
+        case 27:case 28:{
+            const auto& properties=human_navigation_door(&target()).properties;
+            const auto phase=active_task_door_phase(properties); //006029F0, not Door94.
+            return state.state().template get<std::uint32_t>(0x220)==27?(phase!=1&&phase!=2):(phase!=0&&phase!=3);
+        }
+        case 34:{auto* place=dynamic_cast<DocumentPlaceSceneActor<Frames>*>(&target());if(!place)throw std::logic_error("Active task34 requires actual DocumentPlace148");return place->state148==0;}
+        default:return true;
+        }
+    }
+    template<class State>void execute_active_task_command(State& state,std::uint32_t action,std::int32_t identity,std::uint32_t value){
+        HumanPacketCommand command;command.kind=3;command.fields.set(8,action);command.fields.set(0xc,identity);command.fields.set(0x10,value);
+        (void)composition(*state.human()).state_factory().common_command(state,command); //Immediate00587540/DC only, no deferred queue copy.
+    }
+    template<class Human>bool active_command_has_definition(Human& human,std::uint32_t definition){
+        return bool(find_human_inventory_definition(human,dependencies().world_actors.items(),human_frame_signed_word(definition)));
+    }
+    template<class Actor>std::uint32_t active_command_definition(Actor& actor,std::uint32_t action){
+        using Frames=typename Dependencies::ActorFrames;
+        if(action==16)return 0x3bu;
+        if(action==0||action==1)return human_navigation_door(&actor).properties.field230;
+        if(action==4){
+            auto* place=dynamic_cast<ExplosivePlaceSceneActor<Frames>*>(&actor);
+            if(!place)throw std::runtime_error("Active command4 selector requires actual targetA0 actor family");
+            return place->properties.fielda0;
+        }
+        auto* place=dynamic_cast<DocumentPlaceSceneActor<Frames>*>(&actor);
+        if(action!=34||!place)throw std::runtime_error("Active command34 selector requires actual DocumentPlace98");
+        return place->properties.item98;
+    }
+    template<class Actor>bool active_command_seat_occupied(Actor& actor,std::int32_t seat){return human_seat_occupant(&actor,seat)!=nullptr;} //Actual virtual78 is occupant;6C is claim.
+    template<class Actor>std::size_t active_task_seat_count(Actor& actor){
+        if(actor.base().type()==4)return human_pose_car(&actor).occupants.size();
+        if(actor.base().type()==21){using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&actor);
+            if(!weapon||!weapon->loading)throw std::logic_error("Active seat count requires actual StaticWeapon owner");return weapon->loading->seat_count();}
+        throw std::runtime_error("Active seat count requires actual selected Aircraft owner");
+    }
+    template<class Actor>bool active_car_entry_available(Actor& actor){ //004DDD10 offline path.
+        auto& car=human_pose_car(&actor);if(car.flag254a)return false;
+        if(!car.loading)throw std::logic_error("Car entry eligibility requires actual initialized physics");
+        if(!car.loading->support_checks(2))return false;
+        if((mode_flags()&7u)!=7u)throw std::runtime_error("Car entry eligibility requires actual non7 local-player/team policy");
+        for(auto n=car.occupants.size();n;){auto* occupant=car.occupants[--n];if(!occupant)continue;auto& human=selection_human(*occupant);
+            if(human_frame_signed_word(human.properties.stats_ec[0])>0&&!dependencies().players.control().human_roster().contains(&human))return false;}
+        return true;
+    }
+    template<class Actor>std::uint32_t active_command_supply_kind(Actor& actor){
+        auto* box=dynamic_cast<SupplyBoxSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!box)throw std::logic_error("Players command type9 requires actual SupplyBox11C");
+        return box->properties.field11c;
+    }
+    template<class Human,class Actor>bool active_command_door_allowed(Human& human,Actor& actor){
+        if(actor.base().type()!=6)return false;
+        auto& door=human_navigation_door(&actor);
+        if(door.properties.flag234&&!door.properties.flag235)return active_command_has_definition(human,door.properties.field230);
+        return true;
+    }
+    template<class Human,class Actor>bool active_command_document_allowed(Human& human,Actor& actor){
+        if(actor.base().type()!=23)return false;
+        auto* place=dynamic_cast<DocumentPlaceSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!place)throw std::logic_error("Active command34 requires actual DocumentPlace owner");
+        return active_command_has_definition(human,place->properties.item98)&&place->state148==0;
+    }
+    template<class State>void active_command_exit_focus(State& state,std::int32_t identity){
+        HumanPacketCommand command;command.kind=3;command.fields.set(8,5u);command.fields.set(0xc,identity);command.fields.set(0x10,0u);
+        (void)composition(*state.human()).state_factory().common_command(state,command); //00587540 immediate DC only; no additional queue copy.
+    }
+    template<class Human>bool active_command_controlled_mount(Human& human){ //005328A0: current attachment then actual virtual98.
+        if(!human.loading_state)throw std::runtime_error("Vehicle attack control query reaches native NULL Human B0");
+        auto* attachment=human.field160;return attachment&&human_pose_actor_has_control(attachment,human.field164);
+    }
+    template<class Human>bool active_command_launcher_available(Human& human){ //005304B0(kind6,0,0,&local action word).
+        if(!human.loading_state)throw std::runtime_error("Vehicle attack launcher query reaches native NULL Human B0");
+        std::int32_t slot=7;return bool(find_human_weapon_candidate(human,dependencies().world_actors.items(),6,false,false,slot));
+    }
+    template<class State,class Actor>void produce_special_active_player_command(State& state,std::uint32_t action,Actor* target,std::uint32_t){
+        if(action==16){if(!target)throw std::runtime_error("Placed task producer dereferences native NULL target");produce_active_placed_task(state,*target,dependencies().scene.frames(),*this);return;}
+        if(action==22){produce_active_vehicle_attack(state,target,dependencies().scene.frames(),*this);return;}
+        if(action>=8&&action<=13){if(!target)throw std::runtime_error("Seat approach producer dereferences native NULL target");
+            const auto position=target->base().world_position(); //00458E50 copies cached Actor30, no model update.
+            produce_active_seat_approach(state,*target,action,position,*this);return;}
+        throw std::logic_error("Active specialized producer received an unsupported internal selector");
+    }
+    template<class Actor>bool active_handoff_native_predicate(Actor&){
+        throw std::runtime_error("Handoff005A6380 requires actual nonHuman EC/B0/19C field owner (H8.4)");
+    }
+    template<class Actor>bool active_placed_motion_started(Actor& target){return dependencies().world_actors.runtime().human_placed_item(target).motion_started();}
+    template<class Actor>auto active_placed_navigation_points(Actor& target){return dependencies().world_actors.runtime().human_placed_item(target).navigation_points();}
+    template<class Human,class Actor>bool active_command_explosive_allowed(Human& human,Actor& target){ //00534B30, native94 AFTER definition admission.
+        using Place=ExplosivePlaceSceneActor<typename Dependencies::ActorFrames>;
+        auto* place=dynamic_cast<Place*>(&target);
+        if(target.base().type()==22){
+            if(!place)throw std::logic_error("Explosive producer lost actual type22 place");
+            if(!active_command_has_definition(human,place->properties.fielda0))return false;
+        }
+        if(!place)throw std::runtime_error("Explosive task admission requires its actual non-place native94 owner");
+        return place->field94==0;
+    }
+    template<class Actor>bool active_command_release_allowed(Actor& target){ //005353A0 ->005A6450.
+        if(target.base().type()!=3)return false;
+        auto& human=selection_human(target);return human.properties.field19c==2&&human.loading_state&&human.loading_state->suppress_hostile_selection();
+    }
+    template<class AI,class Actor>void produce_active_formation_task(AI& ai,Actor* target){ //00534460 uses OWN cached position, no target-model read.
+        auto& human=*ai.human();const auto validate=human_common_receiver_guard(human);
+        set_active_order_formation(ai,target?&selection_human(*target):nullptr);validate();
+        ai.enable_follow(false);validate();
+        const auto direction=human.base().world_direction(),position=human.base().world_position();
+        ai.initialize_task(target,32u,position,direction,false,.5f);
+        for(auto offset:{0x207u,0x200u,0x204u})ai.state().set(offset,std::uint8_t{1});
+        notify_human_active_ai_empty_orders(ai,*this);validate();
+    }
+    template<class AI,class Actor>void produce_active_target_grenade(AI& ai,Actor& target){ //00535580, ANY kind9 lookup precedes ready/far00535910.
+        auto& human=*ai.human();auto& d=dependencies();const auto validate=human_common_receiver_guard(human);
+        if(!find_human_inventory_kind(human,d.world_actors.items(),9)){reject_active_command(human);return;}
+        const auto matrix=d.scene.frames().actor_world_matrix(target.base().frame());
+        start_active_group_grenade(ai,{{matrix[12],matrix[13],matrix[14],matrix[15]}},*this);validate();
+        delay_active_focused_task(ai,*this);validate();
+    }
+    template<class AI>void active_completion_cover(AI& ai){
+        (void)advance_active_cover_decision(ai,dependencies().scene.frames(),*this);
+    }
+    template<class Human,class Actor>bool active_command_attack_pair(Human& human,Actor& target){
+        return active_event_hostile(human,&target)||active_event_hostile(selection_human(target),&human);
+    }
+    template<class Human>bool active_command_special_available(Human& human){ //0045BD10, all three lookups precede quantity tests.
+        return active_attack_special_available(human,dependencies().world_actors.items());
+    }
+    template<class AI>bool prepare_active_attack_special_weapon(AI& ai){ //00535110: FIXED native source2, even if lookup found another slot.
+        auto& human=*ai.human();return prepare_active_attack_special(human,dependencies().world_actors.items(),composition(human).inventory());
+    }
+    template<class Humans,class Actor>void produce_active_group_command(Humans& humans,std::uint32_t action,Actor* target,bool immediate){
+        produce_active_group_tasks(dependencies().startup.players_process(),humans,action,target,immediate,dependencies().scene.frames(),*this);
+    }
+    auto active_group_reference_origin(){
+        if(auto* selected=dependencies().players.control().selected_player(mode_flags()))return selected->base().world_position();
+        auto& frames=dependencies().scene.frames();const auto camera=frames.active_game_camera();if(!camera)throw std::runtime_error("Group command requires actual active scene camera");
+        const auto matrix=frames.actor_world_matrix(camera);return HumanVector{{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    }
+    template<class Actor>auto active_group_door_phase(Actor& actor){return active_task_door_phase(human_navigation_door(&actor).properties);}
+    template<class Human>bool active_group_grenade_available(Human& human){return bool(find_player_mode_holster(human,dependencies().world_actors.items(),9,game_word28()));}
+    auto& human_ai_order_pool(){return dependencies().startup.human_ai_order_pool();}
+    template<class Order>void initialize_human_ai_order_marker(Order& order){
+        auto& d=dependencies();game::initialize_human_ai_order_marker(order,d.scene.frames(),d.scene.buckets(),d.hud.command_owner());
+    }
+    template<class Order>bool human_ai_order_navigation(const Order& order){ //0052ECA0.
+        auto position=order.state.template get<HumanVector>(0x30);
+        if(order.target){const auto matrix=dependencies().scene.frames().actor_world_matrix(order.target->base().frame());position={{matrix[12],matrix[13],matrix[14],matrix[15]}};}
+        return dependencies().navigation.nearest_volume({{position[0],position[1],position[2]}},5.f,-1.f)!=0xffff;
+    }
+    template<class State>void restore_active_order_formation(State& state){ //0052F0E0→005A91A0, selected28 (not current2C).
+        auto& d=dependencies();auto* leader=d.players.control().selected_player(mode_flags());if(!leader)return;
+        auto* human=state.human();if(!human)throw std::logic_error("Active order formation requires bound Human44");
+        set_human_formation<typename Dependencies::ActorFrames>(d.scene.frames(),d.navigation,d.startup.players_process().formation_scale(),*human,leader);
+    }
+    template<class Human>void active_posture_debug_name(Human& human){ //005767F0 Active prefix:005A82C0 then retail logger0069BFE0 RET.
+        (void)human_hud_short_name(human,mode_flags(),dependencies().startup.game_control_records());
+    }
+    auto* active_selected_player(){return dependencies().players.control().selected_player(mode_flags());}
+    template<class State,class Human>void set_active_order_formation(State& state,Human* leader){ //005357E0's005A91A0, including NULL.
+        auto& d=dependencies();auto* human=state.human();if(!human)throw std::logic_error("Active regroup requires bound Human44");
+        set_human_formation<typename Dependencies::ActorFrames>(d.scene.frames(),d.navigation,d.startup.players_process().formation_scale(),*human,leader);
+    }
+    template<class Human>void active_order_completion(Human* human){ //00538390→actual Players singleton virtual38/00455AF0.
+        auto& d=dependencies();d.startup.players_process().schedule_order_completion(human,d.startup.delayed_player_speech(),
+            [&]{return d.scene.frames().volume_random_unit();},[&]{return game_frame_serial();});
+    }
     auto& human_ai_navigation_jobs(){return dependencies().startup.human_ai_navigation_jobs();}
     std::uint32_t human_frame_random_word(){return dependencies().startup.random_word();}
     auto* create_session_spawn_human(std::uint32_t peer,std::uint32_t identity,const HumanVector& position,const HumanVector& direction,
@@ -546,6 +1235,74 @@ public:
         auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Human item removal requires its actual Player B0");
         human_state_factory(human).reset_item_player_mode(*state);
     }
+    //007D8B40/007D9DE0 borrow the existing Scene2/Human/230 owners only.
+    template<class Actor>auto* inventory_human(Actor* actor){
+        using Human=typename Dependencies::Composition::Human;
+        if(!actor)return static_cast<Human*>(nullptr);
+        auto* human=dynamic_cast<Human*>(actor);
+        if(!human)throw std::logic_error("Human inventory storage has no matching typed Human");
+        return human;
+    }
+    template<class Human>auto* inventory_equipment(Human* human){
+        using Owner=std::remove_pointer_t<decltype(human_inline(*human).equipment())>;
+        using Transfers=std::remove_reference_t<decltype(std::declval<Owner&>().transfers())>;
+        if(!human)return static_cast<Transfers*>(nullptr);
+        if(!human->loading_lifetime){if(human->fielda8)throw std::logic_error("Inventory raw A8 lost typed230 lifetime");return static_cast<Transfers*>(nullptr);}
+        auto* equipment=human_inline(*human).equipment();return equipment?&equipment->transfers():nullptr;
+    }
+    template<class Human>bool inventory_is_current(Human* human){return dependencies().players.control().current_player()==human;}
+    template<class Human>void inventory_hud_changed(Human* human){if(inventory_is_current(human))dependencies().hud.inventory_changed();}
+    void inventory_fpv_unchecked(unsigned command,unsigned argument){dependencies().first_person.view().request(mode_flags(),command,argument);}
+    template<class Human>void inventory_fpv(Human* human,unsigned command,unsigned argument){
+        if((mode_flags()&2u)&&inventory_is_current(human))inventory_fpv_unchecked(command,argument);
+    }
+    template<class Actor>void inventory_drop_fpv(Actor* actor){
+        if((mode_flags()&2u)&&static_cast<void*>(dependencies().players.control().current_player())==static_cast<void*>(actor))inventory_fpv_unchecked(20,0);
+    }
+    template<class Human>void inventory_clothing_command(Human& human,std::int32_t identity){ //005A6920, B0+68.
+        auto* state=composition(human).states().get();if(!state)throw std::logic_error("Swap clothing requires actual B0");
+        if(state->words().template get<std::uint32_t>(0x48)==1){ //0053E0B0 appends FIRST80.
+            HumanPacketCommand command;command.kind=2;command.fields.set(8,identity);state->queue_frame_command(std::move(command),false);
+        }else { //00588160, including actual Remote vtable008112D8.
+            PreparedHumanLoading<Dependencies> clothing(dependencies());(void)clothing.apply_clothing(human,identity);
+        }
+    }
+    template<class Human>Human* human_inventory_source(Human& human,std::int32_t identity){
+        if(identity==-1)return &human;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(identity);
+        auto* source=dynamic_cast<Human*>(actor);
+        if(actor&&!source)throw std::logic_error("Human identity lookup requires actual Human inventory layout");
+        return source;
+    }
+    template<class Human,class Entry>std::int32_t move_received_human_inventory(Human& human,Human& source,Entry entry,
+            std::int32_t source_slot,std::int32_t& destination_slot,std::int32_t index,bool authority){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;auto& d=dependencies();
+        auto* from=static_cast<Actor*>(&source);auto* to=static_cast<Actor*>(&human);
+        if(authority&&destination_slot==7)return move_human_inventory_automatically(d.scene.frames(),d.world_actors.items(),*this,entry,from,source_slot,to,destination_slot);
+        Entry displaced{};return transfer_human_inventory(d.scene.frames(),d.world_actors.items(),*this,entry,displaced,from,source_slot,to,destination_slot,index,static_cast<Actor*>(nullptr),true,false,false,false);
+    }
+    template<class Human,class Entry>std::int32_t swap_received_human_inventory(Human& human,Human& source,Entry entry,std::int32_t source_slot,std::int32_t destination_slot){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;auto& d=dependencies();Entry displaced{};std::int32_t placed=7,returned=7;
+        return swap_human_inventory(d.scene.frames(),d.world_actors.items(),*this,entry,static_cast<Actor*>(&source),source_slot,static_cast<Actor*>(&human),destination_slot,displaced,placed,returned);
+    }
+    template<class Human,class Entry>std::int32_t transfer_created_human_item(Human& human,Entry entry,std::int32_t slot){
+        auto& d=dependencies();return game::transfer_created_human_item<typename Dependencies::ActorFrames>(d.scene.frames(),human,d.world_actors.items(),*this,entry,slot);
+    }
+    template<class Human,class Entry>void created_human_equipment_added(Human& human,Entry entry,std::int32_t slot){
+        if(!human.loading_lifetime){if(human.fielda8)throw std::logic_error("Created item requires actual230 lifetime");return;}
+        if(auto* equipment=human_inline(human).equipment())equipment->transfers().added(entry,slot);
+    }
+    template<class Human>void created_human_refresh_item(Human& human){ //005A6A90, actual B0 virtual74.
+        if(!human.loading_state)return;
+        auto* state=composition(human).states().get();if(state!=human.loading_state)throw std::logic_error("Created item lost actual published B0");
+        state->refresh_item();
+    }
+    template<class Human>void created_human_hand_fpv(Human& human){
+        if(!(mode_flags()&2u)||dependencies().players.control().current_player()!=&human)return;
+        if(!human.loading_lifetime){if(human.fielda8)throw std::logic_error("Created hand item requires actual230 lifetime");return;}
+        auto* equipment=human_inline(human).equipment();
+        if(equipment&&!(equipment->state().words().template get<std::uint32_t>(0x50)&1u))dependencies().first_person.view().request(mode_flags(),8,0);
+    }
     template<class Human>void notify_human_inventory_changed(Human& human){
         if(dependencies().players.control().current_player()==&human)dependencies().hud.inventory_changed();
     }
@@ -637,19 +1394,22 @@ public:
             if(kind==1||kind==2||kind==3)perturb_player_damage_direction(state,*this,dependencies().scene.frames());
         }
         if((mode_flags()&7u)==7u&&source&&dependencies().sight.human_sight_hostile(source,human)){
-            auto& d=dependencies();auto& frames=d.scene.frames();const auto origin=frames.actor_world_matrix(human->base().frame());
-            auto& roster=d.players.control().human_roster();
-            for(auto n=roster.size();n;){ //0045F110, reverse same roster, strict30m test.
-                auto* member=roster.at(static_cast<std::int32_t>(--n));
-                if(!member||human_frame_signed_word(member->properties.stats_ec[0])<1||!member->loading_state||
-                        member->loading_state->words().template get<std::uint32_t>(0x48)!=3)continue;
-                const auto action=member->loading_state->player_handover().action;if(action!=14&&action!=15)continue;
-                const auto position=frames.actor_world_matrix(member->base().frame());
-                const float x=origin[12]-position[12],y=origin[13]-position[13],z=origin[14]-position[14];
-                const auto square=(static_cast<long double>(y)*y+static_cast<long double>(x)*x)+static_cast<long double>(z)*z;
-                if(square<900.f){auto* current=human_state_owner(*member).get();if(!current)throw std::logic_error("Player damage notification lost actual B0");
-                    human_state_factory(*member).notify_nearby_player_damage(*current);}
-            }
+            notify_nearby_player_damage(*human);
+        }
+    }
+    template<class Human>void notify_nearby_player_damage(Human& human){ //0045F110, SAME actual roster and existing receivers.
+        auto& d=dependencies();auto& frames=d.scene.frames();const auto origin=frames.actor_world_matrix(human.base().frame());
+        auto& roster=d.players.control().human_roster();
+        for(auto n=roster.size();n;){ //0045F110, reverse same roster, strict30m test.
+            auto* member=roster.at(static_cast<std::int32_t>(--n));
+            if(!member||human_frame_signed_word(member->properties.stats_ec[0])<1||!member->loading_state||
+                    member->loading_state->words().template get<std::uint32_t>(0x48)!=3)continue;
+            const auto action=member->loading_state->player_handover().action;if(action!=14&&action!=15)continue;
+            const auto position=frames.actor_world_matrix(member->base().frame());
+            const float x=origin[12]-position[12],y=origin[13]-position[13],z=origin[14]-position[14];
+            const auto square=(static_cast<long double>(y)*y+static_cast<long double>(x)*x)+static_cast<long double>(z)*z;
+            if(square<900.f){auto* current=human_state_owner(*member).get();if(!current)throw std::logic_error("Player damage notification lost actual B0");
+                human_state_factory(*member).notify_nearby_player_damage(*current);}
         }
     }
     std::uint32_t human_control_microseconds(){return dependencies().clock.microseconds();}
@@ -663,6 +1423,7 @@ public:
         return *ladder;
     }
     const auto& human_ladder_geometry(void* actor){return *human_ladder(actor).geometry;}
+    std::int32_t human_track_ladder_sound_group(void* actor){return human_frame_signed_word(human_ladder(actor).properties.settings170[1]);} //Native174.
     auto& human_navigation_door(void* actor){
         using Frames=typename Dependencies::ActorFrames;
         auto* door=dynamic_cast<DoorSceneActor<Frames>*>(static_cast<SceneActor<Frames>*>(actor));
@@ -672,6 +1433,9 @@ public:
     void human_action_request_door(void* actor,std::uint32_t command){ //00751480 case1, real005FF4B0(command,1,0,0).
         human_navigation_door(actor).change_state(command,true,false,false,dependencies().world_actors);
     }
+    void human_track_request_door(void* actor,std::uint32_t command,bool non_player_kind){ //00758D20 event7.
+        human_navigation_door(actor).change_state(command,true,false,non_player_kind,dependencies().world_actors);
+    }
     void human_navigation_request_door(void* actor,std::uint32_t flags){ //00586200 subtype1B.
         auto& door=human_navigation_door(actor);
         if((flags&1u)&&(mode_flags()&1u)){
@@ -680,12 +1444,253 @@ public:
         }
         throw std::runtime_error("AI Door action requires the actual Human kind6 interaction receiver");
     }
+    bool human_emplacement_claimed(void* actor,std::int32_t seat){
+        if(human_pose_actor_type(actor)==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Seat claim requires actual Car loading owner");return car.loading->seat_claimed(seat);}
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Seat claim requires actual mounted actor owner");
+        return weapon->loading->seat_claimed(seat);
+    }
+    template<class Human,class Actor>bool human_command_enter_emplacement(Human& human,Actor* actor,std::int32_t seat){ //00585D10 reached cases4/15.
+        if(!actor)return false;
+        const auto kind=actor->base().type();
+        if(kind!=4&&kind!=0x15)throw std::runtime_error("Human entry requires the actual selected actor E0 receiver");
+        if(kind==4){
+            if((mode_flags()&7u)!=7u&&human_emplacement_claimed(actor,seat))return false;
+            auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Human entry requires actual Car loading owner");
+            const bool offline=(mode_flags()&7u)==7u;
+            for(auto n=car.occupants.size();n;){auto* occupant=car.occupants[--n];if(!occupant)continue;auto& other=selection_human(*occupant);
+                if(offline){if(dependencies().sight.human_sight_hostile(&human,&other)&&human_frame_signed_word(other.properties.stats_ec[0])>0)return false;}
+                else if(human_frame_signed_word(other.properties.stats_ec[0])>0&&script_human_player_controlled(other,mode_flags())&&!human_selected_suppressed(other)){
+                    const auto first=human_specialization(other,false);if(first!=human_specialization(human,false))return false;
+                }
+            }
+            car.loading->claim_seat(seat,true);human_common_interaction_value(human,actor,0x402u,static_cast<std::uint32_t>(seat),typename Dependencies::Frame{});return true;
+        }
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(actor);
+        if(!weapon||!weapon->loading)throw std::logic_error("Human entry requires actual StaticWeapon owner");
+        if(weapon->loading->seat_claimed(seat))return false;
+        weapon->loading->claim_seat(seat,true);human_common_interaction_value(human,actor,0x406u,static_cast<std::uint32_t>(seat),typename Dependencies::Frame{});return true;
+    }
+    template<class Human>void document_remove_item(Human& human,std::int32_t identity){
+        remove_human_inventory_item(human,dependencies().world_actors.items(),identity,true,*this);
+    }
+    template<class State>void human_guard_enter_emplacement(State& state,void* actor){ //00571C10 executes DC BEFORE allocating its separate kind3/94 copy, ignoring status.
+        HumanPacketCommand command;command.kind=3;command.fields.set(8,3u);command.fields.set(0xc,human_pose_actor(actor).base().id10());command.fields.set(0x10,0u);
+        (void)composition(*state.human()).state_factory().common_command(state,command);state.queue_frame_command(std::move(command),true);
+    }
+    template<class Human>void human_command_exit_emplacement(Human& human){ //00585A60.
+        auto* actor=human.field160;
+        if(!actor){
+            if(human.field174){human_inline(human).set_frame_item_action(10);composition(human).focus_actor(nullptr);return;}
+            auto* state=composition(human).states().get();if(!state)throw std::logic_error("Human exit lost native B0");
+            if(state->words().template get<std::uint32_t>(0x60)!=0){HumanFrameRuntime<HumanWorldLoadingServices> runtime(*this);complete_human_state_action<false>(*state,false,*this,runtime);}
+            return;
+        }
+        const auto seat=static_cast<std::int32_t>(human.field164);const auto kind=actor->base().type();
+        if(kind==4){
+            auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Car exit command requires actual seat owner");
+            const auto validate=human_common_receiver_guard(human);car.loading->claim_seat(seat,false);
+            human_common_interaction_value(human,actor,0x403u,human.field164,typename Dependencies::Frame{});validate();
+            if((mode_flags()&7u)!=7u){
+                auto* state=composition(human).states().get();if(!state||!state->input())throw std::runtime_error("Nonoffline Car exit dereferences missing native input record");
+                if(auto* history=state->input()->history(1)){
+                    const auto matrix=dependencies().scene.frames().actor_world_matrix(human.base().frame());
+                    history->position_value.seed(HumanVector{{matrix[12],matrix[13],matrix[14],matrix[15]}});
+                }
+            }
+            return;
+        }
+        if(kind==0x14)throw std::runtime_error("Seat exit requires actual absent type20 seat owner");
+        if(kind!=0x15)return; //Genuine native other-kind return.
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(actor);
+        if(!weapon||!weapon->loading)throw std::logic_error("StaticWeapon exit requires actual seat owner");
+        weapon->loading->claim_seat(seat,false);human_common_interaction_value(human,actor,0x407u,human.field164,typename Dependencies::Frame{});
+    }
+    template<class State>void human_guard_exit_emplacement(State& state){ //0054DC10→00571C10; immediate DC then separate deferred kind3 copy.
+        HumanPacketCommand command;command.kind=3;command.fields.set(8,5u);command.fields.set(0xc,0u);command.fields.set(0x10,0u);
+        (void)composition(*state.human()).state_factory().common_command(state,command);state.queue_frame_command(std::move(command),true);
+    }
+    template<class State,class Runtime>void human_navigation_request_ladder(State& state,void* actor,Runtime& runtime){
+        HumanPacketCommand command;command.kind=2;command.fields.set(8,0x1eu);
+        command.fields.set(0xc,human_pose_actor(actor).base().id10());
+        (void)composition(*state.human()).state_factory().common_command(state,command,runtime);
+    }
+    template<class State>void human_navigation_request_door(State& state,void* actor){ //00587540→00586200 subtype1B.
+        HumanPacketCommand command;command.kind=2;command.fields.set(8,0x1bu);command.fields.set(0xc,human_pose_actor(actor).base().id10());
+        (void)composition(*state.human()).state_factory().common_command(state,command);
+    }
+    template<class Human>void human_command_key_door(Human& human,std::int32_t identity,bool lock){
+        auto* actor=human_command_actor(identity);if(!actor)throw std::runtime_error("Door key command dereferences missing native target");
+        auto& door=human_navigation_door(actor);auto& d=dependencies();
+        const auto key=find_human_inventory_definition(human,d.world_actors.items(),static_cast<std::int32_t>(door.properties.field230));
+        (void)door.key_lock(key?door.properties.field230:0xffffffffu,lock,d.world_actors.session_broadcast_packets());
+    }
+    template<class Human,class Actor>void human_command_focus(Human& human,Actor* target){
+        composition(human).focus_actor(target);auto& owner=human_inline(human);owner.set_frame_item_action(10,target->base().frame());
+        human_look_control(human).action_model_actor(target);
+    }
+    auto* human_common_runtime_actor(std::int32_t identity){return dependencies().world_actors.runtime().identity(identity);}
+    template<class Human>auto human_common_ground_entry(Human& human,bool selected){
+        using Items=std::remove_reference_t<decltype(dependencies().world_actors.items())>;
+        if(!selected)return typename Items::Entry{};
+        return find_player_mode_holster(human,dependencies().world_actors.items(),19,game_word28());
+    }
+    template<class Entry>auto human_common_item_model(Entry entry){return dependencies().world_actors.items().runtime_item(entry).model();}
+    template<class Human>auto human_common_receiver_guard(Human& human){
+        const auto identity=human.base().id10();auto* expected=&human;auto* lifetime=human.loading_lifetime;auto* state=human.loading_state;
+        return [this,identity,expected,lifetime,state]{
+            auto* current=dependencies().scene.frames().scene_actor_identity(identity);
+            if(current!=expected)throw std::runtime_error("Human common callback retired its actual receiver");
+            if(expected->loading_lifetime!=lifetime||expected->loading_state!=state)
+                throw std::runtime_error("Human common callback replaced its containing or B0 owner");
+        };
+    }
+    template<class Human>void human_common_alignment(Human& human){set_human_sight_alignment(human,-10.f,mode_flags());}
+    template<class Human>std::uint32_t human_common_health_percent(Human& human){return human_hud_health_percent(human);}
+    template<class Actor>bool human_common_live_human(Actor& actor){return actor.base().type()==3&&human_frame_signed_word(selection_human(actor).properties.stats_ec[0])>0;}
+    template<class Human,class Actor>void human_common_interaction(Human& human,Actor* actor,std::uint32_t action){
+        human_common_interaction_model(human,actor,action,typename Dependencies::Frame{});
+    }
+    template<class Human,class Actor>void human_common_interaction_model(Human& human,Actor* actor,std::uint32_t action,typename Dependencies::Frame model){
+        human_common_interaction_value(human,actor,action,0u,model);
+    }
+    template<class Human,class Actor>void human_common_interaction_value(Human& human,Actor* actor,std::uint32_t action,std::uint32_t argument,typename Dependencies::Frame model){ //005ABCC0.
+        const auto validate=human_common_receiver_guard(human);auto& look=human_look_control(human);
+        if((mode_flags()&7u)==7u){look.interaction_command(actor,action,argument,model);if(look.frame_words().template get<std::uint32_t>(0xc8)&0x4000u)return;}
+        else{
+            auto* control=human_inline(human).control();if(!control)throw std::logic_error("Immediate Human interaction requires actual DD0");
+            HumanFrameRuntime<HumanWorldLoadingServices> runtime(*this);control->apply_look_interaction(look,actor,action,argument,runtime,model);validate();
+        }
+        if(human_seat_entry_action(action&0x3ffu)&&(mode_flags()&2u)){
+            auto& d=dependencies();if(d.players.control().current_player()==&human)d.camera.request_distance_hold(500,mode_flags(),d.players.control());
+        }
+    }
+    template<class Human,class Actor>void human_command_ladder(Human& human,Actor* target){
+        HumanFrameRuntime<HumanWorldLoadingServices> runtime(*this);(void)human_inline(human).request_frame_ladder(target,runtime);
+    }
+    template<class Actor,class Human>void human_common_target_interaction(Actor& actor,Human* source,std::uint32_t action){human_common_interaction(selection_human(actor),source,action);}
+    template<class Actor>void human_common_target_progress(Actor& actor,std::uint32_t duration,std::uint32_t caption){
+        auto& target=selection_human(actor);target.activation.field17c=target.activation.field180=duration;target.activation.field184=caption;
+    }
+    template<class Human>bool human_command_place_documents(Human& human,std::int32_t identity){
+        auto* actor=human_command_actor(identity);auto* place=dynamic_cast<DocumentPlaceSceneActor<typename Dependencies::ActorFrames>*>(actor);
+        if(!place)throw std::runtime_error("Document placement requires actual native type23 receiver");
+        return place->place(human,dependencies().world_actors,dependencies().scene.buckets());
+    }
+    template<class Human,class Actor>void human_command_door(Human& human,Actor* actor,bool direct,bool open){
+        if(direct){if(actor)human_navigation_door(actor).change_state(open?1:0,true,false,false,dependencies().world_actors);return;}
+        human_common_interaction_value(human,actor,1u,open?1u:0u,typename Dependencies::Frame{});
+    }
+    template<class Human,class Actor>void human_command_open_door(Human& human,Actor* actor,bool direct){
+        if(direct){if(actor)human_navigation_door(actor).change_state(1,true,false,false,dependencies().world_actors);return;}
+        human_look_control(human).interaction_command(actor,1u,1u); //005ABD90 kind6, actual E090/94/08.
+    }
+    auto* human_floor_actor(std::uint32_t identity){ //005AE230, SAME B4 command-neighbour lookup as Scene2 movement.
+        using Human=typename Dependencies::Composition::Human;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(human_frame_signed_word(identity));
+        auto* human=dynamic_cast<Human*>(actor);if(!human)throw std::logic_error("AI floor path neighbour has no actual Human owner");return human;
+    }
+    template<class Human>bool human_floor_actor_suspended(const Human& human){
+        const auto* state=human.loading_state;return state&&state->words().template get<std::uint32_t>(0x48)==5&&state->derived_loading_word(0x1d2)!=0;
+    }
+    template<class Human>bool human_floor_actor_attached(const Human& human){return human.field160!=nullptr;}
+    template<class Human>bool human_floor_actor_state(const Human& human){return human.loading_state!=nullptr;}
+    template<class Human>std::int32_t human_floor_actor_health(const Human& human){return human_frame_signed_word(human.properties.stats_ec[0]);}
+    template<class Human>HumanVector human_floor_actor_velocity(const Human& human){return human.loading_state->words().template get<HumanVector>(0x30);}
+    bool human_floor_detour_ground(HumanVector position){ //00580790, actual007183A0 ray, original floor height is not copied back.
+        position[1]+=.30000001192092896f;return human_geometry_ray(position,HumanVector{{0,-10,0,0}},0xffffffffu,0u).has_value();
+    }
     auto human_ai_resolve_actor(std::uint32_t handle){ //005ACA50→00475DD0, Scene2 identity.
         auto& scene=dependencies().scene.frames();
         return handle&0x80000000u?nullptr:scene.scene_actor_identity(static_cast<std::int32_t>(handle));
     }
     template<class Actor>bool human_scene_actor_matches(Actor& actor){return dependencies().scene.frames().scene_actor_identity(actor.base().id10())==&actor;} //00475DD0.
     auto& human_perception_record_pool(){return dependencies().startup.human_perception_record_pool();}
+    std::uint32_t human_script_event_ticks(){return dependencies().hearing.human_sound_ticks();} //SAME timeGetTime.
+    template<class State,class Record>void human_script_event_own_callback(State& state,Record& record){
+        using Factory=typename Dependencies::Composition::StateFactory;
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=state.human();if(!human)throw std::logic_error("Script record callback lost its actual Human");
+        HumanSoundStateCallbacks<typename Dependencies::ActorFrames,Human,Factory>
+            callbacks(dependencies().scene.frames(),human_state_factory(*human));
+        callbacks.b4(state,record);
+    }
+    template<class Record>void human_script_event_group_callback(std::uint32_t identity,Record& record){
+        auto* actor=dependencies().scene.frames().scene_actor_identity(human_frame_signed_word(identity));
+        if(!actor)throw std::logic_error("Script event group lost its actual actor borrower");
+        if(actor->base().type()!=3u)return;
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=dynamic_cast<Human*>(actor);
+        if(!human)throw std::logic_error("Script event group kind3 has no actual Human receiver");
+        dependencies().hearing.human_sound_state_b4(*human,record);
+    }
+    template<class State,class Queue>void dispatch_script_ai_event(State& state,Queue& queue,std::size_t index){
+        dispatch_human_script_event(state,queue,index,*this);
+    }
+    template<class Item>void update_loose_item(Item& item,bool authority,std::uint32_t elapsed){item.update(authority,elapsed,*this);}
+    template<class Body>void advance_loose_item_body(Body& body,std::uint32_t elapsed){dependencies().world_actors.update_detached_body(body,elapsed);}
+    template<class Item>void loose_item_timed_effect(Item& item){dependencies().world_actors.runtime().loose_item_timed_effect(item);}
+    template<class Frame>void restore_loose_item_opacity(Frame frame){dependencies().world_actors.restore_detached_camera_amount(frame);} //00486E90.
+    template<class Frame>void fade_loose_item(Frame frame,std::int32_t time){dependencies().world_actors.fade_detached(frame,time);} //00488D60(frame,time,0).
+    template<class Frame>void hide_loose_item(Frame frame){auto& frames=dependencies().scene.frames();frames.object_visible(frame,false);frames.update_scene_object(frame);}
+    void publish_loose_item_expiry(std::int32_t identity){
+        auto& packet=begin_runtime_actor_message(dependencies().broadcast_packets,identity,true);packet.write(0,2);packet.finish_broadcast();
+    }
+    template<class Item>void remove_loose_item(Item& item){dependencies().world_actors.runtime().remove(&item);}
+    template<class State,class Human>void refresh_suppressed_player_camera(State&,Human&){ //00540090, caller already checked suppressed/mode/local identity.
+        if(dependencies().session.words.template get<std::uint32_t>(0xb8))return;
+        if(dependencies().session.words.template get<std::int32_t>(0xb4)<0)return;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(dependencies().session.words.template get<std::int32_t>(0xb4));
+        if(!actor)return;
+        dependencies().camera.set_direction(human_camera_target_direction(selection_human(*actor))); //0080FDD0+48→00465EA0.
+    }
+    template<class State>void choose_script_alarm_action(State& state){state.choose_alarm_action(*this);}
+    template<class Human,class Actor>long double script_alarm_distance(Human& human,Actor& target){return human_ai_actor_distance(human,target,dependencies().scene.frames());}
+    template<class State>auto* script_alarm_target(State& state){
+        using Human=typename Dependencies::Composition::Human;
+        return select_human_hostile<Human>(state,dependencies().scene.frames(),*this);
+    }
+    template<class State>void script_alarm_clear_item(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("Script alarm lost Human44");
+        clear_script_formation_item_ready(state,human_inline(*human));
+    }
+    template<class State,class Inline>void clear_script_formation_item_ready(State& state,Inline& control){ //0058C400.
+        auto* human=state.human();if(!human)throw std::logic_error("Script formation readiness lost actual Human");
+        control.clear_frame_item_ready([&](std::uint32_t value){human_frame_first_person_state(*human,value);});
+        human_state_factory(*human).notify_inline_frame_command(state,0); //AFTER E0, including its deferral.
+    }
+    template<class Formation>void advance_human_formation(Formation& formation,std::uint32_t elapsed){formation.advance(elapsed,*this);} //0059BA70, actual Human2C8.
+    template<class Human>HumanVector formation_target_direction(Human& human){return human_camera_target_direction(human);} //005A80E0, SAME B0.
+    template<class Human>std::uint32_t formation_direction_gate(Human& human){ //005AC2B0, SAME actual DD0 action1D8.
+        auto* control=human_inline(human).control();if(!control)throw std::logic_error("Formation direction gate requires actual DD0");
+        const auto action=control->physical().control_frame_words().template get<std::uint32_t>(0x1d8);
+        return action>=106&&action<=108?1u:action==8||action==14?2u:0u;
+    }
+    template<class Human,class Formation>void bind_players_subgroup_formation(Human& human,Formation* formation){
+        using Script=typename Dependencies::Composition::StateFactory::Script;
+        auto* state=dynamic_cast<Script*>(human.loading_state);
+        if(!state||state->human()!=&human)throw std::logic_error("Players subgroup requires SAME actual current Script5 B0");
+        state->script_formation(formation);
+    }
+    template<class Actor>std::size_t formation_seat_count(Actor& actor){
+        if(actor.base().type()==4)return human_pose_car(&actor).occupants.size(); //Actual virtual88, same Car roster.
+        throw std::runtime_error("Formation type20 seat count requires its actual Aircraft Scene2 owner");
+    }
+    template<class Actor>bool formation_seat_occupied(Actor& actor,std::size_t index){
+        if(actor.base().type()==4)return human_pose_car(&actor).occupants.at(index)!=nullptr; //Actual virtual78.
+        throw std::runtime_error("Formation type20 occupancy requires its actual Aircraft Scene2 owner");
+    }
+    template<class Actor>bool formation_seat_pose(Actor& actor,std::size_t index,HumanVector& position,HumanVector& direction){
+        if(actor.base().type()==4){auto& car=human_pose_car(&actor);if(!car.loading)throw std::logic_error("Formation Car pose requires actual loading owner");return car.loading->seat_exit_pose(index,position,direction);}
+        throw std::runtime_error("Formation type20 paired005E0530 requires its actual Aircraft Scene2 owner");
+    }
+    template<class Actor>const std::vector<SceneActor<typename Dependencies::ActorFrames>*>& formation_linked_actors(Actor&){
+        throw std::runtime_error("Formation005DE7B0 requires actual type20 linked Aircraft owner");
+    }
+    template<class State>bool advance_script_formation_path(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("Script formation output lost actual Human");
+        return advance_human_script_formation(state,human_inline(*human),*this,dependencies().scene.frames());
+    }
     bool human_face_quality_enabled(){return dependencies().startup.human_face_quality_enabled();}
     bool human_geometry_effect_quality(){return dependencies().startup.profile_settings().quality_byte(5)!=0;}
     bool human_surface_quality_enabled(){return dependencies().startup.profile_settings().quality_byte(2)!=0;}
@@ -723,6 +1728,8 @@ public:
     const auto& presentation_mission_name()const{return dependencies().request.preparation.mission_resource;}
     auto& human_face_resources(){return dependencies().faces;}
     std::int32_t human_face_camouflage(){return static_cast<std::int32_t>(dependencies().presentation_shared.settings().terrain);} //Actual0098A6B0.
+    auto load_human_special_animation(const std::string& name){return dependencies().animations.named_clip(name);}
+    const std::string& human_animation_suffix(){return dependencies().world_actors.item_models().resource_suffix();}
     auto human_animation_resource(unsigned table,unsigned row){return dependencies().animations.resource(table,row);}
     const auto& human_animation_row(unsigned table,unsigned row){return dependencies().animations.row(table,row);}
     auto& human_animation_arbitration(){return dependencies().animations.arbitration_process();}
@@ -749,6 +1756,7 @@ public:
         if(!human)throw std::runtime_error("Human mount model is bound to a different actor family");
         return human;
     }
+    template<class Frame>void apply_human_mount_camera_amount(Frame frame,float amount){(void)dependencies().scene.effects().model_camera_amount(frame,amount);}
     template<class Frame>void restore_human_mount_camera_amount(Frame frame){
         (void)dependencies().scene.effects().model_camera_amount(frame,0.f); //00486510 GEffects virtual50=00486D30.
     }
@@ -763,6 +1771,43 @@ public:
         return *car;
     }
     std::uint32_t human_pose_actor_type(void* actor){return human_pose_actor(actor).base().type();}
+    auto* human_seat_occupant(void* actor,std::int32_t seat){
+        using Human=typename Dependencies::Composition::Human;using Frames=typename Dependencies::ActorFrames;
+        SceneActor<Frames>* occupant=nullptr;
+        if(human_pose_actor_type(actor)==4){const auto& seats=human_pose_car(actor).occupants;if(seat>=0&&static_cast<std::size_t>(seat)<seats.size())occupant=seats[static_cast<std::size_t>(seat)];}
+        else{auto* weapon=dynamic_cast<StaticWeaponSceneActor<Frames>*>(&human_pose_actor(actor));if(!weapon||!weapon->loading)throw std::logic_error("Seat query requires actual StaticWeapon lifetime");occupant=static_cast<SceneActor<Frames>*>(weapon->loading->seat_occupant(seat));}
+        auto* human=dynamic_cast<Human*>(occupant);if(occupant&&!human)throw std::logic_error("Seat occupant is not an actual Human");return human;
+    }
+    template<class Human>void human_seat_assign(void* actor,std::int32_t seat,Human* human){
+        if(human_pose_actor_type(actor)==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Seat entry requires actual Car lifetime");car.loading->assign_seat(seat,human);return;}
+        auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Seat entry requires actual StaticWeapon lifetime");weapon->loading->assign_seat(seat,human);
+    }
+    bool human_seat_exit(void* actor,std::int32_t seat){
+        if(human_pose_actor_type(actor)==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Seat exit requires actual Car lifetime");return car.loading->exit_seat(seat);}
+        auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Seat exit requires actual StaticWeapon lifetime");return weapon->loading->exit_seat(seat);
+    }
+    std::optional<std::uint32_t> human_seat_weapon_kind(void* actor,std::int32_t seat){
+        if(human_pose_actor_type(actor)==4){const auto& slot=human_pose_car(actor).fields24b4.at(static_cast<std::size_t>(seat));return slot?slot->loading->weapon_kind():std::nullopt;}
+        auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Seat item query requires actual StaticWeapon lifetime");return weapon->loading->seat_weapon_kind();
+    }
+    template<class Human>std::int32_t human_seat_health(const Human& human){return human_frame_signed_word(human.properties.stats_ec[0]);}
+    template<class Human>void human_seat_clear_frame_command(Human& human){auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Seat entry requires actual B0");state->publish_frame_command_flags(state->words().template get<std::uint32_t>(0x50)&0xffffff07u);}
+    template<class Human,class Actor,class Runtime>void human_seat_displace(Human& human,Actor* actor,std::uint32_t flags,std::uint32_t seat,Runtime& runtime){
+        auto& owner=human_inline(human);auto* control=owner.control();if(!control)throw std::logic_error("Seat displacement requires actual DD0");
+        control->apply_look_interaction(human_look_control(human),actor,flags,seat,runtime);
+    }
+    template<class Human>void human_seat_retire_dead(Human& human,const HumanVector& position){auto* control=human_inline(human).control();if(!control)throw std::logic_error("Dead seat displacement requires actual DD0");control->retire_dead_seat(position);}
+    void refresh_human_seat_visibility(){dependencies().presentation.refresh_first_person_visibility();}
+    void seat_human_direction(void* actor,const HumanVector& direction){auto& human=human_score_actor(actor);auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Seat direction requires actual B0");state->set_target_direction(direction);state=human_state_owner(human).get();if(!state)throw std::logic_error("Seat direction lost actual B0");state->set_current_direction(direction);}
+    HumanVector mounted_human_target(void* actor){auto* state=human_state_owner(human_score_actor(actor)).get();if(!state)throw std::logic_error("Mounted aim requires actual B0");return state->target_direction();}
+    void mounted_human_target(void* actor,const HumanVector& value){auto* state=human_state_owner(human_score_actor(actor)).get();if(!state)throw std::logic_error("Mounted aim requires actual B0");state->set_target_direction(value);}
+    bool mounted_human_is_player(void* actor){return human_is_player(human_score_actor(actor));}
+    std::uint32_t seat_human_state_kind(void* actor){return human_score_state_kind(actor);}
+    std::int32_t seat_human_health(void* actor){return human_seat_health(human_score_actor(actor));}
+    void seat_human_proximity_kind(void* actor,unsigned kind){(void)dependencies().proximity.speed_kind(human_score_actor(actor).field188,kind);}
     void remove_human_reaction_seat(void* actor,std::int32_t seat){
         if(human_pose_actor_type(actor)==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Human reaction requires actual Car seat owner");car.loading->remove_reaction_seat(seat);return;}
         using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;
@@ -788,7 +1833,91 @@ public:
     bool human_pose_actor_has_control(void* actor,std::uint32_t seat){ //Car004DA020, StaticWeapon00604D20.
         if(human_pose_actor_type(actor)==4)return static_cast<bool>(human_pose_car(actor).fields24b4.at(seat));
         if(human_pose_actor_type(actor)==21)return seat==0;
-        throw std::logic_error("Human attachment control query requires Car or StaticWeapon");
+        switch(human_pose_actor_type(actor)){
+        case 2:case 3:case 6:case 8:case 9:case 10:case 11:case 12:case 13:case 15:case 22:case 23:case 25:case 28:case 29:case 30:case 33:case 35:case 37:return false; //Actual0059C3B0 AL0/RET4.
+        default:throw std::runtime_error("Human attachment control query requires actual selected Actor98 receiver");
+        }
+    }
+    template<class Actor>std::array<float,3> human_grenade_lead_position(Actor& actor,float time){ //00558390 snapshots native1B0 before its model query.
+        const auto velocity=selection_human(actor).activation.vector1b0;const auto p=sight_position(actor.base().frame());std::array<float,3> result;for(unsigned n=0;n<3;++n)result[n]=static_cast<float>(static_cast<long double>(time)*velocity[n]+p[n]);return result;
+    }
+    std::int32_t human_grenade_animation_duration(unsigned posture){ //005AC200→0075CC30, id4F and type0 use original98A47C/table2.
+        if(!dependencies().animations.available())return -1; //Original NULL table2 returns-1, without manufacturing a clip.
+        const auto clip=human_animation_resource(2,79u*3+posture);return clip?dependencies().scene.frames().human_clip_duration(clip):-1;
+    }
+    template<class Human>bool human_guard_mounted(Human& human){ //00548590.
+        auto* actor=human.field160;if(!actor)return false;switch(actor->base().type()){case 4:case 0x14:case 0x15:case 0x22:return human_pose_actor_has_control(actor,human.field164);default:return false;}
+    }
+    template<class Human,class Entry>void human_guard_drop_hand(Human& human,Entry entry,const HumanVector& direction){ //005A2C50→Guard70/00587BE0→005A3490.
+        const auto x=static_cast<float>(static_cast<long double>(human_sound_random())*.20000000298023224f);
+        const auto y=static_cast<float>(static_cast<long double>(human_sound_random())*.10000000149011612f);
+        const auto z=human_sound_random();HumanVector velocity{};
+        velocity[0]=static_cast<float>((static_cast<long double>(x)+direction[0])*2.5f);
+        velocity[1]=static_cast<float>((static_cast<long double>(y)+direction[1])*2.5f);
+        const float last=static_cast<float>(static_cast<long double>(z)*.20000000298023224f+direction[2]);velocity[2]=last*2.5f;
+        drop_human_damage_item(human,entry,velocity);human.activation.flag178=true;
+    }
+    template<class State>void human_attachment_frame_inputs(State& state){ //00583BC0, actual Human state virtual00.
+        auto& human=*state.human();auto* actor=human.field160;if(!actor)throw std::logic_error("Attached state input requires actual actor");
+        if(!human_is_player(human)&&human.field164!=0)return;
+        const auto* first=state.first_frame_inputs();const auto* second=state.second_frame_inputs();
+        if(!first||!second)throw std::logic_error("Attached state input requires actual74/78 buffers");
+        if(actor->base().type()==4){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Car driver input requires actual runtime");car.loading->driver_frame_inputs(*first,*second);}
+        else if(actor->base().type()==0x14)throw std::runtime_error("Attached aircraft input requires actual005E0DD0 receiver");
+    }
+    void human_emplacement_frame_inputs(void* actor,std::uint32_t seat,const HumanFrameInputBuffer& first,const HumanFrameInputBuffer& second){ //Actual ActorC0.
+        if(human_pose_actor_type(actor)==4){auto& control=human_pose_car(actor).fields24b4.at(seat);if(control)control->loading->frame_inputs(first,second);return;}
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Mounted input requires actual Car/StaticWeapon runtime");
+        weapon->loading->seat_frame_inputs(static_cast<std::int32_t>(seat),first,second);
+    }
+    template<class Human>bool human_guard_root_sector(Human& human){return human_inline(human).scene_sector()==dependencies().scene.frames().camera_root_sector();} //00553CE0.
+    template<class Human>bool human_guard_clear_neighbours(Human& human){ //005AE890.
+        const auto origin=sight_position(human.base().frame());if(!human.command)throw std::logic_error("Guard prone query requires actual command owner");
+        const auto& ids=human.command->lists[0];for(auto i=ids.size();i;){auto* actor=human_ai_resolve_actor(ids[--i]);if(!actor)continue;const auto point=sight_position(actor->base().frame());const auto x=static_cast<long double>(point[0])-origin[0],y=static_cast<long double>(point[1])-origin[1],z=static_cast<long double>(point[2])-origin[2];if((x*x+y*y)+z*z<4.f)return false;}return true;
+    }
+    template<class Actor>bool human_guard_prone_ray(Actor& actor,const HumanVector& origin){ //00552190.
+        const auto target=sight_position(selection_human(actor).head_marker);auto delta=target;for(unsigned n=0;n<3;++n)delta[n]=static_cast<float>(static_cast<long double>(target[n])-origin[n]);return !human_geometry_ray(origin,delta,3,0);
+    }
+    template<class Actor>HumanVector human_emplacement_target(Actor& actor){ //0054D6B0, native W is unclaimed outside the standing branch.
+        auto& human=selection_human(actor);if(!human.loading_state)throw std::logic_error("Guard emplacement target requires actual B0");
+        const auto flags=human.loading_state->words().template get<std::uint32_t>(0x50);
+        auto point=sight_position(flags&6u?human.head_marker:human.base().frame());if(flags&6u)point[1]=static_cast<float>(static_cast<long double>(point[1])-.30000001192092896f);
+        for(unsigned n=0;n<3;++n){const float lead=human.activation.vector1b0[n]*.125f;point[n]=static_cast<float>(static_cast<long double>(point[n])+lead);}return point;
+    }
+    HumanVector human_emplacement_position(void* actor,std::uint32_t seat=0){ //Actual Actor A8.
+        if(human_pose_actor_type(actor)==4){const auto& control=human_pose_car(actor).fields24b4.at(seat);return control?control->loading->mounted_position():HumanVector{};}
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Guard emplacement requires actual mounted actor runtime");
+        return weapon->loading->mounted_position();
+    }
+    bool human_emplacement_can_target(void* actor,std::uint32_t seat,const HumanVector& target){ //Actual Actor BC.
+        if(human_pose_actor_type(actor)==4){const auto& control=human_pose_car(actor).fields24b4.at(seat);return control&&control->loading->can_target(target);}
+        using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&human_pose_actor(actor));
+        if(!weapon||!weapon->loading)throw std::logic_error("Guard capability requires actual mounted actor runtime");
+        return weapon->loading->can_target(target);
+    }
+    std::uint32_t human_emplacement_ammunition(void* actor,std::int32_t seat){return dependencies().first_players.seat_presentation().current(human_pose_actor(actor),seat);} //SAME actual9C/004C6550 owner already bound for occupied actors.
+    template<class Human,class Actor>std::uint32_t human_guard_sight_feedback(Human& human,Actor& actor,bool& visible){ //0046F320, real existing observer relation.
+        return dependencies().sight.source().human_relation_feedback(static_cast<std::int32_t>(human.field258),static_cast<std::int32_t>(selection_human(actor).field25c),nullptr,&visible);
+    }
+    template<class Human>bool human_guard_mounted_target_clear(Human& human,const HumanVector& target){ //0054F910, dynamic-only006F78F0.
+        const auto origin=human_emplacement_position(human.field160,human.field164);HumanVector delta{};for(unsigned n=0;n<3;++n)delta[n]=static_cast<float>(static_cast<long double>(target[n])-origin[n]);
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Mounted target ray requires actual loaded World/tree");
+        auto queries=d.scene.door_queries();using Descriptor=typename std::remove_reference_t<decltype(d.scene)>::Descriptor;
+        const Descriptor* hit=nullptr;auto& control=human_inline(human);control.exclude_query(false);
+        try{hit=queries.nearest(target,delta,0,0);}catch(...){control.restore_query(false);throw;}
+        control.restore_query(false); //Native restores BEFORE inspecting descriptor48.
+        if(!hit||!hit->actor)return true;
+        auto& actor=human_pose_actor(hit->actor);const auto kind=actor.base().type();
+        if(kind==0x19)return false;
+        if(kind!=4)return true;
+        auto& car=human_pose_car(&actor);const bool offline=(mode_flags()&7u)==7u;
+        for(auto n=car.occupants.size();n;){auto* occupant=car.occupants[--n];if(!occupant)continue;auto& other=selection_human(*occupant);
+            if(offline){if(d.sight.human_sight_hostile(&human,&other)&&human_frame_signed_word(other.properties.stats_ec[0])>0)return true;}
+            else if(human_frame_signed_word(other.properties.stats_ec[0])>0&&script_human_player_controlled(other,mode_flags())&&!human_selected_suppressed(other)){const auto side=human_specialization(other,false);if(side!=human_specialization(human,false))return true;}
+        }
+        return false; //004DDF70 negates the SAME004DDE20 source/occupant policy.
     }
     HumanVector human_pose_actor_direction(void* actor,std::uint32_t seat){ //Actual virtualA4.
         if(human_pose_actor_type(actor)==4){
@@ -818,6 +1947,8 @@ public:
     template<class Human>void player_select_human(Human& human){dependencies().players.control().select_human(human);} //00461410→0045DA60.
     auto* current_human_frame_player(){return dependencies().players.control().current_player();}
     auto human_geometry_camera_target(){return dependencies().camera.target_frame();} //004650B0, Camera virtual6C.
+    auto& dog_physics_globals(){return dependencies().startup.human_physics_globals();}
+    void dog_physics_motion_line(const HumanVector& start,const HumanVector& end){dog_physics_globals().collision_lines.append(start,end,0xffff00u,0u);}
     auto& human_geometry_sweep(){return dependencies().sweep;}
     void refresh_human_presentation_camera(){ //0046C370, Camera virtual40(0).
         auto& d=dependencies();auto& view=d.first_person.view();
@@ -828,6 +1959,456 @@ public:
         return static_cast<std::uint32_t>(dependencies().startup.game_configuration().rules228[10])*1000u;
     }
     bool player_item_controls_available(){return dependencies().first_person.view().item_controls_available();}
+    template<class Human>bool player_attachment_blocks_item(Human& human){ //005433B0 Actor98(seat), SAME H3/UI owner.
+        return dependencies().first_players.seat_presentation().has_control(human_pose_actor(human.field160),human.field164);
+    }
+    template<class Human>std::uint32_t player_attachment_control_flags(Human& human){ //005457E0 Actor8C(seat).
+        return dependencies().first_players.seat_presentation().flags(human_pose_actor(human.field160),human.field164);
+    }
+    template<class Car>bool human_car_seat_hides_cursor(Car& car,std::int32_t seat){
+        return dependencies().first_players.seat_presentation().hides_cursor(car,seat);
+    }
+    auto human_car_seat_frame(void* actor,std::uint32_t seat){
+        return car_seat_camera_frame(human_pose_car(actor),human_frame_signed_word(seat),dependencies().scene.frames(),*this);
+    }
+    template<class State>void notify_player_selected_item(State& state){ //0053F9B0's expired530, secondary payload4C+10.
+        const auto entry=state.item();if(!entry)throw std::logic_error("Player delayed zoom lost actual cached A8 item");
+        const auto& payload=human_frame_output_item(entry).definition().payloads[1];
+        if(payload.bytes.size()<0x10)throw std::logic_error("Player delayed zoom requires actual secondary payload10");
+        const auto fov=frontend::pre_mission_detail::Bytes::real(frontend::pre_mission_detail::Bytes::word(payload.bytes.data()+0xc));
+        dependencies().first_person.view().set_zoom(mode_flags(),true,fov);
+    }
+    bool human_model_debug_enabled(){return dependencies().startup.scene_presentation_flags().debug;} //Actual0098AF98, not a fabricated false callback.
+    template<class Geometry>void present_human_model_debug(Geometry&){throw std::runtime_error("Human debug requires actual geometry5D94 visualA8 receiver");}
+    void human_walk_debug_beep(){dependencies().scene.frames().human_walk_debug_beep();}
+    template<class Human>void human_ground_surface_effect(Human& human,std::int32_t material){
+        auto& d=dependencies();const auto validate=human_common_receiver_guard(human);
+        const auto& matrix=d.scene.frames().active_task_borrow_world_matrix(human.base().frame());
+        auto position=[&]{return HumanVector{{matrix[12],matrix[13],matrix[14],matrix[15]}};};
+        auto blast=[&](const HumanVector& centre,float radius,float power){
+            (void)d.world_actors.heavy_fire_blast(nullptr,centre,radius,power);validate();
+        };
+        emit_human_ground_hazard(position,material,blast,d.broadcast_packets);
+    }
+    template<class Human>void retire_human_water_attachment(Human& human){
+        const auto validate=human_common_receiver_guard(human);
+        auto common=[&](Human& actor,std::uint32_t action,std::int32_t identity,std::uint32_t argument){
+            auto* state=composition(actor).states().get();if(!state||state!=actor.loading_state)throw std::logic_error("Water exit requires actual published B0");
+            state->emit_common_action(action,identity,argument);validate();
+        };
+        auto hud=[&](auto* actor,unsigned kind){dependencies().hud.remove_actor_references(mode_flags(),kind,&actor->base());};
+        retire_human_water_focus(human,mode_flags(),common,hud);
+    }
+    std::int32_t player_mission_ordinal()const{return dependencies().session.words.template get<std::int32_t>(0x3c);}
+    bool player_recoil_disabled(){return dependencies().startup.game_console_variables().integer(6)!=0;} //00720B80(6).
+    bool player_zoom_enabled(){return dependencies().first_person.view().zoom_enabled();}
+    auto& player_item_sound_request(){return dependencies().startup.item_sound_request();}
+    template<class Item>auto item_shot_sound_frame(Item& item,unsigned index){
+        auto& d=dependencies();auto lookup=[&]{return d.startup.item_shot_sound_entry(item.primary_action_sound());};
+        return item.shot_sound(index,d.scene.frames(),lookup);
+    }
+    template<class Item,class Human,class Frame>void play_player_item_sound(Item& item,Human& human,Frame parent,bool silent){
+        play_human_item_shot(item,human,parent,silent,*this);
+    }
+    template<class Item,class Human>void play_following_item_sounds(Item& item,Human& human){
+        play_human_following_shot_sounds(item,human,*this);
+    }
+    void stop_shot_particle(std::int32_t identity){dependencies().startup.mission_effects_process().stop(identity);}
+    auto shot_collision_results(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags){
+        return dependencies().world_actors.shot_ray_all(start,displacement,layers,flags);
+    }
+    template<class Bullet>unsigned advance_shot_bullet_authority(Bullet& bullet,std::uint32_t elapsed){return shot_combat::bullet(bullet,elapsed,*this);}
+    template<class Record>auto shot_travel_hits(Record& record,const HumanVector& point,const HumanVector& displacement,std::size_t travelled){
+        auto& d=dependencies();const bool exclude=record.words.template get<float>(travelled)<5.f;
+        if(exclude)human_inline(d.world_actors.human_loading_actor(record.source)).exclude_query(false);
+        const auto query=[&]{return d.world_actors.shot_ray_all(point,displacement,0x48001u,0x200000u);};
+        auto hits=[&]{try{return query();}catch(...){if(exclude)human_inline(d.world_actors.human_loading_actor(record.source)).restore_query(false);throw;}}();
+        if(exclude)human_inline(d.world_actors.human_loading_actor(record.source)).restore_query(false);
+        return hits;
+    }
+    template<class Hit>auto shot_hit_frame(const Hit& hit){
+        if(hit.dynamic_identity)return hit.dynamic_identity->frame;
+        if(!hit.static_identity)throw std::logic_error("Shot hit lost actual tree/descriptor identity");
+        const auto id=*hit.static_identity;const auto& tree=dependencies().scene.collision_tree();
+        return id.kind?tree.shapes.at(id.kind-0x80).at(id.index).frame:tree.triangles.at(id.index).frame;
+    }
+    template<class Frame>bool shot_static_frame_in_scene(Frame frame){
+        auto& frames=dependencies().scene.frames();const auto kind=frames.frame_kind(frame);return (kind==1||kind==9)&&frames.shot_actor_in_scene(frame);
+    }
+    template<class Frame>bool shot_hit_has_physics(Frame frame){
+        if(!frame)throw std::logic_error("Shot dynamic primitive has native NULL frame");
+        const auto* data=dependencies().scene.frames().find_actor_frame_data(frame);return data&&data->words[4]!=ActorFrameData::empty_text_token();
+    }
+    float shot_engine_random(){return dependencies().scene.frames().volume_random_unit();}
+    template<class Actor>void shot_impact_sound(Actor* source,std::uint32_t material,const HumanVector& point,bool network){
+        auto& d=dependencies();const auto& materials=d.car_definitions.materials();if(!(mode_flags()&2u)||material==0xffffffffu||material>=materials.size())return;
+        auto& state=d.startup.shot_manager_process();auto& request=state.hit_sound;request.group=4;state.hit_sound_position=point;request.position={{point[0],point[1],point[2]}};
+        request.entry=human_frame_signed_word(materials[material].word(0x30));if(request.entry==-1)return;
+        request.source=source;request.flags=network?1u:0u;request.relative=nullptr;request.voice_group=1;(void)d.sound.emit(request);
+    }
+    auto* shot_current_player(){return dependencies().players.control().current_player();}
+    template<class Actor>HumanVector shot_player_head_position(Actor& actor){
+        auto& human=dependencies().world_actors.human_loading_actor(&actor);if(!human.head_marker)throw std::logic_error("Bullet flyby requires actual Player260 head marker");
+        return shot_motion_world_position(human.head_marker);
+    }
+    void shot_flyby_sound(const HumanVector& point){
+        if(!(mode_flags()&2u))return;auto& d=dependencies();auto& state=d.startup.shot_manager_process();auto& request=state.hit_sound;
+        request.group=4;state.hit_sound_position=point;request.position={{point[0],point[1],point[2]}};request.entry=11;request.flags=1;request.source=nullptr;request.relative=nullptr;request.voice_group=0;(void)d.sound.emit(request);
+    }
+    template<class Record>void shot_bullet_flyby(Record& record,const HumanVector& start,const HumanVector& end){shot_combat::flyby(record,start,end,*this);}
+    template<class Frame>void shot_missing_material(Frame frame){
+        const auto name=frame?dependencies().scene.frames().frame_name(frame):std::string("no frame");
+        std::array<char,1028> diagnostic{};
+        const auto size=std::snprintf(diagnostic.data(),diagnostic.size(),"Shot bullet:MatID je -1, na frame \"%s\".. zapiste si to a dejte grafikum,program pak nejspise spadne!!!!",name.c_str());
+        if(size<0||static_cast<std::size_t>(size)>=diagnostic.size())throw std::runtime_error("Shot missing-material diagnostic exceeds native stack buffer"); //Native formats this unused local, without publishing a message.
+    }
+    template<class Bullet>void advance_shot_bullet_presentation(Bullet& bullet,std::uint32_t elapsed){shot_visual::bullet(bullet,elapsed,dependencies().scene.frames(),*this);}
+    template<class Frame>std::int32_t emit_shot_flare_particle(Frame frame){
+        auto& d=dependencies();return d.startup.mission_effects_process().emit(0x17,d.scene.frames().actor_world_matrix(frame),frame,true,true);
+    }
+    void toggle_shot_particle_emission(std::int32_t identity){dependencies().startup.mission_effects_process().toggle_emission(identity);}
+    void shot_flare_game_flag(){dependencies().session.words.set(0x40,std::uint8_t{1});}
+    template<class Actor>bool shot_source_is_player(Actor* actor){return human_is_player(dependencies().world_actors.human_loading_actor(actor));}
+    template<class Frame>void begin_capsule_camera(Frame){throw std::runtime_error("Capsule special90 requires actual0046CB20 command9 frame target owner");}
+    template<class Item,class Human>std::uint32_t fire_human_item(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,std::uint32_t argument,bool primary){
+        return fire_human_weapon_item(item,human,position,direction,argument,primary,*this);
+    }
+    template<class Item,class Human>void emit_item_bullet(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,bool trace,bool silent){ //00451100.
+        auto& d=dependencies();typename Dependencies::Frame shell{},muzzle{};
+        if(mode_flags()&2u){
+            if(human_is_player(human)&&human_view_offset_enabled()){
+                if(const auto model=d.first_person.models().model())shell=d.scene.frames().actor_find(model,"cardum",0x20);
+                if(const auto model=d.first_person.models().model())muzzle=d.scene.frames().actor_find(model,"blsdum",0x20);
+            }else{shell=item.shell_frame();muzzle=item.projectile_effect_frame();}
+        }
+        produce_item_bullet(d.startup.shot_manager_process(),d.scene.frames(),*this,item,human,position,direction,muzzle,shell,trace,silent);
+    }
+    template<class Item,class Frame>void emit_item_muzzle_particle(Item& item,Frame muzzle){
+        const auto& payload=item.definition().payloads[0];
+        if(payload.bytes.size()<0x1c)throw std::runtime_error("Muzzle particle requires complete native primary payload1C");
+        const auto id=frontend::pre_mission_detail::Bytes::word(payload.bytes.data()+0x18);auto& d=dependencies();
+        (void)d.startup.mission_effects_process().emit(id,d.scene.frames().actor_world_matrix(muzzle),muzzle,true,false);
+    }
+    template<class Human>bool shot_actor_in_scene(Human& human){return dependencies().scene.frames().shot_actor_in_scene(human.base().frame());}
+    template<class Human>const HumanVector& shot_human_velocity(Human& human){return human.activation.vector1b0;}
+    template<class Shell>unsigned advance_shot_shell(Shell& shell,std::uint32_t elapsed){return shot_motion::shell(shell,elapsed,*this);}
+    template<class Record>auto shot_shell_ray(Record& record,const HumanVector& position,const HumanVector& displacement){
+        auto& d=dependencies();auto& human=d.world_actors.human_loading_actor(record.source);auto& control=human_inline(human);
+        control.exclude_query(false);
+        const auto hit=[&]{try{return d.world_actors.rigid_ray(position,displacement,1,0);}
+            catch(...){control.restore_query(false);throw;}}();
+        control.restore_query(false);return hit;
+    }
+    void shot_shell_sound(const HumanVector& position,std::int32_t command){
+        frontend::SpatialSoundRequest request;request.position={{position[0],position[1],position[2]}};
+        request.flags=1;request.source=nullptr;request.relative=nullptr;request.group=5;request.entry=command;request.voice_group=2;
+        (void)dependencies().sound.emit(request);
+    }
+    template<class Frame>void shot_motion_position(Frame frame,const HumanVector& position){
+        auto& frames=dependencies().scene.frames();frames.car_sound_head(frame,position);frames.update_scene_object(frame);
+    }
+    template<class Frame>HumanVector shot_motion_world_position(Frame frame){
+        const auto matrix=dependencies().scene.frames().actor_world_matrix(frame);return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    }
+    template<class Record>void shot_grenade_body(Record& record,std::uint32_t elapsed){
+        auto& d=dependencies();auto& human=d.world_actors.human_loading_actor(record.source);auto& control=human_inline(human);
+        control.exclude_query(false);
+        try{d.world_actors.update_detached_body(record.body(),elapsed);}
+        catch(...){control.restore_query(false);throw;}
+        control.restore_query(false);
+    }
+    template<class Record>void shot_grenade_explosion(Record& record,const HumanVector& position){
+        auto& d=dependencies();(void)d.world_actors.human_loading_actor(record.source);
+        d.world_actors.mine_explosion(record.source,position,record.payload_real(0x5c),record.payload_real(0x58),human_frame_signed_word(record.payload_word(0x54)));
+    }
+    auto shot_material_texture(std::uint32_t material){
+        auto& d=dependencies();const auto index=d.car_definitions.materials().at(material).word(0x54);
+        auto& state=d.startup.shot_manager_process();
+        const auto& texture=index==0?state.explosion_texture:state.blood_textures.at(index-1);
+        return texture?texture->get():typename Dependencies::Frame{}; //Native48, then4C..60; bullet decal textures start24.
+    }
+    bool shot_bullet_mark_admitted(std::uint32_t material){
+        const auto& materials=dependencies().car_definitions.materials();const auto index=human_frame_signed_word(materials.at(material).word(0x50));
+        return material<materials.size()&&index>=0&&index<9;
+    }
+    auto shot_bullet_mark_texture(std::uint32_t material){
+        auto& d=dependencies();const auto index=d.car_definitions.materials().at(material).word(0x50);
+        const auto& texture=d.startup.shot_manager_process().decal_textures.at(index);return texture?texture->get():typename Dependencies::Frame{};
+    }
+    template<class Frame>void shot_bullet_impact_mark(std::uint32_t material,const HumanVector& point,const HumanVector& normal,Frame parent){
+        if(material==0xffffffffu)return;
+        auto& d=dependencies();emit_shot_bullet_mark(d.startup.shot_manager_process(),d.scene.frames(),*this,material,point,normal,parent);
+        human_damage_material_effect(material,point,normal); //00451BC0: projection before00451C00 camera/particle policy.
+    }
+    template<class Frame>auto shot_detailed_pick(const HumanVector& position,const HumanVector& displacement,Frame root){return dependencies().scene.frames().shot_detailed_pick(position,displacement,root);}
+    template<class Frame>void shot_script_hit(Frame frame){ //00427700→0041DBB0; NULL/missing context is a genuine empty gate.
+        if(!frame)return;auto& d=dependencies();const auto* data=d.scene.frames().find_actor_frame_data(frame);if(!data||!data->words[1])return;
+        auto* context=d.script_link.context_for_frame(frame);if(!context)throw std::logic_error("Shot Script EC borrower disagrees with actual context owner");context->hit((mode_flags()&1u)!=0);
+    }
+    template<class Frame>auto shot_version_material(Frame frame){
+        auto& d=dependencies();const auto* data=d.scene.frames().find_actor_frame_data(frame);
+        if(!data||!data->words[6])return std::optional<std::int32_t>{};
+        return d.world_actors.version_picked_material(frame);
+    }
+    template<class Frame>bool shot_version_damage(Frame& frame,std::int32_t amount){return dependencies().world_actors.version_damage_picked(frame,amount);}
+    template<class Frame>void shot_physics_impulse(Frame frame,const HumanVector& velocity,const HumanVector& point){
+        auto& d=dependencies();const auto* data=d.scene.frames().find_actor_frame_data(frame);
+        if(!data||data->words[4]==ActorFrameData::empty_text_token())return;
+        using Handle=typename std::remove_reference_t<decltype(d.world_actors.physics())>::Handle;
+        d.world_actors.physics().impulse(reinterpret_cast<Handle*>(data->words[4]),velocity,point,.009999999776482582f);
+    }
+    template<class Actor>std::uint32_t shot_car_material(Actor& actor,const HumanVector& point,const HumanVector& direction){
+        auto* car=dynamic_cast<CarSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!car||!car->ancillary)throw std::logic_error("Shot Car material requires actual initialized ancillary owner");
+        return static_cast<std::uint32_t>(car->ancillary->pick_material(dependencies().scene.frames(),car->base().frame(),[&](auto index){return index<car->occupants.size()&&car->occupants[index];},point,direction));
+    }
+    template<class Actor>bool shot_source_attached_to(Actor* source,Actor& target){return dependencies().world_actors.human_loading_actor(source).field160==&target;}
+    template<class Actor,class Frame>void shot_actor_damage(Actor& target,std::uint32_t kind,float amount,const HumanVector& point,
+            const HumanVector& direction,Actor* source,Frame frame){
+        //Actual derived D4 tables: common005B88A0 and four distinct RET24 leaves.
+        switch(target.base().type()){
+        case 30:apply_dog_actor_damage(target,kind,amount,point,direction,source,0);return;
+        case 2:case 6:case 8:case 9:case 10:case 12:case 13:case 15:case 22:case 23:case 28:case 29:case 33:case 35:case 37:return;
+        case 11:dependencies().world_actors.runtime().damage_loose_item(target,kind,amount,point,direction);return;
+        case 4:dependencies().world_actors.shot_actor_damage(&target,kind,amount,point,direction,source,frame);return;
+        case 25:{
+            auto* animation=dynamic_cast<AnimationSceneActor<typename Dependencies::ActorFrames>*>(&target);
+            if(!animation)throw std::logic_error("Animation shot D4 requires actual Animation owner");
+            animation->damage(amount);return;
+        }
+        case 21:{ //006057B0: the FIRST seat, original ray zone and normalized incoming direction.
+            auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&target);
+            if(!weapon||!weapon->loading)throw std::logic_error("StaticWeapon D4 requires actual loading/seat owner");
+            auto* seated=static_cast<Actor*>(weapon->loading->seat_occupant(0));if(!seated)return;
+            unsigned zone=0;
+            if(kind==1||kind==3){zone=shot_human_zone(*seated,point,direction);
+                if(zone==0xff){shot_human_miss(*seated,source,target.base().world_direction(),true);return;}}
+            auto unit=direction;
+            const auto square=(static_cast<long double>(unit[1])*unit[1]+static_cast<long double>(unit[2])*unit[2])+static_cast<long double>(unit[0])*unit[0];
+            normalize_human_ai_shot(unit,square);
+            apply_human_damage(dependencies().world_actors.human_loading_actor(seated),kind,amount,point,unit,source,zone);
+            shot_script_hit(seated->base().frame());return;
+        }
+        default:throw std::runtime_error("Shot requires actual selected derived actor D4 receiver");
+        }
+    }
+    template<class Actor>void shot_human_damage(Actor& actor,float amount,const HumanVector& point,const HumanVector& direction,Actor* source,std::uint32_t zone){
+        apply_human_damage(dependencies().world_actors.human_loading_actor(&actor),1,amount,point,direction,source,zone);
+    }
+    template<class Actor>unsigned shot_human_zone(Actor& actor,const HumanVector& point,const HumanVector& displacement){return item_melee_hit_zone(dependencies().world_actors.human_loading_actor(&actor),point,displacement);}
+    template<class Actor>void shot_human_miss(Actor& actor,Actor* source,const HumanVector& velocity,bool hostile_required){
+        auto& target=dependencies().world_actors.human_loading_actor(&actor);if(human_frame_signed_word(target.properties.stats_ec[0])<=0)return;
+        auto& from=dependencies().world_actors.human_loading_actor(source);
+        if(hostile_required&&!dependencies().sight.human_sight_hostile(&target,&from))return;
+        item_melee_miss(target,from,velocity);
+    }
+    template<class Actor>bool shot_friendly_human(Actor& target,Actor* source){
+        if((mode_flags()&7u)!=7u)return false;
+        auto& human=dependencies().world_actors.human_loading_actor(&target);
+        return !human_is_player(human)&&human.properties.field19c==1&&dependencies().world_actors.human_loading_actor(source).properties.field19c==1;
+    }
+    std::uint32_t shot_material_absorption(std::uint32_t material){return dependencies().car_definitions.materials().at(material).word(0x28);}
+    template<class Record>void shot_grenade_effect(Record& record,const HumanVector& position,std::int32_t material){
+        shot_explosion_effect(position,record.words.template get<HumanVector>(0x680),record.payload_word(0x50),material,human_frame_signed_word(record.payload_word(0x54)));
+    }
+    void shot_explosion_effect(const HumanVector& position,const HumanVector& normal,std::uint32_t particle,std::int32_t material,std::int32_t sound){
+        auto& d=dependencies();auto& state=d.startup.shot_manager_process();auto& request=state.hit_sound;
+        request.group=6;state.hit_sound_position=position;request.position={{position[0],position[1],position[2]}};
+        request.flags=1;request.entry=sound;request.source=nullptr;request.relative=nullptr;(void)d.sound.emit(request);
+        if(material>=0){auto reverse=normal;for(unsigned a=0;a!=3;++a)reverse[a]=-reverse[a];emit_shot_material_mark(state,d.scene.frames(),*this,static_cast<std::uint32_t>(material),position,reverse);}
+        (void)emit_human_particle(particle,position,normal,typename Dependencies::Frame{},true,false);
+        if(material>=0)(void)emit_human_particle(d.car_definitions.materials().at(static_cast<unsigned>(material)).word(0x4c),position,normal,typename Dependencies::Frame{},true,false);
+    }
+    template<class Human,class Frame>void emit_item_shell(Human& human,Frame marker,std::uint32_t command){
+        auto& d=dependencies();produce_item_shell(d.startup.shot_manager_process(),d.scene.frames(),*this,human,marker,command);
+    }
+    template<class Item,class Human>void emit_item_grenade(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,std::uint32_t argument){
+        auto& d=dependencies();auto& state=d.startup.shot_manager_process();
+        if(!state.world)throw std::logic_error("Grenade requires actual world-bound ShotMgr");
+        using Body=typename std::remove_reference_t<decltype(d.world_actors)>::Body;
+        using Record=ShotGrenadeRecord<typename Dependencies::ActorFrames,Body>;
+        auto factory=[&]{return std::make_unique<Body>(d.scene.frames(),d.scene.buckets(),d.world_actors.rigid_bodies());};
+        auto record=std::make_unique<Record>(d.scene.frames(),factory);record->initialize(*this,item,human,position,direction,argument);
+        state.transient[0].push_back(std::move(record));
+        if((mode_flags()&7u)==7u)notify_item_grenade(human,position,direction);
+        remove_human_inventory_item(human,d.world_actors.items(),item.identity,true,*this); //005A7B70 AFTER notification.
+    }
+    template<class Record>unsigned advance_shot_grenade_authority(Record& record,std::uint32_t elapsed){return shot_motion::grenade_authority(record,elapsed,*this);}
+    template<class Record>void advance_shot_grenade_presentation(Record& record,std::uint32_t elapsed){shot_motion::grenade_presentation(record,elapsed,*this);}
+    template<class Record,class Event>int shot_grenade_contact(Record& record,unsigned kind,Event* event){return shot_motion::grenade_contact(record,kind,event,*this);}
+    template<class Record>bool shot_grenade_initial_passthrough(Record& record){
+        if((mode_flags()&7u)!=7u)return false;
+        auto& source=dependencies().world_actors.human_loading_actor(record.source);
+        return !human_is_player(source)&&source.properties.field19c==1&&record.words.template get<std::int32_t>(0x670)<=200;
+    }
+    template<class Primitive>auto* shot_contact_actor(const Primitive& primitive){return static_cast<SceneActor<typename Dependencies::ActorFrames>*>(primitive.actor);}
+    template<class Actor>auto shot_contact_type(Actor& actor){return actor.base().type();}
+    template<class Actor,class Frame>auto shot_contact_material(Actor& actor,Frame frame){return actor.material(frame);}
+    template<class Frame>auto shot_contact_pick(const HumanVector& start,const HumanVector& displacement,Frame root){return dependencies().scene.frames().car_damage_pick(start,displacement,root,0);}
+    template<class Frame>std::uintptr_t shot_frame_versions(Frame frame){
+        const auto* data=dependencies().scene.frames().find_actor_frame_data(frame);return data?data->words[5]:0;
+    }
+    template<class Frame>std::uint32_t shot_picked_material(Frame frame){ //004511E0: same case-sensitive matid parser; native -1 remains invalid if selected for a table read.
+        return static_cast<std::uint32_t>(actor_frame_material(dependencies().scene.frames(),frame));
+    }
+    std::uint32_t shot_material_threshold(std::uint32_t material){return dependencies().car_definitions.materials().at(material).word(0x2c);}
+    template<class Frame>void shot_versions_damage(std::uintptr_t master,Frame picked,std::int32_t damage){(void)dependencies().world_actors.version_frame_contact(master,picked,damage);}
+    template<class Actor>void shot_grenade_human_damage(Actor& target,const HumanVector& point,const HumanVector& direction,Actor* source){
+        auto& human=dependencies().world_actors.human_loading_actor(&target);
+        auto* from=source?&dependencies().world_actors.human_loading_actor(source):nullptr;
+        apply_human_damage(human,5,1.f,point,direction,from,0);
+    }
+    template<class Record>void shot_grenade_impact_sound(Record& record){ //0044D4C0, signed698<50 and positive694; set2000 AFTER emit.
+        if(record.words.template get<std::int32_t>(0x698)>=50||record.words.template get<std::int32_t>(0x694)<=0)return;
+        frontend::SpatialSoundRequest request;const auto position=shot_motion_world_position(record.frame());
+        request.position={{position[0],position[1],position[2]}};request.flags=1;request.relative=nullptr;request.source=nullptr;
+        request.group=5;request.entry=record.words.template get<std::int32_t>(0x694);(void)dependencies().sound.emit(request);
+        record.words.set(0x698,2000u);
+    }
+    template<class Item,class Human,class Frame>void emit_item_capsule(Item& item,Human& human,const HumanVector& position,
+            const HumanVector& direction,Frame model,std::uint32_t argument){
+        auto& d=dependencies();auto& state=d.startup.shot_manager_process();
+        if(!state.world)throw std::logic_error("Capsule requires actual world-bound ShotMgr");
+        auto record=std::make_unique<typename std::remove_reference_t<decltype(state)>::Capsule>();
+        record->initialize(d.scene.frames(),*this,human,position,direction,item.definition().payloads[0],model,(argument&0xffu)!=0);
+        state.transient[0].push_back(std::move(record));
+    }
+    template<class Capsule>unsigned advance_shot_capsule_authority(Capsule& capsule,std::uint32_t elapsed){return shot_combat::capsule(capsule,elapsed,*this);}
+    template<class Record>bool shot_capsule_car_boost(Record& record){
+        return (mode_flags()&7u)==7u&&human_difficulty()==1&&dependencies().world_actors.human_loading_actor(record.source).properties.field19c==1&&record.frame();
+    }
+    template<class Record>void shot_capsule_explosion(Record& record,const HumanVector& centre,float factor){
+        dependencies().world_actors.mine_explosion(record.source,centre,record.payload_real(0x5c),static_cast<float>(static_cast<long double>(factor)*record.payload_real(0x58)),human_frame_signed_word(record.payload_word(0x54)));
+    }
+    template<class Record>void shot_capsule_effect(Record& record,const HumanVector& point,const HumanVector& normal,std::uint32_t material){
+        shot_explosion_effect(point,normal,record.payload_word(0x50),human_frame_signed_word(material),human_frame_signed_word(record.payload_word(0x54)));
+    }
+    template<class Frame>bool shot_frame_visible(Frame frame){return dependencies().scene.frames().human_control_visible(frame);}
+    template<class Frame>void shot_hide_frame(Frame frame){dependencies().scene.frames().object_visible(frame,false);}
+    template<class Capsule>void advance_shot_capsule_presentation(Capsule& capsule,std::uint32_t elapsed){shot_visual::capsule(capsule,elapsed,dependencies().scene.frames(),*this);}
+    void stop_capsule_camera(){spawn_camera_command(9,false,0);}
+    template<class Item,class Human>void apply_item_melee(Item& item,Human& human,const HumanVector& start,const HumanVector& direction){
+        strike_human_item(item,human,start,direction,*this);
+    }
+    template<class Human>void item_melee_exclude(Human& human){human_inline(human).exclude_query(false);}
+    template<class Human>void item_melee_restore(Human& human){human_inline(human).restore_query(false);}
+    template<class Hit>auto* item_melee_actor(const Hit& hit){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        return hit.dynamic_identity?static_cast<Actor*>(hit.dynamic_identity->actor):nullptr; //Actual descriptor48, not frameEC.
+    }
+    template<class Actor>auto* item_melee_human(Actor& actor){
+        using Human=typename Dependencies::Composition::Human;
+        if(actor.base().type()==3)return &selection_human(actor);
+        auto* weapon=dynamic_cast<StaticWeaponSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!weapon||!weapon->loading)throw std::logic_error("Melee requires actual StaticWeapon seat owner");
+        auto* occupant=weapon->loading->seat_occupant(0);
+        return occupant?&selection_human(human_pose_actor(occupant)):static_cast<Human*>(nullptr);
+    }
+    template<class Human>unsigned item_melee_hit_zone(Human& human,const HumanVector& start,const HumanVector& displacement){
+        auto& d=dependencies();return shot_human_hit_zone(d.startup.shot_manager_process(),human,start,displacement,d.world_actors.items(),d.scene.frames());
+    }
+    template<class Human>void item_melee_miss(Human& target,Human& source,const HumanVector& displacement){ //005A5960.
+        auto* state=composition(target).states().get();if(!state)throw std::logic_error("Melee miss requires target's actual B0");
+        if((state->words().template get<std::uint32_t>(0x50)&0x40000000u)||human_is_player(target))return;
+        auto& d=dependencies();auto& factory=composition(target).state_factory();
+        HumanSoundStateCallbacks<typename Dependencies::ActorFrames,Human,std::remove_reference_t<decltype(factory)>>
+            callbacks(d.scene.frames(),factory);
+        callbacks.b8(*state,&source,displacement);
+    }
+    template<class Actor,class Frame>std::uint32_t item_melee_material(Actor& actor,Frame picked){
+        return static_cast<std::uint32_t>(actor.material(picked)); //Actual typed virtualD8; each concrete native family supplies its own receiver.
+    }
+    template<class Actor,class Human>void item_melee_dog_damage(Actor& actor,float amount,const HumanVector& point,const HumanVector& direction,Human& source){
+        apply_dog_actor_damage(actor,3,amount,point,direction,&source,0);
+    }
+    void item_melee_material_effect(std::uint32_t material,const HumanVector& point,const HumanVector& normal){
+        if(material==0xffffffffu)return;
+        const auto effect=dependencies().car_definitions.materials().at(material).word(0x3c);
+        if(effect)(void)emit_human_particle(effect,point,normal,typename Dependencies::Frame{},true,false); //No00451C00 camera visibility gate.
+    }
+    template<class Player>auto* player_item_melee_target(Player& state){
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=state.human();if(!human)throw std::logic_error("Player melee query requires its actual Human");
+        const auto direction=human_projectile_direction(); //Native camera selector1 BEFORE the FPV58/59 observation.
+        const auto position=human_view_offset_enabled()?human_projectile_position():sight_position(human_command_head(*human));
+        const auto* hit=[&]{
+            auto& owner=human_inline(*human);owner.exclude_query(false);
+            struct Restore{std::remove_reference_t<decltype(owner)>& borrower;~Restore(){borrower.restore_query(false);}}restore{owner};
+            auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Player melee query requires actual loaded World");
+            auto query=d.scene.door_queries();return query.nearest(position,direction,0,0);
+        }();
+        if(!hit||!hit->actor)return static_cast<Human*>(nullptr);
+        auto& actor=human_pose_actor(hit->actor);if(actor.base().type()!=3)return static_cast<Human*>(nullptr);
+        auto& target=selection_human(actor);if(human_inline(target).frame_posture_mode()!=0)return static_cast<Human*>(nullptr);
+        if(!target.loading_state)throw std::logic_error("Player melee target has no actual B0 direction");
+        const auto facing=target.loading_state->current_direction();
+        const auto dot=(static_cast<long double>(direction[2])*facing[2]+static_cast<long double>(direction[1])*facing[1])+static_cast<long double>(direction[0])*facing[0];
+        return dot>.8f?&target:nullptr;
+    }
+    template<class Player>auto* player_item_repair_target(Player& state){
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        auto* human=state.human();if(!human)throw std::logic_error("Player repair requires its actual Human");
+        const auto start=sight_position(human_command_head(*human));
+        const auto hit=human_geometry_ray(start,state.words().template get<HumanVector>(0x10),0,0,true);
+        if(!hit||!(human_geometry_flags(*hit)&0xc0u))return static_cast<Actor*>(nullptr);
+        typename Dependencies::Frame frame{};
+        if(hit->dynamic_identity)frame=hit->dynamic_identity->frame;
+        else if(hit->static_identity&&hit->static_identity->kind){
+            const auto id=*hit->static_identity;frame=dependencies().scene.collision_tree().shapes.at(id.kind-0x80).at(id.index).frame;
+        }
+        if(!frame)return static_cast<Actor*>(nullptr);
+        const auto* data=dependencies().scene.frames().find_actor_frame_data(frame);
+        auto* target=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+        if(!target||target->base().type()!=4||human_command_car_health(*target)==0.f)return static_cast<Actor*>(nullptr);
+        return target;
+    }
+    template<class Human>std::int32_t player_shot_stamina(const Human& human){return human_hud_stamina_percent(human);}
+    void player_item_fpv_request(std::int32_t animation){dependencies().first_person.view().request(mode_flags(),animation,0);}
+    void player_item_reset_zoom(){dependencies().first_person.view().restore_game_zoom(mode_flags());}
+    template<class Player,class Item>void prepare_player_item_shot(Player& state,Item& item,HumanVector& position,HumanVector& direction){
+        if(human_view_offset_enabled()){position=human_projectile_position();direction=human_projectile_direction();return;}
+        auto& d=dependencies();auto shot=item.shot_frame();if(!shot)shot=item.model();else shot=item.shot_frame();
+        if(!shot)throw std::runtime_error("Player fire reached native missing muzzle/model frame");
+        const auto matrix=d.scene.frames().actor_world_matrix(shot);position={{matrix[12],matrix[13],matrix[14],matrix[15]}};
+        HumanVector camera{};
+        if(!d.camera.query_vector(0,camera))throw std::runtime_error("Player fire camera0 output has no native producer");
+        if(!d.camera.query_direction(1,direction))throw std::runtime_error("Player fire camera1 output has no native producer");
+        auto* human=state.human();if(!human)throw std::logic_error("Player shot query requires its actual Human");
+        const auto hit=[&]{
+            auto& owner=human_inline(*human);owner.exclude_query(false);
+            struct Restore{std::remove_reference_t<decltype(owner)>& borrower;~Restore(){borrower.restore_query(false);}}restore{owner};
+            HumanVector displacement=direction;for(unsigned axis=0;axis!=3;++axis)displacement[axis]=static_cast<float>(static_cast<long double>(direction[axis])*500.f);
+            return human_geometry_ray(camera,displacement,0x8001u,0u,false);
+        }(); //Native restores exclusions BEFORE inspecting the result.
+        if(hit){
+            HumanVector aim=direction;
+            for(unsigned axis=0;axis!=2;++axis)aim[axis]=static_cast<float>(static_cast<long double>(hit->position[axis])-position[axis]);
+            const auto z=static_cast<long double>(hit->position[2])-position[2];aim[2]=static_cast<float>(z);
+            const auto square=(z*aim[2]+static_cast<long double>(aim[1])*aim[1])+static_cast<long double>(aim[0])*aim[0];
+            if(square>9.f){aim[3]=camera[3];normalize_human_ai_shot(aim,static_cast<float>(square));direction=aim;}
+        }
+    }
+    template<class Player>std::uint32_t player_item_reload_duration(Player& state){
+        const auto entry=state.item();if(!entry)throw std::runtime_error("Player reload notification reached native missing cached item");
+        return human_frame_output_item(entry).reload_duration();
+    }
+    template<class Player>void player_item_alignment(Player& state,float amount){
+        auto* human=state.human();if(!human)throw std::logic_error("Player item alignment requires its actual Human");
+        set_human_sight_alignment(*human,amount,mode_flags());
+    }
+    template<class Player>void player_item_first_shot(Player& state){
+        auto* human=state.human();if(!human)throw std::logic_error("First Player shot requires its actual Human");
+        using Factory=std::remove_reference_t<decltype(composition(*human).state_factory())>;
+        auto& d=dependencies();d.startup.players_process().template first_player_shot<typename Factory::Active>(d.players.control(),mode_flags());
+    }
+    template<class Player>void publish_player_item_input(Player& state,const PlayerItemNotification& notification){
+        auto& d=dependencies();auto& items=d.world_actors.items();const auto entry=state.item();
+        auto* item=entry?&items.runtime_item(entry):nullptr;
+        hd2::game::publish_player_item_input(state,d.startup.game_human_inputs(),notification,mode_flags(),item);
+    }
     template<class Player>void set_player_frame_mode(Player& state,std::int32_t mode){
         if(!state.human())throw std::logic_error("Player mode requires the actual bound Human");
         dependencies().presentation.set_player_mode(state,*state.human(),mode,mode_flags());
@@ -892,9 +2473,9 @@ public:
     template<class Entry>bool human_feedback_item_ready(Entry entry){return dependencies().world_actors.items().runtime_item(entry).field14<=game_word28();}
     template<class Entry>auto& human_frame_output_item(Entry entry){return dependencies().world_actors.items().runtime_item(entry);}
     template<class Item,class Human>bool reload_human_ai_weapon(Item& item,Human& human,
-            std::int32_t& ammunition,bool retain_last){
+            std::int32_t& ammunition,bool retain_last,std::uint32_t source_slot=1u){
         //SAME process0098B02C, now also published by console007205E2.
-        return reload_human_weapon(item,human,ammunition,retain_last,dependencies().startup.game_console_variables().happy_ammunition(),*this);
+        return reload_human_weapon(item,human,ammunition,retain_last,dependencies().startup.game_console_variables().happy_ammunition(),*this,source_slot);
     }
     auto& human_reload_items(){return dependencies().world_actors.items();}
     template<class Human>std::uint32_t human_reload_animation_family(Human& human){ //00791C10, SAME hand holder and lazy Item virtual40.
@@ -910,10 +2491,10 @@ public:
     template<class Item,class Human>void emit_human_weapon_reload(Item& item,Human& human){
         if(!(mode_flags()&2u))return;
         auto& d=dependencies();
-        frontend::SpatialSoundRequest request;
+        auto& request=d.startup.item_sound_request(); //SAME0098AFE0 as empty/shot writers.
         request.flags=human_is_player(human)&&human_view_offset_enabled()?0x40u:0u;
         request.relative=item.shot_frame();request.source=&human;
-        request.group=3;request.entry=item.reload_sound();
+        request.group=3;request.entry=item.reload_sound();request.position={{0,0,0}};
         const auto voice=d.sound.emit(request);
         item.fielda8=d.startup.game_sound_voice_live(voice)?static_cast<std::uint32_t>(voice):0xffffffffu;
         human.activation.flag178=true;
@@ -949,6 +2530,13 @@ public:
         if(!storage||storage->single()||!storage->holder(2))throw std::logic_error("Guard weapon selection requires the actual shoulder holder");
         return storage->holder(2)->entry();
     }
+    template<class Human>bool human_guard_equip_rocket(Human& human){ //00559590, real hand3 and shoulder2 commands.
+        auto* storage=human.base().storage();if(!storage||!storage->holder(3)||!storage->holder(2))throw std::logic_error("Guard rocket selection requires actual holders3/2");
+        const auto hand=storage->holder(3)->entry(),shoulder=storage->holder(2)->entry();auto& items=dependencies().world_actors.items();
+        if(hand&&items.runtime_item(hand).definition().kind()==6)return true;
+        if(!shoulder||items.runtime_item(shoulder).definition().kind()!=6)return false;
+        auto& inventory=composition(human).inventory();return hand?inventory.swap(hand,3,human,shoulder,2):inventory.move(shoulder,human,2,3,0);
+    }
     template<class State>bool prepare_guard_frame_weapon(State& state){ //005594B0.
         state.refresh_item();
         auto* human=state.human();
@@ -963,6 +2551,7 @@ public:
         if(shoulder&&items.runtime_item(shoulder).definition().kind()!=6&&equip(shoulder,2))return true;
         return equip(human_guard_holster_weapon(*human),1);
     }
+    template<class State>void human_ai_release_feedback(State& state){composition(*state.human()).state_factory().notify_inline_frame_command(state,0x10u);} //0058BAF0→B0 virtual08, not contactC8.
     template<class Human>auto human_feedback_kind9(Human& human){return find_player_mode_holster(human,dependencies().world_actors.items(),9,game_word28());}
     auto human_projectile_direction(){return dependencies().first_person.view().projectile_direction();}
     auto human_projectile_position(){return dependencies().first_person.view().projectile_position(mode_flags());}
@@ -984,8 +2573,18 @@ public:
         HumanFrameFeedbackReceivers<HumanWorldLoadingServices,Fire> receivers{*this,fire};
         owner.state_factory().apply_inline_feedback(*state,flags,receivers);
     }
+    template<class Human>void apply_human_frame_feedback(Human& human,std::uint32_t flags){
+        auto fire=[this](auto& item,auto& actor,const HumanVector& position,const HumanVector& direction,std::uint32_t argument,bool primary){
+            return this->fire_human_item(item,actor,position,direction,argument,primary);
+        };
+        apply_human_frame_feedback(human,flags,fire);
+    }
     template<class Human,class Runtime>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed,Runtime& runtime){
         game::advance_human_scene_frame(human,authority,elapsed,*this,runtime,dependencies().scene.frames());
+    }
+    template<class Human>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed){
+        HumanFrameRuntime<HumanWorldLoadingServices> runtime(*this);
+        advance_human_scene_frame(human,authority,elapsed,runtime);
     }
     template<class Human>void human_frame_contact(Human& human){ //0059FFD0's reached006FCB60→005FEFB0.
         auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Human Mine contact query requires actual loaded World");
@@ -1019,6 +2618,64 @@ public:
         auto& d=dependencies();
         action_explosive_place(actor).disarm(d.world_actors,d.scene.buckets());
     }
+    template<class Actor>void finish_human_runtime_pickup(Actor& actor){
+        dependencies().world_actors.runtime().disarm_human_action_mine(&actor);
+    }
+    template<class State,class Human>void finish_human_action_drop(State& state,Human& human){
+        complete_human_ground_drop(state,human,dependencies().scene.frames(),*this);
+    }
+    template<class Actor,class State>void finish_human_actor_motion(Actor& actor,State& state){
+        (void)dependencies().world_actors.runtime().move_human_placed_item(actor,state.words().template get<HumanVector>(0x10));
+    }
+    auto human_completion_ground_ray(const HumanVector& start,const HumanVector& displacement){
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Human ground completion requires actual loaded World/tree");
+        //Only the proven vertical006F6870→006F5890 branch is used here.
+        if(displacement[0]!=0.f||displacement[2]!=0.f)throw std::logic_error("Human completion requires original vertical static ray");
+        auto& scene=d.scene;using Scene=std::remove_reference_t<decltype(scene)>;
+        using Resources=std::remove_reference_t<decltype(scene.collision_resources())>;
+        CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
+            ray(&scene.collision_tree(),&scene.buckets(),scene.collision_resources(),scene.frames());
+        return ray.ray(start,displacement,0xffffffffu,0,true);
+    }
+    template<class Human>auto human_completion_place_mine(Human& human,std::uint32_t definition,const HumanVector& position,const HumanVector& normal){
+        return dependencies().world_actors.runtime().place_mine(&human,static_cast<std::int32_t>(definition),position,normal,true);
+    }
+    template<class Actor,class Human>void finish_human_timed_type15(Actor& actor,Human& human){
+        using Frames=typename Dependencies::ActorFrames;
+        auto* photo=dynamic_cast<PhotoPlaceSceneActor<Frames>*>(&actor);
+        if(!photo)throw std::logic_error("Human action3 completion requires its actual PhotoPlace owner");
+        photo->complete(human); //0060C130: ECX is target; pushed Human is genuinely unused.
+    }
+    template<class Actor,class Human>void finish_human_explosive_placement(Actor& actor,Human& human){
+        auto& d=dependencies();
+        (void)complete_human_explosive_placement(action_explosive_place(actor),human,
+            d.world_actors.items(),d.world_actors,d.scene.buckets(),*this);
+    }
+    auto* human_treatment_target(std::int32_t identity){return human_damage_source(identity);} //00475E00 actual Human lookup.
+    template<class Human>void advance_human_medical_skill(Human& human,float amount){ //005A9560.
+        if((mode_flags()&7u)!=7u)return;
+        auto& bits=human.fieldc0.at(6);float value;std::memcpy(&value,&bits,4);
+        const auto sum=static_cast<long double>(value)+amount;
+        value=sum>5.f?5.f:static_cast<float>(sum);std::memcpy(&bits,&value,4);
+        //0069BFE0 is the existing actual retail RET; no extra logger callback.
+    }
+    template<class Human>void human_treatment_notification(Human& human,Human& target,
+            std::int32_t,std::int32_t,std::int32_t){
+        auto& d=dependencies();receive_human_offline_notification(human,&target,d.scene.frames(),
+            d.startup.text(),d.hud,mode_flags(),human_current_player_id()); //00588870 virtual10, offline branch.
+    }
+    void award_human_treatment_score(std::int32_t identity,std::uint32_t amount){
+        add_human_score_points(dependencies().startup.game_control_records(),static_cast<std::uint32_t>(identity),amount,*this);
+    }
+    template<class State>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item){
+        (void)complete_human_player_treatment(state,identity,item,dependencies().world_actors.items(),*this);
+    }
+    template<class State,class Runtime>void finish_human_treatment(State& state,std::int32_t identity,std::int32_t item,Runtime&){
+        if(state.words().template get<std::uint32_t>(0x48)==1){
+            finish_human_treatment(state,identity,item);return; //Separate00546DC0 on this SAME World/Player.
+        }
+        (void)complete_human_base_treatment(state,identity,item,dependencies().world_actors.items(),*this);
+    }
     template<class State,class Human>void finish_human_action_unavailability(State& state,Human& human){
         //All observed B0 families use 00524D50/60 for virtual8C/90.
         auto& words=state.words();
@@ -1043,8 +2700,9 @@ public:
             dependencies().scene.frames().observe_data("execution","Human DD0 frame","field184",control->physical().control_frame_words().template get<std::uint32_t>(0x184));
         if(kind==6)return; //Actual005A4330/005A4340 are RET4.
         auto& factory=owner.state_factory();
+        if(kind==3&&!authority){factory.advance_active_presentation(*state,elapsed);return;}
         if(kind==5&&!authority){factory.advance_script_presentation(*state,elapsed,runtime);return;}
-        if(kind!=1&&kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
+        if(kind!=1&&kind!=3&&kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
         using Actor=SceneActor<typename Dependencies::ActorFrames>;
         using Base=std::remove_reference_t<decltype(*state)>;
         struct Queries {
@@ -1066,6 +2724,11 @@ public:
             }
             void finish_human_state_action(Base& state,bool success){complete_human_state_action(state,success,world,runtime);}
         } queries{*this,runtime};
+        if(kind==3){
+            const auto prefix=factory.begin_active_authority(*state,elapsed,queries);
+            if(prefix.has_value())factory.advance_active_authority_body(*state,elapsed,*prefix,runtime);
+            return;
+        }
         if(kind==1){factory.advance_player_frame(*state,authority,elapsed,queries,runtime);return;}
         if(kind==5){factory.advance_script_authority(*state,elapsed,queries,runtime);return;}
         if(factory.advance_guard_or_area_frame(*state,authority,elapsed,queries,runtime)){
@@ -1095,6 +2758,7 @@ public:
         return {config.style224,static_cast<std::uint32_t>(config.rules228[5]),static_cast<std::uint32_t>(config.rules228[6])};
     }
     template<class Human>auto& human_inline(Human& human){return composition(human).control();}
+    template<class Human,class Actor>void human_area_force_sight(Human& human,Actor& target){(void)dependencies().sight.force_human_target(human,selection_human(target));} //0055B6C0.
     template<class Human>bool sight_controlled_target(Human& human){ //005A59E0's SAME00461410/20 roster membership.
         if((mode_flags()&7u)!=7u&&human_remote_ai_enabled()&&(mode_flags()&1u))return dependencies().players.auxiliary().human_roster().contains(&human);
         return dependencies().players.control().human_roster().contains(&human);
@@ -1112,7 +2776,10 @@ public:
         return dependencies().startup.effects_loading_process().decorations.material_sight_factor(material); //GEffects+94.
     }
     long double sight_view_distance(){return dependencies().scene.frames().sight_view_distance();}
-    template<class Human>bool sight_attachment_direction(Human&,HumanVector&){throw std::runtime_error("Sight attachment direction requires actual actor virtual98/A4 receivers");}
+    template<class Human>bool sight_attachment_direction(Human& human,HumanVector& direction){ //00570280/0056FC80: actual98 precedes A4.
+        auto* actor=human.field160;if(!actor||!human_pose_actor_has_control(actor,human.field164))return false;
+        direction=human_pose_actor_direction(actor,human.field164);return true;
+    }
     std::uint32_t sight_time()const{return game_word28();}
     template<class Frame>HumanVector sight_position(Frame frame){
         if(!frame)throw std::runtime_error("Sight position requires actual marker frame");
@@ -1122,6 +2789,14 @@ public:
     template<class Actor>auto sight_human_attachment(Actor actor){return selection_human(*actor).field160;}
     template<class Actor>void sight_exclude_human(Actor actor){human_inline(selection_human(*actor)).exclude_query(false);}
     template<class Actor>void sight_restore_human(Actor actor){human_inline(selection_human(*actor)).restore_query(false);}
+    template<class Actor>void sight_exclude_dog(Actor actor){ //0046DF80, actual Dog Actor26C physical descriptor pair.
+        using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
+        auto* dog=dynamic_cast<Dog*>(actor);
+        if(!dog)throw std::logic_error("Dog Sight exclusion requires actual type30 owner");
+        if(!dog->collisions)throw std::runtime_error("Dog Sight exclusion requires actual live Body collision producer");
+        std::array<typename DogBodyCollisionLifetime<typename Dependencies::Frame>::Descriptor*,2> descriptors{{dog->collisions->descriptor(0),dog->collisions->descriptor(1)}};
+        if(descriptors[0])dependencies().scene.exclusions().many(descriptors.data(),2,nullptr); //Native first-pointer gate; second NULL remains invalid if reached.
+    }
     void sight_restore_dog(){dependencies().scene.exclusions().clear();} //0046DF80 clears even with no populated Dog exclusions.
     struct SightRayHit{std::uint32_t flags;const void* actor;};
     auto human_geometry_ray(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags,bool normal=true){
@@ -1203,9 +2878,99 @@ public:
     }
     void receive_human_equipment_packet(const HumanPacketCommand& command){ //005B2A90, including discard.
         using Human=typename Dependencies::Composition::Human;
-        auto* human=dynamic_cast<Human*>(dependencies().scene.frames().scene_actor_identity(command.fields.template get<std::int32_t>(8)));
-        if(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=7u)return;
-        throw std::runtime_error("Human PACK command20 requires Remote equipment replacement0059EB60 on actual Items/B0/DD0");
+        receive_human_equipment_effect(command,
+            [&](std::int32_t identity){return dynamic_cast<Human*>(dependencies().scene.frames().scene_actor_identity(identity));},
+            [&](Human& human,auto& soldier){PreparedHumanLoading<Dependencies> factory(dependencies());factory.populate(human,soldier);});
+    }
+    auto* human_supply_box(std::int32_t identity){ //00475D50, actual Scene2 domain.
+        using Supply=SupplyBoxSceneActor<typename Dependencies::ActorFrames>;
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(identity);auto* box=dynamic_cast<Supply*>(actor);
+        if(actor&&!box)throw std::logic_error("Human supply command requires actual SupplyBox9");return box;
+    }
+    template<class Box>std::uint32_t human_supply_flags(Box& box){if(!box.loading)throw std::logic_error("Human supply command requires actual loaded SupplyBox");return box.loading->pickup_flags();}
+    template<class Human,class Box>std::optional<std::int32_t> human_supply_definition(Human& human,Box& box,std::int32_t index){
+        auto& d=dependencies();auto& items=d.world_actors.items();
+        if(!box.properties.field11c){
+            FirstPersonHumanItems hand(items);const auto entry=hand.weapon(human);if(!entry)return std::nullopt;
+            return items.runtime_item(entry).definition().ammunition();
+        }
+        const auto side=human_hud_team(human,mode_flags(),human_remote_ai_enabled(),d.startup.game_control_records());
+        return human_frame_signed_word(box.properties.items[side?1u:0u].at(static_cast<std::size_t>(index)));
+    }
+    auto create_unheld_supply_item(std::int32_t definition){return dependencies().world_actors.items().create_unheld_item(definition,-1);}
+    template<class Entry>void release_failed_supply_item(Entry entry){dependencies().world_actors.items().remove_runtime_item(entry);}
+    template<class Entry>std::int32_t human_supply_item_identity(Entry entry){return dependencies().world_actors.items().runtime_item(entry).identity;}
+    template<class Human>void create_received_supply_item(Human& human,std::int32_t definition,std::int32_t slot,std::int32_t identity){
+        (void)dependencies().world_actors.items().create_prepared_human_item(human,definition,slot,identity);
+    }
+    template<class Box>void consume_human_supply_item(Box& box){if(!box.loading)throw std::logic_error("Supply consumption lost actual loaded owner");box.loading->consume_item();}
+    auto* human_loose_item(std::int32_t identity){ //004772F0, actual runtime identity domain (not Scene2 slots).
+        using Runtime=std::remove_reference_t<decltype(dependencies().world_actors.runtime())>;
+        auto* actor=dependencies().world_actors.runtime().identity(identity);
+        auto* item=dynamic_cast<typename Runtime::LooseItemActor*>(actor);
+        if(actor&&!item)throw std::logic_error("Human pickup token requires actual loose-item actor11");
+        return item;
+    }
+    template<class ItemActor>void retire_picked_up_item(ItemActor& actor){actor.release_item_to_inventory();dependencies().world_actors.runtime().remove(&actor);}
+    template<class Human,class Entry>std::int32_t place_unheld_human_item(Human& human,Entry entry,std::int32_t& slot,bool notify){
+        auto& d=dependencies();return game::place_unheld_human_item<typename Dependencies::ActorFrames>(d.scene.frames(),&human,d.world_actors.items(),*this,entry,slot,notify);
+    }
+    template<class Human,class Entry>std::int32_t apply_unheld_human_item(Human& human,Entry entry,std::int32_t slot){
+        auto& d=dependencies();return game::transfer_created_human_item<typename Dependencies::ActorFrames>(d.scene.frames(),human,d.world_actors.items(),*this,entry,slot);
+    }
+    template<class Human>void clothing_control_refresh(Human& human){ //0048A780→00786C20; cold Human has no DD0.
+        if(!human.loading_lifetime){if(human.fielda0)throw std::logic_error("Clothing raw A0 has no typed DD0 lifetime");return;}
+        if(auto* control=human_inline(human).control())control->rebind_clothing_model();
+    }
+    template<class Human>void clothing_equipment_visibility(Human& human){ //Fresh A0 gate,007866D0→007920B0.
+        if(!human.loading_lifetime){if(human.fielda0)throw std::logic_error("Clothing raw A0 has no typed DD0 lifetime");return;}
+        if(auto* control=human_inline(human).control())control->refresh_equipment_visibility();
+    }
+    template<class Human>void clothing_bind_equipment_markers(Human& human){ //0075D080's actual230 native0078CC90.
+        if(auto* equipment=human_inline(human).equipment())equipment->state().bind_markers(dependencies().scene.frames(),human.base().frame());
+    }
+    template<class Human>void clothing_rebind_equipment(Human& human){ //00786C20's conditional230/007936E0.
+        if(auto* equipment=human_inline(human).equipment())equipment->rebind_clothing_model(human,dependencies().world_actors.items());
+    }
+    template<class Human>void clothing_players_refresh(Human& human){ //0048A780, fresh reverse roster and actual current2C.
+        if(human.properties.field19c!=1)return;
+        auto& d=dependencies();auto& control=d.players.control();
+        for(auto n=control.human_roster().size();n;){
+            const auto index=static_cast<std::int32_t>(--n);if(control.human_roster().at(index)!=&human)continue;
+            control.collect_frames(index);
+            if(control.current_player()==&human){
+                HumanVector direction;d.camera.query_direction(3,direction);d.presentation.reset_player_camera(0);d.camera.set_direction(direction);
+            }
+            return;
+        }
+    }
+    template<class Human>void clothing_refresh_sight(Human& human){ //005A6930 native guard25C but INDEX258, preserved even when indices differ.
+        refresh_human_clothing_sight(human,dependencies().sight.source());
+    }
+    auto& human_command_frames(){return dependencies().scene.frames();}
+    template<class Human>void replay_human_climb_position(Human& human,const HumanVector& position){
+        auto* control=human_inline(human).control();
+        if(!control)throw std::logic_error("Human climb requires its actual DD0");
+        control->replay_position(human_look_control(human),position);
+    }
+    template<class State>void begin_human_climb_animation(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("Human climb lost its actual Human");
+        auto publish=[&](std::uint32_t flags){state.publish_frame_command_flags(flags);};
+        human_look_control(*human).frame_movement_animation(0x1e,publish,true); //E0 kind4.
+    }
+    auto* human_command_actor(std::int32_t identity){return dependencies().scene.frames().scene_actor_command_identity(identity);} //00475D50.
+    template<class Entry>std::uint32_t human_command_item_kind(Entry item){return dependencies().world_actors.items().runtime_item(item).definition().kind();}
+    template<class Human>auto human_command_head(Human& human){
+        if(!human.head_marker)throw std::logic_error("Human common command requires actual260 head marker");return human.head_marker;
+    }
+    template<class Human>HumanVector human_command_direction(Human& human){
+        if(!human.loading_state)throw std::logic_error("Human common command lost current B0 direction receiver");
+        return human.loading_state->target_direction(); //005A80E0, fresh Human+B0/4C.
+    }
+    template<class Actor>float human_command_car_health(Actor& target){return dependencies().scene.car_callbacks().car_field6a0(&target);} //004DDCF0.
+    template<class Actor,class Entry,class Human>bool human_command_targeted(Actor& target,Entry item,Human& human,
+            const std::optional<CarTargetedPlacement>& placement,bool authority){
+        return dependencies().scene.car_callbacks().car_targeted_command(&target,item,&human,placement,authority);
     }
     template<class Human>void apply_human_packet_command(Human& human,const HumanPacketCommand& command,HumanPacketGrammar grammar){
         using Factory=typename Dependencies::Composition::StateFactory;
@@ -1247,10 +3012,9 @@ public:
             if(authority)return; //00540DB0 only decodes this command.
             receive_human_score_rank(human,f.template get<std::uint32_t>(8),player);return;
         case 19:{
-            if((mode_flags()&7u)!=7u)throw std::runtime_error("Human speech packet requires actual nonoffline00588170 receiver");
             if(!human.speech_definition)throw std::runtime_error("Human speech packet has no actual speech definition");
             HumanSpeechLoading speech(dependencies().scene.frames(),*this);
-            speech.offline(*state,static_cast<std::int32_t>(f.template get<std::uint32_t>(8)),f.template get<std::uint32_t>(0xc)!=0);return;
+            speech.play(*state,static_cast<std::int32_t>(f.template get<std::uint32_t>(8)),f.template get<std::uint32_t>(0xc)!=0);return;
         }
         case 21:{ //Authority00540DB0 synthesizes20 in SAME second90 vector, including offline.
             HumanPacketCommand response;response.kind=20;response.fields.set(8,f.template get<std::int32_t>(8));state->queue_frame_command(std::move(response),true);return;
@@ -1271,13 +3035,42 @@ public:
         case 1:{
             present_human_damage(human,human_damage_command_value(command),*this,dependencies().scene.frames());return;
         }
-        case 2:throw std::runtime_error(authority?"Human PACK command2 requires active clothing005A6930":"Human PACK command2 requires active clothing005A6A00");
-        case 3:
-            if(!authority&&player)return; //Presentation Player mode1 skips B0+DC.
-            throw std::runtime_error("Human PACK command3 requires actual B0+DC/00586200 typed control receiver");
-        case 7:throw std::runtime_error(authority?"Human PACK command7 requires inventory validation005A2D50":"Human PACK command7 requires inventory apply005A2E10");
-        case 8:throw std::runtime_error(authority?"Human PACK command8 requires inventory swap005A2E90":"Human PACK command8 requires inventory swap apply005A2F50");
-        case 9:throw std::runtime_error(authority?"Human PACK command9 requires item validation005A39D0":"Human PACK command9 requires item apply005A3A40");
+        case 2:{
+            PreparedHumanLoading<Dependencies> clothing(dependencies());
+            if(authority){
+                if(clothing.apply_clothing(human,f.template get<std::int32_t>(8))&&(mode_flags()&7u)!=7u)state->queue_frame_command(command,true);
+            }else clothing.apply_received_clothing(human,f.template get<std::int32_t>(8));
+            return;
+        }
+        case 3:{
+            const auto identity=human.base().id10();
+            receive_human_common_command(*state,command,authority,player,*this,
+                [&](auto& current,const auto& value){return owner.state_factory().common_command(current,value);},
+                [&](const auto& value){ //00540DB0 only after success and fresh non7 mode.
+                    auto* current=dependencies().scene.frames().scene_human_identity(identity);
+                    if(current!=&human||current->loading_state!=state)
+                        throw std::logic_error("Human command3 forwarding lost its actual Human/B0");
+                    composition(*current).states().get()->queue_frame_command(value,true);
+                });
+            return;
+        }
+        case 7:{
+            auto slot=f.template get<std::int32_t>(0x14);
+            if(receive_human_inventory_move(human,dependencies().world_actors.items(),*this,authority,f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),f.template get<std::int32_t>(0x10),slot,f.template get<std::int32_t>(0x18))&&authority&&(mode_flags()&7u)!=7u){
+                auto updated=command;updated.fields.set(0x14,slot);state->queue_frame_command(std::move(updated),true);
+            }return;
+        }
+        case 8:{
+            if(receive_human_inventory_swap(human,dependencies().world_actors.items(),*this,authority,f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),f.template get<std::int32_t>(0x10),f.template get<std::int32_t>(0x14),f.template get<std::int32_t>(0x18))&&authority&&(mode_flags()&7u)!=7u)state->queue_frame_command(command,true);
+            return;
+        }
+        case 9:{
+            auto updated=command;auto slot=f.template get<std::int32_t>(0xc);
+            if(authority){
+                if(validate_human_item_pickup(human,f.template get<std::int32_t>(8),slot,*this)&&(mode_flags()&7u)!=7u){updated.fields.set(0xc,slot);state->queue_frame_command(std::move(updated),true);}
+            }else apply_human_item_pickup(human,f.template get<std::int32_t>(8),slot,*this);
+            return;
+        }
         case 10:{
             const auto drop=human_drop_command_value(command);
             if(authority){auto velocity=drop.direction;for(unsigned axis=0;axis!=3;++axis)velocity[axis]*=drop.speed;
@@ -1285,8 +3078,21 @@ public:
             }else present_human_dropped_item(human,drop);
             return;
         }
-        case 11:throw std::runtime_error(authority?"Human PACK command11 requires item validation005A37C0":"Human PACK command11 requires item apply005A38F0");
-        case 12:throw std::runtime_error(authority?"Human PACK command12 requires Player action validation0053D5D0":player?"Human PACK command12 requires Player action apply0053D870":"Human PACK command12 requires Remote action apply00594110");
+        case 11:{
+            auto slot=f.template get<std::int32_t>(0x14),identity=f.template get<std::int32_t>(0x10);
+            if(authority){
+                if(validate_human_supply_pickup(human,f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),slot,identity,*this)&&(mode_flags()&7u)!=7u){
+                    auto updated=command;updated.fields.set(0x14,slot);updated.fields.set(0x10,identity);state->queue_frame_command(std::move(updated),true);
+                }
+            }else apply_human_supply_pickup(human,f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),slot,identity,*this);
+            return;
+        }
+        case 12:
+            if(authority){
+                auto validate=human_packet_action_validator(*state);
+                if(apply_player_packet_action(static_cast<typename Factory::Player&>(*state),command,*this)){validate();state->queue_frame_command(command,true);}
+            }else present_human_packet_action(*state,command,*this);
+            return;
         case 14:{
             using PacketHuman=typename Dependencies::Composition::Human;
             auto* target=dynamic_cast<PacketHuman*>(dependencies().scene.frames().scene_actor_identity(static_cast<std::int32_t>(f.template get<std::uint32_t>(8))));
@@ -1297,7 +3103,10 @@ public:
             damage_human(human,f.template get<std::uint32_t>(8),static_cast<float>(f.template get<std::int32_t>(0x10)),
                 HumanVector{},HumanVector{},source,f.template get<std::uint32_t>(0xc),*this,dependencies().scene.frames());return;
         }
-        case 18:throw std::runtime_error("Human PACK command18 requires Remote special-animation005A9C20/005AC4A0/0077CE10 loading and007757E0/00775970 control receivers");
+        case 18:{ //Only Remote presentation grammar has this effect payload.
+            auto* control=owner.control().control();if(!control)throw std::logic_error("Named animation packet requires actual DD0/C00");
+            control->special_animation(command.text.c_str(),f.template get<std::int32_t>(8),f.template get<std::int32_t>(0xc),f.template get<std::uint32_t>(0x10)!=0);return;
+        }
         default:throw std::logic_error("Human command dispatched outside original grammar");
         }
     }
@@ -1392,6 +3201,70 @@ public:
     float human_sound_random(){return dependencies().scene.frames().volume_random_unit();} //Actual LS3DF RandFloat, distinct from CRT rand.
     template<class Human,class Actor>void player_sight_dog(Human&,Actor& actor){dependencies().players.control().add_sighted_dog(&actor);} //0045D4A0.
     template<class Human,class Actor>bool network_human_sight_friendly(Human&,Actor&){throw std::runtime_error("Nonoffline Sight requires actual005A09A0 friendship receiver");}
+    template<class Dog>std::int32_t dog_emit_body_voice(Dog& dog,std::uint32_t flags,std::int32_t entry){return emit_dog_body_voice(dog,dependencies().scene.frames(),dependencies().sound,flags,entry);}
+    void dog_stop_body_voice(std::int32_t& voice){dependencies().startup.stop_game_sound_voice(voice);}
+    auto& dog_controller_process(){return dependencies().startup.dog_controller_process();}
+    void* dog_navigation_owner(){return static_cast<void*>(&dependencies().navigation);} //Actual game54 module owner.
+    auto& dog_navigation(){return dependencies().navigation;}
+    std::optional<std::uint32_t> dog_navigation_door_phase(std::uint16_t index){
+        auto* actor=static_cast<SceneActor<typename Dependencies::ActorFrames>*>(dependencies().navigation.object_for_reference(index));
+        if(!actor||actor->base().type()!=6)return std::nullopt;
+        return human_navigation_door(actor).properties.fields220[1]; //Actual Door224,005223D0.
+    }
+    void dog_script_route_finished(void* context){
+        if(!context)throw std::logic_error("Dog route completion requires actual script context");
+        auto& script=*static_cast<MissionScriptContext<typename Dependencies::ActorFrames>*>(context);
+        dependencies().script_link.complete_human_navigation(script,script.pc()); //00416CF0 through SAME live VM/authority gate.
+    }
+    template<class Actor>long double dog_body_movement_limit(Actor& actor){
+        auto* dog=dynamic_cast<DogSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!dog)throw std::logic_error("Dog movement limit requires SAME actual Dog");return dog->body.movement_limit();
+    }
+    std::uint32_t dog_control_random(){return dependencies().startup.random_word();}
+    template<class Dog>void replace_dog_control(Dog& dog,std::int32_t kind){
+        using Frames=typename Dependencies::ActorFrames;using Controller=DogAIController<Frames,HumanWorldLoadingServices>;
+        replace_dog_controller<DogControllerLifetime<Frames>>(dog,kind,[&](std::int32_t selected){return std::make_unique<Controller>(selected,dependencies().scene.frames(),*this);});
+    }
+    template<class Dog>void advance_dog_body(Dog& dog,std::uint32_t elapsed){advance_dog_body_frame(dog,elapsed,*this,dependencies().scene.frames(),dog.require_controller());}
+    template<class Actor>void apply_dog_actor_damage(Actor& actor,std::uint32_t kind,float amount,const HumanVector& point,
+            const HumanVector& direction,SceneActor<typename Dependencies::ActorFrames>* source,std::uint32_t extra){
+        using Frames=typename Dependencies::ActorFrames;using Dog=DogSceneActor<Frames>;
+        auto* dog=dynamic_cast<Dog*>(&actor);if(!dog)throw std::logic_error("Dog D4 requires SAME actual type30 owner");
+        DogDamageGeometry<Frames> geometry(dependencies().scene.frames(),dog->body.damage_bones);
+        using View=DogDamageView<decltype(geometry),std::optional<std::uint32_t>,std::optional<std::int32_t>,std::uint32_t>;
+        View view{dog->properties.fields4a0[0],dog->initial_health4b0,dog->body_actions.current364,
+            dog->sight_source53c,dog->sight_listener540,dog->sound548,geometry};
+        struct Receivers {
+            Dog& dog;HumanWorldLoadingServices& world;
+            void dog_control_dead(){dog.require_controller().dog_control_dead();}
+            void dog_control_damage(std::uint32_t kind,SceneActor<Frames>* source){dog.require_controller().dog_control_damage(kind,source);}
+            void dog_request_body_action(std::uint32_t action,std::int32_t priority){dog.body_actions.request_action(action,priority,*this);}
+            std::int32_t dog_next_body_action(){return dog_order_signed(dog.body_orders.next_action());}
+            void dog_body_timed_action(std::uint32_t posture,std::int32_t priority){dog.body_actions.request_posture(posture,priority);}
+            void dog_ground_death_setup(){prepare_dog_ground_death(dog.body_actions,dog.clip_forced_motion,dog,dog.body.ground404,dog.body.damage_bones[1],world.dependencies().scene.frames(),world.human_geometry_sweep());}
+            void dog_remove_body_collision(unsigned n){if(!dog.collisions)throw std::runtime_error("Dog death requires actual collision owner");dog.collisions->remove(n,true);}
+            void dog_remove_sight_source(std::int32_t slot){world.dependencies().sight.source().remove_observer(slot);}
+            void dog_remove_sight_listener(std::int32_t slot){world.dependencies().sight.source().remove_target(slot);}
+            void dog_remove_sound(std::int32_t slot){world.dependencies().startup.remove_game_sound_listener(slot);}
+        } receivers{*dog,*this};
+        game::apply_dog_damage(view,mode_flags(),kind,amount,point,direction,source,extra,dependencies().startup.mission_integrity_tables(),receivers);
+    }
+    template<class Dog>void dog_surface_damage(Dog& dog,std::uint32_t kind,float amount,const HumanVector& point,const HumanVector& direction){apply_dog_actor_damage(dog,kind,amount,point,direction,nullptr,0);}
+    template<class Actor>void dog_bite_damage(Actor& actor,float amount,const HumanVector& point,const HumanVector& direction){
+        if(actor.base().type()==3){apply_human_damage(selection_human(actor),8,amount,point,direction,static_cast<SceneActor<typename Dependencies::ActorFrames>*>(nullptr),0);return;}
+        shot_actor_damage(actor,8,amount,point,direction,static_cast<SceneActor<typename Dependencies::ActorFrames>*>(nullptr),typename Dependencies::Frame{});
+    }
+    template<class Dog>void dog_bite_observed(Dog& dog){dependencies().players.control().add_sighted_dog(&dog);}
+    template<class Actor>auto sight_dog_head_matrix(Actor actor){
+        using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
+        auto* dog=dynamic_cast<Dog*>(actor);if(!dog)throw std::logic_error("Dog Sight head requires SAME actual type30 actor");
+        return dog_sight_head_matrix(*dog,dependencies().scene.frames());
+    }
+    template<class Actor>auto sight_dog_origin(Actor actor){
+        using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
+        auto* dog=dynamic_cast<Dog*>(actor);if(!dog)throw std::logic_error("Dog Sight origin requires SAME actual type30 actor");
+        return dog_sight_origin(*dog,dependencies().scene.frames());
+    }
     template<class Actor>void dog_sight_changed(Actor& actor,bool,std::uint32_t){ //005D5CB0's genuine cold null534 gate.
         using Dog=typename std::decay_t<decltype(dependencies().scene.frames())>::Dog;
         auto* dog=dynamic_cast<Dog*>(&actor);if(!dog)throw std::logic_error("Dog Sight requires its actual actor family");
@@ -1405,16 +3278,122 @@ public:
         return car->geometry->physics().scalars().get(0x550)!=0; //Actor5E0, SAME owner as collision callbacks.
     }
     struct CommandArea{std::array<float,4> position;float radius;};
-    template<class Human>CommandArea human_ai_command_area(Human&){throw std::runtime_error("Area AI handover requires the actual Human B4 area producer");}
-    template<class State>void adjust_active_ai_stance(State& state,bool){
-        if(!state.first_frame_inputs()||!state.second_frame_inputs())return;
-        throw std::runtime_error("Populated Active AI stance requires actual74/78 command and A4/A8 posture producers");
+    template<class Human>CommandArea human_ai_command_area(Human& human){
+        if(!human.command||!human.command->area_position)throw std::logic_error("Area AI handover requires produced B4 sniper area005AE610");
+        float radius;std::memcpy(&radius,&human.command->field10,4);return {*human.command->area_position,radius};
     }
+    template<class State>void adjust_active_ai_stance(State& state,bool ready){adjust_active_navigation_stance(state,ready);} //00537FB0, populated SAME Active inputs/A4/item.
     template<class Human>bool human_unavailable(const Human& human)const { //005A6380, only its native AL result.
         std::int32_t health;const auto bits=human.properties.stats_ec[0];std::memcpy(&health,&bits,4);
         if(health<1||!human.loading_state||human.properties.field19c==1)return false;
         return (human.loading_state->words().template get<std::uint32_t>(0x50)&0x4000000u)!=0;
     }
+    template<class State>std::int32_t human_ai_ammunition_count(State& state){
+        auto* human=state.human();if(!human||!state.item())throw std::logic_error("AI ammunition query requires actual Human/item");
+        auto& items=dependencies().world_actors.items();const auto id=items.runtime_item(state.item()).definition().ammunition();
+        return count_human_ammunition(*human,items,id,false); //005A6C50, original include-pack0.
+    }
+    auto& human_vehicle_car(void* actor){auto& car=human_pose_car(actor);if(!car.loading)throw std::logic_error("Vehicle path requires actual initialized Car owner");return car;}
+    float human_vehicle_maximum(void* actor){return human_vehicle_car(actor).geometry->physics().scalars().get(0x6f0);} //Native780.
+    float human_vehicle_speed(void* actor){return human_vehicle_car(actor).loading->cold_state().solver.speed;} //Native958.
+    HumanVector human_vehicle_velocity(void* actor){return human_vehicle_car(actor).loading->cold_state().body.motion().velocity;} //Native4A0.
+    HumanVector human_vehicle_direction(void* actor){return human_vehicle_car(actor).base().world_direction();}
+    HumanVector human_vehicle_position(void* actor){auto& object=human_pose_actor(actor);const auto m=dependencies().scene.frames().actor_world_matrix(object.base().frame());return {{m[12],m[13],m[14],m[15]}};}
+    void human_vehicle_governor(void* actor,float value){human_vehicle_car(actor).loading->path_governor(value);}
+    void human_vehicle_drive(void* actor,float value){human_vehicle_car(actor).loading->path_drive(value);}
+    void human_vehicle_brake(void* actor,float value){human_vehicle_car(actor).loading->path_brake(value);}
+    void human_vehicle_steering(void* actor,float value){request_car_steering(human_vehicle_car(actor).loading->steering_state(),value);}
+    void human_vehicle_emergency(void* actor,bool enabled,bool held){human_vehicle_car(actor).loading->path_emergency(enabled,held);}
+    void human_vehicle_driver_input(void* actor,float pedal,float steering){human_vehicle_car(actor).loading->driver_input(pedal,steering);}
+    auto human_vehicle_navigation(HumanAIPathLoading& path){return MissionNavigation(path.table());} //SAME SECOND table set at native70.
+    template<class Human>std::uint32_t human_vehicle_human_kind(Human& human){if(!human.loading_state)throw std::logic_error("Vehicle finish requires actual B0");return human.loading_state->words().template get<std::uint32_t>(0x48);}
+    template<class State>void human_vehicle_finish_script(State& state,std::int32_t pc){
+        using Script=typename Dependencies::Composition::StateFactory::Script;
+        auto* script=dynamic_cast<Script*>(&state);if(!script)throw std::logic_error("Vehicle Script completion requires actual state5");script->finish_script_vehicle_context(pc); //00416D90 and00416D50 have the same PC-match/advance body.
+    }
+    template<class State>bool advance_script_vehicle_path(State& state,std::uint32_t elapsed){return human_vehicle::advance(state,elapsed,*this);}
+    auto& human_vehicle_roster(){return dependencies().players.control().human_roster();}
+    auto& human_vehicle_second_tables(){return dependencies().second_tables;}
+    std::uint16_t human_vehicle_named_point(const std::string& name){return human_vehicle::named_point(dependencies().second_tables,name);}
+    template<class Human,class Frame>std::optional<std::uint16_t> human_vehicle_chase_point(Human&,Frame frame){return human_vehicle::chase_point(frame,*this);}
+    template<class State>bool request_human_vehicle_point(State& state,std::uint16_t point,float speed,std::int32_t pc){ //00577A60.
+        auto* human=state.human();if(!human||!human->field160||human->field160->base().type()!=4)return false;
+        auto& path=state.resources().path();if(point==0xffff){path.stop_loading();return true;}
+        MissionNavigation navigation(path.table());if(!navigation.record(point))return true;
+        path.bind_vehicle(human->field160,[this](void* car){human_vehicle_governor(car,human_vehicle_maximum(car));});
+        const auto p=navigation.position(point);path.request_vehicle_position({{p[0],p[1],p[2],0}},speed);path.state().set(0x94,pc);return true;
+    }
+    void human_grenade_navigation_probe(const HumanVector& position){ //0052D720(position,0,NULL) still observes actual navigation first.
+        (void)dependencies().navigation.nearest_volume({{position[0],position[1],position[2]}},5.f,-1.f);
+    }
+    template<class Human>void human_grenade_formation_position(Human& human,const HumanVector& position){
+        auto* leader=human.formation_leader;if(!leader)return; //005A9100.
+        leader=human.formation_leader;auto* formation=leader?leader->formation.get():nullptr; //Fresh005A9100→005A9110.
+        if(!formation)return;
+        formation->request_member_position(&human,position);std::int32_t index=0;
+        if(formation->contains(&human,&index))formation->update_member_route(static_cast<unsigned>(index));
+    }
+    template<class Human>void notify_item_grenade(Human& source,const HumanVector& position,const HumanVector& direction){ //0045EAB0.
+        using Active=typename Dependencies::Composition::StateFactory::Active;
+        auto& roster=dependencies().players.control().human_roster();
+        for(auto n=roster.size();n;){auto* target=roster.at(static_cast<std::int32_t>(--n));
+            if(!target)throw std::logic_error("Grenade notification lost actual roster Human");
+            if(human_frame_signed_word(target->properties.stats_ec[0])<=0)continue;
+            if(!target->loading_state)throw std::logic_error("Grenade notification requires actual B0");
+            if(target->loading_state->words().template get<std::uint32_t>(0x48)!=3u||target==&source)continue;
+            auto* active=dynamic_cast<Active*>(target->loading_state);if(!active)throw std::logic_error("Grenade recipient kind3 has no actual Active AI owner");
+            active->react_to_grenade(position,direction,&source);
+        }
+    }
+    template<class Human>bool human_script_has_weapon(Human& human){
+        FirstPersonHumanItems hand(dependencies().world_actors.items());return static_cast<bool>(hand.weapon(human)); //005A2B10.
+    }
+    template<class Human>std::uint32_t human_script_target_flags(Human& human){
+        if(!human.loading_state)throw std::logic_error("Script target posture requires actual B0");
+        return human.loading_state->words().template get<std::uint32_t>(0x50);
+    }
+    HumanVector human_script_mounted_position(void* actor,std::uint32_t seat){return human_emplacement_position(actor,seat);} //Actor A8→004C5800, same mounted owner.
+    bool human_script_mounted_precise(void* actor,std::int32_t seat){
+        const auto* definition=dependencies().first_players.seat_presentation().definition(human_pose_actor(actor),seat); //Actual B4, already in this base.
+        if(!definition||!definition->payloads[0].type)return false;
+        const auto& payload=definition->payloads[0];
+        if(payload.type==10&&payload.bytes.empty())return false; //Native kind9 has a zero-byte serializer.
+        if(payload.bytes.size()<8)throw std::logic_error("Script mounted B4 payload kind is truncated");
+        return frontend::pre_mission_detail::Bytes::word(payload.bytes.data()+4)==2u;
+    }
+    std::uint32_t human_script_mounted_ammunition(void* actor,std::int32_t seat){return dependencies().first_players.seat_presentation().current(human_pose_actor(actor),seat);} //Actual9C.
+    template<class State>std::uint32_t human_ai_reload_time(State& state){
+        if(!state.item())throw std::logic_error("AI reload time requires actual item");
+        return dependencies().world_actors.items().runtime_item(state.item()).reload_duration();
+    }
+    template<class Actor>auto human_ai_actor_aim_frame(Actor& actor){return actor.base().type()==3u?human_ai_target_human(actor).head_marker:actor.base().frame();}
+    template<class Human>const HumanVector* human_ai_friendly_spheres(Human& human,std::int32_t& count){ //005AC1D0.
+        auto* control=human_inline(human).control();if(!control)throw std::logic_error("Friendly aim requires actual DD0");
+        auto& physical=control->physical();count=physical.primary_count();return physical.posture_spheres().data();
+    }
+    template<class State>bool human_ai_line_of_fire(State& state,const HumanVector& direction){
+        switch(state.words().template get<std::uint32_t>(0x48)){
+        case 3:return human_active_ai_line_clear(state,direction,dependencies().scene.frames(),*this); //0052F1F0.
+        case 4:return human_ai_friendly_line_clear(state,direction,dependencies().scene.frames(),*this); //00558E50.
+        case 5:case 6:case 8:return true; //005A4290/005A42E0/005A4510: actual MOV AL,1;RET4, absent frozen.
+        default:throw std::runtime_error("AI aim line requires its actual derived virtual114 receiver");
+        }
+    }
+    template<class State>void stop_human_ai_look(State& state){auto* human=state.human();if(!human)throw std::logic_error("AI look stop requires actual Human");state.look_command(0,human_inline(*human));}
+    template<class State>void begin_human_ai_inline_action(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("AI item2 requires actual Human");
+        human_inline(*human).set_frame_item_action(2);human_state_factory(*human).notify_inline_frame_command(state,0x11u);
+    }
+    template<class State>void finish_human_ai_inline_action(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("AI item22 requires actual Human");
+        human_inline(*human).clear_frame_item_action();human_state_factory(*human).notify_inline_frame_command(state,0x12u);
+    }
+    template<class Human>std::uint32_t human_ai_trigger_feedback(Human& source,Human& target,std::uint32_t* previous,bool* visible){
+        return dependencies().sight.source().human_relation_feedback(human_frame_signed_word(source.field258),human_frame_signed_word(target.field25c),previous,visible);
+    }
+    template<class Actor>auto& human_ai_target_human(Actor& actor){return selection_human(actor);}
+    template<class State,class Actor>HumanVector human_frame_actor_target_direction(State& state,Actor& actor){return human_ai_actor_target_direction(state,actor,dependencies().scene.frames(),*this);}
+    template<class State,class Frame>HumanVector human_frame_frame_target_direction(State& state,Frame frame){return human_ai_frame_target_direction(state,frame,dependencies().scene.frames());}
     template<class Human>std::uint32_t human_hostile_relation_mask(const Human& observer,const Human& target){
         return dependencies().sight.source().human_relation_mask(human_frame_signed_word(observer.field258),
             human_frame_signed_word(target.field25c));
@@ -1430,6 +3409,129 @@ public:
     std::uint32_t projection_game_time(){return dependencies().session.words.template get<std::uint32_t>(0x28);}
     std::int32_t projection_random_word(){return static_cast<std::int32_t>(dependencies().startup.random_word());}
     std::uint32_t projection_quality_byte(){return dependencies().startup.profile_settings().quality_byte(2);}
+    template<class State>auto human_packet_action_validator(State& state){
+        auto* human=state.human();if(!human)throw std::logic_error("Packet action requires its actual Human");
+        const auto identity=human->base().id10();auto* expected=&state;
+        return [this,human,identity,expected]{
+            auto* current=dependencies().scene.frames().scene_human_identity(identity);
+            if(current!=human||!current||current->loading_state!=expected)
+                throw std::logic_error("Packet action Human/B0 retired during callback");
+        };
+    }
+    auto& human_packet_players_process(){return dependencies().startup.players_process();}
+    template<class State>void human_packet_inline_action(State& state,std::uint32_t action){
+        auto* human=state.human();if(!human)throw std::logic_error("Packet action lost its actual Human");
+        human_inline(*human).action_command(static_cast<std::int32_t>(action));
+    }
+    template<class State>std::uint32_t human_packet_action_speech(State& state,std::uint32_t category){
+        HumanSpeechLoading speech(dependencies().scene.frames(),*this);return speech.request(state,static_cast<std::int32_t>(category),100,1,false);
+    }
+    using HeavyFireOwner=decltype(std::declval<typename Dependencies::ActorFrames&>().create_human_sound());
+    std::unique_ptr<HeavyFireSupportObject> make_heavy_fire_air(const HeavyFireAirRequest& request,const HeavyFireDefinition& definition){
+        return std::make_unique<HeavyFireAircraft<HumanWorldLoadingServices>>(request,definition,*this);
+    }
+    HeavyFireOwner heavy_fire_model(const std::string& name){return dependencies().scene.frames().heavy_fire_model(name);}
+    void heavy_fire_model_root(typename Dependencies::Frame model){auto& f=dependencies().scene.frames();f.link_scene_object(model,f.camera_root_sector());}
+    void heavy_fire_model_parent(typename Dependencies::Frame model,typename Dependencies::Frame parent){dependencies().scene.frames().link_scene_object(model,parent);}
+    float heavy_fire_model_extent(typename Dependencies::Frame model){return dependencies().scene.frames().heavy_fire_model_extent(model);}
+    void heavy_fire_model_position(typename Dependencies::Frame model,const HumanVector& p,bool initial=false){dependencies().scene.frames().heavy_fire_model_position(model,p,initial);}
+    void heavy_fire_model_direction(typename Dependencies::Frame model,const HumanVector& p,bool root){dependencies().scene.frames().heavy_fire_model_direction(model,p,root);}
+    void heavy_fire_model_update(typename Dependencies::Frame model){dependencies().scene.frames().update_scene_object(model);}
+    std::int32_t heavy_fire_plane_voice(typename Dependencies::Frame model,std::uint32_t sound,const HumanVector& velocity){
+        auto& d=dependencies();frontend::SpatialSoundRequest request;request.flags=0xdu;request.relative=model;request.group=8;request.entry=human_frame_signed_word(sound);
+        auto voice=d.sound.emit(request);
+        try{if(auto* frame=d.startup.borrowed_game_sound_voice(voice)){
+            d.scene.frames().heavy_fire_sound_velocity(frame,velocity);
+            const auto cursor=human_packet_ftol(static_cast<long double>(human_sound_random())*1000.f);
+            d.startup.game_sound_voice_cursor(voice,cursor);d.scene.frames().update_scene_object(frame);
+        }}catch(...){try{d.startup.stop_game_sound_voice(voice);}catch(...){d.scene.frames().record_actor_cleanup_failure(std::current_exception());}throw;}
+        return voice;
+    }
+    void heavy_fire_stop_voice(std::int32_t& voice){dependencies().startup.stop_game_sound_voice(voice);}
+    void heavy_fire_cleanup_failure(std::exception_ptr error)noexcept{dependencies().scene.frames().record_actor_cleanup_failure(std::move(error));}
+    bool heavy_fire_sound_available(){return dependencies().scene.frames().human_sound_available();}
+    HeavyFireOwner heavy_fire_air_speech(void* actor,std::int32_t identity){
+        auto* human=heavy_fire_actor(actor,identity);if(!human||!human->head_marker)throw std::logic_error("Aircraft support voice requires actual source head260");
+        auto& f=dependencies().scene.frames();auto sound=f.create_human_sound();if(!sound)throw std::runtime_error("Aircraft support voice allocation failed");
+        (void)f.load_human_sound(sound.get(),"90005601.wav");f.human_sound_parameter7c(sound.get(),1);f.human_sound_volume(sound.get(),1.f);
+        f.game_camera_name(sound.get(),"airsupport_speech");human=heavy_fire_actor(actor,identity);if(!human||!human->head_marker)throw std::logic_error("Aircraft voice source retired during resource callback");f.human_sound_link(sound.get(),human->head_marker);
+        f.car_sound_head(sound.get(),HumanVector{{0,-.5f,0,0}});f.human_sound_range(sound.get(),4.f,15.f,1.f,0.f);f.human_sound_enabled(sound.get(),true);return sound;
+    }
+    void heavy_fire_air_speech_reply(typename Dependencies::Frame sound){
+        auto& f=dependencies().scene.frames();(void)f.load_human_sound(sound,"90005603.wav");f.human_sound_parameter7c(sound,1);f.human_sound_volume(sound,.5f);
+        f.game_camera_name(sound,"airsupport_speech");f.human_sound_range(sound,3.f,10.f,1.f,0.f);f.human_sound_enabled(sound,true);
+    }
+    bool heavy_fire_sound_playing(typename Dependencies::Frame sound){return dependencies().scene.frames().car_sound_state(sound);}
+    void heavy_fire_sound_disable(typename Dependencies::Frame sound){dependencies().scene.frames().human_sound_enabled(sound,false);}
+    std::unique_ptr<HeavyFireSupportObject> make_heavy_fire_mortar(const HeavyFireMortarRequest& request){
+        return std::make_unique<HeavyFireMortar<HumanWorldLoadingServices>>(request,*this);
+    }
+    void* heavy_fire_received_human(std::int32_t identity){
+        if(identity==-1)return nullptr;
+        auto* actor=dependencies().scene.frames().scene_actor_identity(identity);
+        if(!actor)throw std::runtime_error("HeavyFire native received Human lookup dereferences absent actor");
+        using Human=typename Dependencies::Composition::Human;return dynamic_cast<Human*>(actor);
+    }
+    std::int32_t heavy_fire_actor_identity(void* actor){return human_score_actor(actor).base().id10();}
+    auto* heavy_fire_actor(void* actor,std::int32_t identity){
+        using Human=typename Dependencies::Composition::Human;
+        auto* current=dependencies().scene.frames().scene_human_identity(identity);
+        if(actor&&current!=actor)throw std::logic_error("HeavyFire Human loan retired during callback");
+        return actor?static_cast<Human*>(current):nullptr;
+    }
+    void heavy_fire_voice(void* actor,std::int32_t identity,const char* name,float near_range,float far_range,float volume){
+        auto* human=heavy_fire_actor(actor,identity);if(!human)throw std::logic_error("HeavyFire voice requires actual source Human");
+        frontend::SpatialSoundRequest request;request.position={{0,1.5f,0,0}};request.flags=1;
+        request.relative=human->base().frame();request.filename=name;request.near_range=near_range;request.far_range=far_range;request.volume=volume;
+        (void)dependencies().sound.emit(request);
+    }
+    std::uint32_t heavy_fire_voice_length(std::int32_t identity){return dependencies().startup.game_speech_length(identity);}
+    std::optional<HumanVector> heavy_fire_ground(const HumanVector& position){
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("HeavyFire ground query requires actual loaded World");
+        using Scene=std::remove_reference_t<decltype(d.scene)>;using Resources=std::remove_reference_t<decltype(d.scene.collision_resources())>;
+        CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
+            ray(&d.scene.collision_tree(),&d.scene.buckets(),d.scene.collision_resources(),d.scene.frames());
+        const auto hit=ray.ray(position,HumanVector{{0,-500,0,0}},0xffffffffu,0,false);
+        return hit?std::optional<HumanVector>(hit->position):std::nullopt;
+    }
+    void heavy_fire_blast(void* actor,std::int32_t identity,const HumanVector& position,float radius,float power){
+        (void)dependencies().world_actors.heavy_fire_blast(heavy_fire_actor(actor,identity),position,radius,power);
+    }
+    void heavy_fire_particle(std::uint32_t definition,const HumanVector& position){
+        auto& d=dependencies();(void)emit_mission_particle(d.startup.mission_effects_process(),d.scene.frames(),definition,position,HumanVector{{0,1,0,0}},typename Dependencies::Frame{},true,false);
+    }
+    void heavy_fire_scatter_sound(const HumanVector& position,std::uint32_t flags){
+        frontend::SpatialSoundRequest request;request.position=position;request.flags=flags;request.group=6;request.entry=3;
+        (void)dependencies().sound.emit(request);
+    }
+    std::int32_t heavy_fire_configuration_count(std::uint32_t side){
+        const auto* mission=dependencies().session.mission;
+        //006BC5A0 allocates ordinary kind3 missions with50 bytes: reading
+        //descriptor50/54 there is outside that native object. Kind13 has the
+        //actual typed Mission50/54 producer. Reject the unsafe ordinary read.
+        if(!mission||!mission->network_mission)throw std::runtime_error("HeavyFire native descriptor50/54 read requires actual extended mission record");
+        const auto& value=mission->network_mission->words50[side?0u:1u];
+        if(!value)throw std::logic_error("HeavyFire descriptor50/54 lacks its actual producer");
+        return human_frame_signed_word(*value);
+    }
+    template<class Human>bool heavy_fire_has_definition(Human& human,std::int32_t definition){return bool(find_human_inventory_definition(human,dependencies().world_actors.items(),definition));}
+    std::optional<HumanVector> heavy_fire_target_ray(const HumanVector& start,const HumanVector& displacement){
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Player support ray requires actual loaded World");
+        using Scene=std::remove_reference_t<decltype(d.scene)>;using Resources=std::remove_reference_t<decltype(d.scene.collision_resources())>;
+        CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
+            ray(&d.scene.collision_tree(),&d.scene.buckets(),d.scene.collision_resources(),d.scene.frames());
+        const auto hit=ray.ray(start,displacement,1,0,false);return hit?std::optional<HumanVector>(hit->position):std::nullopt;
+    }
+    void heavy_fire_request_air(const HeavyFireAirRequest& request){auto& d=dependencies();(void)d.startup.heavy_fire_process().module().request_air(request,*this,d.broadcast_packets);}
+    void heavy_fire_request_mortar(const HeavyFireMortarRequest& request){auto& d=dependencies();(void)d.startup.heavy_fire_process().module().request_mortar(request,*this,d.broadcast_packets);}
+    template<class State>bool human_packet_support_action(State& state,const HumanPacketCommand& command){return request_human_heavy_fire(state,command,*this);}
+    auto* human_speech_candidate(std::int32_t index){ //00475DD0, physical Scene2 slots, no retirement fallback.
+        using Human=typename Dependencies::Composition::Human;
+        auto* actor=dependencies().scene.frames().scene_actor_identity(index);auto* human=dynamic_cast<Human*>(actor);
+        if(actor&&!human)throw std::logic_error("Reserved speech identity requires its actual Human");return human;
+    }
+    template<class Human>bool human_speech_suppressed(Human& human){return human_selected_suppressed(human);}
+    template<class Human>bool human_speech_player_controlled(Human& human){return script_human_player_controlled(human,mode_flags());}
     bool speech_special_mode43(){return dependencies().startup.players_process().words().template get<std::uint8_t>(0x43)!=0;} //00459480.
     bool speech_group0_active(){return !dependencies().startup.players_process().groups()[0].empty();} //00456B80(0), SAME process group48.
     std::uint32_t human_speech_length(std::int32_t identity){return dependencies().startup.game_speech_length(identity);}

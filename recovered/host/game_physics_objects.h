@@ -44,7 +44,9 @@ public:
         //Capacity before the constructor publishes a collision/queue pointer.
         if(slot==list.end())list.reserve(list.size()+1);
         if(parameters.type==5)scene_objects_.reserve(scene_objects_.size()+1);
-        auto owner=std::make_unique<Object>(frames_,collisions_,actors_,parameters,*handle,fades_);
+        auto owner=std::make_unique<Object>(frames_,collisions_,actors_,parameters,*handle,fades_,[this](const Parameters& child,const Frames::Vector& motion){
+            auto* created=create(child);(void)contact(reinterpret_cast<std::uintptr_t>(created),1,motion,{});
+        });
         owner->initialize();owner->install_feedback();
         handle->index=static_cast<std::int32_t>(index);handle->first_list=parameters.first_list;
         try {owner->publish();}catch(...) {handle->index=-1;throw;}
@@ -102,6 +104,12 @@ public:
             throw std::logic_error("Physics contact has no matching actual handle owner");
         return game::contact_physics_object(first_,second_,handle,[&](Object& value){return value.contact(kind,velocity,point);});
     }
+    Object& borrowed_object(void* borrowed){
+        for(auto* list:{&first_,&second_})for(auto& owner:*list)if(owner.get()==borrowed&&borrowed)return *owner;
+        throw std::logic_error("Placed item Physics90 has no live object in SAME Physics owner");
+    }
+    bool placed_contact(void* borrowed,const Frames::Vector& motion){return borrowed_object(borrowed).contact(3,motion,{});} //005E2510 calls virtual14 directly, no manager wake/event.
+    void hide_placed_replacement(void* borrowed){borrowed_object(borrowed).hide_pickup_replacement();}
     void impulse(Handle* handle,const Frames::Vector& force,const Frames::Vector& point,float scale){ //00410420, wake BEFORE virtual08, then event2.
         if(!object(handle))return;
         (void)game::contact_physics_object(first_,second_,handle,[&](Object& value){

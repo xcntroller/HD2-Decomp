@@ -892,6 +892,8 @@ required. No integrity result or random draw is invented in these branches.
 Their originals are retained in WORK `human-player-item-action-workers` and
 `human-player-live-frame-workers`.
 
+Later H6 work [recovers held/math/notification/dry-fire and the shot coordinator](human-player-item-controller-source.md). That checkpoint supersedes the corresponding required-leaf statements here; actual item24/projectile, melee/repair and full frame integration remain open.
+
 [Verification receipt](checkpoints/p2.2-human-player-input-20261111.json).
 Focused native ASan/UBSan/LSan covers local/external buffer ownership, the actual
 coordinator, FLOAT load/integer conditioning, NaN/fault guards, weapon readiness,
@@ -1654,3 +1656,11 @@ preserving the first failure and recording any secondary cleanup failure.
 The native pose-chain fixture exercises each constrained joint's first iteration
 from identity local rotations. It does not establish engine solver convergence
 or a loaded mission frame.
+
+## H3 seat interaction source checkpoint — 2026-11-12
+
+[H3 contract](human-seat-interaction-source.md) extends the earlier cold/partial
+boundary with actual offline occupied Car/StaticWeapon entry/exit, driver controls,
+mounted reset/aim and casing receivers. [Receipt](checkpoints/p2.2-human-seat-interaction-20261112.json).
+Full occupied/non7 Car frame remains D5; H2/H4–H6/H8 and application/desktop
+delivery remain open. Earlier checkpoint exclusions above describe their original scope.

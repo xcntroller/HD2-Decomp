@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-17",
+  "base": "939fb70",
+  "imported": "9d53c06",
+  "source_only": true,
+  "own_complete": false,
+  "frame_complete": false,
+  "hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/p22-own-frame-import.md",
+  "source_files": [
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "bytes": 8992,
+      "sha256": "6889438a84666f973f1deb6153bd5182d14acccd4fba4590fef2d70d0bb9dcac"
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "bytes": 9799,
+      "sha256": "6cbdc1c5a06681394357c1806da62522ba744cd6d6e6abe627ee519cc594d9b3"
+    },
+    {
+      "path": "recovered/host/game_application_session.h",
+      "bytes": 4183,
+      "sha256": "3417c6ca40302fdbfb3cf7c0881114d030c67fbb90cad9020b51c0e9e9807511"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-own-20261112/own-frame-import-launcher-build.log",
+      "bytes": 935,
+      "sha256": "f1cf9c0ba222219c57fde3c07144392779a8db97bd89ffbee0f4d0fd188d2e00"
+    }
+  ],
+  "verification": "PASS forced actual combined O2 launcher/probe compile/link only; existing native source receipts retained, no original/Windows execution",
+  "new_reconstruction_claims": [],
+  "complete_promotions": [],
+  "limitations": "Application missing_frames remains; actual Human input/order external and cutscene/conditional integration unfinished."
+}

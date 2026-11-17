@@ -30,5 +30,16 @@ template<class Frames>void register_car_light_receivers(Frames& frames,const Car
         const std::vector<typename Frames::Frame>& receivers){visit_car_light_receivers(frames,lighting,receivers,false);}
 template<class Frames>void unregister_car_light_receivers(Frames& frames,const CarLighting<Frames>& lighting,
         const std::vector<typename Frames::Frame>& receivers){visit_car_light_receivers(frames,lighting,receivers,true);}
+//00500CB0. Native searches ONLY the paired projector records by visual.
+template<class Frames>void damage_car_paired_light(Frames& frames,const CarLighting<Frames>& lighting,
+        std::vector<std::uint16_t>& flags,std::size_t index,unsigned mask){
+    bool found=false;for(const auto& light:lighting.lights())if(light.shared&&light.projector==index){found=true;break;}
+    if(!found)return;
+    auto& state=flags.at(index);state&=static_cast<std::uint16_t>(mask);
+    const auto& projector=lighting.projectors().at(index);const auto visual=projector.visual.get(),light=projector.light.get();
+    if(state&1u)frames.car_projector_texture(visual,projector.textures[2].get());
+    else if(state&2u)frames.car_projector_texture(visual,projector.textures[1].get());
+    frames.update_scene_object(visual);frames.car_light_power(light,1.f);frames.update_scene_object(light);
+}
 } //namespace hd2::game
 #endif

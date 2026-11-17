@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 C2 deferred climb, DD0 position replay and track0",
+  "branch": "feature/p22-hum-h4",
+  "implementation_base": "f3788fd",
+  "worktree_base": "e742f84e9c73f871d1d6658cc13f99857023af16",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "verified_source": [
+    "Actual family D8 Player-first / Remote-immediate / AI-immediate-then-second dispatch",
+    "Actual registered input7C/history1 position-value virtual2C/30 to common DC1F",
+    "Same DD000759E20 model/Scene/markers/posture/primary/shot/Human ordering",
+    "Track0 inventory2/3 peer transfer and fresh shadow visibility"
+  ],
+  "verification": {
+    "native_policy": "PASS59 ASan/UBSan/LSan strict C++17 O1",
+    "native_physics": "PASS12 actual physical/markers/descriptor/posture/shot construction, failure prefixes, teardown/retry/repeat",
+    "native_doubles": [
+      "Engine model/matrix/volume, collision bucket endpoints",
+      "Face/audio, Human/World, other common subtype endpoints"
+    ],
+    "concrete_i386": "PASS strict O0 actual World construction/destruction, actual factory/Base/common DC/World/climb/DD0/physics/model services, public containing DD0 present_control_frame including actual track0/equipment peer/model path FULL LINK. Remaining Runtime debug/visibility/walk/contacts/ladder/fall/water/track/attachment boundaries are DEFINED THROWING endpoint doubles in temporary composition. No Windows execution.",
+    "application": "PASS existing application-launch and startup-probe O2 strict compile/link, sequential; never executed",
+    "ledger": "Frozen fingerprints/inventories/baseline, full uniqueness, six C2 rows and README PASS. Inherited full checker missing0062D880 ignored rule-refresh.asm remains.",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_accepted": false
+  },
+  "source_files": [
+    {
+      "path": "recovered/game/human_ai_frame_output.h",
+      "sha256": "12812aba5a79a7ab51dc793a741ad02c4bde980a0749025a1c659aa128e23b6d",
+      "bytes": 8071
+    },
+    {
+      "path": "recovered/game/human_common_command.h",
+      "sha256": "752765ed23a91d49db3ea34d2cd24f571a0019c4e3ca6fe166ea2a9259dc4335",
+      "bytes": 4246
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "sha256": "05ec9cca151272aed5096ade35cb113a7f255e62d5addde77ece8a83313e7a92",
+      "bytes": 55864
+    },
+    {
+      "path": "recovered/game/human_loading_state_factory.h",
+      "sha256": "b4a6a9083cc0c1a10687bc593d2ec0ff87182ec5972091b2d14c3d0d407de1ba",
+      "bytes": 15793
+    },
+    {
+      "path": "recovered/game/human_physics_loading.h",
+      "sha256": "96ba88a8e9864668ad920761e85f4b57716df5b4efec754712a6f7abc7fb13cf",
+      "bytes": 34937
+    },
+    {
+      "path": "recovered/game/human_state_base_loading.h",
+      "sha256": "140752cc3646e51242dcef9a08164e438cb3303941b93aeccfe044a772534bcd",
+      "bytes": 16264
+    },
+    {
+      "path": "recovered/game/human_track_equipment_events.h",
+      "sha256": "5754ee955b43b0e689107b983f1f31cbb748df438e403015fcb85137c6e896c8",
+      "bytes": 2194
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "6c186d8794828c07e21bf3c85301d0cb1f8fc0da46d78c088667c26a13711fc2",
+      "bytes": 124126
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "sha256": "6508a1397e6b21909f1e00703cf2e54e0556ad1d12fdafd25ef0d41331e82c8f",
+      "bytes": 110608
+    },
+    {
+      "path": "recovered/game/human_position_replay.h",
+      "sha256": "850d82be67c4ba8af678c2755fa741814e23a3a5ad08b544e9173d30b3c9dbfe",
+      "bytes": 1443
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-original-evidence.json",
+      "sha256": "0c476162e0317741ac642a9ab415261769f3d5f0d1ebdd7c251bfa46ced8ac7c",
+      "bytes": 792
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-pose.asm",
+      "sha256": "7d12565287d1783be948fda9c138b7292b5455e6d6df90ff5e9232612e2ee2f6",
+      "bytes": 10248
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-track-original/00759e20.c",
+      "sha256": "b188ebc64658c0303240acde2ffe3adeb9bbc90f4cca5c7661a27579b3fc3a72",
+      "bytes": 3293
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-track-original/00759e20.json",
+      "sha256": "864207b58205e5b478253df4ffa824d2541ec4b66e3bd256340c2a12a879920b",
+      "bytes": 7415
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-track-original/00758170.c",
+      "sha256": "c6cabfa7c2a1d248f8ecb210540b15912935665e9788e758ee4f849426ccbe3f",
+      "bytes": 1436
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-track-original/00758170.json",
+      "sha256": "525a84eda62d95881a7de8e5d57effbea4d102f94ebed7d42446651a7ded93f8",
+      "bytes": 5334
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-ai-dispatch.asm",
+      "sha256": "eddf440257b1b613879af07ab7f339a9ee338fc9af45e82fcc9231516a8b22f6",
+      "bytes": 7537
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-player-dispatch.asm",
+      "sha256": "777e12c6b7c208b5b77199728a929930ca7063b105751483e5cc5bdce006799f",
+      "bytes": 7632
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-remote-dispatch.asm",
+      "sha256": "3183ce84f29db02751a3e44a8fa120ed1587ada3b90901aa050ab689f3520a4e",
+      "bytes": 267
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-inventory-transfer.asm",
+      "sha256": "5f63a8f70e4065fc20a646b5874fa07db2bfdd0745449bc69eb0df21fba2c20f",
+      "bytes": 4352
+    }
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-native-run.log",
+      "sha256": "9b3dde53b28d91eab3784fe9b1264e91a8ebfe1f12ace7bd5039e8d0fa2f43bf",
+      "bytes": 86
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/replay-physics-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/replay-physics-native-run.log",
+      "sha256": "ce0c8954b1687e247c19bede215c1f8abf1b893734a5808d52b6691f9c659524",
+      "bytes": 75
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-host-i386.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-application-probe.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-function-progress.log",
+      "sha256": "c4cb11c4bcb8d66e79ea1fc0cc98b707116948bcd0ab4ab2ec9433f260824801",
+      "bytes": 303
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-track-export.log",
+      "sha256": "b1de14122f8a3de18fa47b670941ed4adfba45cd9f873d865c432c21e98a3195",
+      "bytes": 4551
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-native.cpp",
+      "sha256": "c1c7c2c3b913f664b37982f13c43df69f328e84ece42a8b2268e5eb110a6d4cc",
+      "bytes": 7916
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-native",
+      "sha256": "3397f053526de4e6def298661feb09262d1849f98cc6b46cd622e578fde8e8c5",
+      "bytes": 1232872
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/replay-physics-native.cpp",
+      "sha256": "f22d856d62daf0b621eb3de4a0325363e18a6b6d016f60db0178cbbc35bb0ae3",
+      "bytes": 3231
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/replay-physics-native",
+      "sha256": "5abc936d44043fa9cf1a845b765624bbb92aa98465e0217c52526300d7a9047c",
+      "bytes": 1309872
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-host-i386.cpp",
+      "sha256": "6a70950c69491c97658c2b2b415eb6c297c58cffcd4a16cfe26faddf1fc19e47",
+      "bytes": 3360
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/climb-host-i386.exe",
+      "sha256": "3f4d28bcffa0228f3473b684cede7d5f92243a0f530a26250e7d25ac46cbcc80",
+      "bytes": 7631872
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "00759e20",
+      "00587540",
+      "00758170"
+    ],
+    "extended_existing": [
+      "00586200",
+      "00583c30",
+      "00758d20"
+    ],
+    "complete": 34,
+    "partial": 3019,
+    "client_partial": 3014,
+    "engine_partial": 5,
+    "denominator": 18783,
+    "no_absent_0053d340_00571c10_credit": true
+  },
+  "remaining": "Other completion workers, Script event/formation/vehicle/timed/attachment and remaining DD0 track consumers stay OPEN; preserve separate H3/H5/H6 and actual frame/mission/desktop boundaries."
+}

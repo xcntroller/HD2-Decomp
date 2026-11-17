@@ -57,14 +57,12 @@ void move_clothing_foreign_children(Frames& frames,typename Frames::Frame source
     }
 }
 
-//0048A780's cold prepared-Human path. Retains the SAME original model identity
-//and transfers animation lanes/links/foreign children in both directions. The
-//live DD0 and already-rostered camera refresh branches require their containing
-//receivers and are rejected before this policy can mutate such a Human.
-template<class Frames,class Models,class Effects,class Random>
+//0048A780 retains the SAME model identity, transfers animation/foreign children
+//in both directions, then refreshes actual DD0/equipment/Players/camera owners.
+template<class Frames,class Models,class Effects,class Random,class Human,class Runtime>
 bool replace_prepared_human_model(Frames& frames,Models& models,Effects& effects,Random& random,
                                   typename Frames::Frame model,const frontend::PreMissionItemCatalogue& catalogue,
-                                  std::int32_t clothing) {
+                                  std::int32_t clothing,Human& human,Runtime& runtime) {
     auto temporary=frames.create_prepared_human_model();
     if(!temporary)throw std::runtime_error("Cannot create original clothing transfer model");
     std::vector<typename Frames::Frame> groups;
@@ -112,33 +110,49 @@ bool replace_prepared_human_model(Frames& frames,Models& models,Effects& effects
     copy_clothing_frame_links(frames,temporary.get(),model);
     move_clothing_foreign_children(frames,temporary.get(),model,temporary.get());
     frames.link_scene_object(temporary.get(),{});unlink.linked=false;temporary.reset();
-    frames.update_scene_object(model); //Native then two DD0 calls, both absent for the guarded cold Human.
     frames.update_scene_object(model);
+    runtime.clothing_control_refresh(human); //Fresh actual DD0 loan at each native gate.
+    runtime.clothing_equipment_visibility(human);
+    frames.update_scene_object(model);runtime.clothing_players_refresh(human);
     return effects.human_eye_texture(model,*eye);
 }
 
-template<class Frames,class Models,class Items,class Effects,class Random,class Dubbing,class Control>
+//005A6930's native asymmetry: guard25C, then target vector INDEX258.
+//Do not silently substitute25C or assume observer/target slots coincide.
+template<class Human,class Sight>void refresh_human_clothing_sight(Human& human,Sight& sight){
+    if(human.field25c!=0xffffffffu){std::int32_t index;const auto bits=human.field258;std::memcpy(&index,&bits,4);sight.refresh_target_markers(index);}
+}
+
+template<class Frames,class Models,class Items,class Effects,class Random,class Dubbing,class Control,class Runtime>
 class PreparedHumanClothing {
 public:
     PreparedHumanClothing(Frames& frames,Models& models,Items& items,Effects& effects,Random& random,
-                          Dubbing& dubbing,Control& control,const frontend::PreMissionItemCatalogue& catalogue,SessionTimeWord game_time)
-        :frames_(frames),models_(models),items_(items),effects_(effects),random_(random),dubbing_(dubbing),control_(control),catalogue_(catalogue),game_time_(game_time){}
+                          Dubbing& dubbing,Control& control,const frontend::PreMissionItemCatalogue& catalogue,SessionTimeWord game_time,Runtime& runtime)
+        :frames_(frames),models_(models),items_(items),effects_(effects),random_(random),dubbing_(dubbing),control_(control),catalogue_(catalogue),game_time_(game_time),runtime_(runtime){}
     template<class Human>bool apply_prepared_human_clothing(Human& human,std::int32_t identity) { //005A6930.
         auto* item=find_human_inventory_item(human,items_,identity);if(!item)return false;
         const auto model=human.base().frame();
         //007E5A40 is strstr(resource34, model134), not strcmp. Empty model
         //resource therefore matches; the original game28==0 still forces work.
         if(game_time_&&item->definition().resources[2].find(frames_.car_model_resource(model))!=std::string::npos)return true;
-        if(human.flag90||human.fielda0||human.loading_state||human.field25c!=0xffffffffu||control_.human_roster().contains(&human))
-            throw std::runtime_error("Active clothing requires actual DD0/Sight/Players camera refresh receivers");
         dubbing_.retire_model(model);
-        (void)replace_prepared_human_model(frames_,models_,effects_,random_,model,catalogue_,static_cast<std::int32_t>(item->definition().identifier));
+        (void)replace_prepared_human_model(frames_,models_,effects_,random_,model,catalogue_,static_cast<std::int32_t>(item->definition().identifier),human,runtime_);
         human.head_marker=frames_.actor_find(model,"f",0x400); //Original008390EC; not the earlier z marker.
+        runtime_.clothing_refresh_sight(human);
         human.activation.flag178=true;return true; //Original ignores effects failure.
+    }
+    template<class Human>void apply_received_clothing(Human& human,std::int32_t identity){ //005A6A00, mode1 BEFORE item lookup, no Sight refresh.
+        if(runtime_.mode_flags()&1u)return;
+        auto* item=find_human_inventory_item(human,items_,identity);if(!item)return;
+        const auto model=human.base().frame();
+        if(game_time_&&item->definition().resources[2].find(frames_.car_model_resource(model))!=std::string::npos)return;
+        dubbing_.retire_model(model);
+        (void)replace_prepared_human_model(frames_,models_,effects_,random_,model,catalogue_,static_cast<std::int32_t>(item->definition().identifier),human,runtime_);
+        human.head_marker=frames_.actor_find(model,"f",0x400);human.activation.flag178=true;
     }
 private:
     Frames& frames_;Models& models_;Items& items_;Effects& effects_;Random& random_;Dubbing& dubbing_;Control& control_;
-    const frontend::PreMissionItemCatalogue& catalogue_;SessionTimeWord game_time_;
+    const frontend::PreMissionItemCatalogue& catalogue_;SessionTimeWord game_time_;Runtime& runtime_;
 };
 } //namespace hd2::game
 #endif

@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_CAR_ACTOR_DAMAGE_H
 #define HD2_GAME_CAR_ACTOR_DAMAGE_H
+#include "game/car_frame_events.h"
 #include "game/car_damage_packets.h"
 namespace hd2::game {
 //004DDE20, RET4. Friendship uses SOURCE as the observer. Native callbacks and
@@ -91,11 +92,14 @@ template<class Frames,class Runtime,class Car,class StateFactory,class Actor>voi
     car.ancillary->damage(frames,car.base().frame(),r,static_cast<Actor>(&car),kind,amount,point,direction,source);
     state.solver.mass_changed=true; //Actor2350/core22C0, before genuine empty00611080(0).
 }
-//004DB360 actor1C. Decode the native event completely BEFORE the physical
-//mutations. Authority still consumes presentation payload, including wheel2.
+//004DB360 actor1C. Fixed damage payloads decode BEFORE physical mutations;
+//event7 instead applies incrementally. Authority still consumes wheel2 payload.
 template<class Frames,class Runtime,class Car,class StateFactory>void receive_car_damage_packet(
         Frames& frames,Runtime& r,Car& car,StateFactory&& get_state,SessionPacketStream& packet){
-    const auto event=read_car_damage_event(packet,packet.read(4));
+    const auto kind=packet.read(4);
+    if(kind==6){r.car_reset_event(car);return;}
+    if(kind==7){receive_car_inventory(r,car,packet,!(r.car_damage_mode()&1u));return;}
+    const auto event=read_car_damage_event(packet,kind);
     if(event.kind==10){r.car_set_fuel(car,event.scalar);return;}
     if(event.kind==11){r.car_receive_collision_impulse(car,event.index,event.first);return;}
     if(event.kind>5)return; //Genuine native default, before any state access.

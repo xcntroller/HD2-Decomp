@@ -33,6 +33,11 @@ public:
         if(auto frame=stopping())frames_.human_sound_enabled(frame,true);
         flags&=~0x400u; //Native publishes after both engine calls.
     }
+    void begin_motion(std::uint32_t& flags){ //004C2580/004C3120 positive transition,124 BEFORE120.
+        if(auto frame=stopping())frames_.human_sound_enabled(frame,false);
+        if(auto frame=moving())frames_.human_sound_enabled(frame,true);
+        flags|=0x400u;
+    }
     void clear()noexcept{first_.reset();second_.reset();} //004C7630, release120 BEFORE124, without detach/disable.
 private:
     static const frontend::CatalogSoundVariant& variant(const frontend::CatalogSoundEntry& entry){

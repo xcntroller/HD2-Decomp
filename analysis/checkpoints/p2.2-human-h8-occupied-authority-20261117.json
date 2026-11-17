@@ -1,0 +1,296 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "62db06e",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-occupied-authority-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_active_ai_authority_body.h",
+      "bytes": 30794,
+      "sha256": "e02bf7b5c7789af4e1e14df882b3e345f4f9f8a675290d6fef1a30fc84a6e97d"
+    },
+    {
+      "path": "recovered/game/human_active_ai_occupied.h",
+      "bytes": 12523,
+      "sha256": "6df746b7578131d1f850d7485e8794409ae5c10f7be7cddf22e980113d211e60"
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "bytes": 25221,
+      "sha256": "38c779ab41acca955f9400379ddff3ef930f36a50de2ea7db8568ae4a648b7b6"
+    },
+    {
+      "path": "recovered/game/human_loading_state_factory.h",
+      "bytes": 17817,
+      "sha256": "b712e816cc7191137c9ca32991bbeb6bea549ef8774e638af85f860f7f6eca9b"
+    },
+    {
+      "path": "recovered/game/human_player_control_loading.h",
+      "bytes": 7502,
+      "sha256": "44d27afbf876a2b1a717e8be31018cf19ee8a77b50be8f57374763ff756eb4a7"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 283608,
+      "sha256": "4fcf00a1b9429659580f109f0d0a788dbf42a2736acaef0f4efed1484e7317ed"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 128259,
+      "sha256": "b261f32b0a322f637669f2df717e2822fd90e8474244616349f38b80b2cbe54f"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/car-contact-trigger-dependencies/004ddcf0.c",
+      "bytes": 225,
+      "sha256": "7a96f5999e515f2d994173774566c3d64214d50e04da031dced2611b27be4223"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-script-and-active-workers/00526550.c",
+      "bytes": 21680,
+      "sha256": "cc18ea566ad53bc35a9628be582bac0677dd7fc2822daed6d39db2c158e71b26"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-actor-control98.asm",
+      "bytes": 602,
+      "sha256": "8d9002254841d6d391d56d1b3d4e7335fc6ff49b22455deee30bc54416495ba2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-actor-control98.json",
+      "bytes": 575,
+      "sha256": "4beca7de23815f770689faaf5815f4ac253c585b76a84f1991bfab156f83e953"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-execution/00538a60.c",
+      "bytes": 522,
+      "sha256": "857b4bd40793bf1d38e28b7e3060a57d0be4cfa521a1333955bbf5e43aace541"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-idle-dependencies/005328d0.c",
+      "bytes": 468,
+      "sha256": "efdc7d466a9e363e2fb849609b98b784cf0f36b1e73af20ddbe727386220390f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-mounted-interval-index.txt",
+      "bytes": 3909,
+      "sha256": "6aed6ea865fd3458bdf6cfe9efc2a86930959831793e2fb3a29489e046972269"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-mounted-leaves.asm",
+      "bytes": 6144,
+      "sha256": "4390dfca08788acd689808231de46bd0aed5c25a4bca430abde6598d17aeff8c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-authority.asm",
+      "bytes": 12873,
+      "sha256": "b9a0f4076b3129fe6db7dd1657aed704a64a3d1c407b87fe3c129f9ec057377e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-car-leaves-index.txt",
+      "bytes": 6382,
+      "sha256": "4f7b36dc82f35fc72fc4340ed22862cfefd2de089c73fcb5b6cb4879f82ac13b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-common-index.txt",
+      "bytes": 8586,
+      "sha256": "8c6e6b766c706528875bc6d96dbe5361f34f2409c46e1d25493bdfd705ba4dbc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-constants.json",
+      "bytes": 475,
+      "sha256": "b1248d4e108893aca77ed41c20b760ff8157d3dc5bab8fd2ad055c607edb64af"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-authority/00527fd0.c",
+      "bytes": 3894,
+      "sha256": "ab50d3fd18c2e577ea475fd2ade3ba280d2784be1f3b431b2128bfc7ae2c840a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-authority/00527fd0.json",
+      "bytes": 10766,
+      "sha256": "aef97728ec005d7a6b367cde2133663f9575f23971c3741968d06807fbce1bac"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-authority.log",
+      "bytes": 4463,
+      "sha256": "2e1529022283450c63223b81efbc8aed9eb2d7376f351a08bf9350a4a2d7f5df"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-index.txt",
+      "bytes": 7649,
+      "sha256": "e8417feb7ba6866f9b810fe316d7f688144d6e5b12940e2b78203417df74dcdf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target/0052c510.c",
+      "bytes": 7680,
+      "sha256": "108a34f1ba7f6582a01a296bd2a0aeadc103a505116686da6e117ce50b4900e7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target/0052c510.json",
+      "bytes": 30256,
+      "sha256": "28c2ad0e8b850efb1b80db9d41dd1bdc0b820f64d5e501219bf9802bd7dfe1f4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target/00532ba0.c",
+      "bytes": 8595,
+      "sha256": "b9f8ac4855cd71908e14d3825b4daa0d2575e052d664f348b9c81b33c0f8eb79"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target/00532ba0.json",
+      "bytes": 32663,
+      "sha256": "00dc28e3b2dba07b25a15bca462b973468c206538af9a6843e92a265214625f5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-direction.asm",
+      "bytes": 33955,
+      "sha256": "8930057a313028953d4a7bedce019fedea76f0ad847681b1d2eab4019bc012dc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-index.txt",
+      "bytes": 9623,
+      "sha256": "47fb8b0b4169a393900876f2b378a729a09beecb38bcd442d4eb21a363c35713"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-leaves/00532910.c",
+      "bytes": 909,
+      "sha256": "9edb39e9971635019730db5f668a8858220af5f2ffd1162e939b58f1bc7f491e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-leaves/00532910.json",
+      "bytes": 4576,
+      "sha256": "f9fc643ad17dfe48c369c98c8936ed23a9cc8ec58f5edccf5764bddfe2f36917"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-leaves/00532a20.c",
+      "bytes": 1755,
+      "sha256": "a33c0f5111ff51ba2ca0d7e73d7117e7d6ed13549d1dcb50571608549dce7173"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-leaves/00532a20.json",
+      "bytes": 7175,
+      "sha256": "54cb756aa3dcb6b85b20113f0e829e7f47421a7bcb9a1b8feede3dba4c201f06"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-leaves/00538b00.c",
+      "bytes": 2055,
+      "sha256": "e912fc6d31bc36d78045f488685480a6be55606d6f0215ecfcad4bed9d091585"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-leaves/00538b00.json",
+      "bytes": 6045,
+      "sha256": "68b5c737d08bda1edccd5142121fd973eb5b91544677d35d91cf71f9bdb05e1d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-leaves.log",
+      "bytes": 4667,
+      "sha256": "fa36646412f38a4334f125278c82bb57461add21ffe0f02b03602d0455de4db8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target-policy-index.txt",
+      "bytes": 8974,
+      "sha256": "316e1653d665bcfe62d8939f0d75ec1d04201114e92a151c9329c364208a1bf8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target.asm",
+      "bytes": 27200,
+      "sha256": "8a1a7e804fd89f30e4689883eeb07b2db43b9017f1189dead56556cab4132905"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-target.log",
+      "bytes": 4557,
+      "sha256": "4edece6bc7a74200722ced01edcfb84e45fe8bf8cbb7a41a8fb7632223982aa5"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "human-h8-occupied-human-native",
+      "files": [
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-native.cpp",
+          "bytes": 9244,
+          "sha256": "ad99423e8e42f3b165013865ef301f5d8003fb3f2a8d64c72424ce72a29c6dcb"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-native-build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-native",
+          "bytes": 1471728,
+          "sha256": "ebeb4ef748e3c5405b0bdc9f8ee872a2a6c576a3c9790e995b14a4245647c693"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-native-run.log",
+          "bytes": 66,
+          "sha256": "96bb899e3342fa09394ee5ae40b6fd58d13d9a560d1029f6bb1bd7273e14aaa1"
+        }
+      ],
+      "result": "2000 mounted target/input/timer/failure checks /100 families PASS"
+    },
+    {
+      "name": "human-h8-occupied-human-i386",
+      "files": [
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-i386.cpp",
+          "bytes": 512,
+          "sha256": "de78b762969b5704c0127e0f9891754e02d1b3f0662d331705abf0a9f869dad0"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-i386-build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-i386.exe",
+          "bytes": 9920000,
+          "sha256": "0ada35cbd1e5896daa3181aabd00055111ecc6c3f194c0b4c8964e5a8af85fb3"
+        }
+      ],
+      "result": "strict actual i386 World/Human/occupied authority and presentation full link PASS; never executed"
+    }
+  ],
+  "launcher": {
+    "result": "strict launcher/probe compile/link PASS; never executed",
+    "log": {
+      "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-launcher-build.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    }
+  },
+  "correction": "005328D0 is the actual attached B4 payload-kind2 predicate, false when unattached; removed erroneous hand-inventory search and obsolete occupied cover guard.",
+  "limitations": [
+    "Native fixture uses actual target/direction resource owners and input words with explicit AI/World/Frames/selector/cover/cautious/Body doubles; no actual whole World execution.",
+    "Actual full Human/occupied/Car/control/mounted/path receiver composition and launcher/probe compile/link only; no Windows/original/desktop execution.",
+    "Full module-frame failure on missing Dog/Sight Runtime methods remains OPEN, as preserved in the previous runtime receipt.",
+    "Type34/36 target families, far Dog540 feedback, nonHuman task25/26 native EC, reached Aircraft/non7/entry/remaining interactions require actual owners; no fabricated direction/health/registry defaults.",
+    "Seven new frozen partial claims only; absent common0059C3B0 and delegated engine functions receive no new credit.",
+    "Initial native compile exposed missing direct packet-command include in the new header; corrected, alongside fixture typed-word API calls."
+  ],
+  "temporary_audits": "Both listed fixture pairs fingerprinted and removed after successful checks; original evidence/logs retained. Ongoing full module fixture remains temporary/in use as recorded by prior runtime receipt.",
+  "tracker": {
+    "result": "exact fingerprints/frozen census and27 tests PASS;34 complete/3591 partial (client3586+engine5), denominator18783",
+    "logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-tracker-render.log",
+        "bytes": 380,
+        "sha256": "69100d9d9d149329a8e08dc3eecaed69488f623aa6559d6ea0c4a76ffd5f84c0"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-tracker-check.log",
+        "bytes": 437,
+        "sha256": "26a9b124278626a4289ee7dc75ec03b489f88e3df0c02c94871c72e5b90fdf1c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-occupied-human-tracker-tests.log",
+        "bytes": 126,
+        "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+      }
+    ]
+  }
+}

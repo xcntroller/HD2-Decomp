@@ -64,7 +64,8 @@ inline CarDamageEvent read_car_damage_event(SessionPacketStream& packet,std::uin
     case 5:e.index=packet.read(4);break; //004E06A0.
     case 10:e.scalar=read_car_fuel(packet);break; //004E0040, fuel.
     case 11:e.first=packet.read_vector(packet.primary_quantizer(-1),7);e.index=packet.read(10);break; //004E0800, point then other Car identity.
-    case 6:case 7:throw std::runtime_error("Car packet requires its actual derived reader");
+    case 6:break; //004E0760 genuine no-payload reader; containing reset is004DB2A0.
+    case 7:throw std::logic_error("Car inventory packet requires incremental004DE1F0 dispatch");
     default:break; //004DB360 genuinely ignores8/9 and unassigned four-bit kinds.
     }
     return e;
@@ -82,6 +83,7 @@ inline void write_car_contact_event(SessionPacketStream& packet,const CarDamageE
     case 2:write_car_wheel_damage_payload(packet,e.index,e.health,e.first);break; //004E05B0.
     case 3:packet.write(e.index,8);break; //004E0650.
     case 4:break; //004E0720.
+    case 6:break; //004E0770 writes only the four-bit kind, already written above.
     case 5:packet.write(e.index,4);break; //004E06C0.
     case 10:write_car_fuel(packet,e.scalar);break; //004E00F0.
     case 11:(void)packet.write_vector(e.first,packet.primary_quantizer(-1),7);packet.write(e.index,10);break; //004E0830.

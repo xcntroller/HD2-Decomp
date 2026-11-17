@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cmath>
 #include <limits>
+#include <string_view>
 
 namespace hd2::game {
 
@@ -17,6 +18,34 @@ namespace hd2::game {
 class MissionNavigation {
 public:
     explicit MissionNavigation(MissionTableSet& table) : table_(table) {}
+    void append_named_references(std::string_view prefix,std::vector<std::uint16_t>& output)const { //0051C9C0/0051C840.
+        if(table_.count0c&&!table_.data10)throw std::runtime_error("Navigation named references require actual label records");
+        const auto* records=static_cast<const MissionTableVectorRecord*>(table_.data10);
+        for(auto n=table_.count0c;n;){
+            const auto& record=records[--n];const auto* label=reinterpret_cast<const char*>(record.words.data());
+            //These same four serialized words are a fixed16 label in this
+            //lookup. Native strstr(label,prefix)==label is case-sensitive.
+            if(prefix.size()<=16&&std::memcmp(label,prefix.data(),prefix.size())==0)output.push_back(record.value);
+        }
+    }
+    bool connect_runtime_points(std::uint16_t first,std::uint16_t second){ //0051F280; first mark survives a rejected second mark.
+        auto* a=record(first);auto* b=record(second);
+        if(!a||!b||!mark_runtime_link(*a,second,*b)||!mark_runtime_link(*b,first,*a))return false;
+        auto* begin=static_cast<std::uint32_t*>(table_.begin30);auto* end=static_cast<std::uint32_t*>(table_.end34);
+        auto* limit=static_cast<std::uint32_t*>(table_.limit38);
+        if((!begin&&(end||limit))||(begin&&(!end||!limit||end<begin||limit<end)))throw std::logic_error("Navigation runtime pair vector is malformed");
+        const auto size=begin?static_cast<std::size_t>(end-begin):0;
+        if(end==limit){
+            const auto growth=size>1?size:1;
+            if(size>(std::numeric_limits<std::size_t>::max()/4)-growth)throw std::length_error("Navigation runtime pair capacity exceeds bounds");
+            const auto capacity=size+growth;
+            auto* next=static_cast<std::uint32_t*>(TableStorage::allocate_table_storage(capacity*4));
+            if(size)std::memcpy(next,begin,size*4);
+            TableStorage::release_table_storage(begin);begin=next;end=next+size;
+            table_.begin30=begin;table_.end34=end;table_.limit38=begin+capacity;
+        }
+        *end=std::uint32_t(first)|(std::uint32_t(second)<<16);table_.end34=end+1;return true;
+    }
     void reset_runtime_links(){ //0051F230 via00523E30: FIRST dataset only; retains vector capacity.
         table_.end34=table_.begin30;
         for(std::uint32_t n=0;n<table_.count0;++n){
@@ -91,6 +120,45 @@ public:
             if(point->reserved17[0]|point->reserved17[1]|point->reserved17[2])output.push_back(index); //00524B10(7).
         return true;
     }
+    bool append_spatial_cover(const std::array<float,3>& position,float radius,std::vector<std::uint16_t>& output)const { //0051F830→0051DBD0/0051D460.
+        if(!table_.count0)return false;
+        if(!std::isfinite(position[0])||!std::isfinite(position[1])||!std::isfinite(position[2])||!std::isfinite(radius)||position[1]<-100000.f||position[1]>100000.f)
+            throw std::runtime_error("Spatial cover reaches native uninitialized/nonfinite navigation marks");
+        std::vector<std::uint8_t> marked(table_.count0,radius==0.f?1u:0u);
+        if(radius!=0.f){
+            const float limit=static_cast<float>(static_cast<long double>(radius)*radius+.0010000000474974513f); //0080F514.
+            if(!std::isfinite(limit))throw std::runtime_error("Spatial navigation radius exceeds finite native traversal");
+            const auto cell=x_band(position[0]);auto left=cell,right=cell;
+            float left_distance=static_cast<float>(static_cast<long double>(position[0])-static_cast<long double>(cell)*10.f);
+            float right_distance=static_cast<float>(10.L-left_distance);
+            const auto visit=[&](std::int32_t band_index){
+                const auto found=search(band_index,position[2],0xffffu,0xffffu);
+                const auto pivot=found==0xffffu?std::uint32_t(table_.count0):std::uint32_t(found);
+                const auto point=[&](std::uint32_t index){
+                    const auto& value=*record(static_cast<std::uint16_t>(index));if(band(value)!=band_index)return false;
+                    const auto z=static_cast<long double>(position[2])-real(value,8),z2=z*z;
+                    if(!(z2<limit))return false;
+                    const auto x=static_cast<long double>(position[0])-real(value,0),y=static_cast<long double>(position[1])-real(value,4);
+                    if((y*y+x*x)+z2<limit)marked[index]=1;
+                    return true;
+                };
+                for(auto n=pivot;n<table_.count0;++n)if(!point(n))break;
+                for(auto n=static_cast<std::int32_t>(pivot)-1;n>=0;--n)if(!point(static_cast<std::uint32_t>(n)))break;
+            };
+            visit(cell);
+            for(;;){
+                const bool visit_left=static_cast<long double>(left_distance)*left_distance<limit;
+                if(visit_left){if(left==std::numeric_limits<std::int32_t>::min())throw std::runtime_error("Spatial navigation band underflow");--left;left_distance=static_cast<float>(static_cast<long double>(left_distance)+10.f);visit(left);}
+                if(static_cast<long double>(right_distance)*right_distance<limit){if(right==std::numeric_limits<std::int32_t>::max())throw std::runtime_error("Spatial navigation band overflow");++right;right_distance=static_cast<float>(static_cast<long double>(right_distance)+10.f);visit(right);}
+                else if(!visit_left)break;
+            }
+        }
+        for(std::uint32_t n=0;n<table_.count0;++n)if(marked[n]){
+            const auto* value=record(static_cast<std::uint16_t>(n));
+            if(value->reserved17[0]|value->reserved17[1]|value->reserved17[2])output.push_back(static_cast<std::uint16_t>(n)); //00524B10(7), ascending.
+        }
+        return true;
+    }
     //005223B0 -> 00521B60. Search scratch is indexed by the original point
     //number; all positions, flags and edges still belong to the loaded table.
     bool find_route(std::uint16_t start,std::uint16_t destination,std::uint32_t mask,
@@ -109,6 +177,41 @@ public:
             return route_integer(scaled);
         };
         return search_route(start,destination,mask,route,estimate);
+    }
+    //00522470 uses the same priority-list search but a DIFFERENT edge policy
+    //005223D0. Door phase is borrowed from actual second-family actor binding.
+    template<class DoorPhase>bool find_dog_route(std::uint16_t start,std::uint16_t destination,
+            std::vector<std::uint16_t>& route,DoorPhase door_phase)const{
+        if(!record(start)||!record(destination))return false;
+        route.clear();if(start==destination){route.push_back(start);return true;}
+        const auto target=position(destination);
+        const auto estimate=[&](std::uint16_t index){const auto point=position(index);
+            const auto x=std::abs(static_cast<long double>(target[0])-point[0]),y=std::abs(static_cast<long double>(target[1])-point[1]),z=std::abs(static_cast<long double>(target[2])-point[2]);
+            return route_integer(((z+y)+x)*256.f);
+        };
+        const auto admit=[&](std::uint16_t from,const MissionTableRecord& a,const MissionTableRecord& b){
+            if(a.byte16==0)return true;
+            if((a.byte16==3&&b.byte16==3)||(a.byte16==4&&b.byte16==4)||(a.byte16==6&&b.byte16==5))return false;
+            if(a.byte16==1&&b.byte16==1){const auto phase=door_phase(from);if(phase&&(*phase==0||*phase==3))return false;}
+            return true;
+        };
+        return search_route_policy(start,destination,route,estimate,admit);
+    }
+    long double route_length(const std::vector<std::uint16_t>& route)const{ //005230D0, x87 return; invalid/missing edge returns0.
+        if(route.size()<2||!record(route.front()))return 0;
+        std::uint32_t total=0;
+        for(std::size_t n=1;n<route.size();++n){
+            if(!record(route[n]))return 0;
+            const auto& previous=*record(route[n-1]);const auto count=previous.flags&0x3fu;
+            if(count&&!previous.payload)throw std::runtime_error("Navigation route length lost actual link storage");
+            const auto* links=static_cast<const unsigned char*>(previous.payload);bool found=false;
+            for(unsigned i=0;i<count;++i){
+                SerializedBytes link(links+i*4,4);const auto target=link.half(),weight=link.half();
+                if(target==route[n]){total+=weight;found=true;break;} //005247A0 scans FORWARD; first duplicate wins.
+            }
+            if(!found)return 0;
+        }
+        return static_cast<long double>(total)*.00390625f; //Unsigned DWORD sum, no FLOAT spill.
     }
     //00521460 -> 00521480. End at the first discovered point outside every
     //target's exclusion radius with zero truncated distance penalty.
@@ -234,6 +337,24 @@ public:
         return nearest_volume_impl(point,radius,minimum,true);
     }
 private:
+    static bool mark_runtime_link(MissionTableRecord& from,std::uint16_t index,const MissionTableRecord& to){ //005248C0/005247A0/005247E0.
+        if(!(from.flags&0x400u)||!(from.flags&0x40u)||(from.flags&0x80u)||&from==&to)return false;
+        const auto count=from.flags&0x3fu;
+        auto* bytes=static_cast<unsigned char*>(from.payload);
+        if(!bytes)throw std::logic_error("Navigation synthesized link requires actual borrowed payload");
+        for(unsigned n=0;n<count;++n){std::uint16_t value;std::memcpy(&value,bytes+n*4,2);if(value==index)return false;}
+        if(count==32)return false;
+        auto* last=bytes+count*4;std::uint32_t sentinel;std::memcpy(&sentinel,last,4);
+        if(sentinel!=0xffffu)return false;
+        const auto x=static_cast<long double>(real(to,0))-real(from,0),y=static_cast<long double>(real(to,4))-real(from,4),z=static_cast<long double>(real(to,8))-real(from,8);
+        const auto length=std::sqrt((x*x+y*y)+z*z)*(1.L-(static_cast<unsigned>(to.prefix[0x12])+from.prefix[0x12])*.0009765625f);
+        const float stored=static_cast<float>(length);
+        if(length>250.f||!(stored>.0010000000474974513f))return false;
+        const auto encoded=static_cast<long double>(stored)*256.f;
+        if(!std::isfinite(encoded)||encoded<0||encoded>std::numeric_limits<std::int32_t>::max())throw std::logic_error("Navigation synthesized link conversion exceeds native range");
+        const auto weight=static_cast<std::uint16_t>(static_cast<std::int32_t>(encoded));
+        std::memcpy(last,&index,2);std::memcpy(last+2,&weight,2);from.flags=static_cast<std::uint16_t>((from.flags+1u)|0x80u);return true;
+    }
     static std::uint32_t route_integer(long double value){
         if(!(value<0x1p63L))return 0; //Low DWORD of the x87 indefinite.
         return static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
@@ -241,6 +362,11 @@ private:
     template<class Estimate>
     bool search_route(std::uint16_t start,std::uint16_t destination,std::uint32_t mask,
                       std::vector<std::uint16_t>& route,Estimate estimate)const {
+        return search_route_policy(start,destination,route,estimate,[mask](std::uint16_t,const MissionTableRecord&,const MissionTableRecord& next){return !(next.flags&mask&0xfb40u);});
+    }
+    template<class Estimate,class Admit>
+    bool search_route_policy(std::uint16_t start,std::uint16_t destination,
+                      std::vector<std::uint16_t>& route,Estimate estimate,Admit admit)const {
         constexpr std::uint16_t none=0xffff;
         struct SearchPoint {
             std::uint32_t cost=0,estimate=0,score=0;
@@ -264,7 +390,7 @@ private:
                 const auto weight=link.half();
                 const auto* neighbor=record(index);
                 if(!neighbor)throw std::runtime_error("Navigation route link exceeds the point table");
-                if(neighbor->flags&mask&0xfb40u)continue;
+                if(!admit(head,point,*neighbor))continue;
 
                 auto& next=points[index];
                 const bool pending=next.parent!=none;

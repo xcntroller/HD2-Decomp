@@ -1,0 +1,333 @@
+{
+  "date": "2026-11-12",
+  "branch": "feature/p22-frame",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-frame",
+  "fetched_sha": "05dbdee51cc366476317011b91b1a1863041dcee",
+  "actual_implementation_base": "05dbdee51cc366476317011b91b1a1863041dcee",
+  "previous_checkpoint": "272e56506d40622f8346cb2e940671cb717b8169",
+  "source_only": true,
+  "frame_source_complete": false,
+  "available_base_containing_and_binding_scope_complete": true,
+  "blocked": true,
+  "application_loading_enabled": false,
+  "original_code_executed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "push_or_merge_performed": false,
+  "unmerged_sources_inspected_through_git": {
+    "render": "54a93e75c2ff77054d7d3d387d5fa8abadab6e60",
+    "ui": "ebdcbf59bc6a59880bb664c0a5934e46105669d6",
+    "master": "b132e6d78d9622e63dcfee982e917ad0ac10b64f",
+    "physics_source_checkpoint": "c1908cf",
+    "research": "fa641e8177445cfb4b08e12a177c0124de13df95"
+  },
+  "original_client": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "bytes": 6889472
+  },
+  "reused_original_metadata": {
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-live-loose-items/005b7320.c": {
+      "sha256": "a849084043cea79d3f0921e0f5923e2f09076b06fefb0842123e981ac5669ff4",
+      "bytes": 2000
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-live-loose-items/005b7320.json": {
+      "sha256": "19b9f4e52a2848a20fc6d5d63558d52bb8393f5a0e60407e21d9c4c6e54feaa7",
+      "bytes": 5509
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-live-loose-items/005b7480.c": {
+      "sha256": "b786b22db061c9d01fdf25e31087473ca3bbc502745e90a8aca193ff9e99e2b0",
+      "bytes": 329
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-live-loose-items/005b7480.json": {
+      "sha256": "9dc2eaabdacc3f96c343668abd8ba4cd3c59d2da5376bb1e6d007aeb4aabfd93",
+      "bytes": 871
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-ground-motion/00768170.c": {
+      "sha256": "9b45b0f8f924df99c094a2c7ead2717a297fb3aa3fa6b59b15c1edc0a3232591",
+      "bytes": 698
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-ground-motion/00768170.json": {
+      "sha256": "842614f47e44035fc32a86b17b8f7e8c9b3eb97305e9588f7d65969c98321ce6",
+      "bytes": 3537
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-ground-motion/007646f0.json": {
+      "sha256": "99e9da68187e9ac6daf424d6326e5b4c4524697b6c0534a27c444e476e135536",
+      "bytes": 119999
+    }
+  },
+  "source_files": {
+    "recovered/game/dynamic_item_actor.h": {
+      "sha256": "759f0dfbef9e9948136c7dbace4190e0c1c144b3478bf7846b19be4b181a33ea",
+      "bytes": 8174
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "8c5d3ad8b0d34112a80d0e337a858252aa7d9242a8606a7138217b10499da0fb",
+      "bytes": 55419
+    },
+    "recovered/game/human_ground_motion.h": {
+      "sha256": "9e0204f2b7f935a1b1fa82fec9bf7d6bc27f3f1d2f08ec1284186e68e26a0777",
+      "bytes": 36891
+    },
+    "recovered/game/human_ladder_control.h": {
+      "sha256": "d89d881b7ed222e3c2d1c9db635fa3d3f77f2149ca7a8261569fd6d238498858",
+      "bytes": 22999
+    },
+    "recovered/game/human_step_preparation.h": {
+      "sha256": "b7b42ae24f1a3a6bd199cd9ffaed2694e639d3978d01d17a0d1b9aa1672bcc5e",
+      "bytes": 8022
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "b171eb67e8e0d48957378ac4e0d367dba43c4c8b1bd32e43b86a51138dce3c6b",
+      "bytes": 105506
+    },
+    "recovered/game/session_frame_input.h": {
+      "sha256": "f0b61b8ce9ea472a216d677cc42f0b6728c4cb2c49506b8930b7cadf96cca58d",
+      "bytes": 4596
+    },
+    "recovered/game/session_frame_loading.h": {
+      "sha256": "10ddbc659dcb5ad9f40855e6fab72a05130ef3c2633e5baaf9a5079efe7b3a9f",
+      "bytes": 6953
+    },
+    "recovered/game/session_owner.h": {
+      "sha256": "87fc4f39d53d98deb10aecfb9600db599ac06a9763c24e65db85024116a55a8f",
+      "bytes": 11535
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "82aa2073a8591854a6cee3ac2bc49b1be8d4f77e6fcd4de9928b659de502301b",
+      "bytes": 95056
+    },
+    "recovered/host/game_scene_actor_frames.h": {
+      "sha256": "0062ecf32bac81e7898c927de235259cd439a561814aa133baa390bfd01ca8e9",
+      "bytes": 10124
+    },
+    "recovered/host/game_session_frames.h": {
+      "sha256": "79aae63f226a263aa958715447f5c4bb8f6182a02adf893ecc63649fb7a0147a",
+      "bytes": 12205
+    },
+    "recovered/host/game_session_lifecycle.h": {
+      "sha256": "3ac451029b68a41201c47e894c2fcbb0385f46d853149c94a8ded1591252258c",
+      "bytes": 7999
+    }
+  },
+  "documentation_and_ledger": {
+    "HANDOFF.md": {
+      "sha256": "ac67c2dbe8567a795d2c53ed211c45c9e5167708adc447a4549ae73cd033a95b",
+      "bytes": 3788
+    },
+    "analysis/function-status.json": {
+      "sha256": "acafb179bc8afad386b599adb64f700b075bf99c5d3895d9bd10f8fe652a3315",
+      "bytes": 2418031
+    },
+    "analysis/p22-frame-implementation.md": {
+      "sha256": "0875d618b524e0628cedcb56289e81c000a147657731db19828268f4d3ea41a7",
+      "bytes": 19186
+    },
+    "analysis/p22-frame-plan.md": {
+      "sha256": "55b0f4b3988d97ad6ebab86deed9a2255e9d5c193de1dfe061758d01de1b3162",
+      "bytes": 5932
+    },
+    "plan.md": {
+      "sha256": "3f9f2709b1d3dd993c9158ecbc5b4d671a6d6a323a3ffa3789ba5c21aac9a1a8",
+      "bytes": 25131
+    },
+    "analysis/p22-frame-external-contracts.json": {
+      "sha256": "fb931cb2bc1c91c199c22fde1edad20045b54c4b5b3cf6e1f16c4ec7efa075ee",
+      "bytes": 26642
+    }
+  },
+  "verification_artifacts": {
+    "analysis/work/p22-frame-runtime-20261112/native-loose-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-frame-runtime-20261112/native-loose.log": {
+      "sha256": "541d248e1e27c3902608e5c608f037bc880c9fc189a5d5577aa6191f57d17072",
+      "bytes": 99
+    },
+    "analysis/work/p22-frame-runtime-20261112/native-input-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-frame-runtime-20261112/native-input.log": {
+      "sha256": "a60448e84696056dc147294c403b7e24672c1372803825fea380f70a524e12cf",
+      "bytes": 108
+    },
+    "analysis/work/p22-frame-runtime-20261112/i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/p22-frame-runtime-20261112/application.log": {
+      "sha256": "fd8e8cf22aebcba1d0922c14b3919e98ee34a223f6c3c48c2c164935f5435fb5",
+      "bytes": 613
+    },
+    "analysis/work/p22-frame-runtime-20261112/tracker.log": {
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    "analysis/work/p22-frame-runtime-20261112/ledger-focused.log": {
+      "sha256": "d21f83cf2818c2820b05fdeabd6b8d49cc4c2c85289cd1bedd305b8ae141ab61",
+      "bytes": 334
+    },
+    "analysis/work/p22-frame-runtime-20261112/windows-products.log": {
+      "sha256": "c0d04845a463667e9210ed4468fe82fed236020910446d7edc9b241b3f00e330",
+      "bytes": 222
+    },
+    "analysis/work/p22-frame-runtime-20261112/native-compiler.log": {
+      "sha256": "d4838ab2821a28fd0b9b7700536bfbd550f11ac13a7885ec670df7ff1c4d7b48",
+      "bytes": 247
+    },
+    "analysis/work/p22-frame-physics-20261112/004c8ee0.c": {
+      "sha256": "91d1d6b4da5f47b2399580aef6450aecfe1c3361e52b3c95f1f3b81e42208801",
+      "bytes": 1252
+    },
+    "analysis/work/p22-frame-physics-20261112/004c8ee0.json": {
+      "sha256": "f577883970c3894f9bd31e0cf70ce7e52e1b578599d4b2a0d836b858abea76d5",
+      "bytes": 3721
+    },
+    "analysis/work/p22-frame-physics-20261112/004c94b0.c": {
+      "sha256": "9b1ed57590e5cdafce37be42e63228093050d22b97e3a901b717931bd6b088b6",
+      "bytes": 31238
+    },
+    "analysis/work/p22-frame-physics-20261112/004c94b0.json": {
+      "sha256": "df5f07d5a3c88883bf9a46b8429518c49b6fa1a44c12dfcfe40f55b74f4fb675",
+      "bytes": 119541
+    },
+    "analysis/work/p22-frame-physics-20261112/004cb2b0.c": {
+      "sha256": "8df963e1951c08f2799b4be82aea8d650552867a2212a8243ba9b362452e2acd",
+      "bytes": 28176
+    },
+    "analysis/work/p22-frame-physics-20261112/004cb2b0.json": {
+      "sha256": "478f5d865cedca5134d62cdb19f1fff9ecf76e6abc83d24742100d1e45042912",
+      "bytes": 74454
+    },
+    "analysis/work/p22-frame-physics-20261112/004cf440.c": {
+      "sha256": "16260beeafbf5d78e11ff6488b5f9a477799b8c9e07a0d5f2b49bb2bfdb459d9",
+      "bytes": 8622
+    },
+    "analysis/work/p22-frame-physics-20261112/004cf440.json": {
+      "sha256": "453e83875a493597d3c05fdf8b3c1ec643c27110b932af135de8aff63a3e2c11",
+      "bytes": 75801
+    },
+    "analysis/work/p22-frame-physics-20261112/004ceaa0.c": {
+      "sha256": "438f7edb2c26372268e0a39aab935d845c43a27c994fd724929720616a252002",
+      "bytes": 3823
+    },
+    "analysis/work/p22-frame-physics-20261112/004ceaa0.json": {
+      "sha256": "da157a755df6e15bb276788ebe89596363d1eb42f102264ab266dd701b02cfb7",
+      "bytes": 2967
+    },
+    "analysis/work/p22-frame-physics-20261112/loose-item-frames.asm": {
+      "sha256": "7a5836bddb5f1a78fc24b0b931fe9fd95d88a01a62864d35571b858857b9285b",
+      "bytes": 6685
+    },
+    "analysis/work/p22-frame-physics-20261112/loose-item-constants.json": {
+      "sha256": "cdf673fb97cab413e7d9db9f6a1087b0fc9cfc92a73d225252a038aa28398d75",
+      "bytes": 284
+    },
+    "analysis/work/p22-frame-physics-20261112/effects-opacity-index.txt": {
+      "sha256": "fb81ce36f6eab3161355f13b8a74900db99572428f2ede8665aab7aed94e26b2",
+      "bytes": 4739
+    },
+    "analysis/work/p22-frame-physics-20261112/effects-camera-amount.asm": {
+      "sha256": "53e33c2741f7d484a4ed078d655795941fa1fb3ce282cfbdefe0cfa484f06dd9",
+      "bytes": 876
+    },
+    "analysis/work/p22-frame-physics-20261112/effects-reset-opacity.asm": {
+      "sha256": "4b6ea988a6b75fff7ab827176513fe5a2b911a94abca4710eb7735d962b2eff1",
+      "bytes": 1285
+    },
+    "analysis/work/p22-frame-physics-20261112/export.log": {
+      "sha256": "9153360e5d12ec7329daad1f2b0795c4578523a477798485481159cd02bfde7f",
+      "bytes": 4790
+    }
+  },
+  "verification": {
+    "native_loose_item": "PASS ASan/UBSan/LSan;100 authority/presentation/timer/fade/expiry/sound/failure/retry families and100 actual registry deferred-removal lifetimes; actual actor, RigidBody loading/geometry, fade queue and process packet streams; engine/physics/retained restore/sound endpoints are doubles. Packet0 field is3 bits and message20 bits; no positive physics equivalence or mission execution.",
+    "native_mutable_input": "PASS ASan/UBSan/LSan100 original writable pairs; HUD mutation observed by Player and final session gate; failed UI prefix preserves writes. UI is a double.",
+    "i386": "PASS strict -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror full concrete World construction/destruction, session/module/actual Runtime11 fade/packet and lifecycle input/fixed/update/retire composition. External UI/Runtime doubles are defined throwing bodies, not declarations. Removed whole-walk/notification/beep/loose-item/expiry Runtime methods are not supplied by the fixture. PE never run.",
+    "application": "PASS sequential existing make -C recovered -j1 application-launch; PE never run.",
+    "ledger": "PASS frozen inventory/baseline/full ledger uniqueness and changed entries/evidence. Full tracker blocked by unrelated legacy missing analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm at0062D880; README not regenerated.",
+    "engine_runtime": "NOT RUN",
+    "desktop": "NOT RUN"
+  },
+  "evidence_levels": {
+    "historical_resolver_bytes": "Preserved existing DATA evidence; no new mission byte/population observation.",
+    "static_requirements": "Original addresses/instructions/constants, current source APIs and real compilation verified.",
+    "actual_loaded_populations": "No actual mission loaded. Native fixtures explicitly labelled, not production population evidence.",
+    "actually_executed_runtime_branches": "Native policy fixtures only; no engine draw/present, mission reachability or desktop evidence."
+  },
+  "added_partial_entries": [
+    "005b7320",
+    "005b7480"
+  ],
+  "coverage_expansions": [
+    "0069a560",
+    "00768170"
+  ],
+  "complete_promotions": 0,
+  "no_credit": [
+    "instrumentation",
+    "bindings to delegated or unavailable bodies",
+    "004C8EE0/004C9480 absent frozen entries",
+    "research-only exported kernels",
+    "offline-only delegated restore gate",
+    "Win32 MessageBeep body"
+  ],
+  "blockers": {
+    "render": "Original volume3C/40 first-history provenance; no invented initialization.",
+    "physics": "Later masterc1908cf RigidBody.update/World adapters and callback ABI import; original fresh part5F9 first read is still unproduced even there; wheel695 separate.",
+    "retained_restore": "Positive non7 005B7EC0 requires SAME retained Runtime placement records, pose/005B7DA0/inverse quaternion/quantizers/publication. Offline RET implemented.",
+    "runtime": "54 exact required typed operations with consumer sites in analysis/p22-frame-external-contracts.json; not54 observed Tutorial failures.",
+    "ui": "Source complete on unmergedebdcbf5; actual HUD/FPV/control and their gameplay/command/selector/console loan producers must compose with this mutable64-word seam.",
+    "conditional_non7_session": "0069AF10/0069B230 bodies remain OPEN behind typed process config/console/match/peer/queues; exact native addresses/gates in implementation note; explicit failures retained.",
+    "own_life": "Application install/activation/controller/cutscene/peer/forwarding, native scheduling and lifetime; no enabling to test.",
+    "engine_desktop": "Authorized user workflow required for real runtime populations, first frame, control, failure/return/repeat and desktop acceptance."
+  },
+  "temporary_audit_sources_binaries_and_scripts": {
+    "/tmp/p22-frame-loose-native.cpp": {
+      "sha256": "5f09674abc4ed02cb47dd82920504e230a4d75c4a6203ba0a514d8ab86f987ab",
+      "bytes": 9634
+    },
+    "/tmp/p22-frame-loose-native": {
+      "sha256": "437d4925dd3ad8fe18b016a4cea630a7a376a2f3aeea9ce9ba18f3e8700892ba",
+      "bytes": 4050688
+    },
+    "/tmp/p22-frame-mutable-input.cpp": {
+      "sha256": "89d71ddc94112b7a522ab4d5fdb93a5799f6901df143bb71c52a983f742ee007",
+      "bytes": 2906
+    },
+    "/tmp/p22-frame-mutable-input": {
+      "sha256": "51559d35540413321a240e64a17ebccca9eb9459306ba6480416950429734c55",
+      "bytes": 296232
+    },
+    "/tmp/p22-frame-generate-fixture.py": {
+      "sha256": "8bf5f3465af3ec9b18b9f2aa7e415507a3e5d19b1b1f5db441f67acb05a263f3",
+      "bytes": 2718
+    },
+    "/tmp/p22-frame-concrete.cpp": {
+      "sha256": "547cff1b3fa494f40c64836bbf32643519da8c21b066e9fa67015d00bfd5adf7",
+      "bytes": 11710
+    },
+    "/tmp/p22-frame-concrete.exe": {
+      "sha256": "efedaaaf4776dbaa44dc4b98c3f6d471c8987dc7a8c05275cebaba9ff0b8d1b2",
+      "bytes": 11128832
+    },
+    "/tmp/p22-frame-ledger-check.py": {
+      "sha256": "1f05f85f854642162951f3f128c8e7374b5d90719b8f333349f58be0f08f5676",
+      "bytes": 1317
+    },
+    "/tmp/p22-frame-physics-ghidra/ExportFramePhysics.java": {
+      "sha256": "65b18586e215c93198ab82e594769cbb89ea219d1b802de24a58f968984a0567",
+      "bytes": 1564
+    }
+  },
+  "temporary_artifacts_removed": true,
+  "permanent_tests_added": false,
+  "original_engine": {
+    "path": "/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2/LS3DF.dll",
+    "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+    "bytes": 864256
+  },
+  "resources": "No new asset resources or actual mission resource selections. Existing original engine and original client fingerprints are recorded; graphics/frame resources remain borrowed from existing owners."
+}

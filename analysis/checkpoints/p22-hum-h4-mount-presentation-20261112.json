@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 C8 actual mounted230 presentation and EC-bound target opacity",
+  "implementation_base": "0f904f4",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "sha256": "b0abaf5997c225d6b73982f0f42258f668952f09e03d1cf7ae468c16a7633d3c",
+      "bytes": 57329
+    },
+    {
+      "path": "recovered/game/human_equipment_loading.h",
+      "sha256": "5c5526de8085fb6cfbaa9488f572922d05c4bb64595238c210be6cf67cc41c6d",
+      "bytes": 6526
+    },
+    {
+      "path": "recovered/game/human_equipment_services.h",
+      "sha256": "014183680e0b798f9c80a760bb2d1171e5739785d74ef8f797f5eb863f8148a3",
+      "bytes": 6140
+    },
+    {
+      "path": "recovered/game/human_opacity_control.h",
+      "sha256": "27909fda44a419a6712b4de2b6add5a249bab1f424098a98cd5fe9f75815a6bd",
+      "bytes": 5994
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "sha256": "6e8d9e1eea5c4d18ce126c09747d543194a29ba92ce0cb57cd4b50b10c18e2a6",
+      "bytes": 111528
+    },
+    {
+      "path": "recovered/game/human_equipment_mount_presentation.h",
+      "sha256": "0920a6bccd23943a5b4c89e03b8bf8613500ff373ac2c6fe4d3df8146f680602",
+      "bytes": 2232
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/equipment-mount-present.asm",
+      "sha256": "54f08a0338a283db274dda0a98721ef5dea2cc72d4eda881cd2fdb19193fb091",
+      "bytes": 8844
+    }
+  ],
+  "verification": {
+    "native": "PASS34 strictO1 ASan/UBSan/LSan actual equipment state and opacity copy/smoothing; explicit engine/Scene endpoints. Positive, all nine failure prefixes, replacement, absence/rates/signed elapsed/retirement policies.",
+    "i386": "PASS strictO0 full actual public DD0->230->frames/Scene->model EC Human->actual target DD0 opacity/GEffects source linkage. No mounted presentation Runtime double; adjacent Runtime branches defined throwing doubles.",
+    "application": "PASS existing launcher/probe strictO2 full links, no execution",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-present-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-present-native-run.log",
+      "sha256": "169a80c968722571e902e04714b4352158ad96cb198cbbf0636379c340a33281",
+      "bytes": 71
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-present-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-present-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-present-progress.log",
+      "sha256": "728c0839e416cfd7f95e717a08b3a34596d1485841dd5bcf8dd0d7bb5de2ccb6",
+      "bytes": 237
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-present-native.cpp",
+      "sha256": "ba1a34363c58787b121f16dbb1bc8de49ad1a5457ace57bbc136e43a744d25ec",
+      "bytes": 3989
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-present-native",
+      "sha256": "25cc8f2b34b8835a04a13046a5e13350f220b00a4c821e7ed4d40e1a930356ce",
+      "bytes": 366456
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-present-host.cpp",
+      "sha256": "0c80ce0ae8c958f4b6b54a58cb571a14c5887d3aaa91b1302233bae700563c02",
+      "bytes": 1171
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/mount-present-host.exe",
+      "sha256": "fbc1b7ce0b28a4aeeb832b294fd06584b00c53af3b7c833fe2d2cb313f624408",
+      "bytes": 4277760
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "00793490"
+    ],
+    "extended": [
+      "00758830"
+    ],
+    "complete": 34,
+    "partial": 3026,
+    "client_partial": 3021,
+    "engine_partial": 5,
+    "denominator": 18783
+  },
+  "remaining": "Track8/9/action model4/8/9 producers, remaining completion and Script/subgroup/attachment families stay open; no fixture/direct invocation mission reachability credit."
+}

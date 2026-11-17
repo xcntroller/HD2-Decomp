@@ -9,13 +9,17 @@ namespace hd2::game {
 //Unlike006F7C90's camera ray there is no static tree traversal, vertical
 //dispatch or length+radius reach test. Keep original Z/X/bucket order and the
 //full initial XZ bounds even when a nearer hit shortens the best parameter.
-//Only the required boolean result is exposed; raw output pointer/W ABI is not.
+//Expose the winning descriptor for0054F910 and the existing Door boolean query;
+//raw output-vector/W ABI is not reconstructed.
 template<class Frame,class Object,class Math>class DoorCollisionQueries {
 public:
     using Tree=CollisionTree<Frame>;using Vector=CollisionRayState::Vector;
     using Buckets=DynamicCollisionBuckets<Object,typename Tree::DynamicGrid>;
     DoorCollisionQueries(const Tree& tree,const Buckets& buckets,Math& math):tree_(tree),buckets_(buckets),narrow_(math){}
     bool blocked(const Vector& start,const Vector& displacement,std::uint32_t layers=2,std::uint32_t flags=0) {
+        return nearest(start,displacement,layers,flags)!=nullptr;
+    }
+    const Object* nearest(const Vector& start,const Vector& displacement,std::uint32_t layers=2,std::uint32_t flags=0) {
         using namespace collision_ray_math;
         CollisionRayState state;state.start=start;state.displacement=displacement;
         state.excluded_layers=layers|8u;state.excluded_flags=flags|0x20u;
@@ -51,7 +55,7 @@ public:
                 if(kind==0x42||kind==0x44)hit=sphere(*object,state)||hit;
                 else hit=narrow_.primitive(*object,state)||hit;
             }
-        return hit;
+        return hit?static_cast<const Object*>(state.hit_dynamic):nullptr;
     }
 private:
     static CollisionSweepCellRange cell_range(float low,float high,float origin,float step,std::uint32_t count) {

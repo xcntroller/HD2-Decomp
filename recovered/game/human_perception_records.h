@@ -55,6 +55,11 @@ public:
     void bind(Pool& pool){if(!records_.empty()&&pool_!=&pool)throw std::logic_error("Cannot replace a populated Human perception pool");pool_=&pool;}
     bool empty()const{return records_.empty();}std::size_t size()const{return records_.size();}
     Record* at(std::size_t index)const{return records_.at(index).get();}
+    Record& append(typename Pool::Lease record){ //00591F00(end,1,&record), existing actual2A8 vector.
+        if(!record||!pool_||record.get_deleter().pool!=pool_)
+            throw std::logic_error("Human perception append requires its actual shared-pool record");
+        auto* result=record.get();records_.push_back(std::move(record));return *result;
+    }
     template<class Clock,class Notify>void append_or_refresh(std::uint32_t kind,const HumanVector& position,Actor actor,
             Clock&& ticks,Notify&& notify) { //005A5430 record tail AFTER its actual sound gates.
         for(auto n=records_.size();n;) {

@@ -1,0 +1,147 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "6dbb440",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-player-cover-source.md",
+  "new_partial_client_bodies": [
+    "00459740",
+    "00537a40",
+    "005245c0"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/human_player_cover_move.h",
+      "bytes": 12355,
+      "sha256": "94ffcc54ef16bfa35607240afa16ccc7c8bd4710d93766e6e3262b0247825a8b"
+    },
+    {
+      "path": "recovered/game/human_player_command_dispatch.h",
+      "bytes": 11210,
+      "sha256": "f3bea53df2f53d1fcd1a99b67b99dc6d8fa4fdfab0a74aa5de5d982f2a78e1ca"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 296422,
+      "sha256": "e4cb506bc0a924937404c1e9fd1852a43e875ac57abbc8a8890f7c95f19aca5a"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-cover-direction.asm",
+      "bytes": 664,
+      "sha256": "ccf3b167048e760fb1ce6d0626c5c56b554d4484e0d9cf603cee374645daa685"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-cover-ideal-offsets.asm",
+      "bytes": 1822,
+      "sha256": "52c39152139e86990bd79c1fe6b3cc9529f4c188746afbcd712588e40f27ca73"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-cover-move.asm",
+      "bytes": 81409,
+      "sha256": "457ab594f25a8b16153346401461e53a5a10b2d949db59e2b84d3d2b5e3344d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-cover-offsets.asm",
+      "bytes": 2266,
+      "sha256": "1a3bd1bcfc947c61675def83032f80e53ea2730010ce17cd64d8c23a410afeed"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-cover-task.asm",
+      "bytes": 5280,
+      "sha256": "d969e90a80d35baa7a7a35c4773ce680437b6be35ff9cfde82a18421d17edf08"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-direction-table.asm",
+      "bytes": 2314,
+      "sha256": "cde3bba514371fa6af5cf583e2ba612d4d6cd5cf06750c0e68613bf55c39f33d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-direction-table-refs.json",
+      "bytes": 2135,
+      "sha256": "5331eb666e2d19c32286e854b4f781975658a5e0a9c7e9a71b8baf41d8d61850"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-command-typed/00459740.c",
+      "bytes": 26180,
+      "sha256": "5ffedd87874790026321b9ba066b04106214f967a4bed146a55bed6c37358939"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-command-typed/00459740.json",
+      "bytes": 64548,
+      "sha256": "3bfd39126591d67641ca63f1a12a7ba101a450b6234df46a72ae2f18efd69b5c"
+    }
+  ],
+  "verification": {
+    "native": "PASS 1364 qualified ASan/UBSan/leak checks; actual first navigation table/algorithm/producer; explicit engine and existing task-tail endpoints",
+    "module": "PASS strict i386 actual full module authority/presentation and concrete UI producer link, compile/link only",
+    "launcher": "PASS forced sequential application-launch and startup-probe rebuild, compile/link only",
+    "tracker": "PASS exact inventories/fingerprints/counts/evidence/README and 27 tracker tests;34 complete/3624 partial"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-native.cpp",
+      "bytes": 8755,
+      "sha256": "baa41b438528b586db18cd4095eaf10ab59c9c1e54dab42d16bb4b3bcc9af6e0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-native",
+      "bytes": 1562688,
+      "sha256": "a2f8540792eb05f95d45382e62f6fa3e5968798bd0f4f6cf303b395e63aa8a40"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-native-run.log",
+      "bytes": 110,
+      "sha256": "a851152c17fdaf0b3d7cf367004b9a4334168fb14bf3d2fb7f68f18d7e1929b5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-module.cpp",
+      "bytes": 632,
+      "sha256": "69bff36b708b60cd7f5981092c55af672b2e70e330186d76424df242dec7c6ac"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-module.exe",
+      "bytes": 11851776,
+      "sha256": "65b6cd1f55e1e69735809bb9447fe8cf1545ea8c841332c3c67767d5cb7b4b9f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-progress-render.log",
+      "bytes": 380,
+      "sha256": "7d8c39f3c1f8633f00aeb142e7fb437c5134e041a24f3cd29f2273b6b5f9605d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-progress-check.log",
+      "bytes": 437,
+      "sha256": "f91a959842804657874aa6a5cafa847b50d643279298cff936462eb138048908"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-cover-progress-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_audits": "Successful native and module source/binary pairs fingerprinted then removed; no permanent tests.",
+  "limitations": [
+    "No actual application/desktop acceptance or original/Windows execution.",
+    "Native unwritten W/allocator/SEH/object ABI and delegated engine calls unclaimed.",
+    "H8.2/H8.3/H8.4/H8.5/H8.6 and HUM matrix remain open pending containing-boundary review."
+  ]
+}

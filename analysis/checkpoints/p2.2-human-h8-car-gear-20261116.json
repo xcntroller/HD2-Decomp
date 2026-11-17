@@ -1,0 +1,322 @@
+{
+  "date": "2026-11-16",
+  "base_commit": "1a6c958",
+  "branch": "feature/p22-hum-h8-4",
+  "source_only": true,
+  "h8_4_complete": false,
+  "d5_complete": false,
+  "automatic_controller_complete": false,
+  "powered_solver_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-car-gear-source.md",
+  "original_image_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/car_gear_control.h",
+      "bytes": 2183,
+      "sha256": "274111199dbd73de1b3107172f37f2f7f0c4ec01eddc04a155a46c950575dc5c"
+    },
+    {
+      "path": "recovered/game/car_drivetrain.h",
+      "bytes": 8132,
+      "sha256": "dcab9e089f51eddae5daff90860f6cd3a06094c9f2828af1168e8a06091a7666"
+    },
+    {
+      "path": "recovered/game/car_cold_receivers.h",
+      "bytes": 4487,
+      "sha256": "0d80da9256900bce6d6d58d40a7e11003a3ab0fb96181a1c46a727062341efbd"
+    },
+    {
+      "path": "recovered/game/car_loading_activation.h",
+      "bytes": 25797,
+      "sha256": "eaa53b1127b53ad89267a7ba31ced67f79f3f6693068eb02de93c7df5c939199"
+    },
+    {
+      "path": "recovered/game/car_loading_lifetime.h",
+      "bytes": 3289,
+      "sha256": "47e2dbc93f31f42c78e24b65ac46257bee3a0e6c6216d6d47036f264bfead2c7"
+    },
+    {
+      "path": "recovered/game/car_physical_reset.h",
+      "bytes": 12249,
+      "sha256": "c1409ec4971e5e103680f530e8f6337cd387b95af81dcb6271f8bee3c1e0923c"
+    },
+    {
+      "path": "recovered/game/car_settling_controller.h",
+      "bytes": 10453,
+      "sha256": "6d7fd65b6138c61ab6c64372590ad13fb9e3900ed9b72c7aaa32a6b961e5cfab"
+    },
+    {
+      "path": "recovered/game/car_sound_updates.h",
+      "bytes": 13409,
+      "sha256": "06f3cd30e0ff220ef2653c0a5e8e98dfd262c0cef6312db35b7a6f5200ba31f9"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-drive-dependencies/004f2030.c",
+      "bytes": 1088,
+      "sha256": "e7dadcdb36889f3061696dc65d1d76d976e0e68ca51356ab6712c56aac69cf75"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-drive-dependencies/004f2030.json",
+      "bytes": 2676,
+      "sha256": "8ec07e72cc225d7f8d26421cec3a435cfff58f50df03a903b5db80ca549ed05e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-drive-dependencies/004f3840.c",
+      "bytes": 844,
+      "sha256": "c41e2d08a1d934f5704f7c14da3989f64f85e19858ea92f8c2f92845a9ab11bc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-drive-dependencies/004f3840.json",
+      "bytes": 3794,
+      "sha256": "6b5c68ca04ecba66a28d550c7c744a3b002ef831c2cf3bcd3a3bda7345723414"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-drive-dependencies/0051a480.c",
+      "bytes": 1477,
+      "sha256": "a0a61b5307fd09b3b26bc6b1d5c25aba864f6005329b424732efaea23357506b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-drive-dependencies/0051a480.json",
+      "bytes": 2628,
+      "sha256": "a7c6b9357ef71a72d0b094abe9827a8a9ce0d8118df2ee288de777286af157cd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-gear-request-original.asm",
+      "bytes": 3071,
+      "sha256": "21c01339772ceb69b27aed1a40a0cee86edb5ee8a43f9c96d00f57280298cf12"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-gear-force-original.asm",
+      "bytes": 3190,
+      "sha256": "165b21b6538aeb213a33f417dbc33a9bb633eda4c6a68c02ac8082b30b99dc68"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-clutch-audio-original.asm",
+      "bytes": 4654,
+      "sha256": "25ca937e5382744838dc5acf1e474882e15c22440abbb962140a27882a8161fb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-shift-completion-original.asm",
+      "bytes": 7241,
+      "sha256": "78c77200d93890effc8bb184b8879fd32f06577e70a3e12a297cf8565ef91c37"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-solver-typed-required/00509aa0.c",
+      "bytes": 30245,
+      "sha256": "52108789cca434c31562aae2c3c6f3bc60062df5e7e136f8eaf863c471d50a31"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-solver-typed-required/00509aa0.json",
+      "bytes": 76262,
+      "sha256": "0b8bbd9d87c104d6d2e112c752b38faafd71960231e09922b1f5dfde37da5eb0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-solver-boundary-required/0050d760.c",
+      "bytes": 4722,
+      "sha256": "9c329cf415703c551aad8117f9a604bda7e06c583744de795aba3ee94ee70c84"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-solver-boundary-required/0050d760.json",
+      "bytes": 14275,
+      "sha256": "7b31c1792bb20d8f7371373fde58c306b457f79bd034a7672ecd2ed018466877"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-runtime-typed-v4-required/004ea780.c",
+      "bytes": 43524,
+      "sha256": "b6a30d905c22686695cfce09d81026067092306f08fe18f4998ccda9575df6e0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-runtime-typed-v4-required/004ea780.json",
+      "bytes": 39511,
+      "sha256": "63c432f07122607ab2a225a1390063e47863d38e2dbc98f8482e6dc027b724b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-parameter-inputs.json",
+      "bytes": 3092,
+      "sha256": "244e1149d2625d671c6469368353895a003f275429ac31155d5996c2e2146ecc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-drive-export.log",
+      "bytes": 5372,
+      "sha256": "079154def76642215446cd6b2ce9bede1740eb4c51760c96513ff2ab7b09e6c0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-drive-export-console.log",
+      "bytes": 4639,
+      "sha256": "87485abd4a8c22eac734b3cc4dcd4c4fe738048399e55aab33638d468a07287a"
+    }
+  ],
+  "native": {
+    "result": "PASS 178100 checks /100 lifetimes /9 captured parameter blocks",
+    "sanitizers": [
+      "address",
+      "undefined",
+      "leak detection"
+    ],
+    "actual_owners": [
+      "Car parameter decode and CarPhysics.apply",
+      "CarDrivetrainState gear request/force/clutch kernels",
+      "CarSoundLoading acquisition and retirement",
+      "CarSoundUpdates current clutch-voice variant"
+    ],
+    "explicit_doubles": [
+      "Four-wheel Car geometry, not model loading",
+      "Engine/frame/audio queries and setters",
+      "Random/query failure injection and voice retirement callbacks"
+    ],
+    "remaining_limits": [
+      "No complete loaded Car/World graph",
+      "No running automatic00509AA0 policy or powered0050DE60",
+      "No running0050B180/occupied presentation or actual game execution"
+    ],
+    "command": "g++ -std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -Irecovered -L/tmp/h8-4-drive-sanitizer -Wl,-rpath,/tmp/h8-4-drive-sanitizer /tmp/h8-4-drive-native.cpp -o /tmp/h8-4-drive-native; ASAN_OPTIONS=detect_leaks=1:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 /tmp/h8-4-drive-native"
+  },
+  "i386": {
+    "result": "PASS strict actual-host O0 full link",
+    "instantiation": "Concrete Car activation/update/deactivation both passes and loading lifetime request_gear/gear_force, actual CarColdReceivers/SOUND bindings",
+    "not_executed": true
+  },
+  "application": {
+    "result": "PASS make -C recovered -j1 application-launch startup-probe",
+    "not_executed": true,
+    "artifacts": [
+      {
+        "path": "recovered/build/application_launch.exe",
+        "bytes": 3963392,
+        "sha256": "72bd50e1bfb87f3e37406c276ff6f2e1e90b3faf255e93a3e34c5e207348f367"
+      },
+      {
+        "path": "recovered/build/startup_probe.exe",
+        "bytes": 1165312,
+        "sha256": "c6e4e990431de7d91e0ff50132d6a57c8cf21a84e115ba4a23e003a4745371be"
+      }
+    ]
+  },
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-gear-native.log",
+      "bytes": 135,
+      "sha256": "db65aae506d96ae3cfca2ca233175f0bccc5912f9cbdf4af38f4b95d034d7f23"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-gear-host.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-gear-application.log",
+      "bytes": 930,
+      "sha256": "4fd12cb475e84990a6514cb4e337f3ee6957fecd0e2088f4bfa2dde2591d73f8"
+    }
+  ],
+  "captured_property_slices": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/0.bin",
+      "bytes": 1276,
+      "sha256": "27ef47eaedd6cc7d4a176bd1fe095eca838aded931f4a4882693702ef28a912a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/1.bin",
+      "bytes": 2619,
+      "sha256": "2596dd17e7290d864ae5f4dc79fbe00d43a6c86f24533dfceb465f8bb68a26c3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/2.bin",
+      "bytes": 1871,
+      "sha256": "745844cf630416533eff2f6a645f790636ba609b6817c1a002895bdbaaad6f2f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/3.bin",
+      "bytes": 1871,
+      "sha256": "745844cf630416533eff2f6a645f790636ba609b6817c1a002895bdbaaad6f2f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/4.bin",
+      "bytes": 2402,
+      "sha256": "dc83b12ab02d802b447c3163c8ddfada4558477668cf574ff55102f2d3065ce5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/5.bin",
+      "bytes": 1892,
+      "sha256": "ae935616e5c13e94b6a62aabb2faee88e6d503f9a6ec9374d37cb07602bcb681"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/6.bin",
+      "bytes": 2402,
+      "sha256": "dc83b12ab02d802b447c3163c8ddfada4558477668cf574ff55102f2d3065ce5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/7.bin",
+      "bytes": 1892,
+      "sha256": "ae935616e5c13e94b6a62aabb2faee88e6d503f9a6ec9374d37cb07602bcb681"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/8.bin",
+      "bytes": 1892,
+      "sha256": "ae935616e5c13e94b6a62aabb2faee88e6d503f9a6ec9374d37cb07602bcb681"
+    }
+  ],
+  "temporary_audit_fingerprints": [
+    {
+      "path": "/tmp/h8-4-drive-native.cpp",
+      "bytes": 9162,
+      "sha256": "f750f3970471b33a6afd060b30efd587ef8fd557681b04f314b3bf5e5fd5ed51"
+    },
+    {
+      "path": "/tmp/h8-4-drive-native",
+      "bytes": 3051960,
+      "sha256": "ac7e966c0ba62029352d1ea534c0c0636d9d2b1d74f45f592725cea3a95d631e"
+    },
+    {
+      "path": "/tmp/h8-4-drive-host.cpp",
+      "bytes": 561,
+      "sha256": "7874eb03d0dcb3dca88fc2a402aa0ca44248fa2846c5651ce3bca729c4d9c770"
+    },
+    {
+      "path": "/tmp/h8-4-drive-host.exe",
+      "bytes": 4343296,
+      "sha256": "0fa42dbc086e3c1bd1173188b12500cbe7adb5f8b5919c13d507f214d3cfb9c9"
+    },
+    {
+      "path": "/tmp/h8-4-drive-probe.cpp",
+      "bytes": 776,
+      "sha256": "b1424f9e78c3b13e8e98f0c6cff7d91d05037faea3f700ca8060c005be8c5d35"
+    },
+    {
+      "path": "/tmp/h8-4-drive-probe",
+      "bytes": 192232,
+      "sha256": "2acc6e081d6639011932ae93d8d64110d1ea9e994caba79df39d3894bb5e1ca9"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "ledger": {
+    "new_frozen_partials": [
+      "004f2030",
+      "004f3840",
+      "0051a480"
+    ],
+    "extended_partials": [
+      "0050d760",
+      "00509aa0"
+    ],
+    "complete_promotions": 0,
+    "expected_complete": 34,
+    "expected_partial": 3463,
+    "tracker_check": "PASS: exact fingerprints, full inventories, frozen counts, unique statuses, evidence and README",
+    "tracker_tests": "PASS 27 existing tests"
+  },
+  "remaining": [
+    "00509AA0 running/input/automatic-gear policy",
+    "Actor2321/controller2291 source alias reconciliation with actual driver producer",
+    "0050DE60 powered forces",
+    "0050B180 running engine/audio/skid/particle finalization",
+    "actual occupied presentation before D5 guards can be removed",
+    "selected non7/entry D6-D9/absent actors",
+    "unchanged confirmed D11 native state omissions",
+    "containing H8.2/H8.3/current OWN/FRAME application composition and desktop acceptance"
+  ]
+}

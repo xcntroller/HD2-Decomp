@@ -68,6 +68,7 @@ public:
         return state_.moving_primitive;
     }
     bool contact()const{return contact_;}
+    void query_flags(std::uint32_t flags){flags_=flags;} //SAME core540 modified by occupied driver admission.
     CarBodyContactState& state(){return state_;}const CarBodyContactState& state()const{return state_;}
 private:
     Frames& frames_;typename Frames::Frame model_;const CarCollisionParts<Frames>& parts_;

@@ -1,0 +1,253 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "7943db3",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-runtime-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/dynamic_item_actor.h",
+      "bytes": 6947,
+      "sha256": "c929312321d0b67264c37f7c2082aafa3415b651031e0c37497ffdc930c810c7"
+    },
+    {
+      "path": "recovered/game/dynamic_item_frames.h",
+      "bytes": 2016,
+      "sha256": "4353bd5d9c30c15e0996c97b350b0c64ac92b72b8e6a9d3426520bcf6f7cdf3a"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 6479,
+      "sha256": "4965e7fad1c87b4feb9a96995b21e79d5f6c5fef7dcdea7f42c1c94609281e98"
+    },
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "bytes": 16599,
+      "sha256": "417717be24d0390aa1b7b011ba166236c00aefa77025c253e0f04f321a53dc5f"
+    },
+    {
+      "path": "recovered/game/human_script_alarm.h",
+      "bytes": 2771,
+      "sha256": "d480cf4612acc65391301870b3e83bcdff4c8286b8693b220af0ae4ef426d5ea"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 278678,
+      "sha256": "6606a75215f3f4755d10a3a894505a08efdb73ac172d803d2286d1b4fdeb245b"
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "bytes": 18414,
+      "sha256": "aff3f05c83e2535d21fd22401a6e3679c22aaa42bcd43172520923839ef24c48"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-runtime-callback-index.txt",
+      "bytes": 20757,
+      "sha256": "bbe7d1e022cad8dc2e4ed1f02a2f6ef282abf5aafb628e56f66eebfbeaa38787"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-runtime-frame-index.txt",
+      "bytes": 7791,
+      "sha256": "009dfc80060bfc9bd73ae94b6d1dffe652930076126d990476517ae6da87f585"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-loose-frame-index.txt",
+      "bytes": 4684,
+      "sha256": "752bfa47a795d4e60b1e9412b7a2fef2a655e230f9df6f47f84ddc0885e3d6b8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-loose-timed-effect-index.txt",
+      "bytes": 1369,
+      "sha256": "aacd155343e2aa2d6b386325ddf7001186b279d0c067f1a6ddcbcbe46b279882"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-loose-fade-index.txt",
+      "bytes": 3762,
+      "sha256": "3444fedd38eb31f6469affd31f48a582598825ac5089a29e52201b8b5e559b52"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-suppressed-camera-index.txt",
+      "bytes": 2401,
+      "sha256": "99ab974eec469af2aa2990699951743798ba55cf9dff8157e6d799be8453d25b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-camera-direction-index.txt",
+      "bytes": 3195,
+      "sha256": "4bd2372466feed6051231d41d801278b89e258923c7b7fc7ba8ad1092ad803d6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-runtime-callback-tables.json",
+      "bytes": 119,
+      "sha256": "16aa84685a9978fc237f1427994d222cc7004c75c3b78f50fc354d1cf9b9ee1f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-script-alarm.asm",
+      "bytes": 12744,
+      "sha256": "40da408f76007fa0be8e466899d3b25ba3f57742619fbb05b6aea01e08dccbf2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-script-alarm-constants.json",
+      "bytes": 207,
+      "sha256": "411a4b50f3fdcfa3a13c8ffc7f6a5bbdaf2a1e91e3db249dc3a25b1c0089f604"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-loose-frame.asm",
+      "bytes": 6932,
+      "sha256": "6b6235f127d28fbad2fa18791273c926c843b2d8a7522b222cff5c402232e93f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-loose-timed-effect.log",
+      "bytes": 4457,
+      "sha256": "70ad4b260acefd633ae18d4afc349606d379be9218f7eb5cc57522bfc6b70fc7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-loose-timed-effect/005b7ec0.c",
+      "bytes": 1483,
+      "sha256": "70fd27f67b196f92633c75fc09ead3c14270609ad4ebd3f75b0e32463b038871"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-loose-timed-effect/005b7ec0.json",
+      "bytes": 5496,
+      "sha256": "2e196de3f958a671d68ffecefa1aea320ca108db84b5a6f87416880f22d34144"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-script-action-edges/00591550.c",
+      "bytes": 3167,
+      "sha256": "b3066406f629b0cb2c8c5d5612192dc037fa91e0210d025cba9d533c8ed42663"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-live-loose-items/005b7320.c",
+      "bytes": 2000,
+      "sha256": "a849084043cea79d3f0921e0f5923e2f09076b06fefb0842123e981ac5669ff4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-live-loose-items/005b7480.c",
+      "bytes": 329,
+      "sha256": "b786b22db061c9d01fdf25e31087473ca3bbc502745e90a8aca193ff9e99e2b0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-player-command-frame/00540090.c",
+      "bytes": 1871,
+      "sha256": "a2a03b5e992f2f8c1e3de05608890226014b8df0ec803f03029b4260b58df43a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-player-presentation.asm",
+      "bytes": 7627,
+      "sha256": "547a810954df5162d93844fa52e7e5dc21e6b1d61356945d7f2ed5900e3879a2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-player-camera-bind/00465ea0.c",
+      "bytes": 386,
+      "sha256": "a3dd9d78acebec5d549880138c32c1a77e6cb9eed576b2bb6ef764836472d31b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/camera-owned-lifetime/00464ef0.c",
+      "bytes": 1617,
+      "sha256": "5dae2f03deb13893aba2fbc58f79db25947b480d492e6cac35d1e662b82c2b8c"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "human-h8-runtime-policy-native",
+      "files": [
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-runtime-policy-native.cpp",
+          "bytes": 6120,
+          "sha256": "37517abe5f8c8933861991422854e356850445cfda125893034f2e1cb1aac326"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-runtime-policy-native-build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-runtime-policy-native",
+          "bytes": 622808,
+          "sha256": "fa974544167044c2c301055d54d787396695ca4fb7e1606dbe3d3fcf81b721c1"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-runtime-policy-native-run.log",
+          "bytes": 63,
+          "sha256": "c2d02d95b5a8ad6a65081d57f5e86423037c408085836817f46c3c1b5aa46c22"
+        }
+      ],
+      "result": "8400 Script alarm/loose-frame policy checks /100 families PASS"
+    },
+    {
+      "name": "human-h8-runtime-owner-i386",
+      "files": [
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-runtime-owner-i386.cpp",
+          "bytes": 993,
+          "sha256": "3e7d3f16964ae41af05896f068884f77905bbbef5b3b9d61f22d722097b765d4"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-runtime-owner-i386-build.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "analysis/work/mission-world-20261103/human-h8-runtime-owner-i386.exe",
+          "bytes": 9904128,
+          "sha256": "55006175ef4c564d2d8e00becebbf51a57f8c3d1979e12cf69c09b5bf13935c9"
+        }
+      ],
+      "result": "strict actual i386 compile/link PASS; never executed"
+    }
+  ],
+  "launcher": {
+    "result": "strict application-launch/startup-probe compile/link PASS; never executed",
+    "log": {
+      "path": "analysis/work/mission-world-20261103/human-h8-runtime-launcher-build.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    }
+  },
+  "containing_module_frame": {
+    "result": "FAILED, still open on Dog/Sight Runtime methods. Initial protected alarm distance access corrected through actual World Frames.",
+    "source": {
+      "path": "analysis/work/mission-world-20261103/human-h8-containing-frame-i386.cpp",
+      "bytes": 485,
+      "sha256": "814f1f18451a138b087fc1a2314b4abec19ecdefe6487f77f9d72623074c27a6"
+    },
+    "initial_failure": {
+      "path": "analysis/work/mission-world-20261103/human-h8-containing-frame-i386-initial.log",
+      "bytes": 10673,
+      "sha256": "2147eb3d4b53e9ed4f58c83efb164f5d9c013fab768af963979b0a0ecafbd2d1"
+    },
+    "fixture_retirement": "Still temporary/in use for the remaining H8 containing work; not deleted or represented as passing."
+  },
+  "limitations": [
+    "8400 policy checks use explicit resources/selector/item/Body/Frames/packet/callback doubles, not full World execution.",
+    "Actual Script/loose/Body/Human/Camera receiver composition and launcher/probe compile/link only.",
+    "Positive retained-item non7 pose packets, delayed Players/selected interactions/occupied and Dog live/Sight frames remain required.",
+    "Native fixture first assumed kind5 consumed an unused choice draw; corrected fixture timer expectation (original kind5 directly draws timer), no production-code adjustment.",
+    "Three new frozen partial entries only; absent Player/Camera/gate leaves and delegated engine functions earn no new credit."
+  ],
+  "temporary_audits": "The two successful receiver/policy fixture pairs above were fingerprinted and removed. Ongoing full module fixture remains temporary until containing verification.",
+  "tracker": {
+    "result": "exact check and27 tests PASS;34 complete/3584 partial (3579 client+5 engine), frozen18783",
+    "logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-runtime-tracker-render.log",
+        "bytes": 380,
+        "sha256": "86a01221f153467cadcaebce4cf7c0f6399ce95122aab8323458ff7ad8fe4947"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-runtime-tracker-check.log",
+        "bytes": 437,
+        "sha256": "32f9320c961f4170e30274e3333d90de188f29cbf35c23c8688791a96262c149"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/human-h8-runtime-tracker-tests.log",
+        "bytes": 126,
+        "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+      }
+    ]
+  }
+}

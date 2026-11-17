@@ -1,3 +1,9 @@
+Current2026-11-17: [FRAME/HUM source import](p22-own-frame-import.md) combines
+939fb70 with FRAME9d53c06/currentH8. Actual launcher/probe link passes. Old
+"FRAME unmerged" statements below describe the former base. Current remaining
+work is actual external adapter/positive Human input/order and cutscene/conditional
+integration; no source-complete or application/desktop claim.
+
 # P22-OWN application ownership plan
 
 Worktree `/home/control/Documents/Projects/HD2-Decomp-p22-own`, branch

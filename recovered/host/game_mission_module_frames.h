@@ -29,6 +29,17 @@ public:
     void tick_runtime_actors(bool authority,std::uint32_t elapsed){actors_.tick_runtime(authority,elapsed);}
     void tick_scene_actors(bool authority,std::uint32_t elapsed){actors_.tick_scene(authority,elapsed);}
     void tick_camera(std::uint32_t elapsed){camera_.simulate(elapsed);}
+    void tick_authority_only_humans(std::uint32_t elapsed){ //0069B230's separate mode2-clear presentation scan.
+        for(std::size_t n=0;n<d_.scene.frames().scene_actor_identity_count();++n){
+            auto* actor=d_.scene.frames().scene_actor_command_identity(static_cast<std::int32_t>(n));
+            if(!actor)continue;
+            actor=d_.scene.frames().scene_actor_command_identity(static_cast<std::int32_t>(n));
+            if(!actor||actor->base().type()!=3)continue;
+            actor=d_.scene.frames().scene_actor_command_identity(static_cast<std::int32_t>(n));
+            if(!actor)throw std::logic_error("Authority-only Human frame lost its actual identity");
+            actors_.update_human(*actor,false,elapsed);
+        }
+    }
     using Actor=GameSceneActors::Instance*;
     void sight_exclude_dog(Actor actor){runtime_.sight_exclude_dog(actor);}
     auto sight_dog_origin(Actor actor){return runtime_.sight_dog_origin(actor);}

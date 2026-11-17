@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "a93906d",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-timed-interaction-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 63247,
+      "sha256": "b0722654165d1f9a6c0d5a74b8bfc6b9f9c873c3a788efaca9f66ed82c9f46ee"
+    },
+    {
+      "path": "recovered/game/human_timed_interaction.h",
+      "bytes": 11284,
+      "sha256": "42c95b1cfd4fbc0a429cf3f00200e499847c9e082376534c8804dcf97e50728e"
+    },
+    {
+      "path": "recovered/game/human_door_action.h",
+      "bytes": 3658,
+      "sha256": "5b18631391ab24d6ece864701dd1b3d07d35e7ed502c66154649d788ddf64c38"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 6119,
+      "sha256": "cb080b7f69e5a28e157d71651781be2b79337a34b3949d5baa9b0f1812f7cbce"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-actions-explicit-abi-v3/00751480.c",
+      "bytes": 77188,
+      "sha256": "c9566c0e051e7b62f7e8937ce3fe94bd7797f764dfb038bcda2f090f763c9aec"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-actions-explicit-abi-v3/00755500.c",
+      "bytes": 33884,
+      "sha256": "130825e62953e110b8edd565956b623853cc8d3b8a74b6decb913f3253b88801"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-leaves.asm",
+      "bytes": 3295,
+      "sha256": "aad70b3777ef60b4a966cbe9720d393b0bf2c347c62976acad6ef1454315d92f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-footers.asm",
+      "bytes": 2277,
+      "sha256": "93096e7083ceea4a70cb9870ea6b2f7a658b8f928480831ff3c5deeb87d8bf8f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-footer2.asm",
+      "bytes": 1594,
+      "sha256": "f99a74470bdf91ffe44837fe81c996e6300ed0d1c363d1874583138ff066a0f1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-queue.asm",
+      "bytes": 5290,
+      "sha256": "14b0f24763909be30049d6a9aee3842fd8e85f5fe194873c40591bb0641a59ea"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-action-update.asm",
+      "bytes": 91038,
+      "sha256": "70ce0ea91c2a0cb152a86e89e54c3a160f9ed93bbc0ae762fb695dc081137edd"
+    }
+  ],
+  "native": {
+    "checks": 102824,
+    "sanitizers": [
+      "ASan",
+      "UBSan",
+      "LSan"
+    ],
+    "boundary": "Actual scalar words; explicit Control/Look/equipment/animation endpoints, not actual full World execution"
+  },
+  "temporary_fixtures": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-native.cpp",
+      "bytes": 5121,
+      "sha256": "600de9c407ad6bd38d98f612b66a2153608bcdce612377fbd656b0575c91d93b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-native",
+      "bytes": 1319872,
+      "sha256": "37e2acf6a967c28af0f0544281a786db54571f9df370460c74026cf9a711e439"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-native-run.log",
+      "bytes": 117,
+      "sha256": "3a62dad547e2070e817c5ad03a87c4ebd30e3a8e09c055034117f3a14f6c1897"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-i386.cpp",
+      "bytes": 388,
+      "sha256": "931d6ec33a68d28212fa5103042c4b68b3b93f1a994aafe8c748582834bbc28a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-i386.exe",
+      "bytes": 9931264,
+      "sha256": "47539731032874dc80cd8e2a4c6a8241cbfb3accebd22e91b8d4869ec644c3ab"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "temporary_audits": "Successful source/binary pairs fingerprinted and removed after verification. Full module ongoing fixture is still in use; prior missing Dog/Sight failure is not erased.",
+  "launcher_log": "analysis/work/mission-world-20261103/human-h8-timed-end-launcher-build.log",
+  "function_credit": "No new frozen entry or complete promotion. Existing00751480/00755500 coverage expanded.",
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-launcher-build.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-tracker-render.log",
+      "bytes": 380,
+      "sha256": "69100d9d9d149329a8e08dc3eecaed69488f623aa6559d6ea0c4a76ffd5f84c0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-tracker-check.log",
+      "bytes": 437,
+      "sha256": "26a9b124278626a4289ee7dc75ec03b489f88e3df0c02c94871c72e5b90fdf1c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-timed-end-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ]
+}

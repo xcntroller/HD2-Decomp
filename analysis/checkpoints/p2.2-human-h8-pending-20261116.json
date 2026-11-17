@@ -1,0 +1,210 @@
+{
+  "date": "2026-11-16",
+  "source_only": true,
+  "p22_hum_complete": false,
+  "h8_2_complete": false,
+  "pack_requirements": "Already finished, as confirmed by user; this checkpoint is ordinary H8.",
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "base_commit": "51082a20acd87e68cb3d41aeed57492ffcdab855",
+  "contract": "analysis/human-h8-pending-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_active_ai_order_action.h",
+      "bytes": 2841,
+      "sha256": "6de56b05936cfcab2a5fae2a3cc4d5af31c24a7426ec2dee0d730ff3639b4248"
+    },
+    {
+      "path": "recovered/game/human_active_ai_orders.h",
+      "bytes": 8483,
+      "sha256": "221b0c03783abf54c5772f72527d33f26df69a01a837fb9f6d91b983db283943"
+    },
+    {
+      "path": "recovered/game/human_active_ai_pending.h",
+      "bytes": 10016,
+      "sha256": "75dfa426c31849304e146ba37d721b936b1b5355f34d4bf3c39ca805adf3d29e"
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "bytes": 18795,
+      "sha256": "954a52c1fd59080f4b02ab009a20a0b52602c38007368dcabed4447cc33673d2"
+    },
+    {
+      "path": "recovered/game/human_ai_order_pool.h",
+      "bytes": 4691,
+      "sha256": "646ada3655d4e211eef1a64f5982282f7722310c12617ca098f7149b3a251517"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 220192,
+      "sha256": "64a2ffc746dfaf292b8bda1ea79453c399926a0e41b51a130c5d0ab60b4f081c"
+    }
+  ],
+  "original_image": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "bytes": 6889472,
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307"
+  },
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-frame-workers/005282e0.c",
+      "bytes": 3173,
+      "sha256": "1c5b02bfc48eb694f50aa794a11587b6bf691f0c7eb182f47c5ce7ff9042987c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-frame-workers/00528950.c",
+      "bytes": 23856,
+      "sha256": "40a8e6e5aeafc8bafa5411b46eafd70a9c8738daa0e6ee2df9ad18a497f18b96"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-task-workers/00529f60.c",
+      "bytes": 3495,
+      "sha256": "d18b65e0966c864d5744297f4638fbc373408c70e63c77d56aee1bc0faa937e3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-pending-complete/00535c00.c",
+      "bytes": 2503,
+      "sha256": "9ae55d7e31b7a8cc9fc579cb84481d4eed0e3234f737b94311354a9ea538d93a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-pending-complete/00535c00.json",
+      "bytes": 12046,
+      "sha256": "b7a2a88997259565d3ab16d54110048f4d901e56b3fbf93b652542bb5d3eb8cb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-pending-flow.asm",
+      "bytes": 10446,
+      "sha256": "6dd620659ef62fbe1142ef80471e0cc2d75857238bae440a5e88bb11e72e35b5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-start.asm",
+      "bytes": 19604,
+      "sha256": "283b0efd8b688dc60e0633c5111bc45a7cf09aef0e8cd1367750598e66f6443e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-move-task-prefix.asm",
+      "bytes": 16923,
+      "sha256": "6b38dfa013acbfab3557f17e87a22d1194b9f10c108657995531975f7b12c649"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-move-completion.asm",
+      "bytes": 3391,
+      "sha256": "794b95ed0bf747844491a24c30f7991044a9c0b26f7559e05d4dff28119886e4"
+    }
+  ],
+  "new_partial_entries": [
+    "005282e0",
+    "00529f60",
+    "00528950"
+  ],
+  "no_new_credit": [
+    "00535c00 pending prefix only",
+    "delegated engine methods",
+    "native borrower protections"
+  ],
+  "ledger_totals": {
+    "complete": 34,
+    "partial": 3440,
+    "client_partial": 3435,
+    "engine_partial": 5
+  },
+  "verification": {
+    "native_sanitizers": "PASS ASan/UBSan/leak:37600 checks,100 lifecycle matrices. Actual order/list/resources/direction/query/path/action/task/regroup owners; explicit model/World/Players/posture/readiness endpoint doubles.",
+    "concrete_i386": "PASS strict -Wall/-Wextra/-Wpedantic/-Werror full i386 actual-host link instantiating Active process_pending_orders/advance_pending_task and existing packet path. Not executed.",
+    "launcher_probe": "PASS make -j1 application-launch startup-probe; not executed.",
+    "tracker_tests": "PASS27, python3 -B tools/test_function_progress.py. Initial -m unittest invocation lacked tools import path; corrected invocation passes.",
+    "ledger": "PASS frozen inventories/statuses/evidence/README and git diff --check."
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-native.cpp",
+      "bytes": 15449,
+      "sha256": "b778b7f628a8849fe1dae79f2744a0cedd1637afc9fc1ca993343edba8d43a33"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-native",
+      "bytes": 7693808,
+      "sha256": "fde44c593b7b25297bbeb00c39e4df6b9abbc3c68986eaf40eebbeeb7a7059ee"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-host.cpp",
+      "bytes": 557,
+      "sha256": "7986bac59214fe3ac5a6cb44d4cf2af93eb40359279cc99fdd610b9c9bb51617"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-host.exe",
+      "bytes": 5111296,
+      "sha256": "7b0e103152b45e3968f16e35b4d2cf2bd84f416d2d72c1bb7265b31e12a7e061"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-application-link.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-formation-export.log",
+      "bytes": 4456,
+      "sha256": "3ababf35261551eb4981ea3b05454006cdd2444b4f0d5ddce481d5820550ac01"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-host-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-native-run.log",
+      "bytes": 42,
+      "sha256": "b0d59a32216e7a429e9d02e741fd2c2aba859135141045efeb23aef49693c0e5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-players-export.log",
+      "bytes": 5636,
+      "sha256": "4a58a0f6ee998707e5f1b43f6ffbab46429d0a77e3a284eec306e99c64cc12c2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-setup-export.log",
+      "bytes": 4555,
+      "sha256": "2b706b487999a5ea25ccbc799ca8d28ed7fd5602580380041f4c6645852771d7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-pending-complete-export.log",
+      "bytes": 4643,
+      "sha256": "1d3c82856b66d67e0062e6a94b1e13a47cc9658f6856fb72bc14ff6bd3ce4531"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-ledger-render.log",
+      "bytes": 380,
+      "sha256": "f984d6cfcd4c7a729506143b1171451e8fa402be5aae001101f3d625c3c8dd4d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-ledger-check.log",
+      "bytes": 437,
+      "sha256": "744f1c7ef99f6a02ad1179204cb03895100d2c773cfc26dd0d7a23e29523a3b3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 3963392,
+      "sha256": "669333a5f8998491dab1277fb5630de55232d9a2907d54ce459dde5baef4e7f2"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1165312,
+      "sha256": "135567c8c5b282ae4f6db2fc63817de2412156d0e0da7a6bf459220ecca1c041"
+    }
+  ]
+}

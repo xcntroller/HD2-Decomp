@@ -170,6 +170,23 @@ public:
         auto& writable=frames_.actor_frame_data(frame);writable.words[5]=reinterpret_cast<std::uintptr_t>(master);writable.words[6]=reinterpret_cast<std::uintptr_t>(part.get());
         master->parts.push_back(std::move(part));
     }
+    bool damage_frame(std::uintptr_t borrowed,Frame frame,std::int32_t damage){ //0043C660, selected part only.
+        require_open();if(!frame)return false;
+        const auto* data=frames_.find_actor_frame_data(frame);
+        if(!data||!data->words[5]||data->words[5]!=borrowed||!data->words[6])return false;
+        auto* master=checked_master(borrowed);
+        for(const auto& part:master->parts)if(part&&reinterpret_cast<std::uintptr_t>(part.get())==data->words[6]){
+            Frame output=frame;return damage_part(*part,damage,&output,0);
+        }
+        throw std::logic_error("Versions picked part has no actual containing owner");
+    }
+    std::optional<std::int32_t> picked_material(Frame frame){
+        auto* part=picked_part(frame);return part?std::optional<std::int32_t>(part->parameters.material):std::nullopt;
+    }
+    bool damage_picked(Frame& frame,std::int32_t damage){
+        auto* part=picked_part(frame);if(!part)throw std::logic_error("Versions shot lost actual picked Part before damage");
+        return damage_part(*part,damage,&frame,0);
+    }
     bool damage_master(std::uintptr_t borrowed,std::int32_t damage,std::uint32_t presentation){ //0043C6A0.
         require_open();auto* master=checked_master(borrowed);const auto index=master->index;bool result=true;
         for(auto n=master->parts.size();n;){--n;
@@ -299,6 +316,13 @@ private:
         if(!services_||!services_->script||!services_->particle||!services_->sound||!services_->debris||!services_->publish)
             throw std::logic_error("Versions mutation requires actual containing transition services");
         return *services_;
+    }
+    Part* picked_part(Frame frame){
+        require_open();if(!frame)return nullptr;const auto* data=frames_.find_actor_frame_data(frame);
+        if(!data||!data->words[6])return nullptr;
+        auto* master=checked_master(data->words[5]);
+        for(const auto& part:master->parts)if(part&&reinterpret_cast<std::uintptr_t>(part.get())==data->words[6])return part.get();
+        throw std::logic_error("Versions shot Part metadata disagrees with actual Master");
     }
     Master* checked_master(std::uintptr_t borrowed){
         for(const auto& candidate:masters_)if(candidate&&reinterpret_cast<std::uintptr_t>(candidate.get())==borrowed)return candidate.get();

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H6 completed HUM/H4 owner integration",
+  "H6_complete": false,
+  "source_only": true,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "h6_base": "93dfe42",
+  "completed_hum": "b9d67aa",
+  "contract": "analysis/human-item-projectile-production-source.md",
+  "verification": {
+    "i386": "PASS strict actual World/Human/item primary and secondary fire + Active AI grenade notification FULL LINK; not executed.",
+    "application": "PASS latest launcher/probe rebuild; not executed.",
+    "ledger": "PASS full fingerprints/inventories/frozen counts/unique statuses/evidence/README. Single unavailable imported ignored00572C00 C link removed in favor of already retained tracked source/contract/receipt evidence; no fabricated/copied artifact."
+  },
+  "ledger": {
+    "complete": 34,
+    "partial": 3355,
+    "client_partial": 3350,
+    "engine_partial": 5,
+    "new_claims": 0
+  },
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-integrated-host-i386.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-integrated-application-link.log",
+      "bytes": 820,
+      "sha256": "9bdc4fb1756a31d97bb7aedf79405fad9d9537a8a20de16f22dd16076815a5dd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-integrated-ledger.log",
+      "bytes": 437,
+      "sha256": "e890c81094c6679ebef38de0bbc6f85ff9933ee87d975577d9c834899eba485c"
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-integrated-host-i386.cpp",
+      "bytes": 476,
+      "sha256": "f56d13d836cd295d1fd91fd7ccdbb9d8e723957993920e52d31a5e5588034ad0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h6-integrated-host-i386.exe",
+      "bytes": 1906176,
+      "sha256": "9a1cc9776a8fde9e748ba7737641209d17e6579ed7f53d5dfef8b1ae79ce976f"
+    }
+  ],
+  "remaining": [
+    "Immediate melee/hit zones/H2 damage",
+    "Player medicine00546DC0",
+    "H6 final item/input composition; H8 async/application/desktop separate"
+  ]
+}

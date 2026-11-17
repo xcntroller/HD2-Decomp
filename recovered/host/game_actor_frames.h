@@ -21,6 +21,10 @@ namespace hd2::host {
 class GameActorFrames : public GameCarFrames {
 public:
     using GameCarFrames::GameCarFrames;
+    void collision_debug_begin(){call<void>(driver_.frame(),0x44,Frame{},std::uint32_t{0});} //0071F850 actual driver, not scene.
+    void collision_debug_matrix(const Matrix& matrix){call<void>(driver_.frame(),0x84,matrix.data());}
+    void collision_debug_draw(std::uint32_t lines,const void* vertices){call<void>(driver_.frame(),0x88,std::uint32_t{1},lines,vertices,std::uint32_t{0});}
+    void human_walk_debug_beep(){(void)::MessageBeep(0xffffffffu);} //007646F0's actual platform endpoint.
     MenuDriver::Owner retain_actor_frame(Frame frame) {return retain(frame);}
     std::uint32_t visual_lightmap_group(Frame frame)const{return field<std::uint32_t>(frame,0x210);}
     void set_visual_lightmap_group(Frame frame,std::uint32_t group){call<void>(frame,0xc8,group);} //0048D270/0048C790.
@@ -66,6 +70,10 @@ public:
     MissionLightProperties mission_light_properties(Frame frame)const {
         return {(field<std::uint32_t>(frame,0xe0)&1u)!=0,field<std::int32_t>(frame,0x164),field<std::uint32_t>(frame,0x160)};
     }
+    Vector active_target_bound_centre(Frame frame){ //0052C510/00538B00: actual lazy58 then native30 sphere centre.
+        if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
+        return field<Vector>(frame,0x30);
+    }
     Bounds mission_frame_world_bounds(Frame frame) {
         if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
         return field<Bounds>(frame,0x10);
@@ -104,6 +112,10 @@ public:
         return context.found;
     }
     Matrix actor_world_matrix(Frame frame) {return car_world_matrix(frame);}
+    const Matrix& active_task_borrow_world_matrix(Frame frame){ //00535E70 reads both matrices AFTER both lazy updates.
+        (void)actor_world_matrix(frame);
+        return *reinterpret_cast<const Matrix*>(address(frame,0x40)); //Borrowed only across the next lazy update, never retained.
+    }
     void formation_matrix_direction(Matrix& matrix,const Vector& direction) {
         using Set=void(WINAPI*)(void*,const void*);
         exported<Set>("?SetDir@S_matrix@@QAGXABUS_vector@@@Z",0x2c7a0)(matrix.data(),direction.data());
@@ -134,10 +146,23 @@ public:
         if(call<std::int32_t>(frame,0x38,root,std::uint32_t{1})<0)
             throw std::runtime_error("Cannot link physics object to actual scene root");
     }
+    MenuDriver::Owner create_physics_replacement_model(){return driver_.create(9);} //00407BD0.
+    std::int32_t load_physics_replacement_model(Frame model,const std::string& key){return resources_.load_model(model,key,0);}
+    Frame find_physics_replacement_frame(Frame model,const std::string& name){return call<Frame>(model,0x48,name.c_str(),std::uint32_t{0xffff});}
+    void detach_physics_replacement_frame(Frame model,Frame frame){call<void>(model,0x80,frame);}
+    void physics_replacement_position(Frame model,const Vector& position){call<void>(model,8,position.data());}
+    void dog_body_link_sector(Frame model,Frame sector){call<void>(model,0x38,sector,std::uint32_t{0});} //005C8B30 ignores engine link status.
+    Matrix dog_cached_world_matrix(Frame model){return field<Matrix>(model,0x40);} //005CDE60, no additional UpdateWMatrixProc.
+    void physics_replacement_direction(Frame model,const Vector& direction){call<void>(model,0xc,direction.data(),std::uint32_t{0});}
+    MenuDriver::Owner retain_optional_physics_frame(Frame frame){return frame?retain(frame):MenuDriver::Owner{nullptr,nullptr};}
+    void add_physics_replacement_frame(Frame frame){if(const auto scene=scene_.frame())call<void>(scene,0x80,frame);} //Actual nullable World18.
     void physics_publish_pose(Frame frame,const Vector& position,const std::array<float,4>& rotation){ //0040AB80, native frame08, direct normalized quaternion, SceneEC, frame24.
         call<void>(frame,8,position.data());object_rotation(frame,rotation);auto_parent_object(frame);update_scene_object(frame);
     }
     void physics_publish_position(Frame frame,const Vector& position){call<void>(frame,8,position.data());update_scene_object(frame);} //0040F5A2; no quaternion or parent update here.
+    void replay_human_model_position(Frame frame,const Vector& position){ //00759E20, Scene144 BEFORE frame24.
+        call<void>(frame,8,position.data());refresh_dynamic_human_model(frame);update_scene_object(frame);
+    }
     void physics_restore_pose(Frame frame,const Vector& position,const Vector& rotation){object_rotation(frame,rotation);call<void>(frame,8,position.data());update_scene_object(frame);} //0040D1B1/0040D9BF, ONE24 after both writes, no SceneEC.
     Vector physics_local_translation(Frame frame){const auto matrix=car_local_matrix(frame);return {{matrix[12],matrix[13],matrix[14],matrix[15]}};} //0040F5E3/58 lazy local matrix.
     Vector physics_local_sphere_centre(Frame frame){(void)rigid_visual_bounds(frame);return field<Vector>(frame,0x1c0);}
@@ -565,6 +590,15 @@ public:
         }
         return field<game::MissionQuaternion>(frame,0xc0);
     }
+    void item_auxiliary_link(Frame frame,Frame parent){(void)call<std::int32_t>(frame,0x38,parent,0u);} //007D5380 ignores native status.
+    void item_auxiliary_forward(Frame frame){const Vector forward{{0,0,1,0}};call<void>(frame,0x1c,forward.data(),0.f);} //007D5380, THREE native direction lanes.
+    void human_mounted_model_position(Frame model,const Vector& position){call<void>(model,8,position.data());} //00793490, no early24.
+    void human_mounted_model_sector(Frame model,Frame sector){(void)call<std::int32_t>(model,0x38,sector,1u);} //00793490 ignores native status.
+    void human_mounted_model_visibility(Frame model,Frame source){ //79367D..68D retains native ECX upper bytes, masks CL only.
+        const auto argument=(static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(source))&0xffffff00u)|
+            (field<std::uint8_t>(source,0xe0)&1u);
+        call<void>(model,0x30,argument);
+    }
     game::MissionQuaternion human_matrix_rotation(const Matrix& matrix) {
         game::MissionQuaternion result{};
         using Make=void(WINAPI*)(void*,const void*);
@@ -632,6 +666,12 @@ public:
         put(frame,0xb8,static_cast<float>(static_cast<long double>(field<float>(frame,0xb8))+amount));
         put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);
     }
+    void human_equipment_action_link(Frame frame,Frame parent,std::uint32_t flags){(void)call<std::int32_t>(frame,0x38,parent,flags);} //0078DF60/00790520 ignore status.
+    void human_equipment_action_visibility(Frame frame,const void* human,bool hidden){
+        const auto argument=(static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(human))&0xffffff00u)|std::uint32_t(!hidden);
+        call<void>(frame,0x30,argument);
+    }
+    Bounds human_equipment_bounds_data(Frame frame)const{return field<Bounds>(frame,0x10);}
     void human_equipment_link(Frame frame,Frame parent,std::uint32_t flags) {
         if(call<std::int32_t>(frame,0x38,parent,flags)<0)
             throw std::runtime_error("Cannot attach required Human equipment frame");
@@ -651,6 +691,7 @@ public:
         call<void>(reinterpret_cast<Frame>(address(frame,0x120)),8,group,index,weight);
     }
     Frame human_model_clip(Frame model,std::uint32_t slot) {return call<Frame>(model,0x88,slot);}
+    long double dog_model_weight(Frame model,std::uint32_t slot){return call<long double>(model,0x98,slot);} //005C6EE0 retains native ST0 through comparison.
     float human_model_weight(Frame model,std::uint32_t slot) {return call<float>(model,0x98,slot);}
     void human_model_weight(Frame model,std::uint32_t slot,float weight) {call<void>(model,0x94,slot,weight);}
     std::int32_t human_model_time(Frame model,std::uint32_t slot) {return call<std::int32_t>(model,0xa0,slot);}
@@ -668,6 +709,14 @@ public:
     void human_model_advance(Frame model,const std::array<std::int32_t,8>& times) {call<void>(model,0xb0,times.data());}
     void human_model_remove_animation(Frame model,std::uint32_t slot) {call<void>(model,0x8c,slot);}
     void human_equipment_tick_model(Frame model,std::int32_t elapsed){call<void>(model,0x20,elapsed);} //00790520 case9.
+    void suppress_human_mount_visuals(Frame model){ //0075DF70 native model120/128 rereads, visual1 virtual80(0).
+        for(std::int32_t n=0;n<field<std::int32_t>(model,0x128);++n){
+            const auto list=field<Frame*>(model,0x120);
+            if(!list||n>=0x100000)throw std::runtime_error("Mounted Human has invalid frame array");
+            const auto frame=list[n];if(!frame)throw std::runtime_error("Mounted Human has null visual");
+            if(frame_kind(frame)==1)call<void>(frame,0x80,0u);
+        }
+    }
     void restore_human_mount_visuals(Frame model){ //0075E290, native flattened model120/128 array is reread each visit.
         for(std::uint32_t n=0;n<field<std::uint32_t>(model,0x128);++n){
             const auto list=field<Frame*>(model,0x120);
@@ -718,9 +767,45 @@ public:
         const auto z=actor_find(model,"z",0xffff),q=actor_find(model,"q",0xffff);
         call<void>(scene_.frame(),0x138,model,q,z);
     }
+    void register_replaced_human_model(Frame model){ //00786C20 only registers unsectored or sector-kind5 models.
+        const auto sector=field<Frame>(model,0x108);
+        if(!sector||field<std::uint16_t>(sector,0xf8)==5)register_human_model(model);
+    }
     void refresh_dynamic_human_model(Frame model){call<void>(scene_.frame(),0x144,model);} //007646F0/00755500, original scene receiver.
     void detach_human_effect_model(Frame model){(void)call<std::int32_t>(model,0x38,Frame{},std::uint32_t{5});} //007B0910 ignores native LinkTo return.
     void human_reaction_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{1});} //0074D510/occupied seat removal ignore LinkTo status.
+    const float* human_target_world_matrix(Frame frame){ //00575450/670 and005A3AB0 retain native world-matrix loans across later updates.
+        if(!frame)throw std::logic_error("Human target matrix requires actual frame");
+        if(!(field<std::uint32_t>(frame,0xe0)&0x20u)){
+            using Update=void(__thiscall*)(Frame);
+            exported<Update>("?UpdateWMatrixProc@I3D_frame@@AAEXXZ",0x1e390)(frame);
+        }
+        return reinterpret_cast<const float*>(address(frame,0x40));
+    }
+    const Frame* human_target_bone_table(Frame visual){ //005A3AB0 captures actual214 before model updates.
+        if(!visual)throw std::logic_error("Human target point requires actual a visual");
+        const auto* bones=field<const Frame*>(visual,0x214);
+        if(!bones)throw std::logic_error("Human target point requires actual skeletal table");
+        return bones;
+    }
+    const Frame* shot_hit_bone_table(Frame visual){ //00455670 has a genuine NULL214 returnFF.
+        if(!visual)throw std::logic_error("Shot hit zones require actual a visual");
+        return field<const Frame*>(visual,0x214);
+    }
+    void shot_hit_zone_pose(Frame frame,const Matrix& matrix){
+        if(!frame)throw std::logic_error("Shot hit zones lost actual humanzones frame");
+        human_equipment_local_matrix(frame,matrix); //80/GetScale/dirty prefix; SIMD W is unclaimed padding.
+        for(unsigned axis=0;axis!=3;++axis)put(frame,0xd0+axis*4,1.f);
+        if(!(field<std::uint32_t>(frame,0xe0)&8u)){
+            using Make=void(WINAPI*)(void*,const void*);
+            exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(address(frame,0xc0),address(frame,0x80));
+        }
+        put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+        update_scene_object(frame);
+    }
+    void human_seat_link(Frame model,Frame parent){(void)call<std::int32_t>(model,0x38,parent,std::uint32_t{0});}
+    void human_seat_origin(Frame model){car_suspension_position(model,Vector{});call<void>(model,0x1c,Vector{{0,0,1,0}}.data(),0.f);update_scene_object(model);}
+    void human_seat_exit_pose(Frame model,const Vector& position,const Vector& direction){call<void>(model,8,position.data());call<void>(model,0x1c,direction.data(),0.f);update_scene_object(model);}
     Frame human_visual_bone(Frame visual,unsigned index){ //005A3CC0, actual borrowed skeletal frame table214.
         if(!visual)throw std::logic_error("Human damage point requires its actual skeletal visual");
         const auto* bones=field<const Frame*>(visual,0x214);
@@ -730,6 +815,12 @@ public:
     void shot_blood_scale(Frame frame,float size,float lane){
         put(frame,0xd0,size);put(frame,0xd4,size);put(frame,0xd8,.05000000074505806f);put(frame,0xdc,lane);
         car_rotation(frame);put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+    }
+    void dog_clear_animation2_position(Frame marker){ //005C7D30/005C5BF0, direct XYZ; static80 suppresses writes.
+        if(!marker)throw std::runtime_error("Dog Body requires actual anim2 marker");
+        const auto flags=field<std::uint32_t>(marker,0xe0);if(flags&0x80u)return;
+        for(unsigned n=0;n!=3;++n)put(marker,0xb0+n*4,0.f);
+        put(marker,0xe0,(flags&0xfffffedfu)|0x40000000u);
     }
     void human_reaction_model_direction(Frame model,const Vector& direction){call<void>(model,0xc,&direction,0.f);}
     void place_human_reaction_model(Frame model){const auto world=actor_world_matrix(model);const Vector position{{world[12],world[13],world[14],world[15]}};call<void>(scene_.frame(),0xec,model,&position);}
@@ -880,6 +971,18 @@ public:
         }
         return direction;
     }
+    Vector mounted_local_forward(Frame frame){ //004C2580/004C3120, same lazy local matrix protocol.
+        const bool cached=(field<std::uint32_t>(frame,0xe0)&0x10u)!=0;
+        if(!cached){put(frame,0xe0,field<std::uint32_t>(frame,0xe0)|0x10u);
+            using Normalize=void(WINAPI*)(void*);exported<Normalize>("?Normalize@S_quat@@QAGXXZ",0x30540)(address(frame,0xc0));
+            using Set=void(WINAPI*)(void*,const void*);exported<Set>("?SetRot3@S_matrix@@QAGXABUS_quat@@@Z",0x2d450)(address(frame,0x80),address(frame,0xc0));}
+        Vector direction=field<Vector>(frame,0xa0);
+        if(cached){const float square=static_cast<float>((static_cast<long double>(direction[0])*direction[0]+static_cast<long double>(direction[2])*direction[2])+static_cast<long double>(direction[1])*direction[1]);game::normalize_human_ai_shot(direction,square);}
+        return direction;
+    }
+    void mounted_local_direction(Frame frame,const Vector& direction){call<void>(frame,0x1c,direction.data(),std::uint32_t{0});}
+    MenuDriver::Owner mounted_shell_visual(Frame source){auto result=create_visual(0x5f4a424fu);if(!result)throw std::runtime_error("Cannot create mounted casing visual");call<void>(result.get(),0x4c,source);human_seat_link(result.get(),camera_root_sector());place_human_reaction_model(result.get());return result;}
+    void mounted_shell_position(Frame frame,const Vector& position){auto flags=field<std::uint32_t>(frame,0xe0);if(!(flags&0x80u)){for(unsigned axis=0;axis!=3;++axis)put(frame,0xb0+axis*4,position[axis]);put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);}}
     void human_control_set_position(Frame frame,const Vector& position){ //007599F0.
         call<void>(frame,0x08,position.data());
         call<void>(scene_.frame(),0x144,frame);
@@ -948,6 +1051,14 @@ public:
         return result;
     }
     void mark_human_air_shadow(Frame frame){put(frame,0xe0,field<std::uint32_t>(frame,0xe0)|0x80u);} //00769920.
+    MenuDriver::Owner heavy_fire_model(const std::string& key){
+        auto model=driver_.create(9);if(!model)throw std::runtime_error("HeavyFire requires allocated engine model");
+        (void)resources_.load_model(model.get(),key,0x10);return model;
+    }
+    float heavy_fire_model_extent(Frame model){if(!(field<std::uint32_t>(model,0xe0)&0x100u))call<void>(model,0x58);return field<float>(model,0x3c);}
+    void heavy_fire_model_position(Frame model,const Vector& p,bool initial){if(initial)call<void>(model,8,p.data());else car_sound_head(model,p);}
+    void heavy_fire_model_direction(Frame model,const Vector& direction,bool root){call<void>(model,root?0xcu:0x1cu,direction.data(),std::uint32_t{0});} //00470CD2 root0C,00470DED child1C.
+    void heavy_fire_sound_velocity(Frame sound,const Vector& velocity){call<void>(sound,0xb0,velocity.data());}
     MenuDriver::Owner create_game_camera() {return driver_.create(3);}
     MenuDriver::Owner create_human_sound() {return driver_.create(4);}
     bool human_sound_available() {
@@ -962,8 +1073,10 @@ public:
     }
     void car_sound_pitch(Frame sound,float value){call<void>(sound,0x88,value);}
     bool car_sound_state(Frame sound){return call<std::uint8_t>(sound,0x78,std::uint32_t{0})!=0;}
+    bool car_sound_enabled(Frame sound)const{return (field<std::uint8_t>(sound,0xe0)&1u)!=0;} //004D2DC0, direct byte read.
     float car_sound_volume(Frame sound)const{return field<float>(sound,0x16c);} //0051B560.
     std::uint32_t car_sound_elapsed(Frame sound){return call<std::uint32_t>(sound,0xa4);} //0051A950.
+    std::uint32_t car_sound_duration(Frame sound){return call<std::uint32_t>(sound,0xa8);} //00518710.
     void car_sound_stop(Frame sound){call<void>(sound,0xac,std::uint32_t{0},std::uint32_t{1});} //0051B8F0.
     void car_sound_parameter98(Frame sound,float value){call<void>(sound,0x98,value);}
     void car_sound_cone(Frame sound,float first,float second){call<void>(sound,0x84,first,second);}
@@ -1042,6 +1155,7 @@ public:
         put(sound,0xe0,(flags&0xfffffedfu)|0x40000000u);
     }
     std::int32_t load_human_sound(Frame sound,const char* name) {return resources_.load_sound(sound,name,0);}
+    std::int32_t load_item_sound(Frame sound,const std::string& name){return resources_.load_sound(sound,name,0x10);} //007D5C70's SAME category2 cache.
     void human_sound_enabled(Frame sound,bool enabled) {call<void>(sound,0x30,std::uint32_t(enabled));}
     void human_sound_parameter7c(Frame sound,std::uint32_t value) {call<void>(sound,0x7c,value);}
     void human_sound_volume(Frame sound,float value) {call<void>(sound,0x8c,value);}
@@ -1051,6 +1165,7 @@ public:
         call<void>(sound,0x38,parent,std::uint32_t{0});
         object_position(sound,position);
     }
+    void human_sound_link(Frame sound,Frame parent){call<void>(sound,0x38,parent,std::uint32_t{0});}
     void human_sound_range(Frame sound,float near_range,float far_range,float first,float second) {call<void>(sound,0x80,near_range,far_range,first,second);}
     void human_sound_parameter90(Frame sound,std::uint32_t value) {call<void>(sound,0x90,value);}
     void human_sound_parameter94(Frame sound,std::uint32_t value) {call<void>(sound,0x94,value);}
@@ -1171,8 +1286,114 @@ public:
     std::uint32_t hud_driver_state(std::uint32_t state)const{return driver_.render_state(state);}
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}
     MenuDriver::Owner create_hud_info_model(){return driver_.create(9);}
+    auto create_document_visual(std::uint32_t kind){return create_visual(kind);}
+    void copy_document_visual(Frame destination,Frame source){call<void>(destination,0x4c,source);} //0060E860.
+    void document_visual_link(Frame frame,Frame parent){call<void>(frame,0x38,parent,std::uint32_t{0});}
+    void copy_hud_order_model(Frame destination,Frame source){ //004B9240's frame4C, no extra template owner.
+        if(call<std::int32_t>(destination,0x4c,source)<0)throw std::runtime_error("Cannot copy required order marker model");
+    }
+    void human_order_marker_data(Frame model,void* order){put(model,0xec,order);} //Actual native marker EC, not Actor frame-data registration.
+    void human_order_marker_link(Frame model){ //0058C5A0 links to World18+200 with mode1, NOT camera root1F8.
+        const auto root=field<Frame>(scene_.frame(),0x200);
+        if(!root)throw std::logic_error("AI order marker requires actual World root200");
+        call<void>(model,0x38,root,std::uint32_t{1});
+    }
     MenuDriver::Owner create_shot_model(){return driver_.create(9);}
+    MenuDriver::Owner create_shot_shell(Frame source){
+        auto owner=driver_.create(0x5f4a424fu);if(!owner)throw std::runtime_error("Shell requires actual driver object");
+        call<void>(owner.get(),0x4c,source);return owner;
+    }
+    void shot_projectile_root(Frame frame){human_sound_link(frame,field<Frame>(scene_.frame(),0x1f8));}
+    struct ShotDetailedPick {Frame frame{};float distance=0;Vector normal{};};
+    std::optional<ShotDetailedPick> shot_detailed_pick(const Vector& start,const Vector& displacement,Frame root,std::uint32_t flags=0x40000){
+        using Pick=Frame(WINAPI*)(Frame,const float*,const float*,Frame,void*,std::uint32_t,std::uint32_t,std::uint32_t,std::uint32_t);
+        alignas(16) std::array<std::uint8_t,64> details{};
+        const auto frame=scene_method<Pick>(scene_.frame(),module_,0x104,0x110f0)(scene_.frame(),start.data(),displacement.data(),root,details.data(),flags,0,0,0);
+        if(!frame)return std::nullopt;
+        ShotDetailedPick result;result.frame=frame;std::memcpy(&result.distance,details.data(),4);
+        for(unsigned a=0;a!=3;++a)std::memcpy(&result.normal[a],details.data()+0x10+a*4,4);
+        return result;
+    }
+    void shot_visual_direction(Frame frame,const Vector& direction){call<void>(frame,0x1c,direction.data(),std::uint32_t{0});}
+    float shot_flare_intensity(Frame frame)const{return field<float>(frame,0x1e4);}
+    void shot_flare_intensity(Frame frame,float value){put(frame,0x1e0,value);put(frame,0x1e4,value);put(frame,0x244,value);}
+    void shot_grenade_parameter(Frame frame,float value){call<void>(frame,0xa8,value);}
+    void configure_shot_capsule(Frame frame,const Vector& velocity,const Vector& position){
+        human_sound_link(frame,shot_hidden_sector());call<void>(frame,0xc,velocity.data(),std::uint32_t{0});
+        call<void>(frame,8,position.data());object_visible(frame,true);update_scene_object(frame);
+    }
+    void shot_shell_pose(Frame frame,const Vector& position,const Vector& direction){call<void>(frame,0x14,position.data(),direction.data(),std::uint32_t{0});}
+    void place_shot_shell(Frame frame,bool first){
+        if(first){shot_surface_scale(frame,.6f,.6f,.6f);call<void>(frame,0x38,field<Frame>(scene_.frame(),0x204),std::uint32_t{1});}
+        else{const auto matrix=actor_world_matrix(frame);call<void>(scene_.frame(),0xec,frame,matrix.data()+12);}
+    }
+    bool shot_actor_in_scene(Frame frame)const{return field<Frame>(frame,0x11c)==field<Frame>(scene_.frame(),0x11c);}
+    void configure_shot_light(Frame light,Frame parent){ //00453D80.
+        human_sound_link(light,parent);human_equipment_name(light,"WeaponLight");
+        call<void>(light,0x94,std::uint32_t{0x11});call<void>(light,0x74,std::uint32_t{1});
+        const std::array<float,3> white{{1,1,1}};call<void>(light,0x7c,white.data());
+        call<void>(light,0x88,1.5f);call<void>(light,0x80,white.data());call<void>(light,0x8c);
+        car_sound_head(light,Vector{{0,0,0,0}});
+        const auto position=actor_world_matrix(parent);const Vector origin{{position[12],position[13],position[14],position[15]}};
+        const auto sector=human_scene_sector(origin);if(!sector)throw std::runtime_error("Muzzle flash has no actual sector");
+        call<void>(sector,0x74,light);
+        const auto records=field<Frame*>(sector,0x25c);
+        for(std::uint32_t n=0;n<field<std::uint32_t>(sector,0x264);++n){
+            if(!records)throw std::runtime_error("Muzzle flash sector has no portal list");
+            const auto adjacent=field<Frame>(records[n],0x194);
+            if(!adjacent)throw std::runtime_error("Muzzle flash portal has no adjacent sector");
+            const auto p=actor_world_matrix(parent);const auto q=actor_world_matrix(adjacent);
+            const auto x=static_cast<long double>(q[12])-p[12],y=static_cast<long double>(q[13])-p[13],z=static_cast<long double>(q[14])-p[14];
+            const auto square=(z*z+y*y)+x*x;
+            if(!(square>16.f)){call<void>(adjacent,0x74,light);update_scene_object(adjacent);}
+        }
+        call<void>(light,0x98,4.f);hud_unit_scale(light);call<void>(light,0x9c,.99f,std::uint32_t{0},.01f);
+        object_visible(light,true);update_scene_object(light);
+    }
+    void shot_light_intensity(Frame light,float value){call<void>(light,0x88,value);}
+    void shot_light_range(Frame light,float value){call<void>(light,0x98,value);}
+    void remove_shot_light_sectors(Frame light){ //00454120 captures list/count, then removes in reverse.
+        const auto sectors=field<Frame*>(light,0x120);auto count=field<std::uint32_t>(light,0x128);
+        if(count&&!sectors)throw std::runtime_error("Muzzle flash has no actual sector list");
+        while(count)call<void>(sectors[--count],0x78,light);
+    }
+    MenuDriver::Owner create_shot_trace(Frame source,const Vector& position){ //0044B030, nonzero trace branch.
+        auto owner=driver_.create(0x44524242u);const auto frame=owner.get();
+        if(!frame)throw std::runtime_error("Bullet trace requires actual driver visual");
+        call<void>(frame,0x4c,source);
+        const auto mesh=field<Frame>(frame,0x1e0);
+        if(!mesh)throw std::runtime_error("Bullet trace has no actual mesh");
+        const auto lod=call<Frame>(mesh,4,std::uint32_t{0});
+        if(!lod)throw std::runtime_error("Bullet trace has no actual first LOD");
+        const auto group=call<Frame>(lod,0x14,std::uint32_t{0});
+        if(!group)throw std::runtime_error("Bullet trace has no actual material group");
+        const auto material=field<Frame>(group,4);
+        if(!material)throw std::runtime_error("Bullet trace has no actual material");
+        put(material,8,field<std::uint32_t>(material,8)|0x8000000u);
+        const std::array<float,3> white{{1,1,1}},black{{0,0,0}};
+        call<void>(material,0xc,white.data());call<void>(material,0x10,black.data());
+        call<void>(material,8,black.data());call<void>(material,0x14,std::uint32_t{0});
+        human_sound_link(frame,shot_hidden_sector());car_sound_head(frame,position);
+        object_visible(frame,false);update_scene_object(frame);return owner;
+    }
+    MenuDriver::Owner create_shot_flare(const Vector& position){ //0044B030, no trace and definition265.
+        auto owner=create_shot_model();const auto frame=owner.get();
+        if(!frame)throw std::runtime_error("Bullet flare requires actual driver model");
+        (void)load_shot_model(frame,"m_w_flare");human_sound_link(frame,shot_hidden_sector());
+        object_visible(frame,true);update_scene_object(frame);car_sound_head(frame,position);
+        shot_surface_scale(frame,.5f,.5f,.5f);update_scene_object(frame);
+        if(const auto flare=actor_find(frame,"flare",0xffffu)){
+            put(flare,0x1e0,.1f);put(flare,0x1e4,.1f);put(flare,0x244,.1f);update_scene_object(flare);
+        }
+        return owner;
+    }
     MenuDriver::Owner create_shot_surface(){return driver_.create(0x4a4f5250u);} //004546E0, PROJ driver extension.
+    std::uint32_t shot_frame_native_type(Frame frame){return call<std::uint32_t>(frame,4);}
+    std::uint32_t shot_impact_visual_flags(Frame frame)const{return field<std::uint32_t>(frame,0x1d0);}
+    void shot_surface_white(Frame frame){const std::array<float,3> white{{1,1,1}};call<void>(frame,0xb0,white.data());}
+    void shot_surface_projection(Frame frame,bool value){call<void>(frame,0xa4,std::uint32_t(value));}
+    Frame shot_material_sector(const Vector& position){return call<Frame>(scene_.frame(),0xe0,position.data(),std::uint32_t{1});}
+    float shot_scene_light(const Vector& position,bool shadows=false){return call<float>(scene_.frame(),0x8c,position.data(),Frame{},std::uint32_t(shadows),std::uint32_t{0});}
     void shot_surface_texture(Frame frame,Frame texture){call<void>(frame,0x9c,texture);}
     void shot_surface_scale(Frame frame,float x,float y,float z){
         put(frame,0xd0,x);put(frame,0xd4,y);put(frame,0xd8,z); //Native DC is unwritten; retain its known prior lane.
@@ -1407,6 +1628,10 @@ public:
     void prepare_supply_morph(Frame morph){call<void>(morph,0xa0);}
     void supply_model_tick(Frame model,std::uint32_t elapsed){call<void>(model,0x20,elapsed);}
     MenuDriver::Owner create_fowl_model(){return driver_.create(9);}
+    Frame animation_actor_clip(Frame model){return call<Frame>(model,0x88,0u);}
+    std::uint32_t animation_actor_clip_time(Frame model){return call<std::uint32_t>(model,0xa0,0u);}
+    std::uint32_t animation_actor_clip_duration(Frame clip){return call<std::uint32_t>(clip,8);}
+    void animation_actor_clip_start(Frame clip){put(clip,8,1u);} //005B55E0 overwrites actual clip+08.
     MenuDriver::Owner create_animation_actor_model(){return driver_.create(9);}
     std::int32_t load_animation_actor_model(Frame model,const std::string& name){return resources_.load_model(model,recovered::model_resource_key(name),0x10);}
     void mine_model_name(Frame frame,const char* name){call<void>(frame,0x34,name);} //005FDF90 ignores HRESULT.

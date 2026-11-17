@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_PLAYER_CONTROL_LOADING_H
 
 #include "game/human_player_roster.h"
+#include "game/player_control_frames.h"
 #include <array>
 #include <cstdint>
 #include <type_traits>
@@ -85,6 +86,10 @@ public:
         for(auto n=dogs_.size();n;)if(dogs_[--n]==actor)return;
         dogs_.push_back(actor);
     }
+    void remove_sighted_dog_at(std::size_t index){ //00532A20: remove only an encountered nearby dead Dog.
+        if(index>=dogs_.size())throw std::logic_error("Sighted Dog removal lost its actual index");
+        dogs_[index]=dogs_.back();dogs_.pop_back();
+    }
     void post_loading() { //0045DDE0 after base00461D30 genuine RET4.
         index28_=index30_=-1;if(roster_.size()==1)index2c_=0;override58_=nullptr;
         selection_.clear();dogs_.clear();field34_=0; //Collected60/pending6C remain intact.
@@ -96,6 +101,14 @@ public:
     void override_player(Human* human){ //0045E8F0, store BEFORE camera reset/FPV rebind, no roster mutation.
         override58_=human;presentation_.reset_player_camera(0);presentation_.bind_first_person_player();
     }
+    void advance_presentation(std::uint32_t elapsed){selection_.tick(elapsed);} //0045DDC0: base00461D20 RET4, then0045E3A0.
+    template<class Mission,class Queries>void advance_fixed(std::uint32_t elapsed,const Mission* mission,Queries& queries){ //0045DD90.
+        //00461D10 is RET4;0045E380 ticks only without mode2.
+        if(!(queries.mode_flags()&2u))selection_.tick(elapsed);
+        (void)roster_.live_count(); //Native scan before0045EF00, return unused.
+        update_player_control_frame_flags(*this,mission,field34_,queries);
+    }
+    std::uint32_t frame_surface_flags()const noexcept{return field34_;}
 private:
     Human* indexed(std::int32_t index)const {
         if(index==-1)return nullptr;

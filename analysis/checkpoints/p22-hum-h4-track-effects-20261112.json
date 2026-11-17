@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 C7 actual track18/19/24 effects/SOUND",
+  "implementation_base": "c6207f3",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "sha256": "970c245dad7ef134bc374fad511980ebd66199775054331830359454b73e25d4",
+      "bytes": 56710
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "930063ce63c2a5a98cd06ceee21a161250eba54e747aed9bef837414298dea9f",
+      "bytes": 126868
+    },
+    {
+      "path": "recovered/game/human_track_effect_events.h",
+      "sha256": "1a10969fdfcb3175b0a20621e6adc968234d24c6bad2b1634785a3252a943c6b",
+      "bytes": 2821
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-control-original.asm",
+      "sha256": "7c19ad26d0935d74fc83425deda73eb31979fef8fd4789c0a0c12c4bc2a861de",
+      "bytes": 40733
+    }
+  ],
+  "constants": {
+    "0080ff04": "FLOAT.15000000596046448",
+    "00810734": "FLOAT.03999999910593033"
+  },
+  "verification": {
+    "native": "PASS41 strictO1 ASan/UBSan/LSan; explicit Engine/Scene/Ladder/player/SOUND/effects endpoint doubles; exact request/arithmetic/gate/short-circuit/failure-prefix policies",
+    "i386": "PASS strictO0 actual public DD0/World/particle/SOUND/Scene/Ladder/FPV full link; adjacent Runtime branches defined throwing doubles",
+    "application": "PASS existing launcher/probe O2 strict links, no execution",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-effects-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-effects-native-run.log",
+      "sha256": "03fe8bf8cf08c89aa5d25e00ee36967d94cb7c1f6966cb35d1597fbbec499c38",
+      "bytes": 73
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-effects-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-effects-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-effects-native.cpp",
+      "sha256": "e3ba19a52792e7df1ca4b53bd9cd232414a9f949b17b6acca521212ba75874da",
+      "bytes": 3803
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-effects-native",
+      "sha256": "5a23b29653b46f248de608e8f0459adf5047113bc8ac64821b53b4761646d012",
+      "bytes": 247672
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-effects-host.cpp",
+      "sha256": "5321da869d8438e6a76a0f58c57d9657ab12e1f2a242e3780825630f8af96db8",
+      "bytes": 1227
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/track-effects-host.exe",
+      "sha256": "d29b25f703bc0955db4645f5eeeac283ddce9af18bbbd52df1bea74c235cfb9f",
+      "bytes": 4269056
+    }
+  ],
+  "ledger": "Extend existing00758D20 only;34 complete/3025 partial; frozen18783; no delegated engine credit.",
+  "remaining": "Track8/9 and DD0 mounted presentation, completion/type15/physics/drop, Script timed/vehicle/attachment and subgroup producers remain open."
+}

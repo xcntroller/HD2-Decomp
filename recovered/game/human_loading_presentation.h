@@ -47,7 +47,7 @@ public:
     template<class Human>void offline_player_close(Human& human){dependencies().players.offline_player_close(human);} //004593E0.
     template<class Human>void leave_player_controlled_car(Human& human,std::uint32_t){ //0053BC50's actual kind4/driver0 gate.
         if(human.field160&&human.field160->base().type()==4&&human.field164==0)
-            throw std::runtime_error("Player close requires actual occupied Car004D9280 receiver");
+            dependencies().first_person_players.release_driver_input(human);
     }
     void first_person_request(std::uint32_t mode,std::int32_t animation,std::uint32_t argument){dependencies().fpv.view().request(mode,animation,argument);}
     void hud_inventory_changed(){dependencies().hud.inventory_changed();} //Actual0049FBF0 over the SAME loaded HUD inventory root.

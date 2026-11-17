@@ -1,5 +1,10 @@
 # Car packet and DM effect ownership
 
+**Current D11 policy:** the user authorized deterministic compatibility corrections
+on2026-11-16. The [D11 source checkpoint](human-h8-d11-compatibility.md) supersedes
+the four required-failure statements below; original omission evidence and all
+other source/verification limits remain valid.
+
 Source-only continuation of [Car blast damage](human-car-blast-damage-source.md).
 The reactions checkbox and P22-HUM remain OPEN. No application or desktop claim.
 Original SHA256 remains

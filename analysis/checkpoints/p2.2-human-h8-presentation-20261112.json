@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H8.2 Active presentation and actual Car seat camera",
+  "base": "70cef16",
+  "branch": "feature/p22-hum-h8",
+  "source_only": true,
+  "H8_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-active-presentation-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_active_ai_presentation.h",
+      "bytes": 2964,
+      "sha256": "3ece201b304843d431460009d17406be8d1cda9728514c906ed1c8e0899af3ef"
+    },
+    {
+      "path": "recovered/game/car_seat_frame.h",
+      "bytes": 3132,
+      "sha256": "feb369bbd218aa359665caad89aad956612824003b7c3efe1272f14ce088248e"
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "bytes": 15591,
+      "sha256": "1891d469cab4328c1763fcfda8473e66a8310a38a8c3d1519baf567dffdfe1af"
+    },
+    {
+      "path": "recovered/game/human_loading_state_factory.h",
+      "bytes": 16395,
+      "sha256": "55dbc8b1477a061652099b6b27a4f40503d6c780fb9a636315059b511b6aa039"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 185349,
+      "sha256": "4687383acdebd42a1d0fb3cd50e094de5fc8a8480f88b841c1aa966c0bb2206e"
+    }
+  ],
+  "verification": {
+    "native": "PASS 5800 checks /100 lifetimes: actual direction and scalar owners; explicit Human/Car/engine/World endpoint doubles. No Windows or desktop execution.",
+    "i386": "PASS actual entire World Human scene-frame and Scene2 bridge FULL LINK with EMPTY outer Runtime. No execution.",
+    "application": "PASS launcher/probe rebuild/link only."
+  },
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-presentation-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-presentation-native-run.log",
+      "bytes": 152,
+      "sha256": "9b678e370ef77a6d42410d510a569fce6dada56b6872cd560384576db9ab3d8c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-presentation-host-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-presentation-application-link.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-presentation-native.cpp",
+      "bytes": 7747,
+      "sha256": "55c3919c423c96786a27ed6515decc8b58e0f742e3ae95c2bdeb712af4828618"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-presentation-native",
+      "bytes": 835336,
+      "sha256": "82fb35e3b7ebf3e0fe5ad626cdb5b6d9d9007a0959a8243e0873c17fce0b9227"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-presentation-host-i386.cpp",
+      "bytes": 684,
+      "sha256": "3aca927a5f7e59fc10e3e5ea92bd7789c525cb94ffe4880f556b2fdee88f7ae9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-presentation-host-i386.exe",
+      "bytes": 8004096,
+      "sha256": "6daafb11900ce139e1ffc32f9d1bf5a4835bccaf2be2519fd08b50d64c8b8b6c"
+    }
+  ],
+  "ledger": {
+    "new_partial_claims": [
+      "00525da0",
+      "004d9e10"
+    ],
+    "complete_promotions": 0,
+    "complete": 34,
+    "partial": 3362,
+    "client_partial": 3357,
+    "engine_partial": 5
+  },
+  "remaining": [
+    "H8.2 Active authority00526550 order/task/event/navigation/aim/movement/command dependencies and reached offline receivers",
+    "H8.3 async combat and H8.4 Car/OWN/FRAME/absent actors",
+    "Full actual application/render integration and user desktop acceptance"
+  ]
+}

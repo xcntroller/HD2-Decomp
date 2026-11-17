@@ -3,15 +3,16 @@
 
 #include "game/human_equipment_state.h"
 #include "game/human_equipment_action.h"
+#include "game/human_equipment_mount_presentation.h"
 #include "game/human_equipment_offsets.h"
 #include "game/item_model_cache.h"
 
 namespace hd2::game {
 
-//0078DF60's loading cases0/1/2/3/10 and action cases5..8. The SAME catalogue/item cache and
+//0078DF60's loading cases0/1/2/3/10 and action cases4..8. The SAME catalogue/item cache and
 //Human230 state are borrowed. Services must supply the actual DD0 opacity,
 //identity lookup,6950 flag receiver and007920B0 visibility refresh; none has
-//a successful default. Cases4/9 require their separate action producers.
+//a successful default. Case9 requires its separate mounted action producer.
 template<class Frames,class Items,class Services>
 class HumanEquipmentAttachments {
 public:
@@ -38,7 +39,9 @@ public:
         case 1:attach_bag();return;
         case 2:attach_back_model();return;
         case 3:attach_hand();return;
-        case 5:case 6:case 7:case 8:attach_human_equipment_action(frames_,state_,services_,kind);return;
+        case 4:case 8:attach_human_equipment_held_action(frames_,state_,services_,kind);return;
+        case 5:case 6:case 7:attach_human_equipment_action(frames_,state_,services_,kind);return;
+        case 9:attach_mount();return;
         case 10:attach_hand_on_back();return;
         default:throw std::runtime_error("Human equipment hands/action attachment is not reconstructed");
         }
@@ -62,6 +65,7 @@ private:
     void alpha(Frame frame) {
         if(frames_.visual_type(frame)==0x5f4a424fu)frames_.human_equipment_opacity(frame,services_.equipment_opacity());
     }
+    void attach_mount(){attach_human_equipment_mount(frames_,state_,services_);} //0078DF60 case9.
     void attach_head() {
         const auto model=state_.model(3);if(!model)return;
         frames_.human_equipment_link(model,state_.markers()[1],2);

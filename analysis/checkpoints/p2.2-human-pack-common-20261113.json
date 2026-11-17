@@ -1,0 +1,285 @@
+{
+  "date": "2026-11-13",
+  "source_only": true,
+  "p22_hum_complete": false,
+  "p22_pack_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "base_commit": "e2ce802a6c685beaff746627a0ef46912a3b4703",
+  "contract": "analysis/human-h8-pack-common-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/actor_properties.h",
+      "bytes": 10048,
+      "sha256": "e2cdad939f8a3a016fa95e540f689f36e4be8291c89bcd5dae13a3591621adce"
+    },
+    {
+      "path": "recovered/game/actor_world_corners.h",
+      "bytes": 4661,
+      "sha256": "b4b59b8296e7b606c044d9afe5b5959a1c5ae3b7f40c4c49860f9b084f1d506d"
+    },
+    {
+      "path": "recovered/game/document_place_scene_actor.h",
+      "bytes": 7951,
+      "sha256": "b21b16ec1591fac5af791f5b77d306f693d98079c5a2272c2e4978ed62a6e1bd"
+    },
+    {
+      "path": "recovered/game/door_key_lock.h",
+      "bytes": 1003,
+      "sha256": "b555f3e2080293e53679eb486f7ab69fab557c69d0b08b84725d7c309f4651e8"
+    },
+    {
+      "path": "recovered/game/geometry_scene_actors.h",
+      "bytes": 31953,
+      "sha256": "63944dfc023b63a5c26bdcb84da57a7a748d42c52124af48dcd0d3725ddc6439"
+    },
+    {
+      "path": "recovered/game/heavy_fire_aircraft.h",
+      "bytes": 9294,
+      "sha256": "414b271d76c8ac2797d8ef239dd29fc11c5b1c63b84340630478a779b4dde748"
+    },
+    {
+      "path": "recovered/game/human_camera_state.h",
+      "bytes": 1988,
+      "sha256": "43b24de48e79470123ef27eb106c118b6e2d63e86452344ad8bce2b6daa3960d"
+    },
+    {
+      "path": "recovered/game/human_common_command.h",
+      "bytes": 10939,
+      "sha256": "21694645807dd7242741adceb3714a24f1769e0b859ed72996b43ab55486594d"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 62973,
+      "sha256": "a7674df8886e1e2ef63495712b6a9baa2b5bdcd8a083a46c1f546a4215d3352b"
+    },
+    {
+      "path": "recovered/game/human_inline_loading.h",
+      "bytes": 11593,
+      "sha256": "f6c61f8ee5d736da02801374ad045cefd6246e0f7c2b4060f4bcdcf9194a057a"
+    },
+    {
+      "path": "recovered/game/human_loading_composition.h",
+      "bytes": 5866,
+      "sha256": "028c4e50335dd355b74bfb6be906d8a31e146da583d8ff31e8c2ba280b7b205d"
+    },
+    {
+      "path": "recovered/game/human_loading_state_view.h",
+      "bytes": 2904,
+      "sha256": "16acbac8a3ac1994230f9e2a2e1023f12f4c27448d2b397a212834cdaee4357b"
+    },
+    {
+      "path": "recovered/game/human_look_control.h",
+      "bytes": 21309,
+      "sha256": "6811f43982a80fb99bce09a47749192e01dcd14193cab60e2fba2fdd38c0b43a"
+    },
+    {
+      "path": "recovered/game/human_scene_actor.h",
+      "bytes": 8722,
+      "sha256": "161a5bdd8e6713d0369286a2d194230ffe6643c263886b9bd91968f046312de8"
+    },
+    {
+      "path": "recovered/game/human_state_base_loading.h",
+      "bytes": 16797,
+      "sha256": "0f1395d0c4e529947ee3160c51fc62d0631331d1ca80aa2017a7c852b9b23dfd"
+    },
+    {
+      "path": "recovered/game/human_timed_interaction.h",
+      "bytes": 8557,
+      "sha256": "f586b1cda0ce44d6ed2884f30feaae88696db0329d6fe801c6f401e146a37e82"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 219948,
+      "sha256": "2e28a972c4fc5fb84f2937882b68edffc679e5e1ca5cfa919813b188e42bf453"
+    },
+    {
+      "path": "recovered/game/mission_camera.h",
+      "bytes": 50554,
+      "sha256": "ce82a5d6ab80dee6664993fb07d06077be50bf550af59677becc195a67451a6e"
+    },
+    {
+      "path": "recovered/game/scene_actor_frame.h",
+      "bytes": 4211,
+      "sha256": "814c26267ab390f7d7966d0bfe6334a9c1431fbc3cd56d4234d69a70c236675c"
+    },
+    {
+      "path": "recovered/game/selected_resource_analysis.h",
+      "bytes": 5600,
+      "sha256": "479dac0ed2d6dee4a93d1e550cdbb995976db55685b57c2d19024222d1764b41"
+    },
+    {
+      "path": "recovered/game/world_actor_loading_consumers.h",
+      "bytes": 10990,
+      "sha256": "5df2706c3712ce633f375a150a3bd8b6bea75bdd6513d65437a7f5e95b163aac"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 125693,
+      "sha256": "2e3c6d66dcfa65a9f88d76111b39521724adf2a103a4351a6b331c89156957e7"
+    },
+    {
+      "path": "recovered/host/game_scene_actors.h",
+      "bytes": 19683,
+      "sha256": "fd5a9c70153959b27163fc8f91fffc331b81e9d69e972168520ceea55af246f1"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 141712,
+      "sha256": "05a0ccc1c641ed82528f589c80aa714db12e40d82e3a9ba43f820521c438ed3b"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "bytes": 32517,
+      "sha256": "b8aa5edf787bf44f9ba85a21faa9c1ee548407c243b27e6248e6bca9bf8fd93c"
+    }
+  ],
+  "new_frozen_partials": 9,
+  "no_credit_absent_entries": [
+    "00465ad0",
+    "0060e160",
+    "0060e420",
+    "0060e4d0",
+    "0060e510"
+  ],
+  "verification": {
+    "native_sanitizers": "PASS: three suites100 lifetimes each; actual common3 codec/policy, Door properties/stream, E0 loans, camera/timed DD0 policy; actual DocumentPlace/properties/ActorBase/buckets/stream; HeavyFire ABI construction/frame/failure cleanup. Explicit endpoint doubles; no engine/desktop claim.",
+    "concrete_i386": "PASS final strict -Wall/-Wextra/-Wpedantic/-Werror static FULL i386 link, actual Human packet/common/World/module16/module13 and Scene2 activation/deactivation owners; not executed.",
+    "launcher_probe": "PASS final make -j1 application-launch startup-probe; not executed.",
+    "tracker_tests": "PASS27",
+    "ledger": "PASS exact frozen inventories/statuses/evidence/README; 27 tracker tests; git diff --check."
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/p22-pack-resume/common",
+      "bytes": 2516832,
+      "sha256": "cd0865a348643e00d4aa0c8e78f25d5490b45019e9259cdbd2986e78ce907f29"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/common.cpp",
+      "bytes": 12614,
+      "sha256": "d768a0488f504bdb934ecb59559812705c0d7af119287774996ddf631d667549"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/concrete.cpp",
+      "bytes": 867,
+      "sha256": "036e1cf382e3566a12e6de4be76a068aeaf567dcea3f06e054e4711f1cbdf60e"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/concrete.exe",
+      "bytes": 4357632,
+      "sha256": "e0b61b153b95c130cbfd6b0caebca6551179ab83e1c6f8c681c59a853d78fba6"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/concrete.o",
+      "bytes": 4653453,
+      "sha256": "34426ff95f4640fb7b76305f109a655614afb92a927576f46a2991d390ab0e9d"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/document",
+      "bytes": 2596456,
+      "sha256": "0cc47d2f7012f8c1f6acd94fb323f451e500d1bd63a02e9dc80d2f81cc2a6bea"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/document.cpp",
+      "bytes": 6811,
+      "sha256": "a96c62035f1a9cf8e170bef85bfb0987dd6a1fdcb8bd6d80c002eb3be05c854e"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/heavy_abi",
+      "bytes": 900744,
+      "sha256": "b203937c1e2c29b0daad6225fa549dfeeda7f4ab61b2337ceaaa2ef5caffe145"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/heavy_abi.cpp",
+      "bytes": 2556,
+      "sha256": "0d320ea3fd2118cc6437abb84c5caacf8462cea4b4a3db2e9ec2dffdf2a92769"
+    },
+    {
+      "path": "/tmp/p22-pack-resume/readva.py",
+      "bytes": 394,
+      "sha256": "52e28fc8035710c8dd8e8464ac9ed1cbe0a99c0d0d6c5b6213f0b4c3b6f4584a"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "totals": {
+    "complete": 34,
+    "partial": 3437,
+    "client_partial": 3432,
+    "engine_partial": 5
+  },
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-application-build.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-concrete-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-concrete-link.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-document-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-document-sanitizer.log",
+      "bytes": 116,
+      "sha256": "49d06c6590d6632a641887aec5ecd33a8318fc136d69e6e2731cc828bfd2225d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-heavy-abi-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-heavy-abi-sanitizer.log",
+      "bytes": 116,
+      "sha256": "353bdf21ba656a6f33c02534af41dcb6396acd3c4048583bc0d19f1221c1edbb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-ledger-check.log",
+      "bytes": 437,
+      "sha256": "e72672ec19f62bd36b440597805b209161b576b7357a50dc7406ada0f349ebba"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-ledger-render.log",
+      "bytes": 380,
+      "sha256": "5c614e5374bca8b2532d483609f54dedbd03eb2c646449a13acee517fc81f294"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-policy-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-policy-sanitizer.log",
+      "bytes": 132,
+      "sha256": "81dc0c6604d1563dc74d35f23caccaf7f8e26f31ec28d313769b895857e663dd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-pack-common-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 3963392,
+      "sha256": "79fca72f000ab9ef7df83b5ebffa73c25b07ce65a9a1f9be933e77a5dc5392f2"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1165312,
+      "sha256": "3ab7d7f47c2d1d6dab209e3319bcda32a64258bd8a2672c18d915df9b770f01e"
+    }
+  ]
+}

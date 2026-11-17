@@ -19,6 +19,7 @@ public:
     }
     float opacity() const{return target_>1?1.f:target_;}
     float applied() const{return applied_;}
+    void inherit_mount_observation(const HumanOpacityControl& source){target_=source.target_;ambient_=source.ambient_;} //00758830 copies RAW DA8/DB8 only.
     template<class Frame,class Services>void car_destruction(Frame model,Services& services){ //004DCCC8..004DCCF5.
         target_=.20000000298023224f;applied_=.30000001192092896f;update(model,500,0,services);
     }

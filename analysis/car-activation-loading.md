@@ -137,3 +137,11 @@ ordered006CA780 loading/postactivation and first camera/update/render/failure/
 repeat, then user desktop acceptance. WorldScene/WorldActors remain uncalled by
 the application. Required positive running/occupied/deformation/skid/emitter,
 non7 and front/rear plane-cache receivers are still explicit exclusions.
+
+## H3 seat interaction source checkpoint — 2026-11-12
+
+[H3 contract](human-seat-interaction-source.md) extends the earlier cold/partial
+boundary with actual offline occupied Car/StaticWeapon entry/exit, driver controls,
+mounted reset/aim and casing receivers. [Receipt](checkpoints/p2.2-human-seat-interaction-20261112.json).
+Full occupied/non7 Car frame remains D5; H2/H4–H6/H8 and application/desktop
+delivery remain open. Earlier checkpoint exclusions above describe their original scope.

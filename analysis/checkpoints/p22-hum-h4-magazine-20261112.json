@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 C6 actual magazine attachment and track15/16/17",
+  "implementation_base": "c8213eb",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "sha256": "11ec889acc5063afb22643a28eff51840b4466a64dbab2d75fceacb17cab869a",
+      "bytes": 56384
+    },
+    {
+      "path": "recovered/game/human_equipment_services.h",
+      "sha256": "a7f59472aab8b572adcbe9ad0dd713ad44737f90f94fb5c8c658f3e6d0c2a885",
+      "bytes": 6031
+    },
+    {
+      "path": "recovered/game/human_equipment_transfers.h",
+      "sha256": "58dd33220a9f446a8213ed94baf43fcb3185bb24d1330ef0bf707c82009cc124",
+      "bytes": 11796
+    },
+    {
+      "path": "recovered/game/runtime_item.h",
+      "sha256": "8c20c3d8c65bdeab2d9fcd11f7bc04d41f1bb7f6c532b521a4cd0f6633f0687f",
+      "bytes": 14446
+    },
+    {
+      "path": "recovered/game/runtime_item_services.h",
+      "sha256": "449e9055bfa6e20b8eeea4c565cd1c9bdd41415df790a76412ab2291dd1eddc9",
+      "bytes": 4577
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "sha256": "6f6fb1cb6dca2b33c1ccd5631702a3f617a684381151832d1e0a892ea30eb215",
+      "bytes": 110909
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/item-magazine-vtable.json",
+      "sha256": "0243c6abac77652864fb618a42c36f4d796fd7f9b0b278c8c9e713d7eaaa1e7e",
+      "bytes": 223
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/item-magazine-original.asm",
+      "sha256": "cbbf6bf9b00070494f81246c98bd6cd210aacbdcedb9ce3697b6d75222795de5",
+      "bytes": 5949
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/item-magazine-original/007d5380.c",
+      "sha256": "046a0ee134f284c6b8a6b14ea0c7668fd5eef2b0c4bc712e42cb67c87f11c312",
+      "bytes": 2298
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/item-magazine-original/007d5380.json",
+      "sha256": "b6cc89b340e4d35f1995f24eab2ae8ee4a75fcac64696e361b4526abca11b420",
+      "bytes": 2799
+    }
+  ],
+  "verification": {
+    "native": "PASS20 ASan/UBSan/LSan strictO1 actual catalogue/RuntimeItem/lazy marker/clone lifetime/attachment policy; resource/engine endpoint doubles explicitly labelled; all attach/restore failure prefixes, absence, retry and repeat lifetime",
+    "i386": "PASS strict O0 actual composition/equipment/hand/Items/RuntimeItem/frame and public DD0 track graph FULL LINK. Selected attachment receivers actual source; adjacent containing Runtime branches defined throwing doubles.",
+    "application": "PASS existing application-launch/startup-probe strictO2 links, never executed",
+    "actual_engine_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_acceptance": false
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/magazine-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/magazine-native-run.log",
+      "sha256": "05e9373b9847ed73071c7322244a57a7be696d0ad0f0bfd193ac4e35003f4391",
+      "bytes": 87
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/magazine-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/magazine-application.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/magazine-progress.log",
+      "sha256": "3f2dc1f6a1f82a857277cedb63c5009e2f54b66cb6c26f3e9927d3dccce46ca0",
+      "bytes": 235
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/item-magazine-export.log",
+      "sha256": "912210dec7361a18438510d3354e76b3e2724167f2e5c0945c8c6b0e56f0572f",
+      "bytes": 4449
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/magazine-native.cpp",
+      "sha256": "57b79690fda459128293bc8e24fd5e0bb6ad0cef540d0940355424e155efed95",
+      "bytes": 3956
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/magazine-native",
+      "sha256": "2522ada1e7cec76f6cc3a5f8d722b36406996bee1c13803cb5384e90c7148577",
+      "bytes": 1368976
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/magazine-host.cpp",
+      "sha256": "5ba07b3924cd8712ab1f7e5e5b3d34cd0a55c36868bad157a31c71c753794e46",
+      "bytes": 1650
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/magazine-host.exe",
+      "sha256": "aed5e2c3ec217f880a2a32c20aece4e43d662a05caa1e41adaf5749e1ca7b498",
+      "bytes": 4265472
+    }
+  ],
+  "ledger": {
+    "new_client_partial": [
+      "007d5380"
+    ],
+    "extended": [
+      "007913d0",
+      "00758d20"
+    ],
+    "complete": 34,
+    "partial": 3025,
+    "client_partial": 3020,
+    "engine_partial": 5,
+    "denominator": 18783
+  },
+  "remaining": "Track8/9/18/19/24, DD0 attachment, remaining completion workers, Script timed/vehicle/attachment and subgroup producers remain OPEN. Current actual completion/track receivers do not prove loaded positive branch reachability."
+}

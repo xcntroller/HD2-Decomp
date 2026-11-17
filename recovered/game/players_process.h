@@ -2,7 +2,10 @@
 #define HD2_GAME_PLAYERS_PROCESS_H
 
 #include "game/human_formation.h"
+#include "game/human_loading_stats.h"
+#include "game/human_active_ai_group.h"
 #include <array>
+#include <functional>
 #include <vector>
 
 namespace hd2::game {
@@ -12,12 +15,14 @@ namespace hd2::game {
 //exposed. Native unwritten fields/W lanes use guards, not constructor credit.
 template<class Human>class PlayersProcess {
 public:
+    using CommandActor=std::remove_pointer_t<decltype(std::declval<Human&>().field160)>;
     struct DelayedSpeech {Human* human;std::int32_t due;}; //Separate process0089AC20 vector, not cleared by00456440.
     PlayersProcess(){reset();}
     PlayersProcess(const PlayersProcess&)=delete;PlayersProcess& operator=(const PlayersProcess&)=delete;
     void reset() { //00456440; does NOT clear five group buffers or delayed speech.
         for(auto offset:{0x3du,0x3fu,0x42u,0x3eu,0x41u,0x40u,0x3cu})words_.set(offset,std::uint8_t{0});
         for(auto offset:{0x38u,0x34u,0x30u,0x98u,0x9cu})words_.set(offset,std::uint32_t{0});
+        reaction_target_=nullptr;reaction_target_live_={};
         words_.set(0xa0,std::int32_t{-1});words_.set(0xa4,std::uint32_t{0});
         words_.set(0x120,std::int32_t{3});update_formation_scale();
         words_.set(0x43,std::uint8_t{0});words_.set(0x44,std::uint32_t{5000});
@@ -29,6 +34,94 @@ public:
     }
     HumanVector formation_scale()const{return words_.template get<HumanVector>(0x110);} //Actual0089AD40.
     const auto& groups()const{return groups_;}auto& words(){return words_;}const auto& words()const{return words_;}
+    Human* reaction_target(){ //00456860; native pointer98 has its own typed loan.
+        if(words_.template get<std::uint32_t>(0x98))throw std::runtime_error("Players target requires its actual external raw98 producer");
+        if(reaction_target_live_)reaction_target_live_();
+        return reaction_target_;
+    }
+    template<class Control,class World>void react_to_player_damage(Human* target,Control& control,World& world){ //00459500, actual process virtual1C; absent frozen.
+        reaction_target_=target;reaction_target_live_=target?world.active_event_actor_guard(*target):std::function<void()>{};
+        const auto target_live=reaction_target_live_;
+        words_.set(0x98,0u);words_.set(0x40,std::uint8_t{0}); //Typed pointer, never an identity encoded into DWORD98.
+        auto count=control.human_roster().size();
+        while(count){auto* human=control.human_roster().at(static_cast<std::int32_t>(--count));
+            if(!human)throw std::runtime_error("Players damage reaction reached native NULL roster member");
+            if(signed_word(human->properties.stats_ec[0])<=0||human==target)continue;
+            if(!target)throw std::runtime_error("Players damage reaction reached native NULL target25C dereference");
+            const auto member_live=world.active_event_actor_guard(*human);
+            const bool seen=world.active_follow_force_sight(*human,*target);member_live();if(target_live)target_live();
+            if(!seen)continue;
+            //005A5F00 is kind3-only;005A5E90 then passesTRUE to virtual128.
+            if(state_kind(*human)==3&&world.active_command_state(*human).has_pending_orders_loading()){
+                world.active_command_state(*human).reset_orders_loading(true);member_live();
+            }
+            auto& current=world.active_command_state(*human); //Fresh current B0 after Sight/reset callbacks.
+            if(!current.state().template get<std::uint8_t>(0x202)){current.cancel_task();member_live();}
+        }
+        words_.set(0x9c,4000u); //Only after all preceding callbacks return.
+    }
+
+    void speech_mode(std::uint8_t value){words_.set(0x43,value);} //00459470, virtual2C: one BYTE store only.
+    std::uint8_t speech_mode()const{return words_.template get<std::uint8_t>(0x43);} //00459480, virtual30.
+    template<class Active,class Control>void postpone_follow_queries(Control& control,std::uint32_t mode){ //00459490, absent frozen.
+        auto* selected=control.selected_player(mode); //Snapshot BEFORE count/reverse traversal.
+        for(auto n=control.human_roster().size();n;){
+            auto* human=control.human_roster().at(static_cast<std::int32_t>(--n));
+            if(!human)throw std::runtime_error("Players follow-query notification lost roster Human");
+            if(signed_word(human->properties.stats_ec[0])<=0||human==selected)continue;
+            auto& state=active<Active>(*human).state();
+            if(!state.template get<std::uint32_t>(0x1a4))state.set(0x1a4,2200u);
+        }
+    }
+    auto& command_members(){return command_members_;} //Native DISTINCT F8/FC/100 vector, not group4C..8C.
+    void clear_command_members(){command_members_.clear();command_member_liveness_.clear();}
+    template<class World>void capture_command_members(World& world){
+        command_member_liveness_.clear();
+        for(auto* human:command_members_)command_member_liveness_.push_back(human?std::function<void()>(world.active_event_actor_guard(*human)):std::function<void()>{});
+    }
+    void validate_command_member(std::size_t index){
+        if(index>=command_member_liveness_.size())throw std::runtime_error("Group member borrower changed without its actual producer");
+        if(command_member_liveness_[index])command_member_liveness_[index]();
+    }
+    void command_target(CommandActor* actor,std::function<void()> live){command_target_=actor;command_target_live_=std::move(live);}
+    void validate_command_target(){if(command_target_live_)command_target_live_();}
+    CommandActor& require_command_target(){validate_command_target();if(!command_target_)throw std::runtime_error("Group arrival dereferences native NULL F0 target");return *command_target_;}
+    template<class World>void notify_group_arrival(World& world){ //00456F00 on actual retained command members.
+        const auto action=words_.template get<std::uint32_t>(0xa0);
+        if(action!=3&&action!=18&&action!=21)return;
+        if(words_.template get<std::uint32_t>(0xa4))return;
+        const auto next=words_.template get<std::uint32_t>(0xa8)-1u;words_.set(0xa8,next);
+        if(next)return;
+        if(action==18)words_.set(0xa0,0xffffffffu);else words_.set(0xa4,1u);
+        //Raw pointer words are not serialized identities or substitutes for
+        //the typed vector. Unexpected external writers retain their requirement.
+        for(auto offset:{0xf8u,0xfcu,0x100u})if(words_.template get<std::uint32_t>(offset))
+            throw std::runtime_error("Players group arrival requires its actual external raw F8 command-member producer");
+        finish_active_group_arrival(*this,action,world.human_command_frames(),world);
+    }
+
+    template<class Random,class Clock>void schedule_order_completion(Human* human,
+            std::vector<DelayedSpeech>& delayed,Random&& random,Clock&& clock){ //00455AF0, singleton virtual38; absent frozen start.
+        if(!human)return;
+        std::int32_t delay=0;
+        for(auto n=delayed.size();n;){
+            if(delayed[--n].human==human)return; //Duplicate prefix draws for later entries have already occurred.
+            const auto draw=static_cast<long double>(random()); //Actual engine RandFloat007E4EA2, not CRT rand.
+            delay=signed_word(human_loading_stat_word((draw*200.f+delay)+300.f));
+        }
+        //Game2C is fetched AFTER all draws. Native addition retains low DWORD.
+        delayed.push_back({human,signed_word(clock()+static_cast<std::uint32_t>(delay))});
+    }
+
+    template<class Active,class Control>void first_player_shot(Control& control,std::uint32_t mode){ //00459360, absent frozen.
+        auto* selected=control.selected_player(mode);
+        for(auto n=control.human_roster().size();n;){
+            auto* human=control.human_roster().at(static_cast<std::int32_t>(--n));
+            if(!human)throw std::runtime_error("First Player shot lost its actual roster Human");
+            if(signed_word(human->properties.stats_ec[0])<=0||human==selected)continue;
+            active<Active>(*human).first_player_shot();
+        }
+    }
 
     template<class Active,class Control>void offline_player_close(Human& departing,Control& control) { //004593E0, singleton virtual34.
         //Count and entry are reread each iteration; formation callbacks can mutate the roster.
@@ -44,7 +137,7 @@ public:
     void tick(std::uint32_t elapsed,std::uint32_t mode,Frames& frames,Control& control,
               std::uint32_t game_time,std::vector<DelayedSpeech>& delayed,Speech& speech) { //004564A0.
         expire_byte(0x30,0x3c,elapsed);expire_byte(0x34,0x40,elapsed);
-        if(expire(0x9c,elapsed))words_.set(0x98,std::uint32_t{0});
+        if(expire(0x9c,elapsed)){words_.set(0x98,std::uint32_t{0});reaction_target_=nullptr;reaction_target_live_={};}
         for(auto& group:groups_)group.clear(); //0045C860 whole-range erase, retain all five allocations.
         auto* selected=control.selected_player(mode);if(!selected)return;
         for(auto n=control.human_roster().size();n;) {
@@ -91,6 +184,9 @@ private:
     }
     void expire_byte(unsigned timer,unsigned flag,std::uint32_t elapsed){if(expire(timer,elapsed))words_.set(flag,std::uint8_t{0});}
     HumanJointWords<0x130> words_;std::array<std::vector<Human*>,5> groups_;
+    Human* reaction_target_=nullptr;std::function<void()> reaction_target_live_;
+    std::vector<Human*> command_members_;CommandActor* command_target_=nullptr;std::function<void()> command_target_live_;
+    std::vector<std::function<void()>> command_member_liveness_; //Actor identities only; B0 is reread at each native call, not pinned across tasks.
 };
 } //namespace hd2::game
 #endif

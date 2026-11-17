@@ -27,7 +27,8 @@ public:
         if(slot==1||(slot==3&&human_item_holster_group(item.definition())==0))holsters_.hide_items(item.definition(),1);
     }
     void refresh_inventory_holster_animation(){services_.refresh_inventory_holster_animation();}
-    void remove_inventory_model(unsigned kind)override { //00790520 inventory0..3, hand actions5..7 and mounted action9.
+    void remove_inventory_model(unsigned kind)override { //00790520 inventory0..3, held/hand actions4..8 and mounted action9.
+        if(kind==4||kind==8){retire_human_equipment_held_action(frames_,state_,services_,kind);return;}
         if(kind==9){retire_human_equipment_mount(frames_,state_,services_);return;}
         if(kind==5){retire_human_equipment_hand_action(frames_,state_,kind);return;}
         if(kind==6||kind==7){
@@ -60,7 +61,7 @@ public:
         case 3:
             if(human_item_holster_group(item.definition())==0)show(item);
             select(item,3);services_.equipment_transfer_mode(item.definition().equipment_command(),3,false);
-            services_.force_equipment_command(item.definition().equipment_command());event(1);return;
+            services_.force_equipment_command(item.definition().equipment_command());services_.finish_equipment_added_transfer(*this);return;
         case 5:select(item,1);attachments_.attach(1);return;
         default:return; //Native slots4/6 have no230 notification.
         }
@@ -170,13 +171,21 @@ public:
             }
             if(state_.model(0))attachments_.attach(back(*this)?10u:3u);
             return;
+        case 4:remove_inventory_model(4);return;
+        case 5:attachments_.attach(4);return;
+        case 12:remove_inventory_model(8);return;
+        case 13:attachments_.attach(8);return;
         case 14:remove_inventory_model(9);return;
+        case 15:attachments_.attach(9);return;
         case 6:remove_inventory_model(5);return;
         case 7:attachments_.attach(5);return;
         case 8:remove_inventory_model(6);return;
         case 9:attachments_.attach(6);return;
         case 10:remove_inventory_model(7);return;
         case 11:attachments_.attach(7);return;
+        case 16:services_.attach_equipment_reload_auxiliary(state_.second_volume());return;
+        case 17:services_.attach_equipment_reload_auxiliary(state_.first_volume());return;
+        case 18:services_.attach_equipment_reload_auxiliary(Frame{});return;
         default:throw std::runtime_error("Equipment event requires its actual action-model producer");
         }
     }

@@ -1,0 +1,275 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "ce2a7cf",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-task-runtime-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_active_ai_commands.h",
+      "bytes": 17996,
+      "sha256": "4964b7b65d934f34e524f09f7e9279b24748a8006cd9d73ec6fb2595ef88643b"
+    },
+    {
+      "path": "recovered/game/human_active_ai_pending.h",
+      "bytes": 10958,
+      "sha256": "a10785faa50e428b58f898a7fca8c3cf032b46f02c66e5323728cdc929212aaa"
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "bytes": 25689,
+      "sha256": "d6ca3784b2c589dc20baca40f971e0f1c87982fcc9f6ca68f42f5d5b39261f2a"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 289207,
+      "sha256": "12660a0985148d6b61e7ef968864c3bf9bb611a880bdfd0a9ec0c8c137229f94"
+    },
+    {
+      "path": "recovered/game/mission_navigation.h",
+      "bytes": 34037,
+      "sha256": "14d92f6887e995f8002dddc8cb012254586c334bef45635261319185fd64ba7d"
+    },
+    {
+      "path": "recovered/game/placed_item_actor.h",
+      "bytes": 4819,
+      "sha256": "d936232c1c4a265edfa3c98f0784524677cf37409b1209e063cce10d8cfb43f7"
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "bytes": 18767,
+      "sha256": "5ed769fb619c408d30e56d0b60b7806c2704620a2da4ddbf8ff77e204ad33e44"
+    },
+    {
+      "path": "recovered/game/human_active_ai_retreat.h",
+      "bytes": 5952,
+      "sha256": "d91984f3ae5ae79c79c3bc6a1f0268e8586fa926e185bdcca8d20153964a4399"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-position/00525260.c",
+      "bytes": 4693,
+      "sha256": "dd6fd68c045ae9fccd77308923a77980aa337c1f8b83f4ec76aaf8a6b7e4be68"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-position/00525260.json",
+      "bytes": 32289,
+      "sha256": "ac7166715439ca6cf41da892d3c46061ac3c45c107d5560cf19cc850c5ed5b82"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-navigation/0051f830.c",
+      "bytes": 3148,
+      "sha256": "34d74d59368e94f74bdd486a08cf82411782cf5fdd75e8edb3dc793625a04f06"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-navigation/0051f830.json",
+      "bytes": 10363,
+      "sha256": "e95947e47012861b40dac58a755304d063cbf23d8b295711a0208b2ca80ac613"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-spatial/0051dbd0.c",
+      "bytes": 2013,
+      "sha256": "3c936e72394fedf4922b19c54753d6dfa6f15c809d7ea518ca7932220d7531bb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-spatial/0051dbd0.json",
+      "bytes": 9766,
+      "sha256": "9bfb28157d35ee3db3a9712ba684d9cbfce069cc39e77ed934a90a95eff928a0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/0051d460.c",
+      "bytes": 1397,
+      "sha256": "c2d9667eda4128aebc43604ade5998ae4e98ac4f8ab1103d3c798d52f5cdb412"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/0051d460.json",
+      "bytes": 4710,
+      "sha256": "12d07e61a84f763c80d5cf725e8fc2e59d124ae3eeb814b2fc1fae262bff6188"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/00535a60.c",
+      "bytes": 2271,
+      "sha256": "22af842e191f2baf16a338001d07dc08a244b746787c92f03081aba1fb3256b7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/00535a60.json",
+      "bytes": 4711,
+      "sha256": "a49763f84634587acaf081ec64d9ce64a8fa29e8ab198eb9bb8287128ac30977"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/00537a40.c",
+      "bytes": 1374,
+      "sha256": "e1dcbca77868a4bb707236f8b0b653a8f544de72a9479e613140fd97b9b6283a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/00537a40.json",
+      "bytes": 3628,
+      "sha256": "48bb0e5abafbb3a17de7f932c3207d903bef99b58219ae26290e0fb5b5a19358"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/00537c60.c",
+      "bytes": 912,
+      "sha256": "d266cc9f23255ab1cc47ddb9fb5ab635e358aceac9271f46e1beea3f708d60d4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/00537c60.json",
+      "bytes": 2270,
+      "sha256": "9f5732ebb2d640485d5f0c222140cf9635d2015fbc0b9d6a982f60022705dbf4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/00537d20.c",
+      "bytes": 1445,
+      "sha256": "72741c3ed448e6e94cde36915243ca1ace7020891420e9e4a597307901da6616"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges/00537d20.json",
+      "bytes": 3888,
+      "sha256": "66ce8d7c914fdd8770172bc4462ef3f3c5e05cf612dc725106555d04972c423a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-position.asm",
+      "bytes": 18337,
+      "sha256": "64d723d95fb6c98fc7cc1d7368c39d516bfa30ae9107c55cc68f4c066e9dfdce"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-spatial.asm",
+      "bytes": 6768,
+      "sha256": "8265e6610af2f572131774a117291caa66b8d054efa55ac1c284d345579f2243"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-continuation.asm",
+      "bytes": 14979,
+      "sha256": "acfea96237994ddb09f01100277290a8f3011927f5b90b5a274694b0f54b3c29"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-placed-motion-test.asm",
+      "bytes": 1345,
+      "sha256": "1c37df7b417e896a300218e964821c0f53cd1fb248abe1c7170d7ed66d49bca6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-placed-task-producer.asm",
+      "bytes": 13301,
+      "sha256": "2bc46ac5e8dd1095b23d529a59900fc452d707e86773fb566c858d4f16da1028"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-producers/00534c40.c",
+      "bytes": 3613,
+      "sha256": "fb6a8c8af1cef3116e9f46a9fb171f5a8f85be4835ce33479d2aa7b0201e9d1b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-position-export.log",
+      "bytes": 4455,
+      "sha256": "209261cc689ed51d3304f71c36c8d9ffffec3f49b89d82cccb3ac6735ccf45c1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-navigation-export.log",
+      "bytes": 4457,
+      "sha256": "0f297c73785bb005a12dde1bcbae69bc95a30a6926fb17d21b22e83447c02fac"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-spatial-export.log",
+      "bytes": 4454,
+      "sha256": "d2c4e3a448d26a2a910a8a3935a01370b1bece5a94f836124c05d585ef183c5f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-edges-export.log",
+      "bytes": 4864,
+      "sha256": "6b0054a00dfe303c63f225d9a910a73075f352490ea439c641a939402103b464"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-placed-task-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-placed-task-native-run.log",
+      "bytes": 101,
+      "sha256": "e6a6259a528faaa4b6e4153da5b63375a3e7905b0c5e52c52083550c7843dcf3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-native-run.log",
+      "bytes": 86,
+      "sha256": "3ecb0010d7604f4bb898fde8da8d7a288c29365d492e9cf826bf7c98b257529a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-runtime-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-runtime-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-runtime-tracker-render.log",
+      "bytes": 380,
+      "sha256": "23446465b1128cfab3ab2c7cbe00f8ac8a58629fa52892ac09409d97d2801573"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-runtime-tracker-check.log",
+      "bytes": 437,
+      "sha256": "6c20864ce7eb7ae0eeb79d92ec05bd97ce94e9b81e611e9a674b9c0986ecd63e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-runtime-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "removed_temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-placed-task-native.cpp",
+      "bytes": 5480,
+      "sha256": "ab8792b66b514479ebc03eb382402fb1e5c833bbf2dcea488fcdb8e5c07b4b3c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-placed-task-native",
+      "bytes": 1335160,
+      "sha256": "89ff37ce14ea520034fbe1fa772403e19637897b79701d88f955a2f490626702"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-native.cpp",
+      "bytes": 5601,
+      "sha256": "c2b124f69a51ce2c3a6d840955e06aed463ac7ee162f674bb5e9d9dae4a2db62"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-retreat-native",
+      "bytes": 1049200,
+      "sha256": "584daa949d040cda1e7edd890eaf7a04577f687c0072d256e1225ad25433b8c6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-runtime-i386.cpp",
+      "bytes": 436,
+      "sha256": "8f957e68ba7fffb9e7779ac970d7cdb31867d9043d77128213e1b66337db8127"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-runtime-i386.exe",
+      "bytes": 11759616,
+      "sha256": "5661c8d34a68a7e7dbdc98e24fb057f71b5f885a2e134b297be0f8e2c87a151e"
+    }
+  ],
+  "verification": {
+    "placed_native": "PASS3481 actual Placed motion/navigation; explicit World/AI/engine endpoints",
+    "retreat_native": "PASS1280 actual spatial navigation/retry; explicit World/AI/rotation endpoints",
+    "i386": "PASS strict actual full World/module authority/presentation; compile/link only",
+    "launcher": "PASS forced make -B -j1 application-launch startup-probe",
+    "tracker": "PASS exact fingerprints/frozen inventory/evidence and27 tests"
+  },
+  "limitations": [
+    "No application/desktop acceptance",
+    "Delayed Player/retreat command producers remain required; no00537C60 credit",
+    "Unwritten W lanes retained only as unclaimed typed lanes",
+    "Typed STL/RAII adaptation, not original object/container/allocator/SEH ABI or engine equivalence"
+  ]
+}

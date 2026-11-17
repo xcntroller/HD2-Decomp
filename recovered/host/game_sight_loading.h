@@ -71,6 +71,19 @@ public:
         } pass{*this,source_,queries};
         source_.tick(elapsed,work_clock_,pass);
     }
+    bool force_human_target(Human& observer,Human& target){
+        struct Pass {
+            GameSightLoading& owner;
+            auto sight_human_origin(Actor actor){return owner.world_.sight_human_origin(actor);}
+            auto sight_human_attachment(Actor actor){return owner.world_.sight_human_attachment(actor);}
+            void sight_exclude_human(Actor actor){owner.world_.sight_exclude_human(actor);}
+            void sight_restore_human(Actor actor){owner.world_.sight_restore_human(actor);}
+            auto sight_human_metric(Actor first,Actor second){return owner.sight_human_metric(first,second);}
+            auto sight_position(Frame frame){return owner.world_.sight_position(frame);}
+            auto sight_ray(const typename Source::Vector& origin,const typename Source::Vector& delta,std::uint32_t layers,std::uint32_t flags){return owner.world_.sight_ray(origin,delta,layers,flags);}
+        }pass{*this};
+        return source_.force_human_target(static_cast<std::int32_t>(observer.field258),target.field25c,pass);
+    }
     Source& source(){return source_;}
 private:
     static Human& human(Actor actor) {

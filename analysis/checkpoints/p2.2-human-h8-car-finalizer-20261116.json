@@ -1,0 +1,243 @@
+{
+  "checkpoint": "H8.4 running Car finalizer source",
+  "date": "2026-11-16",
+  "branch": "feature/p22-hum-h8-4",
+  "base": "0ed148b",
+  "contract": "analysis/human-h8-car-finalizer-source.md",
+  "scope": "0050B180 engine/audio/skid/positive particle worker source on SAME existing owners; active lighting still guarded; no full finalizer/checkbox/application/desktop closure",
+  "original_pe_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_or_windows_execution": false,
+  "agent1_worktree_modified": false,
+  "push": false,
+  "ghidra": {
+    "mode": "readOnly/noanalysis, temporary ABI signatures/call-site overrides rolled back, project not saved",
+    "final_export": "h8-4-finalizer-typed-v3"
+  },
+  "evidence_fingerprints": [
+    {
+      "path": "analysis/work/mission-world-20261103/ExportCarRunningFinalizerABI.java",
+      "bytes": 3615,
+      "sha256": "14356ac53c7ab6345fb98136e7961a4472934e04f58e129be24acd42fc61e0d7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-engine-audio-original.asm",
+      "bytes": 68109,
+      "sha256": "bab7acfe5bfa65c328a51fd95f111f591189c2f1bab48e9704efd7e1c82ad697"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-damage-particle.asm",
+      "bytes": 20813,
+      "sha256": "0b326625f4fb70dc96139fef8851ee8db4bce870dddd5c8842cdc66c20a75130"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-particle-allocation.asm",
+      "bytes": 10050,
+      "sha256": "292361f2c64c229e15ea4f027c8e54f6b8270853bc22b45e07c894537993edb4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-tail.asm",
+      "bytes": 6197,
+      "sha256": "31d19f6393ce202f41e041568f90bd15aeebfbe138b30d3933f56210ef76eb36"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-constants.json",
+      "bytes": 308,
+      "sha256": "720b33f2692f621afbfbafa2a30962a838af16f842356c0e767d6a3234a35de1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/004fcbd0.c",
+      "bytes": 25544,
+      "sha256": "8bf88d254021c72942955aa89c5c793f8af3cf5d67b9957938159538930164e3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/004fcbd0.json",
+      "bytes": 51299,
+      "sha256": "695a27f2d86653ff9a3b0ec6579117634a0cf1d35fd73e471e8bdb9d9f621d06"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/00506f00.c",
+      "bytes": 6130,
+      "sha256": "7fadf9081c8bc026dd3f3017c7389a5dc4c5ef3bce5318288be7957e349dbb4e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/00506f00.json",
+      "bytes": 8179,
+      "sha256": "252a0f433b70c47e1bda70606e0ae17147760341accf868b2325bc8c748241ad"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/00508350.c",
+      "bytes": 16854,
+      "sha256": "e139606432e4a0179ee9c80134c4fd5e8cfc168078af52655d482a5003b7d0e9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/00508350.json",
+      "bytes": 17357,
+      "sha256": "5f40d8f0c02b11fa8e415aa4271fe02accfa9faf35b8b683074d321414ad50f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/00508ee0.c",
+      "bytes": 8484,
+      "sha256": "696db4ce39239278a50127820aa6825157463b87ac77cf8d420bafd47e7c7be8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/00508ee0.json",
+      "bytes": 9938,
+      "sha256": "1014342c18f287d574b3c5d75ce00344d28625a56ac4296c1dc2679896340363"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/00509540.c",
+      "bytes": 6477,
+      "sha256": "86bbd0ee07d07b021ed4934bc0486b2785682c561d39382b55f2041a2fbdc349"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/00509540.json",
+      "bytes": 9464,
+      "sha256": "be7eb7c25baf2c6ceb92f85d5a464ac57d69af5d54d17ede2195fd9fe8451e5a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/004ece20.c",
+      "bytes": 2571,
+      "sha256": "7b94e80c3214474001c354191108d4f0ab096a4098e845f18bb75366273a48dc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-typed-v3/004ece20.json",
+      "bytes": 5489,
+      "sha256": "885fe308dc6f99b24624a2ed93080eba53a46c9d3dd14b4781bc969a37cffe1e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-missing/00518ab0.c",
+      "bytes": 22759,
+      "sha256": "11ff725e0ad0a4faba3694332b22a44411defa55e986b5e8a766475e4dac3ff6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-missing/00518ab0.json",
+      "bytes": 37820,
+      "sha256": "fca5ee0c3a9f1fee72ea75823cda17e0ff199018672d8669a137c162a0e9f829"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-missing/0051b7c0.c",
+      "bytes": 1941,
+      "sha256": "99009c0c3c710a21106981f003d81f8125aeb3cf701d457511a80958e72c6cb5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-missing/0051b7c0.json",
+      "bytes": 2966,
+      "sha256": "185c21d41c785c03269be1be2b6e38162fc584b5e25b007811c064ce3808aeb0"
+    }
+  ],
+  "native_audit": {
+    "result": "PASS",
+    "asan": true,
+    "ubsan": true,
+    "leak_detection": true,
+    "checks": 267374,
+    "engine_mixes": 12000,
+    "comparison": "Independent numeric expectations and selected endpoint-order assertions; not full original binary or full finalizer differential execution",
+    "relative_numeric_tolerance": 6e-05,
+    "doubles": [
+      "engine/frame/sound owners and state",
+      "scene/math/geometry",
+      "material/physics coefficients including positive exhaust754",
+      "actual particle callback boundaries"
+    ],
+    "final_authoritative_executable": "/tmp/h8-finalizer-audit-sanitized"
+  },
+  "strict_actual_host_i386_full_link": "PASS: O0 -std=c++17 -Wall -Wextra -Wpedantic -Werror -static -municode; actual activation and both frame passes instantiated; Windows output not executed",
+  "launcher_probe_compile_link": "PASS: final source rebuilt sequentially; Windows artifacts not executed",
+  "tracker": "PASS: exact fingerprints/full inventories/frozen counts/unique statuses/evidence/README and27 existing tracker tests",
+  "temporary_audit_fingerprints": [
+    {
+      "path": "/tmp/h8-finalizer-audit.cpp",
+      "bytes": 13848,
+      "sha256": "3c17e7c70e05283890fa446e7b67e77e7583bf7d9d24aa46cbbc19bc2aee189e"
+    },
+    {
+      "path": "/tmp/h8-finalizer-audit",
+      "bytes": 1789576,
+      "sha256": "295f73c34ac5da38e2d17568e6df6dd01ba2005299e961e07d1e224610ab9061"
+    },
+    {
+      "path": "/tmp/h8-finalizer-audit-sanitized",
+      "bytes": 4390416,
+      "sha256": "5c06119bde18e77145f494673c254a1a4b051b8aedf204702d440930461e586f"
+    },
+    {
+      "path": "/tmp/h8-finalizer-host.cpp",
+      "bytes": 359,
+      "sha256": "894f3534f5184f9055ce7df56623d3367ac15f249ea88fd6f5dfbeba12681633"
+    },
+    {
+      "path": "/tmp/h8-finalizer-host.exe",
+      "bytes": 4392960,
+      "sha256": "598cafa0b3f0f870b169761d43f44d3c153778cd55339aaead53418df1ceaf24"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "ledger": {
+    "new_partial_entries": [
+      "00518ab0",
+      "0051b7c0",
+      "004fcbd0",
+      "004ece20"
+    ],
+    "updated_partial_entries": [
+      "0050b180",
+      "00506f00",
+      "00508350",
+      "00508ee0",
+      "00509540",
+      "0051a480"
+    ],
+    "complete": 34,
+    "partial": 3467,
+    "client_partial": 3462,
+    "engine_partial": 5,
+    "frozen_inventory": 18783,
+    "complete_promotions": 0,
+    "delegated_engine_body_credit": 0
+  },
+  "remaining": [
+    "00501CB0 active-light rendering remains an explicit reachable finalizer guard",
+    "occupied/non7 presentation D5",
+    "native debug-selected drawing receiver",
+    "D11 confirmed fresh part5F9/wheel695/EXPL8/smoke14 omissions",
+    "containing Runtime/World/OWN/FRAME/application/desktop acceptance"
+  ],
+  "adaptations": [
+    "typed/STL/RAII and checked endpoint ABI",
+    "undefined vector W/scratch padding excluded; RGB adapter retains serialized W padding without claiming alpha producer",
+    "shared gain restored additionally on C++ endpoint failure"
+  ],
+  "verification_log_fingerprints": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-sanitizer-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-sanitizer-run.log",
+      "bytes": 40,
+      "sha256": "752078292286b8f1c089ecad989812601608a4a7c1174943d8f6ce4968de9de1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-host-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-application-build.log",
+      "bytes": 930,
+      "sha256": "4fd12cb475e84990a6514cb4e337f3ee6957fecd0e2088f4bfa2dde2591d73f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-tracker-check.log",
+      "bytes": 437,
+      "sha256": "0a742d43d05d598768d61fd310f8e159325fd0287281a040824d8735db8649a2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-finalizer-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ]
+}

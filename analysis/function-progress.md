@@ -230,3 +230,28 @@ body credit. Totals:34 complete/3,005 partial (3,000 client/five engine).
 The inherited README bar was stale at2,997; base ledger already had3,004
 partials. OWN adds one, not eight; the bar now reflects the actual ledger.
 [OWN implementation](p22-own-implementation.md); no successful mission/desktop claim.
+H4 C1 adds five frozen client partials0060D6F0/00588AA0/005A7770/005A7810/005A9560;
+source bindings/track coverage extend existing rows, no promotions or inventory
+changes.34 complete/3,016 partial (3,011client/fiveengine). Full H4 remains open.
+[Contract](p22-hum-h4-implementation.md).
+### Human H3 seat interactions — 2026-11-12
+
+[H3 source receipt](checkpoints/p2.2-human-seat-interaction-20261112.json) adds17 frozen
+client partials and extends8 existing entries:34 complete/3025 partial
+(3020 client+5 engine), no promotions or denominator changes.
+Car/StaticWeapon entry/exit and mounted aim/reset/casing use existing owners;
+full occupied Car frame/non7 inputs, Human frame and desktop delivery stay open.
+004D99D0/004D9A40/004D9BE0/00604630/006034D0/004C1990/004DA1D0/00604DA0 and
+B0 direction setter wrappers are absent from the frozen inventory: no new credit.
+
+### H4 common outputs — source boundary, 2026-11-12
+
+[Source closure](human-h4-source-closure.md) and
+[receipt](checkpoints/p22-hum-h4-source-20261112.json) consolidate H4 on existing
+actor owners. Completed-HUM keyed integration preserves both branches' credit;
+Active AI grenade response added3 partials; vehicle source adds15 and extends3.
+Current34 complete/3324 partial (3319client+5engine), unchanged18783 baseline and
+no complete promotions. Full checker still fails on inherited unavailable ignored
+evidence; exact baseline/schema/address/status/totals/available evidence, changed
+rows and README checked separately. H6/H8/absent actor/application/desktop remain
+required; no delegated engine/helper bodies or external actor credit added.

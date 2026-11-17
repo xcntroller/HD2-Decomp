@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 C1 actual common completion and hand-track source",
+  "branch": "feature/p22-hum-h4",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h4",
+  "base_ref": "feature/p22-hum",
+  "base_sha": "e742f84e9c73f871d1d6658cc13f99857023af16",
+  "plan_created_before_implementation": true,
+  "H4_complete": false,
+  "source_boundary_complete": [
+    "Mine disarm completion over actual existing owned runtime Mine",
+    "ExplosivePlace placementC4/definition/identity removal/state/packet",
+    "shared AI/Remote medicine and seven-slot kind lookup",
+    "original completion late mode/target reads",
+    "DD0 track13/14 existing hand-action models/transfer binding"
+  ],
+  "verification": {
+    "native": "PASS100 focused ASan/UBSan/LSan C++17 O1 strict; success/false/failure/late-mode/target/retirement/packet/arithmetic/track families",
+    "native_doubles": [
+      "World/Scene/Human/input",
+      "Items/resource and inventory-model retirement endpoints; actual lookup/removal policies executed",
+      "packet transport/graphics",
+      "remaining Runtime effects"
+    ],
+    "concrete_i386": "PASS O0 strict actual World construction/destruction, Human/B0/completion/World/Mine/ExplosivePlace/Items/AI medicine/notification/track compile and full link. Remaining type15/physical motion/ground drop/Player medicine Runtime are defined throwing doubles; no declaration-only changed receiver binding claim. PE never executed.",
+    "application": "PASS existing application-launch and startup-probe O2 strict compile/link, sequential; outputs never run.",
+    "tracker": "Full check blocked by inherited missing0062D880 ignored rule-refresh.asm. Frozen inventories/baseline, full uniqueness,8 changed rows/evidence and README counts PASS.",
+    "actual_world_execution": false,
+    "actual_mission_reachability": false,
+    "desktop_observed": false,
+    "user_accepted": false
+  },
+  "commands": {
+    "native": "c++ -std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -I recovered WORK/completion-native.cpp -L'MAIN/.tools/hd2-sanitizer-runtime/usr/lib64' -Wl,-rpath,'MAIN/.tools/hd2-sanitizer-runtime/usr/lib64' -o WORK/completion-native",
+    "run": "ASAN_OPTIONS=detect_leaks=1 WORK/completion-native",
+    "i386": "MAIN/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -ferror-limit=0 -I recovered WORK/completion-host-i386.cpp recovered/scene/model_resource_key.cpp recovered/host/bitmap_font.cpp recovered/host/multiplayer_discovery.cpp recovered/frontend/control_events.cpp recovered/frontend/menu_event_queue.cpp -lwinmm -lole32 -ladvapi32 -lgdi32 -o WORK/completion-host-i386.exe",
+    "application": "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=MAIN/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++",
+    "MAIN": "/home/control/Documents/Projects/H&D2 Decomp 4",
+    "WORK": "analysis/work/p22-hum-h4-20261112"
+  },
+  "ledger": {
+    "new_frozen_client_partials": [
+      "0060d6f0",
+      "00588aa0",
+      "005a7770",
+      "005a7810",
+      "005a9560"
+    ],
+    "extended_existing": [
+      "00584e30",
+      "00588010",
+      "00758d20"
+    ],
+    "complete_promotions": [],
+    "complete": 34,
+    "partial": 3016,
+    "client_partial": 3011,
+    "engine_partial": 5,
+    "denominator": 18783,
+    "no_new_credit_for_reused_mine_body_or_absent00571c10": true
+  },
+  "original_constants": {
+    "80fa04": "42c80000/100",
+    "80f574": "3c23d70a/.009999999776482582",
+    "80f524": "3f800000/1"
+  },
+  "vtable_virtual14": {
+    "00811848_Player": "00546dc0",
+    "008112d8_Remote": "00588aa0"
+  },
+  "remaining_required": [
+    "type15 actor91 producer; real0060C130 has no networking",
+    "physical action005E2510 / type5 pickup00407BD0",
+    "ground/drop query006F6870 before existing00478B90",
+    "deferred climb00571C10/DC1F, including actual remote00759E20",
+    "Script/formation/vehicle/timed/attachment and remaining track/DD0 consumers",
+    "Player medicine00546DC0 retains separate H6/protection/packet policy"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/human_action_completion_effects.h",
+      "sha256": "bddd0f5a36cbef949d5c6019c2dc1adda81a0cf987885a0ea1a372d4d4c8045d",
+      "bytes": 3939
+    },
+    {
+      "path": "recovered/game/human_track_equipment_events.h",
+      "sha256": "c59fa1c3c50bdf474aa9ea8b064afa1385a0d2f6477c31257d965d0b9076ea7d",
+      "bytes": 1149
+    },
+    {
+      "path": "recovered/game/human_state_action_completion.h",
+      "sha256": "da38f6fa574811bc1df6ec7f8eebe53d06cead09e5d899c2952dbb6feb4761cf",
+      "bytes": 3795
+    },
+    {
+      "path": "recovered/game/human_inventory_lookup.h",
+      "sha256": "053d05d6fbe4abb76ab98aa75587158b203baa4decdd9fd679752c0420d95a5e",
+      "bytes": 6000
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "sha256": "ec58be5a1452d349884d1c425e66895cc3bd92aab251a82b3deb58a0adfd4b7c",
+      "bytes": 123447
+    },
+    {
+      "path": "recovered/game/simple_scene_actors.h",
+      "sha256": "36f4f9d862f8175bf1a2762bea51cdbda5023ad7cd6662fe3eb187e095758470",
+      "bytes": 17201
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "sha256": "98f1cc4a5ebdb031cf7e8367cc37de75674dbfa5d53501aa2f0cff66a9040f63",
+      "bytes": 55430
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "sha256": "74c081780196a073e351a161d1cdcfd3730c7a8ce900517f809e7fd02dc2d0a4",
+      "bytes": 16818
+    },
+    {
+      "path": "recovered/game/mine_scene_actor.h",
+      "sha256": "5eaad0e1dda786ce18c97fb36df1a621e83b87d0b0ede4f49987a9753c3c8373",
+      "bytes": 8707
+    },
+    {
+      "path": "recovered/game/human_inventory_retirement.h",
+      "sha256": "1d45182c531d4a47e760aba2ec12e4aa26522a5895bc1e4a37d39bf300b83fde",
+      "bytes": 4685
+    },
+    {
+      "path": "recovered/game/human_packet_notifications.h",
+      "sha256": "5bb306d1508d962076c7db4890732e2d66e73b9031d473f866f208d8023eda80",
+      "bytes": 5451
+    },
+    {
+      "path": "recovered/game/human_equipment_transfers.h",
+      "sha256": "744b0b38e877fc5078178e5246a24c65283ed96d5f8b2eb2185e4c2795969bcb",
+      "bytes": 11536
+    },
+    {
+      "path": "analysis/p22-hum-h4-implementation.md",
+      "sha256": "800b0d7829166a86a839d20bb5fc24f4a8899ae1df25d68525cdd6e9abb3bbd5",
+      "bytes": 7055
+    },
+    {
+      "path": "analysis/p22-hum-h4-plan.md",
+      "sha256": "c2d833729d95d69237dbd5921df680c79c3a6e6c0e32ae480e7833e12f7de09c",
+      "bytes": 3933
+    },
+    {
+      "path": "analysis/p22-hum-plan.md",
+      "sha256": "f189e0928d1fb51ec35e0282ffb8a6abfbd7cfd20bd0b02333408ff6fdce871e",
+      "bytes": 18848
+    },
+    {
+      "path": "analysis/function-status.json",
+      "sha256": "bd2f0a2789631783fc59f20959590a66dc722ef3d92a956e55c879fbc86ad0f9",
+      "bytes": 2969340
+    },
+    {
+      "path": "analysis/function-progress.md",
+      "sha256": "c2610f90866cf75154cedb70e1f111c1cd9e99d2471152ae78d05c1ff5889662",
+      "bytes": 14877
+    },
+    {
+      "path": "README.md",
+      "sha256": "c322bd8dc7621e7b4ce5abdb04940e9220cd080337f790fba2ef2e4b94313f36",
+      "bytes": 20493
+    },
+    {
+      "path": "plan.md",
+      "sha256": "cdf4cb3d5b872210df84a7d6b951e54189ad8fe79816eb0702b763cc8f999d69",
+      "bytes": 26027
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "dda3ce8d2b7dccd3100c03961be8c41d9fe27353c7324c4661938cdafa9bd1cb",
+      "bytes": 2080
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "bytes": 6889472
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/function-progress/client.json",
+      "sha256": "ae9a1cc1687bd8b471aee634e8977df63c1f4a9a4568842cd6bcf6ee9d5b61ad",
+      "bytes": 6291591
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-ai-task-leaves/00584e30.c",
+      "sha256": "c81cb6e2174d25e991774e8bad3ec06a7f55d36787b5302b2f9e66e5509f5894",
+      "bytes": 11826
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-ai-task-leaves/00584e30.json",
+      "sha256": "338a2bce8628dad6fe4557a4f2e8e69956ff7b8080e057aed25cb313c3e8606a",
+      "bytes": 61706
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-action-completion-workers/0060d6f0.c",
+      "sha256": "27b1ec89dde3c1a24b0f147e376d15a5aac3ec4ecb5b474a0a1b9647da1af1f7",
+      "bytes": 820
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-action-completion-workers/0060d6f0.json",
+      "sha256": "7c701fa5f961588269f718a8bb86e0f2d904b1207a7c1d8632f3dd7d69b7d06e",
+      "bytes": 3940
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-item-positive-workers/00588aa0.c",
+      "sha256": "f078373e232d4c93de6b1f1574821aff3e045f932da08c7adfeb22f8bcd9a34e",
+      "bytes": 1594
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-item-positive-workers/00588aa0.json",
+      "sha256": "95dc248729505f93587ed54babec6daf717c62c85bc0649be73008cdb38713f1",
+      "bytes": 5724
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-presentation-effects/00758d20.c",
+      "sha256": "5e2edcfd1aec38384dc16c6bd9d4888c3d261804ae8616ff91d1d77e25a41005",
+      "bytes": 15119
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-presentation-effects/00758d20.json",
+      "sha256": "22b18357c5468be38cc25dab312a9a4d2ca562a17e7b8a80ef5ac93dd4691700",
+      "bytes": 53761
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-human-presentation-effects/00791ac0.c",
+      "sha256": "a22d001713253f0010785b8152f1fd9911b47dd8767de263548ff97c39454f38",
+      "bytes": 1255
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum/analysis/work/mission-world-20261103/human-car-target-transform-final/00586200.json",
+      "sha256": "71993545400fb962cbe7c6dabd9298d295a07ed4ec195d8d0833e8692275e164",
+      "bytes": 80046
+    }
+  ],
+  "retained_artifacts": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/application-probe.log",
+      "sha256": "22dbecde3801f13e61ebe0a214a1c22d725a55d62f3c348b983a7349664d4f07",
+      "bytes": 907
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-dispatch.asm",
+      "sha256": "891cdf7889a592d88432605919eb35a9833eabba88528dc8ed00c1ecf23d007e",
+      "bytes": 33028
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-host-i386.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-native-run.log",
+      "sha256": "c598839ba47630985dc26520463eec04bede877eff3f07106752a848db605987",
+      "bytes": 220
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/explosive-placement.asm",
+      "sha256": "639dba283e324de3edb09431f7c4921edef3ad228a0a82660a2cd60ece7b6b50",
+      "bytes": 3409
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/function-progress-focused.log",
+      "sha256": "158a31605808452d29c22fd9342b9299dac8d53c62227c0263b7ab794cc5d69b",
+      "bytes": 277
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/function-progress-full.log",
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/medical-skill.asm",
+      "sha256": "3f4ab4d16145a56c7148213b92fa2a5772bed3369599c23672ce3b654b6dc307",
+      "bytes": 1405
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/medicine-holder-lookup.asm",
+      "sha256": "813f7703273e837026debaf3fc355f701e639873eaff17640fd2079026b421df",
+      "bytes": 3826
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/medicine-inventory-lookup.asm",
+      "sha256": "5084c9cc8f87df239ea0e67a7127caa5ee999d7220a3719ac53f674335a7ea2b",
+      "bytes": 1452
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/p22-h4-climb-index.txt",
+      "sha256": "3b2f4ca7c23391b717d77e893223ad61846524936cbd565676ae9b80ffefb81c",
+      "bytes": 1039
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/p22-h4-common-hum-index.txt",
+      "sha256": "02e3dd0675dcffd7807cd033a27590371c043ede8abcb58eebb8fe2a67d66c06",
+      "bytes": 4707
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/p22-h4-common-index.txt",
+      "sha256": "ac4a659f8fcc485a79f585558564a86047fc3e551df9681d06c181932d105a62",
+      "bytes": 2575
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/p22-h4-index.txt",
+      "sha256": "360e66d96d244812d637de44ebb7758d995d1eab8bf141bb741bf8b7b9a8fc32",
+      "bytes": 3275
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/p22-h4-place-index.txt",
+      "sha256": "59347d405e7654b6f2fee439264fdc36c8e4293c1d68d0d487f7a7a85dd2dc65",
+      "bytes": 9018
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/p22-h4-treatment-index.txt",
+      "sha256": "6607b423b4cd05293d7f123fb5b9afc3c4a2769d2177870ae7ca74979a648279",
+      "bytes": 2693
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/p22-h4-workers-index.txt",
+      "sha256": "c49fda04f5419cf9beb053b87954cad6ea2720f3178edfbc03ac8e404de5bcc1",
+      "bytes": 9089
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/treatment-base.asm",
+      "sha256": "91ef36e315459908bd62533220a14099aaec925f1e6422bf9f8eef6eb19e3cdb",
+      "bytes": 6118
+    },
+    {
+      "path": "recovered/build/application_launch.exe",
+      "sha256": "72c1d9e0b5946779dba51c027650eff2831378844b6ebe2b4526a052af4910a3",
+      "bytes": 3915776
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "sha256": "54a8278581c3b0d50e27679054ad4816944d322f6f4a39093fcd30cdee036366",
+      "bytes": 1117696
+    }
+  ],
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-native.cpp",
+      "sha256": "d7dc3470d2fc29160fbd8eebaa0f6e04ed47f9d5a3d4ff9d83f53d203801292c",
+      "bytes": 13785
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-native",
+      "sha256": "eec50703d8b84e781ce72fc7a16afd8cfe5a6bc81a8e6f34ed5da8cfe976a06e",
+      "bytes": 1683664
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-host-i386.cpp",
+      "sha256": "bd2fa871beee61ae03ba95c2f2ce6679283110cf092616aae76e6eb6f025defd",
+      "bytes": 2284
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-host-i386.exe",
+      "sha256": "99f5422d5e547a8b6145b2aa15be65c8f9663ef2df3e96e4b3f3d039c73247ba",
+      "bytes": 10413056
+    }
+  ],
+  "no_original_or_windows_execution": true,
+  "no_other_worktree_writes_or_merge_or_push": true
+}

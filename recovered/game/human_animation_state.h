@@ -209,6 +209,7 @@ public:
         return human_frame_signed_word(remaining)<1;
     }
     bool equipment_frame_timer_active()const{return words_.template get<std::int32_t>(0x1c)>0;}
+    void set_equipment_frame_timer(std::int32_t duration){words_.set(0x1c,duration);} //00758D20 event9.
     void clear_equipment_frame_timer(){words_.set(0x1c,std::int32_t{-1});}
     std::uint32_t footstep_sound_timer()const{return words_.template get<std::uint32_t>(0xcc);}
     void reset_footstep_sound_timer(){words_.set(0xcc,0u);}

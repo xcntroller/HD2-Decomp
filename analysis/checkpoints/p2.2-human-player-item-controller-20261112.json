@@ -1,0 +1,245 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "85593e8",
+  "branch": "feature/p22-hum-h6",
+  "checkpoint": "H6 held/math/notification/dry-fire controller source and positive shot coordinator",
+  "source_only": true,
+  "h6_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "active_h4_imported": false,
+  "contract": "analysis/human-player-item-controller-source.md",
+  "added_partial_entries": [
+    "00542e20",
+    "00544d20",
+    "00545140",
+    "005454d0",
+    "007d4e90"
+  ],
+  "extended_entries": [
+    "00542920",
+    "005433b0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 3250,
+  "client_partial": 3245,
+  "engine_partial": 5,
+  "source_files": {
+    "recovered/game/first_person_view_loading.h": {
+      "sha256": "9da8b9a55f3ad06670c2c45e6374057f4d547c9cb249ca75ade48a492839c819",
+      "bytes": 15586
+    },
+    "recovered/game/human_active_ai_state_loading.h": {
+      "sha256": "967aee972cf4b317f173002dc760d928076641f0adf867503e22153071b7b8a1",
+      "bytes": 15171
+    },
+    "recovered/game/human_loading_state_factory.h": {
+      "sha256": "de1d70e770522e4518ab00bc8dafc88aa32303eabd6534e2dac8640266ad12a9",
+      "bytes": 15554
+    },
+    "recovered/game/human_player_item_frame.h": {
+      "sha256": "9871b3c6f527f7a5799105c0ff054f6e5ea16a47495e4a992e7bc513854adbc7",
+      "bytes": 5755
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "604f63db807b56aebddcb09592b59aa88b67e29301327f0ebe3187d6eb1ae73c",
+      "bytes": 148098
+    },
+    "recovered/game/players_process.h": {
+      "sha256": "203a9b746ad62d107c5b4e026660da12d1187ef825dd05d4996fc93e658dcbde",
+      "bytes": 6723
+    },
+    "recovered/game/runtime_item.h": {
+      "sha256": "3d4c2dcaded34688e8b89cb8efd92a23226a02d155021b8c68a3433dde5bb41e",
+      "bytes": 13977
+    },
+    "recovered/game/human_player_shot_direction.h": {
+      "sha256": "9070114386eeb64c90b64a6511acc8ba91bb432e9900e01e6c79d5f67861c027",
+      "bytes": 8051
+    },
+    "recovered/game/human_player_held_item.h": {
+      "sha256": "5ba7ba5d276b91ac5107bf94fb07c32863b1d6afba4b9ee02975941ecd62d56a",
+      "bytes": 4131
+    },
+    "recovered/game/human_player_item_notification.h": {
+      "sha256": "31e94904aacee2059ef92e02fe4e0c1d76f80257ed8af164d8c7bd410a13aceb",
+      "bytes": 2808
+    },
+    "recovered/game/human_player_empty_weapon.h": {
+      "sha256": "314608b87837e45924ce82c26d5bff1db5b0c9862a05e611ca853028c32ad7be",
+      "bytes": 2639
+    },
+    "recovered/game/human_player_fire.h": {
+      "sha256": "bfb963c976fee8aa4d95567e804679ef3202079df9ad3731caea46b0720800cf",
+      "bytes": 2330
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "1d3b33545fced832796afe3bcb299165ff4dc2ffe70189167370e05e159db01a",
+      "bytes": 71493
+    }
+  },
+  "verification_files": {
+    "analysis/work/mission-world-20261103/human-h6-shot-held-native.cpp": {
+      "sha256": "8746804a4fe5f454988eec24665ca810fcfd82e0fb5ee719e6dd367433f9716a",
+      "bytes": 17753
+    },
+    "analysis/work/mission-world-20261103/human-h6-shot-held-native": {
+      "sha256": "47030788ebe9a74128651b9f0c8a85c75c4ca548c38a474e88873d97b9d6096f",
+      "bytes": 5580896
+    },
+    "analysis/work/mission-world-20261103/human-h6-shot-held-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h6-shot-held-native.log": {
+      "sha256": "6b5a29af9735532e9277a3e95ccf292fa693e69894fa575c8da88e4f2ddaa7dc",
+      "bytes": 343
+    },
+    "analysis/work/mission-world-20261103/human-h6-source-host-i386.cpp": {
+      "sha256": "fd6e2ea6cea04183941904af8860b4689f3dc6a601f578a6aa90f377e47a3e61",
+      "bytes": 1757
+    },
+    "analysis/work/mission-world-20261103/human-h6-source-host-i386.o": {
+      "sha256": "3ff4d4984c09c801272de693c6a62a933000916390434b67cac9e28f4d6aca7d",
+      "bytes": 18531612
+    },
+    "analysis/work/mission-world-20261103/human-h6-source-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h6-controller-launcher-build.log": {
+      "sha256": "45c6a66b032c9d012e73af9d020eb34fd2f655947ff660ba74c7b9e7fbcb80a3",
+      "bytes": 837
+    },
+    "analysis/work/mission-world-20261103/human-h6-controller-application.exe": {
+      "sha256": "64b31dafeac17391bb6afa36ff03f530b8354b77083ea6b63b222ace3f329d32",
+      "bytes": 3940864
+    },
+    "analysis/work/mission-world-20261103/human-h6-controller-probe.exe": {
+      "sha256": "8e460538e549dca4c5ded6591e3a58de08c63fd5487025db1b410c3fb9079ee6",
+      "bytes": 1142784
+    }
+  },
+  "original_evidence": {
+    "analysis/work/mission-world-20261103/human-player-item-action-workers/00542e20.c": {
+      "sha256": "9e87dade4ce38694cfa0ab98dff507999575afb1cd59a71e4532a9b1db7685aa",
+      "bytes": 5441
+    },
+    "analysis/work/mission-world-20261103/human-player-item-action-workers/00545140.c": {
+      "sha256": "f7303ac5cc3e79b3adab012649cea599a342fe363d33005870fdcc8e34eceb7f",
+      "bytes": 3592
+    },
+    "analysis/work/mission-world-20261103/human-player-item-action-workers/005454d0.c": {
+      "sha256": "1b1521757e0022f3e2c45da95bbd0d0ee0842173a20058e529849655a504562b",
+      "bytes": 2972
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/005433b0.c": {
+      "sha256": "6468d537214beb8193f6db8ba1dcae8cbeccfc8bdc25f929a3c48f0d903c7aeb",
+      "bytes": 17662
+    },
+    "analysis/work/mission-world-20261103/frame-human-feedback-dependencies/00542920.c": {
+      "sha256": "71abfb784dd459654dccdaffd6b837dc6f1ad82cac1b7655baf34be67ecac49a",
+      "bytes": 2656
+    },
+    "analysis/work/mission-world-20261103/human-h6-item-dependencies/00544d20.c": {
+      "sha256": "ced81c71417adac207b94144c22f8e1f0b05da7b035313bb76c9cade11996ee3",
+      "bytes": 3961
+    },
+    "analysis/work/mission-world-20261103/human-h6-item-dependencies/007d4e90.c": {
+      "sha256": "29195b607afd6cea0f2297a7cc72d2ddb59c45e8deae223c1eb60fb1c32b1949",
+      "bytes": 741
+    },
+    "analysis/work/mission-world-20261103/human-h6-positive-dependencies/00459360.c": {
+      "sha256": "403d86900ee1043054a6fe9f723f3614c0d2a6e82b5f37b74b749a8d03e85475",
+      "bytes": 506
+    },
+    "analysis/work/mission-world-20261103/human-h6-player-vtable.json": {
+      "sha256": "5119db770c5fa710298b625900eb729898e5c6f19de074f1739d3e8a169a41e0",
+      "bytes": 111
+    },
+    "analysis/work/mission-world-20261103/human-h6-original-float-constants.json": {
+      "sha256": "6d1e21928ffa4e598abd87752c54998cf491d7a77d4fd4ed7ca39975d1e5de80",
+      "bytes": 1390
+    },
+    "analysis/work/mission-world-20261103/human-h6-shot-math.asm": {
+      "sha256": "b58430faa7686f446ed6351684e52de07ceb717827c86a8b94e30e5ea9f30eb6",
+      "bytes": 44636
+    },
+    "analysis/work/mission-world-20261103/human-h6-held-actions.asm": {
+      "sha256": "367362e317283ae2e39b38abb19bcc4b95d6647825886c7b41bbfb409cff32e3",
+      "bytes": 20409
+    },
+    "analysis/work/mission-world-20261103/human-h6-item-frame.asm": {
+      "sha256": "b0298fc5fb9a6996da3159808ce767279355a93b83d9b97cd31770349933287c",
+      "bytes": 49325
+    },
+    "analysis/work/mission-world-20261103/human-h6-command-effects.asm": {
+      "sha256": "dc46d145dd0761a98915306d310ba086e978f34d03474a0cd28a59531d4d64fb",
+      "bytes": 7556
+    },
+    "analysis/work/mission-world-20261103/human-h6-small-player-receivers.asm": {
+      "sha256": "0df96d3371e3f2103d9f21047789a52fb3948552861cb6c662a80ad2ebc1b1ee",
+      "bytes": 6535
+    },
+    "analysis/work/mission-world-20261103/human-h6-item-sound-initializer.asm": {
+      "sha256": "d7269cd2315065d25762659fe33c4d54d583926c5ef4269fa3c036f4593e3b27",
+      "bytes": 848
+    }
+  },
+  "native": {
+    "result": "PASS100",
+    "sanitizers": [
+      "ASan",
+      "UBSan",
+      "LSan"
+    ],
+    "actual_owners": [
+      "Player/Human",
+      "input manager/Record/pending messages",
+      "hand holder",
+      "RuntimeItem/authored catalogue parser"
+    ],
+    "scope": "Held and frame dispatch; charge/title/release/cancel/holder deadline; math/draw order and partial stores; reused-request dry-fire equality/failure; local notifications and same-record retirement; positive shot coordinator/item disappearance/retry/recoil and late missing-Record failure.",
+    "boundary_doubles": [
+      "Inline/Look",
+      "FPV",
+      "engine/camera observations",
+      "first-shot callback",
+      "item24 projectile effects"
+    ],
+    "lifetime": "Items/event pool outlive Humans; profiles/callbacks outlive input records; all retained frame counts balance. No private-field/access-control override.",
+    "authored_inputs": "Public B0/input/cooldown state, catalogue bytes, engine observations and explicit component boundaries; no original assets/native engine equivalence."
+  },
+  "i386": {
+    "result": "PASS",
+    "scope": "Actual nested host Player/items/World held/empty/math/notification/first-shot and full005433B0 including positive coordinator/actual ray signatures.",
+    "required_other_runtime_declarations": 5,
+    "behavior": "always throw; compile-only, not installed successful endpoints"
+  },
+  "launcher_probe": {
+    "result": "PASS",
+    "scope": "latest compile/link and dedicated snapshots only; no execution"
+  },
+  "commands": [
+    "g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -pthread -fsanitize=address,undefined -fno-omit-frame-pointer -g -fmax-errors=8 -Irecovered analysis/work/mission-world-20261103/human-h6-shot-held-native.cpp -L.tools/hd2-sanitizer-runtime/usr/lib64 -Wl,-rpath,$PWD/.tools/hd2-sanitizer-runtime/usr/lib64 -o analysis/work/mission-world-20261103/human-h6-shot-held-native",
+    "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 analysis/work/mission-world-20261103/human-h6-shot-held-native",
+    ".tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++ -std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -ferror-limit=8 -Irecovered -c analysis/work/mission-world-20261103/human-h6-source-host-i386.cpp -o analysis/work/mission-world-20261103/human-h6-source-host-i386.o",
+    "make -C recovered -j1 application-launch startup-probe WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++"
+  ],
+  "remaining": [
+    "Actual shared item24/28, shot-sound and projectile production/retirement; no actual item firing claimed by the positive coordinator audit.",
+    "Melee/repair/actor first-command queue production and reached external H4 consumers.",
+    "Full actual-owner Player/World integration and consolidated H6 verification remain.",
+    "Conditional non7 history/replay/admission remains external D/OWN/H8/Phase3 work under user offline-first priority; all required guards preserved.",
+    "H4 remains separate. H8/full application/render/P22-VIS/user desktop acceptance remain open."
+  ],
+  "temporary_new_audits_fingerprinted_then_removed": [
+    "analysis/work/mission-world-20261103/human-h6-shot-held-native.cpp",
+    "analysis/work/mission-world-20261103/human-h6-shot-held-native",
+    "analysis/work/mission-world-20261103/human-h6-source-host-i386.cpp",
+    "analysis/work/mission-world-20261103/human-h6-source-host-i386.o"
+  ],
+  "existing_frozen_inputs_preserved": true
+}

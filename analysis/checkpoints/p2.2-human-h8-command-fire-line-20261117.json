@@ -1,0 +1,201 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "96182e2",
+  "source_only": true,
+  "h8_2_complete": false,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-command-fire-line-source.md",
+  "new_partial_client_bodies": [
+    "0052f1f0",
+    "005328a0"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/human_active_ai_fire_line.h",
+      "bytes": 4185,
+      "sha256": "bf5d1b0bbe76316de957acdbc0a8db50640367d15ab0b5beb6dca8bfb44cb67c"
+    },
+    {
+      "path": "recovered/game/human_active_ai_commands.h",
+      "bytes": 18815,
+      "sha256": "c39587e1ee97a110637649db4dad0ad18d1180109a0eddedc1d7fb6861b83541"
+    },
+    {
+      "path": "recovered/game/human_active_ai_pending.h",
+      "bytes": 10788,
+      "sha256": "827b6157dca1b456a9cf850f02cfd96722ba8abbc9b4998b12529cc25c30579c"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 297433,
+      "sha256": "c042feff1fead579c1239a8425313d9f019388cc85b1b09d7d13cfca4b4412da"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-player-final-selector-index.txt",
+      "bytes": 9013,
+      "sha256": "87ad4383861c018c1ea0ffa4b509d994fe1574d2916a27a18ff26003bb16d7e5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector22-receivers-index.txt",
+      "bytes": 6129,
+      "sha256": "488ffc24fd67f7aed09e95735c8e5c0f91d7320245a89cee1f90a716dfb6d35a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector22-full.asm",
+      "bytes": 28699,
+      "sha256": "16b19a521a3ae3ed13ee0ac56ef7b37c1f32795a326b443b60d07bd26bd7c851"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pending-native-admission.asm",
+      "bytes": 3265,
+      "sha256": "36d4a571e81120e37d244d357cfb0fea51705b42a90881af1c872adeafc8c00d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-line-index.txt",
+      "bytes": 1120,
+      "sha256": "3534ac41838c2e82cab5b38d2670170313a3d7d098e6d9703258c16954dedf8b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-roster-index.txt",
+      "bytes": 6293,
+      "sha256": "1f3efdecf15a6cb634666005397602f81a732df1ffdee766645d68af02dcdd35"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-line/0052f1f0.c",
+      "bytes": 5521,
+      "sha256": "a316560fc4a5137192cf6f7a57677c8021b54e0f78631352f3a0745928851bf6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-line/0052f1f0.json",
+      "bytes": 30644,
+      "sha256": "22f9dafb58d373ef04a088f73ae59efe01314fb3e34dc1fdb8cda4b5d36f980d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-line.asm",
+      "bytes": 18762,
+      "sha256": "403da9ababf2cd1b33a3db85ca63900069624afe1628bb0154448e7953d877c8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-vtable-data.txt",
+      "bytes": 211,
+      "sha256": "6e17d5654c9dcc26b23c18c8784ccc7ccb8d8223c8d16a6d21ee803df4153012"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-margin-data.txt",
+      "bytes": 149,
+      "sha256": "c2a5e67608be0052c48d65311a85698cc15cb4ae1544ab3184d1267f8590d8cf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-line-export.log",
+      "bytes": 4455,
+      "sha256": "f376ee62d814709f0bb98ffee84d7ddcd70afa8d9d3943f78e7ecd55eb7b2551"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-frame-workers/005328a0.c",
+      "bytes": 330,
+      "sha256": "5ba0097caa09da3777c8104cbd7a58e1a6b839bd0a6fd19e894123d3f68b28d5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-selection/0045bd10.c",
+      "bytes": 9315,
+      "sha256": "29267978a42b206175ca97c0dd0b2f8dff809b30143a91fe7b3b1bad94cbc5bc"
+    }
+  ],
+  "verification": {
+    "selector_pending": "PASS833 native ASan/UBSan/leak/Werror; actual policies/scalars, explicit inventory/control/query/terminal completion endpoints",
+    "active_fire": "PASS10023 native ASan/UBSan/leak/Werror; actual Active source/HumanRoster, independent straight-ray oracle, explicit frame/physical endpoints",
+    "i386": "PASS strict actual full module/UI/explicit selector22/Active114 World graph link, no Windows execution",
+    "launcher": "PASS forced sequential O2 application-launch/startup-probe Werror rebuild, no Windows execution",
+    "ghidra": "PASS focused read-only/no-analysis0052F1F0 export, no project changes or original execution",
+    "tracker": "PASS exact ledger/inventory/fingerprints/README and27 tracker tests;34 complete/3632 partial(client3627+engine5)"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector-pending-native.cpp",
+      "bytes": 5533,
+      "sha256": "705e971b439a1791aa2110d440ba33e5477d8eee74b3f324d1729d7c25d2dc3f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector-pending-native",
+      "bytes": 448384,
+      "sha256": "11810e5b1d6d430c4be4e8df5a9bc0210d37822b567fc44adc6f9f53fea0d8bd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector-pending-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector-pending-native-run.log",
+      "bytes": 147,
+      "sha256": "d81d1b85bbc5c4c11b4c0559237e36956f4121b27d4f0658a9599e37e4872ac3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-native.cpp",
+      "bytes": 5146,
+      "sha256": "3f580d666971dd1c04116ef8e079741244af9629672836b9d707c3a3b25066ac"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-native",
+      "bytes": 545824,
+      "sha256": "16c78642704a601373ead14cfb090d14d8eb60ccdaf0cc7b6334ef771e90d3bd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-fire-native-run.log",
+      "bytes": 127,
+      "sha256": "a8cdcf98e22617605a67648b6447f98b0e4bfdc9ec085d5bbcc81ae668331593"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector-pending-module.cpp",
+      "bytes": 1068,
+      "sha256": "ac1b576215a888b531c445096dac49a0eb81b2465abffa11d15da7c12971f19a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector-pending-module.exe",
+      "bytes": 11866112,
+      "sha256": "ac0a6c475f4c635d1bc7203c850e654565d2511b7d5e335a28679482c4f63996"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector-pending-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-selector-pending-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-fire-line-progress-render.log",
+      "bytes": 380,
+      "sha256": "ecbbaedd4823d8f8c9428bae2673e8d4f3b56487263dd476ac8593956d2fff2a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-fire-line-progress-check.log",
+      "bytes": 437,
+      "sha256": "04d08b55a43611fea93683cf18a54f7f4e443ff08c8f3235310b9fddd9f44e14"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-fire-line-progress-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "rejected_evidence": "human-h8-selector22-initial-window.asm begins inside an instruction; not used. Full aligned source used instead.",
+  "temporary_audits": "Successful two native and one module source/binary pairs fingerprinted then removed; original/log artifacts retained.",
+  "limitations": [
+    "H8.2/H8.4/H8.5/H8.6 and matrix remain open; no application/desktop claim.",
+    "Active infinite line is not Guard perception selection or a200-unit segment.",
+    "Handoff Human rejection/nonHuman capability and type20/34/36/Dog owners retain actual requirements.",
+    "No original/Windows execution, ABI or whole function equivalence promotion."
+  ]
+}

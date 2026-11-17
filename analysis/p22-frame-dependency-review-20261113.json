@@ -1,0 +1,199 @@
+{
+  "date": "2026-11-13",
+  "frame_unblocked": false,
+  "frame_source_complete": false,
+  "revisions": {
+    "feature/p22-frame": "c36bba8c5aa2855a02c11ce832810cebe39e8d10",
+    "feature/p22-pack": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+    "feature/p22-hum-h8": "51082a20acd87e68cb3d41aeed57492ffcdab855",
+    "master": "fa94dee38922a21397289a7b5746819c83b42d89",
+    "feature/p22-own": "939fb70283fbf635e0cf1f8f9bcdcae7d8a7800e"
+  },
+  "contract": "analysis/p22-frame-dependency-review-20261113.md",
+  "source_findings": [
+    {
+      "revision": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+      "path": "recovered/game/human_frame_runtime.h",
+      "git_blob": "bd44f68e4134b51b7e8ae948546e9f753b81c609",
+      "sha256": "b7437086222a990fa2f8e38ff68e4ab08077fb5cdd11ee71d6581732585150cd",
+      "matches": [
+        {
+          "line": 41,
+          "text": "template<class Human>void advance_human_state(Human&,bool,std::uint32_t){throw std::runtime_error(\"Human frame requires actual Active/Remote B0 frame receiver\");}"
+        },
+        {
+          "line": 44,
+          "text": "template<class Control>void advance_human_control_motion(Control&,std::uint32_t){throw std::runtime_error(\"Human interaction requires remaining00755500 action frame\");}"
+        }
+      ]
+    },
+    {
+      "revision": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+      "path": "recovered/game/human_world_loading_services.h",
+      "git_blob": "87e2a3d94c58ad6fe6e8bc8a6d78da56cabd061b",
+      "sha256": "befc67d02c00a1292d228a7f7947aaa0c8adf5184c077d9096e1ffc5dd60c946",
+      "matches": [
+        {
+          "line": 1811,
+          "text": "if(kind!=1&&kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}"
+        }
+      ]
+    },
+    {
+      "revision": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+      "path": "recovered/game/rigid_body.h",
+      "git_blob": "a8ce6fb8c4b745a5b95b92fc978c78f8449daf16",
+      "sha256": "9eb7deb580dce798b6084268ab751288c2069a07224cbe1872b2679a8cb045c6",
+      "matches": [
+        {
+          "line": 408,
+          "text": "if(alternating==fields_.end())throw std::runtime_error(\"Rigid part5F9 alternating-query byte has no native producer\");"
+        }
+      ]
+    },
+    {
+      "revision": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+      "path": "recovered/host/game_runtime_actors.h",
+      "git_blob": "08afbcc0f019d54c73930e10f6b3e1ef59cd8125",
+      "sha256": "3a158df7f0e7dd1ddfd9716a3465a7053fa0c2a5c730d2ca69822a9caf6039cd",
+      "matches": [
+        {
+          "line": 171,
+          "text": "if((mode_flags()&7)!=7&&item.definition().kind()==20)retained_items_.push_back(placed);"
+        },
+        {
+          "line": 189,
+          "text": "std::vector<typename Items::Placed>().swap(retained_items_);"
+        },
+        {
+          "line": 254,
+          "text": "std::vector<typename Items::Placed> retained_items_;"
+        }
+      ]
+    },
+    {
+      "revision": "4fccf12f11a5d91bcaab4269030be082ea48f3c5",
+      "path": "analysis/p22-hum-h8-plan.md",
+      "git_blob": "430112d502f5e1ce301838960fa1915f2cb9d3fd",
+      "sha256": "c2ff1d4e0859a4b8b9f2bd3e0a23cad1d995015a72394c13c8810fdd3784388b",
+      "matches": [
+        {
+          "line": 20,
+          "text": "- [ ] H8.2 \u2014 Finish mandatory offline receivers exposed by that composition:"
+        },
+        {
+          "line": 23,
+          "text": "- [ ] H8.3 \u2014 Actual ShotMgr async bullet/shell/capsule/grenade collision,"
+        },
+        {
+          "line": 25,
+          "text": "- [ ] H8.4 \u2014 Resolve reached actor/Car/entry dependencies against current"
+        }
+      ]
+    },
+    {
+      "revision": "fa94dee38922a21397289a7b5746819c83b42d89",
+      "path": "analysis/p22-render-plan.md",
+      "git_blob": "1822389683ab64e68194be36e3d18746b174a335",
+      "sha256": "17fbe413e355c0246a694629bbb2563b06e4209359ab36fc81864d396dbbc969",
+      "matches": [
+        {
+          "line": 20,
+          "text": "- [x] Complete00482260's original per-volume3C/40 read from actual owned,"
+        }
+      ]
+    },
+    {
+      "revision": "939fb70283fbf635e0cf1f8f9bcdcae7d8a7800e",
+      "path": "recovered/host/game_ui_presentation.h",
+      "git_blob": "69c928d3c55b7e622f0ac8c727ada70fc102184b",
+      "sha256": "cf7dbd526f4de5bdf9e25d1e3337387f9cb101d37c2454fa0613c5f68ab3b03f",
+      "matches": [
+        {
+          "line": 258,
+          "text": "void advance_hud(std::uint32_t elapsed,const GameUiHudFrameSources& sources={}){require_open();HudFrameQueries queries{*this,sources};d_.hud.update_loading(elapsed,queries);} //0049BD50, no World/camera simulation."
+        },
+        {
+          "line": 259,
+          "text": "void process_hud_controls(const GameUiHudControlSources& sources,std::uint32_t* first,std::uint32_t* second,std::size_t count){"
+        }
+      ]
+    },
+    {
+      "revision": "939fb70283fbf635e0cf1f8f9bcdcae7d8a7800e",
+      "path": "recovered/host/game_application_session.h",
+      "git_blob": "daa3818362986cf903a41dc46884943ec7ca4e2d",
+      "sha256": "3417c6ca40302fdbfb3cf7c0881114d030c67fbb90cad9020b51c0e9e9807511",
+      "matches": [
+        {
+          "line": 41,
+          "text": "void input(std::uint32_t*,std::uint32_t*)override{missing_frames();}"
+        },
+        {
+          "line": 42,
+          "text": "void fixed_update(std::uint32_t)override{missing_frames();}"
+        },
+        {
+          "line": 43,
+          "text": "void update(std::uint32_t)override{missing_frames();}"
+        },
+        {
+          "line": 65,
+          "text": "throw std::runtime_error(\"P22-FRAME import required: actual GameSessionFrames input/fixed/update and Runtime producers are not bound\");"
+        }
+      ]
+    },
+    {
+      "revision": "c36bba8c5aa2855a02c11ce832810cebe39e8d10",
+      "path": "recovered/host/game_scene_actor_frames.h",
+      "git_blob": "3a6bafcd9e5923b161f5195c188d6e4226e8b6a4",
+      "sha256": "0062ecf32bac81e7898c927de235259cd439a561814aa133baa390bfd01ca8e9",
+      "matches": [
+        {
+          "line": 128,
+          "text": "if((mode_flags()&7u)!=7u)runtime_.restore_loose_item(item,d_.world_actors.runtime());"
+        }
+      ]
+    },
+    {
+      "revision": "c36bba8c5aa2855a02c11ce832810cebe39e8d10",
+      "path": "recovered/game/session_frame_loading.h",
+      "git_blob": "1bac4aac91fbc7b4ce03f49e752410532b0f65ab",
+      "sha256": "10ddbc659dcb5ad9f40855e6fab72a05130ef3c2633e5baaf9a5079efe7b3a9f",
+      "matches": [
+        {
+          "line": 42,
+          "text": "if((services.mode_flags()&7u)!=7u)throw std::runtime_error(\"Fixed session frame requires actual nonoffline match/peer consumers\");"
+        },
+        {
+          "line": 68,
+          "text": "if((services.mode_flags()&7u)!=7u)throw std::runtime_error(\"Session frame requires actual nonoffline clock/match/control consumers\");"
+        }
+      ]
+    }
+  ],
+  "available_source_dependencies": [
+    "selected PACK effects",
+    "later RigidBody/World implementation with retained5F9 guard",
+    "current master UI",
+    "current master RENDER including3C/40 raw history",
+    "OWN activation/controller source"
+  ],
+  "remaining_blockers": [
+    "actual containing Human Active/Remote and DD0 frame receivers",
+    "fresh rigid-part5F9 first-use state",
+    "positive non7 retained-item005B7EC0 restoration",
+    "conditional session/non7/Dog/actual Runtime and application frame integration"
+  ],
+  "verification": {
+    "committed_source_comparison": true,
+    "json_validation": true,
+    "diff_check": true,
+    "build_or_sanitizer_rerun": false,
+    "production_source_changed": false,
+    "source_imported": false,
+    "original_or_windows_executed": false,
+    "function_credit_added": 0,
+    "pushed": false
+  }
+}

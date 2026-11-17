@@ -25,7 +25,7 @@ public:
     using Base=HumanStateBaseLoading<Frames,Human,Inputs>;
     HumanPlayerStateLoading(Frames& frames,Inputs& inputs,HumanInputCallbacks& callbacks)
         :Base(frames,inputs,1),inputs_(inputs),callbacks_(callbacks) {
-        state_.set(0x4e4,std::uint32_t{3}); //Inline4E0 type3 command, no runtime producer exposed.
+        state_.set(0x4e4,std::uint32_t{3}); //Inline4E0 type3; actual packet12 copies payload before speech-timer expiry.
     }
     ~HumanPlayerStateLoading(){detach_callbacks();}
     bool frame_actor_contact(std::uint32_t kind,std::int32_t identity,std::uint32_t mode)override{ //00544B40, absent frozen.

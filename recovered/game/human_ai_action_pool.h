@@ -53,6 +53,14 @@ private:
 template<std::uint32_t Kind,std::size_t Size>struct alignas(16) HumanAIPooledAction {
     HumanJointWords<Size> state;
 };
+//Native8+14 /12+30 are actor borrowers, never pointers in host DWORD words.
+//Their cold constructors do not initialize these slots; acquire supplies them.
+template<>struct alignas(16) HumanAIPooledAction<8,0x20> {
+    HumanJointWords<0x20> state;void* actor=nullptr;
+};
+template<>struct alignas(16) HumanAIPooledAction<12,0x40> {
+    HumanJointWords<0x40> state;void* actor=nullptr;
+};
 template<std::uint32_t Kind,std::size_t Size>class HumanAIActionPool {
 public:
     using Action=HumanAIPooledAction<Kind,Size>;
@@ -120,11 +128,39 @@ public:
 static_assert(sizeof(HumanAIPooledAction<2,0x50>)==0x50);
 static_assert(sizeof(HumanAIPooledAction<3,0x40>)==0x40);
 
+//0058AB40 allocates native14 bytes aligned16; known fields stop at lifetime10.
+//00582A90 only transfers the existing record;0054CB70 writes mode8 afterwards.
+class HumanAIAction6Pool:public HumanAIActionPool<6,0x20> {
+public:Lease acquire(){return acquire_record();}
+};
+class HumanAIAction7Pool:public HumanAIActionPool<7,0x50> { //0058AC90, manager+F0.
+public:
+    Lease acquire(const HumanVector& position,const HumanVector& direction){ //00582AD0.
+        auto result=acquire_record();result->state.set(0x20,position);result->state.set(0x30,direction);return result;
+    }
+};
+class HumanAIAction8Pool:public HumanAIActionPool<8,0x20> { //0058ADE0, manager+108.
+public:
+    Lease acquire(void* actor){ //00582B50; native18/1C cleared, age/mode/lifetime retained.
+        auto result=acquire_record();result->actor=actor;
+        result->state.set(0x18,0u);result->state.set(0x1c,0u);return result;
+    }
+};
+class HumanAIAction12Pool:public HumanAIActionPool<12,0x40> { //0058B2C0, manager+168, NOT action4.
+public:
+    Lease acquire(const HumanVector& direction,void* actor){ //00582920; age/mode/lifetime retained.
+        auto result=acquire_record();result->actor=actor;result->state.set(0x20,direction);return result;
+    }
+};
 struct HumanAIActionPools {
     HumanAIAction1Pool kind1;
     HumanAIAction2Pool kind2;
     HumanAIAction3Pool kind3;
     HumanAIAction5Pool kind5;
+    HumanAIAction6Pool kind6;
+    HumanAIAction7Pool kind7;
+    HumanAIAction8Pool kind8;
+    HumanAIAction12Pool kind12;
 };
 } //namespace hd2::game
 #endif

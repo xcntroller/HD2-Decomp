@@ -9,10 +9,11 @@ namespace hd2::game {
 
 //Actual animation-actorE0 owned BODYCOLB records. Declaration is shared with
 //the actor, keeping the descriptor owner alive until its grid entries retire.
-class AnimationActorCollisionLifetime {
+template<class Frame>class AnimationActorCollisionLifetime {
 public:
     virtual ~AnimationActorCollisionLifetime()=default;
     virtual void rebuild()=0;
+    virtual void rebuild_from_model(Frame)=0;
     virtual void update()=0;
     virtual void clear()noexcept=0;
 };
@@ -21,7 +22,7 @@ public:
 //Each descriptor borrows the actual actor/frame; world must retire this owner
 //before either actor/model or the SAME dynamic buckets. Non-dummy geometry
 //uses the native driver+AC aggregate bounds, unlike rigid-body OBJ_ traversal.
-template<class Frames,class Collisions,class Actor>class AnimationActorCollisions final : public AnimationActorCollisionLifetime {
+template<class Frames,class Collisions,class Actor>class AnimationActorCollisions final : public AnimationActorCollisionLifetime<typename Frames::Frame> {
 public:
     using Frame=typename Frames::Frame;
     using Descriptor=RigidBodyCollisionDescriptor<Frame>;
@@ -37,8 +38,9 @@ public:
     void clear()noexcept override { //005B4DC0 removes bucket before aligned record free.
         while(!records_.empty()){collisions_.remove_for_cleanup(records_.back()->descriptor);records_.pop_back();}
     }
-    void rebuild()override { //005B3AC0 clears old list BEFORE searching consecutive BODYCOLB00...
-        clear();const auto model=actor_.base().frame();if(!model)return;
+    void rebuild()override {rebuild_from_model(actor_.base().frame());}
+    void rebuild_from_model(Frame model)override { //005B3AC0 clears old list BEFORE searching consecutive BODYCOLB00...
+        clear();if(!model)return;
         for(unsigned n=0;n!=1000000;++n) {
             char name[32];std::snprintf(name,sizeof(name),"BODYCOLB%02u",n);
             const auto frame=frames_.actor_find(model,name,0xffff);if(!frame)return;

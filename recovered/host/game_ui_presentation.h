@@ -8,6 +8,7 @@
 #include "host/borrowed_input.h"
 #include "game/hud_crosshair_visibility.h"
 #include "game/hud_signal_actions.h"
+#include "game/hud_session_input.h"
 #include "game/hud_vehicle_presentation.h"
 #include "game/hud_inventory_presentation.h"
 #include "game/hud_command_presentation.h"
@@ -256,6 +257,15 @@ public:
         require_open();ConsoleQueries queries{*this,actions};game::ConsoleCommandDispatch worker(d_.startup.game_console_variables(),queries);return worker.command(index,input,capacity);
     }
     void advance_hud(std::uint32_t elapsed,const GameUiHudFrameSources& sources={}){require_open();HudFrameQueries queries{*this,sources};d_.hud.update_loading(elapsed,queries);} //0049BD50, no World/camera simulation.
+    void filter_hud_input(std::uint32_t* first,std::uint32_t* second){
+        require_open();SessionInputQueries queries{*this};
+        game::filter_hud_session_input(queries,[&](std::uint32_t scan){
+            input::BindingInputViews views(d_.startup.presentation_input_bindings(),first,second,64);
+            views.consume_scan(scan);
+        });
+    }
+    bool hud_nonoffline_input_blocked(){require_open();SessionInputQueries queries{*this};return game::hud_nonoffline_input_blocked(queries);}
+    bool hud_player_input_blocked(){require_open();SessionInputQueries queries{*this};return game::hud_player_input_blocked(queries);}
     void process_hud_controls(const GameUiHudControlSources& sources,std::uint32_t* first,std::uint32_t* second,std::size_t count){
         require_open();if(!parent_.hud()->flags)return;if(!first||!second||count<64)throw std::invalid_argument("HUD controls require original containing64-word input pair");
         DialogInput input{d_.startup.presentation_input_bindings(),backend_.presentation_input(),first,second,count};HudControlQueries queries{*this,sources,first,second,count};game::HudControls worker(input,queries);worker.run();
@@ -605,8 +615,7 @@ private:
         Human* current_player(){auto* value=ui.d_.first_players.current_player();if(value)(void)human(*value);return value;}
         Actor* attachment(Actor& actor){auto* value=human(actor).field160;if(value)ui.require_actor_borrower(value);return value;}
         Actor* focus(Actor& actor){auto& value=human(actor);if(!value.field174)return nullptr;
-            auto* source=focus_source?focus_source:ui.signal_external_;if(!source)throw std::runtime_error("HUD target requires actual typed Human174 focus producer");
-            auto* target=source->human_focus(value);if(!target)throw std::logic_error("Populated Human174 has no actual typed actor borrower");ui.require_actor_borrower(target);return target;}
+            auto* target=value.field174;ui.require_actor_borrower(target);return target;}
         std::int32_t health(Actor& actor){return ui.d_.first_players.health(human(actor));}
         std::uint32_t kind(Actor& actor){ui.require_actor_borrower(&actor);return actor.base().type();}
         std::uint32_t human_kind(Actor& actor){return human(actor).properties.field19c;}
@@ -673,8 +682,7 @@ private:
         using Entry=world_loading::Actors::Items::Entry;
         GameUiRollExternalSource* external=nullptr;
         Actor* focus(Actor& actor){auto& value=human(actor);if(!value.field174)return nullptr;
-            if(!external)throw std::runtime_error("Roll focus requires actual typed Human174 producer");
-            auto* focus=external->human_focus(value);if(!focus)throw std::logic_error("Populated Human174 has no actual typed actor borrower");ui.require_actor_borrower(focus);return focus;}
+            auto* focus=value.field174;ui.require_actor_borrower(focus);return focus;}
         bool offline(){return (ui.d_.startup.application_flags()&7u)==7u;}
         Actor* selected_human(){auto* value=ui.d_.players.control().selected_player(ui.d_.startup.application_flags());if(value)(void)human(*value);return value;}
         Actor* previous_human(){auto* value=ui.d_.players.control().previous_player();if(value)(void)human(*value);return value;}
@@ -1116,6 +1124,18 @@ private:
         void swap_weapon(Human& human,Entry current,Entry selected,unsigned slot){auto& items=ui.d_.world_actors.items();(void)items.runtime_item(current);(void)items.runtime_item(selected);commands.swap(human,current,3,human,selected,slot);}
         void hide_selector(){ui.show_weapon_selector(false);}
         void layout_selector(){auto* current=ui.d_.first_players.current_player();if(!current)throw std::logic_error("Selector controls require actual current Human for layout");ui.require_actor_borrower(current);ui.world_.owners().hud_panels().selector().layout(*current,ui.d_.world_actors.items());}
+    };
+    struct SessionInputQueries{
+        GameUiPresentation& ui;
+        auto& panels(){return ui.world_.owners().hud_panels();}
+        std::uint32_t hud_flags(){return ui.parent_.hud()->flags;}
+        bool roll_active(){return panels().dialogs().roll().flag30!=0;}
+        bool signals_active(){return panels().dialogs().signals_active();}
+        bool map_present(){return panels().map().map()!=nullptr;}
+        bool map_visible(){return ui.d_.scene.frames().hud_frame_visible(panels().map().map());}
+        bool command_visible(){return panels().command().visible();}
+        bool inventory_visible(){const auto root=panels().inventory().root();if(!root)throw std::logic_error("Session input requires actual inventory34 artwork");return ui.d_.scene.frames().hud_frame_visible(root);}
+        bool message_editing(){return panels().messages().state().flagd385!=0;}
     };
     struct HudControlQueries{
         using Human=world_loading::Human;using Actor=GameSceneActors::Instance;

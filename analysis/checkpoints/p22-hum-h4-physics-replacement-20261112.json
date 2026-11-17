@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "Original H4 positive Physics type5 replacement",
+  "implementation_base": "81970e4bfab5d1d612fb35d09ce3dac1104574e2",
+  "branch": "feature/p22-hum-h4",
+  "H4_complete": false,
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/physics_object.h",
+      "sha256": "53d84b3365e496d51ad7e8d0a5ebe4c3fc939707734fd50756b68f07b6f03608",
+      "bytes": 28585
+    },
+    {
+      "path": "recovered/game/physics_object_parameters.h",
+      "sha256": "1fb5aaebc64c81026017f9f472b7956740c200be09cfc9449cd12963158f8b36",
+      "bytes": 3097
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "sha256": "0851c4227b5a9f7bf7166c0813ac2951e8ebba440008fd5e8b1e013b30486ae6",
+      "bytes": 114455
+    },
+    {
+      "path": "recovered/host/game_physics_objects.h",
+      "sha256": "4c54f09988e28bddc3a3b473e85976e7e5c12d67b8fdbcf3510ef427172d6a19",
+      "bytes": 10014
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-positive.asm",
+      "sha256": "960cfb72a80ac2c24fa52b8c5e68b03595a74a5da026910258992b3e1d1b11bb",
+      "bytes": 19622
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-volumes.asm",
+      "sha256": "2389148215855b5067cb2399211016851d562164ae748736053afca89c6d89a6",
+      "bytes": 20074
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-bound-centre.asm",
+      "sha256": "cedb4f583a2d29530abe6053aa4f310d220f005d62f29d84d16136d89b2b7b39",
+      "bytes": 3101
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-parser.asm",
+      "sha256": "f3eaad71f28723e9ba950955db99914de7653631ac1d106a2558d41a5f20c6c2",
+      "bytes": 2837
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-bound-add.asm",
+      "sha256": "0d898355adb4288973cfea030a99c662a3e99db096ef761aef417f978b621793",
+      "bytes": 747
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-bound-half.asm",
+      "sha256": "ee3dc10bc6fc8381b31992baefa1c2fdcab818990a777e159f08d40a16310833",
+      "bytes": 741
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-dependencies-original/00406740.c",
+      "sha256": "c3d5390a7130e81305ac8e8cf1ba127e7b15019b262f90f357a6b83dbafd296c",
+      "bytes": 7606
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-dependencies-original/00406740.json",
+      "sha256": "002dcc8be286cd8039053a3081aaf6d5cb371ad6e59613708de0b43f95104ce4",
+      "bytes": 11962
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-dependencies-original/004085c0.c",
+      "sha256": "a843643bfa1c35e6e931f5fe5fb14f593da60ce92aa9b00e77fdd1aa484f59fa",
+      "bytes": 1647
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-dependencies-original/004085c0.json",
+      "sha256": "35416eb3e41fb28565250829702f2fe9a7b7a1931f9e453da6834f7309479385",
+      "bytes": 3994
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-dependencies-original/0040ad80.c",
+      "sha256": "2dd77a9efa545c307018523fa6de61406a2b7aa4a4eb7ad11c2544330abdf79c",
+      "bytes": 318
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-dependencies-original/0040ad80.json",
+      "sha256": "745d86dfc8cbdcc9d8ba72783b87f70ac928469207cfefd1a88382d6dd3ec6cc",
+      "bytes": 2480
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-pickup-original/00407bd0.c",
+      "sha256": "16cfac82e1be6136d80c67562307eada6d9a2eb7ad104ccdcf394c27bfb8c77b",
+      "bytes": 12129
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/completion-pickup-original/00407bd0.json",
+      "sha256": "d4f06c90b0052ef534a9b363f25f7e12eb2c7bbf3f71714d228916c5aaf7d134",
+      "bytes": 37808
+    }
+  ],
+  "verification": {
+    "native": "PASS173 ASan/UBSan/LSan actual PhysicsObject/parser/LoadedResourceCache; engine, collision and child-spawn endpoints explicitly doubled. Positive/absent/malformed, cache hit/repeat, reached failure prefixes, restoration and cleanup primary failure.",
+    "i386": "PASS strict FULL LINK actual World Physics borrowed motion and manager create \u2192 concrete child create/contact callback; actual category1 cache/frame services/collision owners; no selected endpoint doubles.",
+    "application": "PASS existing application-launch/startup-probe links only.",
+    "actual_mission_reachability": false,
+    "actual_engine_execution": false,
+    "desktop_acceptance": false
+  },
+  "resource_requirements": {
+    "static_keys": [
+      "break model verbatim metadata, default plotdira",
+      "plot",
+      "dira",
+      "VOLB00 numbered until first gap"
+    ],
+    "actual_loaded_populations": "Not observed: no engine execution or real mission loading."
+  },
+  "ledger": {
+    "new_partial": [
+      "00407bd0",
+      "00406740"
+    ],
+    "extended_partial": [
+      "00408780",
+      "004079f0"
+    ],
+    "complete": 34,
+    "partial": 3058,
+    "denominator": 18783,
+    "no_credit": [
+      "00410B40 absent inventory",
+      "inline bounds/math/setters",
+      "delegated cache/engine bodies",
+      "instrumentation"
+    ]
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-native-run.log",
+      "sha256": "d52eaac3c1a4fe0eb638e852fa9059652d064b4fd708372f6da10dde8ee6642f",
+      "bytes": 98
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-world-i386.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-application-link.log",
+      "sha256": "918faf761a2d52e9862f4b044a9a31556e5f83bb8f91daac949178566ed5f1fd",
+      "bytes": 890
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-dependencies-export.log",
+      "sha256": "8547fb703a0cd580059729428f543016c24bb37d93658b65e05c3d3aae1d4ad1",
+      "bytes": 4661
+    }
+  ],
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-native.cpp",
+      "sha256": "a021d2684827de6147c68aa86b0eb23bd24c5ada958903f6c52ae1a75b471dc0",
+      "bytes": 10275
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-native",
+      "sha256": "2818840326d1e456f5d649b033b715fcc708cc2b7aca9ed5e9bf25fda36b6519",
+      "bytes": 3528280
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-world-i386.cpp",
+      "sha256": "bb8de401798e72c8b016129523df9356312303d75fb609f609161e2eb19ea5c6",
+      "bytes": 372
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/pickup-world-i386.exe",
+      "sha256": "7a66be9bf914a80b6503875012c188d0fde21c4500abba79d9c6c04031c7c529",
+      "bytes": 1228288
+    }
+  ],
+  "remaining": [
+    "H4 vehicle path00578790",
+    "H4 Players subgroup producer/mode9/formation updater",
+    "Type15 Scene2 actor owner/factory, H3/H5 import APIs, full Human/mission/desktop integration separately"
+  ]
+}

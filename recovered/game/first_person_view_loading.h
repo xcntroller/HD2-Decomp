@@ -42,6 +42,8 @@ public:
     }
     bool enabled()const{return view_.bytes58[0]!=0;}
     bool secondary_enabled()const{return view_.bytes58[1]!=0;} //Native59 secondary view; camera tests58/59 independently.
+    bool zoom_enabled()const{return view_.bytes58[2]!=0;}
+    void restore_game_zoom(std::uint32_t mode){set_zoom(mode,false,game_fov_);} //00492130(0, SAME gameBC).
     float bob()const{return bob64_;}
     float fov()const{return fov30_;}
     float parameter78()const{return parameter34_;}

@@ -22,12 +22,12 @@ public:
         :frames_(frames),model_(model),coefficients_(coefficients){
         if(!model)throw std::runtime_error("Car body integration requires its actual model");
         refresh();
-        initial_position_=pose_.position; //004EA780 core160..16C, retained independently of moving pose240.
+        physical_position_=pose_.position; //004EA780 core160..16C, advanced by0050DE60 and collision retry.
     }
     //0050DE60 publishes the candidate BEFORE its optional BODYCOL pass. A
     //containing collision controller must perform the native rollback/retry;
     //this endpoint deliberately provides no collision acceptance decision.
-    void publish(const Candidate& candidate){frames_.car_body_pose(model_,candidate.position,candidate.forward,candidate.up);}
+    void publish(const Candidate& candidate){physical_position_=candidate.position;frames_.car_body_pose(model_,candidate.position,candidate.forward,candidate.up);}
     void refresh(){ //004EA780 and00511CEA use the SAME live model world matrix.
         const auto world=frames_.actor_world_matrix(model_);pose_.world=world;pose_.inverse=frames_.car_inverse_matrix(world);
         pose_.rotation=world;pose_.inverse_rotation=pose_.inverse;
@@ -45,17 +45,17 @@ public:
         for(unsigned a=0;a!=3;++a){pose_.rotation[12+a]=0;pose_.inverse_rotation[12+a]=0;}
         pose_.right={{world[0],world[1],world[2],world[3]}};pose_.up={{world[4],world[5],world[6],world[7]}};
         pose_.forward={{world[8],world[9],world[10],world[11]}};pose_.position={{world[12],world[13],world[14],world[15]}};
-        const auto current=frames_.actor_world_matrix(model_);initial_position_={{current[12],current[13],current[14],current[15]}};
+        const auto current=frames_.actor_world_matrix(model_);physical_position_={{current[12],current[13],current[14],current[15]}};
         pose_.centre=frames_.car_transform({{coefficients_.get(0x1e0),coefficients_.get(0x1e4),coefficients_.get(0x1e8),0}},world);
     }
     const Motion& motion()const{return motion_;}Motion& motion(){return motion_;}
-    const Vector& initial_position()const{return initial_position_;}
+    const Vector& physical_position()const{return physical_position_;}
     CarContactState contact_state()const{ //Actual current producer for004F32A0 and the loading solver.
         return {pose_.centre,motion_.angular_velocity,motion_.velocity,
             {{coefficients_.get(0x220),coefficients_.get(0x224),coefficients_.get(0x228),0}},
             pose_.rotation,pose_.inverse_rotation,coefficients_.get(0x918)};
     }
-    Candidate predict(float elapsed,const Vector& force,const Vector& torque){
+    Candidate predict(float elapsed,const Vector& force,const Vector& torque,Vector* diagnostic=nullptr){
         const auto scale=static_cast<long double>(elapsed)/coefficients_.get(0x918);
         const float stored_scale=static_cast<float>(scale);
         for(unsigned axis=0;axis!=3;++axis){
@@ -65,6 +65,7 @@ public:
             if(axis==0)acceleration=static_cast<float>(acceleration);
             motion_.velocity[axis]=static_cast<float>(acceleration+motion_.velocity[axis]);
         }
+        if(diagnostic)for(unsigned a=0;a!=3;++a)(*diagnostic)[a]+=coefficients_.get(0x200+a*4); //005102B0, before rotation endpoints.
         motion_.direction=normalize(motion_.velocity);
         auto angular=torque;frames_.car_transform_in_place(angular,pose_.inverse_rotation);
         for(unsigned axis=0;axis!=3;++axis)angular[axis]*=coefficients_.get(0x220+axis*4);
@@ -76,7 +77,7 @@ public:
         Vector displacement{};
         for(unsigned axis=0;axis!=3;++axis)displacement[axis]=elapsed*motion_.velocity[axis];
         motion_.travel+=length(displacement);
-        return advance_pose(elapsed,{pose_.position,pose_.forward,pose_.up,pose_.right},pose_.inverse_rotation,pose_.centre);
+        return advance_pose(elapsed,{physical_position_,pose_.forward,pose_.up,pose_.right},pose_.inverse_rotation,pose_.centre);
     }
     //00511075..00511B26 retries from the saved pose with POST-contact motion.
     //No second acceleration or8E0 travel accumulation occurs on this path.
@@ -122,7 +123,7 @@ private:
         if(std::abs(square-1.f)<9.99999993922529e-09f)return 1;
         return static_cast<float>(std::sqrt(static_cast<long double>(square)));
     }
-    Frames& frames_;Frame model_;const CarPhysicsScalars& coefficients_;Pose pose_;Motion motion_;Vector initial_position_{};
+    Frames& frames_;Frame model_;const CarPhysicsScalars& coefficients_;Pose pose_;Motion motion_;Vector physical_position_{};
 };
 } //namespace hd2::game
 #endif

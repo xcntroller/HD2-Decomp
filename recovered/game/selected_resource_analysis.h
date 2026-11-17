@@ -41,6 +41,7 @@ private:
         case 13:{SwitchActorProperties p;p.load(bytes,[&](std::uint32_t state){add("required-receiver","006136F0 switch animation",state);});break;}
         case 21:case 33:break; //Actual StaticWeapon/Null property RET bodies.
         case 22:property<ExplosivePlaceActorProperties>(bytes);break;
+        case 23:property<DocumentPlaceActorProperties>(bytes);break;
         case 25:{AnimationActorProperties p;p.load(bytes);if(!p.name0.empty())add("animation-reference",p.name0);if(!p.name5.empty())add("animation-reference",p.name5);break;}
         case 28:property<PikeActorProperties>(bytes);break;
         case 29:{FowlGeneratorActorProperties p;p.load(bytes);if(!p.name.empty())add("fowl-reference",p.name);break;}
@@ -57,7 +58,7 @@ private:
             while(auto field=next_mission_chunk(actor->bytes)){
                 if(field->id==0xae23)name=field->bytes.text();
                 else if(field->id==0xae22){type=field->bytes.word();created=true;add("actor-family",name,type);
-                    switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:break;default:add("unsupported-required","actor family",type);}}
+                    switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 23:case 25:case 28:case 29:case 30:case 33:break;default:add("unsupported-required","actor family",type);}}
                 else if(field->id==0xae24&&created&&field->bytes.remaining())properties(type,field->bytes);
             }
         }

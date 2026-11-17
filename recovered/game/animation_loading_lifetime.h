@@ -8,6 +8,7 @@ public:
     virtual void activate(bool)=0;
     virtual void deactivate(bool)=0;
     virtual void update(std::uint32_t)=0;
+    virtual void start(bool replicated)=0;
     virtual Frame model()const=0;
 };
 } //namespace hd2::game

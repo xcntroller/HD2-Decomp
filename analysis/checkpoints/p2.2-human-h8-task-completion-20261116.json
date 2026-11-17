@@ -1,0 +1,194 @@
+{
+  "date": "2026-11-16",
+  "source_only": true,
+  "p22_hum_complete": false,
+  "h8_2_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "pack_requirements": "Already finished; ordinary H8 work.",
+  "base_commit": "a40119d9e92141a7dd3c18d098c8aab17125ef41",
+  "contract": "analysis/human-h8-task-completion-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_active_ai_task_completion.h",
+      "bytes": 2626,
+      "sha256": "d7644733a0baa2dedc3333c64e64a102ddbc09f86dbcc29af78fe9e9aff36038"
+    },
+    {
+      "path": "recovered/game/human_active_ai_pending.h",
+      "bytes": 9905,
+      "sha256": "eb03b09193e42c2fdacbc136d6aee3f8daf80acf5937989ecec8258abdb16e09"
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "bytes": 19203,
+      "sha256": "94ed1bb11667c0499c70d26e331dbb47ae6327217f8c7efa47402fc3eae64b00"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 224728,
+      "sha256": "10c46d84b8313dad6a299b01ace4ef94199ac28c904688c80362e2d261ad4dd3"
+    }
+  ],
+  "original_image_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-pending-complete/00535c00.c",
+      "bytes": 2503,
+      "sha256": "9ae55d7e31b7a8cc9fc579cb84481d4eed0e3234f737b94311354a9ea538d93a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-active-pending-complete/00535c00.json",
+      "bytes": 12046,
+      "sha256": "b7a2a88997259565d3ab16d54110048f4d901e56b3fbf93b652542bb5d3eb8cb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-execution/00535e70.c",
+      "bytes": 4939,
+      "sha256": "fe279d5a94d48575ec2c0aa20845d1c560509b4bff000e200e0462ce91faec17"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-execution/00535e70.json",
+      "bytes": 13309,
+      "sha256": "4d22cdc7b7d2005757491bcf4574aa97b10a22f911c0cdbcedf459901cc57856"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-execution/005376f0.c",
+      "bytes": 1011,
+      "sha256": "f58beaed58eec88c95e7b4c0240acfce2297cae2432d0efa4ab6538ae9c96986"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-execution/005376f0.json",
+      "bytes": 3822,
+      "sha256": "68dac737a6cbc85777ba968499e05169529de3c58086deeb329f003ef94f0a35"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-execution/00538a60.c",
+      "bytes": 522,
+      "sha256": "857b4bd40793bf1d38e28b7e3060a57d0be4cfa521a1333955bbf5e43aace541"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-execution/00538a60.json",
+      "bytes": 2767,
+      "sha256": "89425cb9688717a8cd1cc1a7f51129a0d9db1e56c017bde3e44fb04e6dfa5cca"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-resume-follow.asm",
+      "bytes": 4334,
+      "sha256": "d305376c7c843bcc90f1145a30ffd977c704ab3b37b69f7138f7e53962235fcb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-actor-capability.asm",
+      "bytes": 1164,
+      "sha256": "fed95242e5af6dd5f81920c41fdb35c15b2daed2b7bbc3c800a5f7762c750cde"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-actor-capability-call.asm",
+      "bytes": 691,
+      "sha256": "5a9bfccd97118d6f3a4ea8f1cce5f4fe2255f8f634848ecbaefb08fb672814b8"
+    }
+  ],
+  "new_partial_entries": [
+    "00535c00",
+    "005376f0"
+  ],
+  "extended_partial_entries": [
+    "00528950"
+  ],
+  "no_new_credit": [
+    "00538a60/00535e70 researched only",
+    "005374a0/005387c0 indexed only",
+    "Required combat/cover/nonoffline-name/retired-target event policy",
+    "Delegated engine and existing inventory/formation/name bodies"
+  ],
+  "ledger_totals": {
+    "complete": 34,
+    "partial": 3458,
+    "client_partial": 3453,
+    "engine_partial": 5
+  },
+  "verification": {
+    "native_sanitizers": "PASS65800 checks /100 completion lifecycle matrices, ASan/UBSan/leak. Actual resources/task/follow/completion/move52-end kernels; explicit Human/World/name/pending endpoints.",
+    "concrete_i386": "PASS full strict -Wall/-Wextra/-Wpedantic/-Werror actual-host pending/task/completion/packet instantiation and i386 link; not executed.",
+    "launcher_probe": "PASS make -j1 application-launch startup-probe; not executed.",
+    "tracker_tests": "PASS27.",
+    "ledger": "PASS exact frozen inventories/statuses/evidence/README and git diff --check."
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-native.cpp",
+      "bytes": 6361,
+      "sha256": "9f72e81197f1e4a1a23b9005c916f5a062d690d52b6e2b56445e56b2af0c4905"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-native",
+      "bytes": 2663384,
+      "sha256": "c84ff3fcf46bcff919a8ebe2ea82a887bb6b1a96850b4e7a9a0808b3da8bf105"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-host.cpp",
+      "bytes": 642,
+      "sha256": "89d24502aba0154db6efe09d0f2065052bb9b81af6d63d7f6e7cc18c2f65e73f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-host.exe",
+      "bytes": 5207040,
+      "sha256": "1a1f9694f0b712349dfe5799db5eaed8be4bf7751874d86b22e694be89a5665b"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-application-link.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-host-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-ledger-check.log",
+      "bytes": 437,
+      "sha256": "dd805bdd44dd63c817cd8dd1193cd99b965abebd28fb038b94ed88c554c1d599"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-ledger-render.log",
+      "bytes": 380,
+      "sha256": "1d4a5134d184ddb692fadc397a25af90e52dcc6c0844a75435cd637e7a406517"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-native-run.log",
+      "bytes": 58,
+      "sha256": "54635b66d28b304c3d70860a11c5937911eb1d9bc9577aef16017cbd40122d64"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-completion-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-execution-export.log",
+      "bytes": 4662,
+      "sha256": "bb8190a61fa4fbf9baaa27c9e5b42cdf628be86c14be46a0eb5ca95d52ef3a28"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 3963392,
+      "sha256": "aa5c8c9c4086af46a39b9e2f5da832741c22d79736699648c70e4666bf3b2e32"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1165312,
+      "sha256": "c41f66926dec25bd6c015401c241abc8c3bca03ca269d0b749d59ae88d22188e"
+    }
+  ]
+}

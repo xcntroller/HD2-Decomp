@@ -129,7 +129,7 @@ public:
         game::update_loading_scene_actor(actor,authority,elapsed,d_.world_actors,*this);
     }
     void update_human(Actor& actor,bool authority,std::uint32_t elapsed){
-        services_.advance_human_scene_frame(require_human(actor),authority,elapsed,runtime_);
+        services_.advance_human_scene_frame(require_human(actor),authority,elapsed);
     }
     void update_dog(Actor& actor,bool authority,std::uint32_t elapsed){
         runtime_.update_dog(static_cast<game::DogSceneActor<GameActorServices>&>(actor),authority,elapsed);

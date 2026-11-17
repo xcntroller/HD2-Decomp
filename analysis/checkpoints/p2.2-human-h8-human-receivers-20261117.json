@@ -1,0 +1,152 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "82fb8c6",
+  "source_only": true,
+  "h8_2_human_owned_source_complete": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-human-receiver-closure.md",
+  "new_partial_client_bodies": [],
+  "new_complete_bodies": [],
+  "source_files": [
+    {
+      "path": "recovered/game/human_loading_inventory.h",
+      "bytes": 13040,
+      "sha256": "db975c9ee60b396916376ed79429de1a2df91ac92e4a55a4dfb60b9adc38954c"
+    },
+    {
+      "path": "recovered/game/human_inventory_packet.h",
+      "bytes": 3411,
+      "sha256": "99d1bc707bc88bdc9732c7b00f578a7d6fb6bfbff78d0e1cde3adc457e07fe78"
+    },
+    {
+      "path": "recovered/game/human_active_ai_commands.h",
+      "bytes": 19171,
+      "sha256": "abd2c69350a8415855bb075df80a49f4ea9b1048c0b3ee99df2688075a5fff5d"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 305831,
+      "sha256": "35e8a71a279ce3c02645c9aed178d546a1ff212f7562e053f4431e8783f4623c"
+    },
+    {
+      "path": "recovered/game/human_scene_frame.h",
+      "bytes": 4688,
+      "sha256": "66b063673c16747865336d3cd359b5b9f99cb1b4650a4ab42e36652300e8dda7"
+    },
+    {
+      "path": "recovered/game/human_loading_state_factory.h",
+      "bytes": 17817,
+      "sha256": "b712e816cc7191137c9ca32991bbeb6bea549ef8774e638af85f860f7f6eca9b"
+    },
+    {
+      "path": "recovered/game/human_state_loading_owner.h",
+      "bytes": 5282,
+      "sha256": "6c874f6234acf5eaba320ad6312f8b00162722dac15439a2673e96423c964a16"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 7010,
+      "sha256": "9c11db3eefd3b2a91c304a70fe918573e32e0bc59d0090a48c84bafd1281b132"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-loading-weapon-selection/005a2b40.c",
+      "bytes": 521,
+      "sha256": "aaee144e52d2d252c27057295094b3b7b64e90cb6a0c516d96ea48c371c7d122"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-command-receivers/005a2bb0.c",
+      "bytes": 1208,
+      "sha256": "cb379a95cb3b373c569c56cbfc0aba3cc5577793579e2079812dd21ca3e38946"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-loading-inventory-commands/00587bf0.c",
+      "bytes": 2834,
+      "sha256": "cd27abcda436c168c83e953f51c0ab4e751d30a2aab943e2070877f7ef9b9ee3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-swap-dependencies/00587e00.c",
+      "bytes": 2834,
+      "sha256": "fb75fd18d3ce02edf98d037348c84c8f25c02cbdc0aee10b99f1c588f710e2d8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-command-producers/00534bf0.c",
+      "bytes": 260,
+      "sha256": "fffc8563c9abf454746a28ec753858fe576a3073e907bccc78b3d7001948752e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-task-handoff-admission.asm",
+      "bytes": 1748,
+      "sha256": "43812cc4ccfc6a150c1475b00ef4274d7299f83a7009e505eabe6403e461fd15"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-inventory-command-integration-index.txt",
+      "bytes": 23590,
+      "sha256": "43325c2fc04006d2864584ee4e1ff8450f7946f6d44498ff4d1adfcecbe8fa48"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-remaining-human-path-index.txt",
+      "bytes": 8163,
+      "sha256": "cfec333f69c02a01e23ae93d5017825fb5f3b5301dd1c3bb0d4b3defff501af6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-remaining-world-guards-20261117.txt",
+      "bytes": 23956,
+      "sha256": "d07f738bad2c3b231e2aeb968d1113c60587b1ed45417a4d3b2b48c95326a3ed"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-inventory-requests-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-inventory-requests-native-run.log",
+      "bytes": 147,
+      "sha256": "df5ff6830d793cd39b85ba8fefdf17efdc90b8811cd552e146650c9c6dc1af9f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-inventory-requests-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-inventory-requests-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-inventory-requests-native.cpp",
+      "bytes": 6497,
+      "sha256": "d5f1a529defcfc1c83df264f7772807a95398229d857036df749b60d1f06b116"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-inventory-requests-native",
+      "bytes": 222432,
+      "sha256": "f48b51fa25ac802eb8d03727abf016d3ff235ae1d2ae4466ed1ef60a32201ce1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-inventory-requests-module.cpp",
+      "bytes": 1254,
+      "sha256": "005821d3cce2e4414fe0140153e4b79a7fc6857d66519c905748a6dfe1df8c86"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-inventory-requests-module.exe",
+      "bytes": 11859456,
+      "sha256": "c6fb838fa22b6537561fd5849414cb31da87e5eeac019074e08c255e9507eaeb"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "verification": {
+    "native": "PASS73 strict ASan/UBSan/leaks cases; actual thin request/admission/handoff/task-word policies, named Items/States/World/queue/engine endpoints",
+    "actual_i386": "PASS strict full actual World/module both passes and actual inventory move/swap/select_weapon/handoff compile/link only",
+    "launcher": "PASS forced O2 launcher/probe compile/link only",
+    "limits": "Human-owned offline source closure only; H8.4 conditional actor owners, H8.5 containing verification and H8.6 application/desktop remain. No claim that remaining required fields/receivers are implemented or not reached. HUM matrix stays partially_resolved."
+  }
+}

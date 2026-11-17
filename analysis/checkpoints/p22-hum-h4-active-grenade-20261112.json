@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H4 actual Active AI grenade response and formation query",
+  "implementation_base": "2854bd5",
+  "source_only": true,
+  "H4_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-active-ai-grenade-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "bytes": 15075,
+      "sha256": "24a9f4ab24ed995415b3316a0848efe297be163920a741a8ce57ee1330549d30"
+    },
+    {
+      "path": "recovered/game/human_formation.h",
+      "bytes": 37614,
+      "sha256": "fc9424b0781e87e7678851f3271abb14aa286df29bc5588189319ac4377b320f"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 160600,
+      "sha256": "58f1c5eb79f2ac8d4613cc175b11d3c204987832c765be9529720d3438927200"
+    },
+    {
+      "path": "recovered/game/human_active_ai_grenade.h",
+      "bytes": 4764,
+      "sha256": "537f4a76b1d528305fd6c344c4e35e51ee30dfd44f2850ebe54e6299650017b5"
+    }
+  ],
+  "verification": {
+    "native": "PASS24 ASan/UBSan/LSan; actual response/query/member-position bodies, explicit World/Human/frame endpoint doubles",
+    "i386": "PASS strict actual World/Players/Active AI/formation full link, not executed",
+    "application": "PASS latest launcher/probe rebuild, not executed",
+    "ledger": "Full checker inherited missing ignored evidence failure; changed3 rows and exact frozen baseline/address/status/README validated separately"
+  },
+  "ledger": {
+    "added_partial": [
+      "00530ff0",
+      "00599040",
+      "0045eab0"
+    ],
+    "complete": 34,
+    "partial": 3309,
+    "client_partial": 3304,
+    "engine_partial": 5,
+    "complete_promotions": 0,
+    "no_credit": [
+      "0052D720 false-branch World binding only",
+      "delegated primitive/engine helpers"
+    ]
+  },
+  "logs": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/active-grenade-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/active-grenade-native-run.log",
+      "bytes": 149,
+      "sha256": "31b681661bd3b791fb360d8d14d72cd23063461df8b2c1289266e7ea9d26ffc9"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/active-grenade-host-i386.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/active-grenade-application-link.log",
+      "bytes": 870,
+      "sha256": "17bc46c791ed45977d375eb6bde5cd96d52e6fb21f58c0e08d26f2cf5e674162"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/active-grenade.asm",
+      "bytes": 29479,
+      "sha256": "333653ae5ff96c8e239493e52da340395d12fb9887f5004a45bda5f9ca4c9cdc"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-takeover-original/00530ff0.c",
+      "bytes": 8023,
+      "sha256": "6b9c1fa3d6b8c5f7be0ee82b1c70fe3a19ecc55ce0019f710ddb8001da0e59bb"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-takeover-original/00530ff0.json",
+      "bytes": 59118,
+      "sha256": "b0733b522cdff62a694c9c29b933bec0c33d84cc80547db224576fec1456d096"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/0052d720.c",
+      "bytes": 4645,
+      "sha256": "d1f7ffa2898531d221e232cbfb736022afe6861f3fd5fc9bd05e52ae6b164f76"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/vehicle-grenade-leaves-original/00599040.c",
+      "bytes": 541,
+      "sha256": "f87f8c5e66f0c41f74fae6e988faf89c7ce86cf601aaa3040f5e4c1c526edc5f"
+    },
+    {
+      "path": "../HD2-Decomp-p22-hum-h6/analysis/work/mission-world-20261103/human-h6-grenade-notification/0045eab0.c",
+      "bytes": 487,
+      "sha256": "24b07f2b3412981ff41d8be07a7ca0fbd035bd58f8c3aa8669653330660047a4"
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/active-grenade-native.cpp",
+      "bytes": 4002,
+      "sha256": "c28c20cc9c70bf6f151ed03af951cb63f739e049a072f454b56eb65bcae8e25b"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/active-grenade-native",
+      "bytes": 487760,
+      "sha256": "3dfdbb7fefdadefbfad3f7d10ff22ec2e34bf1e75804925707021be5603d305f"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/active-grenade-host-i386.cpp",
+      "bytes": 268,
+      "sha256": "0a14fb1cf337afb9aed25a0606c4cbe1500c4fed29edecf57b2072c2a0040600"
+    },
+    {
+      "path": "analysis/work/p22-hum-h4-20261112/active-grenade-host-i386.exe",
+      "bytes": 174592,
+      "sha256": "b1e673ea2102f107eba418ece70efdda62b24d3f6e214304d0df87e839cff3a2"
+    }
+  ]
+}

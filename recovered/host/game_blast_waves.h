@@ -23,7 +23,7 @@ public:
         points_(d_.scene.buckets(),d_.scene.frames()){
         car_=dynamic_cast<GameCarCallbacks*>(&d_.scene.car_callbacks());
         if(!car_)throw std::logic_error("Explosion binding requires actual scene Car callback owner");
-        try{d_.world_actors.bind_explosion(*this);car_->bind_explosion(*this);car_->bind_damage_packets(*this);}
+        try{d_.world_actors.bind_explosion(*this);d_.world_actors.bind_shot_damage(*this);car_->bind_explosion(*this);car_->bind_damage_packets(*this);}
         catch(...){car_->unbind_damage_packets(*this);d_.world_actors.unbind_explosion(*this);car_->unbind_explosion(*this);throw;}
     }
     ~GameBlastWaves()override{if(car_)car_->unbind_damage_packets(*this);d_.world_actors.unbind_explosion(*this);if(car_)car_->unbind_explosion(*this);}
@@ -31,6 +31,7 @@ public:
     void explode(Actor* source,const Vector& position,float radius,float power,std::int32_t sound){
         game::emit_shot_explosion(d_.startup.shot_manager_process(),d_.sound,*this,source,position,radius,power,sound);
     }
+    const auto& dependencies()const noexcept{return d_;} //SAME owner identity for FRAME.
     bool create(const Process::Request& request){require_loaded();return d_.startup.blast_wave_process().create(request,*this);}
     void update(std::uint32_t elapsed){require_loaded();d_.startup.blast_wave_process().update(elapsed,*this);}
     void clear_all_shared_records()override{d_.startup.blast_wave_process().clear();} //006DF390(0,true), including positive linked records.
@@ -73,18 +74,11 @@ public:
             &d_.scene.collision_tree(),&d_.scene.buckets(),d_.scene.collision_resources(),d_.scene.frames());
         return bool(ray.ray(start,displacement,0xffffffffu,0xb10000u,false)); //B10000 is a MASK, not a pointer.
     }
-    std::int32_t blast_material_index(const Actor& actor,EngineFrame*){
-        if(actor.base().type()==3)return game::human_blast_material; //0059C2A0, absent frozen inventory.
-        if(actor.base().type()==12){
-            if(!dynamic_cast<const world_loading::Actors::Runtime::DetachedItem*>(&actor))throw std::logic_error("Blast material requires actual runtime Item12 owner");
-            return 11; //005FDDC0,00812E18 D8, genuine constant11/RET4; absent frozen.
-        }
-        if(actor.base().type()==2){
-            const auto* mine=dynamic_cast<const world_loading::Actors::Runtime::Mine*>(&actor);
-            if(!mine)throw std::logic_error("Blast material requires actual runtime Mine owner");
-            return mine->material(); //005FEEB0, actual bound100, absent frozen.
-        }
-        throw std::runtime_error("Blast damage requires actual actor virtualD8 material receiver");
+    std::int32_t blast_material_index(Actor& actor,EngineFrame* picked){
+        //006DDD40 passes the actual picked Frame to derived D8. SAME actor
+        //owners already provide their native material policies (including
+        //Human66, Item12/Mine11 and per-frame/model fallbacks).
+        return actor.material(picked);
     }
     std::uint32_t blast_material_absorption(std::int32_t index)const{return d_.startup.car_definitions().materials().at(index).word(0x28);}
     void blast_actor_damage(Actor& actor,std::uint32_t kind,float amount,const Vector& point,const Vector& impulse,Actor* source){
@@ -99,7 +93,11 @@ public:
             if(!car||!car->geometry)throw std::logic_error("Car blast damage requires actual initialized containing Car owner");
             game::apply_car_actor_damage(frames(),*this,*car,[&]()->auto&{if(!car->loading)throw std::logic_error("Car damage requires actual loading lifetime");return car->loading->cold_state();},kind,amount,point,impulse,source);return;
         }
-        throw std::runtime_error("Blast damage requires actual actor virtualD4 receiver");
+        //006DDD40's final D4 argument is literal0, not the candidate frame.
+        //Reuse the existing actual derived D4 bodies: Animation A3, loose Body,
+        //StaticWeapon first seat and confirmed common RET24 families. Dog and
+        //other absent positive owners retain the same explicit requirements.
+        services_.shot_actor_damage(actor,kind,amount,point,impulse,source,static_cast<EngineFrame*>(nullptr));
     }
     std::uint32_t car_damage_mode()const{return mode_flags();}
     std::uint32_t car_damage_role(Actor* actor){return d_.world_actors.human_loading_actor(actor).properties.field19c;}
@@ -115,6 +113,10 @@ public:
     }
     void car_damage_human(Actor* target,std::uint32_t kind,float amount,const Vector& point,const Vector& direction,Actor* source){
         blast_actor_damage(*target,kind,amount,point,direction,source); //SAME guarded Human lifetime and final hit0.
+    }
+    void shot_actor_damage(Actor& actor,std::uint32_t kind,float amount,const Vector& point,const Vector& direction,Actor* source,EngineFrame*){
+        if(actor.base().type()!=4)throw std::logic_error("Bound Car shot D4 requires actual Car actor");
+        blast_actor_damage(actor,kind,amount,point,direction,source); //004DBA10 ignores the final native hit slot.
     }
     std::uint32_t car_damage_absorption(std::int32_t index){return d_.car_definitions.materials().at(index).word(0x28);}
     void car_damage_event(Actor* actor,const game::CarDamageEvent& event){game::publish_car_damage(d_.broadcast_packets,actor->base().id10(),event);}
@@ -136,6 +138,33 @@ public:
     }
     void car_set_fuel(game::CarSceneActor<GameActorServices>& car,float amount){
         if(!car.loading)throw std::logic_error("Car fuel requires its actual physical lifetime");car.loading->set_fuel(amount);
+    }
+    auto car_inventory_item(std::uint32_t definition,std::uint32_t identity){
+        return d_.world_actors.items().create_unheld_item(static_cast<std::int32_t>(definition),static_cast<std::int32_t>(identity));
+    }
+    void car_reset_event(game::CarSceneActor<GameActorServices>& car){
+        if(!car.loading)throw std::logic_error("Car reset event requires its actual loading lifetime");car.loading->reset_event();
+    }
+    auto car_targeted_model(GameActorServices::Entry entry){auto& items=d_.world_actors.items();return items.primary_model(items.runtime_item(entry).definition());}
+    void car_targeted_consume(world_loading::Human& human,GameActorServices::Entry entry){
+        auto& items=d_.world_actors.items();const auto identity=items.runtime_item(entry).identity;
+        game::remove_human_inventory_item(human,items,identity,true,services_);
+    }
+    void car_targeted_presentation(game::CarSceneActor<GameActorServices>& car,GameActorServices::Entry item,
+            world_loading::Human& human,const Vector& first,const Vector& second){
+        game::present_car_targeted_damage(frames(),car,item,human,first,second,*this);
+    }
+    bool car_begin_targeted_damage(game::CarSceneActor<GameActorServices>& car,GameActorServices::Entry item,
+            world_loading::Human* human,const Vector& first,const Vector& second){
+        return game::begin_car_targeted_damage(car,item,human,first,second,*this);
+    }
+    bool car_targeted_command(Actor* target,GameActorServices::Entry item,Actor* human,const std::optional<game::CarTargetedPlacement>& placement,bool authority){
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(target);
+        if(!car)throw std::logic_error("Human subtype14 requires its actual Car target");
+        auto& source=d_.world_actors.human_loading_actor(human);
+        const auto required=[&]{if(!placement)throw std::runtime_error("Human subtype14 ray miss has no native attachment XYZ producer");return *placement;};
+        if(authority)return game::begin_car_targeted_damage_lazy(*car,item,&source,required,*this);
+        const auto value=required();car_targeted_presentation(*car,item,source,value.position,value.direction);return true;
     }
     void car_receive_collision_impulse(game::CarSceneActor<GameActorServices>& car,std::uint32_t identity,const Vector& point){
         game::receive_car_collision_impulse(*this,car,identity,point);

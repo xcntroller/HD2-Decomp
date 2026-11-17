@@ -1,0 +1,296 @@
+{
+  "date": "2026-11-12",
+  "branch": "feature/p22-hum-h5",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h5",
+  "base_commit": "520b03ef57e1f98f2137a151a840216a2373894f",
+  "source_only": true,
+  "selected_checkbox": "H5",
+  "selected_checkbox_complete": false,
+  "completed_plan_checkpoints": [],
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 3093,
+  "added_entries": [
+    "0057cc50",
+    "00581e30",
+    "00580e30",
+    "00581b00",
+    "005814d0",
+    "00581580",
+    "00581aa0",
+    "00580790",
+    "0055b6f0",
+    "0055bc40",
+    "0055b6c0",
+    "0055b8a0",
+    "0055b8d0",
+    "0055b920",
+    "0055bd40",
+    "0055c0b0",
+    "0055c450",
+    "005534b0",
+    "00524a30",
+    "0045acf0",
+    "00520a30",
+    "0055d1f0",
+    "0046d8c0",
+    "0054e390",
+    "0054e520",
+    "005579e0",
+    "00552970",
+    "00552200",
+    "00552190",
+    "00551fc0",
+    "00552040",
+    "005520e0",
+    "00552140",
+    "00553d10",
+    "00551e80",
+    "00551db0",
+    "00551e10",
+    "00552b00",
+    "00553530",
+    "00553550",
+    "00553580",
+    "00554e80",
+    "005572f0",
+    "00553be0",
+    "00553b90",
+    "004c5800",
+    "004c6230",
+    "004c5f60",
+    "004c5a30",
+    "005584b0",
+    "00558390",
+    "00573210",
+    "00572de0",
+    "005ac200",
+    "0075cc30",
+    "0077f760",
+    "0058ab40",
+    "00582a90",
+    "0054cb70",
+    "00548590",
+    "00573240",
+    "004d9050",
+    "004c3b60",
+    "00585d10",
+    "00583bc0"
+  ],
+  "extended_entries": [
+    "0055ad50",
+    "0055a6e0",
+    "0054e600",
+    "00586200",
+    "0058baf0",
+    "0054ac40",
+    "00548170",
+    "00548840"
+  ],
+  "source_files": {
+    "recovered/game/car_loading_activation.h": {
+      "sha256": "3eff1e5c6344ddbfe941bb699740cf27cd8ad40dcba0a6a6368363cca52c4ed6",
+      "bytes": 23139
+    },
+    "recovered/game/car_loading_lifetime.h": {
+      "sha256": "7b409a53b7339b844c03415926a70a1873aefcae5ca73b5f791fce5f3ea178f7",
+      "bytes": 2816
+    },
+    "recovered/game/car_seat_actions.h": {
+      "sha256": "1a13c7102e98cd06eae0ad2fa43a140df4bb94c89a41ee38cb055a9fd64847ea",
+      "bytes": 12455
+    },
+    "recovered/game/human_ai_action_pool.h": {
+      "sha256": "40974b1f2bb3ca8ee96adfe03a923d84c879d03d3288dfb3a10a7d9f425dce18",
+      "bytes": 6220
+    },
+    "recovered/game/human_ai_cover.h": {
+      "sha256": "721f4f8dff6e0f18c2035e3c55cbdd22983930cb674be99db526c80d28079cab",
+      "bytes": 7637
+    },
+    "recovered/game/human_ai_direction.h": {
+      "sha256": "3c7b6e6f7ec00e0668e7995ef563585f2d35d69e20f56eecdfe4e0b7db35a265",
+      "bytes": 5881
+    },
+    "recovered/game/human_ai_floor_path.h": {
+      "sha256": "2b98d57ca8bdcc88984cdb3e0e13ad6a7ae518b897634451a56dcb78ccb9a96c",
+      "bytes": 9153
+    },
+    "recovered/game/human_ai_frame_metrics.h": {
+      "sha256": "88183def68c748238bf6894d3c7c380da945f7165f77788a549d8735070165a4",
+      "bytes": 8903
+    },
+    "recovered/game/human_ai_frame_output.h": {
+      "sha256": "04444cad74a4ed7bcc603256da81eb7bcdbcdf80d27db3279262d211583f4033",
+      "bytes": 8603
+    },
+    "recovered/game/human_ai_grenade.h": {
+      "sha256": "c130a837396d9f224e968151e473bba8feb3faa8aa23fd8139b9d994e2f605ce",
+      "bytes": 6275
+    },
+    "recovered/game/human_ai_resources.h": {
+      "sha256": "81c6ea9d47156cb19dd41fb952ae4774023c07727455dd74491d05bc25a4f780",
+      "bytes": 11637
+    },
+    "recovered/game/human_ai_state_loading.h": {
+      "sha256": "e2939bd1776bca126305e7cf8772769bbd3bedc6dee43d60f512ef6f02333817",
+      "bytes": 34653
+    },
+    "recovered/game/human_ai_traversal.h": {
+      "sha256": "4820e3c9df2ad6b0073b6e0836a5bafd6ecd4491106b0ef642628de5772a0984",
+      "bytes": 3105
+    },
+    "recovered/game/human_area_ai_state_loading.h": {
+      "sha256": "47f366fa47fafb668f373deecb7751142e48c220c507e5d6b00fa1a94b2999c6",
+      "bytes": 16933
+    },
+    "recovered/game/human_common_command.h": {
+      "sha256": "a28a087c545c9d15b33d31bacc0907c608522d59aba3e59fc2bb10ca0c4837b3",
+      "bytes": 4249
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "6edd9acd17d00c595855dc9ba39fea09f3574f4241bd9e3c98b90e5f84987fea",
+      "bytes": 57093
+    },
+    "recovered/game/human_guard_ai_state_loading.h": {
+      "sha256": "4312c3270271b06ec584dd441ebd814ef7ab31a265ed2bdc72fc548ea4cb7853",
+      "bytes": 60669
+    },
+    "recovered/game/human_inline_loading.h": {
+      "sha256": "a6a3ec334ce3d676e7ed39f26b933ec874f6fea40e6c887262264ace1ede8298",
+      "bytes": 11577
+    },
+    "recovered/game/human_loading_state_factory.h": {
+      "sha256": "24ab9b2a2dc0ef02a0b822a0be4e0ae431b6944e44487e4f6a8888c088a332c9",
+      "bytes": 15938
+    },
+    "recovered/game/human_look_control.h": {
+      "sha256": "60d27f6f56a6023b0f2665153c6383530591d85945c14b2d46fb2ae1a997da7f",
+      "bytes": 20533
+    },
+    "recovered/game/human_script_ai_state_loading.h": {
+      "sha256": "d906709f042171df4c892a965f2ae336de3327e9663e82fc30dfabc9468b0ce8",
+      "bytes": 13937
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "49df05e4d1cb4afcb23c4d3e17eb5928d8ab7e805605e8f634970aa4abf364d7",
+      "bytes": 137792
+    },
+    "recovered/game/mounted_weapon_capability.h": {
+      "sha256": "817ca168f2b03b8ebc7f940ce25d8e5a11e7fbd3edbe6115c699b69b4d6b1b89",
+      "bytes": 4132
+    },
+    "recovered/game/mounted_weapon_control.h": {
+      "sha256": "8ac5ed157b87b02548bd0e809974d369a10174cb88ae4c1587c7a933143e909a",
+      "bytes": 3124
+    },
+    "recovered/game/mounted_weapon_control_loading.h": {
+      "sha256": "d51c399cf8162cd2b8b3ca95d1c1946caeec785e2864a231d17dda6d7ffdc1f5",
+      "bytes": 12559
+    },
+    "recovered/game/sight_loading.h": {
+      "sha256": "60376c83770243ceec75a220bbe59970368e6f73e748b0371398a8614fc0c000",
+      "bytes": 31684
+    },
+    "recovered/game/static_weapon_loading.h": {
+      "sha256": "e83d61c1ac65a038be6f1b26cd6ceaaa7261043a5da207b5e5efe20993371108",
+      "bytes": 13920
+    },
+    "recovered/game/static_weapon_loading_lifetime.h": {
+      "sha256": "1b167db73aa681ec81e75bc94b68d6353b9eb47f370ff725f33678c9f81a483e",
+      "bytes": 1274
+    },
+    "recovered/host/game_sight_loading.h": {
+      "sha256": "ac2a289c2f192747692f1e9abb3018d4709b0bb5762acbece2fef3854295a4a4",
+      "bytes": 7891
+    }
+  },
+  "temporary_audits": {
+    "/tmp/h5-traversal-native.cpp": {
+      "sha256": "efb8b0e5a5fea8f2ce4256279e4f06910c506d56920a92c9153ad7a99eb9ffef",
+      "bytes": 6643
+    },
+    "/tmp/h5-traversal-native": {
+      "sha256": "0e78dc19f3b582cec88b948ae4ed7633bd964c5a5afa2796da78f73855789b7a",
+      "bytes": 2485648
+    },
+    "/tmp/h5-area-native.cpp": {
+      "sha256": "36bfce2bbbd5f113d2aab3f8f38d4be6ad429c3f38fd573748c5897101c81825",
+      "bytes": 18016
+    },
+    "/tmp/h5-area-native": {
+      "sha256": "a977bf406d088dde4bf3edcafbcc78a1fdf560db22b6b06da741895685048d37",
+      "bytes": 7971984
+    },
+    "/tmp/h5-routes-native.cpp": {
+      "sha256": "b57db380b91623cdd5639935ecbba11fdbfb6cdbcb6cebb610e0ef158370a4fa",
+      "bytes": 4023
+    },
+    "/tmp/h5-routes-native": {
+      "sha256": "8a19181b0bc32d5afb26c3a240e04fede2ed7d79f19d493b24a7c4335ef68733",
+      "bytes": 8193872
+    },
+    "/tmp/h5-attached-native.cpp": {
+      "sha256": "5e1afcd0a3abdb7386baf681a0f843ebda8728e7218af08e35fe9e11b13bdf01",
+      "bytes": 4083
+    },
+    "/tmp/h5-attached-native": {
+      "sha256": "ab2b498063eaac5742ecbe6b3c73df34e9bc6cfa2d708995709372aba622a609",
+      "bytes": 228560
+    }
+  },
+  "compile_only_fixture": {
+    "sha256": "4e7c31d93ecfddc425b699c684ff5eb6436ed5f9cccf4daacc1b4473b7350f80",
+    "bytes": 4834
+  },
+  "i386_object": {
+    "sha256": "f0e4826e2af248419fc7af93d692df06379bd845496b0151007b4552ae3e12c5",
+    "bytes": 8887285
+  },
+  "validation": {
+    "native": "ASan/UBSan/LSan:100 Ladder and100 floor families;100 Area action/event families; populated Guard selection, Sight, retained transfer, grenade/kind6 pool; navigation routes and attached control kernels. Explicit external endpoints, not full World execution.",
+    "windows": "Strict actual nested World/Guard/Area instantiation and application launcher/startup-probe compile/link only; no Windows execution.",
+    "temporary_audit_policy": "Audits remain temporary for ongoing whole H5 work; remove at final consolidation."
+  },
+  "build_logs": {
+    "analysis/work/mission-world-20261103/h5-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-checkpoint-application-i386.log": {
+      "sha256": "d0428c26c28b0162c7fbe696e94ccc31d77c5137325cf684c595ff055119b74c",
+      "bytes": 802
+    },
+    "analysis/work/mission-world-20261103/h5-area-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-traversal-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/h5-routes-native-compile.log": {
+      "sha256": "25ad7b3c52c94d49c560ac4345a628ddd539394efa982909d9e6051419324568",
+      "bytes": 657
+    },
+    "analysis/work/mission-world-20261103/h5-attached-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "remaining": [
+    "Guard kind2 positive event/routes",
+    "Guard kind1/3 target-vehicle modes",
+    "Guard kind5 panic/armed worker",
+    "Guard kind6 mounted action/event worker",
+    "Actual Scene2 Guard/Area authority callback dispatch and retirement",
+    "Aircraft/other selected actor input receivers",
+    "H4 alignment/query and H6 firing/reload dependencies are explicit, not successful services",
+    "H5 remains unchecked; no mission/desktop acceptance"
+  ],
+  "original_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "research_contract": "analysis/human-guard-area-source.md"
+}

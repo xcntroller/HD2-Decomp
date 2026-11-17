@@ -1,0 +1,184 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "1c11dd1",
+  "branch": "feature/p22-hum-h6",
+  "checkpoint": "H6 weapon dispatcher, ordinary bullet production and same ShotMgr bullet/light lifetimes",
+  "source_only": true,
+  "h6_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "active_h4_imported": false,
+  "contract": "analysis/human-item-bullet-production-source.md",
+  "added_partial_entries": [
+    "007d4fd0",
+    "00451100",
+    "00450d30",
+    "004482a0",
+    "0044b030",
+    "0044b350",
+    "0044b380",
+    "00453140",
+    "00453d80",
+    "00454060",
+    "00454120",
+    "007d46b0"
+  ],
+  "extended_entries": [
+    "005433b0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 3266,
+  "client_partial": 3261,
+  "engine_partial": 5,
+  "source_files": {
+    "recovered/game/human_player_item_frame.h": {
+      "sha256": "55b2f08ccdef17279ca484c90855cee83295141ca3c68819eed7bac808730a9a",
+      "bytes": 5802
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "9992be354bd3f0017fd05357a8e33b9424cf3bed38edbe9439231410a574dfef",
+      "bytes": 154675
+    },
+    "recovered/game/runtime_item.h": {
+      "sha256": "447fb12233c4466013fb1a9fc4803b863919e105ec35f4382e502fbac8deb78c",
+      "bytes": 17632
+    },
+    "recovered/game/shot_manager_loading.h": {
+      "sha256": "2b2bd6ffef7f20d57300e38b25ccd053cf5af2319850d3a6bdf2311faf2acc43",
+      "bytes": 14153
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "5b95a4ca7fd4e4b6d20a6828d9e7eff183792ef3411af1bd4949e9260de59f62",
+      "bytes": 117262
+    },
+    "recovered/host/game_data_observations.h": {
+      "sha256": "03af78d80f90feecdd1eae2e69d127ea5b29dbf5a6fe2f5eec27a2858742bcf3",
+      "bytes": 2165
+    },
+    "recovered/game/human_item_fire.h": {
+      "sha256": "770ba4d84faa93aeb3f146206e3023679f2c19f4facfaf9c08755d59d9db44cd",
+      "bytes": 2529
+    },
+    "recovered/game/shot_bullet_production.h": {
+      "sha256": "4ce52ecfaac2efd1f5611dd70205625b06d49210d736e40f0745010de47cfdc4",
+      "bytes": 1721
+    },
+    "recovered/game/shot_bullet_record.h": {
+      "sha256": "b73d29c4e8dbce6394f09144a26385a4805d65fdfc7a9524fa3db7fd23014d09",
+      "bytes": 5955
+    },
+    "recovered/game/shot_muzzle_flash.h": {
+      "sha256": "5b1876a4da645b52b7f5ddd9b977795fa62791da1f046002e8045d64c561bfe5",
+      "bytes": 2817
+    }
+  },
+  "verification_files": {
+    "analysis/work/mission-world-20261103/human-h6-bullet-native.cpp": {
+      "sha256": "27ff57e57fe245edd0481d745061c003b0bffdfdd46ba4c6e91110c8571bb680",
+      "bytes": 10764
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-native": {
+      "sha256": "21857fd740abdecf317639842d557995a6bc5885b60ae97076cebe91900673d1",
+      "bytes": 2892272
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-host-i386.cpp": {
+      "sha256": "ae9c8f792d1578e33ded604978efef4bb92d50dee333f25df5462e76e6068507",
+      "bytes": 1165
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-host-i386.o": {
+      "sha256": "0f64fa96ba71b2388f971f3876cc999bfb6243f290cec9990f28bfed46dd66e7",
+      "bytes": 18843598
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-native.log": {
+      "sha256": "2b232a6100ea3de7c0e55c2cd90aadfdd151f751328dde57b115d34f19d48b0d",
+      "bytes": 263
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-launcher-build.log": {
+      "sha256": "9bdc4fb1756a31d97bb7aedf79405fad9d9537a8a20de16f22dd16076815a5dd",
+      "bytes": 820
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-application.exe": {
+      "sha256": "0e99b9a894b80a539199b2bbee0450f0b8411181c66cef5aa38061bc1f7e2fc5",
+      "bytes": 3948032
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-probe.exe": {
+      "sha256": "7af56c04a44531d539cead2c2a3ca787b6fbbbc6caeee283696dc3ac2f3bc3ab",
+      "bytes": 1149440
+    },
+    "analysis/work/mission-world-20261103/human-h6-item-fire-abi.asm": {
+      "sha256": "885cc682150ab61ddfbcf56f791bbe9207c44a500d29b21f23c1be4cde4ce218",
+      "bytes": 5449
+    },
+    "analysis/work/mission-world-20261103/human-h6-auxiliary-item-getter.asm": {
+      "sha256": "e2eb1c8dab01e7d9096ed5aaf4ba193c9f11c8cbf575bd082dbe4afb98e13ca7",
+      "bytes": 965
+    },
+    "analysis/work/mission-world-20261103/human-h6-bullet-producer-abi.asm": {
+      "sha256": "d51be02e7d6b9ef93b186a6d528ae4040170b0b93ad8c83285eff924b168a50e",
+      "bytes": 4370
+    },
+    "analysis/work/mission-world-20261103/human-h6-shot-base-retirement.asm": {
+      "sha256": "4180fd6121843895b79ecdc2a58c382f8b76a9dfb9399aa7112d7d6d11890346",
+      "bytes": 2422
+    },
+    "analysis/work/mission-world-20261103/human-h6-muzzle-light-placement.asm": {
+      "sha256": "d7f9d4173c4cf053081d43180ed1b97a53fd7873261c8963c48d8f9eb93be588",
+      "bytes": 5807
+    },
+    "analysis/work/mission-world-20261103/human-h6-flash-retirement.asm": {
+      "sha256": "d856388321e0015e2f7321c818928324d3e0f3629b6cb3132b4597a274af7624",
+      "bytes": 31716
+    },
+    "analysis/work/mission-world-20261103/human-h6-projectile-float-constants.json": {
+      "sha256": "b96be97e8e4c8f7511908373090e7d07d56f516e94d57c0b51364b393dbdddfb",
+      "bytes": 42
+    },
+    "analysis/work/mission-world-20261103/human-h6-fpv-shot-markers.asm": {
+      "sha256": "18458af982f55035f189b02f05fe51d5887aedb56aa1649dff4632d2a08f56be",
+      "bytes": 3203
+    },
+    "analysis/work/mission-world-20261103/human-h6-shot-record-dependencies-ghidra.log": {
+      "sha256": "90b0ddddd9c6f3e643b4750686aba466dfe6693349887de08836cb30023f5a8c",
+      "bytes": 4937
+    },
+    "analysis/work/mission-world-20261103/frame-human-shot-projectile-workers/0044b030.c": {
+      "sha256": "f61459f149e51e1b39fc6573030e0709ef776832ebf59bcfad09702f8318c006",
+      "bytes": 5821
+    },
+    "analysis/work/mission-world-20261103/frame-human-shot-bullet-lifetime/004482a0.c": {
+      "sha256": "65422b25186d3c1f4d89d7b4b3aa0cb3e4d34d2bd89482987c1e11f1d8021ad4",
+      "bytes": 1254
+    },
+    "analysis/work/mission-world-20261103/frame-human-live-inventory-and-aim/00450d30.c": {
+      "sha256": "9e3f8686955de63119145763a43401aebdc3bc9cd40477cfa103ec082c9578cd",
+      "bytes": 4752
+    },
+    "analysis/work/mission-world-20261103/frame-human-item-positive-workers/007d4fd0.c": {
+      "sha256": "2a195576b7e2c40e4be80897ef08ca9d769760c0f3ce3535aa2e42a0e4fd15d3",
+      "bytes": 2822
+    }
+  },
+  "removed_temporary_artifacts": [
+    "analysis/work/mission-world-20261103/human-h6-bullet-native.cpp",
+    "analysis/work/mission-world-20261103/human-h6-bullet-native",
+    "analysis/work/mission-world-20261103/human-h6-bullet-host-i386.cpp",
+    "analysis/work/mission-world-20261103/human-h6-bullet-host-i386.o"
+  ],
+  "verification_limits": [
+    "Native PASS100: actual ShotMgr pool/active records/SceneActor, bullet fields, initial100/publication failure prefixes, source firing counter/signed tracer/ammunition/clocks, light/retained flash lifetime; engine/item/frame/particle/effect endpoints are explicit doubles.",
+    "Strict actual nested-host i386 PASS with actual RuntimeItem/Human/Player/World/FPV/ShotMgr/driver/module17 signatures. Attachment is the one external throwing declaration; selected source guards still throw.",
+    "Launcher/probe build/link PASS; new frontier Ghidra export has no ERROR.",
+    "Actual shell/capsule/grenade/melee producers remain required; asynchronous bullet visual/damage and full World-frame assembly remain H8.",
+    "No source-closure, loading activation, delegated engine credit, original/Windows/desktop execution."
+  ]
+}

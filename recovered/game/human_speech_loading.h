@@ -5,6 +5,8 @@
 #include "game/human_loading_stats.h"
 #include <cstdint>
 #include <cstring>
+#include <cmath>
+#include "game/human_packet_commands.h"
 
 namespace hd2::game {
 
@@ -56,7 +58,7 @@ inline void postpone_speech_category(SpeechDefinition& definition,std::int32_t i
     auto& category=definition.categories[static_cast<unsigned>(identity)];if(category.enabled)postpone_speech_category(category,delay,now);
 }
 
-//Actual offline005882F0/00588170 and005383D0/00542060 callers. Services
+//Actual005882F0/00588170 and005383D0/00542060 callers. Services
 //borrows the SAME process rand, clocks, Players query43/groups, SOUND/dubbing/
 //duration map and required player subtitle-notification owner. It supplies no
 //successful defaults. Containing B0/Human/definition/frame owners outlive calls.
@@ -64,7 +66,6 @@ template<class Frames,class Services>class HumanSpeechLoading {
 public:
     HumanSpeechLoading(Frames& frames,Services& services):frames_(frames),services_(services){}
     template<class State>std::uint32_t request(State& state,std::int32_t category,std::uint32_t delay,std::uint32_t flags,bool quiet){ //005882F0.
-        (void)flags; //Offline7 never enters the absent-bit2 SOUND4C branch; flags do not alter this path.
         auto* human=state.human();if(!human)throw std::logic_error("Speech requires its actual bound Human");
         auto* definition=human->speech_definition;if(!definition)return 0;
         auto random=[&]{return services_.speech_random();};
@@ -74,9 +75,10 @@ public:
                 (state.words().template get<std::uint32_t>(0x50)&0x40000u))return 0;
         state.words().set(0xb8,std::uint32_t{1000});
         postpone_speech_category(*definition,category,delay,services_.game_word28());
-        const auto mode=services_.mode_flags();
-        if((mode&7u)!=7u)throw std::runtime_error("Human speech requires actual nonoffline queued kind13 task/peer producer");
-        offline(state,category,quiet);
+        if(!(services_.mode_flags()&2u)&&!(flags&1u))
+            throw std::runtime_error("Human speech requires actual immediate SOUND4C prefix for flags1-clear");
+        if((services_.mode_flags()&7u)==7u)play(state,category,quiet);
+        else queue_if_audible(state,category,phrase,quiet);
         return services_.human_speech_length(speech_sample_identity(phrase)); //FIRST phrase, even when quiet/distance skips second playback.
     }
     template<class State>void active(State& state,std::int32_t category,bool variant,std::uint32_t delay,bool quiet){ //005383D0.
@@ -94,7 +96,7 @@ public:
         }else (void)request(state,category,delay,1,true);
     }
 public:
-    template<class State>void offline(State& state,std::int32_t category,bool quiet){ //00588170.
+    template<class State>void play(State& state,std::int32_t category,bool quiet){ //00588170, mode-independent received playback.
         auto& human=*state.human();auto random=[&]{return services_.speech_random();};
         const auto phrase=play_speech_phrase(*human.speech_definition,category,random);
         if(human.properties.field19c==1)services_.player_speech_notification(human,speech_sample_identity(phrase));
@@ -109,6 +111,39 @@ public:
             services_.play_human_speech(human,speech_sample_identity(phrase),static_cast<float>(speech_near_range(phrase)),static_cast<float>(distance),false);
     }
 private:
+    //005882F0's nonoffline branch. Keep the source matrix borrower after its
+    //one native update; candidate updates can change its live fields. Scan all
+    //32 physical identity slots even after a match, never pending-retirement
+    //Human lookup or roster membership. No second phrase rotation here.
+    template<class State>void queue_if_audible(State& state,std::int32_t category,std::uint32_t phrase,bool quiet){
+        auto* human=state.human();if(!human)throw std::logic_error("Speech queue lost its actual Human");
+        bool audible=human->properties.field19c==1;
+        if(!audible){
+            const auto* source=frames_.actor_world_matrix_pointer(human->base().frame());
+            if(!source)throw std::logic_error("Speech queue lost its actual source matrix");
+            for(std::int32_t index=32;index;){
+                auto* candidate=services_.human_speech_candidate(--index);
+                if(candidate==state.human()||!candidate||speech_signed_word(candidate->properties.stats_ec[0])<=0)continue;
+                if(services_.human_speech_suppressed(*candidate)||!services_.human_speech_player_controlled(*candidate))continue;
+                const auto* other=frames_.actor_world_matrix_pointer(candidate->base().frame());
+                if(!other)throw std::logic_error("Speech queue lost candidate matrix");
+                const auto x=static_cast<long double>((*other)[12])-(*source)[12];
+                const auto y=static_cast<long double>((*other)[13])-(*source)[13];
+                const auto z=static_cast<long double>((*other)[14])-(*source)[14];
+                const float square=static_cast<float>((z*z+y*y)+x*x);
+                std::uint32_t bits;std::memcpy(&bits,&square,4);float distance;
+                if(speech_signed_word(bits)<0x322bcc77)distance=0;
+                else if(std::abs(static_cast<long double>(square)-1.f)<static_cast<long double>(9.99999993922529e-9f))distance=1;
+                else distance=static_cast<float>(std::sqrt(static_cast<long double>(square)));
+                const auto range=speech_signed_word(static_cast<std::uint32_t>(speech_range(phrase))*2u);
+                if(static_cast<long double>(range)>=distance)audible=true; //Ordered; unordered does not match.
+            }
+        }
+        if(audible){
+            HumanPacketCommand command;command.kind=19;command.fields.set(8,category);command.fields.set(0xc,std::uint8_t(quiet));
+            state.queue_frame_command(std::move(command),true);
+        }
+    }
     Frames& frames_;Services& services_;
 };
 } //namespace hd2::game

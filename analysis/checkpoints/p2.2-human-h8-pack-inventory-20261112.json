@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H8 PACK commands7/8 general received inventory effects",
+  "base": "f3b9295",
+  "branch": "feature/p22-hum-h8",
+  "source_only": true,
+  "H8_complete": false,
+  "PACK_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-pack-effects-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_inventory_packet.h",
+      "bytes": 2846,
+      "sha256": "c821a633b8e8dc7232a283ba509749322df607a58c0a29b6506c92e02e6c41fd"
+    },
+    {
+      "path": "recovered/game/human_inventory_transfer.h",
+      "bytes": 10465,
+      "sha256": "53ee56b8e7d4823ccdde5a0c0ec74814a88cf2dc9e812a0a93d6abb275a45840"
+    },
+    {
+      "path": "recovered/game/human_inventory_swap.h",
+      "bytes": 13803,
+      "sha256": "390147407e4b03f5ca7815c4e63be490d131d52f2fec8cd010e774ceff2f62e0"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 201225,
+      "sha256": "874b61ed81b812edc3164c0fad615f0432f5c14299f2d7e5a8ac02a398cc7bcd"
+    }
+  ],
+  "original_program_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-immediate-transfer/007d8b40.c",
+      "bytes": 18839,
+      "sha256": "70c8fc1a5f2a565df6a4ce3ae0f9fd27b30437f3cd6450be4fce27ee67c065be"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-immediate-transfer/007da3f0.c",
+      "bytes": 1961,
+      "sha256": "da41c38871e6b8e13f2508f98d8af00c97352386b1cba3e60a9b2906ef054e1e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-weapon-swap/007d9de0.c",
+      "bytes": 6207,
+      "sha256": "4b560ec2c6c172a276ae03688802c325a85d13443d3f28ecea0fec2a188cbde0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-swap-dependencies/007da5e0.c",
+      "bytes": 14724,
+      "sha256": "d3b76bc6bcae8274d3b043375bf41e6f0c40bfdaccebd136ec43e24d617e1b3b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-swap-dependencies/007d9b40.c",
+      "bytes": 2260,
+      "sha256": "6cbdb6c0a500d725736453a50570b571b047b23fd1278ceb8c813544baa4dfee"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-command-receivers/005a2d50.c",
+      "bytes": 761,
+      "sha256": "227284703dbe8d5820aa7688454a3c0840c23b2c161bb5ce5567c25dc19c974a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-command-receivers/005a2e90.c",
+      "bytes": 799,
+      "sha256": "6c91670601013c22bba45ed2c02005ae745c04a03fab588b75da5cb993c9c98b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a2e10.c",
+      "bytes": 523,
+      "sha256": "b9fa92b5222cb4f5aef9119f88d64b4397eb16d4456015f78114b73cbb1161d8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a2f50.c",
+      "bytes": 661,
+      "sha256": "8ba605b6311064049a9ce07081d112d80b347e6b3d9d81909687afbdcf4b839c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-inventory-receivers.asm",
+      "bytes": 12802,
+      "sha256": "25bfbe4d485c4adbd458a33d5cf4e8af39d416ff3d2835c0bc48610ef7f39e9d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-general-transfer.asm",
+      "bytes": 74524,
+      "sha256": "84ab7ba6286eb583a379a5682454ee180f12c1c0b39d415ba43c48a223ed73fd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-general-swap.asm",
+      "bytes": 23255,
+      "sha256": "40de5cbd8458d061e70b83e19377962db7212aa939c9db4a0402cf68cc5e6720"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-general-preflight.asm",
+      "bytes": 44848,
+      "sha256": "1112637538890a24ea2898e881a1e65e84d95230255459d7c01081f06cc06ad8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-clothing-producer.asm",
+      "bytes": 2166,
+      "sha256": "dbafc7e6775110e3051b7284e429e767de33ae23ec385310f90dd326a13a4dc3"
+    }
+  ],
+  "verification": {
+    "native_sanitizers": "PASS84100 assertions /100 lifecycle matrices; actual ActorBase/storage/catalogue/RuntimeItem and general/packet policies; explicit engine/model/equipment/Players/HUD/FPV/clothing/clock endpoints",
+    "actual_host_i386": "Strict FULL LINK of actual full packet dispatcher/World/Items/B0/DD0/equipment/clothing/Players/HUD/FPV owners; not run",
+    "launcher_and_startup_probe": "Rebuild PASS; not run",
+    "logs": [
+      "analysis/work/mission-world-20261103/human-h8-pack-inventory-native-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-inventory-native-run.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-inventory-host.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-inventory-application-link.log"
+    ]
+  },
+  "temporary_audits_removed_after_verification": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-inventory-native.cpp",
+      "bytes": 23202,
+      "sha256": "92b0a1b39bdbeb080c2eb374ac04b5872a685fc15801e88ae17e59cd60140392"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-inventory-native",
+      "bytes": 4585344,
+      "sha256": "98f16d00f9979c7388c22186e540773da8495f92f94dbb3f4021a821eb52e88e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-inventory-host.cpp",
+      "bytes": 347,
+      "sha256": "92d3c779d0f94541a069839d12ec934f1f96c212618f467a1c0d35cd76d1adfc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-inventory-host.exe",
+      "bytes": 3709952,
+      "sha256": "15c04c2dc5adfec926894f31e9b3495c185cd1d8154160820837f6dbfbb8442e"
+    }
+  ],
+  "ledger": {
+    "new_partials": 3,
+    "new_completes": 0,
+    "complete": 34,
+    "partial": 3409
+  },
+  "remaining": [
+    "PACK command12 and remaining common3 positive effects",
+    "Existing focused loading request/kernel scopes and unrelated H8 producers",
+    "PACK separate integration/stream/FIFO/module checks",
+    "Full H8/frame/application integration and actual user desktop acceptance"
+  ]
+}

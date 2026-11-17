@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H8 PACK command18 named special animation",
+  "base": "e14d9c6",
+  "branch": "feature/p22-hum-h8",
+  "source_only": true,
+  "H8_complete": false,
+  "PACK_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-pack-effects-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_animation_tracks.h",
+      "bytes": 45772,
+      "sha256": "3b5ad7092d00184cfb3099205c603942f83f8247537edffb7d9dc1eb5155030a"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 62503,
+      "sha256": "c3785e94beece237e23b35a9f788406edf5a9fb8250ce171d7fd1e94eb66e534"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 196349,
+      "sha256": "e321502f9053f3c55939ba4197df6e660edea2033a7dd0a3478b7d34108fcf8e"
+    },
+    {
+      "path": "recovered/game/item_model_cache.h",
+      "bytes": 8666,
+      "sha256": "05b5543e9f3d8aff54675f6c3f62a2db075dc5aebe576f239c1452126c7ecd73"
+    },
+    {
+      "path": "recovered/game/runtime_item_services.h",
+      "bytes": 4658,
+      "sha256": "dfd0cc68139dc64510e7b6eea9bf59489a0c69c9df7d085aeb09425e71bee908"
+    },
+    {
+      "path": "recovered/host/game_animations.h",
+      "bytes": 4138,
+      "sha256": "a57e0a35b05ecf710b0215f67aae2aa3d5a775bfad220b0a37e145c62af420c3"
+    },
+    {
+      "path": "recovered/game/human_special_animation.h",
+      "bytes": 2631,
+      "sha256": "c033e1d292825a74759b5dba34f7545bd9910ba3ed9c263df6d1f9a03d7fbee3"
+    }
+  ],
+  "original_program_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005a9c20.c",
+      "bytes": 59,
+      "sha256": "d1053bbb6672980039b7258319265c1f7e85f903209f280aaf6a3a9124c309b0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/005ac4a0.c",
+      "bytes": 59,
+      "sha256": "f36f932b43194071273892eaf8dbc6ef9e63f3066a3700a15fb3b22859f5401e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-effects/007757e0.c",
+      "bytes": 1856,
+      "sha256": "fa8dc40a72f7f551b96b769750102d7b1ac80e0b7e20e595bcb495d6bd030e41"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-reaction-selection-dependencies/0077ce10.c",
+      "bytes": 7851,
+      "sha256": "95284b852caf582de3665eb4eabf76890b6596de9ce7d3e730e9d9bc047112cb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-special-track-setup.asm",
+      "bytes": 6814,
+      "sha256": "121fee912b43bcdd6bc3a58c482b810aa64861ac7d5437215e7bdbe3e8dfd191"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-special-track-caller.asm",
+      "bytes": 2687,
+      "sha256": "b7bde6295417d19b383a447eb3be5576c83d36df4f83b910bd28c34e0625b11e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-special-diagnostic/005d7070.c",
+      "bytes": 2930,
+      "sha256": "989afea883bb3d14bb9af6058a75447e90c05e7be509f95178d1d35d2057ea04"
+    }
+  ],
+  "verification": {
+    "native_sanitizers": "PASS5300 assertions /100 lifetimes, actual HumanAnimationTracks initialization/setup/update/fade/teardown; explicit engine/cache/callback endpoints",
+    "actual_host_i386": "Strict FULL LINK actual full packet/DD0/tracks/GameAnimations/category3 resources and same suffix owners; not run",
+    "launcher_and_startup_probe": "Rebuild PASS; not run",
+    "logs": [
+      "analysis/work/mission-world-20261103/human-h8-pack-special-native-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-special-native-run.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-special-host-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-special-application-link.log"
+    ]
+  },
+  "temporary_audits_removed_after_verification": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-special-native.cpp",
+      "bytes": 5742,
+      "sha256": "a538aea28d4938e08409f6a0b709b18e0455abff90ea5b10215a2cd5c6b13326"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-special-native",
+      "bytes": 457792,
+      "sha256": "b4e6238d556fda938dad0ea28c50d5498afeee6b2c7446e5616bd8f816f34cd6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-special-host-i386.cpp",
+      "bytes": 393,
+      "sha256": "48e6724f1fac95ce42f32d740d61db429416d7c43bdfe67db1f48dd522bf4159"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-special-host-i386.exe",
+      "bytes": 3671040,
+      "sha256": "f1df0c900adb6d82958b75d8756e415674d0b9b18949bcd0c4245d5eaae0fedd"
+    }
+  ],
+  "ledger": {
+    "new_partials": 2,
+    "new_completes": 0,
+    "complete": 34,
+    "partial": 3406,
+    "forwarding_wrapper_005a9c20_005ac4a0_new_credit": false,
+    "diagnostic_string_body_005d7070_new_credit": false
+  },
+  "remaining": [
+    "PACK commands3/7/8/12",
+    "General source/cross-Human move/swap/preflight",
+    "Actual Player/Remote command12 action effects/common3 remaining subtypes",
+    "H8 authority/frame/application/desktop acceptance"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H8.1 containing Human frame composition",
+  "base": "fc9d452",
+  "branch": "feature/p22-hum-h8",
+  "source_only": true,
+  "H8_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-frame-composition-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 6028,
+      "sha256": "b7437086222a990fa2f8e38ff68e4ab08077fb5cdd11ee71d6581732585150cd"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 184848,
+      "sha256": "e8e62e8243ed66663fb88e19e82e87deb9a5b2be3cdaf72f329d9fb9505340ab"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 60442,
+      "sha256": "9317b236757824288d086787e701c54591b56343766cfa895876eb67a76232dd"
+    },
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "bytes": 16419,
+      "sha256": "7cd21be7480043b2861371e305ecc88851e0a5e49ed60e9a35c3c6d7ef5297c0"
+    },
+    {
+      "path": "recovered/host/game_scene_actor_frames.h",
+      "bytes": 8998,
+      "sha256": "253f90a9218db0919a383c3adaeac89ae7fec62f3ae473e086b741d6e7d2c875"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 123570,
+      "sha256": "1b00fa3b84b77c8751a50286969fb193503949c9ecc5a792444a3fd8aac5afe2"
+    }
+  ],
+  "verification": {
+    "native": "PASS1100/100 lifetimes actual scene-frame/material helper and Runtime; Human/B0/inline/engine/World/walk-entry endpoints explicit doubles. No full live Human graph execution.",
+    "i386": "PASS strict actual entire World Human frame FULL LINK plus Scene2 Human bridge with EMPTY outer Runtime; named remaining guards throw, no Windows execution.",
+    "application": "PASS launcher/probe build/link only.",
+    "ledger": "PASS exact frozen inventory/fingerprints/status/evidence/README"
+  },
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-native-run.log",
+      "bytes": 213,
+      "sha256": "8f9b7093476ddb32b348310dd00972279bdf0bc848d270052ebf7b328c8cb375"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-host-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-application-link.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-native.cpp",
+      "bytes": 6367,
+      "sha256": "1b9531377d47856c804a8c12bc702a64b3ec8e0e118923b566facc961cd1f238"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-native",
+      "bytes": 360904,
+      "sha256": "ed8f9a63c842b611cd2e99ced730d7dd31f6cf1a16ce4edd1910a06ce1ce0134"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-host-i386.cpp",
+      "bytes": 714,
+      "sha256": "28f3c2b197aa3b2e8567d97e11eaaa2a8263d8262da1f716ad5895b545bba9bc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-frame-host-i386.exe",
+      "bytes": 7994368,
+      "sha256": "79791e15b86508317c675759c2a8aa3d15cef553bf76d36b43e2144864f533bb"
+    }
+  ],
+  "ledger": {
+    "new_claims": 0,
+    "complete_promotions": 0,
+    "complete": 34,
+    "partial": 3360,
+    "client_partial": 3355,
+    "engine_partial": 5
+  },
+  "remaining": [
+    "H8.2 Active AI00525DA0/00526550 and reached Player/Script/control/hazard/water receivers",
+    "H8.3 async ShotMgr collision/damage/visual/contact",
+    "H8.4 selected Car/OWN/D11/absent actor/material requirements",
+    "Full actual application/FRAME/OWN/render composition and user desktop acceptance"
+  ]
+}

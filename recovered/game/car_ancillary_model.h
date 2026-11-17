@@ -35,7 +35,9 @@ public:
     using Frame=typename Frames::Frame;
     using Owner=decltype(std::declval<Frames&>().create_car_ancillary_model());
     struct Zone {Frame frame{};std::int32_t hit_points=-1,material=-1;};
-    struct Explosion {Frame frame{};std::int32_t delay=0,part=-1;bool armed=false;std::optional<std::int32_t> instance;};
+    //D11 compatibility: newly parsed records own no emitted particle. Native
+    //004E09D0 leaves record8 unwritten; only actual emission replaces this ID.
+    struct Explosion {Frame frame{};std::int32_t delay=0,part=-1;bool armed=false;std::optional<std::int32_t> instance{-1};};
     ~CarAncillaryModel(){
         try{clear_metadata();}catch(...){if(frames_)frames_->record_actor_cleanup_failure(std::current_exception());}
     }
@@ -87,6 +89,20 @@ public:
             frames.update_scene_object(marker);
         }
         frames.update_scene_object(model());
+    }
+    template<class Occupied>std::int32_t pick_material(Frames& frames,Frame car,Occupied&& occupied,
+            const CarContactVector& point,const CarContactVector& direction){ //004DBED0→004E1530.
+        if(!model())return -1;
+        for(auto n=explosions_.size();n;)frames.object_visible(explosions_[--n].frame,false); //Native28 is EXPL_D; not planes38.
+        align_damage_model(frames,car);
+        for(auto n=seats_.size();n;){const auto index=--n;if(seats_[index])frames.object_visible(seats_[index],occupied(index));}
+        frames.object_visible(model(),true);auto start=point;
+        for(unsigned a=0;a!=3;++a)start[a]=static_cast<float>(static_cast<long double>(point[a])-direction[a]);
+        Frame hit{};
+        try{hit=frames.car_damage_pick(start,direction,model(),0x40000);}catch(...){frames.object_visible(model(),false);throw;}
+        frames.object_visible(model(),false);if(!hit)return -1;
+        for(auto n=seats_.size();n;)if(seats_[--n]==hit)return 66;
+        return car_attribute_number(frames.car_user_data(hit),"matid");
     }
     //004E1A20 RET20; the containing actor owns the source identity and6F8/FF4
     //events. This is its separate24E0 DM receiver, never physics00500EB0.
@@ -240,7 +256,7 @@ private:
                 const auto user=frames.car_user_data(*frame);
                 const auto bits=static_cast<std::uint32_t>(car_attribute_number(user,"EXPL"))*1000u;
                 std::int32_t delay;std::memcpy(&delay,&bits,sizeof(delay));
-                explosions_.push_back({*frame,delay,car_attribute_number(user,"PARTID"),false,std::nullopt});
+                explosions_.push_back({*frame,delay,car_attribute_number(user,"PARTID"),false,-1});
             }
         }
         particle_=frames.car_find(model_->get(),"particle",0x10020);
@@ -257,7 +273,9 @@ private:
     std::vector<Zone> zones_;
     std::vector<Explosion> explosions_;
     Frame particle_{};
-    std::int32_t sound_=-1,fire_=-1;std::optional<std::int32_t> smoke_; //Native14 is unwritten by004E08C0; only004E09D0 produces it.
+    //D11 compatibility: an absent DM emits no smoke (invalid definition-1).
+    //A present model still supplies authored PSMOKE or native fallback95.
+    std::int32_t sound_=-1,fire_=-1;std::optional<std::int32_t> smoke_{-1};
     std::int32_t countdown_=-1;bool triggered_=false; //004E08C0 C/64, before actor activation's reset.
 };
 

@@ -1,0 +1,136 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "cb0ebfa",
+  "branch": "feature/p22-hum-h6",
+  "checkpoint": "H6 actual item sound owners and Player actor-action producers",
+  "source_only": true,
+  "h6_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "active_h4_imported": false,
+  "contract": "analysis/human-player-item-sound-actions-source.md",
+  "added_partial_entries": [
+    "007d5a80",
+    "007d5c70",
+    "007d6330",
+    "00542b80"
+  ],
+  "extended_entries": [
+    "005433b0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 3254,
+  "client_partial": 3249,
+  "engine_partial": 5,
+  "source_files": {
+    "recovered/game/human_player_item_frame.h": {
+      "sha256": "605051fe8db7b18791ec4f04effb5f9d0130c1ca9b25d39370ecd61f083cf4a2",
+      "bytes": 5804
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "c9ff6cffc4a326e721c191e1a3661c70a9a4da5441b9a56b17e2d38ca945a3d0",
+      "bytes": 151640
+    },
+    "recovered/game/runtime_item.h": {
+      "sha256": "ea99d36baad5c968c2279787df912b17970a83e0df62301911bbf9c4cfac73ed",
+      "bytes": 17032
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "f4796fae8b137fe7e610a1fff9029c5a5708b5ade44cf14d54f3699d21994b11",
+      "bytes": 112801
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "92cdf0b6414e28cce42509470be1f68eaf5d003850ce2c4787558ae7422daa4c",
+      "bytes": 71652
+    },
+    "recovered/game/human_item_shot_sound.h": {
+      "sha256": "e9024d6c7196b50f3ad4b94d7c7bc0d041351d14a54a5d9d32f2fc89df593418",
+      "bytes": 2775
+    },
+    "recovered/game/human_player_actor_actions.h": {
+      "sha256": "513383d52518d3da9d1d8b9002befe43f0bddcf8335150c2dedf19b073d128cb",
+      "bytes": 2574
+    }
+  },
+  "verification_files": {
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-native.cpp": {
+      "sha256": "05a7f564595c4eff1a6872b0f24618793e17ef6f94dacd228487a54ce1b4a10c",
+      "bytes": 10997
+    },
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-native": {
+      "sha256": "47ec65a9f8c68207577eeff450cf4be7fe9ef5ffb0a0e833bf77d13ea9eda022",
+      "bytes": 3917808
+    },
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-host-i386.cpp": {
+      "sha256": "10cfe22e46fdb835a83090c1ef5673a19d9388e0ee0ab1d766e356b7b572e154",
+      "bytes": 1033
+    },
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-host-i386.o": {
+      "sha256": "0e5d7cd12e36b643c984c4159346ab89f4f8bf0367c3e8e237a438e28e7ad88e",
+      "bytes": 18551600
+    },
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-native.log": {
+      "sha256": "56fa0cebebccae426d11bbab243d37855709195f06aa74ac515e7f1304af3ec0",
+      "bytes": 281
+    },
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-launcher-build.log": {
+      "sha256": "9bdc4fb1756a31d97bb7aedf79405fad9d9537a8a20de16f22dd16076815a5dd",
+      "bytes": 820
+    },
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-application.exe": {
+      "sha256": "90429c4aa40bc9f34fd9ef500123f056ca3f618cbf22b7c5cc0251b24a11a68c",
+      "bytes": 3940864
+    },
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-probe.exe": {
+      "sha256": "e902d8d48ff16af533763d8f1a4f8d08030df9d9199a8b4c1ad686d3a6ba8b11",
+      "bytes": 1142784
+    },
+    "analysis/work/mission-world-20261103/human-h6-shot-sound-configure.asm": {
+      "sha256": "a5fe523d3a735f8d5603a7c73b912d11912adcd2b78b7afded7b4cce78e441d8",
+      "bytes": 3236
+    },
+    "analysis/work/mission-world-20261103/human-h6-payload-vtables.json": {
+      "sha256": "1b3531a08185fc7d8ee687cd207654657a4a631360b3e16db7995562a94a5d04",
+      "bytes": 687
+    },
+    "analysis/work/mission-world-20261103/human-h6-payload-sound-getters.asm": {
+      "sha256": "05c433491c294edf9e8225a30447e549833f846a7f98a3dc6a00e61f69cb3ee8",
+      "bytes": 6944
+    },
+    "analysis/work/mission-world-20261103/human-h6-payload-base-getters.asm": {
+      "sha256": "55e2ac590b4e55889c4c7f002e60b4e116eb7763b83ddfeb86957879916a0334",
+      "bytes": 5998
+    },
+    "analysis/work/mission-world-20261103/human-h6-melee.asm": {
+      "sha256": "b083e1cb82f773fa52486556582b13e5698a9aece454d4fa184cda1c83340b05",
+      "bytes": 10270
+    },
+    "analysis/work/mission-world-20261103/human-h6-message-flash-dependencies/007d5c70.c": {
+      "sha256": "c20332e4159e1e01e2160a46d561295a7a28c1190d194ad6a62e944fd0d1cb4a",
+      "bytes": 8308
+    }
+  },
+  "removed_temporary_artifacts": [
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-native.cpp",
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-native",
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-host-i386.cpp",
+    "analysis/work/mission-world-20261103/human-h6-sound-actions-host-i386.o"
+  ],
+  "verification_limits": [
+    "Native PASS100 actual RuntimeItem parsed catalogue/cache and Player first command queues; Human/model/engine/query/Look endpoints are explicit doubles.",
+    "Strict actual nested-host i386 PASS, two remaining Runtime fire/attachment declarations throw; compile-only.",
+    "Latest application/probe build/link PASS; no original or Windows execution.",
+    "SOUND overwritten native leaked references are retained until item retirement, then RAII-reclaimed.",
+    "Actual item24/28 and projectile producers remain open."
+  ]
+}

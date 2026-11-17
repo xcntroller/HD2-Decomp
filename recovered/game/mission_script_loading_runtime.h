@@ -8,6 +8,7 @@
 #include "game/mission_script_view_commands.h"
 #include "game/mission_objective_status.h"
 #include "game/mission_script_render_commands.h"
+#include "game/mission_script_formation_commands.h"
 
 namespace hd2::game {
 
@@ -69,6 +70,7 @@ public:
         //00421C00/00421970 call base00416E10 BEFORE their derived switch.
         if(accept_base(module().execute(context,instruction),context))return;
         if(accept_base(execute_mission_render_command(context,instruction,dependencies_.effects,*this),context))return;
+        if(accept_base(execute_formation_script_command<Frames,Human>(frames_,dependencies_.players,context,instruction,*this),context))return;
         if(accept_base(dependencies_.views.execute(context,instruction,*this),context))return;
         if(accept_base(execute_mission_objective_command(context,instruction,dependencies_.objectives,*this),context))return;
         if(accept_base(dependencies_.lifecycle.execute(context,instruction,*this),context))return;

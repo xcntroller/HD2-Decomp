@@ -10,9 +10,9 @@ namespace hd2::game {
 
 //004D16A0's reverse metadata/view/camera pass. The actual100 gun-control flag
 //creates the shared004C1AD0 control owner.
-template<class Frames>class CarLoadingSeats {
+template<class Frames,class Car=CarSceneActor<Frames>>class CarLoadingSeats {
 public:
-    using Actor=CarSceneActor<Frames>;using Camera=CarSeatCamera<Frames,Actor>;
+    using Actor=Car;using Camera=CarSeatCamera<Frames,Actor>;
     struct Seat {std::uint32_t flags=0;std::int32_t name=-1;std::optional<Camera> camera;};
     CarLoadingSeats(Frames& frames,Actor& actor):frames_(frames),actor_(actor){}
     template<class Services>void initialize(Services& services){

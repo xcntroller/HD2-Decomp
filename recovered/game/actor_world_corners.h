@@ -67,7 +67,7 @@ template<class Frames,class Actor>auto actor_world_corners(Frames& frames,Actor&
         bounds=frames.rigid_visual_bounds(frame);break;
     case 21: //00605E50.
         frames.update_scene_object(frame);bounds=actor_corners_detail::local_bounds(frames,frame,true);break;
-    case 4:case 6:case 8:case 9:case 10:case 13:case 22:case 25:case 28:case 29:case 30:case 33: //006115B0.
+    case 4:case 6:case 8:case 9:case 10:case 13:case 22:case 23:case 25:case 28:case 29:case 30:case 33: //006115B0.
         frames.update_scene_object(frame);bounds=actor_corners_detail::local_bounds(frames,frame,false);break;
     default:throw std::runtime_error("Actor world corners require its original virtualDC receiver");
     }

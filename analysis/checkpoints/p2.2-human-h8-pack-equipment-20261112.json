@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H8 PACK command20 live no-source equipment replacement",
+  "base": "5460739",
+  "branch": "feature/p22-hum-h8",
+  "source_only": true,
+  "H8_complete": false,
+  "PACK_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-pack-effects-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_packet_receiver.h",
+      "bytes": 3398,
+      "sha256": "ce3b6543b6b59fa9299e2ecc61b847adcf0ab53835372d5f9bcb3a49323abab0"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 191627,
+      "sha256": "01c407ce951370b1117a9799bde0a9feb9be2ef7db56f392ba7751757670a508"
+    },
+    {
+      "path": "recovered/game/loading_item_transfer.h",
+      "bytes": 6216,
+      "sha256": "5f0c1657334550e2d5262679528c116985e5b849ab442376578fcfab2ad86925"
+    },
+    {
+      "path": "recovered/game/prepared_item_transfer.h",
+      "bytes": 3817,
+      "sha256": "394b2d96c540fd0b4365f7496f64181c2098b3e105bfc3ce4fe4c5b5f41cfbaa"
+    },
+    {
+      "path": "recovered/game/world_actor_loading_consumers.h",
+      "bytes": 10829,
+      "sha256": "3ca5af3d96787759e4dd4028ffde164f567bf494382032b930e661371de25c7e"
+    },
+    {
+      "path": "recovered/host/game_mission_items.h",
+      "bytes": 14992,
+      "sha256": "d9cf81f72febb374042d78dc7da813c26d84a2c110f2c009a24d89bfa28ac6e9"
+    }
+  ],
+  "original_program_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-equipment-command/005b2a90.c",
+      "bytes": 2833,
+      "sha256": "2350975b259bacbe1f9b10937cc53289eaa697bb267119d8be7ca7277a73461c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-peer-lifecycle-abi/0059eb60.c",
+      "bytes": 3502,
+      "sha256": "554fc3279f5d88d3fcc63e38d445e8f542d918c941df0a01c9770c4b06ae1d3d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/prepared-item-construction/007d7810.c",
+      "bytes": 1363,
+      "sha256": "9016e3b586e3f4866daa252167fa81cefe47fd4e1f76a6b883f8939d2e59c933"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/prepared-item-construction/007ddef0.c",
+      "bytes": 639,
+      "sha256": "7e6836dee11e1fc25ca0fb470ba55e2035cb20907ba8679e0070127ad24d9c46"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-inventory-immediate-transfer/007d8b40.c",
+      "bytes": 18839,
+      "sha256": "70c8fc1a5f2a565df6a4ce3ae0f9fd27b30437f3cd6450be4fce27ee67c065be"
+    }
+  ],
+  "verification": {
+    "native_sanitizers": "PASS9900 assertions /100 lifetimes; actual storage/transfer/populate/effect policies with explicit engine/item/equipment/clock endpoints",
+    "actual_host_i386": "Strict FULL LINK, actual command20/packet dispatcher/Items/World/DD0/equipment/clothing owners; not run",
+    "launcher_and_startup_probe": "Rebuild PASS; not run",
+    "logs": [
+      "analysis/work/mission-world-20261103/human-h8-pack-equipment-native-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-equipment-native-run.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-equipment-host-build.log",
+      "analysis/work/mission-world-20261103/human-h8-pack-equipment-application-link.log"
+    ]
+  },
+  "temporary_audits_removed_after_verification": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-equipment-native.cpp",
+      "bytes": 8318,
+      "sha256": "d8534c897f2533c43a9e1d62ac800a5d9d1d4b4e667ed375c52a495ad063c8e7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-equipment-native",
+      "bytes": 1665880,
+      "sha256": "c0402844c15769265199c7ca02dca900d3dd6a868c27daebc7e7b0763fb283b6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-equipment-host-i386.cpp",
+      "bytes": 539,
+      "sha256": "29943ac3c50573f90cb13539b3470f4482b5f46fcf0646420617a3efe5fde719"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-pack-equipment-host-i386.exe",
+      "bytes": 3638272,
+      "sha256": "307c522a814f860dc101853d98d537d052c64b4ac9f540443b341210cf744f4a"
+    }
+  ],
+  "ledger": {
+    "new_partials": 1,
+    "new_completes": 0,
+    "complete": 34,
+    "partial": 3399
+  },
+  "remaining": [
+    "PACK commands3/7/8/9/11/12/18 positive source effects",
+    "General source/cross-Human transfer/swap/fallback/item pickup",
+    "PACK separate stream/FIFO/module integration verification",
+    "Containing H8/frame/application/desktop acceptance"
+  ]
+}

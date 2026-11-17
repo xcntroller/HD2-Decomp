@@ -23,6 +23,9 @@ public:
     const Base& base() const {return base_;}
     virtual bool initialize(Frame)=0;
     virtual void load(SerializedBytes&)=0;
+    //Verified common00610070 vtable008137F0+D8→005B88B0, constant11/RET4.
+    //Derived families override this when their actual native D8 differs.
+    virtual std::int32_t material(Frame){return 11;}
     std::uint8_t loading_activation_passes=0; //Source partial-prefix guard, not a native actor flag/readiness/roster.
 protected:
     Backend& backend_;

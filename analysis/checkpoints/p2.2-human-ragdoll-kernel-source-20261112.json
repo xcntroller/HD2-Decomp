@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "98c96ca",
+  "source_only": true,
+  "checkpoint": "Previously implemented H2 joint/contact/clip kernel inventory reconciliation",
+  "h2_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "source_bodies_changed": false,
+  "complete_promotions": 0,
+  "added_partial_entries": [
+    "007c59c0",
+    "007c5a90",
+    "007ca390",
+    "007ca470",
+    "007cb510",
+    "007cb5d0",
+    "007cda90",
+    "007cdc90",
+    "007c58b0",
+    "007c77e0",
+    "007c79f0",
+    "007c8b10",
+    "007cbae0",
+    "007cd730",
+    "007cd840",
+    "007cdfc0",
+    "007b37c0",
+    "007cbd50",
+    "007cbf90",
+    "007cc740",
+    "007cd230",
+    "007cde00",
+    "007cdf10",
+    "007b7410",
+    "007b3c80",
+    "004f2790",
+    "007ce070"
+  ],
+  "extended_entries": [
+    "007b0910",
+    "007a7470"
+  ],
+  "ledger_complete": 34,
+  "ledger_partial": 3245,
+  "client_partial": 3240,
+  "engine_partial": 5,
+  "source_files": {
+    "recovered/game/human_joint_owners.h": {
+      "sha256": "1488815adcac1fbdd6c8842b67a319ca2a85f08b976061653faaec922c95c01f",
+      "bytes": 31172
+    },
+    "recovered/game/human_loading_joints.h": {
+      "sha256": "ad811bc644eea094911584485255d01770ac6dcc97cc0a0b85524d62985c6365",
+      "bytes": 46281
+    },
+    "recovered/game/human_model_geometry.h": {
+      "sha256": "e085da9dd2271bd6d7edc1bf834e4a31304e597651a7f3b6e901b2b906b8adc0",
+      "bytes": 111895
+    },
+    "recovered/game/human_clip_pose.h": {
+      "sha256": "8c87fea14bb092d2070f6a04263b5b1c61a2b8b9283338f4b3e00b5a5d91c622",
+      "bytes": 7734
+    },
+    "recovered/game/human_retained_clip_motion.h": {
+      "sha256": "f41d6790eb4f8b13610def410b5dfd70b581e4ca1e655c24e0139470a1d30491",
+      "bytes": 15239
+    },
+    "recovered/game/car_external_impulses.h": {
+      "sha256": "24ae29ece6931d2ae37833ba9465491313b22ca37d206468af365d3d6e5fa182",
+      "bytes": 7629
+    },
+    "recovered/game/human_joint_math.h": {
+      "sha256": "e1f5caae4040bdd4687b16d0ec7cb3bed87189b5d11aac948a1c908d9ec1ce51",
+      "bytes": 15000
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "6edd9acd17d00c595855dc9ba39fea09f3574f4241bd9e3c98b90e5f84987fea",
+      "bytes": 57093
+    },
+    "recovered/game/human_physics_globals.h": {
+      "sha256": "9fb94cc112118b7b1603b9f4506add3332877735165595eafa1e2e7c959589ea",
+      "bytes": 997
+    },
+    "recovered/game/human_reaction_selection.h": {
+      "sha256": "dba909d2bdbf643cdbce322d13d9145b0980bed476e8f3a102bfb8b3ece71b86",
+      "bytes": 5425
+    },
+    "recovered/game/human_reaction_retirement.h": {
+      "sha256": "b686d7a0569b25c3a6261000633d8c3a716be1e7f15584172a35d4ff64dc89ee",
+      "bytes": 5037
+    }
+  },
+  "original_and_existing_verification_files": {
+    "analysis/work/mission-world-20261103/human-ragdoll-retained-native.cpp": {
+      "sha256": "bbf067ed80b9adce323ed9440ea6c8f5991c95877c763292cedb2dd734e3bed3",
+      "bytes": 39649
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-retained-native.log": {
+      "sha256": "a6184eac347dc07ef7f88b5c7b496f3715938226b7c95e17727596de09fd4faf",
+      "bytes": 36
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-retained-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-reaction-native.cpp": {
+      "sha256": "2349aa14dc0c52e9398a0ba130aa94098ac28a77624d3e947cceda418b9751c0",
+      "bytes": 5204
+    },
+    "analysis/work/mission-world-20261103/human-reaction-native.log": {
+      "sha256": "fea277cf8576a1b723bf0b742867ee02cadfcbf4adc2239e67468509f87930c2",
+      "bytes": 107
+    },
+    "analysis/work/mission-world-20261103/human-reaction-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-reaction-retirement-native.cpp": {
+      "sha256": "d4bde467d92c070282b9c9acc3e53bf7c39af98e34bed1815173c4278fc0012f",
+      "bytes": 11569
+    },
+    "analysis/work/mission-world-20261103/human-reaction-retirement-native.log": {
+      "sha256": "5e780227ec6d856628358f7e087eac9af714a80358f9bf3c5104e364da2c6d88",
+      "bytes": 249
+    },
+    "analysis/work/mission-world-20261103/human-reaction-retirement-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-car-authority-native.cpp": {
+      "sha256": "2573e9c40f813dcb78390ac0c3e30cdf1e8e0a299b24c52e8905ad29fabb925e",
+      "bytes": 3810
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-car-authority-native.log": {
+      "sha256": "a913f017b1f57b0d391a6848eb379ef7fe7b220ad40136578b48522dd328bf69",
+      "bytes": 337
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-car-authority-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-step-workers.asm": {
+      "sha256": "2481a3ac5bfd3bc51a60978dcdc7c98f3bdcb76aad081a35dab8e823683aac5c",
+      "bytes": 24638
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-integration.asm": {
+      "sha256": "f820969996b2edda14927c45ef2dff6589d4e61607810c53cf2da6937d7c133c",
+      "bytes": 64928
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-constraints.asm": {
+      "sha256": "392f7cf3b8b51eb94f274362db94fc3d413ca16a10432aa8671ade5a6ac6c097",
+      "bytes": 69868
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-sibling-constraint.asm": {
+      "sha256": "8f324a3129abdc5a3bf8129fa8f6d268faf0bce7c2277fc9b8d6fe63c2ad90b6",
+      "bytes": 21586
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-segment-distance.asm": {
+      "sha256": "6a27ba98eb7d8a7df8d5e632db716ae3d386c35b532568c8aa2dc9c890218cd8",
+      "bytes": 19743
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-runtime-contacts.asm": {
+      "sha256": "5e79f0a5a62b75ae481b95f5c0a80bc0244f5c6dabd17a477db25f863dc579c0",
+      "bytes": 7723
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-sleep.asm": {
+      "sha256": "21877230f18a86371f117eb0d5b295ba26db2934220db9fc1d654c36ac088200",
+      "bytes": 14250
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-begin-full.asm": {
+      "sha256": "3e462bb2223f8bf2152aea5f12434524081e11f20ca7dae0e33882c837e2f3be",
+      "bytes": 157177
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-clip-full.asm": {
+      "sha256": "f151d635397664d8b7f435e6279d7c7f487cd78f2214308ee7803652d11503ae",
+      "bytes": 182413
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-clip-pose.asm": {
+      "sha256": "ba1f61bf0db73cf363d3af932c76a3c9396642d4f6446c13d09a91a255dc8832",
+      "bytes": 22246
+    },
+    "analysis/work/mission-world-20261103/human-ragdoll-surface-request.asm": {
+      "sha256": "d9bb695ae87bfb8feca0b34eebaf74bac80bb5619a4aab10aaa571b41ca7c17f",
+      "bytes": 5740
+    },
+    "analysis/work/mission-world-20261103/human-h2-kernel-credit-index.txt": {
+      "sha256": "7da186465fcf5cad2cb500992dd32c7a8004deb29fbd298f772281182c33f99a",
+      "bytes": 61210
+    },
+    "analysis/work/mission-world-20261103/human-h2-clip-credit-index.txt": {
+      "sha256": "d74cac508bab4d26447f34d868576f32066c06f108a813febc7033ec5c087dab",
+      "bytes": 14570
+    },
+    "analysis/work/mission-world-20261103/human-h2-kernel-ledger-proposal.json": {
+      "sha256": "aa9188eba622efe3d5a195b14c2c08058f9903fcc94fa30a108d2e7449f27c39",
+      "bytes": 5152
+    }
+  },
+  "current_actual_i386_verification": {
+    "receipt": "analysis/checkpoints/p2.2-human-completed-branch-integration-20261112.json",
+    "files": {
+      "analysis/work/mission-world-20261103/human-h2-completed-merge-host-i386.o": {
+        "sha256": "89c0a9b1ee85e2df379a93d0422a9dae2571bef06714f77bec371e8b65550de6",
+        "bytes": 18316871
+      },
+      "analysis/work/mission-world-20261103/human-h2-completed-merge-host-i386.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "analysis/work/mission-world-20261103/human-h2-completed-merge-launcher-build.log": {
+        "sha256": "7e9252d1406678b33b81e74a22b80ce66dc917f4950fae75cb2f1bc6e630b306",
+        "bytes": 820
+      },
+      "analysis/work/mission-world-20261103/human-h2-completed-merge-application.exe": {
+        "sha256": "c6a847e83ae5e54421291db4bf3cd0a06080d0711b14d32d40e23d4f6446c92e",
+        "bytes": 3940352
+      },
+      "analysis/work/mission-world-20261103/human-h2-completed-merge-probe.exe": {
+        "sha256": "e75a3380bfe1fa401826e425bf7cdb9b28f9df09cd62623ea77d081aecccb1cc",
+        "bytes": 1142272
+      },
+      "analysis/work/mission-world-20261103/human-car-target-command-host-i386.cpp": {
+        "sha256": "50eadd6eae5b6c30aa61aa6a857d9e67cf191c8e0aba52c0cdbd1f7b22cf711b",
+        "bytes": 1335
+      }
+    }
+  },
+  "verification": [
+    "Research index confirms every added entry is an actual non-thunk function in the frozen client inventory; no interior labels, absent helpers or delegated engine calls credited.",
+    "Prior focused native solver/contact/retained-clip/Car/sleep/substep checks are reused, not rerun without a new discrepancy. Original research/source ownership contracts remain authoritative.",
+    "Existing reaction-entry native fixture uses -fno-access-control to seed known model/Human/control/skeleton/camera fields; it does not call actual geometry loading. Math/engine/query and selected containing component endpoints are doubles.",
+    "Current merged actual nested host i386 fixture instantiates kernel/control/World signatures and latest application/probe compile/link; source bodies unchanged from that check.",
+    "27 new partials, two extensions, no complete promotions; no new runtime or full containing-frame claim."
+  ],
+  "limits": [
+    "H2 D10 positive actual containing reaction composition is still open.",
+    "D11 fresh part5F9, wheel695 and reached EXPL8/smoke14 producer omissions remain required failures; no warm fixture establishes fresh success.",
+    "H4 stays external; H6/H8 remain unassigned. Full cross-branch frame/app/desktop acceptance is not a prerequisite claimed completed here."
+  ],
+  "temporary_new_audits": [],
+  "existing_frozen_audits_preserved": true
+}

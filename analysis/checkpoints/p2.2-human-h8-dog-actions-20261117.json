@@ -1,0 +1,206 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "456e7fa",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-dog-actions-source.md",
+  "new_partial_client_bodies": [
+    "005c5030",
+    "005c8490",
+    "005c8540",
+    "005c8570",
+    "005c4cb0",
+    "005c8880",
+    "005c5bf0",
+    "005c4b50",
+    "005c88b0",
+    "005c75c0"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_body_actions.h",
+      "bytes": 12129,
+      "sha256": "bacb3c2d5c14d14d13e0b339d4a62ee2c09fc0449487b0cd316deed1c3100cef"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 7164,
+      "sha256": "703db2d1fa436a9048613ae8e4e34dc54f84cda55755110d07992d67c26818e6"
+    },
+    {
+      "path": "recovered/game/dog_body_orders.h",
+      "bytes": 5196,
+      "sha256": "80cb7f97c7c32d8e2dcdf0d293d7dccded2ad4d56cbb5d47e56f5ee99ba2cff2"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-continuation-index.txt",
+      "bytes": 24642,
+      "sha256": "d66698d77d003f6642971469cc39d87974187ba705204d5c59768c6c4abd56d6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-action-initialize-index.txt",
+      "bytes": 10340,
+      "sha256": "3dd71db5e9046d320950a0999e45845e2ea6d122c5798169720f7060b1bf01e2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-sound-index.txt",
+      "bytes": 5144,
+      "sha256": "e5737f8bf02676ce868e7bf115088934e38d7b782a0b076bb03c4c436e20cf74"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-action-compositor.asm",
+      "bytes": 40657,
+      "sha256": "0a00348ad35efc57b72351782e314248895966f8daf41c06f145d4a99135a4fe"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-action-requests.asm",
+      "bytes": 4963,
+      "sha256": "6a9c688394cbd2613354c440b98e3b74b6cafcef1e8d55e8db99d0f6377ac6de"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-ground-death.asm",
+      "bytes": 4008,
+      "sha256": "9523aba95a47e4fec36d136beb9480298a263fa1f8f0b80b2eccec73d8bc1eab"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-action-effects.asm",
+      "bytes": 23224,
+      "sha256": "f524c65d27afabb476760211741692074337006ee627b367ded203aa6fce0859"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-action-playback.asm",
+      "bytes": 15058,
+      "sha256": "369481caa5602b7e3ce44277724a49e0d02d33ad0a28ade014bde1856a37584f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-boundary-originals/005c5030.c",
+      "bytes": 17323,
+      "sha256": "12dec121f1706bb1e156a0038afc248f23f5cde761d85f67a0e3bd119ed88a50"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-boundary-originals/005c4cb0.c",
+      "bytes": 5636,
+      "sha256": "b898a2fc3e23925d2a22fed137d424869665d3b76f1217b2ab6ed503e408ac86"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-required-originals/005c8490.c",
+      "bytes": 922,
+      "sha256": "a7df4e6d8567d99610d6e8f05cc096ed897074992d606c20e6059996681aceae"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-required-originals/005c8540.c",
+      "bytes": 229,
+      "sha256": "46ec162bd0b7d26fe4afb5cb13fbd781fac4f04647ea9390917d7e79a90bd88c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c8570.c",
+      "bytes": 229,
+      "sha256": "10739b78b3b69b8a0d17d87e3ef90392afff107be601cb58742889f5261167e2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c5bf0.c",
+      "bytes": 6560,
+      "sha256": "731f5fe0aa9f4adeb8dbe16cb707c60c1353a1cfda2f1fe2ec6991d4db0e9a7b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c8880.c",
+      "bytes": 160,
+      "sha256": "2388caca71fa786d7b18c2e19adf7b33b83e9ef81e7f8e08c132ae5486715f2a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-body-dependencies/005c4b50.c",
+      "bytes": 124,
+      "sha256": "8c0770e120a9727d7b67849a09385d3ab710f711ec72ec96f1b81386ded9a22c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-live-originals/005c75c0.c",
+      "bytes": 418,
+      "sha256": "f3054f2a58c34995371aeaca2b48eaae4441c631cea7d12033ed52f3629d82f2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005c88b0.c",
+      "bytes": 1472,
+      "sha256": "09c7651cb16d4aecac0eb01d242c643e1eccb04c7bf58da7235090b6a7039160"
+    }
+  ],
+  "verification": {
+    "native": "PASS4575872 ASan/UBSan/leak/Werror checks;100000 original-C differential compositor states,11040 playback cases,24 action effects, death/ground and failures; explicit controller/clip/audio/frame/sweep endpoints",
+    "i386": "PASS strict actual module authority+presentation with actual Dog storage and ground callback bound to SAME World frames/sweep; no Windows execution",
+    "launcher": "PASS forced O2 sequential application-launch/startup-probe Werror rebuild; no Windows execution",
+    "tracker": "PASS exact inventory/ledger/fingerprints/README and27 tests;34 complete/3642 partial(client3637+engine5)"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-native.cpp",
+      "bytes": 29329,
+      "sha256": "964e82c6bdfe65446742928cc98802f243cdd1b8f4dfd464c851140a73933ffa"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-native",
+      "bytes": 1441576,
+      "sha256": "8e3ad882fcfdbadd84acee928403a0074ffc18bed2b5d00b23fa442c3afe4414"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-native-run.log",
+      "bytes": 231,
+      "sha256": "1ac8e1fbd521d276581ac19c09ebc08b41bba1dcded7c1c93e92a03193fed561"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-native-fixture-initial-hold.log",
+      "bytes": 118,
+      "sha256": "e4504c587f17963a515045c085d0fd2fd38d23ac513c05b257ebcbf1b03d5e33"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-module.cpp",
+      "bytes": 872,
+      "sha256": "ad3ddbe8f59f9ff61a84c0eb503f22c6f70aba6b1a6585fd933e199b55dd0496"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-module.exe",
+      "bytes": 11856896,
+      "sha256": "5e85d44164df7fd243aafb0018f25de77907fbf1fa9de7e1e998fc520e767823"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-progress-render.log",
+      "bytes": 380,
+      "sha256": "cfc9adff3d2a5bb0f4d92878a90f6453f61ba4e74b25476c18234e3a20ed548f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-progress-check.log",
+      "bytes": 437,
+      "sha256": "243cdc89e50a83aa0703280268b9ee96b280bb24b878fe05ad57c0e69fbde07d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-actions-progress-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "fixture_correction": "Extra speed-only fixture initially specified active unfinished current23/time0/duration500, so actual transition gate correctly held. Corrected fixture current to nonblocking0. No production change from this finding; failed diagnostic log retained.",
+  "limitations": [
+    "Dog activation/live Body geometry/controller/clip mixer/SOUND integration and H8 delivery remain open.",
+    "Unproduced native priority/queue metadata guards remain explicit; no new D11 defaults.",
+    "No actual loaded World/original/Windows/application/desktop execution or ABI equivalence claim.",
+    "New entries partial only; no complete/delegated/absent-function credit."
+  ],
+  "temporary_audits": "Successful native/module source/binary pairs fingerprinted then removed after verification; logs/original evidence retained."
+}

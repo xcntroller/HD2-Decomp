@@ -1,0 +1,317 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "a31f4dc",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-dog-collision-clip-source.md",
+  "new_partial_client_bodies": [
+    "005c7d30",
+    "005c1dc0",
+    "005c8b30",
+    "005c83a0",
+    "005c6d10",
+    "005c6e10",
+    "005c7430",
+    "005c6ee0",
+    "005c7850",
+    "005c7890",
+    "005c7930",
+    "005c7ae0",
+    "005c7b00"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_body_collisions.h",
+      "bytes": 5245,
+      "sha256": "01b2de9f2683ec619bfd473fe877eb840292a338aac35b2a233ad0a37f7ea7f1"
+    },
+    {
+      "path": "recovered/game/dog_clip_mixer.h",
+      "bytes": 10973,
+      "sha256": "d18e1b9a3bf8b95e34a508cddd127e7ed232a899ec75b9c58032f529cd282467"
+    },
+    {
+      "path": "recovered/game/dog_animation_events.h",
+      "bytes": 3518,
+      "sha256": "5587bf985c73a019fe94a0ce1dd8c1e3c908d0148a2a3aeb040160872a838c2f"
+    },
+    {
+      "path": "recovered/host/game_dog_animation_events.h",
+      "bytes": 293,
+      "sha256": "ffc3b9e78f2a4353011d7a0ef3c5909aaa4e362dd94f2b4827783aab3bba8f28"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 7464,
+      "sha256": "162baf2a5214e4d81d90535f914cb33ed87de31d4c2c6d6bab96803bd56f5b80"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 7083,
+      "sha256": "9214d3aba4bb24366d7dea39cfe71262d1922abe207c792e46e897bbf9cc70bc"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 298229,
+      "sha256": "df031d90e997f1d3fa440c23642004b23de6578ab8eb0d6442c2dd863dd32a1e"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 128799,
+      "sha256": "a39513ac1ea5497edd0e84df0525fd64e85d1ea1379a01e98a614ea8050cd8f4"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-index.txt",
+      "bytes": 8148,
+      "sha256": "d041266cf361efca11dd0ccd60728e41e448de09f0a4f1d167c8ac803210ac71"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-anchors.asm",
+      "bytes": 2936,
+      "sha256": "45d934317b1fc51a17cf78d96146d23ac0610656e478485bce919c1ac240b2c5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-bootstrap.asm",
+      "bytes": 8938,
+      "sha256": "e05c12a8057fdf7aaed99c44051d459bce75285c5876d911561f824c768ab794"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-retire.asm",
+      "bytes": 4282,
+      "sha256": "a988360dca75d113b471936be541dffbb0b12ded8b09624e52198a2e30787951"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-model-names.txt",
+      "bytes": 334,
+      "sha256": "fe1512c5626b9b3bca6ca6520b160148f770e4fae21be99fe60b72ef2f7071c5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-mixer-index.txt",
+      "bytes": 14600,
+      "sha256": "c0fcb8932cf2f19af582fbc85666de89bfad64298ef8528c9f0f876df1c4b943"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-tick-index.txt",
+      "bytes": 8568,
+      "sha256": "969ab9ff58290b9acd45321176e844fb80dcbad05eb4a97a380d015f7334903a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-callback-index.txt",
+      "bytes": 3085,
+      "sha256": "73d3b54260470d58d47313cfb438f74a857ae71443457b7dfc61e766911985fb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-bind.asm",
+      "bytes": 7691,
+      "sha256": "d9bbb9da1e454902dd88ee53ccfc33c169e1c605bb9fe84da38c279a449fbb05"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-tick.asm",
+      "bytes": 13649,
+      "sha256": "a00f1201ef8dc18478ee434a5f173c3480fcd3753d534100dd6996e446a47d90"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-fraction.asm",
+      "bytes": 2866,
+      "sha256": "b1bda12db3dbc130c033d99f6a89f348f765130c6f171de81112f25b6849d7e7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-callback.asm",
+      "bytes": 7931,
+      "sha256": "9a20c090d3ab0e0bb1c313a6a47cffdee56d29fd3d3da3d293d41a6270790cbb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-control-originals/005c1dc0.c",
+      "bytes": 1012,
+      "sha256": "b86f2ab21742ba1ef9a00ddf201776454dc04dcef925faab7c6e73bd0e474cb2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-required-originals/005c7d30.c",
+      "bytes": 9416,
+      "sha256": "4a4d037833308e21927aefacd92b8b4be1fa7ab74e179772e0e49c63f6740f31"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-required-originals/005c83a0.c",
+      "bytes": 1152,
+      "sha256": "de0696fee0c8deebfc5e3c99e9e34fb41d67904fd71eec776ec51f71d3ac65b0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-boundary-originals/005c8b30.c",
+      "bytes": 7027,
+      "sha256": "c28840518a48f4cae232b387f63d5d57b9b8ee7153d6d658110ac8a0b4ec0f9d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-live-originals/005c6d10.c",
+      "bytes": 1433,
+      "sha256": "d317e88bbd5a15d400232feaeb9ce2af537f6eb5c6bdb65bcdeb0ac5c99ff24c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-required-originals/005c6e10.c",
+      "bytes": 141,
+      "sha256": "3db4b570b7bf884276327ad3e0723a968e5ac11d68cf8690a44c1dcc21c2206c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c7430.c",
+      "bytes": 2447,
+      "sha256": "9dfa76348c135dd135ca4c3205ed46f4fcbdd8d1ccefeac511bf1d8416ce0beb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c6ee0.c",
+      "bytes": 4570,
+      "sha256": "8adcce24b90e4e549ccef60f3d6556447046eb60541ba05a7fd419be50a345c4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c7850.c",
+      "bytes": 422,
+      "sha256": "6811dfeadc7b1dc5e5f29446560b1e39b204c23c04826b7f62e8fbcad0dbdb3a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c7890.c",
+      "bytes": 205,
+      "sha256": "2b5f4d876338d6b3359bfd5d942c09e3d351e03125cb0e45979654b7b165b1ce"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies/005c7930.c",
+      "bytes": 262,
+      "sha256": "bad80638bf94aaf710c9c86e626ddb521ab196fcfc33dacca61899ff9f3d0957"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-body-dependencies/005c7b00.c",
+      "bytes": 978,
+      "sha256": "4ee73613ec5e018eeb4544aaf0b0ce486776b7f08b3d5b8882b06086b4a60eb7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-body-dependencies/005c7ae0.c",
+      "bytes": 214,
+      "sha256": "845f270ceca13a4862e0d8ac65b4f0f8ca5a726ab762d0ab09cba88472707ca0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-animation-state-dependencies/007724a0.c",
+      "bytes": 425,
+      "sha256": "8bc3a0f2b3c29ce3179514a78ea33dcd724ba1f82f7ab1e28aa45d786cb4d927"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-sight-positive-boundary/0046df80.c",
+      "bytes": 6005,
+      "sha256": "f0f74aa98282c82ff4347f13a7102d96cd737d50c9a170e1483245b520d774a1"
+    }
+  ],
+  "verification": {
+    "collision_native": "PASS38153 ASan/UBSan/leak/Werror checks,1000 actual dynamic grid/descriptor families; explicit frame/Bounds endpoints and failure injection",
+    "clip_native": "PASS309 ASan/UBSan/leak/Werror checks, actual mixer and callback bridge; explicit engine/frame endpoints, positive/failure/foreign/stale callback, unordered timing/weights",
+    "i386": "PASS strict full module authority+presentation, actual Dog collision/World buckets/Sight and published clip/process table/real model callback/engine endpoints, compile/link only",
+    "launcher": "PASS forced O2 sequential application-launch/startup-probe Werror rebuild, no Windows execution",
+    "tracker": "PASS exact inventories/ledger/fingerprints/README and27 tracker tests;34 complete/3655 partial(client3650+engine5)"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-native.cpp",
+      "bytes": 7573,
+      "sha256": "1db649288d509369c53eebbe91294566905e4394670fea00ea8c86f7f141c9e8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-native",
+      "bytes": 1955872,
+      "sha256": "0a6e49bf46bfe9699d6e018fade8ee33d0aeafbc589578cdb51570008fc8458e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-native-run.log",
+      "bytes": 118,
+      "sha256": "cc44ba0684d52310ae37e85a0175c9c8dbb3782f0654c579dffb34da228ea234"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-native.cpp",
+      "bytes": 12255,
+      "sha256": "50b0a2eaff6d2134ca858acd29d538a77380946c8f6612af5b73aa17cc8d78a9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-native",
+      "bytes": 1495280,
+      "sha256": "81a615389408d90f1ebeb8448651580d9f86ef53493da65be9af0136917dd399"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-native-run.log",
+      "bytes": 132,
+      "sha256": "55915e1e8077589d1ca0fe9caaf579a0d7c9677ea436abcf2f7f28e76be01733"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-module.cpp",
+      "bytes": 1912,
+      "sha256": "0d8b0dabcbdb45610322147972bd23f970a376d334f7b5c462af260e61482ef9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-module.exe",
+      "bytes": 11927552,
+      "sha256": "f765a7c093b7b5a756809df301f7e940c14307e54f88a476fcdd55c0f403982d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-clip-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-clip-progress-render.log",
+      "bytes": 380,
+      "sha256": "2899c0dd888b095185d334e67423ac1a5135481ec1191679290e268f2c4cd41e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-clip-progress-check.log",
+      "bytes": 437,
+      "sha256": "386ab7b536ca83318d3a060993923523efd6ab785b852ff4ddee9f67dac33c0c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-clip-progress-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "superseded_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-module.cpp",
+      "bytes": 1029,
+      "sha256": "0a869d9ec785523b4d84da6b61417fdfb3d1249a4a2b290848f3d3dc0977d573"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-module.exe",
+      "bytes": 11870208,
+      "sha256": "b4117f83a129b0e6269f20a8b72f8f993c2948130b66f4d2bccabc82ec8c1557"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-collision-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    }
+  ],
+  "superseded_reason": "Earlier uncommitted collision module built before exact model literal correction; combined final clip-module rebuild above supersedes it. Original normalized labels are not actual model strings.",
+  "temporary_audits": "Three final successful native/module source/binary pairs and earlier superseded module pair fingerprinted then removed after verification. Logs and original evidence retained.",
+  "limitations": [
+    "H8.2/H8.4/H8.5/H8.6 and HUM matrix remain open, Dog activation not enabled.",
+    "Full Body locomotion/sector/model frame, clip005C71E0/7600, controllers/bootstrap/perception/activation/retirement still required.",
+    "Native unwritten priority/metadata and malformed/overlapping event states remain honest required failures; no new D11 defaults.",
+    "No absent callback/helper/engine or complete-body credit, native ABI equivalence, original/Windows/application/desktop execution."
+  ]
+}

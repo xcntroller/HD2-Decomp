@@ -79,9 +79,8 @@ template<class AI,class Inline>void apply_human_ai_frame_movement(AI& ai,Inline&
         control.frame_posture(changed?(request&2u?1u:2u):0u,publish);
     }
     if(pressed(*second,0x44)){
-        //00571C10 dispatches subtype1F immediately and appends a separate
-        //kind-three copy to the B0+94 queue for its original deferred consumer.
-        throw std::runtime_error("AI climb output requires its actual B0 deferred command receiver");
+        ai.emit_climb_command(); //Actual virtualD8 family; original early return skips jump/stop tail.
+        return;
     }
     if(pressed(*second,0x30)&&(request&8u)&&human->activation.field14c>10.f){
         animation(0x12);
@@ -101,10 +100,18 @@ void apply_human_ai_frame_items(AI& ai,Inline& control,World& world,Runtime& run
     if(!second||!first)return;
     auto* human=ai.human();
     if(!human)throw std::logic_error("AI item output requires the bound Human");
-    if(human->field160)throw std::runtime_error("AI item output requires the actual attachment input receiver");
+    if(auto* attachment=human->field160){
+        if(world.human_pose_actor_has_control(attachment,human->field164)){
+            world.human_emplacement_frame_inputs(attachment,human->field164,*first,*second);return;
+        }
+        if(!human->field164)return;
+    }
     if(second->template get<float>(0x40)!=0){
-        if(!world.human_feedback_kind9(*human))return;
-        throw std::runtime_error("AI item output requires the actual kind-nine release receiver");
+        const auto selected=world.human_feedback_kind9(*human);if(!selected)return;
+        control.set_retained_frame_item_action(13,world.human_frame_output_item(selected).model());
+        set_human_sight_alignment(*human,-30.f,world.mode_flags());
+        world.human_ai_release_feedback(ai); //B0 virtual08=005785B0: offline RET, actual non7 transport remains required.
+        return;
     }
     const auto entry=ai.item();
     if(!entry)return;

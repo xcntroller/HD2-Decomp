@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "5827965",
+  "source_only": true,
+  "h8_3_source_complete": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-blast-sight-source.md",
+  "source_files": [
+    {
+      "path": "recovered/host/game_blast_waves.h",
+      "bytes": 23219,
+      "sha256": "a30be65176873aadc0f986390199e8aa2c899108f91e9132f389b566dd5ba76b"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 296695,
+      "sha256": "10ca297fc1e00887aec81475ca4846e574d13e298bf0521caaed362f28f8dcc8"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 6992,
+      "sha256": "e3bc0ebd2c485c310c1f78bf51c05a1d2a6fd9557ba8038479989b42f0d1c436"
+    }
+  ],
+  "source_counts": "Unchanged34 complete/3624 partial; no new frozen bodies",
+  "verification": {
+    "native": "PASS1200 actual World mounted-Dog/Sight/actor ASan/UBSan/leak checks; authored relations, explicit engine/roster endpoints; existing GCC indentation warnings recorded, no native Werror",
+    "i386": "PASS strict actual full module authority/presentation and explicit blast D8/D4 link, Werror, compile/link only",
+    "launcher": "PASS forced sequential O2 launcher/probe rebuild, Werror, compile/link only",
+    "reuse": "Existing projectile/material/derived owner sanitizer receipts reused within their qualifications; no unchanged broad audit",
+    "tracker": "PASS exact frozen inventories/counts/evidence/README plus27 tracker tests; git diff --check PASS"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-feedback-native.cpp",
+      "bytes": 4315,
+      "sha256": "8b9d763a14aca2cfffb380a67f33948740a0bec868538e79747d1d03263d6b09"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-feedback-native",
+      "bytes": 2418896,
+      "sha256": "624fde2a96878486294da36e3c66b6cd37dd2251da6f51faac3c7cc6f7609a30"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-feedback-native-build.log",
+      "bytes": 14435,
+      "sha256": "5adca03bc869ece5058560055a79428c6f0a3e3d16dd4a72b6194e1e7f98f810"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-feedback-native-run.log",
+      "bytes": 136,
+      "sha256": "9d23a9abaf63c7f1c448d5d2478eac2ccb9c659fcf6132c556e89fba668c02e5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-blast-derived-module.cpp",
+      "bytes": 610,
+      "sha256": "7787c567f39d1b4d8a3decbd5f1e6a10b113eaefac802eb5ca3a773dcc839e14"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-blast-derived-module.exe",
+      "bytes": 12125184,
+      "sha256": "e7e33b02036876d0bb433fdfb6b2f0e5f44a87735da26f9f40e3afbaa41a7701"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-blast-derived-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-blast-derived-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-blast-derived-index.txt",
+      "bytes": 10985,
+      "sha256": "038b25d47fb4a28526be8e97a3a78a0e3d936223815f9a34d568339584d60207"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-blast-sight-progress-render.log",
+      "bytes": 380,
+      "sha256": "7d8c39f3c1f8633f00aeb142e7fb437c5134e041a24f3cd29f2273b6b5f9605d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-blast-sight-progress-check.log",
+      "bytes": 437,
+      "sha256": "f91a959842804657874aa6a5cafa847b50d643279298cff936462eb138048908"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-blast-sight-progress-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/shared-blast-hit-dispatch.asm",
+      "bytes": 7780,
+      "sha256": "4957ba10d49953ac391ac1c2afaa45d01b762b939905cfcd1b855f48f8b6abf0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shared-trajectory-query-contracts/006ddd40.c",
+      "bytes": 2258,
+      "sha256": "6f80f896ced8e5c48732138144e1bbaf8303dc56bfb0a58bcc40fa7cfdefdd2a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-tables-expanded.json",
+      "bytes": 1305,
+      "sha256": "b83488a85aff16a0d2f9252a22983d66ac8521b0e7d0837ea69befbab04a79a1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller4-tick-tail.asm",
+      "bytes": 2751,
+      "sha256": "d2717153c53d027efc9d6292353844ca9ab6c5138ce472b211162720cd11f5d1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller5-tick-tail.asm",
+      "bytes": 1006,
+      "sha256": "3a683ad8382956815fb711a60222b8956dd74f95c8ad69f7341e8dd948eabfa7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-boundary-graph.json",
+      "bytes": 8342,
+      "sha256": "f66a3ee7914a528867e4e18a94017093902ca2ba2cb0a7bd5c5a46fcf58a3d73"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-body-dependencies-export.log",
+      "bytes": 7447,
+      "sha256": "37c35893faeff97c39f1637e8d68ed1d850ea6bbf4b154c69febf1fce28d99f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-body-dependencies-export.log",
+      "bytes": 8548,
+      "sha256": "af2c3bd9a50429b8b4bc025cc9811691a277ed3666893216f064ba1fcad9ea45"
+    }
+  ],
+  "ghidra": "First focused body batch PASS; second batch preceding entries exported then ERROR no function starts005CF0B0; latter two virtual6C wrappers statically resolved by raw JMP005CE110, no function creation or body credit.",
+  "temporary_audits": "Native and i386 successful source/binary pairs fingerprinted then removed; original logs/exports retained.",
+  "limits": [
+    "Dog540 has no cold producer; live Dog activation/Body/controller/Sight remains required.",
+    "H8.2/H8.4/H8.5/H8.6 and HUM matrix remain open.",
+    "No actual loaded World/engine/desktop/original or Windows execution claimed."
+  ]
+}

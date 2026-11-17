@@ -31,6 +31,10 @@ public:
         if(!model)throw std::runtime_error("Human C00 requires its actual model");
         marker_=frames.actor_find(model,"HD",0x20);
     }
+    void rebind_model(Frames& frames){ //0077D410, no command reset.
+        if(!human_)throw std::logic_error("Human C00 model refresh requires bound Human");
+        marker_=frames.actor_find(human_->base().frame(),"HD",0x20);
+    }
     void reset() { //00777A40. Pointer80 and cold flag1C are not reset here.
         for(auto offset:{0x24u,0x3cu,0x50u})state_.set(offset,std::uint32_t{0});
         for(auto offset:{0x20u,0x38u,0x4cu,0x58u})state_.set(offset,std::int32_t{-10000});

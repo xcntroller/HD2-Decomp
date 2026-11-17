@@ -47,6 +47,29 @@ public:
     ItemActor* create_item(Frame frame,std::int32_t identity=-1) {
         return static_cast<ItemActor*>(registry_.create(35,frame,identity));
     }
+    bool move_human_placed_item(Instance& borrowed,const game::HumanVector& direction){
+        if(!registry_.owns(&borrowed))throw std::logic_error("Human motion target requires SAME live runtime registry");
+        auto* actor=dynamic_cast<ItemActor*>(&borrowed);
+        if(!actor)throw std::logic_error("Human motion target requires actual type35 owner");
+        return actor->apply_motion(direction,false,activation_);
+    }
+    ItemActor& human_placed_item(Instance& borrowed){
+        if(!registry_.owns(&borrowed))throw std::logic_error("Human placed query requires SAME live runtime registry");
+        auto* actor=dynamic_cast<ItemActor*>(&borrowed);
+        if(!actor)throw std::logic_error("Human placed query requires actual type35 owner");
+        return *actor;
+    }
+    template<class Item>void loose_item_timed_effect(Item& actor){ //005B7EC0, actual retained item list, selected offline gate.
+        if((mode_flags()&7u)==7u)return;
+        for(const auto& retained:retained_items_)if(retained.entry==actor.entry())
+            throw std::runtime_error("Retained loose item timed effect requires actual non7 pose/publication receiver005B7DA0");
+    }
+    void damage_loose_item(Instance& borrowed,std::uint32_t kind,float amount,const game::HumanVector& point,const game::HumanVector& direction){
+        if(!registry_.owns(&borrowed))throw std::logic_error("Shot loose item requires SAME live Runtime registry");
+        auto* item=dynamic_cast<LooseItemActor*>(&borrowed);
+        if(!item)throw std::logic_error("Shot type11 requires actual loose item owner");
+        item->damage(kind,amount,point,direction);
+    }
     LooseItemActor* create_loose_item(Frame frame,std::int32_t identity=-1) {
         return static_cast<LooseItemActor*>(registry_.create(11,frame,identity));
     }
@@ -97,6 +120,12 @@ public:
         activation_.publish_mine(identity,human,definition,position,direction);
     }
     bool receive_packet(game::SessionPacketStream& packet,bool authority){return game::receive_runtime_actor_packet(*this,packet,authority);}
+    void disarm_human_action_mine(Instance* actor){
+        if(!registry_.owns(actor))throw std::logic_error("Human completion Mine has no actual live Runtime owner");
+        auto* mine=dynamic_cast<Mine*>(actor);
+        if(!mine)throw std::logic_error("Human pickup completion requires its actual Mine target");
+        mine->disarm(); //005FEEE0:98 clear, command1, fresh mode2 then possible retirement.
+    }
     void receive_runtime_authority(Instance& actor,game::SessionPacketStream&){
         if(actor.base().type()==2||actor.base().type()==12)return; //005FEBA0/005FDCF0 genuine RET4.
         throw std::runtime_error("Required runtime actor authority packet leaf is unavailable");
@@ -188,6 +217,8 @@ public:
         }
     }
     const auto& active_actors() const {return registry_.active_actors();}
+    template<class Predicate>Instance* first_owned_forward(Predicate&& matches)const{return registry_.first_owned_forward(std::forward<Predicate>(matches));}
+    template<class Predicate>bool any_owned_reverse(Predicate&& matches)const{return registry_.any_owned_reverse(std::forward<Predicate>(matches));}
     bool owns(const Instance* actor)const{return registry_.owns(actor);}
     template<class Derived>void tick(bool authority,std::uint32_t elapsed,Derived& derived) {
         registry_.visit_active([&](Instance& actor){

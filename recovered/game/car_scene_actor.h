@@ -2,6 +2,7 @@
 #define HD2_GAME_CAR_SCENE_ACTOR_H
 
 #include "game/scene_actor.h"
+#include "game/actor_material.h"
 #include "game/car_geometry.h"
 #include "game/car_ancillary_model.h"
 #include "game/car_callback_services.h"
@@ -42,6 +43,7 @@ public:
         backend.register_car_actor(this); //0089BC28 list, after cold members/name.
         registered_=true;
     }
+    std::int32_t material(Frame picked)override{return actor_nonnegative_material(this->backend_,picked);} //004DBEE0.
     ~CarSceneActor() override { //004D0F20; no populated-producer cleanup is invented.
         loading.reset(); //Actual runtime borrowers precede DM/geometry/frame retirement.
         ancillary.reset(); //004E0EE0 precedes registry removal.
@@ -75,6 +77,9 @@ public:
     std::unique_ptr<CarLoadingLifetime<Backend>> loading;
     std::vector<SceneActor<Backend>*> occupants;
     SceneActor<Backend>* driver24ac=nullptr; //004D0B60, separate from seat0's current occupant.
+    bool driver_enabled2321=false; //004D11C0 publishes with driver24AC.
+    std::array<bool,4> input_flags2329{}; //Reached004D9430 publications.
+    std::uint32_t control_mask24a8=0; //004D16A0 produces before004D9280 consumes.
     Services& callback_services(){return services_;}
     void restart_clock(){clock2470=services_.car_clock();fields2474[1]=1;} //0073EAC0.
     bool clock_expired(){ //0073EA90 on the actual0073EA50 owner at actor2470.
@@ -94,6 +99,9 @@ public:
     bool flag24a1=false,flag254a=false; //254A reset by actual004D16A0; set by004DBF00.
     std::optional<bool> flag2544; //Actual004DB760 case8 publication; no cold producer is invented.
     std::optional<std::int32_t> source24b0; //Native24B0 is produced by authority activation or actualD4.
+    std::optional<std::int32_t> damage2550,source2554; //Produced by004D16A0/004DD0D0, armed by004DEAD0.
+    Vector target2560{},target2570{}; //004DEB50 publishes before template/factory.
+    bool flag2549=false; //004D16A0/004DD0D0; non7 water request latch.
     std::array<std::vector<std::uint32_t>,2> lists2518;
     std::vector<std::uint32_t> lists2528,lists2538,lists258c,lists259c;
 private:

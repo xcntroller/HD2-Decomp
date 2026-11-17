@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "checkpoint": "H8.2 actual order-to-action leases and HUD marker owner",
+  "base": "31c436e",
+  "branch": "feature/p22-hum-h8",
+  "source_only": true,
+  "H8_complete": false,
+  "desktop_verified": false,
+  "original_or_windows_execution": false,
+  "contract": "analysis/human-h8-order-action-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_active_ai_order_action.h",
+      "bytes": 2756,
+      "sha256": "5d9526ce2f24aef7cc0bb067cc2e7a1cfd8b8f8dfad1f17cd1f6f47068e05766"
+    },
+    {
+      "path": "recovered/game/human_ai_action_pool.h",
+      "bytes": 7663,
+      "sha256": "be4de1240a3795ec03c0583e16fe6e1fdd3194bf5e6c91196bc7eb98028d9857"
+    },
+    {
+      "path": "recovered/game/human_ai_resources.h",
+      "bytes": 14794,
+      "sha256": "3fdd697c9a68b97891b2c59dc0d4da6d7ba42ce927a145911cb8692948b61186"
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "bytes": 15853,
+      "sha256": "3e2b550b201a1a13eee6c8166d332d8bf9f798c79af68fee707c0478944780cd"
+    },
+    {
+      "path": "recovered/game/human_loading_state_factory.h",
+      "bytes": 16389,
+      "sha256": "e9d40f45373dd693531ee8118180be997b57c4ab6821814fdf7dd14009b6c898"
+    },
+    {
+      "path": "recovered/game/hud_order_marker.h",
+      "bytes": 3856,
+      "sha256": "5b60928ee6211781d3e78dea50db902f4432bf91873d7aa277a6d3ce77ded179"
+    },
+    {
+      "path": "recovered/game/hud_command_loading.h",
+      "bytes": 24941,
+      "sha256": "7aa108bd56f04ab62e83c76fbd7729d5ae7299714eb9484fdfee0b143183de07"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 123812,
+      "sha256": "622edf26b90e3b9662cf508b08993f482eabef7531d2f92332bb058ebccf85d1"
+    }
+  ],
+  "verification": {
+    "action_native": "PASS 5900 checks/100 lifetimes; actual action pools/resources/path, explicit Human/target/engine/World endpoint doubles; no pending-order producer or application execution.",
+    "marker_native": "PASS 23500 checks/100 lifetimes; actual HudCommandLoading marker/free-model ownership and helper; engine/HUD-text/Factory/camera endpoints explicit doubles. No World/desktop execution.",
+    "i386": "PASS actual whole Human frame, Scene2 with EMPTY outer Runtime, Active transition and actual World HUD marker acquire/update/return FULL LINK; endpoint Order input explicit; no execution.",
+    "application": "PASS latest launcher/probe rebuild/link only."
+  },
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-action-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-action-native-run.log",
+      "bytes": 173,
+      "sha256": "7614fb0034dc3c5f6789396707ac6c536ca2bf222851745aa6262caa79db6e7a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-marker-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-marker-native-run.log",
+      "bytes": 185,
+      "sha256": "4613a52246fc31d77b864505a93e7c51c6ccb3b51a128eed4f8f87f424b3f710"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-action-host-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-action-application-link.log",
+      "bytes": 820,
+      "sha256": "4530ec338d4304b02ed17d4072db7aa0845c2a4c9006c97a73174cf089d2885e"
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-action-native.cpp",
+      "bytes": 8466,
+      "sha256": "274a5e06d58a4517c7e2cbcdd7ecb913fe74b481a9afc7d0e39210423cab23c7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-action-native",
+      "bytes": 5481880,
+      "sha256": "f19004565860d0a3f0b301badcbe7c66eeef22c863f7cd2794ec1c6d4b7aa85c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-marker-native.cpp",
+      "bytes": 9306,
+      "sha256": "e4bff4c0ac8ebc2947393ede8376f0c360161d9d95dd532f25e4af5476eb26dd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-marker-native",
+      "bytes": 1503800,
+      "sha256": "1d9ce80f7f5273967e59ac6f2abfadaaf6e71d62c551c4cb52b9baafcfc6977b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-action-host-i386.cpp",
+      "bytes": 1207,
+      "sha256": "a7c26707179b87a332a662d6da8446a136a0dee6ed1766ff04ac09c84bed36cf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-order-action-host-i386.exe",
+      "bytes": 8306688,
+      "sha256": "aad39ceaa3cc63fe2ac3e1a372fbea30fd036c16bdafa0cee080255ac0411632"
+    }
+  ],
+  "ledger": {
+    "new_partial_claims": [
+      "0052a1e0",
+      "0055e1d0",
+      "00582920",
+      "00582ad0",
+      "00582b50",
+      "0058b2c0",
+      "0058ac90",
+      "0058ade0",
+      "004b9240",
+      "004b9b10",
+      "004b9080"
+    ],
+    "complete_promotions": 0,
+    "complete": 34,
+    "partial": 3373,
+    "client_partial": 3368,
+    "engine_partial": 5
+  },
+  "remaining": [
+    "Actual process order manager+18 producer, collision-visible marker EC/descriptor and full retirement",
+    "Active250 list insert/update/remove/reset, pending processing and decisions/follow/authority",
+    "Remaining H8.2 offline and H8.3/H8.4 combat/Car/OWN/FRAME/actors",
+    "Full application/render and user desktop acceptance"
+  ]
+}

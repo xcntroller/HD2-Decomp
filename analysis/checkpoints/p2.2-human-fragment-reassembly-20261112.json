@@ -1,0 +1,284 @@
+{
+  "date": "2026-11-12",
+  "base_commit": "1e091a7bf9662fc8ee44c5011c19e0d0a6f9b488",
+  "branch": "feature/p22-hum-h2",
+  "worktree": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h2",
+  "source_only": true,
+  "completed_plan_checkpoints": [
+    "D6b2a"
+  ],
+  "selected_h2_checkbox_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_partial_entries": [
+    "00747cb0",
+    "00747dd0"
+  ],
+  "extended_entries": [
+    "00747a40",
+    "007475b0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 3082,
+  "source_files": {
+    "recovered/frontend/control_connection_fragments.h": {
+      "sha256": "3d432310406cef8021d2587f1ddb6411433e57c25a89e00dcb2bdc0ab2a6fc7e",
+      "bytes": 4744
+    },
+    "recovered/frontend/control_connection_socket.h": {
+      "sha256": "2476befa622ab6ee5cd3cb66334f7c06f61ad9a7a31e99b6758184097dab54bd",
+      "bytes": 11206
+    },
+    "recovered/frontend/control_connection_worker.h": {
+      "sha256": "d77f48bc88cd893d764b5837df3d18d4e381d035dbb94a6792d81c92e16be04e",
+      "bytes": 10236
+    },
+    "recovered/host/control_connection_platform.h": {
+      "sha256": "6d5a135d35d872928045346d8d19008904b41fdfa4715d5d3511764161c28460",
+      "bytes": 4604
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "f1195be2656b67c089f1e777e6b08e4fec04deccf461a960b9ea3ea9de780d8f",
+      "bytes": 70483
+    }
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-h2-fragment-native.cpp": {
+      "sha256": "7bb1509f11919d9c87834e880d3f8486c61e7331999607fe88cdcaf0810aa3d5",
+      "bytes": 12865
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-native": {
+      "sha256": "9a311175d6c08fd66a53dd7a16a176cc330df89734f96967975d8be73699d66a",
+      "bytes": 2632168
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-native.log": {
+      "sha256": "d56db87a3fba99c3b7f0ea80ec92be0091236d7cc74d58c2a5cd0f6b10b23fa4",
+      "bytes": 298
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-worker-regression-native.cpp": {
+      "sha256": "660810446b1b9684aab7e60f18dc171921ea45dec8dafcd218e42e224249c242",
+      "bytes": 19537
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-worker-regression-native": {
+      "sha256": "cdd33900a5f7bebfe3f238bab29105f500b26fc58a8ef9f1f94032dc5cc96ad8",
+      "bytes": 4713800
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-worker-regression-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-worker-regression-native.log": {
+      "sha256": "99eae8063ec1f826ae8e986b14e51c6d97dfa2a6db9cb39f8038e161736a580c",
+      "bytes": 514
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-host-i386.cpp": {
+      "sha256": "5ba7ab1e0df575111a40f565e6ae5a74268ef0553a658297d189aff99bbc96a3",
+      "bytes": 635
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-host-i386.o": {
+      "sha256": "6edf12dfb32b449b376911859ce3d0f05ccf5d1544ad6967f932d6f4f21e17ac",
+      "bytes": 650020
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-launcher-build.log": {
+      "sha256": "7e9252d1406678b33b81e74a22b80ce66dc917f4950fae75cb2f1bc6e630b306",
+      "bytes": 820
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-application_launch.exe": {
+      "sha256": "ad2165e98b7a67bbe3d399d44cd7756481c13149fdcf385978c7be3977ec8683",
+      "bytes": 3932672
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-startup_probe.exe": {
+      "sha256": "66c84033c308aa4ecc4d58f64d836c55e7ace80d91be4632a5ae11d24ea78b55",
+      "bytes": 1135104
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-native.cpp": {
+      "sha256": "b8403f65698cc06854f3bca582a6cfcdb4ddf0b4291bff216f97603503e3ec33",
+      "bytes": 18767
+    }
+  },
+  "evidence_files": {
+    "analysis/work/mission-world-20261103/human-h2-payload-entry-originals/00745130.c": {
+      "sha256": "35898d1d2d35ed208c4d65fdca1a252b35485d2072fc36f3c8d5797ec08330b0",
+      "bytes": 634
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-entry-originals/00745130.json": {
+      "sha256": "fee07cbcd600336285eebc46980a2a96aea40817051f1ba5d747e748d056f55e",
+      "bytes": 1137
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-entry-originals/00745ea0.c": {
+      "sha256": "d77a9e608336b00c9ff346add93f93f0d8068d795562f411a4dbfcd82f0fc34a",
+      "bytes": 997
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-entry-originals/00745ea0.json": {
+      "sha256": "cd671988ffa2a84d4c0d300f0e4543fb44a8abaabfc155f4805bd666a08a6426",
+      "bytes": 2894
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-entry-originals/00747240.c": {
+      "sha256": "fe4f35b87629ebf838f535c03b552b3d544711ceb9749c938ef936eaf0a71fb1",
+      "bytes": 806
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-entry-originals/00747240.json": {
+      "sha256": "a33d0f4cfb75ea911f50522cc593c405fa2f8c0b84d3fd309d196302b63853a8",
+      "bytes": 2511
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-entry-originals/00747dd0.c": {
+      "sha256": "fa7e544f60e79624e2bc694705d24903b7833006766242001d61d8432056d0b3",
+      "bytes": 3236
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-entry-originals/00747dd0.json": {
+      "sha256": "c11b3e45e585f26d8af176eadf52043c0c779e04564e7b2314d753410ceae65f",
+      "bytes": 6340
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00745190.c": {
+      "sha256": "06096f5cc5134f5aacbbd9dd25e23326e0a9f6a4da5a0e78ede28c9e84d53ef2",
+      "bytes": 423
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00745190.json": {
+      "sha256": "6bb8a38581e31d534a18b31cff6fa3c2cfa0a80712bdd1372dbb2a6c198fb536",
+      "bytes": 831
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/007457c0.c": {
+      "sha256": "57fae1bd75ff26485ff6f9685a7c384c1e80aea29b5a93bf93ecb22fbbaa9fde",
+      "bytes": 684
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/007457c0.json": {
+      "sha256": "f041f860346eef265f80a654c77b05958c59c1177d05a714951d6070a473c371",
+      "bytes": 1332
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00745920.c": {
+      "sha256": "e028aebe57c325447cd262d3633ef06048a54bbfc3d289bf60200cb2f9194602",
+      "bytes": 705
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00745920.json": {
+      "sha256": "cbe0cca1a8a0a03e9c3fd48311f0a8a1de340f0d8a560439d8dc01f7e2382b13",
+      "bytes": 1163
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00745f20.c": {
+      "sha256": "553102d43825664fffdd450cb265a5456671f0d5b6931e6d8cb25945079753bd",
+      "bytes": 394
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00745f20.json": {
+      "sha256": "8a0ac6e44acb6aa8a90439ae78ec75077fccdb29a64fc5a78b4fb555f6e4a4ce",
+      "bytes": 1746
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00745fb0.c": {
+      "sha256": "409cf86d3f71017d5b1ccdec3f4fe25b3e0d96d05a14a916602e0027ef34a248",
+      "bytes": 576
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00745fb0.json": {
+      "sha256": "06ecdc30a7e4567c47524f9b116db5bcce1d76ed8f193a6c0698470e7ce76e8a",
+      "bytes": 2215
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00746630.c": {
+      "sha256": "808804b79909de82438782b64963f818596c4b82b75ae064d5fa04edf42c0058",
+      "bytes": 438
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00746630.json": {
+      "sha256": "381f5519b798f17d402c324d45927bf88854dd6141f3ae64c47d17643d73fd8f",
+      "bytes": 1652
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00747cb0.c": {
+      "sha256": "9891d1b43ffe22f8d05a29bf11374fbcde0465615cc5b3b31d78be3072ec5cc9",
+      "bytes": 1337
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00747cb0.json": {
+      "sha256": "af140cfab5aa608b6b27fc2b981c7ee40345254aaab9336548ff2b4b24a9e08b",
+      "bytes": 3508
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00748580.c": {
+      "sha256": "f8df11b6b08fc0b17168c0fe15aeeca7e65ba58f4b2808cc8409e4cd33b93b54",
+      "bytes": 3488
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00748580.json": {
+      "sha256": "8b3e25d718223c60f9263d6b77ebda421ad9f5445600c7810942a3734aee085f",
+      "bytes": 4911
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00748760.c": {
+      "sha256": "b06fa0ce3bdf2e7525f40fad1a80d3bc7e9a0f5ba92ccdecf9351a4261c2e31b",
+      "bytes": 707
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/00748760.json": {
+      "sha256": "10feda4d6add6c8350014a30be26e1890e473c936f42c51321e8849a6c47185b",
+      "bytes": 935
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/007487e0.c": {
+      "sha256": "68a1df5066b4eb39b668d0cf11ae312aca84fb048904188b7043b836099efa32",
+      "bytes": 2427
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-originals/007487e0.json": {
+      "sha256": "0c55dd83ca2c1283c32ad2d2f1ffdde77ba790e5e621bf42041672030af87167",
+      "bytes": 2805
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00747a40.c": {
+      "sha256": "d0d492bde2ea2664b043c5751c26f0424ab2f53550cec752f7fb36c30f22a31e",
+      "bytes": 3181
+    },
+    "analysis/work/mission-world-20261103/human-h2-worker-io-originals/00747a40.json": {
+      "sha256": "29b757780209de5604311d4ecd66a75352142a7922d576047c832ef470c84767",
+      "bytes": 9010
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-chain.asm": {
+      "sha256": "a3e8f0c464c8986689f1e4e5162a6adcb94dcc725f1962dd9c36aeae9c5b6270",
+      "bytes": 16595
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-sort.asm": {
+      "sha256": "25ea4b4ebf91a1fab75b926068584e98a723c8e94d55e1649d711237aa6f5469",
+      "bytes": 9555
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-entry-ghidra.log": {
+      "sha256": "fe481bbdd359df4d306c8e97353e97037d6f4f85f24338c3530c473ca6c9a2df",
+      "bytes": 6092
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-owners-ghidra.log": {
+      "sha256": "df3f2fa7e10dfbb002644f95fd27666f4ef3b44d6a01d4f1ab416f0de508b5bb",
+      "bytes": 5453
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-helper-index.txt": {
+      "sha256": "73629b0f5b7533057d0497bb1644b4e8f655cd8b7a3c33c463b8ef5b09c99a28",
+      "bytes": 9998
+    },
+    "analysis/work/mission-world-20261103/human-h2-payload-queue-index.txt": {
+      "sha256": "ebca3d33b70e4eab70b1d9545d2afd521fde5e3aaa6ec6f3a9bfb888d3493e8c",
+      "bytes": 19603
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-storage-index.txt": {
+      "sha256": "7f427759c31521f159b882432cf31a928c6f0e0bc36eb7f3f1bf7a2bb36b9043",
+      "bytes": 3237
+    },
+    "analysis/work/mission-world-20261103/human-h2-fragment-scheduling-observation.txt": {
+      "sha256": "e89749d9bcd7a54e77eaa7834624b50f075ccdcc749462a341630f9b7fea8500",
+      "bytes": 475
+    }
+  },
+  "verification": {
+    "fragment_native": "PASS100 ASan/UBSan/LSan families, six actual source socket round trips each; explicit OS doubles; source callback threads.",
+    "worker_regression": "PASS100 worker families/200 same-worker start-reset cycles plus actual worker callback reassembled ACK on SAME client; explicit OS doubles.",
+    "strict_i386": "PASS actual StartupSession worker and socket receive instantiation; compile only.",
+    "launcher_probe": "PASS sequential make -j1 compile/link only; frozen dedicated executable snapshots."
+  },
+  "limits": [
+    "Typed vector/RAII/checked-buffer adaptation, not original record/pool/allocator/SEH ABI equivalence.",
+    "Native expiration/vector destruction leaks displaced payload buffers; portable owners release them. Native irrelevant logical-end id probe is bounded.",
+    "Assembly overflow retains per-record copy/erase prefix and then fails, rather than overwriting32768-byte buffer. Truncated metadata fails after receive/counter/checksum.",
+    "Source event scheduling unchanged: initial rapid per-send wake audit timed out; deterministic source drain isolates golden fragment checks. No event barrier added.",
+    "00745520 absent in first Ghidra batch: explicit ERROR despite exit0, four exports retained, no new credit. Absent00747C90 and delegated generic sort/record/allocator helpers receive no new credit.",
+    "D6b2b payload/queue/order, D6b2c DirectPlay/current-application composition and D5/D7-D12 remain open; D11 genuine producers unchanged. No Windows/original/live network/World/desktop execution."
+  ],
+  "temporary_audits_removed": [
+    "analysis/work/mission-world-20261103/human-h2-fragment-native.cpp",
+    "analysis/work/mission-world-20261103/human-h2-fragment-native",
+    "analysis/work/mission-world-20261103/human-h2-fragment-worker-regression-native.cpp",
+    "analysis/work/mission-world-20261103/human-h2-fragment-worker-regression-native",
+    "analysis/work/mission-world-20261103/human-h2-fragment-host-i386.cpp",
+    "analysis/work/mission-world-20261103/human-h2-fragment-host-i386.o"
+  ]
+}

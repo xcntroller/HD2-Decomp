@@ -3,25 +3,41 @@
 
 #include "game/human_ai_state_loading.h"
 #include <optional>
+#include "game/human_active_ai_grenade.h"
+#include "game/human_active_ai_presentation.h"
+#include "game/human_active_ai_order_action.h"
+#include "game/human_active_ai_orders.h"
+#include "game/human_active_ai_task_state.h"
+#include "game/human_active_ai_commands.h"
+#include "game/human_active_ai_pending.h"
+#include "game/human_active_ai_task_completion.h"
+#include "game/human_active_ai_follow_frame.h"
+#include "game/human_active_ai_frame_policy.h"
+#include "game/human_active_ai_events.h"
+#include "game/human_active_ai_authority_prefix.h"
+#include "game/human_active_ai_avoidance.h"
+#include "game/human_active_ai_authority_body.h"
+#include "game/human_active_ai_occupied.h"
 
 namespace hd2::game {
 
 //00524C60/00524E70/00525110, actual initial offline B0kind3. Equipment selection
 //00530D40/00530A40 use the SAME typed inventory owner. Players/Speech and
 //0089AC30 consumers are mandatory Services methods.
-//Runtime task/formation producers are not exposed by this loading owner.
+//Runtime authority decisions remain separate from the actual pending-order owner.
 template<class Frames,class Human,class Inputs,class Services>
 class HumanActiveAIStateLoading : public HumanAIStateLoading<Frames,Human,Inputs> {
 public:
     void sight_enemy_killed(Human&)override{} //005A4350, genuine RET4 Active AI, absent frozen.
     using AI=HumanAIStateLoading<Frames,Human,Inputs>;using Base=typename AI::Base;
+    using OrderPool=HumanAIOrderPool<Frames,SceneActor<Frames>>;using Order=typename OrderPool::Order;
     HumanActiveAIStateLoading(Frames& frames,Inputs& inputs,MissionTableSet& second,
-            HumanInputCallbacks& callbacks,HumanAIAction1Pool& actions,Services& services)
+            HumanInputCallbacks& callbacks,HumanAIActionPools& actions,Services& services)
         :AI(frames,inputs,second,callbacks,3),actions_(actions),services_(services) {
         for(auto offset:{0x204u,0x209u})state_.set(offset,std::uint8_t{0});
         for(auto offset:{0x202u,0x206u})state_.set(offset,std::uint8_t{1});
         for(auto offset:{0x214u,0x218u})state_.set(offset,std::uint32_t{0});
-        //Native224 task/250 list pointers are typed guards, with no producers here.
+        //Native224 task and250 list pointers live in separate typed borrowers/owners.
     }
     template<class Inline>void bind(Human& human,const Base* previous,MissionNavigation* navigation,
             std::uint32_t mode,Inline& control) {
@@ -67,19 +83,112 @@ public:
         reset_action();state_.set(0x184,std::int32_t{-1}); //0052A3B0(NULL).
         const auto matrix=this->state_frames().actor_world_matrix(human.base().frame());
         const HumanVector position{{matrix[12],matrix[13],matrix[14],matrix[15]}};
-        this->resources().current_action(actions_.acquire(position,0xffff,15.f,this->target_direction()));
+        this->resources().current_action(actions_.kind1.acquire(position,0xffff,15.f,this->target_direction()));
         state_.set(0x19c,std::uint32_t{0});state_.set(0x198,std::uint32_t{0});refresh_action_mode();
         control.look_command(0,nullptr);
     }
     void close_loading() { //00525110; AI close before virtual128(0), then clear Human44.
         AI::close_loading();reset_orders_loading();this->clear_human_reference();
     }
-    void reset_orders_loading() { //0052EF20(0); actual250 list has no loading producer.
-        state_.set(0x1bc,static_cast<std::uint32_t>(services_.game_frame_serial()+1u));
-        auto& query=this->resources().query().state;query.set(0x50,query.template get<std::uint32_t>(0x50)|0x2000u);
-        this->resources().path().stop_loading();
-        state_.set(0x202,std::uint8_t{1});state_.set(0x206,std::uint8_t{1});state_.set(0x18d,std::uint8_t{0});
+    void reset_orders_loading(bool append_hold=false){orders_.reset(*this,append_hold,services_);} //0052EF20, SAME actual250 owner;005A5E90 passestrue.
+    bool append_pending_order(typename OrderPool::Lease order){return orders_.append(*this,std::move(order),services_);}
+    bool insert_pending_order_after(typename OrderPool::Lease order,std::int32_t index){return orders_.insert_after(*this,std::move(order),index,services_);}
+    void update_pending_order(std::size_t index,const Order& delta){orders_.update(*this,index,delta,services_);}
+    void retire_pending_order(std::size_t index,bool hold){orders_.retire(*this,index,hold,services_);}
+    auto& pending_orders(){return orders_.records();}const auto& pending_orders()const{return orders_.records();}
+    Order& first_pending_order(){return orders_.records().empty()?orders_.retained_first():orders_.at(0);}
+    void pending_second_mode(unsigned mode){set_second_mode(mode);} //00538550.
+    void pending_posture(std::uint32_t posture){
+        auto* human=this->human();if(!human)throw std::logic_error("Active pending posture lost Human44");
+        this->request_navigation_posture(posture,services_.human_inline(*human),services_.mode_flags());
     }
+    void pending_clear_item_ready(){
+        auto* human=this->human();if(!human)throw std::logic_error("Active move task lost Human44");
+        services_.clear_script_formation_item_ready(*this,services_.human_inline(*human));
+    }
+    HumanVector pending_model_position(){
+        auto* human=this->human();if(!human)throw std::logic_error("Active move task lost Human44");
+        const auto matrix=this->state_frames().actor_world_matrix(human->base().frame());return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    }
+    bool advance_pending_task(std::uint32_t elapsed){return advance_human_active_pending_task(*this,elapsed);}
+    bool advance_pending_retreat(){return advance_active_retreat_task(*this,this->state_frames(),services_);}
+    HumanVector pending_task_forward(){
+        auto* human=this->human();if(!human)throw std::logic_error("Active task forward lost Human44");
+        const auto matrix=this->state_frames().actor_world_matrix(human->base().frame());return {{matrix[8],matrix[9],matrix[10],matrix[11]}};
+    }
+    auto pending_task_turn_gate(){return services_.formation_direction_gate(*this->human());}
+    bool pending_target_arrived(){return active_task_target_arrived(*this,task_target,this->state_frames(),services_);}
+    bool pending_task_effect_ready(){return services_.active_task_effect_ready(*this);}
+    unsigned prepare_pending_task_attachment(){return prepare_active_task_attachment(*this,services_);}
+    bool select_pending_entry_seat(std::uint32_t& seat){return select_active_task_entry_seat(*this,services_,seat);}
+    bool advance_pending_car_entry(std::uint32_t seat){return advance_active_task_car_entry(*this,seat,this->state_frames(),services_);}
+    bool pending_loot_effect(std::uint32_t action){return services_.active_task_loot_effect(*this,action);}
+    void pending_pickup_effect(std::uint32_t kind){services_.active_task_pickup_effect(*this,kind);}
+    void reproduce_pending_pickup(){produce_active_pickup_task(*this,*task_target,this->state().template get<std::uint32_t>(0x210),this->state_frames(),services_);}
+    bool pending_task_target_unavailable(){
+        require_live_task_target();if(!task_target)throw std::runtime_error("Active task completion dereferences native NULL224");
+        return services_.active_task_actor_unavailable(*task_target);
+    }
+    auto pending_ranged_animation_duration(){return services_.human_grenade_animation_duration((~this->words().template get<std::uint32_t>(0x50)>>2)&1u);}
+    void reject_pending_task(){services_.queue_active_ai_speech(*this,0x68u,true,300u,false);}
+    void execute_pending_task_command(std::uint32_t action,std::int32_t identity,std::uint32_t value){services_.execute_active_task_command(*this,action,identity,value);}
+    bool start_pending_task_effect(){return start_active_task_effect(*this);}
+    void notify_pending_group(){services_.active_task_group_arrival();}
+    void advance_follow_frame(){advance_human_active_follow(*this,this->state_frames(),services_);}
+    void expire_frame_modes(std::uint32_t elapsed){
+        expire_active_mode(state_,0x1b4,0x1cc,elapsed);expire_active_mode(state_,0x1b8,0x1d4,elapsed);
+    }
+    void select_frame_navigation_gait(bool following){select_active_navigation_gait(*this,following,services_);}
+    void select_frame_direction_preset(){select_active_direction_preset(*this,this->state_frames(),services_);}
+    void advance_frame_self_treatment(){advance_active_self_treatment(*this,services_);}
+    void drain_frame_events(){drain_active_frame_events(*this,this->state_frames(),services_);}
+    unsigned active_event_mode()const{
+        if(!action_mode_)throw std::runtime_error("Active F4 requires actual initialized action mode1D8");
+        return *action_mode_;
+    }
+    void active_event_action_mode(unsigned mode){set_action_mode(mode);}
+    template<class Queries>auto begin_authority_frame(std::uint32_t elapsed,Queries& queries){return begin_active_authority_frame(*this,elapsed,queries,services_);}
+    void clamp_frame_avoidance(HumanVector& position,bool enabled,const HumanVector& original){services_.active_avoidance_clamp(position,enabled,original);}
+    void avoid_frame_position(const HumanVector& position,const HumanVector& direction,bool blend,bool check_angle){avoid_active_position(*this,position,direction,blend,check_angle,services_);}
+    void avoid_selected_player(){avoid_active_selected_player(*this,services_);}
+    template<class Inline,class Runtime>void advance_onfoot_navigation(std::uint32_t elapsed,bool following,Inline& control,Runtime& runtime){advance_active_onfoot_navigation(*this,elapsed,following,this->state_frames(),control,services_,runtime);}
+    void advance_onfoot_target_policy(std::uint32_t elapsed,bool following){
+        advance_active_aim_policy(*this,elapsed,following,services_);
+        advance_active_movement_policy(*this,elapsed,following,this->state_frames(),services_);
+    }
+    template<class Inline,class Runtime>void advance_authority_continuation(std::uint32_t elapsed,bool following,Inline& control,Runtime& runtime){ //00526550 after the SAME completed prefix.
+        auto* human=this->human();if(!human)throw std::logic_error("Active authority continuation lost Human44");
+        const auto validate=services_.human_common_receiver_guard(*human);
+        const bool controlled=human->field160&&services_.human_pose_actor_has_control(human->field160,human->field164);
+        bool occupied=false;
+        if(human->field160){const auto kind=human->field160->base().type();occupied=kind==4||kind==20||kind==21||kind==34;}
+        if(!occupied){advance_onfoot_navigation(elapsed,following,control,runtime);advance_onfoot_target_policy(elapsed,following);finish_onfoot_authority(elapsed,control,runtime);return;}
+        if(controlled){advance_active_mounted_authority(*this,elapsed,control,this->state_frames(),services_);validate();}
+        services_.human_attachment_frame_inputs(*this);validate();
+        if(services_.advance_script_vehicle_path(*this,elapsed))state_.set(0x200,std::uint8_t{1});
+        validate();
+        if(!controlled){advance_active_aim_policy(*this,elapsed,following,services_);validate();advance_active_movement_policy(*this,elapsed,following,this->state_frames(),services_);validate();}
+        finish_active_onfoot_authority(*this,elapsed,control,services_,runtime,controlled);
+    }
+    void saved_frame_position(bool enabled,const HumanVector& position){set_active_saved_position_mode(*this,enabled,position,services_);} //005382D0.
+    template<class Inline,class Runtime>void finish_onfoot_authority(std::uint32_t elapsed,Inline& control,Runtime& runtime){finish_active_onfoot_authority(*this,elapsed,control,services_,runtime);}
+    void complete_pending_task(std::uint32_t action){complete_human_active_task(*this,action,services_);}
+    void require_live_task_target()const{if(task_target_retired_)throw std::runtime_error("Active task requires its retired-target event policy");}
+    bool process_pending_orders(std::uint32_t elapsed){return process_human_active_pending_orders(*this,elapsed,this->state_frames(),services_);}
+    bool orders_recently_changed()const{return orders_.recently_changed(*this,services_);}
+    void append_hold_order(const HumanVector& position,const HumanVector& direction){orders_.hold(*this,position,direction,services_);}
+    void initialize_task(SceneActor<Frames>* target,std::uint32_t action,const HumanVector& position,const HumanVector& direction,bool enabled,float radius){
+        initialize_human_active_ai_task(*this,target,action,position,direction,enabled,radius);task_target_base_=target?&target->base():nullptr;task_target_retired_=false;
+    }
+    void retire_action_target_base(const void* base)noexcept override{
+        AI::retire_action_target_base(base);orders_.retire_actor_base(base);
+        if(task_target_base_&&task_target_base_==base){task_target=nullptr;task_target_base_=nullptr;task_target_retired_=true;}
+    }
+    void cancel_task(){cancel_human_active_ai_task(*this,services_);}
+    void regroup(bool reset){regroup_human_active_ai(*this,reset,services_);}
+    void enable_follow(bool immediate){set_follow(true,immediate);}
+    void pending_first_mode(unsigned mode){set_first_mode(mode);} //00538510, same state/mode timers.
+    void refresh_pending_action_mode(){refresh_action_mode();} //00538640.
     void sight_enemy_acquired(Human& actor) override { //0052E5B0: shared event FIRST, before Players/Speech.
         this->emit_sight(actor,0);
         auto* human=this->human();if(!human)throw std::logic_error("Active AI sight has no Human");
@@ -98,6 +207,12 @@ public:
     bool scene_movement_enabled()const override{ //00532880.
         return !(state_.template get<std::uint32_t>(0x174)&1u)&&AI::scene_movement_enabled();
     }
+    void advance_active_presentation(std::uint32_t elapsed){
+        present_human_active_ai(*this,elapsed,this->state_frames(),services_);
+    }
+    template<class Order,class Orders>void activate_pending_order(const Order& order,const Orders& pending){
+        activate_human_ai_order(*this,order,pending,actions_,this->state_frames(),services_);
+    }
     std::uint32_t derived_loading_word(unsigned offset)const override {
         if(offset!=0x174&&offset!=0x1d8)throw std::runtime_error("Unrecovered active AI handover word");
         if(offset==0x1d8&&!action_mode_)throw std::runtime_error("Active AI action mode has no native initializer");
@@ -108,11 +223,11 @@ public:
     void disable_follow_loading(bool immediate){set_follow(false,immediate);} //005377F0, same actual state.
     bool process_available()const{return state_.template get<std::uint8_t>(0x202)!=0;}
     bool has_pending_orders_loading()const {
-        //Native250/254/258 have no populated loading producer yet. Reject raw
-        //writes instead of treating an unknown pointer as an empty order list.
+        //Native250/254/258 are represented by orders_. Reject raw pointer
+        //writes instead of consulting a second list or unknown DWORD owner.
         for(auto offset:{0x250u,0x254u,0x258u})if(state_.template get<std::uint32_t>(offset))
             throw std::runtime_error("Active AI populated orders require their actual typed producer");
-        return false;
+        return !orders_.records().empty();
     }
     typename Base::PlayerHandover player_handover()const override {
         if(!action_mode_)throw std::runtime_error("Active AI handover has no native initialized action mode");
@@ -120,6 +235,11 @@ public:
         const auto action=*action_mode_==0?12u+unsigned(alternate):*action_mode_==1?16u+unsigned(alternate):
             *action_mode_==2?14u+unsigned(alternate):12u; //005385F0, virtual148.
         return {state_.template get<std::uint32_t>(0x174),alternate||state_.template get<std::uint8_t>(0x188)!=0,action}; //00524E00/005385D0.
+    }
+    void first_player_shot(){ //00459360: direct1D8 store, NOT005380C0's broader side effects.
+        if(!action_mode_)throw std::runtime_error("First Player shot requires the actual initialized active-AI mode");
+        if(*action_mode_!=0)return;
+        action_mode_=1;state_.set(0x1d8,1u);refresh_action_mode();
     }
     void notify_nearby_player_damage(){ //0045F110, only prior14/15 modes change.
         const auto action=player_handover().action;
@@ -130,6 +250,7 @@ public:
         if(action==12||action==14)set_action_mode(16);
         else if(action==13||action==15)set_action_mode(17);
     }
+    void react_to_grenade(const HumanVector& position,const HumanVector& direction,Human* source){react_human_active_ai_grenade(*this,position,direction,source,services_);} //00530FF0.
     auto& state(){return state_;}const auto& state()const{return state_;}
     std::int32_t hud_first_mode()const override { //00538590, virtual13C: pending1CC unless-1, else current1C8.
         const auto pending=state_.template get<std::int32_t>(0x1cc);
@@ -167,17 +288,18 @@ public:
             state_.set(0x1a0,std::uint32_t{4000});inventory.select_weapon(selected,slot);
         }
     }
+protected:
+    void observe_active_posture_name()override{
+        auto* human=this->human();if(!human)throw std::logic_error("Active posture requires Human44");
+        services_.active_posture_debug_name(*human);
+    }
 private:
     bool weapon_command_blocked()const {
         return this->words().template get<std::int32_t>(0x64)>0&&this->words().template get<std::int32_t>(0x60)!=-1;
     }
     static std::int32_t signed_health(const Human& human){const auto bits=human.properties.stats_ec[0];std::int32_t result;std::memcpy(&result,&bits,4);return result;}
     void reset_action(){this->resources().retire_current_action();} //00575820.
-    void set_follow(bool enabled,bool immediate) { //005377F0(false,...) loading branch.
-        if(enabled)throw std::runtime_error("Active AI follow requires actual formation/runtime orders");
-        state_.set(0x188,std::uint8_t(immediate));state_.set(0x189,std::uint8_t{0});
-        state_.set(0x1b0,std::uint32_t{0});state_.set(0x160,this->current_direction());set_first_mode(immediate?3:2);
-    }
+    void set_follow(bool enabled,bool immediate){follow_human_active_ai(*this,enabled,immediate,services_);} //005377F0.
     void set_first_mode(unsigned value) { //00538510.
         if(value<16)state_.set(0x1c8,static_cast<std::uint32_t>(value));
         else if(value<20){state_.set(0x1cc,static_cast<std::uint32_t>(value));state_.set(0x1b4,std::uint32_t{2000});}
@@ -218,7 +340,8 @@ private:
             throw std::runtime_error("Special-hand check requires actual Human inventory owner");
         return human->loading_inventory->special_hand_item(this->item());
     }
-    HumanAIAction1Pool& actions_;Services& services_;HumanJointWords<0x260> state_;std::optional<std::uint32_t> action_mode_;
+    HumanAIActionPools& actions_;Services& services_;HumanJointWords<0x260> state_;std::optional<std::uint32_t> action_mode_;
+    HumanActiveAIOrders<OrderPool> orders_;const void* task_target_base_=nullptr;bool task_target_retired_=false;
 };
 } //namespace hd2::game
 #endif
