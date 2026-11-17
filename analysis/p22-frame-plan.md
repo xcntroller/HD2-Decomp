@@ -1,5 +1,13 @@
-# P22-FRAME implementation plan — still blocked,2026-11-13
+# P22-FRAME implementation plan — integration active,2026-11-17
 
+
+Current source is H824c7310 on feature/p22-frame. The old review below is
+revision-qualified history: Active/timed-motion/physics and authorized5F9 phase0
+source now exists. The concrete session coordinator composes with current Human
+World/Runtime. [Actual HUD input operations](p22-frame-live-input-source.md) now
+bind the three UI queries/filter; actual i386 and native checks pass. OWN external
+adapter installation and selected conditional/application verification remain.
+Do not restart the obsolete54-missing-body audit or unselected Dog research.
 
 [Current reassessment](p22-frame-dependency-review-20261113.md),
 [exact source evidence](p22-frame-dependency-review-20261113.json): PACK effects,

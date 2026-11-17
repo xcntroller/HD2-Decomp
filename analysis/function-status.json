@@ -51052,6 +51052,45 @@
         "analysis/human-h8-frame-integration-source.md",
         "analysis/checkpoints/p2.2-human-h8-frame-integration-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0049fc10",
+      "status": "partial",
+      "coverage": "Actual ordinary roll2F30 then signals2E80 gate; ordered ten native scan consumptions through SAME Startup BindingInputViews, with caller/manager pair provenance and no input reads behind a closed gate.",
+      "limitations": "Source-only typed C++ ownership/ABI; native panel and input endpoints labelled, actual containing World/UI/session i386 and launcher compile/link only. Native class/vtable/SEH equivalence and engine/application/desktop execution excluded. No delegated engine or containing-session completion credit.",
+      "evidence": [
+        "recovered/game/hud_session_input.h",
+        "recovered/host/game_ui_presentation.h",
+        "analysis/p22-frame-live-input-source.md",
+        "analysis/checkpoints/p22-frame-live-input-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049f090",
+      "status": "partial",
+      "coverage": "HUD flags0C bit1, actual nullable map108FC and visible bit in native short-circuit order; center108F8 is not substituted.",
+      "limitations": "Source-only typed C++ ownership/ABI; native panel and input endpoints labelled, actual containing World/UI/session i386 and launcher compile/link only. Native class/vtable/SEH equivalence and engine/application/desktop execution excluded. No delegated engine or containing-session completion credit.",
+      "evidence": [
+        "recovered/game/hud_session_input.h",
+        "recovered/host/game_ui_presentation.h",
+        "analysis/p22-frame-live-input-source.md",
+        "analysis/checkpoints/p22-frame-live-input-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049d300",
+      "status": "partial",
+      "coverage": "Native short-circuit command10B20 visibility, required inventory34 visibility, then SAME message10315 editing byte.",
+      "limitations": "Source-only typed C++ ownership/ABI; native panel and input endpoints labelled, actual containing World/UI/session i386 and launcher compile/link only. Native class/vtable/SEH equivalence and engine/application/desktop execution excluded. No delegated engine or containing-session completion credit.",
+      "evidence": [
+        "recovered/game/hud_session_input.h",
+        "recovered/host/game_ui_presentation.h",
+        "analysis/p22-frame-live-input-source.md",
+        "analysis/checkpoints/p22-frame-live-input-20261117.json"
+      ]
     }
   ]
 }

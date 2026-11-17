@@ -6,6 +6,7 @@
 #include "host/borrowed_input.h"
 #include "game/hud_crosshair_visibility.h"
 #include "game/hud_signal_actions.h"
+#include "game/hud_session_input.h"
 #include "game/hud_vehicle_presentation.h"
 #include "game/hud_inventory_presentation.h"
 #include "game/hud_command_presentation.h"
@@ -251,6 +252,15 @@ public:
         require_open();ConsoleQueries queries{*this,actions};game::ConsoleCommandDispatch worker(d_.startup.game_console_variables(),queries);return worker.command(index,input,capacity);
     }
     void advance_hud(std::uint32_t elapsed,const GameUiHudFrameSources& sources={}){require_open();HudFrameQueries queries{*this,sources};d_.hud.update_loading(elapsed,queries);} //0049BD50, no World/camera simulation.
+    void filter_hud_input(std::uint32_t* first,std::uint32_t* second){
+        require_open();SessionInputQueries queries{*this};
+        game::filter_hud_session_input(queries,[&](std::uint32_t scan){
+            input::BindingInputViews views(d_.startup.presentation_input_bindings(),first,second,64);
+            views.consume_scan(scan);
+        });
+    }
+    bool hud_nonoffline_input_blocked(){require_open();SessionInputQueries queries{*this};return game::hud_nonoffline_input_blocked(queries);}
+    bool hud_player_input_blocked(){require_open();SessionInputQueries queries{*this};return game::hud_player_input_blocked(queries);}
     void process_hud_controls(const GameUiHudControlSources& sources,std::uint32_t* first,std::uint32_t* second,std::size_t count){
         require_open();if(!parent_.hud()->flags)return;if(!first||!second||count<64)throw std::invalid_argument("HUD controls require original containing64-word input pair");
         DialogInput input{d_.startup.presentation_input_bindings(),backend_.presentation_input(),first,second,count};HudControlQueries queries{*this,sources,first,second,count};game::HudControls worker(input,queries);worker.run();
@@ -1109,6 +1119,18 @@ private:
         void swap_weapon(Human& human,Entry current,Entry selected,unsigned slot){auto& items=ui.d_.world_actors.items();(void)items.runtime_item(current);(void)items.runtime_item(selected);commands.swap(human,current,3,human,selected,slot);}
         void hide_selector(){ui.show_weapon_selector(false);}
         void layout_selector(){auto* current=ui.d_.first_players.current_player();if(!current)throw std::logic_error("Selector controls require actual current Human for layout");ui.require_actor_borrower(current);ui.world_.owners().hud_panels().selector().layout(*current,ui.d_.world_actors.items());}
+    };
+    struct SessionInputQueries{
+        GameUiPresentation& ui;
+        auto& panels(){return ui.world_.owners().hud_panels();}
+        std::uint32_t hud_flags(){return ui.parent_.hud()->flags;}
+        bool roll_active(){return panels().dialogs().roll().flag30!=0;}
+        bool signals_active(){return panels().dialogs().signals_active();}
+        bool map_present(){return panels().map().map()!=nullptr;}
+        bool map_visible(){return ui.d_.scene.frames().hud_frame_visible(panels().map().map());}
+        bool command_visible(){return panels().command().visible();}
+        bool inventory_visible(){const auto root=panels().inventory().root();if(!root)throw std::logic_error("Session input requires actual inventory34 artwork");return ui.d_.scene.frames().hud_frame_visible(root);}
+        bool message_editing(){return panels().messages().state().flagd385!=0;}
     };
     struct HudControlQueries{
         using Human=world_loading::Human;using Actor=GameSceneActors::Instance;
