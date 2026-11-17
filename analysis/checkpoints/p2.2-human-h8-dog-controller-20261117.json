@@ -1,0 +1,281 @@
+{
+  "date": "2026-11-17",
+  "base_commit": "2574a20",
+  "source_only": true,
+  "h8_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-dog-controller-source.md",
+  "new_partial_client_bodies": [
+    "005cb190",
+    "005cb0d0",
+    "005ce5d0",
+    "005ce630",
+    "005ce650",
+    "005d5890",
+    "005d5b80",
+    "005cf0a0",
+    "005cf6c0",
+    "005cd720",
+    "005cd690",
+    "005cb500",
+    "005cb610",
+    "005cb9b0",
+    "005cde60",
+    "005cdf30",
+    "005ce6e0",
+    "005cdf90",
+    "005ce4c0",
+    "005cb410",
+    "005cb000",
+    "005cef90",
+    "005223d0",
+    "00522470",
+    "005cbe60"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_controller_lifetime.h",
+      "bytes": 2097,
+      "sha256": "5a0a2934083992ce74dbfbb0c4ea283da950e11c6e3b20d225853dc53eaf936c"
+    },
+    {
+      "path": "recovered/game/dog_controller_vector.h",
+      "bytes": 783,
+      "sha256": "aa9f1c48c9fa488cf44aaef027ffb9a51b4a226f57d89343b31970c910b1d917"
+    },
+    {
+      "path": "recovered/game/dog_controller_process.h",
+      "bytes": 3177,
+      "sha256": "2718944e8b17fb004b9d4d6aa7d5e949b351693b182006d60d18b5d3cf5c737f"
+    },
+    {
+      "path": "recovered/game/dog_ai_controller.h",
+      "bytes": 11929,
+      "sha256": "5eaee425082cc444c447800abe11d34161ae96408a98952d70418e9a4149632d"
+    },
+    {
+      "path": "recovered/game/dog_route_geometry.h",
+      "bytes": 3764,
+      "sha256": "7567cac9e1ecde727920db3189a3e3ffa11aebf46f768512c01b5fb1365de611"
+    },
+    {
+      "path": "recovered/game/mission_navigation.h",
+      "bytes": 35803,
+      "sha256": "8d37a90a56a3904fe3c624b18a8943c0b889ea6f23cf810fdbba860f73048e05"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 304982,
+      "sha256": "9a8e57f44b26cdfe8017b4f5d30293172ba28fda994e9c2160fdc0d75bb1bf2d"
+    },
+    {
+      "path": "recovered/game/mission_script_actor_bindings.h",
+      "bytes": 3624,
+      "sha256": "cd482526dfd1ef957116f86b38476fac4e177069491fffb7afdbfafc591dbdff"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 129867,
+      "sha256": "54fa8f1d746cf0dc9ac5d7dbc1023ea9a33d7059dec6d00dd7155dd567c37dd4"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 72542,
+      "sha256": "84799d1eafa2e1b1e1ce69c796773a839b40575e8f7127abcc041a0da7fd7b64"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-bind-retire.asm",
+      "bytes": 5446,
+      "sha256": "35889b29e07d76b8b7428b651d50ca20ffad28c6dd222695e942ef700eece682"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-speed-damage.asm",
+      "bytes": 5570,
+      "sha256": "ef10e4e823a5d062a9f126afc7567fd659619867770578eba8eb617375672ecd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-move.asm",
+      "bytes": 1439,
+      "sha256": "8bc5256dc7a8ebc1017adc3bc7b59dbcab2a0bba3b97c59fd26efbda5791ee45"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller5-damage-sight.asm",
+      "bytes": 2586,
+      "sha256": "fe0732bba0cef6aaf2d0beb14f31bde438c37e559d9f732db630a9683e1622e2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-route-close.asm",
+      "bytes": 2564,
+      "sha256": "321e37511c7fd8f8062080bba47a6d6dba9f30c7c1d6a81ebac9942f9dafd220"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-route-pool.asm",
+      "bytes": 5307,
+      "sha256": "004128eb6797cd8609924ecef2be7262c9681c41c79339c5e9c5cde9693b9abf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-route-point-pool.asm",
+      "bytes": 5947,
+      "sha256": "d71e606f2da1f541fc64b445f5081479919a998807e86a7f9db52381ae9b8925"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-route-pool-init-candidate.asm",
+      "bytes": 4682,
+      "sha256": "20d9c802bf141d32e0614be63d2a3a937e99fc09b8ca2b794721f49f09adb0e7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-follow-position.asm",
+      "bytes": 3126,
+      "sha256": "1e57d316f6bb22da213bd81c1af51d19ba75f0dccda4530f4ab80aeffd0b9926"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-follow-path-request.asm",
+      "bytes": 5275,
+      "sha256": "9029f2b5b7b80aa36b3053a498f2a304aedcd1a759f5a33d7db930010944d37d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-path-builder.asm",
+      "bytes": 16883,
+      "sha256": "0c28852669542584c650125a792e9474831a3a07d875b298ee1fe8cecea4df4d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-path-smoothing.asm",
+      "bytes": 18785,
+      "sha256": "0732ee7b7d1b006a2c626f67c1286ca54c4ebc730743948e6103b415221f8372"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-nav-search.asm",
+      "bytes": 23386,
+      "sha256": "09e766ae84a294342ebd3c7826805890ef8bd1939df2b4436d36cde747a114f9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-nav-edge-policy.asm",
+      "bytes": 3210,
+      "sha256": "c95451346ebac9513a3dd46939c1815d2ce138910d9be346ba8d604d66f8c750"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-paths-export.log",
+      "bytes": 5683,
+      "sha256": "f5901d1c92e4c28bb21f84e1afeca33f1190df6a58f0c1e9375b9cb0a006e5e2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-paths-v2-export.log",
+      "bytes": 4689,
+      "sha256": "ec6efa7eab33b3f1e16086681d31311740c29753ea0fa20a9f6c097d6e60110f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-path-points-export.log",
+      "bytes": 4766,
+      "sha256": "6df915a1ed9d0a8e44714d7d012186efcb40e86397a2ddc661d4731360a692b4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-paths/005cb500.c",
+      "bytes": 1264,
+      "sha256": "3c9fdb82c3b66c69eb991cff158cccd9f852f162209da9be085956bef00ae0ba"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-paths/005cb610.c",
+      "bytes": 4635,
+      "sha256": "08b03367bc2a93e59d106e66f9cd517f09b5b5c1c821f2cdbf60cb6f2cb794c2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-paths/005cb500.json",
+      "bytes": 6200,
+      "sha256": "3ad79ed6ce0be68a004ca24e762e05c15c98312a97f01a0cadbc9bf9760665da"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-paths/005cb610.json",
+      "bytes": 19805,
+      "sha256": "c996794c036db18138c95b343925341e5a8d6996d340e31829d314c757a3d7f7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-path-points/00522470.c",
+      "bytes": 7264,
+      "sha256": "9d646072b59f8f65c97ccd6c3a7edb7876d7fcaad149025bd6067b36ff4a8249"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-path-points/005cb9b0.c",
+      "bytes": 4194,
+      "sha256": "b854123db3857fa5b927927e6a34cfcec3acbcfe3f36575bc29befb72e21d5e7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-path-points/005ce4c0.c",
+      "bytes": 963,
+      "sha256": "46cf4eeb33713a0ea780b0fef52ef847666f3e4a4234792da16e9fb23c51e246"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-path-points/00522470.json",
+      "bytes": 31030,
+      "sha256": "f9c39e3410202a1f291462d3f7aba84a76dabd376a4b8e40e24bd21c565f1e90"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-path-points/005cb9b0.json",
+      "bytes": 29033,
+      "sha256": "b796d257ac61553983dcf322341d778bbeac83470f2934586f791fea1e9bc7f2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-path-points/005ce4c0.json",
+      "bytes": 2262,
+      "sha256": "7515f3e906c43c6cb5dc20abf403420a5397caa70c003ac78f5ecb50a7d8916a"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-native-run.log",
+      "bytes": 128,
+      "sha256": "87c8327c42fb6f4d544abbed244f72394abf1095144fd89f872b5fb70e2b1ded"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-module-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-launcher-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-native.cpp",
+      "bytes": 11694,
+      "sha256": "bc3dab8b965112a13d3775c88fa579838f045b3cedbfc90a9deada63e7acab64"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-native",
+      "bytes": 4072568,
+      "sha256": "e808cfd27843540c4f649c9ccb61203e72ef119230900ac3da31603fc8f6ec33"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-navigation-legacy.h",
+      "bytes": 34063,
+      "sha256": "be2a7af5950003f6940efe3e7b224fdf1c91277deb859a2fe53b1f3697ed1a09"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-module.cpp",
+      "bytes": 820,
+      "sha256": "c9ef1af41d299863e836fc9939251c5cd51e5909fa78b2b36dcb8d8ff39c43e7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-controller-module.exe",
+      "bytes": 12082176,
+      "sha256": "bd5d3f6aaad7b8719cfd6c4b9c439e48bd96818209ba0370277c8bf66c374fae"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "verification": {
+    "native": "PASS2541 strict ASan/UBSan/leaks cases; actual controller/Actor-base/process/pool/follow/path/search; named Frames/Body/Door/VM endpoints",
+    "actual_i386": "PASS full actual World/module both passes and concrete selected4/5 factories/follow/script/whole Body/D4 compile/link only; no containing Dog frame/activation",
+    "launcher": "PASS forced O2 launcher/probe compile/link only",
+    "limits": "Remaining authority/perception/containing Dog activation/frame and required Human owner branches remain; source counts do not establish integration or desktop acceptance"
+  }
+}

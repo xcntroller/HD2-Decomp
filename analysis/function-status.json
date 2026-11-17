@@ -50408,6 +50408,531 @@
         "analysis/human-h8-dog-outer-frame-source.md",
         "analysis/checkpoints/p2.2-human-h8-dog-outer-frame-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005cb190",
+      "status": "partial",
+      "coverage": "Selected Dog kind4/5 constructor prefix on actual controller owner with unknown vector provenance retained.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cb0d0",
+      "status": "partial",
+      "coverage": "Actual World navigation borrower and defined controller reset fields, preserving unknown vector W.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ce5d0",
+      "status": "partial",
+      "coverage": "Bind actual Actor direction40/50 and clear native control fields on same owner.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ce630",
+      "status": "partial",
+      "coverage": "Actual controller Actor10 publication and selected4/5 bind04 composition.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ce650",
+      "status": "partial",
+      "coverage": "Same old/new controller vector restore and follow30 before input pointer clearing.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d5890",
+      "status": "partial",
+      "coverage": "Selected4/5 replacement: construction with old published, new publication/00, reread copy10, old close0C and delete08.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d5b80",
+      "status": "partial",
+      "coverage": "Kind5 bind04 common prefix then C4=-1 on actual controller.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cf0a0",
+      "status": "partial",
+      "coverage": "Kind4 virtual00 binds actual Actor through common controller and returns true.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cf6c0",
+      "status": "partial",
+      "coverage": "Kind5 virtual00 common bind then actual modelEC word1 script borrower and presence result.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cd720",
+      "status": "partial",
+      "coverage": "Actual controller follow18/flag/A0 and complete positive follow route request composition.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cd690",
+      "status": "partial",
+      "coverage": "Actual follow direction quarter-axis rotation then fresh follow position offset.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cb500",
+      "status": "partial",
+      "coverage": "Native conditional forward origin offset and same navigation volume selectors before Dog path construction.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cb610",
+      "status": "partial",
+      "coverage": "Dog route search/retirement/actual record production/smoothing/tail overwrite and movement-limit-gated first trim.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cb9b0",
+      "status": "partial",
+      "coverage": "Whole Dog all-point route projection/radius smoothing with sequential adjusted origin and native NaNs.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cde60",
+      "status": "partial",
+      "coverage": "Actual own/target model distance query with late cached matrix reads and native x87/FLOAT boundaries.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cdf30",
+      "status": "partial",
+      "coverage": "Kind4 damage flags/target reset, actual CRT timing and source-type response.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ce6e0",
+      "status": "partial",
+      "coverage": "Actual controller flags20 death bit800 publication.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cdf90",
+      "status": "partial",
+      "coverage": "Controller signed-positive wrapping timer subtraction and late84 clamp.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ce4c0",
+      "status": "partial",
+      "coverage": "Same process pooled route point take and native defined payload publication.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cb410",
+      "status": "partial",
+      "coverage": "Reverse nonNULL same-process route point retirement and retained vector capacity.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cb000",
+      "status": "partial",
+      "coverage": "Native free-node pop/retained payload or new node allocation in actual process pool.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cef90",
+      "status": "partial",
+      "coverage": "Actual16-record route pool refill with same reusable node owner.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005223d0",
+      "status": "partial",
+      "coverage": "Distinct Dog edge-type admission and actual FROM navigation reference Door-phase gate.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00522470",
+      "status": "partial",
+      "coverage": "Dog route priority search using same verified reverse-edge/tie/cost machinery with distinct actual edge admission.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005cbe60",
+      "status": "partial",
+      "coverage": "Actual route retirement before flags and selected kind5 same-VM completion callback.",
+      "limitations": "Source-only typed/STL/RAII controller, pooled records and callbacks replace original object/vtable/register/aligned allocator/SEH ABI. Selected4/5 lifecycle/follow source is linked on actual World; authority/perception/activation/containing Dog frame remain required. Unknown vector components retain provenance. Native endpoints named in contract; no application/desktop, complete/absent or engine credit.",
+      "evidence": [
+        "recovered/game/dog_controller_lifetime.h",
+        "recovered/game/dog_controller_vector.h",
+        "recovered/game/dog_controller_process.h",
+        "recovered/game/dog_ai_controller.h",
+        "recovered/game/dog_route_geometry.h",
+        "recovered/game/mission_navigation.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/mission_script_actor_bindings.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/human-h8-dog-controller-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-controller-20261117.json"
+      ]
     }
   ]
 }

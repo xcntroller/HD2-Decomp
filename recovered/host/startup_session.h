@@ -44,6 +44,7 @@
 #include "game/human_sound_pool.h"
 #include "game/human_morph_tables.h"
 #include "game/human_physics_globals.h"
+#include "game/dog_controller_process.h"
 #include "game/mission_integrity_tables.h"
 #include "game/integrity_threads.h"
 #include "game/steam_integrity_calls.h"
@@ -359,6 +360,7 @@ public:
     const game::HumanMorphTables& human_morph_tables() {human_morph_tables_.load(files_);return human_morph_tables_;}
     const float& human_animation_time_scale()const{return human_animation_time_scale_;} //0084E80C initial FLOAT1.4; original direct references are reads.
     game::HumanPhysicsGlobals& human_physics_globals(){return human_physics_globals_;}
+    game::DogControllerProcess& dog_controller_process(){return dog_controller_process_;}
     game::HumanAIEventPool& human_ai_event_pool(){return human_ai_events_;}
     game::HumanAIFrameInputs& human_ai_frame_inputs(){return human_ai_frame_inputs_;}
     game::HumanAIActionPools& human_ai_action_pools(){return human_ai_actions_;}
@@ -1001,6 +1003,7 @@ private:
     float camera_breathing_=0x1.47ae14p-8f; //Original00839268 bytes0A D7 A3 3B, retained across worlds.
     const float human_animation_time_scale_=0x1.666666p+0f;
     game::HumanPhysicsGlobals human_physics_globals_;
+    game::DogControllerProcess dog_controller_process_;
     game::MissionIntegrityTables mission_integrity_tables_;
     //Destroyed/retired BEFORE tables, so callback-held loans cannot publish
     //through a replaced StartupSession's former process table lifetime.

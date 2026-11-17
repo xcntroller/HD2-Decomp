@@ -152,6 +152,7 @@ public:
     void detach_physics_replacement_frame(Frame model,Frame frame){call<void>(model,0x80,frame);}
     void physics_replacement_position(Frame model,const Vector& position){call<void>(model,8,position.data());}
     void dog_body_link_sector(Frame model,Frame sector){call<void>(model,0x38,sector,std::uint32_t{0});} //005C8B30 ignores engine link status.
+    Matrix dog_cached_world_matrix(Frame model){return field<Matrix>(model,0x40);} //005CDE60, no additional UpdateWMatrixProc.
     void physics_replacement_direction(Frame model,const Vector& direction){call<void>(model,0xc,direction.data(),std::uint32_t{0});}
     MenuDriver::Owner retain_optional_physics_frame(Frame frame){return frame?retain(frame):MenuDriver::Owner{nullptr,nullptr};}
     void add_physics_replacement_frame(Frame frame){if(const auto scene=scene_.frame())call<void>(scene,0x80,frame);} //Actual nullable World18.

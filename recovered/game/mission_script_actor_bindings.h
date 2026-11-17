@@ -52,7 +52,7 @@ public:
         }else if(target.dog){
             auto* dog=dynamic_cast<DogSceneActor<Frames>*>(target.actor);
             if(!dog)throw std::logic_error("Dog script completion lost its actual actor");
-            if(dog->field534)throw std::runtime_error("Dog script binding requires actual534 control virtual40");
+            if(dog->field534)dog->field534->dog_control_script(context); //Kind4 genuine RET,kind5 actualC0 store.
         }
     }
 private:

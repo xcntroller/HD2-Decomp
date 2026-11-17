@@ -178,6 +178,25 @@ public:
         };
         return search_route(start,destination,mask,route,estimate);
     }
+    //00522470 uses the same priority-list search but a DIFFERENT edge policy
+    //005223D0. Door phase is borrowed from actual second-family actor binding.
+    template<class DoorPhase>bool find_dog_route(std::uint16_t start,std::uint16_t destination,
+            std::vector<std::uint16_t>& route,DoorPhase door_phase)const{
+        if(!record(start)||!record(destination))return false;
+        route.clear();if(start==destination){route.push_back(start);return true;}
+        const auto target=position(destination);
+        const auto estimate=[&](std::uint16_t index){const auto point=position(index);
+            const auto x=std::abs(static_cast<long double>(target[0])-point[0]),y=std::abs(static_cast<long double>(target[1])-point[1]),z=std::abs(static_cast<long double>(target[2])-point[2]);
+            return route_integer(((z+y)+x)*256.f);
+        };
+        const auto admit=[&](std::uint16_t from,const MissionTableRecord& a,const MissionTableRecord& b){
+            if(a.byte16==0)return true;
+            if((a.byte16==3&&b.byte16==3)||(a.byte16==4&&b.byte16==4)||(a.byte16==6&&b.byte16==5))return false;
+            if(a.byte16==1&&b.byte16==1){const auto phase=door_phase(from);if(phase&&(*phase==0||*phase==3))return false;}
+            return true;
+        };
+        return search_route_policy(start,destination,route,estimate,admit);
+    }
     long double route_length(const std::vector<std::uint16_t>& route)const{ //005230D0, x87 return; invalid/missing edge returns0.
         if(route.size()<2||!record(route.front()))return 0;
         std::uint32_t total=0;
@@ -343,6 +362,11 @@ private:
     template<class Estimate>
     bool search_route(std::uint16_t start,std::uint16_t destination,std::uint32_t mask,
                       std::vector<std::uint16_t>& route,Estimate estimate)const {
+        return search_route_policy(start,destination,route,estimate,[mask](std::uint16_t,const MissionTableRecord&,const MissionTableRecord& next){return !(next.flags&mask&0xfb40u);});
+    }
+    template<class Estimate,class Admit>
+    bool search_route_policy(std::uint16_t start,std::uint16_t destination,
+                      std::vector<std::uint16_t>& route,Estimate estimate,Admit admit)const {
         constexpr std::uint16_t none=0xffff;
         struct SearchPoint {
             std::uint32_t cost=0,estimate=0,score=0;
@@ -366,7 +390,7 @@ private:
                 const auto weight=link.half();
                 const auto* neighbor=record(index);
                 if(!neighbor)throw std::runtime_error("Navigation route link exceeds the point table");
-                if(neighbor->flags&mask&0xfb40u)continue;
+                if(!admit(head,point,*neighbor))continue;
 
                 auto& next=points[index];
                 const bool pending=next.parent!=none;

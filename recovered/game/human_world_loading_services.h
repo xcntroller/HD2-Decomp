@@ -3,6 +3,7 @@
 #include "game/dog_sight_geometry.h"
 #include "game/dog_body_sound.h"
 #include "game/dog_body_frame.h"
+#include "game/dog_ai_controller.h"
 #include "game/human_ai_target_output.h"
 #include "game/model_scene_actors.h"
 #include "game/document_place_scene_actor.h"
@@ -3195,6 +3196,28 @@ public:
     template<class Human,class Actor>bool network_human_sight_friendly(Human&,Actor&){throw std::runtime_error("Nonoffline Sight requires actual005A09A0 friendship receiver");}
     template<class Dog>std::int32_t dog_emit_body_voice(Dog& dog,std::uint32_t flags,std::int32_t entry){return emit_dog_body_voice(dog,dependencies().scene.frames(),dependencies().sound,flags,entry);}
     void dog_stop_body_voice(std::int32_t& voice){dependencies().startup.stop_game_sound_voice(voice);}
+    auto& dog_controller_process(){return dependencies().startup.dog_controller_process();}
+    void* dog_navigation_owner(){return static_cast<void*>(&dependencies().navigation);} //Actual game54 module owner.
+    auto& dog_navigation(){return dependencies().navigation;}
+    std::optional<std::uint32_t> dog_navigation_door_phase(std::uint16_t index){
+        auto* actor=static_cast<SceneActor<typename Dependencies::ActorFrames>*>(dependencies().navigation.object_for_reference(index));
+        if(!actor||actor->base().type()!=6)return std::nullopt;
+        return human_navigation_door(actor).properties.fields220[1]; //Actual Door224,005223D0.
+    }
+    void dog_script_route_finished(void* context){
+        if(!context)throw std::logic_error("Dog route completion requires actual script context");
+        auto& script=*static_cast<MissionScriptContext<typename Dependencies::ActorFrames>*>(context);
+        dependencies().script_link.complete_human_navigation(script,script.pc()); //00416CF0 through SAME live VM/authority gate.
+    }
+    template<class Actor>long double dog_body_movement_limit(Actor& actor){
+        auto* dog=dynamic_cast<DogSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!dog)throw std::logic_error("Dog movement limit requires SAME actual Dog");return dog->body.movement_limit();
+    }
+    std::uint32_t dog_control_random(){return dependencies().startup.random_word();}
+    template<class Dog>void replace_dog_control(Dog& dog,std::int32_t kind){
+        using Frames=typename Dependencies::ActorFrames;using Controller=DogAIController<Frames,HumanWorldLoadingServices>;
+        replace_dog_controller<DogControllerLifetime<Frames>>(dog,kind,[&](std::int32_t selected){return std::make_unique<Controller>(selected,dependencies().scene.frames(),*this);});
+    }
     template<class Dog>void advance_dog_body(Dog& dog,std::uint32_t elapsed){advance_dog_body_frame(dog,elapsed,*this,dependencies().scene.frames(),dog.require_controller());}
     template<class Actor>void apply_dog_actor_damage(Actor& actor,std::uint32_t kind,float amount,const HumanVector& point,
             const HumanVector& direction,SceneActor<typename Dependencies::ActorFrames>* source,std::uint32_t extra){
