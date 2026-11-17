@@ -1,0 +1,298 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "6f37c21",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-loading-spatial-source.md",
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "actual_desktop_result": "5f044176 candidate passes SupplyBox clips, returns to Main on Spatial sound has no actual world scene, shutdown result0. No gameplay frame accepted.",
+  "gameplay_desktop_verified": false,
+  "agent_executed_original_dll_proton_or_windows": false,
+  "native_checks": 63,
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-return/application_launch.exe",
+      "bytes": 12815360,
+      "sha256": "5f044176e2060e87137c190b9589f62f19ff09b64fbcdc5aabb270e49f8a27c9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-return/host-output.log",
+      "bytes": 201272,
+      "sha256": "b470981b3516fc66bbf70616d91f45f3d528d6bcd7c39792cbd77475a2b9f873"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-return/host-runtime.log",
+      "bytes": 204314,
+      "sha256": "1574b9fd116548662a53d207b2a6fb8e2c2e44404bd04d183d8347693cfa1117"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-return/inputs.json",
+      "bytes": 993,
+      "sha256": "60219665a008fc13f5513f32971cded9a68df235326c487cc5a845cc5c31baed"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-return/steam-0.log",
+      "bytes": 340664,
+      "sha256": "5042176e1eedfb9a8db8139f2bac770d29de1bed256de7f84137c9c3d3a29023"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "recovered/frontend/spatial_sound.h",
+      "bytes": 12032,
+      "sha256": "7f01ddf2202e1b6cc1b7d1b7627b595ce77b62be295c7c11648fe55373c1145b"
+    },
+    {
+      "path": "recovered/frontend/sound_runtime.h",
+      "bytes": 20606,
+      "sha256": "7fe8c2d0044b14d53af4a700e73daae92ed2c471f1e34732e5145b638c42ce33"
+    },
+    {
+      "path": "recovered/frontend/sound_portal_routing.h",
+      "bytes": 4284,
+      "sha256": "4b6b823f2917cde4ac514bff46639c7e88f7cddde267901e8482804cfec463fa"
+    },
+    {
+      "path": "recovered/game/world_views.h",
+      "bytes": 2555,
+      "sha256": "f1ba421d48e6885c04bb77869fdc601a9552db933282b265115eee65b7c2fc18"
+    },
+    {
+      "path": "recovered/host/sound_services.h",
+      "bytes": 8277,
+      "sha256": "eaf1759a12f148fafc1a383a985aa2ebe6265f53b6b77ae4efa1b5035a3458eb"
+    },
+    {
+      "path": "recovered/host/dubbing_sound_services.h",
+      "bytes": 4110,
+      "sha256": "c74b223b348acc91a74201baa55ec055979c6212a868001573a4feeb7181fb06"
+    },
+    {
+      "path": "recovered/host/game_spatial_sound.h",
+      "bytes": 4623,
+      "sha256": "d73488f3d285234a745ca04b27d9902e00c8b29dbe4ec1a8834dd91606be7fb9"
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "bytes": 10294,
+      "sha256": "3be98131ffbebf5d156715d58cf79a1730cfa48ff95c00e5b8f5ebc9c9afca88"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 83688,
+      "sha256": "eaba0c20589e94ab55ca3404bd8234122c7abc8f8a74f0baa8561955ab19719e"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-index.txt",
+      "bytes": 21706,
+      "sha256": "773756d68d8abffcc58501eae48dd9a3f37ceaa9bfe31df217269e90cc5012b6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-00432420.asm",
+      "bytes": 2853,
+      "sha256": "1404a5291b1136f28a3d7064133a67b6988e353cf2cb0358d5dccd6286b0d18e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-00432710.asm",
+      "bytes": 6819,
+      "sha256": "c3a65e0a6a6f7a187e0823379d6f4f8b3e4746cbb7b68aa988c66325efbe2d64"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-00433330.asm",
+      "bytes": 10111,
+      "sha256": "0ec61662770de48a41ae76509ff02b619d3385c6da26260164aabbfa74f9f07a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-004650c0.asm",
+      "bytes": 673,
+      "sha256": "00aeb0decca7cd1229af343675d3cd7fbe5b6cb6018f38072d4823104d34f26d"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/spatial-sound-producer/00433fa0.c",
+      "bytes": 26228,
+      "sha256": "1ff48cc1afa9f1596af9c3d3b0121f7c6a8b4c0837ac58fa3b114e0a844806c4"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/spatial-sound-producer/00433fa0.json",
+      "bytes": 81108,
+      "sha256": "c6907c38523c5413b0587279d7cbc29e42f070169d8521ecb8433edbd9214edb"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/spatial-sound-producer.asm",
+      "bytes": 76125,
+      "sha256": "23befa207fbedba47a216dafe018b245d4e84ec1c2a19272cf19251dc5c1ac9a"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/frame-shared-records-and-ticks/004368d0.c",
+      "bytes": 8790,
+      "sha256": "603a9eb02cbdb62d26c0e455fefcea5afe3a68b5a03e40eb900c992eb231a7f0"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/frame-shared-records-and-ticks/004368d0.json",
+      "bytes": 16311,
+      "sha256": "79530fbc04e3fd37727bf20981d6287f7d3e2a00de74b3bd16f93dd6c27a61d1"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/spatial-sound-dependencies-v2/00432be0.c",
+      "bytes": 8077,
+      "sha256": "ff7e2d1788277d4d0d6553eb6508f3125cd4cfaddd454f99807b363a7f7f0781"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-review-final-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-native-build.log",
+      "bytes": 1245,
+      "sha256": "ef48fedeba21be93afbf417225720e66fd11be6cb362c1137fc0947244c478b5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-native-rebuild.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-native-final-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-native-run.log",
+      "bytes": 62,
+      "sha256": "c7fa4972d6c0b9b9bb8cb1cf51ad7f65971dca2405fa3b382a4270c4f66633cb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-native-tracked-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-native-final-run.log",
+      "bytes": 62,
+      "sha256": "4d9feceae25ee220e84a5e0195598aa42115fc9fa3354ad90c74fce82c0ec858"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-function-check.log",
+      "bytes": 437,
+      "sha256": "3b7b5583389bd9dfe5db7912c7a84170b4de68e23efef45e31b79b11eae4d292"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-native.cpp",
+      "bytes": 11481,
+      "sha256": "87dc993e81adeee1f65d033cb1f0ef3b41a58bde2cea7d56a8677cf7b5931c56"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-native",
+      "bytes": 2789776,
+      "sha256": "1ec210567a3a8e9b86c4b67381b31f431304c6ca297dd34a562574227a922cdf"
+    }
+  ],
+  "review": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+    "detached_base": "edebd81",
+    "interactive_overlay_committed": false,
+    "source_files": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/spatial_sound.h",
+        "bytes": 12032,
+        "sha256": "7f01ddf2202e1b6cc1b7d1b7627b595ce77b62be295c7c11648fe55373c1145b"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/sound_runtime.h",
+        "bytes": 20606,
+        "sha256": "7fe8c2d0044b14d53af4a700e73daae92ed2c471f1e34732e5145b638c42ce33"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/sound_portal_routing.h",
+        "bytes": 4284,
+        "sha256": "4b6b823f2917cde4ac514bff46639c7e88f7cddde267901e8482804cfec463fa"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/world_views.h",
+        "bytes": 2555,
+        "sha256": "f1ba421d48e6885c04bb77869fdc601a9552db933282b265115eee65b7c2fc18"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/sound_services.h",
+        "bytes": 8277,
+        "sha256": "eaf1759a12f148fafc1a383a985aa2ebe6265f53b6b77ae4efa1b5035a3458eb"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/dubbing_sound_services.h",
+        "bytes": 4110,
+        "sha256": "c74b223b348acc91a74201baa55ec055979c6212a868001573a4feeb7181fb06"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_spatial_sound.h",
+        "bytes": 4623,
+        "sha256": "d73488f3d285234a745ca04b27d9902e00c8b29dbe4ec1a8834dd91606be7fb9"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_session_lifecycle.h",
+        "bytes": 10411,
+        "sha256": "5b017c43d4533f969b51df74d6b0651fb660a2ede4af0d3acd3e87b54128601c"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/startup_session.h",
+        "bytes": 83688,
+        "sha256": "eaba0c20589e94ab55ca3404bd8234122c7abc8f8a74f0baa8561955ab19719e"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_application_session.h",
+        "bytes": 9349,
+        "sha256": "72f28cbe19e57fe43977190a331079c83528581c5319ce64bef543bd8ccdb7b4"
+      }
+    ],
+    "built_artifacts": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+        "bytes": 12825088,
+        "sha256": "0f5fd6a86a29617680ad379816569bdce52859d9e647cfff5785ba1239346c08"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+        "bytes": 1175552,
+        "sha256": "99942f3b7dd7eac2ff71828506505aca481bce7ecf0d8a7295bf55df0f64f5e1"
+      }
+    ],
+    "recoverable_patch": {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-spatial-review-final.patch",
+      "bytes": 52975,
+      "sha256": "4870e2e68bc92001889e9e583b8a5ddf5550fd1cb6fb68d711cebf1ecf3d3ff5"
+    },
+    "staged_artifact": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 12825088,
+      "sha256": "0f5fd6a86a29617680ad379816569bdce52859d9e647cfff5785ba1239346c08"
+    }
+  },
+  "limitations": [
+    "Native63 executes WorldViews/RAII camera loan, catalogue/voice/emission/tracking/environment/attenuation/portal policies using explicit scene/camera/engine/playback endpoints. Actual full production World/lifecycle/Frame/Runtime/application composition i386 O2/Werror compile/link only. No engine playback or gameplay acceptance inferred.",
+    "Actual engine scene availability is independent from camera-sector query. Missing owners still fail; actual camera NULL sector is preserved. Lifecycle retention/unwind is source policy, not original ABI/container/allocator/SEH equivalence. No new function/complete/absent/delegated credit.",
+    "General nonoffline packet/menu/history/console and positive Human/actor producers remain external; exact revised candidate needs user mission run. OWN dirty source and older staged artifact stay unchanged."
+  ],
+  "temporary_audits_removed": true,
+  "own_preserved": true
+}

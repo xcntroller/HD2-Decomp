@@ -32,9 +32,9 @@ long double sound_portal_distance(float& scale,const SoundPosition& first,const 
     (void)range; //Native passes this through00433330, whose body does not consume it.
     const auto first_copy=first,second_copy=second;
     const auto scene=[&](){
-        const auto* world=backend.sound_world();
-        if(!world||!world->scene)throw std::runtime_error("Sound portal routing requires the actual world scene");
-        return world->scene;
+        auto* current=backend.current_sound_scene();
+        if(!current)throw std::runtime_error("Sound portal routing requires the actual world scene");
+        return current;
     };
     if(!first_sector)first_sector=backend.sound_sector(scene(),first_copy);
     if(!second_sector)second_sector=backend.sound_sector(scene(),second_copy);

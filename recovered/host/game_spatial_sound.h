@@ -15,7 +15,7 @@ namespace hd2::host {
 template<class World>
 class GameSpatialSoundServices : public SoundServices {
 public:
-    GameSpatialSoundServices(HMODULE engine,frontend::SoundWorldView*& view,LoadedResources& resources,World& world)
+    GameSpatialSoundServices(HMODULE engine,game::WorldViews& view,LoadedResources& resources,World& world)
         :SoundServices(engine,view),engine_(engine),resources_(resources),world_(world) {}
     void* create_spatial_sound() {
         return call<EngineFrame*>(driver(),0x54,std::uint32_t{4});

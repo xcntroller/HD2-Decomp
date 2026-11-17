@@ -67,14 +67,15 @@ std::int32_t emit_spatial_sound(SoundRuntimeState& state,SoundCatalog<Resources>
         const SpatialSoundRequest* request,const std::uint32_t& gate,Backend& backend) {
     if(!request)return -1;
     const auto& value=*request;
-    const auto* world=backend.sound_world();
-    if(!world||!world->scene)throw std::runtime_error("Spatial sound has no actual world scene");
+    const auto scene=backend.current_sound_scene();
+    if(!scene)throw std::runtime_error("Spatial sound has no actual world scene");
+    const auto listener_frame=backend.scene_sound_listener(scene); //00433FA0 captures scene15C BEFORE relative-frame transform update.
     auto position=value.position;
     if(value.relative) {
         const auto parent=backend.sound_position(value.relative);
         for(unsigned axis=0;axis!=3;++axis)position[axis]=static_cast<float>(static_cast<long double>(position[axis])+parent[axis]);
     }
-    const auto listener=backend.sound_position(backend.scene_sound_listener(world->scene));
+    const auto listener=backend.sound_position(listener_frame);
     const auto x=static_cast<long double>(listener[0])-position[0],y=static_cast<long double>(listener[1])-position[1],z=static_cast<long double>(listener[2])-position[2];
     const float square=static_cast<float>((z*z+y*y)+x*x);
     CatalogSoundEntry* entry=nullptr;
@@ -165,7 +166,7 @@ std::int32_t emit_spatial_sound(SoundRuntimeState& state,SoundCatalog<Resources>
                     }
                 }
                 if(!voice.sound)return -1;
-                const auto parent=value.relative?value.relative:backend.primary_sound_sector(backend.sound_world()->scene);
+                const auto parent=value.relative?value.relative:backend.primary_sound_sector(backend.current_sound_scene());
                 backend.link_spatial_sound(voice.sound,parent);
                 backend.position_spatial_sound(voice.sound,value.position);
                 backend.type_spatial_sound(voice.sound,(value.flags&0x40u)||ambient?3u:1u);

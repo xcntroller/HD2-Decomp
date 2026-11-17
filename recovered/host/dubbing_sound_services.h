@@ -11,13 +11,7 @@ namespace hd2::host {
 //actor selection and subtitles are supplied by StartupSession/containing world.
 class DubbingSoundServices : public SoundServices {
 public:
-    DubbingSoundServices(HMODULE engine,game::WorldViews& views):SoundServices(engine,views.sound),engine_(engine),views_(views) {}
-    //004328D0 queries00698500->scene18, BEFORE any loaded listener loan exists.
-    //Keep this distinct from sound_world(), whose camera/audio readiness is later.
-    void* current_sound_scene()const{
-        if(!views_.owner()||!views_.scene())throw std::logic_error("Sound sector initialization requires its actual current game scene");
-        return views_.scene();
-    }
+    DubbingSoundServices(HMODULE engine,game::WorldViews& views):SoundServices(engine,views),engine_(engine) {}
     void* create_dubbing_sound(){return call<EngineFrame*>(driver(),0x54,std::uint32_t{4});}
     std::int32_t open_dubbing_sound(void* frame,const std::string& name,std::uint32_t flags) {return call<std::int32_t>(frame,0x74,name.c_str(),flags);}
     void* dubbing_find(void* frame,const char* name,std::uint32_t flags){return call<void*>(frame,0x48,name,flags);}
@@ -63,7 +57,7 @@ private:
         if(!frame)throw std::runtime_error("Null dubbing frame");
         std::memcpy(static_cast<unsigned char*>(frame)+offset,&value,sizeof value);
     }
-    HMODULE engine_;game::WorldViews& views_;std::exception_ptr failure_;
+    HMODULE engine_;std::exception_ptr failure_;
 };
 } //namespace hd2::host
 #endif

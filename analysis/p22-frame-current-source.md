@@ -1,12 +1,8 @@
-Subsequent actual run passed the footprint status RET, then failed on mis-transcribed SupplyBox animation keys. [Corrected original #crate literals and exact payload verification](p22-frame-loading-footprints-source.md#next-actual-run-supplybox-literal-correction) preserve genuine required failures; next staged candidate still needs actual mission testing.
-
-Latest retest: sound crash gone and clean shutdown, but mission entry returned to Main on d_l.tga. [Original footprint partial-status RET and correction](p22-frame-loading-footprints-source.md) preserve acquired references without inventing complete texture readiness. No gameplay frame accepted.
-
-Latest actual desktop run FAILED during loading: [null sound scene lookup and corrected source](p22-frame-loading-sound-failure.md). Prior source verification remains valid within its bounds; no loaded frame/desktop acceptance is established.
-
 # FRAME offline composition baseline — 2026-11-17
 
-Latest game-entry continuation: [presentation exit and isolated actual FRAME/OWN candidate](p22-frame-game-entry-review.md) compile/link and pass focused native verification; the revised candidate is staged separately, with actual desktop result pending. OWN source and its earlier artifact are preserved. Full FRAME remains partial.
+Current live continuation: [actual spatial sound scene/camera ownership](p22-frame-loading-spatial-source.md) replaces the never-published nullable sound snapshot. Latest user run passed prior footprint/SupplyBox gates, then returned to Main on missing spatial scene. Source now borrows the real constructed scene and late same-World camera sector; user mission/frame test remains required. Full FRAME remains partial. Prior sound/footprint/clip and offline evidence below remains revision-qualified.
+
+Earlier game-entry continuation: [presentation exit and isolated actual FRAME/OWN candidate](p22-frame-game-entry-review.md) compile/link and pass focused native verification; the revised candidate is staged separately, with actual desktop result pending. OWN source and its earlier artifact are preserved. Full FRAME remains partial.
 
 Earlier continuation: [warmup/countdown/manual respawn and pre-World peer sides](p22-frame-warmup-source.md) follow earlier reset/spawn/Runtime/statistics/result policies. Evidence below retains its original revision/verification boundary; actual application/menu provider, console/network/history/close/other packets and delivery remain.
 

@@ -4252,7 +4252,7 @@
       "program": "client",
       "entry": "004368d0",
       "status": "partial",
-      "coverage": "Full update algorithm: one initial gate2 snapshot, reverse voice reclaim/fade with extended comparison, actual two-channel movie phase, ungated wrapping clock/listener/tracked attenuation and original integer driver-delay volume. Movie queued selection uses the live gate.",
+      "coverage": "Full update algorithm: one initial gate2 snapshot, reverse voice reclaim/fade with extended comparison, actual two-channel movie phase, ungated wrapping clock/listener/tracked attenuation and original integer driver-delay volume. Movie queued selection uses the live gate. Actual loading integration: scene/engine listener queries use constructed current game independently of loading readiness; environment reads actual same-World camera24C through a lifetime-checked late loan. Listener capture precedes relative update; tracked transforms precede fresh scene lookup. No never-published sound snapshot.",
       "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
       "evidence": [
         "analysis/sound-movie-channels-map.json",
@@ -4263,20 +4263,28 @@
         "analysis/sound-runtime-map.json",
         "analysis/sound-runtime.md",
         "recovered/frontend/sound_runtime.h",
-        "recovered/host/sound_services.h"
+        "recovered/host/sound_services.h",
+        "recovered/game/world_views.h",
+        "recovered/host/game_session_lifecycle.h",
+        "analysis/p22-frame-loading-spatial-source.md",
+        "analysis/checkpoints/p22-frame-loading-spatial-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "00432420",
       "status": "partial",
-      "coverage": "Construct tracked sound: always resolve position/sector, capture live base volume, scale1 and wrap-increment frame WORD+E4.",
+      "coverage": "Construct tracked sound: always resolve position/sector, capture live base volume, scale1 and wrap-increment frame WORD+E4. Actual loading integration: scene/engine listener queries use constructed current game independently of loading readiness; environment reads actual same-World camera24C through a lifetime-checked late loan. Listener capture precedes relative update; tracked transforms precede fresh scene lookup. No never-published sound snapshot.",
       "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
       "evidence": [
         "analysis/sound-runtime-map.json",
         "analysis/sound-runtime.md",
         "recovered/frontend/sound_runtime.h",
-        "recovered/host/sound_services.h"
+        "recovered/host/sound_services.h",
+        "recovered/game/world_views.h",
+        "recovered/host/game_session_lifecycle.h",
+        "analysis/p22-frame-loading-spatial-source.md",
+        "analysis/checkpoints/p22-frame-loading-spatial-20261117.json"
       ]
     },
     {
@@ -4309,13 +4317,17 @@
       "program": "client",
       "entry": "00432710",
       "status": "partial",
-      "coverage": "Reverse tracked lookup; update enabled, refresh sector only when enabled, reread live base volume and reapply retained scale, or construct/retain new entry.",
+      "coverage": "Reverse tracked lookup; update enabled, refresh sector only when enabled, reread live base volume and reapply retained scale, or construct/retain new entry. Actual loading integration: scene/engine listener queries use constructed current game independently of loading readiness; environment reads actual same-World camera24C through a lifetime-checked late loan. Listener capture precedes relative update; tracked transforms precede fresh scene lookup. No never-published sound snapshot.",
       "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
       "evidence": [
         "analysis/sound-runtime-map.json",
         "analysis/sound-runtime.md",
         "recovered/frontend/sound_runtime.h",
-        "recovered/host/sound_services.h"
+        "recovered/host/sound_services.h",
+        "recovered/game/world_views.h",
+        "recovered/host/game_session_lifecycle.h",
+        "analysis/p22-frame-loading-spatial-source.md",
+        "analysis/checkpoints/p22-frame-loading-spatial-20261117.json"
       ]
     },
     {
@@ -4367,13 +4379,17 @@
       "program": "client",
       "entry": "00433330",
       "status": "partial",
-      "coverage": "Resolve absent sectors from copied positions, use metadata scale only across root boundary, compute original-input distance with ordered stored squared sum and bit/near-unit shortcuts.",
+      "coverage": "Resolve absent sectors from copied positions, use metadata scale only across root boundary, compute original-input distance with ordered stored squared sum and bit/near-unit shortcuts. Actual loading integration: scene/engine listener queries use constructed current game independently of loading readiness; environment reads actual same-World camera24C through a lifetime-checked late loan. Listener capture precedes relative update; tracked transforms precede fresh scene lookup. No never-published sound snapshot.",
       "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
       "evidence": [
         "analysis/sound-runtime-map.json",
         "analysis/sound-runtime.md",
         "recovered/frontend/sound_runtime.h",
-        "recovered/host/sound_services.h"
+        "recovered/host/sound_services.h",
+        "recovered/game/world_views.h",
+        "recovered/host/game_session_lifecycle.h",
+        "analysis/p22-frame-loading-spatial-source.md",
+        "analysis/checkpoints/p22-frame-loading-spatial-20261117.json"
       ]
     },
     {
@@ -8959,13 +8975,17 @@
       "program": "client",
       "entry": "00433fa0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00433fa0: Spatial emission policy, pooled voice allocation, attenuation, hearing payload and listener dispatch; portal occlusion remains a required backend.",
+      "coverage": "P2.2 source reconstruction at original entry 00433fa0: Spatial emission policy, pooled voice allocation, attenuation, hearing payload and listener dispatch; portal occlusion remains a required backend. Actual loading integration: scene/engine listener queries use constructed current game independently of loading readiness; environment reads actual same-World camera24C through a lifetime-checked late loan. Listener capture precedes relative update; tracked transforms precede fresh scene lookup. No never-published sound snapshot.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/frontend/spatial_sound.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/world_views.h",
+        "recovered/host/game_session_lifecycle.h",
+        "analysis/p22-frame-loading-spatial-source.md",
+        "analysis/checkpoints/p22-frame-loading-spatial-20261117.json"
       ]
     },
     {
@@ -23339,13 +23359,17 @@
       "program": "client",
       "entry": "00432be0",
       "status": "partial",
-      "coverage": "Actual directed direct/shared-neighbour portal lookup, original .125 double-closed attenuation, same/root/unreachable cases and distinct x87/FLOAT distance paths; host spatial hearing uses this receiver.",
+      "coverage": "Actual directed direct/shared-neighbour portal lookup, original .125 double-closed attenuation, same/root/unreachable cases and distinct x87/FLOAT distance paths; host spatial hearing uses this receiver. Actual loading integration: scene/engine listener queries use constructed current game independently of loading readiness; environment reads actual same-World camera24C through a lifetime-checked late loan. Listener capture precedes relative update; tracked transforms precede fresh scene lookup. No never-published sound snapshot.",
       "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
       "evidence": [
         "analysis/sound-world-loading.md",
         "analysis/mission-script-receivers.md",
         "analysis/checkpoints/p2.2-world-presentation-20261109.json",
-        "recovered/frontend/sound_portal_routing.h"
+        "recovered/frontend/sound_portal_routing.h",
+        "recovered/game/world_views.h",
+        "recovered/host/game_session_lifecycle.h",
+        "analysis/p22-frame-loading-spatial-source.md",
+        "analysis/checkpoints/p22-frame-loading-spatial-20261117.json"
       ]
     },
     {

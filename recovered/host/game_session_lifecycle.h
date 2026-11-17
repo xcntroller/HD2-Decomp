@@ -38,6 +38,9 @@ public:
         activation_=std::make_unique<Activation>(*loading_,parent,backend,startup,graphics,module,clock,state,controller);
         blast_=std::make_unique<GameBlastWaves>(loading_->world().owners());
         ui_=std::make_unique<GameUiPresentation>(loading_->world(),parent,backend,graphics);
+        sound_camera_.bind(startup_.game_views(),parent_.scene()->frame(),[this]{
+            return loading_->world().owners().dependencies().camera.scene_sector();
+        }); //Actual camera exists before activation; its sector is queried afresh, not cached.
         loading_->loader().bind_finish(*this); //Last: every mandatory receiver now exists.
     }
     ~GameSessionLifecycle()override{
@@ -65,6 +68,7 @@ public:
         if(!loading_)return;
         unload(); //If mandatory retirement fails, retain the graph for explicit retry/diagnosis.
         loading_->loader().unbind_finish(*this);
+        sound_camera_.reset(); //AFTER successful unload, BEFORE camera/World retirement; keep on a failed close.
         ui_.reset();blast_.reset();activation_.reset();loading_.reset();
     }
     void bind_presentation(){
@@ -143,6 +147,7 @@ private:
     Parent& parent_;StartupSession& startup_;
     game::SessionLifecycleBoundary<GameSessionLifecycle> boundary_;
     std::unique_ptr<GameMissionLoadingSession> loading_;
+    game::WorldSoundCameraLoan sound_camera_; //Member unwinding retracts query before loading_/camera dies.
     std::unique_ptr<Activation> activation_;std::unique_ptr<GameBlastWaves> blast_;
     std::unique_ptr<GameUiPresentation> ui_;std::unique_ptr<GameRenderStages> render_stages_;std::unique_ptr<GameUiSceneCallbacks> callbacks_;
     std::unique_ptr<GameSessionFrameCallbacks> frames_;bool frame_retirement_started_=false;

@@ -56,3 +56,8 @@ result0 after a handled Human footprint texture failure. This verifies removal
 of the observed sound crash; it does NOT verify loaded mission/gameplay or the
 whole interactive adapter. [Next actual dependency and correction](p22-frame-loading-footprints-source.md)
 records the original nonfatal0078A4F0 status RET and exact retained-prefix policy.
+
+The later actual run reached spatial emission and exposed the same unpublished
+snapshot in that separate path. [Complete current-scene and late-camera query
+adapter](p22-frame-loading-spatial-source.md) now supersedes the remaining
+source integration gap described above; actual engine/game acceptance is pending.

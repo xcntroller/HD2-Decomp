@@ -167,15 +167,17 @@ TrackedSound& track_sound(SoundRuntimeState& state, void* frame,
         auto& sound = *state.tracked[i];
         if (sound.sound != frame) continue;
         sound.enabled = enabled;
-        if (enabled) sound.sector = backend.sound_sector(backend.sound_world()->scene,
-                                                       backend.sound_position(frame));
+        if (enabled) {
+            const auto position=backend.sound_position(frame); //004327B9 queries current game AFTER frame matrix update.
+            sound.sector=backend.sound_sector(backend.current_sound_scene(),position);
+        }
         sound.base_volume = backend.sound_volume(frame);
         scale_tracked_sound(sound, sound.scale, backend);
         return sound;
     }
     const auto position = backend.sound_position(frame);
     auto sound = std::make_unique<TrackedSound>(TrackedSound{frame, enabled,
-        backend.sound_sector(backend.sound_world()->scene, position), backend.sound_volume(frame), 1});
+        backend.sound_sector(backend.current_sound_scene(), position), backend.sound_volume(frame), 1});
     backend.retain_tracked_sound(frame); // Original increments the frame's WORD+e4.
     auto& result = *sound;
     state.tracked.push_back(std::move(sound));
@@ -203,11 +205,11 @@ long double sound_sector_distance(float& scale, const SoundPosition& first,
                                    const SoundPosition& second, void* first_sector,
                                    void* second_sector, Backend& backend) {
     const auto first_copy = first, second_copy = second;
-    if (!first_sector) first_sector = backend.sound_sector(backend.sound_world()->scene, first_copy);
-    if (!second_sector) second_sector = backend.sound_sector(backend.sound_world()->scene, second_copy);
+    if (!first_sector) first_sector = backend.sound_sector(backend.current_sound_scene(), first_copy);
+    if (!second_sector) second_sector = backend.sound_sector(backend.current_sound_scene(), second_copy);
     scale = 1;
     if (first_sector != second_sector) {
-        auto* primary = backend.primary_sound_sector(backend.sound_world()->scene);
+        auto* primary = backend.primary_sound_sector(backend.current_sound_scene());
         if (first_sector == primary) scale = backend.sector_sound_data(second_sector)->scale;
         else if (second_sector == primary) scale = backend.sector_sound_data(first_sector)->scale;
     }
@@ -259,17 +261,17 @@ template<class Backend>
 void advance_sound_environment(SoundRuntimeState& state, SettingsSoundState& settings,
                                 std::uint32_t& clock, std::int32_t milliseconds,
                                 Backend& backend) {
-    if (!backend.sound_world()) return;
+    if (!backend.has_sound_world()) return;
     clock += static_cast<std::uint32_t>(milliseconds);
-    backend.sound_position(backend.scene_sound_listener(backend.sound_world()->scene));
+    backend.sound_position(backend.scene_sound_listener(backend.current_sound_scene()));
     if (sound_signed_word(clock) > 1000) {
         clock = (clock - 1) % 1000 + 1; // 1000 stays1000; 1001 becomes1.
         if (defined_sound_movie_value(state.listener_sector)) {
             for (auto i = state.tracked.size(); i-- != 0;) {
                 auto tracked = [&]() -> TrackedSound& { return *state.tracked.at(i); };
                 if (!tracked().enabled) continue;
-                auto* sector = backend.sound_sector(backend.sound_world()->scene,
-                                                    backend.sound_position(tracked().sound));
+                const auto position=backend.sound_position(tracked().sound); //004368D0 updates the frame matrix BEFORE fresh00698500.
+                auto* sector=backend.sound_sector(backend.current_sound_scene(),position);
                 if (sector == tracked().sector) continue;
                 tracked().sector = sector;
                 float scale = 1;
@@ -280,7 +282,7 @@ void advance_sound_environment(SoundRuntimeState& state, SettingsSoundState& set
             }
         }
     }
-    auto* listener = backend.sound_world()->listener_sector;
+    auto* listener = backend.current_sound_camera_sector();
     if (defined_sound_movie_value(state.listener_sector) != listener) {
         for (auto i = state.tracked.size(); i-- != 0;) {
             float scale = 1;

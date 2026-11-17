@@ -7,20 +7,33 @@ source and its earlier staged artifact. No subagents, push, original/DLL/Proton/
 Windows execution or permanent tests. Heavy compilation and Ghidra sequential.
 Continue the first actual loading/frame failure, not unrelated admin/network work.
 
-LATEST USER TEST: f5cbd39f passed the corrected nonfatal footprint return, then
-returned to Main on `Required SupplyBox animation is unavailable`. No first
-loaded mission/frame accepted. Exact executable +three logs saved in
-WORK/loading-supply-return. [Continuation contract](analysis/p22-frame-loading-footprints-source.md#next-actual-run-supplybox-literal-correction),
-[receipt](analysis/checkpoints/p22-frame-loading-supply-20261117.json).
+LATEST USER TEST:5f044176 passed corrected SupplyBox clip loading, then returned
+to Main on `Spatial sound has no actual world scene`. Exact exe +three logs
+archived WORK/loading-spatial-return; no mission/frame accepted.
+[Source correction](analysis/p22-frame-loading-spatial-source.md),
+[receipt](analysis/checkpoints/p22-frame-loading-spatial-20261117.json).
 
-FIX: original005FAC80 literals at0083E9D4/C8/B8/AC are #cratefly/#crateopen/
-#crateclosed/#cratedrop, NOT sanitized Ghidra symbol underscores. Corrected
-four source keys on FRAME/review; required missing-clip failure remains, with
-exact failed key now logged. Original/source literals and all four installed
-5DS payloads independently compared/decoded/fingerprinted. No resource aliases,
-synthetic clips or asset changes. Full review O2/probe/staging in receipt.
-Next user run should enter Tutorial with revised candidate, then read actual
-activation/first-completed-stage diagnostics, not infer success from Main/result0.
+WorldViews.sound was never published. Replaced that conflated snapshot with
+actual current-game scene queries for emission, tracking, attenuation and portals,
+plus genuine absent-game RET and LATE actual mission-camera sector for004368D0.
+00433FA0 captures scene15C listener BEFORE relative transform;00432710/004368D0
+update tracked transforms BEFORE fresh scene lookup. Exact original C/raw retained.
+No dummy listener, skipped sound, copied scene or readiness publication.
+Actual Lifecycle binds SAME-World camera query after full owner construction,
+retains through failed unload for retry, then withdraws before camera/World dies.
+Member guard also handles constructor unwind/foreign/rebind/parent retirement.
+Full review i386 O2 application/probe PASS; targeted native loan/emission/env/
+tracking/attenuation/portal checks and final staging recorded in receipt.
+
+NEXT: user run revised staged candidate in existing review runtime; inspect new
+activation and first-completed-stage markers and first actual exception. Agent
+NEVER runs original/DLL/Proton/Windows code. Failed menu return isn't game entry.
+Interactive OWN overlay remains uncommitted pending real desktop acceptance.
+
+Prior actual fixes:6f37c21 corrected original #cratefly/#crateopen/#crateclosed/
+#cratedrop literals (Ghidra symbol underscores were wrong). Four installed5DS
+payloads decoded/fingerprinted; genuine missing clip failure kept. F5cbd39f run
+that failed on clips is preserved WORK/loading-supply-return.
 
 Earlier cb657c0c user run: sound crash gone and clean result0 shutdown, BUT
 Tutorial entry failed on d_l.tga. Source checkpoint8167e7c records sound and
@@ -92,5 +105,5 @@ sources and collision_slide.h. No stash/reset/overwrite/merge/rebase. All origin
 captured source hashes and earlier staged artifact d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c
 remain unchanged; its old runtime is distinct from this review. Last complete
 recoverable review overlay WORK/combined-own-review-final.patch is historical;
-latest receipt captures WORK/loading-supply-review-final.patch with corrected
-#crate keys, sound/footprints and diagnostics.
+latest receipt captures WORK/loading-spatial-review-final.patch with actual
+spatial scene/camera queries, lifecycle loan and prior corrections/diagnostics.

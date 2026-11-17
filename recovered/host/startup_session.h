@@ -466,7 +466,7 @@ public:
         sound_backend_.sound_play_cursor(frame,cursor);
     }
     template<class World>std::int32_t emit_game_sound(const frontend::SpatialSoundRequest& request,World& world) {
-        GameSpatialSoundServices<World> backend(engine_,game_views_.sound,loaded_resources_,world);
+        GameSpatialSoundServices<World> backend(engine_,game_views_,loaded_resources_,world);
         return frontend::emit_spatial_sound(sound_data_.runtime,sound_catalog_,&request,gate_,backend);
     }
     template<class World>bool play_game_speech(void* actor,EngineFrame* frame,std::int32_t id,float near_range,float far_range,bool subtitles,World& world) {
@@ -1153,7 +1153,7 @@ private:
     input::InputManager<GraphicsInputServices<JoystickBackend>> input_;
     GraphicsInputSetup<input::JoystickDevices<JoystickBackend>> input_setup_;
     SettingsServices settings_backend_;
-    game::WorldViews game_views_; // Borrowed owner/scene; audio stays null until an actual loaded listener.
+    game::WorldViews game_views_; //Constructed game/scene and SAME-World camera query; no loading readiness policy.
     DubbingSoundServices sound_backend_;
     frontend::SoundCatalog<SoundServices> sound_catalog_;
     frontend::DubbingSound<DubbingSoundServices,ChunkFiles> dubbing_sound_;

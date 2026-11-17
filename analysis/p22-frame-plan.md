@@ -5,15 +5,11 @@ Active worktree `/home/control/Documents/Projects/HD2-Decomp-p22-frame`, branch
 selection and RENDER/lifecycle dependencies were fast-forwarded here through
 1d54083; OWN's uncommitted application/camera work remains preserved there.
 [Current verification and exact remaining boundary](p22-frame-current-source.md).
-[Isolated current-FRAME/OWN game-entry candidate](p22-frame-game-entry-review.md)
-builds and is staged separately. Its first actual user run crashed during sound
-sector initialization; [source correction and retest](p22-frame-loading-sound-failure.md)
-use the actual constructed scene separately from the later listener view.
-Actual retest passed the old sound fault, then returned to Main on an incorrect
-fatal footprint-texture status. [Original partial-status correction](p22-frame-loading-footprints-source.md)
-is now supplied. The next actual run passed that gate and exposed wrong SupplyBox
-animation prefixes; original `#crate...` keys are corrected and verified against
-installed payloads. Successful loading/gameplay acceptance remains pending.
+[Current actual loading dependency](p22-frame-loading-spatial-source.md): the
+review passes corrected sound-sector, footprint-status and SupplyBox-key gates,
+then requires the real spatial sound scene/camera owners. Those source queries
+and their lifecycle loan are now supplied; actual mission/frame acceptance is
+still pending. OWN's source and older staged artifact remain untouched.
 Older implementation/reassessment documents retain revision-qualified evidence.
 
 ## Implemented and verified offline source

@@ -3,6 +3,7 @@
 
 #include "host/settings_services.h"
 #include "frontend/sound_runtime.h"
+#include "game/world_views.h"
 #include <cstddef>
 #include <exception>
 #include <type_traits>
@@ -15,18 +16,23 @@ static_assert(sizeof(frontend::SoundSectorData) == 12 &&
 
 // Real DLL boundary, borrowed application view and engine-owned frames. No
 // original client addresses or permanent empty world are used as services.
-// The rebuilt application must supply its live scene/camera-sector view;
-// reconstructing that application/camera owner remains a separate prerequisite.
+// Scene and late camera-sector queries borrow the actual containing owners;
+// constructed scene availability is independent from mission loading readiness.
 class SoundServices : public SettingsServices {
 public:
-    SoundServices(HMODULE engine, frontend::SoundWorldView*& world)
+    SoundServices(HMODULE engine, game::WorldViews& world)
         : SettingsServices(engine), engine_(engine), world_(world) {
         const auto entry = GetProcAddress(engine, "?UpdateWMatrixProc@I3D_frame@@AAEXXZ");
         if (reinterpret_cast<std::uintptr_t>(entry) != reinterpret_cast<std::uintptr_t>(engine) + 0x1e390)
             throw std::runtime_error("Unsupported original sound frame transform export");
         std::memcpy(&world_matrix_, &entry, sizeof(entry));
     }
-    frontend::SoundWorldView* sound_world() const { return world_; }
+    bool has_sound_world()const{return world_.owner()!=nullptr;} //00698500 genuine absent-game gate.
+    void* current_sound_scene()const{
+        if(!world_.owner()||!world_.scene())throw std::logic_error("Sound requires its actual constructed game scene");
+        return world_.scene();
+    }
+    void* current_sound_camera_sector()const{return world_.sound_camera_sector();}
     void enable_sound(void* sound, std::uint32_t enabled) const {
         using Function = void (WINAPI *)(EngineFrame*, std::uint32_t);
         auto* frame = static_cast<EngineFrame*>(sound);
@@ -142,7 +148,7 @@ private:
     }
     using WorldMatrix = void (__thiscall *)(EngineFrame*);
     HMODULE engine_;
-    frontend::SoundWorldView*& world_;
+    game::WorldViews& world_;
     WorldMatrix world_matrix_{};
 };
 
