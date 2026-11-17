@@ -133,3 +133,7 @@ and actual selected ground-hit normal for the separate unproduced slope local.
 [Live composition source](human-h8-dog-live-composition-source.md) supplies these
 plus actual controller6C input publication and Runtime→World Sight metric. Live
 activation/retirement, controller/actor frames and full H8.4 remain required.
+
+[Dog head-look request/timer](human-h8-dog-head-look-source.md) now supplies
+actual005D8070/005D82B0 and same-owner World bindings; actual presentation
+005D7A10, live activation, controller/actor frame and full H8.4 remain required.

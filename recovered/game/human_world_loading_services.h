@@ -3295,6 +3295,20 @@ public:
         using Frames=typename Dependencies::ActorFrames;using Controller=DogAIController<Frames,HumanWorldLoadingServices>;
         replace_dog_controller<DogControllerLifetime<Frames>>(dog,kind,[&](std::int32_t selected){return std::make_unique<Controller>(selected,dependencies().scene.frames(),*this);});
     }
+    template<class Dog>void request_dog_head_look(Dog& dog,const HumanVector& target,std::uint32_t mode,std::uint32_t parameter){
+        (void)dog.head_look.request(target,mode,parameter,[this]{return dog_control_random();});
+    }
+    template<class Dog>void advance_dog_head_look(Dog& dog,std::uint32_t elapsed){
+        struct Queries {
+            HumanWorldLoadingServices& world;Dog& dog;
+            std::uint32_t random_word(){return world.dog_control_random();}
+            float random_unit(){return world.human_sound_random();}
+            HumanVector model_forward(){const auto matrix=world.dependencies().scene.frames().actor_world_matrix(dog.base().frame());return {{matrix[8],matrix[9],matrix[10],matrix[11]}};}
+            HumanVector model_position(){return world.sight_position(dog.base().frame());}
+            void rotate_direction(HumanVector& value,float angle){auto& frames=world.dependencies().scene.frames();frames.car_transform_in_place(value,frames.human_axis_rotation({{0,1,0,0}},angle));}
+        } queries{*this,dog};
+        dog.head_look.advance(elapsed,queries);
+    }
     template<class Dog>void advance_dog_body(Dog& dog,std::uint32_t elapsed){advance_dog_body_frame(dog,elapsed,*this,dependencies().scene.frames(),dog.require_controller());}
     template<class Actor>void apply_dog_actor_damage(Actor& actor,std::uint32_t kind,float amount,const HumanVector& point,
             const HumanVector& direction,SceneActor<typename Dependencies::ActorFrames>* source,std::uint32_t extra){

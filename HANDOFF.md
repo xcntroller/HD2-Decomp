@@ -10,13 +10,19 @@ work; no unconfirmed interactive import/commit or silent restaging.
 
 ## Latest source
 
-[Dog live composition](analysis/human-h8-dog-live-composition-source.md): actual
-005CE110 input publisher is exposed by SAME controller6C; actual005CE740 Sight
-metric now binds Runtime→World→Dog534 and actual Human target state/model/544.
-Native898 input and1664 metric/priority/slope ASan/UBSan/leak checks PASS; strict
-actual World i386 controller replacement/input/Sight/whole Body motion link PASS.
-Forced O2 launcher/probe in receipt. Temporary audits removed at checkpoint.
-Two new frozen partials only; H8.4/.5/.6 and parent HUM remain OPEN.
+[Head-look command/timer](analysis/human-h8-dog-head-look-source.md) supplies
+complete005D8070/005D82B0 on SAME Dog Actor4E8..52C; World binds actual CRT/
+engine random, model and quaternion-axis rotation. Native132 ASan/UBSan/leak
+checks and strict full actual World i386 request/update link PASS. Fixture
+explicitly initializes its source state; LIVE005D4DB0 is STILL REQUIRED. This
+is not enabled activation/dispatch. Strict O2 launcher/probe, tracker check and
+27 existing tests PASS; temporary audits fingerprinted/removed.
+[Receipt](analysis/checkpoints/p22-h8-dog-head-look-20261117.json).
+Two frozen partials only; H8.4 stays OPEN.
+
+Prior5758e5f: actual controller6C005CE110 and Runtime→World→534005CE740 metric;
+native898+1664 and actual World/Body/i386/launcher PASS. Two authorized fixes
+are implemented; their original omission evidence is not reopened.
 
 USER AUTHORIZATION:2026-11-17 “Authorize both fixes” means zero Body278/27C/280
 priorities immediately before bootstrap requests, and use actual selected
@@ -26,6 +32,12 @@ other guessed state, fields, native layouts or successful absent-actor services.
 Prior confirmed omission evidence remains valid; no repeat producer search.
 
 ## Continue full H8.4
+
+Head-look next: actual005D7A10 presentation consumes4F0 and produces4E0/4E4
+engine animation state;005D82B0 command/timer is now present. Body presentation
+005C18C0 and outer005D5810 remain required. Retain exact source4F0 provenance
+and signed/unsigned timers/RNG, no generic Human-look replacement.
+
 
 [H8 plan](analysis/p22-hum-h8-plan.md). Next live Dog requirements are actual
 activation005D5290→005D4DB0→clip/Body bind, retirement005D5390, containing

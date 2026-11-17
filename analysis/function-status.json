@@ -51445,6 +51445,34 @@
         "analysis/human-h8-dog-live-composition-source.md",
         "analysis/checkpoints/p22-h8-dog-live-composition-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005d8070",
+      "status": "partial",
+      "coverage": "Actual Dog Actor4E8..52C head-look request: masked SAME-mode return, target/prefix publication, signed speed/delay RNG, subtype policy, unsigned wrapped duration division and required fault ordering.",
+      "limitations": "Source-only typed owners/STL and provenance guards replace native memory/vtable/ABI; native unproduced scratch W lanes have no equivalence claim. Native assertions double frame/math/random endpoints; actual full World i386 compile/link only. Live Dog activation/controller/containing frame and H8.4 remain open.",
+      "evidence": [
+        "recovered/game/dog_head_look.h",
+        "recovered/game/model_scene_actors.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-head-look-source.md",
+        "analysis/checkpoints/p22-h8-dog-head-look-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d82b0",
+      "status": "partial",
+      "coverage": "Actual Dog head-look decision/timer: native early gates, signed/wrapped clocks, random model-direction/rotation/position target production, completion rearm and common-tail4F0 publication; SAME World process/frame binding.",
+      "limitations": "Source-only typed owners/STL and provenance guards replace native memory/vtable/ABI; native unproduced scratch W lanes have no equivalence claim. Native assertions double frame/math/random endpoints; actual full World i386 compile/link only. Live Dog activation/controller/containing frame and H8.4 remain open.",
+      "evidence": [
+        "recovered/game/dog_head_look.h",
+        "recovered/game/model_scene_actors.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-head-look-source.md",
+        "analysis/checkpoints/p22-h8-dog-head-look-20261117.json"
+      ]
     }
   ]
 }

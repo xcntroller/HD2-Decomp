@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-17",
+  "base": "5758e5f",
+  "source_only": true,
+  "desktop_verified": false,
+  "new_frozen_partial": [
+    "005d8070",
+    "005d82b0"
+  ],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_head_look.h",
+      "bytes": 5410,
+      "sha256": "58652d51612748e99b3d3e7e49158388b25557d35ddb7a679247a51a284bd81c"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 8488,
+      "sha256": "772c064f8cfee8cacb1237fb1623bcde7ed2c089ee2db171476f4d6fed2180c3"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 315728,
+      "sha256": "20bb5f6706ce8694677cbf93232aa016d0ef96b830e446e06c33ec46953983a8"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-head-look/005d8070-82b0.asm",
+      "bytes": 23085,
+      "sha256": "206d1d51061f2e09ca152c88328bf70ec0a0f78718c10ae7339154ed616964be"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-head-look/constants.json",
+      "bytes": 574,
+      "sha256": "56c0676054d6554426301c460c7e4b126eee0c7f6386288ecfbb8c8a679bcb17"
+    }
+  ],
+  "verification": {
+    "native": "PASS132 ASan/UBSan/leaks actual command/timer state with explicit frame/math/random endpoints",
+    "actual_i386": "PASS strict complete World Dog request/update compile/link only; bootstrap explicitly called in fixture",
+    "launcher_probe": "PASS forced strict O2 actual i386 application-launch/startup-probe compile/link only",
+    "ledger": "PASS full function_progress check and27 existing tests"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-dog-head-native.cpp",
+      "bytes": 3253,
+      "sha256": "e2036caebcad87214de35a2f9a5b460de2415f90ee7a59c76f68527973b3db29"
+    },
+    {
+      "path": "/tmp/h8-dog-head-native.o",
+      "bytes": 442456,
+      "sha256": "001731cbd3b0393aa30ec8ebed2057f6ea61bf6d1a238a35ec72bb991e79ba7a"
+    },
+    {
+      "path": "/tmp/h8-dog-head-native",
+      "bytes": 262392,
+      "sha256": "2fbf24a456ed6058f03d3ece1debcd53d739a39736b7c3e40a9074560aa1ed05"
+    },
+    {
+      "path": "/tmp/h8-dog-head-module.cpp",
+      "bytes": 415,
+      "sha256": "d1f0a81e5f5a0b3f04b0e336bb73abe1e101f62d92c809b0ea3b72739b6d1a38"
+    },
+    {
+      "path": "/tmp/h8-dog-head-module.exe",
+      "bytes": 591872,
+      "sha256": "14aed177f3d2e8debe351bfec586dc2e0aaf70e90525dcfe1db5804f5a229f7d"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "limits": "H8.4 remains active/open: live activation/retirement, head presentation005D7A10, controller decision/actor frames and selected containing dependencies. No application/readiness or desktop claim.",
+  "verification_logs": [
+    {
+      "path": "/tmp/h8-dog-head-native.log",
+      "bytes": 85,
+      "sha256": "79b6f242cba7e274549550525a4926ffdaf50b926f2a67b653ba3904f656ebb5"
+    },
+    {
+      "path": "/tmp/h8-dog-head-module.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/h8-dog-head-launch.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "/tmp/h8-dog-head-progress.log",
+      "bytes": 126,
+      "sha256": "e6003b583cb2a86a68695abe02a47c7e996ee2aaf2b27c3a8b337ad86d844097"
+    }
+  ]
+}

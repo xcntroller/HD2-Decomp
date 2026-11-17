@@ -270,3 +270,7 @@ H8 Dog live composition (2026-11-17):005CE110/005CE740 add two frozen client
 partials; combined34 complete/3730 partial (client3725, engine5), frozen18783.
 Authorized priority/normal compatibility fixes add no new credit.
 [Contract](human-h8-dog-live-composition-source.md); H8.4 remains open.
+
+H8 Dog head-look source (2026-11-17):005D8070/005D82B0 add two frozen
+client partials; combined34 complete/3732 partial(client3727, engine5), frozen
+18783. [Contract](human-h8-dog-head-look-source.md). Full H8.4 remains open.
