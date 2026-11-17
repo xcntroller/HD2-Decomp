@@ -1,0 +1,262 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "edebd81a268db6020adf33613e2e03b947e751f8",
+  "source_only_commit": true,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "desktop_verified": false,
+  "windows_outputs_executed": false,
+  "native_checks": 2658,
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "contract": "analysis/p22-frame-game-entry-review.md",
+  "frame_sources": [
+    {
+      "path": "recovered/game/session_received_application.h",
+      "bytes": 4076,
+      "sha256": "c8b134393e9eaf414b34ccbdaf8e6a63af717da02cff91aa2bf8802a8f298bdd"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 36859,
+      "sha256": "b9e7bd7fc3e99a7a9a740a91457950e0f248aec169963a046d921a903c44ccef"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 83692,
+      "sha256": "08ba7358b687072a4ba8b5c766855d9ed5fbe6c1fabb9a9b4b7d29170869c752"
+    }
+  ],
+  "review": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+    "detached_base": "edebd81",
+    "interactive_overlay_committed": false,
+    "own_source_preserved": true,
+    "own_prior_staged_artifact_preserved": true,
+    "own_prior_staged_artifact": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+      "bytes": 12573184,
+      "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+    },
+    "sources": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/collision_sweep.h",
+        "bytes": 7496,
+        "sha256": "cf1bc4a4e4957788883a91e50f5373ea44e4f1096aa9bb3355292ad671c745c7"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/collision_slide.h",
+        "bytes": 3868,
+        "sha256": "9264938ac59819693b80b2d1f20eda692b45f814fe79faf6f32e20d780e7226a"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/detached_camera.h",
+        "bytes": 10172,
+        "sha256": "c13003c6a4e7c81eef2680419713b23653d537a1d4eb256de77616e5e800bb92"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_world_loading_services.h",
+        "bytes": 323746,
+        "sha256": "a90c31bf3d766f3930075a0f6aac024ffb7041f09d63e56006077c7a0b336a76"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_application_session.h",
+        "bytes": 8409,
+        "sha256": "4a2e28282e95a8404636f0caf2f002e6377f6d586b8d5f1cb2a863af22212dee"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_session_lifecycle.h",
+        "bytes": 9926,
+        "sha256": "b84b834965ff2eb39d08486872c74161cd25a2302ad8247e62eb3aed8e5b4f08"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/session_received_application.h",
+        "bytes": 4076,
+        "sha256": "c8b134393e9eaf414b34ccbdaf8e6a63af717da02cff91aa2bf8802a8f298bdd"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_session_frames.h",
+        "bytes": 36859,
+        "sha256": "b9e7bd7fc3e99a7a9a740a91457950e0f248aec169963a046d921a903c44ccef"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/startup_session.h",
+        "bytes": 83692,
+        "sha256": "08ba7358b687072a4ba8b5c766855d9ed5fbe6c1fabb9a9b4b7d29170869c752"
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+        "bytes": 12813312,
+        "sha256": "31b938fa730d1dccabd8b3810306f9bd5307564953436dcf9d6c6ca2e911b788"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+        "bytes": 1175552,
+        "sha256": "a177e5b2d38152aed4489c459d214176ba9f998fda16c6539bd52c00361c7b25"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+        "bytes": 12813312,
+        "sha256": "31b938fa730d1dccabd8b3810306f9bd5307564953436dcf9d6c6ca2e911b788"
+      }
+    ],
+    "source_overlay": [
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/own-review-overlay.patch",
+        "bytes": 18868,
+        "sha256": "7489c061cf12cbac818bace93621c7cc4da15fd962151741a57454a04f490269"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/frame-exit-overlay.patch",
+        "bytes": 3077,
+        "sha256": "de017c09e61327220ed7a758e54f82a8511ccb9f853913b90020fe099eb83cde"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/own-review-overlay-inputs.json",
+        "bytes": 1112,
+        "sha256": "620f688f88887377aef148674a0570957aab901944b43321f7c2c51140288ec4"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/combined-own-review-final.patch",
+        "bytes": 26251,
+        "sha256": "903c9bbf564881704df32fbb9e0636f4bcc52e5153b3b304052f5789f7e26f1a"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/own-status-after-review.txt",
+        "bytes": 392,
+        "sha256": "ecf7814df21ce4f3dabfb059f9378f8f7030569c5fec7e940e5014096433334c"
+      }
+    ]
+  },
+  "frame_build_outputs": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 9746944,
+      "sha256": "8bea47ff0c727f3d757f2b680eaee9ce8c6755dc9c5c30e93d4d8806a98121d9"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1175552,
+      "sha256": "ad9a2cc732977049d03c992e2a83f771ed50166c984853841daf47bbb6f10b2f"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/menu-route-extra-20261031/00728450.c",
+      "bytes": 32585,
+      "sha256": "b9c8016db7a09c41f356be16f9dbb10905e2d7263dfecb5bbaef86bd46eedbc2"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/p22-own-20261112/player-focus-index.txt",
+      "bytes": 8252,
+      "sha256": "2543c27e1a61c36f6c0191a0e159a24ecdd0a9f3b70174e87664a73616d1eb32"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/p22-own-20261112/player-focus-collision-index.txt",
+      "bytes": 720,
+      "sha256": "618e85ec9d6f89e137bdb7140c00c7378001e73b465ad5a08bd6373752366add"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/p22-own-20261112/player-focus-query-index.txt",
+      "bytes": 981,
+      "sha256": "1f36d3e26703825aa841ec80fbe4b84b668e070cb81b32b59bf981d064e46512"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/p22-own-20261112/player-focus-abi.asm",
+      "bytes": 12972,
+      "sha256": "f9327ed535a038c5b9b2f0d1e27705b419107d37e00d49d0d7492dda961ff7c0"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/p22-own-20261112/player-focus-move-abi.asm",
+      "bytes": 8163,
+      "sha256": "6776c2f1cddfa593397f710468073073d426cd14ea781905c310114c21a9d5fb"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/p22-own-20261112/player-focus-slide-abi.asm",
+      "bytes": 18871,
+      "sha256": "1fab9d2f248d43dae653c39c06623949185ea32e6d74e990cb49dbaa34355cb7"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/p22-own-20261112/player-focus-constants.json",
+      "bytes": 1012,
+      "sha256": "8b7e148cd61fc1b59fbdb97cf4405a9d54b2a93a13f7b3011466fd0ed25ca6c9"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/p22-own-20261112/player-focus-query-export/00716da0.c",
+      "bytes": 5297,
+      "sha256": "a51260e9c3a3199f1d84e9bfd6bb9f0eeee2ef5756a685e730c30073c34c5a43"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/p22-own-20261112/player-focus-query-export/00464b80.c",
+      "bytes": 2190,
+      "sha256": "05bec8e0ba9b212a596139eb1eb4be82f6472e235fb5042cc0787d0d757f7d26"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/combined-own-launcher-build.log",
+      "bytes": 5161,
+      "sha256": "54b21f44effda447d415450c16cd5ec307522513a2d478afd4a6a5e898526e3f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/combined-own-launcher-rebuild.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/combined-native-build.log",
+      "bytes": 1654,
+      "sha256": "7b3ce5d94d99ad0a96b949ca00f5e6873c9b753e90d2188a35585084088d1092"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/combined-native-rebuild.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/combined-native-run.log",
+      "bytes": 43,
+      "sha256": "4dc99526dc9fd93e5f994427cb8aa32a2372f0c6eef62e7c5d0438547f8e7ed3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/combined-own-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/exit-frame-launcher-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/exit-function-render.log",
+      "bytes": 380,
+      "sha256": "20140c88f15feb60b91d4521f745adf4ba542b2e4d3bf2af6154a5e68ab2318d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/exit-function-check.log",
+      "bytes": 437,
+      "sha256": "3b7b5583389bd9dfe5db7912c7a84170b4de68e23efef45e31b79b11eae4d292"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/combined-native.cpp",
+      "bytes": 8670,
+      "sha256": "73e176e77efbf9b94d176d59ebd5c5f347f15044e51d7afbc72aae27d3b6d8cd"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/combined-native",
+      "bytes": 1536520,
+      "sha256": "0695c6e03ca2a46c151afa592c2324ea94841628a8c69e9c0a09c0cf7a41e8d8"
+    }
+  ],
+  "limitations": [
+    "Actual production lifecycle/World/HumanFrameRuntime/Frame/Players/HUD/positive focus composition compiled/linked only. Native2658 executes focus/move/slide/exit policies with explicit sweep/engine/adjacent endpoints, not original engine or loaded collision geometry. No original ABI/padding/allocator/SEH equivalence or function completion promotion.",
+    "Review includes uncommitted OWN activation source and two review-only fixes; pending user desktop acceptance before interactive commit. No original/DLL/Proton/Windows execution. Frame source-only exit consumer is separately committable. General nonoffline application/menu, console catalogue, transport/history/close and other packets keep full FRAME partial."
+  ],
+  "temporary_audits_removed": true
+}

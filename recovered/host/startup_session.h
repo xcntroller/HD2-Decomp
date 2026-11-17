@@ -925,6 +925,7 @@ public:
     void dispatch_application_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority){
         game::receive_session_application_packet(kind,packet,authority,*this);
     }
+    void receive_application_session_exit(){packet_world_.receive_frame_control(1,100);}
     void bind_match_application(game::SessionMatchApplication& owner){match_application_.bind(owner);}
     void unbind_match_application(game::SessionMatchApplication& owner)noexcept{match_application_.unbind(owner);}
     game::SessionMatchApplication& match_application(){return match_application_.get();}

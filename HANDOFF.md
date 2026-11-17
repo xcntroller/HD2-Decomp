@@ -7,24 +7,38 @@ work and staged desktop artifact. No subagents, merge/rebase, push, original/
 DLL/Proton/Windows execution, permanent tests or staging. Heavy compilation
 and Ghidra sequential. Continue the full remaining FRAME source checkbox.
 
-LATEST: [warmup/countdown/manual/side contract](analysis/p22-frame-warmup-source.md),
-[receipt](analysis/checkpoints/p22-frame-warmup-20261117.json),
-[short plan](analysis/p22-frame-plan.md). Source base3be24f5. Presentation11/12/16
-now bind actual process/Frame/Human/Players/HUD.00699900 preserves two differing
-0069E620 receivers;00699810 preserves UI/body/selection/fresh-B0/spawn-phase/
-late-clock order. Manual0059F010 age>3000 then DD01AC/9C0 gates remains distinct
-from automatic0059FE30/direct warmup request1. Case12 side list is process-owned
-BEFORE any World, separate current/pending418 writes then current-game countdown.
-0072EC20 raw ABI has NO active/name/lock gate. SessionMatchApplication same-process
-loan supplied; actual menu provider/retaining bodies remain OWN-owned REQUIRED.
-No0069E620/00685260 declaration or absent-function credit.
+LATEST: [exit source and isolated current-FRAME/OWN game-entry review](analysis/p22-frame-game-entry-review.md),
+[receipt](analysis/checkpoints/p22-frame-game-entry-review-20261117.json).
+Source baseedebd81. Presentation1 now mode&1 RET/no payload; otherwise SAME
+current World/Frame0069A500 publishes status6/20=500/24=1000 before deferred
+close; already6 RET preserves a failed earlier close prefix. Not status100.
+No new count:34 complete/3815 partial total(client3810/engine5), frozen18783.
 
-Native582 ASan/UBSan/leaks PASS (explicit adjacent app/menu/Human/Players/UI/
-physics endpoints), actual full World/Startup/HumanFrameRuntime/Frame dispatch/
-manual Human/DD0 i386/Werror PASS. Forced sequential O2 launcher/probe PASS;
-no staging/execution. Temporary audits fingerprinted and removed. Function
-checker PASS:34 complete/3815 partial total(client3810/engine5), frozen18783.
-Only4 new partials. Global FRAME stays partially_resolved.
+Isolated DETACHED review worktree Projects/HD2-Decomp-p22-frame-review starts
+at edebd81 with exact preserved OWN source overlay +FRAME exit wiring. No
+merge/rebase/stash/OWN overwrite. Strict actual full O2 application/probe PASS
+there AND on FRAME sequentially. Native2658 ASan/UBSan/leaks focus/move/slide/
+exit checks PASS; adjacent sweep/engine/menu endpoints are explicit doubles,
+not actual engine/World execution. Removed fingerprinted temporary audit.
+Two review-only corrections: unused focus lambda capture (strict build failure),
+and00464CE4..00464D12 Y bias product extended through final add; Z stored first.
+Review remains UNCOMMITTED, no focus function credit. Own source unchanged.
+Final recoverable overlay WORK/combined-own-review-final.patch is fingerprinted.
+
+New actual review candidate STAGED ONLY under review worktree
+analysis/work/frame-own-review-runtime. User asynchronously asked to run:
+`cd /home/control/Documents/Projects/HD2-Decomp-p22-frame-review && python3 -B tools/run_application_launch.py --game-dir '/home/control/Documents/Projects/H&D2 Decomp 4/Hidden and Dangerous 2' --work-dir analysis/work/frame-own-review-runtime`.
+Read its run/host-runtime.log for FIRST actual failure. No game entry/render/
+mission/failure/repeat/desktop claim. AGENTS requires actual user desktop
+confirmation BEFORE interactive overlay commit. Don't silently restage either
+candidate or commit/import OWN's unconfirmed interactive adapter.
+
+Previous edebd81: [warmup/countdown/manual/side](analysis/p22-frame-warmup-source.md),
+[receipt](analysis/checkpoints/p22-frame-warmup-20261117.json), native582 PASS;
+actual full i386/O2 PASS.11/12/16 process/Frame/Human/Players/HUD coordinators,
+actual menu provider still REQUIRED. Manual0059F010 age/DD0 gates distinct from
+automatic0059FE30. Case12 process-owned BEFORE World, separate418 side writes.
+0072EC20 raw ABI has NO active/name/lock gate. Four new partials, zero complete.
 
 Prior source checkpoints:3be24f5 config/result/vote +direct automatic respawn,
 03da7f3 Runtime snapshot/statistics/reset borrower,4da1639 balance/spawn0/1/3,
@@ -36,7 +50,7 @@ consumers. Selected first in-game path is offline7; OWN has an uncommitted real
 same-World activation/input/fixed/update adapter plus unverified camera/focus
 changes. Its real match external remains unbound, not supplied by Frame. Avoid
 unrelated admin/chat/Dog expansion; inspect actual reached dependencies first.
-Case1 presentation exit also remains unsupplied; do not claim all control kinds.
+Presentation1 exit is supplied by latest checkpoint; other specialized commands remain.
 General non7 pump/close/history still guarded by SessionLocalPackets and
 ColdControlFrame. HumanInputLoadingManager is loading-only; actual history
 manager/flag20 remain required. Actual worker/connection/0072D0E0 submit supplied.

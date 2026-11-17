@@ -1,6 +1,8 @@
 # FRAME offline composition baseline — 2026-11-17
 
-Latest continuation: [warmup/countdown/manual respawn and pre-World peer sides](p22-frame-warmup-source.md) follow earlier reset/spawn/Runtime/statistics/result policies. Evidence below retains its original revision/verification boundary; actual application/menu provider, console/network/history/close/other packets and delivery remain.
+Latest game-entry continuation: [presentation exit and isolated actual FRAME/OWN candidate](p22-frame-game-entry-review.md) compile/link and pass focused native verification; the revised candidate is staged separately, with actual desktop result pending. OWN source and its earlier artifact are preserved. Full FRAME remains partial.
+
+Earlier continuation: [warmup/countdown/manual respawn and pre-World peer sides](p22-frame-warmup-source.md) follow earlier reset/spawn/Runtime/statistics/result policies. Evidence below retains its original revision/verification boundary; actual application/menu provider, console/network/history/close/other packets and delivery remain.
 
 
 Later selected nonoffline and retained-item implementation supersedes the

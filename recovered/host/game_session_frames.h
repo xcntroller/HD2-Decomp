@@ -98,6 +98,7 @@ public:
     }
     void receive_frame_control(std::uint32_t kind,std::uint32_t value)override{
         require_open();MatchServices services{*this};
+        if(kind==1){game::begin_loading_session_exit(d_.session,*this);return;} //0069A500, unused argument100.
         if(kind==6){(void)frontend::select_network_map(d_.startup.game_configuration(),nullptr);services.frame_current_application_status(9);return;} //0069B9D0.
         if(kind==11){game::finish_session_match_warmup(d_.session,services);return;}
         if(kind==12){game::receive_session_match_countdown(d_.session,services);return;}

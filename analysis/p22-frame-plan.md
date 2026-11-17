@@ -5,6 +5,8 @@ Active worktree `/home/control/Documents/Projects/HD2-Decomp-p22-frame`, branch
 selection and RENDER/lifecycle dependencies were fast-forwarded here through
 1d54083; OWN's uncommitted application/camera work remains preserved there.
 [Current verification and exact remaining boundary](p22-frame-current-source.md).
+[Isolated current-FRAME/OWN game-entry candidate](p22-frame-game-entry-review.md)
+builds and is staged separately; actual mission/desktop result is pending.
 Older implementation/reassessment documents retain revision-qualified evidence.
 
 ## Implemented and verified offline source
@@ -35,7 +37,8 @@ Older implementation/reassessment documents retain revision-qualified evidence.
   provider, console and general network/history/close remain.
 - [ ] Complete selected positive HUM/Actor/cutscene/UI command producers under
   their owning HUM/OWN paths, then install the actual application adapter.
-  Current OWN desktop review is uncommitted; no source import enables it here.
+  Current OWN adapter is uncommitted; its exact overlay plus current FRAME now
+  compiles in an isolated detached review, leaving both branches untouched.
 - [ ] Observe actual mission loading/input/fixed/update/Scene78/present, failure
   return/repeat and obtain user desktop acceptance. Unknown loaded populations
   cannot be inferred from historical Tutorial/ALPS1 or native fixtures.

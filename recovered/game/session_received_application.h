@@ -5,6 +5,11 @@
 #include "game/session_pending_spawn_packets.h"
 #include "game/human_damage_messages.h"
 namespace hd2::game {
+//00728450 case1: no payload or absent-game guard. The unused stack100
+//belongs to0069A500, not the application's generic virtual status setter.
+template<class Runtime>void receive_session_exit_command(Runtime& runtime){
+    if(!(runtime.application_mode_flags()&1u))runtime.receive_application_session_exit();
+}
 //00728450 presentation cases reached by Human death/disconnect. Application
 //envelopes precede the loaded-World gate. Authority00727800 has a DIFFERENT
 //grammar; never replay these payloads through that switch.
@@ -12,6 +17,7 @@ template<class Runtime>void receive_session_application_packet(std::uint32_t kin
         SessionPacketStream& packet,bool authority,Runtime& runtime){
     if(authority){receive_authority_spawn_request(kind,packet,runtime);return;}
     switch(kind){
+    case 1:receive_session_exit_command(runtime);return;
     case 3:read_session_pending_spawn(packet,runtime);return;
     case 6:runtime.receive_application_configuration(packet);return;
     case 7:runtime.receive_application_world_snapshot(packet);return;
