@@ -1,3 +1,7 @@
+Latest retest: sound crash gone and clean shutdown, but mission entry returned to Main on d_l.tga. [Original footprint partial-status RET and correction](p22-frame-loading-footprints-source.md) preserve acquired references without inventing complete texture readiness. No gameplay frame accepted.
+
+Latest actual desktop run FAILED during loading: [null sound scene lookup and corrected source](p22-frame-loading-sound-failure.md). Prior source verification remains valid within its bounds; no loaded frame/desktop acceptance is established.
+
 # FRAME offline composition baseline — 2026-11-17
 
 Latest game-entry continuation: [presentation exit and isolated actual FRAME/OWN candidate](p22-frame-game-entry-review.md) compile/link and pass focused native verification; the revised candidate is staged separately, with actual desktop result pending. OWN source and its earlier artifact are preserved. Full FRAME remains partial.

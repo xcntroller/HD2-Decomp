@@ -221,7 +221,7 @@ std::int32_t add_sound_sector(SoundRuntimeState& state, void* sector, Backend& b
     auto data = std::make_unique<SoundSectorData>();
     data->sector = sector;
     backend.sector_sound_data(sector, data.get());
-    auto* root = backend.primary_sound_sector(backend.sound_world()->scene);
+    auto* root = backend.primary_sound_sector(backend.current_sound_scene());
     for (unsigned side = 0; side != 2; ++side) {
         for (auto i = backend.sound_portal_count(sector, side); i-- != 0;) {
             auto* portal = backend.sound_portal(sector, side, i);
@@ -243,7 +243,7 @@ std::int32_t add_sound_sector(SoundRuntimeState& state, void* sector, Backend& b
 // clears that binding before freeing each object, retaining vector capacity.
 template<class Backend>
 void build_sound_sectors(SoundRuntimeState& state, Backend& backend) {
-    backend.enumerate_sound_sectors(backend.primary_sound_sector(backend.sound_world()->scene),
+    backend.enumerate_sound_sectors(backend.primary_sound_sector(backend.current_sound_scene()),
         [&](void* sector) { return add_sound_sector(state, sector, backend); });
 }
 template<class Backend>

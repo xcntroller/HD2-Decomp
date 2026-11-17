@@ -26,27 +26,31 @@ public:
     HumanPresentationTextures(const HumanPresentationTextures&)=delete;
     HumanPresentationTextures& operator=(const HumanPresentationTextures&)=delete;
     void load(std::uint32_t mode) {
-        if(loaded_)throw std::logic_error("Human presentation textures loaded twice");
+        if(attempted_)throw std::logic_error("Human presentation textures loaded twice");
+        attempted_=true;
         if(!(mode&2)){loaded_=true;return;}
         try {
             for(unsigned index=0;index!=definitions.size();++index)for(unsigned side=0;side!=2;++side) {
                 const auto name=std::string(definitions[index].prefix)+(side?"r.tga":"l.tga");
-                auto texture=frames_.load_car_particle_texture(name,"",0x402);
-                if(!texture)throw std::runtime_error("Required Human presentation texture failed: "+name);
-                textures_[index][side]=std::move(texture);
+                auto& texture=textures_[index][side];texture.reset(); //Native clears this destination BEFORE each engine call.
+                //0078A57D/0078A5CC: nonzero status RETAINS the acquired prefix,
+                //including a nonnull failed-call output, then returns normally.
+                //The first Human's caller continues and does not retry for later Humans.
+                if(frames_.load_human_presentation_texture(name,texture)!=0)return;
             }
             loaded_=true;
-        }catch(...) {clear();throw;} //Never publish native partial acquisition as ready.
+        }catch(...) {clear();throw;} //Source C++ exceptions still retire loans; native status RET above keeps its prefix.
     }
     void clear() noexcept { //Texture tail of0078A5F0, ascending record then L/R.
         for(auto& pair:textures_)for(auto& texture:pair)texture.reset();
-        loaded_=false;
+        loaded_=false;attempted_=false;
     }
     const auto& textures() const{return textures_;}
-    bool loaded() const{return loaded_;}
+    bool loaded() const{return loaded_;} //Source diagnostic: every attempted engine call returned zero, not mission readiness.
+    bool attempted()const{return attempted_;}
 private:
     Frames& frames_;std::array<std::array<Owner,2>,13> textures_{};
-    bool loaded_=false;
+    bool loaded_=false,attempted_=false;
 };
 } //namespace hd2::game
 #endif

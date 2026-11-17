@@ -1,0 +1,212 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "9289d4f",
+  "source_only_checkpoint": true,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "user_desktop_outcome": "Sound-fixed cb657c0c candidate: crash removed, Tutorial mission returned to Main on fatal d_l.tga texture exception, clean shutdown result0. No first gameplay frame accepted.",
+  "gameplay_desktop_verified": false,
+  "agent_executed_original_dll_proton_or_windows": false,
+  "native_checks": 4803,
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "contract": "analysis/p22-frame-loading-footprints-source.md",
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-return/application_launch.exe",
+      "bytes": 12813312,
+      "sha256": "cb657c0c3f825da644f508bcd4340867ec9cb178eee7bf7f9ad1904abea75e22"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-return/host-output.log",
+      "bytes": 201223,
+      "sha256": "5abb026fae77d72c5e28896559e02271830317232ae3eeb614ec2e82924fb5b0"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-return/host-runtime.log",
+      "bytes": 204265,
+      "sha256": "053f24bcea509f9bde1bfebb0434251b236e95864afb8de3a74ea9bb28bf8988"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-return/inputs.json",
+      "bytes": 993,
+      "sha256": "3cd00a1c037048b94cdc4fd2675e3fe3892127215390919e548874f1c3947cc4"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-return/steam-0.log",
+      "bytes": 343049,
+      "sha256": "3da3c68d3378ac8ff167da4d24616ae8ebfc647042f90aa3ffb0d940f0f511c2"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "recovered/frontend/sound_runtime.h",
+      "bytes": 20480,
+      "sha256": "2740a1625d2ece09be50065d331e56ec1b0b0c68bcd187cbb13bf98f1831f69b"
+    },
+    {
+      "path": "recovered/host/dubbing_sound_services.h",
+      "bytes": 4533,
+      "sha256": "fff93c5e75c0ef6d1867dd1f1d6104c62706e15a3e9cbdc19ee34dd10079df45"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 83686,
+      "sha256": "52583f6d1f6170b88218590364a1fc069426c7a25bc6ea1969aa14cdec6d90c7"
+    },
+    {
+      "path": "recovered/game/human_presentation_textures.h",
+      "bytes": 2730,
+      "sha256": "8122aec1b67c639bfa128eddd0b98b731fac8b82266e57f63c7e3c4fa65c455c"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 135667,
+      "sha256": "481e0fad844c1ce1941ea68b2544c8a17cec99d5ab3a269793dcc4f99900ba37"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-control-bindings/0078a4f0.c",
+      "bytes": 2329,
+      "sha256": "5752074f364f819145e86b2ffeae211421e775a63066b24cfd3dc1c0f8f78778"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-control-bindings/0078a4f0.json",
+      "bytes": 6027,
+      "sha256": "b0f934fb16d9133038ebe58234e3136bc43d655612712ff90c9a9ae19ac7f00b"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-shared-texture-loading.asm",
+      "bytes": 4536,
+      "sha256": "95ce0f9827ae21a835ed7be1ad1d67b4e65af0bd509234e2e77da1453bb626c0"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-presentation-texture-data.json",
+      "bytes": 1281,
+      "sha256": "ec66e2fbd230bd2d7c8f58c585dfdd3e9277b28eeee207833532797982c067e7"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-model-control-owners/00785be0.c",
+      "bytes": 4781,
+      "sha256": "03d71554539df9dd3ecf54e77dc57bd5106b6c0621db8637c237f97171ce8b58"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-index.txt",
+      "bytes": 8787,
+      "sha256": "341718a22ea4d287e9fed7ba1384ae1d1f8e13ade2ec1b0fbf2336d44ab64acb"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-resources.json",
+      "bytes": 8315,
+      "sha256": "0c580da5cd8b46617f6366767bb344c42b15dca71251a552066da1b2fed99b6a"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-native-run.log",
+      "bytes": 63,
+      "sha256": "c87735b77f8e441a7c6f3e63313de54a3777e7ee22210b3e1f1a1e107413c917"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-function-check.log",
+      "bytes": 437,
+      "sha256": "3b7b5583389bd9dfe5db7912c7a84170b4de68e23efef45e31b79b11eae4d292"
+    }
+  ],
+  "review": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+    "detached_base": "edebd81",
+    "interactive_overlay_committed": false,
+    "source_files": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_presentation_textures.h",
+        "bytes": 2730,
+        "sha256": "8122aec1b67c639bfa128eddd0b98b731fac8b82266e57f63c7e3c4fa65c455c"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_actor_frames.h",
+        "bytes": 135667,
+        "sha256": "481e0fad844c1ce1941ea68b2544c8a17cec99d5ab3a269793dcc4f99900ba37"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/sound_runtime.h",
+        "bytes": 20480,
+        "sha256": "2740a1625d2ece09be50065d331e56ec1b0b0c68bcd187cbb13bf98f1831f69b"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/dubbing_sound_services.h",
+        "bytes": 4533,
+        "sha256": "fff93c5e75c0ef6d1867dd1f1d6104c62706e15a3e9cbdc19ee34dd10079df45"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/startup_session.h",
+        "bytes": 83686,
+        "sha256": "52583f6d1f6170b88218590364a1fc069426c7a25bc6ea1969aa14cdec6d90c7"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/game_application_session.h",
+        "bytes": 9349,
+        "sha256": "72f28cbe19e57fe43977190a331079c83528581c5319ce64bef543bd8ccdb7b4"
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+        "bytes": 12814848,
+        "sha256": "f5cbd39ffc97ee1027df863410382734fccd40f3ce8c93cf8af881037011ed75"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+        "bytes": 1175552,
+        "sha256": "ed3ca4fe0808b8886e8b38432dedfd42919f52b139b6754e422599a49ce7b724"
+      },
+      {
+        "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+        "bytes": 12814848,
+        "sha256": "f5cbd39ffc97ee1027df863410382734fccd40f3ce8c93cf8af881037011ed75"
+      }
+    ],
+    "recoverable_patch": {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-review-final.patch",
+      "bytes": 35139,
+      "sha256": "07ad5f5825cd747846decb4ae2951f4d37ea7ef15eb38f2d792578575d3b8a2f"
+    }
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-native.cpp",
+      "bytes": 4853,
+      "sha256": "931af31258555e937a479d009686938e71d30e10588c4d5690eb7fb7cc884c0a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-footprints-native",
+      "bytes": 976944,
+      "sha256": "aad1bd9037f9738534b97fad6137a83813bff1547cee721d421b620baa6db88e"
+    }
+  ],
+  "limitations": [
+    "Native4803 uses actual texture/shared/projection-process ownership policies with explicit graphics/mission/driver endpoints. Actual World/Startup/Frame/Runtime/graphics adapter/activation diagnostic production composition i386 O2/Werror compile/link only. No whole-function original ABI/allocator/SEH equivalence or function promotion.",
+    "The native nonfatal texture status branch is restored, with partial acquisition kept distinct from full success. Required source exceptions still propagate. Revised candidate still needs actual user mission testing; sound listener/positive runtime owners and general non7 external requirements remain. Clean exit alone is not gameplay acceptance."
+  ],
+  "own_preserved": true,
+  "temporary_audits_removed": true
+}

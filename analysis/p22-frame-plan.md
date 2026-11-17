@@ -6,7 +6,12 @@ selection and RENDER/lifecycle dependencies were fast-forwarded here through
 1d54083; OWN's uncommitted application/camera work remains preserved there.
 [Current verification and exact remaining boundary](p22-frame-current-source.md).
 [Isolated current-FRAME/OWN game-entry candidate](p22-frame-game-entry-review.md)
-builds and is staged separately; actual mission/desktop result is pending.
+builds and is staged separately. Its first actual user run crashed during sound
+sector initialization; [source correction and retest](p22-frame-loading-sound-failure.md)
+use the actual constructed scene separately from the later listener view.
+Actual retest passed the old sound fault, then returned to Main on an incorrect
+fatal footprint-texture status. [Original partial-status correction](p22-frame-loading-footprints-source.md)
+is now supplied; successful loading/gameplay acceptance remains pending.
 Older implementation/reassessment documents retain revision-qualified evidence.
 
 ## Implemented and verified offline source

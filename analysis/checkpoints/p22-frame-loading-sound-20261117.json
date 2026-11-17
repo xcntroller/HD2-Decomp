@@ -1,0 +1,208 @@
+{
+  "date": "2026-11-17",
+  "source_base": "9289d4f",
+  "branch": "feature/p22-frame",
+  "user_desktop_result": "FAILED: loading crash, access violation in reconstructed host before first gameplay frame",
+  "desktop_success": false,
+  "original_or_windows_execution_by_agent": false,
+  "matrix_reconciliation": "partially_resolved",
+  "native_checks": 38,
+  "new_inventory_entries": 0,
+  "contract": "analysis/p22-frame-loading-sound-failure.md",
+  "rebuilt_fault_address": "006e954f",
+  "original_function_addresses": [
+    "004328d0",
+    "00432900",
+    "00698500"
+  ],
+  "crash_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-crash/application_launch.exe",
+      "bytes": 12813312,
+      "sha256": "31b938fa730d1dccabd8b3810306f9bd5307564953436dcf9d6c6ca2e911b788"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-crash/host-output.log",
+      "bytes": 151509,
+      "sha256": "910bc43f1019150183713640e55a177a0a7618a3b8da0f3b1bd6a9f3118bb37d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-crash/host-runtime.log",
+      "bytes": 153702,
+      "sha256": "0496fd5e60da4aa52851eb60d85d20bf509544a0a0bf8a3a32bef66b72b6377a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-crash/inputs.json",
+      "bytes": 993,
+      "sha256": "22c450038576e8b94136f82a69746fb52423bd1240dedafe7d91464a7bd6a797"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-crash/steam-0.log",
+      "bytes": 361150,
+      "sha256": "8faaafbf274713eb5238febe70f3c863580e52924bf2bbb2763edd3b1dba044f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-crash/symbolized-fault.txt",
+      "bytes": 3097,
+      "sha256": "e3998327e49604e2c3f86d9344826fffbfc27590e116e910a9c1382c145b2a33"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-index.txt",
+      "bytes": 11187,
+      "sha256": "c4de5bdee09fc87f9c9ef2358b92a56646016130846bc45d5bdabe17575ec812"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-callback-index.txt",
+      "bytes": 2698,
+      "sha256": "bfa9f6d263bd1b64420f5c960a6181469d7868a55e5207af8dae89efaf2deaa5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-original-sectors.asm",
+      "bytes": 1448,
+      "sha256": "01ddd6f8b096d3d311fb7a9c8328ce0223863f5c37d02553065fca4827186f41"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-original-callback.asm",
+      "bytes": 2874,
+      "sha256": "8984d1d23501c1b2d3d401e151f0127d0a490ff576d1dd8da386b5ac49a73aca"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "recovered/frontend/sound_runtime.h",
+      "bytes": 20480,
+      "sha256": "2740a1625d2ece09be50065d331e56ec1b0b0c68bcd187cbb13bf98f1831f69b"
+    },
+    {
+      "path": "recovered/host/dubbing_sound_services.h",
+      "bytes": 4533,
+      "sha256": "fff93c5e75c0ef6d1867dd1f1d6104c62706e15a3e9cbdc19ee34dd10079df45"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 83686,
+      "sha256": "52583f6d1f6170b88218590364a1fc069426c7a25bc6ea1969aa14cdec6d90c7"
+    }
+  ],
+  "native_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-native-run.log",
+      "bytes": 52,
+      "sha256": "aba8553a966be9124807f0e21efe797a514bfa9a5172463f0c20bb034b14d816"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-native.cpp",
+      "bytes": 3580,
+      "sha256": "458110311ff0fd4120e9eae812f48a29a422fee31969e64d1b2b7bda3d4dcbf5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-native",
+      "bytes": 778368,
+      "sha256": "89e6d42306a4cc7b443cb76eab201b4b541bc9193abb9fee071feb8560a67e54"
+    }
+  ],
+  "limitations": [
+    "User desktop failure observed; no successful mission loading/game frame, engine audio or desktop acceptance. Native38 tests real WorldViews/build/add/clear sector policies with explicit engine/root/enumeration/portal endpoints. Actual production Windows executable compiles/links only; user must retest corrected candidate.",
+    "Sound listener publication remains a separate integration requirement; source fix does not create listener/readiness or substitute empty scene. No function completion/absent/delegated credit. OWN source and earlier staged artifact unchanged; interactive review overlay remains uncommitted."
+  ],
+  "temporary_audits_removed": true,
+  "actual_i386_O2_application_and_probe": "PASS compile/link; never executed by agent",
+  "build_and_stage_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/loading-sound-function-check.log",
+      "bytes": 437,
+      "sha256": "3b7b5583389bd9dfe5db7912c7a84170b4de68e23efef45e31b79b11eae4d292"
+    }
+  ],
+  "revised_review_artifacts": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+      "bytes": 12813312,
+      "sha256": "cb657c0c3f825da644f508bcd4340867ec9cb178eee7bf7f9ad1904abea75e22"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1175552,
+      "sha256": "d7fb8b11e4c2e6f81d6952a5b666b75910b7004177725ff65810d8f3647fd228"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 12813312,
+      "sha256": "cb657c0c3f825da644f508bcd4340867ec9cb178eee7bf7f9ad1904abea75e22"
+    }
+  ],
+  "revised_review_sources": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/frontend/sound_runtime.h",
+      "bytes": 20480,
+      "sha256": "2740a1625d2ece09be50065d331e56ec1b0b0c68bcd187cbb13bf98f1831f69b"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/dubbing_sound_services.h",
+      "bytes": 4533,
+      "sha256": "fff93c5e75c0ef6d1867dd1f1d6104c62706e15a3e9cbdc19ee34dd10079df45"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/host/startup_session.h",
+      "bytes": 83686,
+      "sha256": "52583f6d1f6170b88218590364a1fc069426c7a25bc6ea1969aa14cdec6d90c7"
+    }
+  ],
+  "source_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/loading-sound-source.patch",
+    "bytes": 4078,
+    "sha256": "5f2ea6ade98071b2fa90a852e802c5dd3440b54a80c92d979720f7d2bb95cb63"
+  },
+  "own_preserved": true,
+  "user_retest_required": true,
+  "interactive_overlay_committed": false,
+  "actual_user_retest": {
+    "result": "Confirmed old sound access violation gone; mission later failed on Human d_l.tga, returned to Main, process teardown result0. No gameplay frame accepted.",
+    "artifacts": [
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-return/application_launch.exe",
+        "bytes": 12813312,
+        "sha256": "cb657c0c3f825da644f508bcd4340867ec9cb178eee7bf7f9ad1904abea75e22"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-return/host-output.log",
+        "bytes": 201223,
+        "sha256": "5abb026fae77d72c5e28896559e02271830317232ae3eeb614ec2e82924fb5b0"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-return/host-runtime.log",
+        "bytes": 204265,
+        "sha256": "053f24bcea509f9bde1bfebb0434251b236e95864afb8de3a74ea9bb28bf8988"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-return/inputs.json",
+        "bytes": 993,
+        "sha256": "3cd00a1c037048b94cdc4fd2675e3fe3892127215390919e548874f1c3947cc4"
+      },
+      {
+        "path": "analysis/work/p22-frame-closure-20261117/loading-return/steam-0.log",
+        "bytes": 343049,
+        "sha256": "3da3c68d3378ac8ff167da4d24616ae8ebfc647042f90aa3ffb0d940f0f511c2"
+      }
+    ]
+  }
+}

@@ -1,6 +1,10 @@
 # FRAME exit source and isolated game-entry review — 2026-11-17
 
 Base `edebd81`, branch `feature/p22-frame`.
+
+Subsequent actual user run FAILED during loading. [Crash evidence and sound-scene
+correction](p22-frame-loading-sound-failure.md) supersede the candidate below;
+its exact earlier fingerprints remain historical evidence, not acceptance.
 [Receipt](checkpoints/p22-frame-game-entry-review-20261117.json).
 Global FRAME remains **partially_resolved**. This checkpoint completes the
 presentation exit consumer and verifies a concrete current-FRAME/OWN desktop

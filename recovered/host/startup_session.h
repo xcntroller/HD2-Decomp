@@ -129,7 +129,7 @@ public:
           joysticks_backend_(engine, joy), joysticks_(joysticks_backend_),
           input_backend_(engine, joysticks_backend_), input_(input_backend_),
           input_setup_(engine, joysticks_), settings_backend_(engine),
-          sound_backend_(engine, game_views_.sound), sound_catalog_(sound_backend_),
+          sound_backend_(engine, game_views_), sound_catalog_(sound_backend_),
           dubbing_sound_(sound_backend_,files_),
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
           session_voice_(control_data_.wrapper0c,settings_backend_),

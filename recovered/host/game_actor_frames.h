@@ -278,6 +278,13 @@ public:
         return count?std::vector<Frame>(list,list+count):std::vector<Frame>{};
     }
     void add_clothing_frame_link(Frame frame,Frame value){call<void>(frame,0x74,value);}
+    std::int32_t load_human_presentation_texture(const std::string& name,ResourceOwner& destination){ //0078A4F0 GetIGraph virtual3C.
+        Frame texture=nullptr;
+        const auto status=graphics_.methods->load_texture(&graphics_,name.c_str(),nullptr,0x402,&texture);
+        destination=ResourceOwner(texture,ResourceRelease{module_}); //Retain actual output EVEN for a nonzero status.
+        if(status!=0)std::printf("Human footprint texture loading stopped: name=%s status=%08x output=%p\n",name.c_str(),static_cast<unsigned>(status),static_cast<void*>(texture));
+        return status;
+    }
     ResourceOwner load_human_eye_texture(const std::string& name) {
         Frame texture=nullptr;
         const auto result=graphics_.methods->load_texture(&graphics_,name.c_str(),"",0x400,&texture);
