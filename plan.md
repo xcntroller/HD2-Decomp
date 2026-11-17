@@ -237,6 +237,12 @@ preparation, not a standalone audit-only milestone.
 
 ## 2. Load an original mission to its first world frame
 
+[FRAME current source](analysis/p22-frame-current-source.md): offline session +
+actual Human Runtime/World/UI/input/lifecycle verified through1d54083 (strict
+actual i386 link, native1,248 ordering/pause/failure checks, O2 launcher/probe).
+Former import/5F9 blockers are superseded. Full FRAME still has non7 source gaps
+and external HUM/OWN/application/desktop requirements; matrix remains partial.
+
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 
 [P22-GUARD source plan](analysis/p22-guard-plan.md): Steam descriptor/actions and concrete process publication are source-bound to startup and existing offline consumers; focused sanitizers, actual i386 composition and application link pass (34 complete/2,510 partial). Dormant retail protection is excluded by the explicitly selected Steam target; application execution remains separate.

@@ -1,3 +1,8 @@
+Current2026-11-17: [focused current source boundary](p22-frame-current-source.md)
+supersedes the missing-body/import statements below. Actual offline session +
+Human Runtime + UI/Player/lifecycle source now composes; full FRAME still has
+explicit non7 and HUM/OWN/application requirements. Historical evidence follows.
+
 # P22-FRAME implementation —2026-11-12
 
 

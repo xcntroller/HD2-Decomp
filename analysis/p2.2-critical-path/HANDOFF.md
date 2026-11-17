@@ -27,3 +27,16 @@ Verified `origin/feature/p22-ui` at `ebdcbf59bc6a59880bb664c0a5934e46105669d6`; 
 Verified `origin/feature/p22-render` at `345a390809297b7d267db67445f6993ee39812ac`; reviewed master `2c96a7d177a4e8ab85eea2b20dfe595f22c9007d`. Same-World `GameRenderStages`, positive00482260/00482E50, process resources, debug and special-light services, opcodeAD/BB and lifecycle-owned callbacks/actual Scene78 are implemented and bound in callable source. Original3C/40 history is unwritten allocation state: consume its actual bytes, then store direction. This is no longer a missing original producer or a source blocker. The OS byte-copy/raw payload adaptation does not reproduce historical heap trajectories or pixels.
 
 The source claim is supported by36 matching receipt source/doc observations,70 matching retained evidence entries and independently checked13 original instruction ranges. Reported native100-family sanitizers, full World/render/lifecycle i386 link and application link pass with declared engine/UI doubles; not rerun. Full tracker retains a legacy missing ignored evidence limitation. The branch remains unmerged. Master already has full UI7a3f7b7; combine its adapters and FRAME retirement with the RENDER lifecycle through OWN/LIFE. Application loading, engine present and user mission/failure/repeat/second mission acceptance remain open. Other blocker rows retain their reviewed source pins. [RENDER verification](evidence/render-verification.json)
+
+## Targeted FRAME current-source reconciliation —2026-11-17
+
+Source1d54083 combines FRAME/H8 with committed OWN/RENDER/Player input/order
+dependencies. Actual offline session coordinator + HumanFrameRuntime + World/
+UI/Player/lifecycle i386 link passes; native1,248 session/application ordering,
+counter, pause and failure-prefix checks pass with labelled service endpoints.
+Forced launcher/probe links pass; outputs were not run. Old import/5F9/54-missing
+claims are superseded. Full FRAME remains partially_resolved because actual non7
+bodies and external reached HUM/OWN/application requirements remain. Other blocker
+rows keep their pinned revisions; no selected population or desktop claim.
+[Current boundary](../p22-frame-current-source.md),
+[receipt](../checkpoints/p22-frame-current-source-20261117.json).

@@ -1,0 +1,161 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_pin": "1d540834b9e36023fb09cf51047ce041c9610a6f",
+  "prior_frame_pin": "9d53c06",
+  "source_only": true,
+  "offline_coordinator_implemented_and_verified": true,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "application_installed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "function_credit_added": 0,
+  "contract": "analysis/p22-frame-current-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/session_frame_loading.h",
+      "bytes": 6953,
+      "sha256": "10ddbc659dcb5ad9f40855e6fab72a05130ef3c2633e5baaf9a5079efe7b3a9f"
+    },
+    {
+      "path": "recovered/game/session_frame_input.h",
+      "bytes": 4596,
+      "sha256": "f0b61b8ce9ea472a216d677cc42f0b6728c4cb2c49506b8930b7cadf96cca58d"
+    },
+    {
+      "path": "recovered/frontend/application_frame.h",
+      "bytes": 1320,
+      "sha256": "b471a79900a8a66fc75155800f1808cf3a416471dc3e8e7e3ac5ced51cf597e9"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 12216,
+      "sha256": "2bfa579707bfca76281fd597398b5fc2a2bd0421a4ce4306f64048ce8efa1632"
+    },
+    {
+      "path": "recovered/host/game_mission_module_frames.h",
+      "bytes": 3221,
+      "sha256": "1586aa7a91374f52ed9b00dbfd057ff3369bdd5e6e6f2edbc0b746236bd0529f"
+    },
+    {
+      "path": "recovered/host/game_scene_actor_frames.h",
+      "bytes": 8998,
+      "sha256": "253f90a9218db0919a383c3adaeac89ae7fec62f3ae473e086b741d6e7d2c875"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 7010,
+      "sha256": "9c11db3eefd3b2a91c304a70fe918573e32e0bc59d0090a48c84bafd1281b132"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 311942,
+      "sha256": "a35dbf100cbbb16d254e0ffa89dd746264dd9f389b6c8700bb399ab997a4d410"
+    },
+    {
+      "path": "recovered/game/human_player_live_input.h",
+      "bytes": 10736,
+      "sha256": "70233c19a2b6776e8ac436693367f44ff48d1011a4c910d9a4939bee27e0f25c"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 141903,
+      "sha256": "73030e1a6eb37ed928f0b819da5e3fbc89afbd59e45504a0baf2195c42d65933"
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "bytes": 9799,
+      "sha256": "6cbdc1c5a06681394357c1806da62522ba744cd6d6e6abe627ee519cc594d9b3"
+    },
+    {
+      "path": "recovered/game/application_frame_runtime.h",
+      "bytes": 1610,
+      "sha256": "345c53697255d271077ac48fc5d068e561d5793ea297b9eef1aa2e8493d400cd"
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "bytes": 18767,
+      "sha256": "5ed769fb619c408d30e56d0b60b7806c2704620a2da4ddbf8ff77e204ad33e44"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actual-frame-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/session-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/session-native-run.log",
+      "bytes": 125,
+      "sha256": "5d35f7bab8f7101ded45cfbcb0a44a9457d3e32d557b89fff1d695570a2227f8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/launcher-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ledger-check.log",
+      "bytes": 437,
+      "sha256": "cbab395aa8f6c77dc77cc05dad004e47c0e79481c1032c7704c68b054f848551"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/tracker-tests.log",
+      "bytes": 126,
+      "sha256": "5eee453f4fd37e63e69c380d833aa21566f812bebf7e370e378f0fe541a81c6b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reconciliation-check.log",
+      "bytes": 163,
+      "sha256": "dd59790ec9eb11a4b6f3894fc5beef9567cd7485657c7778b6a3c4896be8f0b6"
+    }
+  ],
+  "builds": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 9624576,
+      "sha256": "2a58b686127d6d011e9d17b96888057b21ddb5373f8a61e5f97d47bcd16ccc9c"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1174016,
+      "sha256": "33a4e2d1304fa494e9ba5f3e0cd2247d6e0ebfe84ba3eccdf9d1c366937fe9ee"
+    }
+  ],
+  "temporary_audits_removed": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actual-frame.cpp",
+      "bytes": 1746,
+      "sha256": "3becbf07664fc5348fbf748a055c5357921b42518226581df336005ad0dc3f51"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/actual-frame.exe",
+      "bytes": 13143552,
+      "sha256": "a2ff917526f4cbbea3592a1c0e26522ea6ed8e74a03150b35190db0264ed0f50"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/session-native.cpp",
+      "bytes": 6030,
+      "sha256": "039f0460710b98b390b2cd5fbd4d3c6ff4a19d4c32914bd39cafbcd60ae1643e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/session-native",
+      "bytes": 516496,
+      "sha256": "5589180954465920e139abca3730f8143b8cc2a6dbd311979640795c42be8f5b"
+    }
+  ],
+  "limits": [
+    "Native1248 ASan/UBSan/leaks uses actual session status alias/Music and production frame policies; service/controller/engine endpoints are explicit doubles.",
+    "Strict actual World/Runtime/frame/UI/Player/lifecycle i386 link; external application/controller and UI source loans remain required boundary parameters, not substitutes.",
+    "Forced O2 launcher/probe compile/link only; no staging or actual Windows application/engine execution.",
+    "Existing original evidence and unchanged input/HUD/Players/lifetime audits retained at their documented bounds; no broad repeated audit.",
+    "Full FRAME still has genuine non7 fixed/update/input/exit/restore gaps and external reached HUM/OWN/application/desktop requirements.",
+    "OWN uncommitted application/camera work and staged desktop review artifact were preserved untouched."
+  ]
+}
