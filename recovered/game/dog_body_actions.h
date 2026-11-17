@@ -6,7 +6,8 @@
 namespace hd2::game {
 //The action portion of the SAME Dog Body. Offsets here use Body=Actor+90.
 //Cold construction does not write278/27C/280. Keep their provenance explicit;
-//005C5030's actual common tail produces zero, not an invented constructor.
+//005C5030's actual common tail produces zero. The authorized2026-11-17
+//bootstrap correction initializes them immediately before its startup requests.
 class DogBodyActions {
 public:
     explicit DogBodyActions(DogBodyOrders& orders):orders_(orders){}
@@ -25,6 +26,7 @@ public:
         current364=next368=23;timer370=death374=0;voice37c=voice380=voice384=-1;
         flags3e0=animation2_168=0;flag36c=false;speed248=1;animation2_position170.fill(0);scalars_produced_=true;
     }
+    void initialize_startup_priorities(){priority278=priority27c=priority280=0;} //Authorized H8.4 compatibility correction,2026-11-17.
     void initialize_action_prefix(){ //005C7D30 before the first model-matrix read.
         current364=next368=23;flag36c=false;flags3e0=0;
     }

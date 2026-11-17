@@ -3,6 +3,7 @@
 #include "game/human_player_live_input.h"
 #include "game/human_player_selection.h"
 #include "game/dog_sight_geometry.h"
+#include "game/dog_sight_metric.h"
 #include "game/dog_body_sound.h"
 #include "game/dog_body_frame.h"
 #include "game/dog_ai_controller.h"
@@ -3324,6 +3325,31 @@ public:
         shot_actor_damage(actor,8,amount,point,direction,static_cast<SceneActor<typename Dependencies::ActorFrames>*>(nullptr),typename Dependencies::Frame{});
     }
     template<class Dog>void dog_bite_observed(Dog& dog){dependencies().players.control().add_sighted_dog(&dog);}
+    template<class Actor>void sight_dog_marker_metric(Actor observer,Actor target,std::uint32_t& interval,float& score){
+        using Frames=typename Dependencies::ActorFrames;using Dog=DogSceneActor<Frames>;
+        auto* dog=dynamic_cast<Dog*>(observer);if(!dog)throw std::logic_error("Dog Sight metric requires actual observer30");
+        const auto flags=dog->require_controller().dog_control_state().flags20;
+        if(flags&0x40000800u)return;
+        struct Queries {
+            HumanWorldLoadingServices& world;Dog& dog;Actor target;
+            std::pair<std::uint32_t,bool> target_flags(){
+                if(!target)throw std::runtime_error("Dog Sight metric reaches native NULL target");
+                if(auto* other=dynamic_cast<Dog*>(target))return {other->require_controller().dog_control_state().flags20,false};
+                if(target->base().type()!=3)return {0,false};
+                auto& human=world.selection_human(*target);if(!human.loading_state)throw std::logic_error("Dog Sight target requires actual Human B0");
+                auto& control=world.human_inline(human);std::uint32_t movement=0xffffffffu;
+                const auto flags=human.loading_state->words().template get<std::uint32_t>(0x50);
+                if(flags&0xf8u){movement=control.frame_movement_mode();if(movement==5&&!(flags&8u))movement=flags&0x10u?1u:2u;else if(movement==2&&(flags&0x10u))movement=1;}
+                std::uint32_t output=movement<3?(0x1000u<<movement):0u;
+                const auto posture=control.frame_posture_mode();if(posture==1)output|=2u;else if(posture==2)output|=1u;
+                return {output,true};
+            }
+            HumanVector target_position(){return world.sight_position(target->base().frame());}
+            HumanVector head_direction(){const auto m=dog_sight_head_matrix(dog,world.dependencies().scene.frames());return {{m[8],m[9],m[10],m[11]}};}
+            HumanVector head_position(){return *dog_sight_origin(dog,world.dependencies().scene.frames());}
+        } queries{*this,*dog,target};
+        dog_controller_sight_metric(flags,dog_signed_word(dog->properties.fields4a0[2]),interval,score,queries);
+    }
     template<class Actor>auto sight_dog_head_matrix(Actor actor){
         using Dog=DogSceneActor<typename Dependencies::ActorFrames>;
         auto* dog=dynamic_cast<Dog*>(actor);if(!dog)throw std::logic_error("Dog Sight head requires SAME actual type30 actor");

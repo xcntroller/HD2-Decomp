@@ -54,7 +54,7 @@ public:
     template<class Actor>void sight_exclude_dog(Actor actor){world_.sight_exclude_dog(actor);}
     template<class Actor>std::optional<HumanVector> sight_dog_origin(Actor actor){return world_.sight_dog_origin(actor);}
     template<class Actor>HumanMatrix sight_dog_head_matrix(Actor actor){return world_.sight_dog_head_matrix(actor);}
-    template<class Actor>void sight_dog_marker_metric(Actor,Actor,std::uint32_t&,float&){throw std::runtime_error("Dog Sight metric requires actual005D64C0 controller534 virtual1C");}
+    template<class Actor>void sight_dog_marker_metric(Actor observer,Actor target,std::uint32_t& interval,float& score){world_.sight_dog_marker_metric(observer,target,interval,score);}
     template<class Item>void update_loose_item(Item& item,bool authority,std::uint32_t elapsed){world_.update_loose_item(item,authority,elapsed);}
     template<class State>void choose_script_alarm_action(State& state){world_.choose_script_alarm_action(state);}
     template<class State,class Human>void refresh_suppressed_player_camera(State& state,Human& human){world_.refresh_suppressed_player_camera(state,human);}

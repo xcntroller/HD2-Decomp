@@ -84,3 +84,8 @@ dog-body-motion-constants.json; dog-bootstrap-constant.json. Existing originals:
 h8-4-dog-required-originals/005c7d30.c, boundary-originals/005c8370.c,
 body-dependencies/005c71e0.c, controller-body-dependencies/005c7600.c and
 body-dependencies/005c0d10.c/005c0d60.c; raw is authoritative for ABI/x87 spills.
+
+2026-11-17 user authorization supersedes only the prior cold-priority and
+separate slope-normal required failures: [exact policy and continuing live
+requirements](human-h8-dog-live-composition-source.md). Other native-state
+producer requirements remain unchanged.

@@ -1,0 +1,143 @@
+{
+  "date": "2026-11-17",
+  "base": "025108a",
+  "source_only": true,
+  "desktop_verified": false,
+  "new_frozen_partial": [
+    "005ce110",
+    "005ce740"
+  ],
+  "authorization": "User explicitly authorized zero startup278/27C/280 priorities and actual ground-hit normal for the previously unproduced separate slope normal on2026-11-17.",
+  "source_files": [
+    {
+      "path": "recovered/game/dog_controller_inputs.h",
+      "bytes": 1002,
+      "sha256": "2c75edce6e6708a9a02904e9f528b66d910c0ae827f88e6a9e8ed74e5bea0914"
+    },
+    {
+      "path": "recovered/game/dog_controller_lifetime.h",
+      "bytes": 2188,
+      "sha256": "ed7e90a1ac5a292df2fcc8b7f9fd0202542de3a621ab57a5b0aac12dc94beebb"
+    },
+    {
+      "path": "recovered/game/dog_ai_controller.h",
+      "bytes": 12055,
+      "sha256": "e9ec5407332ed9a7371849a68a48a8cd1cdcc2f7550d1ff964f19231d2bb158e"
+    },
+    {
+      "path": "recovered/game/dog_sight_metric.h",
+      "bytes": 3688,
+      "sha256": "12d527fa92bac454773eb31b3fccc9b3b5477f3a040e7a3c12651908700464ea"
+    },
+    {
+      "path": "recovered/game/dog_body_actions.h",
+      "bytes": 12635,
+      "sha256": "b33b99bae85eed1bfa314672d5fbd255d11100bc9d89d2ff196f5c832a492b88"
+    },
+    {
+      "path": "recovered/game/dog_body_state.h",
+      "bytes": 4504,
+      "sha256": "7df5cdf5600e9ed6fbcfde806ef488345c89aa698d5eaf726493ea4edf013739"
+    },
+    {
+      "path": "recovered/game/dog_body_motion.h",
+      "bytes": 10501,
+      "sha256": "1a6dff27dc7f041f004d3d6ff78548e55aeb6b724aebf5f6890525ad0d938875"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 314625,
+      "sha256": "10bda7b334aeab3b29578a95ceb6c13188bc17b5423753d4c781b109998f8d70"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 7011,
+      "sha256": "d18fab36a69da2b1847fd6f27d35c1c9676cbd84933dd40573c72596d3093811"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-composition/005ce110.asm",
+      "bytes": 2297,
+      "sha256": "a19110211248ab62cca08ea99da38419839fab616dace69696665f5bbe8a7d7d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-composition/005ce740.asm",
+      "bytes": 20406,
+      "sha256": "e2ed789e53fda2c64c0da6e7e50d5200797c2a9c38e7b2a61b3eb8ca9edaf202"
+    }
+  ],
+  "verification": {
+    "native_inputs": "PASS898 ASan/UBSan/leaks actual DogControllerState/input buffers, explicit process endpoints",
+    "native_metric_compatibility": "PASS1664 ASan/UBSan/leaks actual metric/priority/slope workers, explicit query/clip endpoints",
+    "actual_i386": "PASS strict full actual World/controller inputs/Sight and Body motion compile/link only",
+    "launcher_probe": "PASS forced strict O2 actual application-launch/startup-probe compile/link only",
+    "ledger": "PASS full function_progress check and27 existing tests"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-dog-inputs-native.cpp",
+      "bytes": 1383,
+      "sha256": "9c3f2866c7d91184ba4a6290f127f14a082a945796dd064c9ecfd419667ac4af"
+    },
+    {
+      "path": "/tmp/h8-dog-inputs-native.o",
+      "bytes": 153496,
+      "sha256": "1b53dce43ecb65e10934aeb0ae75a04bad5bd18cd1b4229ea4f042bd9dc5c8c4"
+    },
+    {
+      "path": "/tmp/h8-dog-inputs-native",
+      "bytes": 94856,
+      "sha256": "b81b9f525566b55a5b0cfaa91124d8e00d267490945616d0ee7be83e2ce99973"
+    },
+    {
+      "path": "/tmp/h8-dog-metric-native.cpp",
+      "bytes": 3250,
+      "sha256": "f5295935c170762e71d9f62f91aa2307902f6bd0d6f7d03c63ec5028e32fab5e"
+    },
+    {
+      "path": "/tmp/h8-dog-metric-native.o",
+      "bytes": 494432,
+      "sha256": "3f7b40311da474a23b47b18fd39cb3e18ce562dfa3a74a8051fcedc3553ba9ab"
+    },
+    {
+      "path": "/tmp/h8-dog-metric-native",
+      "bytes": 281056,
+      "sha256": "f1671129a362ee900c8798df0e95da048064d2b57a83df36b01cbe3a041045bd"
+    },
+    {
+      "path": "/tmp/h8-dog-composition-module.cpp",
+      "bytes": 768,
+      "sha256": "1293537b37495370140633169cd8b82a928d90f2bbd09478687b6fb8f24ce859"
+    },
+    {
+      "path": "/tmp/h8-dog-composition-module.exe",
+      "bytes": 4157440,
+      "sha256": "9be2c975745e957931ce654f08922bb4d23bc917bea8081752390b1d2eb06a93"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "limitations": "H8.4 remains open: live activation/retirement and decision/actor frames, selected actor families and containing Human/Car composition; no game entry or complete promotion.",
+  "verification_logs": [
+    {
+      "path": "/tmp/h8-dog-metric-native.log",
+      "bytes": 69,
+      "sha256": "6eeedb701787dedcde04e8f646e2e41c256f6bc344cbc5cd54401224b8a7e4f7"
+    },
+    {
+      "path": "/tmp/h8-dog-composition-module.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/h8-dog-live-launch.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "/tmp/h8-dog-live-progress.log",
+      "bytes": 126,
+      "sha256": "e6003b583cb2a86a68695abe02a47c7e996ee2aaf2b27c3a8b337ad86d844097"
+    }
+  ]
+}

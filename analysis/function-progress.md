@@ -265,3 +265,8 @@ H8 StaticWeapon Actor90 checkpoint (2026-11-17):00604B70 adds one frozen
 client partial, combined34 complete/3728 partial (client3723, engine5), frozen
 denominator18783. [Contract](human-static-weapon-seat-frame-source.md). No
 complete or readiness promotion.
+
+H8 Dog live composition (2026-11-17):005CE110/005CE740 add two frozen client
+partials; combined34 complete/3730 partial (client3725, engine5), frozen18783.
+Authorized priority/normal compatibility fixes add no new credit.
+[Contract](human-h8-dog-live-composition-source.md); H8.4 remains open.

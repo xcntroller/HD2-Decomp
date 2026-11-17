@@ -126,3 +126,10 @@ application/containing H8.4–.6 requirements remain open.
 [StaticWeapon Actor90](human-static-weapon-seat-frame-source.md) now completes
 the type21 mounted Player camera-frame dependency on the actual loaded seat
 owner. Conditional20/34 still require their owners; H8.4–.6 remain open.
+
+The user explicitly directed continuation until H8.4 is finished and authorized
+two Dog compatibility corrections (2026-11-17): zero startup priorities278/27C/280
+and actual selected ground-hit normal for the separate unproduced slope local.
+[Live composition source](human-h8-dog-live-composition-source.md) supplies these
+plus actual controller6C input publication and Runtime→World Sight metric. Live
+activation/retirement, controller/actor frames and full H8.4 remain required.

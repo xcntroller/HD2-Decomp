@@ -51419,6 +51419,32 @@
         "analysis/human-static-weapon-seat-frame-source.md",
         "analysis/checkpoints/p22-h8-static-seat-frame-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005ce110",
+      "status": "partial",
+      "coverage": "Shared actual kind4/5 virtual6C input publication over SAME controller first60/second64, movement precedence, stance/gait gates, one-shot flag clearing and missing-buffer prefix failures.",
+      "limitations": "Source-only typed owners/STL replace native object/vtable/allocator ABI. Native checks explicitly double frame/World endpoints; actual World i386 compile/link only. Full live Dog activation/controller/actor frame and H8.4 remain open; no original/Windows/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/dog_controller_inputs.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-live-composition-source.md",
+        "analysis/checkpoints/p22-h8-dog-live-composition-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ce740",
+      "status": "partial",
+      "coverage": "Actual Dog controller Sight metric on SAME World Runtime: masked no-write, interval99, original target-state range scaling, target/marker order, two normalizations, triangle stores and unordered edge decisions.",
+      "limitations": "Source-only typed owners/STL replace native object/vtable/allocator ABI. Native checks explicitly double frame/World endpoints; actual World i386 compile/link only. Full live Dog activation/controller/actor frame and H8.4 remain open; no original/Windows/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/dog_sight_metric.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-h8-dog-live-composition-source.md",
+        "analysis/checkpoints/p22-h8-dog-live-composition-20261117.json"
+      ]
     }
   ]
 }

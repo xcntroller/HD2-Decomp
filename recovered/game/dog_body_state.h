@@ -46,8 +46,10 @@ void initialize_dog_body(Actor& actor,Frames& frames,Collisions& collisions,Rece
     constexpr std::array<const char*,5> names{{"c","h","p","t","l"}};
     for(unsigned n=0;n!=5;++n)b.damage_bones[n+2]=frames.actor_find(actor.base().frame(),names[n],0xffffu);
     b.flag268=false;a.initialize_voice_tail();b.flag231=b.flag232=false;
-    //278/27C/280 are NOT initialized here. Their existing provenance is kept;
-    //if unproduced, fail at the first native read after the entire prior prefix.
+    //Authorized H8.4 compatibility correction (2026-11-17): native leaves
+    //278/27C/280 unwritten before these startup requests. Keep the full native
+    //prefix, then supply deterministic zero priorities, separately from D11.
+    a.initialize_startup_priorities();
     a.request_action(3,0,receivers);a.request_posture(0,0);a.request_stance(0,0);
     a.animation2_168=0;frames.dog_clear_animation2_position(b.animation2_164);
     a.animation2_position170.fill(0);b.initialized=true;

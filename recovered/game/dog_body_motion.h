@@ -9,8 +9,8 @@
 namespace hd2::game {
 //005C3420 composes the SAME World's existing0071BAF0 solver/ray/sweep,
 //actual Body/clip/descriptor owners and shared process budget/diagnostic queue.
-//A separate native local-normal producer remains a late required dependency
-//only where it can affect005C43D0. No unknown scratch normal is silently zeroed.
+//The authorized2026-11-17 compatibility policy supplies the selected ground
+//hit normal to005C43D0 in place of its unproduced native separate local.
 template<class Dog,class World,class Frames,class Controller>
 void advance_dog_body_motion(Dog& dog,std::int32_t elapsed,World& world,Frames& frames,Controller& control){
     using Sweep=std::remove_reference_t<decltype(world.human_geometry_sweep())>;using Hit=typename Sweep::Hit;
@@ -92,11 +92,9 @@ void advance_dog_body_motion(Dog& dog,std::int32_t elapsed,World& world,Frames& 
             b.field24c=0;
         }
         supported=dog_contacts_supported(request,world);b.field24c=supported?0u:b.field24c+1u;
-        //The native separate normal/byte1 can affect only this slope worker.
-        //When its other gates reject, its outputs are independent of BOTH
-        //unknown values. Otherwise the exact existing worker fails at the late
-        //required normal read, after all preceding solver/counter publications.
-        apply_dog_slope_response(dog,request,bool(identity),true,nullptr,anchor,movement,elapsed);
+        //Authorized H8.4 compatibility correction (2026-11-17): use the
+        //actual selected ground-hit normal for the native unproduced local.
+        apply_dog_slope_response(dog,request,bool(identity),bool(identity),identity?&identity->normal:nullptr,anchor,movement,elapsed);
         apply_dog_fall_response(dog,bool(identity),supported,elapsed,request.displacement,world);
         if(identity){
             auto result=request.position;for(unsigned axis=0;axis!=3;++axis)result[axis]=static_cast<float>(static_cast<long double>(result[axis])+offset[axis]);

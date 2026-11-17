@@ -128,3 +128,8 @@ candidate file names potential containing starts, not proven function boundaries
 No absent function start was created. All Ghidra typing transactions rolled back.
 Raw controls stack ABI, x87 and publication details; prior exports are not assumed
 equivalent by date. New function credit stays frozen partial only.
+
+2026-11-17 user authorization supersedes only the prior cold-priority and
+separate slope-normal required failures: [exact policy and continuing live
+requirements](human-h8-dog-live-composition-source.md). Other native-state
+producer requirements remain unchanged.
