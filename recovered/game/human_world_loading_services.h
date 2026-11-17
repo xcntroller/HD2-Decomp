@@ -139,6 +139,7 @@ public:
         if(!state||state!=human.loading_state)throw std::logic_error("Active follow requires actual published SAME-World B0");
         return *state;
     }
+    auto* active_follow_identity(std::int32_t identity){return dependencies().scene.frames().scene_actor_command_identity(identity);} //00475D50.
     template<class Human>HumanVector active_follow_current_direction(Human& human){return active_follow_state(human).current_direction();} //005A80D0.
     template<class Human>bool active_follow_floor(Human& human){return human_inline(human).frame_navigation_floor();}
     auto active_follow_root_sector(){return dependencies().scene.frames().camera_root_sector();}
@@ -451,7 +452,7 @@ public:
         };
     }
     template<class Actor>auto active_task_arrival_frame(Actor& target){
-        if(target.base().type()==4)throw std::runtime_error("Active task arrival requires H8.4 Car body-frame selection");
+        if(target.base().type()==4)return dependencies().scene.frames().actor_find(target.base().frame(),"body",0xffffu); //Native83918C, fresh actual child query.
         return target.base().frame();
     }
     template<class Actor>bool active_task_actor_unavailable(Actor& target){ //00538A60, Actor ECX.
@@ -513,7 +514,22 @@ public:
         if(action!=34||!place)throw std::runtime_error("Active command34 selector requires actual DocumentPlace98");
         return place->properties.item98;
     }
-    template<class Actor>bool active_command_seat_occupied(Actor& actor,std::int32_t seat){return human_emplacement_claimed(&actor,seat);} //Native virtual78, claim policy.
+    template<class Actor>bool active_command_seat_occupied(Actor& actor,std::int32_t seat){return human_seat_occupant(&actor,seat)!=nullptr;} //Actual virtual78 is occupant;6C is claim.
+    template<class Actor>std::size_t active_task_seat_count(Actor& actor){
+        if(actor.base().type()==4)return human_pose_car(&actor).occupants.size();
+        if(actor.base().type()==21){using Weapon=StaticWeaponSceneActor<typename Dependencies::ActorFrames>;auto* weapon=dynamic_cast<Weapon*>(&actor);
+            if(!weapon||!weapon->loading)throw std::logic_error("Active seat count requires actual StaticWeapon owner");return weapon->loading->seat_count();}
+        throw std::runtime_error("Active seat count requires actual selected Aircraft owner");
+    }
+    template<class Actor>bool active_car_entry_available(Actor& actor){ //004DDD10 offline path.
+        auto& car=human_pose_car(&actor);if(car.flag254a)return false;
+        if(!car.loading)throw std::logic_error("Car entry eligibility requires actual initialized physics");
+        if(!car.loading->support_checks(2))return false;
+        if((mode_flags()&7u)!=7u)throw std::runtime_error("Car entry eligibility requires actual non7 local-player/team policy");
+        for(auto n=car.occupants.size();n;){auto* occupant=car.occupants[--n];if(!occupant)continue;auto& human=selection_human(*occupant);
+            if(human_frame_signed_word(human.properties.stats_ec[0])>0&&!dependencies().players.control().human_roster().contains(&human))return false;}
+        return true;
+    }
     template<class Actor>std::uint32_t active_command_supply_kind(Actor& actor){
         auto* box=dynamic_cast<SupplyBoxSceneActor<typename Dependencies::ActorFrames>*>(&actor);
         if(!box)throw std::logic_error("Players command type9 requires actual SupplyBox11C");
@@ -538,7 +554,10 @@ public:
     template<class Humans,class Actor>auto select_special_active_command_candidate(Humans&,std::uint32_t,Actor&,std::uint32_t) -> typename Humans::value_type {
         throw std::runtime_error("Players selection requires specialized0045BD10 item/attachment capability policy");
     }
-    template<class State,class Actor>void produce_special_active_player_command(State&,std::uint32_t,Actor*,std::uint32_t){
+    template<class State,class Actor>void produce_special_active_player_command(State& state,std::uint32_t action,Actor* target,std::uint32_t){
+        if(action>=8&&action<=13){if(!target)throw std::runtime_error("Seat approach producer dereferences native NULL target");
+            const auto position=target->base().world_position(); //00458E50 copies cached Actor30, no model update.
+            produce_active_seat_approach(state,*target,action,position,*this);return;}
         throw std::runtime_error("Active command requires its specialized00534460..00535630 task producer");
     }
     template<class Human,class Actor>bool active_command_explosive_allowed(Human& human,Actor& target){ //00534B30, native94 AFTER definition admission.
@@ -2625,7 +2644,10 @@ public:
         return dependencies().startup.effects_loading_process().decorations.material_sight_factor(material); //GEffects+94.
     }
     long double sight_view_distance(){return dependencies().scene.frames().sight_view_distance();}
-    template<class Human>bool sight_attachment_direction(Human&,HumanVector&){throw std::runtime_error("Sight attachment direction requires actual actor virtual98/A4 receivers");}
+    template<class Human>bool sight_attachment_direction(Human& human,HumanVector& direction){ //00570280/0056FC80: actual98 precedes A4.
+        auto* actor=human.field160;if(!actor||!human_pose_actor_has_control(actor,human.field164))return false;
+        direction=human_pose_actor_direction(actor,human.field164);return true;
+    }
     std::uint32_t sight_time()const{return game_word28();}
     template<class Frame>HumanVector sight_position(Frame frame){
         if(!frame)throw std::runtime_error("Sight position requires actual marker frame");

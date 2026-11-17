@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_ACTIVE_AI_FOLLOW_FRAME_H
 #include "game/human_state_frame_timers.h"
 #include "game/human_joint_owners.h"
+#include "game/human_active_ai_entry.h"
 #include <cmath>
 namespace hd2::game {
 //005324D0. FIRST queued F8 job, not the current104 job.6 maps to job5.
@@ -44,9 +45,7 @@ template<class AI,class Frames,class World>void advance_human_active_follow(AI& 
     const float z=static_cast<float>(static_cast<long double>(model[14])-position[2]); //Only Z spills before square.
     if(std::abs(y)<5.)y=0;
     const float distance=static_cast<float>((x*x+static_cast<long double>(z)*z)+y*y);
-    const auto occupied=[](auto* actor){if(!actor)return false;const auto kind=actor->base().type();return kind==4||kind==20||kind==21||kind==34;};
-    if(occupied(leader->field160)||occupied(human->field160))
-        throw std::runtime_error("Active follow requires H8.4 occupied leader/seat/exit policy");
+    if(advance_active_follow_attachment(ai,*formation,*leader,distance,frames,world,validate))return;
     auto& query=ai.resources().query().state;
     bool reroute=false;
     if(!(query.template get<std::uint32_t>(0x50)&0x10000000u)){

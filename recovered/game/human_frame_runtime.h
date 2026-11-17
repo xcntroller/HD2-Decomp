@@ -40,11 +40,21 @@ public:
     //conditional callers retain earlier writes and do not skip the receiver.
     template<class Human>void advance_human_state(Human& human,bool,std::uint32_t){
         if(human.loading_state&&human.loading_state->words().template get<std::uint32_t>(0x48)==3){
-            if(human.field160)throw std::runtime_error("Active authority requires H8.4 occupied continuation after its bound prefix");
-            throw std::logic_error("Active on-foot authority must use its actual World/factory containing frame");
+            throw std::logic_error("Active authority must use its actual World/factory containing frame");
         }
         throw std::runtime_error("Human frame requires actual Remote B0 frame receiver");
     }
+    //The module facade instantiates all family branches, including unsupported
+    //Dog activation. Keep those requirements callable and failing at selection;
+    //a missing C++ member must not prevent the supported Human frame from linking.
+    //These guards recover no Dog behavior and earn no function credit.
+    template<class Dog>void update_dog(Dog&,bool authority,std::uint32_t){
+        throw std::runtime_error(authority?"Dog frame requires actual005D5620 live Body/controller":"Dog frame requires actual005D5810 live Body/controller");
+    }
+    template<class Actor>void sight_exclude_dog(Actor){throw std::runtime_error("Dog Sight exclusion requires actual live Actor26C collision descriptors");}
+    template<class Actor>std::optional<HumanVector> sight_dog_origin(Actor){throw std::runtime_error("Dog Sight origin requires actual live Actor544 marker");}
+    template<class Actor>HumanMatrix sight_dog_head_matrix(Actor){throw std::runtime_error("Human-to-Dog Sight requires actual live Actor544 marker");}
+    template<class Actor>void sight_dog_marker_metric(Actor,Actor,std::uint32_t&,float&){throw std::runtime_error("Dog Sight metric requires actual005D64C0 controller534 virtual1C");}
     template<class Item>void update_loose_item(Item& item,bool authority,std::uint32_t elapsed){world_.update_loose_item(item,authority,elapsed);}
     template<class State>void choose_script_alarm_action(State& state){world_.choose_script_alarm_action(state);}
     template<class State,class Human>void refresh_suppressed_player_camera(State& state,Human& human){world_.refresh_suppressed_player_camera(state,human);}

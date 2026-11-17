@@ -33,6 +33,7 @@ public:
     virtual CarSteeringState& steering_state()=0;
     virtual std::uint32_t& collision_clock()=0;
     virtual void set_fuel(float amount)=0;
+    virtual bool support_checks(unsigned flags)=0; //004D5430, SAME initialized physical state.
     virtual void deform_hit(const CarContactVector& point,const CarContactVector& direction,float radius,float impulse,unsigned flags=0,const CarContactVector* incoming=nullptr)=0;
     virtual void remove_reaction_seat(std::int32_t index)=0;
     virtual void assign_seat(std::int32_t index,SceneActor<Frames>* human)=0;

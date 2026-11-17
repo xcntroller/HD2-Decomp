@@ -66,6 +66,7 @@ public:
     }
     void fire_marker(void* barrel)override{control_.fire_marker(barrel);}
     std::array<float,4> aim_direction()override{return control_.aim_direction();}
+    std::size_t seat_count()const override{return seats_.size();}
     void* seat_occupant(std::int32_t index)const override{
         return index<0||static_cast<std::size_t>(index)>=seats_.size()?nullptr:seats_[static_cast<std::size_t>(index)].occupant;
     }

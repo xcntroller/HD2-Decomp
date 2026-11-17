@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_ACTIVE_AI_TASK_EXECUTION_H
 #define HD2_GAME_HUMAN_ACTIVE_AI_TASK_EXECUTION_H
 #include "game/human_ai_shot_direction.h"
+#include "game/human_active_ai_entry.h"
 #include <array>
 namespace hd2::game {
 template<class Properties>std::uint32_t active_task_door_phase(const Properties& properties){ //006029F0.
@@ -97,16 +98,11 @@ template<class AI>bool turn_and_start_active_task(AI& ai){
     }
     return ai.start_pending_task_effect();
 }
-//00528950 after turn publication. Vehicle seat/interaction cases are kept at
-//their reached H8.4 boundary; specialized task effects remain H8.2 work.
+//00528950 after turn publication, including actual entry seat/Car approach.
 template<class AI>bool start_active_task_effect(AI& ai){
     auto& state=ai.state();const auto action=state.template get<std::uint32_t>(0x220);
-    if(action==3){
-        ai.require_live_task_target();
-        if(ai.task_target){const auto kind=ai.task_target->base().type();
-            if(kind==4||kind==20||kind==21)throw std::runtime_error("Active task requires H8.4 attachment seat selection and approach");
-        }
-    }
+    std::uint32_t seat=0;
+    if(action==3&&!ai.select_pending_entry_seat(seat))return true;
     if(state.template get<std::uint8_t>(0x204)){
         if(action==32)return true;
         state.set(0x214,0u);
@@ -129,8 +125,9 @@ template<class AI>bool start_active_task_effect(AI& ai){
             }
         }
     }
+    if(action==3&&ai.advance_pending_car_entry(seat))return true;
     state.set(0x214,1500u);
-    ai.execute_pending_task_command(action,state.template get<std::int32_t>(0x20c),0u);
+    ai.execute_pending_task_command(action,state.template get<std::int32_t>(0x20c),seat);
     if(ai.words().template get<std::int32_t>(0x60)!=-1)state.set(0x214,ai.words().template get<std::uint32_t>(0x64));
     return true;
 }

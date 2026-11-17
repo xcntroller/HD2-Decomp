@@ -80,8 +80,8 @@ template<class AI,class Frames,class World>bool process_human_active_pending_ord
     }
     return true;
 }
-//00528950's selected ordinary on-foot tasks, plus delayed/inactive gates.
-//Occupied and specialized action families remain required. This does not
+//00528950's selected ordinary tasks, actual driver/passenger prefix and
+//entry/approach continuation. Other specialized action families stay required. This does not
 //activate the containing00526550 authority frame.
 template<class AI>bool advance_human_active_pending_move(AI& ai){
     auto& state=ai.state();auto* human=ai.human();
@@ -91,9 +91,9 @@ template<class AI>bool advance_human_active_pending_move(AI& ai){
     case 23:case 24:case 25:case 26:case 27:case 28:case 32:case 33:case 34:case 37:case 38:case 52:break;
     default:throw std::runtime_error("Active task requires its specialized00528950 action-family receivers");
     }
-    if(human->field160)throw std::runtime_error("Active task requires its H8.4 occupied00528950 path");
     if(!state.template get<std::uint8_t>(0x205)&&!state.template get<std::uint8_t>(0x200)){
-        state.set(0x205,std::uint8_t{1});ai.pending_clear_item_ready(); //0058C400, before query/174/direction.
+        if(ai.prepare_pending_task_attachment())return true;
+        ai.pending_clear_item_ready(); //0058C400, before query/174/direction.
         ai.resources().query().request_position(state.template get<HumanVector>(0x1e0));
         state.set(0x174,state.template get<std::uint32_t>(0x174)&~1u);
         const auto position=ai.human()->base().world_position();const auto destination=state.template get<HumanVector>(0x1e0);
@@ -101,12 +101,14 @@ template<class AI>bool advance_human_active_pending_move(AI& ai){
         for(unsigned axis=0;axis!=3;++axis){direction[axis]=static_cast<float>(static_cast<long double>(position[axis])-destination[axis]);state.set(0x160+axis*4,direction[axis]);}
         //Original temporary W is unwritten; retain its source lane without an
         //invented native value. XYZ length spills BEFORE the unit comparison.
-        const float square=static_cast<float>((static_cast<long double>(direction[0])*direction[0]+static_cast<long double>(direction[1])*direction[1])+static_cast<long double>(direction[2])*direction[2]);
+        const float square=static_cast<float>((static_cast<long double>(direction[2])*direction[2]+static_cast<long double>(direction[1])*direction[1])+static_cast<long double>(direction[0])*direction[0]);
         normalize_human_ai_shot(direction,square);
         for(unsigned axis=0;axis!=3;++axis)state.set(0x160+axis*4,direction[axis]);
         ai.pending_first_mode(state.template get<std::uint8_t>(0x188)?5u:4u);return true;
     }
     if(state.template get<std::uint8_t>(0x205)&&!state.template get<std::uint8_t>(0x200)){
+        human=ai.human();if(!human)throw std::logic_error("Active task arrival lost Human44");
+        if(human->field160&&human->field160->base().type()==4&&human->field164==0)return true;
         const auto position=ai.pending_model_position();const auto destination=state.template get<HumanVector>(0x1e0);
         const auto x=static_cast<long double>(destination[0])-position[0],y=static_cast<long double>(destination[1])-position[1],z=static_cast<long double>(destination[2])-position[2];
         const float square=static_cast<float>((y*y+z*z)+x*x);
@@ -115,6 +117,7 @@ template<class AI>bool advance_human_active_pending_move(AI& ai){
         if((ai.task_target&&ai.pending_target_arrived())||square<radius_square){
             auto& query=ai.resources().query().state;query.set(0x50,query.template get<std::uint32_t>(0x50)|0x2000u);state.set(0x200,std::uint8_t{1});
         }
+        if(state.template get<std::uint32_t>(0x220)==6&&square<16.f&&ai.task_target&&ai.task_target->base().type()==3)ai.pending_posture(4); //528D81..DBF, even when arrival remains false.
         return true; //Arrival and completion are separate native frames.
     }
     if(!state.template get<std::uint8_t>(0x201))return turn_and_start_active_task(ai);

@@ -123,6 +123,10 @@ public:
     }
     CarActorColdState<Frames>& cold_state()override{if(!view_)throw std::logic_error("Car callback requires initialized source state");return *view_;}
     std::uint32_t& collision_clock()override{if(!clock2584_)throw std::logic_error("Car2584 collision clock requires actual activation");return *clock2584_;}
+    bool support_checks(unsigned flags)override{
+        if(!initial_)throw std::logic_error("Car support query requires actual initialized physics");
+        return car_support_checks(initial_->health,initial_->fuel,initial_->solver.speed,initial_->wheels,initial_->body().pose().up,flags);
+    }
     void set_fuel(float amount)override{if(!initial_)throw std::logic_error("Car fuel requires its actual physical owner");(void)initial_->set_fuel(amount);}
     void deform_hit(const Vector& point,const Vector& direction,float radius,float impulse,unsigned flags=0,const Vector* incoming=nullptr)override{
         if(!receivers_)throw std::logic_error("Car deformation requires its actual initialized receivers");receivers_->deform(point,direction,radius,impulse,flags,incoming);

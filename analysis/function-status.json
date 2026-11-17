@@ -28206,7 +28206,7 @@
       "program": "client",
       "entry": "00570280",
       "status": "partial",
-      "coverage": "AI Human metric state/flags/range and observer stat limit, actual head/required attachment direction, asymmetric view angles and triangle.",
+      "coverage": "AI Human metric state/flags/range and observer stat limit, actual head/required attachment direction, asymmetric view angles and triangle. Occupied direction binds actual Actor98 thenA4 over existing Car/StaticWeapon controls.",
       "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
       "evidence": [
         "recovered/game/sight_loading.h",
@@ -28216,14 +28216,17 @@
         "recovered/host/game_sight_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/sight-shot-frame-source.md",
-        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json",
+        "recovered/game/human_active_ai_entry.h",
+        "analysis/human-h8-entry-source.md",
+        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json"
       ]
     },
     {
       "program": "client",
       "entry": "0056fc80",
       "status": "partial",
-      "coverage": "AI Human-to-Dog metric state/kind gates, actual target head dependency,100/view range cap and symmetric triangle.",
+      "coverage": "AI Human-to-Dog metric state/kind gates, actual target head dependency,100/view range cap and symmetric triangle. Occupied observer direction binds actual Actor98 thenA4; actual Dog544 marker producer remains required.",
       "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
       "evidence": [
         "recovered/game/sight_loading.h",
@@ -28233,7 +28236,10 @@
         "recovered/host/game_sight_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/sight-shot-frame-source.md",
-        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json",
+        "recovered/game/human_active_ai_entry.h",
+        "analysis/human-h8-entry-source.md",
+        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json"
       ]
     },
     {
@@ -46582,7 +46588,7 @@
       "program": "client",
       "entry": "00528950",
       "status": "partial",
-      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required. Task37 now shares actual pending/turn/completion; far ranged aim publishes position35 before actual grenade animation duration, preserving1500 prefix on failure. Task6 direct item/supply effects now propagate native false through turn/pending caller; Human posture/reproduction and task23/24/33 actual loot/handoff effects preserve timers, all calls, partial failures and clothing-before-head order. Extended: Admit task32 and retain live target until00538A60 reports unavailable, matching its native bVar5 completion class.",
+      "coverage": "Extend existing ordinary on-foot pending task startup/arrival/turn/effect with task25/26 admission and actual target-unavailable completion gate. Live targets retain202/206 even after arrival; unavailable targets publish both before completion. Occupied/specialized action families remain required. Task37 now shares actual pending/turn/completion; far ranged aim publishes position35 before actual grenade animation duration, preserving1500 prefix on failure. Task6 direct item/supply effects now propagate native false through turn/pending caller; Human posture/reproduction and task23/24/33 actual loot/handoff effects preserve timers, all calls, partial failures and clothing-before-head order. Extended: Admit task32 and retain live target until00538A60 reports unavailable, matching its native bVar5 completion class. Ordinary occupied driver/passenger prefix, controlled attack-seat waits/exit ordering, exact claim6C entry selection, Car pose/distance/re-approach/hold-trim fallback and pickup Human posture below squared16 now bind actual owners.",
       "limitations": "Source-only typed/STL/RAII adaptation. Other specialized task/admission/action producers, positive process98 and H8.4 occupied/Car/seat/nonHuman actors remain required where reached. Existing ranged/group/item paths are described in linked current contracts. Native endpoint doubles and actual i386/launcher linking do not establish original ABI or loaded mission/application/desktop acceptance; no delegated engine credit.",
       "evidence": [
         "recovered/game/human_active_ai_pending.h",
@@ -46605,7 +46611,10 @@
         "recovered/game/human_world_loading_services.h",
         "recovered/game/human_active_ai_loot.h",
         "recovered/game/human_active_ai_commands.h",
-        "recovered/game/human_active_ai_cautious.h"
+        "recovered/game/human_active_ai_cautious.h",
+        "recovered/game/human_active_ai_entry.h",
+        "analysis/human-h8-entry-source.md",
+        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json"
       ]
     },
     {
@@ -46861,14 +46870,17 @@
       "program": "client",
       "entry": "00535e70",
       "status": "partial",
-      "coverage": "NULL/Human/Door/generic target arrival, same navigation reference and actual model/inverse/transform/bounds, extended strict distance tests and native unordered-axis behavior; reached Car selection remains external. Human matrices remain borrowed across both lazy updates before coordinate reads.",
+      "coverage": "NULL/Human/Door/generic target arrival, same navigation reference and actual model/inverse/transform/bounds, extended strict distance tests and native unordered-axis behavior; reached Car selection remains external. Human matrices remain borrowed across both lazy updates before coordinate reads. Car arrival binds the native fresh body/FFFF child query.",
       "limitations": "Source-only typed/STL adaptation. H8.4 occupied/Car/seat/absent-actor policies are external; specialized task/producer/Players/follow/authority, application and desktop remain open. Native frame/readiness/common endpoints are explicit doubles, concrete i386 linked only. No original ABI or delegated engine/callee credit.",
       "evidence": [
         "recovered/game/human_active_ai_task_execution.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/human-h8-task-execution-source.md",
         "analysis/checkpoints/p2.2-human-h8-task-execution-20261116.json",
-        "recovered/host/game_actor_frames.h"
+        "recovered/host/game_actor_frames.h",
+        "recovered/game/human_active_ai_entry.h",
+        "analysis/human-h8-entry-source.md",
+        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json"
       ]
     },
     {
@@ -46935,12 +46947,15 @@
       "program": "client",
       "entry": "00536120",
       "status": "partial",
-      "coverage": "Selected on-foot follow: idle direction gates, actual formation position/direction, native distance precision, query routing/timer/Players notification, posture/Sight and item readiness order.",
+      "coverage": "Selected on-foot follow: idle direction gates, actual formation position/direction, native distance precision, query routing/timer/Players notification, posture/Sight and item readiness order. Occupied follow now preserves borrowed attachment exits, actual formation80/84 assignment, Scene2 identity/count88/occupant78, focus/arrival/entry and shared navigation continuation.",
       "limitations": "Source-only portable/STL adaptation. Occupied leader/self policy belongs to H8.4; native unwritten formation outputs remain explicit requirements. Containing authority/application/desktop remains open. Native endpoint doubles/strict i386 link do not establish original ABI equivalence. No delegated credit.",
       "evidence": [
         "recovered/game/human_active_ai_follow_frame.h",
         "analysis/human-h8-follow-source.md",
-        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json"
+        "analysis/checkpoints/p2.2-human-h8-follow-20261116.json",
+        "recovered/game/human_active_ai_entry.h",
+        "analysis/human-h8-entry-source.md",
+        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json"
       ]
     },
     {
@@ -49138,6 +49153,44 @@
         "recovered/host/game_actor_frames.h",
         "analysis/human-h8-occupied-authority-source.md",
         "analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ddd10",
+      "status": "partial",
+      "coverage": "Offline Car interaction eligibility binds actual254A, initialized support-check2 and reverse actual occupied Human health/Players roster. Non7 team/local-player branch remains required.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Native verification uses explicit World/engine/control endpoints, actual path/formation words; actual full module and launcher compile/link only. Original full object/container/allocator/SEH ABI and malformed pointers excluded; delegated engine/CRT/math callees receive no credit. Required specialized/non7/Dog owners, actual application integration and user desktop acceptance remain open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_active_ai_entry.h",
+        "analysis/human-h8-entry-source.md",
+        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00534510",
+      "status": "partial",
+      "coverage": "Seat8..13 approach admission via actual Car eligibility and occupant78; actual supplied-position task3/radius2.5/seat210, focus exit/timer and empty-order ordering.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Native verification uses explicit World/engine/control endpoints, actual path/formation words; actual full module and launcher compile/link only. Original full object/container/allocator/SEH ABI and malformed pointers excluded; delegated engine/CRT/math callees receive no credit. Required specialized/non7/Dog owners, actual application integration and user desktop acceptance remain open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_active_ai_entry.h",
+        "analysis/human-h8-entry-source.md",
+        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00598460",
+      "status": "partial",
+      "coverage": "Actual formation slot80/84 seat and identity outputs; cold/missing member leaves output unchanged.",
+      "limitations": "Source-only typed/STL/RAII adaptation. Native verification uses explicit World/engine/control endpoints, actual path/formation words; actual full module and launcher compile/link only. Original full object/container/allocator/SEH ABI and malformed pointers excluded; delegated engine/CRT/math callees receive no credit. Required specialized/non7/Dog owners, actual application integration and user desktop acceptance remain open. No whole-function equivalence promotion.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "recovered/game/human_active_ai_entry.h",
+        "analysis/human-h8-entry-source.md",
+        "analysis/checkpoints/p2.2-human-h8-entry-20261117.json"
       ]
     }
   ]

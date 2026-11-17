@@ -118,6 +118,9 @@ public:
     auto pending_task_turn_gate(){return services_.formation_direction_gate(*this->human());}
     bool pending_target_arrived(){return active_task_target_arrived(*this,task_target,this->state_frames(),services_);}
     bool pending_task_effect_ready(){return services_.active_task_effect_ready(*this);}
+    unsigned prepare_pending_task_attachment(){return prepare_active_task_attachment(*this,services_);}
+    bool select_pending_entry_seat(std::uint32_t& seat){return select_active_task_entry_seat(*this,services_,seat);}
+    bool advance_pending_car_entry(std::uint32_t seat){return advance_active_task_car_entry(*this,seat,this->state_frames(),services_);}
     bool pending_loot_effect(std::uint32_t action){return services_.active_task_loot_effect(*this,action);}
     void pending_pickup_effect(std::uint32_t kind){services_.active_task_pickup_effect(*this,kind);}
     void reproduce_pending_pickup(){produce_active_pickup_task(*this,*task_target,this->state().template get<std::uint32_t>(0x210),this->state_frames(),services_);}

@@ -17,43 +17,43 @@ desktop test has occurred. Do not spawn other agents or add helper checkboxes.
 
 ## Latest result
 
-[Timed interaction completion](analysis/human-h8-timed-interaction-source.md),
+[Occupied entry/follow](analysis/human-h8-entry-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-entry-20261117.json): actual00528950
+Car driver/passenger prefix, claim-based seat selection and entry approach,
+00534510 command8..13 task producer,00536120 occupied follow,00598460 slot80/84,
+Car004DDD10 offline eligibility and occupied Human Sight are source-bound.
+Corrected Active virtual78 adapter: **occupant**, distinct from6C **claim**.
+Native1487 ASan/UBSan/leak checks PASS on actual path/formation words with explicit
+World/engine/control endpoints. Actual full GameMissionModuleFrames authority/
+presentation i386 link now passes: missing Dog C++ members replaced by named
+FAILING requirements, **not Dog implementation**. No absent owner is made ready.
+Launcher/probe and exact tracker+27 PASS. Three new frozen partials; counts34 complete/3594 partial
+(client3589+engine5), frozen18783. No complete promotion. Successful native/module fixture pairs fingerprinted and removed.
+H8/matrix remain OPEN; no original/Windows execution or desktop acceptance.
+
+Prior e8da0b0: [timed interaction completion](analysis/human-h8-timed-interaction-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-timed-interaction-20261117.json):
-actual00751480 timed ends now retire front-only queue records, preserve lock
-exceptions, equipment event/visibility order, forced animation and movement130
-500/scale timer. All native switch defaults are actual no-action returns.
-00755500 has no cases beyond13: default now retains A34 and wraps timer A38,
-rather than the invented required Runtime receiver. Removed obsolete Runtime
-methods. Native102824 ASan/UBSan/leak checks, strict actual World/Human i386
-and launcher/probe links, exact tracker+27 tests PASS. Successful temporary
-pairs fingerprinted/removed. Counts unchanged; H8/matrix remain OPEN.
+00751480 timed ends now bind front-only queue retirement, lock exceptions,
+equipment/event/forced animation/movement130500/scale order.00755500 default
+retains A34 and wraps A38; no original cases beyond13. Native102824, actual
+Human i386 and launcher/probe links, exact tracker+27 PASS. Temps removed.
 
-Prior a93906d:
-
-[Occupied authority](analysis/human-h8-occupied-authority-source.md),
+Prior a93906d: [occupied authority](analysis/human-h8-occupied-authority-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-occupied-authority-20261117.json):
-actual World/factory/Active00526550 now continues occupied authority after SAME
-prefix. Controlled mounted00527FD0→00532BA0 targeting, actual driver inputs,
-vehicle path and proper shared Human tail; uncontrolled occupied actors omit
-on-foot navigation but keep common aim/target/movement tail. Actual two-origin
-0052C510 prediction and00532910 intervals,00538B00 visibility,00532A20 Dog-list
-selection and00538A60 Car/Animation/Dog availability are source-bound with limits.
-Corrected005328D0: actual attached B4 payload-kind2 predicate, false unattached;
-prior hand-inventory search was wrong. Removed obsolete occupied cover guard.
-Native2000/100 target/direction/input policy checks PASS with explicit endpoints;
-strict actual World/Human/occupied/Car/mounted/path authority+presentation i386
-and launcher/probe links PASS, exact tracker+27 PASS. Seven new frozen partials,
-counts34 complete/3591 partial (client3586+engine5), frozen18783. Temporary
-successful fixture pairs fingerprinted/removed. H8/matrix remain OPEN.
+World/factory/Active00526550 continues mounted00527FD0→00532BA0 target/input,
+actual driver/path and shared Human tail. Native2000/100, actual World/Human/
+Car/mounted/path i386 and launcher links PASS. Seven partials. Actual005328D0
+is attachment B4 payload-kind2, false unattached (prior hand-inventory search
+was wrong). No desktop or absent engine credit.
 
 Earlier62db06e: [runtime](analysis/human-h8-runtime-source.md)/
 [receipt](analysis/checkpoints/p2.2-human-h8-runtime-20261117.json): Script00591550
 alarm, actual loose-item005B7320/005B7480 Body/age/timers/fades/expiry/queued
 removal, suppressed Player sessionB8/B4→Camera48 source. Native8400/100 and
-actual receiver/launcher links PASS. Full MODULE fixture FAILED on missing
-Dog/Sight Runtime methods. Initial log retained; ongoing TEMPORARY fixture
-WORK/human-h8-containing-frame-i386.cpp is still in use, not retired or passing.
-Do not infer module closure from narrower successful Human receiver links.
+actual receiver/launcher links PASS. Initial full MODULE fixture FAILED on missing
+Dog/Sight Runtime methods. Initial log retained; current entry checkpoint now
+links the full module with explicit Dog required-failure boundaries. It does
+not implement their live positive owners. Successful temporary pair retired.
 
 Earlier7943db3/dbac1af: [projectile source](analysis/human-h8-projectile-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-projectile-20261117.json): SAME all-hit,
@@ -69,10 +69,8 @@ gravity3.8, old-position SOUND. Grenade Body before timers/close before blast.
 ## Next — finish entire H8 on actual reached path
 
 Use [six-checkbox H8 plan](analysis/p22-hum-h8-plan.md). No helper checklist
-expansion. H8.2/H8.3/H8.4/H8.5/H8.6 remain open. Finish actual module Runtime
-Dog/Sight bindings and reached actor/frame/interaction dependencies, containing
-verification and application/FRAME/OWN/render. Remaining selected Active tasks
-8..13/16/22, retreat40, delayed Players0053D5B0→00456020 recipients/producers,
+expansion. H8.2/H8.3/H8.4/H8.5/H8.6 remain open. Finish selected live Dog/Sight and reached actor/frame dependencies, containing
+verification and application/FRAME/OWN/render. Remaining selected Active tasks16/22, retreat40, delayed Players0053D5B0→00456020 recipients/producers,
 Remote/non7/entry callbacks
 retain honest requirements. Aircraft20/type34 control and type34/36 mounted
 targets, nonHuman task25/26 EC, far Dog listener540 still require actual owners.

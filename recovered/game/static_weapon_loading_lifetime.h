@@ -17,6 +17,7 @@ public:
     virtual bool can_target(const std::array<float,4>&)=0;
     virtual void seat_frame_inputs(std::int32_t,const HumanFrameInputBuffer&,const HumanFrameInputBuffer&)=0;
     virtual void remove_reaction_seat(std::int32_t index)=0;
+    virtual std::size_t seat_count()const=0; //00602F70, actual2E4 vector count.
     virtual void* seat_occupant(std::int32_t index)const=0;
     virtual void assign_seat(std::int32_t index,void* human)=0;
     virtual bool exit_seat(std::int32_t index)=0;

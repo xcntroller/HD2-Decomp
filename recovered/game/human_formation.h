@@ -85,6 +85,12 @@ public:
         std::int32_t index=0;if(!contains(human,&index))return false;
         direction=slots_->at(static_cast<std::size_t>(index)).vector(0x40);return true;
     }
+    std::int32_t member_attachment(Human* human,std::int32_t& identity)const{ //00598460, no output on missing leader/slots/member.
+        if(!leader_||!slots_)return 0;
+        std::int32_t index=0;if(!contains(human,&index))return 0;
+        const auto& words=slots_->at(static_cast<std::size_t>(index)).words;
+        identity=words.template get<std::int32_t>(0x84);return words.template get<std::int32_t>(0x80);
+    }
     void request_member_position(Human* human,const HumanVector& position){ //00599040, reset point/changed only on membership.
         std::int32_t index=0;if(!contains(human,&index))return;
         auto& s=slot(static_cast<unsigned>(index));s.vector(0x20,position);
