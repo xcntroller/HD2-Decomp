@@ -6,32 +6,27 @@ then FRAME/OWN. No subagents/push/original/DLL/Proton/Windows execution/permanen
 tests. Heavy compilation and Ghidra sequential. Preserve OWN dirty files/artifact.
 Continue the first concrete loading/frame failure, not broad admin/network work.
 
-LATEST USER: "Crashes" on revised water-gate candidate e9d90e1e. Actual log
-passes activation loaded1/status5, Scene78 render, fixed-update AND input. Full
-update now fails on `Decoration movement contact requires actual0047FAE0
-bend/opacity requests`. Clean result1/no access violation. Exact binary +logs
-archived WORK/first-frame-decoration-contact-return. No stable full update or
-user-accepted scene/control/presentation. [Latest water correction/result](analysis/p22-frame-water-gates-source.md),
-[receipt](analysis/checkpoints/p22-frame-water-gates-20261117.json).
+LATEST USER: "Crashed" on contact candidate a27a24a5392a6769718dd23d2c9f14f7d30c89b1b68e56166e2027c05285a574.
+Actual activation loaded1/status5, Scene78 render, fixed-update, input AND full
+update complete. Later script execution exits on required command154 DOOR_Lock.
+Clean result1, no access violation. Exact exe/logs WORK/first-frame-script154-return.
+No stable scene/control/presentation acceptance.
 
-NEXT: implement actually reached positive Player decoration contact, not another
-retest that will hit the known guard. Original0047F4E0 posture/first-person/
-velocity ->0047FAE0 cell selection/bend/opacity requests ->reverse0047F150/
-0047F200 update/retirement. Reused complete C/ABI/raw evidence already in WORK:
-loading-decoration-abi-original/{0047fae0,0047f200}.c and .json;
-loading-decoration-grid-original/0047f4e0.c; loading-decoration-request.asm;
-loading-decoration-constants.json. Need raw0047FAE0 and double00810178, and
-007885B0 signed determinant helper if not already indexed. INDEX before exports.
-Research boundary: actual Player velocity is nonzero even controls untouched,
-so cannot use stationary RET or change input/quality to bypass. Tutorial motion
-modes are all0, so nonnull wind capture is not reached. Vehicle0047F730 is still
-required only at actual speed>=.1 and nearby; preserve that gate/order.
-Current code has no bend requests; Cell.fieldc is raw cold0 and RuntimeModel
-has visible/update/opacity/base_opacity/position/direction/scale endpoints. Add
-actual typed request owners and matching model world/local-axis/opacity getters;
-query/pool/flag/last-reference retirement order must match original. Do not mark
-all grass/HUM/FRAME complete merely after this dependency. Main has NO contact
-edits yet. No new retest request until this positive path is concrete.
+NEXT: actual base00416E10 opcode9A (compressed dispatch41/004179xx): frame pool90
+->EC actor0 type6, integer second operand ->005FF5F0 unlock /005FF650 lock using
+SAME Door230 key, ignore result, then00416CF0 advance; missing actor returns false.
+Existing Door.key_lock already owns actual linked mutation/packet receiver. Read
+raw dispatcher mapping before implementation. Index00416E10 already queried;
+typed export script-actor-command-typed-required/00416e10.c has exact branch.
+
+Positive Player decoration0047F4E0->0047FAE0->reverse0047F150/0047F200 is now
+source-bound: actual posture/repeated FPV/velocity, model/world/local-axis/alpha
+receivers; one-shot fade and bounce damping; grid query-before-recycle, request
+retirement before model deletion. Native15229 ASan/UBSan/leaks and full actual O2
+application/probe PASS. User full update confirms reached prefix; no whole grass
+or FRAME completion. Vehicle/wind remain honest required failures. Temporary
+audits removed/fingerprinted. [Contract](analysis/p22-frame-decoration-contact-source.md),
+[receipt](analysis/checkpoints/p22-frame-decoration-contact-20261117.json).
 
 Latest source water gate: original48765E calls SAME HumanA0/DD0 query007860B0,
 ignores AL, tests explicit below byte, attached actor type20, then retained1A8.
@@ -67,14 +62,14 @@ Tutorial87x87 grid; all10 named4DS geometry/LOD/group/material data decoded.
 Native22868 ASan/UBSan/leaks passed actual parsers/grid/pools/mask/failure prefixes
 with explicit engine/ground endpoints. Full actual i386 O2/probe PASS; cb8b636c
 was stage-only then user-executed. Temporary native fixtures removed/fingerprinted.
-Positive Player/vehicle bends and wind mesh capture still fail explicitly; no
+Positive vehicle bends and wind mesh capture still fail explicitly; no
 fabricated request vector/readiness/success. Do not mark whole decoration complete.
 
 REVIEW: `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
 edebd81 + preserved OWN interactive overlay/later FRAME source. Mixed staged and
 unstaged is expected, not a merge conflict. Interactive app adapter remains
 UNCOMMITTED pending actual user desktop acceptance per AGENTS. Source-only main
-fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-water-review-final.patch includes
+fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-decoration-contact-review-final.patch includes
 all untracked collision/decorations/input/water headers; fingerprinted in receipt. No accepted game yet.
 
 Desktop command, USER ONLY:

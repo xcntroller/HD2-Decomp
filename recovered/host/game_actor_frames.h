@@ -1668,6 +1668,20 @@ public:
         const std::array<float,3> white{{1,1,1}},black{{0,0,0}};
         call<void>(material,0xc,white.data());call<void>(material,4,black.data());call<void>(material,0x10,black.data());call<void>(material,0x14,0.f);
     }
+    float decoration_base_opacity(Frame model)const{return field<float>(model,0xec);}
+    void decoration_visual_amount(Frame model,float value){const auto visual=call<Frame>(model,0x40,std::uint32_t{0});
+        if(!visual)throw std::runtime_error("Decoration opacity requires its actual first visual");call<void>(visual,0xa8,value);}
+    Vector decoration_request_direction(Frame model){ //0047F2B9: unit rotation axis, never the scaled004C8140 matrix.
+        const auto flags=field<std::uint32_t>(model,0xe0);
+        if(!(flags&0x10u)){
+            put(model,0xe0,flags|0x10u);
+            using Normalize=void(WINAPI*)(void*);using Set=void(WINAPI*)(void*,const void*);
+            exported<Normalize>("?Normalize@S_quat@@QAGXXZ",0x30540)(address(model,0xc0));
+            exported<Set>("?SetRot3@S_matrix@@QAGXABUS_quat@@@Z",0x2d450)(address(model,0x80),address(model,0xc0));
+            return field<Vector>(model,0xa0);
+        }
+        return game::actor_activation_direction(field<Vector>(model,0xa0));
+    }
     void decoration_direction(Frame model,const Vector& value,float roll){call<void>(model,0x1c,value.data(),roll);}
     void decoration_base_opacity(Frame model,float value){put(model,0xec,value);} //Source float loan, not ActorFrameData/EC metadata.
     void decoration_scale(Frame model,float value){ //Only XYZ lanes are written; native scale W is unwritten.

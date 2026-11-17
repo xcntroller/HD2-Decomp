@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "e667395",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-decoration-contact-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/effects_decorations_loading.h",
+      "bytes": 31374,
+      "sha256": "fc1df0070bff6a8d9a122574e9c3b1d1cffe4f5e090f3f73478cbd5c9540dd63"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 139015,
+      "sha256": "035bda01f697a8347ad29a23895fadc4393238a746b9aca02b78c45bbf84eee7"
+    },
+    {
+      "path": "recovered/host/game_decorations_runtime.h",
+      "bytes": 7140,
+      "sha256": "0d585e769078e7e61a59978f46278e16a79a628ca5e304ae53483eaa543e9a52"
+    }
+  ],
+  "native_checks": 15229,
+  "native_sanitizers": "ASan/UBSan/leaks PASS",
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-native-run.log",
+      "bytes": 73,
+      "sha256": "c47397cd1dcaf70a8f84cab71de9e900a3a5236f623cfbdc72a4a61f67197cab"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    }
+  ],
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/application_launch.exe",
+      "bytes": 12871168,
+      "sha256": "a27a24a5392a6769718dd23d2c9f14f7d30c89b1b68e56166e2027c05285a574"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/host-output.log",
+      "bytes": 259261,
+      "sha256": "f2e99e548ecbe7a5a7115a2212a98d7b69613368d3a16d0a11406e10a9b65c50"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/host-runtime.log",
+      "bytes": 263259,
+      "sha256": "8fdc9441b6af5feb1de4cf130091cb62b7749091f5a03daa372df6f63a8e656c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/inputs.json",
+      "bytes": 993,
+      "sha256": "23277ae5eb8c2fe6bf06a7a0d94b97807933b18d8012a31ac93bdde5af8287a5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script154-return/steam-0.log",
+      "bytes": 342788,
+      "sha256": "43017301ef61ea3b3bad7d1479876c7173a7d35995435fc405944911915c12b0"
+    }
+  ],
+  "review_recoverable_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-review-final.patch",
+    "bytes": 114861,
+    "sha256": "436d0e608cd694174c4ca33aa4aac681f4f70eda462967d2c4594b9e164c2036"
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-native.cpp",
+      "bytes": 7267,
+      "sha256": "9ed2d1622c0f0527c9e93f6dc33d5a4caeafabf5e4ba3f50e86572d86888521f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-decoration-contact-native",
+      "bytes": 2767320,
+      "sha256": "c5827e9c572c06b8bb18aa09f02d9224029ed742d6fe6efa51de961ca9708485"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-contact-decorations.bin",
+      "bytes": 667,
+      "sha256": "cff800dd6a7c7953c704d48582ab24931382f1780778b313d57f2a94f8f2b184"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "gameplay_desktop_verified": false,
+  "full_frame_source_complete": false,
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "matrix_reconciliation": "partially_resolved",
+  "agent_executed_original_dll_proton_or_windows": false,
+  "actual_result": "Activation, Scene78 render, fixed-update, input and full update complete. Later script execution handles unreconstructed opcode154 DOOR_Lock; clean result1, no access violation. Stable scene/control/presentation unaccepted.",
+  "remaining": "Vehicle/wind decoration producers retain required failures; broader FRAME/HUM/OWN remain partial."
+}

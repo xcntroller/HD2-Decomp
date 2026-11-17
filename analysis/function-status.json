@@ -27268,14 +27268,16 @@
       "program": "client",
       "entry": "0047bcc0",
       "status": "partial",
-      "coverage": "Profile4 transition and actual group98/9C gates; same-World listener/current-Player anchor, ordered positive rolling decoration grid, actual static ground/material/model pooling and byte-mask opacity are source-bound. Positive wind mesh/Player/vehicle contact producers remain explicit required boundaries.",
+      "coverage": "Profile4/group98/9C gates, same-World anchor and positive rolling grid/model pooling/mask opacity. Actual Player posture/velocity contact creates/reuses typed bend/fade/bounce requests with signed angle, reverse update and original request-before-model retirement. Positive wind/vehicle producers remain required boundaries.",
       "limitations": "Source-only typed STL/RAII owners and checked native-width borrowers replace original object/container/allocator/SEH ABI. Actual host composition is compile-only; native engine/archive/clock/profile leaves are explicit doubles. Required positive and retained-game paths described in the contract remain excluded. No whole-body equivalence, application mission loading, first frame or desktop acceptance.",
       "evidence": [
         "recovered/game/effects_decorations_loading.h",
         "analysis/mission-loading-integration.md",
         "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json",
         "analysis/p22-frame-loading-decoration-source.md",
-        "analysis/checkpoints/p22-frame-loading-decoration-20261117.json"
+        "analysis/checkpoints/p22-frame-loading-decoration-20261117.json",
+        "analysis/p22-frame-decoration-contact-source.md",
+        "analysis/checkpoints/p22-frame-decoration-contact-20261117.json"
       ]
     },
     {

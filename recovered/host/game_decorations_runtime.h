@@ -19,10 +19,16 @@ template<class Dependencies>class GameDecorationsRuntime final:public game::Effe
         void visible(bool value)override{frames_.object_visible(owner_.get(),value);}
         void update()override{frames_.update_scene_object(owner_.get());}
         void opacity(float value)override{if(mode_&2u)frames_.effects_model_opacity(owner_.get(),value);}
+        void request_opacity(float value)override{frames_.effects_model_opacity(owner_.get(),value);} //0047F200 directly calls model50, without GEffects mode gate.
         void base_opacity(float value)override{frames_.decoration_base_opacity(owner_.get(),value);}
         void position(const Vector& value)override{frames_.object_position(owner_.get(),{{value[0],value[1],value[2]}});}
         void direction(const Vector& value,float roll)override{frames_.decoration_direction(owner_.get(),value,roll);}
         void scale(float value)override{frames_.decoration_scale(owner_.get(),value);}
+        Vector world_position()override{const auto m=frames_.actor_world_matrix(owner_.get());return {{m[12],m[13],m[14],m[15]}};}
+        Vector world_forward()override{const auto m=frames_.actor_world_matrix(owner_.get());return {{m[8],m[9],m[10],m[11]}};}
+        Vector request_direction()override{return frames_.decoration_request_direction(owner_.get());}
+        float base_opacity()const override{return frames_.decoration_base_opacity(owner_.get());}
+        void visual_amount(float value)override{frames_.decoration_visual_amount(owner_.get(),value);}
         auto frame()const{return owner_.get();}auto& frames()const{return frames_;}
     private:GameActorServices& frames_;const std::uint32_t& mode_;MenuDriver::Owner owner_;
     };
@@ -60,9 +66,10 @@ public:
     void update_contacts(Policy& policy,std::uint32_t elapsed)override{
         auto& frames=d_.scene.frames();auto* human=d_.players.control().current_player();
         if(human&&!human->field160){
-            auto& services=d_.human_factory.world_services();
-            policy.check_player_contact(services.human_inline(*human).frame_posture_mode(),
-                services.human_view_offset_enabled(),human->activation.vector1b0,elapsed);
+            const auto matrix=frames.actor_world_matrix(human->base().frame());
+            const Vector point{{matrix[12],matrix[13],matrix[14],matrix[15]}},velocity=human->activation.vector1b0;
+            auto& services=d_.human_factory.world_services();const auto posture=services.human_inline(*human).frame_posture_mode();
+            policy.update_player_contact(point,velocity,posture,[&services]{return services.human_view_offset_enabled();},elapsed,*this);
         }
         const auto& cars=frames.car_actors();
         const float range=static_cast<float>(static_cast<long double>(policy.width())*policy.density()*.5f);

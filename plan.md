@@ -245,12 +245,11 @@ Actual application/menu provider, console/general network/history/close and HUM/
 consumers keep the matrix partial. Actual mission/failure/repeat/user acceptance
 remains separate; earlier checkpoint evidence is revision-qualified.
 
-[Latest actual frame correction](analysis/p22-frame-water-gates-source.md):
-user run activates and completes Scene78/fixed/input, then exits at GEffects.
-Original DD0 head/surface/attachment/underwater gates now replace the overly broad
-water-settings rejection. Native/application verification and revised desktop
-continuation remain distinct. Revised user run passes water and reaches positive
-decoration bending; stable update/scene/control remain unaccepted.
+[Latest actual frame correction](analysis/p22-frame-decoration-contact-source.md):
+actual Player decoration bend/fade/bounce requests and lifetime ordering are
+source-bound and sanitizer-verified. User run completes activation, Scene78,
+fixed-update, input and full update; later script command154 DOOR_Lock exits.
+Stable scene/control/presentation and full FRAME/HUM/OWN remain unaccepted.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 
