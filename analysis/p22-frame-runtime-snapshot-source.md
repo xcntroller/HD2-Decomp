@@ -1,5 +1,9 @@
 # FRAME runtime snapshot — 2026-11-17
 
+Later [pending spawn and same-Human respawn source](p22-frame-pending-spawn-source.md)
+closes0069D9C0/D780/0059F050 and supplies the real World entry. The remaining-spawn
+statements below retain this earlier checkpoint scope.
+
 Continuation of c9846c7 on feature/p22-frame. The selected004782C0 dependency
 now has a concrete populated writer through SAME World→world_actors.runtime()→
 RuntimeActorRegistry. Application commands7/20 reach this actual receiver instead

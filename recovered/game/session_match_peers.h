@@ -9,6 +9,16 @@ template<class Locks,class Call>decltype(auto) with_session_match_peers(frontend
     struct Unlock{Locks& locks;~Unlock(){locks.leave_control_lock(0);}}unlock{locks};
     return call(state.records);
 }
+template<class Session,class Locks,class Rules>bool take_session_match_spawn_life(frontend::ControlStartupState& peers,Locks& locks,
+        Session& session,std::uint32_t peer,Rules&& rules){ //0069D9C0 life branch, no active/name gate.
+    return with_session_match_peers(peers,locks,[&](auto& records){
+        const auto limit=rules(0x270);const bool shared=rules(0x27c)!=0; //Both AFTER418 acquisition.
+        const auto current=shared?session.words.template get<std::uint32_t>(0x84):records.at(peer).word(0xb0);
+        if(limit!=0xffffffffu&&human_frame_signed_word(limit)<=human_frame_signed_word(current))return false;
+        if(shared)session.words.set(0x84,current+1u);else records.at(peer).word(0xb0,current+1u);
+        return true;
+    });
+}
 template<class Locks>std::array<std::uint32_t,2> count_session_match_teams(frontend::ControlStartupState& state,Locks& locks,bool pending,bool require_human){ //0072FF50.
     return with_session_match_peers(state,locks,[&](auto& peers){
         std::array<std::uint32_t,2> counts{};

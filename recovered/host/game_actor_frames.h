@@ -66,6 +66,8 @@ public:
         }
     }
     void prepared_human_direction(Frame model,const Vector& direction){call<void>(model,0x1c,direction.data(),static_cast<const void*>(nullptr));}
+    void respawn_human_model_position(Frame model,const Vector& position){call<void>(model,8,position.data());} //0059F050 actual model08, not cached0041D110.
+    void respawn_human_model_direction(Frame model,const Vector& direction){call<void>(model,0x0c,direction.data(),0.f);} //0059F050 actual0C, distinct from factory1C.
     struct MissionLightProperties {bool visible;std::int32_t type;std::uint32_t flags;};
     MissionLightProperties mission_light_properties(Frame frame)const {
         return {(field<std::uint32_t>(frame,0xe0)&1u)!=0,field<std::int32_t>(frame,0x164),field<std::uint32_t>(frame,0x160)};

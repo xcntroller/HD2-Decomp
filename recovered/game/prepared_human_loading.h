@@ -42,6 +42,15 @@ public:
     }
     void configure_session(Human& human,frontend::PreMissionSoldier& soldier,std::uint32_t kind,std::uint32_t personality,
             const std::array<std::uint32_t,12>* stats,std::uint32_t peer){
+        configure_session_data(human,soldier,kind,personality,stats,peer);
+        (void)d_.world_actors.prepare_human_loading(human); //After cold clothing, BEFORE either direct activation pass.
+    }
+    void reconfigure_existing(Human& human,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats){
+        if(!human.loading_lifetime)throw std::logic_error("Respawn preparation requires its SAME existing Human loading owner");
+        configure_session_data(human,soldier,human.properties.field19c,human.properties.field1a0,stats,static_cast<std::uint32_t>(human.base().id10()));
+    }
+    void configure_session_data(Human& human,frontend::PreMissionSoldier& soldier,std::uint32_t kind,std::uint32_t personality,
+            const std::array<std::uint32_t,12>* stats,std::uint32_t peer){
         game::configure_prepared_human_with_peer(human,soldier,kind,personality,stats,d_.profiles,d_.audio,d_.audio.random_source(),*this,d_.scene.effects(),
             [this,peer](auto& actor,auto& record){
                 if((mode_flags()&7u)==7u)return;
@@ -49,7 +58,6 @@ public:
                 game::set_session_peer_side(d_.startup.game_control_records(),d_.startup,peer,static_cast<std::uint32_t>(record.specialization),false);
                 if(record.flag09)d_.session.words.set(0x78,peer);
             });
-        (void)d_.world_actors.prepare_human_loading(human); //After cold clothing, BEFORE either direct activation pass.
     }
     Human* create_session_human(std::uint32_t peer,std::int32_t identity,const game::HumanVector& position,const game::HumanVector& direction,
             frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats,std::int32_t clothing,bool alternate){

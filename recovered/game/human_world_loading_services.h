@@ -1,6 +1,8 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_player_live_input.h"
+#include "game/session_pending_spawn_prepare.h"
+#include "game/human_session_respawn.h"
 #include "game/human_player_selection.h"
 #include "game/dog_sight_geometry.h"
 #include "game/dog_body_sound.h"
@@ -823,6 +825,78 @@ public:
     template<class Spawn>void notify_authority_spawn_created(Spawn& spawn){PreparedHumanLoading<Dependencies> factory(dependencies());factory.spawn_model_created(spawn.base().frame());}
     auto spawn_position_sweep(const HumanVector& start,const HumanVector& displacement,float radius){return dependencies().sweep.sweep(start,displacement,radius,0,0,false);} //007184C0, no output normal.
     bool spawn_position_occupied(const HumanVector& position){return human_spawn_position_occupied(*this,position);}
+    void queue_pending_human_spawn(std::uint32_t peer,std::unique_ptr<frontend::PreMissionSoldier>& soldier,
+            std::unique_ptr<std::array<std::uint32_t,12>>& stats){prepare_session_pending_spawn(dependencies().session,peer,soldier,stats,*this);}
+    std::uint32_t pending_spawn_rule(unsigned offset){
+        if(offset<0x228||offset>0x27c||(offset&3u))throw std::out_of_range("Pending spawn configuration word");
+        return static_cast<std::uint32_t>(dependencies().startup.game_configuration().rules228.at((offset-0x228)/4));
+    }
+    auto* pending_spawn_zone(std::int32_t identity){
+        auto* actor=dependencies().scene.frames().scene_actor_command_identity(identity);
+        auto* zone=dynamic_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(actor);
+        if(actor&&!zone)throw std::logic_error("Pending spawn identity requires actual type37 Zone");return zone;
+    }
+    template<class Zone>std::uint32_t pending_spawn_zone_side(Zone& zone){return zone.field98;}
+    template<class Zone>bool pending_spawn_pose(Zone& zone,HumanVector& position,HumanVector& direction,bool cycle){return zone.next_spawn_pose(position,direction,cycle,*this);}
+    std::int32_t pending_spawn_zone_by_group(std::uint32_t group){ //0069D8E0: fresh positional count, first actual37/90 match.
+        auto& scene=dependencies().scene.frames();
+        for(std::size_t n=0;n<scene.scene_actor_identity_count();++n)if(auto* actor=scene.scene_actor_command_identity(static_cast<std::int32_t>(n)))if(actor->base().type()==37u)
+            if(static_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(actor)->field90==group)return static_cast<std::int32_t>(n);
+        return -1;
+    }
+    std::int32_t pending_spawn_unique_zone(std::uint32_t side){ //0069D940 stops after the SECOND match, then performs native fresh lookup.
+        auto& scene=dependencies().scene.frames();std::int32_t selected=-1;unsigned found=0;
+        for(std::size_t n=0;n<scene.scene_actor_identity_count();++n){
+            if(auto* actor=scene.scene_actor_command_identity(static_cast<std::int32_t>(n)))if(actor->base().type()==37u)
+                if(static_cast<ZoneSceneActor<typename Dependencies::ActorFrames>*>(actor)->field98==side){++found;selected=static_cast<std::int32_t>(n);}
+            if(found>1)break;
+        }
+        auto* fresh=scene.scene_actor_command_identity(selected);return found==1&&fresh?selected:-1;
+    }
+    void pending_spawn_rejected(std::uint32_t peer){dependencies().startup.queue_application_command(15,0,peer,0);} //D9C0 reason0 differs from00611C90 rejection reason1.
+    bool pending_spawn_take_life(std::uint32_t peer){
+        auto& d=dependencies();return take_session_match_spawn_life(d.startup.game_control_records(),d.startup,d.session,peer,[&](unsigned offset){return pending_spawn_rule(offset);});
+    }
+    std::uint32_t pending_spawn_objective_side(){auto* mission=dependencies().session.mission;
+        if(!mission||mission->related.empty())throw std::logic_error("Pending spawn objective requires actual mission first related descriptor");
+        return human_death_objective_fields(mission->related.front().get()).side18;}
+    void pending_spawn_objective_clothing(frontend::PreMissionSoldier& soldier){auto* mission=dependencies().session.mission;
+        if(!mission)throw std::logic_error("Pending spawn objective clothing lost actual mission");
+        for(std::size_t n=0;n<mission->related.size();++n){const auto& fields=human_death_objective_fields(mission->related[n].get());
+            if(fields.selector28==1u){soldier.equipment[1].item=prepared_identity_word(human_frame_signed_word(fields.field2c));break;}}
+    }
+    void pending_spawn_reinitialize_peer(std::uint32_t peer,const HumanVector& position,const HumanVector& direction,
+            frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>& stats){
+        respawn_session_peer(dependencies().session,peer,position,direction,soldier,stats,dependencies().startup.game_control_records(),*this);
+    }
+    auto& respawn_peer_human(void* borrower){return human_score_actor(borrower);}
+    template<class Human>void respawn_existing_human(Human& human,const HumanVector& position,const HumanVector& direction,
+            frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>& stats){respawn_session_human(human,position,direction,&soldier,&stats,*this);}
+    template<class Human>void respawn_clear_storage(Human& human){auto* storage=human.base().storage();
+        if(!storage)throw std::logic_error("Respawn requires actual Human74 storage");storage->reset_spawn_entries();}
+    template<class Human>void respawn_enable_collision(Human& human){auto& owner=human_inline(human);auto* control=owner.control();auto* look=owner.look();
+        if(!control||!look)throw std::logic_error("Respawn requires SAME Human inline/control/posture owner");
+        if(control->collision_disabled())control->frame_collision_disabled(false,*look);}
+    template<class Human>void respawn_model_position(Human& human,const HumanVector& position){dependencies().scene.frames().respawn_human_model_position(human.base().frame(),position);}
+    template<class Human>void respawn_model_direction(Human& human,const HumanVector& direction){dependencies().scene.frames().respawn_human_model_direction(human.base().frame(),direction);}
+    template<class Human>void respawn_input_position(Human& human,const HumanVector& position){
+        auto* record=dependencies().inputs.find(human.base().id10(),true);auto* history=record?record->history(1):nullptr;
+        if(!history)throw std::logic_error("Respawn requires actual process input record/history1");
+        history->position_value.seed(position);history->position_value.current_position(position);history->position_value.stop_velocity();
+    }
+    template<class Human>void respawn_configure(Human& human,frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats){
+        PreparedHumanLoading<Dependencies> factory(dependencies());factory.reconfigure_existing(human,soldier,stats);
+    }
+    template<class Human>void respawn_sight_target_modes(Human& human){dependencies().sight.source().target_mode(human_frame_signed_word(human.field25c),3);
+        dependencies().sight.source().target_mode(human_frame_signed_word(human.field25c),4);}
+    template<class Human>void respawn_restore_player(Human& human){auto& d=dependencies();auto& control=d.players.control();
+        (void)control.add_human(&human);control.select_human(human);spawn_hud_mode(0);
+        d.hud.refresh_peer_human(static_cast<Human*>(nullptr),mode_flags(),human_current_player_id());control.override_player(nullptr);
+        auto refresh=[](auto&){throw std::logic_error("Respawn camera2 attempted an unrelated command0 refresh");};
+        d.camera.command_spawn(2,true,0,mode_flags(),refresh,[&]{return d.startup.random_word();});
+        if(!human.loading_state)throw std::logic_error("Respawn controlled Human lost actual B0");human.loading_state->selection_suppressed(0);
+    }
+    void respawn_refresh_visibility(){dependencies().presentation.refresh_first_person_visibility();}
     std::int32_t zone_style(){return dependencies().startup.game_configuration().style224;}
     bool zone_next_spawn_pose(std::int32_t identity,HumanVector& position,HumanVector& direction,bool cycle){
         auto* actor=dependencies().scene.frames().scene_actor_command_identity(identity);

@@ -922,6 +922,8 @@ public:
     }
     void receive_application_local_removal(std::uint32_t reason){packet_world_.receive_application_local_removal(reason);}
     void receive_application_spawn_rejection(std::uint32_t reason){packet_world_.receive_application_spawn_rejection(reason);}
+    void receive_application_pending_spawn(std::uint32_t peer,std::unique_ptr<frontend::PreMissionSoldier>& soldier,
+            std::unique_ptr<std::array<std::uint32_t,12>>& stats){packet_world_.queue_application_pending_spawn(peer,soldier,stats);}
     void receive_application_peer_removal(std::uint32_t reason,std::uint32_t identity){
         struct Services{
             StartupSession& startup;

@@ -106,6 +106,11 @@ public:
             }else words.set(0x40,value);
             words.set(0x20,value);words.set(0x30,value);
         }
+        void current_position(const HumanVector& value){words.set(0x40,value);} //0073F8D0, actual virtual20; absent frozen inventory.
+        void stop_velocity(){ //0073F8F0 virtual24's actual zero-XYZ call from0059F050.
+            for(auto offset:{0x50u,0x54u,0x58u})words.set(offset,0.f);
+            words.set(0x80,0.f); //Native W is unwritten stack padding, no semantic value/default claimed.
+        }
         const bool angles;HumanJointWords<0xb0> words;
         Profiles primary{},secondary{}; //Native04/08/0C and10/14/18 borrowed tables.
     private:

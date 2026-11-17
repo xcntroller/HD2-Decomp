@@ -21403,7 +21403,7 @@
       "program": "client",
       "entry": "0059edc0",
       "status": "partial",
-      "coverage": "Shared cold property/profile/peer/speech/stats/storage/eye setup in native order. Non7 B060 stores original byte70, actual peer side64 and optional game78 precede speech/stat/storage work; explicit12-word stats or nine profile conversions retain other words.",
+      "coverage": "Shared cold property/profile/peer/speech/stats/storage/eye setup in native order. Non7 B060 stores original byte70, actual peer side64 and optional game78 precede speech/stat/storage work; explicit12-word stats or nine profile conversions retain other words. Same-Human respawn reuses this property/profile/speech/storage/clothing preparation without republishing a duplicate World Human lifetime map.",
       "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "recovered/game/prepared_human_spawn.h",
@@ -21411,7 +21411,10 @@
         "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
         "recovered/host/game_prepared_human_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json",
+        "recovered/game/prepared_human_loading.h",
+        "analysis/p22-frame-pending-spawn-source.md",
+        "analysis/checkpoints/p22-frame-pending-spawn-20261117.json"
       ]
     },
     {
@@ -51768,6 +51771,82 @@
         "recovered/host/startup_session.h",
         "analysis/p22-frame-runtime-snapshot-source.md",
         "analysis/checkpoints/p22-frame-runtime-snapshot-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069d9c0",
+      "status": "partial",
+      "coverage": "Actual owned pending-spawn preparation:49 style0 attempts, actual Zone/side/cycle/fallback, remote lives under418, objective-carrier/clothing/orientation, existing-Human reset before owned9C/A0 append; rejection/life-limit ownership prefixes.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/allocator/SEH ABI equivalence. Native1216 policy/ownership/actual peer/input-value checks use explicit model, Human lifecycle/preparation, Zone, voice and HUD endpoints. Strict actual World/HumanFrameRuntime/FRAME/Startup/packet-link/Items/Human i386 and O2 launcher/probe compile/link only. Authority request admission/decoder, retained-round reset/Actor44 and required process/network/application sources remain open. No new application route, original execution, desktop acceptance, complete-function promotion or delegated/absent-entry credit. Native undefined vector W has no semantic value contract; only known XYZ behavior is credited.",
+      "evidence": [
+        "recovered/game/session_pending_spawn_prepare.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-frame-pending-spawn-source.md",
+        "analysis/checkpoints/p22-frame-pending-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069d780",
+      "status": "partial",
+      "coverage": "Actual peer418 coverage through client life accounting, fresh3C/name08 and same-Human reset/Player550 or Remote2C0 flag, then unlocked voice/local90/map publication.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/allocator/SEH ABI equivalence. Native1216 policy/ownership/actual peer/input-value checks use explicit model, Human lifecycle/preparation, Zone, voice and HUD endpoints. Strict actual World/HumanFrameRuntime/FRAME/Startup/packet-link/Items/Human i386 and O2 launcher/probe compile/link only. Authority request admission/decoder, retained-round reset/Actor44 and required process/network/application sources remain open. No new application route, original execution, desktop acceptance, complete-function promotion or delegated/absent-entry credit. Native undefined vector W has no semantic value contract; only known XYZ behavior is credited.",
+      "evidence": [
+        "recovered/game/human_session_respawn.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-frame-pending-spawn-source.md",
+        "analysis/checkpoints/p22-frame-pending-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059f050",
+      "status": "partial",
+      "coverage": "Same-Human/model/inline lifetime respawn with actual storage reset, collision restore, presentation/authority retirement, pose and input history1 reset, existing0059EDC0 preparation, activation and Players/HUD/camera/Sight/FPV publication ordering.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/allocator/SEH ABI equivalence. Native1216 policy/ownership/actual peer/input-value checks use explicit model, Human lifecycle/preparation, Zone, voice and HUD endpoints. Strict actual World/HumanFrameRuntime/FRAME/Startup/packet-link/Items/Human i386 and O2 launcher/probe compile/link only. Authority request admission/decoder, retained-round reset/Actor44 and required process/network/application sources remain open. No new application route, original execution, desktop acceptance, complete-function promotion or delegated/absent-entry credit. Native undefined vector W has no semantic value contract; only known XYZ behavior is credited.",
+      "evidence": [
+        "recovered/game/human_session_respawn.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-frame-pending-spawn-source.md",
+        "analysis/checkpoints/p22-frame-pending-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069d8e0",
+      "status": "partial",
+      "coverage": "Fresh Scene2 positional scan for first actual Zone37 group90 match, real-1 when absent.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/allocator/SEH ABI equivalence. Native1216 policy/ownership/actual peer/input-value checks use explicit model, Human lifecycle/preparation, Zone, voice and HUD endpoints. Strict actual World/HumanFrameRuntime/FRAME/Startup/packet-link/Items/Human i386 and O2 launcher/probe compile/link only. Authority request admission/decoder, retained-round reset/Actor44 and required process/network/application sources remain open. No new application route, original execution, desktop acceptance, complete-function promotion or delegated/absent-entry credit. Native undefined vector W has no semantic value contract; only known XYZ behavior is credited.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-frame-pending-spawn-source.md",
+        "analysis/checkpoints/p22-frame-pending-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069d940",
+      "status": "partial",
+      "coverage": "Fresh Scene2 Zone37 side98 scan, stop at second match, final fresh lookup and exactly-one admission.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/allocator/SEH ABI equivalence. Native1216 policy/ownership/actual peer/input-value checks use explicit model, Human lifecycle/preparation, Zone, voice and HUD endpoints. Strict actual World/HumanFrameRuntime/FRAME/Startup/packet-link/Items/Human i386 and O2 launcher/probe compile/link only. Authority request admission/decoder, retained-round reset/Actor44 and required process/network/application sources remain open. No new application route, original execution, desktop acceptance, complete-function promotion or delegated/absent-entry credit. Native undefined vector W has no semantic value contract; only known XYZ behavior is credited.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-frame-pending-spawn-source.md",
+        "analysis/checkpoints/p22-frame-pending-spawn-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073f8f0",
+      "status": "partial",
+      "coverage": "Actual zero-XYZ velocity call used by0059F050:50/54/58 and magnitude80 zero; general arbitrary vector magnitude and native padding are excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/allocator/SEH ABI equivalence. Native1216 policy/ownership/actual peer/input-value checks use explicit model, Human lifecycle/preparation, Zone, voice and HUD endpoints. Strict actual World/HumanFrameRuntime/FRAME/Startup/packet-link/Items/Human i386 and O2 launcher/probe compile/link only. Authority request admission/decoder, retained-round reset/Actor44 and required process/network/application sources remain open. No new application route, original execution, desktop acceptance, complete-function promotion or delegated/absent-entry credit. Native undefined vector W has no semantic value contract; only known XYZ behavior is credited.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-frame-pending-spawn-source.md",
+        "analysis/checkpoints/p22-frame-pending-spawn-20261117.json"
       ]
     }
   ]

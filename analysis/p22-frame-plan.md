@@ -29,8 +29,8 @@ Older implementation/reassessment documents retain revision-qualified evidence.
 
 ## Remaining full closure and delivery
 
-- [ ] Close remaining retained-round reset and pending-spawn producers, plus
-  required process/network consumers. [Populated runtime snapshot](p22-frame-runtime-snapshot-source.md) is verified. Fixed/update/input/exit
+- [ ] Close remaining retained-round reset and its module/Actor callbacks, plus
+  required process/network consumers. [Pending spawn/respawn](p22-frame-pending-spawn-source.md) and [populated runtime snapshot](p22-frame-runtime-snapshot-source.md) is verified. Fixed/update/input/exit
   policies and positive retained-item restore now have verified bodies and
   concrete owners; [exact remaining dependencies](p22-frame-match-source.md).
 - [ ] Complete selected positive HUM/Actor/cutscene/UI command producers under
@@ -44,5 +44,5 @@ Offline containing source is implemented and verified. **Full P22-FRAME remains
 partially_resolved**, with the above source/application boundaries explicit.
 The user has now selected remaining FRAME source closure. Continue its concrete
 retained-round/Runtime dependencies; leave unrelated admin/chat/Dog research out.
-No new function credit, successful placeholder, application execution or desktop
-acceptance follows from this reconciliation.
+Source checkpoints retain bounded partial inventory claims only. No successful
+placeholder, application execution or desktop acceptance follows from source verification.
