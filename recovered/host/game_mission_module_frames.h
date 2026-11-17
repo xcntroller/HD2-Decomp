@@ -23,6 +23,7 @@ public:
         world_.modules().dispatch().tick_modules(authority,elapsed,*this);
         d_.scene.frames().rethrow_actor_cleanup_failure();
         d_.hearing.rethrow_callback_failure();
+        d_.world_actors.rethrow_dog_sound_failure();
         });
     }
     void tick_physics(bool authority,std::uint32_t elapsed){physics_.tick(authority,elapsed);}

@@ -1,0 +1,150 @@
+{
+  "date": "2026-11-17",
+  "base": "9126eec",
+  "source_only": true,
+  "desktop_verified": false,
+  "new_frozen_partial": [
+    "005d5290",
+    "005d4db0",
+    "005d5390",
+    "005d5cb0"
+  ],
+  "absent_or_delegated_credit": [],
+  "source_files": [
+    {
+      "path": "recovered/game/dog_ai_controller.h",
+      "bytes": 12575,
+      "sha256": "8b6a5e58a63c2293ac55bfa7b6fd2ff4a2e6dd6d7e57c4831a06882149abf531"
+    },
+    {
+      "path": "recovered/game/dog_controller_lifetime.h",
+      "bytes": 2416,
+      "sha256": "3c1ec48988d2ce54ff4d93decd4948a96cdba3bfb86f1ba0d1355b201eb3e961"
+    },
+    {
+      "path": "recovered/game/human_frame_runtime.h",
+      "bytes": 6816,
+      "sha256": "8b10e1c0c17e2b3a0020c15f93c609986754bd1ea7e1760e6723aba6f06f9bfd"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 323717,
+      "sha256": "4c3f91c567c68562e04782df3c026227106df25af16ad346e0eb45a9dd064927"
+    },
+    {
+      "path": "recovered/game/model_scene_actors.h",
+      "bytes": 9162,
+      "sha256": "1f0230b5aae16fdbdf123ce3b1f8ec0e6b2776f0e502df0c0244822cf090568c"
+    },
+    {
+      "path": "recovered/game/world_actor_loading_consumers.h",
+      "bytes": 12894,
+      "sha256": "754e70ddc0ee81a4a31c7527b3fb77ff982e4d4cac94f3d7f0440f133f1ed8de"
+    },
+    {
+      "path": "recovered/host/game_mission_module_frames.h",
+      "bytes": 3274,
+      "sha256": "d12488c98353f1c6232490767f7025bbaa1f4201e7eb71514bd9a5083a07a598"
+    },
+    {
+      "path": "recovered/host/game_scene_actors.h",
+      "bytes": 20403,
+      "sha256": "f1724bf8082f4d47bcb84d510b4f96cfe86b8cc3ec35567aa30cccadc7498d32"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "bytes": 35989,
+      "sha256": "779845df7a0bd88fad6c3e87989638435fa4a489add61edb27ba2021b897f188"
+    },
+    {
+      "path": "recovered/game/dog_loading.h",
+      "bytes": 4663,
+      "sha256": "173aa7ab54987d454f7b08c6f59a8efb99c66c7ed99e5cae4ad1d980b92ccc51"
+    },
+    {
+      "path": "recovered/game/dog_sight_notifications.h",
+      "bytes": 2233,
+      "sha256": "713045ef653ada6a15bf2df5ee46c7305b5bf2388038e056fffcc51e0890b05e"
+    },
+    {
+      "path": "recovered/host/game_dog_sound_loading.h",
+      "bytes": 2556,
+      "sha256": "72a423a64e963c025ca9367aad2cf7677797fbfe9b81302af31423f4eb7b5b5b"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/005cf8e0.asm",
+      "bytes": 1227,
+      "sha256": "8cd0fdafc470be20545ec9e4b00be77673706d07ee64e5f5e293f676b0fa7c0a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/005d4db0.asm",
+      "bytes": 21222,
+      "sha256": "bd3cac44b6d465b4a9cb899c1cc9ee08c69157a939f1db0e680be278da4174c7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/005d5290-5390.asm",
+      "bytes": 12482,
+      "sha256": "0a2b92049dc2cabd2bc1ea81b842029f0d5bf22c41e8e1e444294cd52b8a8f5c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/005d5560.asm",
+      "bytes": 3563,
+      "sha256": "02e813631a8193d4e75a3f1ee2b68495968c490d971d5504c378e86c9604aaa9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/005d5cb0.asm",
+      "bytes": 13899,
+      "sha256": "bf14cdab4d0ab2101e4f4e0f3b47e6e1b634aaf678f7cd4b65e829379a2f1ab6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/bindings.json",
+      "bytes": 789,
+      "sha256": "9d14efbd8f6a7f17946250a2fac3e02d7a558586c10e82eff83119189ca584ca"
+    }
+  ],
+  "verification": {
+    "native": "PASS89 strict ASan/UBSan/leaks; actual lifecycle/Sight/head-look/history/heard-pool policies, explicit base/frame/control/resource/registration/Body-binding doubles",
+    "actual_i386": "PASS strict full actual World and Scene2 activation/deactivation dispatch compile/link, with real model_resource_key source; Windows fixture never executed",
+    "launcher_probe": "PASS forced strict O2 application-launch/startup-probe compile/link only",
+    "tracker": "PASS full ledger check and 27 existing tests"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-dog-live-activation-module.cpp",
+      "bytes": 603,
+      "sha256": "dc208d3cb2da2e5001f8d2a481bcb192317e2291518b70aa08293942663890c2"
+    },
+    {
+      "path": "/tmp/h8-dog-live-activation-module.exe",
+      "bytes": 10168320,
+      "sha256": "15bc944724d60c94b5b1a4ae8d4552be158e25ac5bed4d6cc43ff718d4136d9e"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "limits": "Full H8.4 remains active/open: SOUND005D6000 and authority/controller decisions, selected containing dependencies. No original game/Windows fixture execution or desktop claim.",
+  "prior_audit_artifact_note": "Original native89 run PASS is preserved in tool output; original /tmp artifacts/logs disappeared across goal continuation before fingerprinting. No original artifact fingerprint or explicit removal is claimed.",
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/module.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/launcher.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/progress-check.log",
+      "bytes": 437,
+      "sha256": "df5cb597dc5ac9e2102da45893c3eb0aa9fcc5a99c02dada4ccf872059149c0b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-h8-dog-live-activation/progress-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ]
+}

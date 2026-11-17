@@ -10,19 +10,23 @@ work; no unconfirmed interactive import/commit or silent restaging.
 
 ## Latest source
 
-[Body and outer presentation](analysis/human-h8-dog-body-presentation-source.md)
-completes005C18C0/005D5810 with actual shared Body/clip/events/transform/history,
-turn005C1B80, native true005C1DB0, event005C1600 and interpolation005C1430.
-Native70 strict ASan/UBSan/leak checks, full actual World i386 compile/link,
-forced O2 launcher/probe and tracker/27 tests PASS. Six frozen partials only;
-H8.4 stays OPEN. Temporary audits fingerprinted/removed in the
-[receipt](analysis/checkpoints/p22-h8-dog-body-presentation-20261117.json).
-Head presentation/resource005D7A10 is already source-bound with actual World
-frame/math and real engine animation-set lifetime; native42. All source-only.
+[Dog live activation/retirement/Sight](analysis/human-h8-dog-live-activation-source.md)
+now binds actual Scene2→WorldActors→World to005D5290/005D4DB0/005D5390 and
+positive/lost005D5CB0. Same actual head/history/control4/5/Sight/SOUND registration,
+animation callbacks/clip/Body owners and process pools; no new successful defaults.
+Native89 strict ASan/UBSan/leaks, actual full World/Scene2 i386 link and forced O2
+launcher/probe PASS. Four frozen partials only; H8.4 stays OPEN. Temporary audits
+module fixture fingerprinted/removed in the
+[receipt](analysis/checkpoints/p22-h8-dog-live-activation-20261117.json).
+SOUND005D6000 remains a reached explicit failure, with actual registration/
+trampoline and frame failure latch already bound. Non7 controller7 still required.
+
+9126eec supplied005C18C0/005D5810 Body/outer presentation(native70);b4db3b3
+supplied head presentation/resource005D7A10(native42). Both source-only.
 
 Prior20019a7 completed005D8070/005D82B0 request/timer(native132);5758e5f supplied
 controller6C005CE110/metric005CE740(native898+1664) and authorized fixes.
-All are source-only; no actual Dog activation/frame or desktop claim.
+Prior checkpoints are source-only; full Dog authority/frame and desktop remain open.
 
 USER AUTHORIZATION:2026-11-17 “Authorize both fixes” means zero Body278/27C/280
 priorities immediately before bootstrap requests, and use actual selected
@@ -33,20 +37,14 @@ Prior confirmed omission evidence remains valid; no repeat producer search.
 
 ## Continue full H8.4
 
-Head and Body presentation components are complete for actual selected4/5
-controller owners. Continue full live activation005D5290→005D4DB0→clip/Body bind
-and retirement005D5390, then containing authority005D5620/controller005CE190,
-Sight005D5CB0/SOUND005D6000.530 remains unproduced until actual activation;
-no cold success. Controller1 manual poll remains required if selected.
-Use SAME actual body/clip/transform/event/head owners; no seeded producers.
-
-[H8 plan](analysis/p22-hum-h8-plan.md). Next live Dog requirements are actual
-activation005D5290→005D4DB0→clip/Body bind, retirement005D5390, containing
-005D5620 (presentation005D5810 is source), selected kind4/5 controller005CE190 pipeline/decisions and
-Sight005D5CB0/SOUND005D6000. Reuse retained C/raw; index before new exports.
-Controller6C/metric are source, NOT a completed decision frame. Priority/normal
-fixes no longer block fresh bootstrap. All remaining positive endpoints must be
-real same-World production/binding, not successful doubles.
+Actual selected4/5 activation/presentation/Sight components are source-bound.
+Continue SOUND005D6000 and containing authority005D5620/controller005CE190,
+including selected4/5 decision pipeline. Reuse retained C/raw; index before exports.
+No new guessed defaults are authorized. Controller1 manual poll and non7 kind7
+remain required if selected. Use SAME Body/clip/transform/event/head/perception
+owners. [H8 plan](analysis/p22-hum-h8-plan.md). Prior controller6C/metric are
+source, NOT a completed decision frame. Native invalid/unproduced state remains
+explicit; actual application/containing verification is not desktop acceptance.
 
 The full boundary also retains reached nonHuman EC/B0/19C, type34/36,
 Aircraft20, Actor58 types14/5, full Human/Player/Car containing composition and

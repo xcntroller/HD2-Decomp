@@ -65,6 +65,9 @@ public:
     void clear_human_player_slot(std::uint32_t identity){d().startup.clear_human_player_slot(identity);}
     template<class Human>void retire_scene_human(Human& human){d().human_factory.world_services().retire_scene_human(human);}
     template<class Actor>void remove_actor_presentation_references(Actor& actor){d().hud.remove_actor_references(mode_flags(),1,&actor.base());}
+    template<class Dog>void activate_dog(Dog& dog,bool authority){d().human_factory.world_services().activate_dog(dog,authority);}
+    template<class Dog>void deactivate_dog(Dog& dog,bool authority){d().human_factory.world_services().deactivate_dog(dog,authority);}
+    template<class Event>void dog_sound_notification(const Event& event){d().human_factory.world_services().dog_sound_notification(event);}
     auto car_loading_resources(){return d().car_resources;}
     auto& car_definitions(){return d().car_definitions;}
     bool car_camera_setting264(){return d().startup.car_camera_setting264();}

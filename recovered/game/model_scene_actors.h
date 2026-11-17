@@ -5,6 +5,7 @@
 #include "game/dog_body_actions.h"
 #include "game/dog_body_collisions.h"
 #include "game/dog_clip_mixer.h"
+#include "game/dog_animation_events.h"
 #include "game/dog_body_transform.h"
 #include "game/dog_body_state.h"
 #include "game/dog_head_look.h"
@@ -44,6 +45,7 @@ public:
     DogBodyOrders body_orders; //Actual current314/five338 records, no mirrored queue.
     std::unique_ptr<DogBodyCollisionLifetime<Frame>> collisions; //Actual live Body1DC..1EC, absent until native producer.
     DogClipForcedMotion clip_forced_motion; //Actual clip005C75C0 producer, no cold motion claim.
+    std::unique_ptr<DogAnimationEvents<Backend,DogSceneActor>> animation_events; //Outlives clip callback loans.
     std::unique_ptr<DogClipLifetime<Frame>> clip; //Published before005C6E10 installs its model callback.
     DogBodyActions body_actions{body_orders}; //005C5030/8490/8540/8570 use these SAME records.
     DogBodyTransform body_transform{body_actions}; //Same3E0 flags, no mirrored pose/control owner.
@@ -52,6 +54,7 @@ public:
     std::optional<Frame> head_marker4e4; //Native produced NULL remains distinct from cold.
     DogHeadLook head_look; //Actual Actor4E8..52C; live activation initializes it.
     std::optional<bool> suspended530; //Actual005D4DB0 producer; no cold success.
+    std::optional<bool> flag538;
     DogFrameHistory frame_history; //Actual Actor580/590/5A0, produced by activation.
     std::optional<Frame> sight_marker544; //Unproduced differs from a produced native NULL.
     std::uint32_t& field330=body_orders.current.field1c;
@@ -59,6 +62,11 @@ public:
     std::array<Record,5>& records=body_orders.records;
     std::unique_ptr<DogControllerLifetime<Backend>> field534; //SAME actual controller owner, published by005D5890.
     std::optional<std::uint32_t> initial_health4b0; //005D5290 snapshot, not a cold/default value.
+    std::optional<std::array<std::uint32_t,4>> initial_properties4b0;
+    std::optional<typename Backend::Vector> initial_position4c0,initial_rotation4d0;
+    std::vector<SceneActor<Backend>*> friendly54c,spotted574;
+    std::vector<DogHeardRecord*> heard564;
+    std::optional<std::int32_t> elapsed55c;
     std::optional<std::int32_t> sight_source53c,sound548;
     auto& require_controller(){if(!field534)throw std::runtime_error("Dog requires actual published534 controller");return *field534;}
     //005D4DB0 publishes540 only after actual Sight target registration. Cold
@@ -68,7 +76,6 @@ public:
         if(!sight_listener540)throw std::runtime_error("Dog Sight query requires actual005D4DB0 listener540 producer");
         return *sight_listener540;
     }
-    std::array<std::vector<std::uint32_t>,3> lists; //005D4CF0 frees these before00610170.
 };
 
 template<class Backend>

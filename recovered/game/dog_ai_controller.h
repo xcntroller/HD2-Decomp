@@ -72,10 +72,15 @@ public:
         return dog_signed_word(bits)<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1)<9.99999993922529e-09f?1.L:std::sqrt(static_cast<long double>(square));
     }
     void dog_control_presentation(std::uint32_t)override{} //005CF0C0/005CFA10→005CE180, genuine RET4.
+    void dog_control_sight_acquired(Actor*)override{ //005CF0F0 genuine RET4;005CFBA0→kind5 virtual38(20).
+        if(state_.kind14==5)move(reinterpret_cast<void*>(std::uintptr_t{0x20}));
+    }
+    void dog_control_sight_lost(Actor*)override{} //005CB3B0 genuine RET4.
     void dog_control_publish_inputs()override{publish_dog_controller_inputs(state_);}
     bool consume_flag(){const bool result=state_.flagb8;state_.flagb8=false;return result;} //005CB380.
-    void move(void* movement){ //005CE700: native bitwise complement test is tautologically nonzero.
+    void move(void* movement){ //005CE700/005CF8E0: native bitwise complement test is tautologically nonzero.
         state_.move1c=movement;if(movement)state_.flags20|=0x80000000u;else state_.flags20&=~0x80000000u;
+        if(movement&&state_.kind14==5)world_.dog_script_alarm(state_.scriptc0); //AFTER1C/20 stores; native has no context-NULL guard.
     }
     void advance_timers(std::uint32_t elapsed){ //005CDF90.
         for(auto* timer:{&state_.timerb0,&state_.timerbc,&state_.timer84})if(*timer>0)*timer=dog_signed_word(static_cast<std::uint32_t>(*timer)-elapsed);

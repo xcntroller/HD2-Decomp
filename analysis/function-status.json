@@ -51578,6 +51578,74 @@
         "analysis/human-h8-dog-body-presentation-source.md",
         "analysis/checkpoints/p22-h8-dog-body-presentation-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005d5290",
+      "status": "partial",
+      "coverage": "Actual common/two-pass Dog activation, process animation gate, four-word properties/world pose snapshot and live/Body binding on SAME World; failure prefix retained.",
+      "limitations": "Source-only typed/STL/RAII owners replace native memory/vtable/allocator/SEH ABI. Native audit doubles base/frame/control/resource/registration/Body-binding endpoints; actual World/Scene2/i386 compile/link only. Diagnostic formatting and scratch W values unclaimed. Controller7/SOUND event/authority decisions, full containing H8.4 and application/desktop delivery remain required.",
+      "evidence": [
+        "recovered/game/dog_loading.h",
+        "recovered/game/dog_sight_notifications.h",
+        "recovered/game/model_scene_actors.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_scene_actors.h",
+        "recovered/host/game_world_actors.h",
+        "analysis/human-h8-dog-live-activation-source.md",
+        "analysis/checkpoints/p22-h8-dog-live-activation-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d4db0",
+      "status": "partial",
+      "coverage": "Full live selected4/5 activation composition: marker validation, actual head/history/control/registrations/roster/target enable; mode7 controller and SOUND event body remain explicit requirements.",
+      "limitations": "Source-only typed/STL/RAII owners replace native memory/vtable/allocator/SEH ABI. Native audit doubles base/frame/control/resource/registration/Body-binding endpoints; actual World/Scene2/i386 compile/link only. Diagnostic formatting and scratch W values unclaimed. Controller7/SOUND event/authority decisions, full containing H8.4 and application/desktop delivery remain required.",
+      "evidence": [
+        "recovered/game/dog_loading.h",
+        "recovered/game/dog_sight_notifications.h",
+        "recovered/game/model_scene_actors.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_scene_actors.h",
+        "recovered/host/game_world_actors.h",
+        "analysis/human-h8-dog-live-activation-source.md",
+        "analysis/checkpoints/p22-h8-dog-live-activation-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d5390",
+      "status": "partial",
+      "coverage": "Actual Dog retirement: common prefix, head/control/Body, reverse heard-pool release, observer/target/SOUND gates, process clip retirement and same-resource model reset/properties restoration.",
+      "limitations": "Source-only typed/STL/RAII owners replace native memory/vtable/allocator/SEH ABI. Native audit doubles base/frame/control/resource/registration/Body-binding endpoints; actual World/Scene2/i386 compile/link only. Diagnostic formatting and scratch W values unclaimed. Controller7/SOUND event/authority decisions, full containing H8.4 and application/desktop delivery remain required.",
+      "evidence": [
+        "recovered/game/dog_loading.h",
+        "recovered/game/dog_sight_notifications.h",
+        "recovered/game/model_scene_actors.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_scene_actors.h",
+        "recovered/host/game_world_actors.h",
+        "analysis/human-h8-dog-live-activation-source.md",
+        "analysis/checkpoints/p22-h8-dog-live-activation-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005d5cb0",
+      "status": "partial",
+      "coverage": "Actual positive/lost Dog Sight on current control and SAME spotted list, cached-model distance/range/kind gates, duplicate acquisition and reverse removal, selected4/5/Script receivers.",
+      "limitations": "Source-only typed/STL/RAII owners replace native memory/vtable/allocator/SEH ABI. Native audit doubles base/frame/control/resource/registration/Body-binding endpoints; actual World/Scene2/i386 compile/link only. Diagnostic formatting and scratch W values unclaimed. Controller7/SOUND event/authority decisions, full containing H8.4 and application/desktop delivery remain required.",
+      "evidence": [
+        "recovered/game/dog_loading.h",
+        "recovered/game/dog_sight_notifications.h",
+        "recovered/game/model_scene_actors.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_scene_actors.h",
+        "recovered/host/game_world_actors.h",
+        "analysis/human-h8-dog-live-activation-source.md",
+        "analysis/checkpoints/p22-h8-dog-live-activation-20261117.json"
+      ]
     }
   ]
 }

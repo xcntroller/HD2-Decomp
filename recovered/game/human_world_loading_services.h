@@ -7,6 +7,8 @@
 #include "game/dog_body_sound.h"
 #include "game/dog_body_frame.h"
 #include "game/dog_body_presentation.h"
+#include "game/dog_loading.h"
+#include "game/dog_sight_notifications.h"
 #include "game/dog_ai_controller.h"
 #include "game/human_ai_target_output.h"
 #include "game/model_scene_actors.h"
@@ -3275,6 +3277,46 @@ public:
     template<class Dog>std::int32_t dog_emit_body_voice(Dog& dog,std::uint32_t flags,std::int32_t entry){return emit_dog_body_voice(dog,dependencies().scene.frames(),dependencies().sound,flags,entry);}
     void dog_stop_body_voice(std::int32_t& voice){dependencies().startup.stop_game_sound_voice(voice);}
     auto& dog_controller_process(){return dependencies().startup.dog_controller_process();}
+    template<class Dog>void activate_dog(Dog& dog,bool authority){game::activate_dog(dog,authority,dependencies().scene.frames(),*this);}
+    template<class Dog>void deactivate_dog(Dog& dog,bool authority){game::deactivate_dog(dog,authority,dependencies().scene.frames(),*this);}
+    void dog_fade_in_immediate(typename Dependencies::Frame model){dependencies().scene.effects().frame_fades().fade_in_immediate_tree(model,false);}
+    auto dog_scene_count(){return dependencies().scene.frames().scene_actor_identity_count();}
+    auto* dog_scene_actor(std::size_t index){return dependencies().scene.frames().scene_human_identity(static_cast<std::int32_t>(index));}
+    std::uint32_t dog_scene_human_kind(std::size_t index){
+        auto* actor=dog_scene_actor(index);if(!actor)throw std::runtime_error("Dog roster lost actual Scene2 actor");
+        return selection_human(*actor).properties.field19c;
+    }
+    auto dog_add_sight_source(typename Dependencies::Frame model){return dependencies().sight.source().add_observer(model,15);}
+    auto dog_add_sight_target(typename Dependencies::Frame model){return dependencies().sight.source().add_target(model,15);}
+    void dog_enable_sight_target(std::int32_t index){dependencies().sight.source().target_mode(index,0);}
+    void dog_remove_sight_source(std::int32_t index){(void)dependencies().sight.source().remove_observer(index);}
+    void dog_remove_sight_target(std::int32_t index){(void)dependencies().sight.source().remove_target(index);}
+    auto dog_add_sound_listener(typename Dependencies::Frame model){return dependencies().world_actors.add_dog_sound_listener(model);}
+    void dog_remove_sound_listener(std::int32_t index){dependencies().world_actors.remove_dog_sound_listener(index);}
+    template<class Event>void dog_sound_notification(const Event&){throw std::runtime_error("Dog SOUND requires actual005D6000 event/controller composition");}
+    void dog_script_alarm(void* context){
+        if(!context)throw std::runtime_error("Dog script alarm reaches native NULL context");
+        static_cast<MissionScriptContext<typename Dependencies::ActorFrames>*>(context)->alarm(dependencies().script_link.script_authority());
+    }
+    template<class Dog>void bind_live_dog_body(Dog& dog){
+        using Frames=typename Dependencies::ActorFrames;using Events=DogAnimationEvents<Frames,Dog>;using Mixer=DogClipMixer<Frames,Events>;
+        if(dog.animation_events)throw std::logic_error("Dog Body callback requires prior retirement");
+        dog.animation_events=std::make_unique<Events>(dependencies().scene.frames(),dog);
+        struct Receivers {
+            Dog& dog;HumanWorldLoadingServices& world;
+            void dog_ground_death_setup(){prepare_dog_ground_death(dog.body_actions,dog.clip_forced_motion,dog,dog.body.ground404,dog.body.damage_bones[1],world.dependencies().scene.frames(),world.human_geometry_sweep());}
+            void dog_remove_body_collision(unsigned n){if(!dog.collisions)throw std::runtime_error("Dog bootstrap death requires actual collisions");dog.collisions->remove(n,true);}
+        } receivers{dog,*this};
+        bind_dog_body<Mixer>(dog,dependencies().scene.frames(),*dog.animation_events,dependencies().scene.buckets(),receivers);
+    }
+    template<class Dog>void restore_dog_model(Dog& dog){ //005D5560, absent frozen entry, no new credit.
+        auto& frames=dependencies().scene.frames();(void)frames.reload_version_model(dog.base().frame());
+        if(!dog.initial_position4c0)throw std::runtime_error("Dog model reset requires actual activation position snapshot");
+        frames.physics_replacement_position(dog.base().frame(),*dog.initial_position4c0);
+        if(!dog.initial_rotation4d0)throw std::runtime_error("Dog model reset requires actual activation rotation snapshot");
+        frames.object_rotation(dog.base().frame(),*dog.initial_rotation4d0);
+        frames.update_scene_object(dog.base().frame());
+    }
     void* dog_navigation_owner(){return static_cast<void*>(&dependencies().navigation);} //Actual game54 module owner.
     auto& dog_navigation(){return dependencies().navigation;}
     std::optional<std::uint32_t> dog_navigation_door_phase(std::uint16_t index){
@@ -3410,10 +3452,13 @@ public:
         auto* dog=dynamic_cast<Dog*>(actor);if(!dog)throw std::logic_error("Dog Sight origin requires SAME actual type30 actor");
         return dog_sight_origin(*dog,dependencies().scene.frames());
     }
-    template<class Actor>void dog_sight_changed(Actor& actor,bool,std::uint32_t){ //005D5CB0's genuine cold null534 gate.
+    auto* dog_sight_target(std::uint32_t index){return dependencies().sight.source().target(dog_signed_word(index));}
+    template<class Actor>std::int32_t dog_sighted_human_health(Actor& actor){return dog_signed_word(selection_human(actor).properties.stats_ec[0]);}
+    template<class Actor>bool dog_sighted_enemy_kind(Actor& actor){const auto kind=selection_human(actor).properties.field19c;return kind==1||kind==4||kind==5;}
+    template<class Actor>void dog_sight_changed(Actor& actor,bool lost,std::uint32_t index){
         using Dog=typename std::decay_t<decltype(dependencies().scene.frames())>::Dog;
         auto* dog=dynamic_cast<Dog*>(&actor);if(!dog)throw std::logic_error("Dog Sight requires its actual actor family");
-        if(dog->field534)throw std::runtime_error("Populated Dog Sight requires actual534 control receiver");
+        notify_dog_sight(*dog,lost,index,dependencies().scene.frames(),*this);
     }
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){dependencies().hud.hud_sound_direction(direction,kind);}
     template<class Actor>bool car_field5e0(Actor* actor){

@@ -44,8 +44,8 @@ public:
         }
         throw std::runtime_error("Human frame requires actual Remote B0 frame receiver");
     }
-    //Same-World Dog presentation is source-bound. Authority and live activation
-    //retain their exact required receivers; a named failure still links all
+    //Same-World Dog activation and presentation are source-bound. Authority
+    //retains its exact required receiver; a named failure still links all
     //module branches without supplying a successful unavailable implementation.
     template<class Dog>void update_dog(Dog& dog,bool authority,std::uint32_t elapsed){world_.update_dog(dog,authority,elapsed);}
     template<class Actor>void sight_exclude_dog(Actor actor){world_.sight_exclude_dog(actor);}

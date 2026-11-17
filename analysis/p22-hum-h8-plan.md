@@ -148,3 +148,8 @@ completes005C18C0/005D5810 with same-owner live events, model interpolation,
 turn and actual World receivers; native70 and actual World/O2 links pass.
 Full activation/retirement, authority/controller decisions and selected containing
 H8.4 dependencies remain open; no application or desktop readiness promotion.
+
+[Dog activation/retirement/Sight](human-h8-dog-live-activation-source.md) now
+binds actual Scene2 dispatch to SAME World/head/control4/5/registrations/Body
+and positive/lost Sight. Native89 and actual World/Scene2/O2 links pass.
+SOUND005D6000 and authority/controller decisions remain required; full H8.4 open.

@@ -178,13 +178,14 @@ public:
             //Reject an unavailable family BEFORE recording entry to a derived
             //receiver. Cold actors later in a failed pass own no such prefix.
             switch(actor.base().type()){
-            case 3:case 4:case 6:case 8:case 10:case 13:case 15:case 22:case 23:case 9:case 21:case 25:case 28:case 29:case 33:case 37:break;
+            case 3:case 4:case 6:case 8:case 10:case 13:case 15:case 22:case 23:case 9:case 21:case 25:case 28:case 29:case 30:case 33:case 37:break;
             default:throw std::runtime_error("Required Scene2 actor activation is unavailable: "+std::to_string(actor.base().type()));
             }
             actor.loading_activation_passes|=authority?1u:2u;
             switch(actor.base().type()) {
             case 37:activation.activate_zone(static_cast<game::ZoneSceneActor<GameActorServices>&>(actor),authority);break;
             case 3:activation.activate_human(static_cast<game::HumanSceneActor<GameActorServices,Runtime>&>(actor),authority);break;
+            case 30:activation.activate_dog(static_cast<game::DogSceneActor<GameActorServices>&>(actor),authority);break;
             case 4:activation.activate_car(static_cast<game::CarSceneActor<GameActorServices>&>(actor),authority);break;
             case 6:static_cast<game::DoorSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
             case 8:static_cast<game::LadderSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
@@ -211,10 +212,11 @@ public:
         errors.rethrow();
     }
     template<class Activation,class Collisions>void deactivate_scene_actor(Instance& actor,bool authority,Activation& activation,Collisions& collisions) {
-        if(!actor.loading_activation_passes)return; //Source guard: no derived receiver was entered, including rejected Dog/cold tail actors.
+        if(!actor.loading_activation_passes)return; //Source guard: no derived receiver was entered, including rejected/cold tail actors.
         switch(actor.base().type()) {
         case 37:static_cast<game::ZoneSceneActor<GameActorServices>&>(actor).deactivate(authority);break;
         case 3:activation.deactivate_human(static_cast<game::HumanSceneActor<GameActorServices,Runtime>&>(actor),authority);break;
+        case 30:activation.deactivate_dog(static_cast<game::DogSceneActor<GameActorServices>&>(actor),authority);break;
         case 4:activation.deactivate_car(static_cast<game::CarSceneActor<GameActorServices>&>(actor),authority);break;
         case 6:static_cast<game::DoorSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
         case 8:static_cast<game::LadderSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;

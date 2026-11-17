@@ -12,6 +12,7 @@
 #include "host/game_runtime_actors.h"
 #include "host/game_physics_objects.h"
 #include "host/game_fowl_sound_loading.h"
+#include "host/game_dog_sound_loading.h"
 #include "game/fowl_generator_loading.h"
 #include "game/collision_ray.h"
 #include "game/collision_ray_all.h"
@@ -47,7 +48,7 @@ public:
         :scene_(scene),consumers_(consumers),vertices_(vertices),navigation_(navigation),text_(text),catalogue_(catalogue),models_(scene.frames(),catalogue,suffix,game_word28),
          items_(scene.frames(),models_,catalogue,files,clock,game_word28,consumers),
          runtime_(scene.frames(),*this,navigation,text,scene.buckets(),bodies_,items_),
-         physics_(scene.frames(),*this,scene.buckets(),runtime_,scene.effects().frame_fades()),fowl_sound_(scene.frames(),consumers),animation_events_(scene.frames(),consumers),static_weapon_events_(scene.frames()){}
+         physics_(scene.frames(),*this,scene.buckets(),runtime_,scene.effects().frame_fades()),fowl_sound_(scene.frames(),consumers),dog_sound_(scene.frames(),consumers),animation_events_(scene.frames(),consumers),static_weapon_events_(scene.frames()){}
     ~GameWorldActors(){close();}
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
@@ -167,6 +168,12 @@ public:
         if(!found->second)throw std::logic_error("Human activation during its containing owner retirement");
         return *found->second;
     }
+    using Dog=game::DogSceneActor<GameActorServices>;
+    void activate_dog(Dog& actor,bool authority){require_open();consumers_.activate_dog(actor,authority);}
+    void deactivate_dog(Dog& actor,bool authority){require_open();consumers_.deactivate_dog(actor,authority);}
+    std::int32_t add_dog_sound_listener(GameActorServices::Frame model){require_open();return dog_sound_.add_listener(model);}
+    void remove_dog_sound_listener(std::int32_t slot){dog_sound_.remove_listener(slot);}
+    void rethrow_dog_sound_failure(){dog_sound_.rethrow_callback_failure();}
     void activate_human(Human& actor,bool authority){
         actor.loading_activation_passes|=authority?1u:2u; //Includes prepared Humans spawned after module13's captured pass.
         prepare_human_loading(actor).activate(authority);
@@ -378,7 +385,7 @@ public:
         if(has_human_loading_owners())throw std::logic_error("File resource retirement still has actual Human lifetimes");
         //Unpublished load/activation prefixes may own these before their native
         //module finish call. Keep the same persistent facades for file repeats.
-        runtime_.clear();physics_.clear();fowl_sound_.clear();
+        runtime_.clear();physics_.clear();fowl_sound_.clear();dog_sound_.clear();
         animation_events_.clear();static_weapon_events_.clear();
         items_.clear();scene_.frames().clear_actor_entries();models_.clear_model_cache();
     }
@@ -402,7 +409,7 @@ public:
         if(car_physics_unbind_){car_physics_unbind_();car_physics_unbind_={};}
         physics_.clear();
         auto& frames=scene_.frames();frames.clear_scene_actors();
-        fowl_sound_.clear();
+        fowl_sound_.clear();dog_sound_.clear();
         animation_events_.clear();
         static_weapon_events_.clear();
         items_.clear();frames.clear_actor_entries();models_.clear_model_cache();closing_=false;
@@ -422,7 +429,7 @@ private:
     std::map<Human*,std::unique_ptr<game::HumanLoadingLifetime>> human_loading_;
     game::VersionContactLink<GameActorServices> versions_contact_{scene_.frames()};
     game::ExplosionContactLink<GameActorServices,typename Runtime::Instance> explosion_contact_{scene_.frames()};
-    Items items_;Runtime runtime_;Physics physics_;std::function<void()> car_physics_unbind_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false,closing_=false;
+    Items items_;Runtime runtime_;Physics physics_;std::function<void()> car_physics_unbind_;GameFowlSoundLoading<Consumers> fowl_sound_;GameDogSoundLoading<Consumers> dog_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false,closing_=false;
 };
 } //namespace hd2::host
 #endif
