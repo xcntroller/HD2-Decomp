@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_ai_target_output.h"
 #include "game/human_player_packet_action.h"
+#include "game/human_player_command_dispatch.h"
 #include "game/heavy_fire_mortar.h"
 #include "game/heavy_fire_aircraft.h"
 #include "game/heavy_fire_player_support.h"
@@ -166,6 +167,79 @@ public:
     void active_avoidance_clamp(HumanVector& position,bool enabled,const HumanVector& original){clamp_active_avoidance_position(dependencies().navigation,position,enabled,original);}
     auto& active_task_navigation(){return dependencies().navigation;} //Actual game54,00532190.
     std::uint32_t active_retreat_live_count(){return dependencies().players.control().human_roster().live_count();} //00461410→004622C0.
+    template<class State>void dispatch_player_inline_command(State& state){dispatch_delayed_player_command(state,*this);}
+    template<class Human,class Request>void queue_player_signal(Human& human,const Request& request){
+        using Player=typename Dependencies::Composition::StateFactory::Player;
+        auto* player=dynamic_cast<Player*>(human.loading_state);if(!player)throw std::runtime_error("Human signal requires actual Player B0 virtualE8 receiver");
+        queue_player_signal_command(*player,request,dependencies().scene.frames(),*this);
+    }
+    template<class Actor>std::uint32_t player_command_pointer_word(Actor* actor){
+        if(!actor)return 0;
+        const auto value=reinterpret_cast<std::uintptr_t>(actor);
+        if(value>std::numeric_limits<std::uint32_t>::max())throw std::runtime_error("Offline Players pointer payload requires actual32-bit source ABI");
+        if(dependencies().world_actors.runtime().owns(actor))return static_cast<std::uint32_t>(value);
+        (void)active_event_actor_guard(*actor)();return static_cast<std::uint32_t>(value);
+    }
+    template<class Human>std::size_t player_command_pending_count(Human& human){ //005A5F00.
+        if(!human.loading_state||human.loading_state->words().template get<std::uint32_t>(0x48)!=3u)return 0;
+        auto& state=active_command_state(human);(void)state.has_pending_orders_loading();return state.pending_orders().size();
+    }
+    auto* player_command_actor_pointer(std::uint32_t word){ //Offline native fields28/30 contain source pointers, not actor IDs.
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;if(!word)return static_cast<Actor*>(nullptr);
+        auto& frames=dependencies().scene.frames();
+        for(std::size_t n=0;n<frames.scene_actor_identity_count();++n){auto* actor=frames.scene_actor_identity(static_cast<std::int32_t>(n));
+            if(actor&&reinterpret_cast<std::uintptr_t>(actor)==word)return actor;
+        }
+        if(auto* actor=dependencies().world_actors.runtime().first_owned_forward([&](auto& value){return reinterpret_cast<std::uintptr_t>(&value)==word;}))return actor;
+        throw std::runtime_error("Offline Players command pointer has no SAME live Scene2/Runtime source owner");
+    }
+    template<class Command>auto player_command_recipients(Command& command,std::uint32_t mode){
+        using Human=typename Dependencies::Composition::Human;std::vector<Human*> output;
+        if(const auto word=command.word(0x30)){auto* actor=player_command_actor_pointer(word);auto* human=dynamic_cast<Human*>(actor);
+            if(!human)throw std::runtime_error("Players explicit recipient is not its actual Human owner");
+            output.push_back(human);return output;
+        }
+        return collect_player_command_recipients(dependencies().startup.players_process(),dependencies().players.control(),mode,*this);
+    }
+    template<class Human,class Command>void receive_player_command(Human& human,Command& command){
+        auto* selected=active_selected_player();auto& state=active_command_state(human);
+        receive_active_player_command(state,command,selected,dependencies().scene.frames(),*this);
+    }
+    template<class Human>void player_command_selected_mode(Human& human,std::uint32_t action){
+        if(!human.loading_state||human.loading_state->words().template get<std::uint32_t>(0x48)!=1u)return;
+        using Player=typename Dependencies::Composition::StateFactory::Player;
+        auto* player=dynamic_cast<Player*>(human.loading_state);if(!player)throw std::logic_error("Players mode target lost actual Player B0");player->player_words().set(0x548,action);
+    }
+    template<class Human>void player_command_formation(Human* selected,std::uint32_t action){ //00456020 cases21..25.
+        auto& process=dependencies().startup.players_process();auto& words=process.words();
+        const auto old=words.template get<std::int32_t>(0x120);
+        if((action==24u&&old>0)||(action==25u&&old<7)){words.set(0x120,static_cast<std::uint32_t>(old)+(action==24u?0xffffffffu:1u));process.update_formation_scale();}
+        if(!selected||!selected->formation)return;
+        const auto validate=human_common_receiver_guard(*selected);
+        const auto formation=[&]() -> auto& {validate();if(!selected->formation)throw std::runtime_error("Players command lost native formation owner");return *selected->formation;};
+        if(action<=23u){formation().select_mode(action==21u?0:action==22u?1:3);formation().scale(process.formation_scale());}
+        else{formation().scale(process.formation_scale());const auto mode=formation().mode();formation().select_mode(mode);}
+    }
+    template<class Command>void player_command_target_dispatch(Command& command,bool immediate){ //Actual process virtual28→00458E50.
+        auto selected=player_command_recipients(command,4u);auto* target=player_command_actor_pointer(command.word(0x28));
+        dispatch_active_player_commands(selected,command.word(0x24),target,immediate,command.word(0x2c),dependencies().scene.frames(),*this);
+    }
+    template<class Command>void player_command_cover_move(Command&,bool){throw std::runtime_error("Players cover move requires actual00459740 candidate assignment");}
+    template<class Command>void player_command_position_move(Command& command,bool immediate){dispatch_player_position_move(command,immediate,dependencies().scene.frames(),*this);}
+    template<class Human>void player_command_common_action(Human& human,std::uint32_t action,std::int32_t identity,std::uint32_t argument){
+        auto* state=composition(human).states().get();if(!state)throw std::runtime_error("Players common command lost actual B0");state->emit_common_action(action,identity,argument);
+    }
+    template<class AI>void start_active_player_support(AI& ai,const HumanVector& position){ //00535A60, hand3/holder2, actual kind5.
+        auto& human=*ai.human();auto* storage=human.base().storage();if(!storage||!storage->holder(3)||!storage->holder(2))throw std::runtime_error("Players support requires actual hand3 and holder2");
+        auto& items=dependencies().world_actors.items();const auto hand=storage->holder(3)->entry(),holster=storage->holder(2)->entry();auto selected=hand;
+        if(!selected||items.runtime_item(selected).definition().kind()!=5u){selected=holster;if(!selected||items.runtime_item(selected).definition().kind()!=5u)return;}
+        auto& item=items.runtime_item(selected);const auto ammunition=item.definition().ammunition();
+        if(item.amount()<0.f&&human_frame_signed_word(count_human_ammunition(human,items,ammunition,false))<=0)return; //535AF3 also accepts unordered amount without count.
+        if(selected!=hand){auto& inventory=composition(human).inventory();if(hand)(void)inventory.swap(hand,3,human,selected,2);else (void)inventory.move(selected,human,2,3,0);}
+        ai.initialize_task(nullptr,52u,position,human.base().world_direction(),false,2.5f);ai.state().set(0x200,std::uint8_t{1});
+        ai.state().set(0x174,(ai.state().template get<std::uint32_t>(0x174)&~0x10u)|0x200u);
+        delay_active_focused_task(ai,*this);notify_human_active_ai_empty_orders(ai,*this);
+    }
     auto* active_avoidance_player(){return dependencies().players.control().selected_player(mode_flags());}
     auto* active_process_target(){ //00456860 on SAME process98 borrower, produced by Active BC.
         using Actor=SceneActor<typename Dependencies::ActorFrames>;

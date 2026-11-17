@@ -17,25 +17,47 @@ desktop test has occurred. Do not spawn other agents or add helper checkboxes.
 
 ## Latest result
 
-[Task runtime](analysis/human-h8-task-runtime-source.md),
-[receipt](analysis/checkpoints/p2.2-human-h8-task-runtime-20261117.json):
-005E24C0/00534C40 task16 binds actual runtime placed35 motion94/96, two actual
-routes and native failed-route rejection.00528950 task40 progression now binds
-00525260 spatial cover/actual engine rotation and selected point clamp, native
-signed IDIV stagger/one-member exception, ordered retry publications and callbacks.
-Native3481/1280 ASan/UBSan/leak checks, strict actual module i386 and forced
-launcher/probe links PASS; tracker receipt records exact checks. Six new partials,
-34 complete/3609 partial(client3604+engine5), frozen18783. H8/matrix remain OPEN.
+[Player dispatch](analysis/human-h8-player-dispatch-source.md),
+[receipt](analysis/checkpoints/p2.2-human-h8-player-dispatch-20261117.json):
+actual UI signal→Player first80 command12 producer, inline4E0 timer dispatch,
+process recipient policies0..5, ordinary00455D40 recipients, formation21..25,
+target53/56, retreat4/5, order27..32, support20 and position10/11 task42 source.
+Native262 qualified ASan/UBSan/leak checks and strict actual full module+concrete
+UI producer i386 link PASS; forced launcher/probe/tracker receipts retained.
+Twelve new partials;34 complete/3621 partial(client3616+engine5), frozen18783.
+H8/matrix OPEN, no application/desktop acceptance.
 
-NEXT: actual delayed Player0053D5B0→00456020 dispatcher. IMPORTANT: its inline
-producer DOES exist in apply_player_packet_action: writes4E4 and4F0..510 with
-520 speech timer. Earlier "no producer" notes/comments are stale. Do not treat
-its reached guard as optional. Original native action20 maps to Player500;
-recipient30 maps510; use actual scalar payload, EC/identity and process/roster.
-Reuse human-h8-player-dispatch-index;00459740/0045B890/00455D40 need exports;
-0045CA80 source already indexed; formation mode/scale and roster count exist.
-Retreat research includes00537A40/00537C60/00537D20 in human-h8-retreat-edges;
-producer00537C60 is NOT implemented/credited by this checkpoint. No extra checkbox.
+NEXT: remaining00459740 cover move (commands8/9) must be implemented before
+claiming this dispatcher complete. Current required failure is honest. Reuse
+human-h8-player-command-dispatch/00459740.c and NEW ABI variant
+human-h8-player-command-typed/00459740.c. ExportHumanPlayerCommandsABI.java uses
+TEMPORARY transaction/finally rollback, no persisted Ghidra changes. It clarifies
+engine/direct call purges but stack-local aliasing remains; raw
+human-h8-player-cover-move.asm is authoritative. Actual ideal table is89ABD0
+(CRT004595F0, human-h8-player-cover-ideal-offsets.asm), NOT adjacent89AB80. Read
+actual matrix loop raw4599FB..459A3F. Inverse direction005245C0/raw table8AAC00
+still needs actual static initialization evidence. Existing spatial-cover,
+light-values/cover masks, collision ray and Scene region endpoints should be
+reused. Research-index lookup before any new exports; no new helper checkboxes.
+
+Important Player contracts: apply_player_packet_action ALREADY copies inline
+4E4/4F0..510 and speech520; prior "no producer" notes were wrong. Native action20
+is Player500, recipient30 is510. Offline target48/recipient50 packet words are
+SOURCE POINTERS, NOT actor IDs; actual encoder requires32-bit representable
+source address. Resolver checks SAME Scene2 AND Runtime ownership, including
+placed35. Retired/unmapped pointers fail, no fake NULL. Host64 positive pointer
+publication explicitly unsupported. Native kind3 vtable00810528 is all genuine
+RET/AL0; no invented pointer retention or retirement cleanup. mode4 recipient
+query reverse-filters processgroup0; mode5 roster;0..3 actualgroupcopies. Never
+substitute a private empty group4. Each recipient reads selected Player fresh.
+Position move first ALL attachment effects, then ALL tasks, offset advances only
+for onfoot/driver. Raw78 takes ONE seat0, returns occupant (not6Cclaim).
+
+Priora1b17be: [task runtime](analysis/human-h8-task-runtime-source.md) binds
+actual placed35 task16 motion94/96/two routes, native failed-route rejection and
+retreat40 spatial cover/engine rotation/clamp/retry. Native3481/1280, module/
+forced launcher/tracker27 PASS. Signed IDIV delay, count1 exception;198/206 are
+reread at original gates. No absolute copied/private navigation owner.
 
 Priorce2a7cf: [live Animation](analysis/human-h8-animation-frame-source.md)
 binds A3/start/track, interaction masks, effects/Script death and helper-pose
@@ -105,7 +127,7 @@ gravity3.8, old-position SOUND. Grenade Body before timers/close before blast.
 
 Use [six-checkbox H8 plan](analysis/p22-hum-h8-plan.md). No helper checklist
 expansion. H8.2/H8.3/H8.4/H8.5/H8.6 remain open. Finish selected live Dog/Sight and reached actor/frame dependencies, containing
-verification and application/FRAME/OWN/render. Remaining selected delayed Players0053D5B0→00456020 recipients/producers and retreat command producers,
+verification and application/FRAME/OWN/render. Remaining selected Player cover-move00459740 and other reached callbacks,
 Remote/non7/entry callbacks
 retain honest requirements. Aircraft20/type34 control and type34/36 mounted
 targets, nonHuman task25/26 EC, far Dog listener540 still require actual owners.
