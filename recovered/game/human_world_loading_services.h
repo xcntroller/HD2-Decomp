@@ -198,9 +198,9 @@ public:
     void script_play_music(std::uint32_t identity){dependencies().startup.select_game_secondary_music(human_frame_signed_word(identity));} //SOUND68=00436F60.
     std::uint32_t script_speech_length(std::uint32_t identity){return dependencies().startup.game_speech_length(human_frame_signed_word(identity));}
     void script_subtitles_show(bool visible){auto& d=dependencies();
-        d.subtitles.show(visible,d.startup.scene_presentation_flags().full_viewport,[&]{return d.scene.frames().script_text_dimensions();});}
+        d.subtitles.show(visible,d.startup.application_full_viewport(),[&]{return d.scene.frames().script_text_dimensions();});}
     void script_subtitles_select(std::uint32_t identity){auto& d=dependencies();
-        d.subtitles.select(identity,d.startup.scene_presentation_flags().full_viewport,[&]{return d.scene.frames().script_text_dimensions();});}
+        d.subtitles.select(identity,d.startup.application_full_viewport(),[&]{return d.scene.frames().script_text_dimensions();});}
     template<class Frame>void script_frame_speech(Frame frame,std::uint32_t identity,float near_range,float far_range){auto& d=dependencies();
         (void)d.startup.play_game_speech(nullptr,frame,human_frame_signed_word(identity),near_range,far_range,true,d.dubbing);}
     bool script_command_visible(){return dependencies().hud.command_owner().visible();}

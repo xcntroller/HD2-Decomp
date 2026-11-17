@@ -317,6 +317,7 @@ public:
     std::string& item_model_suffix(){return item_model_suffix_;} //0084E8E4 ->00867980 initially empty; borrowed by actual item caches.
     std::int32_t& local_player_identity(){return control_frame_.state().local_peer;} //SAME00982104, not a per-world ID copy.
     const std::int32_t& local_player_identity()const{return control_frame_.state().local_peer;}
+    bool application_full_viewport()const{return scene_presentation_flags_.full_viewport||game_views_.cutscene_active();}
     bool application_input_enabled() const { return application_input_enabled_; }
     void application_input_enabled(bool value) { application_input_enabled_ = value; } // 006DCAD0
     std::uint32_t random_word() { return settings_backend_.sound_random_word(); }

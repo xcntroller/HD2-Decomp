@@ -581,3 +581,82 @@ analysis/checkpoints/p22-frame-subtitle-climb-return-20261117.json. Desktop retr
 must verify subtitle/standalone climb behavior and collect the Ladder probe reason;
 Ladder is not source-resolved or accepted. No new broad audit/checkbox/tally or
 FRAME/HUM/OWN promotion. Pause14 and selector producer remain separate.
+
+
+Actual Ladder headroom return and black-bar redraw dependency
+
+User confirms standalone climbing now runs but requires looking upward; actual
+Ladder diagnostics are present. The pause crash is explicitly identified by the
+user as unrelated and excluded from this work. Exact30ede225 binary and logs:
+WORK/gameplay-ladder-pitch-return/manifest.json. The Ladder stops at actor0
+position(45.7659,.1648,14.4145), active106/queued206,988=2,B8=1,posture0,
+9AC=-10000,HD present. Clearance reports HEADROOM, not missing upper surface or
+upward/forward obstruction. The repeated top-exit-rejected state explains the
+blocked exit without guessing another animation or detaching the occupant.
+
+The remaining concrete error is another split-owner read: native0075B280
+75B616..75B654 computes DD0+744 as standing sphere2.Y minus Human position.Y,
+the Y component of the vector740. Actual source initialization already produces
+this vector in HumanPhysicsLoading::offset740_. HumanPhysicalFrameWords routes
+scalars/tracks only; scalar744 is never produced and stays0.0074A690 incorrectly
+read that scalar for all three headroom uses. It consequently swept DOWN by.12
+instead of UP by loaded head height-.12, allowing the landing platform itself to
+fail the clearance test. Camera/posture changes could move that incorrect probe
+away from the platform, consistent with the reported pitch sensitivity. This is
+not a deliberate camera-pitch admission rule.
+
+Use SAME physical.offset740()[1] for upward headroom sweep and both full/short
+clearance thresholds, exactly as the existing posture-room worker already does.
+No duplicate height, copy into unused scalar744, camera-angle relaxation, forced
+collision success, descriptor14 bypass or ladder/occupant lifecycle change. The
+existing actual begin/step/root-motion/completion path remains in place. Diagnostic
+lines now include the loaded head height to qualify the user's next run.
+
+The prior78-check worker fixture wrote scalar744 directly and therefore masked
+this integration bug. The new focused native fixture executes ACTUAL
+HumanPhysicsLoading bind/initialize: real marker snapshot, standing collider
+publication, offset740 producer, exclusion lifetime and descriptor cleanup, with
+engine frames/registration/sound boundaries explicitly doubled. It confirms
+loaded head offset1.44 and unused scalar744=0, then executes actual step preparation
+and REAL rectangle swept-sphere headroom geometry at three facing pitches. Clear
+exits select14; real low ceilings still reject and restore exclusions. An isolated
+old-header mutation reading scalar744 fails that same fixture at check4; corrected
+source passes. No product source was mutated to run the old-header test.
+
+User also confirms original subtitles DO belong in black bars. Reverting geometry
+alone left the missing containing dependency unfinished. Indexed original
+006DCAE0 (Graph viewport/clear at006DCF87..006DCFA6) contains a full-viewport BEFORE-render arm:
+copy all six viewport words,00647E70 dimension query, zeroX/Y and actual width/
+height, query again, Graph7C viewport store, Graph64(0,1.f,3) clear, then controller
+006C3190. The reconstruction's outer application_frame omitted this entire arm.
+Engine Scene78→10046860→driver20/1005EDC0 otherwise sets/clears only the actual
+Scene viewport before drawing. The later006C9260 text-stage viewport restore
+cannot erase old glyphs outside that rectangle. This supplies the missing native
+clear-before-scene dependency; no new arbitrary bar geometry/fill layer is added.
+
+Bind original outer full-viewport preparation and real Graph getters/setter/clear
+in LaunchServices before controller.render. Preserve copied depth planes, branch
+on current display gate, and keep fixed/update/packet/present ordering. Startup's
+full-viewport consumer uses process flag OR SAME live Script824 through a checked
+WorldViews loan; lifecycle binds it after constructing World/Script/UI and retires
+it before World destruction, including constructor unwinding. No duplicated
+cutscene flag or global untyped cast. Absent game returnsfalse; an actual game
+without its required Script borrower still fails. This is the explicit containing
+cutscene policy already selected for HUD/skip, not credit for retail0049B7C0 RET.
+Subtitle0048EE50 and text-stage006C9260 now use that SAME effective state again,
+with original full-screen bar geometry:1600x1200 bottom1188/top1056,800x600594/528.
+
+78 focused native ASan/UBSan/leak checks PASS: actual physics initializer plus
+actual step worker/real overhead rectangle at all three pitches and genuine
+obstruction rejection; actual outer frame clear→scene→text→fixed/update/present
+order; live cutscene bind/change/unbind/retirement and missing-owner failure;
+mode-disabled clear skip, clear failure before scene, depth-plane preservation,
+software framebuffer caption replacement and actual subtitle bar rectangle.
+The framebuffer, engine/frame/collider registration, clocks and scene drawing
+are explicit doubles. The original Windows application/DLL/Proton is never
+executed. Actual REVIEW full O2/Werror sequential launcher/probe rebuild, stage-only,
+input/archive/source fingerprints and cleanup are in
+analysis/checkpoints/p22-frame-ladder-height-bars-20261117.json. No new broad audit
+or checkbox. Source fixes address concrete returned errors; actual rendered bars,
+Ladder exit and camera-independent climb await user verification. Pause14 stays
+out of scope at user's request. Ledger34/3815, frozen18783 and full matrix unchanged.

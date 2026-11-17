@@ -294,7 +294,7 @@ public:
     std::uint32_t game_status()const{return d_.session.status;}
     std::uint32_t game_word24()const{return d_.session.words.get<std::uint32_t>(0x24);}
     bool suppress_hud()const{return d_.startup.scene_presentation_flags().suppress_hud||world_.owners().scripts().module().cutscene_active();} //Containing cutscene HUD policy; text/effects remain in their scene callback stages.
-    bool full_viewport()const{return d_.startup.scene_presentation_flags().full_viewport;}
+    bool full_viewport()const{return d_.startup.application_full_viewport();}
     bool debug_enabled()const{return d_.startup.scene_presentation_flags().debug;}
     bool hud_enabled(){require_open();return parent_.hud()->enabled();}
     CursorViewport graphics_viewport(){

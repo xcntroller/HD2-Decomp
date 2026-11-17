@@ -1,0 +1,213 @@
+{
+  "date": "2026-11-17",
+  "finalized_utc": "2026-11-17T20:17:25.394009+00:00",
+  "source_base": "54604cfa9d6e199c3485f9b0b5064154ed0131b7",
+  "branch": "feature/p22-frame",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "user_return": {
+    "exe_sha256": "30ede22548e5e20f9c8e7b416723d2f92efb2ee2d9dde3fd0852982715920eb1",
+    "observed": [
+      "Standalone climb now executes but appears to require camera up",
+      "Ladder diagnostics available",
+      "Original subtitles belong in black bars"
+    ],
+    "excluded": "Pause-menu crash explicitly out of scope per user",
+    "ladder_trace": "actor0 headroom rejection at45.7659,.1648,14.4145; active106/queued206/9882/B81/posture0/9AC-10000/HD present"
+  },
+  "corrections": [
+    "0074A690 used raw scalar744 without a producer. Actual0075B280 already stores native vector740 as source physical.offset740_. Read SAME owned Y for all three headroom uses. Prevents a -0.12 downward sweep into landing surface; no camera-pitch relaxation or collision/occupant bypass.",
+    "Restore original bar subtitle geometry together with missing006DCAE0 full-viewport BEFORE-render branch (006DCF05..006DCFA6): copy all six viewport words, actual dimensions, Graph7C full viewport, Graph64(0,1.f,3) clear before controller/Scene render.",
+    "Same live Script824 cutscene state is borrowed through checked WorldViews RAII query, owned by session lifecycle and retracted before World/Script destruction. Effective state shared by outer clear/subtitle geometry/text viewport. Explicit integration policy; no retail RET0049B7C0 credit."
+  ],
+  "original_evidence": {
+    "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "engine_sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+    "addresses": [
+      "0075B280",
+      "0075B616",
+      "0075B654",
+      "0074A690",
+      "006DCAE0",
+      "006DCF05",
+      "006DCF87",
+      "006DCF9B",
+      "006DCFA6",
+      "00647E70",
+      "006C9260",
+      "0048EE50",
+      "10046860",
+      "1005EDC0"
+    ],
+    "lookup": "Research index before targeted static disassembly. Reused original C exports; no new Ghidra export needed."
+  },
+  "verification": {
+    "native": "PASS78 ASan/UBSan/leak checks: actual HumanPhysics bind/initialize producing offset740.Y while scalar744 stays0, actual step worker with real overhead rectangle sweep at three pitches and real ceiling rejection, actual outer frame clear/scene/text/update order, viewport depth preservation, live cutscene query/retirement and failed clear ordering, software framebuffer caption replacement and actual bar rectangle. Engine frames/registration/sound, other query stages, clocks/scene/framebuffer endpoints explicitly doubled.",
+    "regression": "Isolated old-header scalar744 mutation fails same fixture at check4 (exit-6). Prior tests seeded unused scalar744 and masked integration discrepancy.",
+    "production": "PASS full actual REVIEW application-launch/startup-probe O2/Werror -j1 rebuild; all heavy work sequential.",
+    "stage": "PASS --stage-only; compiled/staged bytes identical. No Windows/original/DLL/Proton execution.",
+    "desktop": "Actual Ladder top exit, camera-independent climb and rendered black-bar subtitles still require user retry. Source/build proof is not desktop acceptance.",
+    "preservation": "OWN HEAD1d54083 and six dirty source hashes unchanged; REVIEW nine batch sources synchronized while retaining preexisting OWN focus and const World callbacks. Full content/index recovery patches saved.",
+    "cleanup": "Temporary native sources/binaries/mutation overlay fingerprinted then removed; no permanent tests.",
+    "ledger": "34 complete/3815 partial, frozen18783 unchanged; no whole-function/full FRAME/HUM/OWN/matrix promotion."
+  },
+  "source_files": [
+    {
+      "path": "recovered/frontend/application_frame.h",
+      "bytes": 2156,
+      "sha256": "b5e3c0364b13e7965a28198fec7d9f6e1bbd3c83f08fa339f91c26e04320a1c6"
+    },
+    {
+      "path": "recovered/game/human_control_loading.h",
+      "bytes": 67859,
+      "sha256": "8bc7f12c249614260260f6d4ca7d23bf8fadf05ee2a2923f7b1b1f72aefbf364"
+    },
+    {
+      "path": "recovered/game/human_step_preparation.h",
+      "bytes": 9111,
+      "sha256": "db31749b664d2548ccfbdd59e517b77ce29bb847d1f58ad32d28839386bc8c01"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 334223,
+      "sha256": "6b229cfc013be22ac035e3e53b1260d1335151953a9c7da025d7ff4e2f39395b"
+    },
+    {
+      "path": "recovered/game/world_views.h",
+      "bytes": 4227,
+      "sha256": "e82b6fa6f4a90eb1a86a0e39405bf24b10223d1ccabbe752867e26ffdd26eb19"
+    },
+    {
+      "path": "recovered/host/application_launch.cpp",
+      "bytes": 39036,
+      "sha256": "79eb920a4e74dd980762e173997bfc09312fb91aa591a0889e987f19688aaf63"
+    },
+    {
+      "path": "recovered/host/game_session_lifecycle.h",
+      "bytes": 10623,
+      "sha256": "e36f7f21932200686aff1dc32b5a4a879fffd54798df19b3d84af1fdc38bf4d8"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 142940,
+      "sha256": "547bf268e41c3bfcefeae6ce331174e5538021f177bc68249d8b405d7aa2f926"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 85642,
+      "sha256": "e28037786fe7aea2d26db5587514232379b0cd509920b505888f05fe097d8d9e"
+    }
+  ],
+  "compiled_launcher": {
+    "path": "recovered/build/application_launch.exe",
+    "bytes": 13128704,
+    "sha256": "a9e84d72e1075de2b967840cb37a54dad463193ab74d694f07e39bc83aae6c64"
+  },
+  "staged_launcher": {
+    "path": "analysis/work/frame-own-review-runtime/run/application_launch.exe",
+    "bytes": 13128704,
+    "sha256": "a9e84d72e1075de2b967840cb37a54dad463193ab74d694f07e39bc83aae6c64"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-controller-render-index.txt",
+      "bytes": 3356,
+      "sha256": "cf45e2541e242f7cf0ad3f7f1a611b8180f6a468f27e445a597c1d2b73d389d9"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-outer-frame.asm",
+      "bytes": 40657,
+      "sha256": "6dc40f3c63f1e6d3ccb6b27dacaf8d87896d8d9fbd577108b1e8278fd92a4bf2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-outer-render-index.txt",
+      "bytes": 5978,
+      "sha256": "5c74a26c1d8d1cba9fc0dbf16ff496e5aff8760972fb7ae56915942a49287bb3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-render-driver-entry.asm",
+      "bytes": 9251,
+      "sha256": "8245d95fe51492019de250e45b08851043731976a295197bac4bb456bfcc7cab"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/cutscene-render-engine-index.txt",
+      "bytes": 1037,
+      "sha256": "cdf1095c6a7e23b7467e1da0676531e1da3ac8a5cf2cb7c71b54ed725f49889d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/gameplay-ladder-pitch-return/manifest.json",
+      "bytes": 577,
+      "sha256": "8c71060ccca624b9948bccf760090e2bf4948e5ba9ccc63cc8b283af0c0e500a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-cleanup.json",
+      "bytes": 870,
+      "sha256": "d849a8aac06edfb44c9aeeb3832930b218bdb7de7d1f47917b3fcd5bc869e81b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-native-run.log",
+      "bytes": 379,
+      "sha256": "84dfb1e1e76d656f65c95e2cbf96d99e514cee3c4b3431e7fc42fd31e095439d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-old-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-old-run.log",
+      "bytes": 87,
+      "sha256": "b8f48065955370cd9ec237b22b672c8489ba1984a15a3ede8e2f796df7bff85b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-preservation.json",
+      "bytes": 206,
+      "sha256": "84e39c01df89ef48ea97489ef4ef85827c393767f83798048af7f43d43ec9bc8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-regression.json",
+      "bytes": 266,
+      "sha256": "dd5078b45630c6b26dd8f4c3b3513fa4f09f00de3f7fa2ae19074b191d52e186"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-review-final.patch",
+      "bytes": 323329,
+      "sha256": "275fbe678bd4db07b7935ff062224a89036a51de9d0687d267279b2ea26ac722"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-review-index.patch",
+      "bytes": 18868,
+      "sha256": "376a03ba0e1252d429352ab63c46cb407f65756b2194c753047c61c0c3568c08"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-bars-stage-only.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-owner-index.txt",
+      "bytes": 4136,
+      "sha256": "bf4c75d3a8fc9dcfa626d2d53b872ae439de2dfca10f492f0f22586a2411fbc2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-height-producer.asm",
+      "bytes": 1892,
+      "sha256": "2db060d111912a3200921327f1c5173badf4bb723ca82477de18261f9c562de5"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/ladder-pitch-render-index.txt",
+      "bytes": 11916,
+      "sha256": "766f0c000b9e1569354c6a27d4ff55ea1fd267987ce6aec65dd7d300ed360f98"
+    }
+  ]
+}

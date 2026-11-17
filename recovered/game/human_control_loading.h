@@ -981,10 +981,10 @@ private:
         previous=diagnostic;
         const auto& state=physical_.control_frame_words();const auto position=human_->base().world_position();
         const auto sphere=physical_.posture_spheres()[0];
-        std::printf("Human step probe: actor=%d phase=%s result=%s active=%d queued=%d ladder=%d mode=%u posture=%u transition=%d marker=%u pos=(%.4f,%.4f,%.4f) sphere=(%.4f,%.4f,%.4f,%.4f) rise=%.4f\n",
+        std::printf("Human step probe: actor=%d phase=%s result=%s active=%d queued=%d ladder=%d mode=%u posture=%u transition=%d marker=%u pos=(%.4f,%.4f,%.4f) sphere=(%.4f,%.4f,%.4f,%.4f) rise=%.4f head-height=%.4f\n",
             human_->base().id10(),phase,diagnostic,state.template get<std::int32_t>(0x1d8),state.template get<std::int32_t>(0x1fc),
             state.template get<std::int32_t>(0x988),look.state().template get<std::uint32_t>(0xb8),look.state().template get<std::uint32_t>(0x4c),
-            state.template get<std::int32_t>(0x9ac),unsigned(action_.marker()!=Frame{}),position[0],position[1],position[2],sphere[0],sphere[1],sphere[2],sphere[3],state.template get<float>(0x958));
+            state.template get<std::int32_t>(0x9ac),unsigned(action_.marker()!=Frame{}),position[0],position[1],position[2],sphere[0],sphere[1],sphere[2],sphere[3],state.template get<float>(0x958),physical_.offset740()[1]);
     }
     Frames& frames_;Audio& audio_;Random& random_;Effects& effects_;Presentation& presentation_;Services& services_;
     HumanPhysicsGlobals& physics_globals_;

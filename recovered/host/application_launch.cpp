@@ -350,6 +350,19 @@ public:
         });
     }
     std::uint32_t application_flags() const { return startup_.application_flags(); }
+    bool application_full_viewport()const{return startup_.application_full_viewport();}
+    host::CursorViewport application_render_viewport(){
+        const auto* value=graphics_->methods->viewport(graphics_);
+        if(!value)throw std::runtime_error("Application render requires its actual graphics viewport");
+        return *value;
+    }
+    void application_render_viewport(const host::CursorViewport& value){
+        if(graphics_->methods->set_viewport(graphics_,&value)<0)throw std::runtime_error("Cannot restore full application render viewport");
+    }
+    std::uint32_t graphics_width(){return graphics_->methods->width(graphics_);}
+    std::uint32_t graphics_height(){return graphics_->methods->height(graphics_);}
+    void query_render_dimensions(){(void)graphics_width();(void)graphics_height();}
+    void clear_application_render(){graphics_->methods->clear(graphics_,0,1.f,3);}
     bool application_input_enabled() const { return startup_.application_input_enabled(); }
     void initialize_mouse(std::uint32_t flags) { startup_.initialize_mouse(flags); }
     bool prepare_application() { return startup_.prepare_application(); }

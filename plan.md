@@ -257,14 +257,16 @@ checks and actual launcher/probe builds verify the batch.
 User confirms gameplay entry, cutscene camera/HUD, ordinary movement, correct
 selected/placeholder soldiers and visible starting equipment on4efed3f5.
 The [gameplay-controls checkpoint](analysis/p22-frame-startup-script-preflight.md)
-binds soldier routes, prone ownership and chat integration. User return on
-c35be793 rejects subtitle layout, standalone climb and Ladder exit. Latest source
-restores original subtitle geometry and corrects the full climb decoder to primary
-6A/step-clearance; focused sanitizers and actual review build/staging are recorded.
-Ladder top remains unresolved: observation-only changed-reason traces now expose
-actual travel/clearance failures for the next user run. No forced collision bypass.
-New behavior awaits desktop acceptance. Pause14 remains section5; selector producer
-remains OWN/UI. Full FRAME/HUM/OWN remain unaccepted.
+binds soldier routes, prone ownership and chat integration. User confirms climb
+now runs but reports pitch sensitivity and continued Ladder top rejection. Actual
+trace identifies headroom: source now reads the loaded physical offset740.Y,
+replacing unproduced scalar744. Native integration checks use the real physics
+initializer and overhead collision geometry. Subtitles return to original black
+bars with the missing006DCAE0 full-viewport clear-before-render arm now connected;
+restoring geometry alone was incomplete. Source/build checks are recorded in the
+receipt; actual Ladder/climb/subtitle desktop acceptance remains pending. Pause14
+is explicitly excluded by the user; selector stays OWN/UI. Full FRAME/HUM/OWN remain
+unaccepted.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 

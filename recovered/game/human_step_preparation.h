@@ -96,13 +96,16 @@ bool prepare_human_step_motion(Control& control,Look& look,Human& human,Services
     start={{static_cast<float>(initial[0]+static_cast<long double>(forward[0])*.8f),
         static_cast<float>((static_cast<long double>(height)+base_y)+static_cast<long double>(forward[1])*.8f),
         static_cast<float>(initial[2]+static_cast<long double>(forward[2])*.8f),0}};
-    const auto clearance=sweep.sweep(start,{{0,state.template get<float>(0x744)-.12f,0,0}},query_radius,mask(),0x230000u);
+    //Native DD0+744 is the Y component produced by0075B280. Source physics
+    //retains that vector in offset740(), outside the scalar/track word view.
+    const auto head_height=physical.offset740()[1];
+    const auto clearance=sweep.sweep(start,{{0,head_height-.12f,0,0}},query_radius,mask(),0x230000u);
     bool shortened=false;
     if(clearance){
         const auto available=(static_cast<long double>(clearance->position[1])-rise)-base_y;
-        const auto full=static_cast<long double>(state.template get<float>(0x744))*.95f+radius;
+        const auto full=static_cast<long double>(head_height)*.95f+radius;
         if(!(full<=available)){
-            if(available<static_cast<long double>(state.template get<float>(0x744))*.45f+radius)return reject("headroom");
+            if(available<static_cast<long double>(head_height)*.45f+radius)return reject("headroom");
             shortened=true;
         }
     }
