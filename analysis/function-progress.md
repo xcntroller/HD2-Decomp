@@ -255,3 +255,8 @@ no complete promotions. Full checker still fails on inherited unavailable ignore
 evidence; exact baseline/schema/address/status/totals/available evidence, changed
 rows and README checked separately. H6/H8/absent actor/application/desktop remain
 required; no delegated engine/helper bodies or external actor credit added.
+
+H8 Player drop checkpoint (2026-11-17):0053E9D0 adds one frozen client
+partial, bound through actual Player/World first queue after live input gates.
+Combined count34 complete/3727 partial (client3722, engine5), denominator18783.
+[Source and limits](human-player-drop-source.md). No complete/readiness promotion.

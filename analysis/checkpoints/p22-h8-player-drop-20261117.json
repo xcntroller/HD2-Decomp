@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-17",
+  "base": "67b4d52",
+  "source_only": true,
+  "desktop_verified": false,
+  "new_frozen_partial": [
+    "0053e9d0"
+  ],
+  "contract": "analysis/human-player-drop-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_player_drop.h",
+      "bytes": 2057,
+      "sha256": "96008a142308bd33e3b30e36a36a425cff172b4467ccfae3b86ec5330b639490"
+    },
+    {
+      "path": "recovered/game/human_player_state_loading.h",
+      "bytes": 19531,
+      "sha256": "8c8c0e41eb4a1602f64dd8c6cd22ffcf1604ab6010695083ebd62ea278cdae76"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 312406,
+      "sha256": "06bcd18983290d142bc00b0fdf57ea323b140320f6a5257f8580748f051ef588"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-player-drop/0053e9d0.c",
+      "bytes": 3778,
+      "sha256": "ddd680be883308228e2d230d2f6e759a478df326c812e143042f26fbd8ad0370"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-player-drop/0053e9d0.json",
+      "bytes": 18621,
+      "sha256": "2fd94ca4c130e601e35140ae26019e11a41a0a3440c5a6425b90a94d0b3651a7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-player-drop/005a2c50.c",
+      "bytes": 865,
+      "sha256": "55ace36d97f770c91eb3aa90619206cf560b871cdab9b85f6fd690efd899c5bd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-player-drop/005a2c50.json",
+      "bytes": 2594,
+      "sha256": "02f194e7b52bae70b45d6119918d91a6eac787ba05b51841ec7c1b588f17cbcf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-player-drop/constants-vtable.json",
+      "bytes": 388,
+      "sha256": "f35e894a9ffafb569769359804450e989412931dc16c4160cc2ea78b4253fb6a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-player-drop/player-drop.asm",
+      "bytes": 15573,
+      "sha256": "06275aa43c9ecc139af78b31316a00b3e2c907e6835bd97a9f3458f6d81e7f08"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-player-drop/player-factory.asm",
+      "bytes": 1127,
+      "sha256": "770a7e0bf3735002a4a4614c7269865d5bd7777b13e1991301ed608e831164ca"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-player-drop/request-drop.asm",
+      "bytes": 2542,
+      "sha256": "8ad4195afc8d0e911646eb40172ef6986f163d2f0027bb08600aa4359874077e"
+    }
+  ],
+  "verification": {
+    "native": "PASS28 ASan/UBSan/leak checks; actual math/request values; World/process/queue dispatch excluded",
+    "actual_i386": "PASS strict complete World Player live-input instantiation, compile/link only",
+    "launcher_probe": "PASS forced O2 strict actual i386 application-launch/startup-probe compile/link; no outputs executed",
+    "ledger": "PASS full function_progress check and27 existing tracker tests"
+  },
+  "temporary_audits": [
+    {
+      "path": "/tmp/h8-drop-native.cpp",
+      "bytes": 1502,
+      "sha256": "97098be394b65dade83574cbd871e49b4e80f869b615f74f7cd6ede214f178b8"
+    },
+    {
+      "path": "/tmp/h8-drop-native.o",
+      "bytes": 225296,
+      "sha256": "a44a3b0ca0c3c24f1c652845bd8ee6f71cce02406e801fc828b37d0001ead80c"
+    },
+    {
+      "path": "/tmp/h8-drop-native",
+      "bytes": 136464,
+      "sha256": "381abe3963c405243f22f8a82ee1da20d8721b7ea115b171c49fed89486cc15e"
+    },
+    {
+      "path": "/tmp/h8-drop-module.cpp",
+      "bytes": 380,
+      "sha256": "4b71d85b3a0db95b684add3b7bbd9429f8c07d26d85f1239e2cbb0f0cb2a861c"
+    },
+    {
+      "path": "/tmp/h8-drop-module.exe",
+      "bytes": 1560064,
+      "sha256": "58392f9f4312700314ebc88a5f3af2aa074e33b89df83806d22578fb5f6b56a8"
+    }
+  ],
+  "verification_logs": [
+    {
+      "path": "/tmp/h8-drop-native.log",
+      "bytes": 66,
+      "sha256": "ddd316a438e911563ac7ff5f8aed79945c9b45d524af29e87a28aacfe7c0e093"
+    },
+    {
+      "path": "/tmp/h8-drop-module.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/h8-drop-launch-build.log",
+      "bytes": 837,
+      "sha256": "affcf64ce2751fcbddc79145f1928c666aba3dc5dd307accf7f53fede68452d9"
+    },
+    {
+      "path": "/tmp/h8-drop-progress-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "limits": "H8.4/.5/.6 and parent HUM remain open; native allocator/null path and unproduced fourth scratch lane not equivalent; no original/Windows execution or application/matrix promotion"
+}

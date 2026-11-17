@@ -11,6 +11,7 @@
 #include "frontend/spatial_sound.h"
 #include "game/human_player_weapon_control.h"
 #include "game/human_player_item_frame.h"
+#include "game/human_player_drop.h"
 
 namespace hd2::game {
 
@@ -273,6 +274,9 @@ public:
         normalize_human_ai_shot(direction,square);
         words.set(0x20,direction);
         this->process_second_frame_commands(); //FC(1), AFTER actual model direction publication.
+    }
+    void request_item_drop(std::int32_t identity,const HumanVector& velocity){ //0053E9D0, virtual70.
+        this->queue_frame_command(human_player_drop_request(identity,velocity),false);
     }
     void receive_packet_inputs(const HumanPacketCommand& command){ //00540DB0 case0, SAME C4/1C4 buffers.
         local_inputs_=command.inputs;

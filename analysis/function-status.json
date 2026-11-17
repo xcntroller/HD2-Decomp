@@ -51391,6 +51391,20 @@
         "analysis/human-player-selection-source.md",
         "analysis/checkpoints/p22-player-selection-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0053e9d0",
+      "status": "partial",
+      "coverage": "Player virtual70 requested drop: native normalized XYZ/speed policy, owned command10 item/direction/speed/actor=-1 and actual first80 queue insertion; bound from live Player input after original hand/cooldown gates and process RNG draws.",
+      "limitations": "Source-only typed packets/STL queue replace original aligned allocation, vtable, capacity growth and null-allocation behavior; native unproduced scratch fourth lane receives no equivalence claim. Actual World i386 compile/link only; numeric sanitizer audit excludes engine/process/queue dispatch. Conditional H8.4 and application/desktop delivery remain open.",
+      "evidence": [
+        "recovered/game/human_player_drop.h",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-player-drop-source.md",
+        "analysis/checkpoints/p22-h8-player-drop-20261117.json"
+      ]
     }
   ]
 }

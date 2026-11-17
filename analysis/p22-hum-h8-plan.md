@@ -116,3 +116,8 @@ source to the reconciled H8/FRAME owners. Reuse their linked native receipts;
 this import adds no new body credit. OWN uncommitted desktop adapter is excluded.
 Actual activation is now called, but missing_frames still rejects its success
 until external/runtime installation. H8.4/.5/.6 remain open.
+
+[Player requested drop](human-player-drop-source.md) now binds the positive live
+input path to actual first-queue command10 after original cooldown gates/RNG.
+This removes the explicit Player drop missing-body guard; conditional actors and
+application/containing H8.4–.6 requirements remain open.

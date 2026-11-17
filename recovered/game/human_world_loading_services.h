@@ -2019,7 +2019,13 @@ public:
         const auto entry=storage->holder(3)->entry();if(!entry)return;
         const auto& item=human_frame_output_item(entry);
         if(item.field14>game_word28()||(item.field60&2u)||item.field14>game_word28()||human_frame_signed_word(game_word28()-item.field58)<0)return;
-        throw std::runtime_error("Player input drop requires actual005A2C50/0053E9D0 randomized request producer after hand/cooldown gates");
+        const auto validate=human_common_receiver_guard(*human);
+        const auto velocity=human_requested_drop_velocity(player.words().template get<HumanVector>(0x10),[this]{return human_sound_random();});
+        //005A2C50 reads the fresh B0 after all random draws; callbacks may retire it.
+        validate();
+        if(human->loading_state!=&player)throw std::logic_error("Player drop lost its actual B0 during random callbacks");
+        player.request_item_drop(human_frame_output_item(entry).identity,velocity);
+        human->activation.flag178=true; //Only after successful command insertion.
     }
     bool player_item_controls_available(){return dependencies().first_person.view().item_controls_available();}
     template<class Human>bool player_attachment_blocks_item(Human& human){ //005433B0 Actor98(seat), SAME H3/UI owner.
