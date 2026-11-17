@@ -1,5 +1,8 @@
 # FRAME match and retained-item source — 2026-11-17
 
+Later checkpoint: [populated runtime snapshot004782C0 is now supplied](p22-frame-runtime-snapshot-source.md);
+the snapshot gap in this revision-qualified record is superseded.
+
 Continuation of the explicitly selected FRAME closure on feature/p22-frame,
 base d344abb. This checkpoint reconstructs the conditional containing bodies;
 it does not enable a new application route or claim a loaded mission. OWN's

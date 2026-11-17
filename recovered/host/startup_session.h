@@ -16,6 +16,7 @@
 #include "game/session_pending_spawn_packets.h"
 #include "game/session_frame_requests.h"
 #include "game/session_targeted_packets.h"
+#include "game/session_match_process.h"
 #include "game/session_human_inputs.h"
 #include "game/session_entry_packets.h"
 #include "game/session_entry_inputs.h"
@@ -823,6 +824,12 @@ public:
     }
     auto& game_broadcast_packets(){return broadcast_packets_;}
     auto& game_session_frame_process(){return session_frame_process_;}
+    auto& game_match_heartbeat(){return session_match_heartbeat_;} //SAME original0097D540, survives replacing a World.
+    void advance_game_match_heartbeat(std::uint32_t elapsed){game::advance_session_match_heartbeat(session_match_heartbeat_,gate_,elapsed,[this](auto kind,auto target,auto first,auto second){queue_application_command(kind,target,first,second);});}
+    std::uint32_t game_connection_status(){
+        const auto now=control_milliseconds(); //00748960 BEFORE reading actual worker D0 == process40C.
+        return game::session_connection_recent(now,connection_worker_.clockd0())?control_data_.word5044:9u;
+    }
     auto& game_local_packets(){return local_packets_;}
     void receive_control_connection_payload(const std::vector<unsigned char>& bytes,std::uint32_t channel,std::uint32_t flags){ //0072C360.
         game::deliver_session_connection_packet(gate_,bytes,channel,flags,local_packets_);
@@ -1121,6 +1128,7 @@ private:
     ApplicationCommandLock application_command_lock_;
     game::SessionApplicationCommands application_commands_; //SAME process lifetime, survives World unbind.
     game::SessionFrameRequests application_requests_;
+    game::SessionMatchHeartbeat session_match_heartbeat_;
     std::unique_ptr<GameConsole> console_;void* application_console_owner_=nullptr;
     std::function<bool()> application_console_route_;std::function<void()> application_console_close_;
     frontend::ProfileSelectionWords profile_words_;

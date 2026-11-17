@@ -52,6 +52,7 @@ public:
         this->base_.name(environment_.mine_caption(definition)); //Required definition/localization LAST, after model mutations.
     }
     SceneActor<Frames>* human_reference()const{require_binding();return human9c_;}
+    std::int32_t definition_identity()const{require_binding();return definition90_;} //004782C0 reads SAME90 after Human9C.
     std::int32_t material(Frame)override{return material();} //005FEEB0, SAME definition material100.
     std::int32_t material()const{require_binding();return signed_word(material100_);} //005FEEB0 ignores its frame argument.
     void update(bool authority,std::uint32_t elapsed){ //005FEE70/90 select the SAME005FEE50 timer path.

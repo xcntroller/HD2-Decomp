@@ -18,7 +18,7 @@ public:
     virtual void append_application_message(const std::string&)=0;
     virtual HumanInputCallbacks* input_default_receiver(std::int32_t,bool)=0;
     virtual std::uint32_t frame_statistics_word(unsigned)const=0; //Actual current game30/28/84, never a copied clock.
-    virtual void write_application_world_snapshot(SessionPacketStream&){throw std::runtime_error("Application command7 requires actual004782C0 populated module snapshot writer");}
+    virtual void write_application_world_snapshot(SessionPacketStream&)=0; //Actual004782C0 runtime owner, distinct from whole-module initial-sync38.
 };
 class SessionPacketWorldLink {
 public:

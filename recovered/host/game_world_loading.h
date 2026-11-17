@@ -348,6 +348,7 @@ public:
         owners_.scripts().runtime().receive_human_objective_status(static_cast<std::int32_t>(identity),static_cast<std::int32_t>(status));
     }
     void receive_application_peer_departure(std::uint32_t transport)override{owners_.human_services().retire_session_peer(transport);}
+    void write_application_world_snapshot(game::SessionPacketStream& packet)override{owners_.dependencies().world_actors.runtime().write_initial_snapshot(packet);}
     std::uint32_t frame_statistics_word(unsigned offset)const override{
         if(offset!=0x30&&offset!=0x28&&offset!=0x84)throw std::out_of_range("Frame packet requested an unsupported game statistic");
         return owners_.dependencies().session.words.template get<std::uint32_t>(offset);

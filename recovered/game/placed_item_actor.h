@@ -36,6 +36,10 @@ public:
         const long double x=motion_[0],y=motion_[1],z=motion_[2];
         return !(((x*x+y*y)+z*z)<1.0000000168623835e-16f); //0080F948 FLOAT.
     }
+    template<class Packet>void write_initial_motion(Packet& packet)const{ //005E2930, absent frozen inventory; no new function credit.
+        if(!motion_started()){packet.write(0,1);return;}
+        packet.write(1,1);packet.write_yaw({{motion_[0],motion_[1],motion_[2],motion_w_}},-1);
+    }
     template<class Services>bool apply_motion(const std::array<float,4>& motion,bool hide,Services& services){ //005E2510.
         if(!physics_object_)throw std::logic_error("Placed motion requires actual Physics90 borrower");
         if(!services.placed_physics_contact(physics_object_,motion))return false;

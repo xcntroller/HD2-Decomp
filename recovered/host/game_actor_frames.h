@@ -1261,6 +1261,16 @@ public:
             throw std::runtime_error("Cannot read live volumetric allocation history");
         return result;
     }
+    std::pair<Vector,Vector> frame_hazard_stack_vectors(const std::array<unsigned char,32>& storage){
+        //0069EED0 supplies unwritten automatic vectors, force BEFORE point.
+        //Like Volume history above, sample live owned storage through the OS,
+        //without evaluating indeterminate C++ float lvalues or choosing zeros.
+        std::array<unsigned char,32> bytes;SIZE_T copied=0;
+        if(!::ReadProcessMemory(::GetCurrentProcess(),storage.data(),bytes.data(),bytes.size(),&copied)||copied!=bytes.size())
+            throw std::runtime_error("Cannot read live FRAME hazard stack allocation");
+        Vector point,force;std::memcpy(force.data(),bytes.data(),16);std::memcpy(point.data(),bytes.data()+16,16);
+        return {point,force}; //Native stack addresses/values are NOT an original ABI-equivalence claim.
+    }
     Frame volume_render_camera(){
         const auto camera=field<Frame>(scene_.frame(),0x15c);
         if(!camera)throw std::runtime_error("Volumetrics require actual Scene15C render camera");

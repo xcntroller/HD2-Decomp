@@ -29,8 +29,8 @@ Older implementation/reassessment documents retain revision-qualified evidence.
 
 ## Remaining full closure and delivery
 
-- [ ] Close remaining retained-round reset, runtime snapshot and pending-spawn
-  producers, plus required process/network consumers. Fixed/update/input/exit
+- [ ] Close remaining retained-round reset and pending-spawn producers, plus
+  required process/network consumers. [Populated runtime snapshot](p22-frame-runtime-snapshot-source.md) is verified. Fixed/update/input/exit
   policies and positive retained-item restore now have verified bodies and
   concrete owners; [exact remaining dependencies](p22-frame-match-source.md).
 - [ ] Complete selected positive HUM/Actor/cutscene/UI command producers under

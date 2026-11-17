@@ -12,6 +12,7 @@
 #include "game/runtime_mine_creation.h"
 #include "game/runtime_actor_packets.h"
 #include "game/runtime_item_restore.h"
+#include "game/runtime_actor_snapshot.h"
 #include "frontend/localized_text.h"
 
 namespace hd2::host {
@@ -199,6 +200,22 @@ public:
         });
     }
     void clear() noexcept {registry_.clear();}
+    void write_initial_snapshot(game::SessionPacketStream& packet){game::write_runtime_actor_snapshot(registry_,packet,*this);}
+    std::int32_t snapshot_mine_human_identity(std::size_t n){
+        auto* mine=dynamic_cast<Mine*>(registry_.owned_at(n));if(!mine)throw std::logic_error("Runtime snapshot type2 lost its actual Mine owner");
+        auto* human=mine->human_reference();if(!human)throw std::logic_error("Native Mine snapshot requires its actual Human9C identity");return human->base().id10();
+    }
+    std::int32_t snapshot_mine_definition(std::size_t n){
+        auto* mine=dynamic_cast<Mine*>(registry_.owned_at(n));if(!mine)throw std::logic_error("Runtime snapshot type2 lost its fresh Mine owner");return mine->definition_identity();
+    }
+    Entry snapshot_loose_entry(std::size_t n){
+        auto* item=dynamic_cast<LooseItemActor*>(registry_.owned_at(n));if(!item||!item->entry())throw std::logic_error("Runtime snapshot type11 requires its actual Item90 allocation");return item->entry();
+    }
+    std::uint32_t snapshot_item_definition(std::size_t n){return items_.runtime_item(snapshot_loose_entry(n)).definition().identifier;}
+    std::int32_t snapshot_item_identity(std::size_t n){return items_.runtime_item(snapshot_loose_entry(n)).identity;}
+    void snapshot_placed_motion(std::size_t n,game::SessionPacketStream& packet){
+        auto* item=dynamic_cast<ItemActor*>(registry_.owned_at(n));if(!item)throw std::logic_error("Runtime snapshot type35 lost its actual placed Item owner");item->write_initial_motion(packet);
+    }
     void finish(bool authority) { //00477A90; actor owners BEFORE both spawn buffers.
         if(!authority&&(mode_flags()&1))return;
         registry_.clear();

@@ -18,15 +18,12 @@ public:
     virtual ~GameSessionMatchExternal()=default;
     virtual world_loading::World& world()const=0;
     virtual void system_console_command(const std::string&)=0; //0069F250/00742480.
-    virtual void control_heartbeat(std::uint32_t)=0; //0072DCD0, SAME0097D540.
-    virtual std::uint32_t connection_status()=0; //007316F0, fresh clock/40C/5044.
     virtual void defer_network_close()=0; //0072E4E0(false), real process5070.
     virtual void current_application_status(std::uint32_t)=0; //Current application virtual2C, NOT controller04 request.
     virtual std::uint32_t current_game_phase()=0; //Fresh00698500 game88.
     virtual void reset_round_world(bool)=0; //0069C390, actual retained-world/round reset; NOT pause/realtime toggle.
     virtual void balance_peer_sides(std::uint32_t,std::uint32_t)=0; //007302D0, actual process records.
     virtual void camera_command(std::uint32_t,std::uint32_t,std::uint32_t)=0; //Actual mission camera virtual44.
-    virtual void authority_hazard(world_loading::Human&)=0; //Human D4(12,-1), native unwritten vector source remains required.
 };
 //Required UI/controller and conditional non7 endpoints use the SAME World.
 //Source implementations on the owning branches still need actual application
@@ -229,8 +226,8 @@ private:
         bool frame_first_prepared_player_valid(){const auto& squad=f.parent_.live_squad();if(squad.empty())throw std::logic_error("FRAME pending request requires actual first live soldier");return squad.front().network_identity!=-1;}
         void frame_defer_network_close(){required("0072E4E0(false)").defer_network_close();}
         void frame_current_application_status(std::uint32_t status){required("current application virtual2C").current_application_status(status);}
-        std::uint32_t frame_connection_status(){return required("007316F0").connection_status();}
-        void frame_control_heartbeat(std::uint32_t elapsed){required("0072DCD0").control_heartbeat(elapsed);}
+        std::uint32_t frame_connection_status(){return startup().game_connection_status();}
+        void frame_control_heartbeat(std::uint32_t elapsed){startup().advance_game_match_heartbeat(elapsed);}
         void frame_countdown_hint(std::uint32_t id,std::uint32_t time){f.world_.owners().hud_panels().small().set_countdown_hint(id,time);}
         void frame_set_hint(std::int32_t id){f.d_.hud.set_hint(id);}
         void frame_connection_warning(std::uint32_t id,std::uint32_t time){f.d_.hud.set_injury_message(id,time);}
@@ -239,11 +236,16 @@ private:
         void frame_evaluate_rules(std::uint32_t elapsed){game::evaluate_session_match_rules(state(),startup().game_session_frame_process(),*this,elapsed);}
         void frame_advance_hazards(std::uint32_t elapsed){game::advance_session_match_hazards(state(),startup().game_session_frame_process(),*this,elapsed);}
         auto player_control_surface_flags(Human& human){return f.player_control_surface_flags(human);}
-        void frame_authority_hazards(){game::with_session_match_peers(data(),startup(),[&](auto& peers){for(std::size_t n=0;n<peers.size();++n)
+        void frame_authority_hazards(){
+            alignas(16) std::array<unsigned char,32> payload; //Original0069EED0 unwritten stack vectors; SAME storage for the whole peer walk.
+            game::with_session_match_peers(data(),startup(),[&](auto& peers){for(std::size_t n=0;n<peers.size();++n)
             if(peers[n].byte(8).value())if(auto* p=peers[n].human_actor()){
                 auto& human=f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(p));
                 if(player_control_surface_flags(human)&0x2000u){auto* fresh=peers.at(n).human_actor();if(!fresh)throw std::logic_error("Hazard lost fresh peer Human3C");
-                    required("Human D4(12,-1) native vector provenance").authority_hazard(f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(fresh)));}
+                    auto& target=f.d_.world_actors.human_loading_actor(static_cast<GameSceneActors::Instance*>(fresh));
+                    if(!target.loading_lifetime)throw std::logic_error("FRAME hazard requires actual Human D4 owner");
+                    const auto vectors=f.d_.scene.frames().frame_hazard_stack_vectors(payload);
+                    target.loading_lifetime->damage(12,-1.f,vectors.first,vectors.second,&target,0);}
             }});}
         bool frame_any_peer_below_life_limit(std::uint32_t limit){return game::any_session_match_peer_below_limit(data(),startup(),limit);}
         std::int32_t frame_maximum_peer_score(){return game::maximum_session_match_score(data(),startup());}

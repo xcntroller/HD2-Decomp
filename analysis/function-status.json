@@ -51440,12 +51440,16 @@
       "program": "client",
       "entry": "0069eed0",
       "status": "partial",
-      "coverage": "Original500ms process gate, phase exclusions, authority peer hazard traversal and two fresh local surface reads; actual Human D4 unwritten vector payload remains required.",
-      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit.",
+      "coverage": "Original500ms process gate, phase exclusions, authority peer hazard traversal and two fresh local surface reads; actual Human D4 unwritten vector payload remains required. Concrete authority path now calls actual Human loading-lifetime D4 with source-owned unwritten automatic vector storage sampled through the OS, preserving allocation dependence instead of a chosen value/default.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original object/allocator/SEH/register/vtable ABI equivalence. Native1748 policy/peer/FIFO/packet checks use labelled engine/Body/match/transport endpoints; native384 executes actual rigid-body rebind with engine/removal endpoints substituted. Strict actual World/Runtime/FRAME/UI/request i386 and forced O2 launcher/probe compile/link only. Remaining retained-round reset/runtime snapshot/pending spawn producer, positive process/network/Human payload provenance and application installation/desktop acceptance remain required. No whole-body or delegated-callee credit. Concrete hazard allocation sampler/Human integration is i386 compile/link only; reconstructed stack layout/history is not original ABI or identical-byte equivalence. No new compatibility policy.",
       "evidence": [
         "recovered/game/session_match_rules.h",
         "analysis/p22-frame-match-source.md",
-        "analysis/checkpoints/p22-frame-match-20261117.json"
+        "analysis/checkpoints/p22-frame-match-20261117.json",
+        "recovered/host/game_session_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/p22-frame-runtime-snapshot-source.md",
+        "analysis/checkpoints/p22-frame-runtime-snapshot-20261117.json"
       ]
     },
     {
@@ -51698,6 +51702,72 @@
         "recovered/game/session_frame_requests.h",
         "analysis/p22-frame-match-source.md",
         "analysis/checkpoints/p22-frame-match-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004782c0",
+      "status": "partial",
+      "coverage": "Actual populated runtime snapshot over SAME runtime70 and fresh ownership rows:6-bit kind/16-bit identity, Mine/loose-item fields and pose/direction, actual placed Item motion/yaw, original other-kind prefix and type0 terminator. Concrete World/Runtime/Items receiver replaces required-failure default.",
+      "limitations": "Source-only typed/STL/RAII reconstruction, not original layout/allocator/SEH/register/vtable ABI equivalence. Native896 checks execute actual registry/snapshot with actor factory/per-type query/placed-yaw/activation/engine endpoints explicitly substituted; strict actual World/HumanFrameRuntime/FRAME/UI/lifecycle/populated writer and O2 application/probe compile/link only. Unknown-type writer prefixes do not prove a compatible positive reader or round trip. No Windows execution, application installation or desktop acceptance. No absent actor50/accessor/delegated-engine credit; remaining retained reset/spawn/process/nonoffline application sources remain open.",
+      "evidence": [
+        "recovered/game/runtime_actor_snapshot.h",
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_world_loading.h",
+        "analysis/p22-frame-runtime-snapshot-source.md",
+        "analysis/checkpoints/p22-frame-runtime-snapshot-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072d960",
+      "status": "partial",
+      "coverage": "Actual process0097D540 heartbeat construction: phase42, byte04/word08/word0C zero; no invented padding defaults.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/SEH/allocator ABI equivalence. Native640 heartbeat/window/publication/failure checks substitute FIFO allocation and clock/worker endpoints. Actual existing Startup/worker/FRAME concrete i386 and O2 launcher/probe compile/link only; no successful live transport, application installation, original execution or desktop acceptance. Wider heartbeat arm/command/positive request producers remain with actual process/application owners; no guessed arm state or full-function promotion.",
+      "evidence": [
+        "recovered/game/session_match_process.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-runtime-snapshot-source.md",
+        "analysis/checkpoints/p22-frame-runtime-snapshot-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072dca0",
+      "status": "partial",
+      "coverage": "Actual stopped-phase publication before application23 FIFO enqueue, preserving low-byte reason and allocation failure prefix.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/SEH/allocator ABI equivalence. Native640 heartbeat/window/publication/failure checks substitute FIFO allocation and clock/worker endpoints. Actual existing Startup/worker/FRAME concrete i386 and O2 launcher/probe compile/link only; no successful live transport, application installation, original execution or desktop acceptance. Wider heartbeat arm/command/positive request producers remain with actual process/application owners; no guessed arm state or full-function promotion.",
+      "evidence": [
+        "recovered/game/session_match_process.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-runtime-snapshot-source.md",
+        "analysis/checkpoints/p22-frame-runtime-snapshot-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072dcd0",
+      "status": "partial",
+      "coverage": "Actual same-process heartbeat accumulation, cold phase42 RET, signed strict15000 authority timeout and original reason0 stop tail.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/SEH/allocator ABI equivalence. Native640 heartbeat/window/publication/failure checks substitute FIFO allocation and clock/worker endpoints. Actual existing Startup/worker/FRAME concrete i386 and O2 launcher/probe compile/link only; no successful live transport, application installation, original execution or desktop acceptance. Wider heartbeat arm/command/positive request producers remain with actual process/application owners; no guessed arm state or full-function promotion.",
+      "evidence": [
+        "recovered/game/session_match_process.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-runtime-snapshot-source.md",
+        "analysis/checkpoints/p22-frame-runtime-snapshot-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007316f0",
+      "status": "partial",
+      "coverage": "Actual performance clock sampled before SAME existing workerD0/process40C atomic timestamp, native signed elapsed601 cutoff and fresh process5044 status.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/SEH/allocator ABI equivalence. Native640 heartbeat/window/publication/failure checks substitute FIFO allocation and clock/worker endpoints. Actual existing Startup/worker/FRAME concrete i386 and O2 launcher/probe compile/link only; no successful live transport, application installation, original execution or desktop acceptance. Wider heartbeat arm/command/positive request producers remain with actual process/application owners; no guessed arm state or full-function promotion.",
+      "evidence": [
+        "recovered/game/session_match_process.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-runtime-snapshot-source.md",
+        "analysis/checkpoints/p22-frame-runtime-snapshot-20261117.json"
       ]
     }
   ]

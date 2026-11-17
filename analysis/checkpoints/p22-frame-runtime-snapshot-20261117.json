@@ -1,0 +1,294 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "c9846c71e2af24dd9678a23ff9d14570a12bcdf0",
+  "source_only": true,
+  "full_frame_source_complete": false,
+  "matrix_reconciliation": "partially_resolved",
+  "application_installed": false,
+  "windows_outputs_executed": false,
+  "desktop_verified": false,
+  "contract": "analysis/p22-frame-runtime-snapshot-source.md",
+  "native_runtime_snapshot_checks": 896,
+  "native_match_process_checks": 640,
+  "concrete_hazard_sampler_verification": "Strict actual i386 and O2 compile/link only; allocation/stack layout and bytes are not original ABI equivalence. Native earlier hazard policy audit has explicit endpoint doubles.",
+  "new_partial_inventory_entries": [
+    "004782c0",
+    "0072d960",
+    "0072dca0",
+    "0072dcd0",
+    "007316f0"
+  ],
+  "complete_promotions": 0,
+  "absent_vtable_writer_credit": 0,
+  "source_files": [
+    {
+      "path": "recovered/game/mine_scene_actor.h",
+      "bytes": 8933,
+      "sha256": "0d428fe7e068e42249d05d5f6aa11a276aefdb849cfa992487b003c6ca9ff2cb"
+    },
+    {
+      "path": "recovered/game/placed_item_actor.h",
+      "bytes": 5112,
+      "sha256": "e801af9eb7972aa2a312999e09ce4c965355512f218c28d56a317207b05fbc40"
+    },
+    {
+      "path": "recovered/game/runtime_actor_registry.h",
+      "bytes": 9859,
+      "sha256": "15ae2132821096655e128b8fba6844eaf43ff083cb9c79c90880d125d8b9841b"
+    },
+    {
+      "path": "recovered/game/runtime_actor_snapshot.h",
+      "bytes": 1768,
+      "sha256": "4e1176bbb0892e144a981dcbac1c6449cdb735b46a2b5594a5ce90f42bd60a09"
+    },
+    {
+      "path": "recovered/game/session_match_process.h",
+      "bytes": 1272,
+      "sha256": "57d0c359608a1759a7e1cde940da6749c4e72eba5b07175e3095fb9783ee10ff"
+    },
+    {
+      "path": "recovered/game/session_packet_world.h",
+      "bytes": 3022,
+      "sha256": "a2d3aec95f6a8f9d23bfbaa4cf589f4c82da0fd6f0200235fafdded7d74aa3b9"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 134695,
+      "sha256": "c3b4aa5440362398daec48a5ea0a638062770c8d11169933ac575e71e7344c80"
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "bytes": 20319,
+      "sha256": "1410323258ca654ad9406d2e74cd0847fcb7c8b50eb1e72f4afdfa4fe7c7ec40"
+    },
+    {
+      "path": "recovered/host/game_session_frames.h",
+      "bytes": 30055,
+      "sha256": "8b85999419c24ff16b1f0a2f0750cbf682f9fced9c3dfb14c01abc2bcb1d4242"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "bytes": 31595,
+      "sha256": "d4d3186e6b9d8e666babe5d91ffc75e1c71a4beb3d6e7311425da27e6b6b6660"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 79158,
+      "sha256": "cfb32867516382012ab0c6370c7da0e447157abeab3a75d01b13cbb3c1c92cd0"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/reset-snapshot-vtable-targets.json",
+      "bytes": 2028,
+      "sha256": "b8e18b58962b61c6fbcc236a79f105f543a54900129cbd72bb1d7d8942061d0e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/runtime-snapshot-mine50.asm",
+      "bytes": 684,
+      "sha256": "345b94a2cea9f0a6c9e2ba90df14acd99cd6270f54c9e575b7fa839b6b0ef185"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/runtime-snapshot-loose50.asm",
+      "bytes": 5473,
+      "sha256": "aec1877f47548a23c6ecbec64581fae7928b148f902d22812cf5eff45b5b705a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/runtime-snapshot-placed50.asm",
+      "bytes": 5010,
+      "sha256": "773b19337f112b761f0f954bfd859e2d70509e064ce341b15a0c0eed2156b1e3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/heartbeat-abi.asm",
+      "bytes": 3231,
+      "sha256": "5b6636462b9e74eddb0bbe2b74d543f4a835913d1642014b780b366275807b44"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/frame-static-data.json",
+      "bytes": 943,
+      "sha256": "d20d740e483c65717a2e90161aef262805889917c6bc83984ca25786380b2d99"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/round-reset-export/004782c0.c",
+      "bytes": 3514,
+      "sha256": "1477b1eb97647e5df9820d2fef63d85eead7215b63da72f782188ae2c73a8fe2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/round-reset-export/004782c0.json",
+      "bytes": 10648,
+      "sha256": "1ab21455dde3fe076e28038ef944a5c37de4161dbfc2821fbbaecddf09c9b37a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/nonoffline-containing-abi.asm",
+      "bytes": 91620,
+      "sha256": "d7bdc2fb23f5d87bbbdc19d1d38dbaf6a75fd0554f68358c68c15e6e1d9b6954"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/nonoffline-frame-export/0069eed0.c",
+      "bytes": 1685,
+      "sha256": "c8f0e3986aba7385dbbcd813c550383d9851d4778401335c33a07885c71d2d38"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/nonoffline-frame-export/007316f0.c",
+      "bytes": 248,
+      "sha256": "e8bce3df1501c6dbc397968171aeac4cf6a13bdd77a54888eed872869aee3118"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/nonoffline-frame-export/0072dcd0.c",
+      "bytes": 290,
+      "sha256": "3ab1542ff48931bf15aea24478cdb2ea2ce01f758646905b260136418ab23e7d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-positive-export/0072dca0.c",
+      "bytes": 350,
+      "sha256": "48f5b7bd0b28cd7d83e45bfd334113f468e7fac1316559c73b098a66bb569faf"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/human-normal-spawn-leaves-abi-v4/0072d960.c",
+      "bytes": 204,
+      "sha256": "ecc6b41d2abe9ebf1af9080469de52ca52439f06f90bedd1c300f0493e990ecc"
+    }
+  ],
+  "research_index_lookups": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/heartbeat-constructor-index.txt",
+      "bytes": 2421,
+      "sha256": "83fdb235bfdcc30fe5eee64525742e3de790692b42937663a836b96ba2dc87fa"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/heartbeat-owner-index.txt",
+      "bytes": 4392,
+      "sha256": "106a036dc656217b8b435f89eb053b1b08491e2a23457afa4993feca8a0039a8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/pending-producer-dependencies-index.txt",
+      "bytes": 5764,
+      "sha256": "5078aa484c9ceb6dccd019d8fc947ae0005456b93b1d695e6b1d376c01f7361b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/round-module-dependencies-index.txt",
+      "bytes": 17518,
+      "sha256": "84451f9627966d50d3ba0a88019cdaecb668bd7d68efba155236778ac7553cd3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/runtime-snapshot-item10-index.txt",
+      "bytes": 3590,
+      "sha256": "10a94f5066d08af7c240da27a257c7b274cadde5c3d57917b4e4785c27eebac8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/runtime-snapshot-loose-index.txt",
+      "bytes": 3687,
+      "sha256": "0445d3b0e831f919b7bc9faf5ec721e0eaca1beb1e0e5a293837393a9f62e9b8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/runtime-snapshot-placed-index.txt",
+      "bytes": 3493,
+      "sha256": "ed74917c785d91191c711d2b696df05d94b5dacac03a2042fed149036f82d971"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/runtime-snapshot-vtable-index.txt",
+      "bytes": 8287,
+      "sha256": "3a0156e3167b07e3a438cf18c6696bb332e9fdd3ac83c60aef0a4e6405f0b614"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/runtime-snapshot-writers-index.txt",
+      "bytes": 4485,
+      "sha256": "d61069f4e215cfd5b47fe6c0dc38aa7e55111aa3bf4612f76d37987ebe6a9383"
+    }
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-native-run.log",
+      "bytes": 164,
+      "sha256": "470f1489e2ad760c49c3e3e82590eca15f169faab099c713257ffabb7419d23b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-process-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-process-native-run.log",
+      "bytes": 146,
+      "sha256": "80317811f7004e159fd8531e64085d1bf7e375b400d77eb12b33ca722b6fa881"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-actual-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-launcher-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-function-render.log",
+      "bytes": 380,
+      "sha256": "12747d458a21d9aa23912f1f2e7dbc28e12b798a57d26c87e9d99f327f523c5c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-function-check.log",
+      "bytes": 437,
+      "sha256": "a4426115a67f339b4a8ffbc9b40840f0e1465096a8c28f4e29f138834633224e"
+    }
+  ],
+  "compile_only_application_outputs": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 9650176,
+      "sha256": "ed24b29e7a64febd7ec4ddc8c159c974b63b351c2904eb47b9ee7f68c7bb2df4"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1175552,
+      "sha256": "5b14d645a75b23c1133349914b7dc271a1c1e44506de3ca07d8050c2de50c52d"
+    }
+  ],
+  "temporary_audits_fingerprinted_and_removed": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-native.cpp",
+      "bytes": 4212,
+      "sha256": "3a2b0dda8d35ecd4ae642d578fbcef09b0b90fe04f0caabb857dd3b513280d1a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-native",
+      "bytes": 1306336,
+      "sha256": "fe615bf8e71bc10ed079b64705877f0a4a97e2b3e1494ef24187627f813eeb31"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-actual.cpp",
+      "bytes": 794,
+      "sha256": "6203493871271a00eff63badba5a56969a322bc3aaffcb4fa82fcd150da6c860"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/snapshot-actual.exe",
+      "bytes": 12431360,
+      "sha256": "4f232d7a5d83c036fd3e4c0bfe7b51ae68c372ce74b81f376ad22880f84f6e4c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-process-native.cpp",
+      "bytes": 1962,
+      "sha256": "8be1512d504f1f602251458f66cb4df2cb94db76dc1266130d0acbcbeab3ea8c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/match-process-native",
+      "bytes": 191200,
+      "sha256": "3d937fff6bb6aba28ca1298d5ff066ddbb4a12f6c3b5845f37b50c1af43ae82b"
+    }
+  ],
+  "limits": [
+    "Native896 actual registry/snapshot checks substitute actor factory, per-type query/placed-yaw/activation and engine endpoints.",
+    "Native640 actual heartbeat/window checks substitute FIFO allocation and clock/worker endpoints; actual Startup, worker, actual Human damage and unwritten allocation sampler bind in strict i386/O2 composition only.",
+    "No zero or historical vector policy: actual unwritten source stack allocation is OS-sampled, as existing Volume history; original stack ABI/layout/identical bytes are not claimed.",
+    "Remaining0069C390 retained reset,0069D9C0 producer and positive process/network/application sources remain explicit required consumers; no unimplemented-body or absent-entry credit.",
+    "No original EXE/DLL/Proton/Windows fixture execution; no new application route, staging or desktop acceptance.",
+    "OWN uncommitted work and review artifact preserved."
+  ]
+}
