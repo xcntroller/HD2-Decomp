@@ -2,11 +2,12 @@
 #define HD2_GAME_DOG_CLIP_MIXER_H
 #include "game/dog_body_actions.h"
 #include "game/human_animation_requests.h"
+#include "game/human_ai_shot_direction.h"
 namespace hd2::game {
 template<class Frame>struct DogClipRequest {Frame clip{};float stride=0,weight=0,blend=0;bool separate=false;};
 template<class Frame>class DogClipLifetime {
 public:
-    using Requests=std::array<DogClipRequest<Frame>,2>;
+    using Requests=std::array<DogClipRequest<Frame>,2>;using Vector=std::array<float,4>;
     virtual ~DogClipLifetime()=default;
     virtual void initialize(Frame)=0;
     virtual void bind(const Requests&)=0;
@@ -15,6 +16,9 @@ public:
     virtual void rate(unsigned,float)=0;
     virtual void tick(std::int32_t,std::int32_t,bool,const Requests*)=0;
     virtual void event(const char*)=0;
+    virtual void advance_motion(std::int32_t,const Vector&)=0;
+    virtual void decelerate(const Vector&,std::int32_t)=0;
+    virtual const Vector& movement()const=0;
 };
 //005C6D10/6E10/7430/6EE0. Clip base is Actor+A0=Body+10. Model10 is
 //the SAME ActorB0 slot. Two group records alternate engine slots0/1 and2/3;
@@ -22,7 +26,7 @@ public:
 template<class Frames,class Callbacks>
 class DogClipMixer final : public DogClipLifetime<typename Frames::Frame> {
 public:
-    using Frame=typename Frames::Frame;using Request=DogClipRequest<Frame>;using Requests=std::array<Request,2>;
+    using Frame=typename Frames::Frame;using Request=DogClipRequest<Frame>;using Requests=std::array<Request,2>;using Vector=std::array<float,4>;
     struct Group {
         std::int32_t slot=-1,time=-1,lock=0;
         std::array<std::optional<std::uint32_t>,3> events;
@@ -39,7 +43,7 @@ public:
         for(auto& blend:blends_)blend=Blend{};
         const auto marker=frames_.actor_find(model_,"a",0xffffu);
         if(marker){callbacks_.install_animation_events(marker,*this);marker_=marker;}
-        fraction_=old_stride_=stride_=0;movement_.fill(0);changed_=false;
+        fraction_=old_stride_=stride_=0;for(unsigned n=0;n!=3;++n)movement_[n]=0;changed_=false;
         forced_.timer114=static_cast<std::uint32_t>(-10000);deceleration_timer_=-10000;
         initialized_=true;
     }
@@ -120,6 +124,55 @@ public:
             }
         }
     }
+    const Vector& movement()const override{require();return movement_;} //005C75B0, XYZ meaningful; native W is unwritten.
+    const auto& deceleration_velocity()const{return deceleration_velocity_;}
+    const auto& deceleration_reduction()const{return deceleration_reduction_;}
+    std::int32_t deceleration_timer()const{return deceleration_timer_;}
+    const auto& deceleration_accumulator()const{return deceleration_accumulator_;}
+    const auto& deceleration_elapsed()const{return deceleration_elapsed_;}
+    void decelerate(const Vector& input,std::int32_t duration)override{ //005C7600.
+        require();deceleration_accumulator_=0;deceleration_velocity_=input;
+        deceleration_elapsed_=0;deceleration_timer_=duration;deceleration_reduction_=input;
+        auto& reduction=*deceleration_reduction_;
+        normalize_human_ai_shot(reduction,stored_square_xyz(reduction)); //Native normalization compares the FLOAT square.
+        const float square=stored_square_xyz(input);std::uint32_t bits;std::memcpy(&bits,&square,4);
+        const auto length=dog_order_signed(bits)<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1)<9.99999993922529e-09f?1.L:std::sqrt(static_cast<long double>(square));
+        const auto factor=length/(static_cast<long double>(duration)/80.f);
+        for(unsigned n=0;n!=3;++n)reduction[n]=static_cast<float>(factor*reduction[n]);
+    }
+    void advance_motion(std::int32_t elapsed,const Vector& direction)override{ //005C71E0, no engine call or synthetic motion.
+        require();const float seconds=static_cast<float>(static_cast<long double>(elapsed)*.001f);
+        const auto blend=fraction(0);long double current=stride_;const auto lane=groups_[0].slot;
+        if(lane!=-1)current*=blends_.at(slot(0,lane)).rate;
+        const auto speed=current*blend+(1.L-blend)*old_stride_;
+        movement_[0]=static_cast<float>(speed*direction[0]*seconds);
+        for(unsigned n=1;n!=3;++n){const float component=static_cast<float>(speed*direction[n]);movement_[n]=static_cast<float>(static_cast<long double>(component)*seconds);}
+        const auto duration=dog_order_signed(required(forced_.timer114,"Dog motion requires actual clip114 duration producer"));
+        if(duration!=-10000){
+            const auto old=dog_order_signed(required(forced_.field110,"Dog forced motion requires actual clip110 counter producer"));
+            const auto next=wrap(old,elapsed);forced_.field110=static_cast<std::uint32_t>(next);auto active=elapsed;
+            if(duration<next){forced_.timer114=static_cast<std::uint32_t>(-10000);active=wrap(wrap(duration,-static_cast<std::uint32_t>(next)),elapsed);}
+            const auto ratio=static_cast<long double>(active)/duration;
+            const auto& vector=required_reference(forced_.direction100,"Dog forced motion requires actual clip100 vector producer");
+            add_scaled_motion(vector,ratio); //X remains extended through add; Y/Z products spill first.
+        }
+        if(deceleration_timer_!=-10000){
+            const auto old=required(deceleration_elapsed_,"Dog deceleration requires actual clip144 elapsed producer");auto active=elapsed;
+            if(wrap(old,elapsed)>=deceleration_timer_){active=wrap(deceleration_timer_,-static_cast<std::uint32_t>(old));deceleration_timer_=-10000;}
+            deceleration_elapsed_=wrap(old,active);auto remaining=active;
+            while(remaining>0){
+                const auto accumulated=required(deceleration_accumulator_,"Dog deceleration requires actual clip140 accumulator producer");
+                if(wrap(accumulated,remaining)<=80){deceleration_accumulator_=wrap(accumulated,remaining);break;}
+                auto& velocity=required_reference(deceleration_velocity_,"Dog deceleration requires actual clip120 velocity producer");
+                const auto& reduction=required_reference(deceleration_reduction_,"Dog deceleration requires actual clip130 reduction producer");
+                for(unsigned n=0;n!=3;++n)velocity[n]=static_cast<float>(static_cast<long double>(velocity[n])-reduction[n]);
+                remaining=human_animation_time_integer(static_cast<long double>(remaining)-(80.f-static_cast<long double>(accumulated)));
+                deceleration_accumulator_=0;
+            }
+            const auto& velocity=required_reference(deceleration_velocity_,"Dog deceleration requires actual clip120 velocity producer");
+            add_scaled_motion(velocity,static_cast<long double>(active)*.001f); //No FLOAT seconds spill on this native branch.
+        }
+    }
     //005C7960 bridge resolves actual parentEC/Actor before this005C79B0
     //receiver. Only the text argument is read. Three event slots per group;
     //native counter-overwriting/out-of-array states remain explicit failures.
@@ -136,7 +189,7 @@ public:
 private:
     void require()const{if(!initialized_||!model_)throw std::runtime_error("Dog clips require actual005C6E10 model/reset producer");}
     static unsigned slot(unsigned group,std::int32_t lane){if(group>=2||lane<0||lane>1)throw std::runtime_error("Dog clip reaches native invalid engine slot");return group*2+static_cast<unsigned>(lane);}
-    static std::int32_t wrap(std::int32_t a,std::int32_t b){return dog_order_signed(static_cast<std::uint32_t>(a)+static_cast<std::uint32_t>(b));}
+    static std::int32_t wrap(std::int32_t a,std::uint32_t b){return dog_order_signed(static_cast<std::uint32_t>(a)+static_cast<std::uint32_t>(b));}
     static long double blend_ratio(float elapsed,float step,float duration){const auto denominator=static_cast<long double>(duration)*.01f;const auto previous=(static_cast<long double>(elapsed)-step)/denominator;return ((static_cast<long double>(elapsed)/denominator-previous)*.5f+previous)*.01f;} //007724A0, existing source helper.
     static void set_blend(Blend& blend,const Request& r){blend.weight=r.weight;blend.duration=r.blend;blend.separate=r.separate;blend.elapsed=0;blend.flags=0;blend.rate=1;}
     static void append_event(Group& group,std::uint32_t value){if(group.event_count<0||group.event_count>=3)throw std::runtime_error("Dog animation event reaches native counter/array overlap");group.events[static_cast<unsigned>(group.event_count)]=value;++group.event_count;}
@@ -144,7 +197,13 @@ private:
     Frame model_{},marker_{};bool initialized_=false,changed_=false;
     std::array<Group,2> groups_;std::array<Blend,4> blends_;
     float fraction_=0,old_stride_=0,stride_=0;
-    std::array<float,3> movement_{};std::int32_t deceleration_timer_=-10000;
+    static float stored_square_xyz(const Vector& v){return static_cast<float>((static_cast<long double>(v[0])*v[0]+static_cast<long double>(v[1])*v[1])+static_cast<long double>(v[2])*v[2]);}
+    template<class T>static T required(const std::optional<T>& v,const char* message){if(!v)throw std::runtime_error(message);return *v;}
+    template<class T>static T& required_reference(std::optional<T>& v,const char* message){if(!v)throw std::runtime_error(message);return *v;}
+    void add_scaled_motion(const Vector& vector,long double factor){movement_[0]=static_cast<float>(factor*vector[0]+movement_[0]);for(unsigned n=1;n!=3;++n){const float component=static_cast<float>(factor*vector[n]);movement_[n]=static_cast<float>(static_cast<long double>(component)+movement_[n]);}}
+    Vector movement_{};std::int32_t deceleration_timer_=-10000;
+    std::optional<Vector> deceleration_velocity_,deceleration_reduction_;
+    std::optional<std::int32_t> deceleration_accumulator_,deceleration_elapsed_;
 };
 }
 #endif

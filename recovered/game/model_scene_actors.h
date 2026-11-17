@@ -5,6 +5,8 @@
 #include "game/dog_body_actions.h"
 #include "game/dog_body_collisions.h"
 #include "game/dog_clip_mixer.h"
+#include "game/dog_body_transform.h"
+#include "game/dog_body_state.h"
 #include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/supply_box_geometry.h"
@@ -40,6 +42,8 @@ public:
     DogClipForcedMotion clip_forced_motion; //Actual clip005C75C0 producer, no cold motion claim.
     std::unique_ptr<DogClipLifetime<Frame>> clip; //Published before005C6E10 installs its model callback.
     DogBodyActions body_actions{body_orders}; //005C5030/8490/8540/8570 use these SAME records.
+    DogBodyTransform body_transform{body_actions}; //Same3E0 flags, no mirrored pose/control owner.
+    DogBodyState<Frame> body; //Actual bootstrap markers/scalars, shared by controller and damage.
     std::uint32_t& field330=body_orders.current.field1c;
     std::uint32_t& field334=body_orders.current.field20;
     std::array<Record,5>& records=body_orders.records;

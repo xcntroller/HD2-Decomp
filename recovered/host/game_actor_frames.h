@@ -811,6 +811,12 @@ public:
         put(frame,0xd0,size);put(frame,0xd4,size);put(frame,0xd8,.05000000074505806f);put(frame,0xdc,lane);
         car_rotation(frame);put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
     }
+    void dog_clear_animation2_position(Frame marker){ //005C7D30/005C5BF0, direct XYZ; static80 suppresses writes.
+        if(!marker)throw std::runtime_error("Dog Body requires actual anim2 marker");
+        const auto flags=field<std::uint32_t>(marker,0xe0);if(flags&0x80u)return;
+        for(unsigned n=0;n!=3;++n)put(marker,0xb0+n*4,0.f);
+        put(marker,0xe0,(flags&0xfffffedfu)|0x40000000u);
+    }
     void human_reaction_model_direction(Frame model,const Vector& direction){call<void>(model,0xc,&direction,0.f);}
     void place_human_reaction_model(Frame model){const auto world=actor_world_matrix(model);const Vector position{{world[12],world[13],world[14],world[15]}};call<void>(scene_.frame(),0xec,model,&position);}
     void register_human_effect_model(Frame model,Frame z,Frame q){call<void>(scene_.frame(),0x138,model,z,q);} //007B2B3D..007B2B4C, actual retained markers.

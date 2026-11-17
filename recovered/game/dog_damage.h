@@ -23,17 +23,18 @@ public:
         constexpr std::array<const char*,7> names{{"f","d","c","h","p","t","l"}};
         for(std::size_t n=0;n!=bones_.size();++n)bones_[n]=frames_.actor_find(model,names[n],0xffff);
     }
+    DogDamageGeometry(Frames& frames,const std::array<Frame,7>& actual_bones):frames_(frames),borrowed_bones_(&actual_bones){} //SAME005C7D30 slots.
     std::array<Vector,7> positions(){ //005D73B0 updates/reads every frame before selecting any distance.
-        std::array<Vector,7> result{};
+        std::array<Vector,7> result{};const auto& bones=borrowed_bones_?*borrowed_bones_:bones_;
         for(std::size_t n=0;n!=bones_.size();++n){
-            if(!bones_[n])throw std::runtime_error("Dog damage requires its actual skeletal frame");
-            const auto matrix=frames_.car_world_matrix(bones_[n]);
+            if(!bones[n])throw std::runtime_error("Dog damage requires its actual skeletal frame");
+            const auto matrix=frames_.car_world_matrix(bones[n]);
             for(unsigned axis=0;axis!=3;++axis)result[n][axis]=matrix[12+axis];
         }
         return result;
     }
 private:
-    Frames& frames_;std::array<Frame,7> bones_{};
+    Frames& frames_;std::array<Frame,7> bones_{};const std::array<Frame,7>* borrowed_bones_=nullptr;
 };
 
 //005D73B0. Raw00404260 is the XYZ constructor;0040E080 writes point-l

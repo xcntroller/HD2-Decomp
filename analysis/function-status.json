@@ -49952,7 +49952,7 @@
       "program": "client",
       "entry": "005c7d30",
       "status": "partial",
-      "coverage": "Collision prefix only: exact literal/kind6 marker lookup, same anchor/radius producer and five ordered actual same-grid physical/damage descriptor registrations with prefix cleanup. Remaining Body bootstrap is excluded.",
+      "coverage": "Collision prefix only: exact literal/kind6 marker lookup, same anchor/radius producer and five ordered actual same-grid physical/damage descriptor registrations with prefix cleanup. Remaining Body bootstrap is excluded. Compose same clip/collision/orders/transform/markers/scalars and final requests in native bootstrap order; preserve unwritten-priority failure.",
       "limitations": "Source-only typed partial-body/owner reconstruction as specified. Full Dog Body movement/controllers/bootstrap/activation/frame remain required; no cold readiness, invented native values, original ABI, engine body, application or desktop equivalence. Native audit uses explicit frame/bounds/engine endpoints; actual full World/module/i386/launcher compile/link only. Absent callback/helper bodies receive no credit.",
       "evidence": [
         "recovered/game/dog_body_collisions.h",
@@ -49962,7 +49962,9 @@
         "recovered/host/game_dog_animation_events.h",
         "recovered/host/game_actor_frames.h",
         "analysis/human-h8-dog-collision-clip-source.md",
-        "analysis/checkpoints/p2.2-human-h8-dog-collision-clip-20261117.json"
+        "analysis/checkpoints/p2.2-human-h8-dog-collision-clip-20261117.json",
+        "recovered/game/dog_body_state.h",
+        "analysis/human-h8-dog-motion-bootstrap-source.md"
       ]
     },
     {
@@ -50167,6 +50169,90 @@
         "recovered/host/game_actor_frames.h",
         "analysis/human-h8-dog-collision-clip-source.md",
         "analysis/checkpoints/p2.2-human-h8-dog-collision-clip-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c71e0",
+      "status": "partial",
+      "coverage": "Compose actual clip stride/rate/fraction, shared forced motion and stepped deceleration with native signed expiry and spill ordering.",
+      "limitations": "Source typed owners replace native class/vtable/allocator/SEH ABI. Qualified native sanitizer and actual i386 World graph checks; live controller/frame/activation and desktop acceptance remain required. No new engine credit.",
+      "evidence": [
+        "recovered/game/dog_clip_mixer.h",
+        "analysis/human-h8-dog-motion-bootstrap-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c7600",
+      "status": "partial",
+      "coverage": "Initialize actual clip deceleration velocity, normalized per80ms reduction, duration and elapsed counters.",
+      "limitations": "Source typed owners replace native class/vtable/allocator/SEH ABI. Qualified native sanitizer and actual i386 World graph checks; live controller/frame/activation and desktop acceptance remain required. No new engine credit.",
+      "evidence": [
+        "recovered/game/dog_clip_mixer.h",
+        "analysis/human-h8-dog-motion-bootstrap-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c75b0",
+      "status": "partial",
+      "coverage": "Return actual Dog clip displacement XYZ, preserving unclaimed native padding.",
+      "limitations": "Source typed owners replace native class/vtable/allocator/SEH ABI. Qualified native sanitizer and actual i386 World graph checks; live controller/frame/activation and desktop acceptance remain required. No new engine credit.",
+      "evidence": [
+        "recovered/game/dog_clip_mixer.h",
+        "analysis/human-h8-dog-motion-bootstrap-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c0f50",
+      "status": "partial",
+      "coverage": "Implement one-vector Body position request, actual model reference, native distance spills, flags and interpolation166 bound.",
+      "limitations": "Source typed owners replace native class/vtable/allocator/SEH ABI. Qualified native sanitizer and actual i386 World graph checks; live controller/frame/activation and desktop acceptance remain required. No new engine credit.",
+      "evidence": [
+        "recovered/game/dog_body_transform.h",
+        "analysis/human-h8-dog-motion-bootstrap-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c0d10",
+      "status": "partial",
+      "coverage": "Snapshot requested position before clearing Body3E0 bit2 and call actual one-vector position worker.",
+      "limitations": "Source typed owners replace native class/vtable/allocator/SEH ABI. Qualified native sanitizer and actual i386 World graph checks; live controller/frame/activation and desktop acceptance remain required. No new engine credit.",
+      "evidence": [
+        "recovered/game/dog_body_transform.h",
+        "analysis/human-h8-dog-motion-bootstrap-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c0d60",
+      "status": "partial",
+      "coverage": "Normalize actual model forward, compare fresh desired direction and publish snapshot through model0C then fresh model24.",
+      "limitations": "Source typed owners replace native class/vtable/allocator/SEH ABI. Qualified native sanitizer and actual i386 World graph checks; live controller/frame/activation and desktop acceptance remain required. No new engine credit.",
+      "evidence": [
+        "recovered/game/dog_body_transform.h",
+        "analysis/human-h8-dog-motion-bootstrap-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005c8370",
+      "status": "partial",
+      "coverage": "Publish/init SAME Dog clip before full Body initialization and preserve required failure prefixes.",
+      "limitations": "Source typed owners replace native class/vtable/allocator/SEH ABI. Qualified native sanitizer and actual i386 World graph checks; live controller/frame/activation and desktop acceptance remain required. No new engine credit.",
+      "evidence": [
+        "recovered/game/dog_body_state.h",
+        "analysis/human-h8-dog-motion-bootstrap-source.md",
+        "analysis/checkpoints/p2.2-human-h8-dog-motion-bootstrap-20261117.json"
       ]
     }
   ]

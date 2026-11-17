@@ -25,6 +25,12 @@ public:
         current364=next368=23;timer370=death374=0;voice37c=voice380=voice384=-1;
         flags3e0=animation2_168=0;flag36c=false;speed248=1;animation2_position170.fill(0);scalars_produced_=true;
     }
+    void initialize_action_prefix(){ //005C7D30 before the first model-matrix read.
+        current364=next368=23;flag36c=false;flags3e0=0;
+    }
+    void initialize_voice_tail(){ //005C7D30 after all eight skeletal lookups.
+        voice37c=voice380=voice384=-1;scalars_produced_=true;
+    }
     void request_posture(std::uint32_t value,std::int32_t priority){ //005C8540.
         if(require(priority27c,"Dog posture requires actual Body27C priority producer")<=priority){priority27c=priority;posture270=value;}
     }
