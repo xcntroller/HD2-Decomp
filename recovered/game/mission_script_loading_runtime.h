@@ -60,6 +60,11 @@ public:
     bool human_selected_suppressed(Human& human){return dependencies_.world.human_selected_suppressed(human);}
     bool script_human_sees_enemy(Human& human){return dependencies_.controls.sees_enemy(human);}
     std::uint32_t script_human_alarm_type(Human& human){return dependencies_.controls.alarm_type(human);}
+    void script_checkpoint_teleport(typename Frames::Frame frame,const std::string& position,const std::string& direction){dependencies_.world.script_checkpoint_teleport(frame,position,direction);}
+    void script_item_teleport(SceneActor<Frames>& actor,typename Frames::Frame parent){dependencies_.world.script_item_teleport(actor,parent);}
+    void script_make_explosion(const HumanVector& point,float radius,float power){dependencies_.world.script_make_explosion(point,radius,power);}
+    void script_remove_human_definition(Human& human,std::int32_t definition){dependencies_.world.script_remove_human_definition(human,definition);}
+    void script_frame_particle(typename Frames::Frame frame,std::uint32_t definition){dependencies_.world.script_frame_particle(frame,definition);}
     void script_actor_state(SceneActor<Frames>& actor,std::uint32_t state){dependencies_.world.script_actor_state(actor,state);}
     void script_clear_hints(){dependencies_.world.script_clear_hints();}
     void script_add_hint(std::uint32_t identity){dependencies_.world.script_add_hint(identity);}

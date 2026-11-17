@@ -106,6 +106,7 @@ public:
     void registered(bool value) {registered_=value;}
     const std::string& name() const {return name_;}
     void name(std::string value) {name_=std::move(value);}
+    const auto& activation_local_rotation()const{return local_rotation_;} //Native60 quaternion, common00610240.
     Frame field70() const {return parent_?parent_->get():Frame{};}
     std::uint32_t field7c() const {return field7c_;}
     void field7c(std::uint32_t value) {field7c_=value;}

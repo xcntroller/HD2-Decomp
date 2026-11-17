@@ -201,6 +201,15 @@ public:
             else{initial_->finalizer.engine_transition=true;initial_->drive.running=true;initial_->engine_timeout=0;}
         },[&]{restore_car_deformable_parts(frames_,*actor_.geometry,actor_.callbacks->empty6b4);});
     }
+    void suspend_for_teleport()override{
+        if(!initial_||!body_collision_)throw std::logic_error("Car teleport requires its actual physical owner");
+        suspend_car_for_reset(frames_,*actor_.geometry,*initial_,resources_.particles,body_collision_->state(),false);
+    }
+    bool teleport_engine_state()const override{
+        if(!initial_)throw std::logic_error("Car teleport requires actual engine state");
+        return initial_->finalizer.engine_transition;
+    }
+    void restore_teleport_engine(bool running)override{request_engine(running,false);}
     void reset_event()override{ //004DB2A0→004DD0D0(true), selected offline7 entry.
         reset_round(true);
     }

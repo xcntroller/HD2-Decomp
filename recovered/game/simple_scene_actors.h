@@ -2,6 +2,7 @@
 #define HD2_GAME_SIMPLE_SCENE_ACTORS_H
 
 #include "game/scene_actor.h"
+#include "game/pike_frame_motion.h"
 #include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/sound_emission.h"
@@ -203,13 +204,34 @@ public:
         }
         errors.rethrow();
     }
-    void update_authority(std::uint32_t,std::uint32_t mode)const { //005B9340 cold/nonmoving/actual mode2 skip.
-        if(properties.field184!=0&&properties.field184!=1&&!(mode&2u))throw std::runtime_error("Pike authority movement requires its actual rotation receiver");
+    template<class World>void change_state(std::uint32_t command,World& world){ //005B8EA0: Use notification precedes packet/state.
+        world.pike_script_use(this->base_.frame(),command);
+        if(command!=2&&command!=3)return;
+        auto& packet=world.session_broadcast_packets().begin(13,0);packet.write(static_cast<std::uint32_t>(this->base_.id10()),10);
+        packet.write(command==3?1u:0u,1);packet.finish_broadcast();properties.field184=command;
     }
-    void update_presentation(std::uint32_t elapsed) { //005B9470 cold stationary branch.
-        if(field188){field188-=elapsed;if(signed_word(field188)>0)return;field188=0;}
-        if(properties.field184==2||properties.field184==3)throw std::runtime_error("Pike presentation movement requires its actual rotation/sound receiver");
+    template<class World>void receive_loading_packet(SessionPacketStream& packet,World& world){ //005B9EC0, exactly one command bit.
+        const auto command=packet.read(1);const auto start=properties.fields194[command];
+        if(start!=0xffffffffu){
+            (void)emit_motion_sound(start,1,world);
+            const auto loop=properties.fields194[2];sound.words[4]=9;sound.words[8]=loop;
+            if(loop!=0xffffffffu&&voice180_==-1)voice180_=world.emit_pike_sound(sound_request());
+        }
+        properties.field184=command?3u:2u;
     }
+    template<class World>void finish_motion_sound(unsigned index,World& world){
+        (void)emit_motion_sound(properties.fields194.at(index),1,world);
+        if(voice180_!=-1){world.stop_actor_sound_voice(voice180_);voice180_=-1;}
+    }
+    template<class World>bool rotate_model(World& world){
+        typename Backend::Vector axis{};for(unsigned a=0;a!=3;++a)std::memcpy(&axis[a],&properties.vector90[a],4);
+        return rotate_pike_model(this->backend_,this->base_.frame(),this->base_.activation_local_rotation(),axis,field1a0,descriptor_,world);
+    }
+    void refresh_motion_history(){ //005B9470: model local cache BEFORE world/inverse and descriptor position.
+        const auto position=this->backend_.pike_local_translation(this->base_.frame());
+        inverse_=this->backend_.car_inverse_matrix(this->backend_.actor_world_matrix(this->base_.frame()));descriptor_.position=position;
+    }
+    template<class World>void frame_update(bool authority,std::uint32_t elapsed,World& world){advance_pike_frame(*this,authority,elapsed,world);}
     template<class Collisions>void refresh_collision(Collisions& collisions,bool insert) { //005B97B0.
         const auto frame=descriptor_.frame;if(!frame)return;
         typename Backend::Vector centre{};typename Backend::Bounds bounds;float radius;
@@ -240,9 +262,21 @@ public:
     const Descriptor& collision_descriptor()const{return descriptor_;}
     PikeActorProperties properties;
     SoundEmission sound;
-    std::uint32_t field188=0,field1a0=0;
+    std::uint32_t field188=0;float field1a0=0;
     bool flag130=false;
 private:
+    frontend::SpatialSoundRequest sound_request()const{
+        frontend::SpatialSoundRequest request;
+        for(unsigned a=0;a!=4;++a)request.position[a]=frontend::sound_float_word(sound.words[a]);
+        if(sound.words[5]||sound.words[6]||sound.words[9])throw std::logic_error("Pike sound requires actual relative/source/filename producer");
+        request.flags=sound.words[4];request.group=frontend::sound_signed_word(sound.words[7]);request.entry=frontend::sound_signed_word(sound.words[8]);
+        request.near_range=frontend::sound_float_word(sound.words[10]);request.far_range=frontend::sound_float_word(sound.words[11]);
+        request.voice_group=sound.words[12];request.near_scale=frontend::sound_float_word(sound.words[13]);
+        request.far_scale=frontend::sound_float_word(sound.words[14]);request.volume=frontend::sound_float_word(sound.words[15]);return request;
+    }
+    template<class World>std::int32_t emit_motion_sound(std::uint32_t identity,std::uint32_t flags,World& world){
+        sound.words[4]=flags;sound.words[8]=identity;return identity==0xffffffffu?-1:world.emit_pike_sound(sound_request());
+    }
     static std::int32_t signed_word(std::uint32_t value){std::int32_t result;std::memcpy(&result,&value,4);return result;}
     Descriptor descriptor_{};typename Backend::Matrix world_{},inverse_{};std::array<float,4> saved_rotation_{};
     std::function<void()> remove_collision_;void* collision_owner_=nullptr;std::int32_t voice180_=-1;bool ready_=false;

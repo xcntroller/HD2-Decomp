@@ -219,6 +219,10 @@ public:
     void update_door(game::DoorSceneActor<GameActorServices>& door,std::uint32_t elapsed) {
         require_open();auto queries=scene_.door_queries();door.frame_update(elapsed,*this,scene_.buckets(),queries,scene_.exclusions());
     }
+    auto& pike_collisions(){require_open();return scene_.buckets();}
+    void pike_script_use(GameActorServices::Frame frame,std::uint32_t command){const auto* data=scene_.frames().find_actor_frame_data(frame);if(data&&data->words[1])scene_.frames().actor_runtime().notify_switch_state(frame,command);} //0041D960 SAME context; null guard is below.
+    std::int32_t emit_pike_sound(const frontend::SpatialSoundRequest& request){return consumers_.emit_scene_actor_sound(request);}
+    void update_pike(game::PikeSceneActor<GameActorServices>& pike,bool authority,std::uint32_t elapsed){require_open();pike.frame_update(authority,elapsed,*this);}
     using Car=game::CarSceneActor<GameActorServices>;
     void activate_car(Car& actor,bool authority){
         require_open();
@@ -362,6 +366,7 @@ public:
         else if(actor.base().type()==15)return; //0060BE20, genuine RET4; no packet consumed.
         else if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
         else if(actor.base().type()==23)static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
+        else if(actor.base().type()==28)static_cast<game::PikeSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
         else if(actor.base().type()==29){auto& fowl=static_cast<Fowl&>(actor);if(!fowl.loading)throw std::runtime_error("Fowl packet requires its actual generated-bird owner");fowl.loading->launch(false,0);}
         else throw std::runtime_error("Required Scene2 actor packet receiver is unavailable");
     }

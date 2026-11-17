@@ -1,0 +1,547 @@
+{
+  "date": "2026-11-17",
+  "finalized_utc": "2026-11-17T18:13:04.043377+00:00",
+  "branch": "feature/p22-frame",
+  "source_base": "daccfba",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "source_files": [
+    {
+      "path": "recovered/game/actor_base.h",
+      "bytes": 6809,
+      "sha256": "12e1684fc7328b084fc0f0ec5ca6618cfc8865f3c547dd7530c4447dd9cbe13d"
+    },
+    {
+      "path": "recovered/game/car_loading_activation.h",
+      "bytes": 26091,
+      "sha256": "47a1a445567423764b887435eafd18fd56fca9b9ceb59b80b4bd3cc5ee561f11"
+    },
+    {
+      "path": "recovered/game/car_loading_lifetime.h",
+      "bytes": 3710,
+      "sha256": "337a26f89371097dab04be0a96c6e5783610de46da9aae35db9ba612b7afa53d"
+    },
+    {
+      "path": "recovered/game/car_physical_reset.h",
+      "bytes": 12269,
+      "sha256": "5f2ac60befe81c4e477109f16e543daffe283c7b8ac3d395a6fddb178a5573de"
+    },
+    {
+      "path": "recovered/game/dynamic_item_actor.h",
+      "bytes": 8753,
+      "sha256": "38a9135eec71814017d740368ae0dea94b581fedc617788a717a2ff1df2cd740"
+    },
+    {
+      "path": "recovered/game/human_inventory_retirement.h",
+      "bytes": 5263,
+      "sha256": "6da88d15b4908627342d3eaf1f01ce3ba2411105ca80da6da2d12f937aaab6aa"
+    },
+    {
+      "path": "recovered/game/human_script_loading_controls.h",
+      "bytes": 16501,
+      "sha256": "84be3748fee6c9e5020c9ea7b6d87510e44d33dc92b8ff4fc665e0d37ff5c848"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 333803,
+      "sha256": "4d2fa5e4bbe57d8582491bdae9dfd4e260a905fc6210906d0b3e25b2fe903b1b"
+    },
+    {
+      "path": "recovered/game/mission_script_actor_lifecycle.h",
+      "bytes": 9666,
+      "sha256": "d547f09738ea7acdbdf88c8fdd32249338788bf4be7b8e6595672fc306b6f589"
+    },
+    {
+      "path": "recovered/game/mission_script_checkpoint_teleport.h",
+      "bytes": 2943,
+      "sha256": "dbc57c593641d4ae349bd0498c569ce921e1efae47776592b4ef00d09ebdf004"
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "bytes": 13061,
+      "sha256": "b84e0b55045941d005114e2c4da9218308bda81463cb07aa23ea7fe70a70ba7e"
+    },
+    {
+      "path": "recovered/game/mission_script_presentation_commands.h",
+      "bytes": 4017,
+      "sha256": "6bdf006739048de41e900f856abd75124f41533d0a8481991580ccd7b104a2ce"
+    },
+    {
+      "path": "recovered/game/pike_frame_motion.h",
+      "bytes": 4534,
+      "sha256": "74035091f608e5e53895ea8c6109596958c09cf28af3f2c00e08ef9f5f5fcaab"
+    },
+    {
+      "path": "recovered/game/scene_actor_frame.h",
+      "bytes": 4179,
+      "sha256": "4e2742dfeb08c150d702194b8589adb38582c340d5254e319367c3832cbc51df"
+    },
+    {
+      "path": "recovered/game/simple_scene_actors.h",
+      "bytes": 20012,
+      "sha256": "0f74fbe22d53cffe348c17c060618fc73269f01a3126f17cdcc67c24e8f56850"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 143716,
+      "sha256": "d38bdccbda39bb3ee84a174d9aa8d1173cea23ffd2c56e9580f4db747e62cbf1"
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "bytes": 22278,
+      "sha256": "7f01a865e467bb9b96936ec4a464c77f0c0237ef3fc8a39eb9f0676e3eed7e5f"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "bytes": 36258,
+      "sha256": "371b171d6e6416c4496a8ae8df00eea42e98de8a3e7b8e2b0807073c5cb2d04a"
+    }
+  ],
+  "original_function_addresses": [
+    "00416E10",
+    "00421C00",
+    "0042B650",
+    "005AF760",
+    "007D7810",
+    "005A7B30",
+    "005A78F0",
+    "005A7B70",
+    "0045D100",
+    "0045E5D0",
+    "006DF170",
+    "005B7920",
+    "005B76A0",
+    "005B7DA0",
+    "0041AC08",
+    "0051E1A0",
+    "0051D5A0",
+    "004E95B0",
+    "004E9DB0",
+    "004F2530",
+    "0041D650",
+    "0041D700",
+    "0041D720",
+    "0041D110",
+    "0041D800",
+    "005B8EA0",
+    "005B9E70",
+    "005B9EC0",
+    "005B9340",
+    "005B9470",
+    "005B8F00",
+    "005B97B0"
+  ],
+  "coverage": {
+    "selected_binding_programs": 114,
+    "recursive_literal_assign_programs": 17,
+    "compiled_programs": 131,
+    "missing_dispatch_types": 0,
+    "new_command_types_decimal": [
+      28,
+      100,
+      114,
+      127,
+      145,
+      146,
+      254
+    ],
+    "set_actor_state_sites": 27,
+    "literal_targets": 13,
+    "door_targets": 12,
+    "pike_targets": 1,
+    "scope": "Actual compiler/resource inspection and static dispatch/literal target census; no successful engine runtime or desktop execution is inferred."
+  },
+  "native_verification": {
+    "checks": 713,
+    "sanitizers": [
+      "ASan",
+      "UBSan",
+      "leak detection"
+    ],
+    "audits": [
+      {
+        "name": "startup-script-inventory-native",
+        "checks": 51,
+        "result": "PASS native ASan/UBSan/leak detection",
+        "files": [
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-script-inventory-native.cpp",
+            "bytes": 3266,
+            "sha256": "33c49c3c60f7c044596a01c4f7a6dbe9e51ba65d90d842010700bb6e4c5a8d1c"
+          },
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-script-inventory-native",
+            "bytes": 652472,
+            "sha256": "38b61661cdfc66fa9fd414f7cb3ce633ea477508afd6b2e438e4df190dd1a856"
+          }
+        ],
+        "temporary_files_removed_after_verification": true
+      },
+      {
+        "name": "startup-script-lifecycle-native",
+        "checks": 77,
+        "result": "PASS native ASan/UBSan/leak detection",
+        "files": [
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-script-lifecycle-native.cpp",
+            "bytes": 6151,
+            "sha256": "f9bf20ad5c7b3663a4cc3334a3541d5d68c500f3f153cac4e251c5fac0ffed46"
+          },
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-script-lifecycle-native",
+            "bytes": 2320368,
+            "sha256": "e91ef34e35771ffdebc3b6da05f5365216b851e2639c882198f69e5ea1786046"
+          }
+        ],
+        "temporary_files_removed_after_verification": true
+      },
+      {
+        "name": "startup-checkpoint-teleport-native",
+        "checks": 244,
+        "result": "PASS native ASan/UBSan/leak detection",
+        "files": [
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-checkpoint-teleport-native.cpp",
+            "bytes": 7623,
+            "sha256": "40cca0ebb1d7166e1bba68a1cfd5540ea2769f33e8fc12a170a2beba6681dc1f"
+          },
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-checkpoint-teleport-native",
+            "bytes": 2209632,
+            "sha256": "f824ba391f7d84d70103b3d9fe64878e7c6eba0c086aa57ee89a16587d8cd06a"
+          }
+        ],
+        "temporary_files_removed_after_verification": true
+      },
+      {
+        "name": "startup-car-teleport-suspend-native",
+        "checks": 52,
+        "result": "PASS native ASan/UBSan/leak detection",
+        "files": [
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-car-teleport-suspend-native.cpp",
+            "bytes": 2675,
+            "sha256": "9d911d20e9003e0397c0508ff01988bebdc70be3d3d2fc9787d663059ccb3c65"
+          },
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-car-teleport-suspend-native",
+            "bytes": 829064,
+            "sha256": "baeeec3102d091aa8499325e6b6b0760b782fe3136bf586b5a1187e6e3ec31ff"
+          }
+        ],
+        "temporary_files_removed_after_verification": true
+      },
+      {
+        "name": "startup-pike-native",
+        "checks": 289,
+        "result": "PASS native ASan/UBSan/leak detection",
+        "files": [
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-pike-native.cpp",
+            "bytes": 6538,
+            "sha256": "ffdb579d0c21365e4ddc132e28fe4ffe3984803396adda53240ac72685936ab4"
+          },
+          {
+            "path": "analysis/work/p22-frame-closure-20261117/startup-pike-native",
+            "bytes": 2083264,
+            "sha256": "0c5a56313004c8109b21e05814fd938f7215433ce90d34b4745baf80b992f6c5"
+          }
+        ],
+        "temporary_files_removed_after_verification": true
+      }
+    ],
+    "scope": "Actual recovered policies/VM/packet/inventory with explicit engine/collision/World/SOUND leaves; positive engine endpoints are doubles, not credited original bodies."
+  },
+  "builds": [
+    {
+      "directory": "/home/control/Documents/Projects/HD2-Decomp-p22-frame",
+      "targets": [
+        "application-launch",
+        "startup-probe"
+      ],
+      "flags": "O2 Werror -j1",
+      "result": "PASS",
+      "log": "analysis/work/p22-frame-closure-20261117/startup-recursive-pike-main-build.log"
+    },
+    {
+      "directory": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+      "targets": [
+        "application-launch",
+        "startup-probe"
+      ],
+      "flags": "O2 Werror -j1",
+      "result": "Interrupted by user-reported PC crash; incomplete log preserved",
+      "log": "analysis/work/p22-frame-closure-20261117/startup-recursive-pike-final-review-build.log"
+    },
+    {
+      "directory": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review",
+      "targets": [
+        "application-launch",
+        "startup-probe"
+      ],
+      "flags": "O2 Werror -j1",
+      "result": "PASS resumed after PC restart",
+      "log": "analysis/work/p22-frame-closure-20261117/startup-recursive-pike-resumed-review-build.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-inputs.json",
+      "bytes": 60520,
+      "sha256": "ba51d7f5ca7684d7034345257e76d5e3cb400f4270e7a3fc99597116ef378b22"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-recursive-inputs.json",
+      "bytes": 9301,
+      "sha256": "489757b3ebd80799a55f562f85ea08aab4a2964090d8e415a043c51a7f1930ad"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-recursive-programs.json",
+      "bytes": 806323,
+      "sha256": "3d0d8f66fac1638563b5d4aee514a44663972ac2f219aa9851e4d7280a81ac04"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-recursive-coverage.json",
+      "bytes": 13976,
+      "sha256": "14267096295a7e20ad1daa3bf6cadbb9bb2af4ff34c9352355f8c9776f1f5834"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-coverage-recursive-final.json",
+      "bytes": 7637,
+      "sha256": "eb9c52798d2ff582f14f65abde086e5389ec9652e152a531f7df6a2a3842cce8"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-actor-state-targets.json",
+      "bytes": 4920,
+      "sha256": "603f2313b258d18ec03f1231cd211b3c138fc7de6125dd8d73bfede8e3918996"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-recursive-native-audit-fingerprints.json",
+      "bytes": 3218,
+      "sha256": "1aa6e809b8c764d0f46a8040cb736f03b5902fd3a7ef0163bf2d16a6e35c9064"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-lifecycle-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-lifecycle-native-run.log",
+      "bytes": 81,
+      "sha256": "c9472c8720ac3a42835f96d82557495dada0e3c7f56d7e11b685d7ab5a9738d4"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-checkpoint-teleport-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-checkpoint-teleport-native-run.log",
+      "bytes": 79,
+      "sha256": "a01794cd15d960df0bbd20b2e745216f0892fec805b4ad9d963cfc283cf26f35"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-car-teleport-suspend-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-car-teleport-suspend-native-run.log",
+      "bytes": 56,
+      "sha256": "97675c95456d16368dd89b216d5636abd004637e7ac9fb8386c9b930845a5591"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-native-run.log",
+      "bytes": 78,
+      "sha256": "8f56d3673ec0779412350964ccb2207c14a1873baf49724b1ca88ce05ef7f69d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-recursive-pike-main-build.log",
+      "bytes": 939,
+      "sha256": "bd866a1cef9adf657435aa78598543820137e9616c5da5cfc9ce5701a0a2921d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-recursive-pike-final-review-build.log",
+      "bytes": 564,
+      "sha256": "3712e531d98281356c13483e42ca0e81262e24d4026364817c56ab8e6cf3b262"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-recursive-pike-resumed-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-recursive-pike-resumed-stage-only.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-recursive-review-final.patch",
+      "bytes": 259475,
+      "sha256": "bbc27300a7433ee6d4f99d0c545644fd79ce3c14f7c123c4277bf346bea021fd"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-teleport-index.txt",
+      "bytes": 10116,
+      "sha256": "d07f962794c99f07d7027785bf8d03082100c41f0090f47e4d9f87af91aacbb3"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-human-teleport-refresh.asm",
+      "bytes": 3102,
+      "sha256": "32394df33de95c900b060d195e16f8ddaac3131fbcba0da43b6e68dbe485d95a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-teleport-pose-accessors.asm",
+      "bytes": 1539,
+      "sha256": "22b49cf4095e11a1c105fa9365501d4e0b00e2dbab911a4746748d917a9a0161"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-checkpoint-normalization.asm",
+      "bytes": 4626,
+      "sha256": "ad41663f93bcbc590f2e002c2e6071d4f9f48fdfe78d09a26f3e82e55ffab67d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-loose-item-teleport-publication.asm",
+      "bytes": 4889,
+      "sha256": "fa0b470b8a15a107e111b82c620c2018fb9f2f8d11ab05f5390bd6861f1c5fae"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-loose-item-teleport.asm",
+      "bytes": 11153,
+      "sha256": "38594c43a89b8a11c521664f8c0576f01ff4444d443fe66109f422712ec4f68a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-opening-explosion.asm",
+      "bytes": 2898,
+      "sha256": "7913fddbfd80be8eaa3f1d7f0a81839ebab5f734ad549e9a17239ed4eb7ee833"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-item-create.asm",
+      "bytes": 837,
+      "sha256": "c8c391f46fcb4b7dd1685baec214f3f2607f281710987c7c9eed967df40ec61e"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-item-remove.asm",
+      "bytes": 1492,
+      "sha256": "ae84c3066b6d6490e383786a322fd14a4e7321e9d3f09602c4c14be6b2ec822d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-pike-index.txt",
+      "bytes": 2155,
+      "sha256": "8db5e86acb1ae6a045f5232e4f3d84cf6873830ce5123ab79ee81e5b93b579b2"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-pike-dependencies-index.txt",
+      "bytes": 5797,
+      "sha256": "a6b49a1574aa2026180df29781fb2860b6625b21d3066e235ec9d4095cb15600"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-pike-motion-index.txt",
+      "bytes": 1485,
+      "sha256": "589a9fb3bbff7fea85bdc2401f4a773ea924d3cdec591758c26ba94a8dc62287"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-state-packet.asm",
+      "bytes": 6266,
+      "sha256": "854d0e748b3f4d635b8ba962270a61e640e31e039b3a660d54f4a149a4559c16"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-motion-dot.asm",
+      "bytes": 720,
+      "sha256": "8804f586d69e325f18438c306a7ff784edb229c343e6047e2ca6b9e2ab40a948"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-rotation-full.asm",
+      "bytes": 16282,
+      "sha256": "091791a16d5a072ed6b5c358c4a0f31c56af074aea11645ac493e4abe187b41d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-frame-full.asm",
+      "bytes": 12116,
+      "sha256": "a96f15fd3b5dbb62d6f9f4d9fc3b600d1532e8e6c12a382181639c1f67f4c9c6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-motion-corners.asm",
+      "bytes": 10446,
+      "sha256": "f6d665c9d94c34bb805cad131300653908269a9d95b48b7d38a3bca14b183a14"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-motion-export.log",
+      "bytes": 4459,
+      "sha256": "4d80c490d5f8f3f07778fd40302021277b99f3bd66d0edfa67a2263d31c5b38b"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-loose-item-teleport-original/005b76a0.c",
+      "bytes": 3163,
+      "sha256": "734779e388392dbfe239b74b30767b9fdaff0c5b5f95e01fb58007cf58dbd2aa"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-loose-item-teleport-original/005b76a0.json",
+      "bytes": 7099,
+      "sha256": "21fd69179c91e2b4d6c65fa85c7b3f32a3bacc1172170d92054793565228cbde"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-motion-original/005b8f00.c",
+      "bytes": 5551,
+      "sha256": "87902f5fab8d43892dfbaaee991404347528c12814f49e015668f6f546abe779"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-pike-motion-original/005b8f00.json",
+      "bytes": 14716,
+      "sha256": "67784904c6cf7c69df0eb2af6d8d84a42d3bb15749e313c0e453f88f89f50275"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script28-return-20261117T1743/manifest.json",
+      "bytes": 997,
+      "sha256": "921b16aeb55929d4ccc4cbf1fc805f73682fd7803cb0e51960221d218cd8a6e7"
+    }
+  ],
+  "built_review": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+      "bytes": 13063680,
+      "sha256": "41bb65eb045acff064baee568b43f07f775c882b50b5e6ae093338b9180e5583"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "7438fc059d7cc1a12ade456eb5bacd409b3dfbbf54fc45a7352380ae8c3e8a29"
+    }
+  ],
+  "staging": {
+    "result": "PASS --stage-only; no Windows/DLL/Proton execution",
+    "executable": {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+      "bytes": 13063680,
+      "sha256": "41bb65eb045acff064baee568b43f07f775c882b50b5e6ae093338b9180e5583"
+    },
+    "log": "analysis/work/p22-frame-closure-20261117/startup-recursive-pike-resumed-stage-only.log",
+    "old_runtime_logs": "Refer to archived external script28 run, not this new staged executable."
+  },
+  "preservation": {
+    "own_head": "1d540834b9e36023fb09cf51047ce041c9610a6f",
+    "own_six_dirty_source_hashes": "unchanged",
+    "own_staged_executable_sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c",
+    "review_human_world_difference": "Only preexisting OWN focus_loading_command_human callback; all other batch source matches MAIN. Interactive review remains uncommitted."
+  },
+  "ledger": {
+    "counts": {
+      "partial": 3815,
+      "complete": 34
+    },
+    "identities_statuses_unchanged": true,
+    "new_function_credit": 0,
+    "matrix_promotion": false,
+    "desktop_acceptance": false
+  },
+  "remaining": [
+    "User Tutorial entry and continuation on newly staged executable.",
+    "Static131-program type coverage and literal targets do not prove all engine/runtime/conditional branches.",
+    "Nonoffline publication, positive command-modal GUI transitions, non-Tutorial SetActorState families and initial nonstationary Pike activation remain qualified boundaries."
+  ]
+}

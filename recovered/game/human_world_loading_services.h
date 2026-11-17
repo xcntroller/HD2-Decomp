@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #include "game/human_player_live_input.h"
 #include "game/human_script_nearest_player.h"
+#include "game/mission_script_checkpoint_teleport.h"
 #include "game/session_pending_spawn_prepare.h"
 #include "game/session_spawn_admission.h"
 #include "game/session_received_match.h"
@@ -146,10 +147,47 @@ public:
         auto& d=dependencies();auto& roster=human_remote_ai_enabled()?d.players.auxiliary().human_roster():d.players.control().human_roster();
         return nearest_human_script_player(source,roster,d.scene.frames(),*this);
     }
+    std::optional<HumanVector> script_checkpoint_point(const std::string& name,bool second){
+        auto& d=dependencies();auto& table=second?d.second_tables:d.scene.frames().mission_tables().sets()[0];
+        const auto index=human_vehicle::named_point(table,name);if(index==0xffff)return std::nullopt;
+        const auto point=MissionNavigation(table).position(index);return HumanVector{{point[0],point[1],point[2],0}};
+    }
+    template<class Actor>auto& script_teleport_car(Actor& actor){
+        auto* car=dynamic_cast<CarSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!car||!car->loading)throw std::logic_error("Checkpoint teleport requires SAME initialized Car");return *car->loading;
+    }
+    template<class Actor>void script_suspend_teleport_car(Actor& actor){script_teleport_car(actor).suspend_for_teleport();}
+    template<class Actor>void script_reset_teleport_car(Actor& actor){
+        auto& car=script_teleport_car(actor);const bool running=car.teleport_engine_state();car.physical_reset(0,true);car.restore_teleport_engine(running);
+    }
+    template<class Actor>void script_refresh_teleport_human(Actor& actor){
+        auto* human=dynamic_cast<typename Dependencies::Composition::Human*>(&actor);
+        if(!human)throw std::logic_error("Checkpoint teleport Human EC has wrong family");
+        auto* control=human_inline(*human).control();if(!control)throw std::logic_error("Checkpoint teleport requires live Human DD0");
+        control->publish_seat_ground_position(); //0041D800 matches00755500 position refresh exactly.
+    }
+    template<class Frame>void script_checkpoint_teleport(Frame frame,const std::string& position,const std::string& direction){
+        auto& frames=dependencies().scene.frames();const auto* data=frame?frames.find_actor_frame_data(frame):nullptr;
+        auto* actor=data?reinterpret_cast<SceneActor<typename Dependencies::ActorFrames>*>(data->words[0]):nullptr;
+        teleport_script_checkpoint(frames,actor,frame,position,direction,*this);
+    }
+    template<class Actor,class Frame>void script_item_teleport(Actor& actor,Frame parent){dependencies().world_actors.runtime().teleport_loose_item(actor,parent);}
+    void script_make_explosion(const HumanVector& point,float radius,float power){(void)dependencies().world_actors.heavy_fire_blast(nullptr,point,radius,power);} //SAME006DF170, no extra sound wrapper.
+    template<class Human>void script_add_npc_team_human(Human& human){(void)dependencies().players.control().add_human(&human);}
+    template<class Human>void script_create_human_item(Human& human,std::int32_t definition,std::int32_t slot){
+        (void)dependencies().world_actors.items().create_prepared_human_item(human,definition,slot,-1);
+    }
+    template<class Human>void script_remove_human_definition(Human& human,std::int32_t definition){
+        remove_human_inventory_definition(human,dependencies().world_actors.items(),definition,*this);
+    }
+    template<class Frame>void script_frame_particle(Frame frame,std::uint32_t definition){auto& d=dependencies();
+        (void)d.startup.mission_effects_process().emit(definition,d.scene.frames().actor_world_matrix(frame),frame,true,false);
+    }
     template<class Actor>void script_actor_state(Actor& actor,std::uint32_t state){ //00416E10's actual family switch, no generic virtual setter.
         switch(actor.base().type()){
         case 6:human_navigation_door(&actor).change_state(3u-std::uint32_t(state!=0),true,false,false,dependencies().world_actors);return;
-        case 7:case 9:case 13:case 14:case 21:case 22:case 23:case 25:case 28:case 29:case 34:case 35:case 38:
+        case 28:{auto* pike=dynamic_cast<PikeSceneActor<typename Dependencies::ActorFrames>*>(&actor);if(!pike)throw std::logic_error("SetActorState Pike has wrong actual owner");pike->change_state(3u-std::uint32_t(state!=0),dependencies().world_actors);return;}
+        case 7:case 9:case 13:case 14:case 21:case 22:case 23:case 25:case 29:case 34:case 35:case 38:
             throw std::runtime_error("SetActorState requires its actual family receiver: "+std::to_string(actor.base().type()));
         default:return; //Native default performs the shared guarded advance without an actor-state call.
         }

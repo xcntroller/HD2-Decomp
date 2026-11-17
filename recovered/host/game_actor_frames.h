@@ -1116,6 +1116,12 @@ public:
     void car_light_unregister(Frame receiver,Frame light){call<void>(receiver,0x78,light);} //004F61E0.
     void car_projector_texture(Frame projector,Frame texture){call<void>(projector,0x9c,texture);}
     void car_light_power(Frame light,float value){call<void>(light,0x88,value);}
+    Bounds pike_driver_bounds(Frame model){ //005B8F00 actual driverAC, distinct from client aggregate bounds.
+        std::array<float,8> box{};const auto* result=call<const float*>(driver_.frame(),0xac,box.data(),model);
+        if(!result)throw std::runtime_error("Pike driver bounds returned native NULL");
+        Bounds bounds;for(unsigned a=0;a!=3;++a){bounds.minimum[a]=result[a];bounds.maximum[a]=result[4+a];}return bounds;
+    }
+    Vector pike_local_translation(Frame model){if(!(field<std::uint32_t>(model,0xe0)&0x100u))call<void>(model,0x58);return field<Vector>(model,0x30);}
     void car_camera_position(Frame marker,const Vector& position){call<void>(marker,8,position.data());}
     std::uint32_t car_settling_ticks()const{return timeGetTime();} //004F67B0, actual multimedia clock.
     void car_place_in_scene(Frame model,const Vector& centre){call<void>(scene_.frame(),0xec,model,centre.data());} //004EAA07/0050B214.

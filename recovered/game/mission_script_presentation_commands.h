@@ -11,9 +11,15 @@ public:
     MissionScriptPresentationCommands(Frames& frames,Runtime& runtime,SessionBroadcastPackets& packets)
         :frames_(frames),runtime_(runtime),packets_(packets){}
     template<class Context>std::optional<bool> execute(Context& context,const MissionScriptInstruction& instruction){
-        const auto op=instruction.opcode;if(op!=0x6c&&op!=0x73&&op!=0xfa&&op!=0xfb&&op!=0xff&&op!=0x100&&op!=0x8f)return std::nullopt;
+        const auto op=instruction.opcode;if(op!=0x6c&&op!=0x73&&op!=0xfa&&op!=0xfb&&op!=0xff&&op!=0x100&&op!=0x8f&&op!=0x7f)return std::nullopt;
         if(!runtime_.script_authority())return false;
-        if(op==0xff)runtime_.script_clear_hints();
+        if(op==0x7f){ //0041A20C, begin/definition BEFORE slot/name; no native null-slot skip.
+            auto& packet=packets_.begin(4,0);packet.write(op,8);
+            packet.write(context.program().integers.at(instruction.operands.at(0)).value,8);
+            const auto frame=context.slot(instruction.operands.at(1));if(!frame)throw std::runtime_error("FRM_CreateParticle reached native NULL frame-name receiver");
+            packet.write_string(frames_.frame_name(frame));packet.finish_broadcast();
+        }
+        else if(op==0xff)runtime_.script_clear_hints();
         else if(op==0x100)runtime_.script_add_hint(context.program().integers.at(instruction.operands.at(0)).value);
         else if(op==0x8f)runtime_.script_play_music(context.program().integers.at(instruction.operands.at(0)).value);
         else if(op==0xfa||op==0xfb){
@@ -33,6 +39,12 @@ public:
     bool receive_opcode(std::uint32_t op,SessionPacketStream& packet){
         if(op==0xfa){runtime_.script_subtitles_show(packet.read(1)!=0);return true;}
         if(op==0xfb){runtime_.script_subtitles_select(packet.read(32));return true;}
+        if(op==0x7f){
+            const auto definition=packet.read(8);const auto name=packet.read_string(0xff);
+            if(!frames_.script_scene_available())throw std::runtime_error("Script particle decoder reached native NULL scene");
+            if(const auto frame=frames_.find_scene_frame(name,0xffffu))runtime_.script_frame_particle(frame,definition);
+            return true;
+        }
         if(op!=0x6c)return false;
         const auto name=packet.read_string(0xff);const auto identity=packet.read(32);
         const float near_range=static_cast<float>(packet.read(8)),far_range=static_cast<float>(packet.read(8));

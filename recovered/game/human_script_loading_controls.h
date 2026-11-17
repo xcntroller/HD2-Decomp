@@ -56,6 +56,10 @@ public:
         if(auto* state=script(human))(void)lookup_.request_human_vehicle_point(*state,*point,speed,*point==0xffff?-1:pc);
         return *point!=0xffff;
     }
+    void create_store_item(Human& human,std::int32_t definition,std::int32_t slot){lookup_.script_create_human_item(human,definition,slot);} //005AF760 has NO state5 gate.
+    void promote_npc_team(Human& human){ //004184B0→0045D100(true), then native working/suspension/state selection.
+        lookup_.script_add_npc_team_human(human);working_mode(human,0);suspend(human,false);end_script(human);
+    }
     void stop(Human& human){if(auto* state=script(human))state->stop_script_commands(lookup_);} //005AF430→0058F640.
     void named_animation(Human& human,const std::string& name,std::int32_t blend,std::int32_t fade,bool loop){ //005AF780→00591230.
         if(!script(human))return;
@@ -162,7 +166,7 @@ template<class Frames,class Human,class Controls,class Runtime>std::optional<boo
 //actual base00416E10 receiver first, then this derived Human receiver.
 template<class Frames,class Human,class Controls,class Runtime>std::optional<bool> execute_human_loading_script_command(
         MissionScriptContext<Frames>& context,const MissionScriptInstruction& instruction,Controls& controls,Runtime& runtime){
-    switch(instruction.opcode){case 0x25:case 0x38:case 0x3f:case 0x43:case 0x1f:case 0xc5:case 0xc6:case 0xc8:case 0xc9:case 0xca:case 0xcb:case 0xcd:case 0xce:case 0xc4:case 0x1d:case 0x21:case 0x26:case 0x2b:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:case 0x44:break;default:return std::nullopt;}
+    switch(instruction.opcode){case 0x1c:case 0x25:case 0x38:case 0x3f:case 0x43:case 0x1f:case 0xc5:case 0xc6:case 0xc8:case 0xc9:case 0xca:case 0xcb:case 0xcd:case 0xce:case 0xc4:case 0x1d:case 0x21:case 0x26:case 0x2b:case 0x30:case 0x3e:case 0x2f:case 0xc7:case 0xcf:case 0xf8:case 0x44:break;default:return std::nullopt;}
     if(context.family()!=1)return std::nullopt;
     if(!runtime.script_authority())return false;
     auto* derived=dynamic_cast<ActorMissionScriptContext<Frames,1>*>(&context);
@@ -181,6 +185,9 @@ template<class Frames,class Human,class Controls,class Runtime>std::optional<boo
         if(controls.vehicle_path(*human,context.program().strings.at(instruction.operands.at(0)),value,context.pc()))return true;
         break;
     }
+    case 0x1c:{const auto definition=context.program().integers.at(instruction.operands.at(0)).value,slot=context.program().integers.at(instruction.operands.at(1)).value;
+        std::int32_t signed_definition,signed_slot;std::memcpy(&signed_definition,&definition,4);std::memcpy(&signed_slot,&slot,4);
+        controls.create_store_item(*human,signed_definition,signed_slot);break;}
     case 0x25:controls.stop(*human);break;
     case 0x38:{
         const auto name=context.program().strings.at(instruction.operands.at(0));

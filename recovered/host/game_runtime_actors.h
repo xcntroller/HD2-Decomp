@@ -65,6 +65,12 @@ public:
         if((mode_flags()&7u)==7u)return;
         game::restore_retained_runtime_item(actor,retained_items_,activation_.session_broadcast_packets(),frames_,mode_flags());
     }
+    void teleport_loose_item(Instance& borrowed,Frame parent){ //005B7920 wrapper, offline7 normal-return gate.
+        if(!registry_.owns(&borrowed))throw std::logic_error("Item teleport requires SAME live Runtime registry");
+        auto* item=dynamic_cast<LooseItemActor*>(&borrowed);if(!item)throw std::logic_error("Item teleport requires actual type11 owner");
+        item->teleport_to_frame(parent);
+        if((mode_flags()&7u)!=7u)throw std::runtime_error("Item teleport requires actual nonoffline runtime command3 publication");
+    }
     void damage_loose_item(Instance& borrowed,std::uint32_t kind,float amount,const game::HumanVector& point,const game::HumanVector& direction){
         if(!registry_.owns(&borrowed))throw std::logic_error("Shot loose item requires SAME live Runtime registry");
         auto* item=dynamic_cast<LooseItemActor*>(&borrowed);

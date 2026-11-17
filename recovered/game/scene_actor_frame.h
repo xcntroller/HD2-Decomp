@@ -53,7 +53,7 @@ template<class Frames,class World,class Derived>void update_loading_scene_actor(
         if(authority)value.update_authority(elapsed);else value.update_presentation(elapsed,world.mode_flags());return;}
     case 25:world.update_animation(static_cast<AnimationSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 28:{auto& value=static_cast<PikeSceneActor<Frames>&>(actor);
-        if(authority)value.update_authority(elapsed,world.mode_flags());else value.update_presentation(elapsed);return;}
+        world.update_pike(value,authority,elapsed);return;}
     case 29:world.update_fowl(static_cast<FowlGeneratorSceneActor<Frames>&>(actor),authority,elapsed);return;
     case 30:derived.update_dog(actor,authority,elapsed);return;
     case 37:

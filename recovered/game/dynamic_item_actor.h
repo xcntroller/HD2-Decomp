@@ -105,6 +105,17 @@ public:
         body_.apply_impulse(force,point);
         if((activation_.mode_flags()&7u)!=7u)throw std::runtime_error("Loose item impulse requires actual non7 motion packet producer");
     }
+    void teleport_to_frame(Frame parent){ //005B76A0, preserve item/lifetime owners; rebind actual rigid body last.
+        const auto model=this->base_.frame();if(!model)return;
+        this->backend_.actor_link_preserving_world(model,parent);
+        this->backend_.object_position(model,{{0,0,0}});
+        this->backend_.car_direction(model,Vector{{0,0,1,0}});this->backend_.update_scene_object(model);
+        this->backend_.actor_link_preserving_world(model,Frame{});
+        this->backend_.place_human_reaction_model(model);this->backend_.object_visible(model,true);this->backend_.update_scene_object(model);
+        const auto position=this->backend_.actor_world_matrix(model);this->base_.world_position({{position[12],position[13],position[14],position[15]}});
+        const auto direction=this->backend_.actor_world_matrix(model);this->base_.world_direction(actor_activation_direction({{direction[8],direction[9],direction[10],direction[11]}}));
+        restore_retained_body();
+    }
     Entry entry() const {return entry_;}
     void restore_retained_body(){ //005B7DA0, preserves actor6A0/6A4/6A8/6AC/6B0 timers.
         if(!entry_)return;

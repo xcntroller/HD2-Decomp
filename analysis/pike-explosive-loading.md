@@ -83,3 +83,18 @@ and receive no new credit.
 Continue Fowl/Animation/SupplyBox/StaticWeapon/Car and actual containing Human/
 session/VM/FPV/HUD/SOUND owners, then ordered loading/first-frame/failure/repeat
 and user desktop acceptance. P2.2 checklist scope is unchanged.
+
+## Tutorial scripted Pike movement — 2026-11-17
+
+The later startup preflight matches all27 literal SetActorState calls to actual
+Tutorial Scene2:12 distinct Door6 targets and one Pike28. That Pike now has actual
+005B8EA0/005B9E70 command publication,005B9EC0 one-bit receiver and005B9340/
+005B9470/005B8F00 positive frame/rotation/obstruction behavior through the SAME
+World packet/Script/collision/engine/SOUND owners. This supersedes the stationary
+frame limitation above for scripted movement after actual state0 activation;
+initial nonstationary activation remains qualified. Native289 focused sanitizer
+checks and actual containing builds are separate from engine/desktop acceptance.
+Detailed ordering, evidence and final receipt:
+[preflight contract](p22-frame-startup-script-preflight.md). No whole-function,
+function-count or delivery promotion; the original loading receipt remains valid
+for its earlier bounded scope.

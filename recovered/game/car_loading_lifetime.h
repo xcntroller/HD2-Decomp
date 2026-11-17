@@ -55,6 +55,9 @@ public:
     virtual void puncture_sound(std::size_t)=0;
     virtual void destruction_controls()=0;
     virtual void physical_reset(float speed,bool restore)=0;
+    virtual void suspend_for_teleport()=0; //004E95B0(0), SAME retained graph.
+    virtual bool teleport_engine_state()const=0; //0041D650 reads22BF.
+    virtual void restore_teleport_engine(bool running)=0; //004F2530(running,false).
     virtual void reset_event()=0; //004DB2A0→Car virtual44/004DD0D0(true).
     virtual void reset_round(bool restart)=0; //Same virtual44 with caller-supplied byte.
     virtual void destroyed_meshes()=0;

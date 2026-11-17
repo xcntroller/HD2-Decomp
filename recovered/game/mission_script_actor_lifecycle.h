@@ -23,8 +23,50 @@ public:
         if(human.loading_state->words().template get<std::uint32_t>(0x48)==5){controls_.working_mode(human,0);controls_.suspend(human,false);}
     }
     template<class Runtime>std::optional<bool> execute(Context& context,const MissionScriptInstruction& instruction,Runtime& runtime){
-        if(instruction.opcode!=0xf9u&&instruction.opcode!=0x32u&&instruction.opcode!=0x62u&&instruction.opcode!=0x95u)return std::nullopt;
+        if(instruction.opcode!=0xf9u&&instruction.opcode!=0x32u&&instruction.opcode!=0x62u&&instruction.opcode!=0x95u&&instruction.opcode!=0x91u&&instruction.opcode!=0xfeu&&instruction.opcode!=0x92u&&instruction.opcode!=0x72u&&instruction.opcode!=0x64u)return std::nullopt;
         if(!runtime.script_authority())return false;
+        if(instruction.opcode==0x64u){ //0041AC08: BOTH copied strings before null-frame gate.
+            const auto frame=context.slot(instruction.operands.at(0));
+            const std::string position=context.program().strings.at(instruction.operands.at(1));
+            const std::string direction=context.program().strings.at(instruction.operands.at(2));
+            if(frame)runtime.script_checkpoint_teleport(frame,position,direction);
+            context.advance(runtime);return true;
+        }
+        if(instruction.opcode==0x72u){ //0041A761, both slots before frameEC/type11.
+            const auto frame=context.slot(instruction.operands.at(0)),parent=context.slot(instruction.operands.at(1));
+            if(frame&&parent){const auto* data=frames_.find_actor_frame_data(frame);auto* value=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+                if(value&&value->base().type()==11)runtime.script_item_teleport(*value,parent);
+            }
+            context.advance(runtime);return true;
+        }
+        if(instruction.opcode==0x92u){ //0041828F, frame/world pose BEFORE integer reads. No radius/power success gate.
+            if(const auto frame=context.slot(instruction.operands.at(0))){
+                const auto matrix=frames_.actor_world_matrix(frame);const HumanVector point{{matrix[12],matrix[13],matrix[14],matrix[15]}};
+                const auto power_word=context.program().integers.at(instruction.operands.at(1)).value,radius_word=context.program().integers.at(instruction.operands.at(2)).value;
+                std::int32_t power,radius;std::memcpy(&power,&power_word,4);std::memcpy(&radius,&radius_word,4);
+                runtime.script_make_explosion(point,static_cast<float>(static_cast<long double>(radius)*.0010000000474974513f),
+                    static_cast<float>(static_cast<long double>(power)*.0010000000474974513f));
+            }
+            context.advance(runtime);return true;
+        }
+        if(instruction.opcode==0x91u){ //004184B0: TRUE ends THIS context even on null/wrong/dead target.
+            const auto frame=context.slot(instruction.operands.at(0));
+            const bool enabled=context.program().integers.at(instruction.operands.at(1)).value!=0;
+            const auto* data=frame?frames_.find_actor_frame_data(frame):nullptr;auto* value=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+            if(value&&value->base().type()==3){auto& human=as_human(*value);
+                if(enabled&&(human.properties.field19c==4||human.properties.field19c==5)&&positive(human.properties.stats_ec[0]))controls_.promote_npc_team(human);
+            }
+            if(enabled){context.begin_end_script();context.advance_end_script();}
+            else context.advance(runtime);
+            return true;
+        }
+        if(instruction.opcode==0xfeu){ //00417874, definition integer is read even for null frame.
+            const auto frame=context.slot(instruction.operands.at(0));
+            const auto bits=context.program().integers.at(instruction.operands.at(1)).value;std::int32_t definition;std::memcpy(&definition,&bits,4);
+            const auto* data=frame?frames_.find_actor_frame_data(frame):nullptr;auto* value=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+            if(value&&value->base().type()==3)runtime.script_remove_human_definition(as_human(*value),definition);
+            context.advance(runtime);return true;
+        }
         if(instruction.opcode==0x95u){ //00417A74 SetActorState: null frame skips integer; EC is resolved before it.
             if(const auto frame=context.slot(instruction.operands.at(0))){
                 const auto* data=frames_.find_actor_frame_data(frame);auto* value=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;

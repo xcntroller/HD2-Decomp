@@ -80,5 +80,14 @@ void remove_human_inventory_item(Human& human,Items& items,std::int32_t identity
     human.activation.flag178=true;
     if(destroy)items.remove_runtime_item(entry);
 }
+//005A7B30: repeatedly find the actual DEFINITION, remove identity10 with destroy,
+//then publish178 even when no match existed. Each find observes the updated store.
+template<class Human,class Items,class World>void remove_human_inventory_definition(Human& human,Items& items,std::int32_t definition,World& world){
+    while(const auto entry=find_human_inventory_definition(human,items,definition)){
+        const auto identity=items.runtime_item(entry).identity;
+        remove_human_inventory_item(human,items,identity,true,world);
+    }
+    human.activation.flag178=true;
+}
 } //namespace hd2::game
 #endif

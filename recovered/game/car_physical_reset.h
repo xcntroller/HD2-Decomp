@@ -5,12 +5,12 @@
 
 namespace hd2::game {
 
-//004E95B0(2), reached by004DD0D0. This suspends the SAME live physical graph;
-//it does not retire/reconstruct its owners. Bit1's permanent skid detachment
-//belongs to other callers and is not implied by this reset entry.
+//004E95B0(0/2), reached by script teleport/004DD0D0. Both suspend the
+//SAME live graph. Bit2 hides skids; vector conversion is unconditional.
+//Bit1 permanent skid detachment belongs to other callers.
 template<class Frames,class Geometry,class State,class Pool,class Contacts>
-void suspend_car_for_reset(Frames& frames,Geometry& geometry,State& state,Pool& pool,Contacts& contacts){
-    state.skids.hide_first();
+void suspend_car_for_reset(Frames& frames,Geometry& geometry,State& state,Pool& pool,Contacts& contacts,bool hide_skids=true){
+    if(hide_skids)state.skids.hide_first();
     frames.car_transform_in_place(state.body().motion().angular_velocity,state.body().pose().inverse_rotation);
     frames.car_transform_in_place(state.body().motion().velocity,state.body().pose().inverse_rotation);
     for(auto n=geometry.lighting().lights().size();n;){const auto& light=geometry.lighting().lights()[--n];
