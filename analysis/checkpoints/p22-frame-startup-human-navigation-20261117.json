@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "7762daa",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "bytes": 17835,
+      "sha256": "d359a215cd308e6e2dbdb7c219132de8129672312f46ff0adcb9499ddd2790aa"
+    },
+    {
+      "path": "recovered/game/human_script_loading_controls.h",
+      "bytes": 13711,
+      "sha256": "c6eb726a2c9f939fc50b104b29e50e5a75c780b1081ad89fa67d16294e909dea"
+    },
+    {
+      "path": "recovered/game/human_script_navigation_output.h",
+      "bytes": 1759,
+      "sha256": "0910f280a5dc197d75b35e4ca39247d2ac103c905669dfaaa61f1532fb58b3d2"
+    }
+  ],
+  "native_checks": 290,
+  "sanitizers": "ASan/UBSan/leaks PASS",
+  "full_actual_i386_O2_Werror_build": "PASS application-launch startup-probe",
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-human-navigation-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-human-navigation-native-run.log",
+      "bytes": 81,
+      "sha256": "8680e5b73f687451d03894df7f976e332dd958cbbedc8e81b651c4c90ec6dad0"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-human-navigation-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    }
+  ],
+  "preflight": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-inputs.json",
+      "bytes": 60520,
+      "sha256": "ba51d7f5ca7684d7034345257e76d5e3cb400f4270e7a3fc99597116ef378b22"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-programs.json",
+      "bytes": 247119,
+      "sha256": "4bb305cd6b061675825466a509264e029b64cd637c57b9682d0cc75783e1a707"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-coverage-before.json",
+      "bytes": 66405,
+      "sha256": "c2ee0d2bf21c7a8b6ddbffa35365a4d2a68c902effec0bffda251dbfe4ddd06c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-predicate-census.json",
+      "bytes": 6217,
+      "sha256": "3f1308cd550c2398ff6e47ee45b6452e83cf90bae2c50ad9f9f630cb81bfb457"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-dump-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "actual_desktop_evidence": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script202-return/application_launch.exe",
+      "bytes": 12890624,
+      "sha256": "d60751d1e56a45540e10e6d3d356e9c79bef86723aa34105d810284d3d991948"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script202-return/host-output.log",
+      "bytes": 259149,
+      "sha256": "eb8669a587baa5a5ae9cd64a2dff1b976c1ac513bc0600455f05768d35e735f7"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script202-return/host-runtime.log",
+      "bytes": 263147,
+      "sha256": "038ca419de5570c8ace800d956a895a1cc2443ac135a5cbeaea6a47939069f89"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script202-return/inputs.json",
+      "bytes": 993,
+      "sha256": "ff3592946df3049efeefdb394526bd7fbc82a2f3725ce2084662694f0a584096"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/first-frame-script202-return/steam-0.log",
+      "bytes": 343046,
+      "sha256": "9a177b2358b97630c4d115722021094b15fd5fcb72ac8ae361b6b1cb7ad9304a"
+    }
+  ],
+  "recoverable_review_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/startup-human-navigation-review-final.patch",
+    "bytes": 144263,
+    "sha256": "d1aeeba82b4df172f940c9fd80ed97f50354978fd05c4c8fc1e4e662954c81c2"
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-human-navigation-native.cpp",
+      "bytes": 3879,
+      "sha256": "56947f244e3567ebedc56861c20717b90998189b8f51fa1cfbedda30d7f179fd"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-human-navigation-native",
+      "bytes": 209160,
+      "sha256": "25148078a8fd7de1db0f8b9927ff4304f977907234ad456d34c28ce71b8bc388"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "ongoing_inspection_utilities": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-extract.py",
+      "bytes": 1434,
+      "sha256": "0e4dbe0d0b7147433c46feecd2a101e3ded41124f8c227cad93c0afa6a76ce71"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-dump.cpp",
+      "bytes": 2567,
+      "sha256": "4df140397876a4e0985661536bd030bca898f9a11b8fffa53bf8efc1ff1b62be"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-dump",
+      "bytes": 102640,
+      "sha256": "c6344ee6b49a3f934b88c511c82b5489b47dd1e2a01931ace6f3ef5f9afe0454"
+    }
+  ],
+  "built_artifacts": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+      "bytes": 12899328,
+      "sha256": "fb3029720229c6d5f8c85dacc978e9d21de329fd386aaa2f2179b33c0aeb9856"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "e01c91386f77a3a038341848c025f6e6ae44026d2c8baf556a8459ac02f68d9d"
+    }
+  ],
+  "user_executable_not_restaged": true,
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "matrix_reconciliation": "partially_resolved",
+  "full_frame_source_complete": false,
+  "gameplay_desktop_verified": false,
+  "agent_executed_original_dll_proton_or_windows": false,
+  "remaining": "Continue known startup command/predicate batch before requesting desktop retest. Static coverage does not establish frame admission, branch truth, positive conditional receiver completion or runtime acceptance."
+}

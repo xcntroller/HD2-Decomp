@@ -249,9 +249,10 @@ remains separate; earlier checkpoint evidence is revision-qualified.
 actual Player decoration bend/fade/bounce requests and lifetime ordering are
 source-bound and sanitizer-verified. User run completes activation, Scene78,
 fixed-update, input and full update; revised Door dispatch passes in the user run.
-Fade/alarm/Run dispatch now passes; the next failure is AddDiaryText137.
-[Shared profile diary records and following game-type predicate](analysis/p22-frame-script-diary-source.md)
-are sanitizer-verified and rebuilt/staged; revised desktop continuation is pending.
+[Tutorial startup preflight](analysis/p22-frame-startup-script-preflight.md) now
+covers all114 selected script programs:13 potential initial command gaps and
+three automatic predicate gaps. Human Stand/modes/navigation group is source-
+bound; finish the known startup batch before another user retest.
 Stable scene/control/presentation and full FRAME/HUM/OWN remain unaccepted.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.

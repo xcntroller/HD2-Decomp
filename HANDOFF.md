@@ -6,34 +6,38 @@ then FRAME/OWN. No subagents/push/original/DLL/Proton/Windows execution/permanen
 tests. Heavy compilation and Ghidra sequential. Preserve OWN dirty files/artifact.
 Continue the first concrete loading/frame failure, not broad admin/network work.
 
-LATEST USER: "Crashed. Script 137 now" on1361c82fcad8b8f34b7fe67588c8531e33c9cab2be0c6f142ee9e380e437a243.
-Alarm/Run continuation passes; activation loaded1/status5, Scene78/fixed/input/
-full update complete. AddDiaryText137 exits handled result1, no access violation.
-Exact exe/logs WORK/first-frame-script137-return. Stable game remains unaccepted.
+LATEST USER: "Crashed, 202 now. Is it possible to check ahead, so we don't end
+up fixing 50 broken script commands?" Actual d60751d1e56a45540e10e6d3d356e9c79bef86723aa34105d810284d3d991948
+passes diary/game type continuation and activation/Scene78/fixed/input/update,
+then handles202 HUMAN_SETMODE_Stand result1. Exact exe/logs WORK/first-frame-
+script202-return. No stable game acceptance.
 
-CURRENT: original00416E10 89 ->00419D64 integer BEFORE nullable/repeated
-application20 lookup0041D760 ->006AE510 root record94/B8 ->006A7820 append.
-ProfileState now owns actual two suppression/stored/pending records; preparation
-discoveries borrow SAME records instead of separate flow-local arrays. Coldflag0
-proved006B5D20; clear006A77E0 preserves suppression/capacity. No fake save/persist/
-commit/diary-render service. Offline root adaptation matches SessionSelection's
-actual request/route; network reads actual application E8. No cached/extra profile.
-Captured TUT_Objectives then immediately queries _SPGetGameType; also bound
-original0041E3F0 1A ->0041E489 mode04 then08 wrapping sum, signed0..10 admission.
-Actual Startup mode4/route mode8, not configuration04/process flags. Native127
-actual context/profile/preparation/policies ASan/UBSan/leaks PASS with explicit
-application/frame endpoints. Review OWN overlay patched in place, never replaced.
-[Contract](analysis/p22-frame-script-diary-source.md),
-[receipt](analysis/checkpoints/p22-frame-script-diary-20261117.json).
-Full actual i386 O2/Werror application/probe and stage-only PASS.
-Staged candidate SHA256 d60751d1e56a45540e10e6d3d356e9c79bef86723aa34105d810284d3d991948.
-NEXT: actual user continuation; inspect the first concrete failure.
-Native audit fingerprinted/removed; OWN source/artifact unchanged.
-No original/DLL/Proton/Windows execution by agent. Broader script/cutscene and
-actual diary presentation/save-load remain required. No matrix/count promotion.
+ACTIVE BATCH: user explicitly wants CHECK AHEAD, not another one-opcode retest.
+Current resolver114 selected binding sources all compile with actual compiler.
+Static control flow up to first yield/park finds13 missing types (HumanMove,
+Stand, frame animation, car fuel,9 weather); automatic Whenever adds predicates
+SeeEnemy/FrameInRange/IsInInventory. Full/event-only report separately lists wider
+cutscene/speech/subtitle/hint/actor-state work; not all proven startup-reachable.
+[Boundary/current group](analysis/p22-frame-startup-script-preflight.md).
+Raw files WORK/startup-script-{inputs,programs,coverage-before,predicate-census}.json.
+Native dump/extraction scripts and selected inputs currently retained for ongoing
+inspection; no successful dummy runtime or original binary execution.
 
-Previous422d793 alarm mask/replay and immediate C4 Run;d8c0f1d A0/A1 fades and
-Door missing-target shared advance/true tail; all revision-qualified receipts.
+CURRENT source group: full Human walk/silent/lie/crouch/Stand/StandFast/AI modes
+and actual HUMAN_Move named SECOND-table point request with real query/PC/ready
+ordering. Stand positive1D1 action first clearsbyte, calls actual inline1D/26,
+returns WITHOUT changing1B0.290 native ASan/UBSan/leaks PASS actual policies/query/
+table with explicit action/context leaves. Actual full application/probe O2/Werror build PASS; log WORK/startup-human-navigation-review-build.log. Main human mode/navigation changes are verified/copy-matched in review.
+Receipt analysis/checkpoints/p22-frame-startup-human-navigation-20261117.json;
+native audit fingerprinted/removed; preflight tools retained while batch active.
+NEXT: continue missing automatic
+predicates and initial frame animation/car fuel/weather. NO RETEST REQUEST yet;
+current staged user exe deliberately remains d60751d1 until batch is concrete.
+Heavy compiler/Ghidra sequential. New indexed/exported0058E780/0058E8A0 evidence
+WORK/startup-script-human-path-original, rawmodebridges/state evidence alongside.
+
+Previous7762daa diary/profile records and game type;422d793 alarm masks/Run;
+d8c0f1d fades/Door skip-tail. No source-complete/matrix/count promotions.
 
 Positive Player decoration0047F4E0->0047FAE0->reverse0047F150/0047F200 is now
 source-bound: actual posture/repeated FPV/velocity, model/world/local-axis/alpha
@@ -85,7 +89,7 @@ REVIEW: `/home/control/Documents/Projects/HD2-Decomp-p22-frame-review`, DETACHED
 edebd81 + preserved OWN interactive overlay/later FRAME source. Mixed staged and
 unstaged is expected, not a merge conflict. Interactive app adapter remains
 UNCOMMITTED pending actual user desktop acceptance per AGENTS. Source-only main
-fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/first-frame-script-diary-review-final.patch includes
+fixes independently committable; main app still declines activation. Latest full recoverable overlay WORK/startup-human-navigation-review-final.patch includes
 all untracked collision/decorations/input/water headers; fingerprinted in receipt. No accepted game yet.
 
 Desktop command, USER ONLY:

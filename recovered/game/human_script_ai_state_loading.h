@@ -7,6 +7,7 @@
 #include "game/human_script_attachment_output.h"
 #include "game/human_ai_frame_metrics.h"
 #include "game/human_script_alarm.h"
+#include "game/human_script_navigation_output.h"
 
 namespace hd2::game {
 
@@ -113,6 +114,12 @@ public:
     void request_run_mode(){ //005AF270 ->0058F2D0; preserve all other1B0 bits.
         state_.set(0x1b0,(state_.template get<std::uint32_t>(0x1b0)&0xffff4fffu)|0x4000u);
     }
+    void request_walk_mode(){state_.set(0x1b0,(state_.template get<std::uint32_t>(0x1b0)&0xffff2fffu)|0x2000u);} //0058F2F0.
+    void request_silent_mode(){state_.set(0x1b0,(state_.template get<std::uint32_t>(0x1b0)&0xffff1fffu)|0x1000u);} //0058F310.
+    void request_lie_mode(){state_.set(0x1b0,(state_.template get<std::uint32_t>(0x1b0)&0xfffffff9u)|1u);} //0058F350.
+    void request_crouch_mode(){state_.set(0x1b0,(state_.template get<std::uint32_t>(0x1b0)&0xfffffffau)|2u);} //0058F370.
+    template<class Inline>void request_stand_mode(bool fast,Inline& control){request_human_script_stand(*this,fast,control);}
+    template<class Inline,class World>void request_navigation_point(std::uint16_t point,std::int32_t pc,Inline& control,World& world){request_human_script_navigation(*this,point,pc,control,world);}
     void set_alarm(bool enabled) { //0058E710; true is genuinely empty.
         if(enabled)return;
         this->words().set(0x50,this->words().template get<std::uint32_t>(0x50)&0x7fffffffu);
