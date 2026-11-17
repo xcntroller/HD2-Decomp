@@ -9,6 +9,7 @@
 #include "game/session_connection_packets.h"
 #include "game/session_application_commands.h"
 #include "game/session_received_application.h"
+#include "game/session_received_match.h"
 #include "game/session_peer_records.h"
 #include "game/session_match_frame.h"
 #include "game/session_peer_statistics_wire.h"
@@ -922,6 +923,13 @@ public:
     }
     void dispatch_application_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority){
         game::receive_session_application_packet(kind,packet,authority,*this);
+    }
+    void receive_application_configuration(game::SessionPacketStream& packet){game::receive_session_configuration(packet,*this);} //00728450 case6→0069B9D0.
+    void receive_current_frame_control(std::uint32_t kind,std::uint32_t value){packet_world_.receive_frame_control(kind,value);}
+    void receive_application_match_result(std::uint32_t result){if(has_application_game())packet_world_.receive_frame_control(13,result);}
+    void receive_application_vote_result(bool accepted){game::receive_session_vote_result(accepted,*this);}
+    void append_application_vote_text(const std::string& text,const std::array<float,3>& colour){
+        if(!(gate_&2u)){append_game_console(text);return;}packet_world_.append_application_coloured_message(text,colour);
     }
     void receive_application_world_snapshot(game::SessionPacketStream& packet){if(has_application_game())packet_world_.reset_round_from_packet();packet_world_.read_application_world_snapshot(packet);}
     void receive_application_match_statistics(game::SessionPacketStream& packet){game::read_session_match_statistics(control_data_,packet,*this);}

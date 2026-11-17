@@ -93,6 +93,7 @@ public:
     void set_hint(bool enabled,std::uint32_t identity){panels_.set_hint(enabled,identity);} //SAME inline small-panel owner.
     void select_objective(unsigned index,std::int32_t side){if(hud_.flags)panels_.select_objective(index,side);} //0049F0C0: any nonzero flags.
     void set_hint(std::int32_t identity){set_hint(identity>=0,static_cast<std::uint32_t>(identity));} //0049DE30, signed ID gate; no flags gate.
+    void set_result_hint(std::uint32_t label,std::uint32_t first,std::uint32_t second){panels_.small().set_result_hint(true,label,first,second);} //0049DDF0.
     void set_injury_message(std::uint32_t identity,std::uint32_t time){panels_.set_injury_message(identity,time);} //0049DE50, no HUD-flags gate.
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){panels_.hud_sound_direction(direction,kind);} //0049DE80 has no flags gate.
     void append_message(const char* text,const std::array<float,3>& colour){if(hud_.flags)panels_.messages().append(text,colour);} //0049D2E0→00494A40, any nonzero flags.

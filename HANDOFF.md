@@ -7,70 +7,78 @@ camera/application desktop work. No subagents, merge/rebase, push, original/
 DLL/Proton/Windows execution, permanent tests or staging. Heavy compilation
 and Ghidra sequential. Continue the remaining full FRAME source checkbox.
 
-LATEST: [received Runtime/statistics](analysis/p22-frame-presentation-state-source.md),
-[receipt](analysis/checkpoints/p22-frame-presentation-state-20261117.json),
-[short plan](analysis/p22-frame-plan.md). Source base4da1639. Presentation7/8 now
-bind actual owners.0072F680 keeps418 through peer/time/lives, then unlocks before
-World clocks/team stats/scores/wins.00749AE0 preserves1024 sign edge/incremental
-failure prefix.0069AED0 preserves whole signed prior7C seconds, replaces remainder.
+LATEST: [received configuration/result/vote](analysis/p22-frame-match-control-source.md),
+[receipt](analysis/checkpoints/p22-frame-match-control-20261117.json),
+[short plan](analysis/p22-frame-plan.md). Source base03da7f3. Presentation6/13/23
+now bind actual process/World/Frame/HUD.6 fully replaces map before current-game
+lookup→Frame0069B9D0 select next map→mandatory actual current-app virtual2C(9).
+13 consumes2 bits→00699590 style0/3 info/hint or team map/result hint, original
+win1-before-win0 reads and late8C clock after UI.23 consumes1 bit→0072DAC0,
+localized22E3/E4 literal text, colour50/150/50; no heartbeat counter mutation.
 
-Packet7 resets retained round(true) BEFORE00478520 Runtime reader. Actual FRAME
-publishes same-World SessionRoundResetLink after construction/identity guards;
-retire/destructor unbinds it before lifecycle finish/World destruction. No second
-Frame or generic reset substitution. Native loan checks cover wrong World,
-duplicate/unbound/wrong-owner unbind/failure/rebind; actual lifecycle i386 compiled.
-Snapshot reader signed16 module70→6-bit type rows:2 Mine,11 loose new-definition,
-35 retained lookup, actual actor54. Other native rows ONLY consume type/id.
-004790C0 owner=-1 branch uses SAME unheld Items/flag1C/model/Runtime/loose-body;
-model/bind failures retain completed ownership prefix.005E29A0 flag/yaw-only
-0073D7A0→005E25C0 calls actual Physics90 contact3 then successful005E2480;
-client does NOT copy author motion fields or publish another packet. Source
-still requires a World for Runtime; absent native-global equivalent is not faked.
+0049DDF0/004AD650 use SAME hint Htext/root: clear→label40→A3D suffix BEFOREA3C
+prefix→exact0083B16C `%s     %d  :  %d     %s` with second win first. Prefix then
+suffix loans retire before line41 append; caller line ref before root show.
+Native383 policy/map/format/localization-loan/vote/control borrower checks PASS
+ASan/UBSan/leaks. Adjacent UI/locale/current-app/World endpoints are explicit
+doubles. Strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/
+fixed/update/reset and6/13/23 dispatch/HUD i386/Werror PASS; forced sequential
+O2 launcher/probe PASS. No staging or Windows execution. Temporary audits
+fingerprinted/removed. Ledger34 complete/3811 partial total(client3806/engine5),
+frozen18783;5 new partial, zero complete/absent/delegated/desktop credit.
 
-Native ASan/UBSan/leaks PASS4122 stats/clock +109 snapshot/factory/loan checks;
-explicit adjacent World/registry/Items/model/physics/OS endpoints in contract.
-Strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/
-update/reset and7/8 receivers i386/Werror PASS; forced sequential O2 launcher/
-probe PASS. No staging or Windows execution. Temporary audits fingerprinted/
-removed. Ledger34 complete/3806 partial total(client3801/engine5), frozen18783;
-6 new partial entries, no whole-function/absent/delegated/desktop credit.
+HumanFrameRuntime automatic respawn now forwards SAME process request1 FIFO.
+IMPORTANT actual automatic caller is0059FE30(absent frozen start), NOT0059FFD0
+(authority) or0059EC40. WORK/automatic-respawn-presentation-abi.asm confirms
+59FEF4..59FF00 direct0072B1C0(1,0,0,0), then field204=-4000. No extra manual
+0059F010 gates added.0059FE30 gets zero new inventory credit.
 
-Prior4da1639 actual process007302D0 balance,0072E4E0(false)5070-only publication,
-authority00727800 cases0/1→0069E340 initial admission or0069D9C0 transferred
-pending respawn; presentation3→same-Human0069D780/0059F050. Native28798 and actual
-i386/O2 receipt retained.0072F4C0 is UNLOCKED. Native54 clothing is equipment[1].
-Rank in-place helper preserves initial stat3/9..11. Prior6b6d292 all18 module
-callbacks/all16 supported Actor44/Human/DD0/model/physics bindings and native8867+
-990 remain. Unsupported Dog/non7 activation still fails. Do not repeat unchanged
-audits. All contracts/receipts remain revision-qualified.
+Prior03da7f3 actual received Runtime7/statistics8 and source Frame reset loan
+native4122+109;4da1639 balance/spawn0/1/3 and false close publication native28798;
+6b6d292 retained Human/Actor/all18 modules native8867+990. All actual i386/O2
+receipts remain revision-qualified. Source Runtime requires a real World;
+absent-global equivalent is not faked. No repeated unchanged audits.
 
-NEXT remaining FRAME-produced packet consumers, then process/network leaves:
-- WORK=analysis/work/p22-frame-closure-20261117. frame-presentation-export has
-  00699810(countdown),00699590(result),0069B9D0(config/current-app9); H8
-  analysis/work/menu-route-extra-20261031/00699900.c has warmup-finished.
-  00728450.c there contains full presentation6/11/12/13/16/23 grammar.
-  6 reads map config then gameB9D0;11 resets game30/body/HUD/suppression/phase
-  before actual current-app menu checks/first clothing respawn;12 consumes
-  six-bit peer/two-bit side until33 with current-app side transitions then
-  00699810.13 result2-bit→00699590.16 deathlocal/app;23 vote process.
-  Actual UI/frame services exist; preserve original fresh current-app and menu
-  ownership, no placeholder callbacks.7/8 are now supplied, do not redo them.
-- Console full00742480 and ctor007422D0 in WORK/process-console-export;
-  parser00744170/advance007442F0/config006AC9A0 in process-console-leaves.
-  Constructor allocates config294 and loads00618A00 FULL map metadata; existing
-  menu-only decode_multiplayer_maps is not equivalent. Do not substitute it.
-  Keep required failure honest; avoid unrelated admin/map research while actual
-  FRAME-produced consumers offer implementation progress.
-- General non7 pump/close/history guards remain in SessionLocalPackets and
-  ColdControlFrame; H8 controller-services/controller-integration originals
-  0072CD50/0072C5D0/0072CE70 exist. Worker/connection/0072D0E0 submit owners are
-  supplied, flag20 loading-manager history is not. No full-startup reset shortcut.
+NEXT remaining11/12/16 and required process/current-application consumers:
+- WORK=analysis/work/p22-frame-closure-20261117. Full H8 menu-route-extra-
+  20261031/00728450.c has presentation grammar;00699900.c warmup-finished.
+  WORK/frame-presentation-export/00699810.c countdown; match-warmup-abi.asm
+  confirms TWO0069E620 calls: first current-state receiver, publish new menu,
+  second original game receiver; do not collapse or invent ownership.
+- Case11: game30=0→enable bodies(false)→hint-1→local B0 suppression0→88/B8zero;
+  mode2/local peer exists then first soldier clothing native54(item)/56(count)
+  valid( !=-1,count1) queues request1; else real current-app/menu path, pending
+  menu1D1.0069BFE0 retail logger is genuine RET, no new sink.
+- Case12: six-bit peer/two-bit side until33. Local changed side invokes actual
+  current-app kind1 live-soldier update/clear equipment/0069E620 or kind11
+  00685260; then separate00730140 current and pending writes. After full list,
+  current-game00699810: infohide→hint1CEA→disable bodies(true)→Players.select
+  local Human→suppression1→spawn phase2→88=3/8C=time. Preserve late lookups.
+- Case16: local Human first; if current game+nonauthority set7C=30%1000;
+  absent/alive local returns. First soldier native54/56 valid calls manual
+  0059F010: age>3000, actual DD01AC==0 and9C0==0 before request1. Values live
+  in human_inline(human).control()->physical().control_frame_words(). Other
+  path only real current-app kind11 sets1D1. No automatic/manual substitution.
+- Current Frame loan interface SessionRoundResetReceiver/Link now carries
+  receive_frame_control(kind,value); actual Frame supports6/13, other selectors
+  fail. Extend same real owner rather than introduce another Frame/clock/menu.
+- Console full00742480/007422D0 and parser00744170/advance007442F0/config006AC9A0
+  saved under WORK/process-console-export and process-console-leaves. Constructor
+  allocates config294 and loads00618A00 FULL map metadata; existing menu-only
+  catalogue is not equivalent. Keep required failure; avoid unrelated admin/map
+  research while actual Frame consumers remain.006AD4D0 select_network_map
+  ALREADY source/ledger supplied in frontend/network_map_packets.h, despite
+  stale H8 research index saying no claim. Check local source before exports.
+- General non7 pump/close/history still guarded in SessionLocalPackets and
+  ColdControlFrame. Existing H8 controller-services/controller-integration
+  originals0072CD50/0072C5D0/0072CE70. Worker/connection/0072D0E0 submit owners
+  supplied; flag20 history/loading manager remains unsupplied.
 
-Global FRAME remains partially_resolved. Original SHA256
+Global FRAME remains partially_resolved; no source-complete claim. Original SHA
 8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
-Research index before exports; H8 snapshot misses newer local FRAME outputs.
-Saved raw snapshot/placed/yaw/clock ABI and exact vtable target are in WORK.
-No broad audits or exports without a reached reason.
+Research index before exports; H8 snapshot misses newer FRAME source/WORK.
+WORK match-control-leaves/0059F010.c,0072DAC0.c and match-result-hud/004AD650.c,
+exact format JSON and raw result/warmup ABI are saved; don't repeat exports.
 
 Tools: H8=/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8; compiler H8
 .tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++;

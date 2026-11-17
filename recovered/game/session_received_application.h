@@ -13,6 +13,7 @@ template<class Runtime>void receive_session_application_packet(std::uint32_t kin
     if(authority){receive_authority_spawn_request(kind,packet,runtime);return;}
     switch(kind){
     case 3:read_session_pending_spawn(packet,runtime);return;
+    case 6:runtime.receive_application_configuration(packet);return;
     case 7:runtime.receive_application_world_snapshot(packet);return;
     case 8:runtime.receive_application_match_statistics(packet);return;
     case 2:{
@@ -42,6 +43,8 @@ template<class Runtime>void receive_session_application_packet(std::uint32_t kin
         if(!(runtime.application_mode_flags()&1u))runtime.receive_application_peer_removal(reason,identity);
         return;
     }
+    case 13:runtime.receive_application_match_result(packet.read(2));return;
+    case 23:runtime.receive_application_vote_result(packet.read(1)!=0);return;
     case 15:{
         const auto peer=packet.read(5),reason=packet.read(1);
         if(peer==static_cast<std::uint32_t>(runtime.application_local_peer()))runtime.receive_application_spawn_rejection(reason);

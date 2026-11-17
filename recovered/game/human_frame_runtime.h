@@ -63,7 +63,7 @@ public:
     template<class State>void advance_player_input_transport(State&,std::uint32_t){throw std::runtime_error("Player input transport requires actual0053F9B0 non7 history publication");}
     template<class State>void advance_network_ai_presentation(State&,std::uint32_t){throw std::runtime_error("Network AI presentation requires actual0056F710");}
     template<class Control>void refresh_nonoffline_human_visibility(Control&){throw std::runtime_error("Nonoffline Human visibility requires actual00787D50 receiver");}
-    void request_human_respawn(){throw std::runtime_error("Human respawn requires actual006DC940/0072B1C0 request");}
+    void request_human_respawn(){world_.request_human_respawn();}
     template<class Control>bool human_fall_damage_authority(Control&){throw std::runtime_error("Nonoffline Human fall requires actual authority predicate");}
     template<class Human>void send_human_fall_damage(Human&,float){throw std::runtime_error("Nonauthority fall requires actual005A9BF0 publication");}
     template<class... Args>void human_contact_actor(Args&&...){throw std::runtime_error("Human motion requires actual contacted actor virtual58");}

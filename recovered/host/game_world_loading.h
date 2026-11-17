@@ -353,6 +353,8 @@ public:
         frame_reset_.bind(receiver);
     }
     void unbind_frame_reset(game::SessionRoundResetReceiver& receiver)noexcept{frame_reset_.unbind(receiver);}
+    void receive_frame_control(std::uint32_t kind,std::uint32_t value)override{frame_reset_.receive(kind,value);}
+    void append_application_coloured_message(const std::string& text,const std::array<float,3>& colour)override{owners_.dependencies().hud.append_message(text.c_str(),colour);}
     void reset_round_from_packet()override{frame_reset_.reset();}
     void read_application_world_snapshot(game::SessionPacketStream& packet)override{owners_.dependencies().world_actors.runtime().read_initial_snapshot(packet);}
     void receive_application_statistics_clock(std::uint32_t round,std::uint32_t time,std::uint32_t losses)override{

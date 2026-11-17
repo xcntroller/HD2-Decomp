@@ -12,6 +12,7 @@ public:
     virtual ~SessionRoundResetReceiver()=default;
     virtual const void* round_reset_world_identity()const noexcept=0;
     virtual void reset_round(bool)=0;
+    virtual void receive_frame_control(std::uint32_t,std::uint32_t)=0;
 };
 class SessionRoundResetLink {
 public:
@@ -22,6 +23,7 @@ public:
     }
     void unbind(SessionRoundResetReceiver& receiver)noexcept{receiver_.unbind(receiver);}
     void reset(){receiver_.get().reset_round(true);}
+    void receive(std::uint32_t kind,std::uint32_t value){receiver_.get().receive_frame_control(kind,value);}
 private:
     const void* world_;WorldLoadingDependencyLink<SessionRoundResetReceiver> receiver_;
 };
@@ -30,6 +32,8 @@ public:
     virtual ~SessionPacketWorld()=default;
     virtual bool world_loaded()const=0;
     virtual bool dispatch_packet(std::uint32_t,SessionPacketStream&,bool)=0;
+    virtual void receive_frame_control(std::uint32_t,std::uint32_t)=0;
+    virtual void append_application_coloured_message(const std::string&,const std::array<float,3>&)=0;
     virtual void reset_round_from_packet()=0;
     virtual void read_application_world_snapshot(SessionPacketStream&)=0;
     virtual void receive_application_statistics_clock(std::uint32_t,std::uint32_t,std::uint32_t)=0;
@@ -54,6 +58,8 @@ public:
     bool dispatch_packet(std::uint32_t kind,SessionPacketStream& packet,bool authority){
         return world_.bound()&&world_.get().dispatch_packet(kind,packet,authority);
     }
+    void receive_frame_control(std::uint32_t kind,std::uint32_t value){world_.get().receive_frame_control(kind,value);}
+    void append_application_coloured_message(const std::string& text,const std::array<float,3>& colour){world_.get().append_application_coloured_message(text,colour);}
     void reset_round_from_packet(){world_.get().reset_round_from_packet();}
     void read_application_world_snapshot(SessionPacketStream& packet){world_.get().read_application_world_snapshot(packet);}
     void receive_application_statistics_clock(std::uint32_t round,std::uint32_t game,std::uint32_t losses){world_.get().receive_application_statistics_clock(round,game,losses);}

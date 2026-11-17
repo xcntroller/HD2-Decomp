@@ -1,6 +1,6 @@
 # FRAME pending spawn and existing-Human respawn — 2026-11-17
 
-Latest continuation: [received Runtime7/statistics8 and same-World reset loan](p22-frame-presentation-state-source.md) follow actual balance/spawn0/1/3 and all18 retained module bindings. Evidence below retains its original revision/verification boundary; console/general networking/history/other packets and application delivery remain.
+Latest continuation: [received configuration/result/vote6/13/23 and automatic respawn request](p22-frame-match-control-source.md) follow actual Runtime/statistics, balance/spawn and all18 retained module bindings. Evidence below retains its original revision/verification boundary;11/12/16, process/network/other packets and application delivery remain.
 
 
 Continuation of7f8cc90 on feature/p22-frame. Actual0069D9C0 pending-spawn

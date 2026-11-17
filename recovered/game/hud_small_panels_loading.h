@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUD_SMALL_PANELS_LOADING_H
 #define HD2_GAME_HUD_SMALL_PANELS_LOADING_H
 #include "game/hud_text_loading.h"
+#include "game/hud_match_result_text.h"
 #include <memory>
 #include <cstdio>
 #include <stdexcept>
@@ -25,6 +26,14 @@ public:
     void set_hint(bool enabled,std::uint32_t id) { //004AD880, clear even when hiding.
         auto& text=required(hint_.text);text.text.clear();
         if(enabled)text.text.append(factory_.hud_localized(id),0x3f);
+        show(hint_.visual,enabled);
+    }
+    void set_result_hint(bool enabled,std::uint32_t label,std::uint32_t first,std::uint32_t second){ //004AD650, SAME hint Htext/root.
+        auto& text=required(hint_.text);text.text.clear();
+        if(enabled){
+            text.text.append(factory_.hud_localized(label),0x40);
+            text.text.append(make_hud_match_result_line(factory_,first,second),0x41);
+        }
         show(hint_.visual,enabled);
     }
     void bind_voting(Frame scene) { //004AF2E0; absent visual is tolerated by native binder.

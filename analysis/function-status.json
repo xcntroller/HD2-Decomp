@@ -35799,8 +35799,8 @@
       "program": "client",
       "entry": "00728450",
       "status": "partial",
-      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication. Authority spawn checkpoint adds0F peer5/reason1 and local-only actual00699620, without inventing an absent-game or authority-mode bypass. Process-spawn checkpoint: Actual case3 fully consumes quantized prepared/stat payload on all hosts; nonauthority invokes same-Human0069D780. Received-state checkpoint: Actual7 reset-before-Runtime snapshot and8 process statistics decode now bind same-owner sources.",
-      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native4122 stats/clock and109 Runtime snapshot/factory/reset-loan checks use explicit adjacent World/registry/Items/model/physics/OS endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME construction/input/fixed/update/reset and packet7/8 i386 plus O2 launcher/probe compile/link only. Absent World has no manufactured global Runtime. Undefined padding, unsafe native bounds and delegated engine bodies excluded. Console/general non7 network/history/close/other packet/current-application and desktop delivery remain required; no whole-function promotion.",
+      "coverage": "Presentation application commands2/10/17: independent wire grammar before loaded-World gate, client-only departure lookup/log and actual peer retirement, received objective apply without scoring/FIFO echo, local result/hint before late mode/scalar reason publication. Authority spawn checkpoint adds0F peer5/reason1 and local-only actual00699620, without inventing an absent-game or authority-mode bypass. Process-spawn checkpoint: Actual case3 fully consumes quantized prepared/stat payload on all hosts; nonauthority invokes same-Human0069D780. Received-state checkpoint: Actual7 reset-before-Runtime snapshot and8 process statistics decode now bind same-owner sources. Received-match checkpoint: actual6 configuration replacement/current-game status callback,13 result2-bit and23 vote1-bit consumers bind actual owners.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native383 received-match/map/format/localization-loan/vote/reset-control borrower checks use explicit adjacent UI/locale/current-app/World endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME/HUD and6/13/23 i386 plus O2 launcher/probe compile/link only. Original unsafe format bounds/undefined padding and delegated engine bodies excluded. Mandatory current-application status remains a real OWN loan;11/12/16/console/general non7 networking/history/close/application and desktop acceptance remain required; no whole-function promotion.",
       "evidence": [
         "recovered/game/session_received_application.h",
         "recovered/game/session_peer_records.h",
@@ -35814,7 +35814,9 @@
         "analysis/p22-frame-process-spawn-source.md",
         "analysis/checkpoints/p22-frame-process-spawn-20261117.json",
         "analysis/p22-frame-presentation-state-source.md",
-        "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
+        "analysis/checkpoints/p22-frame-presentation-state-20261117.json",
+        "analysis/p22-frame-match-control-source.md",
+        "analysis/checkpoints/p22-frame-match-control-20261117.json"
       ]
     },
     {
@@ -52464,6 +52466,75 @@
         "recovered/host/game_world_loading.h",
         "analysis/p22-frame-presentation-state-source.md",
         "analysis/checkpoints/p22-frame-presentation-state-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069b9d0",
+      "status": "partial",
+      "coverage": "Actual received-configuration current-game callback selects next real network map then current application virtual2C(status9) through existing mandatory SAME-World external loan.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native383 received-match/map/format/localization-loan/vote/reset-control borrower checks use explicit adjacent UI/locale/current-app/World endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME/HUD and6/13/23 i386 plus O2 launcher/probe compile/link only. Original unsafe format bounds/undefined padding and delegated engine bodies excluded. Mandatory current-application status remains a real OWN loan;11/12/16/console/general non7 networking/history/close/application and desktop acceptance remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/host/game_session_frames.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-frame-match-control-source.md",
+        "analysis/checkpoints/p22-frame-match-control-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699590",
+      "status": "partial",
+      "coverage": "Actual style0/3 info-result or team map/result-hint paths, original wins read order, phase88 before UI and fresh clock8C after receivers.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native383 received-match/map/format/localization-loan/vote/reset-control borrower checks use explicit adjacent UI/locale/current-app/World endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME/HUD and6/13/23 i386 plus O2 launcher/probe compile/link only. Original unsafe format bounds/undefined padding and delegated engine bodies excluded. Mandatory current-application status remains a real OWN loan;11/12/16/console/general non7 networking/history/close/application and desktop acceptance remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_received_match.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-control-source.md",
+        "analysis/checkpoints/p22-frame-match-control-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049ddf0",
+      "status": "partial",
+      "coverage": "Actual result-hint wrapper invokes same small-panel004AD650 with enabled1 and real label/win arguments.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native383 received-match/map/format/localization-loan/vote/reset-control borrower checks use explicit adjacent UI/locale/current-app/World endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME/HUD and6/13/23 i386 plus O2 launcher/probe compile/link only. Original unsafe format bounds/undefined padding and delegated engine bodies excluded. Mandatory current-application status remains a real OWN loan;11/12/16/console/general non7 networking/history/close/application and desktop acceptance remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/hud_scene_loading.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-control-source.md",
+        "analysis/checkpoints/p22-frame-match-control-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ad650",
+      "status": "partial",
+      "coverage": "Actual Htext clear/label40, suffix-before-prefix localization, exact original signed/reversed score format and COW loan/line41/root visibility order.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native383 received-match/map/format/localization-loan/vote/reset-control borrower checks use explicit adjacent UI/locale/current-app/World endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME/HUD and6/13/23 i386 plus O2 launcher/probe compile/link only. Original unsafe format bounds/undefined padding and delegated engine bodies excluded. Mandatory current-application status remains a real OWN loan;11/12/16/console/general non7 networking/history/close/application and desktop acceptance remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/hud_small_panels_loading.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-control-source.md",
+        "analysis/checkpoints/p22-frame-match-control-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072dac0",
+      "status": "partial",
+      "coverage": "Actual accepted/rejected localized vote result and literal-string colour50/150/50 message route, with no process counter mutation.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/register/vtable/container/allocator/SEH ABI equivalence. Native383 received-match/map/format/localization-loan/vote/reset-control borrower checks use explicit adjacent UI/locale/current-app/World endpoints; strict actual World/Startup/HumanFrameRuntime/FRAME/HUD and6/13/23 i386 plus O2 launcher/probe compile/link only. Original unsafe format bounds/undefined padding and delegated engine bodies excluded. Mandatory current-application status remains a real OWN loan;11/12/16/console/general non7 networking/history/close/application and desktop acceptance remain required; no whole-function promotion.",
+      "evidence": [
+        "recovered/game/session_received_match.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-match-control-source.md",
+        "analysis/checkpoints/p22-frame-match-control-20261117.json"
       ]
     }
   ]

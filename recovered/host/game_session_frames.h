@@ -7,6 +7,7 @@
 #include "game/session_match_rules.h"
 #include "game/session_match_input.h"
 #include "game/session_match_peers.h"
+#include "game/session_received_match.h"
 #include "game/session_round_reset.h"
 #include "game/network_mission_metadata.h"
 #include "game/human_damage_score.h"
@@ -94,6 +95,12 @@ public:
     void reset_round(bool restart)override{
         require_open();RoundServices services{*this};
         io::observe_data_operation(store(),"0069C390 retained round reset",[&]{game::reset_retained_session_round(d_.session,restart,services);});
+    }
+    void receive_frame_control(std::uint32_t kind,std::uint32_t value)override{
+        require_open();MatchServices services{*this};
+        if(kind==6){(void)frontend::select_network_map(d_.startup.game_configuration(),nullptr);services.frame_current_application_status(9);return;} //0069B9D0.
+        if(kind==13){game::receive_session_match_result(d_.session,value,services);return;}
+        throw std::runtime_error("Required current-Frame presentation control receiver is unavailable");
     }
     void retire()noexcept override{if(retired_)return;retired_=true;world_.unbind_frame_reset(*this);} //Consumes the source borrower; does not finish/simulate the World.
     std::uint32_t mode_flags()const{return d_.startup.application_flags();}
@@ -285,6 +292,9 @@ private:
         void frame_countdown_hint(std::uint32_t id,std::uint32_t time){f.world_.owners().hud_panels().small().set_countdown_hint(id,time);}
         void frame_set_hint(std::int32_t id){f.d_.hud.set_hint(id);}
         void frame_connection_warning(std::uint32_t id,std::uint32_t time){f.d_.hud.set_injury_message(id,time);}
+        void frame_hide_map(){f.d_.hud.hide_map();}
+        std::uint32_t frame_team_win(unsigned side){return data().team_wins458.at(side);}
+        void frame_result_hint(std::uint32_t label,std::uint32_t first,std::uint32_t second){f.d_.hud.set_result_hint(label,first,second);}
         void frame_show_info(bool enabled){presentation().show_info(enabled);f.d_.hud.control_latches()[0]=static_cast<std::uint8_t>(enabled);}
         void frame_advance_sync(std::uint32_t elapsed){game::advance_session_match_sync(startup().game_session_frame_process(),*this,elapsed);}
         void frame_evaluate_rules(std::uint32_t elapsed){game::evaluate_session_match_rules(state(),startup().game_session_frame_process(),*this,elapsed);}

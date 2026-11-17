@@ -237,14 +237,13 @@ preparation, not a standalone audit-only milestone.
 
 ## 2. Load an original mission to its first world frame
 
-[FRAME current source](analysis/p22-frame-current-source.md): offline session +
-actual Human Runtime/World/UI/input/lifecycle verified through1d54083 (strict
-actual i386 link, native1,248 ordering/pause/failure checks, O2 launcher/probe).
-Former import/5F9 blockers are superseded. [Selected FRAME continuation](analysis/p22-frame-match-source.md)
-adds conditional match/input/exit policies, actual peer/FIFO/packet consumers and
-positive retained-item restore. [Populated runtime snapshot](analysis/p22-frame-runtime-snapshot-source.md) is now supplied.
-[Pending spawn and same-Human respawn](analysis/p22-frame-pending-spawn-source.md) now have actual World/Items/input/Players/HUD/camera bindings.
-[Containing retained-round reset](analysis/p22-frame-retained-round-source.md) and [actual Human/Actor44 plus all18 module callbacks](analysis/p22-frame-actor-reset-source.md) now bind existing owners. [Balance and authority initial/pending spawn plus presentation respawn](analysis/p22-frame-process-spawn-source.md) now bind actual process/World owners. [Received Runtime7 and statistics8](analysis/p22-frame-presentation-state-source.md) now bind actual owners. Remaining console/general network/history/packets/HUM/OWN/application/desktop consumers keep the matrix partial.
+[FRAME current source](analysis/p22-frame-match-control-source.md): same-World
+input/fixed/update/UI/lifecycle and all18 retained reset modules are source-bound.
+Actual process balance/spawn, received Runtime/statistics and6/13/23 consumers
+compile with real owners; focused native and actual i386/O2 evidence is linked.
+Remaining11/12/16, console/general network/history/close and HUM/OWN/application
+consumers keep the matrix partial. Actual mission/failure/repeat/user acceptance
+remains separate; earlier checkpoint evidence is revision-qualified.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 

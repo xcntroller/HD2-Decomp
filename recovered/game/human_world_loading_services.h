@@ -2939,6 +2939,7 @@ public:
     template<class Human>auto& human_state_factory(Human& human){return composition(human).state_factory();}
     template<class Human>auto& human_state_owner(Human& human){return composition(human).states();}
     struct HumanRespawnConfiguration{std::int32_t style;std::uint32_t delay,enabled;};
+    void request_human_respawn(){dependencies().startup.queue_application_request(1,0,0);} //0059FE30 autoscheduled direct0072B1C0, not gated manual0059F010.
     HumanRespawnConfiguration human_respawn_configuration(){
         const auto& config=dependencies().startup.game_configuration();
         return {config.style224,static_cast<std::uint32_t>(config.rules228[5]),static_cast<std::uint32_t>(config.rules228[6])};
