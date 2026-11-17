@@ -29,11 +29,12 @@ public:
         std::function<void(Context&)> end=[&module](Context& context){module.runtime().script_return_end(context);};
         std::function<void()> fail=[&module]{module.runtime().fail_human_mission();};
         std::function<void(std::int32_t,std::int32_t)> objective=[&module](std::int32_t identity,std::int32_t status){module.runtime().set_human_objective_status(identity,status);};
-        fail_=std::move(fail);objective_=std::move(objective);contexts_=std::move(contexts);authority_=std::move(authority);cutscene_=std::move(cutscene);navigation_=std::move(navigation);end_=std::move(end);module_=&module;
+        std::function<void(bool)> pause=[&module](bool enabled){module.pause_sounds(enabled);};
+        pause_=std::move(pause);fail_=std::move(fail);objective_=std::move(objective);contexts_=std::move(contexts);authority_=std::move(authority);cutscene_=std::move(cutscene);navigation_=std::move(navigation);end_=std::move(end);module_=&module;
     }
     template<class Module>void unbind(Module& module)noexcept{
         if(module_!=&module)return;
-        module_=nullptr;contexts_={};authority_={};cutscene_={};navigation_={};end_={};fail_={};objective_={};
+        module_=nullptr;pause_={};contexts_={};authority_={};cutscene_={};navigation_={};end_={};fail_={};objective_={};
     }
     Context* context_for_frame(Frame frame){require_bound();return contexts_(frame);}
     bool script_authority()const{require_bound();return authority_();}
@@ -41,11 +42,13 @@ public:
     void script_return_end(Context& context){require_bound();end_(context);}
     void fail_human_mission(){require_bound();fail_();}
     void set_human_objective_status(std::int32_t identity,std::int32_t status){require_bound();objective_(identity,status);}
+    void pause_sounds(bool enabled){require_bound();pause_(enabled);}
     bool cutscene_active()const{require_bound();return cutscene_();}
     bool bound()const noexcept{return module_!=nullptr;}
 private:
     void require_bound()const{if(!module_)throw std::logic_error("Script world link has no actual containing module");}
     Frames& frames_;const void* module_=nullptr;
+    std::function<void(bool)> pause_;
     std::function<Context*(Frame)> contexts_;std::function<bool()> authority_,cutscene_;
     std::function<void(Context&,std::int32_t)> navigation_;
     std::function<void(Context&)> end_;std::function<void()> fail_;

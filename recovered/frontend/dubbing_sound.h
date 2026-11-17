@@ -129,6 +129,15 @@ public:
             if(auto* frame=channels_[channel].attachments[0])backend_.synchronize_dubbing_attachment(frame);
         }
     }
+    void pause(bool enabled){ //0071F640, computed game64; ascending actual16-channel storage.
+        for(auto& channel:channels_){
+            if(enabled){if(channel.sound&&backend_.sound_active(channel.sound,0)){
+                backend_.sound_mode(channel.sound,0,1);channel.position=backend_.dubbing_sound_position(channel.sound);backend_.update_sound(channel.sound);
+            }}else if(channel.state==2&&channel.sound){
+                backend_.enable_sound(channel.sound,1);backend_.sound_mode(channel.sound,1,1);resume_countdown_=1;backend_.update_sound(channel.sound);
+            }
+        }
+    }
     void update(std::uint32_t elapsed) { //0071EE00, native unsigned millisecond/timer arithmetic.
         bool resume=false;if(resume_countdown_>0&&--resume_countdown_<1)resume=true;
         for(auto& channel:channels_) {

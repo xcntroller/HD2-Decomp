@@ -88,15 +88,15 @@ bool equip_human_loading_holster(Human& human,Items& items,Commands& commands,st
 
 //Shared request policies keep Human callers on the actual general receiver
 //while preserving Player/Remote queue ownership. These do not own inventory.
-template<class Human,class Items,class States,class World,class Entry>
-bool request_human_loading_inventory_move(Human& human,Items& items,States& states,World& world,Entry entry,Human& source,
+template<class Human,class Items,class States,class World,class Entry,class Source>
+bool request_human_loading_inventory_move(Human& human,Items& items,States& states,World& world,Entry entry,Source& source,
         std::int32_t source_slot,std::int32_t destination_slot,std::int32_t index){
     auto* state=states.get();if(!state)throw std::runtime_error("Inventory command requires actual published Human B0");
     const auto kind=state->words().template get<std::uint32_t>(0x48),mode=world.mode_flags();
     if(kind==1||kind==7){
         if((mode&7u)!=7u)throw std::runtime_error("Queued inventory publication requires actual nonoffline transport");
         if(!entry)throw std::runtime_error("Human inventory request is missing its actual item entry");
-        return state->queue_inventory_move(items.runtime_item(entry).identity,&source==&human?-1:source.base().id10(),source_slot,destination_slot,index);
+        return state->queue_inventory_move(items.runtime_item(entry).identity,static_cast<const void*>(&source)==static_cast<const void*>(&human)?-1:source.base().id10(),source_slot,destination_slot,index);
     }
     if(kind!=3&&kind!=4&&kind!=5&&kind!=6&&kind!=8)throw std::runtime_error("Unrecovered inventory command state");
     if(!entry)throw std::runtime_error("Human inventory command is missing its actual item entry");
@@ -104,25 +104,25 @@ bool request_human_loading_inventory_move(Human& human,Items& items,States& stat
     //It owns canonical source lookup, general transfer and post-effects;
     //non7 forwarding is required only AFTER a successful transfer.
     return world.request_human_inventory_move(human,items.runtime_item(entry).identity,
-        &source==&human?-1:source.base().id10(),source_slot,destination_slot,index);
+        static_cast<const void*>(&source)==static_cast<const void*>(&human)?-1:source.base().id10(),source_slot,destination_slot,index);
 }
-template<class Human,class Items,class States,class World,class Entry>
+template<class Human,class Items,class States,class World,class Entry,class Source>
 bool request_human_loading_inventory_swap(Human& human,Items& items,States& states,World& world,Entry current,std::int32_t current_slot,
-        Human& source,Entry selected,std::int32_t selected_slot){
+        Source& source,Entry selected,std::int32_t selected_slot){
     if(!world.human_inventory_swap_eligible(human,source,selected_slot))return false; //005A2BB0 BEFORE B0/item identity reads.
     auto* state=states.get();if(!state)throw std::runtime_error("Weapon swap requires actual Human B0");
     const auto kind=state->words().template get<std::uint32_t>(0x48),mode=world.mode_flags();
     if(kind==1||kind==7){
         if((mode&7u)!=7u)throw std::runtime_error("Queued weapon swap requires actual nonoffline transport");
         if(!current||!selected)throw std::runtime_error("Weapon swap request is missing actual entries");
-        return state->queue_inventory_swap(items.runtime_item(current).identity,current_slot,&source==&human?-1:source.base().id10(),items.runtime_item(selected).identity,selected_slot);
+        return state->queue_inventory_swap(items.runtime_item(current).identity,current_slot,static_cast<const void*>(&source)==static_cast<const void*>(&human)?-1:source.base().id10(),items.runtime_item(selected).identity,selected_slot);
     }
     if(kind!=3&&kind!=4&&kind!=5&&kind!=6&&kind!=8)throw std::runtime_error("Unrecovered weapon swap state");
     if(!current||!selected)throw std::runtime_error("Weapon swap command is missing actual entries");
     //Same common00587E00/005A2E90 owner as received commands. The old
     //loading-only weapon helper must not restrict general AI slot/fallback.
     return world.request_human_inventory_swap(human,items.runtime_item(current).identity,current_slot,
-        &source==&human?-1:source.base().id10(),items.runtime_item(selected).identity,selected_slot);
+        static_cast<const void*>(&source)==static_cast<const void*>(&human)?-1:source.base().id10(),items.runtime_item(selected).identity,selected_slot);
 }
 
 //005A2B40/005A2BB0 use the SAME general00587BF0/00587E00 command receivers

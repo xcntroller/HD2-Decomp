@@ -264,9 +264,13 @@ replacing unproduced scalar744. Native integration checks use the real physics
 initializer and overhead collision geometry. Subtitles return to original black
 bars with the missing006DCAE0 full-viewport clear-before-render arm now connected;
 restoring geometry alone was incomplete. Source/build checks are recorded in the
-receipt; actual Ladder/climb/subtitle desktop acceptance remains pending. Pause14
-is explicitly excluded by the user; selector stays OWN/UI. Full FRAME/HUM/OWN remain
-unaccepted.
+receipt. User now passes the movement tutorial on32edd0a. The next shooting/HUD
+blockers have source corrections: checked runtime target loans, actual selector/
+inventory/roll/signal requests and in-game pause propagation.
+[HUD checkpoint](analysis/checkpoints/p22-frame-shooting-hud-20261117.json):59 focused
+sanitizer checks and actual REVIEW launcher/probe rebuild/stage pass; user retry
+for shooting/pickup/weapon switching/pause remains pending. Pause MENU14 stays
+explicitly excluded. Subtitles and full FRAME/HUM/OWN remain unaccepted.
 
 [P22-DATA](analysis/p22-data-plan.md): **complete (implementation scope)** — resolver/cache provenance, verified selected-byte validation and concrete observation bindings. Remaining live integration/observations belong to OWN/FRAME/RENDER; desktop acceptance remains separate.
 

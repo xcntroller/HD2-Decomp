@@ -13,6 +13,7 @@
 #include "game/mission_script_model_animations.h"
 #include "game/mission_script_weather_commands.h"
 #include "game/mission_script_cutscenes.h"
+#include "game/mission_script_pause_sounds.h"
 #include "game/mission_script_presentation_commands.h"
 
 namespace hd2::game {
@@ -74,6 +75,8 @@ public:
         if(presentation_.receive_opcode(opcode,*packet))return true;
         return visibility_.receive_opcode(opcode,*packet);
     }
+    void add_pause_sound(const std::string& name){pause_sounds_.add(name);}
+    void pause_sounds(bool enabled){pause_sounds_.pause(enabled);}
     bool cutscene_active()const noexcept{return static_cast<std::uint8_t>(fields824_[0])!=0;} //SAME live native824 used by start/end.
     void end_cutscene(){ //00423EB0: first native BYTE824 gate, before camera/engine/context calls.
         cutscenes_.end();
@@ -83,6 +86,8 @@ public:
         if(fields824_[0])frames_.script_cutscene_viewport(); //Actual IGraph dimensions→scene+148 receiver.
     }
     std::optional<bool> execute(typename Contexts::Context& context,const MissionScriptInstruction& instruction) {
+        if(instruction.opcode==0x103){if(!runtime_.script_authority())return false;
+            add_pause_sound(context.program().strings.at(instruction.operands.at(0)));context.advance(runtime_);return true;}
         if(const auto result=cutscenes_.execute(context,instruction))return result;
         if(const auto result=frame_commands_.execute(context,instruction,runtime_))return result;
         if(const auto result=execute_mission_script_door_command(frames_,context,instruction,packets_,runtime_))return result;
@@ -99,7 +104,9 @@ public:
         if((!loaded_&&!activation_started_)||!authority)return;
         visibility_.clear_lights();flag825_=false;
         std::exception_ptr failure;
-        try{snapshots_.clear([&](auto frame){animations_.restore(frame);});}catch(...){failure=std::current_exception();}
+        try{pause_sounds(false);}catch(...){failure=std::current_exception();}
+        pause_sounds_.clear(); //00427B80 before snapshot/context retirement.
+        try{snapshots_.clear([&](auto frame){animations_.restore(frame);});}catch(...){if(!failure)failure=std::current_exception();}
         rotations_.clear(); //Native restores snapshot rotations BEFORE releasing84C record frame references.
         try{contexts_.finish_contexts();}catch(...){if(!failure)failure=std::current_exception();}
         try{animations_.clear();}catch(...){if(!failure)failure=std::current_exception();}
@@ -118,6 +125,7 @@ private:
     Frames& frames_;Files& files_;Runtime& runtime_;std::string resource_;std::uint32_t& mode_;SessionBroadcastPackets& packets_;
     std::array<std::uint32_t,5> fields824_{};std::uint32_t timer_=0; //Must outlive cutscene borrowers.
     Contexts contexts_;MissionScriptFrameCommands<Frames,Contexts> frame_commands_;Snapshots snapshots_;MissionScriptModelAnimations<Frames,Snapshots,Models,Runtime> animations_;MissionScriptRotations<Frames,Snapshots> rotations_;Visibility visibility_;MissionScriptWeatherCommands<Frames,Runtime> weather_;MissionScriptPresentationCommands<Frames,Runtime> presentation_;MissionScriptCutscenes<Frames,Contexts,Snapshots,MissionScriptModelAnimations<Frames,Snapshots,Models,Runtime>,Runtime> cutscenes_;MissionScriptVariables& variables_;MissionScriptBindings bindings_; //SAME process module4 bank, not reset by world destruction/finish.
+    MissionScriptPauseSounds<Frames> pause_sounds_{frames_};
     std::vector<MissionScriptBindings::Binding> failed_bindings_;
     bool loaded_=false,flag11_=false,flag825_=false,activation_started_=false;
 };

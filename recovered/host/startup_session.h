@@ -478,6 +478,7 @@ public:
     const frontend::CatalogSoundEntry* item_shot_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(2,id);} //007D5C70, SAME SOUND catalogue.
     const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
     void initialize_game_dubbing(){dubbing_sound_.initialize_loading();}
+    void pause_game_dubbing(bool enabled){dubbing_sound_.pause(enabled);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void synchronize_game_dubbing(){dubbing_sound_.synchronize_attachments();}
     void stop_game_dubbing(EngineFrame* frame){dubbing_sound_.stop_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();} //0071E460.
     bool playing_game_dubbing(EngineFrame* frame)const{return dubbing_sound_.playing(frame);} //0071ECC0.

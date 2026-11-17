@@ -13,6 +13,7 @@
 #include "game/hud_inventory_presentation.h"
 #include "game/hud_command_presentation.h"
 #include "game/hud_controls.h"
+#include "game/world_actor_borrowers.h"
 #include "game/console_command_dispatch.h"
 #include "game/hud_car_occupants.h"
 #include "game/hud_process_data.h"
@@ -62,8 +63,8 @@ public:
 class GameUiCommandControls {
 public:
     virtual ~GameUiCommandControls()=default;
-    //0069B8B0 must apply the actual game28/mode gate, then time, gameplay
-    //and SOUND00428F00 notifications. FRAME/OWN supplies the containing policy.
+    //0069B8B0 applies the game28/mode gate, then effective pause to dubbing,
+    //requested pause to type36 actors and Script00428F00 sound-frame borrowers.
     virtual void request_realtime(world_loading::World& world,bool enabled)=0;
 };
 struct GameUiCommandOrderLoan {
@@ -175,7 +176,7 @@ public:
     virtual void submit_action(world_loading::Human& human,const game::HudRollCommand& request)=0; //Human005A45B0, actual B0 virtualD8.
     virtual void pickup_supply(world_loading::Human& human,game::SupplyBoxSceneActor<world_loading::Frames>& supply,std::int32_t row)=0; //005A2CF0, B0 virtual7C and Human178 publication.
     virtual void pickup_item(world_loading::Human& human,GameSceneActors::Instance& item)=0; //005A2D20, B0 virtual6C(id,7) and Human178 publication.
-    virtual void request_inventory(world_loading::Human& human,std::int32_t target_identity)=0; //005A45A0; nonoffline kind3 request producer, not an immediate transfer.
+    virtual void request_inventory(world_loading::Human& human,std::int32_t target_identity)=0; //005A45A0→0053F1B0 first-queue command21; authority publishes20.
 };
 //Actual Human005A2B40/005A2BB0/005A2C50 command receivers. UI chooses the
 //original source/destination/holder/index and consumes each loan in-call. This
@@ -190,7 +191,7 @@ public:
 };
 class GameUiSelectorCommands:public GameUiInventoryCommands {
 public:
-    virtual bool selector_busy(Human&)=0; //Actual Human state virtual48, before005A45C0.
+    virtual bool selector_busy(Human&)=0; //Actual hand holder3 virtual48 cooldown, before005A45C0.
     virtual void use_selector_item(Human&,Entry)=0; //005A45B0 command2/23 with actual runtime item identity10.
 };
 class GameUiPlayerControls {
@@ -275,7 +276,10 @@ public:
     bool hud_player_input_blocked(){require_open();SessionInputQueries queries{*this};return game::hud_player_input_blocked(queries);}
     void process_hud_controls(const GameUiHudControlSources& sources,std::uint32_t* first,std::uint32_t* second,std::size_t count){
         require_open();if(!parent_.hud()->flags)return;if(!first||!second||count<64)throw std::invalid_argument("HUD controls require original containing64-word input pair");
-        DialogInput input{d_.startup.presentation_input_bindings(),backend_.presentation_input(),first,second,count};HudControlQueries queries{*this,sources,first,second,count};game::HudControls worker(input,queries);worker.run();
+        WorldControlCommands commands{*this};auto bound=sources;
+        if(!bound.signals)bound.signals=&commands;if(!bound.roll)bound.roll=&commands;
+        if(!bound.selector)bound.selector=&commands;if(!bound.inventory)bound.inventory=&commands;if(!bound.realtime&&!bound.command)bound.realtime=&commands;
+        DialogInput input{d_.startup.presentation_input_bindings(),backend_.presentation_input(),first,second,count};HudControlQueries queries{*this,bound,first,second,count};game::HudControls worker(input,queries);worker.run();
     }
     void advance_hud_messages(std::uint32_t elapsed,GameUiMessageCommands& commands){
         require_open();auto input=backend_.presentation_input();
@@ -544,7 +548,7 @@ private:
     RollDialogs& roll_dialog(bool command){auto& panels=world_.owners().hud_panels();return command?panels.command_roll():panels.dialogs();}
     void require_actor_borrower(const GameSceneActors::Instance* actor){
         if(!actor)throw std::logic_error("HUD target requires an actual actor");
-        for(std::size_t n=0;n<d_.scene.frames().scene_actor_identity_count();++n)if(d_.scene.frames().scene_actor_identity(static_cast<std::int32_t>(n))==actor)return;
+        if(game::world_owns_actor(d_.scene.frames(),d_.world_actors.runtime(),actor))return;
         throw std::logic_error("HUD target borrower is absent from SAME World identity registry");
     }
     world_loading::Human* find_human_borrower(const void* borrower){
@@ -669,7 +673,7 @@ private:
     struct CommandQueries:TargetQueries{
         std::vector<Actor*> selected_humans(){std::vector<Human*> selected;ui.d_.players.control().selection().selected(selected);return {selected.begin(),selected.end()};}
         Actor* resolve(const void* identity){
-            for(std::size_t n=0;n<ui.d_.scene.frames().scene_actor_identity_count();++n){auto* actor=ui.d_.scene.frames().scene_actor_identity(static_cast<std::int32_t>(n));if(actor&&&actor->base()==identity)return actor;}
+            if(auto* actor=game::world_actor_for_base(ui.d_.scene.frames(),ui.d_.world_actors.runtime(),identity))return actor;
             throw std::logic_error("Command cached actor is absent from SAME World registry");
         }
         auto& base(Actor& actor){ui.require_actor_borrower(&actor);return actor.base();}
@@ -764,7 +768,8 @@ private:
         std::int32_t switch_definition(Actor& actor){return actor_source(actor).switch_definition(actor);}
         std::int32_t switch_state(Actor& actor){return actor_source(actor).switch_state(actor);}
         std::int32_t item_container_count(Actor& actor){ui.require_actor_borrower(&actor);auto* selected=selected_human();if(!selected)throw std::logic_error("Roll pickup query requires actual selected Human");
-            if(!external)throw std::runtime_error("Roll loose-item pickup requires actual007DAF80 dry-run transfer receiver");return external->loose_item_pickup_capacity(human(*selected),actor);}
+            if(external)return external->loose_item_pickup_capacity(human(*selected),actor);
+            return ui.world_.owners().human_services().active_loose_target_capacity(human(*selected),actor);}
         std::int32_t special_caption(Actor& actor){return actor_source(actor).special_caption(actor);}
         std::int32_t special_definition(Actor& actor){return actor_source(actor).special_definition(actor);}
     };
@@ -1122,12 +1127,41 @@ private:
         void hide_command_map(){auto& panels=ui.world_.owners().hud_panels();panels.map().hide(panels.auxiliary());}
         void clear_command_crosshair(){ui.publish_crosshair_target(nullptr,0);}void select_command_pointer(std::int32_t kind){ui.world_.owners().hud_panels().auxiliary().select_pointer(kind);}
     };
+    //In-call adapter borrows only this containing World; no copied inventory,
+    //command queue or pause state. Caller-supplied producers retain precedence.
+    struct WorldControlCommands final:GameUiSelectorCommands,GameUiRollCommands,GameUiCommandControls{
+        GameUiPresentation& ui;
+        explicit WorldControlCommands(GameUiPresentation& value):ui(value){}
+        static auto& hand(Human& human){auto* storage=human.base().storage();auto* holder=storage?storage->holder(3):nullptr;
+            if(!holder)throw std::logic_error("HUD selector requires actual hand3 holder");return *holder;}
+        void submit(Human& human,const game::HudSignalCommand<Actor>& request)override{
+            ui.require_actor_borrower(&human);if(request.target)ui.require_actor_borrower(request.target);if(request.sender)ui.require_actor_borrower(request.sender);
+            ui.world_.owners().human_services().queue_player_signal(human,request);}
+        void submit_action(Human& human,const game::HudRollCommand& request)override{
+            ui.require_actor_borrower(&human);ui.d_.first_players.state(human).emit_common_action(request.action,request.identity,request.parameter);}
+        void pickup_item(Human& human,Actor& actor)override{
+            ui.require_actor_borrower(&human);ui.require_actor_borrower(&actor);ui.world_.owners().human_services().hud_pickup_item(human,actor.base().id10());}
+        void pickup_supply(Human& human,game::SupplyBoxSceneActor<world_loading::Frames>& actor,std::int32_t row)override{
+            ui.require_actor_borrower(&human);ui.require_actor_borrower(&actor);ui.world_.owners().human_services().hud_pickup_supply(human,actor.base().id10(),row);}
+        void request_inventory(Human& human,std::int32_t identity)override{
+            ui.require_actor_borrower(&human);ui.world_.owners().human_services().hud_request_inventory(human,identity);}
+        bool selector_busy(Human& human)override{ui.require_actor_borrower(&human);return hand(human).cooling_down(ui.d_.session.words.get<std::uint32_t>(0x28));}
+        void use_selector_item(Human& human,Entry entry)override{ui.require_actor_borrower(&human);ui.world_.owners().human_services().hud_use_selector_item(human,entry);}
+        void move(Human& human,Entry item,Actor& source,std::int32_t from,std::int32_t to,std::int32_t index)override{
+            ui.require_actor_borrower(&human);ui.require_actor_borrower(&source);ui.world_.owners().human_services().hud_inventory_move(human,item,source,from,to,index);}
+        void swap(Human& human,Entry displaced,std::int32_t to,Actor& source,Entry item,std::int32_t from)override{
+            ui.require_actor_borrower(&human);ui.require_actor_borrower(&source);ui.world_.owners().human_services().hud_inventory_swap(human,displaced,to,source,item,from);}
+        void drop(Human& human,Entry item,std::int32_t,const std::array<float,4>& direction)override{
+            ui.require_actor_borrower(&human);ui.world_.owners().human_services().hud_inventory_drop(human,item,direction);}
+        void request_realtime(world_loading::World& world,bool enabled)override{
+            if(&world!=&ui.world_)throw std::logic_error("HUD pause requires SAME World");ui.world_.owners().human_services().spawn_pause(enabled);}
+    };
     struct SelectorControlQueries{
         GameUiPresentation& ui;GameUiSelectorCommands& commands;using Human=world_loading::Human;using Entry=world_loading::Actors::Items::Entry;
         Human& resolve_human(const void* identity){return *ui.find_human_borrower(identity);}
         bool selector_busy(Human& human){ui.require_actor_borrower(&human);return commands.selector_busy(human);}
         bool action_active(Human& human){return ui.d_.first_players.state(human).words().template get<std::int32_t>(0x60)!=-1;}
-        Entry current_weapon(Human& human){return ui.d_.first_players.state(human).item();}
+        Entry current_weapon(Human& human){ui.require_actor_borrower(&human);return WorldControlCommands::hand(human).entry();}
         unsigned item_kind(Entry entry){return ui.d_.world_actors.items().runtime_item(entry).definition().kind();}
         bool focused(Human& human){ui.require_actor_borrower(&human);return human.field174!=0;}
         void use_item(Human& human,Entry entry){(void)ui.d_.world_actors.items().runtime_item(entry);commands.use_selector_item(human,entry);}

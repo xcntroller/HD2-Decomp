@@ -112,6 +112,11 @@ public:
     Instance* scene_actor_identity(std::int32_t id)const { //00475DD0, Scene2 identity slots, not runtime IDs.
         return id<0?nullptr:actors_.identity(static_cast<std::size_t>(id));
     }
+    void pause_actor_sounds(bool){ //005E8D50, actual type36 registry is empty while its constructor remains unsupported.
+        //Inspect real owners, never stand in an empty success container for a populated registry.
+        for(std::size_t n=0;n<actors_.identity_count();++n)if(auto* actor=actors_.identity(n))if(actor->base().type()==36)
+            throw std::runtime_error("Pause requires actual populated type36 sound-frame owner");
+    }
     std::size_t scene_actor_identity_count()const{return actors_.identity_count();}
     Instance* scene_actor_command_identity(std::int32_t id)const{return actors_.command_identity(id);} //00475D50.
     template<class Services>void tick_scene_actors(bool authority,std::uint32_t elapsed,Services& services){

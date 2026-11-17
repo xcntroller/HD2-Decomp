@@ -1,0 +1,259 @@
+{
+  "date": "2026-11-17",
+  "finalized_utc": "2026-11-17T20:47:59.129890+00:00",
+  "source_base": "32edd0abfacf9d5a3284811cccb480977cf4967d",
+  "branch": "feature/p22-frame",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "user_return": {
+    "exe_sha256": "a9e84d72e1075de2b967840cb37a54dad463193ab74d694f07e39bc83aae6c64",
+    "accepted": "Movement tutorial completed",
+    "failures": [
+      "Shooting tutorial: HUD target borrower absent from SAME World registry (user evidence)",
+      "HUD weapon selector and in-game pause: actual Human selector command producer absent (user and archived log evidence)"
+    ],
+    "excluded": "Pause MENU application status14; distinct from newly in-scope in-game pause key"
+  },
+  "corrections": [
+    "UI pointer/Base identity loans consult SAME World Scene2 and Runtime owners; no numeric ID namespace merging, unknown dereference or stale/foreign borrower acceptance.",
+    "In-call SAME World selector/inventory/roll/signal/realtime adapters connect existing B0 dispatch and queues. Selector cooldown is actual hand3 holder virtual48; current entry is actual hand, action60 remains B0.",
+    "Source-aware inventory policy retains Player/Remote first-queue7/8 and AI common transfers. Player pickup9/supply11/inventory21 and requested Drop10 queue canonical payloads; existing authority receivers retain effects/lifecycle.",
+    "0069B8B0 propagates effective64 to actual dubbing pause0071F640, requested byte to actual empty type36-owner validation and Script00428F00. Script AddPauseSound103 now produces actual borrowed85C vector and resumes/clears before context retirement."
+  ],
+  "original_evidence": {
+    "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "addresses": [
+      "0049D6E0",
+      "004ACF00",
+      "007D6890",
+      "005A45B0",
+      "005A45C0",
+      "005A2B40",
+      "005A2BB0",
+      "005A2C50",
+      "0053E9D0",
+      "005A2D20",
+      "0053E440",
+      "005A2CF0",
+      "0053E270",
+      "005A45A0",
+      "0053F1B0",
+      "0069B8B0",
+      "0071F640",
+      "005E8D50",
+      "00428D10",
+      "00428F00"
+    ],
+    "lookup": "Research index before new exports; read-only original Ghidra C and raw static PE evidence. Existing database lacks exact function starts for some entries: failed export attempts retained honestly; no edits or new function-body credit."
+  },
+  "verification": {
+    "native": "PASS59 focused ASan/UBSan/leak checks: real Runtime registry lifetime + UI loan helper; shared inventory request policy deferred versus immediate dispatch; canonical pickup/supply/inventory/drop payloads; actual Script sound lookup/dedup/reverse pause/clear/failure; actual Dubbing bind/play/pause/cursor resume/nonactive/nonplaying/failure. Frame/audio/query boundaries and inventory queue/World endpoints are doubles.",
+    "fixture_correction": "Initial check9 failed because the test actor lacked actual polymorphic Actor layout and its address aliased its first Base member. Corrected double to polymorphic Actor; source unchanged for that correction. Set simulated playback cursor after play resets it. No suppressed sanitizer failure.",
+    "production": "PASS actual REVIEW full sequential O2/Werror -j1 application-launch + startup-probe rebuild. Two later UI comment corrections only; compiled behavior unchanged.",
+    "stage": "PASS --stage-only; final compiled/staged bytes identical. Stage prints launch command but never executes it.",
+    "desktop": "New shooting/weapon/pickup/in-game-pause paths await user retry; no new engine/Windows execution or acceptance claim. Fresh runtime/menu activity discovered before staging archived separately, not counted as acceptance.",
+    "preservation": "PASS OWN HEAD and six dirty hashes unchanged. REVIEW integration/lifecycle patches reverse-check unchanged, focus callback retained;12 shared batch sources match.",
+    "cleanup": "Temporary native source/binary fingerprinted and removed; no permanent tests.",
+    "ledger": "34 complete/3815 partial, frozen18783 unchanged. No full FRAME/HUM/OWN promotion.",
+    "remaining": "Populated type36 actors remain unavailable at their existing constructor boundary and explicit pause guard. Conditional other Actor/UI, nonoffline transport, pause MENU14 and full application/desktop acceptance remain open."
+  },
+  "source_files": [
+    {
+      "path": "recovered/frontend/dubbing_sound.h",
+      "bytes": 15478,
+      "sha256": "d0ecff59d994598676b8c288cace42f87e8a4704ad32a157506bb3f62d0b0fd0"
+    },
+    {
+      "path": "recovered/game/human_loading_inventory.h",
+      "bytes": 13276,
+      "sha256": "cdf7703d43f74017658ff7100ab41a3b7a7265ae28a74940373132ad807ee9fa"
+    },
+    {
+      "path": "recovered/game/human_player_drop.h",
+      "bytes": 2057,
+      "sha256": "96008a142308bd33e3b30e36a36a425cff172b4467ccfae3b86ec5330b639490"
+    },
+    {
+      "path": "recovered/game/human_player_pickup.h",
+      "bytes": 1152,
+      "sha256": "cab220ed1f2fe05f0399589a4cd254c3d86ea6ca642749d79c4ee2457f8c9ff6"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 338715,
+      "sha256": "0d43cb5af043d4b13389bfd57ed136bff289198d55ddb41525ff7f013263838c"
+    },
+    {
+      "path": "recovered/game/mission_script_module_loading.h",
+      "bytes": 10270,
+      "sha256": "6e251ca5963074b4a9029606fd7b7e17b075c2da47a3187f58a6ea3a1e30c783"
+    },
+    {
+      "path": "recovered/game/mission_script_pause_sounds.h",
+      "bytes": 1159,
+      "sha256": "ab018c9bbb600b4cc773e2d653a97f047d7415e2c18eec5cc07f500e2089eeff"
+    },
+    {
+      "path": "recovered/game/mission_script_world_link.h",
+      "bytes": 3866,
+      "sha256": "8dab75021cf5d158351d9f7bed5e54f97a51bc3cfa991265bcdda54aafdeb36e"
+    },
+    {
+      "path": "recovered/game/world_actor_borrowers.h",
+      "bytes": 1049,
+      "sha256": "426cce8f7cc68b690b88528a1beb62befa75b6756c7276c837b3b463dbf5a263"
+    },
+    {
+      "path": "recovered/host/game_scene_actors.h",
+      "bytes": 25373,
+      "sha256": "f290e56d32535242bfd0625a09936abfe679ee095d018009f7d48fe770120ede"
+    },
+    {
+      "path": "recovered/host/game_ui_presentation.h",
+      "bytes": 146442,
+      "sha256": "27cb74d76b31b3408c3d506795965abe1a1391fb4f5f0e8eee5c5b6d1d4a266d"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "bytes": 85765,
+      "sha256": "5b87d1a2d5b26656b4f5c332ab2067dfdfef9b49a895d760ae2b53346f978290"
+    }
+  ],
+  "compiled_launcher": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+    "bytes": 13195264,
+    "sha256": "dba379705235c47248b6d877e1b7c9043d18dce6aa4e21f5a063ab72bd36b2f0"
+  },
+  "staged_launcher": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/analysis/work/frame-own-review-runtime/run/application_launch.exe",
+    "bytes": 13195264,
+    "sha256": "dba379705235c47248b6d877e1b7c9043d18dce6aa4e21f5a063ab72bd36b2f0"
+  },
+  "artifacts": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-return/manifest.json",
+      "bytes": 577,
+      "sha256": "1d1c085df6f211d94b5f27a066910bde2529402f5ae3885664164674a699631f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-return-before-stage/manifest.json",
+      "bytes": 571,
+      "sha256": "46edb4c0179d0b36bcb25e711dc819d67a1ad9be102688f543f81b6b2b55592a"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-index.txt",
+      "bytes": 34184,
+      "sha256": "c7c5e7d93dcf1b3af261345e3a6fe151dfb97b9d4901e1d8f681b01672b67c8d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-followup-index.txt",
+      "bytes": 14554,
+      "sha256": "c7e0b85f976130beb6de917f50ecd487737cbb24548743687273679acd6fa749"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pickup-index.txt",
+      "bytes": 9151,
+      "sha256": "675d45d1c907eb298cb2eac6b504d4a0f97e7bb2549c781ca6383bfafb335920"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pickup-receivers-index.txt",
+      "bytes": 2264,
+      "sha256": "f5db7a69711ef8d8df5014de7dfe416f215f68c82b67397f7fbe75905bf1e807"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pause-ghidra.log",
+      "bytes": 5837,
+      "sha256": "9257bdbfb64554c8c565f3eec5e4c55f66093bfdaad2508f63c3562508741921"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pickup-ghidra.log",
+      "bytes": 5562,
+      "sha256": "0a49e2f9ec0c2b37ec74c4a708ce02eb5d216e7f6e95ad6bce93da01e747c43f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/script-sound-owner.asm",
+      "bytes": 591511,
+      "sha256": "cfdf6aaff51b024d0b0ba404b2a80835706050b09794d4884b5d4f258534d45f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/player-pickup.asm",
+      "bytes": 18138,
+      "sha256": "93f8edc2afa30e2c517453434539300de92a0c0745637505a2ac8170427c63c0"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-audit-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-audit.log",
+      "bytes": 53,
+      "sha256": "2d5b1493a72af6400a83da5378e31d105e6d9e3b01303277d39b6e8f5681b9cf"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-audit-cleanup.json",
+      "bytes": 435,
+      "sha256": "7e546c3b565ab6c1324e7cce4e5f86895811fa145abbefdacc5d7edcbd6c4363"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-build-final.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-stage.log",
+      "bytes": 493,
+      "sha256": "4420cb5c630eba88417b905e2b86f90d1d9e0813fde339c06099027947f90f3d"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-preservation.json",
+      "bytes": 811,
+      "sha256": "83eee330ae4f191ed09905ad9337dbf64ea6ff1556ede278926032533b5ba375"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-review-before.patch",
+      "bytes": 257143,
+      "sha256": "06ae614007a28e354ceba45ef066138346bdd4e61d412eef84f1aac608ddea03"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-review-final.patch",
+      "bytes": 284406,
+      "sha256": "4d3ea618141c3c9336d0a0b976f6227da6e8c4bf5da1d7a37a8b6632cae1a249"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/shooting-hud-review-index.patch",
+      "bytes": 18868,
+      "sha256": "376a03ba0e1252d429352ab63c46cb407f65756b2194c753047c61c0c3568c08"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pause-original/00428f00.c",
+      "bytes": 535,
+      "sha256": "beb314a5b943898991bba5d750bc3475db5ca6f3bca34b56148fcacd09fa5dad"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pause-original/00428f00.json",
+      "bytes": 1106,
+      "sha256": "4e88f5e068a9df7aeb910fc1d07ddd4e147b3668ad9ca81bd3f3890e9784170f"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pause-original/00429a70.c",
+      "bytes": 318,
+      "sha256": "0e1beb890d9e8fa0d76be865e0d8a168363e72840d547690f7f3384c920850b6"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pause-original/00429a70.json",
+      "bytes": 1011,
+      "sha256": "4d3dca0f3e14cb8e295fab191c850ab8ffe9b4ba54eed5dfcfe03726cf05dc73"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pause-original/005e8d50.c",
+      "bytes": 1213,
+      "sha256": "6cae7bcbc9d9b9ce1c5366907cf74ed745b46268c0b2de6be421a675a6284f6c"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/hud-pause-original/005e8d50.json",
+      "bytes": 2782,
+      "sha256": "d3c0779a69449d29d43138f1c0c5e24942163dacc278f7bf8bdf68f99cbc1424"
+    }
+  ]
+}

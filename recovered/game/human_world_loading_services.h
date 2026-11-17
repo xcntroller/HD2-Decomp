@@ -1,5 +1,7 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
+#include "game/human_player_drop.h"
+#include "game/human_player_pickup.h"
 #include "game/human_player_live_input.h"
 #include "game/human_script_nearest_player.h"
 #include "game/mission_script_checkpoint_teleport.h"
@@ -521,13 +523,57 @@ public:
         }
         return static_cast<Actor*>(nullptr);
     }
+    template<class Human,class Entry,class Actor>void hud_inventory_move(Human& human,Entry item,Actor& source,std::int32_t from,std::int32_t to,std::int32_t index){
+        (void)request_human_loading_inventory_move(human,dependencies().world_actors.items(),human_state_owner(human),*this,item,source,from,to,index);
+    }
+    template<class Human,class Entry,class Actor>void hud_inventory_swap(Human& human,Entry displaced,std::int32_t to,Actor& source,Entry item,std::int32_t from){
+        (void)request_human_loading_inventory_swap(human,dependencies().world_actors.items(),human_state_owner(human),*this,displaced,to,source,item,from);
+    }
+    template<class Human>void hud_pickup_item(Human& human,std::int32_t identity){ //005A2D20, Human178 AFTER virtual6C.
+        const auto validate=human_common_receiver_guard(human);auto* state=human_state_owner(human).get();
+        if(!state)throw std::logic_error("HUD item pickup lost actual B0");const auto kind=state->words().template get<std::uint32_t>(0x48);
+        if(kind==1)state->queue_frame_command(human_player_pickup_request(identity,7),false);
+        else if(kind==3||kind==4||kind==5||kind==6||kind==8){std::int32_t slot=7;(void)validate_human_item_pickup(human,identity,slot,*this);}
+        else throw std::runtime_error("HUD item pickup requires selected B0 virtual6C producer");
+        validate();human.activation.flag178=true;
+    }
+    template<class Human>void hud_pickup_supply(Human& human,std::int32_t identity,std::int32_t row){ //005A2CF0.
+        const auto validate=human_common_receiver_guard(human);auto* state=human_state_owner(human).get();
+        if(!state)throw std::logic_error("HUD supply pickup lost actual B0");const auto kind=state->words().template get<std::uint32_t>(0x48);
+        if(kind==1)state->queue_frame_command(human_player_supply_request(identity,row),false);
+        else if(kind==3||kind==4||kind==5||kind==6||kind==8){std::int32_t slot=7,item=-1;(void)validate_human_supply_pickup(human,identity,row,slot,item,*this);}
+        else throw std::runtime_error("HUD supply pickup requires selected B0 virtual7C producer");
+        validate();human.activation.flag178=true;
+    }
+    template<class Human>void hud_request_inventory(Human& human,std::int32_t identity){
+        using Player=typename Dependencies::Composition::StateFactory::Player;
+        auto* player=dynamic_cast<Player*>(human.loading_state);if(!player)throw std::logic_error("HUD inventory request requires actual Player B0");
+        player->queue_frame_command(human_player_inventory_request(identity),false);
+    }
+    template<class Human,class Entry>void hud_use_selector_item(Human& human,Entry entry){ //004ACF00→005A45B0→B0 virtualD8.
+        auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Selector item requires actual Human B0");
+        state->emit_common_action(0x23,dependencies().world_actors.items().runtime_item(entry).identity,0);
+    }
+    template<class Human,class Entry>void hud_inventory_drop(Human& human,Entry entry,const HumanVector& direction){ //005A2C50→B0 virtual70.
+        const auto validate=human_common_receiver_guard(human);
+        const auto velocity=human_requested_drop_velocity(direction,[this]{return human_sound_random();});validate();
+        auto* state=human_state_owner(human).get();if(!state)throw std::logic_error("Inventory drop lost actual Human B0");
+        const auto kind=state->words().template get<std::uint32_t>(0x48);
+        const auto identity=dependencies().world_actors.items().runtime_item(entry).identity;
+        if(kind==1)state->queue_frame_command(human_player_drop_request(identity,velocity),false);
+        else if(kind==3||kind==4||kind==5||kind==6||kind==8)drop_human_damage_item_identity(human,identity,velocity);
+        else throw std::runtime_error("Inventory drop requires selected B0 virtual70 producer");
+        human.activation.flag178=true;
+    }
     template<class Human>bool request_human_inventory_move(Human& human,std::int32_t identity,std::int32_t source,std::int32_t source_slot,std::int32_t destination,std::int32_t index){ //00587BF0, common B0 virtual74.
         const bool moved=receive_human_inventory_move(human,dependencies().world_actors.items(),*this,true,identity,source,source_slot,destination,index);
         if(moved&&(mode_flags()&7u)!=7u)throw std::runtime_error("Human inventory request requires00587BF0 second command7 publication after successful transfer");
         return moved;
     }
-    template<class Human>bool human_inventory_swap_eligible(Human& human,Human& source,std::int32_t selected_slot){ //005A2BB0 prefix, before either item identity/B0 read.
-        return human_inventory_swap_admitted(human,source,selected_slot,[this](auto& actor){return this->human_unavailable(actor);});
+    template<class Human,class Actor>bool human_inventory_swap_eligible(Human& human,Actor& source,std::int32_t selected_slot){ //005A2BB0 prefix, before either item identity/B0 read.
+        if(selected_slot!=4)return true;
+        auto* other=dynamic_cast<Human*>(&source);if(!other)throw std::logic_error("Clothing swap requires actual source Human");
+        return human_inventory_swap_admitted(human,*other,selected_slot,[this](auto& actor){return this->human_unavailable(actor);});
     }
     template<class Human>bool request_human_inventory_swap(Human& human,std::int32_t current,std::int32_t current_slot,std::int32_t source,std::int32_t selected,std::int32_t selected_slot){ //00587E00, actual common B0 virtual78.
         const bool moved=receive_human_inventory_swap(human,dependencies().world_actors.items(),*this,true,current,current_slot,source,selected,selected_slot);
@@ -1080,10 +1126,14 @@ public:
     void spawn_hud_mode(std::uint32_t phase){
         dependencies().hud.spawn_mode(phase,[this]{return mode_flags();},[this](bool enabled){spawn_pause(enabled);});
     }
-    void spawn_pause(bool enabled){ //0069B8B0's scalar prefix; normal non7 spawn does not reach this offline callee.
+    void spawn_pause(bool enabled){ //0069B8B0, preserve computed64 versus requested sound-frame byte.
         auto& game=dependencies().session;
         game.words.set(0x64,static_cast<std::uint8_t>(game_word28()>=2500&&(mode_flags()&7u)==7u&&enabled));
-        throw std::runtime_error("Game pause requires actual0071F640/005E8D50/00428F00 propagation");
+        auto& d=dependencies();d.startup.pause_game_dubbing(game.words.template get<std::uint8_t>(0x64)!=0);
+        d.scene.frames().pause_actor_sounds(enabled);
+        if(d.world_actors.runtime().any_owned_reverse([](auto& actor){return actor.base().type()==36;}))
+            throw std::runtime_error("Pause requires actual runtime type36 sound-frame owner");
+        d.script_link.pause_sounds(enabled);
     }
     void spawn_camera_command(std::uint32_t command,bool present,std::uint32_t value){
         auto refresh=[this](auto&){refresh_human_presentation_camera();};

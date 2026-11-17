@@ -660,3 +660,74 @@ analysis/checkpoints/p22-frame-ladder-height-bars-20261117.json. No new broad au
 or checkbox. Source fixes address concrete returned errors; actual rendered bars,
 Ladder exit and camera-independent climb await user verification. Pause14 stays
 out of scope at user's request. Ledger34/3815, frozen18783 and full matrix unchanged.
+
+Shooting tutorial target registry, HUD requests and in-game pause
+
+User passes the movement tutorial on32edd0a / executablea9e84d72. Entering the
+shooting tutorial reports a target absent from SAME World registry; next/previous
+weapon and in-game pause report an absent selector producer. The archived latest
+log confirms the selector failure; target failure is independent user evidence.
+WORK/shooting-hud-return/manifest.json retains the exact preceding executable/logs.
+This acceptance advances movement tutorial only; subtitles and broader mission
+flows have no new desktop acceptance. Pause key is in scope; pause-menu status14
+remains explicitly excluded.
+
+Target membership previously considered only Scene2 identity slots. Selection and
+command rays can return an actual runtime loose-item descriptor: its actor pointer
+is bound by the existing runtime actor/physics owner. Both pointer validation and
+cached ActorBase resolution now consult SAME Scene2 plus SAME Runtime ownership.
+No numeric identity namespaces are combined, unknown pointers are never read, and
+retired/foreign borrowers still reject. Runtime00477190 removes ownership before
+presentation retirement and destruction; the UI retains no new loans. The actual
+runtime registry and shared UI membership helper have focused lifetime checks.
+
+Default in-call HUD adapters now borrow the real World Human/B0/item owners for
+selector, inventory, roll, signal and realtime requests. Supplied external
+producers still take precedence. No adapter or command borrower escapes the call.
+005A2B40/005A2BB0 preserve existing Player/Remote first-queue command7/8 and common
+AI transfer/swap policy; source actors may also be real nonHuman inventory owners.
+Clothing eligibility remains before item/B0 reads.004ACF00's first busy query is
+Human74→holder3→virtual48/007D6890, NOT a Human state virtual: use the actual hand
+cooldown and read hand3's current entry, rather than the B0 item cache.005A45C0
+still reads B0+60, and special kind13 uses005A45B0→B0 D8 action23.
+
+Following that same tutorial path exposed the next missing in-call producers:
+loose-item roll capacity now uses the existing007DAF80 dry-run owner; Player
+005A2D20→virtual6C/0053E440 queues canonical command9;005A2CF0→virtual7C/0053E270
+queues canonical11 with item=-1/slot7. The native supply constructor shares tag9
+with a distinct00810C94 vtable; it must not be misread as the loose-item layout.
+Existing first-queue authority receivers still own actual placement and runtime
+retirement.005A45A0→0053F1B0 queues21, whose existing authority publishes20.
+Roll actions use real D8; signals use the recovered Player0053D910 producer.
+Inventory Drop uses the prior H8 Player drop arithmetic/command helper, preserving
+three RNG draws and first-queue direction/speed/actor=-1 policy. Common AI
+receivers remain immediate and unsupported selected families still fail. This
+batch does not close unrelated command-camera/conditional Actor/UI producers.
+
+0069B8B0 now propagates the real pause chain after its existing game64 store:
+0071F640 receives computed64 (2500ms/offline gate),005E8D50 and Script00428F00
+receive the REQUESTED byte. Actual16-channel DubbingSound pauses active sounds,
+saves cursors, resumes only state2 sounds and sets its existing one-frame cursor
+restore counter. Script AddPauseSound103/00428D10 now populates its actual85C
+borrowed frame vector by scene lookup/maskFFFF, reverse dedup and append. Pause
+walks it in reverse, SetOn(!request),Update; finish resumes/clears it before
+snapshot/context/frame retirement. The existing checked World Script link binds
+and unbinds this receiver with the same module; it copies no pause state.
+Current factory support cannot construct type36. Its pause adapter checks the real
+Scene2/runtime owners: an actually empty registry is valid; a populated unsupported
+type36 sound owner is still an explicit failure, never an empty stand-in. All
+prior conditional network, menu14 and other Actor requirements remain honest.
+
+Evidence uses the research index before new exports, indexed C plus read-only
+Ghidra and static original PE disassembly in WORK/hud-pause-original,
+WORK/script-sound-owner.asm and WORK/player-pickup.asm. Some original entries
+are not defined as functions in the existing Ghidra project; raw disassembly is
+their evidence, with no database edits or invented body credit. The focused audit
+covers registry lifetime, deferred versus immediate inventory requests, canonical
+pickup/drop packets, Script sound identity/order/clear and dubbing cursor resume.
+Engine sound/frame/query leaves and inventory queue endpoints are explicit doubles;
+actual UI/World instantiation is also checked by the full REVIEW launcher build.
+59 focused checks and full sequential O2/Werror launcher/probe rebuild/stage pass.
+The [receipt](checkpoints/p22-frame-shooting-hud-20261117.json) records source hashes
+and preserved OWN/REVIEW overlays. No new checkbox, frozen inventory/ledger credit, whole
+FRAME/HUM/OWN closure or desktop acceptance for these new paths.
