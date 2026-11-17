@@ -58,10 +58,14 @@ public:
     void script_loading_finish(){dependencies_.effects.fade().configure(0,false,nullptr);} //00427B80→GEffects8C/00486B30.
     bool human_remote_ai_enabled(){return dependencies_.world.human_remote_ai_enabled();}
     bool human_selected_suppressed(Human& human){return dependencies_.world.human_selected_suppressed(human);}
+    bool script_human_sees_enemy(Human& human){return dependencies_.controls.sees_enemy(human);}
+    std::uint32_t script_human_alarm_type(Human& human){return dependencies_.controls.alarm_type(human);}
+    bool script_inventory_has_definition(std::int32_t definition){return dependencies_.world.script_inventory_has_definition(definition);}
     std::uint32_t evaluate_script_predicate(Context& context,std::uint32_t opcode,
             const std::array<std::uint32_t,4>& values,const std::array<std::uint32_t,4>&,
             const MissionScriptProgram& program){
         if(!script_authority())return 0;
+        if(opcode==0xau)return std::uint32_t(dependencies_.world.script_language_matches(program.strings.at(values[0])));
         if(const auto result=module().variables().evaluate(opcode,values,program,true))return *result;
         if(opcode==0x1au){
             const auto mode4=dependencies_.world.script_mode_field4();

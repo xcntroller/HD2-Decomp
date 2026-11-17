@@ -2,6 +2,8 @@
 #define HD2_GAME_MISSION_SCRIPT_PLAYER_PREDICATES_H
 
 #include "game/mission_script_context.h"
+#include "game/scene_actor.h"
+#include <type_traits>
 
 namespace hd2::game {
 
@@ -54,6 +56,33 @@ public:
             }
             return std::uint32_t(any);
         }
+        case 0xd:case 0x12:{
+            using Human=std::remove_pointer_t<decltype(roster.at(0))>;
+            const auto* data=context.frame()?frames_.find_actor_frame_data(context.frame()):nullptr;
+            auto* actor=data?reinterpret_cast<SceneActor<Frames>*>(data->words[0]):nullptr;
+            if(!actor)return 0;
+            if(opcode==0x12&&actor->base().type()==30)throw std::runtime_error("Dog alarm predicate requires its actual005CE6F0 receiver");
+            if(actor->base().type()!=3)return 0;
+            auto* human=dynamic_cast<Human*>(actor);if(!human)throw std::logic_error("Script predicate requires actual EC Human");
+            return opcode==0xd?std::uint32_t(runtime.script_human_sees_enemy(*human)):runtime.script_human_alarm_type(*human);
+        }
+        case 0xf:{
+            const auto frame=context.slot(values[0]);if(!frame)return 1000u;
+            if((runtime.mode_flags()&7u)!=7u){
+                using Human=std::remove_pointer_t<decltype(roster.at(0))>;
+                const auto* data=frames_.find_actor_frame_data(frame);
+                auto* actor=data?reinterpret_cast<SceneActor<Frames>*>(data->words[0]):nullptr;
+                if(actor&&actor->base().type()==3){
+                    auto* human=dynamic_cast<Human*>(actor);if(!human)throw std::logic_error("Frame range requires actual target Human");
+                    if(!alive(*human)||!script_human_player_controlled(*human,runtime.mode_flags())||runtime.human_selected_suppressed(*human))return 1000u;
+                }
+            }
+            if(!context.frame())throw std::logic_error("Frame range requires its actual context frame");
+            const auto value=distance(frame,context.frame());
+            if(!std::isfinite(value)||value< -9223372036854775808.L||value>=9223372036854775808.L)return 0u;
+            return static_cast<std::uint32_t>(static_cast<std::int64_t>(value)); //Original007E5E00 low DWORD.
+        }
+        case 0x13:return std::uint32_t(runtime.script_inventory_has_definition(signed_word(program.integers.at(values[0]).value)));
         case 5:return std::uint32_t(roster.live_count()==0);
         case 0x14:return roster.live_count();
         case 0x16:return std::uint32_t(roster.live_count()!=roster.size());

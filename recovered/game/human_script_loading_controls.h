@@ -18,6 +18,8 @@ public:
     HumanScriptLoadingControls(Frames& frames,Scene& scene,Sight& sight,Sound& sound,Players& players,FPV& fpv,Lookup& lookup)
         :frames_(frames),scene_(scene),sight_(sight),sound_(sound),players_(players),fpv_(fpv),lookup_(lookup){}
     std::uint32_t mode_flags(){return scene_.mode_flags();}
+    bool sees_enemy(Human& human){if(auto* state=script(human))return state->sees_enemy();return false;}
+    std::uint32_t alarm_type(Human& human){if(auto* state=script(human))return state->alarm_type();return 0;}
     void set_alarm_types(Human& human,std::uint32_t mask,bool enabled){if(auto* state=script(human))state->alarm_types(mask,enabled);} //005AF150.
     void run_mode(Human& human){if(auto* state=script(human))state->request_run_mode();} //005AF270.
     void set_alarm(Human& human,bool enabled){if(auto* state=script(human))state->set_alarm(enabled);}

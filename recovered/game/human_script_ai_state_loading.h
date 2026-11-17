@@ -108,6 +108,11 @@ public:
         if(context_)contexts_.finish_human_script_alarm(*context_);
         this->look_command(0,control);
     }
+    bool sees_enemy()const{ //005AF620 ->0058FCF0, SAME Human268 list, no flags/health substitution.
+        const auto* human=this->human();if(!human)throw std::logic_error("Script sight query requires its actual Human");
+        return !human->perception.lists()[0].empty();
+    }
+    std::uint32_t alarm_type()const{return state_.template get<std::uint32_t>(0x1b4);} //005AF170 ->0058E700.
     void alarm_types(std::uint32_t mask,bool enabled){ //005AF150 ->0058E650.
         change_human_script_alarm_types(*this,mask,enabled,[this]{return contexts_.human_script_random();});
     }

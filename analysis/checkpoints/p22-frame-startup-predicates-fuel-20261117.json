@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-17",
+  "branch": "feature/p22-frame",
+  "source_base": "b17e68f",
+  "source_only_checkpoint": true,
+  "contract": "analysis/p22-frame-startup-script-preflight.md",
+  "source_files": [
+    {
+      "path": "recovered/game/human_script_ai_state_loading.h",
+      "bytes": 18228,
+      "sha256": "663739ed53853ab27fb9f9349c63359a201e7c0474a2a88a5e11c790552b4cd4"
+    },
+    {
+      "path": "recovered/game/human_script_loading_controls.h",
+      "bytes": 13926,
+      "sha256": "bbe7ab28b6ee43bdd64cebd196b89ed85289246fe827577c3b0440569fe00f4d"
+    },
+    {
+      "path": "recovered/game/mission_script_player_predicates.h",
+      "bytes": 6686,
+      "sha256": "e3cde163e35f5b0c6684cc9195c81adfbe8f0d3b75dfd295b2756c572d650421"
+    },
+    {
+      "path": "recovered/game/mission_script_loading_runtime.h",
+      "bytes": 10016,
+      "sha256": "a4956ca12f9918c2f683fde5f886d3ae8e5d3afd97a56d98a8e6857af71f4f08"
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 324930,
+      "sha256": "4269820edf44322dedcbbe64aa7c4c89a81e23763a7f0c2faf69866c5f3cf203"
+    },
+    {
+      "path": "recovered/game/mission_script_actor_lifecycle.h",
+      "bytes": 5502,
+      "sha256": "7cf21c0cad8a25a1d0547fb7285eced2143bae958ccc610c6a6b1d4461a99605"
+    }
+  ],
+  "review_source_files": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_script_ai_state_loading.h",
+      "bytes": 18228,
+      "sha256": "663739ed53853ab27fb9f9349c63359a201e7c0474a2a88a5e11c790552b4cd4"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_script_loading_controls.h",
+      "bytes": 13926,
+      "sha256": "bbe7ab28b6ee43bdd64cebd196b89ed85289246fe827577c3b0440569fe00f4d"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_player_predicates.h",
+      "bytes": 6686,
+      "sha256": "e3cde163e35f5b0c6684cc9195c81adfbe8f0d3b75dfd295b2756c572d650421"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_loading_runtime.h",
+      "bytes": 10016,
+      "sha256": "a4956ca12f9918c2f683fde5f886d3ae8e5d3afd97a56d98a8e6857af71f4f08"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/human_world_loading_services.h",
+      "bytes": 325149,
+      "sha256": "ea2fe19db6231c92ec4e3bdcd15f642d9939ec1f7532a4eee90f76e38f2db1c0"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/game/mission_script_actor_lifecycle.h",
+      "bytes": 5502,
+      "sha256": "7cf21c0cad8a25a1d0547fb7285eced2143bae958ccc610c6a6b1d4461a99605"
+    }
+  ],
+  "native_checks": 27,
+  "native_scope": "Actual predicate/context policy with explicit frame/Human/World query leaves. Production Script-state/control/inventory/Car core composition compile/link verified; existing core setter reused.",
+  "sanitizers": "ASan/UBSan/leaks PASS",
+  "full_actual_i386_O2_Werror_build": "PASS application-launch startup-probe",
+  "verification_logs": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-predicates-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-predicates-native-run.log",
+      "bytes": 58,
+      "sha256": "09066e1f07d738848031f3bf3a9a7d2bc55557433e9ccff76c3953effbab4787"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-predicates-review-build.log",
+      "bytes": 953,
+      "sha256": "bbc764d365a5d7594e265568bf392339dd5feefaa33d0f69ef22f62a148300ee"
+    }
+  ],
+  "preflight": {
+    "path": "analysis/work/p22-frame-closure-20261117/startup-script-coverage-middle.json",
+    "bytes": 55860,
+    "sha256": "fe91a51077ff6cab4f1a650c1938a3953436290a67a5c62067d65ebbbd141c74"
+  },
+  "recoverable_review_patch": {
+    "path": "analysis/work/p22-frame-closure-20261117/startup-script-predicates-review-final.patch",
+    "bytes": 151941,
+    "sha256": "5f69212acdf0b2a87aae6c2eb71ea7f4b01633e91f0a58af14b128024dc57dbd"
+  },
+  "temporary_audits": [
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-predicates-native.cpp",
+      "bytes": 3606,
+      "sha256": "16eb8e31b1c96883287280efce11a9ae8adbe23834ff3bdf80dd110717600112"
+    },
+    {
+      "path": "analysis/work/p22-frame-closure-20261117/startup-script-predicates-native",
+      "bytes": 1348288,
+      "sha256": "bd9d6770b14bc1870b89580476d172d9d886e75727bf586496260da935e4dfc0"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "built_artifacts": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/application_launch.exe",
+      "bytes": 12906496,
+      "sha256": "f444963c46d6a4c7f8f1ff51d13413f7dad728f65531df0e27c9f52641feb7ab"
+    },
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-frame-review/recovered/build/startup_probe.exe",
+      "bytes": 1176576,
+      "sha256": "ddfde4de1f52babd7a3de5db51107bc2e905d9e93f1574e299e15e5b84866a74"
+    }
+  ],
+  "user_executable_not_restaged": true,
+  "own_preserved": true,
+  "own_prior_artifact": {
+    "path": "/home/control/Documents/Projects/HD2-Decomp-p22-own/analysis/work/startup-runtime/run/application_launch.exe",
+    "bytes": 12573184,
+    "sha256": "d1243e24c723ad5105f3877deb18a896d3c52b27f3baacc80d7f4dcc8c44035c"
+  },
+  "new_inventory_entries": 0,
+  "complete_promotions": 0,
+  "matrix_reconciliation": "partially_resolved",
+  "full_frame_source_complete": false,
+  "gameplay_desktop_verified": false,
+  "agent_executed_original_dll_proton_or_windows": false,
+  "remaining": "Do not request another user test yet; frame animation and9 weather command types plus their positive lifecycle/update dependencies remain known initial gaps. Broader delayed/event receivers are separate full-program candidates."
+}

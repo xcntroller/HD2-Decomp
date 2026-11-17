@@ -54,3 +54,33 @@ Bounded raw Human mode bridges/states plus new read-only0058E780/0058E8A0 C/ABI
 exports are under WORK. Keep compiler and Ghidra sequential. OWN source/artifact
 and the uncommitted interactive review overlay must remain preserved. No matrix
 or function-count promotion. WORK=analysis/work/p22-frame-closure-20261117.
+
+Second group: automatic predicate/frame/fuel receivers
+
+The source now supplies all previously missing automatic Whenever predicate
+TYPES:0D SeeEnemy resolves actual context frameEC Human and SAME state5/268 list;
+0F FrameInRange preserves null1000, nonoffline dead/control/suppression gates,
+context-before-target world getters, FLOAT square/tiny/near-one sqrt and native
+truncation;13 IsInInventory reads the real signed definition and searches SAME
+reverse Players roster/Items inventory, with fresh Human after health. No fake
+boolean is substituted for actual gameplay. Added nearby0A language predicate
+(string pool then real startup language comparison) and12 Human alarm type via
+state5/1B4; positive Dog alarm remains an explicit required boundary.27 native
+ASan/UBSan/leak assertions cover predicate policy/gates/order with actual context
+and explicit frame/Human/World endpoints. Actual production wrappers and World
+compile/link separately; full engine execution is not claimed.
+
+Car_SetFuel62 now resolves actual slotEC/type4 before reading the integer, sets
+SAME initialized Car loading/core through existing004F2670, then guarded-advances.
+Original rawFILD multiplies signed input by FLOAT0080F550=.10000000149011612,
+with a single FLOAT result spill. It is not a percent/clamped integer or float
+input conversion. Existing capacity-only clamp and negative behavior are unchanged.
+Nonoffline004DB310 publication remains an honest post-set required boundary.
+Missing/wrong actor takes original shared advance/true. Full actual O2/Werror
+application/probe compiles this containing dispatch; no added Car simulation.
+
+Current initial dispatch gaps after these groups: frame animation and9 weather
+setters. Automatic predicate dispatch gaps are closed for the inspected114
+programs, conditional positive receivers remain revision-qualified. Do not stage
+or ask another desktop run merely because those TYPE gaps are gone: GEffects
+positive weather splash/actor paths and frame-animation cleanup must be supplied.

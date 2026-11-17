@@ -3,6 +3,7 @@
 
 #include "game/mission_script_context.h"
 #include "game/model_scene_actors.h"
+#include "game/car_scene_actor.h"
 #include "game/human_joint_math.h"
 
 namespace hd2::game {
@@ -22,8 +23,22 @@ public:
         if(human.loading_state->words().template get<std::uint32_t>(0x48)==5){controls_.working_mode(human,0);controls_.suspend(human,false);}
     }
     template<class Runtime>std::optional<bool> execute(Context& context,const MissionScriptInstruction& instruction,Runtime& runtime){
-        if(instruction.opcode!=0xf9u&&instruction.opcode!=0x32u)return std::nullopt;
+        if(instruction.opcode!=0xf9u&&instruction.opcode!=0x32u&&instruction.opcode!=0x62u)return std::nullopt;
         if(!runtime.script_authority())return false;
+        if(instruction.opcode==0x62u){ //0041A001 Car_SetFuel, slot/type gates BEFORE integer.
+            const auto frame=context.slot(instruction.operands.at(0));
+            const auto* data=frame?frames_.find_actor_frame_data(frame):nullptr;
+            auto* value=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+            if(value&&value->base().type()==4){
+                auto* car=dynamic_cast<CarSceneActor<Frames>*>(value);
+                if(!car||!car->loading)throw std::runtime_error("Car_SetFuel requires its actual initialized Car owner");
+                const auto bits=context.program().integers.at(instruction.operands.at(1)).value;
+                std::int32_t amount;std::memcpy(&amount,&bits,sizeof amount);
+                car->loading->set_fuel(static_cast<float>(static_cast<long double>(amount)*.100000001490116119384765625f));
+                if((runtime.mode_flags()&7u)!=7u)throw std::runtime_error("Car_SetFuel requires its actual nonoffline004DB310 publication");
+            }
+            context.advance(runtime);return true;
+        }
         if(instruction.opcode==0x32u){ //00419258, NOT compressed switch case/opcode6.
             const auto frame=context.slot(instruction.operands.at(0));
             const auto* data=frame?frames_.find_actor_frame_data(frame):nullptr;

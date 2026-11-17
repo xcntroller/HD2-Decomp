@@ -128,6 +128,17 @@ public:
     bool dependencies_bound()const noexcept{return dependencies_.bound();}
     std::uint32_t mode_flags()const{return dependencies().startup.application_flags();}
     std::int32_t human_current_player_id()const{return dependencies().startup.local_player_identity();}
+    bool script_language_matches(const std::string& text){return frontend::startup_case_equal(dependencies().startup.language(),text);}
+    bool script_inventory_has_definition(std::int32_t definition){ //0045E9A0, SAME reverse live roster/Items.
+        auto& d=dependencies();auto& roster=d.players.control().human_roster();
+        for(auto n=roster.size();n;){
+            --n;auto* human=roster.at(static_cast<std::int32_t>(n));if(!human)throw std::logic_error("Script inventory has a null actual roster member");
+            const auto health=human->properties.stats_ec[0];if((health&0x80000000u)||!health)continue;
+            human=roster.at(static_cast<std::int32_t>(n));if(!human)throw std::logic_error("Script inventory lost actual roster Human");
+            if(find_human_inventory_definition(*human,d.world_actors.items(),definition))return true;
+        }
+        return false;
+    }
     auto* script_profile_owner(){return dependencies().startup.script_profile_owner();}
     std::uint32_t script_profile_root(){ //SAME selected root adaptation as actual SessionSelection.
         auto& d=dependencies();return d.request.network?d.startup.game_application_data().field_e8:d.request.preparation.root;
