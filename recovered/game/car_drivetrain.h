@@ -9,11 +9,13 @@ namespace hd2::game {
 //coefficients. The containing solver supplies current body speed/velocity and
 //forward direction before these functions run. No standalone simulation here.
 struct CarDrivetrainState {
-    float engine_speed=0,engine_load=0,clutch=1,clutch_target=1,torque_amount=0;
+    float engine_speed=0,engine_load=0,clutch=1,clutch_target=1,torque_amount=0; //78C is reset here too.
     float governor=1000,health=1,transfer=1,throttle=0,second_throttle=0,brake=0;
+    float first_filtered=1,second_filtered=1; //004EA780's508/50C; distinct from85C/860 throttle outputs.
     std::int32_t gear=1,requested_gear=1;
     std::uint32_t transmission=0x20,body_flags=1;
-    bool running=false,audible=true,changing_gear=false;
+    bool running=false,audible=true,flag2293=false; //22A2/2296/2293, NOT22C6.
+    bool shift_in_progress=false; //004EA780 clears22C6;004F2030 produces it.
 };
 
 inline float car_gear_ratio(const CarPhysics& physics,std::int32_t gear){
@@ -41,13 +43,14 @@ inline long double car_engine_torque(const CarPhysicsScalars& fields,float speed
 
 //0050D2C0, including the genuine engine-off return. Body speed/velocity are
 //current solver outputs, not constructor defaults or actor-local estimates.
+//22BF is the completed engine transition;22A2 can already be true during start.
 inline long double car_drive_force(const CarPhysics& physics,CarDrivetrainState& state,
-        float elapsed,float throttle,float speed,const std::array<float,4>& velocity){
+        float elapsed,float throttle,float speed,const std::array<float,4>& velocity,bool engine_transition){
     const auto get=[&](unsigned offset){return physics.scalars().get(offset);};
     if(throttle<get(0x524)&&state.engine_speed<get(0x914)+2.f)throttle=get(0x524);
     if(get(0x221c)<state.engine_speed||state.governor<speed)throttle=0;
     state.body_flags&=0xfffffffbu;
-    if(!state.running){
+    if(!engine_transition){
         const float square=static_cast<float>((static_cast<long double>(velocity[2])*velocity[2]+static_cast<long double>(velocity[1])*velocity[1])+static_cast<long double>(velocity[0])*velocity[0]);
         std::int32_t bits;std::memcpy(&bits,&square,4);
         if(bits>0x322bcc76&&(std::abs(square-1.f)<9.99999993922529e-09f||std::sqrt(static_cast<long double>(square))>=.5f))return 0;
@@ -102,7 +105,7 @@ template<class Audio>void update_car_drivetrain(const CarPhysics& physics,CarDri
     if(state.engine_speed<0)state.engine_speed=0;
     if(flags&2u){
         state.clutch=static_cast<float>(static_cast<long double>(state.clutch)-static_cast<long double>(elapsed)*get(0x900));
-        if(state.clutch>0)return;
+        if(!(state.clutch<=0))return;
         state.clutch=0;state.transmission=(flags&0xfffffffdu)|1u;
         if(state.audible)audio.clutch_changed();
         state.gear=state.requested_gear;return;
@@ -115,16 +118,16 @@ template<class Audio>void update_car_drivetrain(const CarPhysics& physics,CarDri
     state.clutch=static_cast<float>(static_cast<long double>(elapsed)*get(0x8fc)+state.clutch);
     if(state.clutch>state.clutch_target){
         state.clutch=state.clutch_target;state.transmission=flags&0xfffffffcu;
-        if(!state.changing_gear)return;
-        state.changing_gear=false;state.throttle=state.second_throttle=.800000011920929f;
+        if(!state.shift_in_progress)return;
+        state.shift_in_progress=false;state.first_filtered=state.second_filtered=.800000011920929f;
     }else if(state.clutch>1){
         state.clutch=1;state.transmission=flags&0xfffffffcu;
-        if(!state.changing_gear)return;
-        state.changing_gear=false;state.throttle=state.second_throttle=.800000011920929f;
+        if(!state.shift_in_progress)return;
+        state.shift_in_progress=false;state.first_filtered=state.second_filtered=.800000011920929f;
     }
-    if(state.changing_gear&&rolling<(get(static_cast<unsigned>(0x7cc+state.gear*4))-get(static_cast<unsigned>(0x810+state.gear*4)))*.15000000596046448f+get(static_cast<unsigned>(0x810+state.gear*4))){
-        state.throttle=state.second_throttle=1;state.clutch=state.clutch_target;
-        state.transmission&=0xfffffffcu;state.changing_gear=false;
+    if(state.shift_in_progress&&rolling<(get(static_cast<unsigned>(0x7cc+state.gear*4))-get(static_cast<unsigned>(0x810+state.gear*4)))*.15000000596046448f+get(static_cast<unsigned>(0x810+state.gear*4))){
+        state.first_filtered=state.second_filtered=1;state.clutch=state.clutch_target;
+        state.transmission&=0xfffffffcu;state.shift_in_progress=false;
     }
 }
 } //namespace hd2::game

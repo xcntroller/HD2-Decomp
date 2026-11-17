@@ -159,6 +159,12 @@ public:
     void car_direction(Frame frame,const Vector& direction) {
         call<void>(frame,0x1c,direction.data(),static_cast<const float*>(nullptr));
     }
+    void car_light_direction(Frame frame,const Vector& direction){call<void>(frame,0x1c,direction.data(),0.f);} //00501CB0, actual FLOAT roll.
+    void car_light_position(Frame frame,const Vector& position,bool xyz_only){ //Inline XYZ versus0041D110's four-word copy.
+        const auto flags=field<std::uint32_t>(frame,0xe0);if(flags&0x80u)return;
+        for(unsigned axis=0;axis!=(xyz_only?3u:4u);++axis)put(frame,0xb0+axis*4,position[axis]);
+        put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);
+    }
     Matrix car_world_matrix(Frame frame) {
         if(!(field<std::uint32_t>(frame,0xe0)&0x20)) {
             using Update=void(__thiscall*)(Frame);

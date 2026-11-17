@@ -162,7 +162,7 @@ entry work remain conditional containing-world integration; no transport
 readiness or continuing occupied/non7 Car frame is implied.
 
 The completed H2 source boundary is [recorded separately](human-h2-source-closure.md).
-Unchecked D4–D9/D11 entries below are retained containing-world/Car/entry
+Unchecked D4–D9 entries below are retained containing-world/Car/entry
 integration obligations. Their exact guards remain; none is silently marked
 resolved by the completed H4/H6 source imports. Full World integration remains H8's work.
 
@@ -202,6 +202,16 @@ resolved by the completed H4/H6 source imports. Full World integration remains H
   004D3D10 or prove that the selected branch cannot produce it.
   H3 committed10bebe9 is integrated: mounted reset/seat receivers are source.
   Its containing occupied/non7 simulation remains D5; retain that guard.
+
+Parallel H8.4 [offline authority source checkpoint](human-h8-car-authority-source.md)
+now consumes actual mounted controls, requests unstable-seat exits through SAME B0
+and publishes engine hearing through SAME SOUND. D4/D5 stay open: running engine,
+full occupied presentation and non7 consumers remain required. D11 is now source-resolved under the [authorized compatibility policy](human-h8-d11-compatibility.md).
+Its [gear/clutch dependencies](human-h8-car-gear-source.md) bind request/force/audio
+and correct retained shift state. The [controller policy](human-h8-car-controller-source.md)
+now binds running/input/automatic decisions and SAME driver state. The
+[powered step](human-h8-car-powered-source.md) binds drive/brake forces and live160;
+[running finalizer](human-h8-car-finalizer-source.md) now binds engine audio, active skids and positive particle workers on SAME owners. [Active-light rendering00501CB0](human-h8-car-lights-source.md) is now source-bound. [Occupied offline presentation](human-h8-car-occupied-source.md) now shares actual Car admission/input/controller/mass/camera state through the containing source frame; full Human/Player/mounted composition and selected non7 remain open. D11 is source-resolved under the authorized compatibility policy. [Dog shared animations/damage](human-h8-dog-source.md) add verified source kernels; its actual activation/Body/controller frame remains required.
 
 **Exit per item:** actual producer and consumer compose on SAME owners; focused
 native positive/failure/repeat/lifetime checks pass, actual host i386 instantiates,
@@ -278,11 +288,10 @@ interface18 and publish0C before initialization. Do not repeat its completed aud
   clips, joints, two-Human source borrowing, actual damage, failure/re-entry and
   retirement. [Contract and test limits](human-h2-source-closure.md). Full World
   dispatch and H4/H6 consumers remain H8/external interfaces.
-- [ ] D11 — External Car producer limitations: fresh part5F9, wheel695,
-  EXPL record8 and smoke14. Preserve confirmed failed prefixes and guards;
-  these are reached by the separate Car/debris simulation callers, not by the
-  Human-owned reaction segment. No producer/default or full-World unreachability
-  is invented. [Exact failures](human-reaction-containing-boundary.md#source-closure-blockers).
+- [x] D11 — Four original Car producer omissions resolved by **user-authorized
+  compatibility policy**: part5F9 phase0, wheel695 retirementtrue, EXPL8 instance-1
+  and absent-DM smoke14 definition-1. [Policy/source verification](human-h8-d11-compatibility.md).
+  This is source compatibility, not recovered original initialization or desktop acceptance.
 - [x] D12 — Consolidated H2 source verification, inventory and audit cleanup.
   Native100×8 actual-owner families, strict actual-host i386 and launcher/probe
   links pass; [closure receipt](checkpoints/p2.2-human-h2-source-20261112.json).
@@ -290,9 +299,8 @@ interface18 and publish0C before initialization. Do not repeat its completed aud
   engine/ABI equivalence and full cross-branch execution remain outside this checkpoint.
 
 **H2 source exit is satisfied.** The new owner graph closes the earlier
-selection/control/geometry-double gap. D11's original omissions and D4–D9
-integration remain visible on their actual callers; H2 completion does not turn
-their required failures into successful services. H8 verifies the entire Human
+selection/control/geometry-double gap. D11's original omissions now have an explicitly approved compatibility policy;
+D4–D9 integration remains visible on its actual callers. H8 verifies the entire Human
 behavior set in the actual containing World/application, and P2.2 requires
 application/desktop delivery. H4 is integrated and H6 is source-complete on its own branch; H8 remains open.
 

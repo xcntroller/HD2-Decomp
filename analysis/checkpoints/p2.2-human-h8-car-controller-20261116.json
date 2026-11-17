@@ -1,0 +1,286 @@
+{
+  "date": "2026-11-16",
+  "base_commit": "85a9aa1",
+  "branch": "feature/p22-hum-h8-4",
+  "source_only": true,
+  "h8_4_complete": false,
+  "d4_complete": false,
+  "d5_complete": false,
+  "automatic_controller_policy_source_bound": true,
+  "automatic_controller_whole_function_complete": false,
+  "powered_solver_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-car-controller-source.md",
+  "original_image_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/car_drive_controller.h",
+      "bytes": 14865,
+      "sha256": "d75c9d4545c1ca7b4407aa9242bb70a951461c09662d01371226ffff2d7b950f"
+    },
+    {
+      "path": "recovered/game/car_automatic_gears.h",
+      "bytes": 7990,
+      "sha256": "e045f087ad9b0d404abb1c8090134ffc579d3e17331f2ff76041578514b692ed"
+    },
+    {
+      "path": "recovered/game/car_cold_initialization.h",
+      "bytes": 9715,
+      "sha256": "56711f0526a1f12c3f225098164f4fdba4a1dae423b43ead430f108fa8db8f51"
+    },
+    {
+      "path": "recovered/game/car_cold_solver.h",
+      "bytes": 6832,
+      "sha256": "6c066d1a1ed7334207b9d068e8f5c94f9804366fc19d1369095f3f3c2c5dc991"
+    },
+    {
+      "path": "recovered/game/car_drivetrain.h",
+      "bytes": 8265,
+      "sha256": "90e6b8ba1bbfead5c25ea2cc82d80f830cf2e3732c23035cd2ba8b4364178080"
+    },
+    {
+      "path": "recovered/game/car_loading_activation.h",
+      "bytes": 26160,
+      "sha256": "c120164a94aa00f13fea43baf8d8c9bb6812a6af2ce7183ce2a464ad9c27b0fe"
+    },
+    {
+      "path": "recovered/game/car_physical_reset.h",
+      "bytes": 12244,
+      "sha256": "1ea6a41d3e11d05e69e5c165f0d2a010c77c96a13ae2f6a09179806b4d66ca93"
+    },
+    {
+      "path": "recovered/game/car_settling_controller.h",
+      "bytes": 10728,
+      "sha256": "ec9aff77dd7af1e2fe3dc32609825a16592e75995c7cba2bfe37d487f70cb90e"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "analysis/work/mission-world-20261103/car-solver-typed-required/00509aa0.c",
+      "bytes": 30245,
+      "sha256": "52108789cca434c31562aae2c3c6f3bc60062df5e7e136f8eaf863c471d50a31"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-solver-typed-required/00509aa0.json",
+      "bytes": 76262,
+      "sha256": "0b8bbd9d87c104d6d2e112c752b38faafd71960231e09922b1f5dfde37da5eb0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-runtime-typed-v4-required/004ea780.c",
+      "bytes": 43524,
+      "sha256": "b6a30d905c22686695cfce09d81026067092306f08fe18f4998ccda9575df6e0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-runtime-typed-v4-required/004ea780.json",
+      "bytes": 39511,
+      "sha256": "63c432f07122607ab2a225a1390063e47863d38e2dbc98f8482e6dc027b724b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-force-original.c",
+      "bytes": 3355,
+      "sha256": "97809e9618c9492c35f422b811d076412fc4906c37ca90050a216f1b46fb68b5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-parameters-original.c",
+      "bytes": 94084,
+      "sha256": "59324f7ec306f11009809f14fa97c53166ea9b567657542dfc280c58dd17d58b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-constructor-original.c",
+      "bytes": 5427,
+      "sha256": "458a60dd09d8ca0bee8ed0cf4ae4227c8ec06ddb2c8077afff5758d9f212f979"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-all-constants.json",
+      "bytes": 2547,
+      "sha256": "1b81a787b06c9a5e56118a981fa464938048bfcbe0d6659ca6c675a4b8fb7726"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-steering-threshold.asm",
+      "bytes": 5363,
+      "sha256": "3ef35372a09ce61b561d2e7edbb8e605cc5c6ff037b8550f23954a638e817f34"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-force-index.txt",
+      "bytes": 3411,
+      "sha256": "36c5c5e639a11fa2c06773004d053746e1ad9df5d1fe09f35f1e6df6737c76a7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-native.log",
+      "bytes": 152,
+      "sha256": "0705852e71e18971302c6c6e03881d13d027e564bb2dde8e53ec922621d28625"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-held-native.log",
+      "bytes": 145,
+      "sha256": "3b2d360cef2a607e5291abb5e1d40d44228abb5bf1d2d2771ed28966690fa024"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-host.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/0.bin",
+      "bytes": 1276,
+      "sha256": "27ef47eaedd6cc7d4a176bd1fe095eca838aded931f4a4882693702ef28a912a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/1.bin",
+      "bytes": 2619,
+      "sha256": "2596dd17e7290d864ae5f4dc79fbe00d43a6c86f24533dfceb465f8bb68a26c3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/2.bin",
+      "bytes": 1871,
+      "sha256": "745844cf630416533eff2f6a645f790636ba609b6817c1a002895bdbaaad6f2f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/3.bin",
+      "bytes": 1871,
+      "sha256": "745844cf630416533eff2f6a645f790636ba609b6817c1a002895bdbaaad6f2f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/4.bin",
+      "bytes": 2402,
+      "sha256": "dc83b12ab02d802b447c3163c8ddfada4558477668cf574ff55102f2d3065ce5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/5.bin",
+      "bytes": 1892,
+      "sha256": "ae935616e5c13e94b6a62aabb2faee88e6d503f9a6ec9374d37cb07602bcb681"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/6.bin",
+      "bytes": 2402,
+      "sha256": "dc83b12ab02d802b447c3163c8ddfada4558477668cf574ff55102f2d3065ce5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/7.bin",
+      "bytes": 1892,
+      "sha256": "ae935616e5c13e94b6a62aabb2faee88e6d503f9a6ec9374d37cb07602bcb681"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/8.bin",
+      "bytes": 1892,
+      "sha256": "ae935616e5c13e94b6a62aabb2faee88e6d503f9a6ec9374d37cb07602bcb681"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-launcher-probe.log",
+      "bytes": 930,
+      "sha256": "4fd12cb475e84990a6514cb4e337f3ee6957fecd0e2088f4bfa2dde2591d73f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-tracker-render.log",
+      "bytes": 380,
+      "sha256": "0cfc96194997a751e3ce51c88ec66ebcb0e3d7bcfb458be79c90fa6a94bfacd4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-tracker-check.log",
+      "bytes": 437,
+      "sha256": "3929227486929cb13ba489089a4fc1ef9aa0455a59ebe612577bb10def4a0ee9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-controller-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "8b2f659099c3d525331665dc15ef749b27dbea4add879f3408d4c6b1f1b11b84"
+    }
+  ],
+  "native_verification": {
+    "result": "PASS",
+    "asan": true,
+    "ubsan": true,
+    "leaks": true,
+    "checks": 4150496,
+    "mixed_held_active_scenarios": 90000,
+    "focused_repeated_fixtures": 900,
+    "actual_parameter_blocks": 9,
+    "matching_missing_threshold_guards": 57,
+    "all_held_previous_pass": {
+      "result": "PASS",
+      "checks": 3870011,
+      "scenarios": 90000,
+      "matching_missing_threshold_guards": 69
+    },
+    "reference": "Temporary native transcription of exported00509AA0 C; original binary never executed. Raw pointer widths, unsigned wrap, FLOAT bit tests and confirmed steering FABS precision adapted. Unproduced threshold reads throw in both models.",
+    "boundaries": "Actual decode/application and source physics/controller/drivetrain/gear bodies; explicit geometry/frame, driver/input, sound and required powered-step doubles. Active cases stop at mandatory step and compare forces/inputs and retained histories. Kind1 scalar injection is separate from nine captured ordinary blocks; kind2 uses previous source worker with no new authored model run."
+  },
+  "strict_actual_host_i386_full_link": {
+    "result": "PASS",
+    "options": "-std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -static -municode",
+    "actual_car_activation_frames_and_reset_instantiated": true,
+    "windows_artifact_executed": false
+  },
+  "launcher_probe_compile_link": "PASS: both rebuilt sequentially; Windows artifacts not executed",
+  "temporary_audit_fingerprints": [
+    {
+      "path": "/tmp/h8-controller-audit.cpp",
+      "bytes": 22532,
+      "sha256": "718fbdfcf5a883ca4b8e81c69e9c8c6e7cc5264004caa274d8c9c7a67eac0f13"
+    },
+    {
+      "path": "/tmp/h8-controller-reference.inc",
+      "bytes": 34647,
+      "sha256": "c961ad865373ae8394c0ecff144a298701619edff59676eaa7bbe803d445126f"
+    },
+    {
+      "path": "/tmp/h8-controller-audit",
+      "bytes": 3085136,
+      "sha256": "40055f1e1556c86b2fca49100375b40cab052be6c1e1535a46a03b99ae28e3ed"
+    },
+    {
+      "path": "/tmp/h8-controller-host.cpp",
+      "bytes": 507,
+      "sha256": "1fceb9f8ee841005bdba8d94a5c0805eb653e1f00e8ea617ea95c6c6e80d24b0"
+    },
+    {
+      "path": "/tmp/h8-controller-host.exe",
+      "bytes": 4359168,
+      "sha256": "5eda27cdac247cc199e4e381552aa2dca862ba9061d2b7b3a567f7985cec4867"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "ledger": {
+    "extended_partials": [
+      "00509aa0",
+      "0050d2c0",
+      "004ea780",
+      "004e9db0",
+      "0050de60"
+    ],
+    "new_frozen_partials": [],
+    "complete_promotions": 0,
+    "expected_complete": 34,
+    "expected_partial": 3463,
+    "frozen_inventory": 18783,
+    "tracker_check": "PASS: exact fingerprints, full inventories, frozen counts, unique statuses, evidence and README",
+    "tracker_tests": "PASS: 27 existing tests"
+  },
+  "remaining": [
+    "0050DE60 powered wheel/body forces and010 producer",
+    "0050B180 running engine/audio/skid/particle finalization",
+    "actual H3 seat/input through occupied presentation before D5 guards removal",
+    "conditional unproduced7C8/80C/810 thresholds: seeded-state reachability/initialization unclaimed",
+    "selected non7/entry D6-D9 and absent actors",
+    "unchanged confirmed D11 fresh native state omissions",
+    "containing H8.2/H8.3/current OWN/FRAME and application/desktop acceptance"
+  ],
+  "build_artifacts": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 3963392,
+      "sha256": "790320683d762bbd9815f699b247292d8726342881f2bbc3726e1cae7597708e"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1165312,
+      "sha256": "9f95ea20a31e822c3b2dfecd9a70d0049b0d14d94792fdcb3d6e6c775e06ab7c"
+    }
+  ]
+}

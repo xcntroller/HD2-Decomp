@@ -1,0 +1,165 @@
+{
+  "checkpoint": "H8.4 Dog shared animation and damage source",
+  "date": "2026-11-17",
+  "branch": "feature/p22-hum-h8-4",
+  "base": "7c20a15",
+  "contract": "analysis/human-h8-dog-source.md",
+  "original_pe_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "native": {
+    "result": "PASS",
+    "checks": 45408,
+    "repeated_families": 32,
+    "sanitizers": [
+      "ASan",
+      "UBSan",
+      "LSan"
+    ],
+    "actual_source": [
+      "cold Dog/common actor/storage lifetime",
+      "DogAnimationTables",
+      "DogDamageGeometry",
+      "MissionIntegrityTables",
+      "Dog scaled/D4 damage kernel and action categorizer"
+    ],
+    "boundary_doubles": [
+      "engine frames/math and resource resolver",
+      "live Body/controller/Sight/SOUND effects"
+    ],
+    "live_damage_view_fields": "Fixture inputs; no claim of Dog activation producer closure"
+  },
+  "host": {
+    "result": "PASS strict i386 O0 C++17 Wall Wextra Wpedantic Werror static full link, not executed",
+    "scope": "Actual containing World constructor/destructor, process Dog table/cache/frame endpoints, cold factory and skeletal geometry; damage kernel verified natively"
+  },
+  "application_launch_startup_probe": "PASS compile/link only",
+  "ghidra": "ReadOnly/noanalysis; temporary function/ABI definitions rolled back. Typed-v1 Float10 hidden-result artifact rejected; v2 ST0 double only clarifies pointers; raw x87 instructions establish floating behavior.",
+  "original_or_windows_execution": false,
+  "agent1_worktree_modified": false,
+  "push": false,
+  "tracker": {
+    "render": "PASS",
+    "check": "PASS exact fingerprints/inventories/statuses/evidence/README",
+    "tests": "PASS27",
+    "complete": 34,
+    "partial": 3474,
+    "frozen": 18783,
+    "new_entries": 3,
+    "complete_promotions": 0,
+    "engine_credit": 0,
+    "absent_body_credit": 0
+  },
+  "H8_4": "OPEN; actual Dog activation/Body/controller/perception and containing frames, Aircraft/type34 and selected Car/entry integration remain required",
+  "D11": "Previously source-resolved under four explicitly authorized compatibility corrections",
+  "evidence_fingerprints": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-vtable.json",
+      "bytes": 1123,
+      "sha256": "231f2e0b4c0cbbc92aadeebcaa89a7e85e9e256405ba68c4fa73365d77a55e15"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-control-vtables.json",
+      "bytes": 2107,
+      "sha256": "1a140ae7bea5a3cb4a0fcc4096c412f3894fd48e2d390e4aeec4797ca81571ab"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-animation-constants.json",
+      "bytes": 131,
+      "sha256": "c62f8c98ab14ce77297331cc427d80bddd10c675fafe290b5ac149791578247c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-float-constants.json",
+      "bytes": 356,
+      "sha256": "39c3c387b5741444ccb39f4f8bc43aa37a6ca9d3bf2529494f10126f96e79972"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-damage-factor.asm",
+      "bytes": 14926,
+      "sha256": "f7601342a9a1e7aa1814438eaaa61b45aadfef45577b80d4c6ed24d773c80096"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-animation-read-aligned.asm",
+      "bytes": 7655,
+      "sha256": "3817a4fbc0a9847f8097ddac3cace2ecd3b525f5e77ce93db99e9e8e79c4a9e8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-animation-table.asm",
+      "bytes": 10725,
+      "sha256": "431ad04895c3d41da079504038f71b0d4dfb6e476edc75b5889851305e6b8ff9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/ExportH8DogTypedV2.java",
+      "bytes": 2162,
+      "sha256": "cc5296bb1f549448c2df633b52991564ff1ac9fdb4326dd04b75a992dc3f13cb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-export.log",
+      "bytes": 5076,
+      "sha256": "534d2283310cff165245cb209ab2884f9c669c58c5222a44804d8f92be48c0b6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-build.log",
+      "bytes": 930,
+      "sha256": "4fd12cb475e84990a6514cb4e337f3ee6957fecd0e2088f4bfa2dde2591d73f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005c0f50.c",
+      "bytes": 5557,
+      "sha256": "f5e4be451c793c0dadea3f345850f9a7f1811104385f152e744b4e19b7cca80a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005c4c30.c",
+      "bytes": 374,
+      "sha256": "98cc451ba168f8dc253c67411602c1a3620e5d3fb333b4b110bb6d4c908baf16"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005c88b0.c",
+      "bytes": 1472,
+      "sha256": "09c7651cb16d4aecac0eb01d242c643e1eccb04c7bf58da7235090b6a7039160"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005cb0d0.c",
+      "bytes": 920,
+      "sha256": "5bbefc34f321be5bd18b294834d62e65e66220ec76925f4b68180339e34c8cc0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005cb410.c",
+      "bytes": 865,
+      "sha256": "9c7aa4d1d54593c3873677c217ea2c771f39f130844c8fafe3ac50fcebe3552a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005d7180.c",
+      "bytes": 1917,
+      "sha256": "474cae623e63d79387b0a13258ff09ed5dd27363bda35217b75be06567cb26fe"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-dog-typed-v2-originals/005d73b0.c",
+      "bytes": 4508,
+      "sha256": "dd3cc0b29102e0ff952ea51126e687a54d69786fbf8fdae2e1f6ee826ba79d56"
+    }
+  ],
+  "temporary_audits": {
+    "removed": true,
+    "fingerprints": [
+      {
+        "path": "/tmp/h8-dog-source-audit.cpp",
+        "bytes": 9944,
+        "sha256": "4ca85f8f874efa9325516c4ff5e25de4541a97808105d133db46d0862d7330ee"
+      },
+      {
+        "path": "/tmp/h8-dog-source-audit",
+        "bytes": 2402224,
+        "sha256": "14c85aa54b8517b4e735602af07eff2cee91def721192c1d4ef17bd575438cb8"
+      },
+      {
+        "path": "/tmp/h8-dog-host-link.cpp",
+        "bytes": 1073,
+        "sha256": "aec852fdcdedf5603c61eb59cbb91ad0d5d461ae82cf3a0acc6b2674648ef8eb"
+      },
+      {
+        "path": "/tmp/h8-dog-host-link.exe",
+        "bytes": 12640256,
+        "sha256": "9aba9444ef263d0ef2d1d2e751d5c6fe6557954c1d06e7b85c81ae548e175223"
+      }
+    ]
+  }
+}

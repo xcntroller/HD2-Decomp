@@ -2,6 +2,7 @@
 #define HD2_HOST_GAME_ACTOR_SERVICES_H
 
 #include "host/game_actor_frames.h"
+#include "host/game_animations.h"
 #include "game/actor_base.h"
 #include "game/actor_references.h"
 #include "game/actor_frame_data.h"
@@ -99,7 +100,18 @@ public:
         }
     }
     const std::vector<game::SceneActor<GameActorServices>*>& car_actors() const {return car_actors_;}
-    void reset_dog_shared_state() noexcept {dog_shared_state_.fill(0);}
+    void bind_dog_animations(GameAnimations& animations){
+        if(dog_animations_&&dog_animations_!=&animations)throw std::logic_error("Dog animations changed process owner");
+        dog_animations_=&animations;
+    }
+    void reset_dog_shared_state(){
+        dog_animations().clear_dog_tables(); //Actual process owner, not an unused per-World69DWORD mirror.
+    }
+    bool ensure_dog_animations(){return dog_animations().ensure_dog_loaded(*this);}
+    GameAnimations& dog_animations(){
+        if(!dog_animations_)throw std::logic_error("Dog construction requires its actual process animation owner");
+        return *dog_animations_;
+    }
     void record_actor_cleanup_failure(std::exception_ptr failure) noexcept {
         if(!cleanup_failure_)cleanup_failure_=std::move(failure);
     }
@@ -109,7 +121,7 @@ public:
     }
 private:
     std::function<bool()> vertex_animation_preference_;
-    std::array<std::uint32_t,0x45> dog_shared_state_{};
+    GameAnimations* dog_animations_=nullptr;
     std::vector<game::SceneActor<GameActorServices>*> car_actors_;
     std::exception_ptr cleanup_failure_;
     game::ActorFrameDataStore<GameActorFrames> frame_data_{*this};

@@ -1,0 +1,203 @@
+{
+  "date": "2026-11-16",
+  "base_commit": "529b9a978f4940c441cae45ec1860dc0422bac92",
+  "branch": "feature/p22-hum-h8-4",
+  "source_only": true,
+  "h8_4_complete": false,
+  "d4_complete": false,
+  "d5_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_image_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "contract": "analysis/human-h8-car-authority-source.md",
+  "source_files": [
+    {
+      "path": "recovered/game/car_offline_frame.h",
+      "bytes": 2996,
+      "sha256": "54993d89c49de2c468dd9644e323305f5e150e478d0e51ae264568f883d29a41"
+    },
+    {
+      "path": "recovered/game/car_loading_activation.h",
+      "bytes": 25120,
+      "sha256": "5f7d957f96bc7b715fca159093fd1e4b42ceeeb79be2ec7ee6fcb8d6beaeab3d"
+    },
+    {
+      "path": "recovered/game/human_state_base_loading.h",
+      "bytes": 17179,
+      "sha256": "cd773b4afb2b8b6b576b9d9fe1d69599254dee293c664fde0a3471b9eb5064ac"
+    },
+    {
+      "path": "recovered/game/world_actor_loading_consumers.h",
+      "bytes": 11321,
+      "sha256": "49ff5363bea4a2d149b753af251e1d2dfcb9c927ec887cd4fec9fd1dfc844107"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 125817,
+      "sha256": "4d538e2a892032ae7c62c2697f50ef412d3a36a388a04da0a8ba1c7afd3b4701"
+    },
+    {
+      "path": "recovered/host/game_world_actors.h",
+      "bytes": 32777,
+      "sha256": "f66868682d505fe361a9e7ce7e77423452cf74b5fd536b7ab989c6d5ddc42f92"
+    }
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-frame-original.asm",
+      "bytes": 55530,
+      "sha256": "5aaf8259e08d62e9217e6d2ee9154d17c2ba5cf17078404f7ca6f24e66eafadc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-forced-exit-original.asm",
+      "bytes": 931,
+      "sha256": "a72f4ae7b6b411d54e7840029583766514ccf580b916fcb7ca49fd90393c8fed"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-human-exit-original.asm",
+      "bytes": 337,
+      "sha256": "b33548697ee474692f585937752115fcd7bf74736d0b73486b2e906605e8374c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-b0-slot44.json",
+      "bytes": 940,
+      "sha256": "326db64d3d42e1b56e71ccfcff65389a74e97302d955277ed2c449afacb9431a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-activation-required/004d2790.c",
+      "bytes": 6058,
+      "sha256": "46836a39b6c7ff0236f980535e57d3f1791af10e943fdfca00bc9396f9f0e088"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-activation-required/004d2790.json",
+      "bytes": 21848,
+      "sha256": "e8a28817f75baf9cfad026e8ca8866fdbd5c572d3cdac7f5a7a8b7add0670603"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-activation-required/004d3110.c",
+      "bytes": 2988,
+      "sha256": "37dfea6a55da64115f210ee738623d4f3b76ff02a53665867350ff8ac14a4aeb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-activation-required/004d3110.json",
+      "bytes": 11804,
+      "sha256": "ee02946c4ca1f76b8758208a7b039727493f06cc6a47d9b0cfad34beb595c230"
+    }
+  ],
+  "native": {
+    "result": "PASS 19500 checks / 100 lifetimes",
+    "sanitizers": [
+      "address",
+      "undefined",
+      "leak detection"
+    ],
+    "actual_owners": [
+      "CarSoundLoading load_slot / clear / resource lifetime",
+      "CarMountedWeaponControl ownership",
+      "HumanStateBaseLoading request_emplacement_exit",
+      "dispatch_human_deferred_common_command and source first80/second90 vectors"
+    ],
+    "explicit_doubles": [
+      "Frames/engine voices and coefficient values",
+      "mounted advance endpoint",
+      "Human/seat graph",
+      "DC effect endpoint",
+      "SOUND emission endpoint"
+    ],
+    "limits": [
+      "No complete live Car/World owner graph",
+      "No powered solver/controller/finalizer execution",
+      "No original allocator/vtable/SEH ABI or delegated engine credit"
+    ],
+    "command": "g++ -std=c++17 -O1 -g -Wall -Wextra -Wpedantic -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -Irecovered -L/tmp/h8-4-sanitizer -Wl,-rpath,/tmp/h8-4-sanitizer /tmp/h8-4-native.cpp -o /tmp/h8-4-native; ASAN_OPTIONS=detect_leaks=1:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 /tmp/h8-4-native"
+  },
+  "i386": {
+    "result": "PASS strict actual-host O0 full link",
+    "instantiated": "Concrete Actors activate/update/deactivate Car both passes; actual CarLoadingActivation, World consumers, Human state factory and SOUND",
+    "not_executed": true
+  },
+  "application": {
+    "result": "PASS make -C recovered -j1 application-launch startup-probe",
+    "windows_outputs_not_executed": true,
+    "artifacts": [
+      {
+        "path": "recovered/build/application_launch.exe",
+        "bytes": 3963392,
+        "sha256": "d904ef1ce109471423d86160a8b68b177b7a063bade6e97c9e24389b35ac0131"
+      },
+      {
+        "path": "recovered/build/startup_probe.exe",
+        "bytes": 1165312,
+        "sha256": "ab2ee0673461f850cb63a5b5112ae98b4f324865bc88eaf6183f95e9d1e3b27b"
+      }
+    ]
+  },
+  "verification_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-authority-native.log",
+      "bytes": 108,
+      "sha256": "a0ed1727981385eb9b320122a508a0b52128aca82519ed7f2da3374372593904"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-authority-host.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-authority-application.log",
+      "bytes": 947,
+      "sha256": "68c889ea09f014b853f3d9169ac23ee89ca8be939ccaeea246f7462b41d8dd38"
+    }
+  ],
+  "temporary_audit_fingerprints": [
+    {
+      "path": "/tmp/h8-4-native.cpp",
+      "bytes": 11655,
+      "sha256": "72ef3ebdc47334647d4aac0e9cd4e2ccdae9ef6408a66e622137b5941d5327f1"
+    },
+    {
+      "path": "/tmp/h8-4-native",
+      "bytes": 2896640,
+      "sha256": "5385b6fbb53c9cf570b9c3ebb51c777d04884ca45ceb5ee7f6c3dc3874a1ae7e"
+    },
+    {
+      "path": "/tmp/h8-4-host.cpp",
+      "bytes": 394,
+      "sha256": "be5e7c43f3400aa7a3416ae98c005e56420ab181952f1bde631c904734cd4f33"
+    },
+    {
+      "path": "/tmp/h8-4-host.exe",
+      "bytes": 4338688,
+      "sha256": "5a2317bc2976f1ed14971908b266dd8d5f42ac1b218ead2415ffd45c00b2737b"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "ledger": {
+    "new_frozen_partials": [
+      "004d2dc0",
+      "005a97b0"
+    ],
+    "extended_partials": [
+      "004d2790",
+      "004d3110"
+    ],
+    "implemented_but_absent_from_frozen_inventory": [
+      "00588c20"
+    ],
+    "complete_promotions": 0,
+    "expected_complete": 34,
+    "expected_partial": 3460,
+    "tracker_check": "PASS: exact fingerprints, full inventories, frozen counts, unique statuses, evidence and README",
+    "tracker_tests": "PASS 27 existing tests"
+  },
+  "remaining": [
+    "00509AA0 active engine/input/shift controller",
+    "0050DE60 powered drive/body forces",
+    "0050B180 active engine/audio/skid/particle finalizer",
+    "actual occupied Car presentation/frame verification",
+    "selected non7 004D3380/004D2EC0 and entry D6-D9",
+    "selected absent actors and current OWN/FRAME application integration",
+    "confirmed D11 fresh part5F9/wheel695/EXPL8/smoke14 state omissions unchanged",
+    "full H8.2/H8.3 containing composition and user desktop acceptance"
+  ]
+}

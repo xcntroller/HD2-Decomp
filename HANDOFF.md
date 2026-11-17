@@ -2,10 +2,33 @@
 
 Worktree `HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`. Latest user
 priority: get in game, stop expanding helper checkboxes/research. H8 plan is
-consolidated to its six original delivery checkpoints. This branch owns H8.2,
-then H8.3. Another agent owns H8.4; preserve its occupied/Car/seat/absent-actor
-work and other worktrees. PACK is finished. No push, original EXE/DLL/Proton or
+consolidated to its six original delivery checkpoints. Agent 1 now owns continuation of H8.2/H8.3 and merged H8.4 work.
+The user requested this agent stop and merge; H8.4 source through4708ff9 is
+now included. Preserve the existing H8.2 working changes and other worktrees. PACK is finished. No push, original EXE/DLL/Proton or
 Windows fixture execution. Heavy compile and Ghidra sequentially.
+
+Merged H8.4: [Dog source](analysis/human-h8-dog-source.md)/[receipt](analysis/checkpoints/p2.2-human-h8-dog-source-20261117.json)
+contains process-owned23-row cache/stride table, skeletal geometry and D4 policy
+kernels. Cold Dog resets the actual startup GameAnimations table; World binds
+that owner before Scene2. Live Dog activation/frame and HUM callback remain
+guarded. Native45408 checks/32 families plus strict i386 World/process/table/
+geometry and launcher/probe pass. Body/control/perception callbacks are named
+doubles, not activation closure. Raw005C8069 pushes the one005C0F50 argument
+well before its call; do not repeat the no-argument inference. Kind4+04 is
+005D5B00→005CE5D0, not005CE110. Later bounded live-worker exports are research
+only under WORK h8-4-dog-live-originals; no uncommitted source from that research.
+Prior H8.4: actual D8 melee receivers, PhotoPlace15/action3 and occupied offline
+Car source. D11’s four user-authorized defaults are [source-resolved](analysis/human-h8-d11-compatibility.md),
+not original equivalence. Full occupied Human/Player/mounted, selected non7,
+Aircraft/type34/entry and actual application/desktop gates remain open. Reuse
+[H8 plan](analysis/p22-hum-h8-plan.md); continue selected HUM failures, without
+expanding unreached Dog/neighbor families. No new desktop test or push.
+
+Merge verification: strict combined World i386 O0 full link, launcher/probe O2
+compile/link, exact tracker and27 tests PASS; counts34 complete/3546 partial
+(client3541+engine5), frozen18783. [Merge receipt](analysis/checkpoints/p2.2-human-h8-merge-20261117.json).
+Agent1’s unfinished damage/Players changes are working-tree edits, not part of
+this merge commit. Preserve those five local files when resuming.
 
 Latest: actual completion/hold and remaining on-foot producers after903c2f6, extending [on-foot authority through return](analysis/human-h8-authority-body-source.md),
 [receipt](analysis/checkpoints/p2.2-human-h8-authority-body-20261116.json).
@@ -49,17 +72,17 @@ Completion00535C00/00537E50 now reuse actual cover/cautious/cancel/follow owners
 receipt `completion_follow_up`. Task32 waits for target unavailable.40/41/42
 pending progression (retreat40) is not claimed by the completion binding.
 Remaining specialized commands principally seat8..13, action16 target/navigation,
-Car/task22; H8.4 bodies stay external.
+Car/task22; H8.4 containing owners remain required.
 Item effects6/23/24/33 are now bound; reuse `human_active_ai_loot.h` and receipt
 `loot_follow_up`. Native handoff producer24 rejects Human type3; do not repair it.
 Item6 selection accepts nonzero capacity, producer requires positive. Actual
 007DAF80 is dry-run on SAME PACK kernel; no PACK body edits. Task6 item/supply
 returnsfalse through turn/pending;178 still follows a false validator. Task22/Dog and positive type34/type36/absent actors still
-require their actual owners where reached; H8.4 bodies stay external.
+require their actual owners where reached; H8.4 containing owners remain required.
 Positive holder reload reaches native NULL3C dereference (8170D0/007D6860/6880);
 it is an explicit invalid-native failure, not missing successful behavior. Water
 005A97C0 ends in HUD0049EF70 kind2, not a packet. No new helper checklist. Use the source contract for exact supported gates;
-do not claim full H8.2 from the ordinary first-frame path alone. H8.4 external.
+do not claim full H8.2 from the ordinary first-frame path alone. H8.4 remains open.
 
 WORK=`analysis/work/mission-world-20261103`. Research index BEFORE new exports.
 Reuse00526550 (`frame-human-script-and-active-workers`),0052B810/005276E0

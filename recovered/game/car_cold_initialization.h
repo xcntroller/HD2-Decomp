@@ -14,9 +14,9 @@ namespace hd2::game {
 //004E9DB0's additional mutable runtime words, separate from coefficients.
 //Wider driving/plane-cache consumers remain required at their existing gates.
 struct CarPhysicalResetFields {
-    float field780=0,field78c=0,fieldf68=0;
+    float field780=0;
     std::array<std::uint32_t,4> fields4f0{};
-    bool field22c1=false,signal2294=false,signal2295=false;
+    bool field22c1=false,field22c2=false,signal2294=false,signal2295=false;
 };
 
 //004EA780 and004EC5C0's cold, unoccupied source owner. The containing actor
@@ -29,8 +29,8 @@ public:
     using Body=CarBodyIntegration<Frames>;using Wheels=std::vector<CarWheelRuntime<Frames>>;
     CarColdInitialization(Frames& frames,Geometry& geometry,Collisions& collisions,
             const std::vector<Frame>& sound_receivers,const std::vector<Frame>& light_receivers,
-            std::vector<CarParticleState<Frame>>& particles)
-        :frames_(frames),geometry_(geometry),sound_receivers_(sound_receivers),light_receivers_(light_receivers),particles_(particles),
+            std::vector<CarParticleState<Frame>>& particles,bool& driver_enabled)
+        :frames_(frames),geometry_(geometry),sound_receivers_(sound_receivers),light_receivers_(light_receivers),particles_(particles),driver_enabled_(driver_enabled),
          mass(geometry.physics(),geometry.auxiliary()),collision(frames,collisions),
          skids(frames,geometry.wheels().wheels().size()),sounds(frames,geometry.model(),geometry.auxiliary().head()),
          audio(frames,sounds),solver(geometry.physics()),finalizer(geometry){}
@@ -44,8 +44,9 @@ public:
             if(!physics.applied_parameters())throw std::logic_error("Car initializer requires its actual applied parameters");
             frames_.update_scene_object(model);body_.emplace(frames_,model,physics.scalars());
             frames_.car_place_in_scene(model,body_->pose().centre);
+            finalizer.sector=frames_.object_parent(model); //004EA780 publishes544 AFTER actual scene placement.
             collision.initialize(model,geometry_.auxiliary().collision_bounds(),geometry_.auxiliary().special(),actor);
-            controller_.emplace(*body_);
+            controller_.emplace(*body_,driver_enabled_,!physics.geometry().first_connections.empty()||!physics.geometry().second_connections.empty());
             const auto& authored=geometry_.wheels().wheels();const auto& coefficients=physics.geometry().wheels;
             if(authored.size()!=coefficients.size())throw std::logic_error("Car initializer lost its SAME wheel geometry");
             wheels.resize(authored.size());
@@ -90,7 +91,8 @@ public:
         skids.clear();
         errors.attempt([&]{restore_car_deformable_parts(frames_,geometry_,callbacks.empty6b4);});
         finalizer.lights.flags=0;
-        errors.attempt([&]{update_car_loading_lights(frames_,geometry_.lighting(),finalizer.lights,.10000000149011612f,solver.substeps.flags,finalizer.previous_features);});
+        errors.attempt([&]{update_car_loading_lights(frames_,geometry_.lighting(),finalizer.lights,.10000000149011612f,solver.substeps.flags,
+            finalizer.previous_features,paired_flags,finalizer.sector,body().pose().forward);});
         errors.attempt([&]{sounds.unregister_receivers(sound_receivers_);});
         errors.attempt([&]{unregister_car_light_receivers(frames_,geometry_.lighting(),light_receivers_);light_borrowers_=false;});
         for(auto n=finalizer.particles.exhausts.size();n;){auto& slot=finalizer.particles.exhausts[--n];retire_car_particle(particles_,slot);slot=-1;}
@@ -125,7 +127,7 @@ private:
         skids.clear();
     }
     Frames& frames_;Geometry& geometry_;const std::vector<Frame>& sound_receivers_;const std::vector<Frame>& light_receivers_;
-    std::vector<CarParticleState<Frame>>& particles_;std::optional<Body> body_;std::optional<CarSettlingControllerState<Frames>> controller_;
+    std::vector<CarParticleState<Frame>>& particles_;bool& driver_enabled_;std::optional<Body> body_;std::optional<CarSettlingControllerState<Frames>> controller_;
     bool started_=false,ready_=false,completed_=false,light_borrowers_=false;
 public:
     CarMassLoading<Frames> mass;CarCollisionLoading<Frames,Collisions> collision;CarSkidModels<Frames> skids;

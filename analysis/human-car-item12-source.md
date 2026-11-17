@@ -1,5 +1,10 @@
 # Detached Car Item12 owner and launch —2026-11-12
 
+**Current D11 policy:** the user authorized deterministic compatibility corrections
+on2026-11-16. The [D11 source checkpoint](human-h8-d11-compatibility.md) supersedes
+the four required-failure statements below; original omission evidence and all
+other source/verification limits remain valid.
+
 Source checkpoint within the same Human reactions/damage/ragdoll checkbox, which
 remains OPEN. Actual004C9000 rigid-body authority simulation/contact is REQUIRED;
 its containing receiver still throws before lifetime processing. This checkpoint

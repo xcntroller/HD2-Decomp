@@ -1,5 +1,10 @@
 # H2 containing-path boundary —2026-11-12
 
+**Current D11 policy:** the user authorized deterministic compatibility corrections
+on2026-11-16. The [D11 source checkpoint](human-h8-d11-compatibility.md) supersedes
+the four required-failure statements below; original omission evidence and all
+other source/verification limits remain valid.
+
 D0 completed against clean master415e850, including merged UI source. This is a
 call-path/dependency decision, not additional implementation or function credit.
 H2 is now source-closed; P22-HUM/P2.2 delivery remains OPEN. Existing original evidence is indexed in WORK
@@ -96,15 +101,15 @@ integration belongs to H8 without making all transport work unconditional. D6–
 entry callers. At any newly reached missing state, update the dependency map with
 its caller/owner/retirement and keep the required failure visible.
 
-D11's existing findings are not an excuse to reopen confirmed producer searches.
+D11's original findings remain confirmed; do not reopen unchanged producer searches.
 If T7/T8 requires one of those fresh paths and no lawful source producer exists,
 report the exact case as blocked and continue independent required paths. H2/H8 verification cannot hide a reached required failure behind a double. Application
 loading/render/failure/repeat and user desktop acceptance remain P2.2 gates.
 
 ## Source closure blockers
 
-These remain concrete reached native state omissions under the project's
-no-invented-initialization rule. The later branch-scope classification above
+These are the historical concrete reached native state omissions. Their four
+source failures are now resolved by the user-authorized D11 compatibility policy. The later branch-scope classification above
 assigns these Car/debris paths to containing-world integration; it does not
 resolve them or claim that a complete World can execute them successfully. Existing verified evidence is reused; no repeated audit
 of unchanged kernels was performed.
@@ -126,8 +131,9 @@ of unchanged kernels was performed.
   selected; a cold empty effect pool or a present parsed DM model is not proof
   that every positive branch has a producer.
 
-Closure requires demonstrated original producers/prior ownership or proof that
-the required native branch cannot be reached. Otherwise it requires an explicit
-change to the reconstruction scope/behavior policy. None is assumed or invented.
+Original-equivalent closure would require demonstrated producers/prior ownership
+or proof that the required branch cannot be reached. The user explicitly chose
+the compatibility policy instead; the four deterministic corrections and their
+verification are recorded in the linked D11 checkpoint.
 D4a/D4b and the H2-owned D10 segment are source-verified. Continuing Car/entry
 integration remains open and does not remove these D11 failures.

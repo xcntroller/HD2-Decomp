@@ -1,0 +1,321 @@
+{
+  "date": "2026-11-16",
+  "base_commit": "96f43ec",
+  "branch": "feature/p22-hum-h8-4",
+  "source_only": true,
+  "h8_4_complete": false,
+  "d4_complete": false,
+  "d5_complete": false,
+  "powered_step_source_bound": true,
+  "powered_solver_whole_function_complete": false,
+  "running_finalizer_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "contract": "analysis/human-h8-car-powered-source.md",
+  "original_image_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_files": [
+    {
+      "path": "recovered/game/car_body_integration.h",
+      "bytes": 9390,
+      "sha256": "1e5e4b26318867aef6beb462b293de4ccd12e6aae86a813bfa21080d8183315c"
+    },
+    {
+      "path": "recovered/game/car_cold_finalizer.h",
+      "bytes": 10267,
+      "sha256": "acb4d03d466456017b79195cd94bdda29b01882d4a5c0bb4f9242b411d2147ea"
+    },
+    {
+      "path": "recovered/game/car_cold_solver.h",
+      "bytes": 7004,
+      "sha256": "c96d358688fb76d0df500fe3b5e1bdad8eb30ceb8bc04516493fd3c822d77c01"
+    },
+    {
+      "path": "recovered/game/car_drive_controller.h",
+      "bytes": 14866,
+      "sha256": "2717eeb43d89289e6d69f3e9ba696ae1e4d6b58bc9d776effa08cd72e14895af"
+    },
+    {
+      "path": "recovered/game/car_loading_activation.h",
+      "bytes": 26197,
+      "sha256": "ff8ec9b558f01f77e42f7403ce0382b6ae53007b6eda0a526b4701d4610a741f"
+    },
+    {
+      "path": "recovered/game/car_physical_reset.h",
+      "bytes": 12255,
+      "sha256": "499666c82fa8dfe3035b54160d07379e092ce87827c5fca4c2e531c67be2469d"
+    },
+    {
+      "path": "recovered/game/car_settling_controller.h",
+      "bytes": 10742,
+      "sha256": "4bc90e0e22f518af1af47a4db970f02bb72a846e0a1cab9f1c017cc11b2b76df"
+    },
+    {
+      "path": "recovered/game/car_wheel_traction.h",
+      "bytes": 5163,
+      "sha256": "1996464c4f5a0acd48989ebd08674860f4c78a44322e7688c2621e901996792c"
+    },
+    {
+      "path": "recovered/game/car_powered_body_forces.h",
+      "bytes": 4631,
+      "sha256": "53b23fff748563cc029bc9c94606cff2fe38c98d0292e960444cb4ff20684fbd"
+    },
+    {
+      "path": "recovered/game/car_powered_wheel_forces.h",
+      "bytes": 12582,
+      "sha256": "1d658ac7884bc7e956c705e57c439668942d120e0dd42ba0c9b3708e8f109a60"
+    },
+    {
+      "path": "recovered/game/car_solver.h",
+      "bytes": 5149,
+      "sha256": "1a07797fb4ae53c8d7be40e5218a222750fb8dfc91733f245e2d2cdb1bfc7214"
+    },
+    {
+      "path": "recovered/host/game_car_callbacks.h",
+      "bytes": 13776,
+      "sha256": "cbc17c8ef7d2a494785e22c190b0bda395cc08b4d403dbd9c622be5fbf0dde8b"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-boundary-index.txt",
+      "bytes": 10925,
+      "sha256": "062bd91cb5ba17fd74450e4d251ec2c21e1314a6a104736fc43ae9608266e05e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-position-boundary-index.txt",
+      "bytes": 12161,
+      "sha256": "580be7a719e99ad5edba6f98aef2a35eee424820aa51ad3e999dbdc51ee63d67"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-original.c",
+      "bytes": 79255,
+      "sha256": "5c38ca03ecd814353196f83b908bbc78efff3574fcf982b8a4093833c2d9329d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-metadata.json",
+      "bytes": 2412,
+      "sha256": "457d6e1daa0a8939039bed143f7e136255b359cfd844f30bad9e847f03b7fd3b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-constants.json",
+      "bytes": 635,
+      "sha256": "ad6d0bc977e622a9b20582cd6886b3560c28b260320b013d615fd206f1d2bad0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-position-original.asm",
+      "bytes": 2060,
+      "sha256": "95d3279e5b50398001d3c108285a5d1044282c1062efe9bde2516ea1b3b6257c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-brake-original.asm",
+      "bytes": 2122,
+      "sha256": "c8c81682d1feab1bca0c68c265842185ef96ce05e3a99053771568206432ac58"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-gear-threshold.asm",
+      "bytes": 1617,
+      "sha256": "f860fbcee918662b5ae05cb702b9f16cd19cce1125feef91bf8913a8e3e66214"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-projection-original.asm",
+      "bytes": 6164,
+      "sha256": "930839a8a18d9ccb220fcb2ee8c94de1ad4dd7be71fc0622c2f36b051afda117"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-resistance-original.asm",
+      "bytes": 5131,
+      "sha256": "7e91f195086407e37426849898cd45f51c7f327f4636e720e7ca260a7aa8e1ee"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-native.log",
+      "bytes": 120,
+      "sha256": "0b939302e06f93b78b5ac1033e3685583ca6c7ab6af902f36e91743e307ea34f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-host.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/0.bin",
+      "bytes": 1276,
+      "sha256": "27ef47eaedd6cc7d4a176bd1fe095eca838aded931f4a4882693702ef28a912a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/1.bin",
+      "bytes": 2619,
+      "sha256": "2596dd17e7290d864ae5f4dc79fbe00d43a6c86f24533dfceb465f8bb68a26c3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/2.bin",
+      "bytes": 1871,
+      "sha256": "745844cf630416533eff2f6a645f790636ba609b6817c1a002895bdbaaad6f2f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/3.bin",
+      "bytes": 1871,
+      "sha256": "745844cf630416533eff2f6a645f790636ba609b6817c1a002895bdbaaad6f2f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/4.bin",
+      "bytes": 2402,
+      "sha256": "dc83b12ab02d802b447c3163c8ddfada4558477668cf574ff55102f2d3065ce5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/5.bin",
+      "bytes": 1892,
+      "sha256": "ae935616e5c13e94b6a62aabb2faee88e6d503f9a6ec9374d37cb07602bcb681"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/6.bin",
+      "bytes": 2402,
+      "sha256": "dc83b12ab02d802b447c3163c8ddfada4558477668cf574ff55102f2d3065ce5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/7.bin",
+      "bytes": 1892,
+      "sha256": "ae935616e5c13e94b6a62aabb2faee88e6d503f9a6ec9374d37cb07602bcb681"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-car-properties/8.bin",
+      "bytes": 1892,
+      "sha256": "ae935616e5c13e94b6a62aabb2faee88e6d503f9a6ec9374d37cb07602bcb681"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-position-setup.asm",
+      "bytes": 1406,
+      "sha256": "df960078880df054370e66bfcc861af2c55d5b028f6afc8cf2f1f87825bcb16f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-launcher-probe.log",
+      "bytes": 930,
+      "sha256": "4fd12cb475e84990a6514cb4e337f3ee6957fecd0e2088f4bfa2dde2591d73f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-tracker-render.log",
+      "bytes": 380,
+      "sha256": "0cfc96194997a751e3ce51c88ec66ebcb0e3d7bcfb458be79c90fa6a94bfacd4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-tracker-check.log",
+      "bytes": 437,
+      "sha256": "3929227486929cb13ba489089a4fc1ef9aa0455a59ebe612577bb10def4a0ee9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/h8-4-powered-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f"
+    }
+  ],
+  "corrections": [
+    "160 is mutable simulation position, updated before model/collision publication;240 is forward. Prior immutable160 interpretation superseded.",
+    "2293 driven contact has one drivetrain owner;229F spin has one controller/visual owner.",
+    "Original normalization/brake-demand/resistance precision governs exact wheel-lock decisions;674 is signed integer bits."
+  ],
+  "native_verification": {
+    "result": "PASS",
+    "asan": true,
+    "ubsan": true,
+    "leak_detection": true,
+    "checks": 846317,
+    "original_wheel_pass_comparisons": 18000,
+    "actual_captured_parameter_blocks": 9,
+    "focused_full_step_families": 9,
+    "undefined_ellipse_guards_selected": 0,
+    "numeric_tolerance": {
+      "relative": 4e-05,
+      "absolute_summed_torque_cancellation": 0.002,
+      "flags_and_control_publications": "exact"
+    },
+    "reference": "Independent temporary transcription of original second wheel pass;32-bit scratch pointers/FLOAT bit tests/W temporaries adapted and concrete spills resolved against bounded ASM. No original binary executed.",
+    "boundaries": "Actual parameter decode/conversion/application, traction/wheel/solver/body/drivetrain source. Geometry/frame/math, builtin tyre/contact histories, ABS/yaw/handbrake/kind0/1/2 state, query/collision/audio are explicit doubles/injections. No authored occupied, registered tyre-table, World or desktop claim.",
+    "focused_cases": [
+      "repeated cold motion updates live160",
+      "positive powered010/contact/load followed by actual query path",
+      "collision failure after candidate publication",
+      "query failure before drivetrain/F68",
+      "clutch sound failure before selected gear/F68",
+      "aerodynamic force/torque and020 publication",
+      "low-speed remaining longitudinal grip subtracts requested drive"
+    ]
+  },
+  "strict_actual_host_i386_full_link": {
+    "result": "PASS",
+    "options": "-std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -static -municode",
+    "actual_activation_both_frame_passes_reset_and_new_solver_instantiated": true,
+    "windows_artifact_executed": false
+  },
+  "launcher_probe_compile_link": "PASS: both rebuilt sequentially; Windows artifacts not executed",
+  "temporary_audit_fingerprints": [
+    {
+      "path": "/tmp/h8-powered-audit.cpp",
+      "bytes": 17715,
+      "sha256": "6bee9e48f72ee07f8eb3b2dbf57f6edd9b6c21e994ef406689b7fd9d5d35db73"
+    },
+    {
+      "path": "/tmp/h8-powered-reference.inc",
+      "bytes": 29838,
+      "sha256": "074aff23bcb03f30e5088225a77956a307014b6bf6d1b3be3d84edb6db9a4baf"
+    },
+    {
+      "path": "/tmp/h8-powered-audit",
+      "bytes": 3430616,
+      "sha256": "9a4038b28f4ef957d633270074cd6e71a4ecade6c53992f15e7fd37160da84fa"
+    },
+    {
+      "path": "/tmp/h8-powered-host.cpp",
+      "bytes": 387,
+      "sha256": "2a73ea6136c6dd1056067c23a7ddc7263a1481addd04d46ef8f51e223e85b475"
+    },
+    {
+      "path": "/tmp/h8-powered-host.exe",
+      "bytes": 4361728,
+      "sha256": "62e554e2c30215720098425e1a001c5510eb585e161bb03efad09dbf671b6235"
+    }
+  ],
+  "temporary_audits_removed": true,
+  "ledger": {
+    "new_frozen_partials": [],
+    "complete_promotions": 0,
+    "extended_partials": [
+      "0050de60",
+      "004ea780",
+      "00509aa0",
+      "004d3ef0",
+      "004e9db0",
+      "0050b180",
+      "00507a40",
+      "00506700"
+    ],
+    "expected_complete": 34,
+    "expected_partial": 3463,
+    "frozen_inventory": 18783,
+    "tracker_check": "PASS: exact fingerprints, full inventories, frozen counts, unique statuses, evidence and README",
+    "tracker_tests": "PASS: 27 existing tests"
+  },
+  "remaining": [
+    "0050B180 running engine/audio/skid/particle finalization",
+    "actual H3 seat/input through occupied presentation before D5 guards removal",
+    "plane-cache query and conditional unproduced coefficient paths",
+    "unchanged confirmed D11 part5F9/wheel695/EXPL8/smoke14 omissions; no speculative initialization",
+    "selected non7/entry D6-D9 and absent actors",
+    "containing H8.2/H8.3/current OWN/FRAME/application and desktop acceptance"
+  ],
+  "build_artifacts": [
+    {
+      "path": "recovered/build/application_launch.exe",
+      "bytes": 3963392,
+      "sha256": "5d29c9d9397ee3ededc3c399e18c641ed5f820babb95bf10bc0e6afbae3193ee"
+    },
+    {
+      "path": "recovered/build/startup_probe.exe",
+      "bytes": 1165312,
+      "sha256": "cea8614fbc2c7c54576a816e064de5c514790be6cedb318ab36db777af28aa28"
+    }
+  ]
+}

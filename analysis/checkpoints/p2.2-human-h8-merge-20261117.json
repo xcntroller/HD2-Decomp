@@ -1,0 +1,45 @@
+{
+  "checkpoint": "Merge H8.4 source into P22-HUM-H8",
+  "date": "2026-11-17",
+  "target_branch": "feature/p22-hum-h8",
+  "target_parent": "498a9572c016a5f963bc954ef841fb3e5a8537bc",
+  "incoming_branch": "feature/p22-hum-h8-4",
+  "incoming_parent": "4708ff9f57915f1a6aeaa02b91a52355f32cc438",
+  "resolution": "Source auto-merged. Preserve current H8.2 delivery plan/handoff and append H8.4 progress/limits. Function ledger merged by program/address/field against common base; no divergent semantic fields. README regenerated.",
+  "verification": {
+    "actual_combined_world_i386": "PASS O0 C++17 Wall Wextra Wpedantic Werror static full link, compile only",
+    "application_launch_startup_probe": "PASS strict O2 compile/link only",
+    "tracker": "PASS exact inventory/fingerprint/status/evidence/README checks",
+    "existing_tracker_tests": "PASS27",
+    "diff_check": "PASS",
+    "complete": 34,
+    "partial": 3546,
+    "frozen": 18783
+  },
+  "user_local_changes": "Not included in merge commit; preserve/restore the target working changes separately",
+  "source_scope": "H8.4/H8/HUM remain open; Dog activation/Body/controller/perception callback and selected containing/app/desktop dependencies remain required. D11 compatibility policy preserved.",
+  "original_or_windows_execution": false,
+  "push": false,
+  "evidence_fingerprints": [
+    {
+      "path": "/home/control/Documents/Projects/HD2-Decomp-p22-hum-h8/analysis/work/mission-world-20261103/h8-4-merge-build-20261117.log",
+      "bytes": 885,
+      "sha256": "731c358bf7aaa8c3f17bcf82f2dca338b4b39e72e443a40570e0a73c976b491d"
+    }
+  ],
+  "temporary_merge_fixture": {
+    "removed": true,
+    "fingerprints": [
+      {
+        "path": "/tmp/h8-combined-merge-link.cpp",
+        "bytes": 857,
+        "sha256": "40a7945c8daac6bdc37046b972296f9cee47bf401905190704f21bc7dc85fe8b"
+      },
+      {
+        "path": "/tmp/h8-combined-merge-link.exe",
+        "bytes": 12643840,
+        "sha256": "e94e10fd0c616bfa0d07858bec5067d8187b7f859eca81e9df7ba5898f5047e1"
+      }
+    ]
+  }
+}

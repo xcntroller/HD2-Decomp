@@ -1,8 +1,9 @@
 # H8 Human frame — delivery plan
 
 Worktree `HD2-Decomp-p22-hum-h8`, branch `feature/p22-hum-h8`.
-This branch owns H8.2, then H8.3. Another agent owns H8.4; preserve its
-occupied/Car/seat/absent-actor work. PACK is finished. No original EXE/DLL,
+Agent 1 now owns continuation of H8.2/H8.3 and the merged H8.4 work.
+H8.4 branch4708ff9 was merged at the user’s request; preserve its verified
+occupied/Car/seat/absent-actor source. PACK is finished. No original EXE/DLL,
 Proton or Windows-fixture execution; no push. Compile and Ghidra sequentially.
 
 ## Delivery boundary
@@ -10,7 +11,7 @@ Proton or Windows-fixture execution; no push. Compile and Ghidra sequentially.
 - [x] H8.1 — Compose actual scene→B0/inline→DD0/E0/equipment/geometry on the SAME World. [Source composition](human-h8-frame-composition-source.md).
 - [ ] H8.2 — Complete the mandatory offline Human decision/action/callback receivers reached by that composition.
 - [ ] H8.3 — Complete reached ShotMgr async bullet/shell/capsule/grenade collision, damage, visual/contact frames and initial100 calls.
-- [ ] H8.4 — Complete reached occupied/Car/entry/absent-actor dependencies. **Other agent owns this.**
+- [ ] H8.4 — Complete reached occupied/Car/entry/absent-actor dependencies; merged source remains below.
 - [ ] H8.5 — Verify the completed containing Human frame on actual owners, module/i386/launcher links and consolidated native positive/failure/lifetime checks.
 - [ ] H8.6 — Connect completed application/FRAME/OWN/render work and obtain actual mission/user desktop acceptance.
 
@@ -20,6 +21,20 @@ selected offline mission reaching its real Human frame, followed by the next
 reached failure. Source count and a successfully linked fixture do not establish
 application or desktop delivery. Unreached variants keep precise requirements;
 do not expand research merely because an adjacent function exists.
+
+## Merged H8.4 source and limits
+
+The Car controller/gear/powered solver/running finalizer/nine-family lights and
+[occupied offline presentation](human-h8-car-occupied-source.md) are source-verified.
+[PhotoPlace/type15](human-h8-photo-place-source.md) supplies action3 completion;
+[actual actor D8 policies](human-h8-actor-material-source.md) replace the narrow
+melee material guard. [D11](human-h8-d11-compatibility.md) is source-resolved by
+four explicitly authorized compatibility corrections, not original equivalence.
+[Dog process table/geometry/damage kernels](human-h8-dog-source.md) are verified;
+its live activation/Body/controller/perception and HUM callback remain guarded.
+Full Human/Player/mounted composition, reached Aircraft/type34/entry and selected
+non7 work remain required. Follow the actual selected path; these notes do not
+make all neighboring Dog functions a mandatory detour before integration.
 
 ## Current H8.2 path and next failure
 

@@ -43,6 +43,8 @@ public:
     virtual void path_drive(float)=0;
     virtual void path_brake(float)=0;
     virtual void path_emergency(bool,bool)=0;
+    virtual bool request_gear(std::int32_t)=0; //004F2030, SAME878/910/22C6/780 owners.
+    virtual bool gear_force(float,float&,std::int32_t,bool)=0; //004F3840, SAME applied parameters/torque curve.
     virtual void driver_frame_inputs(const HumanFrameInputBuffer&,const HumanFrameInputBuffer&)=0;
     virtual bool seat_claimed(std::int32_t)const=0;
     virtual void claim_seat(std::int32_t,bool)=0;

@@ -82,6 +82,12 @@ public:
     std::uint32_t door_sound_cursor(std::int32_t handle){return d().startup.game_sound_voice_cursor(handle);}
     void door_sound_cursor(std::int32_t handle,std::uint32_t cursor){d().startup.game_sound_voice_cursor(handle,cursor);}
     std::int32_t emit_scene_actor_sound(const frontend::SpatialSoundRequest& request){return d().sound.emit(request);}
+    void car_occupant_forced_exit(void* actor){
+        auto& services=d().human_factory.world_services();
+        auto* state=services.human_state_owner(services.human_score_actor(actor)).get();
+        if(!state)throw std::logic_error("Car forced exit requires actual Human B0");
+        state->request_emplacement_exit();
+    }
     auto mounted_sound_entry(std::int32_t id)const{return d().startup.mounted_sound_entry(id);}
     bool mounted_human_view(void* actor){auto& services=d().human_factory.world_services();return services.human_is_player(services.human_score_actor(actor))&&services.human_view_offset_enabled();}
     bool mounted_human_is_player(void* actor){return d().human_factory.world_services().mounted_human_is_player(actor);}

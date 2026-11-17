@@ -55,6 +55,7 @@
 #include "game/scene_light_sample.h"
 #include "game/geometry_scene_actors.h"
 #include "game/simple_scene_actors.h"
+#include "game/photo_place_scene_actor.h"
 #include "game/static_weapon_actor.h"
 #include "game/car_steering.h"
 #include "game/shot_surface_marks.h"
@@ -1862,18 +1863,8 @@ public:
             callbacks(d.scene.frames(),factory);
         callbacks.b8(*state,&source,displacement);
     }
-    template<class Actor,class Frame>std::uint32_t item_melee_material(Actor& actor,Frame){
-        if(actor.base().type()==12){
-            using Item=typename std::remove_reference_t<decltype(dependencies().world_actors)>::Runtime::DetachedItem;
-            if(!dynamic_cast<Item*>(&actor))throw std::logic_error("Melee material requires actual Item12");
-            return 11; //005FDDC0.
-        }
-        if(actor.base().type()==2){
-            using Mine=typename std::remove_reference_t<decltype(dependencies().world_actors)>::Runtime::Mine;
-            auto* mine=dynamic_cast<Mine*>(&actor);if(!mine)throw std::logic_error("Melee material requires actual Mine");
-            return static_cast<std::uint32_t>(mine->material());
-        }
-        throw std::runtime_error("Melee requires actual actor D8 material receiver (H8)");
+    template<class Actor,class Frame>std::uint32_t item_melee_material(Actor& actor,Frame picked){
+        return static_cast<std::uint32_t>(actor.material(picked)); //Actual typed virtualD8; each concrete native family supplies its own receiver.
     }
     template<class Actor,class Human>void item_melee_dog_damage(Actor&,float,const HumanVector&,const HumanVector&,Human&){
         throw std::runtime_error("Melee requires actual type30 Dog factory/D4 damage receiver (H8)");
@@ -2194,8 +2185,11 @@ public:
     template<class Human>auto human_completion_place_mine(Human& human,std::uint32_t definition,const HumanVector& position,const HumanVector& normal){
         return dependencies().world_actors.runtime().place_mine(&human,static_cast<std::int32_t>(definition),position,normal,true);
     }
-    template<class Actor,class Human>void finish_human_timed_type15(Actor&,Human&){
-        throw std::runtime_error("Human action3 completion0060C130 requires actual type15 Scene2 actor91 owner/factory");
+    template<class Actor,class Human>void finish_human_timed_type15(Actor& actor,Human& human){
+        using Frames=typename Dependencies::ActorFrames;
+        auto* photo=dynamic_cast<PhotoPlaceSceneActor<Frames>*>(&actor);
+        if(!photo)throw std::logic_error("Human action3 completion requires its actual PhotoPlace owner");
+        photo->complete(human); //0060C130: ECX is target; pushed Human is genuinely unused.
     }
     template<class Actor,class Human>void finish_human_explosive_placement(Actor& actor,Human& human){
         auto& d=dependencies();

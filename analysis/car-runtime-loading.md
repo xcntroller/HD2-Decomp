@@ -21,7 +21,7 @@ for the earlier model/parameter/callback owners and the
 |0050DE60,00512390|car_body_integration.h, car_wheel_traction.h, car_cold_wheel_forces.h, car_body_forces.h, car_cold_wheel_contacts.h, car_suspension_impact.h, car_cold_solver.h: actual engine-off forces, prediction, F6C&800 queries, tyres/material/contact filters, hard stops, stabilization and histories. Powered forces and alternate timed wheel cache excluded. |
 |00514D70|car_body_contacts.h and car_body_collision_controller.h: BODYCOL roots/points, ordering, referenced frames, shared exclusions, original callbacks/materials, impulses/friction/penetration and pose retry. |
 |006F06F0,006F0050,006F02C0,006F04F0|collision_box_query.h: original dynamic/static broad candidate filters on the SAME tree/grid/buckets; point sphere sweeps still determine contacts. |
-|0050DB90,00509AA0,004F67B0|car_substeps.h, car_settling_controller.h, car_settling.h: original substeps, cold active/sleep/held controller and timeGetTime settling with mandatory real finalizer. Running/occupied/shifted inputs remain outside this entry. |
+|0050DB90,00509AA0,004F67B0|car_substeps.h, car_settling_controller.h, car_settling.h: original substeps, cold active/sleep/held controller and timeGetTime settling with mandatory real finalizer. The [H8.4 full controller policy](human-h8-car-controller-source.md) now owns running/input/automatic selection; powered step and running finalizer remain required. |
 |0050B180|car_cold_finalizer.h: scene placement, cold audio, periodic light sample, doors/windows, skid retirement, bucket refresh, road displacements, visual steering/spin/lights/axes/strips, cold particle retirement and final flags/result. |
 |00507400,00507A40,00501CB0,00506700|car_steering.h, car_wheel_rotation.h, car_loading_lights.h, car_strip_update.h: original visual state; active lighting commands excluded. |
 |00501750,00501AB0|car_door_update.h: reverse seat/door order, native endpoint inequalities, quaternion normalization, window offset/visibility and detached-glass cancellation. |
@@ -122,3 +122,19 @@ Retain explicit active-particle/skid/engine/debug boundaries. Then continue
 containing Human/session/VM/FPV/HUD/SOUND/module owners, ordered006CA780 loading,
 first camera/update/render, failure/repeat and desktop acceptance under the
 same full checkbox. No new broad audit is needed before implementation.
+
+The [H8.4 powered solver checkpoint](human-h8-car-powered-source.md) now binds
+0050DE60 running drive/brake forces and reaction on the actual loading lifetime.
+It corrects160 to a mutable simulation position and unifies2293/229F consumers.
+Running0050B180, occupied presentation, plane-cache and D11 guards remain open.
+
+
+The historical00501CB0 cold-only boundary above is superseded by the
+[2026-11-16 active-light checkpoint](human-h8-car-lights-source.md): all nine
+light families now execute on SAME paired flags/markers/sector owners. This
+does not close occupied presentation, D11 or containing application delivery.
+
+The [occupied offline checkpoint](human-h8-car-occupied-source.md) supersedes the
+empty-seat presentation guard. Actual Car source admission/input/frame/removal
+and re-entry pass on shared owners; full Human/Player/mounted composition,
+non7, D11 and application/desktop delivery remain required.

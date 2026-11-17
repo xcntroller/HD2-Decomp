@@ -2,6 +2,7 @@
 #define HD2_GAME_MODEL_SCENE_ACTORS_H
 
 #include "game/scene_actor.h"
+#include "game/actor_material.h"
 #include "game/actor_initial_properties.h"
 #include "game/supply_box_geometry.h"
 #include "game/animation_actor_collisions.h"
@@ -28,6 +29,7 @@ public:
         field534=0;return true;
     }
     void load(SerializedBytes& bytes) override {properties.load(bytes);} //005D6630.
+    std::int32_t material(Frame)override{return 0x42;} //005D4CB0.
     //Only1c/20 are initialized by005D4C70; native padding/unknown words are
     //defined zero for safety and earn no original behavior credit.
     struct Record {std::array<std::uint32_t,7> unknown_words{};
@@ -44,6 +46,7 @@ public:
     using Frame=typename Backend::Frame;
     explicit AnimationSceneActor(Backend& backend) : SceneActor<Backend>(backend,25),
         properties(initial_animation_properties()) {} //005B3740, cold005B4790.
+    std::int32_t material(Frame picked)override{return actor_nonnegative_material(this->backend_,picked);} //005B5F20.
     ~AnimationSceneActor() override { //005B3930/005B4790, before common frame release.
         const auto had_loading=bool(loading);
         collisions.reset(); //Actual E0 record destructors remove dynamic descriptors before model retirement.
@@ -93,6 +96,7 @@ template<class Backend>
 class SupplyBoxSceneActor final : public SceneActor<Backend> {
 public:
     using Frame=typename Backend::Frame;
+    std::int32_t material(Frame)override{return 25;} //005F9850.
     explicit SupplyBoxSceneActor(Backend& backend) : SceneActor<Backend>(backend,9) {} //005F97D0.
     bool initialize(Frame frame) override { //005FA6A0, including005F98E0.
         if(!frame)return false;

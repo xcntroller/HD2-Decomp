@@ -2,6 +2,7 @@
 #define HD2_HOST_GAME_ANIMATIONS_H
 
 #include "game/animation_tables.h"
+#include "game/dog_animation_tables.h"
 #include "game/human_animation_arbitration.h"
 #include "host/loaded_resources.h"
 #include "host/chunk_files.h"
@@ -35,6 +36,7 @@ private:
 class GameAnimations {
 public:
     using Tables = game::AnimationTables<GameAnimationResources>;
+    using DogTables = game::DogAnimationTables<GameAnimationResources>;
     GameAnimations(ChunkFiles& files, LoadedResources& resources) : files_(files), resources_(resources) {}
     bool ensure_loaded() {
         const auto original = gate_.original_result([&] {
@@ -57,6 +59,15 @@ public:
         return original && tables_.available();
     }
     bool available() const { return tables_.available(); }
+    template<class Frames>bool ensure_dog_loaded(Frames& frames){ //005D5290→005D6700.
+        if(dog_tables_.activation_gate())return true;
+        const auto bytes=read_loading_input(files_,"Tables\\dog_anim.sav");
+        if(!bytes)return false;
+        dog_tables_.load(*bytes,resources_,frames);
+        return true; //The row1 gate is not a substitute for actual required clips at consumption.
+    }
+    const DogTables& dog_tables()const{return dog_tables_;}
+    void clear_dog_tables()noexcept{dog_tables_.clear();}
     const Tables& tables() const { return tables_; }
     const auto& row(unsigned table,unsigned index)const{
         if(!tables_.available())throw std::runtime_error("Actual animation tables are unavailable");
@@ -79,12 +90,13 @@ public:
         return holster_pose_.get();
     }
     void release_holster_pose() noexcept {holster_pose_.reset();} //0078CDB0, after its14 groups.
-    void close() noexcept { tables_.clear();release_holster_pose(); }
+    void close() noexcept { tables_.clear();release_holster_pose();clear_dog_tables(); }
 private:
     ChunkFiles& files_;
     GameAnimationResources resources_;
     game::AnimationLoadGate gate_;
     Tables tables_;
+    DogTables dog_tables_;
     game::HumanAnimationArbitrationState<EngineFrame*> arbitration_;
     GameAnimationResources::Reference holster_pose_;
 };

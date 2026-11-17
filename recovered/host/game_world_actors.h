@@ -220,6 +220,8 @@ public:
         actor.loading->update(authority,elapsed);
     }
     bool car_camera_setting264(){return consumers_.car_camera_setting264();}
+    std::int32_t emit_car_engine_sound(const frontend::SpatialSoundRequest& request){return consumers_.emit_scene_actor_sound(request);}
+    void car_occupant_forced_exit(game::SceneActor<GameActorServices>* actor){consumers_.car_occupant_forced_exit(actor);}
     std::int32_t add_car_proximity(Car& actor,unsigned kind){return consumers_.actor_proximity().add_actor(&actor,kind);}
     void remove_car_proximity(std::int32_t index){consumers_.actor_proximity().remove_actor(index);}
     const Car* car_current_attachment(){return consumers_.car_current_attachment();}
@@ -332,13 +334,15 @@ public:
         else if(actor.base().type()==4)scene_.car_callbacks().receive_damage_packet(&actor,packet);
         else if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
         else if(actor.base().type()==10)consumers_.spawn_packet_decoder().receive(static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor),&packet);
+        else if(actor.base().type()==15)return; //0060BE20, genuine RET4; no packet consumed.
         else if(actor.base().type()==22)static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
         else if(actor.base().type()==23)static_cast<game::DocumentPlaceSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this,scene_.buckets());
         else if(actor.base().type()==29){auto& fowl=static_cast<Fowl&>(actor);if(!fowl.loading)throw std::runtime_error("Fowl packet requires its actual generated-bird owner");fowl.loading->launch(false,0);}
         else throw std::runtime_error("Required Scene2 actor packet receiver is unavailable");
     }
     void receive_actor_authority_packet(typename Runtime::Instance& actor,game::SessionPacketStream& packet){
-        require_open();if(actor.base().type()==4){scene_.car_callbacks().receive_damage_request(&actor,packet);return;}
+        require_open();if(actor.base().type()==15)return; //0060BE30, genuine RET4.
+        if(actor.base().type()==4){scene_.car_callbacks().receive_damage_request(&actor,packet);return;}
         throw std::runtime_error("Scene2 authority packet requires its actual derived actor20 receiver");
     }
     void set_scene_actor_active(GameActorServices::Actor& actor,bool value){scene_.frames().set_scene_actor_active(actor,value);}

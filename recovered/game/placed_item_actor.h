@@ -2,6 +2,7 @@
 #define HD2_GAME_PLACED_ITEM_ACTOR_H
 
 #include "game/scene_actor.h"
+#include "game/actor_material.h"
 #include "game/mission_navigation.h"
 #include "frontend/cleanup.h"
 #include <array>
@@ -20,6 +21,7 @@ template<class Backend,class Activation>
 class PlacedItemActor final : public SceneActor<Backend> {
 public:
     using Frame=typename Backend::Frame;
+    std::int32_t material(Frame picked)override{return actor_nonnegative_material(this->backend_,picked);} //005E2910.
     PlacedItemActor(Backend& backend,Activation& activation,MissionNavigation& navigation,std::string localized_name)
         : SceneActor<Backend>(backend,35),activation_(activation),navigation_(navigation) {
         this->base_.name(std::move(localized_name)); //Actual localization1BF6.

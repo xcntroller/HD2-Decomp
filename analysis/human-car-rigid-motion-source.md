@@ -1,5 +1,10 @@
 # Detached Car rigid-body motion —2026-11-12
 
+**Current D11 policy:** the user authorized deterministic compatibility corrections
+on2026-11-16. The [D11 source checkpoint](human-h8-d11-compatibility.md) supersedes
+the four required-failure statements below; original omission evidence and all
+other source/verification limits remain valid.
+
 Source checkpoint within the open Human reactions/damage/ragdoll checkbox.
 Actual004C9000 is now bound through SAME Item12/RigidBody/World/tree/buckets;
 there is no stationary/lifetime-only authority substitute. Fresh parts still
