@@ -53,6 +53,15 @@ void deactivate_mission_module_pass(Registry& registry,Services& services,bool a
         if(module)services.deactivate_mission_module(*module,authority);
     }
 }
+//0048DBC0: retained-round virtual2C pass. The restart byte is passed in CL
+//by0069C390, independently of the authority/presentation lifecycle flags.
+template<class Registry,class Services>
+void reset_mission_module_pass(Registry& registry,Services& services,bool restart) {
+    for(std::size_t kind=0;kind!=registry.size();++kind) {
+        auto* module=registry[kind];
+        if(module)services.reset_mission_module(*module,restart);
+    }
+}
 //0048DC20: file-stage unload(+18) is ascending and distinct from finish(+20).
 template<class Registry,class Services>
 void unload_mission_module_pass(Registry& registry,Services& services,bool authority) {

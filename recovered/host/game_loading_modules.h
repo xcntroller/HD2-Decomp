@@ -61,6 +61,43 @@ public:
     void activate_modules(bool authority){game::activate_mission_module_pass(module_registry(),*this,authority);}
     void deactivate_modules(bool authority){game::deactivate_mission_module_pass(module_registry(),*this,authority);}
     void unload_modules(bool authority){game::unload_mission_module_pass(module_registry(),*this,authority);}
+    void reset_modules(bool restart){game::reset_mission_module_pass(module_registry(),*this,restart);}
+    void reset_mission_module(frontend::ClientModuleRegistration& module,bool restart){ //Original virtual2C.
+        switch(checked_kind(module)){
+        case 0:bound(module,d_.tracks);d_.tracks.finish(false);d_.tracks.activate(false);return; //00401140.
+        case 1:bound(module,d_.game_effects);d_.game_effects.reset_round();return; //004863F0.
+        case 2: //00410A90; each mode read follows its preceding callback.
+            if(mode_flags()&2u)deactivate_mission_module(module,false);
+            if(mode_flags()&1u)deactivate_mission_module(module,true);
+            d_.world_actors.runtime().clear_static_queue();
+            if(mode_flags()&1u)activate_mission_module(module,true);
+            if(mode_flags()&2u)activate_mission_module(module,false);
+            return;
+        case 3:d_.world_actors.items().reset_round(restart,d_.scene.frames(),resource());return;
+        case 4:bound(module,d_.scripts.module());
+            d_.scripts.module().reset_round(d_.request.preparation.standalone?1u:0u,d_.startup.script_advance_override());
+            if(!d_.scripts.module().failed_bindings().empty())throw std::runtime_error("Required reset mission script bindings failed");
+            return;
+        case 5:d_.sight.source().reset_round();return;
+        case 6:d_.startup.reset_game_sound();return;
+        case 7:bound(module,d_.versions); //0043EB50, authority finish first.
+            if(mode_flags()&1u)d_.versions.finish(true);
+            if(mode_flags()&2u)d_.versions.finish(false);
+            if(mode_flags()&1u)d_.versions.activate(true);
+            if(mode_flags()&2u)d_.versions.activate(false);
+            return;
+        case 8:bound(module,d_.lightmap_groups);d_.lightmap_groups.finish(false);return; //0048C790 ignores authority.
+        case 9:d_.vertices.restart();return;
+        case 10:bound(module,d_.texture_shifts);return; //00411620 RET4.
+        case 11:bound(module,d_.players);d_.players.reset(restart);return;
+        case 12:d_.world_actors.runtime().reset_round(restart);return;
+        case 14:bound(module,d_.shots);d_.shots.reset_round();return;
+        case 15:d_.human_services.reset_round_camera();return;
+        case 16:bound(module,d_.heavy_fire);return; //00411620 RET4.
+        case 17:bound(module,d_.particles);d_.particles.reset_round(restart);return;
+        }
+        throw std::runtime_error("Required retained-round module reset receiver is unavailable");
+    }
     void finish_mission_module(frontend::ClientModuleRegistration& module,bool authority) { //virtual14.
         switch(checked_kind(module)) {
         case 0:bound(module,d_.tracks);d_.tracks.finish_loading(authority,files(),resource());return;

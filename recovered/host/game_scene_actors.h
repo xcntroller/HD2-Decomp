@@ -108,6 +108,7 @@ public:
         enumerate_activation_scene(false,0xffff,[this](Frame frame){erase_actor_frame_data(frame);});
     }
     void clear_scene_actors() noexcept {actors_.clear();}
+    void remove_scene_actor(Actor actor)noexcept{actors_.remove(actor);} //00475C50(actor,true).
     Instance* scene_actor_identity(std::int32_t id)const { //00475DD0, Scene2 identity slots, not runtime IDs.
         return id<0?nullptr:actors_.identity(static_cast<std::size_t>(id));
     }

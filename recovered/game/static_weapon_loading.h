@@ -150,6 +150,12 @@ private:
         const auto scale=frames_.static_weapon_world_scale(frame);descriptor_.radius=static_cast<float>(static_cast<long double>(std::max(scale[0],std::max(scale[1],scale[2])))*radius);
         descriptor_.position=frames_.car_transform(centre,world);descriptor_ready_=true;
     }
+    void reset_round(bool restart)override{ //006050B0, live seat count re-read after removal.
+        for(std::size_t n=0;n<seat_count();++n)remove_reaction_seat(static_cast<std::int32_t>(n));
+        set_state(3);control_.reset(); //004C6620, same mounted control owner.
+        if((services_.mode_flags()&7u)!=7u)actor_.flagbd=1;
+        if(restart)set_state(1);
+    }
     void set_state(unsigned state) { //00605AE0 reached1/3. Native3 restores only when flag158 has an actual producer.
         if(actor_.field2f0==state)return;
         actor_.field2f0=state;

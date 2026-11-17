@@ -1,5 +1,7 @@
 # FRAME pending spawn and existing-Human respawn — 2026-11-17
 
+Latest continuation: [retained-round containing source and17/18 module reset callbacks](p22-frame-retained-round-source.md). The evidence below retains its original revision/verification boundary; module13 Human/Actor44 and owning-process/application work remain.
+
 Continuation of7f8cc90 on feature/p22-frame. Actual0069D9C0 pending-spawn
 preparation and0069D780→0059F050 existing-Human reinitialization are now callable
 through Startup→bound SessionPacketWorld→SAME World/Human services. These paths

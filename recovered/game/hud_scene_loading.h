@@ -72,6 +72,11 @@ public:
     //may return before using them. No positive rejection or no-op frame receiver.
     template<class Queries>void update_loading(std::uint32_t elapsed,Queries& queries){advance_hud_frame(frames_,hud_,panels_,elapsed,queries);}
     bool close(){if(!hud_.flags)return false;retire();return true;} //Native0049B1B0 zero-flags gate; destructor also reclaims failed prefix.
+    void reset_round(const std::string& mission,std::uint32_t mode,bool editor_kind3){ //0049F5E0.
+        (void)close();
+        if(!bind(mission,mode,editor_kind3))throw std::runtime_error("Required round-reset HUD artwork is unavailable");
+        panels_.info().help_ids().clear(); //00498EC0: info6B3A0 end08←begin04.
+    }
     template<class Human>bool add_human(Human* human,std::int32_t index,std::uint32_t mode,std::uint32_t difficulty,std::int32_t local_player){
         return panels_.add_human(human,index,mode,difficulty,local_player);
     }

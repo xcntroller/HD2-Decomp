@@ -44,6 +44,10 @@ public:
         if(!authority){field98=0xffffffffu;flagad=0;refresh_owner(s,vertices);}
     }
     void deactivate(bool){retire();} //005ED260 does NOT call common00610510.
+    template<class Services,class Vertices>void reset_round(Services& s,Vertices& vertices){ //005ED8B0.
+        fielde4=field9c;flagf1=0;flagad=1;field114=1;fieldec=0;cursor100=0;field98=0xffffffffu;
+        refresh_owner(s,vertices);
+    }
     template<class Services,class Vertices>void refresh_owner(Services& s,Vertices& vertices){ //005EC8B0.
         if(field98==fielde4)return;
         if((s.mode_flags()&2u)&&fielda4==0xffffffffu&&(!spawn_group()||s.zone_style()!=2)&&!s.zone_remote_ai())s.zone_hud_objective(field90,signed_word(fielde4));

@@ -204,6 +204,8 @@ public:
     std::uint32_t session_mission_ordinal()const{return consumers_.session_mission_ordinal();}
     auto& session_broadcast_packets(){return consumers_.session_broadcast_packets();}
     void activate_zone(game::ZoneSceneActor<GameActorServices>& actor,bool authority){require_open();actor.activate(authority,*this,vertices_);}
+    void reset_zone(game::ZoneSceneActor<GameActorServices>& actor){require_open();actor.reset_round(*this,vertices_);}
+    template<class Spawn>void reset_spawn(Spawn& actor){consumers_.reset_spawn(actor);}
     std::int32_t zone_style(){return consumers_.zone_style();}
     bool zone_remote_ai(){return consumers_.zone_remote_ai();}
     void zone_hud_objective(std::uint32_t index,std::int32_t side){consumers_.zone_hud_objective(index,side);}

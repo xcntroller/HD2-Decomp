@@ -426,6 +426,12 @@ public:
             sound_data_.settings,sound_data_.fade,sound_data_.secondary,sound_data_.selection,
             gate_,game_sound_application(),std::uint8_t(authority),sound_backend_);
     }
+    void reset_game_sound(){ //00433910, module6 virtual2C, no activation gate.
+        frontend::reset_sound_runtime(sound_data_.runtime,sound_catalog_,files_,sound_data_.settings,
+            sound_data_.fade,sound_data_.secondary,sound_data_.selection,gate_,game_sound_application(),0,0,sound_backend_);
+        sound_data_.runtime.listener_sector=nullptr;sound_data_.runtime.driver_delay=2000;
+        sound_backend_.sound_driver_volume(0);
+    }
     void stop_game_sound_voice(std::int32_t& handle) {
         frontend::stop_sound_voice(sound_data_.runtime,handle,sound_backend_); //00437340.
     }

@@ -51,6 +51,7 @@ public:
         if(authority){observer_cursor_=target_cursor_=0;delay_=4000;}
     }
     void close_loading(bool authority){if(authority)clear();} //0046EFF0.
+    void reset_round(){clear();delay_=4000;} //00470090; scheduler cursors survive.
     //0046F000 scheduler. Queries must supply actual Human/Dog virtual00;
     //the caller supplies SAME process FLOAT00839390 (initial1), not a World
     //copy. This does not replace positive visibility with a successful probe.

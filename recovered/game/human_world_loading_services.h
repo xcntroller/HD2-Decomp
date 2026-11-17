@@ -2048,6 +2048,14 @@ public:
         d.camera.refresh_current_loading_target(d.players.control(),view.enabled(),view.secondary_enabled(),
             [&](auto& human){return d.first_players.control_sector(human);},d.first_players.camera_retirement());
     }
+    void reset_round_camera(){ //00464E10, module15 virtual2C.
+        if(!(mode_flags()&2u))return;
+        auto& d=dependencies();d.camera.deactivate(false);
+        const auto& fields=d.scene.documents().fields();
+        d.camera.activate(false,d.startup.pre_mission_files(),fields.field_of_view,fields.near_clip,fields.far_clip);
+        auto* human=d.players.control().current_player();
+        if(!human||!human->field160||human->field160->base().type()!=34)refresh_human_presentation_camera();
+    }
     std::uint32_t player_item_spawn_delay_ms(){ //Actual game configuration250, DWORD multiplication before signed comparison.
         return static_cast<std::uint32_t>(dependencies().startup.game_configuration().rules228[10])*1000u;
     }

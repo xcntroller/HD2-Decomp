@@ -202,10 +202,13 @@ public:
         },[&]{restore_car_deformable_parts(frames_,*actor_.geometry,actor_.callbacks->empty6b4);});
     }
     void reset_event()override{ //004DB2A0→004DD0D0(true), selected offline7 entry.
+        reset_round(true);
+    }
+    void reset_round(bool restart)override{ //004DD0D0, actual retained-round virtual44.
         require_mode();require_geometry();
         if(!initial_||!body_collision_)throw std::logic_error("Car reset requires its actual physical owner");
         restore_car_actor(frames_,actor_,[&]{physical_reset(0,true);}); //004DCE40 BEFORE proximity/seats.
-        if(services_.mode_flags()&1u){
+        if(restart&&(services_.mode_flags()&1u)){
             //Native does not remove a prior proximity row here. The process
             //owns all rows; overwrite24DC only after successful registration.
             proximity_=services_.add_car_proximity(actor_,4);actor_.field24dc=static_cast<std::uint32_t>(proximity_);

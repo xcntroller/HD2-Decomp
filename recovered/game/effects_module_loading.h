@@ -59,6 +59,14 @@ public:
         process_.colour2f4.fill(1);effects_.frame_fades().reset_loading();effects_.human_fades().clear();
         process_.flag220=false;process_.sun1b0=Frame{};process_.fields25c.fill(0);
     }
+    void reset_round(){ //004863F0; resources remain bound to this World.
+        reset();process_.decorations.clear();(void)process_.decorations.load(files_,resource_);
+        process_.decorations.initialize(startup_.profile_settings().quality_byte(4)!=0,view_.enabled()||view_.secondary_enabled());
+        birds_.clear();birds_.load();process_.field224=0;
+        frames_.effects_scene_water();process_.flag24c=false; //virtual40(false).
+        camera_.detached().disable_for_loading();
+        effects_.configure_special_model(false,Frame{},true); //virtual44(false,0,true).
+    }
     void finish_loading(bool authority){ //00488560, presentation only.
         require_open();if(authority)return;
         unloaded_=false;reset();(void)volumes_.load(files_,resource_);volumes_.refresh(true);(void)movie_.load(files_,resource_);

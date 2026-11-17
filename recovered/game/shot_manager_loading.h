@@ -11,6 +11,7 @@
 #include "game/shot_muzzle_flash.h"
 #include "game/shot_shell_record.h"
 #include "game/shot_capsule_record.h"
+#include "game/retained_round_records.h"
 #include "frontend/spatial_sound.h"
 #include <array>
 #include <list>
@@ -168,16 +169,26 @@ public:
         require_empty(state_.surfaces);state_.surfaces.reserve(state_.maximum150);
         load_textures();state_.field140=0;
     }
+    void reset_round(){ //00452280: retain textures/hit zones/models and cold pools.
+        require_open();
+        reset_shot_round_records(state_,[&](auto& row){
+                auto* bullet=dynamic_cast<typename State::Bullet*>(row.get());
+                if(!bullet)throw std::logic_error("ShotMgr reset kind1 requires its actual bullet owner");
+                bullet->retire();
+                std::unique_ptr<typename State::Bullet> owner(static_cast<typename State::Bullet*>(row.release()));
+                try{state_.marks.recycle(owner);}catch(...){row=std::move(owner);throw;}
+        });
+    }
     void finish(bool authority){
         require_open();
         if(authority){state_.hit_zones.reset();authority_started_=false;} //00455520 leaves borrowed marker entries intact.
         else{
-            while(!state_.shells.empty()){state_.shells.back()->retire();state_.shells.pop_back();}
-            while(!state_.render.empty()){state_.render.back()->clear();state_.render.pop_back();}
-            while(!state_.blood_marks.empty()){state_.blood_marks.back()->clear();state_.blood_marks.pop_back();}
+            while(!state_.shells.empty()){if(state_.shells.back())state_.shells.back()->retire();state_.shells.pop_back();}
+            while(!state_.render.empty()){if(state_.render.back())state_.render.back()->clear();state_.render.pop_back();}
+            while(!state_.blood_marks.empty()){if(state_.blood_marks.back())state_.blood_marks.back()->clear();state_.blood_marks.pop_back();}
             //0044E110 retires A0 in reverse before B0, BEFORE texture60 and Scene retirement.
-            while(!state_.surfaces.empty()){state_.surfaces.back()->clear();state_.surfaces.pop_back();}
-            while(!state_.muzzle_flashes.empty()){state_.muzzle_flashes.back()->clear();state_.muzzle_flashes.pop_back();}
+            while(!state_.surfaces.empty()){if(state_.surfaces.back())state_.surfaces.back()->clear();state_.surfaces.pop_back();}
+            while(!state_.muzzle_flashes.empty()){if(state_.muzzle_flashes.back())state_.muzzle_flashes.back()->clear();state_.muzzle_flashes.pop_back();}
             require_empty(state_.transient[1]);state_.decals.clear();
             for(auto& texture:state_.decal_textures)texture.reset();
             state_.explosion_texture.reset();for(auto& texture:state_.blood_textures)texture.reset();
@@ -186,7 +197,7 @@ public:
             presentation_started_=false;
         }
         while(!state_.transient[0].empty()){
-            state_.transient[0].back()->retire();state_.transient[0].pop_back();
+            if(state_.transient[0].back())state_.transient[0].back()->retire();state_.transient[0].pop_back();
         }
         state_.marks.clear(); //Common tail, including authority-only retirement, AFTER live records.
     }
@@ -204,12 +215,12 @@ public:
             state_.transient[0].pop_back();
         }
         while(!state_.muzzle_flashes.empty()){
-            errors.attempt([&]{state_.muzzle_flashes.back()->clear();});state_.muzzle_flashes.pop_back();
+            if(state_.muzzle_flashes.back())errors.attempt([&]{state_.muzzle_flashes.back()->clear();});state_.muzzle_flashes.pop_back();
         }
         while(!state_.shells.empty()){
-            errors.attempt([&]{state_.shells.back()->retire();});state_.shells.pop_back();
+            if(state_.shells.back())errors.attempt([&]{state_.shells.back()->retire();});state_.shells.pop_back();
         }
-        while(!state_.render.empty()){errors.attempt([&]{state_.render.back()->clear();});state_.render.pop_back();}
+        while(!state_.render.empty()){if(state_.render.back())errors.attempt([&]{state_.render.back()->clear();});state_.render.pop_back();}
         if(had_runtime){state_.marks.clear();state_.decals.clear();}
         state_.world=nullptr;
         if(errors.failed())try{errors.rethrow();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}

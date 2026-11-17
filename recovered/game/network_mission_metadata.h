@@ -10,7 +10,7 @@ inline void clear_network_mission(frontend::GameDataNode& mission){ //006B5890, 
 }
 inline void append_network_mission_objective(frontend::GameDataNode& mission,
         std::unique_ptr<frontend::GameDataNode> objective){mission.related.push_back(std::move(objective));} //006B5960.
-inline void reset_network_mission_objectives(frontend::GameDataNode& mission){ //006B83C0.
+inline void reset_network_mission_objectives(const frontend::GameDataNode& mission){ //006B83C0.
     for(const auto& objective:mission.related){if(!objective)throw std::logic_error("Inline objective lost its actual owner");objective->word10=4;}
 }
 inline void finalize_network_mission(frontend::GameDataNode& mission){mission.word20=0xffffffffu;reset_network_mission_objectives(mission);} //006B83B0.

@@ -7,6 +7,8 @@
 #include "game/session_match_rules.h"
 #include "game/session_match_input.h"
 #include "game/session_match_peers.h"
+#include "game/session_round_reset.h"
+#include "game/network_mission_metadata.h"
 #include "game/human_damage_score.h"
 #include "host/game_ui_presentation.h"
 
@@ -85,6 +87,10 @@ public:
     }
     void update(std::uint32_t elapsed)override{
         require_open();io::observe_data_operation(store(),"0069B230 variable session frame",[&]{game::update_loading_session(d_.session,d_.music,*this,elapsed);});
+    }
+    void reset_round(bool restart){
+        require_open();RoundServices services{*this};
+        io::observe_data_operation(store(),"0069C390 retained round reset",[&]{game::reset_retained_session_round(d_.session,restart,services);});
     }
     void retire()noexcept override{retired_=true;} //Consumes the source borrower; does not finish/simulate the World.
     std::uint32_t mode_flags()const{return d_.startup.application_flags();}
@@ -176,6 +182,51 @@ public:
     Human* network_input_player(){MatchServices q{*this};return q.frame_local_human();}
     void process_network_player_input(Human& human,std::uint32_t* a,std::uint32_t* b){external_.process_player_input(human,a,b);}
 private:
+    struct RoundServices {
+        GameSessionFrames& f;
+        auto& d(){return f.d_;}auto& startup(){return d().startup;}
+        std::uint32_t mode_flags(){return f.mode_flags();}
+        void enter_control_lock(std::size_t kind){startup().enter_control_lock(kind);}
+        void leave_control_lock(std::size_t kind){startup().leave_control_lock(kind);}
+        auto& round_peer_records(){return startup().game_control_records();}
+        bool round_shared_lives(){return startup().game_configuration().rules228.at((0x27c-0x228)/4)!=0;}
+        void round_query_focus(){GameLoadingQueries query(d().scene.frames().engine_module(),startup());(void)query.query_round_reset_focus();}
+        void round_query_iconic(){GameLoadingQueries query(d().scene.frames().engine_module(),startup());(void)query.query_round_reset_iconic();}
+        void round_reset_hud(){d().hud.reset_round(d().request.preparation.mission_resource,mode_flags(),false);}
+        void round_finish_dubbing(){startup().finish_game_dubbing();}
+        void round_initialize_dubbing(){startup().initialize_game_dubbing();}
+        void round_reset_navigation(){d().navigation.reset_runtime_links();}
+        auto* round_actor_identity(std::int32_t id){return d().scene.frames().scene_actor_command_identity(id);}
+        auto round_actor_count(){return d().scene.frames().scene_actor_identity_count();}
+        template<class Actor>void round_deactivate_actor(Actor& actor,bool authority){d().scene.frames().deactivate_scene_actor(actor,authority,d().world_actors,d().scene.buckets());}
+        template<class Actor>void round_remove_actor(Actor* actor){d().scene.frames().remove_scene_actor(actor);}
+        template<class Actor>void round_activate_spawn(Actor& actor,bool authority){
+            if(actor.base().type()!=10)throw std::logic_error("Round spawn activation requires actual type10");
+            actor.loading_activation_passes|=authority?1u:2u;
+            static_cast<GameSceneActors::Spawn&>(actor).activate(authority,d().world_actors);
+        }
+        void round_reset_modules(bool restart){f.world_.modules().dispatch().reset_modules(restart);}
+        auto round_squad_count(){return f.parent_.live_squad().size();}
+        bool round_squad_active(std::size_t n){return f.parent_.live_squad().at(n).active;}
+        auto* round_loading_spawn(){return d().scene.frames().loading_spawn_point(0);}
+        template<class Spawn>void round_spawn_soldier(Spawn& spawn,std::size_t n){
+            f.world_.owners().human_services().spawn_authority_human(spawn,0,&f.parent_.live_squad().at(n),nullptr);
+        }
+        void round_reset_first_person(){d().first_person.reset(mode_flags(),startup().pre_mission_files(),d().clock,startup().first_person_preference());}
+        void round_reset_text_selection(){if(!f.parent_.text())throw std::logic_error("Round reset lost actual mission Text");f.parent_.text()->reset_selection();}
+        void round_clear_transients(){f.blast_.clear_all_shared_records();}
+        void round_reset_objectives(){game::reset_network_mission_objectives(*d().session.mission);}
+        void round_begin_entry(){startup().begin_game_entry_connections();}
+        void round_reset_entry_packets(){startup().reset_control_entry_packets(true);}
+        auto* round_local_peer_human(){return game::local_session_peer_human(round_peer_records(),startup().local_player_identity());}
+        bool round_is_current_application(){return f.external_.is_current_application_state();}
+        void round_queue_entry(){startup().queue_application_command(0,0,0,0);}
+        void round_reset_music_references(){d().music.countdown=d().music.references=0;}
+        void round_select_music(){d().music.select(false,mode_flags(),startup());}
+        void round_reset_speech_clocks(){d().audio.reset_category_clocks();}
+        bool round_face_quality(){return startup().human_face_quality_enabled();}
+        void round_initialize_faces(){d().faces.initialize();}
+    };
     struct MatchServices {
         GameSessionFrames& f;
         auto& data(){return f.d_.startup.game_control_records();}auto& startup(){return f.d_.startup;}
@@ -312,7 +363,7 @@ private:
                 if(n!=static_cast<std::uint32_t>(startup().local_player_identity())&&peers[n].byte(8).value())frame_queue_command(selector,peers[n].word(0),0,0);});
         }
         void frame_restart_round(){ //006997B0, real shared round reset/snapshot and process packet owners.
-            required("0069C390").reset_round_world(true);frame_synchronize_other_peers(7);startup().drain_application_commands();
+            f.reset_round(true);frame_synchronize_other_peers(7);startup().drain_application_commands();
             startup().flush_application_command_packets(1000);startup().begin_game_entry_connections();startup().reset_control_entry_packets(true);
         }
         void frame_rotate_map(const char* name){ //0069B9F0: nothing follows false006AD4D0; null means next map.

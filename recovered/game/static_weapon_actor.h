@@ -25,6 +25,7 @@ public:
     std::vector<std::array<std::uint32_t,6>> field2e4;
     std::uint32_t field2f0=3;
     bool flag150=false,flag158=false,flag159=false;
+    std::optional<std::uint8_t> flagbd; //006050B0 non7 reset producer; no cold-value contract.
     std::unique_ptr<StaticWeaponLoadingLifetime> loading;
 };
 

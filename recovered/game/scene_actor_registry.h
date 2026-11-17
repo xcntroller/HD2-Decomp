@@ -209,6 +209,18 @@ public:
         }
         errors.rethrow();
     }
+    template<class Shared,class Reset,class Summarize>void reset_round(bool restart,Shared&& shared,Reset&& reset_actor,Summarize&& summarize){ //004762F0.
+        field4c_=field50_=0;shared(); //006E07C0 precedes even the count snapshot.
+        const auto count=identity_count_;
+        for(std::size_t index=0;index<count;++index){
+            auto* actor=identities_.at(index);
+            if(index<32&&!actor)continue;
+            if(!actor)throw std::logic_error("Round reset lost non-reserved Scene2 identity");
+            reset_actor(*actor,restart);
+            active(identities_.at(index),true); //Reload after virtual44, before next identity.
+        }
+        if(restart)summarize();
+    }
     std::uint8_t generation(std::size_t index) const {return generations_.at(index);}
     void player_generation(std::int32_t identity,std::uint32_t value){if(identity>=0&&identity<32)generations_[static_cast<std::size_t>(identity)]=static_cast<std::uint8_t>(value);} //00475510.
     std::size_t size() const {return owners_.size();}

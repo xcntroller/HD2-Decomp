@@ -105,6 +105,7 @@ public:
         errors.rethrow();
     }
     const Descriptor* collision_descriptor(unsigned index) const {return descriptors_.at(index).get();}
+    void reset_round(){field164.clear();} //005EA4D0, occupant end168←begin164; collision owners survive.
     LadderActorProperties properties;
     std::optional<LadderGeometry<Backend>> geometry;
     std::vector<SceneActor<Backend>*> field164; //Native164/168/16C, actual borrowed occupants.
@@ -329,6 +330,17 @@ public:
         flagf8_=false;refresh_collision(collisions);
     }
     const Descriptor& collision_descriptor()const{return descriptor_;}
+    template<class Activation,class Collisions>void reset_round(Activation& activation,Collisions& collisions){ //00602400.
+        if(!initial_state_)throw std::logic_error("Door reset requires its actual activation state124");
+        properties.flag234=initial_lock_;
+        const auto frame=this->base_.frame();
+        this->backend_.object_position(frame,{saved_position_[0],saved_position_[1],saved_position_[2]});
+        this->backend_.object_rotation(frame,saved_rotation_);this->backend_.update_scene_object(frame);
+        properties.fields220[1]=*initial_state_;flag10c_=false;field110_=0;flag10d_=true;
+        field264=field268=0;voice_f0_=-1;field_f4_=0;flagf8_=false;
+        refresh_collision(collisions);set_portals(*initial_state_==0);
+        if((activation.mode_flags()&1u)&&properties.fields220[1]==1)change_state(2,true,false,false,activation);
+    }
     Frame first_handle()const{return handle104_;}Frame second_handle()const{return handle108_;}
     const auto& saved_position()const{return saved_position_;}const auto& saved_rotation()const{return saved_rotation_;}
     std::uint8_t initial_lock()const{return initial_lock_;}

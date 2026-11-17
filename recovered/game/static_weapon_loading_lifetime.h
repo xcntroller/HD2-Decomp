@@ -10,6 +10,7 @@ public:
     virtual ~StaticWeaponLoadingLifetime()=default;
     virtual void activate(bool authority)=0;
     virtual void deactivate(bool authority)=0;
+    virtual void reset_round(bool restart)=0;
     virtual void update(bool authority,std::uint32_t elapsed)=0;
     virtual void fire_marker(void* barrel)=0;
     virtual std::array<float,4> aim_direction()=0;

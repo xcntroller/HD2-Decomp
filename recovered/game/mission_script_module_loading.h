@@ -35,6 +35,13 @@ public:
     auto& snapshots(){return snapshots_;}auto& visibility(){return visibility_;}
     auto& rotations(){return rotations_;}
     bool loaded()const{return loaded_;}const auto& failed_bindings()const{return failed_bindings_;}
+    void reset_round(std::uint32_t configuration_kind,bool& advance_override){ //00424900.
+        advance_override=true;
+        if(mode_&2u)finish(false);
+        if(mode_&1u){finish(true);variables_.restore_previous();if(mode_&1u)activate(true,configuration_kind);}
+        if(mode_&2u)activate(false,configuration_kind);
+        advance_override=false; //Original normal-return tail; no invented failure rollback.
+    }
     void activate(bool authority,std::uint32_t configuration_kind) { //004270D0.
         if(!authority||loaded_)return;
         activation_started_=true; //Source guard: bound contexts can exist before native loaded10 publication.

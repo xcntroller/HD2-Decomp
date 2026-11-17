@@ -86,6 +86,14 @@ public:
         backend_.object_rotation(frame(),local_rotation_);backend_.update_scene_object(frame());
     }
     const std::array<float,4>& world_position() const {return position_;}
+    template<class Services>void reset_frame(Services& services){ //00610710, retained Scene2 actor only.
+        if(registered_)return;
+        const auto saved=field7c_;
+        if(services.mode_flags()&2u)deactivate_frame(false,services);
+        if(services.mode_flags()&1u){deactivate_frame(true,services);if(services.mode_flags()&1u)activate_frame(true,services);}
+        if(services.mode_flags()&2u)activate_frame(false,services);
+        field7c_=saved;
+    }
     void world_position(const std::array<float,4>& value){position_=value;} //Human0075C4F0 writes its actual base30 slot.
     const std::array<float,4>& world_direction() const {return direction_;}
     void world_direction(const std::array<float,4>& value){direction_=value;} //Car004D38F0 copies its native core240 into base40.

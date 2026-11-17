@@ -107,6 +107,9 @@ public:
         //Native guard: never dereference/free a foreign or already released pointer.
     }
     std::size_t size() const {return definitions_.size();}
+    void reset_category_clocks(){ //0069C390 tail through shared0059EF80 cache.
+        for(std::size_t n=0;n<definitions_.size();++n)for(auto& category:definitions_[n]->categories)category.field14=0;
+    }
 private:
     Source& source_;
     std::vector<std::unique_ptr<SpeechDefinition>> definitions_;

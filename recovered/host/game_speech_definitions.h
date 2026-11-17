@@ -15,6 +15,7 @@ public:
     GameSpeechDefinitions(ChunkFiles& files,Random& random):files_(files),random_(random) {}
     game::SpeechDefinition* acquire(std::int32_t index) {return definitions_.acquire(index);}
     void release(game::SpeechDefinition* value) noexcept {definitions_.release(value);}
+    void reset_category_clocks(){definitions_.reset_category_clocks();}
     std::optional<std::vector<unsigned char>> read_speech_table() {
         return frontend::pre_mission_detail::read_file(files_,"Tables\\speech.set");
     }

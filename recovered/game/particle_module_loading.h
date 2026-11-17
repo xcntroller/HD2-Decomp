@@ -3,6 +3,7 @@
 #include "io/resource_observations.h"
 #include "frontend/module_registration.h"
 #include "game/mission_effects_loading.h"
+#include "game/retained_round_records.h"
 
 namespace hd2::game {
 //Actual module17 and SAME process definition/instance/point owners. Positive
@@ -68,6 +69,13 @@ public:
     }
     void finish(bool){ //00443FE0: active ascending, buckets reverse, definitions, id-1, placed ascending, latch.
         require_open();if(!process_.particles_initialized_)return;retire_all(true);
+    }
+    void reset_round(bool restart){ //00447730, distinct from00443FE0.
+        require_open();
+        reset_particle_round_records(process_.active_,process_.placed_,process_.definitions,process_.particle_identity_,
+            process_.particles_initialized_,restart,[&]{
+            frontend::CleanupErrors errors;clear_pools(errors);errors.rethrow();
+        });
     }
     void close()noexcept{
         if(process_.particle_world_!=this)return;

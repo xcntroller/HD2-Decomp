@@ -21,6 +21,7 @@ namespace hd2::host {
 class GameSceneObjects {
 public:
     using Frame = EngineFrame*;
+    HMODULE engine_module()const noexcept{return module_;} //Borrow SAME module for checked platform query facades.
     GameSceneObjects(GameScene& scene, MenuDriver& driver, HMODULE module, Graphics& graphics,
                      ChunkFiles& files, LoadedResources& resources,
                      std::function<void(unsigned,float)> progress)

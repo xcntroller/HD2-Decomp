@@ -15,6 +15,7 @@ public:
         if(configuration_kind==1)current_.fill(0);
         else previous_=current_; //00428C80 backwards copy has the same nonoverlapping value result.
     }
+    void restore_previous(){current_=previous_;} //00428CA0, previous424→current24 backwards copy.
     const auto& current()const{return current_;}const auto& previous()const{return previous_;}
     template<class Context,class Runtime>std::optional<bool> execute(Context& context,const MissionScriptInstruction& instruction,Runtime& runtime) {
         if(instruction.opcode!=0x8d)return std::nullopt; //00416E10 case34, SaveGameValue.

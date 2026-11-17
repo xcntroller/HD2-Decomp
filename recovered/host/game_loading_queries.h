@@ -35,6 +35,8 @@ public:
     BOOL query_activation_visible_window(HWND argument){return IsWindowVisible(argument);} //00698C09.
     BOOL query_activation_visible_window(){return static_cast<BOOL>(window_call({13,0x698c09,0x075ac025},[&](HWND value){return word(query_activation_visible_window(value));}));}
     HWND query_finish_focus(){return handle(game::steam_integrity_marker_call(startup_,{100,0x699112,0x0437e723,0x923a1,true},[]{return word(GetFocus());}).returned);} //00699112, actual shutdown payload.
+    HWND query_round_reset_focus(){return handle(game::steam_integrity_marker_call(startup_,{90,0x69c3f2,0x0143b042,0x4076b,true},[]{return word(GetFocus());}).returned);}
+    BOOL query_round_reset_iconic(){return static_cast<BOOL>(window_call({83,0x69c78f,0x0a4276bc},[&](HWND value){return word(IsIconic(value));}));}
     HWND query_activation_capture(){return handle(game::steam_integrity_marker_call(startup_,{5,0x698c5d,0x0437e723,0x923a1,true},[]{return word(GetCapture());}).returned);} //00698C5D, no graphics/window query.
 private:
     static std::uint32_t word(HWND value){return static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(value));}

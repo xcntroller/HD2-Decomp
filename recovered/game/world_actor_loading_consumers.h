@@ -57,6 +57,12 @@ public:
     auto& session_broadcast_packets(){return d().broadcast_packets;}
     std::int32_t zone_style(){return d().startup.game_configuration().style224;}
     bool zone_remote_ai(){return d().startup.human_remote_ai_enabled();}
+    template<class Spawn>void reset_spawn(Spawn& actor){ //006117F0.
+        if(actor.flag9c||!actor.spawned_human)return;
+        (void)d().scene.frames().actor_world_matrix(actor.base().frame());
+        (void)d().scene.frames().actor_world_matrix(actor.base().frame());
+        d().human_factory.world_services().notify_authority_spawn_created(actor);
+    }
     void zone_hud_objective(std::uint32_t index,std::int32_t side){d().hud.select_objective(index,side);}
     auto& spawn_packet_decoder(){return d().spawn_decoder;}
     template<class Actor>void receive_human_presentation_packet(Actor* actor,SessionPacketStream& packet){d().human_factory.world_services().receive_human_presentation_packet(actor,packet,false);}

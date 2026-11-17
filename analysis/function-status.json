@@ -51848,6 +51848,149 @@
         "analysis/p22-frame-pending-spawn-source.md",
         "analysis/checkpoints/p22-frame-pending-spawn-20261117.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0069c390",
+      "status": "partial",
+      "coverage": "Containing status/retained gate, original scalar/life stores, queue owner drain, distinct offline removal/spawn, ordered module/UI/query/entry/Music/speech/face tail over SAME World. Module13 actual derived Actor44 remains required and failing.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/game/session_round_reset.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048dbc0",
+      "status": "partial",
+      "coverage": "Fresh ascending registered module2C dispatch including slot18, forwarding original restart byte; actual17/18 receivers supplied, module13 remains a required failure.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/game/mission_module_dispatch.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00401140",
+      "status": "partial",
+      "coverage": "Actual Tracks finish(false) then activate(false) retained-round callback.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/host/game_loading_modules.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004863f0",
+      "status": "partial",
+      "coverage": "Actual retained GEffects reset, decoration clear/load/initialize, bird clear/load,224 clock, scene water/24C, detached disable and special-model restore over SAME owners.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/game/effects_module_loading.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dd750",
+      "status": "partial",
+      "coverage": "Retained Items reset with callback disable, ascending actual inventory/base7C/placement/index clear, enable, identity-1/pending reuse clear and authority/restart actual mission records. Missing input fails preserving original files, excluding destructive007D7BE0 fallback.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/host/game_mission_items.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00470090",
+      "status": "partial",
+      "coverage": "Actual observer/target owner clear then scheduler delay4000; retained cursors are not reset.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00433910",
+      "status": "partial",
+      "coverage": "Actual sound virtual48(0,0), listener9C clear, driver-delay2000 and actual sound driver14(0), without replacing it with module activation.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/host/startup_session.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00477b00",
+      "status": "partial",
+      "coverage": "Reverse actual runtime owner retirement, counters70/74 zero, preserve static and retained-item descriptors, false static recreation or true authority/presentation activation with fresh flags.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/host/game_runtime_actors.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00428ca0",
+      "status": "partial",
+      "coverage": "Restore previous424 bank into actual current24 bank; distinct from CURRENT-to-PREVIOUS00428C80.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/game/mission_script_variables.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049f5e0",
+      "status": "partial",
+      "coverage": "Same actual HUD close/rebind then info6B3A0 help-ID vector clear; failed required artwork stays a failure.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/game/hud_scene_loading.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00498ec0",
+      "status": "partial",
+      "coverage": "Clear actual inline info help-ID vector end08 to begin04, retaining allocation; invoked after HUD rebind.",
+      "limitations": "Source-only typed/STL/RAII reconstruction. Native focused policy/ownership/reset checks use explicit adjacent engine/actor/UI/application endpoints; actual World/FRAME i386 and O2 compile/link only. Original native object/container/allocator/SEH ABI, undefined padding and delegated engine bodies excluded. Full retained Actor44/module13, owning-process/application and user desktop acceptance remain open; no whole-body or delivery promotion.",
+      "evidence": [
+        "recovered/game/hud_scene_loading.h",
+        "recovered/host/game_session_frames.h",
+        "analysis/p22-frame-retained-round-source.md",
+        "analysis/checkpoints/p22-frame-retained-round-20261117.json"
+      ]
     }
   ]
 }

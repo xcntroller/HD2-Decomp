@@ -1,5 +1,7 @@
 # FRAME offline composition baseline — 2026-11-17
 
+Latest continuation: [retained-round containing source and17/18 module reset callbacks](p22-frame-retained-round-source.md). The evidence below retains its original revision/verification boundary; module13 Human/Actor44 and owning-process/application work remain.
+
 Later selected nonoffline and retained-item implementation supersedes the
 remaining blanket guards below: [current source checkpoint and exact gaps](p22-frame-match-source.md).
 This file retains the earlier offline verification boundary.

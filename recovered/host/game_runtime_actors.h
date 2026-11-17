@@ -157,15 +157,7 @@ public:
     }
     void activate(bool authority) { //00477660/004794D0/00479530, required mission branches.
         begin_activation(authority);
-        if(authority||!(mode_flags()&1)) {
-            for(std::size_t index=0;index!=static_items_.size();++index) {
-                const auto queued=static_items_[index];
-                auto* actor=create_item(queued.frame);
-                actor->physics_object(queued.object);static_items_[index].actor=actor;
-                queued.descriptor->actor=actor;
-                try {collisions_.move(*queued.descriptor);}catch(...) {registry_.remove(actor);throw;}
-            }
-        }
+        if(authority||!(mode_flags()&1))spawn_static_items();
         if(!authority||!(mode_flags()&1))return;
         //Items3 precedes this module12 in the original ascending activation.
         //Use its actual shared placement array, not another decoded item file.
@@ -222,6 +214,16 @@ public:
         std::vector<StaticItem>().swap(static_items_);
         std::vector<typename Items::Placed>().swap(retained_items_);
     }
+    void reset_round(bool restart){ //00477B00: retain static/retained descriptors.
+        registry_.clear();registry_.begin_activation(true);field74_=0;
+        if(!restart){
+            if(mode_flags()&1u)spawn_static_items(); //004794D0.
+            if((mode_flags()&2u)&&!(mode_flags()&1u))spawn_static_items(); //00479530, fresh flags.
+        }else{
+            if(mode_flags()&1u)activate(true);
+            if(mode_flags()&2u)activate(false);
+        }
+    }
     void clear_static_queue() { //004795E0; descriptor owners must outlive registered actors.
         for(const auto& queued:static_items_)if(queued.actor)
             throw std::logic_error("Static item queue cannot clear before its runtime actors");
@@ -271,6 +273,13 @@ public:
     void remove_actor_presentation_references(Instance& actor) {activation_.remove_actor_presentation_references(actor);}
     void record_actor_cleanup_failure(std::exception_ptr failure) noexcept {frames_.record_actor_cleanup_failure(std::move(failure));}
 private:
+    void spawn_static_items(){ //004794D0; queue count re-read after each callback.
+        for(std::size_t index=0;index<static_items_.size();++index){
+            const auto queued=static_items_[index];auto* actor=create_item(queued.frame);
+            actor->physics_object(queued.object);static_items_[index].actor=actor;queued.descriptor->actor=actor;
+            try{collisions_.move(*queued.descriptor);}catch(...){registry_.remove(actor);throw;}
+        }
+    }
     DetachedItem& required_detached(Instance* actor){
         if(!registry_.owns(actor))throw std::logic_error("Detached Car item has no actual live registry owner");
         auto* detached=dynamic_cast<DetachedItem*>(actor);if(!detached)throw std::logic_error("Car launch requires its actual runtime type12");return *detached;
